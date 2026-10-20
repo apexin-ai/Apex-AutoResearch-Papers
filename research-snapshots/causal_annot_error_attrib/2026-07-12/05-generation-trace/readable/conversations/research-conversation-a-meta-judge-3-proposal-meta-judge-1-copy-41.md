@@ -1,0 +1,841 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74.jsonl`
+- **Structured JSON:** [`24f1d5cba776f8855d91.json`](../../sessions/24/24f1d5cba776f8855d91.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:36:03.902Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:36:03.902Z",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient information to make a thorough assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- Lion-SP/DS \"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\" (SIGIR 2025): 最直接的对标工作。首次系统研究 decoder-only LLM（Llama-3 1B/3B/8B）在 sparse 和 dense 检索上的 scaling 行为。关键发现：sparse 在 OOD 上比 dense 高 10.5%，但两者是**分别训练的独立模型**，未探索共享 backbone 联合训练。Proposal 的核心科学问题（共享 backbone 是否产生互补特化）正是 Lion 留下的 open question。\n- BGE-M3 (ACL Findings 2024): 唯一在单一模型中统一 sparse+dense+multi-vector 的工作，使用 self-KD，但基于 encoder-only XLM-RoBERTa-large。证明了联合训练在 encoder 架构上可行且有益。Proposal 本质上是将 BGE-M3 的方法论迁移到 decoder-only LLM 架构。\n- LACONIC-8B (arXiv:2601.01684, Jan 2026): 基于 Llama-3 的 sparse-only 模型，MTEB-R 达 60.2 nDCG，是 sparse 检索 SOTA。仅做 sparse，不涉及 unified 或 dense。\n- CSplade-bi-8B (IJCNLP-AACL 2025): 解决 decoder-only LLM 训练 LSR 的不稳定性和单向注意力问题，BEIR 55.3。仅 sparse，不涉及 unified。\n- RouterRetriever (AAAI 2025): 在**独立的外部 expert 模型**之间做 domain-level 路由，+2.1 nDCG@10。路由是 inter-model 的，不是 intra-model 的。Proposal 的 router 在单一模型内部运行，零额外推理成本，是更细粒度且更廉价的方案。\n- DAT (arXiv:2503.23013, 2025): 使用外部 LLM 做 post-hoc per-query α 调优，需要额外 LLM 推理。Proposal 的 MLP router 从 [EOS] 表示直接预测，无额外开销。\n- GritLM-7B (ICLR 2025): 统一 generation + embedding（不同任务模态），decoder-only，但只产生 dense 表示，不涉及 sparse。\n- Hydra (arXiv:2603.28554, 2026): 通过 LoRA 切换统一检索和生成，parameter-switching 方式，不是 parameter-sharing。\n- NV-Embed-v2 (ICLR 2025): 提出 latent attention pooling，dense-only，MTEB SOTA 之一。Proposal 的 dense head 采用相同的 latent attention pooling。\n- Llama-Embed-Nemotron-8B (arXiv:2511.07025, 2025): 同 Llama-3.1-8B backbone，dense-only，MMTEB #1。是 proposal 最直接的 dense baseline。\n- Qwen3-Embedding-8B (2025): MTEB multilingual 70.58，不同 backbone，作为 reference baseline。\n- CIKM 2025 Short \"Sparse and Dense Retrievers Learn Better Together\": 在 VLP encoder（BLIP/ALBEF）上验证双向 self-KD 用于 text-image 跨模态检索。是 proposal 自蒸馏方法的理论来源，但场景（跨模态 vs 同模态）和架构（encoder vs decoder）均不同。\n- 调研总结: Proposal 占据了一个 **真实且明确的研究空白**——decoder-only LLM 上 sparse+dense 共享 backbone 联合训练的统一模型。BGE-M3 在 encoder-only 上证明了这一路线的可行性，Lion-SP/DS 证明了 decoder-only 上 sparse 和 dense 的互补性信号，但将两者结合在 decoder-only 架构上目前确实没人做过。该 gap 是真实的、可验证的，且具有工程和科学双重价值。\n\n【整体印象】:\n作为审稿人，我的第一反应是 **borderline accept，倾向 weak accept**。这是一篇构思成熟、定位精准的 proposal。它精确识别了领域中一个真实的结构性空白（decoder-only LLM 上 unified sparse-dense），提出了清晰的科学假设（complementary specialization），并设计了非常完备的实验来验证。Proposal 的成熟度远超一般投稿——对 trivial alternative 的预判和回应、对 self-KD 迁移条件的讨论、三轴性能声明的谨慎设定，都显示出深厚的领域理解。\n\n然而，核心贡献的 novelty 属于 **\"将已有方法论迁移到新架构\"** 的类型——BGE-M3 的统一思路 + CIKM 2025 的自蒸馏 + 成熟的 decoder-only embedding 技术栈（bidirectional attention, latent attention pooling, SPLADE head），整合在一起。方法论层面没有根本性的新组件。审稿人可能会质疑：\"这本质上是一个 well-executed engineering integration，科学发现可能仅仅是 'yes, it also works for decoder-only'\"。\n\n但我也认识到：(1) 这类 gap-filling 工作在 AAAI 是可以接受的，特别是当实验分析足够深入时；(2) CKA/probing/attention entropy 的分析维度超越了单纯的 \"刷点\"，为理解 representation learning 提供了科学价值；(3) 效率收益（~2× throughput）有实际工程价值。\n\n【核心贡献】:\n1. **首个 decoder-only LLM 上的 unified sparse-dense 单模型架构**——填补 BGE-M3（encoder-only）和 Lion-SP/DS（分别训练）之间的空白\n2. **共享 backbone 下 sparse-dense 互补特化的实证研究**——通过 CKA、layer-wise probing、attention entropy 揭示联合训练是否导致层级功能分化\n3. **零成本内部 learned router**——从 query 的 [EOS] 表示直接预测 per-query 插值权重，替代外部 LLM 推理（DAT）或 fixed α（BGE-M3）\n\n贡献 2 是最有价值的——如果实验能清晰展示 \"哪些层学了什么、联合训练如何改变了 representation 结构\"，这将是一个有意义的 representation learning 发现。贡献 1 是 necessary enabler 但本身偏 engineering。贡献 3 有用但相对 minor。\n\n【方法合理性】:\n方法整体合理，各组件都有成熟先例：\n- Bidirectional attention on decoder-only LLM: NV-Embed, Llama-Embed-Nemotron 等均采用\n- SPLADE head (vocab projection + ReLU + FLOPS reg): 标准做法，DF-FLOPS variant 的考虑是合理的\n- Latent attention pooling for dense head: NV-Embed-v2 (ICLR 2025) 的方法\n- 三阶段 curriculum: Stage 1 稳定 ReLU 是 CSplade 的经验；Stage 2 双向 self-KD 源自 CIKM 2025；Stage 3 hard-negative + router 是标准范式\n- GradCache: 解决大模型 contrastive learning 的 batch size 问题，成熟工具\n\n**更简单的替代方案**: Proposal 已自觉讨论了 trivial alternative（Lion-SP + Lion-DS + post-hoc fusion），并给出了两条辩护线（mutual feature transfer + efficiency）。这是充分的。但审稿人可能追问：如果简单地在 Lion-SP 或 LACONIC 的训练流程中同时加一个 dense head（无 self-KD），效果是否就够了？建议增加一个 \"joint training without KD\" 的 ablation（目前 ablation (a) 覆盖了这一点）。\n\n**潜在方法论风险**:\n1. 双向 self-KD 可能导致两个 head 趋同而非互补——这是核心假设的对立面，proposal 需要准备好解释负结果\n2. Sparse head 的 ReLU 归纳偏置可能限制其从 dense 信号中获益——proposal 已预判到这一点（directional asymmetry sub-hypothesis），这是加分项\n3. 三阶段训练的超参数空间较大（KD 权重、FLOPS λ、router 训练时机等），可能需要大量调参\n\n【5 维度打分】:\n\n  1. 研究问题: [强] — \n     \"共享 backbone 下 sparse-dense 是互补特化还是竞争退化\" 是一个 well-defined 且有清晰可验证性的科学问题。Lion-SP/DS (SIGIR 2025) 证明了信号互补性但未做联合训练，BGE-M3 证明了联合训练在 encoder 上可行但未扩展到 decoder-only。这个交叉点恰好是空白。问题兼具科学价值（representation learning）和工程价值（检索系统效率）。研究问题的 framing 比单纯 \"刷 SOTA\" 更有深度。\n\n  2. 方法与创新: [中] — \n     方法论层面主要是已有组件的整合：BGE-M3 的 unified 范式 + CIKM 2025 的 bidirectional self-KD + NV-Embed 的 latent attention pooling + CSplade 的 sparse head 训练策略。没有提出根本性的新方法或新损失函数。创新更多体现在 \"这个组合从未在 decoder-only 上验证过\" 以及 \"科学假设驱动的分析维度\"。对 AAAI 而言，这种程度的方法创新位于及格线至中等之间。与 GritLM（提出新的 instruction tuning paradigm）或 NV-Embed（提出 latent attention pooling）相比，方法原创性偏弱。内部 router 是一个 nice addition 但 2-layer MLP 预测 α 的复杂度很低，难以单独构成显著贡献。\n\n  3. 实验设计: [强] — \n     实验设计是这份 proposal 最突出的强项。Baselines 按可比性分层（primary/secondary/reference）非常专业，特别是包括了 same-backbone 的 Llama-Embed-Nemotron-8B 和 Lion-SP/DS 作为 controlled comparison。Ablation 覆盖了四个维度：Self-KD（5 条件，含方向性测试）、Router（6 条件 + oracle 上界）、Stage（4 条件）、Representational analysis（CKA + probing + entropy）。Compute-controlled comparison 是一个很好的 addition。三轴性能声明（mutual benefit / routing value / efficiency）比 \"beat SOTA\" 更严谨、更有说服力。唯一的小遗憾是缺少 multilingual evaluation，但 proposal 在 limitations 中已声明。评测覆盖 BEIR-14（14 subsets）、MTEB-R、MSMARCO、TREC DL，符合领域标准（参考 Lion-SP/DS、LACONIC、BGE-M3 的评测设置）。\n\n  4. 可行性: [中] — \n     8×A100-80GB 训练 7-10 天是可行的但属于中等偏高的资源需求。Proposal 考虑了 3B proof-of-concept（~3 天 4×A100）和 LoRA fallback，显示了务实的风险管理。GradCache 解决 batch size 问题是成熟方案。主要风险在于：(1) 三阶段训练的超参数调优可能需要多次试错，实际训练时间可能远超估计；(2) 5 条件 KD ablation + 6 条件 router ablation + 4 条件 stage ablation + representational analysis 的实验总量相当大，全部做完可能需要 3-4× 的 compute budget；(3) cross-encoder KD ablation 额外增加 20% 计算。整体而言，一个有 8×A100 access 的实验室可以在 2-3 个月内完成，但时间压力不小。\n\n  5. 写作与呈现: [强] — \n     Proposal 的写作质量很高。研究问题的 framing 从 \"科学假设\" 出发而非 \"工程任务\" 出发，提升了论文的学术定位。对 trivial alternative 的预判和回应体现了自我批判意识。对 self-KD 迁移条件的显式分析（从 cross-modal 到 text-text）展示了方法论的严谨性。Directional asymmetry sub-hypothesis 是一个精巧的设计——无论结果是对称还是不对称，都是 publishable finding。Research landscape 的二维 taxonomy（what × how）很清晰。唯一需要注意的是，最终论文需要在 8 页内呈现如此大量的实验，layout 和信息密度管理将是一个挑战。\n\n【概率估计】: [30% - 45%] 中位 37%\n\n【估计理由】: \n这份 proposal 的综合质量属于 AAAI 投稿的 upper-middle 水平。\n\n上推因素：(1) 研究空白是真实且明确的，审稿人可以验证 \"确实没人在 decoder-only 上做过 unified sparse-dense\"；(2) 实验设计的完备程度远超平均水平，多维 ablation + representational analysis 有望带来 solid empirical contribution；(3) 科学假设驱动的 framing 比纯 engineering 论文更受顶会青睐；(4) 效率收益（2× throughput, 50% parameter reduction）有实际价值。\n\n下拉因素：(1) 方法创新度偏弱——本质是 \"BGE-M3 approach on decoder-only\"，审稿人可能认为这是 incremental/expected extension；(2) 核心假设的验证结果存在不确定性——如果联合训练只带来 marginal improvement，论文的 story 会变弱（尽管 \"negative result\" 也有价值，但顶会接受度较低）；(3) 路由器（2-layer MLP）的贡献度较低，难以作为独立的创新点。\n\n中位 37% 反映了这样的判断：这是一篇有 solid foundation 的 proposal，如果实验结果符合预期（联合训练明显优于独立训练、representational analysis 揭示有趣的 pattern），中稿概率可以达到 40-45%。但如果结果 marginal 或方法被认为过于 incremental，概率会降至 30% 左右。\n\n【主要风险】:\n1. **Novelty 质疑（最大风险）**: 审稿人可能认为这是 BGE-M3 到 decoder-only 的 straightforward extension，方法层面没有新的 insight——所有组件（SPLADE head, latent attention pooling, self-KD, MLP router）都是已有技术的直接复用。如果 representational analysis 的发现不够 surprising，论文可能被判定为 engineering contribution insufficient for a top venue。\n2. **核心假设失败风险**: 如果共享 backbone 联合训练并未比独立训练产生显著优势（或甚至导致轻微性能退化），proposal 的核心 story \"complementary specialization\" 将不成立。虽然 \"negative result\" 也有学术价值，但在 AAAI 的 acceptance rate 下，negative result 论文的录用难度显著更高。\n\n【实施评估】:\n  - 计算资源: 8×A100-80GB，7-10 天主训练 + ablation 约 3-4 倍额外计算。总计约 30-40 GPU-days（含 ablation 和 3B proof-of-concept）。需要稳定的多 GPU 集群访问。\n  - 数据需求: MS MARCO passages 为主训练集（公开可用），BEIR-14 / MTEB / TREC DL 均为标准公开评测集。无需额外数据收集或标注。\n  - 人工介入: 超参数调优（KD 权重、FLOPS λ、curriculum 切换时机）需要较多人工介入。Router 训练数据可自动生成。\n  - 训练需求: 需要全量微调 8B 模型（LoRA 为 fallback）。三阶段 curriculum 增加了训练管道的复杂性。需要实现 GradCache 与 dual-head + self-KD 的兼容。\n  - 新 Benchmark: 不需要。使用标准已有 benchmark。\n  - 预估周期: 3B proof-of-concept 约 1 周；8B 主实验约 2 周；全部 ablation + analysis 约 3-4 周；论文撰写约 2 周。总计约 2-2.5 个月（如果计算资源充足且无重大技术障碍）。\n```\n\nSources:\n- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)](https://arxiv.org/abs/2502.15526)\n- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/abs/2601.01684)\n- [BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity](https://arxiv.org/abs/2402.03216)\n- [RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)](https://arxiv.org/abs/2409.02685)\n- [DAT: Dynamic Alpha Tuning for Hybrid Retrieval](https://arxiv.org/abs/2503.23013)\n- [GritLM: Generative Representational Instruction Tuning (ICLR 2025)](https://arxiv.org/abs/2402.09906)\n- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)\n- [NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models (ICLR 2025)](https://arxiv.org/abs/2405.17428)\n- [CSPLADE: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)](https://arxiv.org/abs/2504.10816)\n- [Llama-Embed-Nemotron-8B (arXiv 2025)](https://arxiv.org/abs/2511.07025)\n- [Qwen3-Embedding (2025)](https://huggingface.co/Qwen/Qwen3-Embedding-8B)\n- [Sparse and Dense Retrievers Learn Better Together (CIKM 2025)](https://arxiv.org/abs/2508.16707)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to provide a thorough evaluation. Here is my assessment:\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs](https://arxiv.org/abs/2502.15526) (SIGIR 2025): 最直接的前置工作。Lion-SP/DS 分别训练 sparse 和 dense retriever 到 8B 规模，发现 sparse 在 OOD 上比 dense 高 10.5%。但两者是独立模型，未探索共享 backbone 的联合训练。本 proposal 的核心 gap 之一正是从此处延伸。\n- [BGE-M3: Multi-Lingual, Multi-Functionality, Multi-Granularity](https://arxiv.org/html/2402.03216v3) (ACL Findings 2024): 在 encoder-only XLM-RoBERTa 上实现了 sparse+dense+multi-vector 统一模型，证明联合训练可行且使用了 self-KD。但仅限于 encoder-only 架构。本 proposal 将此范式迁移到 decoder-only 架构是合理的延伸，但需证明 decoder-only 带来的不同归纳偏置确实导致不同行为。\n- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/html/2601.01684v1) (arXiv 2026): 将 sparse retrieval 推到 dense 水平的效果，达到 MTEB-R 60.2、BEIR-14 61.5。是 sparse retrieval SOTA 之一，proposal 中作为 baseline 合理。\n- [RouterRetriever](https://ojs.aaai.org/index.php/AAAI/article/view/33306) (AAAI 2025): 通过路由机制在多个独立 expert embedding 模型间选择，BEIR 上 +2.1 nDCG@10。但路由发生在外部模型间，而非单一模型内部。本 proposal 的 router 在统一模型内部操作，零额外推理成本，是有差异的。\n- [CSplade: Learned Sparse Retrieval with Causal Language Models](https://aclanthology.org/2025.ijcnlp-long.7/) (IJCNLP 2025): 首次系统解决 decoder-only LLM 训练 SPLADE 的稳定性问题（ReLU 训练不稳定 + 单向注意力限制）。本 proposal 的 Stage 1 直接采用其 adaptation 方案，合理。\n- [Sparse and Dense Retrievers Learn Better Together](https://arxiv.org/html/2508.16707) (CIKM 2025 Short): 在 VLP encoder 模型上验证了双向 self-KD 在跨模态检索中的有效性。本 proposal 将此方法迁移到 decoder-only 文本检索，transfer 条件需要验证。\n- [DAT: Dynamic Alpha Tuning](https://arxiv.org/abs/2503.23013) (arXiv 2025): 用外部 LLM 对每个 query 预测 sparse-dense 权重 α。需要额外推理成本。本 proposal 的 router 从 [EOS] 表示直接预测，更轻量。\n- [GritLM / GRIT](https://proceedings.iclr.cc/paper_files/paper/2025/hash/70cf215430492f7d34830a24e744b3f1-Abstract-Conference.html) (ICLR 2025): 统一生成与嵌入，但仅产出 dense representations。与本 proposal 在\"统一什么\"上有本质区别。\n- [Qwen3-Embedding-8B](https://huggingface.co/Qwen/Qwen3-Embedding-8B) (2025): MTEB multilingual 70.58，当前 dense SOTA 之一。不同 backbone 和 pipeline，作为 reference baseline 合理。\n- [Hydra](https://arxiv.org/abs/2603.28554) (arXiv 2026): 通过 LoRA toggle 统一检索与生成，parameter-switching 范式。与本 proposal 的 parameter-sharing 范式形成对比。\n\n- **调研总结**: Decoder-only LLM 规模的 sparse 和 dense retrieval 已分别达到 SOTA（Lion-SP/DS, LACONIC），BGE-M3 已在 encoder-only 上证明统一可行，但 decoder-only 架构下的 shared-backbone sparse+dense 联合训练仍是空白。本 proposal 精准填补这一 gap，定位清晰。领域处于活跃发展期，竞争激烈但 gap 确实存在。\n\n【整体印象】:\n作为审稿人，第一反应是这是一篇定位精准、准备充分的 proposal。研究问题从 Lion-SP/DS 的\"分别训练\"自然延伸到\"能否共享 backbone 联合训练\"，科学动机清晰。实验设计的细致程度（4 组 ablation、representational analysis、compute-controlled comparison）在 proposal 阶段已经超出大多数投稿的水准。\n\n然而，核心担忧在于 novelty 的深度：这本质上是\"BGE-M3 在 decoder-only 架构上的复现 + 自 CIKM 2025 迁移来的 self-KD + 一个轻量 MLP router\"。各个技术组件均非原创，创新主要在于组合（integrative novelty）。科学问题的表述（\"complementary specialization\"）提升了论文的学术层次，但需要实验结果确实展示出非 trivial 的发现才能说服审稿人。\n\n倾向：**弱 accept / borderline**，取决于实验结果是否能展示出共享 backbone 的真正互补增益（而非仅仅\"也能工作\"）。\n\n【核心贡献】:\n1. **首个 decoder-only 统一 sparse+dense 单 forward pass 模型**：填补了 BGE-M3（encoder-only）和 Lion-SP/DS（分别训练）之间的 gap。这是一个有实际价值的工程贡献，也是回答科学问题的必要工具。\n2. **共享 backbone 下互补特化的实证研究**：通过 CKA、linear probing、attention entropy 等分析工具揭示联合训练是否诱导层级特化。这是最有学术价值的贡献——如果发现确实不同于 BGE-M3 在 encoder-only 上的行为。\n3. **零成本内部 learned router**：相比 RouterRetriever（外部路由）和 DAT（额外 LLM 推理），从 [EOS] 表示直接预测权重是更优雅的方案。\n\n贡献对领域的价值：中高。统一模型有明确的实际部署价值（~2x 吞吐、~50% 参数），科学问题对理解 LLM 表示学习有参考意义。但如果结果仅是\"联合训练与分别训练效果差不多\"，则价值大打折扣。\n\n【方法合理性】:\n方法整体合理，三阶段课程式训练有清晰的 justification：\n- Stage 1 的 sparse-only adaptation 直接采用 CSplade 的解决方案处理 ReLU 训练不稳定性，已有前人验证。\n- Stage 2 的联合训练 + 双向 self-KD 是核心，公式来自 CIKM 2025，KL-divergence 损失是 modality-agnostic 的，迁移合理。\n- Stage 3 的 router 训练在 hard-negative 阶段进行，此时两个 head 已稳定，router 可以学到有意义的信号。\n\n**更简单的替代方案**：Lion-SP-8B + Lion-DS-8B 分别训练后加 post-hoc fusion（固定权重或 DAT 风格自适应）。Proposal 正面承认了这个替代方案并设计了直接对比实验，这是一个加分点。但如果实验结果显示 post-hoc fusion 效果相当甚至更好，则整个 proposal 的必要性受到严重挑战。\n\n**潜在问题**：\n1. 双向 self-KD 中的 directional asymmetry 假设虽然有趣，但如果 sparse head 确实无法从 self-KD 中获益（如 proposal 自己预测的），则\"bidirectional\"的价值减半。\n2. 2-layer MLP router 的容量是否足够？虽然简单有效是优点，但需要验证其学到的 routing 策略确实优于简单启发式（如 query 长度、词频分布等）。\n\n【5 维度打分】:\n\n  1. 研究问题: 【强】— 问题定位精准：decoder-only 统一 sparse+dense 是已验证的空白（Lion-SP/DS 分别训练，BGE-M3 仅 encoder-only）。\"共享 backbone 是否诱导互补特化\"是一个有科学深度的问题，且与实际部署效率直接相关。Lion-SP 比 Lion-DS OOD 高 10.5% 的发现为互补性提供了强 evidence。\n\n  2. 方法与创新: 【中】— 方法合理但创新主要是 integrative。各组件均有先例：SPLADE head (CSplade)、dense latent attention pooling (NV-Embed)、self-KD (BGE-M3, CIKM 2025)、learned routing (RouterRetriever, DAT)。组合本身填补了一个真实的空白，但没有任何单一组件是新提出的。\"Complementary specialization\" 的科学表述提升了层次，但需要实验结果支撑——如果 CKA/probing 分析没有揭示出有意义的差异，论文的贡献会回落到纯工程层面。与 BGE-M3 相比，主要差异是 backbone 类型（decoder-only vs encoder-only）和 self-KD 方向性分析，这些是有价值的但不构成 fundamental insight。\n\n  3. 实验设计: 【强】— 这是本 proposal 最突出的亮点。Baseline 结构化为 primary/secondary/reference 三层，覆盖了同 backbone 对比（Llama-Embed-Nemotron, Lion-SP/DS）、post-hoc fusion 对比、以及跨 backbone reference。四组 ablation 设计严谨：self-KD 5 条件（含 directional 分离）、router 6 条件（含 oracle upper bound）、stage 4 条件、representational analysis。Compute-controlled comparison（same-compute vs same-parameter）是审稿人很看重的细节。BEIR-14 全 14 子集报告、MTEB、MS MARCO、TREC DL 覆盖充分。三维 performance claims（mutual benefit、routing value、efficiency）比简单追求 SOTA 数字更成熟。\n\n  4. 可行性: 【强】— 计算估算合理（8×A100 7-10 天），有 3B 规模 proof-of-concept 和 LoRA 两层 fallback。GradCache 解决大 batch 内存问题的方案已有验证。唯一风险是 Stage 2 的联合训练可能需要大量超参调优（两个 head 的 loss 权重、KD 温度、FLOPS 正则强度等），但这在 proposal 中未充分讨论。\n\n  5. 写作与呈现: 【强】— 逻辑结构清晰，从 gap identification → trivial alternative → method → experiment 层层递进。主动承认和 address 潜在质疑（trivial alternative、transfer conditions、multi-vector exclusion、multilingual scope）显示了学术成熟度。Research landscape 的 taxonomy 整理（what is unified × how unified）有助于审稿人快速理解定位。\n\n【概率估计】: [28% - 42%] 中位 35%\n\n【估计理由】:\n**利好因素**: (1) 研究问题清晰且 gap 真实存在，不易被审稿人 dismiss；(2) 实验设计异常完备，ablation 覆盖全面，这在 review 中通常获得高分；(3) 三维 performance claims 比追求单一 SOTA 更稳健，降低了\"实验结果不够好\"的风险；(4) 实际部署价值明确（2x 吞吐、50% 参数）；(5) 主动 address 了 trivial alternative 和各种质疑。\n\n**不利因素**: (1) Novelty 主要是 integrative——将已有组件（SPLADE head, dense head, self-KD, MLP router）组合到 decoder-only backbone 上。审稿人可能认为\"BGE-M3 for decoder-only + CIKM 2025 self-KD\"不构成足够的 methodological novelty；(2) 核心科学发现（互补特化是否出现）高度依赖实验结果。如果结果是\"联合训练与分别训练效果差不多\"或\"self-KD 的增益微弱\"，论文价值大幅缩水；(3) AAAI 在 IR/retrieval 方向的接受度不如 SIGIR/ACL，审稿人匹配可能不理想（虽然这不影响论文质量评估，AAAI 确实接收 IR 论文）；(4) 2-layer MLP router 的技术贡献较薄，可能被视为 minor addition。\n\n中位 35% 反映：这是一篇 above-average 但不 outstanding 的投稿。实验设计的质量是主要加分项，integrative novelty 是主要减分项。如果实验结果能展示出 shared backbone 的真正互补增益（individual heads 超过独立训练的对应物），概率可上移至 40%+；如果互补效应不显著，概率下移至 25% 附近。\n\n【主要风险】:\n1. **Novelty 挑战**: 最可能被拒的原因。审稿人可能评价\"This is essentially BGE-M3 applied to a decoder-only backbone with self-KD from CIKM 2025 — the architectural novelty is incremental\"。Proposal 将 integrative contribution 包装为科学问题（complementary specialization）来对冲，但如果审稿人不 buy 这个 framing，或要求更深层的理论分析（beyond empirical CKA），就会成为致命伤。\n2. **核心假设失败风险**: 如果联合训练后 individual head 性能不优于独立训练的对应物（即 mutual benefit 假设不成立），或 learned router 相比 best fixed α 的增益微弱，则三个核心 claim 中有两个失败，论文将难以发表。Proposal 虽然设计了 ablation 来\"无论结果如何都产生发现\"，但 negative result 在顶会的接受率远低于 positive result。\n\n【实施评估】:\n  - 计算资源: 8×A100-80GB，7-10 天（或 16×A100, 5-7 天）。3B proof-of-concept 需 4×A100, ~3 天。含 ablation 总计约 2-3 周。中等偏高的计算需求，对有 GPU 集群的研究组可行。\n  - 数据需求: MS MARCO passages（公开）、BEIR-14（公开）、MTEB retrieval subset（公开）、TREC DL 2019/2020（公开）。无需私有数据或额外标注。\n  - 人工介入: 主要在超参调优（loss 权重、KD 温度、FLOPS 正则强度、router 学习率）和训练监控。估计 1-2 位研究者全职投入 4-6 周。\n  - 训练需求: 需要 full fine-tune 或 LoRA fine-tune Llama-3.1-8B。三阶段课程式训练，Stage 2 最耗时（4-6 天）。GradCache 和 cross-GPU negative sharing 需要一定工程投入。\n  - 新 Benchmark: 不需要。使用现有标准 benchmark。\n  - 预估周期: 从启动到论文完稿约 8-12 周（含 3B proof-of-concept 2 周 + 8B 训练 2 周 + ablation 2-3 周 + 分析与写作 2-3 周）。如果 proof-of-concept 结果不理想需要调整方法，可能延长至 14-16 周。\n```\n\nSources:\n- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)](https://arxiv.org/abs/2502.15526)\n- [BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity](https://arxiv.org/html/2402.03216v3)\n- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/html/2601.01684v1)\n- [RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)](https://ojs.aaai.org/index.php/AAAI/article/view/33306)\n- [CSplade: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)](https://aclanthology.org/2025.ijcnlp-long.7/)\n- [Sparse and Dense Retrievers Learn Better Together (CIKM 2025)](https://arxiv.org/html/2508.16707)\n- [DAT: Dynamic Alpha Tuning for Hybrid Retrieval (arXiv 2025)](https://arxiv.org/abs/2503.23013)\n- [GritLM: Generative Representational Instruction Tuning (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/hash/70cf215430492f7d34830a24e744b3f1-Abstract-Conference.html)\n- [Qwen3-Embedding-8B (Hugging Face)](https://huggingface.co/Qwen/Qwen3-Embedding-8B)\n- [Hydra: Unifying Document Retrieval and Generation (arXiv 2026)](https://arxiv.org/abs/2603.28554)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make my assessment. Let me compile the final evaluation.\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs](https://arxiv.org/abs/2502.15526) (SIGIR 2025): 最直接的前置工作。提出 Lion-SP 和 Lion-DS，分别独立训练 decoder-only LLM 的 sparse 和 dense 检索模型。发现 sparse 在 OOD 上显著优于 dense（~10.5%），但两者是分别训练的独立模型，未探索共享 backbone 的联合训练。本 proposal 的核心科学问题正是从这里出发。\n- [BGE M3-Embedding](https://arxiv.org/abs/2402.03216) (ACL Findings 2024): 在 encoder-only XLM-RoBERTa 上统一 sparse+dense+multi-vector，使用 self-knowledge distillation。证明了联合训练在 encoder 架构上是可行且有益的。但未扩展到 decoder-only 架构。本 proposal 的 gap claim（encoder→decoder 的迁移未被验证）成立。\n- [RouterRetriever](https://arxiv.org/abs/2409.02685) (AAAI 2025): 在多个独立 expert embedding model 之间做 domain-level routing，+2.1 nDCG@10。但路由发生在外部独立模型之间，不是在统一模型内部的 head 之间。本 proposal 的 internal router 方案确实是差异化的。\n- [LACONIC](https://arxiv.org/abs/2601.01684) (arXiv 2026): Decoder-only LLM sparse retrieval，达到 dense-level effectiveness (BEIR 60.2)。但仍是单模式模型。\n- [Sparse and Dense Retrievers Learn Better Together](https://arxiv.org/abs/2508.16707) (CIKM 2025 Short): 在 VLP encoder 模型（BLIP/ALBEF）上验证 bidirectional self-KD 用于 text-image cross-modal retrieval。本 proposal 要将此方法迁移到 decoder-only text-text retrieval。\n- [DAT: Dynamic Alpha Tuning](https://arxiv.org/abs/2503.23013) (arXiv 2025): 使用外部 LLM 评估 + MLP 做 per-query alpha tuning。Post-hoc 方法，需要额外推理。本 proposal 的 router 从 [EOS] 表示直接预测，零额外推理成本，是更优雅的方案。\n- [GritLM](https://arxiv.org/abs/2402.09906) (ICLR 2025): 统一 generation + embedding，证明两者可以在同一模型中无损共存。但只产生 dense representation，未涉及 sparse。\n- [Qwen3-Embedding-8B](https://huggingface.co/Qwen/Qwen3-Embedding-8B) (2025): MTEB multilingual #1 (70.58)，不同 backbone，dense-only。\n- [Llama-Embed-Nemotron-8B](https://arxiv.org/abs/2511.07025) (2025): 同 Llama-3.1-8B backbone，MMTEB #1 (Borda rank)，dense-only。是本 proposal dense head 的关键 baseline。\n- 调研总结: Decoder-only LLM 上的 sparse 和 dense retrieval 在 2025 年分别取得了重大进展，但\"在同一个 decoder-only backbone 上联合训练 sparse+dense 并研究互补特化\"这一具体方向确实是空白。Proposal 的 novelty claim 经过调研验证是成立的，填补的 gap 是真实的。\n\n【整体印象】:\n作为审稿人，我的第一反应是 **lean accept with reservations**。这是一篇研究方向清晰、科学问题定义精准、实验设计异常完备的 proposal。它的核心优势在于：(1) 科学问题定位精准——不是简单地\"做一个统一模型\"，而是聚焦于\"共享 backbone 是否导致互补特化\"这一可验证的科学假设；(2) 对 trivial alternative 的自觉分析和对抗设计非常成熟；(3) ablation 设计覆盖面广且有层次。主要顾虑是：这本质上是一个 well-executed system paper，核心方法的各个组件（SPLADE head、dense head、self-KD、MLP router）都不是新的，novelty 主要来自组合和科学问题的提出。审稿人可能会质疑\"组合的科学贡献够不够\"。\n\n【核心贡献】:\n三层贡献：\n1. **科学发现**（如果假设成立）：在 decoder-only LLM 中，共享 backbone 的 sparse+dense 联合训练确实诱导互补特化，且 bidirectional self-KD 是关键催化剂。这对理解大模型的表示学习机制有价值。\n2. **架构贡献**：首个在单一 decoder-only LLM 中用共享 backbone + dual head 同时产生 sparse 和 dense representation 的模型，配合 learned internal router。\n3. **实用贡献**：~2× encoding throughput，~50% 参数量，对工业部署有实际价值。\n\n贡献的价值评估：如果互补特化假设被实验证实（每个 head 不弱于独立训练的对应模型），这是一个 significant finding。如果假设被否定（联合训练导致竞争而非互补），作者也设计了足够的分析工具来提供 valuable negative result，但论文的 impact 会大幅降低。\n\n【方法合理性】:\n方法整体合理，各组件都有成熟的前置工作支撑：\n- SPLADE head 有 CSplade、LACONIC 等成熟实践\n- Dense head + latent attention pooling 有 NV-Embed-v2 验证\n- Bidirectional self-KD 有 CIKM 2025 在 VLP 上的验证\n- 三阶段 curriculum（先稳定 sparse→联合训练→hard negative + router）的设计合理，避免了 sparse ReLU 不稳定的已知问题\n\n**更简单的替代方案**：确实存在——直接用 Lion-SP-8B + Lion-DS-8B + post-hoc fusion。作者明确意识到了这个替代方案并设计了对抗实验（baseline 中包含 fixed α 和 DAT-style per-query α）。这是成熟的研究态度。关键是实验需要证明 shared backbone 带来的不仅仅是效率提升，还有 representation quality 的提升。\n\n潜在风险点：bidirectional self-KD 从 cross-modal VLP（BLIP/ALBEF）迁移到 same-modality text-text decoder-only 架构，complementarity source 不同，迁移的有效性有不确定性。但作者设计了充分的 ablation 来应对。\n\n【5 维度打分】:\n\n1. **研究问题: 强** — 问题定义精准且有实际价值。\"共享 backbone 的 sparse+dense 是互补还是竞争\"是一个在 Lion-SP/DS (SIGIR 2025) 之后自然出现但尚未被回答的科学问题。BGE-M3 在 encoder-only 上回答了\"可以\"，但 decoder-only 的 inductive bias 不同（causal→bidirectional attention 的转换），答案不能简单迁移。问题有理论价值（理解表示学习机制）和实用价值（减少部署成本）。\n\n2. **方法与创新: 中** — 方法的各个组件都有前置工作（SPLADE head 源自 CSplade/LACONIC，dense head 源自 NV-Embed-v2，self-KD 源自 BGE-M3/CIKM 2025，router 概念源自 RouterRetriever/DAT）。创新主要在于：(a) 将这些组件首次组合在 decoder-only LLM 上并提出互补特化的科学假设，(b) internal router 的零成本设计。这是\"组合创新 + 科学假设\"而非\"方法创新\"，在 AAAI 审稿中可能被部分审稿人认为 novelty 有限。但 proposal 通过精准的科学问题定位和详尽的分析工具（CKA、linear probing、attention entropy）显著提升了贡献的科学价值，使其超越了简单的 system paper。\n\n3. **实验设计: 强** — 这是整个 proposal 最突出的部分。Baseline 设计非常完备，分三层（primary controlled comparison, secondary standard, reference different backbone），覆盖了同 backbone 的 sparse/dense/fusion 对比。Ablation 设计有深度：self-KD 的 5 conditions（含 directional asymmetry 验证）、router 的 6 conditions + oracle upper bound、stage ablation 4 conditions、representational analysis（CKA + linear probing + attention entropy）。Evaluation 覆盖 BEIR-14 全子集、MTEB、MS MARCO、TREC DL。效率评估（throughput、latency、parameter count、index size）也完整。唯一的小遗憾是未涉及 multilingual（作者已在 scope 中说明）。实验设计本身就是一个 strong contribution。\n\n4. **可行性: 中** — 8×A100-80GB 7-10 天是可行但非 trivial 的计算需求。3B scale proof-of-concept 先行的策略是合理的风险管理。LoRA fallback 方案也说明作者考虑了资源不足的情况。主要风险：(a) bidirectional attention 在 8B decoder 上的 memory 压力可能比预期更大；(b) GradCache 的 128-256 步 gradient accumulation 可能导致训练不稳定；(c) 三阶段 curriculum 的超参调优空间大，可能需要多次实验迭代。但这些风险都在合理范围内，有成熟的工程解决方案。\n\n5. **写作与呈现: 强** — Proposal 结构清晰，逻辑链条完整：从科学问题出发→识别研究空白→提出方法→设计对抗实验→预设 fallback。对 trivial alternative 的自觉讨论、对 self-KD transfer conditions 的分析、directional asymmetry sub-hypothesis 的提出都显示了高度的研究成熟度。Performance claims 定义为三维指标而非单一数字，显示了科学严谨性。唯一需要改进的是 related work 的叙述可以更简洁。\n\n【概率估计】: [30% - 45%] 中位 37%\n\n【估计理由】:\n上界 45% 的理由：如果实验成功验证互补特化假设（mutual benefit + routing value + efficiency 三项全部达标），配合极其完备的 ablation 和分析，这将是一篇扎实且有科学深度的论文。实验设计的完备性本身就是 strong signal，说明作者对领域有深刻理解。AAAI 作为综合性 AI 会议，对 IR/retrieval 方向有良好的接受度。\n\n下界 30% 的理由：(a) 方法的各组件都非原创，核心 novelty 依赖于\"组合 + 科学假设\"，部分审稿人可能认为 incremental；(b) 互补特化假设可能不成立（联合训练可能导致两个 head 都退化），此时论文虽仍有价值但 impact 大减；(c) AAAI 2026 的接收率预计在 ~23-25%，竞争激烈；(d) Decoder-only retrieval 本身是相对 niche 的子领域，可能难以匹配到完全合适的审稿人。\n\n中位 37% 的推理：研究问题和实验设计都很强，方法创新中等。如果实验结果支持假设，这是一篇 solid 的论文，处于 borderline accept 区域。考虑到 AAAI 的接收率和审稿人匹配的不确定性，37% 是合理的中位估计。关键变量是实验结果——如果互补特化效果显著（如 mutual benefit 实现且 router 超过 best fixed α ≥ 2 nDCG@10），概率可推到 40-45%；如果效果 marginal，则降到 30% 附近。\n\n【主要风险】:\n1. **Novelty 被质疑为 incremental**：所有方法组件（SPLADE head、dense head、self-KD、MLP router）都有直接前置工作，审稿人可能认为这只是 \"BGE-M3 on decoder-only LLM\" 的简单迁移，即使作者强调了科学假设和分析框架的贡献。应对建议：在论文中更强势地 frame 为\"科学发现驱动\"而非\"系统设计驱动\"，强调 CKA/linear probing/attention entropy 分析揭示的新发现。\n2. **互补特化假设不成立**：如果联合训练导致两个 head 互相干扰（shared backbone 的 capacity bottleneck），核心 claim 即告失败。虽然作者预设了\"negative result 也有价值\"的 framing，但 AAAI 审稿人通常对 negative results 的接受度有限。应对建议：在 3B proof-of-concept 阶段就密切监控这一风险，如果初步结果不支持假设，及时调整研究方向（如转向研究\"为什么 decoder-only 上不 work\"并与 BGE-M3 在 encoder 上的成功做对比分析）。\n\n【实施评估】:\n- **计算资源**: 8×A100-80GB 7-10 天（主实验）+ 4×A100 3 天（3B proof-of-concept）+ ablation 额外 ~50% 计算。总计约 120-200 GPU-days (A100-80GB)。属于中大规模实验，需要有稳定的 GPU 集群访问。\n- **数据需求**: MS MARCO passage、BEIR-14、TREC DL 2019/2020。均为公开数据集，无数据获取障碍。Hard negative mining 需要预训练 checkpoint 做 BM25 + dense negative 采样，计算开销可控。\n- **人工介入**: 无人工标注需求。超参调优（特别是三阶段 curriculum 的学习率、KD loss 权重、FLOPS regularization 系数）需要较多的实验迭代和人工判断。\n- **训练需求**: 需要从头微调 Llama-3.1-8B（修改 attention 为 bidirectional + 添加 dual head），不是简单的 LoRA adapter。三阶段训练流程增加了工程复杂度。\n- **新 Benchmark**: 不需要构建新 benchmark，使用现有标准评测。\n- **预估周期**: 3B proof-of-concept（2-3 周）→ 8B 主实验（3-4 周）→ ablation 和分析（2-3 周）→ 论文写作（3-4 周）。总计 10-14 周，约 2.5-3.5 个月。如果计算资源充足且第一轮实验顺利，可以赶上 AAAI 2026 deadline。\n```\n\nSources:\n- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)](https://arxiv.org/abs/2502.15526)\n- [BGE M3-Embedding (ACL Findings 2024)](https://arxiv.org/abs/2402.03216)\n- [RouterRetriever (AAAI 2025)](https://arxiv.org/abs/2409.02685)\n- [LACONIC (arXiv 2026)](https://arxiv.org/abs/2601.01684)\n- [Sparse and Dense Retrievers Learn Better Together (CIKM 2025)](https://arxiv.org/abs/2508.16707)\n- [DAT: Dynamic Alpha Tuning (arXiv 2025)](https://arxiv.org/abs/2503.23013)\n- [GritLM (ICLR 2025)](https://arxiv.org/abs/2402.09906)\n- [Qwen3-Embedding-8B](https://huggingface.co/Qwen/Qwen3-Embedding-8B)\n- [Llama-Embed-Nemotron-8B](https://arxiv.org/abs/2511.07025)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing\n\n## Core Research Question\n\nIn a decoder-only LLM with shared transformer backbone, do sparse (lexical) and dense (semantic) retrieval heads develop complementary specialization—or do they compete for representational capacity? This is the central scientific question of this work. We hypothesize that joint training with bidirectional self-knowledge-distillation forces complementary specialization, yielding representations superior to independently trained models. Two derivative contributions support this investigation: (1) the unified architecture itself serves as a testbed for studying this question, and (2) a lightweight learned router exploits per-query complementarity patterns, doubling as a query-level retrieval signal diagnosis tool.\n\n## Research Opportunity\n\nThree verified gaps converge: (1) No decoder-only LLM produces both sparse and dense representations from a single forward pass with learned heads—LACONIC-8B (arXiv:2601.01684, Jan 2026) and Lion-SP/DS (SIGIR 2025) train separate models, while BGE-M3 (ACL Findings 2024) unifies but only on encoder-only XLM-RoBERTa; (2) No learned per-query router exists within a unified retrieval model—RouterRetriever (AAAI 2025) routes between separate external models, DAT (arXiv:2503.23013) requires additional LLM inference for post-hoc alpha tuning, and BGE-M3 uses fixed interpolation weights; (3) Bidirectional self-distillation between sparse and dense heads has never been validated in decoder-only architectures for text retrieval—the CIKM 2025 proof uses VLP encoder models (BLIP/ALBEF) on cross-modal tasks.\n\nThe scientific question left open: Lion-SP/DS (SIGIR 2025) showed sparse outperforms dense by 10.5% on OOD benchmarks at 8B scale, confirming strong signal complementarity, but trained them separately and thus cannot determine whether shared-backbone joint training amplifies or diminishes this complementarity. BGE-M3 answered this for encoder-only architectures (joint training helps), but decoder-only models with modified attention (causal→bidirectional) may behave differently due to distinct inductive biases. Our work directly resolves this open question.\n\n## Addressing the Trivial Alternative\n\nThe simplest alternative is running separate sparse and dense models (e.g., Lion-SP-8B + Lion-DS-8B) with post-hoc score fusion—fixed-weight (BGE-M3 style) or per-query adaptive (DAT style). We provide two lines of justification for shared-backbone joint training:\n\n(a) **Mutual Feature Transfer Hypothesis**: Shared transformer layers enable sparse and dense heads to develop complementary feature specialization through bidirectional self-KD cross-pollination. We verify through: (i) linear CKA similarity between joint vs. independently trained models at each layer, (ii) layer-wise linear probing for lexical features (exact n-gram overlap detection) vs. semantic features (paraphrase detection), (iii) attention entropy analysis per head per layer, (iv) direct comparison of joint-trained individual head performance vs. independently trained counterparts.\n\n**Sub-hypothesis on directional asymmetry**: SPLADE's vocab-space inductive bias (ReLU + FLOPS regularization encourages sparse term weighting) may limit its capacity to absorb upper-layer semantic features from self-KD, potentially making cross-pollination primarily unidirectional (dense benefits from lexical features, but sparse gains less from semantic features). We test this explicitly via unidirectional vs. bidirectional KD comparison; asymmetric benefit is itself a valuable finding about representation learning under architectural constraints.\n\n(b) **Computational Efficiency**: Single forward pass through one 8B model vs. two separate 8B forward passes yields ~2× encoding throughput and ~50% parameter reduction at serving time.\n\n## Research Landscape and Differentiation\n\n**Unified retrieval models** form a taxonomy along two axes: (1) what is unified (task modality vs. representation paradigm), and (2) how (parameter-switching vs. parameter-sharing). GritLM (ICLR 2025) unifies generation + embedding (different task modalities) via parameter-sharing, demonstrating zero-loss coexistence, but only produces dense representations. Hydra (arXiv:2603.28554, 2026) unifies retrieval + generation via parameter-switching (LoRA toggle), isolating modes in different parameter subsets. BGE-M3 (ACL Findings 2024) unifies sparse + dense + multi-vector via parameter-sharing but on encoder-only XLM-RoBERTa. Our work uniquely combines: same representation paradigm (sparse+dense), parameter-sharing, decoder-only architecture—the only configuration that can answer whether complementary specialization emerges in modern LLM backbones.\n\n**Dense SOTA**: Qwen3-Embedding-8B (MTEB multilingual 70.58, different backbone/training pipeline), Llama-Embed-Nemotron-8B (arXiv:2511.07025, same Llama-3.1-8B backbone, MMTEB #1), NV-Embed-v2 (ICLR 2025, Mistral-7B, latent attention pooling). **Sparse SOTA**: LACONIC-8B (60.2 MTEB-R, 61.5 BEIR-14), CSplade-bi-8B (IJCNLP 2025, 55.3 BEIR), Lion-SP-8B (SIGIR 2025, 55.2 BEIR). **Per-query routing**: RouterRetriever (AAAI 2025, +2.1 nDCG@10, domain-level routing between separate models), DAT (arXiv:2503.23013, external LLM per-query α, post-hoc). Our router operates internally from the query's [EOS] representation at zero extra inference cost—a finer-grained and cheaper approach.\n\n## Transfer Conditions for Self-KD\n\nThe CIKM 2025 bidirectional self-KD was validated on VLP encoder models (BLIP/ALBEF) for text-image cross-modal retrieval, where sparse and dense handle different modality alignment problems. Transfer to decoder-only text-text retrieval faces a different complementarity source: sparse (lexical) and dense (semantic) operate on the same modality. We argue validity because: (1) Lion-SP/DS empirically showed 10.5% OOD performance gap, demonstrating genuinely different signals in text-text; (2) the KL-divergence loss formulation is modality-agnostic; (3) we design explicit ablation to validate the transfer and quantify per-direction benefit.\n\n## Proposed Approach\n\nFine-tune Llama-3.1-8B with bidirectional attention, adding dual heads over shared backbone: sparse SPLADE head (vocab projection + ReLU + FLOPS regularization; DF-FLOPS variant (arXiv:2505.15070, SIGIR 2025) considered for training stability) and dense head (latent attention pooling). Three-stage curriculum: (1) sparse-only adaptation (10k steps, CSplade protocol) stabilizing ReLU activations, (2) joint contrastive training with bidirectional self-KD between heads using CIKM 2025 formula extended to decoder-only text retrieval, using GradCache to decouple effective batch size from GPU memory, (3) hard-negative fine-tuning with learned 2-layer MLP router predicting per-query sparse-dense interpolation weights from the query's [EOS] representation.\n\n## Experimental Design\n\n### Baselines (structured by comparability)\n\n**Primary (same backbone / controlled comparison):**\n- Sparse: LACONIC-8B, Lion-SP-8B, CSplade-bi-8B\n- Dense: Llama-Embed-Nemotron-8B (arXiv:2511.07025, same Llama-3.1-8B backbone), Lion-DS-8B\n- Post-hoc fusion: Lion-SP-8B + Lion-DS-8B with (i) best fixed α, (ii) DAT-style per-query α\n\n**Secondary (standard baselines):**\n- BM25 (Pyserini), SPLADE-v3, Contriever-msmarco\n\n**Reference (different backbone/pipeline, not apple-to-apple):**\n- Qwen3-Embedding-8B, NV-Embed-v2, GritLM-7B\n- BGE-M3 (all three modes: dense, sparse, multi-vector, and weighted combination)\n\n**Scope note on multi-vector**: We do not include a multi-vector (ColBERT-style) head because the storage cost at 8B scale (per-token embeddings × sequence length) makes it impractical for large-scale retrieval. BGE-M3's multi-vector results are reported as reference. Multi-vector integration is discussed as future work.\n\n### Evaluation Benchmarks\n- BEIR-14: per-dataset nDCG@10 for all 14 subsets\n- MTEB Retrieval subset: aggregate and per-dataset\n- MS MARCO dev: MRR@10\n- TREC DL 2019 and 2020: nDCG@10 and MAP\n- Multilingual retrieval (e.g., MIRACL) is out of scope for this English-focused study; discussed in limitations.\n\n### Ablation Studies\n\n1. **Self-KD ablation** (5 conditions): (a) no KD, (b) dense→sparse only, (c) sparse→dense only, (d) bidirectional (ours), (e) cross-encoder teacher KD (external reranker as teacher for both heads). Report sparse-only, dense-only, and fused nDCG@10. Tests directional asymmetry sub-hypothesis.\n\n2. **Router ablation** (6 conditions + analysis): (a) α=0 pure dense, (b) α=1 pure sparse, (c) α=0.5 equal, (d) best fixed α (grid search), (e) per-query oracle upper bound, (f) learned MLP router (ours). Supplementary: per-domain α distribution visualization across BEIR-14 subsets, revealing what query/domain characteristics the router learns to associate with sparse vs. dense preference.\n\n3. **Stage ablation** (4 conditions): (a) stage 1 only, (b) stage 1+2, (c) full pipeline, (d) skip stage 1. Report performance and sparsity levels at each checkpoint.\n\n4. **Representational analysis**: Linear CKA at each layer (joint vs. independent training), layer-wise linear probing (lexical: n-gram overlap detection; semantic: paraphrase detection), attention entropy per head per layer. Reveals whether dual-head training induces layer-wise specialization absent in single-task models.\n\n### Efficiency Evaluation\n- Index size: sparse vs dense vs combined, compared to separate model indices\n- Encoding throughput: queries/sec and docs/sec (1×8B unified vs 2×8B separate)\n- End-to-end retrieval latency including router\n- Parameter count: ~8.05B (shared backbone + dual heads) vs 16B (two separate 8B models)\n\n### Compute-Controlled Comparisons\n- Same-compute: Hydra-Retrieve (1×8B forward) vs two-model ensemble (2×8B) with post-hoc fusion\n- Same-parameter: per-head performance vs single-task 8B counterparts (any degradation?)\n\n### Performance Claims (three-dimensional)\nRather than targeting a single aggregate number, we evaluate success on three axes:\n1. **Mutual benefit**: each head in the unified model performs ≥ its independently trained counterpart (validates complementary specialization)\n2. **Routing value**: learned router > best fixed α by meaningful margin; gap to oracle < 30% of oracle-vs-best-fixed improvement\n3. **Efficiency**: ~2× throughput and ~50% serving parameters at comparable or better retrieval quality vs. two-model setup\n\n## Feasibility and Compute Budget\n\nTraining Llama-3.1-8B with bidirectional attention and dual heads. Bidirectional attention increases memory (O(n²) vs incremental KV-cache), limiting per-GPU batch size to 1-2 at 8B scale. Mitigation: GradCache for decoupled contrastive batch size (effective batch 256-512 via gradient accumulation over 128-256 steps) + cross-GPU negative sharing. Estimated compute: 8×A100-80GB for 7-10 days (Stage 1: ~1 day, Stage 2: ~4-6 days, Stage 3: ~1-2 days), or 16×A100 for 5-7 days. Proof-of-concept at 3B scale first (~3 days on 4×A100) to validate method. LoRA fallback if full fine-tuning exceeds budget (rank 16-64, all attention + MLP layers trainable, expected <2% performance gap based on RouterRetriever precedent). Cross-encoder KD ablation adds ~20% compute to Stage 2 (cross-encoder inference on training pairs).\n\n## Key References\n\n- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)\n- LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval (arXiv:2601.01684, 2026)\n- CSPLADE: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)\n- M3-Embedding: Multi-Linguality Multi-Functionality Multi-Granularity (ACL Findings 2024)\n- RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)\n- NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models (ICLR 2025)\n- Generative Representational Instruction Tuning (ICLR 2025)\n- Sparse and Dense Retrievers Learn Better Together (CIKM 2025)\n- Qwen3-Embedding (2025)\n- DAT: Dynamic Alpha Tuning for Hybrid Retrieval (arXiv:2503.23013, 2025)\n- Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model (arXiv:2603.28554, 2026)\n- Llama-Embed-Nemotron-8B: A Universal Text Embedding Model (arXiv:2511.07025, 2025)\n- An Alternative to FLOPS Regularization to Effectively Productionize SPLADE-Doc (arXiv:2505.15070, SIGIR 2025)"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:36:03.906Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:36:03.906Z",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:36:03.920Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient information to make a thorough assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- Lion-SP/DS "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs" (SIGIR 2025): 最直接的对标工作。首次系统研究 decoder-only LLM（Llama-3 1B/3B/8B）在 sparse 和 dense 检索上的 scaling 行为。关键发现：sparse 在 OOD 上比 dense 高 10.5%，但两者是**分别训练的独立模型**，未探索共享 backbone 联合训练。Proposal 的核心科学问题（共享 backbone 是否产生互补特化）正是 Lion 留下的 open question。
+- BGE-M3 (ACL Findings 2024): 唯一在单一模型中统一 sparse+dense+multi-vector 的工作，使用 self-KD，但基于 encoder-only XLM-RoBERTa-large。证明了联合训练在 encoder 架构上可行且有益。Proposal 本质上是将 BGE-M3 的方法论迁移到 decoder-only LLM 架构。
+- LACONIC-8B (arXiv:2601.01684, Jan 2026): 基于 Llama-3 的 sparse-only 模型，MTEB-R 达 60.2 nDCG，是 sparse 检索 SOTA。仅做 sparse，不涉及 unified 或 dense。
+- CSplade-bi-8B (IJCNLP-AACL 2025): 解决 decoder-only LLM 训练 LSR 的不稳定性和单向注意力问题，BEIR 55.3。仅 sparse，不涉及 unified。
+- RouterRetriever (AAAI 2025): 在**独立的外部 expert 模型**之间做 domain-level 路由，+2.1 nDCG@10。路由是 inter-model 的，不是 intra-model 的。Proposal 的 router 在单一模型内部运行，零额外推理成本，是更细粒度且更廉价的方案。
+- DAT (arXiv:2503.23013, 2025): 使用外部 LLM 做 post-hoc per-query α 调优，需要额外 LLM 推理。Proposal 的 MLP router 从 [EOS] 表示直接预测，无额外开销。
+- GritLM-7B (ICLR 2025): 统一 generation + embedding（不同任务模态），decoder-only，但只产生 dense 表示，不涉及 sparse。
+- Hydra (arXiv:2603.28554, 2026): 通过 LoRA 切换统一检索和生成，parameter-switching 方式，不是 parameter-sharing。
+- NV-Embed-v2 (ICLR 2025): 提出 latent attention pooling，dense-only，MTEB SOTA 之一。Proposal 的 dense head 采用相同的 latent attention pooling。
+- Llama-Embed-Nemotron-8B (arXiv:2511.07025, 2025): 同 Llama-3.1-8B backbone，dense-only，MMTEB #1。是 proposal 最直接的 dense baseline。
+- Qwen3-Embedding-8B (2025): MTEB multilingual 70.58，不同 backbone，作为 reference baseline。
+- CIKM 2025 Short "Sparse and Dense Retrievers Learn Better Together": 在 VLP encoder（BLIP/ALBEF）上验证双向 self-KD 用于 text-image 跨模态检索。是 proposal 自蒸馏方法的理论来源，但场景（跨模态 vs 同模态）和架构（encoder vs decoder）均不同。
+- 调研总结: Proposal 占据了一个 **真实且明确的研究空白**——decoder-only LLM 上 sparse+dense 共享 backbone 联合训练的统一模型。BGE-M3 在 encoder-only 上证明了这一路线的可行性，Lion-SP/DS 证明了 decoder-only 上 sparse 和 dense 的互补性信号，但将两者结合在 decoder-only 架构上目前确实没人做过。该 gap 是真实的、可验证的，且具有工程和科学双重价值。
+
+【整体印象】:
+作为审稿人，我的第一反应是 **borderline accept，倾向 weak accept**。这是一篇构思成熟、定位精准的 proposal。它精确识别了领域中一个真实的结构性空白（decoder-only LLM 上 unified sparse-dense），提出了清晰的科学假设（complementary specialization），并设计了非常完备的实验来验证。Proposal 的成熟度远超一般投稿——对 trivial alternative 的预判和回应、对 self-KD 迁移条件的讨论、三轴性能声明的谨慎设定，都显示出深厚的领域理解。
+
+然而，核心贡献的 novelty 属于 **"将已有方法论迁移到新架构"** 的类型——BGE-M3 的统一思路 + CIKM 2025 的自蒸馏 + 成熟的 decoder-only embedding 技术栈（bidirectional attention, latent attention pooling, SPLADE head），整合在一起。方法论层面没有根本性的新组件。审稿人可能会质疑："这本质上是一个 well-executed engineering integration，科学发现可能仅仅是 'yes, it also works for decoder-only'"。
+
+但我也认识到：(1) 这类 gap-filling 工作在 AAAI 是可以接受的，特别是当实验分析足够深入时；(2) CKA/probing/attention entropy 的分析维度超越了单纯的 "刷点"，为理解 representation learning 提供了科学价值；(3) 效率收益（~2× throughput）有实际工程价值。
+
+【核心贡献】:
+1. **首个 decoder-only LLM 上的 unified sparse-dense 单模型架构**——填补 BGE-M3（encoder-only）和 Lion-SP/DS（分别训练）之间的空白
+2. **共享 backbone 下 sparse-dense 互补特化的实证研究**——通过 CKA、layer-wise probing、attention entropy 揭示联合训练是否导致层级功能分化
+3. **零成本内部 learned router**——从 query 的 [EOS] 表示直接预测 per-query 插值权重，替代外部 LLM 推理（DAT）或 fixed α（BGE-M3）
+
+贡献 2 是最有价值的——如果实验能清晰展示 "哪些层学了什么、联合训练如何改变了 representation 结构"，这将是一个有意义的 representation learning 发现。贡献 1 是 necessary enabler 但本身偏 engineering。贡献 3 有用但相对 minor。
+
+【方法合理性】:
+方法整体合理，各组件都有成熟先例：
+- Bidirectional attention on decoder-only LLM: NV-Embed, Llama-Embed-Nemotron 等均采用
+- SPLADE head (vocab projection + ReLU + FLOPS reg): 标准做法，DF-FLOPS variant 的考虑是合理的
+- Latent attention pooling for dense head: NV-Embed-v2 (ICLR 2025) 的方法
+- 三阶段 curriculum: Stage 1 稳定 ReLU 是 CSplade 的经验；Stage 2 双向 self-KD 源自 CIKM 2025；Stage 3 hard-negative + router 是标准范式
+- GradCache: 解决大模型 contrastive learning 的 batch size 问题，成熟工具
+
+**更简单的替代方案**: Proposal 已自觉讨论了 trivial alternative（Lion-SP + Lion-DS + post-hoc fusion），并给出了两条辩护线（mutual feature transfer + efficiency）。这是充分的。但审稿人可能追问：如果简单地在 Lion-SP 或 LACONIC 的训练流程中同时加一个 dense head（无 self-KD），效果是否就够了？建议增加一个 "joint training without KD" 的 ablation（目前 ablation (a) 覆盖了这一点）。
+
+**潜在方法论风险**:
+1. 双向 self-KD 可能导致两个 head 趋同而非互补——这是核心假设的对立面，proposal 需要准备好解释负结果
+2. Sparse head 的 ReLU 归纳偏置可能限制其从 dense 信号中获益——proposal 已预判到这一点（directional asymmetry sub-hypothesis），这是加分项
+3. 三阶段训练的超参数空间较大（KD 权重、FLOPS λ、router 训练时机等），可能需要大量调参
+
+【5 维度打分】:
+
+  1. 研究问题: [强] — 
+     "共享 backbone 下 sparse-dense 是互补特化还是竞争退化" 是一个 well-defined 且有清晰可验证性的科学问题。Lion-SP/DS (SIGIR 2025) 证明了信号互补性但未做联合训练，BGE-M3 证明了联合训练在 encoder 上可行但未扩展到 decoder-only。这个交叉点恰好是空白。问题兼具科学价值（representation learning）和工程价值（检索系统效率）。研究问题的 framing 比单纯 "刷 SOTA" 更有深度。
+
+  2. 方法与创新: [中] — 
+     方法论层面主要是已有组件的整合：BGE-M3 的 unified 范式 + CIKM 2025 的 bidirectional self-KD + NV-Embed 的 latent attention pooling + CSplade 的 sparse head 训练策略。没有提出根本性的新方法或新损失函数。创新更多体现在 "这个组合从未在 decoder-only 上验证过" 以及 "科学假设驱动的分析维度"。对 AAAI 而言，这种程度的方法创新位于及格线至中等之间。与 GritLM（提出新的 instruction tuning paradigm）或 NV-Embed（提出 latent attention pooling）相比，方法原创性偏弱。内部 router 是一个 nice addition 但 2-layer MLP 预测 α 的复杂度很低，难以单独构成显著贡献。
+
+  3. 实验设计: [强] — 
+     实验设计是这份 proposal 最突出的强项。Baselines 按可比性分层（primary/secondary/reference）非常专业，特别是包括了 same-backbone 的 Llama-Embed-Nemotron-8B 和 Lion-SP/DS 作为 controlled comparison。Ablation 覆盖了四个维度：Self-KD（5 条件，含方向性测试）、Router（6 条件 + oracle 上界）、Stage（4 条件）、Representational analysis（CKA + probing + entropy）。Compute-controlled comparison 是一个很好的 addition。三轴性能声明（mutual benefit / routing value / efficiency）比 "beat SOTA" 更严谨、更有说服力。唯一的小遗憾是缺少 multilingual evaluation，但 proposal 在 limitations 中已声明。评测覆盖 BEIR-14（14 subsets）、MTEB-R、MSMARCO、TREC DL，符合领域标准（参考 Lion-SP/DS、LACONIC、BGE-M3 的评测设置）。
+
+  4. 可行性: [中] — 
+     8×A100-80GB 训练 7-10 天是可行的但属于中等偏高的资源需求。Proposal 考虑了 3B proof-of-concept（~3 天 4×A100）和 LoRA fallback，显示了务实的风险管理。GradCache 解决 batch size 问题是成熟方案。主要风险在于：(1) 三阶段训练的超参数调优可能需要多次试错，实际训练时间可能远超估计；(2) 5 条件 KD ablation + 6 条件 router ablation + 4 条件 stage ablation + representational analysis 的实验总量相当大，全部做完可能需要 3-4× 的 compute budget；(3) cross-encoder KD ablation 额外增加 20% 计算。整体而言，一个有 8×A100 access 的实验室可以在 2-3 个月内完成，但时间压力不小。
+
+  5. 写作与呈现: [强] — 
+     Proposal 的写作质量很高。研究问题的 framing 从 "科学假设" 出发而非 "工程任务" 出发，提升了论文的学术定位。对 trivial alternative 的预判和回应体现了自我批判意识。对 self-KD 迁移条件的显式分析（从 cross-modal 到 text-text）展示了方法论的严谨性。Directional asymmetry sub-hypothesis 是一个精巧的设计——无论结果是对称还是不对称，都是 publishable finding。Research landscape 的二维 taxonomy（what × how）很清晰。唯一需要注意的是，最终论文需要在 8 页内呈现如此大量的实验，layout 和信息密度管理将是一个挑战。
+
+【概率估计】: [30% - 45%] 中位 37%
+
+【估计理由】: 
+这份 proposal 的综合质量属于 AAAI 投稿的 upper-middle 水平。
+
+上推因素：(1) 研究空白是真实且明确的，审稿人可以验证 "确实没人在 decoder-only 上做过 unified sparse-dense"；(2) 实验设计的完备程度远超平均水平，多维 ablation + representational analysis 有望带来 solid empirical contribution；(3) 科学假设驱动的 framing 比纯 engineering 论文更受顶会青睐；(4) 效率收益（2× throughput, 50% parameter reduction）有实际价值。
+
+下拉因素：(1) 方法创新度偏弱——本质是 "BGE-M3 approach on decoder-only"，审稿人可能认为这是 incremental/expected extension；(2) 核心假设的验证结果存在不确定性——如果联合训练只带来 marginal improvement，论文的 story 会变弱（尽管 "negative result" 也有价值，但顶会接受度较低）；(3) 路由器（2-layer MLP）的贡献度较低，难以作为独立的创新点。
+
+中位 37% 反映了这样的判断：这是一篇有 solid foundation 的 proposal，如果实验结果符合预期（联合训练明显优于独立训练、representational analysis 揭示有趣的 pattern），中稿概率可以达到 40-45%。但如果结果 marginal 或方法被认为过于 incremental，概率会降至 30% 左右。
+
+【主要风险】:
+1. **Novelty 质疑（最大风险）**: 审稿人可能认为这是 BGE-M3 到 decoder-only 的 straightforward extension，方法层面没有新的 insight——所有组件（SPLADE head, latent attention pooling, self-KD, MLP router）都是已有技术的直接复用。如果 representational analysis 的发现不够 surprising，论文可能被判定为 engineering contribution insufficient for a top venue。
+2. **核心假设失败风险**: 如果共享 backbone 联合训练并未比独立训练产生显著优势（或甚至导致轻微性能退化），proposal 的核心 story "complementary specialization" 将不成立。虽然 "negative result" 也有学术价值，但在 AAAI 的 acceptance rate 下，negative result 论文的录用难度显著更高。
+
+【实施评估】:
+  - 计算资源: 8×A100-80GB，7-10 天主训练 + ablation 约 3-4 倍额外计算。总计约 30-40 GPU-days（含 ablation 和 3B proof-of-concept）。需要稳定的多 GPU 集群访问。
+  - 数据需求: MS MARCO passages 为主训练集（公开可用），BEIR-14 / MTEB / TREC DL 均为标准公开评测集。无需额外数据收集或标注。
+  - 人工介入: 超参数调优（KD 权重、FLOPS λ、curriculum 切换时机）需要较多人工介入。Router 训练数据可自动生成。
+  - 训练需求: 需要全量微调 8B 模型（LoRA 为 fallback）。三阶段 curriculum 增加了训练管道的复杂性。需要实现 GradCache 与 dual-head + self-KD 的兼容。
+  - 新 Benchmark: 不需要。使用标准已有 benchmark。
+  - 预估周期: 3B proof-of-concept 约 1 周；8B 主实验约 2 周；全部 ablation + analysis 约 3-4 周；论文撰写约 2 周。总计约 2-2.5 个月（如果计算资源充足且无重大技术障碍）。
+```
+
+Sources:
+- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)](https://arxiv.org/abs/2502.15526)
+- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/abs/2601.01684)
+- [BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity](https://arxiv.org/abs/2402.03216)
+- [RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)](https://arxiv.org/abs/2409.02685)
+- [DAT: Dynamic Alpha Tuning for Hybrid Retrieval](https://arxiv.org/abs/2503.23013)
+- [GritLM: Generative Representational Instruction Tuning (ICLR 2025)](https://arxiv.org/abs/2402.09906)
+- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)
+- [NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models (ICLR 2025)](https://arxiv.org/abs/2405.17428)
+- [CSPLADE: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)](https://arxiv.org/abs/2504.10816)
+- [Llama-Embed-Nemotron-8B (arXiv 2025)](https://arxiv.org/abs/2511.07025)
+- [Qwen3-Embedding (2025)](https://huggingface.co/Qwen/Qwen3-Embedding-8B)
+- [Sparse and Dense Retrievers Learn Better Together (CIKM 2025)](https://arxiv.org/abs/2508.16707)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient information to provide a thorough evaluation. Here is my assessment:
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs](https://arxiv.org/abs/2502.15526) (SIGIR 2025): 最直接的前置工作。Lion-SP/DS 分别训练 sparse 和 dense retriever 到 8B 规模，发现 sparse 在 OOD 上比 dense 高 10.5%。但两者是独立模型，未探索共享 backbone 的联合训练。本 proposal 的核心 gap 之一正是从此处延伸。
+- [BGE-M3: Multi-Lingual, Multi-Functionality, Multi-Granularity](https://arxiv.org/html/2402.03216v3) (ACL Findings 2024): 在 encoder-only XLM-RoBERTa 上实现了 sparse+dense+multi-vector 统一模型，证明联合训练可行且使用了 self-KD。但仅限于 encoder-only 架构。本 proposal 将此范式迁移到 decoder-only 架构是合理的延伸，但需证明 decoder-only 带来的不同归纳偏置确实导致不同行为。
+- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/html/2601.01684v1) (arXiv 2026): 将 sparse retrieval 推到 dense 水平的效果，达到 MTEB-R 60.2、BEIR-14 61.5。是 sparse retrieval SOTA 之一，proposal 中作为 baseline 合理。
+- [RouterRetriever](https://ojs.aaai.org/index.php/AAAI/article/view/33306) (AAAI 2025): 通过路由机制在多个独立 expert embedding 模型间选择，BEIR 上 +2.1 nDCG@10。但路由发生在外部模型间，而非单一模型内部。本 proposal 的 router 在统一模型内部操作，零额外推理成本，是有差异的。
+- [CSplade: Learned Sparse Retrieval with Causal Language Models](https://aclanthology.org/2025.ijcnlp-long.7/) (IJCNLP 2025): 首次系统解决 decoder-only LLM 训练 SPLADE 的稳定性问题（ReLU 训练不稳定 + 单向注意力限制）。本 proposal 的 Stage 1 直接采用其 adaptation 方案，合理。
+- [Sparse and Dense Retrievers Learn Better Together](https://arxiv.org/html/2508.16707) (CIKM 2025 Short): 在 VLP encoder 模型上验证了双向 self-KD 在跨模态检索中的有效性。本 proposal 将此方法迁移到 decoder-only 文本检索，transfer 条件需要验证。
+- [DAT: Dynamic Alpha Tuning](https://arxiv.org/abs/2503.23013) (arXiv 2025): 用外部 LLM 对每个 query 预测 sparse-dense 权重 α。需要额外推理成本。本 proposal 的 router 从 [EOS] 表示直接预测，更轻量。
+- [GritLM / GRIT](https://proceedings.iclr.cc/paper_files/paper/2025/hash/70cf215430492f7d34830a24e744b3f1-Abstract-Conference.html) (ICLR 2025): 统一生成与嵌入，但仅产出 dense representations。与本 proposal 在"统一什么"上有本质区别。
+- [Qwen3-Embedding-8B](https://huggingface.co/Qwen/Qwen3-Embedding-8B) (2025): MTEB multilingual 70.58，当前 dense SOTA 之一。不同 backbone 和 pipeline，作为 reference baseline 合理。
+- [Hydra](https://arxiv.org/abs/2603.28554) (arXiv 2026): 通过 LoRA toggle 统一检索与生成，parameter-switching 范式。与本 proposal 的 parameter-sharing 范式形成对比。
+
+- **调研总结**: Decoder-only LLM 规模的 sparse 和 dense retrieval 已分别达到 SOTA（Lion-SP/DS, LACONIC），BGE-M3 已在 encoder-only 上证明统一可行，但 decoder-only 架构下的 shared-backbone sparse+dense 联合训练仍是空白。本 proposal 精准填补这一 gap，定位清晰。领域处于活跃发展期，竞争激烈但 gap 确实存在。
+
+【整体印象】:
+作为审稿人，第一反应是这是一篇定位精准、准备充分的 proposal。研究问题从 Lion-SP/DS 的"分别训练"自然延伸到"能否共享 backbone 联合训练"，科学动机清晰。实验设计的细致程度（4 组 ablation、representational analysis、compute-controlled comparison）在 proposal 阶段已经超出大多数投稿的水准。
+
+然而，核心担忧在于 novelty 的深度：这本质上是"BGE-M3 在 decoder-only 架构上的复现 + 自 CIKM 2025 迁移来的 self-KD + 一个轻量 MLP router"。各个技术组件均非原创，创新主要在于组合（integrative novelty）。科学问题的表述（"complementary specialization"）提升了论文的学术层次，但需要实验结果确实展示出非 trivial 的发现才能说服审稿人。
+
+倾向：**弱 accept / borderline**，取决于实验结果是否能展示出共享 backbone 的真正互补增益（而非仅仅"也能工作"）。
+
+【核心贡献】:
+1. **首个 decoder-only 统一 sparse+dense 单 forward pass 模型**：填补了 BGE-M3（encoder-only）和 Lion-SP/DS（分别训练）之间的 gap。这是一个有实际价值的工程贡献，也是回答科学问题的必要工具。
+2. **共享 backbone 下互补特化的实证研究**：通过 CKA、linear probing、attention entropy 等分析工具揭示联合训练是否诱导层级特化。这是最有学术价值的贡献——如果发现确实不同于 BGE-M3 在 encoder-only 上的行为。
+3. **零成本内部 learned router**：相比 RouterRetriever（外部路由）和 DAT（额外 LLM 推理），从 [EOS] 表示直接预测权重是更优雅的方案。
+
+贡献对领域的价值：中高。统一模型有明确的实际部署价值（~2x 吞吐、~50% 参数），科学问题对理解 LLM 表示学习有参考意义。但如果结果仅是"联合训练与分别训练效果差不多"，则价值大打折扣。
+
+【方法合理性】:
+方法整体合理，三阶段课程式训练有清晰的 justification：
+- Stage 1 的 sparse-only adaptation 直接采用 CSplade 的解决方案处理 ReLU 训练不稳定性，已有前人验证。
+- Stage 2 的联合训练 + 双向 self-KD 是核心，公式来自 CIKM 2025，KL-divergence 损失是 modality-agnostic 的，迁移合理。
+- Stage 3 的 router 训练在 hard-negative 阶段进行，此时两个 head 已稳定，router 可以学到有意义的信号。
+
+**更简单的替代方案**：Lion-SP-8B + Lion-DS-8B 分别训练后加 post-hoc fusion（固定权重或 DAT 风格自适应）。Proposal 正面承认了这个替代方案并设计了直接对比实验，这是一个加分点。但如果实验结果显示 post-hoc fusion 效果相当甚至更好，则整个 proposal 的必要性受到严重挑战。
+
+**潜在问题**：
+1. 双向 self-KD 中的 directional asymmetry 假设虽然有趣，但如果 sparse head 确实无法从 self-KD 中获益（如 proposal 自己预测的），则"bidirectional"的价值减半。
+2. 2-layer MLP router 的容量是否足够？虽然简单有效是优点，但需要验证其学到的 routing 策略确实优于简单启发式（如 query 长度、词频分布等）。
+
+【5 维度打分】:
+
+  1. 研究问题: 【强】— 问题定位精准：decoder-only 统一 sparse+dense 是已验证的空白（Lion-SP/DS 分别训练，BGE-M3 仅 encoder-only）。"共享 backbone 是否诱导互补特化"是一个有科学深度的问题，且与实际部署效率直接相关。Lion-SP 比 Lion-DS OOD 高 10.5% 的发现为互补性提供了强 evidence。
+
+  2. 方法与创新: 【中】— 方法合理但创新主要是 integrative。各组件均有先例：SPLADE head (CSplade)、dense latent attention pooling (NV-Embed)、self-KD (BGE-M3, CIKM 2025)、learned routing (RouterRetriever, DAT)。组合本身填补了一个真实的空白，但没有任何单一组件是新提出的。"Complementary specialization" 的科学表述提升了层次，但需要实验结果支撑——如果 CKA/probing 分析没有揭示出有意义的差异，论文的贡献会回落到纯工程层面。与 BGE-M3 相比，主要差异是 backbone 类型（decoder-only vs encoder-only）和 self-KD 方向性分析，这些是有价值的但不构成 fundamental insight。
+
+  3. 实验设计: 【强】— 这是本 proposal 最突出的亮点。Baseline 结构化为 primary/secondary/reference 三层，覆盖了同 backbone 对比（Llama-Embed-Nemotron, Lion-SP/DS）、post-hoc fusion 对比、以及跨 backbone reference。四组 ablation 设计严谨：self-KD 5 条件（含 directional 分离）、router 6 条件（含 oracle upper bound）、stage 4 条件、representational analysis。Compute-controlled comparison（same-compute vs same-parameter）是审稿人很看重的细节。BEIR-14 全 14 子集报告、MTEB、MS MARCO、TREC DL 覆盖充分。三维 performance claims（mutual benefit、routing value、efficiency）比简单追求 SOTA 数字更成熟。
+
+  4. 可行性: 【强】— 计算估算合理（8×A100 7-10 天），有 3B 规模 proof-of-concept 和 LoRA 两层 fallback。GradCache 解决大 batch 内存问题的方案已有验证。唯一风险是 Stage 2 的联合训练可能需要大量超参调优（两个 head 的 loss 权重、KD 温度、FLOPS 正则强度等），但这在 proposal 中未充分讨论。
+
+  5. 写作与呈现: 【强】— 逻辑结构清晰，从 gap identification → trivial alternative → method → experiment 层层递进。主动承认和 address 潜在质疑（trivial alternative、transfer conditions、multi-vector exclusion、multilingual scope）显示了学术成熟度。Research landscape 的 taxonomy 整理（what is unified × how unified）有助于审稿人快速理解定位。
+
+【概率估计】: [28% - 42%] 中位 35%
+
+【估计理由】:
+**利好因素**: (1) 研究问题清晰且 gap 真实存在，不易被审稿人 dismiss；(2) 实验设计异常完备，ablation 覆盖全面，这在 review 中通常获得高分；(3) 三维 performance claims 比追求单一 SOTA 更稳健，降低了"实验结果不够好"的风险；(4) 实际部署价值明确（2x 吞吐、50% 参数）；(5) 主动 address 了 trivial alternative 和各种质疑。
+
+**不利因素**: (1) Novelty 主要是 integrative——将已有组件（SPLADE head, dense head, self-KD, MLP router）组合到 decoder-only backbone 上。审稿人可能认为"BGE-M3 for decoder-only + CIKM 2025 self-KD"不构成足够的 methodological novelty；(2) 核心科学发现（互补特化是否出现）高度依赖实验结果。如果结果是"联合训练与分别训练效果差不多"或"self-KD 的增益微弱"，论文价值大幅缩水；(3) AAAI 在 IR/retrieval 方向的接受度不如 SIGIR/ACL，审稿人匹配可能不理想（虽然这不影响论文质量评估，AAAI 确实接收 IR 论文）；(4) 2-layer MLP router 的技术贡献较薄，可能被视为 minor addition。
+
+中位 35% 反映：这是一篇 above-average 但不 outstanding 的投稿。实验设计的质量是主要加分项，integrative novelty 是主要减分项。如果实验结果能展示出 shared backbone 的真正互补增益（individual heads 超过独立训练的对应物），概率可上移至 40%+；如果互补效应不显著，概率下移至 25% 附近。
+
+【主要风险】:
+1. **Novelty 挑战**: 最可能被拒的原因。审稿人可能评价"This is essentially BGE-M3 applied to a decoder-only backbone with self-KD from CIKM 2025 — the architectural novelty is incremental"。Proposal 将 integrative contribution 包装为科学问题（complementary specialization）来对冲，但如果审稿人不 buy 这个 framing，或要求更深层的理论分析（beyond empirical CKA），就会成为致命伤。
+2. **核心假设失败风险**: 如果联合训练后 individual head 性能不优于独立训练的对应物（即 mutual benefit 假设不成立），或 learned router 相比 best fixed α 的增益微弱，则三个核心 claim 中有两个失败，论文将难以发表。Proposal 虽然设计了 ablation 来"无论结果如何都产生发现"，但 negative result 在顶会的接受率远低于 positive result。
+
+【实施评估】:
+  - 计算资源: 8×A100-80GB，7-10 天（或 16×A100, 5-7 天）。3B proof-of-concept 需 4×A100, ~3 天。含 ablation 总计约 2-3 周。中等偏高的计算需求，对有 GPU 集群的研究组可行。
+  - 数据需求: MS MARCO passages（公开）、BEIR-14（公开）、MTEB retrieval subset（公开）、TREC DL 2019/2020（公开）。无需私有数据或额外标注。
+  - 人工介入: 主要在超参调优（loss 权重、KD 温度、FLOPS 正则强度、router 学习率）和训练监控。估计 1-2 位研究者全职投入 4-6 周。
+  - 训练需求: 需要 full fine-tune 或 LoRA fine-tune Llama-3.1-8B。三阶段课程式训练，Stage 2 最耗时（4-6 天）。GradCache 和 cross-GPU negative sharing 需要一定工程投入。
+  - 新 Benchmark: 不需要。使用现有标准 benchmark。
+  - 预估周期: 从启动到论文完稿约 8-12 周（含 3B proof-of-concept 2 周 + 8B 训练 2 周 + ablation 2-3 周 + 分析与写作 2-3 周）。如果 proof-of-concept 结果不理想需要调整方法，可能延长至 14-16 周。
+```
+
+Sources:
+- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)](https://arxiv.org/abs/2502.15526)
+- [BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity](https://arxiv.org/html/2402.03216v3)
+- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/html/2601.01684v1)
+- [RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)](https://ojs.aaai.org/index.php/AAAI/article/view/33306)
+- [CSplade: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)](https://aclanthology.org/2025.ijcnlp-long.7/)
+- [Sparse and Dense Retrievers Learn Better Together (CIKM 2025)](https://arxiv.org/html/2508.16707)
+- [DAT: Dynamic Alpha Tuning for Hybrid Retrieval (arXiv 2025)](https://arxiv.org/abs/2503.23013)
+- [GritLM: Generative Representational Instruction Tuning (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/hash/70cf215430492f7d34830a24e744b3f1-Abstract-Conference.html)
+- [Qwen3-Embedding-8B (Hugging Face)](https://huggingface.co/Qwen/Qwen3-Embedding-8B)
+- [Hydra: Unifying Document Retrieval and Generation (arXiv 2026)](https://arxiv.org/abs/2603.28554)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient research to make my assessment. Let me compile the final evaluation.
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs](https://arxiv.org/abs/2502.15526) (SIGIR 2025): 最直接的前置工作。提出 Lion-SP 和 Lion-DS，分别独立训练 decoder-only LLM 的 sparse 和 dense 检索模型。发现 sparse 在 OOD 上显著优于 dense（~10.5%），但两者是分别训练的独立模型，未探索共享 backbone 的联合训练。本 proposal 的核心科学问题正是从这里出发。
+- [BGE M3-Embedding](https://arxiv.org/abs/2402.03216) (ACL Findings 2024): 在 encoder-only XLM-RoBERTa 上统一 sparse+dense+multi-vector，使用 self-knowledge distillation。证明了联合训练在 encoder 架构上是可行且有益的。但未扩展到 decoder-only 架构。本 proposal 的 gap claim（encoder→decoder 的迁移未被验证）成立。
+- [RouterRetriever](https://arxiv.org/abs/2409.02685) (AAAI 2025): 在多个独立 expert embedding model 之间做 domain-level routing，+2.1 nDCG@10。但路由发生在外部独立模型之间，不是在统一模型内部的 head 之间。本 proposal 的 internal router 方案确实是差异化的。
+- [LACONIC](https://arxiv.org/abs/2601.01684) (arXiv 2026): Decoder-only LLM sparse retrieval，达到 dense-level effectiveness (BEIR 60.2)。但仍是单模式模型。
+- [Sparse and Dense Retrievers Learn Better Together](https://arxiv.org/abs/2508.16707) (CIKM 2025 Short): 在 VLP encoder 模型（BLIP/ALBEF）上验证 bidirectional self-KD 用于 text-image cross-modal retrieval。本 proposal 要将此方法迁移到 decoder-only text-text retrieval。
+- [DAT: Dynamic Alpha Tuning](https://arxiv.org/abs/2503.23013) (arXiv 2025): 使用外部 LLM 评估 + MLP 做 per-query alpha tuning。Post-hoc 方法，需要额外推理。本 proposal 的 router 从 [EOS] 表示直接预测，零额外推理成本，是更优雅的方案。
+- [GritLM](https://arxiv.org/abs/2402.09906) (ICLR 2025): 统一 generation + embedding，证明两者可以在同一模型中无损共存。但只产生 dense representation，未涉及 sparse。
+- [Qwen3-Embedding-8B](https://huggingface.co/Qwen/Qwen3-Embedding-8B) (2025): MTEB multilingual #1 (70.58)，不同 backbone，dense-only。
+- [Llama-Embed-Nemotron-8B](https://arxiv.org/abs/2511.07025) (2025): 同 Llama-3.1-8B backbone，MMTEB #1 (Borda rank)，dense-only。是本 proposal dense head 的关键 baseline。
+- 调研总结: Decoder-only LLM 上的 sparse 和 dense retrieval 在 2025 年分别取得了重大进展，但"在同一个 decoder-only backbone 上联合训练 sparse+dense 并研究互补特化"这一具体方向确实是空白。Proposal 的 novelty claim 经过调研验证是成立的，填补的 gap 是真实的。
+
+【整体印象】:
+作为审稿人，我的第一反应是 **lean accept with reservations**。这是一篇研究方向清晰、科学问题定义精准、实验设计异常完备的 proposal。它的核心优势在于：(1) 科学问题定位精准——不是简单地"做一个统一模型"，而是聚焦于"共享 backbone 是否导致互补特化"这一可验证的科学假设；(2) 对 trivial alternative 的自觉分析和对抗设计非常成熟；(3) ablation 设计覆盖面广且有层次。主要顾虑是：这本质上是一个 well-executed system paper，核心方法的各个组件（SPLADE head、dense head、self-KD、MLP router）都不是新的，novelty 主要来自组合和科学问题的提出。审稿人可能会质疑"组合的科学贡献够不够"。
+
+【核心贡献】:
+三层贡献：
+1. **科学发现**（如果假设成立）：在 decoder-only LLM 中，共享 backbone 的 sparse+dense 联合训练确实诱导互补特化，且 bidirectional self-KD 是关键催化剂。这对理解大模型的表示学习机制有价值。
+2. **架构贡献**：首个在单一 decoder-only LLM 中用共享 backbone + dual head 同时产生 sparse 和 dense representation 的模型，配合 learned internal router。
+3. **实用贡献**：~2× encoding throughput，~50% 参数量，对工业部署有实际价值。
+
+贡献的价值评估：如果互补特化假设被实验证实（每个 head 不弱于独立训练的对应模型），这是一个 significant finding。如果假设被否定（联合训练导致竞争而非互补），作者也设计了足够的分析工具来提供 valuable negative result，但论文的 impact 会大幅降低。
+
+【方法合理性】:
+方法整体合理，各组件都有成熟的前置工作支撑：
+- SPLADE head 有 CSplade、LACONIC 等成熟实践
+- Dense head + latent attention pooling 有 NV-Embed-v2 验证
+- Bidirectional self-KD 有 CIKM 2025 在 VLP 上的验证
+- 三阶段 curriculum（先稳定 sparse→联合训练→hard negative + router）的设计合理，避免了 sparse ReLU 不稳定的已知问题
+
+**更简单的替代方案**：确实存在——直接用 Lion-SP-8B + Lion-DS-8B + post-hoc fusion。作者明确意识到了这个替代方案并设计了对抗实验（baseline 中包含 fixed α 和 DAT-style per-query α）。这是成熟的研究态度。关键是实验需要证明 shared backbone 带来的不仅仅是效率提升，还有 representation quality 的提升。
+
+潜在风险点：bidirectional self-KD 从 cross-modal VLP（BLIP/ALBEF）迁移到 same-modality text-text decoder-only 架构，complementarity source 不同，迁移的有效性有不确定性。但作者设计了充分的 ablation 来应对。
+
+【5 维度打分】:
+
+1. **研究问题: 强** — 问题定义精准且有实际价值。"共享 backbone 的 sparse+dense 是互补还是竞争"是一个在 Lion-SP/DS (SIGIR 2025) 之后自然出现但尚未被回答的科学问题。BGE-M3 在 encoder-only 上回答了"可以"，但 decoder-only 的 inductive bias 不同（causal→bidirectional attention 的转换），答案不能简单迁移。问题有理论价值（理解表示学习机制）和实用价值（减少部署成本）。
+
+2. **方法与创新: 中** — 方法的各个组件都有前置工作（SPLADE head 源自 CSplade/LACONIC，dense head 源自 NV-Embed-v2，self-KD 源自 BGE-M3/CIKM 2025，router 概念源自 RouterRetriever/DAT）。创新主要在于：(a) 将这些组件首次组合在 decoder-only LLM 上并提出互补特化的科学假设，(b) internal router 的零成本设计。这是"组合创新 + 科学假设"而非"方法创新"，在 AAAI 审稿中可能被部分审稿人认为 novelty 有限。但 proposal 通过精准的科学问题定位和详尽的分析工具（CKA、linear probing、attention entropy）显著提升了贡献的科学价值，使其超越了简单的 system paper。
+
+3. **实验设计: 强** — 这是整个 proposal 最突出的部分。Baseline 设计非常完备，分三层（primary controlled comparison, secondary standard, reference different backbone），覆盖了同 backbone 的 sparse/dense/fusion 对比。Ablation 设计有深度：self-KD 的 5 conditions（含 directional asymmetry 验证）、router 的 6 conditions + oracle upper bound、stage ablation 4 conditions、representational analysis（CKA + linear probing + attention entropy）。Evaluation 覆盖 BEIR-14 全子集、MTEB、MS MARCO、TREC DL。效率评估（throughput、latency、parameter count、index size）也完整。唯一的小遗憾是未涉及 multilingual（作者已在 scope 中说明）。实验设计本身就是一个 strong contribution。
+
+4. **可行性: 中** — 8×A100-80GB 7-10 天是可行但非 trivial 的计算需求。3B scale proof-of-concept 先行的策略是合理的风险管理。LoRA fallback 方案也说明作者考虑了资源不足的情况。主要风险：(a) bidirectional attention 在 8B decoder 上的 memory 压力可能比预期更大；(b) GradCache 的 128-256 步 gradient accumulation 可能导致训练不稳定；(c) 三阶段 curriculum 的超参调优空间大，可能需要多次实验迭代。但这些风险都在合理范围内，有成熟的工程解决方案。
+
+5. **写作与呈现: 强** — Proposal 结构清晰，逻辑链条完整：从科学问题出发→识别研究空白→提出方法→设计对抗实验→预设 fallback。对 trivial alternative 的自觉讨论、对 self-KD transfer conditions 的分析、directional asymmetry sub-hypothesis 的提出都显示了高度的研究成熟度。Performance claims 定义为三维指标而非单一数字，显示了科学严谨性。唯一需要改进的是 related work 的叙述可以更简洁。
+
+【概率估计】: [30% - 45%] 中位 37%
+
+【估计理由】:
+上界 45% 的理由：如果实验成功验证互补特化假设（mutual benefit + routing value + efficiency 三项全部达标），配合极其完备的 ablation 和分析，这将是一篇扎实且有科学深度的论文。实验设计的完备性本身就是 strong signal，说明作者对领域有深刻理解。AAAI 作为综合性 AI 会议，对 IR/retrieval 方向有良好的接受度。
+
+下界 30% 的理由：(a) 方法的各组件都非原创，核心 novelty 依赖于"组合 + 科学假设"，部分审稿人可能认为 incremental；(b) 互补特化假设可能不成立（联合训练可能导致两个 head 都退化），此时论文虽仍有价值但 impact 大减；(c) AAAI 2026 的接收率预计在 ~23-25%，竞争激烈；(d) Decoder-only retrieval 本身是相对 niche 的子领域，可能难以匹配到完全合适的审稿人。
+
+中位 37% 的推理：研究问题和实验设计都很强，方法创新中等。如果实验结果支持假设，这是一篇 solid 的论文，处于 borderline accept 区域。考虑到 AAAI 的接收率和审稿人匹配的不确定性，37% 是合理的中位估计。关键变量是实验结果——如果互补特化效果显著（如 mutual benefit 实现且 router 超过 best fixed α ≥ 2 nDCG@10），概率可推到 40-45%；如果效果 marginal，则降到 30% 附近。
+
+【主要风险】:
+1. **Novelty 被质疑为 incremental**：所有方法组件（SPLADE head、dense head、self-KD、MLP router）都有直接前置工作，审稿人可能认为这只是 "BGE-M3 on decoder-only LLM" 的简单迁移，即使作者强调了科学假设和分析框架的贡献。应对建议：在论文中更强势地 frame 为"科学发现驱动"而非"系统设计驱动"，强调 CKA/linear probing/attention entropy 分析揭示的新发现。
+2. **互补特化假设不成立**：如果联合训练导致两个 head 互相干扰（shared backbone 的 capacity bottleneck），核心 claim 即告失败。虽然作者预设了"negative result 也有价值"的 framing，但 AAAI 审稿人通常对 negative results 的接受度有限。应对建议：在 3B proof-of-concept 阶段就密切监控这一风险，如果初步结果不支持假设，及时调整研究方向（如转向研究"为什么 decoder-only 上不 work"并与 BGE-M3 在 encoder 上的成功做对比分析）。
+
+【实施评估】:
+- **计算资源**: 8×A100-80GB 7-10 天（主实验）+ 4×A100 3 天（3B proof-of-concept）+ ablation 额外 ~50% 计算。总计约 120-200 GPU-days (A100-80GB)。属于中大规模实验，需要有稳定的 GPU 集群访问。
+- **数据需求**: MS MARCO passage、BEIR-14、TREC DL 2019/2020。均为公开数据集，无数据获取障碍。Hard negative mining 需要预训练 checkpoint 做 BM25 + dense negative 采样，计算开销可控。
+- **人工介入**: 无人工标注需求。超参调优（特别是三阶段 curriculum 的学习率、KD loss 权重、FLOPS regularization 系数）需要较多的实验迭代和人工判断。
+- **训练需求**: 需要从头微调 Llama-3.1-8B（修改 attention 为 bidirectional + 添加 dual head），不是简单的 LoRA adapter。三阶段训练流程增加了工程复杂度。
+- **新 Benchmark**: 不需要构建新 benchmark，使用现有标准评测。
+- **预估周期**: 3B proof-of-concept（2-3 周）→ 8B 主实验（3-4 周）→ ablation 和分析（2-3 周）→ 论文写作（3-4 周）。总计 10-14 周，约 2.5-3.5 个月。如果计算资源充足且第一轮实验顺利，可以赶上 AAAI 2026 deadline。
+```
+
+Sources:
+- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)](https://arxiv.org/abs/2502.15526)
+- [BGE M3-Embedding (ACL Findings 2024)](https://arxiv.org/abs/2402.03216)
+- [RouterRetriever (AAAI 2025)](https://arxiv.org/abs/2409.02685)
+- [LACONIC (arXiv 2026)](https://arxiv.org/abs/2601.01684)
+- [Sparse and Dense Retrievers Learn Better Together (CIKM 2025)](https://arxiv.org/abs/2508.16707)
+- [DAT: Dynamic Alpha Tuning (arXiv 2025)](https://arxiv.org/abs/2503.23013)
+- [GritLM (ICLR 2025)](https://arxiv.org/abs/2402.09906)
+- [Qwen3-Embedding-8B](https://huggingface.co/Qwen/Qwen3-Embedding-8B)
+- [Llama-Embed-Nemotron-8B](https://arxiv.org/abs/2511.07025)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing
+
+## Core Research Question
+
+In a decoder-only LLM with shared transformer backbone, do sparse (lexical) and dense (semantic) retrieval heads develop complementary specialization—or do they compete for representational capacity? This is the central scientific question of this work. We hypothesize that joint training with bidirectional self-knowledge-distillation forces complementary specialization, yielding representations superior to independently trained models. Two derivative contributions support this investigation: (1) the unified architecture itself serves as a testbed for studying this question, and (2) a lightweight learned router exploits per-query complementarity patterns, doubling as a query-level retrieval signal diagnosis tool.
+
+## Research Opportunity
+
+Three verified gaps converge: (1) No decoder-only LLM produces both sparse and dense representations from a single forward pass with learned heads—LACONIC-8B (arXiv:2601.01684, Jan 2026) and Lion-SP/DS (SIGIR 2025) train separate models, while BGE-M3 (ACL Findings 2024) unifies but only on encoder-only XLM-RoBERTa; (2) No learned per-query router exists within a unified retrieval model—RouterRetriever (AAAI 2025) routes between separate external models, DAT (arXiv:2503.23013) requires additional LLM inference for post-hoc alpha tuning, and BGE-M3 uses fixed interpolation weights; (3) Bidirectional self-distillation between sparse and dense heads has never been validated in decoder-only architectures for text retrieval—the CIKM 2025 proof uses VLP encoder models (BLIP/ALBEF) on cross-modal tasks.
+
+The scientific question left open: Lion-SP/DS (SIGIR 2025) showed sparse outperforms dense by 10.5% on OOD benchmarks at 8B scale, confirming strong signal complementarity, but trained them separately and thus cannot determine whether shared-backbone joint training amplifies or diminishes this complementarity. BGE-M3 answered this for encoder-only architectures (joint training helps), but decoder-only models with modified attention (causal→bidirectional) may behave differently due to distinct inductive biases. Our work directly resolves this open question.
+
+## Addressing the Trivial Alternative
+
+The simplest alternative is running separate sparse and dense models (e.g., Lion-SP-8B + Lion-DS-8B) with post-hoc score fusion—fixed-weight (BGE-M3 style) or per-query adaptive (DAT style). We provide two lines of justification for shared-backbone joint training:
+
+(a) **Mutual Feature Transfer Hypothesis**: Shared transformer layers enable sparse and dense heads to develop complementary feature specialization through bidirectional self-KD cross-pollination. We verify through: (i) linear CKA similarity between joint vs. independently trained models at each layer, (ii) layer-wise linear probing for lexical features (exact n-gram overlap detection) vs. semantic features (paraphrase detection), (iii) attention entropy analysis per head per layer, (iv) direct comparison of joint-trained individual head performance vs. independently trained counterparts.
+
+**Sub-hypothesis on directional asymmetry**: SPLADE's vocab-space inductive bias (ReLU + FLOPS regularization encourages sparse term weighting) may limit its capacity to absorb upper-layer semantic features from self-KD, potentially making cross-pollination primarily unidirectional (dense benefits from lexical features, but sparse gains less from semantic features). We test this explicitly via unidirectional vs. bidirectional KD comparison; asymmetric benefit is itself a valuable finding about representation learning under architectural constraints.
+
+(b) **Computational Efficiency**: Single forward pass through one 8B model vs. two separate 8B forward passes yields ~2× encoding throughput and ~50% parameter reduction at serving time.
+
+## Research Landscape and Differentiation
+
+**Unified retrieval models** form a taxonomy along two axes: (1) what is unified (task modality vs. representation paradigm), and (2) how (parameter-switching vs. parameter-sharing). GritLM (ICLR 2025) unifies generation + embedding (different task modalities) via parameter-sharing, demonstrating zero-loss coexistence, but only produces dense representations. Hydra (arXiv:2603.28554, 2026) unifies retrieval + generation via parameter-switching (LoRA toggle), isolating modes in different parameter subsets. BGE-M3 (ACL Findings 2024) unifies sparse + dense + multi-vector via parameter-sharing but on encoder-only XLM-RoBERTa. Our work uniquely combines: same representation paradigm (sparse+dense), parameter-sharing, decoder-only architecture—the only configuration that can answer whether complementary specialization emerges in modern LLM backbones.
+
+**Dense SOTA**: Qwen3-Embedding-8B (MTEB multilingual 70.58, different backbone/training pipeline), Llama-Embed-Nemotron-8B (arXiv:2511.07025, same Llama-3.1-8B backbone, MMTEB #1), NV-Embed-v2 (ICLR 2025, Mistral-7B, latent attention pooling). **Sparse SOTA**: LACONIC-8B (60.2 MTEB-R, 61.5 BEIR-14), CSplade-bi-8B (IJCNLP 2025, 55.3 BEIR), Lion-SP-8B (SIGIR 2025, 55.2 BEIR). **Per-query routing**: RouterRetriever (AAAI 2025, +2.1 nDCG@10, domain-level routing between separate models), DAT (arXiv:2503.23013, external LLM per-query α, post-hoc). Our router operates internally from the query's [EOS] representation at zero extra inference cost—a finer-grained and cheaper approach.
+
+## Transfer Conditions for Self-KD
+
+The CIKM 2025 bidirectional self-KD was validated on VLP encoder models (BLIP/ALBEF) for text-image cross-modal retrieval, where sparse and dense handle different modality alignment problems. Transfer to decoder-only text-text retrieval faces a different complementarity source: sparse (lexical) and dense (semantic) operate on the same modality. We argue validity because: (1) Lion-SP/DS empirically showed 10.5% OOD performance gap, demonstrating genuinely different signals in text-text; (2) the KL-divergence loss formulation is modality-agnostic; (3) we design explicit ablation to validate the transfer and quantify per-direction benefit.
+
+## Proposed Approach
+
+Fine-tune Llama-3.1-8B with bidirectional attention, adding dual heads over shared backbone: sparse SPLADE head (vocab projection + ReLU + FLOPS regularization; DF-FLOPS variant (arXiv:2505.15070, SIGIR 2025) considered for training stability) and dense head (latent attention pooling). Three-stage curriculum: (1) sparse-only adaptation (10k steps, CSplade protocol) stabilizing ReLU activations, (2) joint contrastive training with bidirectional self-KD between heads using CIKM 2025 formula extended to decoder-only text retrieval, using GradCache to decouple effective batch size from GPU memory, (3) hard-negative fine-tuning with learned 2-layer MLP router predicting per-query sparse-dense interpolation weights from the query's [EOS] representation.
+
+## Experimental Design
+
+### Baselines (structured by comparability)
+
+**Primary (same backbone / controlled comparison):**
+- Sparse: LACONIC-8B, Lion-SP-8B, CSplade-bi-8B
+- Dense: Llama-Embed-Nemotron-8B (arXiv:2511.07025, same Llama-3.1-8B backbone), Lion-DS-8B
+- Post-hoc fusion: Lion-SP-8B + Lion-DS-8B with (i) best fixed α, (ii) DAT-style per-query α
+
+**Secondary (standard baselines):**
+- BM25 (Pyserini), SPLADE-v3, Contriever-msmarco
+
+**Reference (different backbone/pipeline, not apple-to-apple):**
+- Qwen3-Embedding-8B, NV-Embed-v2, GritLM-7B
+- BGE-M3 (all three modes: dense, sparse, multi-vector, and weighted combination)
+
+**Scope note on multi-vector**: We do not include a multi-vector (ColBERT-style) head because the storage cost at 8B scale (per-token embeddings × sequence length) makes it impractical for large-scale retrieval. BGE-M3's multi-vector results are reported as reference. Multi-vector integration is discussed as future work.
+
+### Evaluation Benchmarks
+- BEIR-14: per-dataset nDCG@10 for all 14 subsets
+- MTEB Retrieval subset: aggregate and per-dataset
+- MS MARCO dev: MRR@10
+- TREC DL 2019 and 2020: nDCG@10 and MAP
+- Multilingual retrieval (e.g., MIRACL) is out of scope for this English-focused study; discussed in limitations.
+
+### Ablation Studies
+
+1. **Self-KD ablation** (5 conditions): (a) no KD, (b) dense→sparse only, (c) sparse→dense only, (d) bidirectional (ours), (e) cross-encoder teacher KD (external reranker as teacher for both heads). Report sparse-only, dense-only, and fused nDCG@10. Tests directional asymmetry sub-hypothesis.
+
+2. **Router ablation** (6 conditions + analysis): (a) α=0 pure dense, (b) α=1 pure sparse, (c) α=0.5 equal, (d) best fixed α (grid search), (e) per-query oracle upper bound, (f) learned MLP router (ours). Supplementary: per-domain α distribution visualization across BEIR-14 subsets, revealing what query/domain characteristics the router learns to associate with sparse vs. dense preference.
+
+3. **Stage ablation** (4 conditions): (a) stage 1 only, (b) stage 1+2, (c) full pipeline, (d) skip stage 1. Report performance and sparsity levels at each checkpoint.
+
+4. **Representational analysis**: Linear CKA at each layer (joint vs. independent training), layer-wise linear probing (lexical: n-gram overlap detection; semantic: paraphrase detection), attention entropy per head per layer. Reveals whether dual-head training induces layer-wise specialization absent in single-task models.
+
+### Efficiency Evaluation
+- Index size: sparse vs dense vs combined, compared to separate model indices
+- Encoding throughput: queries/sec and docs/sec (1×8B unified vs 2×8B separate)
+- End-to-end retrieval latency including router
+- Parameter count: ~8.05B (shared backbone + dual heads) vs 16B (two separate 8B models)
+
+### Compute-Controlled Comparisons
+- Same-compute: Hydra-Retrieve (1×8B forward) vs two-model ensemble (2×8B) with post-hoc fusion
+- Same-parameter: per-head performance vs single-task 8B counterparts (any degradation?)
+
+### Performance Claims (three-dimensional)
+Rather than targeting a single aggregate number, we evaluate success on three axes:
+1. **Mutual benefit**: each head in the unified model performs ≥ its independently trained counterpart (validates complementary specialization)
+2. **Routing value**: learned router > best fixed α by meaningful margin; gap to oracle < 30% of oracle-vs-best-fixed improvement
+3. **Efficiency**: ~2× throughput and ~50% serving parameters at comparable or better retrieval quality vs. two-model setup
+
+## Feasibility and Compute Budget
+
+Training Llama-3.1-8B with bidirectional attention and dual heads. Bidirectional attention increases memory (O(n²) vs incremental KV-cache), limiting per-GPU batch size to 1-2 at 8B scale. Mitigation: GradCache for decoupled contrastive batch size (effective batch 256-512 via gradient accumulation over 128-256 steps) + cross-GPU negative sharing. Estimated compute: 8×A100-80GB for 7-10 days (Stage 1: ~1 day, Stage 2: ~4-6 days, Stage 3: ~1-2 days), or 16×A100 for 5-7 days. Proof-of-concept at 3B scale first (~3 days on 4×A100) to validate method. LoRA fallback if full fine-tuning exceeds budget (rank 16-64, all attention + MLP layers trainable, expected <2% performance gap based on RouterRetriever precedent). Cross-encoder KD ablation adds ~20% compute to Stage 2 (cross-encoder inference on training pairs).
+
+## Key References
+
+- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)
+- LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval (arXiv:2601.01684, 2026)
+- CSPLADE: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)
+- M3-Embedding: Multi-Linguality Multi-Functionality Multi-Granularity (ACL Findings 2024)
+- RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)
+- NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models (ICLR 2025)
+- Generative Representational Instruction Tuning (ICLR 2025)
+- Sparse and Dense Retrievers Learn Better Together (CIKM 2025)
+- Qwen3-Embedding (2025)
+- DAT: Dynamic Alpha Tuning for Hybrid Retrieval (arXiv:2503.23013, 2025)
+- Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model (arXiv:2603.28554, 2026)
+- Llama-Embed-Nemotron-8B: A Universal Text Embedding Model (arXiv:2511.07025, 2025)
+- An Alternative to FLOPS Regularization to Effectively Productionize SPLADE-Doc (arXiv:2505.15070, SIGIR 2025)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2ba21f1b-a365-41a2-a465-f44114ab32af",
+  "type": "user",
+  "uuid": "bb765a11-9bcb-46ba-9bf3-c4f546f867b8",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:36:03.918Z_
+
+```json
+{
+  "parentUuid": "bb765a11-9bcb-46ba-9bf3-c4f546f867b8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "0a64cf83-bbc7-4a8e-98a2-04c5a23f4577",
+  "timestamp": "2026-05-30T07:36:03.918Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:36:03.918Z_
+
+```json
+{
+  "parentUuid": "0a64cf83-bbc7-4a8e-98a2-04c5a23f4577",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "284d692b-bdf8-457b-a832-d65e4a88b15a",
+  "timestamp": "2026-05-30T07:36:03.918Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient information to make a thorough assessmen…",
+  "leafUuid": "284d692b-bdf8-457b-a832-d65e4a88b15a",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense retrieval in decoder-only LLMs",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:36:43.777Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments carefully and produce a Meta Judge synthesis.
+
+**Reviewer 1**: [30% - 45%] 中位 37%
+**Reviewer 2**: [28% - 42%] 中位 35%
+**Reviewer 3**: [30% - 45%] 中位 37%
+
+Three midpoints: 37%, 35%, 37%
+Mean = 36.3%, Median = 37%
+Std = sqrt(((37-36.3)^2 + (35-36.3)^2 + (37-36.3)^2)/3) = sqrt((0.49 + 1.69 + 0.49)/3) = sqrt(2.67/3) = sqrt(0.89) ≈ 0.94%
+
+
+The consistency across reviewers is remarkably tight with a standard deviation under 1%.
+
+Now I'm examining how the three reviewers rated each rubric dimension. The research question received unanimous strong ratings from all three, while both method and innovation and experimental design show consistent assessments across the board.
+
+For feasibility, there's a split—two reviewers marked it as medium while one gave it a strong rating, making R2 the outlier here. Writing and presentation achieved perfect consensus with all three reviewers rating it strong.
+
+Looking at the areas where at least two reviewers aligned, I see four key consensus points: the research question is universally strong, the method and innovation is consistently medium across all three (reflecting integrative rather than fundamental novelty), experimental design is unanimously strong, and the writing quality is strong across the board.
+
+The critical risks that all three reviewers identified are identical: novelty could be challenged as incremental, and the core assumption about complementary specialization might not hold. The standard deviation of about 0.94% indicates remarkably tight agreement among the reviewers overall.
+
+Looking at the probability ranges, there's strong consensus on the boundaries—all three converge around 30% as the lower bound and 45% as the upper bound. The individual midpoints cluster around 36-37%, so I'm narrowing the interval to approximately 30-43% with a median estimate of 36%. 36% feels right. Looking at the alignment across all three reviewers—the standard deviation is barely 1%—I'm confident in [30% - 42%] with a median of 36%. This takes the consensus point slightly below the reviewer median of 37% to account for the conservative bias the instructions call for, while respecting the bounds no reviewer exceeded.
+
+For the implementation side, there's strong agreement on the core approach: 8 A100-80GB GPUs with 7-10 days for main training, a 3B proof-of-concept as a safety net, standard public datasets like MS MARCO and BEIR, and a 2-3.5 month total timeline. The main engineering bottleneck will be hyperparameter tuning.
+
+On the GPU-day estimates for the full curriculum learning pipeline, the reviewers diverge more noticeably. R3's 120-200 GPU-days looks most thorough since it accounts for all ablations, while R1's 30-40 seems conservative. R2 and R3 align better on the more realistic resource requirements, so I'll weight those estimates more heavily for the final assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "284d692b-bdf8-457b-a832-d65e4a88b15a",
+  "isSidechain": false,
+  "requestId": "req_011CbYNMhonC1Rs31YBuUS93",
+  "type": "assistant",
+  "uuid": "a2912caf-510d-4bd4-a5aa-54e59b258435",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UNKKZMJLVtWqwewCGSxrBZ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20849,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3657,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 20849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-30T07:37:33.394Z_
+
+【阶段】: Meta Judge
+【三次中位】: [37%, 35%, 37%]  std=0.9%
+【共识维度】:
+- 研究问题: 强（3/3 一致）— gap 真实且经调研验证，"complementary specialization" 是 well-defined 的科学问题
+- 方法与创新: 中（3/3 一致）— 本质是已有组件（SPLADE head、latent attention pooling、self-KD、MLP router）的 integrative combination，无根本性新方法
+- 实验设计: 强（3/3 一致）— 分层 baseline、四组 ablation、representational analysis、compute-controlled comparison，completeness 远超平均投稿
+- 写作与呈现: 强（3/3 一致）— 科学假设驱动的 framing、trivial alternative 的预判、directional asymmetry sub-hypothesis 均显示研究成熟度
+- 主要风险 1: Novelty 被质疑为 incremental "BGE-M3 on decoder-only"（3/3 一致识别为最大风险）
+- 主要风险 2: 核心假设（互补特化）可能不成立，negative result 在顶会接受度有限（3/3 一致）
+- 可行性: 中（2/3 判中，R2 判强；R2 为轻微 outlier，但其可行性判强的理由——LoRA fallback + 3B proof-of-concept 策略——在其他两位评审中也作为加分项被提及，差异主要在于对超参调优工作量的估计分歧）
+
+【异常维度】:
+- R2 可行性判"强"（R1/R3 判"中"）：R2 对超参调优和训练不稳定性风险的评估更乐观。考虑到三阶段 curriculum 的超参空间确实较大（KD 权重、FLOPS λ、router 训练时机、GradCache 步数等），采纳 R1/R3 的"中"判定更为审慎。
+- 无其他显著异常维度。三份评审在 rubric 判决、风险识别、甚至具体措辞上高度收敛。
+
+【最终概率】: [30% - 42%] 中位 36%
+【一致性】: 高（std=0.9%，远低于 3% 阈值；5 个 rubric 维度中 4 个完全一致，1 个 2/3 一致；两大风险点 3/3 一致）
+
+【综合理由】:
+三份评审呈现出罕见的高度收敛——不仅概率估计几乎重合（中位 35-37%，std 不足 1%），连 rubric 各维度的判决、主要风险的识别、甚至对 proposal 各组件的溯源（BGE-M3→self-KD 架构、CIKM 2025→bidirectional KD、NV-Embed→latent attention pooling、CSplade→sparse head 训练稳定性）都高度一致。这给了综合判断很高的置信度。
+
+**概率定位逻辑**：
+1. **idea 天花板**：研究问题"强"但方法创新"中"，意味着这是一篇 gap-filling + 科学假设验证型论文。idea 质量天花板约 42-45%——即使实验完美验证了所有假设，integrative novelty 的本质限制了上界。
+2. **实验地板**：实验设计"强"意味着地板较高（~30%），论文不会因为实验不完备被轻易击穿。但实验设计的完备性无法弥补方法创新的不足——"实验做得再好也弥补不了 novelty 偏弱"这一判断三位审稿人虽未明言但共同暗示。
+3. **关键变量**：所有审稿人都指出概率高度依赖实验结果——如果互补特化效果显著（individual head 超过独立训练对应物 + router 超过 best fixed α），概率推向上界；如果效果 marginal 或负面，概率拉向下界甚至更低。
+
+最终中位取 36%（略低于审稿人中位 37%），反映"宁缺毋滥"原则下对 integrative novelty 论文在 AAAI ~23-25% 接收率下的审慎估计。区间缩窄至 [30%-42%]（从最宽 [28%-45%] 收窄），反映高一致性下不需要过大的不确定性缓冲。
+
+【建议】: 边缘（Borderline）— 中位 36% 处于 borderline accept 区域。Proposal 的研究方向、问题定义和实验设计均为强项，值得推进；但 novelty 的天花板限制和核心假设的实验依赖性意味着最终中稿取决于：(1) 实验结果是否支持互补特化假设，(2) representational analysis 是否揭示出非 trivial 的科学发现。建议进入迭代优化，尝试在 idea framing 层面提升 novelty 感知度。
+
+【实施评估】:
+  - 计算资源: 8×A100-80GB，主训练 7-10 天；3B proof-of-concept 4×A100 约 3 天；含全部 ablation（15+ 条件）总计约 100-150 GPU-days（A100-80GB）。需稳定多 GPU 集群访问，中大规模实验。
+  - 数据需求: MS MARCO passages（主训练集）、BEIR-14、MTEB Retrieval subset、TREC DL 2019/2020，均为标准公开数据集。Hard negative mining 需预训练 checkpoint 做 BM25 + dense negative 采样，计算开销可控。无私有数据或额外标注需求。
+  - 人工介入: 无人工标注需求。主要人工投入在三阶段 curriculum 的超参调优（KD loss 权重、FLOPS 正则系数、学习率 schedule、GradCache 步数、router 训练时机等），预计 1-2 位研究者全职投入。
+  - 训练需求: 需对 Llama-3.1-8B 做 full fine-tuning（修改 attention 为 bidirectional + 添加 dual head），非简单 LoRA adapter（LoRA 为 fallback）。三阶段 curriculum 增加工程复杂度。GradCache 与 dual-head + self-KD 的兼容性需要工程验证。
+  - 新 Benchmark: 不需要。使用现有标准 benchmark。
+  - 预估周期: 3B proof-of-concept（2-3 周）→ 8B 主实验（2-3 周）→ ablation 与 representational analysis（2-3 周）→ 论文撰写（2-3 周）。总计约 10-12 周（2.5-3 个月）。若首轮实验需要大幅调参或方法调整，可能延至 14-16 周。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2912caf-510d-4bd4-a5aa-54e59b258435",
+  "isSidechain": false,
+  "requestId": "req_011CbYNMhonC1Rs31YBuUS93",
+  "type": "assistant",
+  "uuid": "270487ee-3d05-4146-9680-2016a337e6b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UNKKZMJLVtWqwewCGSxrBZ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20849,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3657,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 20849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient information to make a thorough assessmen…",
+  "leafUuid": "270487ee-3d05-4146-9680-2016a337e6b4",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense retrieval in decoder-only LLMs",
+  "sessionId": "d88a1ef7-ecd8-4a8b-b2bd-2d56126b0e74"
+}
+```
+
+---

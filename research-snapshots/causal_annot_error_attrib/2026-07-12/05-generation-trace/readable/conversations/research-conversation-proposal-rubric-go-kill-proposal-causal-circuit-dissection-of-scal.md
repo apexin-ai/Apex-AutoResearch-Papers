@@ -1,0 +1,2905 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Causal Circuit Dissection of Scal
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-2/b185c230-5e7d-4250-a564-47ba42f4d5c5.jsonl`
+- **Structured JSON:** [`0f32f9d73449c32e0623.json`](../../sessions/0f/0f32f9d73449c32e0623.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:49:03.124Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:49:03.124Z",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation Redistribution to Catastrophic Length Failure\n\n## Description\nThree concurrent empirical findings establish a striking puzzle: short meaningless token sequences (~10-50 repeated punctuation tokens) improve reasoning via first-layer MLP activation redistribution following an inverted-U curve (Shi et al., arXiv:2510.01032), yet long whitespace padding (3.75K-30K tokens) degrades reasoning 13.9-85% even with perfect retrieval (Du et al., EMNLP Findings 2025, arXiv:2510.05381), with hidden representation shifts detectable even at small scales (Himelstein et al., NeurIPS 2025 Workshop, arXiv:2510.01238). Current theoretical frameworks for length-induced degradation — Chen et al.'s β_n = log(n) critical scaling (arXiv:2510.05554) and ASEntmax's unbounded softmax entropy proof (ICLR 2026) — operate solely on the attention mechanism and predict monotonic degradation, but are silent on MLP-mediated effects. No existing theory addresses the cross-component interaction between attention-mediated degradation and MLP-mediated redistribution across scale. Critically, Shi et al. used repeated punctuation tokens while Du et al. used whitespace — whether these distinct token types produce a single continuous non-monotonic curve or two independent phenomena is itself an open empirical question that this work resolves as a first step.\n\nWe perform the first causal, component-level dissection of this phenomenon. We test three hypothesis dimensions: **(1) Localizability:** H1-Localized (degradation concentrated in <5% of components with >50% recovery) vs. H2-Distributed (no small subset sufficient) vs. H3-Architecture-dependent (model-specific, following the Fragile Reasoning paper's finding that Llama-3 failures are localizable while Qwen2.5 failures are distributed, arXiv:2604.01639). **(2) Circuit overlap:** H_unified (micro-beneficial and macro-harmful effects mediated by the same components in different regimes) vs. H_separate (mediated by distinct component sets). Shi et al.'s benefit localizes to first-layer MLP activation redistribution; DySCO (arXiv:2602.22175) achieves 25% improvement on 128K-context reasoning by upweighting retrieval heads — suggesting benefit (MLP-mediated) and failure mitigation (attention head-mediated) may involve different circuitry. **(3) Cross-component dependency:** H_interaction (MLP benefit depends on attention functionality — at macro-scale, attention degradation renders MLP redistribution unusable even if it still occurs) vs. H_independent (MLP and attention effects are additive with no dependency).\n\nUsing a tiered padding protocol across Llama-3.1-8B-Instruct (128K native, full attention), Gemma-3-12B-it (128K native, interleaved local-global attention per Gemma 3 Technical Report arXiv:2503.19786), and Qwen2.5-7B-Instruct (32K native, full attention), we apply a two-stage causal tracing strategy: Attribution Patching (AtP-IG / RelP) as efficient first-pass screen, validated against full patching at long contexts via a dedicated pilot, followed by targeted full activation patching on top-50 candidates at 4 key scale conditions (micro-beneficial, transition, macro-harmful, extreme). Benchmarks include GSM8K, GSM-Infinite (ICML 2025, arXiv:2502.05252) at calibrated difficulty for sufficient flip/boost rates, MATH, and MMLU (behavioral verification only). Phase 1 explicitly tests both whitespace and repeated punctuation padding at micro-scale to verify whether the non-monotonic curve holds within a single token type. A position-controlled ablation (post-question padding) isolates positional encoding confounds. At micro-scale, causal tracing uses boosted (incorrect→correct) samples to identify \"beneficial circuits\"; at macro-scale, flipped (correct→incorrect) samples identify \"harmful circuits\"; the overlap between these two circuit sets directly tests H_unified vs H_separate using continuous metrics (weighted Jaccard, cosine similarity, cutoff sensitivity analysis, permutation tests). Gemma-3-12B serves dual purpose: Gemma Scope 2 SAE/transcoder feature-level decomposition, and architectural contrast (its 5-local-1-global interleaved attention, with local layers spanning only 1024 tokens, produces fundamentally different padding-interaction patterns than full-attention models). Cross-referencing maps disrupted components against SurfaceLogicKV's logic-construction heads (arXiv:2508.15806), Wu et al.'s retrieval heads (arXiv:2404.15574), DySCO's heuristic intervention targets (arXiv:2602.22175), and per-head attention entropy relative to Chen et al.'s β_n = log(n) critical scaling.\n\nThe key deliverable is a mechanistic answer to whether the beneficial-to-harmful transition reflects a single circuit overloading, competing circuits, or a cross-component dependency — directly informing whether length-robust interventions should target a unified mechanism, address distinct failure modes, or restore inter-component dependencies. Beyond explaining accuracy degradation, the component-level findings may illuminate why models compress reasoning traces and reduce self-verification under length pressure (Rodionov et al., arXiv:2604.01161). Each hypothesis outcome yields distinct engineering implications: principled component selection for inference-time intervention (improving on DySCO's heuristic retrieval-head selection), targeted regularization for long-context fine-tuning, or model-selection guidance based on architectural failure signatures.\n\n## Core Problem\nWhy does padding-induced input length modulate transformer reasoning — improving performance at micro-scale (~10-50 tokens) via MLP activation redistribution, yet degrading it 13.9-85% at macro-scale (~10K-30K tokens) — and are these effects mediated by the same components operating in different regimes (with or without cross-component dependency), or by distinct component sets? A prerequisite question: do these two effects (observed with different padding types) form a continuous scale-dependent phenomenon, or are they independent token-type-specific mechanisms?\n\n## Opportunity\nThree concurrent empirical findings create a puzzle with no mechanistic resolution. Shi et al. (arXiv:2510.01032) showed short meaningless tokens (~10-50 repeated punctuation) *improve* reasoning via first-layer MLP activation redistribution (ARM effect), following an inverted-U curve collapsing beyond ~50-70 tokens. Du et al. (EMNLP Findings 2025, arXiv:2510.05381) demonstrated long whitespace padding (3.75K-30K tokens) degrades reasoning 13.9-85% across 5 LLMs even with perfect retrieval and masked distractors, explicitly calling for \"further exploration of underlying mechanisms.\" Himelstein et al. (NeurIPS 2025 Workshop, arXiv:2510.01238) showed even small padding shifts hidden representations, degrades quality, and weakens safety guardrails. A critical but overlooked detail: Shi et al. used repeated punctuation tokens while Du et al. used whitespace — whether these produce a single continuous phenomenon or two independent effects is an open question that must be resolved before any unified mechanistic account is possible.\n\nCurrent theoretical frameworks predict only monotonic attention degradation: Chen et al.'s β_n = log(n) critical scaling (arXiv:2510.05554) and ASEntmax's unbounded softmax entropy proof (ICLR 2026). These are entirely attention-centric and silent on MLP behavior. The MLP-mediated micro-scale benefit (Shi et al.) lies outside their explanatory scope, meaning these theories — even if correct for the attention component — cannot explain the full multi-component phenomenon. No existing theory addresses how attention-mediated degradation and MLP-mediated redistribution interact across scale; predicting where their combined effect transitions requires component-level causal evidence that no theoretical framework provides. The Intrinsic Entropy paper (arXiv:2502.01481) links training data to optimal context length but provides no component-level evidence.\n\nActivation patching tools are now mature: Anthropic's 2025 circuit tracing at production scale (Attribution Graphs); Syed et al.'s AtP (NeurIPS 2023 Workshop, arXiv:2310.10348); RelP with LRP propagation (NeurIPS 2025 MechInterp Workshop Spotlight, arXiv:2508.21258); Stream (arXiv:2510.19875) enabling mechanistic interpretability at 100K-token contexts. DySCO (arXiv:2602.22175, Feb 2026) demonstrates that heuristic retrieval-head upweighting yields up to 25% improvement on 128K-context reasoning — proving head-level intervention works without explaining why. Notably, DySCO's substantial recovery from purely attention-based intervention suggests either (a) MLP components are not independently damaged at macro-scale, or (b) MLP damage exists but is less impactful than attention damage — both testable predictions. \"How does Chain of Thought Think?\" (arXiv:2507.22928) establishes SAE + activation patching as viable for feature-level causal analysis of reasoning.\n\nThe Fragile Reasoning paper (arXiv:2604.01639) revealed Llama-3 failures under surface perturbations are localizable (71.7% recoverable) while Qwen2.5 failures are distributed (0%). This raises the question of whether length-induced degradation follows the same pattern — but length perturbation differs qualitatively from surface perturbation: it does not alter semantic signal content but changes computational path length, attention distribution, and positional encoding regime, potentially producing fundamentally different localizability patterns. \"Localized Definitions and Distributed Reasoning\" (arXiv:2504.02976) found factual knowledge localized and associative reasoning distributed in GPT-2 using CLAP, but on a different perturbation dimension (task type, not length) and model scale.\n\n## Landscape\n**Empirical phenomenon (well-established):** Du et al. (EMNLP Findings 2025) showed 13.9-85% degradation across Llama-3.1-8B, Mistral-v0.3-7B, GPT-4o, Claude-3.5, and Gemini-2.0 using whitespace padding at 0/3.75K/7.5K/15K/30K tokens on GSM8K, MMLU, and HumanEval. The Intelligence Degradation paper (arXiv:2601.15300) identified critical thresholds at 40-50% of max context. Rodionov et al. (arXiv:2604.01161) showed longer context compresses reasoning traces by up to 50% with reduced self-verification — behavioral observation suggesting not just accuracy loss but qualitative reasoning behavior change, without component-level tracing. The Chroma Context Rot Report (2025) confirmed context rot as intrinsic to attention architectures across 18 models.\n\n**Paradoxical micro-scale benefit:** Shi et al. (arXiv:2510.01032) demonstrated short meaningless tokens (~10-50 repeated punctuation) *improve* reasoning by redistributing MLP activations in the first layer (ARM effect), following an inverted-U curve peaking around 50 tokens. Himelstein et al. (arXiv:2510.01238, NeurIPS 2025 Workshop) showed even small padding shifts hidden representations across Llama, Gemma, and Qwen families.\n\n**Theoretical accounts (attention-only, monotonic):** Chen et al. (arXiv:2510.05554) proved attention phase transition at β_n = log(n). ASEntmax (ICLR 2026) proved unbounded softmax entropy growth. Both predict monotonic attention degradation; neither addresses MLP-mediated effects or cross-component interactions.\n\n**Inference-time intervention (heuristic):** DySCO (arXiv:2602.22175) leverages Wu et al.'s retrieval heads for dynamic attention rescaling, achieving 25% relative improvement at 128K context. Proves head-level intervention works but provides no mechanistic explanation for component selection or coverage completeness.\n\n**Mechanistic interpretability on related problems:** Wu et al. (arXiv:2404.15574) identified retrieval heads (<5%, critical for CoT reasoning). SurfaceLogicKV (arXiv:2508.15806) classified heads: 98.5% irrelevant-info-ignoring, 1.5% logic-construction, 0.5% surface memorization. \"Transformers Know but Don't Tell\" (EMNLP Findings 2024, arXiv:2406.14673) showed models internally represent answers they fail to output. Fragile Reasoning (arXiv:2604.01639): Llama-3 failures localized (71.7%), Qwen distributed (0%). CircuitProbe (Panuganti, arXiv:2604.00716) identified reasoning circuits via layer duplication. Fartale et al. (arXiv:2510.03366) disentangled recall vs. reasoning circuits. \"Localized Definitions and Distributed Reasoning\" (arXiv:2504.02976) found factual knowledge localized, associative reasoning distributed in GPT-2. \"How does Chain of Thought Think?\" (arXiv:2507.22928) used SAE + activation patching for feature-level CoT causal analysis, finding CoT induces sparser, more causally effective features in larger models.\n\n**Critical gap:** No existing work uses causal interventions to trace where pure length disrupts reasoning circuits. Specifically: (1) no work verifies whether micro-scale benefit (Shi et al., punctuation tokens) and macro-scale harm (Du et al., whitespace) form a continuous phenomenon; (2) no work identifies which components mediate the transition; (3) no work tests cross-component dependency (whether MLP benefit requires attention functionality); (4) DySCO demonstrates intervention works but lacks mechanistic grounding.\n\n## Approach\n**Phase 1 — Reproduction, padding-type verification, and scale-transition characterization (Weeks 1-3).** Reproduce Du et al.'s padding protocol across Llama-3.1-8B-Instruct (128K native, full attention), Gemma-3-12B-it (128K native, interleaved 5-local-1-global attention with 1024-token local span per arXiv:2503.19786), and Qwen2.5-7B-Instruct (32K native, full attention, capped within native window). **Benchmarks:** GSM8K and GSM-Infinite (ICML 2025, arXiv:2502.05252) at calibrated difficulty (target 40-60% baseline accuracy to ensure sufficient boosted/flipped samples); MATH for harder reasoning; MMLU for behavioral verification only (accuracy vs. padding length curves, no causal tracing). **Padding-type verification (critical):** At micro-scale (0/25/50/100/200/500/750 tokens), test both whitespace padding AND repeated punctuation tokens (replicating Shi et al.'s protocol). If whitespace produces no micro-scale benefit, the two phenomena are token-type-specific; if both produce the inverted-U curve, a unified scale-dependent account is supported. At core scale (1K/5K/10K/25K tokens), test whitespace (primary) plus random vocabulary tokens at 1K/10K/25K as robustness check. Extended: 50K tokens, whitespace only, Llama and Gemma only. All cross-model comparisons normalized by token count with tokenizer encoding differences reported. **Paired datasets:** At micro-scale, collect both boosted (incorrect→correct, for beneficial circuit tracing) and flipped (correct→incorrect) samples. At macro-scale, collect flipped samples (~200-500 per condition). At micro-scale, measure first-layer MLP activation distributions (replicating ARM finding) and per-head attention entropy. **Also measure MLP activation patterns at macro-scale** to test H_interaction: does ARM-pattern redistribution still occur at 10K-25K tokens, or does the MLP response itself change? **Position-controlled ablation:** For core conditions, run parallel set with padding after the question (preserving question at position [0, L]) to isolate positional encoding confounds (supported by position bias literature, arXiv:2502.01951).\n\n**Phase 2 — Validation pilot and efficient causal screening (Weeks 3-6).** **Validation pilot (Week 3):** On Llama + Qwen (full-attention models) × 3 length conditions (1K, 10K, 25K) × 50-100 examples, simultaneously run AtP-IG (Syed et al., arXiv:2310.10348), RelP (arXiv:2508.21258), and full activation patching on all ~1024 components. Compute Spearman ρ to verify approximate methods at long contexts despite LayerNorm nonlinearities. If ρ < 0.7, fall back to full patching with gradient checkpointing + bfloat16. **Main screening (Weeks 4-6):** Apply validated method across all model-condition pairs. For Gemma-3-12B, run AtP separately on local vs. global layers to isolate sliding-window effects. Use Stream (arXiv:2510.19875) for attention pattern visualization only.\n\n**Phase 3 — Targeted full activation patching and path patching (Weeks 6-9).** Apply full activation patching to top-50 components at **4 key scale conditions per model**: micro-beneficial (~50 tokens), transition (~750 tokens), macro-harmful (~10K tokens), extreme (~25K tokens). Sample size: 200 examples per condition (sufficient for bootstrap 95% CIs). Swap short-context activation into long-context pass, measure accuracy recovery. At micro-scale, patch beneficial circuits using boosted samples (swap long-context activation into short-context incorrect pass). Apply path patching to top-20 components for information-flow edge tracing. Compute CAI (Cascading Amplification Index, from Fragile Reasoning, arXiv:2604.01639). **H_unified vs H_separate test:** Compare component sets from micro-beneficial tracing (boosted samples) and macro-harmful tracing (flipped samples) using weighted Jaccard (by causal effect magnitude), cosine similarity of full causal effect vectors, and cutoff sensitivity analysis (top-20/50/100). Report permutation-test null distribution for statistical significance. Partial overlap (0.2-0.5) interpreted as \"partially shared mechanism\" — some shared components plus regime-specific ones. For Gemma-3-12B, separately report local-layer vs global-layer causal responsibility.\n\n**Phase 4 — Cross-referencing, DySCO comparison, and mechanistic synthesis (Weeks 9-11).** Cross-reference disrupted components with: (a) SurfaceLogicKV head classification (arXiv:2508.15806); (b) Wu et al.'s retrieval heads (arXiv:2404.15574); (c) DySCO's intervention targets (arXiv:2602.22175) — overlap analysis between causally-implicated heads and DySCO's retrieval-head selection; test whether causal heatmap identifies non-retrieval components DySCO misses; (d) per-head attention entropy vs. Chen et al.'s β_n = log(n) critical threshold (arXiv:2510.05554). For Gemma-3-12B, leverage Gemma Scope 2 SAEs and transcoders (Google DeepMind, 2026) for feature-level decomposition, tracking feature activation/deactivation across the scale transition. All H3 cross-model comparisons: Llama vs Qwen as primary (both full attention, comparable ~7-8B scale); Gemma as architectural contrast with separate local/global reporting. Normalized metrics (% of total components) alongside absolute counts.\n\n**Phase 5 — Probing, hypothesis testing, and statistical validation (Weeks 11-13).** **Probing protocol:** Linear probes at every layer on the residual stream representation at the **last question token position** (the position from which generation begins). Training data: short-context correct examples' representations. Probe target: final-answer correctness. Layer-by-layer accuracy under long-context conditions distinguishes: information preservation (high early/middle accuracy) + propagation failure (sharp drop at specific layers, consistent with H1) vs. global corruption (uniform decline, consistent with H2). Extends \"Transformers Know but Don't Tell\" (arXiv:2406.14673) from retrieval to reasoning under length pressure. Test all three hypothesis dimensions: localizability (H1/H2/H3), circuit overlap (H_unified/H_separate), cross-component dependency (H_interaction/H_independent). **Statistical rigor:** All rates with bootstrap 95% CIs; cross-model comparisons via permutation tests; AtP rankings via split-half stability (Spearman ρ on random 50/50 example splits).\n\n**Phase 6 — Scale-transition mechanistic narrative (Weeks 13-15).** Synthesize into mechanistic account: trace how first-layer MLP activation redistribution (ARM effect) interacts with attention entropy growth, retrieval head disruption, and logic-construction head failure across scale. Key question: does MLP redistribution still occur at macro-scale (H_interaction test), and if so, why can't downstream components utilize it? Connect findings to Rodionov et al.'s (arXiv:2604.01161) observation that long context compresses reasoning and reduces self-verification — do the disrupted components correspond to verification-related circuits? Deliverable: component-level circuit diagram of the scale transition, with implications for principled intervention design (improving on DySCO's heuristic), long-context training regularization, and architecture selection.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '400-600 H100 hours (validation pilot: ~15 hrs; AtP screening all conditions: ~40 hrs; targeted full patching on 4 key conditions × 200 examples: ~100 hrs; path patching top-20: ~40 hrs; padding-type verification experiments: ~25 hrs; position-controlled ablation: ~20 hrs; probing + Gemma Scope SAE: ~50 hrs; micro-scale + MMLU behavioral: ~20 hrs; overhead/reruns: ~50 hrs)', 'timeline': '13-17 weeks (3 weeks reproduction + padding-type verification + position ablation, 3 weeks validation pilot + AtP screening, 3 weeks targeted patching + path patching, 2 weeks cross-referencing + DySCO comparison + probing, 2-4 weeks writing)', 'estimated_gpu_cost': '$1000-$1500 at $2.50/hr mid-tier cloud'}, 'human_in_loop': {'gpu_hours': '350-500 H100 hours (Claude automates AtP pipeline, result parsing, component ranking, statistical analysis; human guides hypothesis refinement, mechanistic synthesis, and padding-type experimental interpretation)', 'timeline': '10-14 weeks', 'claude_api_cost': '$250-$450', 'estimated_gpu_cost': '$875-$1250 at $2.50/hr'}, 'auto_research': {'gpu_hours': '350-500 H100 hours', 'timeline': '6-9 weeks (parallelized AtP sweeps, automated ranking/patching, auto-generated heatmaps)', 'claude_api_cost': '$500-$800', 'estimated_gpu_cost': '$875-$1250 at $2.50/hr', 'speed_bottleneck': 'Sequential: padding-type verification → AtP screening → targeted patching. Each phase internally parallelizable. Padding-type verification: ~2 days on 4× H100. AtP screening: ~12 hours wall-clock on 4× H100. Targeted patching: ~8 hours wall-clock on 4× H100 per condition.'}}\n\n## Inspired By\nThe multi-component puzzle between MLP-mediated micro-scale benefit (Shi et al., ARM effect with punctuation tokens) and attention-mediated macro-scale harm (Du et al., whitespace padding) — demanding verification of whether these form a single phenomenon, and if so, a mechanistic account of the cross-component scale transition + the fundamental incompleteness of attention-only theoretical frameworks (Chen et al.'s β_n = log(n), ASEntmax) that cannot explain MLP contributions + the Fragile Reasoning paper's model-dependent localizability raising the question of whether length perturbation follows the same pattern as surface perturbation + DySCO's proof that heuristic head-level intervention works but lacks mechanistic grounding + maturity of causal tracing tools (AtP, RelP, Stream, Gemma Scope 2)\n\n## Target Venues\n- AAAI 2027 (Abstract + Full paper: July 28, 2026) — primary near-term target\n- ICLR 2027 (predicted ~October 2026) — ideal venue for full version\n- NeurIPS 2026 Workshops (~August 29, 2026) — shorter paper for core findings\n- EMNLP 2027 (ARR cycle ~May 2027) — fallback with extended narrative\n\n## Key References\n- Context Length Alone Hurts LLM Performance Despite Perfect Retrieval (Du et al., EMNLP Findings 2025, arXiv:2510.05381)\n- Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning (Shi et al., arXiv:2510.01032)\n- Silent Tokens, Loud Effects: Padding in LLMs (Himelstein et al., NeurIPS 2025 Workshop, arXiv:2510.01238)\n- Critical Attention Scaling in Long-Context Transformers (Chen et al., arXiv:2510.05554)\n- Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., arXiv:2404.15574)\n- Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations (arXiv:2604.01639)\n- DySCO: Dynamic Attention-Scaling Decoding for Long-Context Language Models (arXiv:2602.22175)\n- Attribution Patching Outperforms Automated Circuit Discovery (Syed et al., NeurIPS 2023 Workshop, arXiv:2310.10348)\n- RelP: Faithful and Efficient Circuit Discovery via Relevance Patching (NeurIPS 2025 MechInterp Workshop Spotlight, arXiv:2508.21258)\n- Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs (arXiv:2510.19875)\n- Gemma Scope 2: SAEs and Transcoders for Gemma 3 (Google DeepMind, 2026)\n- Gemma 3 Technical Report (arXiv:2503.19786)\n- How does Chain of Thought Think? Mechanistic Interpretability of CoT Reasoning with Sparse Autoencoding (arXiv:2507.22928)\n- Localized Definitions and Distributed Reasoning: A Proof-of-Concept via Activation Patching (arXiv:2504.02976)\n- Same Task, More Tokens: Impact of Input Length on Reasoning (ACL 2024)\n- Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination (arXiv:2601.15300)\n- Long-Context Generalization with Sparse Attention / ASEntmax (ICLR 2026)\n- SurfaceLogicKV: Surface and Logic Attention Behaviors for Robust KV Cache Compression (arXiv:2508.15806)\n- Insights into LLM Long-Context Failures: When Transformers Know but Don't Tell (EMNLP Findings 2024, arXiv:2406.14673)\n- On the Biology of a Large Language Model — Attribution Graphs (Anthropic 2025)\n- Intrinsic Entropy of Context Length Scaling in LLMs (arXiv:2502.01481)\n- Reasoning Shift: How Context Silently Shortens LLM Reasoning (Rodionov et al., arXiv:2604.01161)\n- CircuitProbe: Predicting Reasoning Circuits via Stability Zone Detection (Panuganti, arXiv:2604.00716)\n- Disentangling Recall and Reasoning in Transformer Models (Fartale et al., arXiv:2510.03366)\n- GSM-Infinite: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity? (ICML 2025, arXiv:2502.05252)\n- On the Emergence of Position Bias in Transformers (arXiv:2502.01951)\n- Context Rot (Chroma Research, 2025)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:49:03.131Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:49:03.131Z",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:49:03.154Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation Redistribution to Catastrophic Length Failure
+
+## Description
+Three concurrent empirical findings establish a striking puzzle: short meaningless token sequences (~10-50 repeated punctuation tokens) improve reasoning via first-layer MLP activation redistribution following an inverted-U curve (Shi et al., arXiv:2510.01032), yet long whitespace padding (3.75K-30K tokens) degrades reasoning 13.9-85% even with perfect retrieval (Du et al., EMNLP Findings 2025, arXiv:2510.05381), with hidden representation shifts detectable even at small scales (Himelstein et al., NeurIPS 2025 Workshop, arXiv:2510.01238). Current theoretical frameworks for length-induced degradation — Chen et al.'s β_n = log(n) critical scaling (arXiv:2510.05554) and ASEntmax's unbounded softmax entropy proof (ICLR 2026) — operate solely on the attention mechanism and predict monotonic degradation, but are silent on MLP-mediated effects. No existing theory addresses the cross-component interaction between attention-mediated degradation and MLP-mediated redistribution across scale. Critically, Shi et al. used repeated punctuation tokens while Du et al. used whitespace — whether these distinct token types produce a single continuous non-monotonic curve or two independent phenomena is itself an open empirical question that this work resolves as a first step.
+
+We perform the first causal, component-level dissection of this phenomenon. We test three hypothesis dimensions: **(1) Localizability:** H1-Localized (degradation concentrated in <5% of components with >50% recovery) vs. H2-Distributed (no small subset sufficient) vs. H3-Architecture-dependent (model-specific, following the Fragile Reasoning paper's finding that Llama-3 failures are localizable while Qwen2.5 failures are distributed, arXiv:2604.01639). **(2) Circuit overlap:** H_unified (micro-beneficial and macro-harmful effects mediated by the same components in different regimes) vs. H_separate (mediated by distinct component sets). Shi et al.'s benefit localizes to first-layer MLP activation redistribution; DySCO (arXiv:2602.22175) achieves 25% improvement on 128K-context reasoning by upweighting retrieval heads — suggesting benefit (MLP-mediated) and failure mitigation (attention head-mediated) may involve different circuitry. **(3) Cross-component dependency:** H_interaction (MLP benefit depends on attention functionality — at macro-scale, attention degradation renders MLP redistribution unusable even if it still occurs) vs. H_independent (MLP and attention effects are additive with no dependency).
+
+Using a tiered padding protocol across Llama-3.1-8B-Instruct (128K native, full attention), Gemma-3-12B-it (128K native, interleaved local-global attention per Gemma 3 Technical Report arXiv:2503.19786), and Qwen2.5-7B-Instruct (32K native, full attention), we apply a two-stage causal tracing strategy: Attribution Patching (AtP-IG / RelP) as efficient first-pass screen, validated against full patching at long contexts via a dedicated pilot, followed by targeted full activation patching on top-50 candidates at 4 key scale conditions (micro-beneficial, transition, macro-harmful, extreme). Benchmarks include GSM8K, GSM-Infinite (ICML 2025, arXiv:2502.05252) at calibrated difficulty for sufficient flip/boost rates, MATH, and MMLU (behavioral verification only). Phase 1 explicitly tests both whitespace and repeated punctuation padding at micro-scale to verify whether the non-monotonic curve holds within a single token type. A position-controlled ablation (post-question padding) isolates positional encoding confounds. At micro-scale, causal tracing uses boosted (incorrect→correct) samples to identify "beneficial circuits"; at macro-scale, flipped (correct→incorrect) samples identify "harmful circuits"; the overlap between these two circuit sets directly tests H_unified vs H_separate using continuous metrics (weighted Jaccard, cosine similarity, cutoff sensitivity analysis, permutation tests). Gemma-3-12B serves dual purpose: Gemma Scope 2 SAE/transcoder feature-level decomposition, and architectural contrast (its 5-local-1-global interleaved attention, with local layers spanning only 1024 tokens, produces fundamentally different padding-interaction patterns than full-attention models). Cross-referencing maps disrupted components against SurfaceLogicKV's logic-construction heads (arXiv:2508.15806), Wu et al.'s retrieval heads (arXiv:2404.15574), DySCO's heuristic intervention targets (arXiv:2602.22175), and per-head attention entropy relative to Chen et al.'s β_n = log(n) critical scaling.
+
+The key deliverable is a mechanistic answer to whether the beneficial-to-harmful transition reflects a single circuit overloading, competing circuits, or a cross-component dependency — directly informing whether length-robust interventions should target a unified mechanism, address distinct failure modes, or restore inter-component dependencies. Beyond explaining accuracy degradation, the component-level findings may illuminate why models compress reasoning traces and reduce self-verification under length pressure (Rodionov et al., arXiv:2604.01161). Each hypothesis outcome yields distinct engineering implications: principled component selection for inference-time intervention (improving on DySCO's heuristic retrieval-head selection), targeted regularization for long-context fine-tuning, or model-selection guidance based on architectural failure signatures.
+
+## Core Problem
+Why does padding-induced input length modulate transformer reasoning — improving performance at micro-scale (~10-50 tokens) via MLP activation redistribution, yet degrading it 13.9-85% at macro-scale (~10K-30K tokens) — and are these effects mediated by the same components operating in different regimes (with or without cross-component dependency), or by distinct component sets? A prerequisite question: do these two effects (observed with different padding types) form a continuous scale-dependent phenomenon, or are they independent token-type-specific mechanisms?
+
+## Opportunity
+Three concurrent empirical findings create a puzzle with no mechanistic resolution. Shi et al. (arXiv:2510.01032) showed short meaningless tokens (~10-50 repeated punctuation) *improve* reasoning via first-layer MLP activation redistribution (ARM effect), following an inverted-U curve collapsing beyond ~50-70 tokens. Du et al. (EMNLP Findings 2025, arXiv:2510.05381) demonstrated long whitespace padding (3.75K-30K tokens) degrades reasoning 13.9-85% across 5 LLMs even with perfect retrieval and masked distractors, explicitly calling for "further exploration of underlying mechanisms." Himelstein et al. (NeurIPS 2025 Workshop, arXiv:2510.01238) showed even small padding shifts hidden representations, degrades quality, and weakens safety guardrails. A critical but overlooked detail: Shi et al. used repeated punctuation tokens while Du et al. used whitespace — whether these produce a single continuous phenomenon or two independent effects is an open question that must be resolved before any unified mechanistic account is possible.
+
+Current theoretical frameworks predict only monotonic attention degradation: Chen et al.'s β_n = log(n) critical scaling (arXiv:2510.05554) and ASEntmax's unbounded softmax entropy proof (ICLR 2026). These are entirely attention-centric and silent on MLP behavior. The MLP-mediated micro-scale benefit (Shi et al.) lies outside their explanatory scope, meaning these theories — even if correct for the attention component — cannot explain the full multi-component phenomenon. No existing theory addresses how attention-mediated degradation and MLP-mediated redistribution interact across scale; predicting where their combined effect transitions requires component-level causal evidence that no theoretical framework provides. The Intrinsic Entropy paper (arXiv:2502.01481) links training data to optimal context length but provides no component-level evidence.
+
+Activation patching tools are now mature: Anthropic's 2025 circuit tracing at production scale (Attribution Graphs); Syed et al.'s AtP (NeurIPS 2023 Workshop, arXiv:2310.10348); RelP with LRP propagation (NeurIPS 2025 MechInterp Workshop Spotlight, arXiv:2508.21258); Stream (arXiv:2510.19875) enabling mechanistic interpretability at 100K-token contexts. DySCO (arXiv:2602.22175, Feb 2026) demonstrates that heuristic retrieval-head upweighting yields up to 25% improvement on 128K-context reasoning — proving head-level intervention works without explaining why. Notably, DySCO's substantial recovery from purely attention-based intervention suggests either (a) MLP components are not independently damaged at macro-scale, or (b) MLP damage exists but is less impactful than attention damage — both testable predictions. "How does Chain of Thought Think?" (arXiv:2507.22928) establishes SAE + activation patching as viable for feature-level causal analysis of reasoning.
+
+The Fragile Reasoning paper (arXiv:2604.01639) revealed Llama-3 failures under surface perturbations are localizable (71.7% recoverable) while Qwen2.5 failures are distributed (0%). This raises the question of whether length-induced degradation follows the same pattern — but length perturbation differs qualitatively from surface perturbation: it does not alter semantic signal content but changes computational path length, attention distribution, and positional encoding regime, potentially producing fundamentally different localizability patterns. "Localized Definitions and Distributed Reasoning" (arXiv:2504.02976) found factual knowledge localized and associative reasoning distributed in GPT-2 using CLAP, but on a different perturbation dimension (task type, not length) and model scale.
+
+## Landscape
+**Empirical phenomenon (well-established):** Du et al. (EMNLP Findings 2025) showed 13.9-85% degradation across Llama-3.1-8B, Mistral-v0.3-7B, GPT-4o, Claude-3.5, and Gemini-2.0 using whitespace padding at 0/3.75K/7.5K/15K/30K tokens on GSM8K, MMLU, and HumanEval. The Intelligence Degradation paper (arXiv:2601.15300) identified critical thresholds at 40-50% of max context. Rodionov et al. (arXiv:2604.01161) showed longer context compresses reasoning traces by up to 50% with reduced self-verification — behavioral observation suggesting not just accuracy loss but qualitative reasoning behavior change, without component-level tracing. The Chroma Context Rot Report (2025) confirmed context rot as intrinsic to attention architectures across 18 models.
+
+**Paradoxical micro-scale benefit:** Shi et al. (arXiv:2510.01032) demonstrated short meaningless tokens (~10-50 repeated punctuation) *improve* reasoning by redistributing MLP activations in the first layer (ARM effect), following an inverted-U curve peaking around 50 tokens. Himelstein et al. (arXiv:2510.01238, NeurIPS 2025 Workshop) showed even small padding shifts hidden representations across Llama, Gemma, and Qwen families.
+
+**Theoretical accounts (attention-only, monotonic):** Chen et al. (arXiv:2510.05554) proved attention phase transition at β_n = log(n). ASEntmax (ICLR 2026) proved unbounded softmax entropy growth. Both predict monotonic attention degradation; neither addresses MLP-mediated effects or cross-component interactions.
+
+**Inference-time intervention (heuristic):** DySCO (arXiv:2602.22175) leverages Wu et al.'s retrieval heads for dynamic attention rescaling, achieving 25% relative improvement at 128K context. Proves head-level intervention works but provides no mechanistic explanation for component selection or coverage completeness.
+
+**Mechanistic interpretability on related problems:** Wu et al. (arXiv:2404.15574) identified retrieval heads (<5%, critical for CoT reasoning). SurfaceLogicKV (arXiv:2508.15806) classified heads: 98.5% irrelevant-info-ignoring, 1.5% logic-construction, 0.5% surface memorization. "Transformers Know but Don't Tell" (EMNLP Findings 2024, arXiv:2406.14673) showed models internally represent answers they fail to output. Fragile Reasoning (arXiv:2604.01639): Llama-3 failures localized (71.7%), Qwen distributed (0%). CircuitProbe (Panuganti, arXiv:2604.00716) identified reasoning circuits via layer duplication. Fartale et al. (arXiv:2510.03366) disentangled recall vs. reasoning circuits. "Localized Definitions and Distributed Reasoning" (arXiv:2504.02976) found factual knowledge localized, associative reasoning distributed in GPT-2. "How does Chain of Thought Think?" (arXiv:2507.22928) used SAE + activation patching for feature-level CoT causal analysis, finding CoT induces sparser, more causally effective features in larger models.
+
+**Critical gap:** No existing work uses causal interventions to trace where pure length disrupts reasoning circuits. Specifically: (1) no work verifies whether micro-scale benefit (Shi et al., punctuation tokens) and macro-scale harm (Du et al., whitespace) form a continuous phenomenon; (2) no work identifies which components mediate the transition; (3) no work tests cross-component dependency (whether MLP benefit requires attention functionality); (4) DySCO demonstrates intervention works but lacks mechanistic grounding.
+
+## Approach
+**Phase 1 — Reproduction, padding-type verification, and scale-transition characterization (Weeks 1-3).** Reproduce Du et al.'s padding protocol across Llama-3.1-8B-Instruct (128K native, full attention), Gemma-3-12B-it (128K native, interleaved 5-local-1-global attention with 1024-token local span per arXiv:2503.19786), and Qwen2.5-7B-Instruct (32K native, full attention, capped within native window). **Benchmarks:** GSM8K and GSM-Infinite (ICML 2025, arXiv:2502.05252) at calibrated difficulty (target 40-60% baseline accuracy to ensure sufficient boosted/flipped samples); MATH for harder reasoning; MMLU for behavioral verification only (accuracy vs. padding length curves, no causal tracing). **Padding-type verification (critical):** At micro-scale (0/25/50/100/200/500/750 tokens), test both whitespace padding AND repeated punctuation tokens (replicating Shi et al.'s protocol). If whitespace produces no micro-scale benefit, the two phenomena are token-type-specific; if both produce the inverted-U curve, a unified scale-dependent account is supported. At core scale (1K/5K/10K/25K tokens), test whitespace (primary) plus random vocabulary tokens at 1K/10K/25K as robustness check. Extended: 50K tokens, whitespace only, Llama and Gemma only. All cross-model comparisons normalized by token count with tokenizer encoding differences reported. **Paired datasets:** At micro-scale, collect both boosted (incorrect→correct, for beneficial circuit tracing) and flipped (correct→incorrect) samples. At macro-scale, collect flipped samples (~200-500 per condition). At micro-scale, measure first-layer MLP activation distributions (replicating ARM finding) and per-head attention entropy. **Also measure MLP activation patterns at macro-scale** to test H_interaction: does ARM-pattern redistribution still occur at 10K-25K tokens, or does the MLP response itself change? **Position-controlled ablation:** For core conditions, run parallel set with padding after the question (preserving question at position [0, L]) to isolate positional encoding confounds (supported by position bias literature, arXiv:2502.01951).
+
+**Phase 2 — Validation pilot and efficient causal screening (Weeks 3-6).** **Validation pilot (Week 3):** On Llama + Qwen (full-attention models) × 3 length conditions (1K, 10K, 25K) × 50-100 examples, simultaneously run AtP-IG (Syed et al., arXiv:2310.10348), RelP (arXiv:2508.21258), and full activation patching on all ~1024 components. Compute Spearman ρ to verify approximate methods at long contexts despite LayerNorm nonlinearities. If ρ < 0.7, fall back to full patching with gradient checkpointing + bfloat16. **Main screening (Weeks 4-6):** Apply validated method across all model-condition pairs. For Gemma-3-12B, run AtP separately on local vs. global layers to isolate sliding-window effects. Use Stream (arXiv:2510.19875) for attention pattern visualization only.
+
+**Phase 3 — Targeted full activation patching and path patching (Weeks 6-9).** Apply full activation patching to top-50 components at **4 key scale conditions per model**: micro-beneficial (~50 tokens), transition (~750 tokens), macro-harmful (~10K tokens), extreme (~25K tokens). Sample size: 200 examples per condition (sufficient for bootstrap 95% CIs). Swap short-context activation into long-context pass, measure accuracy recovery. At micro-scale, patch beneficial circuits using boosted samples (swap long-context activation into short-context incorrect pass). Apply path patching to top-20 components for information-flow edge tracing. Compute CAI (Cascading Amplification Index, from Fragile Reasoning, arXiv:2604.01639). **H_unified vs H_separate test:** Compare component sets from micro-beneficial tracing (boosted samples) and macro-harmful tracing (flipped samples) using weighted Jaccard (by causal effect magnitude), cosine similarity of full causal effect vectors, and cutoff sensitivity analysis (top-20/50/100). Report permutation-test null distribution for statistical significance. Partial overlap (0.2-0.5) interpreted as "partially shared mechanism" — some shared components plus regime-specific ones. For Gemma-3-12B, separately report local-layer vs global-layer causal responsibility.
+
+**Phase 4 — Cross-referencing, DySCO comparison, and mechanistic synthesis (Weeks 9-11).** Cross-reference disrupted components with: (a) SurfaceLogicKV head classification (arXiv:2508.15806); (b) Wu et al.'s retrieval heads (arXiv:2404.15574); (c) DySCO's intervention targets (arXiv:2602.22175) — overlap analysis between causally-implicated heads and DySCO's retrieval-head selection; test whether causal heatmap identifies non-retrieval components DySCO misses; (d) per-head attention entropy vs. Chen et al.'s β_n = log(n) critical threshold (arXiv:2510.05554). For Gemma-3-12B, leverage Gemma Scope 2 SAEs and transcoders (Google DeepMind, 2026) for feature-level decomposition, tracking feature activation/deactivation across the scale transition. All H3 cross-model comparisons: Llama vs Qwen as primary (both full attention, comparable ~7-8B scale); Gemma as architectural contrast with separate local/global reporting. Normalized metrics (% of total components) alongside absolute counts.
+
+**Phase 5 — Probing, hypothesis testing, and statistical validation (Weeks 11-13).** **Probing protocol:** Linear probes at every layer on the residual stream representation at the **last question token position** (the position from which generation begins). Training data: short-context correct examples' representations. Probe target: final-answer correctness. Layer-by-layer accuracy under long-context conditions distinguishes: information preservation (high early/middle accuracy) + propagation failure (sharp drop at specific layers, consistent with H1) vs. global corruption (uniform decline, consistent with H2). Extends "Transformers Know but Don't Tell" (arXiv:2406.14673) from retrieval to reasoning under length pressure. Test all three hypothesis dimensions: localizability (H1/H2/H3), circuit overlap (H_unified/H_separate), cross-component dependency (H_interaction/H_independent). **Statistical rigor:** All rates with bootstrap 95% CIs; cross-model comparisons via permutation tests; AtP rankings via split-half stability (Spearman ρ on random 50/50 example splits).
+
+**Phase 6 — Scale-transition mechanistic narrative (Weeks 13-15).** Synthesize into mechanistic account: trace how first-layer MLP activation redistribution (ARM effect) interacts with attention entropy growth, retrieval head disruption, and logic-construction head failure across scale. Key question: does MLP redistribution still occur at macro-scale (H_interaction test), and if so, why can't downstream components utilize it? Connect findings to Rodionov et al.'s (arXiv:2604.01161) observation that long context compresses reasoning and reduces self-verification — do the disrupted components correspond to verification-related circuits? Deliverable: component-level circuit diagram of the scale transition, with implications for principled intervention design (improving on DySCO's heuristic), long-context training regularization, and architecture selection.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '400-600 H100 hours (validation pilot: ~15 hrs; AtP screening all conditions: ~40 hrs; targeted full patching on 4 key conditions × 200 examples: ~100 hrs; path patching top-20: ~40 hrs; padding-type verification experiments: ~25 hrs; position-controlled ablation: ~20 hrs; probing + Gemma Scope SAE: ~50 hrs; micro-scale + MMLU behavioral: ~20 hrs; overhead/reruns: ~50 hrs)', 'timeline': '13-17 weeks (3 weeks reproduction + padding-type verification + position ablation, 3 weeks validation pilot + AtP screening, 3 weeks targeted patching + path patching, 2 weeks cross-referencing + DySCO comparison + probing, 2-4 weeks writing)', 'estimated_gpu_cost': '$1000-$1500 at $2.50/hr mid-tier cloud'}, 'human_in_loop': {'gpu_hours': '350-500 H100 hours (Claude automates AtP pipeline, result parsing, component ranking, statistical analysis; human guides hypothesis refinement, mechanistic synthesis, and padding-type experimental interpretation)', 'timeline': '10-14 weeks', 'claude_api_cost': '$250-$450', 'estimated_gpu_cost': '$875-$1250 at $2.50/hr'}, 'auto_research': {'gpu_hours': '350-500 H100 hours', 'timeline': '6-9 weeks (parallelized AtP sweeps, automated ranking/patching, auto-generated heatmaps)', 'claude_api_cost': '$500-$800', 'estimated_gpu_cost': '$875-$1250 at $2.50/hr', 'speed_bottleneck': 'Sequential: padding-type verification → AtP screening → targeted patching. Each phase internally parallelizable. Padding-type verification: ~2 days on 4× H100. AtP screening: ~12 hours wall-clock on 4× H100. Targeted patching: ~8 hours wall-clock on 4× H100 per condition.'}}
+
+## Inspired By
+The multi-component puzzle between MLP-mediated micro-scale benefit (Shi et al., ARM effect with punctuation tokens) and attention-mediated macro-scale harm (Du et al., whitespace padding) — demanding verification of whether these form a single phenomenon, and if so, a mechanistic account of the cross-component scale transition + the fundamental incompleteness of attention-only theoretical frameworks (Chen et al.'s β_n = log(n), ASEntmax) that cannot explain MLP contributions + the Fragile Reasoning paper's model-dependent localizability raising the question of whether length perturbation follows the same pattern as surface perturbation + DySCO's proof that heuristic head-level intervention works but lacks mechanistic grounding + maturity of causal tracing tools (AtP, RelP, Stream, Gemma Scope 2)
+
+## Target Venues
+- AAAI 2027 (Abstract + Full paper: July 28, 2026) — primary near-term target
+- ICLR 2027 (predicted ~October 2026) — ideal venue for full version
+- NeurIPS 2026 Workshops (~August 29, 2026) — shorter paper for core findings
+- EMNLP 2027 (ARR cycle ~May 2027) — fallback with extended narrative
+
+## Key References
+- Context Length Alone Hurts LLM Performance Despite Perfect Retrieval (Du et al., EMNLP Findings 2025, arXiv:2510.05381)
+- Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning (Shi et al., arXiv:2510.01032)
+- Silent Tokens, Loud Effects: Padding in LLMs (Himelstein et al., NeurIPS 2025 Workshop, arXiv:2510.01238)
+- Critical Attention Scaling in Long-Context Transformers (Chen et al., arXiv:2510.05554)
+- Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., arXiv:2404.15574)
+- Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations (arXiv:2604.01639)
+- DySCO: Dynamic Attention-Scaling Decoding for Long-Context Language Models (arXiv:2602.22175)
+- Attribution Patching Outperforms Automated Circuit Discovery (Syed et al., NeurIPS 2023 Workshop, arXiv:2310.10348)
+- RelP: Faithful and Efficient Circuit Discovery via Relevance Patching (NeurIPS 2025 MechInterp Workshop Spotlight, arXiv:2508.21258)
+- Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs (arXiv:2510.19875)
+- Gemma Scope 2: SAEs and Transcoders for Gemma 3 (Google DeepMind, 2026)
+- Gemma 3 Technical Report (arXiv:2503.19786)
+- How does Chain of Thought Think? Mechanistic Interpretability of CoT Reasoning with Sparse Autoencoding (arXiv:2507.22928)
+- Localized Definitions and Distributed Reasoning: A Proof-of-Concept via Activation Patching (arXiv:2504.02976)
+- Same Task, More Tokens: Impact of Input Length on Reasoning (ACL 2024)
+- Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination (arXiv:2601.15300)
+- Long-Context Generalization with Sparse Attention / ASEntmax (ICLR 2026)
+- SurfaceLogicKV: Surface and Logic Attention Behaviors for Robust KV Cache Compression (arXiv:2508.15806)
+- Insights into LLM Long-Context Failures: When Transformers Know but Don't Tell (EMNLP Findings 2024, arXiv:2406.14673)
+- On the Biology of a Large Language Model — Attribution Graphs (Anthropic 2025)
+- Intrinsic Entropy of Context Length Scaling in LLMs (arXiv:2502.01481)
+- Reasoning Shift: How Context Silently Shortens LLM Reasoning (Rodionov et al., arXiv:2604.01161)
+- CircuitProbe: Predicting Reasoning Circuits via Stability Zone Detection (Panuganti, arXiv:2604.00716)
+- Disentangling Recall and Reasoning in Transformer Models (Fartale et al., arXiv:2510.03366)
+- GSM-Infinite: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity? (ICML 2025, arXiv:2502.05252)
+- On the Emergence of Position Bias in Transformers (arXiv:2502.01951)
+- Context Rot (Chroma Research, 2025)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "ddccd513-12c2-4cde-86a4-8f7df76b08f0",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:49:03.151Z_
+
+```json
+{
+  "parentUuid": "ddccd513-12c2-4cde-86a4-8f7df76b08f0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "572ca38d-810d-4c8e-93f4-b3c48a102980",
+  "timestamp": "2026-05-20T05:49:03.151Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:49:03.151Z_
+
+```json
+{
+  "parentUuid": "572ca38d-810d-4c8e-93f4-b3c48a102980",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9e24d526-e3c8-4a96-9c24-21d2f29cd419",
+  "timestamp": "2026-05-20T05:49:03.151Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation R…",
+  "leafUuid": "9e24d526-e3c8-4a96-9c24-21d2f29cd419",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal circuit analysis of transformer padding effects",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:49:08.970Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for EMNLP 2026 submission. I need to first conduct thorough literature research before scoring. Let me start by searching for the key topics in this proposal.
+
+The proposal is about mechanistic interpretability of how padding/context length affects transformer reasoning - specifically the puzzle that short meaningless tokens improve reasoning while long padding degrades it, and using causal circuit tracing to understand the mechanism.
+
+Let me search for the key papers and the current state of this field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e24d526-e3c8-4a96-9c24-21d2f29cd419",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ7FL9NpErrVAngTseg",
+  "type": "assistant",
+  "uuid": "93dc9df9-4c8e-430f-b20a-1ab93d844a8a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Da9xX1BnEFeVgtKNG1oDzs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10945,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 10945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T05:49:10.091Z_
+
+I'll start by conducting thorough literature research on the key topics in this proposal before making any assessment. Let me search for the most relevant recent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93dc9df9-4c8e-430f-b20a-1ab93d844a8a",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ7FL9NpErrVAngTseg",
+  "type": "assistant",
+  "uuid": "6cc0d475-5c19-4302-8405-f67bd86c9244",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Da9xX1BnEFeVgtKNG1oDzs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10945,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 10945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T05:49:10.289Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Vh9F2hbc3HKNrb8cjMRLo8`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cc0d475-5c19-4302-8405-f67bd86c9244",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ7FL9NpErrVAngTseg",
+  "type": "assistant",
+  "uuid": "65e2112c-4e0c-47d5-90b8-7637a5da35da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Da9xX1BnEFeVgtKNG1oDzs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10945,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 10945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T05:49:10.298Z_
+
+<details><summary>↩ Tool result · `toolu_01Vh9F2hbc3HKNrb8cjMRLo8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65e2112c-4e0c-47d5-90b8-7637a5da35da",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "a7416e54-bd01-4fc7-b120-f40838362551",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "65e2112c-4e0c-47d5-90b8-7637a5da35da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T05:49:13.362Z_
+
+Now let me conduct the required literature searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7416e54-bd01-4fc7-b120-f40838362551",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ7mpD7SB5b2kzBiytb",
+  "type": "assistant",
+  "uuid": "96cc5fce-d41d-4d95-ac63-220cbf6a9130",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dRHUydHX9UNbu9Pm8hmy3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 22319,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 22319,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T05:49:13.649Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W9gZvBAAfhbyrSweAfoEa2`</summary>
+
+```json
+{
+  "query": "context length degradation transformer reasoning mechanistic interpretability 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96cc5fce-d41d-4d95-ac63-220cbf6a9130",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ7mpD7SB5b2kzBiytb",
+  "type": "assistant",
+  "uuid": "9cc98729-7124-4488-9ec2-fb2a240ff0ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dRHUydHX9UNbu9Pm8hmy3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 22319,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 22319,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T05:49:21.081Z_
+
+<details><summary>↩ Tool result · `toolu_01W9gZvBAAfhbyrSweAfoEa2`</summary>
+
+```text
+Web search results for query: "context length degradation transformer reasoning mechanistic interpretability 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025 ADAPTIVE TRANSFORMER PROGRAMS:","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/9d5609613524ecf4f15af0f7b31abca4-Paper-Conference.pdf"},{"title":"Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs via Sparse Attention | OpenReview","url":"https://openreview.net/forum?id=5HGu0ZqBl9"},{"title":"[2511.21514] Mechanistic Interpretability for Transformer-based Time Series Classification","url":"https://arxiv.org/abs/2511.21514"},{"title":"Transformers Provably Learn Chain-of-Thought Reasoning with Length Generalization","url":"https://arxiv.org/pdf/2511.07378"},{"title":"Understanding Mechanistic Interpretability in AI Models | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"},{"title":"Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis","url":"https://arxiv.org/pdf/2510.03366"},{"title":"A Mechanistic Analysis of a Transformer Trained on a Symbolic Multi-Step   Reasoning Task","url":"https://arxiv.org/pdf/2402.11917"},{"title":"Limit Analysis for Symbolic Multi-step Reasoning Tasks with Information Propagation Rules Based on Transformers","url":"https://arxiv.org/pdf/2509.23178"},{"title":"Mechanistic Interpretability of In-Context Learning Generalization through Structured Task Curriculum | OpenReview","url":"https://openreview.net/forum?id=2Fv4GxUElU"}]
+
+Based on the search results, here are the key findings related to context length degradation, transformer reasoning, and mechanistic interpretability from 2025-2026:
+
+## Context Degradation and Long Context
+
+Model performance degrades as the number of tokens in the context increases, a phenomenon called "context rot". A key question is whether large models can extrapolate their reasoning beyond the sequence lengths of the training data, a feature known as "length generalization".
+
+## Mechanistic Interpretability Scaling Challenges
+
+As Large Language Models scale to million-token contexts, traditional Mechanistic Interpretability techniques for analyzing attention scale quadratically with context length, demanding terabytes of memory beyond 100,000 tokens. To address this, Stream performs a binary-search-style refinement to retain only the top-k key blocks per query while preserving the model's next-token behavior.
+
+## Transformer Reasoning Mechanisms
+
+Recent research has uncovered specific mechanisms transformers use for reasoning. The reasoning capability of Transformers can be largely attributed to a mechanism called the Buffer Mechanism for storing diverse information, together with adjacent position matching and same token matching for achieving information matching and transmission.
+
+## Recent Advances in AI Labs
+
+Anthropic's 2025 circuit tracing work on Claude 3.5 Haiku demonstrated that mechanisms behind multi-step reasoning, hallucination, and even jailbreak resistance can be surfaced and studied.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9cc98729-7124-4488-9ec2-fb2a240ff0ff",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "305fb709-253d-4b9d-a479-0d78f003d5c7",
+  "toolUseResult": {
+    "query": "context length degradation transformer reasoning mechanistic interpretability 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JEcqttfXv986BFrJzELW5g",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2025 ADAPTIVE TRANSFORMER PROGRAMS:",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/9d5609613524ecf4f15af0f7b31abca4-Paper-Conference.pdf"
+          },
+          {
+            "title": "Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs via Sparse Attention | OpenReview",
+            "url": "https://openreview.net/forum?id=5HGu0ZqBl9"
+          },
+          {
+            "title": "[2511.21514] Mechanistic Interpretability for Transformer-based Time Series Classification",
+            "url": "https://arxiv.org/abs/2511.21514"
+          },
+          {
+            "title": "Transformers Provably Learn Chain-of-Thought Reasoning with Length Generalization",
+            "url": "https://arxiv.org/pdf/2511.07378"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"
+          },
+          {
+            "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+            "url": "https://arxiv.org/pdf/2510.03366"
+          },
+          {
+            "title": "A Mechanistic Analysis of a Transformer Trained on a Symbolic Multi-Step   Reasoning Task",
+            "url": "https://arxiv.org/pdf/2402.11917"
+          },
+          {
+            "title": "Limit Analysis for Symbolic Multi-step Reasoning Tasks with Information Propagation Rules Based on Transformers",
+            "url": "https://arxiv.org/pdf/2509.23178"
+          },
+          {
+            "title": "Mechanistic Interpretability of In-Context Learning Generalization through Structured Task Curriculum | OpenReview",
+            "url": "https://openreview.net/forum?id=2Fv4GxUElU"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to context length degradation, transformer reasoning, and mechanistic interpretability from 2025-2026:\n\n## Context Degradation and Long Context\n\nModel performance degrades as the number of tokens in the context increases, a phenomenon called \"context rot\". A key question is whether large models can extrapolate their reasoning beyond the sequence lengths of the training data, a feature known as \"length generalization\".\n\n## Mechanistic Interpretability Scaling Challenges\n\nAs Large Language Models scale to million-token contexts, traditional Mechanistic Interpretability techniques for analyzing attention scale quadratically with context length, demanding terabytes of memory beyond 100,000 tokens. To address this, Stream performs a binary-search-style refinement to retain only the top-k key blocks per query while preserving the model's next-token behavior.\n\n## Transformer Reasoning Mechanisms\n\nRecent research has uncovered specific mechanisms transformers use for reasoning. The reasoning capability of Transformers can be largely attributed to a mechanism called the Buffer Mechanism for storing diverse information, together with adjacent position matching and same token matching for achieving information matching and transmission.\n\n## Recent Advances in AI Labs\n\nAnthropic's 2025 circuit tracing work on Claude 3.5 Haiku demonstrated that mechanisms behind multi-step reasoning, hallucination, and even jailbreak resistance can be surfaced and studied."
+    ],
+    "durationSeconds": 7.427663319000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9cc98729-7124-4488-9ec2-fb2a240ff0ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T05:49:23.847Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ELtu71hnTbpCcGVBZysJJo`</summary>
+
+```json
+{
+  "query": "padding tokens improve reasoning LLM \"meaningless tokens\" activation redistribution Shi 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "305fb709-253d-4b9d-a479-0d78f003d5c7",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ8ZhigHvY1mzQj8ReL",
+  "type": "assistant",
+  "uuid": "5abb6db6-2152-46c5-bb7a-377dee258c6f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tVKMt91EAk8yPsoLwPWJE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 23080,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 23080,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T05:49:31.986Z_
+
+<details><summary>↩ Tool result · `toolu_01ELtu71hnTbpCcGVBZysJJo`</summary>
+
+```text
+Web search results for query: "padding tokens improve reasoning LLM "meaningless tokens" activation redistribution Shi 2024 2025"
+
+Links: [{"title":"[PDF] Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Meaningless-Tokens,-Meaningful-Gains:-How-Shifts-Shi-Wan/621457c0d630c6105083ee48375a54b658dad710"},{"title":"(PDF) Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning","url":"https://www.researchgate.net/publication/396094869_Meaningless_Tokens_Meaningful_Gains_How_Activation_Shifts_Enhance_LLM_Reasoning"},{"title":"[2510.01032] Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning","url":"https://arxiv.org/abs/2510.01032"},{"title":"Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning","url":"https://arxiv.org/html/2510.01032v1"},{"title":"Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning","url":"https://arxiv.org/pdf/2510.01032"},{"title":"HOW ACTIVATION SHIFTS ENHANCE LLM REASONING","url":"https://openreview.net/pdf/5b613a28af52d8f9cff3949dbafb793d92a65ce9.pdf"},{"title":"Silent Tokens, Loud Effects: Padding in LLMs","url":"https://arxiv.org/html/2510.01238v1"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## Main Research: "Meaningless Tokens, Meaningful Gains" by Shi et al. (2025)
+
+The research presents a finding called the "meaningless-token effect": inserting long sequences of meaningless tokens, such as repeated punctuation or separators, into prompts can consistently improve the performance of LLMs, particularly on reasoning tasks.
+
+### Mechanism: Activation Redistribution
+
+The improvements arise from a redistribution of activations in the LLM's MLP layers, where near zero activations become less frequent while large magnitude activations increase. This redistribution enhances the model's representational capacity by suppressing weak signals and promoting stronger, more informative ones.
+
+### The Proposed Solution: ARM (Activation Redistribution Module)
+
+The researchers propose the Activation Redistribution Module (ARM), a lightweight inference-time technique that modifies activations directly without altering the input sequence, which adaptively identifies near-zero activations after the non-linear function and shifts them outward, implicitly reproducing the beneficial effects of meaningless tokens in a controlled manner.
+
+Extensive experiments across diverse benchmarks and model architectures clearly show that ARM consistently improves LLM performance on reasoning tasks while requiring only a few lines of simple code to implement.
+
+The paper was published on arXiv on October 1, 2025 (arXiv:2510.01032).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5abb6db6-2152-46c5-bb7a-377dee258c6f",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "888b7384-ee77-40e0-84c9-88b51826f9cd",
+  "toolUseResult": {
+    "query": "padding tokens improve reasoning LLM \"meaningless tokens\" activation redistribution Shi 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L8BKNHg2Bu7qyKnXUNbdDG",
+        "content": [
+          {
+            "title": "[PDF] Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Meaningless-Tokens,-Meaningful-Gains:-How-Shifts-Shi-Wan/621457c0d630c6105083ee48375a54b658dad710"
+          },
+          {
+            "title": "(PDF) Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning",
+            "url": "https://www.researchgate.net/publication/396094869_Meaningless_Tokens_Meaningful_Gains_How_Activation_Shifts_Enhance_LLM_Reasoning"
+          },
+          {
+            "title": "[2510.01032] Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning",
+            "url": "https://arxiv.org/abs/2510.01032"
+          },
+          {
+            "title": "Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning",
+            "url": "https://arxiv.org/html/2510.01032v1"
+          },
+          {
+            "title": "Meaningless Tokens, Meaningful Gains: How Activation Shifts Enhance LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2510.01032"
+          },
+          {
+            "title": "HOW ACTIVATION SHIFTS ENHANCE LLM REASONING",
+            "url": "https://openreview.net/pdf/5b613a28af52d8f9cff3949dbafb793d92a65ce9.pdf"
+          },
+          {
+            "title": "Silent Tokens, Loud Effects: Padding in LLMs",
+            "url": "https://arxiv.org/html/2510.01238v1"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here are the key findings:\n\n## Main Research: \"Meaningless Tokens, Meaningful Gains\" by Shi et al. (2025)\n\nThe research presents a finding called the \"meaningless-token effect\": inserting long sequences of meaningless tokens, such as repeated punctuation or separators, into prompts can consistently improve the performance of LLMs, particularly on reasoning tasks.\n\n### Mechanism: Activation Redistribution\n\nThe improvements arise from a redistribution of activations in the LLM's MLP layers, where near zero activations become less frequent while large magnitude activations increase. This redistribution enhances the model's representational capacity by suppressing weak signals and promoting stronger, more informative ones.\n\n### The Proposed Solution: ARM (Activation Redistribution Module)\n\nThe researchers propose the Activation Redistribution Module (ARM), a lightweight inference-time technique that modifies activations directly without altering the input sequence, which adaptively identifies near-zero activations after the non-linear function and shifts them outward, implicitly reproducing the beneficial effects of meaningless tokens in a controlled manner.\n\nExtensive experiments across diverse benchmarks and model architectures clearly show that ARM consistently improves LLM performance on reasoning tasks while requiring only a few lines of simple code to implement.\n\nThe paper was published on arXiv on October 1, 2025 (arXiv:2510.01032)."
+    ],
+    "durationSeconds": 8.134177721999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5abb6db6-2152-46c5-bb7a-377dee258c6f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T05:49:35.389Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T4dQ9GKXSrTba7gxkYYNC1`</summary>
+
+```json
+{
+  "query": "Du et al \"context length alone hurts\" padding whitespace reasoning degradation EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "888b7384-ee77-40e0-84c9-88b51826f9cd",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ9NN7quakyMgCEo1DT",
+  "type": "assistant",
+  "uuid": "277730f1-f070-4bc2-a75f-31f0d46dcf6c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VaYiN8trZ5uqWhNH3WKHAs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 23975,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 23975,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T05:49:43.031Z_
+
+<details><summary>↩ Tool result · `toolu_01T4dQ9GKXSrTba7gxkYYNC1`</summary>
+
+```text
+Web search results for query: "Du et al "context length alone hurts" padding whitespace reasoning degradation EMNLP 2025"
+
+Links: [{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.1264/"},{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://arxiv.org/html/2510.05381v1"},{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval - The Hebrew University of Jerusalem","url":"https://cris.huji.ac.il/en/publications/context-length-alone-hurts-llm-performance-despite-perfect-retrie/"},{"title":"(PDF) Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://www.researchgate.net/publication/396291682_Context_Length_Alone_Hurts_LLM_Performance_Despite_Perfect_Retrieval"},{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval | Request PDF","url":"https://www.researchgate.net/publication/397426258_Context_Length_Alone_Hurts_LLM_Performance_Despite_Perfect_Retrieval"},{"title":"[2510.05381] Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://arxiv.org/abs/2510.05381"},{"title":"[Literature Review] Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://www.themoonlight.io/en/review/context-length-alone-hurts-llm-performance-despite-perfect-retrieval"},{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://arxiv.org/pdf/2510.05381"}]
+
+I found the paper you're looking for! Here are the key findings:
+
+The research reveals that the sheer length of the input alone can hurt LLM performance, independent of retrieval quality and without any distraction.
+
+**Key Experimental Findings:**
+
+The systematic experiments across 5 open- and closed-source LLMs on math, question answering, and coding tasks reveal that, even when models can perfectly retrieve all relevant information, their performance still degrades substantially (13.9%--85%) as input length increases but remains well within the models' claimed lengths.
+
+**Whitespace and Masking Experiments:**
+
+This failure occurs even when the irrelevant tokens are replaced with minimally distracting whitespace, and, more surprisingly, when they are all masked and the models are forced to attend only to the relevant tokens. Substantial drops (e.g., Llama on VarSum drops 48%, Mistral on GSM8K drops 30% at 30K whitespace tokens) are still observed for open-source models.
+
+**Proposed Solution:**
+
+A simple, model-agnostic mitigation strategy transforms a long-context task into a short-context one by prompting the model to recite the retrieved evidence before attempting to solve the problem.
+
+**Publication Details:**
+
+The paper "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval" was published in Findings of the Association for Computational Linguistics: EMNLP 2025, pages 23281–23298, Suzhou, China.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "277730f1-f070-4bc2-a75f-31f0d46dcf6c",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "83c3f584-b18b-4809-a66c-b981d14e3302",
+  "toolUseResult": {
+    "query": "Du et al \"context length alone hurts\" padding whitespace reasoning degradation EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L6wiujN9F1Z8b3kSKKh8XE",
+        "content": [
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1264/"
+          },
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://arxiv.org/html/2510.05381v1"
+          },
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval - The Hebrew University of Jerusalem",
+            "url": "https://cris.huji.ac.il/en/publications/context-length-alone-hurts-llm-performance-despite-perfect-retrie/"
+          },
+          {
+            "title": "(PDF) Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://www.researchgate.net/publication/396291682_Context_Length_Alone_Hurts_LLM_Performance_Despite_Perfect_Retrieval"
+          },
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval | Request PDF",
+            "url": "https://www.researchgate.net/publication/397426258_Context_Length_Alone_Hurts_LLM_Performance_Despite_Perfect_Retrieval"
+          },
+          {
+            "title": "[2510.05381] Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://arxiv.org/abs/2510.05381"
+          },
+          {
+            "title": "[Literature Review] Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://www.themoonlight.io/en/review/context-length-alone-hurts-llm-performance-despite-perfect-retrieval"
+          },
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://arxiv.org/pdf/2510.05381"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key findings:\n\nThe research reveals that the sheer length of the input alone can hurt LLM performance, independent of retrieval quality and without any distraction.\n\n**Key Experimental Findings:**\n\nThe systematic experiments across 5 open- and closed-source LLMs on math, question answering, and coding tasks reveal that, even when models can perfectly retrieve all relevant information, their performance still degrades substantially (13.9%--85%) as input length increases but remains well within the models' claimed lengths.\n\n**Whitespace and Masking Experiments:**\n\nThis failure occurs even when the irrelevant tokens are replaced with minimally distracting whitespace, and, more surprisingly, when they are all masked and the models are forced to attend only to the relevant tokens. Substantial drops (e.g., Llama on VarSum drops 48%, Mistral on GSM8K drops 30% at 30K whitespace tokens) are still observed for open-source models.\n\n**Proposed Solution:**\n\nA simple, model-agnostic mitigation strategy transforms a long-context task into a short-context one by prompting the model to recite the retrieved evidence before attempting to solve the problem.\n\n**Publication Details:**\n\nThe paper \"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval\" was published in Findings of the Association for Computational Linguistics: EMNLP 2025, pages 23281–23298, Suzhou, China."
+    ],
+    "durationSeconds": 7.637334448000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "277730f1-f070-4bc2-a75f-31f0d46dcf6c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T05:49:46.610Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JDd7zCkkjEYC8ADpT7xqro`</summary>
+
+```json
+{
+  "query": "DySCO dynamic attention scaling long context reasoning 2026 retrieval heads causal tracing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83c3f584-b18b-4809-a66c-b981d14e3302",
+  "isSidechain": false,
+  "requestId": "req_011CbDJABcjvXMomGzS5DkYu",
+  "type": "assistant",
+  "uuid": "5b08e5f8-6e85-4eba-b4ac-5244b676156e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUQSdybrr5E89obkwmxyqW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 24842,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 24842,
+          "cache_creation_input_tokens": 913,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 913
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation R…",
+  "leafUuid": "5b08e5f8-6e85-4eba-b4ac-5244b676156e",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal circuit analysis of transformer padding effects",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T05:49:53.039Z_
+
+<details><summary>↩ Tool result · `toolu_01JDd7zCkkjEYC8ADpT7xqro`</summary>
+
+```text
+Web search results for query: "DySCO dynamic attention scaling long context reasoning 2026 retrieval heads causal tracing"
+
+Links: [{"title":"DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs","url":"https://arxiv.org/pdf/2602.22175"},{"title":"DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs","url":"https://arxiv.org/html/2602.22175v1"},{"title":"DySCO: Dynamic Attention-Scaling Decoding for Long-Context Language Models","url":"https://arxiv.org/html/2602.22175v2"},{"title":"[2602.22175] DySCO: Dynamic Attention-Scaling Decoding for Long-Context Language Models","url":"https://arxiv.org/abs/2602.22175"},{"title":"GitHub - princeton-pli/DySCO: DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs · GitHub","url":"https://github.com/princeton-pli/DySCO"}]
+
+Based on the search results, here's what I found about DySCO:
+
+## DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs
+
+DySCO is a novel decoding algorithm for improving long-context reasoning that leverages retrieval heads—a subset of attention heads specialized for long-context retrieval—to identify task-relevant tokens at each decoding step and explicitly up-weight them.
+
+### Key Characteristics
+
+DySCO dynamically adjusts attention during generation to better utilize relevant context. The method is training-free and can be applied directly to any off-the-shelf LMs.
+
+### Algorithm Overview
+
+At each decoding step, DySCO consists of three stages: (1) Aggregation: running a partial forward pass over the input sequence to obtain attentions of retrieval heads, such as QRHead, and using them to assign relevance scores to context tokens; (2) Selection: using the relevance scores to select important tokens; (3) Rescaling: up-weighting the important tokens by intervening attention logits of all attention heads and running a full forward pass to sample the next token.
+
+### Performance
+
+Across multiple instruction-tuned and reasoning models, DySCO consistently improves performance on challenging long-context reasoning benchmarks, yielding relative gains of up to 25% on MRCR and LONGBENCHV2 at 128K context length with modest additional compute.
+
+The research was published on February 26, 2026, and the code is available on GitHub at the princeton-pli/DySCO repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b08e5f8-6e85-4eba-b4ac-5244b676156e",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "06cf062d-c0b1-4af6-96d4-942a7bf09fdf",
+  "toolUseResult": {
+    "query": "DySCO dynamic attention scaling long context reasoning 2026 retrieval heads causal tracing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LVC2JJoUcphqo7LnYHCuuV",
+        "content": [
+          {
+            "title": "DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs",
+            "url": "https://arxiv.org/pdf/2602.22175"
+          },
+          {
+            "title": "DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs",
+            "url": "https://arxiv.org/html/2602.22175v1"
+          },
+          {
+            "title": "DySCO: Dynamic Attention-Scaling Decoding for Long-Context Language Models",
+            "url": "https://arxiv.org/html/2602.22175v2"
+          },
+          {
+            "title": "[2602.22175] DySCO: Dynamic Attention-Scaling Decoding for Long-Context Language Models",
+            "url": "https://arxiv.org/abs/2602.22175"
+          },
+          {
+            "title": "GitHub - princeton-pli/DySCO: DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs · GitHub",
+            "url": "https://github.com/princeton-pli/DySCO"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DySCO:\n\n## DySCO: Dynamic Attention-Scaling Decoding for Long-Context LMs\n\nDySCO is a novel decoding algorithm for improving long-context reasoning that leverages retrieval heads—a subset of attention heads specialized for long-context retrieval—to identify task-relevant tokens at each decoding step and explicitly up-weight them.\n\n### Key Characteristics\n\nDySCO dynamically adjusts attention during generation to better utilize relevant context. The method is training-free and can be applied directly to any off-the-shelf LMs.\n\n### Algorithm Overview\n\nAt each decoding step, DySCO consists of three stages: (1) Aggregation: running a partial forward pass over the input sequence to obtain attentions of retrieval heads, such as QRHead, and using them to assign relevance scores to context tokens; (2) Selection: using the relevance scores to select important tokens; (3) Rescaling: up-weighting the important tokens by intervening attention logits of all attention heads and running a full forward pass to sample the next token.\n\n### Performance\n\nAcross multiple instruction-tuned and reasoning models, DySCO consistently improves performance on challenging long-context reasoning benchmarks, yielding relative gains of up to 25% on MRCR and LONGBENCHV2 at 128K context length with modest additional compute.\n\nThe research was published on February 26, 2026, and the code is available on GitHub at the princeton-pli/DySCO repository."
+    ],
+    "durationSeconds": 6.4235248739999955,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5b08e5f8-6e85-4eba-b4ac-5244b676156e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T05:49:55.823Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H7JStqew6CJN8XymmqxwUj`</summary>
+
+```json
+{
+  "query": "\"fragile reasoning\" mechanistic analysis LLM sensitivity perturbations localizability 2026 arXiv:2604"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06cf062d-c0b1-4af6-96d4-942a7bf09fdf",
+  "isSidechain": false,
+  "requestId": "req_011CbDJAvTCYq4XYtQghuSdB",
+  "type": "assistant",
+  "uuid": "f643c092-35bc-427e-83db-901c9eca1854",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFZsXifQngQHgESicKnzeh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 25755,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 25755,
+          "cache_creation_input_tokens": 724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:50:03.655Z_
+
+<details><summary>↩ Tool result · `toolu_01H7JStqew6CJN8XymmqxwUj`</summary>
+
+```text
+Web search results for query: ""fragile reasoning" mechanistic analysis LLM sensitivity perturbations localizability 2026 arXiv:2604"
+
+Links: [{"title":"Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations","url":"https://arxiv.org/pdf/2604.01639"},{"title":"[2604.11791v1] A Mechanistic Analysis of Looped Reasoning Language Models","url":"https://arxiv.org/abs/2604.11791v1"},{"title":"[2604.11791] A Mechanistic Analysis of Looped Reasoning Language Models","url":"https://arxiv.org/abs/2604.11791"},{"title":"Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations","url":"https://arxiv.org/pdf/2603.03332"},{"title":"Embedding Perturbation may Better Reflect the Uncertainty in LLM Reasoning","url":"https://arxiv.org/pdf/2602.02427"},{"title":"Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning","url":"https://arxiv.org/pdf/2505.17406"}]
+
+Perfect! I found the paper you're looking for. Here are the search results:
+
+## Main Result
+
+The paper "Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations" demonstrates that large language models remain surprisingly fragile to meaning-preserving surface perturbations despite strong performance on mathematical reasoning benchmarks.
+
+## Key Findings
+
+The study evaluated three open-weight LLMs (Mistral-7B, Llama-3-8B, and Qwen2.5-7B) on 677 GSM8K problems paired with semantically equivalent variants, finding that all three models exhibit substantial answer-flip rates of 28.8%–45.1%, with number paraphrasing consistently more disruptive than name swaps.
+
+## Methodology
+
+The authors introduced the Mechanistic Perturbation Diagnostics (MPD) framework, combining logit lens analysis, activation patching, component ablation, and the Cascading Amplification Index (CAI) into a unified diagnostic pipeline.
+
+## Key Insights on Localizability
+
+Activation patching revealed a stark architectural divide in failure localizability: Llama-3 failures are recoverable by patching at specific layers (43/60 samples), while Mistral and Qwen failures are broadly distributed (3/60 and 0/60). The authors proposed a mechanistic failure taxonomy (localized, distributed, and entangled) and found that steering vectors and layer fine-tuning recover 12.2% of localized failures in Llama-3 but only 7.2% of entangled failures in Qwen and 5.2% in Mistral.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f643c092-35bc-427e-83db-901c9eca1854",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "7c8f4bfd-0b82-4985-8431-17d2f0cc1842",
+  "toolUseResult": {
+    "query": "\"fragile reasoning\" mechanistic analysis LLM sensitivity perturbations localizability 2026 arXiv:2604",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017doA9qTwhMhw2TpjEsXoCs",
+        "content": [
+          {
+            "title": "Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations",
+            "url": "https://arxiv.org/pdf/2604.01639"
+          },
+          {
+            "title": "[2604.11791v1] A Mechanistic Analysis of Looped Reasoning Language Models",
+            "url": "https://arxiv.org/abs/2604.11791v1"
+          },
+          {
+            "title": "[2604.11791] A Mechanistic Analysis of Looped Reasoning Language Models",
+            "url": "https://arxiv.org/abs/2604.11791"
+          },
+          {
+            "title": "Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations",
+            "url": "https://arxiv.org/pdf/2603.03332"
+          },
+          {
+            "title": "Embedding Perturbation may Better Reflect the Uncertainty in LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.02427"
+          },
+          {
+            "title": "Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2505.17406"
+          }
+        ]
+      },
+      "Perfect! I found the paper you're looking for. Here are the search results:\n\n## Main Result\n\nThe paper \"Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations\" demonstrates that large language models remain surprisingly fragile to meaning-preserving surface perturbations despite strong performance on mathematical reasoning benchmarks.\n\n## Key Findings\n\nThe study evaluated three open-weight LLMs (Mistral-7B, Llama-3-8B, and Qwen2.5-7B) on 677 GSM8K problems paired with semantically equivalent variants, finding that all three models exhibit substantial answer-flip rates of 28.8%–45.1%, with number paraphrasing consistently more disruptive than name swaps.\n\n## Methodology\n\nThe authors introduced the Mechanistic Perturbation Diagnostics (MPD) framework, combining logit lens analysis, activation patching, component ablation, and the Cascading Amplification Index (CAI) into a unified diagnostic pipeline.\n\n## Key Insights on Localizability\n\nActivation patching revealed a stark architectural divide in failure localizability: Llama-3 failures are recoverable by patching at specific layers (43/60 samples), while Mistral and Qwen failures are broadly distributed (3/60 and 0/60). The authors proposed a mechanistic failure taxonomy (localized, distributed, and entangled) and found that steering vectors and layer fine-tuning recover 12.2% of localized failures in Llama-3 but only 7.2% of entangled failures in Qwen and 5.2% in Mistral."
+    ],
+    "durationSeconds": 7.828507371,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f643c092-35bc-427e-83db-901c9eca1854",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T05:50:06.183Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EFg3z6beWRanC5Ve3Gizsp`</summary>
+
+```json
+{
+  "query": "activation patching attribution patching long context transformer circuit analysis 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c8f4bfd-0b82-4985-8431-17d2f0cc1842",
+  "isSidechain": false,
+  "requestId": "req_011CbDJBhjkGfqsaYD31iSwQ",
+  "type": "assistant",
+  "uuid": "9c79d19b-c581-4776-9c32-74a92ec13920",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XncnbxXNuKXnSwe2AAQZiB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 800,
+      "cache_read_input_tokens": 26479,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 800,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 26479,
+          "cache_creation_input_tokens": 800,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 800
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T05:50:13.430Z_
+
+<details><summary>↩ Tool result · `toolu_01EFg3z6beWRanC5Ve3Gizsp`</summary>
+
+```text
+Web search results for query: "activation patching attribution patching long context transformer circuit analysis 2025 2026"
+
+Links: [{"title":"Attribution Patching for NN Interpretability","url":"https://www.emergentmind.com/topics/attribution-patching-atp"},{"title":"Adversarial Activation Patching: A Framework for Detecting and Mitigating Emergent Deception in Safety-Aligned Transformers","url":"https://arxiv.org/html/2507.09406v1"},{"title":"Attribution Patching: Activation Patching At Industrial Scale — Neel Nanda","url":"https://www.neelnanda.io/mechanistic-interpretability/attribution-patching"},{"title":"Adversarial Activation Patching: A Framework for Detecting and","url":"https://arxiv.org/pdf/2507.09406"},{"title":"Attribution Patching Outperforms Automated Circuit Discovery","url":"https://arxiv.org/pdf/2310.10348"},{"title":"Discovering Transformer Circuits via a Hybrid Attribution and Pruning Framework","url":"https://arxiv.org/html/2510.03282v1"}]
+
+Based on the search results, here's what I found about activation patching, attribution patching, and transformer circuit analysis in 2025-2026:
+
+## Key Findings:
+
+**Attribution Patching and Activation Patching:**
+Activation patching is inefficient for circuit discovery because getting each statistic about model activations requires another forward pass, whereas attribution patching recovers circuits more efficiently.
+
+**Recent Applications (2025):**
+Attribution Patching serves as a central tool for hypothesis-driven and exploratory circuit analysis in transformer models. Adversarial activation patching has been introduced as a novel mechanistic interpretability framework that leverages activation patching as an adversarial tool to induce, detect, and mitigate deception in transformer-based models.
+
+**Scalability Improvements (2025-2026):**
+Existing circuit discovery algorithms struggle to scale with larger models without sacrificing performance. Recent work has proposed solutions: A novel Hybrid Attribution and Pruning (HAP) framework has been proposed to enhance the scalability and maintain the faithfulness of discovered circuits.
+
+**Limitations Being Addressed:**
+It is recommended to use metrics that avoid zero-gradient regimes and enable clean attribution, typically choosing logit-difference or log-prob-difference for circuit discovery.
+
+The search results show active research in these areas, with particular focus on improving scalability for larger models and developing new frameworks for circuit discovery in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c79d19b-c581-4776-9c32-74a92ec13920",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "f6a39c9c-1fb1-479d-a627-2d9149185c5f",
+  "toolUseResult": {
+    "query": "activation patching attribution patching long context transformer circuit analysis 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014TNkjadGjBExTNq7B8FAGA",
+        "content": [
+          {
+            "title": "Attribution Patching for NN Interpretability",
+            "url": "https://www.emergentmind.com/topics/attribution-patching-atp"
+          },
+          {
+            "title": "Adversarial Activation Patching: A Framework for Detecting and Mitigating Emergent Deception in Safety-Aligned Transformers",
+            "url": "https://arxiv.org/html/2507.09406v1"
+          },
+          {
+            "title": "Attribution Patching: Activation Patching At Industrial Scale — Neel Nanda",
+            "url": "https://www.neelnanda.io/mechanistic-interpretability/attribution-patching"
+          },
+          {
+            "title": "Adversarial Activation Patching: A Framework for Detecting and",
+            "url": "https://arxiv.org/pdf/2507.09406"
+          },
+          {
+            "title": "Attribution Patching Outperforms Automated Circuit Discovery",
+            "url": "https://arxiv.org/pdf/2310.10348"
+          },
+          {
+            "title": "Discovering Transformer Circuits via a Hybrid Attribution and Pruning Framework",
+            "url": "https://arxiv.org/html/2510.03282v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about activation patching, attribution patching, and transformer circuit analysis in 2025-2026:\n\n## Key Findings:\n\n**Attribution Patching and Activation Patching:**\nActivation patching is inefficient for circuit discovery because getting each statistic about model activations requires another forward pass, whereas attribution patching recovers circuits more efficiently.\n\n**Recent Applications (2025):**\nAttribution Patching serves as a central tool for hypothesis-driven and exploratory circuit analysis in transformer models. Adversarial activation patching has been introduced as a novel mechanistic interpretability framework that leverages activation patching as an adversarial tool to induce, detect, and mitigate deception in transformer-based models.\n\n**Scalability Improvements (2025-2026):**\nExisting circuit discovery algorithms struggle to scale with larger models without sacrificing performance. Recent work has proposed solutions: A novel Hybrid Attribution and Pruning (HAP) framework has been proposed to enhance the scalability and maintain the faithfulness of discovered circuits.\n\n**Limitations Being Addressed:**\nIt is recommended to use metrics that avoid zero-gradient regimes and enable clean attribution, typically choosing logit-difference or log-prob-difference for circuit discovery.\n\nThe search results show active research in these areas, with particular focus on improving scalability for larger models and developing new frameworks for circuit discovery in 2025-2026."
+    ],
+    "durationSeconds": 7.242892750000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9c79d19b-c581-4776-9c32-74a92ec13920",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T05:50:19.567Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SwsfB3RZJxkoTwqhhgxXXo`</summary>
+
+```json
+{
+  "query": "causal circuit tracing reasoning degradation length scaling transformer MLP attention interaction 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6a39c9c-1fb1-479d-a627-2d9149185c5f",
+  "isSidechain": false,
+  "requestId": "req_011CbDJCRbBL7b4HCJEPcT2F",
+  "type": "assistant",
+  "uuid": "67611793-407c-4319-a15e-dfa3f834c0e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4de9XoKyjxcRRRhkaszQx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 27279,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 27279,
+          "cache_creation_input_tokens": 696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T05:50:28.005Z_
+
+<details><summary>↩ Tool result · `toolu_01SwsfB3RZJxkoTwqhhgxXXo`</summary>
+
+```text
+Web search results for query: "causal circuit tracing reasoning degradation length scaling transformer MLP attention interaction 2025 2026"
+
+Links: [{"title":"Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis","url":"https://arxiv.org/html/2510.03366v1"},{"title":"Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis","url":"https://arxiv.org/pdf/2510.03366"},{"title":"LLM Poisoning [1/3] - Reading the Transformer's Thoughts","url":"https://www.synacktiv.com/en/publications/llm-poisoning-13-reading-the-transformers-thoughts"},{"title":"CircuitProbe: Predicting Reasoning Circuits in Transformers via Stability Zone Detection","url":"https://arxiv.org/pdf/2604.00716"},{"title":"On Vanishing Variance in Transformer Length Generalization","url":"https://arxiv.org/pdf/2504.02827"},{"title":"Transformers Provably Learn Chain-of-Thought Reasoning with Length Generalization","url":"https://arxiv.org/pdf/2511.07378"},{"title":"Lower Bounds for Chain-of-Thought Reasoning in Hard-Attention Transformers","url":"https://arxiv.org/pdf/2502.02393"}]
+
+I found several recent research papers related to your search query. Here are the key findings:
+
+## Circuit Tracing and Reasoning Analysis
+
+Recent work focuses on causal, structural explanations through mechanistic interpretability, identifying internal circuits where replacing or intervening on them produces predictable changes in model behavior, formalized in the framework of causal abstraction.
+
+By combining layer-wise activation tracing, attention-head specialization metrics, and causal activation patching, researchers have identified subnetworks whose perturbation selectively disrupts either factual retrieval or reasoning, finding a consistent pattern across Qwen, LLaMA-3 and Mistral families where early and middle layers primarily support recall, while deeper layers and specific MLP pathways enable reasoning.
+
+## MLP and Attention Interactions
+
+Through causal tracing, researchers found that at early sites recovery comes almost entirely from MLPs (which are the recall site), while at late sites recovery comes from attention.
+
+## Length Scaling and Reasoning Degradation
+
+Research shows that variance scales with input sequence length roughly as σ ∝ N^-0.5, and as variance vanishes with longer sequence lengths in attention outputs, this contributes to performance degradation observed in large language models.
+
+Theoretical work characterizes length generalization of transformers through attention concentration mechanism, and shows that for transformers with limited reasoning length, recursive self-training can progressively extend the range of solvable problem lengths.
+
+Circuit Tracing with attribution graphs maps the computational pathways that a model uses to transform specific inputs into outputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67611793-407c-4319-a15e-dfa3f834c0e7",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "5296bc71-f495-4f1c-b2e9-cccbbc01d604",
+  "toolUseResult": {
+    "query": "causal circuit tracing reasoning degradation length scaling transformer MLP attention interaction 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FXCvsbVBHouHpHZmYG3bCY",
+        "content": [
+          {
+            "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+            "url": "https://arxiv.org/html/2510.03366v1"
+          },
+          {
+            "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+            "url": "https://arxiv.org/pdf/2510.03366"
+          },
+          {
+            "title": "LLM Poisoning [1/3] - Reading the Transformer's Thoughts",
+            "url": "https://www.synacktiv.com/en/publications/llm-poisoning-13-reading-the-transformers-thoughts"
+          },
+          {
+            "title": "CircuitProbe: Predicting Reasoning Circuits in Transformers via Stability Zone Detection",
+            "url": "https://arxiv.org/pdf/2604.00716"
+          },
+          {
+            "title": "On Vanishing Variance in Transformer Length Generalization",
+            "url": "https://arxiv.org/pdf/2504.02827"
+          },
+          {
+            "title": "Transformers Provably Learn Chain-of-Thought Reasoning with Length Generalization",
+            "url": "https://arxiv.org/pdf/2511.07378"
+          },
+          {
+            "title": "Lower Bounds for Chain-of-Thought Reasoning in Hard-Attention Transformers",
+            "url": "https://arxiv.org/pdf/2502.02393"
+          }
+        ]
+      },
+      "I found several recent research papers related to your search query. Here are the key findings:\n\n## Circuit Tracing and Reasoning Analysis\n\nRecent work focuses on causal, structural explanations through mechanistic interpretability, identifying internal circuits where replacing or intervening on them produces predictable changes in model behavior, formalized in the framework of causal abstraction.\n\nBy combining layer-wise activation tracing, attention-head specialization metrics, and causal activation patching, researchers have identified subnetworks whose perturbation selectively disrupts either factual retrieval or reasoning, finding a consistent pattern across Qwen, LLaMA-3 and Mistral families where early and middle layers primarily support recall, while deeper layers and specific MLP pathways enable reasoning.\n\n## MLP and Attention Interactions\n\nThrough causal tracing, researchers found that at early sites recovery comes almost entirely from MLPs (which are the recall site), while at late sites recovery comes from attention.\n\n## Length Scaling and Reasoning Degradation\n\nResearch shows that variance scales with input sequence length roughly as σ ∝ N^-0.5, and as variance vanishes with longer sequence lengths in attention outputs, this contributes to performance degradation observed in large language models.\n\nTheoretical work characterizes length generalization of transformers through attention concentration mechanism, and shows that for transformers with limited reasoning length, recursive self-training can progressively extend the range of solvable problem lengths.\n\nCircuit Tracing with attribution graphs maps the computational pathways that a model uses to transform specific inputs into outputs."
+    ],
+    "durationSeconds": 8.432302938000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67611793-407c-4319-a15e-dfa3f834c0e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-20T05:50:28.014Z_
+
+```json
+{
+  "parentUuid": "5296bc71-f495-4f1c-b2e9-cccbbc01d604",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b4d629ec-18cf-4f26-8609-fedb3ccdb563",
+  "timestamp": "2026-05-20T05:50:28.014Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T05:50:30.352Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QoehmFew1rpmdLo4kpXESQ`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 mechanistic interpretability reasoning circuits transformer accepted papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4d629ec-18cf-4f26-8609-fedb3ccdb563",
+  "isSidechain": false,
+  "requestId": "req_011CbDJDVtRC3xUo5xUfsFPq",
+  "type": "assistant",
+  "uuid": "e64aca40-5012-4e7f-822f-bf7e38778a6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WP6GsmbRpfWbywKZocUuu3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 27975,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 27975,
+          "cache_creation_input_tokens": 884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T05:50:37.645Z_
+
+<details><summary>↩ Tool result · `toolu_01QoehmFew1rpmdLo4kpXESQ`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 mechanistic interpretability reasoning circuits transformer accepted papers"
+
+Links: [{"title":"Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis","url":"https://arxiv.org/pdf/2510.03366"},{"title":"From Indirect Object Identification to Syllogisms: Exploring Binary Mechanisms in Transformer Circuits","url":"https://arxiv.org/pdf/2508.16109"},{"title":"Mechanistic Unveiling of Transformer Circuits: Self-Influence as a Key   to Model Reasoning","url":"https://arxiv.org/pdf/2502.09022"},{"title":"[PDF] A Practical Review of Mechanistic Interpretability for Transformer-Based Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Practical-Review-of-Mechanistic-Interpretability-Rai-Zhou/2ac231b9cff4f5f9054d86c9b540429d4dd687f4"},{"title":"Beyond Components: Singular Vector-Based Interpretability of Transformer Circuits","url":"https://arxiv.org/pdf/2511.20273"},{"title":"Towards Automated Circuit Discovery for Mechanistic Interpretability","url":"https://arxiv.org/pdf/2304.14997"},{"title":"Mechanistic Analysis Of Universality: Numerical Comparison Circuits Across Transformer Architectures | OpenReview","url":"https://openreview.net/forum?id=79igg0kRtd"},{"title":"Efficient Automated Circuit Discovery in Transformers using Contextual   Decomposition","url":"https://arxiv.org/pdf/2407.00886"}]
+
+Based on the search results, I found several papers related to mechanistic interpretability, reasoning circuits, and transformers, though specific EMNLP 2026 conference acceptance information is not clearly visible in these results.
+
+The search returned recent papers on mechanistic interpretability research:
+
+1. **"Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis"** - This work within mechanistic interpretability reveals the internal structure of transformer models, examining how attention heads implement interpretable roles like induction heads and how feed-forward blocks encode semantically meaningful features.
+
+2. **"From Indirect Object Identification to Syllogisms: Exploring Binary Mechanisms in Transformer Circuits"** - This paper analyzes how language models solve specific tasks, studies emergent behaviors, and identifies patterns within their architectures.
+
+3. **"Mechanistic Unveiling of Transformer Circuits: Self-Influence as a Key to Model Reasoning"** - This work employs circuit analysis and self-influence functions to evaluate the importance of each token throughout reasoning processes and demonstrates human-interpretable reasoning processes in GPT-2.
+
+4. **"Beyond Components: Singular Vector-Based Interpretability of Transformer Circuits"** - This paper seeks to identify circuits that realize specific functions and shows these circuits can be decomposed into submodules with distinct roles such as copying, inhibition, or referencing.
+
+However, the search results don't provide explicit information about which papers were specifically accepted to EMNLP 2026. You may want to check the official EMNLP 2026 conference website or proceedings for the complete list of accepted papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e64aca40-5012-4e7f-822f-bf7e38778a6d",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "a0d65f9c-442c-4cf3-b772-ba48855a2151",
+  "toolUseResult": {
+    "query": "EMNLP 2026 mechanistic interpretability reasoning circuits transformer accepted papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F4e1hJxhhS7pMF91TiZidv",
+        "content": [
+          {
+            "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+            "url": "https://arxiv.org/pdf/2510.03366"
+          },
+          {
+            "title": "From Indirect Object Identification to Syllogisms: Exploring Binary Mechanisms in Transformer Circuits",
+            "url": "https://arxiv.org/pdf/2508.16109"
+          },
+          {
+            "title": "Mechanistic Unveiling of Transformer Circuits: Self-Influence as a Key   to Model Reasoning",
+            "url": "https://arxiv.org/pdf/2502.09022"
+          },
+          {
+            "title": "[PDF] A Practical Review of Mechanistic Interpretability for Transformer-Based Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/A-Practical-Review-of-Mechanistic-Interpretability-Rai-Zhou/2ac231b9cff4f5f9054d86c9b540429d4dd687f4"
+          },
+          {
+            "title": "Beyond Components: Singular Vector-Based Interpretability of Transformer Circuits",
+            "url": "https://arxiv.org/pdf/2511.20273"
+          },
+          {
+            "title": "Towards Automated Circuit Discovery for Mechanistic Interpretability",
+            "url": "https://arxiv.org/pdf/2304.14997"
+          },
+          {
+            "title": "Mechanistic Analysis Of Universality: Numerical Comparison Circuits Across Transformer Architectures | OpenReview",
+            "url": "https://openreview.net/forum?id=79igg0kRtd"
+          },
+          {
+            "title": "Efficient Automated Circuit Discovery in Transformers using Contextual   Decomposition",
+            "url": "https://arxiv.org/pdf/2407.00886"
+          }
+        ]
+      },
+      "Based on the search results, I found several papers related to mechanistic interpretability, reasoning circuits, and transformers, though specific EMNLP 2026 conference acceptance information is not clearly visible in these results.\n\nThe search returned recent papers on mechanistic interpretability research:\n\n1. **\"Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis\"** - This work within mechanistic interpretability reveals the internal structure of transformer models, examining how attention heads implement interpretable roles like induction heads and how feed-forward blocks encode semantically meaningful features.\n\n2. **\"From Indirect Object Identification to Syllogisms: Exploring Binary Mechanisms in Transformer Circuits\"** - This paper analyzes how language models solve specific tasks, studies emergent behaviors, and identifies patterns within their architectures.\n\n3. **\"Mechanistic Unveiling of Transformer Circuits: Self-Influence as a Key to Model Reasoning\"** - This work employs circuit analysis and self-influence functions to evaluate the importance of each token throughout reasoning processes and demonstrates human-interpretable reasoning processes in GPT-2.\n\n4. **\"Beyond Components: Singular Vector-Based Interpretability of Transformer Circuits\"** - This paper seeks to identify circuits that realize specific functions and shows these circuits can be decomposed into submodules with distinct roles such as copying, inhibition, or referencing.\n\nHowever, the search results don't provide explicit information about which papers were specifically accepted to EMNLP 2026. You may want to check the official EMNLP 2026 conference website or proceedings for the complete list of accepted papers."
+    ],
+    "durationSeconds": 7.288484036000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e64aca40-5012-4e7f-822f-bf7e38778a6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation R…",
+  "leafUuid": "a0d65f9c-442c-4cf3-b772-ba48855a2151",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal circuit analysis of transformer padding effects",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-20T05:50:40.374Z_
+
+Now let me do one more targeted search to understand competitive landscape better:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0d65f9c-442c-4cf3-b772-ba48855a2151",
+  "isSidechain": false,
+  "requestId": "req_011CbDJED6Q1B8bMgJsfgVXy",
+  "type": "assistant",
+  "uuid": "cfc2d573-5ec0-486a-9a83-8a12694a6bcf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TkQKPLwahYGBas1faYbMgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 28859,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 28859,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T05:50:40.957Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DPMx4N326foX9dTDs3Sx63`</summary>
+
+```json
+{
+  "query": "\"context rot\" \"long context\" attention entropy softmax degradation mechanistic explanation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfc2d573-5ec0-486a-9a83-8a12694a6bcf",
+  "isSidechain": false,
+  "requestId": "req_011CbDJED6Q1B8bMgJsfgVXy",
+  "type": "assistant",
+  "uuid": "e4042327-f7b6-4274-b628-567342beee9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TkQKPLwahYGBas1faYbMgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 28859,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 28859,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T05:50:49.955Z_
+
+<details><summary>↩ Tool result · `toolu_01DPMx4N326foX9dTDs3Sx63`</summary>
+
+```text
+Web search results for query: ""context rot" "long context" attention entropy softmax degradation mechanistic explanation 2025 2026"
+
+Links: [{"title":"Context Rot: Why LLMs Degrade as Context Grows (Complete Guide) | Morph","url":"https://www.morphllm.com/context-rot"},{"title":"Context Rot: What a 2 AM Night Taught Me That Benchmarks Never Did | by QuangTran | Apr, 2026 | Medium","url":"https://medium.com/@trmquang3103/context-rot-what-a-2-am-night-taught-me-that-benchmarks-never-did-dfda7df72f40"},{"title":"Context Degradation in LLMs","url":"https://www.emergentmind.com/topics/context-degradation-in-llms"},{"title":"Published as a conference paper at ICLR 2026 LONG-CONTEXT GENERALIZATION WITH","url":"https://arxiv.org/pdf/2506.16640"},{"title":"[2506.16640] Long-Context Generalization with Sparse Attention","url":"https://arxiv.org/abs/2506.16640"},{"title":"Context rot: the emerging challenge that could hold back LLM progress","url":"https://www.understandingai.org/p/context-rot-the-emerging-challenge"}]
+
+I found relevant research on context rot, long context performance, and the mechanistic explanations involving attention, entropy, and softmax degradation. Here are the key findings:
+
+## Definition and Scope
+
+Context rot is the measurable degradation in LLM output quality that occurs as input context length increases. Chroma's 2025 research tested 18 frontier models, including GPT-4.1, Claude Opus 4, and Gemini 2.5, and found that every one exhibits this behavior at every input length tested.
+
+## Mechanistic Explanations
+
+Context rot is an architectural property of transformer-based attention, not a capability gap that training solves. There are multiple compounding mechanisms:
+
+1. **Lost-in-the-middle effect**: Models attend well to the start and end of context but poorly to the middle, causing 30%+ accuracy drops.
+
+2. **Attention brittleness**: As softmax attention is extended to very long sequences, the signal-to-noise ratio declines, drowning out salient tokens, especially in the middle.
+
+3. **Attention dispersion**: Recent work has highlighted attention dispersion as a fundamental limitation of softmax for long context generalization. As sequence length increases, non-informative tokens accumulate attention probability mass, leading to dispersion and representational collapse.
+
+## Recent Solutions
+
+Dynamically sparse attention mechanisms using α-entmax can avoid these issues due to their ability to assign exact zeros to irrelevant tokens. Adaptive-Scalable Entmax (ASEntmax) endows α-entmax with a learnable temperature parameter, allowing the attention distribution to interpolate between sparse and dense regimes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4042327-f7b6-4274-b628-567342beee9d",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "e8dbed22-1ad2-47b5-a840-3490a7944517",
+  "toolUseResult": {
+    "query": "\"context rot\" \"long context\" attention entropy softmax degradation mechanistic explanation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kb8ManHSycFik5XUh6WeBN",
+        "content": [
+          {
+            "title": "Context Rot: Why LLMs Degrade as Context Grows (Complete Guide) | Morph",
+            "url": "https://www.morphllm.com/context-rot"
+          },
+          {
+            "title": "Context Rot: What a 2 AM Night Taught Me That Benchmarks Never Did | by QuangTran | Apr, 2026 | Medium",
+            "url": "https://medium.com/@trmquang3103/context-rot-what-a-2-am-night-taught-me-that-benchmarks-never-did-dfda7df72f40"
+          },
+          {
+            "title": "Context Degradation in LLMs",
+            "url": "https://www.emergentmind.com/topics/context-degradation-in-llms"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 LONG-CONTEXT GENERALIZATION WITH",
+            "url": "https://arxiv.org/pdf/2506.16640"
+          },
+          {
+            "title": "[2506.16640] Long-Context Generalization with Sparse Attention",
+            "url": "https://arxiv.org/abs/2506.16640"
+          },
+          {
+            "title": "Context rot: the emerging challenge that could hold back LLM progress",
+            "url": "https://www.understandingai.org/p/context-rot-the-emerging-challenge"
+          }
+        ]
+      },
+      "I found relevant research on context rot, long context performance, and the mechanistic explanations involving attention, entropy, and softmax degradation. Here are the key findings:\n\n## Definition and Scope\n\nContext rot is the measurable degradation in LLM output quality that occurs as input context length increases. Chroma's 2025 research tested 18 frontier models, including GPT-4.1, Claude Opus 4, and Gemini 2.5, and found that every one exhibits this behavior at every input length tested.\n\n## Mechanistic Explanations\n\nContext rot is an architectural property of transformer-based attention, not a capability gap that training solves. There are multiple compounding mechanisms:\n\n1. **Lost-in-the-middle effect**: Models attend well to the start and end of context but poorly to the middle, causing 30%+ accuracy drops.\n\n2. **Attention brittleness**: As softmax attention is extended to very long sequences, the signal-to-noise ratio declines, drowning out salient tokens, especially in the middle.\n\n3. **Attention dispersion**: Recent work has highlighted attention dispersion as a fundamental limitation of softmax for long context generalization. As sequence length increases, non-informative tokens accumulate attention probability mass, leading to dispersion and representational collapse.\n\n## Recent Solutions\n\nDynamically sparse attention mechanisms using α-entmax can avoid these issues due to their ability to assign exact zeros to irrelevant tokens. Adaptive-Scalable Entmax (ASEntmax) endows α-entmax with a learnable temperature parameter, allowing the attention distribution to interpolate between sparse and dense regimes."
+    ],
+    "durationSeconds": 8.993412733999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e4042327-f7b6-4274-b628-567342beee9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T05:50:53.565Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XHR9g3AWKKnSAjrNh9R8aZ`</summary>
+
+```json
+{
+  "query": "Gemma Scope 2 SAE transcoder Gemma 3 sparse autoencoder mechanistic interpretability 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8dbed22-1ad2-47b5-a840-3490a7944517",
+  "isSidechain": false,
+  "requestId": "req_011CbDJF7kTeqkJEtCStZ4ca",
+  "type": "assistant",
+  "uuid": "8400f2fc-8f44-45ba-a896-a9ddf5fd0508",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TougbNtMQEpD8E2tack8eW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 29748,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 29748,
+          "cache_creation_input_tokens": 816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T05:51:01.653Z_
+
+<details><summary>↩ Tool result · `toolu_01XHR9g3AWKKnSAjrNh9R8aZ`</summary>
+
+```text
+Web search results for query: "Gemma Scope 2 SAE transcoder Gemma 3 sparse autoencoder mechanistic interpretability 2026"
+
+Links: [{"title":"Google DeepMind Researchers Release Gemma Scope 2 as a Full Stack Interpretability Suite for Gemma 3 Models - MarkTechPost","url":"https://www.marktechpost.com/2025/12/22/google-deepmind-researchers-release-gemma-scope-2-as-a-full-stack-interpretability-suite-for-gemma-3-models/"},{"title":"Gemma Scope — Google DeepMind","url":"https://deepmind.google/models/gemma/gemma-scope/"},{"title":"Gemma Scope | Google AI for Developers","url":"https://ai.google.dev/gemma/docs/gemma_scope"},{"title":"Google Releases Gemma Scope 2 to Deepen Understanding of LLM Behavior - InfoQ","url":"https://www.infoq.com/news/2026/01/google-gemma-scope-2/"},{"title":"Gemma Scope 2: Suite of SAEs and Transcoders for Gemma 3 ｜ Neuronpedia","url":"https://www.neuronpedia.org/gemma-scope-2"},{"title":"Gemma Scope 2: Helping the AI Safety Community Deepen Understanding of Complex Language Model Behavior — Google DeepMind","url":"https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/"},{"title":"Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2 | OpenReview","url":"https://openreview.net/forum?id=XkMrWOJhNd"},{"title":"Gemma Scope 2 - Technical Paper - Googleapis.com","url":"https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/Gemma_Scope_2_Technical_Paper.pdf"},{"title":"Gemma Scope: Open Sparse Autoencoders Everywhere ...","url":"https://arxiv.org/pdf/2408.05147"},{"title":"Gemma Scope: helping the safety community shed light on the inner workings of language models — Google DeepMind","url":"https://deepmind.google/blog/gemma-scope-helping-the-safety-community-shed-light-on-the-inner-workings-of-language-models/"}]
+
+Based on the search results, here's what I found about Gemma Scope 2 and its relation to SAEs, transcoders, and mechanistic interpretability:
+
+## Overview
+
+Gemma Scope 2 is an open interpretability suite for all Gemma 3 models, from 270M to 27B parameters, with SAEs and transcoders on every layer of both pretrained and instruction tuned variants.
+
+## How It Works
+
+The suite uses sparse autoencoders as a microscope that decomposes internal activations into sparse, concept like features, plus transcoders that track how these features propagate across layers. It combines sparse autoencoders (SAEs) and transcoders to let researchers inspect a model's internal representation, examine what it "thinks," and understand how those internal states shape its behavior.
+
+## Safety and Research Applications
+
+Gemma Scope 2 is explicitly positioned for AI safety work to study jailbreaks, hallucinations, sycophancy, refusal mechanisms and discrepancies between internal state and communicated reasoning in Gemma 3. Researchers can use transcoders to analyze complex, multi-step behaviors, from diagnosing jailbreaks and refusal mechanisms to verifying faithfulness to chain-of-thought reasoning.
+
+## Technical Scope
+
+Training Gemma Scope 2 required storing around 110 Petabytes of activation data and fitting over 1 trillion total parameters across all interpretability models. State-of-the-art Matryoshka training helps SAEs detect more useful concepts and resolve flaws, while skip-transcoders and cross-layer transcoders make it easier to decipher multi-step computations and algorithms throughout the model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8400f2fc-8f44-45ba-a896-a9ddf5fd0508",
+  "isSidechain": false,
+  "promptId": "74c5ab8c-25e0-48b4-a3fa-ca0087a043ab",
+  "type": "user",
+  "uuid": "d9b53b91-8df6-40d8-939e-a03b1a24b0bf",
+  "toolUseResult": {
+    "query": "Gemma Scope 2 SAE transcoder Gemma 3 sparse autoencoder mechanistic interpretability 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LorPqiWEUhdsHroV9eBwrn",
+        "content": [
+          {
+            "title": "Google DeepMind Researchers Release Gemma Scope 2 as a Full Stack Interpretability Suite for Gemma 3 Models - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/12/22/google-deepmind-researchers-release-gemma-scope-2-as-a-full-stack-interpretability-suite-for-gemma-3-models/"
+          },
+          {
+            "title": "Gemma Scope — Google DeepMind",
+            "url": "https://deepmind.google/models/gemma/gemma-scope/"
+          },
+          {
+            "title": "Gemma Scope | Google AI for Developers",
+            "url": "https://ai.google.dev/gemma/docs/gemma_scope"
+          },
+          {
+            "title": "Google Releases Gemma Scope 2 to Deepen Understanding of LLM Behavior - InfoQ",
+            "url": "https://www.infoq.com/news/2026/01/google-gemma-scope-2/"
+          },
+          {
+            "title": "Gemma Scope 2: Suite of SAEs and Transcoders for Gemma 3 ｜ Neuronpedia",
+            "url": "https://www.neuronpedia.org/gemma-scope-2"
+          },
+          {
+            "title": "Gemma Scope 2: Helping the AI Safety Community Deepen Understanding of Complex Language Model Behavior — Google DeepMind",
+            "url": "https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/"
+          },
+          {
+            "title": "Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2 | OpenReview",
+            "url": "https://openreview.net/forum?id=XkMrWOJhNd"
+          },
+          {
+            "title": "Gemma Scope 2 - Technical Paper - Googleapis.com",
+            "url": "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/Gemma_Scope_2_Technical_Paper.pdf"
+          },
+          {
+            "title": "Gemma Scope: Open Sparse Autoencoders Everywhere ...",
+            "url": "https://arxiv.org/pdf/2408.05147"
+          },
+          {
+            "title": "Gemma Scope: helping the safety community shed light on the inner workings of language models — Google DeepMind",
+            "url": "https://deepmind.google/blog/gemma-scope-helping-the-safety-community-shed-light-on-the-inner-workings-of-language-models/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Gemma Scope 2 and its relation to SAEs, transcoders, and mechanistic interpretability:\n\n## Overview\n\nGemma Scope 2 is an open interpretability suite for all Gemma 3 models, from 270M to 27B parameters, with SAEs and transcoders on every layer of both pretrained and instruction tuned variants.\n\n## How It Works\n\nThe suite uses sparse autoencoders as a microscope that decomposes internal activations into sparse, concept like features, plus transcoders that track how these features propagate across layers. It combines sparse autoencoders (SAEs) and transcoders to let researchers inspect a model's internal representation, examine what it \"thinks,\" and understand how those internal states shape its behavior.\n\n## Safety and Research Applications\n\nGemma Scope 2 is explicitly positioned for AI safety work to study jailbreaks, hallucinations, sycophancy, refusal mechanisms and discrepancies between internal state and communicated reasoning in Gemma 3. Researchers can use transcoders to analyze complex, multi-step behaviors, from diagnosing jailbreaks and refusal mechanisms to verifying faithfulness to chain-of-thought reasoning.\n\n## Technical Scope\n\nTraining Gemma Scope 2 required storing around 110 Petabytes of activation data and fitting over 1 trillion total parameters across all interpretability models. State-of-the-art Matryoshka training helps SAEs detect more useful concepts and resolve flaws, while skip-transcoders and cross-layer transcoders make it easier to decipher multi-step computations and algorithms throughout the model."
+    ],
+    "durationSeconds": 8.083019010999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8400f2fc-8f44-45ba-a896-a9ddf5fd0508",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-20T05:51:53.111Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to evaluate this proposal. Let me synthesize my findings and provide a comprehensive assessment.
+
+Let me think about this proposal carefully:
+
+**What this proposal is doing:**
+- Investigating why short padding tokens (~10-50) improve reasoning (Shi et al.) while long padding (3.75K-30K) degrades reasoning (Du et al.)
+- Using causal circuit tracing (activation patching, attribution patching) to identify which components (MLP vs attention heads) mediate these effects
+- Testing three hypothesis dimensions: localizability, circuit overlap, cross-component dependency
+- Using 3 models: Llama-3.1-8B, Gemma-3-12B, Qwen2.5-7B
+
+
+- Incorporating feature-level analysis through Gemma Scope 2
+
+The strengths here are compelling: this is a genuinely puzzling phenomenon that deserves investigation, the experimental design is rigorous with clear hypotheses laid out upfront, and the methodology leverages well-established tools while maintaining statistical rigor. The practical angle of improving inference-time interventions like DySCO adds real value, and the careful choices around validation pilots and position-controlled ablations show thoughtful experimental design.
+
+But there are some real concerns. The scope is enormous—six phases spanning 13-17 weeks across three models with multiple benchmarks and padding types feels more like a dissertation than a single paper. The novelty is primarily in applying existing mechanistic interpretability techniques to this specific phenomenon rather than developing new methods. Circuit-level analysis can get messy, and there's genuine risk that results won't be clean or conclusive if the phenomena overlap or vary across models. And honestly, the core puzzle might not be as mysterious as framed—short tokens affecting MLP activations could have simpler explanations than the proposal suggests.
+
+The main contribution is mechanistic understanding, which is valuable but might not be enough for top venues, especially since the practical implications are still speculative. The paper targets AAAI and ICLR primarily, with EMNLP as a fallback. The experimental design also introduces significant complexity with many conditions to test across models and settings.
+
+The research question is genuinely compelling—the disconnect between micro-scale benefits and macro-scale harm lacks a clear mechanistic explanation. The methodology is sound though not particularly novel, applying existing interpretability tools to this new puzzle. The experimental approach is thorough and well-controlled with pre-registered hypotheses, but fitting everything into an 8-page paper will be quite challenging.
+
+The resource requirements seem feasible at 400-600 H100 hours, though the timeline is tight and there's real risk that results could be messy and difficult to synthesize into a coherent narrative. The proposal itself is dense and could use better organization—the sheer scope of experiments may actually work against it at review time. This is fundamentally a study about understanding rather than introducing new methods, which can be harder to evaluate. For EMNLP 2026, I'd estimate this lands somewhere in the middle range. The core issue is that I'm conflating two separate evaluations—whether this fits EMNLP 2026's timeline and whether it's academically sound—when the actual task is just assessing the research quality itself. Refocusing on that: the work is well-motivated with solid methodology and rigorous experimental design, but the novelty is limited to applying existing MI tools to a new phenomenon, the scope is quite ambitious for a single paper, and there's real risk the results could be inconclusive or messier than the framing suggests. The apparent puzzle might dissolve once you account for the different token types and scales involved.
+
+Now I'm thinking through what reviewers would likely say: one would praise the design but push back on scope, another would question whether this is primarily descriptive analysis without enabling new capabilities, and a third would note the methodology is sound but the practical implications remain speculative. Given those reactions, I'd estimate around 28-38% acceptance probability, settling on 33% as the midpoint.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9b53b91-8df6-40d8-939e-a03b1a24b0bf",
+  "isSidechain": false,
+  "requestId": "req_011CbDJFyjXwnDkiEpJybXR2",
+  "type": "assistant",
+  "uuid": "4953d9ba-9150-4b02-a7a4-aff32f153dfd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7o8eDbdsMKdXHNqUThf6Z",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1168,
+      "cache_read_input_tokens": 30564,
+      "output_tokens": 6781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6781,
+          "cache_read_input_tokens": 30564,
+          "cache_creation_input_tokens": 1168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-20T05:53:50.528Z_
+
+Now I have sufficient context. Let me produce the comprehensive evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Shi et al., arXiv:2510.01032] (2025): 发现短无意义token (~10-50 重复标点) 通过MLP activation redistribution (ARM效应) 改善推理，呈倒U型曲线。提出了可直接复现的ARM模块。本proposal的核心出发点之一。
+- [Du et al., EMNLP Findings 2025, arXiv:2510.05381]: 发现长空白填充 (3.75K-30K tokens) 使推理下降13.9-85%，即使在完美检索条件下。明确呼吁"进一步探索底层机制"。本proposal另一核心出发点。
+- [DySCO, arXiv:2602.22175] (Feb 2026): 基于 retrieval heads 的动态注意力缩放，128K 上下文推理提升最高25%。证明了 head-level 干预有效，但缺乏机制解释——本proposal意图填补的gap之一。
+- [Fragile Reasoning, arXiv:2604.01639] (Apr 2026): 揭示 Llama-3 推理失败可局部定位 (71.7%)，Qwen2.5 分布式 (0%)。引入 CAI 指标和 MPD 框架。本proposal的 H3 假设直接受此启发。
+- [ASEntmax / Long-Context Generalization with Sparse Attention, ICLR 2026, arXiv:2506.16640]: 证明 softmax 注意力熵无界增长导致长上下文退化。纯注意力理论，不涉及MLP效应。
+- [Chen et al., arXiv:2510.05554]: β_n = log(n) 注意力相变阈值理论。同为纯注意力框架。
+- [Stream, arXiv:2510.19875]: 将机制可解释性扩展到100K+ token上下文的工具。本proposal计划使用。
+- [Gemma Scope 2, Google DeepMind 2026]: 全栈可解释性工具套件 (SAE + transcoder)，覆盖 Gemma 3 所有层。本proposal计划用于 feature-level 分解。
+- [Fartale et al., arXiv:2510.03366]: 将recall和reasoning电路解耦，发现早/中层支持recall，深层+特定MLP通道支持reasoning。
+- [Chroma Context Rot Report, 2025]: 18个前沿模型均表现出context rot现象，确认为transformer注意力架构的内在属性。
+- 调研总结: 这是一个活跃且碎片化的领域——长上下文退化的经验现象已被充分建立，理论解释局限于注意力机制，短padding的MLP收益是一个独立的发现，二者之间的跨组件机制交互确实是一个未被探索的空白。现有最接近的工作(DySCO)仅提供启发式干预而无机制解释，Fragile Reasoning在不同扰动维度(表面扰动vs.长度扰动)上做了类似风格的分析。本proposal在方向上确实填补了一个真实的gap。
+
+【整体印象】:
+如果我是审稿人，第一反应是"这是一个非常认真、极度详尽的mechanistic interpretability研究计划，研究问题真实且有意义"，但紧接着会想"这更像是一个dissertation chapter而非一篇8-page paper"。倾向在borderline区间——不会直接reject，但需要看执行质量。
+
+具体而言：
+- **正面**：research question的动机非常自然，两个看似矛盾的现象（短padding有益vs长padding有害）确实需要统一的机制解释；假设驱动的实验设计（三个假设维度、每个都有可操作化的测试方案）是MI研究的典范；实验设计中的方法学细节（validation pilot验证近似方法、position-controlled ablation、permutation test）显示了很高的方法论素养。
+- **负面**：核心方法论是"将已有MI工具应用于新现象"，工具层面无创新；6个phase、3个模型、多种padding类型、多个benchmark——scope过于庞大；若micro-scale benefit和macro-scale harm确实是两个独立现象（不同token类型、不同机制），则"统一解释"这个核心叙事就不成立，论文的贡献会大打折扣。
+
+总体倾向：**weak accept / borderline**，执行质量和叙事凝练度将决定最终命运。
+
+【核心贡献】:
+1. 首次用因果干预方法（activation patching + path patching）追溯长度如何在组件层面（attention heads vs. MLP layers）破坏推理电路
+2. 验证短padding（Shi et al.）和长padding（Du et al.）是否构成同一现象的不同regime
+3. 为DySCO等启发式干预方法提供机制基础——识别DySCO遗漏的非retrieval-head组件
+
+这些贡献的价值评估：贡献1是genuinely novel的——no prior work对纯长度扰动做过组件级因果追溯。但它本质是"理解/解释性"贡献而非"能力/方法"贡献。贡献2是一个重要的preliminary step。贡献3有应用价值但依赖于实验结果（如果发现DySCO的覆盖已经足够，则价值降低）。整体而言，对领域有中等偏上的价值。
+
+【方法合理性】:
+方法整体合理，但有几点需要审视：
+
+1. **AtP作为first-pass screen的合理性**：Proposal计划用validation pilot验证AtP在长上下文下的保真度（Spearman ρ ≥ 0.7），这是好的。但AtP在长上下文下因LayerNorm非线性累积可能失真的风险是真实的，proposal承认了这一点并有fallback方案。
+2. **更简单的替代方案**：一个reviewer可能会问——是否可以直接用probing + attention analysis（无需patching）来回答核心问题？答：probing可以回答"信息在哪里丢失"但不能回答"哪个组件causally responsible"，所以patching是必要的。但probing被放在了Phase 5而非更早，这是一个设计问题——probing结果可以指导patching目标选择。
+3. **200 examples per condition是否足够**：对于bootstrap CI计算，200个样本在accuracy指标上是合理的；但对于causal effect的fine-grained ranking（top-50组件中的排序），可能不够stable——proposal的split-half stability check可以捕捉这一点。
+4. **Gemma-3-12B的dual role问题**：既作为"architectural contrast"又作为"SAE analysis target"，可能导致分析混乱——Gemma的interleaved attention本身就是一个confound。
+
+【5 维度打分】:
+
+1. 研究问题: 【强】
+   理由：Shi et al.的micro-scale benefit和Du et al.的macro-scale harm之间的矛盾是真实的、未解决的。现有理论（Chen et al. β_n = log(n), ASEntmax）都是纯注意力框架，无法解释MLP-mediated效应。Du et al.在论文中明确呼吁进一步探索底层机制。研究问题自然、有意义、有清晰的gap。唯一的小风险是：如果两个现象实际上是独立的（不同token类型 → 不同机制），"统一解释"的叙事会弱化，但proposal也考虑了这种可能性并将其作为第一步验证。
+
+2. 方法与创新: 【中】
+   理由：方法论层面没有新工具或新技术——AtP (Syed et al., NeurIPS 2023 Workshop), activation patching, path patching, SAE都是已有方法。创新在于**应用层面**：(a) 首次将因果追溯应用于纯长度扰动；(b) 设计了跨组件依赖测试（H_interaction）；(c) validation pilot验证近似方法在长上下文的保真度。与Fragile Reasoning (arXiv:2604.01639)相比，该proposal解决的是不同的扰动维度（长度vs.表面），但分析框架高度相似（activation patching + localizability分析 + cross-model比较）。方法创新不突出，但application novelty是真实的。
+
+3. 实验设计: 【强】
+   理由：这是proposal最突出的亮点。实验设计极其详尽、假设驱动、有pre-specified test：
+   - 三个假设维度（localizability, circuit overlap, cross-component dependency），每个都有可操作化的metric
+   - Validation pilot验证近似方法的保真度（Spearman ρ ≥ 0.7 threshold）
+   - Position-controlled ablation隔离位置编码confound
+   - 统计严谨性（bootstrap CI, permutation test, split-half stability）
+   - 与DySCO的retrieval head覆盖比较
+   - Weighted Jaccard + cosine similarity + cutoff sensitivity analysis用于H_unified vs H_separate
+
+   对比领域标准：DySCO (arXiv:2602.22175)没有做机制解释；Fragile Reasoning (arXiv:2604.01639)做了类似风格的分析但在不同扰动维度且仅用GSM8K。本proposal的实验设计在严谨性上不亚于Fragile Reasoning。
+
+   **但** scope过大是一个problem——3模型 × ~12种scale条件 × 2种padding类型 × position ablation × 4个benchmark → 巨大的实验矩阵。这增加了实验设计的"看起来很完备"评分，但也增加了执行风险和写作难度。
+
+4. 可行性: 【中】
+   理由：
+   - 计算资源（400-600 H100小时，~$1000-1500）对于一个MI研究来说合理
+   - 13-17周的timeline紧凑但不是不可能
+   - 关键风险：(a) AtP在长上下文下可能失真，需要fall back到full patching（计算成本剧增）；(b) 结果可能messy——partial overlap、model-dependent patterns——导致难以形成clean narrative；(c) 如果micro-scale benefit不能跨padding type复制（whitespace不产生ARM效应），统一叙事的前提就不成立，需要pivot
+   - Gemma Scope 2的SAE/transcoder使用需要相当的技术栈熟悉度
+
+5. 写作与呈现: 【弱-中】
+   理由：Proposal本身极度密集，30+篇参考文献，6个phase，3个假设维度——信息过载。如果论文也是这种风格，reviewers会感到overwhelmed。将这个scope压缩到8页（EMNLP format）将是一个巨大的写作挑战。需要非常精准的information hierarchy和故事线控制。Proposal的写作水平显示了领域知识的深度，但呈现的简洁性和叙事清晰度需要大幅改善。具体而言：当前的假设编号系统（H1-Localized, H2-Distributed, H3-Architecture-dependent, H_unified, H_separate, H_interaction, H_independent）本身就需要一张表来追踪。
+
+【概率估计】: [25% - 38%] 中位 30%
+
+【估计理由】:
+- **研究问题（加分）**: Gap genuinely exists, well-motivated, timely
+- **实验设计（加分）**: 在MI论文中属于top-tier的设计严谨性
+- **方法创新（中性偏减分）**: 核心方法论是已有工具的应用，no new MI technique
+- **Scope问题（减分）**: 对一篇paper来说scope过大，写作风险高
+- **结果不确定性（减分）**: MI研究的固有风险——结果可能messy，难以形成compelling narrative
+- **贡献类型（略减分）**: 主要是"理解/解释性"贡献，EMNLP对此有一定接受度（如EMNLP Findings 2024的"Transformers Know but Don't Tell"），但比"新方法/新系统"论文更难获得strong accept
+- **参考点**: Fragile Reasoning (arXiv:2604.01639) 做了类似风格的机制分析，尚不确定其最终去向——如果它被顶会接收，则为本proposal类似的分析风格提供先例；若被拒，则信号相反
+
+30%的midpoint反映：这是一篇方向正确、设计严谨但scope需要收敛的论文。如果作者能(1)砍掉1-2个Phase聚焦核心问题，(2)确保Phase 1的padding-type verification给出干净结果，(3)将叙事从"6个Phase的全面分析"精简为"一个核心发现+supporting evidence"，概率可以提升到35-40%。
+
+【主要风险】:
+1. **Scope过大导致叙事散焦**: Reviewers看到3个模型 × 3个假设维度 × 6个phase，会担心论文成为"大量实验但无清晰take-away"。MI论文的成功模式通常是"一个干净的发现+严谨验证"（如"Retrieval Head Mechanistically Explains Long-Context Factuality"），而非"全面扫描"。
+2. **核心前提（统一现象）可能不成立**: 如果whitespace和punctuation padding在micro-scale表现不同，"统一scale-dependent现象"的叙事基础就不成立。Proposal承认了这一风险但将其视为"第一步验证"——若结果是negative（两个独立现象），论文的核心贡献需要重新定义，剩余的实验设计（H_unified vs H_separate等）的意义也会变化。
+
+【实施评估】:
+  - 计算资源: 400-600 H100小时 (~$1000-1500)，合理且可控。如果AtP validation pilot失败需要full patching fallback，可能增至800-1000小时。
+  - 数据需求: 基于公开benchmark (GSM8K, GSM-Infinite, MATH, MMLU)，无数据采集瓶颈。需要为每个condition生成200-500个paired samples（boosted/flipped），这是计算密集但技术上直接的。
+  - 人工介入: 中等。AtP pipeline可自动化，但假设精化、机制综合、padding-type实验解释需要人工判断。Gemma Scope 2 SAE的feature interpretation也需要significant human effort。
+  - 训练需求: 无模型训练——纯推理+分析。需要训练linear probes（轻量，Phase 5）。
+  - 新 Benchmark: 否。使用现有benchmark。GSM-Infinite需要difficulty calibration但不需要新构建。
+  - 预估周期: 13-17周（偏乐观）。实际执行中Phase 2-3可能遇到技术障碍（AtP长上下文保真度问题），可能拉长到18-20周。写作2-4周。总计15-24周。
+```
+
+Sources:
+- [Meaningless Tokens, Meaningful Gains (Shi et al.)](https://arxiv.org/abs/2510.01032)
+- [Context Length Alone Hurts LLM Performance (Du et al., EMNLP Findings 2025)](https://aclanthology.org/2025.findings-emnlp.1264/)
+- [DySCO: Dynamic Attention-Scaling Decoding](https://arxiv.org/abs/2602.22175)
+- [Fragile Reasoning: Mechanistic Analysis of LLM Sensitivity](https://arxiv.org/pdf/2604.01639)
+- [Stream: Scaling up Mechanistic Interpretability to Long Context](https://openreview.net/forum?id=5HGu0ZqBl9)
+- [Long-Context Generalization with Sparse Attention / ASEntmax (ICLR 2026)](https://arxiv.org/abs/2506.16640)
+- [Gemma Scope 2 (Google DeepMind)](https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/)
+- [Attribution Patching Outperforms Automated Circuit Discovery (Syed et al.)](https://arxiv.org/pdf/2310.10348)
+- [Disentangling Recall and Reasoning in Transformer Models](https://arxiv.org/html/2510.03366v1)
+- [CircuitProbe: Predicting Reasoning Circuits](https://arxiv.org/pdf/2604.00716)
+- [Context Rot Overview (Morph)](https://www.morphllm.com/context-rot)
+- [Context Rot Analysis (Understanding AI)](https://www.understandingai.org/p/context-rot-the-emerging-challenge)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4953d9ba-9150-4b02-a7a4-aff32f153dfd",
+  "isSidechain": false,
+  "requestId": "req_011CbDJFyjXwnDkiEpJybXR2",
+  "type": "assistant",
+  "uuid": "d21b8e9c-db61-4f9c-8f36-5ad4e7a6a3cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7o8eDbdsMKdXHNqUThf6Z",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1168,
+      "cache_read_input_tokens": 30564,
+      "output_tokens": 6781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6781,
+          "cache_read_input_tokens": 30564,
+          "cache_creation_input_tokens": 1168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation R…",
+  "leafUuid": "d21b8e9c-db61-4f9c-8f36-5ad4e7a6a3cc",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal circuit analysis of transformer padding effects",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Circuit Dissection of Scale-Dependent Reasoning Degradation in Transformers: From Beneficial Activation R…",
+  "leafUuid": "d21b8e9c-db61-4f9c-8f36-5ad4e7a6a3cc",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal circuit analysis of transformer padding effects",
+  "sessionId": "b185c230-5e7d-4250-a564-47ba42f4d5c5"
+}
+```
+
+---

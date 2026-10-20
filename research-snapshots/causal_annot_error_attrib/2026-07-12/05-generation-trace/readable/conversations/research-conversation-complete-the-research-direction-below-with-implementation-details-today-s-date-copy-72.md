@@ -1,0 +1,4123 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-16 (UTC).** Only recommend ve
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 66
+- **Recorded user turns:** 5
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-3/3bbc0513-910d-48c4-b837-41d3d647b4d5.jsonl`
+- **Structured JSON:** [`7cf9a4b2c17666482226.json`](../../sessions/7c/7cf9a4b2c17666482226.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T06:07:06.388Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:07:06.388Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Sharpness-Aware Selective Generation via Perturbation Probing\",\n  \"core_problem\": \"Standard uncertainty signals (entropy, probe scores) fail on 'stubborn hallucinations'—high-confidence factual errors where the model is consistently wrong. These errors resist sampling-based detection because the model's probability landscape is peaked (low entropy) around the incorrect answer.\",\n  \"opportunity\": \"EPGS (May 2026, arxiv 2605.00939) demonstrated that stubborn hallucinations sit in sharp minima while robust facts occupy flat minima, and that perturbing input embeddings + measuring gradient magnitude spike detects these errors. But EPGS is post-hoc (requires gradient computation). The gap is a practical decoding-time variant: perturb the residual stream with small random noise at each generation step and measure output logit sensitivity (a finite-difference sharpness proxy). When sensitivity exceeds a learned threshold, trigger abstention or switch to a conservative decoding mode. This makes sharpness detection tractable at inference time. Feasibility: 2-3 forward passes per suspicious token (identified by a cheap pre-filter) stays within 200 H100-hour budget for evaluation.\",\n  \"landscape\": \"EPGS (2605.00939, May 2026) achieves SOTA on stubborn hallucination detection by measuring gradient magnitude after embedding perturbation, significantly outperforming entropy and representation baselines. But it is detection-only and requires backpropagation. NGS (OpenReview 2025) uses next-token gradient sensitivity as a first-order signal but targets general hallucinations, not specifically stubborn ones, and still requires gradients. Entropy-based methods (semantic entropy, HEAD entropy) fundamentally cannot detect stubborn hallucinations because these have LOW entropy by definition. Probe-based methods (Simple Factuality Probes, CLAP) achieve 0.89+ AUC on general hallucinations but show degraded performance on high-confidence errors. No existing method makes sharpness-based detection tractable for inference-time intervention.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-16; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T06:07:06.394Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:07:06.394Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T06:07:06.426Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Sharpness-Aware Selective Generation via Perturbation Probing",
+  "core_problem": "Standard uncertainty signals (entropy, probe scores) fail on 'stubborn hallucinations'—high-confidence factual errors where the model is consistently wrong. These errors resist sampling-based detection because the model's probability landscape is peaked (low entropy) around the incorrect answer.",
+  "opportunity": "EPGS (May 2026, arxiv 2605.00939) demonstrated that stubborn hallucinations sit in sharp minima while robust facts occupy flat minima, and that perturbing input embeddings + measuring gradient magnitude spike detects these errors. But EPGS is post-hoc (requires gradient computation). The gap is a practical decoding-time variant: perturb the residual stream with small random noise at each generation step and measure output logit sensitivity (a finite-difference sharpness proxy). When sensitivity exceeds a learned threshold, trigger abstention or switch to a conservative decoding mode. This makes sharpness detection tractable at inference time. Feasibility: 2-3 forward passes per suspicious token (identified by a cheap pre-filter) stays within 200 H100-hour budget for evaluation.",
+  "landscape": "EPGS (2605.00939, May 2026) achieves SOTA on stubborn hallucination detection by measuring gradient magnitude after embedding perturbation, significantly outperforming entropy and representation baselines. But it is detection-only and requires backpropagation. NGS (OpenReview 2025) uses next-token gradient sensitivity as a first-order signal but targets general hallucinations, not specifically stubborn ones, and still requires gradients. Entropy-based methods (semantic entropy, HEAD entropy) fundamentally cannot detect stubborn hallucinations because these have LOW entropy by definition. Probe-based methods (Simple Factuality Probes, CLAP) achieve 0.89+ AUC on general hallucinations but show degraded performance on high-confidence errors. No existing method makes sharpness-based detection tractable for inference-time intervention."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-16; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+  "type": "user",
+  "uuid": "a47678bb-e2fe-471d-a935-c94a941db8fe",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T06:07:06.425Z_
+
+```json
+{
+  "parentUuid": "a47678bb-e2fe-471d-a935-c94a941db8fe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "65301867-9049-4fa6-95de-9a7acb2535de",
+  "timestamp": "2026-05-16T06:07:06.425Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T06:07:06.425Z_
+
+```json
+{
+  "parentUuid": "65301867-9049-4fa6-95de-9a7acb2535de",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7aeee16f-28a4-41d1-a59f-04673822f34e",
+  "timestamp": "2026-05-16T06:07:06.425Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-16T06:07:10.443Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for concurrent work on sharpness-aware hallucination detection
+2. Verify the cited papers are real
+3. Find current top-performing open-source LLMs
+4. Check for similar implementations on GitHub
+5. Verify datasets are accessible
+6. Search for venue deadlines
+7. Put together a comprehensive research plan
+
+Let me start by doing multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7aeee16f-28a4-41d1-a59f-04673822f34e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kFSP8mWmmfQvaxkupx",
+  "type": "assistant",
+  "uuid": "bd63e1d8-3e11-4020-8f17-3b184f4a201c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TF2o8afaCwqe8npqzSz3Fs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 569,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 569,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T06:07:13.634Z_
+
+I'll research concurrent work, verify references, check model frontiers, and find venue deadlines. Let me run several searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd63e1d8-3e11-4020-8f17-3b184f4a201c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kFSP8mWmmfQvaxkupx",
+  "type": "assistant",
+  "uuid": "4dfd6ebc-149a-46ae-8598-7dbd48053420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TF2o8afaCwqe8npqzSz3Fs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 569,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 569,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T06:07:18.593Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01AeT7491gFD9NHYBYVemshM`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search concurrent work on sharpness hallucination detection",
+  "prompt": "I need to check for concurrent/competing work on a specific research idea: using sharpness of the loss landscape (or perturbation-based sensitivity of residual streams/embeddings) to detect \"stubborn hallucinations\" in LLMs at inference time.\n\nUse WebSearch to perform these searches and report back ALL relevant findings with paper titles, venues, dates, and key differences:\n\n1. Search \"sharpness aware hallucination detection LLM 2026\"\n2. Search \"perturbation probing residual stream hallucination 2026\"\n3. Search \"inference time sharpness estimation language model 2026\"\n4. Search \"stubborn hallucination detection 2026\"\n5. Search arXiv for \"embedding perturbation hallucination detection 2025 2026\"\n6. Search \"EPGS hallucination gradient perturbation 2026\"\n7. Search \"logit sensitivity perturbation hallucination abstention 2026\"\n\nFor each search, report what you found. If you find highly similar concurrent work, describe it in detail. Also check OpenReview for ICML 2026, NeurIPS 2026, ICLR 2026 submissions related to sharpness-based hallucination detection.\n\nReport everything you find — I need to know if someone is already doing this exact thing.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4dfd6ebc-149a-46ae-8598-7dbd48053420",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kFSP8mWmmfQvaxkupx",
+  "type": "assistant",
+  "uuid": "8f2f7ce9-f3ef-4371-8d7e-6c701d7318a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TF2o8afaCwqe8npqzSz3Fs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 569,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 569,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T06:07:18.603Z_
+
+<details><summary>↩ Tool result · `toolu_01AeT7491gFD9NHYBYVemshM`</summary>
+
+```text
+Async agent launched successfully.
+agentId: aebbb5073ac9d69e3 (internal ID - do not mention to user. Use SendMessage with to: 'aebbb5073ac9d69e3' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aebbb5073ac9d69e3.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f2f7ce9-f3ef-4371-8d7e-6c701d7318a3",
+  "isSidechain": false,
+  "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+  "type": "user",
+  "uuid": "d5fbbb01-19ec-4888-a8a6-44eaf6bb2f17",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "aebbb5073ac9d69e3",
+    "description": "Search concurrent work on sharpness hallucination detection",
+    "prompt": "I need to check for concurrent/competing work on a specific research idea: using sharpness of the loss landscape (or perturbation-based sensitivity of residual streams/embeddings) to detect \"stubborn hallucinations\" in LLMs at inference time.\n\nUse WebSearch to perform these searches and report back ALL relevant findings with paper titles, venues, dates, and key differences:\n\n1. Search \"sharpness aware hallucination detection LLM 2026\"\n2. Search \"perturbation probing residual stream hallucination 2026\"\n3. Search \"inference time sharpness estimation language model 2026\"\n4. Search \"stubborn hallucination detection 2026\"\n5. Search arXiv for \"embedding perturbation hallucination detection 2025 2026\"\n6. Search \"EPGS hallucination gradient perturbation 2026\"\n7. Search \"logit sensitivity perturbation hallucination abstention 2026\"\n\nFor each search, report what you found. If you find highly similar concurrent work, describe it in detail. Also check OpenReview for ICML 2026, NeurIPS 2026, ICLR 2026 submissions related to sharpness-based hallucination detection.\n\nReport everything you find — I need to know if someone is already doing this exact thing.",
+    "outputFile": "/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aebbb5073ac9d69e3.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "8f2f7ce9-f3ef-4371-8d7e-6c701d7318a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T06:07:28.360Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Eu5uFbtA8zXzrkgt4tyV4A`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify references and find EPGS paper",
+  "prompt": "I need to verify several paper references are real and find their correct venues/years. Use WebSearch for each:\n\n1. \"EPGS\" paper on stubborn hallucination detection via gradient perturbation - search \"EPGS stubborn hallucination arxiv 2605.00939\" and \"EPGS embedding perturbation gradient sharpness hallucination\"\n2. \"NGS next-token gradient sensitivity hallucination\" - search for this on OpenReview and arXiv\n3. \"Semantic entropy hallucination detection\" - find the actual paper title, venue, year\n4. \"HEAD entropy hallucination\" - find actual paper\n5. \"Simple Factuality Probes hallucination\" - find actual paper\n6. \"CLAP hallucination detection probe\" - find actual paper\n7. Search \"sharpness aware minimization SAM language model\" to find the SAM paper reference\n\nFor each paper, report: exact title, authors (first author at minimum), venue and year, and whether you could verify it exists. If you cannot find a paper, say so clearly.\n\nAlso search for \"flat minima sharp minima generalization neural network\" to find the foundational work on sharpness and generalization (Hochreiter & Schmidhuber, or Keskar et al.).",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5fbbb01-19ec-4888-a8a6-44eaf6bb2f17",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kGLBqkpHN6i2wZo7tn",
+  "type": "assistant",
+  "uuid": "e5ac7b2e-40c1-4fde-b255-a8f39976000e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aBE9i6vHQthadGAhv15Da",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 809,
+      "cache_read_input_tokens": 19136,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 19136,
+          "cache_creation_input_tokens": 809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T06:07:28.369Z_
+
+<details><summary>↩ Tool result · `toolu_01Eu5uFbtA8zXzrkgt4tyV4A`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a874ac30870d84e57 (internal ID - do not mention to user. Use SendMessage with to: 'a874ac30870d84e57' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a874ac30870d84e57.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5ac7b2e-40c1-4fde-b255-a8f39976000e",
+  "isSidechain": false,
+  "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+  "type": "user",
+  "uuid": "fb346a93-ddd1-427e-95df-0689c696c2ec",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a874ac30870d84e57",
+    "description": "Verify references and find EPGS paper",
+    "prompt": "I need to verify several paper references are real and find their correct venues/years. Use WebSearch for each:\n\n1. \"EPGS\" paper on stubborn hallucination detection via gradient perturbation - search \"EPGS stubborn hallucination arxiv 2605.00939\" and \"EPGS embedding perturbation gradient sharpness hallucination\"\n2. \"NGS next-token gradient sensitivity hallucination\" - search for this on OpenReview and arXiv\n3. \"Semantic entropy hallucination detection\" - find the actual paper title, venue, year\n4. \"HEAD entropy hallucination\" - find actual paper\n5. \"Simple Factuality Probes hallucination\" - find actual paper\n6. \"CLAP hallucination detection probe\" - find actual paper\n7. Search \"sharpness aware minimization SAM language model\" to find the SAM paper reference\n\nFor each paper, report: exact title, authors (first author at minimum), venue and year, and whether you could verify it exists. If you cannot find a paper, say so clearly.\n\nAlso search for \"flat minima sharp minima generalization neural network\" to find the foundational work on sharpness and generalization (Hochreiter & Schmidhuber, or Keskar et al.).",
+    "outputFile": "/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a874ac30870d84e57.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "e5ac7b2e-40c1-4fde-b255-a8f39976000e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Sharpness-Awa…",
+  "leafUuid": "fb346a93-ddd1-427e-95df-0689c696c2ec",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T06:07:38.112Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Qvg6cTBRGAyC4qRJCw6yx4`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Find top open-source LLMs and venue deadlines",
+  "prompt": "I need two things:\n\n## Part 1: Current top open-source LLMs (May 2026)\nUse WebSearch to find the current best open-source language models as of May 2026:\n1. Search \"best open source LLM 2026\"\n2. Search \"SOTA open source language model 2026 benchmark\"\n3. Search \"top open source LLM leaderboard 2026\"\n4. Search \"Llama 4 open source 2026\" and \"Qwen 3 2026\" and \"Mistral 2026\"\n\nReport the top 3-5 open-source LLMs with their parameter counts and key benchmarks. I need models that would be good for hallucination detection research (need access to internal representations/logits).\n\n## Part 2: AI/ML Conference Deadlines after May 16, 2026\nUse WebSearch to find submission deadlines for these venues:\n1. Search \"NeurIPS 2026 submission deadline\"\n2. Search \"ICLR 2027 submission deadline\"\n3. Search \"AAAI 2027 submission deadline\"\n4. Search \"EMNLP 2026 submission deadline\"\n5. Search \"ACL 2027 submission deadline\"  \n6. Search \"ICML 2026 submission deadline\" (check if already passed)\n7. Search \"COLM 2026 submission deadline\"\n8. Search \"NAACL 2026 submission deadline\"\n9. Search \"AISTATS 2027 submission deadline\"\n\nFor each venue, report the exact deadline date if found. I only care about deadlines AFTER May 16, 2026. Mark any that have already passed.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb346a93-ddd1-427e-95df-0689c696c2ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kH3yJQGt7mdTrX5a2f",
+  "type": "assistant",
+  "uuid": "f106a3fe-8786-4646-ae2a-ffbf5a46e629",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rk8Tm7jKAxRZLdSHc2Djui",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 643,
+      "cache_read_input_tokens": 19945,
+      "output_tokens": 519,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 519,
+          "cache_read_input_tokens": 19945,
+          "cache_creation_input_tokens": 643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T06:07:38.118Z_
+
+<details><summary>↩ Tool result · `toolu_01Qvg6cTBRGAyC4qRJCw6yx4`</summary>
+
+```text
+Async agent launched successfully.
+agentId: aa08c9b57fa74e1ee (internal ID - do not mention to user. Use SendMessage with to: 'aa08c9b57fa74e1ee' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aa08c9b57fa74e1ee.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f106a3fe-8786-4646-ae2a-ffbf5a46e629",
+  "isSidechain": false,
+  "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+  "type": "user",
+  "uuid": "4d3a758e-8cc6-406d-b9ae-6a25fa9e4d8a",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "aa08c9b57fa74e1ee",
+    "description": "Find top open-source LLMs and venue deadlines",
+    "prompt": "I need two things:\n\n## Part 1: Current top open-source LLMs (May 2026)\nUse WebSearch to find the current best open-source language models as of May 2026:\n1. Search \"best open source LLM 2026\"\n2. Search \"SOTA open source language model 2026 benchmark\"\n3. Search \"top open source LLM leaderboard 2026\"\n4. Search \"Llama 4 open source 2026\" and \"Qwen 3 2026\" and \"Mistral 2026\"\n\nReport the top 3-5 open-source LLMs with their parameter counts and key benchmarks. I need models that would be good for hallucination detection research (need access to internal representations/logits).\n\n## Part 2: AI/ML Conference Deadlines after May 16, 2026\nUse WebSearch to find submission deadlines for these venues:\n1. Search \"NeurIPS 2026 submission deadline\"\n2. Search \"ICLR 2027 submission deadline\"\n3. Search \"AAAI 2027 submission deadline\"\n4. Search \"EMNLP 2026 submission deadline\"\n5. Search \"ACL 2027 submission deadline\"  \n6. Search \"ICML 2026 submission deadline\" (check if already passed)\n7. Search \"COLM 2026 submission deadline\"\n8. Search \"NAACL 2026 submission deadline\"\n9. Search \"AISTATS 2027 submission deadline\"\n\nFor each venue, report the exact deadline date if found. I only care about deadlines AFTER May 16, 2026. Mark any that have already passed.",
+    "outputFile": "/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aa08c9b57fa74e1ee.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "f106a3fe-8786-4646-ae2a-ffbf5a46e629",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T06:07:48.950Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01TjAPUBJbd5YKZcLRv6RFqe`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check GitHub implementations and datasets",
+  "prompt": "I need to check for existing implementations and datasets related to a research idea about detecting \"stubborn hallucinations\" in LLMs using perturbation-based sharpness estimation.\n\n## Part 1: GitHub implementations\nUse WebSearch to search for:\n1. \"github.com residual stream perturbation LLM\"\n2. \"github.com sharpness estimation inference language model\"\n3. \"github.com hallucination detection perturbation\"\n4. \"github.com EPGS hallucination\" \n5. \"github.com logit sensitivity noise perturbation transformer\"\n6. \"github TransformerLens activation patching perturbation\"\n7. \"github baukit nnsight residual stream\"\n\nReport any repositories that provide building blocks for: (a) perturbing residual streams in transformers, (b) measuring logit sensitivity, (c) hallucination detection benchmarks.\n\n## Part 2: Datasets\nUse WebSearch to search for:\n1. \"TruthfulQA dataset huggingface\"\n2. \"HaluEval dataset hallucination benchmark\"\n3. \"FELM factual error language model dataset\"\n4. \"FActScore biography hallucination dataset\"\n5. \"stubborn hallucination dataset benchmark 2025 2026\"\n6. Search \"paperswithcode hallucination detection datasets\" \n\nReport which datasets are publicly available and which might be useful for evaluating stubborn hallucination detection specifically.\n\n## Part 3: Baseline numbers\nSearch for:\n1. \"hallucination detection AUROC benchmark 2025 2026\"\n2. \"EPGS hallucination detection performance metrics\"\n3. \"semantic entropy hallucination detection AUROC\"\n\nReport any concrete numbers (AUROC, F1, etc.) that would serve as baselines to beat.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d3a758e-8cc6-406d-b9ae-6a25fa9e4d8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kHme4u6TGUHwFhc9wi",
+  "type": "assistant",
+  "uuid": "6d220faf-4590-4d9a-8b61-00d47905a12e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDL8jUwXy5VvsELXsWzupS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 20588,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 20588,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T06:07:48.960Z_
+
+<details><summary>↩ Tool result · `toolu_01TjAPUBJbd5YKZcLRv6RFqe`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a673e285be8a2ca66 (internal ID - do not mention to user. Use SendMessage with to: 'a673e285be8a2ca66' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a673e285be8a2ca66.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d220faf-4590-4d9a-8b61-00d47905a12e",
+  "isSidechain": false,
+  "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+  "type": "user",
+  "uuid": "f0c7df3d-1f93-4340-9ea1-24b93236d85a",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a673e285be8a2ca66",
+    "description": "Check GitHub implementations and datasets",
+    "prompt": "I need to check for existing implementations and datasets related to a research idea about detecting \"stubborn hallucinations\" in LLMs using perturbation-based sharpness estimation.\n\n## Part 1: GitHub implementations\nUse WebSearch to search for:\n1. \"github.com residual stream perturbation LLM\"\n2. \"github.com sharpness estimation inference language model\"\n3. \"github.com hallucination detection perturbation\"\n4. \"github.com EPGS hallucination\" \n5. \"github.com logit sensitivity noise perturbation transformer\"\n6. \"github TransformerLens activation patching perturbation\"\n7. \"github baukit nnsight residual stream\"\n\nReport any repositories that provide building blocks for: (a) perturbing residual streams in transformers, (b) measuring logit sensitivity, (c) hallucination detection benchmarks.\n\n## Part 2: Datasets\nUse WebSearch to search for:\n1. \"TruthfulQA dataset huggingface\"\n2. \"HaluEval dataset hallucination benchmark\"\n3. \"FELM factual error language model dataset\"\n4. \"FActScore biography hallucination dataset\"\n5. \"stubborn hallucination dataset benchmark 2025 2026\"\n6. Search \"paperswithcode hallucination detection datasets\" \n\nReport which datasets are publicly available and which might be useful for evaluating stubborn hallucination detection specifically.\n\n## Part 3: Baseline numbers\nSearch for:\n1. \"hallucination detection AUROC benchmark 2025 2026\"\n2. \"EPGS hallucination detection performance metrics\"\n3. \"semantic entropy hallucination detection AUROC\"\n\nReport any concrete numbers (AUROC, F1, etc.) that would serve as baselines to beat.",
+    "outputFile": "/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a673e285be8a2ca66.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "6d220faf-4590-4d9a-8b61-00d47905a12e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-16T06:07:53.509Z_
+
+I've launched 4 parallel research agents to investigate:
+1. Concurrent/competing work on sharpness-based hallucination detection
+2. Reference verification (EPGS, NGS, semantic entropy, etc.)
+3. Current top open-source LLMs and conference deadlines after May 16, 2026
+4. GitHub implementations, datasets, and baseline numbers
+
+I'll synthesize all findings into the final JSON once they report back.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0c7df3d-1f93-4340-9ea1-24b93236d85a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kJa3LdfbUiPNcPxR7N",
+  "type": "assistant",
+  "uuid": "e725d832-f6cf-41bc-97c6-b64837cf7ec5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgKmygUwuDGg3nGL3iD57z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 21345,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 21345,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T06:07:53.734Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015HurPMPHdMRpjAHVh5Lzng`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e725d832-f6cf-41bc-97c6-b64837cf7ec5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kJa3LdfbUiPNcPxR7N",
+  "type": "assistant",
+  "uuid": "2f49a67c-2181-4d62-a6ef-05aaafb02d0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgKmygUwuDGg3nGL3iD57z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 21345,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 21345,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T06:07:53.737Z_
+
+<details><summary>↩ Tool result · `toolu_015HurPMPHdMRpjAHVh5Lzng`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f49a67c-2181-4d62-a6ef-05aaafb02d0e",
+  "isSidechain": false,
+  "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+  "type": "user",
+  "uuid": "5d0724fd-229d-4562-baf2-0563a983a398",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "2f49a67c-2181-4d62-a6ef-05aaafb02d0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-16T06:07:56.752Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me wait for the background agents to complete. I'll be notified when they finish.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d0724fd-229d-4562-baf2-0563a983a398",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kJvjY582ztFk5iurjv",
+  "type": "assistant",
+  "uuid": "ff30eb61-b54a-4e28-98e7-4c9c6d319353",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6FhZMecKF8E8a91wxDbxS",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 22114,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 22114,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-16T06:07:57.416Z_
+
+Good, the WebSearch tool is loaded. I'm waiting for my 4 research agents to complete their investigations. I'll compile everything once they report back.
+
+[Waiting for background agents to complete...]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff30eb61-b54a-4e28-98e7-4c9c6d319353",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kJvjY582ztFk5iurjv",
+  "type": "assistant",
+  "uuid": "71fabbda-c015-41d6-84d3-f62ab18b3e97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6FhZMecKF8E8a91wxDbxS",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 22114,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 22114,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24 · 2026-05-16T06:09:18.367Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:09:18.367Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "content": "&lt;task-notification>\n&lt;task-id>aa08c9b57fa74e1ee&lt;/task-id>\n&lt;tool-use-id>toolu_01Qvg6cTBRGAyC4qRJCw6yx4&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aa08c9b57fa74e1ee.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Find top open-source LLMs and venue deadlines\" completed&lt;/summary>\n&lt;result>Here is the full report.\n\n---\n\n## Part 1: Top Open-Source LLMs (May 2026) for Hallucination Detection Research\n\nThe following are the top open-source/open-weight models as of May 2026. All provide access to model weights on Hugging Face, meaning you can access internal representations, hidden states, and logits -- critical for hallucination detection research.\n\n### 1. DeepSeek-V4-Pro\n- **Parameters:** 1.6T total, 49B active (MoE)\n- **Context:** 1M tokens\n- **License:** MIT\n- **Key benchmarks:** 80.6% SWE-Bench Verified; 3,206 Codeforces; leads open-source models in Math/STEM/Coding, rivals top closed-source models; #1 on BenchLM open-weight leaderboard (score 87)\n- **Notes:** Strongest overall open-weight model. Also has a lighter variant, DeepSeek-V4-Flash (284B total, 13B active), good for cheaper experimentation.\n\n### 2. Kimi K2.6\n- **Parameters:** 1T total, 32B active (MoE, 384 experts, 8 selected + 1 shared)\n- **Context:** 128K tokens\n- **License:** Modified MIT\n- **Key benchmarks:** 58.6% SWE-Bench Pro (ties GPT-5.5); 54.0% Humanity's Last Exam (with tools); HumanEval 99.0; MMLU 92.0; MATH-500 98.0; GPQA Diamond 87.6\n- **Notes:** Top coding model. Open-weight, multimodal, agentic. From Moonshot AI.\n\n### 3. GLM-5 / GLM-5.1\n- **Parameters:** 744B total (~40-44B active, MoE with 256 experts, 8 activated)\n- **Context:** 200K tokens\n- **License:** MIT\n- **Key benchmarks:** Highest Chatbot Arena rating among open models (1451); #1 on Artificial Analysis Intelligence Index among open-weight models; strong on reasoning, coding, and agentic tasks\n- **Notes:** From Zhipu AI. Notably trained entirely on Huawei Ascend chips. Pre-trained on 28.5T tokens.\n\n### 4. Qwen3.6-27B (and Qwen3.5-397B-A17B)\n- **Parameters:** Qwen3.6-27B is a 27B dense model; Qwen3.5 is 397B total / 17B active (MoE)\n- **Context:** 1M+ tokens\n- **License:** Apache 2.0\n- **Key benchmarks:** Qwen3.6-27B outperforms Qwen3.5-397B on several agentic coding benchmarks despite being much smaller; state-of-the-art multilingual reasoning\n- **Notes:** Best licensing (Apache 2.0). Best overall family for local deployment. Qwen3.6-27B is very efficient for research on a single node. Alibaba continues rapid iteration (Qwen3.5 -&gt; 3.6 within months).\n\n### 5. Llama 4 Maverick\n- **Parameters:** 400B total, 17B active (MoE, 128 experts)\n- **Context:** Up to 1M tokens (Scout variant has 10M)\n- **License:** Meta custom license (700M MAU clause)\n- **Key benchmarks:** Competitive but no longer top-of-leaderboard; natively multimodal (text + image + video); trained on 30T+ tokens in 200+ languages\n- **Notes:** Largest ecosystem and community support. Meta license is more restrictive than MIT/Apache 2.0 alternatives. Behemoth variant (288B active, 2T total) still in preview.\n\n**Recommendation for hallucination detection research:** DeepSeek-V4-Flash (284B/13B active, MIT license) or Qwen3.6-27B (27B dense, Apache 2.0) are likely the most practical choices -- small enough to run on a multi-GPU academic setup while still being frontier-quality, with permissive licenses and full weight access for probing internal representations. For maximum capability when compute is not a constraint, DeepSeek-V4-Pro or Kimi K2.6 are the strongest.\n\n---\n\n## Part 2: AI/ML Conference Deadlines After May 16, 2026\n\n| Venue | Deadline | Status |\n|-------|----------|--------|\n| **ICML 2026** | Jan 28, 2026 (full paper) | ALREADY PASSED |\n| **COLM 2026** | Mar 31, 2026 (full paper) | ALREADY PASSED |\n| **NeurIPS 2026** | May 6, 2026 (full paper) | ALREADY PASSED (10 days ago) |\n| **EMNLP 2026** | **May 25, 2026** (ARR submission) | UPCOMING -- 9 days away |\n| **AAAI 2027** | **~Jul 25, 2026** (abstract) / **~Aug 1, 2026** (full paper) | UPCOMING (expected, not yet officially confirmed) |\n| **EACL 2027** | **Aug 3, 2026** (ARR submission for long/short papers) | UPCOMING |\n| **ICLR 2027** | ~Sep-Oct 2026 (estimated based on historical pattern) | NOT YET ANNOUNCED -- conference scheduled Feb 2027 in Helsinki |\n| **AISTATS 2027** | ~Sep-Oct 2026 (estimated based on AISTATS 2026 pattern of Sep 25 abstract / Oct 2 paper) | NOT YET ANNOUNCED |\n| **ACL 2027** | Not yet announced | NOT YET ANNOUNCED |\n| **NAACL 2026** | Likely already passed (conference is May 19-23, 2026 in Detroit) | LIKELY ALREADY PASSED |\n\n### Actionable deadlines (after May 16, 2026):\n\n1. **EMNLP 2026 -- May 25, 2026** (ARR submission, 23:59 AoE). Conference: Oct 24-29, Budapest, Hungary. This is your most imminent opportunity.\n2. **AAAI 2027 -- ~Jul 25 / Aug 1, 2026** (abstract/paper). Conference: Feb 16-23, 2027, Montreal, Canada. Expected but not officially posted yet.\n3. **EACL 2027 -- Aug 3, 2026** (ARR submission). Conference: Mar 9-14, 2027, Athens, Greece.\n4. **ICLR 2027 -- ~Sep/Oct 2026** (estimated). Conference: Feb 2027, Helsinki, Finland.\n5. **AISTATS 2027 -- ~Sep/Oct 2026** (estimated). Likely early 2027 conference.\n\n---\n\nSources:\n- [Best Open-Source LLMs in 2026 - BentoML](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)\n- [Best Open Source LLM Leaderboard 2026 - Onyx](https://onyx.app/open-llm-leaderboard)\n- [Open LLM Leaderboard 2026 - LLM Stats](https://llm-stats.com/leaderboards/open-llm-leaderboard)\n- [Best Open Source LLM 2026 - BenchLM](https://benchlm.ai/blog/posts/best-open-source-llm)\n- [Open Source LLM Leaderboard 2026 - Vellum](https://www.vellum.ai/open-llm-leaderboard)\n- [DeepSeek V4 Pro - Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)\n- [DeepSeek V4 Specs and Benchmarks - NxCode](https://www.nxcode.io/resources/news/deepseek-v4-release-specs-benchmarks-2026)\n- [Kimi K2.6 Tech Blog](https://www.kimi.com/blog/kimi-k2-6)\n- [Kimi K2.6 - Hugging Face](https://huggingface.co/moonshotai/Kimi-K2.6)\n- [GLM-5 Complete Guide - NxCode](https://www.nxcode.io/resources/news/glm-5-open-source-744b-model-complete-guide-2026)\n- [GLM-5 - Hugging Face](https://huggingface.co/zai-org/GLM-5)\n- [Qwen3.6 - GitHub](https://github.com/QwenLM/Qwen3.6)\n- [Qwen3.6-27B - MarkTechPost](https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/)\n- [Llama 4 - Meta AI Blog](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)\n- [Open-Source LLM Landscape 2026 - CoderSera](https://codersera.com/blog/open-source-llms-landscape-2026/)\n- [Best Open-Source LLM in May 2026 - CoderSera](https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/)\n- [Mistral 3 - Mistral AI](https://mistral.ai/news/mistral-3)\n- [Mistral AI Models 2026 Guide - Serenities AI](https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide)\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [ICML 2026 Dates and Deadlines](https://icml.cc/Conferences/2026/Dates)\n- [EMNLP 2026](https://2026.emnlp.org/)\n- [EMNLP 2026 - AI Conference Deadlines](https://mlciv.com/ai-deadlines/conference/?id=emnlp26)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [AAAI 2027 - AI Deadlines](http://aideadlines.org/conference/?id=aaai27)\n- [AAAI 2027 - OpenReview](https://openreview.net/group?id=AAAI.org%2F2027%2FConference)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [ACL Rolling Review Dates and Venues](http://aclrollingreview.org/dates)\n- [ACL 2026](https://2026.aclweb.org/)\n- [EACL 2027](https://2027.eacl.org/)\n- [AI &amp; ML Conference Deadlines 2026-2027 - Bibby](https://trybibby.com/conference-deadlines)\n- [AI Conference Deadlines - mlciv](https://mlciv.com/ai-deadlines/)&lt;/result>\n&lt;usage>&lt;total_tokens>29250&lt;/total_tokens>&lt;tool_uses>24&lt;/tool_uses>&lt;duration_ms>100252&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25 · 2026-05-16T06:09:18.429Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:09:18.429Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+## Round 2
+
+7 recorded events
+
+### User
+
+_source line 26 · 2026-05-16T06:09:18.443Z_
+
+&lt;task-notification>
+&lt;task-id>aa08c9b57fa74e1ee&lt;/task-id>
+&lt;tool-use-id>toolu_01Qvg6cTBRGAyC4qRJCw6yx4&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aa08c9b57fa74e1ee.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Find top open-source LLMs and venue deadlines" completed&lt;/summary>
+&lt;result>Here is the full report.
+
+---
+
+## Part 1: Top Open-Source LLMs (May 2026) for Hallucination Detection Research
+
+The following are the top open-source/open-weight models as of May 2026. All provide access to model weights on Hugging Face, meaning you can access internal representations, hidden states, and logits -- critical for hallucination detection research.
+
+### 1. DeepSeek-V4-Pro
+- **Parameters:** 1.6T total, 49B active (MoE)
+- **Context:** 1M tokens
+- **License:** MIT
+- **Key benchmarks:** 80.6% SWE-Bench Verified; 3,206 Codeforces; leads open-source models in Math/STEM/Coding, rivals top closed-source models; #1 on BenchLM open-weight leaderboard (score 87)
+- **Notes:** Strongest overall open-weight model. Also has a lighter variant, DeepSeek-V4-Flash (284B total, 13B active), good for cheaper experimentation.
+
+### 2. Kimi K2.6
+- **Parameters:** 1T total, 32B active (MoE, 384 experts, 8 selected + 1 shared)
+- **Context:** 128K tokens
+- **License:** Modified MIT
+- **Key benchmarks:** 58.6% SWE-Bench Pro (ties GPT-5.5); 54.0% Humanity's Last Exam (with tools); HumanEval 99.0; MMLU 92.0; MATH-500 98.0; GPQA Diamond 87.6
+- **Notes:** Top coding model. Open-weight, multimodal, agentic. From Moonshot AI.
+
+### 3. GLM-5 / GLM-5.1
+- **Parameters:** 744B total (~40-44B active, MoE with 256 experts, 8 activated)
+- **Context:** 200K tokens
+- **License:** MIT
+- **Key benchmarks:** Highest Chatbot Arena rating among open models (1451); #1 on Artificial Analysis Intelligence Index among open-weight models; strong on reasoning, coding, and agentic tasks
+- **Notes:** From Zhipu AI. Notably trained entirely on Huawei Ascend chips. Pre-trained on 28.5T tokens.
+
+### 4. Qwen3.6-27B (and Qwen3.5-397B-A17B)
+- **Parameters:** Qwen3.6-27B is a 27B dense model; Qwen3.5 is 397B total / 17B active (MoE)
+- **Context:** 1M+ tokens
+- **License:** Apache 2.0
+- **Key benchmarks:** Qwen3.6-27B outperforms Qwen3.5-397B on several agentic coding benchmarks despite being much smaller; state-of-the-art multilingual reasoning
+- **Notes:** Best licensing (Apache 2.0). Best overall family for local deployment. Qwen3.6-27B is very efficient for research on a single node. Alibaba continues rapid iteration (Qwen3.5 -&gt; 3.6 within months).
+
+### 5. Llama 4 Maverick
+- **Parameters:** 400B total, 17B active (MoE, 128 experts)
+- **Context:** Up to 1M tokens (Scout variant has 10M)
+- **License:** Meta custom license (700M MAU clause)
+- **Key benchmarks:** Competitive but no longer top-of-leaderboard; natively multimodal (text + image + video); trained on 30T+ tokens in 200+ languages
+- **Notes:** Largest ecosystem and community support. Meta license is more restrictive than MIT/Apache 2.0 alternatives. Behemoth variant (288B active, 2T total) still in preview.
+
+**Recommendation for hallucination detection research:** DeepSeek-V4-Flash (284B/13B active, MIT license) or Qwen3.6-27B (27B dense, Apache 2.0) are likely the most practical choices -- small enough to run on a multi-GPU academic setup while still being frontier-quality, with permissive licenses and full weight access for probing internal representations. For maximum capability when compute is not a constraint, DeepSeek-V4-Pro or Kimi K2.6 are the strongest.
+
+---
+
+## Part 2: AI/ML Conference Deadlines After May 16, 2026
+
+| Venue | Deadline | Status |
+|-------|----------|--------|
+| **ICML 2026** | Jan 28, 2026 (full paper) | ALREADY PASSED |
+| **COLM 2026** | Mar 31, 2026 (full paper) | ALREADY PASSED |
+| **NeurIPS 2026** | May 6, 2026 (full paper) | ALREADY PASSED (10 days ago) |
+| **EMNLP 2026** | **May 25, 2026** (ARR submission) | UPCOMING -- 9 days away |
+| **AAAI 2027** | **~Jul 25, 2026** (abstract) / **~Aug 1, 2026** (full paper) | UPCOMING (expected, not yet officially confirmed) |
+| **EACL 2027** | **Aug 3, 2026** (ARR submission for long/short papers) | UPCOMING |
+| **ICLR 2027** | ~Sep-Oct 2026 (estimated based on historical pattern) | NOT YET ANNOUNCED -- conference scheduled Feb 2027 in Helsinki |
+| **AISTATS 2027** | ~Sep-Oct 2026 (estimated based on AISTATS 2026 pattern of Sep 25 abstract / Oct 2 paper) | NOT YET ANNOUNCED |
+| **ACL 2027** | Not yet announced | NOT YET ANNOUNCED |
+| **NAACL 2026** | Likely already passed (conference is May 19-23, 2026 in Detroit) | LIKELY ALREADY PASSED |
+
+### Actionable deadlines (after May 16, 2026):
+
+1. **EMNLP 2026 -- May 25, 2026** (ARR submission, 23:59 AoE). Conference: Oct 24-29, Budapest, Hungary. This is your most imminent opportunity.
+2. **AAAI 2027 -- ~Jul 25 / Aug 1, 2026** (abstract/paper). Conference: Feb 16-23, 2027, Montreal, Canada. Expected but not officially posted yet.
+3. **EACL 2027 -- Aug 3, 2026** (ARR submission). Conference: Mar 9-14, 2027, Athens, Greece.
+4. **ICLR 2027 -- ~Sep/Oct 2026** (estimated). Conference: Feb 2027, Helsinki, Finland.
+5. **AISTATS 2027 -- ~Sep/Oct 2026** (estimated). Likely early 2027 conference.
+
+---
+
+Sources:
+- [Best Open-Source LLMs in 2026 - BentoML](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)
+- [Best Open Source LLM Leaderboard 2026 - Onyx](https://onyx.app/open-llm-leaderboard)
+- [Open LLM Leaderboard 2026 - LLM Stats](https://llm-stats.com/leaderboards/open-llm-leaderboard)
+- [Best Open Source LLM 2026 - BenchLM](https://benchlm.ai/blog/posts/best-open-source-llm)
+- [Open Source LLM Leaderboard 2026 - Vellum](https://www.vellum.ai/open-llm-leaderboard)
+- [DeepSeek V4 Pro - Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
+- [DeepSeek V4 Specs and Benchmarks - NxCode](https://www.nxcode.io/resources/news/deepseek-v4-release-specs-benchmarks-2026)
+- [Kimi K2.6 Tech Blog](https://www.kimi.com/blog/kimi-k2-6)
+- [Kimi K2.6 - Hugging Face](https://huggingface.co/moonshotai/Kimi-K2.6)
+- [GLM-5 Complete Guide - NxCode](https://www.nxcode.io/resources/news/glm-5-open-source-744b-model-complete-guide-2026)
+- [GLM-5 - Hugging Face](https://huggingface.co/zai-org/GLM-5)
+- [Qwen3.6 - GitHub](https://github.com/QwenLM/Qwen3.6)
+- [Qwen3.6-27B - MarkTechPost](https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/)
+- [Llama 4 - Meta AI Blog](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)
+- [Open-Source LLM Landscape 2026 - CoderSera](https://codersera.com/blog/open-source-llms-landscape-2026/)
+- [Best Open-Source LLM in May 2026 - CoderSera](https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/)
+- [Mistral 3 - Mistral AI](https://mistral.ai/news/mistral-3)
+- [Mistral AI Models 2026 Guide - Serenities AI](https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide)
+- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)
+- [ICML 2026 Dates and Deadlines](https://icml.cc/Conferences/2026/Dates)
+- [EMNLP 2026](https://2026.emnlp.org/)
+- [EMNLP 2026 - AI Conference Deadlines](https://mlciv.com/ai-deadlines/conference/?id=emnlp26)
+- [COLM 2026 Key Dates](https://colmweb.org/dates.html)
+- [AAAI 2027 - AI Deadlines](http://aideadlines.org/conference/?id=aaai27)
+- [AAAI 2027 - OpenReview](https://openreview.net/group?id=AAAI.org%2F2027%2FConference)
+- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)
+- [ACL Rolling Review Dates and Venues](http://aclrollingreview.org/dates)
+- [ACL 2026](https://2026.aclweb.org/)
+- [EACL 2027](https://2027.eacl.org/)
+- [AI &amp; ML Conference Deadlines 2026-2027 - Bibby](https://trybibby.com/conference-deadlines)
+- [AI Conference Deadlines - mlciv](https://mlciv.com/ai-deadlines/)&lt;/result>
+&lt;usage>&lt;total_tokens>29250&lt;/total_tokens>&lt;tool_uses>24&lt;/tool_uses>&lt;duration_ms>100252&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71fabbda-c015-41d6-84d3-f62ab18b3e97",
+  "isSidechain": false,
+  "promptId": "4a08558a-cd2d-4665-a2c8-0b4c9fe98c15",
+  "type": "user",
+  "uuid": "82714db4-cf56-4b1f-a866-ebdfbfaaa639",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Sharpness-Awa…",
+  "leafUuid": "82714db4-cf56-4b1f-a866-ebdfbfaaa639",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-16T06:09:28.498Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the first agent (LLMs and venue deadlines) has completed. Let me note the key findings:
+
+**Top Open-Source LLMs (May 2026):**
+1. DeepSeek-V4-Pro (1.6T/49B active, MoE, MIT)
+2. Kimi K2.6 (1T/32B active, MoE, Modified MIT)
+3. GLM-5 (744B/~40B active, MoE, MIT)
+4. Qwen3.6-27B (27B dense, Apache 2.0) - practical for research
+5. Llama 4 Maverick (400B/17B active, MoE)
+
+
+For practical research purposes, Qwen3.6-27B and DeepSeek-V4-Flash are the most viable options. Looking at the venue landscape, EMNLP 2026 is already too close, but AAAI 2027, EACL 2027, and the fall conferences (ICLR and AISTATS 2027) all offer reasonable timelines. Now I'm waiting to hear back from the other three agents.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82714db4-cf56-4b1f-a866-ebdfbfaaa639",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kRAThcNZM6c1gLQVR3",
+  "type": "assistant",
+  "uuid": "7137bd13-5010-4e82-9777-088ee6617a08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5qRcwj9h5HVKymk3sEAfg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3232,
+      "cache_read_input_tokens": 22815,
+      "output_tokens": 470,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 470,
+          "cache_read_input_tokens": 22815,
+          "cache_creation_input_tokens": 3232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-16T06:09:28.663Z_
+
+First agent back with LLM and venue data. Key findings noted:
+- **Best practical models**: Qwen3.6-27B (27B dense, Apache 2.0), DeepSeek-V4-Flash (13B active, MIT)
+- **Venues**: EMNLP 2026 (May 25 - too tight), AAAI 2027 (~Aug 1), ICLR 2027 (~Sep/Oct)
+
+Waiting for the remaining 3 agents...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7137bd13-5010-4e82-9777-088ee6617a08",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kRAThcNZM6c1gLQVR3",
+  "type": "assistant",
+  "uuid": "db55fdc9-7183-4e41-b17d-1dd9e7a3ea89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5qRcwj9h5HVKymk3sEAfg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3232,
+      "cache_read_input_tokens": 22815,
+      "output_tokens": 470,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 470,
+          "cache_read_input_tokens": 22815,
+          "cache_creation_input_tokens": 3232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-16T06:09:58.442Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:09:58.442Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "content": "&lt;task-notification>\n&lt;task-id>a874ac30870d84e57&lt;/task-id>\n&lt;tool-use-id>toolu_01Eu5uFbtA8zXzrkgt4tyV4A&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a874ac30870d84e57.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify references and find EPGS paper\" completed&lt;/summary>\n&lt;result>I now have enough information to compile a comprehensive report. Here is what I found for each paper:\n\n---\n\n## Paper Verification Results\n\n### 1. EPGS -- \"From Flat Facts to Sharp Hallucinations\"\n\n- **Verified:** YES\n- **Exact Title:** \"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\"\n- **Authors:** Yee Zhing Liew, Andrew Huey Ping Tan, Anwar P.P Abdul Majeed\n- **Venue/Year:** arXiv preprint, submitted May 1, 2026 (arXiv:2605.00939). No conference venue identified yet -- it is a very recent preprint.\n- **Notes:** Proposes Embedding-Perturbed Gradient Sensitivity (EPGS). The paper exists and is findable on arXiv.\n\n### 2. NGS -- \"Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection\"\n\n- **Verified:** YES\n- **Exact Title:** \"Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection\"\n- **Authors:** Could not retrieve the full author list from web search alone -- the OpenReview page does not expose author names in snippets. The OpenReview forum ID is `yzWGQNTbHQ`.\n- **Venue/Year:** Posted on OpenReview October 8, 2025. Appears to be under review at ICLR 2026 (the OpenReview page is in the ICLR 2026 submission pool, but I could not confirm acceptance from search results alone).\n- **Notes:** Introduces the NGS statistic and NGS-HD detection method.\n\n### 3. Semantic Entropy\n\n- **Verified:** YES\n- **Exact Title:** \"Detecting hallucinations in large language models using semantic entropy\"\n- **Authors:** Sebastian Farquhar, Jannik Kossen, Lorenz Kuhn, Yarin Gal (all University of Oxford / OATML)\n- **Venue/Year:** **Nature**, Volume 630, pages 625--630, June 2024.\n- **Notes:** This is the foundational semantic entropy paper. There is also a follow-up: \"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs\" (Kossen et al., arXiv:2406.15927, presented at NeurIPS/OpenReview).\n\n### 4. HEAD (Head Entropy)\n\n- **Verified:** YES\n- **Exact Title:** \"Attention Head Entropy of LLMs Predicts Answer Correctness\"\n- **Authors:** Sophie Ostmeier, Brian Axelrod, Maya Varma, Asad Aali, Yabin Zhang, Magdalini Paschali, Sanmi Koyejo, Curtis Langlotz, Akshay Chaudhari\n- **Venue/Year:** arXiv preprint, submitted February 14, 2026 (arXiv:2602.13699). Also on OpenReview (forum ID `HJ6EGxNpgb`). Conference acceptance status unclear from search results -- it may be under review.\n- **Notes:** Proposes \"Head Entropy\" using sparse logistic regression on per-head 2-Renyi entropies of attention heads. Note: the acronym \"HEAD\" per se does not appear to be used by the authors; they call it \"Head Entropy.\"\n\n### 5. Simple Factuality Probes\n\n- **Verified:** YES\n- **Exact Title:** \"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation\"\n- **Authors:** Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, Yarin Gal\n- **Venue/Year:** **Findings of EMNLP 2025**, Suzhou, China, pages 16209--16226.\n- **Notes:** Published and available via ACL Anthology at `2025.findings-emnlp.880`.\n\n### 6. CLAP -- Cross-Layer Attention Probing\n\n- **Verified:** YES\n- **Exact Title:** \"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection\"\n- **Authors:** Malavika Suresh, Rahaf Aljundi, Ikechukwu Nkisi-Orji, Nirmalie Wiratunga\n- **Venue/Year:** arXiv preprint, submitted September 4, 2025 (arXiv:2509.09700). I could not confirm a formal conference publication from search results; it may still be a preprint or under review.\n- **Notes:** Proposes CLAP, which uses attention over the full residual stream (cross-layer) as input to a lightweight hallucination classifier.\n\n### 7. SAM -- Sharpness-Aware Minimization\n\n- **Verified:** YES -- two relevant papers found:\n\n**Original SAM paper:**\n- **Exact Title:** \"Sharpness-Aware Minimization for Efficiently Improving Generalization\"\n- **Authors:** Pierre Foret, Ariel Kleiner, Hossein Mobahi, Behnam Neyshabur\n- **Venue/Year:** **ICLR 2021** (Spotlight). arXiv:2010.01412.\n\n**SAM applied to language models:**\n- **Exact Title:** \"Sharpness-Aware Minimization Improves Language Model Generalization\"\n- **Authors:** Dara Bahri, Hossein Mobahi, Yi Tay\n- **Venue/Year:** **ACL 2022** (Proceedings of the 60th Annual Meeting of the ACL). Also available via ACL Anthology at `2022.acl-long.508`.\n\n### 8. Foundational Work on Flat/Sharp Minima and Generalization\n\n- **Verified:** YES -- two key foundational papers:\n\n**Hochreiter &amp; Schmidhuber (1997):**\n- **Exact Title:** \"Flat Minima\"\n- **Authors:** Sepp Hochreiter, Jurgen Schmidhuber\n- **Venue/Year:** **Neural Computation**, Volume 9, Issue 1, pages 1--42, 1997 (MIT Press).\n- **Notes:** Argues via MDL/Bayesian reasoning that flat minima correspond to simple networks and low overfitting.\n\n**Keskar et al. (2017):**\n- **Exact Title:** \"On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima\"\n- **Authors:** Nitish Shirish Keskar, Dheevatsa Mudigere, Jorge Nocedal, Mikhail Smelyanskiy, Ping Tak Peter Tang\n- **Venue/Year:** **ICLR 2017**. arXiv:1609.04836.\n- **Notes:** Provides numerical evidence that large-batch training converges to sharp minimizers which generalize poorly, while small-batch methods find flat minimizers.\n\n---\n\n## Summary of Verification Status\n\n| # | Paper | Exists? | Venue Confirmed? |\n|---|-------|---------|-----------------|\n| 1 | EPGS (Liew et al.) | YES | arXiv preprint only (May 2026) |\n| 2 | NGS (OpenReview) | YES | OpenReview Oct 2025; possibly ICLR 2026 submission |\n| 3 | Semantic Entropy (Farquhar et al.) | YES | Nature 2024 |\n| 4 | Head Entropy (Ostmeier et al.) | YES | arXiv preprint (Feb 2026); venue TBD |\n| 5 | Simple Factuality Probes (Han et al.) | YES | Findings of EMNLP 2025 |\n| 6 | CLAP (Suresh et al.) | YES | arXiv preprint (Sep 2025); venue unclear |\n| 7 | SAM (Foret et al.) | YES | ICLR 2021 |\n| 8a | Flat Minima (Hochreiter &amp; Schmidhuber) | YES | Neural Computation 1997 |\n| 8b | Sharp Minima (Keskar et al.) | YES | ICLR 2017 |\n\nAll papers are real and verifiable. The EPGS paper (#1) is very new (May 2026 preprint), so it has no conference venue yet. The NGS paper (#2) and Head Entropy paper (#4) appear to be under review. I could not retrieve the NGS author list from web search snippets alone -- visiting the OpenReview page directly would be needed.\n\nSources:\n- [EPGS - arXiv:2605.00939](https://arxiv.org/abs/2605.00939)\n- [NGS - OpenReview](https://openreview.net/forum?id=yzWGQNTbHQ)\n- [Semantic Entropy - Nature](https://www.nature.com/articles/s41586-024-07421-0)\n- [Head Entropy - arXiv:2602.13699](https://arxiv.org/abs/2602.13699)\n- [Simple Factuality Probes - ACL Anthology](https://aclanthology.org/2025.findings-emnlp.880/)\n- [CLAP - arXiv:2509.09700](https://arxiv.org/abs/2509.09700)\n- [SAM - arXiv:2010.01412](https://arxiv.org/abs/2010.01412)\n- [SAM for LMs - ACL Anthology](https://aclanthology.org/2022.acl-long.508/)\n- [Flat Minima - MIT Press](https://direct.mit.edu/neco/article/9/1/1/6027/Flat-Minima)\n- [Sharp Minima / Large-Batch - arXiv:1609.04836](https://arxiv.org/abs/1609.04836)\n- [Semantic Entropy Probes - arXiv:2406.15927](https://arxiv.org/abs/2406.15927)&lt;/result>\n&lt;usage>&lt;total_tokens>32651&lt;/total_tokens>&lt;tool_uses>26&lt;/tool_uses>&lt;duration_ms>150079&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-16T06:09:58.442Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:09:58.442Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+## Round 3
+
+5 recorded events
+
+### User
+
+_source line 33 · 2026-05-16T06:09:58.449Z_
+
+&lt;task-notification>
+&lt;task-id>a874ac30870d84e57&lt;/task-id>
+&lt;tool-use-id>toolu_01Eu5uFbtA8zXzrkgt4tyV4A&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a874ac30870d84e57.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Verify references and find EPGS paper" completed&lt;/summary>
+&lt;result>I now have enough information to compile a comprehensive report. Here is what I found for each paper:
+
+---
+
+## Paper Verification Results
+
+### 1. EPGS -- "From Flat Facts to Sharp Hallucinations"
+
+- **Verified:** YES
+- **Exact Title:** "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity"
+- **Authors:** Yee Zhing Liew, Andrew Huey Ping Tan, Anwar P.P Abdul Majeed
+- **Venue/Year:** arXiv preprint, submitted May 1, 2026 (arXiv:2605.00939). No conference venue identified yet -- it is a very recent preprint.
+- **Notes:** Proposes Embedding-Perturbed Gradient Sensitivity (EPGS). The paper exists and is findable on arXiv.
+
+### 2. NGS -- "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection"
+
+- **Verified:** YES
+- **Exact Title:** "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection"
+- **Authors:** Could not retrieve the full author list from web search alone -- the OpenReview page does not expose author names in snippets. The OpenReview forum ID is `yzWGQNTbHQ`.
+- **Venue/Year:** Posted on OpenReview October 8, 2025. Appears to be under review at ICLR 2026 (the OpenReview page is in the ICLR 2026 submission pool, but I could not confirm acceptance from search results alone).
+- **Notes:** Introduces the NGS statistic and NGS-HD detection method.
+
+### 3. Semantic Entropy
+
+- **Verified:** YES
+- **Exact Title:** "Detecting hallucinations in large language models using semantic entropy"
+- **Authors:** Sebastian Farquhar, Jannik Kossen, Lorenz Kuhn, Yarin Gal (all University of Oxford / OATML)
+- **Venue/Year:** **Nature**, Volume 630, pages 625--630, June 2024.
+- **Notes:** This is the foundational semantic entropy paper. There is also a follow-up: "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs" (Kossen et al., arXiv:2406.15927, presented at NeurIPS/OpenReview).
+
+### 4. HEAD (Head Entropy)
+
+- **Verified:** YES
+- **Exact Title:** "Attention Head Entropy of LLMs Predicts Answer Correctness"
+- **Authors:** Sophie Ostmeier, Brian Axelrod, Maya Varma, Asad Aali, Yabin Zhang, Magdalini Paschali, Sanmi Koyejo, Curtis Langlotz, Akshay Chaudhari
+- **Venue/Year:** arXiv preprint, submitted February 14, 2026 (arXiv:2602.13699). Also on OpenReview (forum ID `HJ6EGxNpgb`). Conference acceptance status unclear from search results -- it may be under review.
+- **Notes:** Proposes "Head Entropy" using sparse logistic regression on per-head 2-Renyi entropies of attention heads. Note: the acronym "HEAD" per se does not appear to be used by the authors; they call it "Head Entropy."
+
+### 5. Simple Factuality Probes
+
+- **Verified:** YES
+- **Exact Title:** "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation"
+- **Authors:** Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, Yarin Gal
+- **Venue/Year:** **Findings of EMNLP 2025**, Suzhou, China, pages 16209--16226.
+- **Notes:** Published and available via ACL Anthology at `2025.findings-emnlp.880`.
+
+### 6. CLAP -- Cross-Layer Attention Probing
+
+- **Verified:** YES
+- **Exact Title:** "Cross-Layer Attention Probing for Fine-Grained Hallucination Detection"
+- **Authors:** Malavika Suresh, Rahaf Aljundi, Ikechukwu Nkisi-Orji, Nirmalie Wiratunga
+- **Venue/Year:** arXiv preprint, submitted September 4, 2025 (arXiv:2509.09700). I could not confirm a formal conference publication from search results; it may still be a preprint or under review.
+- **Notes:** Proposes CLAP, which uses attention over the full residual stream (cross-layer) as input to a lightweight hallucination classifier.
+
+### 7. SAM -- Sharpness-Aware Minimization
+
+- **Verified:** YES -- two relevant papers found:
+
+**Original SAM paper:**
+- **Exact Title:** "Sharpness-Aware Minimization for Efficiently Improving Generalization"
+- **Authors:** Pierre Foret, Ariel Kleiner, Hossein Mobahi, Behnam Neyshabur
+- **Venue/Year:** **ICLR 2021** (Spotlight). arXiv:2010.01412.
+
+**SAM applied to language models:**
+- **Exact Title:** "Sharpness-Aware Minimization Improves Language Model Generalization"
+- **Authors:** Dara Bahri, Hossein Mobahi, Yi Tay
+- **Venue/Year:** **ACL 2022** (Proceedings of the 60th Annual Meeting of the ACL). Also available via ACL Anthology at `2022.acl-long.508`.
+
+### 8. Foundational Work on Flat/Sharp Minima and Generalization
+
+- **Verified:** YES -- two key foundational papers:
+
+**Hochreiter &amp; Schmidhuber (1997):**
+- **Exact Title:** "Flat Minima"
+- **Authors:** Sepp Hochreiter, Jurgen Schmidhuber
+- **Venue/Year:** **Neural Computation**, Volume 9, Issue 1, pages 1--42, 1997 (MIT Press).
+- **Notes:** Argues via MDL/Bayesian reasoning that flat minima correspond to simple networks and low overfitting.
+
+**Keskar et al. (2017):**
+- **Exact Title:** "On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima"
+- **Authors:** Nitish Shirish Keskar, Dheevatsa Mudigere, Jorge Nocedal, Mikhail Smelyanskiy, Ping Tak Peter Tang
+- **Venue/Year:** **ICLR 2017**. arXiv:1609.04836.
+- **Notes:** Provides numerical evidence that large-batch training converges to sharp minimizers which generalize poorly, while small-batch methods find flat minimizers.
+
+---
+
+## Summary of Verification Status
+
+| # | Paper | Exists? | Venue Confirmed? |
+|---|-------|---------|-----------------|
+| 1 | EPGS (Liew et al.) | YES | arXiv preprint only (May 2026) |
+| 2 | NGS (OpenReview) | YES | OpenReview Oct 2025; possibly ICLR 2026 submission |
+| 3 | Semantic Entropy (Farquhar et al.) | YES | Nature 2024 |
+| 4 | Head Entropy (Ostmeier et al.) | YES | arXiv preprint (Feb 2026); venue TBD |
+| 5 | Simple Factuality Probes (Han et al.) | YES | Findings of EMNLP 2025 |
+| 6 | CLAP (Suresh et al.) | YES | arXiv preprint (Sep 2025); venue unclear |
+| 7 | SAM (Foret et al.) | YES | ICLR 2021 |
+| 8a | Flat Minima (Hochreiter &amp; Schmidhuber) | YES | Neural Computation 1997 |
+| 8b | Sharp Minima (Keskar et al.) | YES | ICLR 2017 |
+
+All papers are real and verifiable. The EPGS paper (#1) is very new (May 2026 preprint), so it has no conference venue yet. The NGS paper (#2) and Head Entropy paper (#4) appear to be under review. I could not retrieve the NGS author list from web search snippets alone -- visiting the OpenReview page directly would be needed.
+
+Sources:
+- [EPGS - arXiv:2605.00939](https://arxiv.org/abs/2605.00939)
+- [NGS - OpenReview](https://openreview.net/forum?id=yzWGQNTbHQ)
+- [Semantic Entropy - Nature](https://www.nature.com/articles/s41586-024-07421-0)
+- [Head Entropy - arXiv:2602.13699](https://arxiv.org/abs/2602.13699)
+- [Simple Factuality Probes - ACL Anthology](https://aclanthology.org/2025.findings-emnlp.880/)
+- [CLAP - arXiv:2509.09700](https://arxiv.org/abs/2509.09700)
+- [SAM - arXiv:2010.01412](https://arxiv.org/abs/2010.01412)
+- [SAM for LMs - ACL Anthology](https://aclanthology.org/2022.acl-long.508/)
+- [Flat Minima - MIT Press](https://direct.mit.edu/neco/article/9/1/1/6027/Flat-Minima)
+- [Sharp Minima / Large-Batch - arXiv:1609.04836](https://arxiv.org/abs/1609.04836)
+- [Semantic Entropy Probes - arXiv:2406.15927](https://arxiv.org/abs/2406.15927)&lt;/result>
+&lt;usage>&lt;total_tokens>32651&lt;/total_tokens>&lt;tool_uses>26&lt;/tool_uses>&lt;duration_ms>150079&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db55fdc9-7183-4e41-b17d-1dd9e7a3ea89",
+  "isSidechain": false,
+  "promptId": "1c90b838-5111-457e-975b-1936c6b7f3ba",
+  "type": "user",
+  "uuid": "96c6b2d8-0a33-4087-9284-c773b9c28410",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-16T06:10:04.450Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Second agent back with reference verification. All papers verified. Key findings:
+
+1. EPGS - "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity" - arXiv May 2026
+2. NGS - "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection" - OpenReview 2025
+3. Semantic Entropy - "Detecting hallucinations in large language models using semantic entropy" - Nature 2024
+4. Head Entropy - "Attention Head Entropy of LLMs Predicts Answer Correctness" - arXiv Feb 2026
+
+
+5. Simple Factuality Probes - "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation" - Findings of EMNLP 2025
+6. CLAP - "Cross-Layer Attention Probing for Fine-Grained Hallucination Detection" - arXiv Sep 2025
+7. SAM - "Sharpness-Aware Minimization for Efficiently Improving Generalization" - ICLR 2021
+
+Got three more papers verified from the second agent. Now waiting on the remaining agents to complete their reference checks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96c6b2d8-0a33-4087-9284-c773b9c28410",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kU7WgNgHArGUSV9idv",
+  "type": "assistant",
+  "uuid": "1804b040-fda2-4a95-8b73-83bff1dd9953",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DyxmnajSJwLPjkAA28Qy66",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3166,
+      "cache_read_input_tokens": 26047,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3166,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 26047,
+          "cache_creation_input_tokens": 3166,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3166
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-16T06:10:04.456Z_
+
+Second agent back — all references verified as real. Waiting for the concurrent work search and GitHub/datasets agents.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1804b040-fda2-4a95-8b73-83bff1dd9953",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kU7WgNgHArGUSV9idv",
+  "type": "assistant",
+  "uuid": "b61513fc-5e89-425f-b307-9ae9ae22d8b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DyxmnajSJwLPjkAA28Qy66",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3166,
+      "cache_read_input_tokens": 26047,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3166,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 26047,
+          "cache_creation_input_tokens": 3166,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3166
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-16T06:10:48.000Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:10:48.000Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "content": "&lt;task-notification>\n&lt;task-id>a673e285be8a2ca66&lt;/task-id>\n&lt;tool-use-id>toolu_01TjAPUBJbd5YKZcLRv6RFqe&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a673e285be8a2ca66.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Check GitHub implementations and datasets\" completed&lt;/summary>\n&lt;result>Now I have comprehensive results across all three parts. Here is my full report:\n\n---\n\n## Part 1: GitHub Implementations -- Building Blocks\n\n### (a) Perturbing Residual Streams in Transformers\n\n1. **TransformerLens** ([github.com/TransformerLensOrg/TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)) -- The primary mechanistic interpretability library for GPT-style models. Provides a full hook-based system for intercepting, reading, and patching activations at any layer, including the residual stream. Has a dedicated `patching` module and activation patching demos. This is likely the most mature building block for your perturbation-based approach.\n\n2. **nnsight** ([github.com/ndif-team/nnsight](https://github.com/ndif-team/nnsight)) -- Spiritual successor to baukit (from David Bau's group). Enables intercepting and modifying internals of any PyTorch model, including residual streams. Supports both local execution and remote execution on large models via the NDIF infrastructure.\n\n3. **baukit** ([github.com/davidbau/baukit](https://github.com/davidbau/baukit)) -- David Bau's older toolkit for tracing and editing internal activations in PyTorch networks. Being merged into nnsight, but still functional.\n\n4. **vLLM-Lens** ([github.com/UKGovernmentBEIS/vllm-lens](https://github.com/UKGovernmentBEIS/vllm-lens)) -- A vLLM plugin for extracting residual-stream activations and applying steering vectors during inference. Supports tensor parallelism and pipeline parallelism, making it suitable for large-scale experiments. Directly relevant if you need perturbation at inference time on production-scale models.\n\n5. **path_patching** ([github.com/callummcdougall/path_patching](https://github.com/callummcdougall/path_patching)) -- Implementation of path patching and activation patching, designed to integrate with TransformerLens.\n\n6. **implementing_activation_steering** ([github.com/annahdo/implementing_activation_steering](https://github.com/annahdo/implementing_activation_steering)) -- A collection of different ways to implement accessing and modifying internal model activations for LLMs, including residual stream steering.\n\n### (b) Measuring Logit Sensitivity\n\n1. **EPGS** ([github.com/migpaniag/EPGS](https://github.com/migpaniag/EPGS)) -- **This is the most directly relevant repository.** Implements Embedding-Perturbed Gradient Sensitivity from the paper \"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\" (arXiv:2605.00939). It perturbs input embeddings with Gaussian noise and measures gradient magnitude spikes as a proxy for Hessian sharpness. This is essentially the exact method described in your research idea.\n\n2. **Activation_Decoding** ([github.com/hkust-nlp/Activation_Decoding](https://github.com/hkust-nlp/Activation_Decoding)) -- ICML 2024 paper \"In-Context Sharpness as Alerts.\" Uses an entropy-based metric to quantify \"sharpness\" among in-context hidden states, measuring how sharp vs. flat activations are as a signal for hallucination. Closely related conceptually to your sharpness estimation idea.\n\n3. **SPUQ** ([github.com/intuit-ai-research/SPUQ](https://github.com/intuit-ai-research/SPUQ)) -- Perturbation-Based Uncertainty Quantification for LLMs. Perturbs inputs (prompt and temperature) to get multiple outputs and quantify uncertainty.\n\n4. **logit-explanations** ([github.com/mt-upc/logit-explanations](https://github.com/mt-upc/logit-explanations)) -- Leverages explainability of the Transformer to analyze language generation models using logit-based analysis, outperforming gradient-based and perturbation-based baselines.\n\n5. **llm_activation_classification** ([github.com/amelia-kawasaki/llm_activation_classification](https://github.com/amelia-kawasaki/llm_activation_classification)) -- Scripts for extracting and classifying residual stream activations, from \"Defending LLMs Against Attacks With Residual Stream Activation Analysis.\"\n\n6. **SAM (Sharpness-Aware Minimization)** ([github.com/davda54/sam](https://github.com/davda54/sam)) -- PyTorch implementation of sharpness-aware gradient computation. While this is a training-time method, the sharpness computation code could be adapted for inference-time sharpness estimation.\n\n### (c) Hallucination Detection Benchmarks &amp; Tooling\n\n1. **awesome-hallucination-detection** ([github.com/EdinburghNLP/awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection)) -- Comprehensive curated list of hallucination detection papers and resources.\n\n2. **HaluEval** ([github.com/RUCAIBox/HaluEval](https://github.com/RUCAIBox/HaluEval)) -- Large-scale hallucination evaluation benchmark with 35,000 samples.\n\n3. **SAC3** ([github.com/intuit/sac3](https://github.com/intuit/sac3)) -- Semantic-aware Cross-check Consistency for hallucination detection using question perturbation.\n\n4. **hallucination_probes** ([github.com/obalcells/hallucination_probes](https://github.com/obalcells/hallucination_probes)) -- Real-time detection of hallucinated entities in long-form generation.\n\n5. **hallucination-leaderboard** ([github.com/vectara/hallucination-leaderboard](https://github.com/vectara/hallucination-leaderboard)) -- Vectara's leaderboard comparing LLM hallucination rates during summarization.\n\n6. **HaDes** ([github.com/microsoft/HaDes](https://github.com/microsoft/HaDes)) -- Token-level Reference-free Hallucination Detection dataset built via perturbation of Wikipedia segments.\n\n7. **FActScore** ([github.com/shmsw25/FActScore](https://github.com/shmsw25/FActScore)) -- Fine-grained atomic evaluation of factual precision in long-form text generation (EMNLP 2023).\n\n### Critical Finding for Part 1\n\n**The EPGS paper and repository appear to be a very close (possibly identical) implementation of your research idea.** The paper \"From Flat Facts to Sharp Hallucinations\" (arXiv:2605.00939, May 2026) explicitly: (1) hypothesizes that robust facts reside in flat minima while stubborn hallucinations sit in sharp minima, (2) perturbs input embeddings with Gaussian noise, (3) measures gradient magnitude as a proxy for Hessian sharpness, and (4) uses this to detect \"stubborn hallucinations.\" You should carefully review this paper and repository to assess overlap with your proposed work.\n\n---\n\n## Part 2: Datasets\n\n### Publicly Available and Confirmed on HuggingFace / GitHub\n\n| Dataset | Availability | Size | Relevance to Stubborn Hallucinations |\n|---------|-------------|------|--------------------------------------|\n| **TruthfulQA** | HuggingFace (`truthfulqa/truthful_qa`), GitHub | 817 questions across 38 categories | **High** -- designed to trigger false beliefs/misconceptions, which are a form of stubborn hallucination. Apache 2.0 license. |\n| **HaluEval** | GitHub (`RUCAIBox/HaluEval`) | 35,000 samples (5K general + 30K task-specific) | **Medium-High** -- covers QA, dialogue, and summarization hallucinations, but not specifically \"stubborn\" (high-confidence) ones. |\n| **FELM** | GitHub (`hkust-nlp/felm`) | 847 questions across 5 domains with segment-level annotations | **High** -- NeurIPS 2023. Fine-grained factuality annotations with error types and reference links. Even GPT-4 achieves only 48.3 F1, showing these are challenging cases. |\n| **FActScore** | GitHub (`shmsw25/FActScore`), PyPI | 183 biography prompts with atomic fact annotations | **Medium** -- focused on biography generation; provides fine-grained atomic-fact-level labels (Supported/Not-supported). |\n| **HaDes** | GitHub (`microsoft/HaDes`) | Large-scale, token-level | **Medium** -- created via perturbation of Wikipedia text, annotated by crowd workers. Token-level labels. |\n| **MedHallu** | Available | 10,000 medical QA pairs | **Medium** -- domain-specific (medical), but useful for testing generalization. |\n| **LibreEval 1.0** | Available (Arize AI) | Claimed \"largest open-source RAG hallucination dataset\" | **Medium** -- RAG-specific. |\n\n### Newer Benchmarks (2025-2026)\n\n| Dataset | Notes |\n|---------|-------|\n| **AA-Omniscience** (Nov 2025) | 6,000 questions across 42 topics, 6 domains. Penalizes incorrect answers (not just counting correct ones). |\n| **DefAn** | 20,000+ unique prompts (75K+ total) across 8 domains. |\n| **PHANTOM** | Financial long-context QA hallucination benchmark. |\n| **HalluScan** (May 2026) | Systematic benchmark across 72 configurations (6 detection methods, 4 model families, 3 domains). |\n| **Vectara HHEM Leaderboard v2** | 7,700+ articles spanning law, medicine, finance, education, technology. |\n\n### Specific Relevance for \"Stubborn Hallucination\" Detection\n\nThe **most useful datasets** for evaluating stubborn hallucination detection specifically would be:\n\n1. **TruthfulQA** -- Designed to test questions where models confidently produce wrong answers due to imitative falsehoods. This is essentially the definition of stubborn hallucinations.\n2. **FELM** -- Segment-level factuality annotations make it possible to isolate high-confidence errors.\n3. **The EPGS paper's evaluation datasets** -- The paper uses TriviaQA and SQuAD splits; replicating their exact evaluation setup would allow direct comparison.\n4. **HaluEval** -- Widely used, enabling comparison with many published baselines.\n\nI did **not** find a dataset specifically labeled as a \"stubborn hallucination\" benchmark, other than what is used in the EPGS paper itself.\n\n---\n\n## Part 3: Baseline Numbers\n\n### EPGS (the most directly comparable method)\n- **Llama-2 on SQuAD**: AUROC **0.7373** -- outperforms Semantic Entropy by &gt;15% and Eigenscore by ~14%\n- EPGS achieves the **highest AUROC across all benchmarks** tested in the paper\n- Baselines tested include: LNE (Length-Normalized Entropy), PF (Probability of First token), SE (Semantic Entropy), DSE, ER (EigenRank), ES (EigenScore)\n\n### Semantic Entropy\n- Stable performance between **0.78 and 0.81 AUROC** across LLaMA, Falcon, and Mistral families (7B to 70B parameters) on knowledge-seeking tasks\n- Semantic Reformulation Entropy (SRE), an improved variant, achieves AUROC of **0.887**\n- Adaptive Bayesian Estimation delivers an average AUROC improvement of **12.6%** under the same sampling budget\n\n### Activation Decoding (In-Context Sharpness, ICML 2024)\n- F1 improvements of up to **+4.8** on TriviaQA, **+4.7** on HotpotQA, **+3.7** on Natural Questions compared to greedy decoding\n- High AUROC scores for differentiating correct from hallucinated answers using the in-context sharpness metric\n\n### HalluScan (May 2026)\n- NLI Verification: highest overall AUROC of **0.88**\n- RAV (Retrieval-Augmented Verification): second-highest AUROC of **0.66**\n- Adaptive Detection Routing: achieves **2x cost reduction** with only **0.1% AUROC degradation**\n\n### Shaking to Reveal (SSP, 2025)\n- Improves hallucination detection by **+4.78% AUROC** on TruthfulQA compared to state-of-the-art\n- Tested on LLaMA-3-8B-Instruct and Qwen-2.5-7B-Instruct\n\n### Probe-Based Methods\n- HaloScope: **76.26% AUROC** on TruthfulQA (subspace extracted from TriviaQA)\n- LLaMA-2-chat-7b probe: **76.39% AUROC** on TruthfulQA\n- HSAD (frequency-domain): surpasses previous detectors by **&gt;10 points** on TruthfulQA, TriviaQA, and SciQ\n\n### Summary Table of Key Baselines to Beat\n\n| Method | Dataset | AUROC | Notes |\n|--------|---------|-------|-------|\n| EPGS | Llama-2 SQuAD | 0.737 | Current SOTA for stubborn hallucinations |\n| Semantic Entropy | Various | 0.78-0.81 | Stable across model families |\n| SRE (improved SE) | Various | 0.887 | Best entropy-based variant |\n| NLI Verification | HalluScan | 0.88 | Requires external NLI model |\n| HaloScope | TruthfulQA | 0.763 | Probe-based |\n| SSP (Shaking to Reveal) | TruthfulQA | ~+4.78% over SOTA | Perturbation-based, closest competitor |\n\n---\n\n## Key Takeaway\n\n**The EPGS paper (arXiv:2605.00939, \"From Flat Facts to Sharp Hallucinations,\" May 2026) appears to implement exactly the research idea you described** -- detecting stubborn hallucinations via perturbation-based sharpness estimation of the loss landscape. The repository is at [github.com/migpaniag/EPGS](https://github.com/migpaniag/EPGS). Before proceeding, you should carefully review this paper to determine whether your approach differs meaningfully (e.g., different perturbation targets such as residual streams vs. embeddings, different sharpness proxies, different evaluation protocols) or whether you need to reframe your contribution relative to this existing work.\n\nSources:\n- [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)\n- [nnsight](https://github.com/ndif-team/nnsight)\n- [baukit](https://github.com/davidbau/baukit)\n- [vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens)\n- [EPGS Repository](https://github.com/migpaniag/EPGS)\n- [EPGS Paper - arXiv](https://arxiv.org/abs/2605.00939)\n- [Activation_Decoding (In-Context Sharpness)](https://github.com/hkust-nlp/Activation_Decoding)\n- [SPUQ](https://github.com/intuit-ai-research/SPUQ)\n- [SAC3](https://github.com/intuit/sac3)\n- [awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection)\n- [HaluEval](https://github.com/RUCAIBox/HaluEval)\n- [HaDes](https://github.com/microsoft/HaDes)\n- [hallucination_probes](https://github.com/obalcells/hallucination_probes)\n- [Vectara Hallucination Leaderboard](https://github.com/vectara/hallucination-leaderboard)\n- [FActScore](https://github.com/shmsw25/FActScore)\n- [TruthfulQA on HuggingFace](https://huggingface.co/datasets/truthfulqa/truthful_qa)\n- [TruthfulQA GitHub](https://github.com/sylinrl/TruthfulQA)\n- [FELM](https://github.com/hkust-nlp/felm)\n- [SAM (Sharpness-Aware Minimization)](https://github.com/davda54/sam)\n- [logit-explanations](https://github.com/mt-upc/logit-explanations)\n- [llm_activation_classification](https://github.com/amelia-kawasaki/llm_activation_classification)\n- [Semantic Entropy - Nature](https://www.nature.com/articles/s41586-024-07421-0)\n- [Semantic Entropy Probes](https://arxiv.org/html/2406.15927v1)\n- [HalluScan](https://arxiv.org/abs/2605.02443v1)\n- [Shaking to Reveal](https://arxiv.org/abs/2506.02696)\n- [Re-evaluating Hallucination Detection](https://aclanthology.org/2025.emnlp-main.1761.pdf)\n- [Suprmind Hallucination Benchmarks](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)\n- [path_patching](https://github.com/callummcdougall/path_patching)\n- [implementing_activation_steering](https://github.com/annahdo/implementing_activation_steering)\n- [Awesome-LLM-Interpretability](https://github.com/cooperleong00/Awesome-LLM-Interpretability)\n- [LLM-Transparency-Tool](https://github.com/facebookresearch/llm-transparency-tool)&lt;/result>\n&lt;usage>&lt;total_tokens>33311&lt;/total_tokens>&lt;tool_uses>25&lt;/tool_uses>&lt;duration_ms>179047&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-16T06:10:48.063Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:10:48.063Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+## Round 4
+
+8 recorded events
+
+### User
+
+_source line 38 · 2026-05-16T06:10:48.072Z_
+
+&lt;task-notification>
+&lt;task-id>a673e285be8a2ca66&lt;/task-id>
+&lt;tool-use-id>toolu_01TjAPUBJbd5YKZcLRv6RFqe&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/a673e285be8a2ca66.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Check GitHub implementations and datasets" completed&lt;/summary>
+&lt;result>Now I have comprehensive results across all three parts. Here is my full report:
+
+---
+
+## Part 1: GitHub Implementations -- Building Blocks
+
+### (a) Perturbing Residual Streams in Transformers
+
+1. **TransformerLens** ([github.com/TransformerLensOrg/TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)) -- The primary mechanistic interpretability library for GPT-style models. Provides a full hook-based system for intercepting, reading, and patching activations at any layer, including the residual stream. Has a dedicated `patching` module and activation patching demos. This is likely the most mature building block for your perturbation-based approach.
+
+2. **nnsight** ([github.com/ndif-team/nnsight](https://github.com/ndif-team/nnsight)) -- Spiritual successor to baukit (from David Bau's group). Enables intercepting and modifying internals of any PyTorch model, including residual streams. Supports both local execution and remote execution on large models via the NDIF infrastructure.
+
+3. **baukit** ([github.com/davidbau/baukit](https://github.com/davidbau/baukit)) -- David Bau's older toolkit for tracing and editing internal activations in PyTorch networks. Being merged into nnsight, but still functional.
+
+4. **vLLM-Lens** ([github.com/UKGovernmentBEIS/vllm-lens](https://github.com/UKGovernmentBEIS/vllm-lens)) -- A vLLM plugin for extracting residual-stream activations and applying steering vectors during inference. Supports tensor parallelism and pipeline parallelism, making it suitable for large-scale experiments. Directly relevant if you need perturbation at inference time on production-scale models.
+
+5. **path_patching** ([github.com/callummcdougall/path_patching](https://github.com/callummcdougall/path_patching)) -- Implementation of path patching and activation patching, designed to integrate with TransformerLens.
+
+6. **implementing_activation_steering** ([github.com/annahdo/implementing_activation_steering](https://github.com/annahdo/implementing_activation_steering)) -- A collection of different ways to implement accessing and modifying internal model activations for LLMs, including residual stream steering.
+
+### (b) Measuring Logit Sensitivity
+
+1. **EPGS** ([github.com/migpaniag/EPGS](https://github.com/migpaniag/EPGS)) -- **This is the most directly relevant repository.** Implements Embedding-Perturbed Gradient Sensitivity from the paper "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity" (arXiv:2605.00939). It perturbs input embeddings with Gaussian noise and measures gradient magnitude spikes as a proxy for Hessian sharpness. This is essentially the exact method described in your research idea.
+
+2. **Activation_Decoding** ([github.com/hkust-nlp/Activation_Decoding](https://github.com/hkust-nlp/Activation_Decoding)) -- ICML 2024 paper "In-Context Sharpness as Alerts." Uses an entropy-based metric to quantify "sharpness" among in-context hidden states, measuring how sharp vs. flat activations are as a signal for hallucination. Closely related conceptually to your sharpness estimation idea.
+
+3. **SPUQ** ([github.com/intuit-ai-research/SPUQ](https://github.com/intuit-ai-research/SPUQ)) -- Perturbation-Based Uncertainty Quantification for LLMs. Perturbs inputs (prompt and temperature) to get multiple outputs and quantify uncertainty.
+
+4. **logit-explanations** ([github.com/mt-upc/logit-explanations](https://github.com/mt-upc/logit-explanations)) -- Leverages explainability of the Transformer to analyze language generation models using logit-based analysis, outperforming gradient-based and perturbation-based baselines.
+
+5. **llm_activation_classification** ([github.com/amelia-kawasaki/llm_activation_classification](https://github.com/amelia-kawasaki/llm_activation_classification)) -- Scripts for extracting and classifying residual stream activations, from "Defending LLMs Against Attacks With Residual Stream Activation Analysis."
+
+6. **SAM (Sharpness-Aware Minimization)** ([github.com/davda54/sam](https://github.com/davda54/sam)) -- PyTorch implementation of sharpness-aware gradient computation. While this is a training-time method, the sharpness computation code could be adapted for inference-time sharpness estimation.
+
+### (c) Hallucination Detection Benchmarks &amp; Tooling
+
+1. **awesome-hallucination-detection** ([github.com/EdinburghNLP/awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection)) -- Comprehensive curated list of hallucination detection papers and resources.
+
+2. **HaluEval** ([github.com/RUCAIBox/HaluEval](https://github.com/RUCAIBox/HaluEval)) -- Large-scale hallucination evaluation benchmark with 35,000 samples.
+
+3. **SAC3** ([github.com/intuit/sac3](https://github.com/intuit/sac3)) -- Semantic-aware Cross-check Consistency for hallucination detection using question perturbation.
+
+4. **hallucination_probes** ([github.com/obalcells/hallucination_probes](https://github.com/obalcells/hallucination_probes)) -- Real-time detection of hallucinated entities in long-form generation.
+
+5. **hallucination-leaderboard** ([github.com/vectara/hallucination-leaderboard](https://github.com/vectara/hallucination-leaderboard)) -- Vectara's leaderboard comparing LLM hallucination rates during summarization.
+
+6. **HaDes** ([github.com/microsoft/HaDes](https://github.com/microsoft/HaDes)) -- Token-level Reference-free Hallucination Detection dataset built via perturbation of Wikipedia segments.
+
+7. **FActScore** ([github.com/shmsw25/FActScore](https://github.com/shmsw25/FActScore)) -- Fine-grained atomic evaluation of factual precision in long-form text generation (EMNLP 2023).
+
+### Critical Finding for Part 1
+
+**The EPGS paper and repository appear to be a very close (possibly identical) implementation of your research idea.** The paper "From Flat Facts to Sharp Hallucinations" (arXiv:2605.00939, May 2026) explicitly: (1) hypothesizes that robust facts reside in flat minima while stubborn hallucinations sit in sharp minima, (2) perturbs input embeddings with Gaussian noise, (3) measures gradient magnitude as a proxy for Hessian sharpness, and (4) uses this to detect "stubborn hallucinations." You should carefully review this paper and repository to assess overlap with your proposed work.
+
+---
+
+## Part 2: Datasets
+
+### Publicly Available and Confirmed on HuggingFace / GitHub
+
+| Dataset | Availability | Size | Relevance to Stubborn Hallucinations |
+|---------|-------------|------|--------------------------------------|
+| **TruthfulQA** | HuggingFace (`truthfulqa/truthful_qa`), GitHub | 817 questions across 38 categories | **High** -- designed to trigger false beliefs/misconceptions, which are a form of stubborn hallucination. Apache 2.0 license. |
+| **HaluEval** | GitHub (`RUCAIBox/HaluEval`) | 35,000 samples (5K general + 30K task-specific) | **Medium-High** -- covers QA, dialogue, and summarization hallucinations, but not specifically "stubborn" (high-confidence) ones. |
+| **FELM** | GitHub (`hkust-nlp/felm`) | 847 questions across 5 domains with segment-level annotations | **High** -- NeurIPS 2023. Fine-grained factuality annotations with error types and reference links. Even GPT-4 achieves only 48.3 F1, showing these are challenging cases. |
+| **FActScore** | GitHub (`shmsw25/FActScore`), PyPI | 183 biography prompts with atomic fact annotations | **Medium** -- focused on biography generation; provides fine-grained atomic-fact-level labels (Supported/Not-supported). |
+| **HaDes** | GitHub (`microsoft/HaDes`) | Large-scale, token-level | **Medium** -- created via perturbation of Wikipedia text, annotated by crowd workers. Token-level labels. |
+| **MedHallu** | Available | 10,000 medical QA pairs | **Medium** -- domain-specific (medical), but useful for testing generalization. |
+| **LibreEval 1.0** | Available (Arize AI) | Claimed "largest open-source RAG hallucination dataset" | **Medium** -- RAG-specific. |
+
+### Newer Benchmarks (2025-2026)
+
+| Dataset | Notes |
+|---------|-------|
+| **AA-Omniscience** (Nov 2025) | 6,000 questions across 42 topics, 6 domains. Penalizes incorrect answers (not just counting correct ones). |
+| **DefAn** | 20,000+ unique prompts (75K+ total) across 8 domains. |
+| **PHANTOM** | Financial long-context QA hallucination benchmark. |
+| **HalluScan** (May 2026) | Systematic benchmark across 72 configurations (6 detection methods, 4 model families, 3 domains). |
+| **Vectara HHEM Leaderboard v2** | 7,700+ articles spanning law, medicine, finance, education, technology. |
+
+### Specific Relevance for "Stubborn Hallucination" Detection
+
+The **most useful datasets** for evaluating stubborn hallucination detection specifically would be:
+
+1. **TruthfulQA** -- Designed to test questions where models confidently produce wrong answers due to imitative falsehoods. This is essentially the definition of stubborn hallucinations.
+2. **FELM** -- Segment-level factuality annotations make it possible to isolate high-confidence errors.
+3. **The EPGS paper's evaluation datasets** -- The paper uses TriviaQA and SQuAD splits; replicating their exact evaluation setup would allow direct comparison.
+4. **HaluEval** -- Widely used, enabling comparison with many published baselines.
+
+I did **not** find a dataset specifically labeled as a "stubborn hallucination" benchmark, other than what is used in the EPGS paper itself.
+
+---
+
+## Part 3: Baseline Numbers
+
+### EPGS (the most directly comparable method)
+- **Llama-2 on SQuAD**: AUROC **0.7373** -- outperforms Semantic Entropy by &gt;15% and Eigenscore by ~14%
+- EPGS achieves the **highest AUROC across all benchmarks** tested in the paper
+- Baselines tested include: LNE (Length-Normalized Entropy), PF (Probability of First token), SE (Semantic Entropy), DSE, ER (EigenRank), ES (EigenScore)
+
+### Semantic Entropy
+- Stable performance between **0.78 and 0.81 AUROC** across LLaMA, Falcon, and Mistral families (7B to 70B parameters) on knowledge-seeking tasks
+- Semantic Reformulation Entropy (SRE), an improved variant, achieves AUROC of **0.887**
+- Adaptive Bayesian Estimation delivers an average AUROC improvement of **12.6%** under the same sampling budget
+
+### Activation Decoding (In-Context Sharpness, ICML 2024)
+- F1 improvements of up to **+4.8** on TriviaQA, **+4.7** on HotpotQA, **+3.7** on Natural Questions compared to greedy decoding
+- High AUROC scores for differentiating correct from hallucinated answers using the in-context sharpness metric
+
+### HalluScan (May 2026)
+- NLI Verification: highest overall AUROC of **0.88**
+- RAV (Retrieval-Augmented Verification): second-highest AUROC of **0.66**
+- Adaptive Detection Routing: achieves **2x cost reduction** with only **0.1% AUROC degradation**
+
+### Shaking to Reveal (SSP, 2025)
+- Improves hallucination detection by **+4.78% AUROC** on TruthfulQA compared to state-of-the-art
+- Tested on LLaMA-3-8B-Instruct and Qwen-2.5-7B-Instruct
+
+### Probe-Based Methods
+- HaloScope: **76.26% AUROC** on TruthfulQA (subspace extracted from TriviaQA)
+- LLaMA-2-chat-7b probe: **76.39% AUROC** on TruthfulQA
+- HSAD (frequency-domain): surpasses previous detectors by **&gt;10 points** on TruthfulQA, TriviaQA, and SciQ
+
+### Summary Table of Key Baselines to Beat
+
+| Method | Dataset | AUROC | Notes |
+|--------|---------|-------|-------|
+| EPGS | Llama-2 SQuAD | 0.737 | Current SOTA for stubborn hallucinations |
+| Semantic Entropy | Various | 0.78-0.81 | Stable across model families |
+| SRE (improved SE) | Various | 0.887 | Best entropy-based variant |
+| NLI Verification | HalluScan | 0.88 | Requires external NLI model |
+| HaloScope | TruthfulQA | 0.763 | Probe-based |
+| SSP (Shaking to Reveal) | TruthfulQA | ~+4.78% over SOTA | Perturbation-based, closest competitor |
+
+---
+
+## Key Takeaway
+
+**The EPGS paper (arXiv:2605.00939, "From Flat Facts to Sharp Hallucinations," May 2026) appears to implement exactly the research idea you described** -- detecting stubborn hallucinations via perturbation-based sharpness estimation of the loss landscape. The repository is at [github.com/migpaniag/EPGS](https://github.com/migpaniag/EPGS). Before proceeding, you should carefully review this paper to determine whether your approach differs meaningfully (e.g., different perturbation targets such as residual streams vs. embeddings, different sharpness proxies, different evaluation protocols) or whether you need to reframe your contribution relative to this existing work.
+
+Sources:
+- [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)
+- [nnsight](https://github.com/ndif-team/nnsight)
+- [baukit](https://github.com/davidbau/baukit)
+- [vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens)
+- [EPGS Repository](https://github.com/migpaniag/EPGS)
+- [EPGS Paper - arXiv](https://arxiv.org/abs/2605.00939)
+- [Activation_Decoding (In-Context Sharpness)](https://github.com/hkust-nlp/Activation_Decoding)
+- [SPUQ](https://github.com/intuit-ai-research/SPUQ)
+- [SAC3](https://github.com/intuit/sac3)
+- [awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection)
+- [HaluEval](https://github.com/RUCAIBox/HaluEval)
+- [HaDes](https://github.com/microsoft/HaDes)
+- [hallucination_probes](https://github.com/obalcells/hallucination_probes)
+- [Vectara Hallucination Leaderboard](https://github.com/vectara/hallucination-leaderboard)
+- [FActScore](https://github.com/shmsw25/FActScore)
+- [TruthfulQA on HuggingFace](https://huggingface.co/datasets/truthfulqa/truthful_qa)
+- [TruthfulQA GitHub](https://github.com/sylinrl/TruthfulQA)
+- [FELM](https://github.com/hkust-nlp/felm)
+- [SAM (Sharpness-Aware Minimization)](https://github.com/davda54/sam)
+- [logit-explanations](https://github.com/mt-upc/logit-explanations)
+- [llm_activation_classification](https://github.com/amelia-kawasaki/llm_activation_classification)
+- [Semantic Entropy - Nature](https://www.nature.com/articles/s41586-024-07421-0)
+- [Semantic Entropy Probes](https://arxiv.org/html/2406.15927v1)
+- [HalluScan](https://arxiv.org/abs/2605.02443v1)
+- [Shaking to Reveal](https://arxiv.org/abs/2506.02696)
+- [Re-evaluating Hallucination Detection](https://aclanthology.org/2025.emnlp-main.1761.pdf)
+- [Suprmind Hallucination Benchmarks](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)
+- [path_patching](https://github.com/callummcdougall/path_patching)
+- [implementing_activation_steering](https://github.com/annahdo/implementing_activation_steering)
+- [Awesome-LLM-Interpretability](https://github.com/cooperleong00/Awesome-LLM-Interpretability)
+- [LLM-Transparency-Tool](https://github.com/facebookresearch/llm-transparency-tool)&lt;/result>
+&lt;usage>&lt;total_tokens>33311&lt;/total_tokens>&lt;tool_uses>25&lt;/tool_uses>&lt;duration_ms>179047&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b61513fc-5e89-425f-b307-9ae9ae22d8b0",
+  "isSidechain": false,
+  "promptId": "914c6bbd-1118-4c03-a220-faffdd2543c1",
+  "type": "user",
+  "uuid": "3701f121-615e-46a3-b172-82405c8c5748",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39 · 2026-05-16T06:10:48.072Z_
+
+```json
+{
+  "parentUuid": "3701f121-615e-46a3-b172-82405c8c5748",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "74737466-94bb-407c-a85e-2bf4476180d2",
+  "timestamp": "2026-05-16T06:10:48.072Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Sharpness-Awa…",
+  "leafUuid": "74737466-94bb-407c-a85e-2bf4476180d2",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42 · 2026-05-16T06:10:52.826Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:10:52.826Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "content": "&lt;task-notification>\n&lt;task-id>aebbb5073ac9d69e3&lt;/task-id>\n&lt;tool-use-id>toolu_01AeT7491gFD9NHYBYVemshM&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aebbb5073ac9d69e3.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search concurrent work on sharpness hallucination detection\" completed&lt;/summary>\n&lt;result>I now have a comprehensive picture. Here is the full report.\n\n---\n\n## Competitive Landscape Report: Sharpness / Perturbation-Based Hallucination Detection\n\n### CRITICAL FINDING -- DIRECT CONCURRENT WORK\n\n**\"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\"**\n- arXiv: [2605.00939](https://arxiv.org/abs/2605.00939)\n- Authors: Yee Zhing Liew, Andrew Huey Ping Tan, Anwar P.P. Abdul Majeed\n- Date: May 1, 2026 (revised May 12, 2026)\n- Status: **ACCEPTED to ICML 2026** (camera-ready version on arXiv)\n\nThis paper is an extremely close match to your research idea. The overlap is as follows:\n\n- **Same core hypothesis:** Robust facts reside in flat minima; \"stubborn hallucinations\" reside in sharp minima supported by brittle memorization.\n- **Same mechanism:** They propose **Embedding-Perturbed Gradient Sensitivity (EPGS)**, which perturbs input embeddings with Gaussian noise and measures the resulting spike in gradient magnitude.\n- **Same framing:** EPGS is explicitly described as an efficient proxy for the Hessian spectrum, differentiating stable knowledge from unstable memorization.\n- **Same target:** The paper specifically targets \"stubborn hallucinations\" -- high-confidence factual errors where entropy-based methods fail.\n- **Same claim:** EPGS significantly outperforms entropy-based and representation-based baselines.\n\nThis is essentially the exact idea you described: using sharpness of the loss landscape via perturbation-based sensitivity of embeddings to detect stubborn hallucinations at inference time. It was posted ~2 weeks ago and is already accepted at ICML 2026.\n\n---\n\n### HIGHLY RELATED WORK (Tier 1 -- Strong Overlap)\n\n**1. \"Perturbations Matter: Sensitivity-Guided Hallucination Detection in LLMs\"**\n- OpenReview: [aZdcNDf3pc](https://openreview.net/forum?id=aZdcNDf3pc)\n- Authors: Jinyuan Luo, Zhen Fang, Yixuan Li, Seongheon Park, Ling Chen\n- Venue: **Submitted to ICLR 2026** (submitted Sep 3, 2025; revised Feb 11, 2026)\n- Method: **Sample-Specific Prompting (SSP)** -- proves theoretically that with ~99% probability, each sample admits a prompt under which factual samples exhibit greater sensitivity to prompt-induced perturbations than hallucinatory samples in internal representations. Adaptively selects prompts to perturb the model and measures sensitivity as detection signal.\n- Key difference from your idea: Operates on prompt-level perturbations rather than embedding-space Gaussian noise, but shares the core insight that perturbation sensitivity in internal representations discriminates hallucinations.\n\n**2. \"Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection\"**\n- OpenReview: [yzWGQNTbHQ](https://openreview.net/forum?id=yzWGQNTbHQ)\n- Authors: Shuhai Zhang, Xutao Wen, Jiahao Yang, Zhiquan Wen, Feng Liu, Bo Han, Yuanqing Li, Mingkui Tan\n- Venue: **Submitted to ICLR 2026** (submitted Sep 18, 2025; revised Feb 11, 2026)\n- Method: **Next-token Gradient Sensitivity (NGS)** -- computes the first-order gradient of max log-probability of the next token w.r.t. the current token's layer embedding. Proves that the norm of NGS bounds prediction confidence changes under small perturbations. Uses MMD between NGS distributions of test tokens vs. reference truthful/hallucinated tokens.\n- Key difference: Focuses on next-token prediction gradient rather than explicit embedding perturbation, but the underlying signal (local prediction fragility measured via gradient w.r.t. embeddings) is conceptually very close.\n\n---\n\n### RELATED WORK (Tier 2 -- Partial Overlap)\n\n**3. \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\"**\n- arXiv: [2604.04743](https://arxiv.org/abs/2604.04743)\n- Authors: Kalyan Cherukuri, Lav R. Varshney\n- Date: April 6, 2026\n- Venue: Not yet submitted to a conference (based on available info)\n- Overview: Geometric dynamical systems framework where hallucinations arise from task-dependent basin structure in latent space. Formalizes basin separation with task-complexity theorems and shows geometry-aware steering reduces hallucination without retraining.\n- Key difference: Focuses on trajectory-level dynamics and basin structure rather than gradient sensitivity under perturbation, but shares the geometric/landscape framing.\n\n**4. \"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\"**\n- arXiv: [2506.02696](https://arxiv.org/abs/2506.02696)\n- Date: June 3, 2025\n- Method: **Sample-Specific Prompting (SSP)** framework that analyzes perturbation sensitivity at intermediate representations. Uses a lightweight encoder to amplify representation changes from perturbation and a contrastive distance metric.\n- Result: +4.78% AUROC on TruthfulQA.\n- Key difference: Perturbation at prompt level and contrastive analysis of intermediate representations, rather than gradient-magnitude measurement.\n\n**5. \"Hallucination Begins Where Saliency Drops\"**\n- arXiv: [2601.20279](https://arxiv.org/abs/2601.20279)\n- Venue: **Published at ICLR 2026**\n- Method: LVLMs-Saliency, a gradient-aware diagnostic framework that fuses attention weights with input gradients to quantify visual grounding strength. Proposes Saliency-Guided Rejection Sampling (SGRS) for inference-time filtering.\n- Key difference: Targets vision-language models and uses gradient-attention fusion rather than embedding perturbation. But shares the gradient-based inference-time detection philosophy.\n\n**6. \"In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation\"**\n- arXiv: [2403.01548](https://arxiv.org/abs/2403.01548)\n- Venue: **ICML 2024**\n- Authors: Chen, Xiong, Liu, Wu, Xiao, Gao, He (HKUST)\n- Method: Uses entropy-based metric to quantify \"sharpness\" among in-context hidden states. Correct generations have sharper context activations. Incorporates this into decoding (Activation Decoding).\n- Key difference: \"Sharpness\" here refers to concentration/entropy of hidden-state activations, not loss-landscape curvature or gradient sensitivity under perturbation. This is a predecessor that established the \"sharpness\" vocabulary in this domain.\n\n**7. \"Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge\" (SHINE)**\n- arXiv: [2411.09689](https://arxiv.org/abs/2411.09689)\n- Date: November 2024\n- Method: SHINE (Systematic Hallucination Inspection with Noisy Entity) perturbs key entities in prompts and observes how LLM generation of different text types is affected differently. No external knowledge or fine-tuning needed.\n- Key difference: Prompt-level entity perturbation rather than embedding-space perturbation; text-output-level observation rather than gradient measurement.\n\n**8. \"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection\" (CLAP)**\n- arXiv: [2509.09700](https://arxiv.org/abs/2509.09700)\n- Date: September 2025\n- Method: Attention mechanism operating on the full residual stream across layers. Exploits the fact that layer outputs share embedding space due to residual connections.\n- Key difference: Probes residual stream activations directly rather than measuring perturbation sensitivity, but operates in the same internal-representation space.\n\n---\n\n### RELATED WORK (Tier 3 -- Tangential but Noteworthy)\n\n**9. \"Beyond Superficial Unlearning: Sharpness-Aware Robust Erasure of Hallucinations in Multimodal LLMs\" (SARE)**\n- arXiv: [2601.16527](https://arxiv.org/abs/2601.16527)\n- Date: January 2026\n- Uses Targeted-SAM to flatten the loss landscape around hallucinated concepts during training/unlearning. Shows standard erasure traps models in sharp minima where hallucinations resurge.\n- Key difference: Training-time intervention (unlearning), not inference-time detection.\n\n**10. \"A Single Direction of Truth: An Observer Model's Linear Residual Probe\"**\n- arXiv: [2507.23221](https://arxiv.org/abs/2507.23221)\n- Method: Generator-agnostic observer model detects hallucinations via a linear probe on residual stream. Finds hallucinations encoded along a common linear direction.\n- Key difference: Linear probe, no perturbation or sharpness analysis.\n\n**11. \"Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration\"**\n- arXiv: [2603.22812](https://arxiv.org/abs/2603.22812)\n- Date: March 2026\n- Method: Perturbation-based importance sampling to explore semantic space efficiently.\n- Key difference: Perturbation in semantic/output space, not embedding/gradient space.\n\n---\n\n### OpenReview Conference Submission Check\n\n- **ICML 2026:** The EPGS paper (2605.00939) is confirmed accepted. The OpenReview ICML 2026 page is live. No other sharpness-based hallucination detection papers found in the ICML 2026 listings beyond EPGS.\n- **ICLR 2026:** Two closely related papers were submitted -- NGS (gradient sensitivity) and SSP (perturbation sensitivity). \"Hallucination Begins Where Saliency Drops\" was published at ICLR 2026 (gradient-aware, but vision-language focused). Acceptance status of NGS and SSP is not confirmed from available data.\n- **NeurIPS 2026:** Submissions opened with abstract deadline May 4, 2026 and paper deadline May 6, 2026. No specific sharpness-hallucination papers found yet (too early for public listings).\n\n---\n\n### Bottom Line Assessment\n\n**Someone is already doing this exact thing.** The EPGS paper (Liew, Tan, &amp; Abdul Majeed, ICML 2026) is a near-perfect overlap with your described research idea:\n\n1. Same hypothesis (flat minima = robust facts, sharp minima = stubborn hallucinations)\n2. Same mechanism (perturb embeddings, measure gradient sensitivity as Hessian proxy)\n3. Same target (stubborn/high-confidence hallucinations that defeat entropy-based methods)\n4. Same framing (inference-time sharpness estimation)\n5. It was posted May 1, 2026 and is already accepted at ICML 2026\n\nAdditionally, NGS (ICLR 2026 submission) and SSP (ICLR 2026 submission) attack the same problem from slightly different angles (gradient sensitivity of next-token prediction, and prompt-perturbation sensitivity of internal representations, respectively).\n\nIf you want to proceed, you would need to clearly differentiate from EPGS. Possible angles might include: (a) perturbation of residual streams at specific intermediate layers rather than input embeddings, (b) a different sharpness estimator (e.g., second-order/Hessian-vector products rather than gradient magnitude), (c) focus on abstention/selective prediction rather than just detection scoring, (d) application to chain-of-thought or agentic settings, or (e) theoretical analysis that EPGS does not provide. But the core idea as described is now published and accepted.\n\nSources:\n- [From Flat Facts to Sharp Hallucinations (EPGS) - arXiv 2605.00939](https://arxiv.org/abs/2605.00939)\n- [From Flat Facts to Sharp Hallucinations - HTML version](https://arxiv.org/html/2605.00939)\n- [Perturbations Matter: Sensitivity-Guided Hallucination Detection (SSP) - OpenReview](https://openreview.net/forum?id=aZdcNDf3pc)\n- [Next-Token Gradient Sensitivity Probing (NGS) - OpenReview](https://openreview.net/forum?id=yzWGQNTbHQ)\n- [Hallucination Basins - arXiv 2604.04743](https://arxiv.org/abs/2604.04743)\n- [Shaking to Reveal - arXiv 2506.02696](https://arxiv.org/abs/2506.02696)\n- [Hallucination Begins Where Saliency Drops - arXiv 2601.20279](https://arxiv.org/abs/2601.20279)\n- [In-Context Sharpness as Alerts (ICML 2024) - arXiv 2403.01548](https://arxiv.org/abs/2403.01548)\n- [SHINE: Perturbation-Driven Hallucination Probing - arXiv 2411.09689](https://arxiv.org/abs/2411.09689)\n- [Cross-Layer Attention Probing (CLAP) - arXiv 2509.09700](https://arxiv.org/abs/2509.09700)\n- [Beyond Superficial Unlearning (SARE) - arXiv 2601.16527](https://arxiv.org/abs/2601.16527)\n- [The Geometry of Hallucination - Medium blog post](https://medium.com/@mbonsign/the-geometry-of-hallucination-f725f41f7050)\n- [Semantic Illusion in RAG Systems - arXiv 2512.15068](https://arxiv.org/abs/2512.15068)\n- [Efficient Hallucination Detection via Bayesian Semantic Entropy - arXiv 2603.22812](https://arxiv.org/abs/2603.22812)\n- [EdinburghNLP Awesome Hallucination Detection - GitHub](https://github.com/EdinburghNLP/awesome-hallucination-detection)\n- [ICML 2026 - OpenReview](https://openreview.net/group?id=ICML.cc%2F2026)\n- [NeurIPS 2026 - OpenReview](https://openreview.net/group?id=NeurIPS.cc%2F2026)\n- [ICLR 2026 Papers](https://iclr.cc/virtual/2026/papers.html)&lt;/result>\n&lt;usage>&lt;total_tokens>38890&lt;/total_tokens>&lt;tool_uses>35&lt;/tool_uses>&lt;duration_ms>214227&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-16T06:10:56.396Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Third agent back with GitHub implementations, datasets, and baselines. Key findings:
+
+**Building blocks exist:**
+- TransformerLens - hook-based residual stream access
+- nnsight - activation interception
+- vLLM-Lens - residual stream extraction at inference time
+- EPGS repo exists at github.com/migpaniag/EPGS
+- Activation_Decoding (ICML 2024) - "In-Context Sharpness as Alerts"
+
+**Important competitor found:** "Shaking to Reveal" (SSP) - perturbation-based, +4.78% AUROC on TruthfulQA
+
+
+I've got access to TruthfulQA, HaluEval, FELM, and FActScore for evaluation. Looking at the baseline performance numbers—EPGS hits 0.737 AUROC on Llama-2 SQuAD, while Semantic Entropy ranges from 0.78-0.81, SRE reaches 0.887, and NLI Verification gets 0.88. Now waiting for the concurrent work agent to report back.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74737466-94bb-407c-a85e-2bf4476180d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kXmkeaoh9f2h1BAWuD",
+  "type": "assistant",
+  "uuid": "1f2d9e2d-198c-481f-8257-9d975a64fffc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSGm5Lrgrh4hJC5Y69qPRf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5209,
+      "cache_read_input_tokens": 29213,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 29213,
+          "cache_creation_input_tokens": 5209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-16T06:10:56.410Z_
+
+Third agent back with implementations and baselines. Important find: "Shaking to Reveal" (SSP) is another perturbation-based competitor, and "Activation Decoding" (ICML 2024) uses in-context sharpness. Still waiting for the concurrent work search agent.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f2d9e2d-198c-481f-8257-9d975a64fffc",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kXmkeaoh9f2h1BAWuD",
+  "type": "assistant",
+  "uuid": "cdc58732-22b8-49bb-bce9-32ea8cf2ccd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSGm5Lrgrh4hJC5Y69qPRf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5209,
+      "cache_read_input_tokens": 29213,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 29213,
+          "cache_creation_input_tokens": 5209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45 · 2026-05-16T06:10:56.468Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:10:56.468Z",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+## Round 5
+
+21 recorded events
+
+### User
+
+_source line 46 · 2026-05-16T06:10:56.472Z_
+
+&lt;task-notification>
+&lt;task-id>aebbb5073ac9d69e3&lt;/task-id>
+&lt;tool-use-id>toolu_01AeT7491gFD9NHYBYVemshM&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-/3bbc0513-910d-48c4-b837-41d3d647b4d5/tasks/aebbb5073ac9d69e3.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search concurrent work on sharpness hallucination detection" completed&lt;/summary>
+&lt;result>I now have a comprehensive picture. Here is the full report.
+
+---
+
+## Competitive Landscape Report: Sharpness / Perturbation-Based Hallucination Detection
+
+### CRITICAL FINDING -- DIRECT CONCURRENT WORK
+
+**"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity"**
+- arXiv: [2605.00939](https://arxiv.org/abs/2605.00939)
+- Authors: Yee Zhing Liew, Andrew Huey Ping Tan, Anwar P.P. Abdul Majeed
+- Date: May 1, 2026 (revised May 12, 2026)
+- Status: **ACCEPTED to ICML 2026** (camera-ready version on arXiv)
+
+This paper is an extremely close match to your research idea. The overlap is as follows:
+
+- **Same core hypothesis:** Robust facts reside in flat minima; "stubborn hallucinations" reside in sharp minima supported by brittle memorization.
+- **Same mechanism:** They propose **Embedding-Perturbed Gradient Sensitivity (EPGS)**, which perturbs input embeddings with Gaussian noise and measures the resulting spike in gradient magnitude.
+- **Same framing:** EPGS is explicitly described as an efficient proxy for the Hessian spectrum, differentiating stable knowledge from unstable memorization.
+- **Same target:** The paper specifically targets "stubborn hallucinations" -- high-confidence factual errors where entropy-based methods fail.
+- **Same claim:** EPGS significantly outperforms entropy-based and representation-based baselines.
+
+This is essentially the exact idea you described: using sharpness of the loss landscape via perturbation-based sensitivity of embeddings to detect stubborn hallucinations at inference time. It was posted ~2 weeks ago and is already accepted at ICML 2026.
+
+---
+
+### HIGHLY RELATED WORK (Tier 1 -- Strong Overlap)
+
+**1. "Perturbations Matter: Sensitivity-Guided Hallucination Detection in LLMs"**
+- OpenReview: [aZdcNDf3pc](https://openreview.net/forum?id=aZdcNDf3pc)
+- Authors: Jinyuan Luo, Zhen Fang, Yixuan Li, Seongheon Park, Ling Chen
+- Venue: **Submitted to ICLR 2026** (submitted Sep 3, 2025; revised Feb 11, 2026)
+- Method: **Sample-Specific Prompting (SSP)** -- proves theoretically that with ~99% probability, each sample admits a prompt under which factual samples exhibit greater sensitivity to prompt-induced perturbations than hallucinatory samples in internal representations. Adaptively selects prompts to perturb the model and measures sensitivity as detection signal.
+- Key difference from your idea: Operates on prompt-level perturbations rather than embedding-space Gaussian noise, but shares the core insight that perturbation sensitivity in internal representations discriminates hallucinations.
+
+**2. "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection"**
+- OpenReview: [yzWGQNTbHQ](https://openreview.net/forum?id=yzWGQNTbHQ)
+- Authors: Shuhai Zhang, Xutao Wen, Jiahao Yang, Zhiquan Wen, Feng Liu, Bo Han, Yuanqing Li, Mingkui Tan
+- Venue: **Submitted to ICLR 2026** (submitted Sep 18, 2025; revised Feb 11, 2026)
+- Method: **Next-token Gradient Sensitivity (NGS)** -- computes the first-order gradient of max log-probability of the next token w.r.t. the current token's layer embedding. Proves that the norm of NGS bounds prediction confidence changes under small perturbations. Uses MMD between NGS distributions of test tokens vs. reference truthful/hallucinated tokens.
+- Key difference: Focuses on next-token prediction gradient rather than explicit embedding perturbation, but the underlying signal (local prediction fragility measured via gradient w.r.t. embeddings) is conceptually very close.
+
+---
+
+### RELATED WORK (Tier 2 -- Partial Overlap)
+
+**3. "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations"**
+- arXiv: [2604.04743](https://arxiv.org/abs/2604.04743)
+- Authors: Kalyan Cherukuri, Lav R. Varshney
+- Date: April 6, 2026
+- Venue: Not yet submitted to a conference (based on available info)
+- Overview: Geometric dynamical systems framework where hallucinations arise from task-dependent basin structure in latent space. Formalizes basin separation with task-complexity theorems and shows geometry-aware steering reduces hallucination without retraining.
+- Key difference: Focuses on trajectory-level dynamics and basin structure rather than gradient sensitivity under perturbation, but shares the geometric/landscape framing.
+
+**4. "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations"**
+- arXiv: [2506.02696](https://arxiv.org/abs/2506.02696)
+- Date: June 3, 2025
+- Method: **Sample-Specific Prompting (SSP)** framework that analyzes perturbation sensitivity at intermediate representations. Uses a lightweight encoder to amplify representation changes from perturbation and a contrastive distance metric.
+- Result: +4.78% AUROC on TruthfulQA.
+- Key difference: Perturbation at prompt level and contrastive analysis of intermediate representations, rather than gradient-magnitude measurement.
+
+**5. "Hallucination Begins Where Saliency Drops"**
+- arXiv: [2601.20279](https://arxiv.org/abs/2601.20279)
+- Venue: **Published at ICLR 2026**
+- Method: LVLMs-Saliency, a gradient-aware diagnostic framework that fuses attention weights with input gradients to quantify visual grounding strength. Proposes Saliency-Guided Rejection Sampling (SGRS) for inference-time filtering.
+- Key difference: Targets vision-language models and uses gradient-attention fusion rather than embedding perturbation. But shares the gradient-based inference-time detection philosophy.
+
+**6. "In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation"**
+- arXiv: [2403.01548](https://arxiv.org/abs/2403.01548)
+- Venue: **ICML 2024**
+- Authors: Chen, Xiong, Liu, Wu, Xiao, Gao, He (HKUST)
+- Method: Uses entropy-based metric to quantify "sharpness" among in-context hidden states. Correct generations have sharper context activations. Incorporates this into decoding (Activation Decoding).
+- Key difference: "Sharpness" here refers to concentration/entropy of hidden-state activations, not loss-landscape curvature or gradient sensitivity under perturbation. This is a predecessor that established the "sharpness" vocabulary in this domain.
+
+**7. "Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge" (SHINE)**
+- arXiv: [2411.09689](https://arxiv.org/abs/2411.09689)
+- Date: November 2024
+- Method: SHINE (Systematic Hallucination Inspection with Noisy Entity) perturbs key entities in prompts and observes how LLM generation of different text types is affected differently. No external knowledge or fine-tuning needed.
+- Key difference: Prompt-level entity perturbation rather than embedding-space perturbation; text-output-level observation rather than gradient measurement.
+
+**8. "Cross-Layer Attention Probing for Fine-Grained Hallucination Detection" (CLAP)**
+- arXiv: [2509.09700](https://arxiv.org/abs/2509.09700)
+- Date: September 2025
+- Method: Attention mechanism operating on the full residual stream across layers. Exploits the fact that layer outputs share embedding space due to residual connections.
+- Key difference: Probes residual stream activations directly rather than measuring perturbation sensitivity, but operates in the same internal-representation space.
+
+---
+
+### RELATED WORK (Tier 3 -- Tangential but Noteworthy)
+
+**9. "Beyond Superficial Unlearning: Sharpness-Aware Robust Erasure of Hallucinations in Multimodal LLMs" (SARE)**
+- arXiv: [2601.16527](https://arxiv.org/abs/2601.16527)
+- Date: January 2026
+- Uses Targeted-SAM to flatten the loss landscape around hallucinated concepts during training/unlearning. Shows standard erasure traps models in sharp minima where hallucinations resurge.
+- Key difference: Training-time intervention (unlearning), not inference-time detection.
+
+**10. "A Single Direction of Truth: An Observer Model's Linear Residual Probe"**
+- arXiv: [2507.23221](https://arxiv.org/abs/2507.23221)
+- Method: Generator-agnostic observer model detects hallucinations via a linear probe on residual stream. Finds hallucinations encoded along a common linear direction.
+- Key difference: Linear probe, no perturbation or sharpness analysis.
+
+**11. "Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration"**
+- arXiv: [2603.22812](https://arxiv.org/abs/2603.22812)
+- Date: March 2026
+- Method: Perturbation-based importance sampling to explore semantic space efficiently.
+- Key difference: Perturbation in semantic/output space, not embedding/gradient space.
+
+---
+
+### OpenReview Conference Submission Check
+
+- **ICML 2026:** The EPGS paper (2605.00939) is confirmed accepted. The OpenReview ICML 2026 page is live. No other sharpness-based hallucination detection papers found in the ICML 2026 listings beyond EPGS.
+- **ICLR 2026:** Two closely related papers were submitted -- NGS (gradient sensitivity) and SSP (perturbation sensitivity). "Hallucination Begins Where Saliency Drops" was published at ICLR 2026 (gradient-aware, but vision-language focused). Acceptance status of NGS and SSP is not confirmed from available data.
+- **NeurIPS 2026:** Submissions opened with abstract deadline May 4, 2026 and paper deadline May 6, 2026. No specific sharpness-hallucination papers found yet (too early for public listings).
+
+---
+
+### Bottom Line Assessment
+
+**Someone is already doing this exact thing.** The EPGS paper (Liew, Tan, &amp; Abdul Majeed, ICML 2026) is a near-perfect overlap with your described research idea:
+
+1. Same hypothesis (flat minima = robust facts, sharp minima = stubborn hallucinations)
+2. Same mechanism (perturb embeddings, measure gradient sensitivity as Hessian proxy)
+3. Same target (stubborn/high-confidence hallucinations that defeat entropy-based methods)
+4. Same framing (inference-time sharpness estimation)
+5. It was posted May 1, 2026 and is already accepted at ICML 2026
+
+Additionally, NGS (ICLR 2026 submission) and SSP (ICLR 2026 submission) attack the same problem from slightly different angles (gradient sensitivity of next-token prediction, and prompt-perturbation sensitivity of internal representations, respectively).
+
+If you want to proceed, you would need to clearly differentiate from EPGS. Possible angles might include: (a) perturbation of residual streams at specific intermediate layers rather than input embeddings, (b) a different sharpness estimator (e.g., second-order/Hessian-vector products rather than gradient magnitude), (c) focus on abstention/selective prediction rather than just detection scoring, (d) application to chain-of-thought or agentic settings, or (e) theoretical analysis that EPGS does not provide. But the core idea as described is now published and accepted.
+
+Sources:
+- [From Flat Facts to Sharp Hallucinations (EPGS) - arXiv 2605.00939](https://arxiv.org/abs/2605.00939)
+- [From Flat Facts to Sharp Hallucinations - HTML version](https://arxiv.org/html/2605.00939)
+- [Perturbations Matter: Sensitivity-Guided Hallucination Detection (SSP) - OpenReview](https://openreview.net/forum?id=aZdcNDf3pc)
+- [Next-Token Gradient Sensitivity Probing (NGS) - OpenReview](https://openreview.net/forum?id=yzWGQNTbHQ)
+- [Hallucination Basins - arXiv 2604.04743](https://arxiv.org/abs/2604.04743)
+- [Shaking to Reveal - arXiv 2506.02696](https://arxiv.org/abs/2506.02696)
+- [Hallucination Begins Where Saliency Drops - arXiv 2601.20279](https://arxiv.org/abs/2601.20279)
+- [In-Context Sharpness as Alerts (ICML 2024) - arXiv 2403.01548](https://arxiv.org/abs/2403.01548)
+- [SHINE: Perturbation-Driven Hallucination Probing - arXiv 2411.09689](https://arxiv.org/abs/2411.09689)
+- [Cross-Layer Attention Probing (CLAP) - arXiv 2509.09700](https://arxiv.org/abs/2509.09700)
+- [Beyond Superficial Unlearning (SARE) - arXiv 2601.16527](https://arxiv.org/abs/2601.16527)
+- [The Geometry of Hallucination - Medium blog post](https://medium.com/@mbonsign/the-geometry-of-hallucination-f725f41f7050)
+- [Semantic Illusion in RAG Systems - arXiv 2512.15068](https://arxiv.org/abs/2512.15068)
+- [Efficient Hallucination Detection via Bayesian Semantic Entropy - arXiv 2603.22812](https://arxiv.org/abs/2603.22812)
+- [EdinburghNLP Awesome Hallucination Detection - GitHub](https://github.com/EdinburghNLP/awesome-hallucination-detection)
+- [ICML 2026 - OpenReview](https://openreview.net/group?id=ICML.cc%2F2026)
+- [NeurIPS 2026 - OpenReview](https://openreview.net/group?id=NeurIPS.cc%2F2026)
+- [ICLR 2026 Papers](https://iclr.cc/virtual/2026/papers.html)&lt;/result>
+&lt;usage>&lt;total_tokens>38890&lt;/total_tokens>&lt;tool_uses>35&lt;/tool_uses>&lt;duration_ms>214227&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdc58732-22b8-49bb-bce9-32ea8cf2ccd7",
+  "isSidechain": false,
+  "promptId": "53e15999-f280-44ba-85c5-dd26d33d5d4f",
+  "type": "user",
+  "uuid": "494eb8ff-584e-4c48-8153-cf25a4acd29a",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-16T06:13:32.576Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 4 agents have completed. Now I need to synthesize all findings into a comprehensive research plan. Let me analyze the landscape carefully:
+
+**Key findings:**
+
+1. **EPGS is ALREADY published and accepted at ICML 2026** - This is the exact idea described in the seed. The paper perturbs input embeddings and measures gradient magnitude as a sharpness proxy. But it requires backpropagation (gradient computation).
+
+2. **The seed already acknowledges EPGS is post-hoc** - The gap identified is making this work at *decoding time* without gradients, using finite-difference approximation via residual stream perturbation.
+   
+3. **The concurrent work landscape shows several related approaches** - EPGS uses embedding perturbation with gradient magnitude for detection but needs backprop, NGS measures next-token gradient sensitivity also requiring gradients, SSP perturbs prompts to measure internal representation sensitivity, while other methods like Activation Decoding examine in-context sharpness and CLAP probes cross-layer attention patterns. Now I'm seeing where the proposed work differentiates itself from these existing approaches.
+
+4. **Key distinction from EPGS:** Unlike EPGS which is purely post-hoc detection requiring gradients and backpropagation, the proposed method perturbs the residual stream with random noise and measures logit sensitivity through forward passes alone—using finite-difference approximation as a sharpness proxy—enabling selective generation and conservative decoding at inference time rather than just flagging hallucinations after the fact.
+
+5. **For implementation, I'm planning to use Qwen 3.6-27B as the primary dense model and DeepSeek-V4-Flash as a more efficient 13B alternative**, both chosen for their practical research accessibility.
+
+6. **Looking at venue timing**, most major conferences have deadlines well after mid-May, with AAAI 2027 around August and EACL 2027 also in that window, though EMNLP 2026 in late May is too tight.
+
+7. **The datasets are already established**—TruthfulQA, FELM, HaluEval, and FActScore are all accessible for evaluation.
+
+8. **Baseline performance is clear**: EPGS achieves 0.737 AUROC on SQuAD, Semantic Entropy ranges from 0.78-0.81, and SSP shows a 4.78% improvement on TruthfulQA.
+
+Now I'm refining the core approach—the key advantage is that by injecting noise into intermediate residual streams and measuring KL divergence shifts in the output logits, I can estimate sharpness without any backpropagation, making this tractable for real-time decoding where EPGS fundamentally isn't.
+
+Beyond just detection, I'm proposing selective generation with abstention and conservative fallbacks. The strategy is a two-stage pipeline: first, a cheap pre-filter using entropy and a linear probe on the final residual layer flags suspicious tokens with minimal overhead, then only those flagged tokens go through the expensive perturbation analysis—injecting calibrated noise at strategic layers (L/3, L/2, 2L/3) and computing KL divergence as a gradient-free sharpness proxy.
+
+When the sensitivity metric crosses a learned threshold, the system either abstains or switches to retrieval-augmented decoding. I'd evaluate this on TruthfulQA, FELM, and TriviaQA against existing baselines like EPGS, semantic entropy, and others, focusing especially on cases where entropy-based methods struggle.
+
+The contribution here is making sharpness detection feasible at inference time without backpropagation, embedding it into a selective generation framework, and empirically comparing gradient-free versus gradient-based approaches—a meaningful but incremental advance over EPGS.
+
+Given that NeurIPS 2026 has already passed, I'm looking at AAAI 2027 and ICLR 2027 as realistic targets. Since the work is solid-level, ICLR would be the highest-tier fit, though I should reconsider whether the gradient-free sharpness estimation and its integration into selective generation actually pushes this into a stronger contribution category than I initially assessed.
+
+The core novelties are practical—gradient-free hallucination detection that's orders of magnitude cheaper than EPGS while maintaining comparable performance, plus the selective generation pipeline that reduces hallucinations without tanking output quality. The theoretical grounding through finite-difference KL sensitivity approximating the Hessian trace adds rigor. Even though EPGS established the foundational insight, this feels like a meaningful step forward.
+
+I'm settling on ICLR 2027 as the primary target with AAAI 2027 as backup. Now I need to think through the experimental scope—running inference on models like Qwen 3.6-27B across multiple datasets, with each perturbation requiring a couple forward passes, and evaluating on TruthfulQA, FELM, and TriviaQA subsets to validate both the efficiency gains and the hallucination reduction.
+
+The compute requirements are substantial but manageable: roughly 150-250 H100-hours total when accounting for the core experiments, baseline reimplementations of EPGS and semantic entropy, and all the ablations and hyperparameter sweeps needed to properly validate the approach.
+
+For execution, I'm weighing three paths. Manual mode would take 3-5 months with a couple researchers but only costs around $500 in GPU time. Human-in-loop is faster at 3-6 weeks with one researcher spending 30 minutes daily, running about $625 in compute plus another $50-100 for Claude API calls. Fully automated exploration would be quickest at 1-2 weeks but requires more GPU budget—around $1000 for compute and $200 for API costs—since the system would explore more configurations without human guidance.
+
+Now I'm double-checking the key paper references I'm planning to cite, particularly verifying the exact titles and publication venues for the gradient sensitivity and hallucination detection work. I'm realizing these are likely the same paper—"Shaking to Reveal" on arXiv from June 2025 and "Perturbations Matter" submitted to OpenReview in September are probably different versions of the same work using the SSP framework. Now I'm moving through the rest of the hallucination detection papers: the ICML 2024 work on in-context sharpness, the Nature 2024 semantic entropy paper, the EMNLP 2025 findings on factuality probes, and continuing with the remaining citations. I'm narrowing down the reference list to only the most directly relevant papers - the core ones on flat/sharp minima, perturbation sensitivity, and hallucination detection methods. I should include Attention Head Entropy as a baseline comparison, then move forward with structuring the actual approach.
+
+The key differentiators from EPGS are that I'm eliminating the need for backpropagation by using forward-pass-only finite differences, probing at intermediate residual streams rather than input embeddings, and turning this into a practical decoding strategy with abstention and fallback mechanisms. The efficiency gains matter because gradient computation is significantly more expensive and incompatible with modern serving infrastructure, and the residual stream perturbations might reveal different aspects of model behavior than input-level perturbations. This feels like a solid contribution - the core insight about sharpness and hallucinations comes from EPGS, but the practical improvements and different perturbation approach add meaningful value.
+
+I'm targeting ICLR 2027 as the appropriate venue for this level of work, with AAAI 2027 as a backup. I should also make sure I'm properly incorporating the recent "Hallucination Basins" paper and the SSP/Shaking to Reveal results showing the +4.78% AUROC improvement on TruthfulQA into the landscape discussion.
+
+Now I'm compiling the final JSON with an updated landscape section that captures the concurrent work—EPGS from ICML 2026, the SSP and NGS submissions to ICLR 2026, along with the foundational approaches like Activation Decoding, probe-based methods, and semantic entropy research.
+
+Generating JSON structure... urbation Probing",
+  "core_problem": "Standard uncertainty signals (entropy, probe scores) fail on 'stubborn hallucinations'—high-confidence factual errors where the model is consistently wrong. These errors resist sampling-based detection because the model's probability landscape is peaked (low entropy) around the incorrect answer.",
+  "opportunity": "EPGS (ICML 2026, arxiv 2605.00939) demonstrated that stubborn hallucinations sit in sharp minima while robust facts occupy flat minima, and that perturbing input embeddings + measuring gradient magnitude spike detects these errors. But EPGS is post-hoc (requires gradient computation). The gap is a practical decoding-time variant: perturb the residual stream with small random noise at each generation step and measure output logit sensitivity (a finite-difference sharpness proxy). When sensitivity exceeds a learned threshold, trigger abstention or switch to a conservative decoding mode. This makes sharpness detection tractable at inference time. Feasibility: 2-3 forward passes per suspicious token (identified by a cheap pre-filter) stays within 200 H100-hour budget for evaluation.",
+  "landscape": "EPGS achieves state-of-the-art on stubborn hallucination detection by measuring gradient magnitude after embedding perturbation (AUROC 0.737 on SQuAD, outperforming semantic entropy by >15%), but is detection-only and requires backpropagation. SSP and related perturbation work (ICLR 2026 submission) proves that prompt-level sensitivity discriminates hallucinations in internal representations (+4.78% AUROC on TruthfulQA), though it operates at the prompt level rather than the embedding or residual stream level where I'm targeting this approach.
+
+I'm now surveying the broader landscape of competing methods. NGS uses next-token gradient sensitivity but still requires gradients, while Activation Decoding measures in-context sharpness of hidden states but relies on entropy-based metrics that fundamentally can't catch low-entropy stubborn hallucinations. Semantic entropy achieves strong AUROC on general hallucinations but fails on stubborn ones by design. Probe-based methods like Simple Factuality Probes and CLAP hit 0.89+ AUC on general cases but degrade sharply on high-confidence errors. The key gap is that no existing method combines gradient-free sharpness detection with real-time tractability for selective decoding.
+
+My approach is a two-stage pipeline: first, a lightweight pre-filter using token-level entropy and a frozen linear probe on the residual stream to flag potential stubborn hallucinations with minimal overhead; then for flagged tokens only, I inject calibrated isotropic Gaussian noise into the residual stream at strategic layers, run a few perturbed forward passes, and measure KL divergence between the original and perturbed output distributions as a gradient-free sharpness proxy. When the averaged KL sensitivity crosses a threshold calibrated on held-out factual labels, the system abstains or falls back to retrieval.
+
+This finite-difference approach approximates the output Hessian trace without backpropagation, making it compatible with KV-cache serving and significantly cheaper than existing methods per token. I'll evaluate on TruthfulQA, FELM, and TriviaQA against several baselines, with a dedicated split for stubborn hallucinations where models confidently produce errors, using Qwen3.6-27B and DeepSeek-V4-Flash as the target models.
+
+For resource estimates, I'm looking at roughly 200 GPU hours on H100s with fairly low effective utilization—around 15-25%—since there's idle time during debugging and code iteration between runs.
+
+For the human-in-loop setup, I'd need about 250 GPU hours with better utilization around 50-65% since the agent can run experiments between check-ins, though there's still waiting at approval gates. That's roughly 4-6 weeks with one researcher doing brief daily check-ins, plus some Claude API costs. The main concern is calibrating the residual stream perturbation carefully at specific layers.
+
+With fully automated research, I could explore 3-5x more configurations and ablations across 8-14 days using 4 H100s, running 24/7 with 90-95% utilization and minimal idle time. The costs scale up to around 500 GPU hours and higher API usage, but the real constraint becomes the number of GPUs available—fewer would just stretch the timeline proportionally. The risk here is that without human oversight, the agent needs robust safeguards to avoid getting stuck in unproductive exploration paths.
+
+For publication, I'm targeting ICLR 2027 and AAAI 2027 as the top venues, with deadlines around September/October 2026 and August 2026 respectively. The contribution feels solid since EPGS already established the core insight—my work adds the gradient-free approach and selective generation on top of that foundation. I'm pulling together key references on gradient sensitivity and hallucination detection, though I need to be careful about which papers are actually accepted versus just submitted. I need to standardize the reference format to "Paper title (VENUE YEAR)" and decide how to handle papers that exist in multiple versions or submission states. For the perturbation-related work, there seem to be overlapping submissions—"Perturbations Matter" at ICLR 2026 and "Shaking to Reveal" on arXiv—so I should pick the verifiable version rather than duplicate the reference. I'm also realizing I need to complete the list, as it appears to cut off mid-thought. I'm finishing up the reference list with the remaining papers on hallucination detection and optimization techniques, bringing the total to nine sources. I've settled on "sharpness_selective_gen" as the project name and I'm drafting a concise description that explains the core approach of using gradient-free sharpness-aware methods to make perturbation-based detection more practical.
+
+The key innovation is replacing the expensive backpropagation step from prior work with a two-stage pipeline: first filtering suspicious tokens through entropy and linear probes, then measuring how the model's outputs shift when we inject noise into intermediate layers across a few forward passes. This finite-difference approximation of sharpness runs significantly faster than the original method while still being compatible with efficient serving, and when the sharpness signal exceeds a threshold, the system can abstain or fall back to retrieval-augmented decoding. I'm evaluating this across standard benchmarks with Qwen3.6-27.
+
+Now I'm thinking about the venue targeting and how to position this work—ICLR 2027 seems like the right tier for this contribution level. to how SAM made the sharpness-generalization connection practical as an optimizer, which was a significant contribution at ICLR 2021. But since EPGS is very recent and our work builds incrementally on it, I'll classify this as solid rather than top-tier.
+
+Now I'm structuring the final JSON with all the fields merged together—title, core problem, opportunity, landscape findings, approach, resource estimates across different research modes, target venues, contribution level, references, and project metadata.
+
+I need to update a couple of things: the landscape section should incorporate all the concurrent work I discovered, and the opportunity field should reflect that the arxiv paper is now accepted at ICML 2026 rather than just on arxiv.
+
+For the GPU cost estimates, I'm using H100 rental pricing around $2.50 per hour, which gives me $500 for manual research, $625 for human-in-loop, and $1,250 for fully automated approaches.
+
+Now I'm recalculating the actual GPU hours more carefully by working through the core experiments—using Qwen 3.6-27B, I need to account for forward pass timing around 0.3-0.5 seconds per token, then multiply by the perturbation checks across TruthfulQA, FELM, and TriviaQA subsets to get a more precise estimate of total compute needed.
+
+With multiple models, datasets, and ablation studies factored in, I'm landing on roughly 150-250 GPU-hours for the core work, which aligns with my earlier rough estimates of 200 hours for manual execution, 250 for human-in-the-loop, and 500 for fully automated exploration.
+
+I should also check whether that recent paper on hallucination basins with the geometric framing is worth including in my references, since it seems relevant to the landscape approach I'm taking. I'm finalizing the JSON structure now, making sure the landscape section captures the full picture with SSP, Activation Decoding, and Hallucination Basins alongside the existing methods like EPGS, NGS, and entropy-based approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "494eb8ff-584e-4c48-8153-cf25a4acd29a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kYPpZzw6vVsaw6dxxZ",
+  "type": "assistant",
+  "uuid": "10ef23f2-cce3-4dc3-8565-ca5856e35bc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UegUAwbjMLPQHDZfCVCM5A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 34422,
+      "output_tokens": 8183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8183,
+          "cache_read_input_tokens": 34422,
+          "cache_creation_input_tokens": 4315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-16T06:13:32.578Z_
+
+All 4 agents complete. Now I have comprehensive data to synthesize. Let me do a few targeted verification searches before assembling the final output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10ef23f2-cce3-4dc3-8565-ca5856e35bc9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kYPpZzw6vVsaw6dxxZ",
+  "type": "assistant",
+  "uuid": "c72daa5e-7c39-41c0-87c1-2742762ab331",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UegUAwbjMLPQHDZfCVCM5A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 34422,
+      "output_tokens": 8183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8183,
+          "cache_read_input_tokens": 34422,
+          "cache_creation_input_tokens": 4315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T06:13:32.579Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019YXSu5M2eLAxtCxiyPRM4d`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c72daa5e-7c39-41c0-87c1-2742762ab331",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kYPpZzw6vVsaw6dxxZ",
+  "type": "assistant",
+  "uuid": "0be67630-aead-41c9-b97a-c01d8e7c59fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UegUAwbjMLPQHDZfCVCM5A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 34422,
+      "output_tokens": 8183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8183,
+          "cache_read_input_tokens": 34422,
+          "cache_creation_input_tokens": 4315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T06:13:32.914Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018QuwPYD4ZEB3zNXL1PCdG2`</summary>
+
+```json
+{
+  "query": "AAAI 2027 paper submission deadline August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0be67630-aead-41c9-b97a-c01d8e7c59fa",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kYPpZzw6vVsaw6dxxZ",
+  "type": "assistant",
+  "uuid": "e35d99a3-7515-4bd8-b25d-38db79d68073",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UegUAwbjMLPQHDZfCVCM5A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 34422,
+      "output_tokens": 8183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8183,
+          "cache_read_input_tokens": 34422,
+          "cache_creation_input_tokens": 4315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T06:13:33.161Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017Bg1FSuqxB7oBisuG6zi5x`</summary>
+
+```json
+{
+  "query": "H100 GPU cloud rental price per hour 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e35d99a3-7515-4bd8-b25d-38db79d68073",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kYPpZzw6vVsaw6dxxZ",
+  "type": "assistant",
+  "uuid": "491ad8d0-8508-444c-87f6-16772a41fa6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UegUAwbjMLPQHDZfCVCM5A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 34422,
+      "output_tokens": 8183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8183,
+          "cache_read_input_tokens": 34422,
+          "cache_creation_input_tokens": 4315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Sharpness-Awa…",
+  "leafUuid": "491ad8d0-8508-444c-87f6-16772a41fa6e",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T06:13:36.455Z_
+
+<details><summary>↩ Tool result · `toolu_019YXSu5M2eLAxtCxiyPRM4d`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date"
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"International Conference on Learning Robots ICLR in May 2027 in Crete","url":"https://waset.org/learning-robots-conference-in-may-2027-in-crete"}]
+
+Based on the search results, I found information about ICLR submission deadlines, but the results show information for various conferences with "ICLR" in their names that are different from the main International Conference on Learning Representations. The search results include several satellite conferences and workshops, but don't clearly show the official ICLR 2027 submission deadline.
+
+The most relevant result mentions that ICLR 2027 is scheduled for February 2027 with details marked as "TBA" (To Be Announced) and the dates are predicted based on historical pattern.
+
+For the most current and official ICLR 2027 submission deadline information, I recommend checking the official ICLR website at iclr.cc directly, as the specific deadline details for ICLR 2027 have not yet been officially announced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0be67630-aead-41c9-b97a-c01d8e7c59fa",
+  "isSidechain": false,
+  "promptId": "53e15999-f280-44ba-85c5-dd26d33d5d4f",
+  "type": "user",
+  "uuid": "6b12f974-9b4f-4603-afda-6cded6052665",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019xBzbQBt3FyKRocF1N8hTp",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "International Conference on Learning Robots ICLR in May 2027 in Crete",
+            "url": "https://waset.org/learning-robots-conference-in-may-2027-in-crete"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR submission deadlines, but the results show information for various conferences with \"ICLR\" in their names that are different from the main International Conference on Learning Representations. The search results include several satellite conferences and workshops, but don't clearly show the official ICLR 2027 submission deadline.\n\nThe most relevant result mentions that ICLR 2027 is scheduled for February 2027 with details marked as \"TBA\" (To Be Announced) and the dates are predicted based on historical pattern.\n\nFor the most current and official ICLR 2027 submission deadline information, I recommend checking the official ICLR website at iclr.cc directly, as the specific deadline details for ICLR 2027 have not yet been officially announced."
+    ],
+    "durationSeconds": 3.8717692469999894
+  },
+  "sourceToolAssistantUUID": "0be67630-aead-41c9-b97a-c01d8e7c59fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T06:13:37.096Z_
+
+<details><summary>↩ Tool result · `toolu_018QuwPYD4ZEB3zNXL1PCdG2`</summary>
+
+```text
+Web search results for query: "AAAI 2027 paper submission deadline August 2026"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"}]
+
+Based on the search results, here's what I found regarding AAAI 2027 paper submission deadlines:
+
+Submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. However, official deadlines have not yet been announced as of the latest information available.
+
+AAAI 2027 will be held in Montréal, Québec, Canada on February 16-23, 2027. Based on the pattern from previous years, the specific deadline dates (typically an abstract deadline in late July and a full paper deadline in early August) should be announced closer to the actual submission period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e35d99a3-7515-4bd8-b25d-38db79d68073",
+  "isSidechain": false,
+  "promptId": "53e15999-f280-44ba-85c5-dd26d33d5d4f",
+  "type": "user",
+  "uuid": "fac52dd9-88c4-4a0a-885b-6bec0a472901",
+  "toolUseResult": {
+    "query": "AAAI 2027 paper submission deadline August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HY7TWmQyx6gK4jkrtTDVV1",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding AAAI 2027 paper submission deadlines:\n\nSubmission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. However, official deadlines have not yet been announced as of the latest information available.\n\nAAAI 2027 will be held in Montréal, Québec, Canada on February 16-23, 2027. Based on the pattern from previous years, the specific deadline dates (typically an abstract deadline in late July and a full paper deadline in early August) should be announced closer to the actual submission period."
+    ],
+    "durationSeconds": 4.179102786000003
+  },
+  "sourceToolAssistantUUID": "e35d99a3-7515-4bd8-b25d-38db79d68073",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T06:13:39.971Z_
+
+<details><summary>↩ Tool result · `toolu_017Bg1FSuqxB7oBisuG6zi5x`</summary>
+
+```text
+Web search results for query: "H100 GPU cloud rental price per hour 2026"
+
+Links: [{"title":"2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers","url":"https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"},{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"H100 Cloud Pricing: Compare 41+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-h100"},{"title":"GPU Cloud Pricing 2026: H100 from $1.03/hr, B200 from $2.12/hr (15+ providers) | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"NVIDIA H100 Pricing (May 2026): Cheapest Cloud GPU Rates","url":"https://www.thundercompute.com/blog/nvidia-h100-pricing"},{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing ...","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"Silicon H100 - GPU Rental Price Tracker","url":"https://www.silicondata.com/products/silicon-index"},{"title":"NVIDIA H100 GPU Pricing: 2026 Rent vs. Buy Cost Analysis","url":"https://www.gmicloud.ai/en/blog/nvidia-h100-gpu-pricing-2026-rent-vs-buy-cost-analysis"},{"title":"H100 Price Spike: Understanding the 10% Surge in GPU Rental Costs - Silicon Data — GPU Performance Data for Companies","url":"https://www.silicondata.com/blog/h100-price-spike"},{"title":"Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud","url":"https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"}]
+
+Based on the search results, here's what I found about H100 GPU cloud rental prices per hour in 2026:
+
+## Current Pricing Range
+
+H100 pricing currently ranges from $1.25/hr to $14.90/hr per GPU, depending on the provider, instance type, and billing model.
+
+## Breakdown by Provider Type
+
+**Specialized Providers (Most Affordable):**
+- Renting NVIDIA H100 GPUs in 2026 typically costs between $2.00 and $10.00 per GPU-hour, depending on the provider, with specialized platforms like GMI Cloud offering entry pricing starting from $2.00/GPU-hour.
+- NVIDIA H100 GPU rental rates from $1.49/hr (Vast.ai) to $6.98/hr (Azure).
+- Vast.ai H100 pricing: Starting from $1.65/hr — often the cheapest H100 option available.
+
+**Hyperscaler Providers (Premium):**
+- AWS H100 on-demand runs ~$6.88/hr. Azure charges ~$12.29/hr per GPU on their ND H100 v5 instances.
+
+## Average Market Price
+
+While the average sits at $3.66/hr, the lowest price is currently $1.25/hr per GPU (spot instance). Cloud prices have already dropped 64-75% from peak levels and are now stabilizing at $2.85-$3.50/hour.
+
+The significant price difference reflects that specialized GPU cloud providers typically offer much better value than major hyperscalers like AWS, GCP, and Azure for H100 compute.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "491ad8d0-8508-444c-87f6-16772a41fa6e",
+  "isSidechain": false,
+  "promptId": "53e15999-f280-44ba-85c5-dd26d33d5d4f",
+  "type": "user",
+  "uuid": "d215c8c9-7476-42f3-9fb4-a26f1e26d905",
+  "toolUseResult": {
+    "query": "H100 GPU cloud rental price per hour 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012uwV7PYQwAuCPzByxUbB3F",
+        "content": [
+          {
+            "title": "2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers",
+            "url": "https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"
+          },
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "H100 Cloud Pricing: Compare 41+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-h100"
+          },
+          {
+            "title": "GPU Cloud Pricing 2026: H100 from $1.03/hr, B200 from $2.12/hr (15+ providers) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "NVIDIA H100 Pricing (May 2026): Cheapest Cloud GPU Rates",
+            "url": "https://www.thundercompute.com/blog/nvidia-h100-pricing"
+          },
+          {
+            "title": "NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing ...",
+            "url": "https://jarvislabs.ai/blog/h100-price"
+          },
+          {
+            "title": "Silicon H100 - GPU Rental Price Tracker",
+            "url": "https://www.silicondata.com/products/silicon-index"
+          },
+          {
+            "title": "NVIDIA H100 GPU Pricing: 2026 Rent vs. Buy Cost Analysis",
+            "url": "https://www.gmicloud.ai/en/blog/nvidia-h100-gpu-pricing-2026-rent-vs-buy-cost-analysis"
+          },
+          {
+            "title": "H100 Price Spike: Understanding the 10% Surge in GPU Rental Costs - Silicon Data — GPU Performance Data for Companies",
+            "url": "https://www.silicondata.com/blog/h100-price-spike"
+          },
+          {
+            "title": "Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud",
+            "url": "https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about H100 GPU cloud rental prices per hour in 2026:\n\n## Current Pricing Range\n\nH100 pricing currently ranges from $1.25/hr to $14.90/hr per GPU, depending on the provider, instance type, and billing model.\n\n## Breakdown by Provider Type\n\n**Specialized Providers (Most Affordable):**\n- Renting NVIDIA H100 GPUs in 2026 typically costs between $2.00 and $10.00 per GPU-hour, depending on the provider, with specialized platforms like GMI Cloud offering entry pricing starting from $2.00/GPU-hour.\n- NVIDIA H100 GPU rental rates from $1.49/hr (Vast.ai) to $6.98/hr (Azure).\n- Vast.ai H100 pricing: Starting from $1.65/hr — often the cheapest H100 option available.\n\n**Hyperscaler Providers (Premium):**\n- AWS H100 on-demand runs ~$6.88/hr. Azure charges ~$12.29/hr per GPU on their ND H100 v5 instances.\n\n## Average Market Price\n\nWhile the average sits at $3.66/hr, the lowest price is currently $1.25/hr per GPU (spot instance). Cloud prices have already dropped 64-75% from peak levels and are now stabilizing at $2.85-$3.50/hour.\n\nThe significant price difference reflects that specialized GPU cloud providers typically offer much better value than major hyperscalers like AWS, GCP, and Azure for H100 compute."
+    ],
+    "durationSeconds": 6.807639341999951
+  },
+  "sourceToolAssistantUUID": "491ad8d0-8508-444c-87f6-16772a41fa6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-16T06:14:38.731Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have the GPU pricing data. Let me use $2.50/hr as a reasonable mid-range estimate for H100.
+
+Key verified facts:
+- ICLR 2027: deadline not yet announced, expected ~Sep/Oct 2026
+- AAAI 2027: deadline expected ~Jul/Aug 2026, conference Feb 16-23, 2027 in Montreal
+- H100 prices: $1.49-$6.98/hr, average ~$2.50-3.50/hr. I'll use $2.50/hr for specialized providers.
+
+
+- "Activation Decoding" / "In-Context Sharpness as Alerts" is confirmed as ICML 2024 (arXiv 2403.01548 from March 2024)
+
+Now I'm assembling the complete JSON and working through the resource estimates. For manual mode, I'm estimating around 200 GPU hours on H100 with the researcher writing code, running experiments, and iterating, though GPU utilization will be relatively low at 15-25% since the hardware sits idle between human interactions.
+
+For the human-in-loop approach, I'm looking at roughly 250 GPU hours with much better utilization at 50-65% since the agent can keep working between approval checkpoints. The timeline compresses significantly to 4-6 weeks with just one researcher doing brief daily check-ins, and the costs break down to around $80-120 in API fees plus $625 in GPU compute. I should note that layer-specific noise calibration is a critical consideration here—getting the σ values wrong could derail the whole approach.
+
+With a fully automated setup, I'm looking at a much more aggressive exploration strategy using 500 GPU hours across 3-5x more configurations and ablations. The agent runs continuously with 90-95% GPU utilization, completing the work in 10-14 days on 4 H100s with zero ongoing team involvement. The costs jump to $300-450 in API fees and $1,250 in GPU compute, though the real constraint becomes GPU availability—dropping to 2 GPUs would stretch the timeline to about 3 weeks. The main risk is that without human judgment in the loop, the system might over-explore noise scaling and layer combinations without the intuition to prune unproductive directions.
+
+For venues, I'm targeting ICLR 2027 as the highest-tier option available given the contribution level, with AAAI 2027 as a backup. Since NeurIPS and ICML 2026 have already passed their deadlines, ICLR becomes the natural choice for a solid contribution. I'm checking that the related work section captures all the concurrent research in this space. Now let me put together the full project description—I'm laying out the core problem around stubborn hallucinations that resist standard uncertainty detection, the key insight from EPGS about sharp versus flat minima in the loss landscape, and the practical gap we're addressing by making this approach compatible with efficient serving. Looking at the landscape of related work, I see several approaches that get close but fall short: SSP uses prompt-level perturbations rather than targeting the residual stream directly, NGS relies on gradient computation which defeats the inference-time efficiency goal, and Activation Decoding's entropy-based metrics can't catch low-entropy hallucinations. Hallucination Basins offers useful geometric intuition but no practical detection mechanism. Semantic entropy performs reasonably well overall but doesn't match the performance of gradient-based methods like EPGS. but fails on stubborn ones by definition. Probe-based methods (Simple Factuality Probes, Findings of EMNLP 2025; CLAP, arXiv 2025) achieve 0.89+ AUC on general hallucinations but degrade on high-confidence errors. No existing method makes sharpness-based detection gradient-free and tractable for real-time selective generation.
+
+Now I'm clarifying how this approach actually differentiates from EPGS—the key distinctions are that we eliminate backpropagation entirely by using forward passes with noise injection to compute KL divergence as a sharpness proxy, we perturb the residual stream at intermediate layers rather than just input embeddings to capture layer-specific failure modes, and we implement a two-stage pipeline where a cheap entropy-plus-probe filter handles most tokens before applying expensive perturbation checks only to the suspicious ~20%. Beyond detection, we're integrating sharpness directly into selective generation through abstention and conservative fallback decoding rather than just scoring.
+
+The method is also KV-cache compatible since there's no gradient tape overhead, which matters for standard inference serving. These are solid, genuine differentiators that support a meaningful contribution.
+
+I should verify the project name follows Python conventions—"sharpness_selective_gen" is valid, 23 characters, under the 30-character limit. Now I'm ready to write the complete output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d215c8c9-7476-42f3-9fb4-a26f1e26d905",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kkSeZjLCkJps94ed7Y",
+  "type": "assistant",
+  "uuid": "aa705b7a-60a5-4076-9401-866d7ac20553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Cmgvq22vngcMtpH3FjwF3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10482,
+      "cache_read_input_tokens": 38737,
+      "output_tokens": 2413,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10482,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2413,
+          "cache_read_input_tokens": 38737,
+          "cache_creation_input_tokens": 10482,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10482
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-16T06:14:38.732Z_
+
+All research is in. Let me assemble the final output with all findings synthesized.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa705b7a-60a5-4076-9401-866d7ac20553",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kkSeZjLCkJps94ed7Y",
+  "type": "assistant",
+  "uuid": "978f21f8-90ca-48da-9252-e103dad6faf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Cmgvq22vngcMtpH3FjwF3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10482,
+      "cache_read_input_tokens": 38737,
+      "output_tokens": 2413,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10482,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2413,
+          "cache_read_input_tokens": 38737,
+          "cache_creation_input_tokens": 10482,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10482
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T06:14:38.791Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wj4iE5237SF7X1hjz9zomv`</summary>
+
+```json
+{
+  "query": "Qwen3.6-27B residual stream hook access TransformerLens nnsight 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "978f21f8-90ca-48da-9252-e103dad6faf5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kkSeZjLCkJps94ed7Y",
+  "type": "assistant",
+  "uuid": "547916fa-d40a-48cb-b281-bdf0b7dbfcad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Cmgvq22vngcMtpH3FjwF3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10482,
+      "cache_read_input_tokens": 38737,
+      "output_tokens": 2413,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10482,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2413,
+          "cache_read_input_tokens": 38737,
+          "cache_creation_input_tokens": 10482,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10482
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Sharpness-Awa…",
+  "leafUuid": "547916fa-d40a-48cb-b281-bdf0b7dbfcad",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T06:14:43.587Z_
+
+<details><summary>↩ Tool result · `toolu_01Wj4iE5237SF7X1hjz9zomv`</summary>
+
+```text
+Web search results for query: "Qwen3.6-27B residual stream hook access TransformerLens nnsight 2026"
+
+Links: [{"title":"Qwen3.6 27B - API Pricing & Providers | OpenRouter","url":"https://openrouter.ai/qwen/qwen3.6-27b"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"Qwen/Qwen3.6-27B | vLLM Recipes","url":"https://recipes.vllm.ai/Qwen/Qwen3.6-27B"},{"title":"How to Use Qwen3.6-27B: Complete Guide to Alibaba's New Open-Weight Coding Model | Tosea.ai","url":"https://tosea.ai/blog/qwen-3-6-27b-complete-guide"},{"title":"Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model","url":"https://qwen.ai/blog?id=qwen3.6-27b"},{"title":"unsloth/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/unsloth/Qwen3.6-27B"},{"title":"unsloth/Qwen3.6-27B-GGUF · Hugging Face","url":"https://huggingface.co/unsloth/Qwen3.6-27B-GGUF"},{"title":"Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model","url":"https://simonwillison.net/2026/apr/22/qwen36-27b/"},{"title":"Qwen3.6-27B Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/qwen3.6-27b"},{"title":"Qwen3.6 - How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.6"}]
+
+Based on the search results, I found information about Qwen3.6-27B, but the results don't contain specific information about residual stream hook access, TransformerLens, or nnsight integration.
+
+What I found:
+
+Qwen3.6-27B is a dense 27-billion-parameter language model from the Qwen Team at Alibaba, released in April 2026. It features hybrid multimodal capabilities and is designed for agentic coding and reasoning tasks, with particular strength in repository-level code comprehension, front-end development workflows, and multi-step problem solving.
+
+However, the search results do not contain any information about:
+- Residual stream hook access capabilities
+- TransformerLens integration
+- nnsight compatibility or tools
+
+These appear to be specific technical details about interpretability tools and internal access mechanisms that aren't covered in the publicly available documentation I found. You may want to check the official Qwen documentation, TransformerLens GitHub repositories, or nnsight documentation directly for information about whether this model supports these specific interpretability tools and access patterns.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "547916fa-d40a-48cb-b281-bdf0b7dbfcad",
+  "isSidechain": false,
+  "promptId": "53e15999-f280-44ba-85c5-dd26d33d5d4f",
+  "type": "user",
+  "uuid": "8a12a756-a6a2-4be5-9ec2-924ae8b4ef36",
+  "toolUseResult": {
+    "query": "Qwen3.6-27B residual stream hook access TransformerLens nnsight 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TDtqd7QuthgkQjNmX8rpGp",
+        "content": [
+          {
+            "title": "Qwen3.6 27B - API Pricing & Providers | OpenRouter",
+            "url": "https://openrouter.ai/qwen/qwen3.6-27b"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B | vLLM Recipes",
+            "url": "https://recipes.vllm.ai/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "How to Use Qwen3.6-27B: Complete Guide to Alibaba's New Open-Weight Coding Model | Tosea.ai",
+            "url": "https://tosea.ai/blog/qwen-3-6-27b-complete-guide"
+          },
+          {
+            "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+            "url": "https://qwen.ai/blog?id=qwen3.6-27b"
+          },
+          {
+            "title": "unsloth/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/unsloth/Qwen3.6-27B"
+          },
+          {
+            "title": "unsloth/Qwen3.6-27B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/unsloth/Qwen3.6-27B-GGUF"
+          },
+          {
+            "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+            "url": "https://simonwillison.net/2026/apr/22/qwen36-27b/"
+          },
+          {
+            "title": "Qwen3.6-27B Benchmarks, Pricing & Context Window",
+            "url": "https://llm-stats.com/models/qwen3.6-27b"
+          },
+          {
+            "title": "Qwen3.6 - How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.6"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Qwen3.6-27B, but the results don't contain specific information about residual stream hook access, TransformerLens, or nnsight integration.\n\nWhat I found:\n\nQwen3.6-27B is a dense 27-billion-parameter language model from the Qwen Team at Alibaba, released in April 2026. It features hybrid multimodal capabilities and is designed for agentic coding and reasoning tasks, with particular strength in repository-level code comprehension, front-end development workflows, and multi-step problem solving.\n\nHowever, the search results do not contain any information about:\n- Residual stream hook access capabilities\n- TransformerLens integration\n- nnsight compatibility or tools\n\nThese appear to be specific technical details about interpretability tools and internal access mechanisms that aren't covered in the publicly available documentation I found. You may want to check the official Qwen documentation, TransformerLens GitHub repositories, or nnsight documentation directly for information about whether this model supports these specific interpretability tools and access patterns."
+    ],
+    "durationSeconds": 4.7914705400000095
+  },
+  "sourceToolAssistantUUID": "547916fa-d40a-48cb-b281-bdf0b7dbfcad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-16T06:14:49.874Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the Qwen3.6-27B is a standard transformer model available on HuggingFace, so it supports PyTorch hooks for residual stream access natively. TransformerLens and nnsight should work with any HuggingFace transformer model. This is not a blocker.
+
+Now let me assemble the final comprehensive JSON. I have all the information I need.
+
+Let me carefully construct the JSON output:
+
+One more thing I want to verify - the "Hallucination Basins" paper details. The agent found it at arXiv 2604.04743. 
+
+I'll include it in the landscape but keep it out of the key references since it's more tangential to the core work. Now I'm ready to put together the final comprehensive output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a12a756-a6a2-4be5-9ec2-924ae8b4ef36",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kq8eUfYoLind9swFkB",
+  "type": "assistant",
+  "uuid": "ea8508dd-e048-4e09-a189-1a4aa4d388f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HnF6z4GYdB2DQBc39kXsTn",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3223,
+      "cache_read_input_tokens": 49219,
+      "output_tokens": 2737,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2737,
+          "cache_read_input_tokens": 49219,
+          "cache_creation_input_tokens": 3223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-16T06:15:30.536Z_
+
+Now I have everything needed. Here is the complete research direction with all fields:
+
+{
+  "title": "Sharpness-Aware Selective Generation via Perturbation Probing",
+  "core_problem": "Standard uncertainty signals (entropy, probe scores) fail on 'stubborn hallucinations'—high-confidence factual errors where the model is consistently wrong. These errors resist sampling-based detection because the model's probability landscape is peaked (low entropy) around the incorrect answer.",
+  "opportunity": "EPGS (ICML 2026, arxiv 2605.00939) demonstrated that stubborn hallucinations sit in sharp minima while robust facts occupy flat minima, and that perturbing input embeddings + measuring gradient magnitude spike detects these errors. But EPGS is post-hoc (requires gradient computation incompatible with KV-cache serving). The gap is a practical decoding-time variant: perturb the residual stream with small random noise at each generation step and measure output logit sensitivity (a finite-difference sharpness proxy). When sensitivity exceeds a learned threshold, trigger abstention or switch to a conservative decoding mode. This makes sharpness detection tractable at inference time without backpropagation. Feasibility: 2-3 forward passes per suspicious token (identified by a cheap pre-filter) stays within 200 H100-hour budget for evaluation.",
+  "landscape": "EPGS (ICML 2026, arxiv 2605.00939) achieves SOTA on stubborn hallucination detection by measuring gradient magnitude after embedding perturbation (AUROC 0.737 on SQuAD, outperforming semantic entropy by >15%), but is detection-only and requires backpropagation. SSP (ICLR 2026 submission, OpenReview aZdcNDf3pc) proves prompt-perturbation sensitivity discriminates hallucinations in internal representations (+4.78% AUROC on TruthfulQA), but perturbs at the prompt level rather than the embedding/residual stream and still requires gradient-based analysis of representation changes. NGS (ICLR 2026 submission, OpenReview yzWGQNTbHQ) uses next-token gradient sensitivity as a first-order signal bounding prediction confidence changes under perturbation, but still requires gradient computation. Activation Decoding (ICML 2024, arxiv 2403.01548) measures in-context sharpness of hidden states via entropy, but entropy-based metrics fundamentally cannot detect low-entropy stubborn hallucinations. Hallucination Basins (arXiv 2604.04743, April 2026) provides a geometric dynamical-systems framework modeling hallucinations as basin structures in latent space but does not offer a practical detection method. Semantic entropy (Nature 2024) achieves 0.78-0.81 AUROC on general hallucinations but fails on stubborn ones by definition. Probe-based methods (Simple Factuality Probes, Findings of EMNLP 2025; CLAP, arXiv 2509.09700) achieve 0.89+ AUC on general hallucinations but show degraded performance on high-confidence errors. No existing method makes sharpness-based detection gradient-free and tractable for real-time selective generation at decoding time.",
+  "approach": "Implement a two-stage selective generation pipeline: Stage 1 applies a near-zero-cost pre-filter combining token-level entropy and a frozen linear probe on the last-layer residual stream to flag candidate stubborn hallucination tokens (~20% of generated tokens pass to Stage 2). Stage 2 injects calibrated isotropic Gaussian noise (σ tuned per layer on a held-out validation set) into the residual stream at layers L/3, L/2, and 2L/3, runs 2-3 perturbed forward passes, and computes KL divergence between the original and perturbed output logit distributions as a gradient-free finite-difference sharpness proxy that approximates the trace of the output Hessian without backpropagation. When the averaged KL sensitivity exceeds a calibrated threshold, the system either abstains (returning 'I don't know') or falls back to retrieval-augmented constrained decoding that grounds generation in retrieved evidence. Evaluate on TruthfulQA, FELM, and TriviaQA using Qwen3.6-27B (27B dense, Apache 2.0) and DeepSeek-V4-Flash (284B/13B active, MIT) as target models, benchmarking against EPGS, NGS, SSP, semantic entropy, and probe baselines on a dedicated 'stubborn hallucination' split where models produce high-confidence errors.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h H100",
+      "gpu_utilization": "~15-25% effective utilization; GPU idles extensively while researcher writes code, reads papers, analyzes results, and plans next experiments between runs",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$500 (200h × ~$2.50/h on specialized cloud providers like Vast.ai or Lambda Labs)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~250h H100",
+      "gpu_utilization": "~50-65% effective utilization; agent autonomously codes and runs experiments between human check-ins, but pauses at approval gates (noise scale selection, layer choice, threshold calibration decisions)",
+      "timeline": "4-6 weeks",
+      "team": "1 researcher, ~30min/day check-in to approve experiment plans, review ablation results, and steer noise calibration strategy",
+      "claude_api_cost": "$80-120 (~800-1200 conversation turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "$625 (250h × ~$2.50/h)",
+      "risk_note": "Layer-specific noise calibration is the key bottleneck: σ too small yields uninformative KL values, σ too large destroys representations. Human judgment at calibration gates prevents wasted GPU cycles on dead-end configurations."
+    },
+    "auto_research": {
+      "gpu_hours": "~500h H100 (3-5x more ablation configs explored: noise scales × layer subsets × models × datasets × threshold strategies)",
+      "gpu_utilization": "~90-95% effective utilization; agent runs 24/7 and immediately queues the next experiment when the current one completes, with no human idle gaps",
+      "timeline": "10-14 days with 4× H100 GPUs; ~21 days with 2× H100",
+      "team": "0 (only initial setup: define evaluation protocol, provide dataset access, configure compute)",
+      "claude_api_cost": "$300-450 (~3000-4500 conversation turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "$1,250 (500h × ~$2.50/h)",
+      "speed_bottleneck": "GPU count is the primary bottleneck—4 H100s allow parallel ablation sweeps across noise scales and layer combinations; with fewer GPUs, timeline extends linearly. Secondary bottleneck: Qwen3.6-27B requires 2 GPUs at fp16 or 1 GPU with int8 quantization.",
+      "risk_note": "Agent may over-explore unproductive noise scale / layer combination space without human intuition to prune early; mitigate via structured search schedule (coarse-to-fine grid) specified in initial setup."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated deadline Sep-Oct 2026; highest-tier ML venue with deadline still open)",
+    "AAAI 2027 (estimated deadline ~Aug 1, 2026; Montreal, Feb 16-23 2027)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity (ICML 2026)",
+    "Perturbations Matter: Sensitivity-Guided Hallucination Detection in LLMs (OpenReview 2025, ICLR 2026 submission)",
+    "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection (OpenReview 2025, ICLR 2026 submission)",
+    "In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024)",
+    "Detecting hallucinations in large language models using semantic entropy (Nature 2024)",
+    "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation (Findings of EMNLP 2025)",
+    "Cross-Layer Attention Probing for Fine-Grained Hallucination Detection (arXiv 2025)",
+    "Sharpness-Aware Minimization for Efficiently Improving Generalization (ICLR 2021)",
+    "On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima (ICLR 2017)"
+  ],
+  "description": "We propose a gradient-free sharpness-aware selective generation method that makes perturbation-based stubborn hallucination detection tractable at inference time. While EPGS (ICML 2026) established that stubborn hallucinations reside in sharp loss landscape minima detectable via embedding perturbation and gradient measurement, it requires backpropagation—prohibiting integration into KV-cache-based serving. Our two-stage pipeline first applies a cheap pre-filter (token entropy + linear residual probe) to flag suspicious tokens, then injects calibrated Gaussian noise into the residual stream at intermediate layers and measures output logit KL divergence across 2-3 perturbed forward passes as a finite-difference Hessian trace proxy. When sharpness exceeds a calibrated threshold, the system abstains or switches to retrieval-augmented constrained decoding. Evaluated on TruthfulQA, FELM, and TriviaQA using Qwen3.6-27B and DeepSeek-V4-Flash, targeting the stubborn hallucination subset where entropy-based methods fail. Key contributions: the first gradient-free sharpness estimator for hallucination detection (5-10x cheaper than EPGS per token) and the first integration of sharpness signals into a selective generation pipeline with abstention and conservative fallback decoding.",
+  "project_name": "sharpness_selective_gen",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea8508dd-e048-4e09-a189-1a4aa4d388f0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kq8eUfYoLind9swFkB",
+  "type": "assistant",
+  "uuid": "2f169aee-013a-42f2-82b3-6026e3b2a202",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HnF6z4GYdB2DQBc39kXsTn",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3223,
+      "cache_read_input_tokens": 49219,
+      "output_tokens": 2737,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2737,
+          "cache_read_input_tokens": 49219,
+          "cache_creation_input_tokens": 3223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Sharpness-Awa…",
+  "leafUuid": "2f169aee-013a-42f2-82b3-6026e3b2a202",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decoding-time sharpness detection for stubborn hallucinations",
+  "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5"
+}
+```
+
+---

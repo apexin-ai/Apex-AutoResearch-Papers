@@ -1,0 +1,3373 @@
+# Research conversation: [Reviewer 1 审稿结果]: 以下是我（Reviewer 1）对 Reviewer 2 各条意见的逐条回应： --- ## Must-Fix 回应 **[PARTIALLY AGREE] R2-N1: 核心贡献的增量性** 同意部分
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 3
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-1/f168a970-8e3c-4f0f-a680-70cc6478c7a0.jsonl`
+- **Structured JSON:** [`9f43c54170ad62855d75.json`](../../sessions/9f/9f43c54170ad62855d75.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-24T04:11:04.760Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T04:11:04.760Z",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "content": "[Reviewer 1 审稿结果]:\n以下是我（Reviewer 1）对 Reviewer 2 各条意见的逐条回应：\n\n---\n\n## Must-Fix 回应\n\n**[PARTIALLY AGREE] R2-N1: 核心贡献的增量性**\n\n同意部分：R2 正确指出 ASV 在方法论深度上有限（本质上是 one-parameter sweep 找 sign-flip threshold），Algorithm 1 确实更像 practical guideline 而非 algorithmic contribution。将 ASV 与 E-values 类比（Section 3.3, p.5-6）确实可能误导读者高估其方法论创新。\n\n反驳部分：R2 低估了从 K=2 到 K≥3 推广的理论意义。关键区别不仅是\"更多类别\"，而是 **K≥3 引入了质性新现象**：\n- **Structural dichotomy**（Section 4.2, p.7, Table 1）：K=2 时所有 non-exposure topologies 都保证 0% sign-flip rate，但 K≥3 时 exposure topology 的 sign-flip rate 达到 83.6%（Table 1），confounding/mediation 的 violation rate 也非零（13.7% under realistic accuracy, p.7）。这不是 Brenner (1993) 的简单推广——Brenner 只处理了 polytomous confounder 的偏差放大，未覆盖 7 种 topology 的差异化行为。\n- **FWL futility result**（Section 3, p.3; Appendix B.2）：TeBlunthuis (2024) 仅覆盖 4 种 binary DAG，未建立 correction method 的 topology-dependent effectiveness 分析。论文的 FWL invariance observation 虽然在理解 FWL 的读者看来不惊讶（我在自己的审稿中也指出了这点，见我的 W2），但将其系统化并与 PP++/DSL/MC-SIMEX 五种校正方法的实证对比联系起来，是对文献的实质贡献。\n\n总结：贡献 1 的核心价值在于 K≥3 的质性新现象而非量的推广；贡献 2-3 的方法论深度确实有限。建议将此定性为 \"solid systematic contribution with novel qualitative insights\" 而非 \"methodological breakthrough\"。\n\n---\n\n**[AGREE] R2-N2: Conjecture 1 未证明削弱理论完整性**\n\n完全同意。我在自己的审稿中将此列为 N3 (critical)。Conjecture 1（general K≥3 approximate envelope monotonicity）是 ASV 框架的理论基础之一，留为 conjecture 确实是完整性缺陷。数值验证虽然广泛（545,945 adversarial curves, maximum step deviation < 0.04, Appendix B.12 p.28），但不能替代证明。\n\n补充我自己的发现：Appendix B.12 Table 11 显示 K=7 时 worst-case magnitude deviation 为 0.060*（non-monotone direction），这比 K=3 的 0.003 大一个数量级。这暗示随 K 增大，approximate monotonicity 的 approximation quality 可能恶化，进一步削弱 conjecture 在 large-K settings（如 HumAID K=10）下的可靠性。\n\n---\n\n**[PARTIALLY AGREE] R2-N3: Real-world empirical validation 不充分**\n\n同意部分：R2 正确指出论文的 \"empirical validation\"（Section 4）主要是 theory-MC consistency check（Table 1: analytical predictions match MC estimates, MAPE 1.6%），而非在真实因果推断问题上的 end-to-end 验证。对投向 EMNLP 的论文，这确实偏理论。\n\n反驳部分：\n- 论文确实包含了超越 pure simulation 的实证成分：Section 4.4 (p.7-8) 使用 23 real LLM confusion matrices 验证 bias ranking 和 sign-flip predictions；Appendix B.18 (p.31) 的 Political Ad Tone Classification case study 使用 ASV 诊断真实 annotated variable 的脆弱性；Appendix B.19-B.20 (p.32) 的 end-to-end demonstration 和 semi-real case study 使用 production LLM confusion matrices。\n- 但 R2 的核心批评成立：这些 case studies 仍然是 **retrospective analysis**（已知 ground truth 或 simulated outcomes），而非在一个 researcher 不知道 ground truth 的真实因果推断场景中展示框架的 decision-making value。一个理想的 validation 应该是：对一个有 gold-standard causal effect 的 NLP 任务，展示使用 Algorithm 1 routing 后的 corrected estimate 比 naive estimate 更接近 ground truth。\n\n总结：论文的实证成分比 R2 描述的更丰富，但 end-to-end real-world validation 的缺失确实是一个合理的 weakness。我在自己的审稿中将此列为 W4 (should-fix) 而非 critical，因为对理论导向的论文，simulation + real confusion matrices 的验证已经达到了合理的 evidence bar。\n\n---\n\n## Should-Fix 回应\n\n**[AGREE] R2-W1: 非差异性误分类假设讨论不足**\n\n完全同意，且我认为这个问题比 R2 的 \"should-fix\" 分级更严重。我在自己的审稿中将此列为 **N2 (critical)**，因为论文自身的 stress test (Appendix B.6, Table 9, p.27) 显示 13.3% baseline violation rate 和 14/16 K≥3 configurations 在 α=0.01 下出现 structured departures（正文 p.4）。假设在目标场景中被系统性违反，理论结果的实际指导价值需要更诚实的讨论。\n\n---\n\n**[AGREE] R2-W2: Linear SEM 限制**\n\n同意。我将此列为 W1 (should-fix)。论文 Appendix B.7 (p.26) 的 nonlinear DGP 测试提供了部分 robustness evidence（structured violation models 下 sign-flip rate 仍为 0%），但 linear bias expressions 与 nonlinear bias magnitudes 的对应关系未被建立。\n\n---\n\n**[PARTIALLY AGREE] R2-W3: 相关工作缺口**\n\n- **Cinelli & Hazlett (2020) partial R² 对比**：同意。论文在 Section 2 (p.3) 引用了 Cinelli and Hazlett (2020) 的 \"partial-R² bounds\"，但未对比 ASV 与 partial R² sensitivity analysis 的方法论异同。这是一个合理的相关工作缺口。\n- **Regression calibration**：同意。这是 measurement error 文献中的经典方法（Carroll et al., 2006），论文在 Section 4.5 (p.8) 讨论了 5 种 correction methods（Naive plug-in, MLA, DSL, MC-SIMEX, PP++）但未提及 regression calibration。虽然 regression calibration 主要适用于 continuous measurement error，但讨论其不适用于 categorical misclassification 的原因也是有价值的。\n- **PPI++ theoretical guarantees**：部分不同意。论文在 Section 4.5 和 Table 5 (p.8) 对 PPI++ 进行了相当详细的实证对比，且在 Appendix B.15 (p.30) 分析了 PPI++ 在不同 gold label fractions 下的 RMSE sensitivity。PPI++ 的理论 guarantees（Angelopoulos et al., 2023）确实值得在 Related Work 中讨论，但这不是重大遗漏。\n\n---\n\n**[REBUT] R2-W4: Abstract \"annotation quality is the wrong thing to worry about\" overclaiming**\n\n不同意这是 overclaiming。原文完整句子是（Abstract, p.1）：\"When LLM-generated annotations feed into causal inference, annotation quality is the wrong thing to worry about—what matters is whether errors attenuate, amplify, or reverse the treatment effect estimate.\" 这是一个 **framing statement**，意思是\"关注 accuracy 不如关注 error structure\"，而非\"annotation quality 不重要\"。论文的全部内容恰恰支持这一 framing：Table 1 (p.7) 显示同一 confusion matrix 在不同 topologies 下效果截然不同（confounding: 100% sign preservation vs. IV: 52.6% sign flip），这确实说明 aggregate accuracy 不是正确的 metric。\n\n此外，这种 counterintuitive hook 是合理的写作策略，符合 NLP 顶会论文的叙事惯例（先提出 provocative claim，再用论文内容支撑）。只要正文不 overclaim（而正文确实给出了 nuanced discussion），abstract 中的 framing 是可接受的。\n\n---\n\n**[REBUT] R2-W5: Figure 2 信息密度过高**\n\n不同意。Figure 2 (p.5) 展示了 100,000 random K=3 confusion matrices 下 7 种 topologies 的 bias distribution，通过并排 histogram 高效传达了 structural dichotomy 的核心 insight（exposure: 83.6% sign reversal vs. 其他 topologies: 0-2.1%）。替代方案（如拆分为多个 sub-figures）会占用更多版面但不增加信息量。在 8 页正文限制下，Figure 2 的密度是合理的。\n\n---\n\n## 总结\n\nR2 的 3 个 Must-Fix 中，N2（Conjecture 1）我完全同意，N1（增量性）和 N3（实证不足）我部分同意。R2 的 Should-Fix 中，W1-W3 我基本同意，W4-W5 我不同意。\n\n我与 R2 的主要分歧在于：(1) 我认为 K≥3 sign reversal 是质性新现象而非纯增量推广，这赋予贡献 1 独立的理论价值；(2) 我认为 non-differential 假设被违反（我的 N2）比 R2 给出的 W1 分级更严重——这是影响接收决定的 critical issue，而非 should-fix。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-24T04:11:04.762Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T04:11:04.762Z",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 3 · 2026-05-24T04:11:04.788Z_
+
+[Reviewer 1 审稿结果]:
+以下是我（Reviewer 1）对 Reviewer 2 各条意见的逐条回应：
+
+---
+
+## Must-Fix 回应
+
+**[PARTIALLY AGREE] R2-N1: 核心贡献的增量性**
+
+同意部分：R2 正确指出 ASV 在方法论深度上有限（本质上是 one-parameter sweep 找 sign-flip threshold），Algorithm 1 确实更像 practical guideline 而非 algorithmic contribution。将 ASV 与 E-values 类比（Section 3.3, p.5-6）确实可能误导读者高估其方法论创新。
+
+反驳部分：R2 低估了从 K=2 到 K≥3 推广的理论意义。关键区别不仅是"更多类别"，而是 **K≥3 引入了质性新现象**：
+- **Structural dichotomy**（Section 4.2, p.7, Table 1）：K=2 时所有 non-exposure topologies 都保证 0% sign-flip rate，但 K≥3 时 exposure topology 的 sign-flip rate 达到 83.6%（Table 1），confounding/mediation 的 violation rate 也非零（13.7% under realistic accuracy, p.7）。这不是 Brenner (1993) 的简单推广——Brenner 只处理了 polytomous confounder 的偏差放大，未覆盖 7 种 topology 的差异化行为。
+- **FWL futility result**（Section 3, p.3; Appendix B.2）：TeBlunthuis (2024) 仅覆盖 4 种 binary DAG，未建立 correction method 的 topology-dependent effectiveness 分析。论文的 FWL invariance observation 虽然在理解 FWL 的读者看来不惊讶（我在自己的审稿中也指出了这点，见我的 W2），但将其系统化并与 PP++/DSL/MC-SIMEX 五种校正方法的实证对比联系起来，是对文献的实质贡献。
+
+总结：贡献 1 的核心价值在于 K≥3 的质性新现象而非量的推广；贡献 2-3 的方法论深度确实有限。建议将此定性为 "solid systematic contribution with novel qualitative insights" 而非 "methodological breakthrough"。
+
+---
+
+**[AGREE] R2-N2: Conjecture 1 未证明削弱理论完整性**
+
+完全同意。我在自己的审稿中将此列为 N3 (critical)。Conjecture 1（general K≥3 approximate envelope monotonicity）是 ASV 框架的理论基础之一，留为 conjecture 确实是完整性缺陷。数值验证虽然广泛（545,945 adversarial curves, maximum step deviation < 0.04, Appendix B.12 p.28），但不能替代证明。
+
+补充我自己的发现：Appendix B.12 Table 11 显示 K=7 时 worst-case magnitude deviation 为 0.060*（non-monotone direction），这比 K=3 的 0.003 大一个数量级。这暗示随 K 增大，approximate monotonicity 的 approximation quality 可能恶化，进一步削弱 conjecture 在 large-K settings（如 HumAID K=10）下的可靠性。
+
+---
+
+**[PARTIALLY AGREE] R2-N3: Real-world empirical validation 不充分**
+
+同意部分：R2 正确指出论文的 "empirical validation"（Section 4）主要是 theory-MC consistency check（Table 1: analytical predictions match MC estimates, MAPE 1.6%），而非在真实因果推断问题上的 end-to-end 验证。对投向 EMNLP 的论文，这确实偏理论。
+
+反驳部分：
+- 论文确实包含了超越 pure simulation 的实证成分：Section 4.4 (p.7-8) 使用 23 real LLM confusion matrices 验证 bias ranking 和 sign-flip predictions；Appendix B.18 (p.31) 的 Political Ad Tone Classification case study 使用 ASV 诊断真实 annotated variable 的脆弱性；Appendix B.19-B.20 (p.32) 的 end-to-end demonstration 和 semi-real case study 使用 production LLM confusion matrices。
+- 但 R2 的核心批评成立：这些 case studies 仍然是 **retrospective analysis**（已知 ground truth 或 simulated outcomes），而非在一个 researcher 不知道 ground truth 的真实因果推断场景中展示框架的 decision-making value。一个理想的 validation 应该是：对一个有 gold-standard causal effect 的 NLP 任务，展示使用 Algorithm 1 routing 后的 corrected estimate 比 naive estimate 更接近 ground truth。
+
+总结：论文的实证成分比 R2 描述的更丰富，但 end-to-end real-world validation 的缺失确实是一个合理的 weakness。我在自己的审稿中将此列为 W4 (should-fix) 而非 critical，因为对理论导向的论文，simulation + real confusion matrices 的验证已经达到了合理的 evidence bar。
+
+---
+
+## Should-Fix 回应
+
+**[AGREE] R2-W1: 非差异性误分类假设讨论不足**
+
+完全同意，且我认为这个问题比 R2 的 "should-fix" 分级更严重。我在自己的审稿中将此列为 **N2 (critical)**，因为论文自身的 stress test (Appendix B.6, Table 9, p.27) 显示 13.3% baseline violation rate 和 14/16 K≥3 configurations 在 α=0.01 下出现 structured departures（正文 p.4）。假设在目标场景中被系统性违反，理论结果的实际指导价值需要更诚实的讨论。
+
+---
+
+**[AGREE] R2-W2: Linear SEM 限制**
+
+同意。我将此列为 W1 (should-fix)。论文 Appendix B.7 (p.26) 的 nonlinear DGP 测试提供了部分 robustness evidence（structured violation models 下 sign-flip rate 仍为 0%），但 linear bias expressions 与 nonlinear bias magnitudes 的对应关系未被建立。
+
+---
+
+**[PARTIALLY AGREE] R2-W3: 相关工作缺口**
+
+- **Cinelli & Hazlett (2020) partial R² 对比**：同意。论文在 Section 2 (p.3) 引用了 Cinelli and Hazlett (2020) 的 "partial-R² bounds"，但未对比 ASV 与 partial R² sensitivity analysis 的方法论异同。这是一个合理的相关工作缺口。
+- **Regression calibration**：同意。这是 measurement error 文献中的经典方法（Carroll et al., 2006），论文在 Section 4.5 (p.8) 讨论了 5 种 correction methods（Naive plug-in, MLA, DSL, MC-SIMEX, PP++）但未提及 regression calibration。虽然 regression calibration 主要适用于 continuous measurement error，但讨论其不适用于 categorical misclassification 的原因也是有价值的。
+- **PPI++ theoretical guarantees**：部分不同意。论文在 Section 4.5 和 Table 5 (p.8) 对 PPI++ 进行了相当详细的实证对比，且在 Appendix B.15 (p.30) 分析了 PPI++ 在不同 gold label fractions 下的 RMSE sensitivity。PPI++ 的理论 guarantees（Angelopoulos et al., 2023）确实值得在 Related Work 中讨论，但这不是重大遗漏。
+
+---
+
+**[REBUT] R2-W4: Abstract "annotation quality is the wrong thing to worry about" overclaiming**
+
+不同意这是 overclaiming。原文完整句子是（Abstract, p.1）："When LLM-generated annotations feed into causal inference, annotation quality is the wrong thing to worry about—what matters is whether errors attenuate, amplify, or reverse the treatment effect estimate." 这是一个 **framing statement**，意思是"关注 accuracy 不如关注 error structure"，而非"annotation quality 不重要"。论文的全部内容恰恰支持这一 framing：Table 1 (p.7) 显示同一 confusion matrix 在不同 topologies 下效果截然不同（confounding: 100% sign preservation vs. IV: 52.6% sign flip），这确实说明 aggregate accuracy 不是正确的 metric。
+
+此外，这种 counterintuitive hook 是合理的写作策略，符合 NLP 顶会论文的叙事惯例（先提出 provocative claim，再用论文内容支撑）。只要正文不 overclaim（而正文确实给出了 nuanced discussion），abstract 中的 framing 是可接受的。
+
+---
+
+**[REBUT] R2-W5: Figure 2 信息密度过高**
+
+不同意。Figure 2 (p.5) 展示了 100,000 random K=3 confusion matrices 下 7 种 topologies 的 bias distribution，通过并排 histogram 高效传达了 structural dichotomy 的核心 insight（exposure: 83.6% sign reversal vs. 其他 topologies: 0-2.1%）。替代方案（如拆分为多个 sub-figures）会占用更多版面但不增加信息量。在 8 页正文限制下，Figure 2 的密度是合理的。
+
+---
+
+## 总结
+
+R2 的 3 个 Must-Fix 中，N2（Conjecture 1）我完全同意，N1（增量性）和 N3（实证不足）我部分同意。R2 的 Should-Fix 中，W1-W3 我基本同意，W4-W5 我不同意。
+
+我与 R2 的主要分歧在于：(1) 我认为 K≥3 sign reversal 是质性新现象而非纯增量推广，这赋予贡献 1 独立的理论价值；(2) 我认为 non-differential 假设被违反（我的 N2）比 R2 给出的 W1 分级更严重——这是影响接收决定的 critical issue，而非 should-fix。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5b8ef464-49e0-4b8a-97c0-ea9ce5567d5f",
+  "type": "user",
+  "uuid": "d4cbb0d2-f85d-4c9c-beea-1effb3294471",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-24T04:11:04.787Z_
+
+```json
+{
+  "parentUuid": "d4cbb0d2-f85d-4c9c-beea-1effb3294471",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3391ad1c-260d-4fb2-abf4-2eb65c2b67e0",
+  "timestamp": "2026-05-24T04:11:04.787Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-24T04:11:04.787Z_
+
+```json
+{
+  "parentUuid": "3391ad1c-260d-4fb2-abf4-2eb65c2b67e0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "759e604d-9d3d-4aff-8d37-44a27ae9e889",
+  "timestamp": "2026-05-24T04:11:04.787Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-24T04:11:04.787Z_
+
+```json
+{
+  "parentUuid": "759e604d-9d3d-4aff-8d37-44a27ae9e889",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b217e995-c5e9-450d-993a-243e6beb8b61",
+  "timestamp": "2026-05-24T04:11:04.787Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer rebuttal to classification bias analysis paper",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer rebuttal to classification bias analysis paper",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 9 · 2026-05-24T04:11:56.736Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T04:11:56.736Z",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "content": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n## Must-Fix 问题\n\n**[AGREE] R1-N1: Theorem 1 仅对 proportional effects 成立**\n\n同意这是一个重要的理论完整性缺陷。我在自己的 N2 中也独立提出了 Conjecture 1 未证明的问题。补充两点：\n\n1. 论文的理论贡献结构是分层的：K=2 exact（所有 effects, Theorem 1 的 proportional case 之外还有 Appendix A.5 的一般 K=2 证明）→ K=3 symmetric exact（Theorem 2）→ general K≥3 conjecture。前两层是完整的，但最重要的一般情形留为 conjecture。\n2. 不过，数值验证的覆盖面值得肯定：100,000 Dirichlet-sampled matrices + 545,945 adversarial curves（Appendix A.11）+ 20,000 random triples for non-proportional effects。在计算数学中，这种规模的数值验证通常被视为 strong evidence，尽管不能替代证明。\n\nR1 说 \"proportional effects 假设在 NLP 因果推断场景中几乎不可验证也很少成立\"——这个判断我认为稍有过强。proportional effects 意味着所有类别的 treatment effect 按同一比例缩放，这在某些场景下是合理的近似（如 ordinal 分类变量的单调效应）。但确实不能假设它普遍成立。\n\n**[AGREE] R1-N2: Non-differential 假设与 stress test 结果的张力**\n\n同意这个发现值得关注。我在自己的 W1 中也提出了类似问题，但 R1 的论证更尖锐——直接用论文自身的数值来构成内部矛盾：\n\n- 正文 p.4 承认 14/16 K≥3 exposure configurations 在 α=0.01 下出现 sign reversal\n- Appendix B.6 Table 8 显示 sign-flip rate 随结构偏离增大\n- Appendix B.26 的 Y-stratified permutation test 在 VAST 数据上 13.3% violation rate\n\n这构成了一个内部一致性问题：论文的理论框架依赖 non-differential 假设，但论文自己的实证检验显示该假设在目标场景中存在非平凡的违反率。\n\n不过，有一个 nuance 需要补充：B.26 的结果显示 violation 主要是 \"content-dependent\"（topic/sentiment driven）而非纯粹的 outcome-dependent。论文区分了这两类偏离——content-dependent violation 在某些因果推断 design 下（如控制了 topic 后）可能不构成 non-differential 假设的违反。但这个论点在论文中没有被充分发展。\n\n**[AGREE] R1-N3: Conjecture 1 在实践框架中的关键角色**\n\n完全同意。与我的 N2 一致。补充一个具体的依赖链：\n\nConjecture 1（envelope monotonicity）→ ASV 的 vulnerability ranking 有序性 → Algorithm 1 Step 1 的 risk level 判断 → 整个 correction routing 的正确性。\n\n如果 Conjecture 1 存在反例（即某些 confusion matrix 下 ASV 的 topology ordering 反转），Algorithm 1 可能给出错误的 correction 建议。虽然 545,945 adversarial curves 未发现反例，但 \"absence of evidence is not evidence of absence\"。\n\n论文应至少讨论：如果 Conjecture 1 的 approximate monotonicity 在实践中偶尔被违反（ε < 0.017, Appendix A.11），Algorithm 1 的 robustness 如何？这种小幅违反是否会导致 correction routing 的质变？\n\n## Should-Fix 问题\n\n**[AGREE] R1-W1: Linear SEM 假设对 NLP 场景的适用性**\n\n同意。与我的 W2 一致。Appendix B.7 和 B.14 的 logistic regression 测试结果实际上更 damaging than the paper acknowledges：matrix-based correction 的 bias reduction 在 logistic regression 下 ≈ 0%，且 FWL invariance 在形式上不再成立但实际上 correction 仍然无效。这意味着论文的 practical recommendations 对非线性模型几乎完全不适用。\n\n**[REBUT] R1-W2: FWL futility result 的 novelty**\n\n部分不同意 R1 的判断。\n\nR1 认为 FWL invariance result \"本质是 FWL 定理的直接推论\"。从纯数学角度看，proof 确实只需 3-4 步（见 Appendix B.2, page 23-24）。但我认为这个 result 的价值不在证明技巧而在 observation：\n\n1. **实践意义显著**：NLP 社区中很多研究者在使用 LLM annotation 做因果推断时，直觉上会认为\"先用 confusion matrix 校正标注再跑回归\"是正确的 pipeline。FWL futility result 明确地告诉他们：对于 4 种 covariate topology（confounding, mediation, collider, M-bias），这个 pipeline 在 OLS 下是 provably useless。这个 negative result 本身就有传播价值。\n2. **非显然性**：虽然对熟悉 FWL 的统计学家来说这个结果\"not surprising\"，但 (a) 之前没有人在 annotation error 的语境下明确指出这一点；(b) Table 6 (Appendix B.2) 的数值验证表明 correction 确实不改变 OLS 估计——这对 NLP practitioner 来说是 counterintuitive 的。\n\n但我同意 R1 的 framing 建议：论文应将此定位为 \"a practically important observation that follows from FWL\" 而非暗示这是一个 deep theoretical contribution。\"Provably ineffective\" 的措辞是准确的，但论文在 contribution list 中将其与 bias taxonomy 和 ASV 并列，可能给人过高的 novelty 印象。\n\n**[AGREE] R1-W3: C(δ) 参数化的局限性**\n\n同意。C(δ) = (1-δ)I + δC₀ 假设误分类模式在质量变化时保持结构不变（只是 intensity 变化），但实际上 LLM 在不同 prompt / temperature / few-shot 设置下的 confusion matrix 结构可能发生定性变化（例如：某些类别对的混淆可能在高质量设置下消失而新的混淆出现）。这使得 ASV 的 \"minimum perturbation to sign flip\" 解释可能不准确——实际路径上的 confusion matrix 变化可能不沿 C(δ) 的线性插值路径。\n\n不过，这是 sensitivity analysis 中常见的单参数 parameterization 问题（E-values 也有类似局限——用单一 risk ratio 参数化 unmeasured confounding），不是本文特有的缺陷。论文应 acknowledge 这个 limitation 但不必彻底改变方法。\n\n**[AGREE] R1-W4: 数据集多样性不足**\n\n同意。与我的 N3 一致。仅 3 个文本分类数据集（HumAID, VAST, CivilComments），最大 K=10，全部是英文，全部用 LLM annotator。缺少：\n- 非文本模态（如 image classification + VLM annotator）\n- 更大 K（如 K=20+）\n- 非英文数据\n- 非 LLM annotator（如 crowdsourcing）\n\n不过，考虑到论文的理论导向性质和页数限制，要求全面的 empirical 覆盖可能不合理。但至少应在 limitations 中明确 acknowledge 这些缺口。\n\n**[REBUT] R1-W5: Theorem 2 的 symmetric assumption 过强**\n\n部分不同意。\n\nR1 引用 Remark 5 (Appendix A.7) 指出实际 LLM confusion matrices 偏离对称性显著（median relative Frobenius distance d_rel = 0.30-0.38）。但论文对此有清晰的 awareness：\n\n1. Theorem 2 的定位是 **theoretical anchor**，不是对实际 confusion matrices 的直接建模。论文明确说：\"Theorem 2 serves as a theoretical anchor: exact monotonicity is achievable at K=3 under symmetric C_s\"（page 6）。\n2. 对一般非对称 matrices，论文提供了 Conjecture 1 + 数值验证。Remark 5 本身就是作者用来论证\"需要从 symmetric 推广到 general case\"的 motivation。\n3. Appendix A.11 的 adversarial monotonicity verification 不依赖对称性假设——它在 general column-stochastic matrices 上测试。\n\n所以 Theorem 2 的对称假设不是一个\"应该被修复\"的问题，而是理论推导中的一个 stepping stone，论文对此处理得当。真正的问题仍是 Conjecture 1 未证明（R1-N3 / 我的 N2）。\n\n## Questions 回应\n\n**Q1（B_OV 可观测性）**: 好问题。Proposition 1(a) 中 B_OV = Cov(g(A), f(A)) / Var(f(A))，涉及真实 A 而非 observed A*。论文在 Section 3.3 用 bootstrap（从 A* 通过 C⁻¹ 估计 A 的分布）来近似这个量，但未明确讨论这个 \"间接可观测\" 问题的 estimation error propagation。这确实是 ASV 实用性的一个潜在瓶颈。\n\n**Q2（DAG misspecification）**: 论文假设 DAG 已知，但 DAG discovery 本身在有 measurement error 下也会受影响。这是一个 important practical concern，应在 limitations 中讨论。\n\n**Q3（IV topology 在 NLP 中的频率）**: 我同意 IV 在 NLP 中很少使用。但论文将 IV 列为理论上最脆弱的拓扑（vulnerability ranking 最高），这个结果对少数使用 IV 的研究者来说仍有重要警示价值。IV 在社会科学因果推断中有广泛使用，NLP 标注可能进入这些 pipeline。\n\n**Q5（AI 辅助定理证明）**: Section D 的披露是\"coding, designing and refactoring\" + \"drafting and revising paper sections\"。是否辅助了定理证明未明确说明。ACL 2025/2026 的 AI assistance policy 要求\"describe the use in sufficient detail\"，如果 AI 确实参与了 proof development，应明确披露。这是一个 ethics concern 而非 technical concern。\n\n## 总结\n\nR1 和我（R2）的审稿意见在多个关键问题上 converge：\n1. **Conjecture 1 未证明**（R1-N3 / R2-N2）——双方一致认为是 critical\n2. **Non-differential 假设的实际合理性**（R1-N2 / R2-W1）——R1 用论文自身数据构成了更尖锐的论证\n3. **Linear SEM 限制**（R1-W1 / R2-W2）——双方一致\n4. **Empirical validation 深度**（R1-W4 / R2-N3）——双方一致\n\n我和 R1 的主要分歧在：\n- **FWL futility result**（R1-W2）：R1 认为 novelty 不足，我认为 observation 的实践价值大于证明技巧的深度\n- **Theorem 2 symmetric assumption**（R1-W5）：R1 认为过强，我认为作为 theoretical stepping stone 定位合理\n- **增量性的严重程度**：R1 侧重方法严谨性（对已有结论的信心），我侧重新颖性（贡献边界的清晰度），但结论相近\n\n总体判断不变：**3.5 (Borderline Conference)**，推荐 Findings。\n\n\n---\n\n[Reviewer 2 审稿结果]:\n已提交对 Reviewer 1 的逐条交叉回应。\n\n核心共识：R1 和 R2 在 Conjecture 1 未证明、non-differential 假设合理性、linear SEM 限制、empirical validation 深度四个问题上独立收敛。主要分歧在 FWL futility result 的 novelty 判断和 Theorem 2 symmetric assumption 的严重程度。两位 reviewer 均给出 3.5 (Borderline Conference)，推荐 Findings。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 10 · 2026-05-24T04:11:56.736Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T04:11:56.736Z",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 11 · 2026-05-24T04:11:56.730Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b217e995-c5e9-450d-993a-243e6beb8b61",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "a17c746b-024e-417c-8732-98f4da634c6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-24T04:11:56.730Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a17c746b-024e-417c-8732-98f4da634c6d",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "2bf61157-79ea-4d7a-927d-1a8d3930c83f",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "058aabca-ea75-4c96-8577-645bde1039fd",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+31 recorded events
+
+### User
+
+_source line 13 · 2026-05-24T04:11:56.812Z_
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应
+
+## Must-Fix 问题
+
+**[AGREE] R1-N1: Theorem 1 仅对 proportional effects 成立**
+
+同意这是一个重要的理论完整性缺陷。我在自己的 N2 中也独立提出了 Conjecture 1 未证明的问题。补充两点：
+
+1. 论文的理论贡献结构是分层的：K=2 exact（所有 effects, Theorem 1 的 proportional case 之外还有 Appendix A.5 的一般 K=2 证明）→ K=3 symmetric exact（Theorem 2）→ general K≥3 conjecture。前两层是完整的，但最重要的一般情形留为 conjecture。
+2. 不过，数值验证的覆盖面值得肯定：100,000 Dirichlet-sampled matrices + 545,945 adversarial curves（Appendix A.11）+ 20,000 random triples for non-proportional effects。在计算数学中，这种规模的数值验证通常被视为 strong evidence，尽管不能替代证明。
+
+R1 说 "proportional effects 假设在 NLP 因果推断场景中几乎不可验证也很少成立"——这个判断我认为稍有过强。proportional effects 意味着所有类别的 treatment effect 按同一比例缩放，这在某些场景下是合理的近似（如 ordinal 分类变量的单调效应）。但确实不能假设它普遍成立。
+
+**[AGREE] R1-N2: Non-differential 假设与 stress test 结果的张力**
+
+同意这个发现值得关注。我在自己的 W1 中也提出了类似问题，但 R1 的论证更尖锐——直接用论文自身的数值来构成内部矛盾：
+
+- 正文 p.4 承认 14/16 K≥3 exposure configurations 在 α=0.01 下出现 sign reversal
+- Appendix B.6 Table 8 显示 sign-flip rate 随结构偏离增大
+- Appendix B.26 的 Y-stratified permutation test 在 VAST 数据上 13.3% violation rate
+
+这构成了一个内部一致性问题：论文的理论框架依赖 non-differential 假设，但论文自己的实证检验显示该假设在目标场景中存在非平凡的违反率。
+
+不过，有一个 nuance 需要补充：B.26 的结果显示 violation 主要是 "content-dependent"（topic/sentiment driven）而非纯粹的 outcome-dependent。论文区分了这两类偏离——content-dependent violation 在某些因果推断 design 下（如控制了 topic 后）可能不构成 non-differential 假设的违反。但这个论点在论文中没有被充分发展。
+
+**[AGREE] R1-N3: Conjecture 1 在实践框架中的关键角色**
+
+完全同意。与我的 N2 一致。补充一个具体的依赖链：
+
+Conjecture 1（envelope monotonicity）→ ASV 的 vulnerability ranking 有序性 → Algorithm 1 Step 1 的 risk level 判断 → 整个 correction routing 的正确性。
+
+如果 Conjecture 1 存在反例（即某些 confusion matrix 下 ASV 的 topology ordering 反转），Algorithm 1 可能给出错误的 correction 建议。虽然 545,945 adversarial curves 未发现反例，但 "absence of evidence is not evidence of absence"。
+
+论文应至少讨论：如果 Conjecture 1 的 approximate monotonicity 在实践中偶尔被违反（ε < 0.017, Appendix A.11），Algorithm 1 的 robustness 如何？这种小幅违反是否会导致 correction routing 的质变？
+
+## Should-Fix 问题
+
+**[AGREE] R1-W1: Linear SEM 假设对 NLP 场景的适用性**
+
+同意。与我的 W2 一致。Appendix B.7 和 B.14 的 logistic regression 测试结果实际上更 damaging than the paper acknowledges：matrix-based correction 的 bias reduction 在 logistic regression 下 ≈ 0%，且 FWL invariance 在形式上不再成立但实际上 correction 仍然无效。这意味着论文的 practical recommendations 对非线性模型几乎完全不适用。
+
+**[REBUT] R1-W2: FWL futility result 的 novelty**
+
+部分不同意 R1 的判断。
+
+R1 认为 FWL invariance result "本质是 FWL 定理的直接推论"。从纯数学角度看，proof 确实只需 3-4 步（见 Appendix B.2, page 23-24）。但我认为这个 result 的价值不在证明技巧而在 observation：
+
+1. **实践意义显著**：NLP 社区中很多研究者在使用 LLM annotation 做因果推断时，直觉上会认为"先用 confusion matrix 校正标注再跑回归"是正确的 pipeline。FWL futility result 明确地告诉他们：对于 4 种 covariate topology（confounding, mediation, collider, M-bias），这个 pipeline 在 OLS 下是 provably useless。这个 negative result 本身就有传播价值。
+2. **非显然性**：虽然对熟悉 FWL 的统计学家来说这个结果"not surprising"，但 (a) 之前没有人在 annotation error 的语境下明确指出这一点；(b) Table 6 (Appendix B.2) 的数值验证表明 correction 确实不改变 OLS 估计——这对 NLP practitioner 来说是 counterintuitive 的。
+
+但我同意 R1 的 framing 建议：论文应将此定位为 "a practically important observation that follows from FWL" 而非暗示这是一个 deep theoretical contribution。"Provably ineffective" 的措辞是准确的，但论文在 contribution list 中将其与 bias taxonomy 和 ASV 并列，可能给人过高的 novelty 印象。
+
+**[AGREE] R1-W3: C(δ) 参数化的局限性**
+
+同意。C(δ) = (1-δ)I + δC₀ 假设误分类模式在质量变化时保持结构不变（只是 intensity 变化），但实际上 LLM 在不同 prompt / temperature / few-shot 设置下的 confusion matrix 结构可能发生定性变化（例如：某些类别对的混淆可能在高质量设置下消失而新的混淆出现）。这使得 ASV 的 "minimum perturbation to sign flip" 解释可能不准确——实际路径上的 confusion matrix 变化可能不沿 C(δ) 的线性插值路径。
+
+不过，这是 sensitivity analysis 中常见的单参数 parameterization 问题（E-values 也有类似局限——用单一 risk ratio 参数化 unmeasured confounding），不是本文特有的缺陷。论文应 acknowledge 这个 limitation 但不必彻底改变方法。
+
+**[AGREE] R1-W4: 数据集多样性不足**
+
+同意。与我的 N3 一致。仅 3 个文本分类数据集（HumAID, VAST, CivilComments），最大 K=10，全部是英文，全部用 LLM annotator。缺少：
+- 非文本模态（如 image classification + VLM annotator）
+- 更大 K（如 K=20+）
+- 非英文数据
+- 非 LLM annotator（如 crowdsourcing）
+
+不过，考虑到论文的理论导向性质和页数限制，要求全面的 empirical 覆盖可能不合理。但至少应在 limitations 中明确 acknowledge 这些缺口。
+
+**[REBUT] R1-W5: Theorem 2 的 symmetric assumption 过强**
+
+部分不同意。
+
+R1 引用 Remark 5 (Appendix A.7) 指出实际 LLM confusion matrices 偏离对称性显著（median relative Frobenius distance d_rel = 0.30-0.38）。但论文对此有清晰的 awareness：
+
+1. Theorem 2 的定位是 **theoretical anchor**，不是对实际 confusion matrices 的直接建模。论文明确说："Theorem 2 serves as a theoretical anchor: exact monotonicity is achievable at K=3 under symmetric C_s"（page 6）。
+2. 对一般非对称 matrices，论文提供了 Conjecture 1 + 数值验证。Remark 5 本身就是作者用来论证"需要从 symmetric 推广到 general case"的 motivation。
+3. Appendix A.11 的 adversarial monotonicity verification 不依赖对称性假设——它在 general column-stochastic matrices 上测试。
+
+所以 Theorem 2 的对称假设不是一个"应该被修复"的问题，而是理论推导中的一个 stepping stone，论文对此处理得当。真正的问题仍是 Conjecture 1 未证明（R1-N3 / 我的 N2）。
+
+## Questions 回应
+
+**Q1（B_OV 可观测性）**: 好问题。Proposition 1(a) 中 B_OV = Cov(g(A), f(A)) / Var(f(A))，涉及真实 A 而非 observed A*。论文在 Section 3.3 用 bootstrap（从 A* 通过 C⁻¹ 估计 A 的分布）来近似这个量，但未明确讨论这个 "间接可观测" 问题的 estimation error propagation。这确实是 ASV 实用性的一个潜在瓶颈。
+
+**Q2（DAG misspecification）**: 论文假设 DAG 已知，但 DAG discovery 本身在有 measurement error 下也会受影响。这是一个 important practical concern，应在 limitations 中讨论。
+
+**Q3（IV topology 在 NLP 中的频率）**: 我同意 IV 在 NLP 中很少使用。但论文将 IV 列为理论上最脆弱的拓扑（vulnerability ranking 最高），这个结果对少数使用 IV 的研究者来说仍有重要警示价值。IV 在社会科学因果推断中有广泛使用，NLP 标注可能进入这些 pipeline。
+
+**Q5（AI 辅助定理证明）**: Section D 的披露是"coding, designing and refactoring" + "drafting and revising paper sections"。是否辅助了定理证明未明确说明。ACL 2025/2026 的 AI assistance policy 要求"describe the use in sufficient detail"，如果 AI 确实参与了 proof development，应明确披露。这是一个 ethics concern 而非 technical concern。
+
+## 总结
+
+R1 和我（R2）的审稿意见在多个关键问题上 converge：
+1. **Conjecture 1 未证明**（R1-N3 / R2-N2）——双方一致认为是 critical
+2. **Non-differential 假设的实际合理性**（R1-N2 / R2-W1）——R1 用论文自身数据构成了更尖锐的论证
+3. **Linear SEM 限制**（R1-W1 / R2-W2）——双方一致
+4. **Empirical validation 深度**（R1-W4 / R2-N3）——双方一致
+
+我和 R1 的主要分歧在：
+- **FWL futility result**（R1-W2）：R1 认为 novelty 不足，我认为 observation 的实践价值大于证明技巧的深度
+- **Theorem 2 symmetric assumption**（R1-W5）：R1 认为过强，我认为作为 theoretical stepping stone 定位合理
+- **增量性的严重程度**：R1 侧重方法严谨性（对已有结论的信心），我侧重新颖性（贡献边界的清晰度），但结论相近
+
+总体判断不变：**3.5 (Borderline Conference)**，推荐 Findings。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+已提交对 Reviewer 1 的逐条交叉回应。
+
+核心共识：R1 和 R2 在 Conjecture 1 未证明、non-differential 假设合理性、linear SEM 限制、empirical validation 深度四个问题上独立收敛。主要分歧在 FWL futility result 的 novelty 判断和 Theorem 2 symmetric assumption 的严重程度。两位 reviewer 均给出 3.5 (Borderline Conference)，推荐 Findings。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bf61157-79ea-4d7a-927d-1a8d3930c83f",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "bfbf7df3-0732-47d3-9ed4-9edfefe50308",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-24T04:12:07.719Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both reviewers have completed their cross-responses. Let me analyze the convergence:
+
+**Key convergences:**
+1. Conjecture 1 未证明 - both critical
+2. Non-differential assumption tension - both agree critical (R1 escalated R2's W1 to critical)
+3. Linear SEM limitation - both agree
+4. Empirical validation depth - both agree
+
+**Key divergences:**
+1. FWL futility novelty: R1 says low novelty, R2 defends practical value
+2. Theorem 2 symmetric assumption: R1 says too strong (should-fix), R2 says reasonable stepping stone
+
+
+3. The K≥3 results present another split—R1 sees qualitatively new phenomena while R2 acknowledges this but still views it as somewhat incremental
+
+Both reviewers settled on 3.5 (Borderline Conference) with a Findings recommendation. The cross-responses have thoroughly explored the critical issues and reached consensus on the main problems. Now I need to move to synthesizing the final review report, starting with checking the review-director-session-start skill for the Step 4 process, verifying visual check and external review status, and reviewing any existing review_issues.yaml.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfbf7df3-0732-47d3-9ed4-9edfefe50308",
+  "isSidechain": false,
+  "requestId": "req_011CbLjwRMvRJ4j3v81YEpv1",
+  "type": "assistant",
+  "uuid": "09e80a3a-05fa-4b50-ab0d-e3e47dca5e23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiQrs7eXKzvf6RmRuqGzrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23467,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-24T04:12:07.724Z_
+
+两位 Reviewer 的交叉回应已完成，关键问题达成共识，无需第三轮。进入报告合成阶段。
+
+先检查外部审稿、视觉审查状态，并读取 issue tracker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09e80a3a-05fa-4b50-ab0d-e3e47dca5e23",
+  "isSidechain": false,
+  "requestId": "req_011CbLjwRMvRJ4j3v81YEpv1",
+  "type": "assistant",
+  "uuid": "0d33c2bb-5e59-4804-a8a2-75dbde40275b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiQrs7eXKzvf6RmRuqGzrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23467,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-24T04:12:09.508Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H4afwdyDhvxY5f9T1UJaH6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__submit_review_report_to_research_director",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d33c2bb-5e59-4804-a8a2-75dbde40275b",
+  "isSidechain": false,
+  "requestId": "req_011CbLjwRMvRJ4j3v81YEpv1",
+  "type": "assistant",
+  "uuid": "553fdf20-da60-4205-8f84-403e034d4734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiQrs7eXKzvf6RmRuqGzrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23467,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T04:12:09.514Z_
+
+<details><summary>↩ Tool result · `toolu_01H4afwdyDhvxY5f9T1UJaH6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_external_review_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_visual_check_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_review_issues"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_review_report_to_research_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "553fdf20-da60-4205-8f84-403e034d4734",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "fa286764-5969-4dce-985c-c01fd0c745e0",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__submit_review_report_to_research_director"
+    ],
+    "query": "select:mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__submit_review_report_to_research_director",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "553fdf20-da60-4205-8f84-403e034d4734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-24T04:12:12.247Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_external_review_status · `toolu_01GQesDC197zYXK9egsdS8LA`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa286764-5969-4dce-985c-c01fd0c745e0",
+  "isSidechain": false,
+  "requestId": "req_011CbLjxMuadt6BX8NzS7t1Z",
+  "type": "assistant",
+  "uuid": "2755293f-2909-41a7-92d3-0fd101c68ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqgU4Nq4TnN4idKFMaHJ9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 35308,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 35308,
+          "cache_creation_input_tokens": 2427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T04:12:12.259Z_
+
+<details><summary>↩ Tool result · `toolu_01GQesDC197zYXK9egsdS8LA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2755293f-2909-41a7-92d3-0fd101c68ef8",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "f5dfc930-810b-4f8a-bcc9-8c3c79f4fa45",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2755293f-2909-41a7-92d3-0fd101c68ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-24T04:12:12.362Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_visual_check_status · `toolu_01Wro5EvRf6Nm72yihqkdWEv`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5dfc930-810b-4f8a-bcc9-8c3c79f4fa45",
+  "isSidechain": false,
+  "requestId": "req_011CbLjxMuadt6BX8NzS7t1Z",
+  "type": "assistant",
+  "uuid": "8fcf0f16-276e-468e-8751-c8d171c1ea9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqgU4Nq4TnN4idKFMaHJ9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 35308,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 35308,
+          "cache_creation_input_tokens": 2427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T04:12:12.369Z_
+
+<details><summary>↩ Tool result · `toolu_01Wro5EvRf6Nm72yihqkdWEv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-24T04:01:11.083606+00:00\", \"completed_at\": \"2026-05-24T04:06:03.765082+00:00\", \"findings\": [{\"severity\": \"info\", \"dimension\": \"page 1-2\", \"message\": \"连续 2 页纯文本（title + intro + related work），无 display item。ACL 格式下属常规布局，但若能在 page 2 加入一个 teaser figure 或 motivating example 会增强审稿人第一印象\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2 的 2×4 小面板中轴标签和拓扑名称字号偏小（估计 ~7pt），建议适当增大子图或减少面板数量以提升可读性\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"纯文本页（Theorem 1-2 + Conjecture + Remark），无 display item。内容为数学定理密集段落，属理论推导例外，不影响评分\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"Figure 4 尺寸较小（约占单栏宽度的 80%，高度约 1/4 页），数据点标签紧凑。作为正文最后一张图，适当放大可增强视觉冲击力\"}, {\"severity\": \"warning\", \"dimension\": \"page 23\", \"message\": \"附录单页堆叠 4 个 display items（Figure 5 + Figure 6 + Table 5 + Figure 7），版面极度拥挤，每个图表都偏小。建议将 Figure 5-6 或 Figure 7 移至下一页以改善可读性\"}, {\"severity\": \"info\", \"dimension\": \"page 28-29\", \"message\": \"Tables 12-13 列数多（6-8 列），字号较小，数字密度高。审稿人快速扫阅时可能跳过细节。建议考虑合并或精简列数\"}, {\"severity\": \"info\", \"dimension\": \"page 35\", \"message\": \"Algorithm 1 占页面约 60%，底部约 40% 空白。附录末页不影响评分，但如有待补充内容可利用此空间\"}], \"counts\": {\"critical\": 0, \"warning\": 1, \"info\": 6}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fcf0f16-276e-468e-8751-c8d171c1ea9e",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "890bac30-e6d3-46b3-a45b-caae1f30d38c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-24T04:01:11.083606+00:00\\\", \\\"completed_at\\\": \\\"2026-05-24T04:06:03.765082+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1-2\\\", \\\"message\\\": \\\"连续 2 页纯文本（title + intro + related work），无 display item。ACL 格式下属常规布局，但若能在 page 2 加入一个 teaser figure 或 motivating example 会增强审稿人第一印象\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 2 的 2×4 小面板中轴标签和拓扑名称字号偏小（估计 ~7pt），建议适当增大子图或减少面板数量以提升可读性\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"纯文本页（Theorem 1-2 + Conjecture + Remark），无 display item。内容为数学定理密集段落，属理论推导例外，不影响评分\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Figure 4 尺寸较小（约占单栏宽度的 80%，高度约 1/4 页），数据点标签紧凑。作为正文最后一张图，适当放大可增强视觉冲击力\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 23\\\", \\\"message\\\": \\\"附录单页堆叠 4 个 display items（Figure 5 + Figure 6 + Table 5 + Figure 7），版面极度拥挤，每个图表都偏小。建议将 Figure 5-6 或 Figure 7 移至下一页以改善可读性\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 28-29\\\", \\\"message\\\": \\\"Tables 12-13 列数多（6-8 列），字号较小，数字密度高。审稿人快速扫阅时可能跳过细节。建议考虑合并或精简列数\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 35\\\", \\\"message\\\": \\\"Algorithm 1 占页面约 60%，底部约 40% 空白。附录末页不影响评分，但如有待补充内容可利用此空间\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 1, \\\"info\\\": 6}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-24T04:01:11.083606+00:00\", \"completed_at\": \"2026-05-24T04:06:03.765082+00:00\", \"findings\": [{\"severity\": \"info\", \"dimension\": \"page 1-2\", \"message\": \"连续 2 页纯文本（title + intro + related work），无 display item。ACL 格式下属常规布局，但若能在 page 2 加入一个 teaser figure 或 motivating example 会增强审稿人第一印象\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2 的 2×4 小面板中轴标签和拓扑名称字号偏小（估计 ~7pt），建议适当增大子图或减少面板数量以提升可读性\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"纯文本页（Theorem 1-2 + Conjecture + Remark），无 display item。内容为数学定理密集段落，属理论推导例外，不影响评分\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"Figure 4 尺寸较小（约占单栏宽度的 80%，高度约 1/4 页），数据点标签紧凑。作为正文最后一张图，适当放大可增强视觉冲击力\"}, {\"severity\": \"warning\", \"dimension\": \"page 23\", \"message\": \"附录单页堆叠 4 个 display items（Figure 5 + Figure 6 + Table 5 + Figure 7），版面极度拥挤，每个图表都偏小。建议将 Figure 5-6 或 Figure 7 移至下一页以改善可读性\"}, {\"severity\": \"info\", \"dimension\": \"page 28-29\", \"message\": \"Tables 12-13 列数多（6-8 列），字号较小，数字密度高。审稿人快速扫阅时可能跳过细节。建议考虑合并或精简列数\"}, {\"severity\": \"info\", \"dimension\": \"page 35\", \"message\": \"Algorithm 1 占页面约 60%，底部约 40% 空白。附录末页不影响评分，但如有待补充内容可利用此空间\"}], \"counts\": {\"critical\": 0, \"warning\": 1, \"info\": 6}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8fcf0f16-276e-468e-8751-c8d171c1ea9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 对 Reviewer 1 审稿意见的逐条回应  ## Must-Fix 问题  **[AGREE] R1-N1: Theorem 1 仅对 proportional effects 成立**  同意这是一个重要的理论完整性缺陷。我在自己的 N2 中也独立提出了 Conjecture 1 未证明的问题。补充两点：  1. 论文的理论贡…",
+  "leafUuid": "890bac30-e6d3-46b3-a45b-caae1f30d38c",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer rebuttal to classification bias analysis paper",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-24T04:12:19.379Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Visual check is done with 0 critical, 1 warning, 6 info. External review was not requested.
+
+Now let me check if there's an existing review_issues.yaml file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "890bac30-e6d3-46b3-a45b-caae1f30d38c",
+  "isSidechain": false,
+  "requestId": "req_011CbLjxZtAPNyDS8XEpbsyX",
+  "type": "assistant",
+  "uuid": "6896e33e-28ce-492e-b8a6-592eb7f4e068",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018dqxZmzj6u2tyJWEsXzuTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 37735,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 37735,
+          "cache_creation_input_tokens": 1016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-24T04:12:20.350Z_
+
+现在读取现有的 review_issues.yaml（如果存在）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6896e33e-28ce-492e-b8a6-592eb7f4e068",
+  "isSidechain": false,
+  "requestId": "req_011CbLjxZtAPNyDS8XEpbsyX",
+  "type": "assistant",
+  "uuid": "8dec52da-e82c-456b-b09e-ed14ee2266ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018dqxZmzj6u2tyJWEsXzuTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 37735,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 37735,
+          "cache_creation_input_tokens": 1016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-24T04:12:21.630Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018gfDHDec4vhCcwxhD9sREa`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml 2>/dev/null || echo \"FILE_NOT_FOUND\"",
+  "description": "Check if review_issues.yaml exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dec52da-e82c-456b-b09e-ed14ee2266ed",
+  "isSidechain": false,
+  "requestId": "req_011CbLjxZtAPNyDS8XEpbsyX",
+  "type": "assistant",
+  "uuid": "4147dda0-92f4-4461-91ef-922c860732ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018dqxZmzj6u2tyJWEsXzuTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1016,
+      "cache_read_input_tokens": 37735,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 37735,
+          "cache_creation_input_tokens": 1016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T04:12:21.763Z_
+
+<details><summary>↩ Tool result · `toolu_018gfDHDec4vhCcwxhD9sREa`</summary>
+
+```text
+issues:
+  # === Round 1-7 历史 (resolved，保留摘要) ===
+
+  - id: R1-N1
+    category: soundness
+    severity: must-fix
+    summary: "Theorem 1 适用范围过窄（仅 confounding+proportional effects），K≥3 证明不完整"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 7
+    resolution: "Theorem 1 现正确限定为 K=2；K≥3 由 Observation 1 和 Conjecture 1 覆盖。"
+    resolution_round: 7
+
+  - id: R1-N2
+    category: soundness
+    severity: should-fix
+    summary: "3/5 安全拓扑的符号保持仅有数值验证，Abstract 用 'establish' 暗示已证明"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    resolution: "Abstract 已准确区分 prove/verify。"
+    resolution_round: 4
+
+  - id: R1-N3
+    category: soundness
+    severity: must-fix
+    summary: "ASV C(δ) 定义域错误"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Section 3.3 已引入 δ_max 约束。"
+    resolution_round: 2
+
+  - id: R2-N1
+    category: presentation
+    severity: must-fix
+    summary: "83.4% sign reversal headline framing 过度声称"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 5
+    resolution: "Introduction 已重写。"
+    resolution_round: 5
+
+  - id: R2-N2
+    category: novelty
+    severity: should-fix
+    summary: "'first systematic framework' 过度声明"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "已修复。"
+    resolution_round: 2
+
+  - id: R2-N3
+    category: related_work
+    severity: must-fix
+    summary: "4 篇关键相关工作未引用"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "已修复。"
+    resolution_round: 2
+
+  - id: R1-W2
+    category: clarity
+    severity: should-fix
+    summary: "Sign preservation 的 DGP 条件在实践中难以事前验证"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "Section 3.2 已添加 ASV 替代讨论。"
+    resolution_round: 3
+
+  - id: R1-W3
+    category: experiments
+    severity: should-fix
+    summary: "实证验证不完整：缺少商业 LLM"
+    status: in_progress
+    first_raised_round: 1
+    last_seen_round: 22
+    mentions:
+      - round: 7
+        reviewers: [R2]
+        note: "Limitations 中讨论即可。"
+      - round: 20
+        reviewers: []
+        note: "R20 未单独提出。Limitations 已覆盖。"
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续多轮未提出。"
+    resolution: ""
+    resolution_round: null
+
+  - id: R2-W2
+    category: presentation
+    severity: should-fix
+    summary: "98 场景 zero sign reversals 与 sign reversal narrative 的 tension"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "已解决。"
+    resolution_round: 2
+
+  - id: R2-W3
+    category: method
+    severity: should-fix
+    summary: "ASV 对 C₀ 估计不确定性的敏感性"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "Bootstrap ASV 分析已完成。"
+    resolution_round: 3
+
+  - id: R2-W4
+    category: scope
+    severity: should-fix
+    summary: "线性 SEM 假设限制；Algorithm 1 缺 linear-only caveat"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 5
+    resolution: "Section 4.5 FWL 段加 'Under linear OLS' 限定。"
+    resolution_round: 5
+
+  - id: R1-W4
+    category: experiments
+    severity: should-fix
+    summary: "MC MAPE 报告不充分"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "已修复。"
+    resolution_round: 2
+
+  - id: MISC-1
+    category: presentation
+    severity: minor
+    summary: "符号不统一（τ vs β_T）、Proposition 编号不一致"
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 5
+    resolution: "method.tex 添加 τ 在各拓扑下含义的明确说明。"
+    resolution_round: 5
+
+  - id: NEW-1
+    category: soundness
+    severity: should-fix
+    summary: "Non-differential misclassification 假设讨论不足"
+    status: in_progress
+    first_raised_round: 2
+    last_seen_round: 22
+    mentions:
+      - round: 18
+        reviewers: [R1, R2]
+        note: "R18 升级为 must-fix。R18 fix 完成。"
+      - round: 19
+        reviewers: []
+        note: "R19 未单独提出。连续两轮未提出，R18 修复充分。"
+      - round: 20
+        reviewers: [R1, R2]
+        note: "R20 再提，要求主文前置讨论。"
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 SF-1: 主文讨论不足，要求 NLP task mapping。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 再次升级为 critical。两位 Reviewer 强共识：NLP 中标注误差几乎必然是差异性的；B.6 stress test 显示假设脆弱；Y-stratified test 功效不明。要求主文充分讨论假设合理性边界+差异误分类下的退化保证。"
+    action_items:
+      - round: 20
+        action: "W6 fix: Section 3.1 expanded non-differential discussion"
+        assigned_to: paper_agent
+        status: done
+      - round: 21
+        action: "SF-1 fix: NLP task mapping added"
+        assigned_to: paper_agent
+        status: done
+      - round: 22
+        action: "P0-2: 坦诚策略——主文增加非差异性假设脆弱性承认 + 退化数据 (2.0%→9.67% at ε=0.2)"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: NEW-2
+    category: related_work
+    severity: should-fix
+    summary: "缺少 Feder et al. (2022) 和 Cheng et al. (2024)"
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 5
+    resolution: "已引用。"
+    resolution_round: 5
+
+  - id: NEW-3
+    category: soundness
+    severity: should-fix
+    summary: "Conjecture 1 数值验证规模"
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 2
+    resolution: "210,000 matrices + adversarial + analytic plim。"
+    resolution_round: 3
+
+  - id: R3-NEW-1
+    category: format
+    severity: must-fix
+    summary: "正文超出 EMNLP 2026 Long Paper 8 页限制"
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 19
+    resolution: "R18 压缩后编译验证 main text ≤8 pages。连续多轮无复发。"
+    resolution_round: 19
+
+  - id: R3-NEW-2
+    category: soundness
+    severity: should-fix
+    summary: "FWL invariance 结论缺乏 precise statement 和推导"
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    resolution: "FWL 证明完整。"
+    resolution_round: 5
+
+  - id: R3-NEW-3
+    category: scope
+    severity: should-fix
+    summary: "缺少 outcome misclassification 讨论"
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    resolution: "Limitations 已添加。"
+    resolution_round: 4
+
+  - id: R3-NEW-4
+    category: presentation
+    severity: minor
+    summary: "Abstract/Introduction 信息过载（数字密度）"
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: []
+        note: "R20 未单独提出。"
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: [R2]
+        note: "R22 R2-W3 再提：Abstract 中 10+ 具体数字稀释主信息。R1 部分反驳（具体数字符合 *ACL 规范），共识降为 minor。"
+    resolution: ""
+    resolution_round: null
+
+  - id: R3-NEW-5
+    category: related_work
+    severity: should-fix
+    summary: "缺少 5 篇相关引用（Round 3 要求的）"
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    resolution: "全部 5 篇已引用。"
+    resolution_round: 4
+
+  - id: R3-NEW-6
+    category: reproducibility
+    severity: should-fix
+    summary: "未承诺代码/数据公开"
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    resolution: "Conclusion 已添加代码公开承诺。"
+    resolution_round: 4
+
+  - id: R3-NEW-7
+    category: novelty
+    severity: should-fix
+    summary: "新颖性定位不清：未明确界定已知结果 vs 新贡献"
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    resolution: "确认'首次跨 7 种拓扑系统比较'成立。"
+    resolution_round: 5
+
+  - id: R3-NEW-8
+    category: experiments
+    severity: must-fix
+    summary: "经验验证使用模拟 DGP 而非真实因果数据——缺少端到端因果应用验证"
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R1, R2]
+        note: "R20 升级为 critical。"
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 MF-2: 仍为 must-fix。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 双方 AGREE：Section 4.4 使用真实混淆矩阵但合成 DGP，Appendix B.19/B.20 也是构造的因果问题。缺少从头到尾使用真实数据的验证。R2 承认获取同时有 gold labels 和已知因果效应的真实数据很困难。降级为 should-fix（可理解的局限）。"
+    action_items:
+      - round: 21
+        action: "MF-2 fix: Semi-real case study with 10 VAST K=3 production LLM confusion matrices"
+        assigned_to: agent + paper_agent
+        status: done
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W6
+    category: novelty
+    severity: should-fix
+    summary: "ASV 方法论创新有限——E-value 直接移植质疑"
+    status: in_progress
+    first_raised_round: 4
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R2]
+        note: "R20 R2-W5 再提 ASV 与 E-values 区分度。"
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: [R2]
+        note: "R22 R2-N1 合并讨论：ASV 'analogous to E-values' 的措辞削弱新颖性。R1 认为 ASV 将敏感性分析从定性推进到定量是新工具。"
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W7
+    category: presentation
+    severity: should-fix
+    summary: "论文广度有余深度不足"
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 7
+    resolution: "Appendix pointer 已添加。"
+    resolution_round: 8
+
+  - id: R4-W8
+    category: scope
+    severity: should-fix
+    summary: "DAG 拓扑必须先验已知——Algorithm 1 依赖正确拓扑输入"
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "Limitations 已添加相关讨论。"
+    resolution_round: 5
+
+  - id: R4-W10
+    category: method
+    severity: minor
+    summary: "PPI++ 对 M-bias 有害 (-88%) 缺乏机制解释"
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 15
+    resolution: "Section 4.5 已包含完整机制解释。"
+    resolution_round: 15
+
+  - id: R4-W12
+    category: presentation
+    severity: minor
+    summary: "引用格式问题"
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 7
+    resolution: "格式合规检查通过。"
+    resolution_round: 8
+
+  - id: R5-N1
+    category: presentation
+    severity: must-fix
+    summary: "Table 1 的 sign-flip guarantee ✓ 掩盖了 DGP 条件性"
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "Table 1 已实现三级符号 ✓/✓*/✗。"
+    resolution_round: 5
+
+  - id: R5-N2
+    category: soundness
+    severity: should-fix
+    summary: "Conjecture 1 的 ε 在极端条件下可达 0.14-0.15"
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "Conjecture 1 rewritten with per-topology ε bounds。"
+    resolution_round: 5
+
+  - id: R5-N3
+    category: presentation
+    severity: must-fix
+    summary: "'Primary coefficient never reverses' 仅为经验发现，缺乏理论保证"
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 11
+    resolution: "Abstract 已改为经验事实描述。"
+    resolution_round: 11
+
+  - id: R5-MR
+    category: related_work
+    severity: should-fix
+    summary: "Round 5 新发现的缺失引用"
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 5
+    resolution: "三篇引用已添加。"
+    resolution_round: 5
+
+  - id: R6-M1
+    category: soundness
+    severity: should-fix
+    summary: "Theorem 1 对 K≥3 未证明但标记为 Theorem"
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    resolution: "Theorem 1 现正确限定为 K=2。"
+    resolution_round: 7
+
+  - id: R6-M3
+    category: soundness
+    severity: must-fix
+    summary: "Proportional effects 假设在 NLP 中是强限制，且 Limitations 中完全缺失"
+    status: in_progress
+    first_raised_round: 6
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R1]
+        note: "R20 R1 升级为 critical。"
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 SF-2: NLP 适用性缺少实质论证。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 R1-N3: proportional effects 验证用满足假设的 DGP，non-proportional sparse DGP 违反率 24.2% 被正文忽略。R2 rebut '循环论证'定性（in-assumption verification 是标准做法），但同意缺少 NLP 中何时合理的讨论。共识：不是循环论证，但实践讨论严重缺失。"
+    action_items:
+      - round: 21
+        action: "SF-2 fix: NLP domain-specific argument added"
+        assigned_to: paper_agent
+        status: done
+    resolution: ""
+    resolution_round: null
+
+  - id: R6-M4
+    category: presentation
+    severity: must-fix
+    summary: "Abstract sign reversal rate 与 Section 4.2 数值不一致"
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    resolution: "数值统一。"
+    resolution_round: 7
+
+  - id: R8-C1
+    category: soundness
+    severity: must-fix
+    summary: "K≥3 ASV 理论基础为 conjectural——Theorem/Conjecture 边界在主文中模糊"
+    status: in_progress
+    first_raised_round: 8
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R1, R2]
+        note: "R20 再提。"
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 MF-1: 结构性矛盾。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 双方强共识 critical：(1) Theorem 1 仅 K=2 单调性；(2) Theorem 2 K=3 对称但 VAST d_rel=0.30-0.38 远非对称；(3) Conjecture 1 仅数值支撑。ASV 核心性质是猜想而非定理，削弱作为诊断工具的可靠性。R2 补充：adversarial 4 种结构是否覆盖 worst case 不清楚；0.017 违反对因果估计的实际影响未讨论。"
+    action_items:
+      - round: 21
+        action: "MF-1 fix: Main text Theorem 2 repositioned as theoretical anchor"
+        assigned_to: paper_agent
+        status: done
+    resolution: ""
+    resolution_round: null
+
+  - id: R8-C2
+    category: soundness
+    severity: should-fix
+    summary: "Proportional effects 在 NLP 中不可验证"
+    status: in_progress
+    first_raised_round: 8
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R1]
+        note: "与 R6-M3 合并。"
+      - round: 21
+        reviewers: [R1, R2]
+        note: "与 R6-M3 合并。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "与 R6-M3 合并。R22 继续活跃。"
+
+  - id: R8-W1
+    category: novelty
+    severity: should-fix
+    summary: "ASV contribution 定位"
+    status: in_progress
+    first_raised_round: 8
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R2]
+        note: "与 R4-W6 合并。"
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: [R2]
+        note: "R22 R2-N1 合并：ASV 新颖性有限。R1 部分同意但认为定量化是增量贡献。"
+
+  - id: R8-W2
+    category: soundness
+    severity: should-fix
+    summary: "Non-differential 假设讨论不足"
+    status: resolved
+    first_raised_round: 8
+    last_seen_round: 19
+    resolution: "随 NEW-1 一同解决。"
+    resolution_round: 19
+
+  - id: R8-W3
+    category: method
+    severity: minor
+    summary: "δ* uncertainty bound 过宽"
+    status: resolved
+    first_raised_round: 8
+    last_seen_round: 18
+    resolution: "连续五轮未被提出，视为已解决。"
+    resolution_round: 18
+
+  - id: R9-C2
+    category: scope
+    severity: should-fix
+    summary: "线性 SEM 假设对 EMNLP 读者可达性和泛化性不足"
+    status: in_progress
+    first_raised_round: 9
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R2]
+        note: "R20 R2-W2 再提。"
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 SF-3。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 双方 AGREE：偏差公式在非线性模型（matching, doubly-robust, deep learning）下是否成立是开放问题。NLP 读者更关心实际使用的模型。"
+    action_items:
+      - round: 21
+        action: "SF-3 fix: Limitations references B.7 and B.14"
+        assigned_to: paper_agent
+        status: done
+    resolution: ""
+    resolution_round: null
+
+  - id: R9-S1
+    category: novelty
+    severity: should-fix
+    summary: "'first to characterize' novelty claim 需限定"
+    status: in_progress
+    first_raised_round: 9
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: [R2]
+        note: "R20 R2-W3 再提。"
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: [R2]
+        note: "R22 R2-N1: 'first systematic analysis' 在特定组合上站得住但更多是覆盖度贡献。R1 AGREE 但认为 FWL+ASV 超越单纯覆盖度。"
+
+  - id: R9-S3
+    category: experiments
+    severity: should-fix
+    summary: "LLM 配置多样性有限（缺 <7B, >70B, ordinal）"
+    status: in_progress
+    first_raised_round: 9
+    last_seen_round: 22
+    mentions:
+      - round: 20
+        reviewers: []
+        note: "R20 未单独提出。"
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续多轮未提出。"
+
+  - id: R11-W2
+    category: presentation
+    severity: minor
+    summary: "Section 3.1 缺少 Notation roadmap——plim/FWL 对 NLP 读者不友好"
+    status: in_progress
+    first_raised_round: 11
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 MI-1: Existing footnote covers。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 双方 AGREE notation 密度高。R2-m3 建议 notation table。"
+
+  - id: R12-MI2
+    category: presentation
+    severity: minor
+    summary: "Figure 2 视觉问题"
+    status: in_progress
+    first_raised_round: 12
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: []
+        note: "R21 未单独提出。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 R1-minor-1 + R2-m1：y轴量级差异大，建议统一 scale 或加 median 标线。"
+
+  - id: R15-W1
+    category: presentation
+    severity: should-fix
+    summary: "Table 1 Violation vs Sign Flip 列定义模糊"
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: []
+        note: "连续四轮未提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续五轮未提出。"
+
+  - id: R15-W2
+    category: presentation
+    severity: should-fix
+    summary: "Abstract FWL invariance 声明缺少 'under linear OLS' 限定词"
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: []
+        note: "连续两轮未提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续三轮未提出。"
+
+  - id: R16-N1
+    category: presentation
+    severity: should-fix
+    summary: "2.1% sign reversal 限定不清晰——secondary coefficient 还是 primary coefficient？"
+    status: in_progress
+    first_raised_round: 16
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: []
+        note: "连续两轮未提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续三轮未提出。"
+
+  - id: R16-N2
+    category: presentation
+    severity: should-fix
+    summary: "Correction guidance 深度不足——作为三大贡献之一，Section 4.5 仅半页"
+    status: in_progress
+    first_raised_round: 16
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: [R2]
+        note: "R21 MI-2: R1 rebut（FWL invariance 赋予价值）。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 分歧：R2-W1 认为 PPI++ 作为独立 contribution 不合适；R1 rebut（FWL 负面结果+topology-aware decision procedure 超越单纯应用）。R1 建议调整措辞为 'topology-aware correction guidance including FWL futility result'。"
+
+  - id: R17-N1
+    category: format
+    severity: must-fix
+    summary: "Abstract 超过 EMNLP 2026 的 200 words 限制（实际约 245 words）"
+    status: wont_fix
+    first_raised_round: 17
+    last_seen_round: 17
+    resolution: "REBUT: Abstract is 183 words. Reviewer count of ~245 includes LaTeX markup."
+    resolution_round: 17
+
+  - id: R17-W1
+    category: soundness
+    severity: should-fix
+    summary: "Collider sign preservation 仅有经验验证"
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: []
+        note: "连续四轮未提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续五轮未提出。"
+
+  - id: R17-W2
+    category: format
+    severity: minor
+    summary: "Bib 含未引用条目"
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: []
+        note: "连续两轮未提出。"
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。连续三轮未提出。"
+
+  - id: R20-N1
+    category: soundness
+    severity: must-fix
+    summary: "Theorem 2 的 symmetric C₀ 假设在实际 LLM 混淆矩阵中很少成立——缺少合理性讨论和经验量化"
+    status: in_progress
+    first_raised_round: 20
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 MF-1 合并。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 与 R8-C1 合并。R1-minor-3: Remark 4 与正文脱节（VAST d_rel=0.30-0.38 远非对称，但正文暗示 Theorem 2 涵盖 K=3 主要情形）。双方 AGREE。"
+
+  - id: R20-N2
+    category: method
+    severity: should-fix
+    summary: "Algorithm 1 决策阈值缺乏理论依据和跨设置稳定性验证"
+    status: in_progress
+    first_raised_round: 20
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 Q4: 已 addressed。MI-2 分歧。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 双方 AGREE：阈值从 MC 经验选取，缺乏形式化依据和对 DGP 参数变化的敏感度讨论。"
+
+  - id: R21-SF4
+    category: soundness
+    severity: should-fix
+    summary: "Conjecture 1 adversarial search 4 种结构族基于直觉选择，系统性不明"
+    status: in_progress
+    first_raised_round: 21
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: [R1, R2]
+        note: "R21 SF-4: 低优先级。"
+      - round: 22
+        reviewers: [R2]
+        note: "R22 R2-N2 合并：adversarial 4 种结构是否覆盖 worst case 不清楚。"
+
+  - id: R21-MI3
+    category: scope
+    severity: minor
+    summary: "Venue 适配度处于边界——核心贡献在统计/计量层面"
+    status: in_progress
+    first_raised_round: 21
+    last_seen_round: 22
+    mentions:
+      - round: 21
+        reviewers: [R2]
+        note: "R2-W6: ARR 允许跨学科。"
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R22 分歧：R2-W4 认为偏统计/计量；R1 REBUT（NLP 动机核心、先例充分、Findings 明确接受）。共识：不构成拒稿理由。"
+
+  - id: R21-Q2
+    category: method
+    severity: should-fix
+    summary: "DAG 不确定时实践者应如何使用框架——缺少 worst-case guidance"
+    status: in_progress
+    first_raised_round: 21
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: []
+        note: "R22 未单独提出。"
+
+  # === Round 22 新发现 ===
+
+  - id: R22-N1
+    category: novelty
+    severity: must-fix
+    summary: "相对于测量误差文献（Carroll 2006, Brenner 1993, Buonaccorsi 2010）的增量创新有限——'系统性覆盖'而非'方法论突破'"
+    status: in_progress
+    first_raised_round: 22
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: [R1, R2]
+        note: "双方 AGREE：技术手段标准（线性代数、FWL 分解），K≥3 推广更多是覆盖度贡献。R1 补充 FWL invariance 和 ASV 定量化是非平凡增量。共识：Findings 足够，进主会需要更强论证。"
+    action_items:
+      - round: 22
+        action: "P1-1: FWL invariance repositioned as novel futility result absent from measurement error literature"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: R22-W1
+    category: soundness
+    severity: should-fix
+    summary: "ASV 需要 gold labels 估计 C₀ 存在 '鸡生蛋' 问题——gold-label budget 极少时 ASV 可靠性未讨论"
+    status: open
+    first_raised_round: 22
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R1-W2 提出，R2 部分 AGREE：PPI++ 也需要 gold labels 所以在同一 budget 内；B.8 bootstrap 收敛需 ~500 gold labels。但 50-100 samples 时的 ASV reliability 未讨论。"
+
+  - id: R22-W2
+    category: presentation
+    severity: should-fix
+    summary: "'provably' 在 abstract/正文中使用隐含三个强假设（non-differential + proportional effects + C_A > 0），应附加限定条件"
+    status: in_progress
+    first_raised_round: 22
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R1-W5 提出，R2 部分 REBUT：sign preservation（Proposition 1）覆盖一般 K，'provably' 技术上成立。但 R2 同意隐含条件应在 narrative 中提及。共识：建议将 'provably' 附注条件或改为 'under [assumptions], we prove that...'。"
+    action_items:
+      - round: 22
+        action: "P0-1: 全文 'provably' 附加条件限定"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: R22-W3
+    category: presentation
+    severity: should-fix
+    summary: "K=2 sign preservation 叙事过于简化——exposure topology 在对角元素 <0.5 时也可 sign reversal"
+    status: wont_fix
+    first_raised_round: 22
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R2-W5 提出，R1 AGREE：'absent in the binary case' 未限定到 confounding，造成过度概括。建议修改为 'K≥3 introduces sign reversal possibilities for confounding and mediation topologies where K=2 guarantees attenuation'。"
+    resolution: "WONT_FIX: Reviewer 独立核实 K=2 下全部 7 拓扑 49/49 场景零 sign-flip，原文 'absent in the binary case' 对所有拓扑成立，审稿建议反而更窄。保留原文更准确。"
+    resolution_round: 22
+
+  - id: R22-MR1
+    category: related_work
+    severity: should-fix
+    summary: "缺少 Mahajan (2006), Hu (2008) — 多值误分类非参数识别和非线性模型处理"
+    status: in_progress
+    first_raised_round: 22
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R2 提出，R1 AGREE。与本文 K≥3 identifiability 和 Appendix B.14 直接相关。"
+    action_items:
+      - round: 22
+        action: "P1-2: 添加 Mahajan (2006) + Hu (2008) 引用，可选 Cornfield (1959) + Törnberg (2024)"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: R22-MR2
+    category: related_work
+    severity: minor
+    summary: "建议引用 Cornfield et al. (1959) sensitivity analysis 源头、Törnberg (2024) LLM 注释质量实证"
+    status: in_progress
+    first_raised_round: 22
+    last_seen_round: 22
+    mentions:
+      - round: 22
+        reviewers: [R1, R2]
+        note: "R2 提出。R1 AGREE Cornfield 和 Törnberg。R1 REBUT Plank (2022)——不同问题（disagreement vs error propagation）。"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4147dda0-92f4-4461-91ef-922c860732ee",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "105b5b94-5271-4f18-8c86-04b733be1d27",
+  "toolUseResult": {
+    "stdout": "issues:\n  # === Round 1-7 历史 (resolved，保留摘要) ===\n\n  - id: R1-N1\n    category: soundness\n    severity: must-fix\n    summary: \"Theorem 1 适用范围过窄（仅 confounding+proportional effects），K≥3 证明不完整\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 7\n    resolution: \"Theorem 1 现正确限定为 K=2；K≥3 由 Observation 1 和 Conjecture 1 覆盖。\"\n    resolution_round: 7\n\n  - id: R1-N2\n    category: soundness\n    severity: should-fix\n    summary: \"3/5 安全拓扑的符号保持仅有数值验证，Abstract 用 'establish' 暗示已证明\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 3\n    resolution: \"Abstract 已准确区分 prove/verify。\"\n    resolution_round: 4\n\n  - id: R1-N3\n    category: soundness\n    severity: must-fix\n    summary: \"ASV C(δ) 定义域错误\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"Section 3.3 已引入 δ_max 约束。\"\n    resolution_round: 2\n\n  - id: R2-N1\n    category: presentation\n    severity: must-fix\n    summary: \"83.4% sign reversal headline framing 过度声称\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 5\n    resolution: \"Introduction 已重写。\"\n    resolution_round: 5\n\n  - id: R2-N2\n    category: novelty\n    severity: should-fix\n    summary: \"'first systematic framework' 过度声明\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已修复。\"\n    resolution_round: 2\n\n  - id: R2-N3\n    category: related_work\n    severity: must-fix\n    summary: \"4 篇关键相关工作未引用\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已修复。\"\n    resolution_round: 2\n\n  - id: R1-W2\n    category: clarity\n    severity: should-fix\n    summary: \"Sign preservation 的 DGP 条件在实践中难以事前验证\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    resolution: \"Section 3.2 已添加 ASV 替代讨论。\"\n    resolution_round: 3\n\n  - id: R1-W3\n    category: experiments\n    severity: should-fix\n    summary: \"实证验证不完整：缺少商业 LLM\"\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 22\n    mentions:\n      - round: 7\n        reviewers: [R2]\n        note: \"Limitations 中讨论即可。\"\n      - round: 20\n        reviewers: []\n        note: \"R20 未单独提出。Limitations 已覆盖。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续多轮未提出。\"\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R2-W2\n    category: presentation\n    severity: should-fix\n    summary: \"98 场景 zero sign reversals 与 sign reversal narrative 的 tension\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已解决。\"\n    resolution_round: 2\n\n  - id: R2-W3\n    category: method\n    severity: should-fix\n    summary: \"ASV 对 C₀ 估计不确定性的敏感性\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    resolution: \"Bootstrap ASV 分析已完成。\"\n    resolution_round: 3\n\n  - id: R2-W4\n    category: scope\n    severity: should-fix\n    summary: \"线性 SEM 假设限制；Algorithm 1 缺 linear-only caveat\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 5\n    resolution: \"Section 4.5 FWL 段加 'Under linear OLS' 限定。\"\n    resolution_round: 5\n\n  - id: R1-W4\n    category: experiments\n    severity: should-fix\n    summary: \"MC MAPE 报告不充分\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已修复。\"\n    resolution_round: 2\n\n  - id: MISC-1\n    category: presentation\n    severity: minor\n    summary: \"符号不统一（τ vs β_T）、Proposition 编号不一致\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 5\n    resolution: \"method.tex 添加 τ 在各拓扑下含义的明确说明。\"\n    resolution_round: 5\n\n  - id: NEW-1\n    category: soundness\n    severity: should-fix\n    summary: \"Non-differential misclassification 假设讨论不足\"\n    status: in_progress\n    first_raised_round: 2\n    last_seen_round: 22\n    mentions:\n      - round: 18\n        reviewers: [R1, R2]\n        note: \"R18 升级为 must-fix。R18 fix 完成。\"\n      - round: 19\n        reviewers: []\n        note: \"R19 未单独提出。连续两轮未提出，R18 修复充分。\"\n      - round: 20\n        reviewers: [R1, R2]\n        note: \"R20 再提，要求主文前置讨论。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-1: 主文讨论不足，要求 NLP task mapping。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 再次升级为 critical。两位 Reviewer 强共识：NLP 中标注误差几乎必然是差异性的；B.6 stress test 显示假设脆弱；Y-stratified test 功效不明。要求主文充分讨论假设合理性边界+差异误分类下的退化保证。\"\n    action_items:\n      - round: 20\n        action: \"W6 fix: Section 3.1 expanded non-differential discussion\"\n        assigned_to: paper_agent\n        status: done\n      - round: 21\n        action: \"SF-1 fix: NLP task mapping added\"\n        assigned_to: paper_agent\n        status: done\n      - round: 22\n        action: \"P0-2: 坦诚策略——主文增加非差异性假设脆弱性承认 + 退化数据 (2.0%→9.67% at ε=0.2)\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: NEW-2\n    category: related_work\n    severity: should-fix\n    summary: \"缺少 Feder et al. (2022) 和 Cheng et al. (2024)\"\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 5\n    resolution: \"已引用。\"\n    resolution_round: 5\n\n  - id: NEW-3\n    category: soundness\n    severity: should-fix\n    summary: \"Conjecture 1 数值验证规模\"\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 2\n    resolution: \"210,000 matrices + adversarial + analytic plim。\"\n    resolution_round: 3\n\n  - id: R3-NEW-1\n    category: format\n    severity: must-fix\n    summary: \"正文超出 EMNLP 2026 Long Paper 8 页限制\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 19\n    resolution: \"R18 压缩后编译验证 main text ≤8 pages。连续多轮无复发。\"\n    resolution_round: 19\n\n  - id: R3-NEW-2\n    category: soundness\n    severity: should-fix\n    summary: \"FWL invariance 结论缺乏 precise statement 和推导\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"FWL 证明完整。\"\n    resolution_round: 5\n\n  - id: R3-NEW-3\n    category: scope\n    severity: should-fix\n    summary: \"缺少 outcome misclassification 讨论\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"Limitations 已添加。\"\n    resolution_round: 4\n\n  - id: R3-NEW-4\n    category: presentation\n    severity: minor\n    summary: \"Abstract/Introduction 信息过载（数字密度）\"\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: []\n        note: \"R20 未单独提出。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-W3 再提：Abstract 中 10+ 具体数字稀释主信息。R1 部分反驳（具体数字符合 *ACL 规范），共识降为 minor。\"\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R3-NEW-5\n    category: related_work\n    severity: should-fix\n    summary: \"缺少 5 篇相关引用（Round 3 要求的）\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 3\n    resolution: \"全部 5 篇已引用。\"\n    resolution_round: 4\n\n  - id: R3-NEW-6\n    category: reproducibility\n    severity: should-fix\n    summary: \"未承诺代码/数据公开\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"Conclusion 已添加代码公开承诺。\"\n    resolution_round: 4\n\n  - id: R3-NEW-7\n    category: novelty\n    severity: should-fix\n    summary: \"新颖性定位不清：未明确界定已知结果 vs 新贡献\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"确认'首次跨 7 种拓扑系统比较'成立。\"\n    resolution_round: 5\n\n  - id: R3-NEW-8\n    category: experiments\n    severity: must-fix\n    summary: \"经验验证使用模拟 DGP 而非真实因果数据——缺少端到端因果应用验证\"\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R1, R2]\n        note: \"R20 升级为 critical。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MF-2: 仍为 must-fix。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE：Section 4.4 使用真实混淆矩阵但合成 DGP，Appendix B.19/B.20 也是构造的因果问题。缺少从头到尾使用真实数据的验证。R2 承认获取同时有 gold labels 和已知因果效应的真实数据很困难。降级为 should-fix（可理解的局限）。\"\n    action_items:\n      - round: 21\n        action: \"MF-2 fix: Semi-real case study with 10 VAST K=3 production LLM confusion matrices\"\n        assigned_to: agent + paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R4-W6\n    category: novelty\n    severity: should-fix\n    summary: \"ASV 方法论创新有限——E-value 直接移植质疑\"\n    status: in_progress\n    first_raised_round: 4\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"R20 R2-W5 再提 ASV 与 E-values 区分度。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N1 合并讨论：ASV 'analogous to E-values' 的措辞削弱新颖性。R1 认为 ASV 将敏感性分析从定性推进到定量是新工具。\"\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R4-W7\n    category: presentation\n    severity: should-fix\n    summary: \"论文广度有余深度不足\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 7\n    resolution: \"Appendix pointer 已添加。\"\n    resolution_round: 8\n\n  - id: R4-W8\n    category: scope\n    severity: should-fix\n    summary: \"DAG 拓扑必须先验已知——Algorithm 1 依赖正确拓扑输入\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"Limitations 已添加相关讨论。\"\n    resolution_round: 5\n\n  - id: R4-W10\n    category: method\n    severity: minor\n    summary: \"PPI++ 对 M-bias 有害 (-88%) 缺乏机制解释\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 15\n    resolution: \"Section 4.5 已包含完整机制解释。\"\n    resolution_round: 15\n\n  - id: R4-W12\n    category: presentation\n    severity: minor\n    summary: \"引用格式问题\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 7\n    resolution: \"格式合规检查通过。\"\n    resolution_round: 8\n\n  - id: R5-N1\n    category: presentation\n    severity: must-fix\n    summary: \"Table 1 的 sign-flip guarantee ✓ 掩盖了 DGP 条件性\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"Table 1 已实现三级符号 ✓/✓*/✗。\"\n    resolution_round: 5\n\n  - id: R5-N2\n    category: soundness\n    severity: should-fix\n    summary: \"Conjecture 1 的 ε 在极端条件下可达 0.14-0.15\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"Conjecture 1 rewritten with per-topology ε bounds。\"\n    resolution_round: 5\n\n  - id: R5-N3\n    category: presentation\n    severity: must-fix\n    summary: \"'Primary coefficient never reverses' 仅为经验发现，缺乏理论保证\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 11\n    resolution: \"Abstract 已改为经验事实描述。\"\n    resolution_round: 11\n\n  - id: R5-MR\n    category: related_work\n    severity: should-fix\n    summary: \"Round 5 新发现的缺失引用\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"三篇引用已添加。\"\n    resolution_round: 5\n\n  - id: R6-M1\n    category: soundness\n    severity: should-fix\n    summary: \"Theorem 1 对 K≥3 未证明但标记为 Theorem\"\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 7\n    resolution: \"Theorem 1 现正确限定为 K=2。\"\n    resolution_round: 7\n\n  - id: R6-M3\n    category: soundness\n    severity: must-fix\n    summary: \"Proportional effects 假设在 NLP 中是强限制，且 Limitations 中完全缺失\"\n    status: in_progress\n    first_raised_round: 6\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R1]\n        note: \"R20 R1 升级为 critical。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-2: NLP 适用性缺少实质论证。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 R1-N3: proportional effects 验证用满足假设的 DGP，non-proportional sparse DGP 违反率 24.2% 被正文忽略。R2 rebut '循环论证'定性（in-assumption verification 是标准做法），但同意缺少 NLP 中何时合理的讨论。共识：不是循环论证，但实践讨论严重缺失。\"\n    action_items:\n      - round: 21\n        action: \"SF-2 fix: NLP domain-specific argument added\"\n        assigned_to: paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R6-M4\n    category: presentation\n    severity: must-fix\n    summary: \"Abstract sign reversal rate 与 Section 4.2 数值不一致\"\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 7\n    resolution: \"数值统一。\"\n    resolution_round: 7\n\n  - id: R8-C1\n    category: soundness\n    severity: must-fix\n    summary: \"K≥3 ASV 理论基础为 conjectural——Theorem/Conjecture 边界在主文中模糊\"\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R1, R2]\n        note: \"R20 再提。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MF-1: 结构性矛盾。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方强共识 critical：(1) Theorem 1 仅 K=2 单调性；(2) Theorem 2 K=3 对称但 VAST d_rel=0.30-0.38 远非对称；(3) Conjecture 1 仅数值支撑。ASV 核心性质是猜想而非定理，削弱作为诊断工具的可靠性。R2 补充：adversarial 4 种结构是否覆盖 worst case 不清楚；0.017 违反对因果估计的实际影响未讨论。\"\n    action_items:\n      - round: 21\n        action: \"MF-1 fix: Main text Theorem 2 repositioned as theoretical anchor\"\n        assigned_to: paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R8-C2\n    category: soundness\n    severity: should-fix\n    summary: \"Proportional effects 在 NLP 中不可验证\"\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R1]\n        note: \"与 R6-M3 合并。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"与 R6-M3 合并。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"与 R6-M3 合并。R22 继续活跃。\"\n\n  - id: R8-W1\n    category: novelty\n    severity: should-fix\n    summary: \"ASV contribution 定位\"\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"与 R4-W6 合并。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N1 合并：ASV 新颖性有限。R1 部分同意但认为定量化是增量贡献。\"\n\n  - id: R8-W2\n    category: soundness\n    severity: should-fix\n    summary: \"Non-differential 假设讨论不足\"\n    status: resolved\n    first_raised_round: 8\n    last_seen_round: 19\n    resolution: \"随 NEW-1 一同解决。\"\n    resolution_round: 19\n\n  - id: R8-W3\n    category: method\n    severity: minor\n    summary: \"δ* uncertainty bound 过宽\"\n    status: resolved\n    first_raised_round: 8\n    last_seen_round: 18\n    resolution: \"连续五轮未被提出，视为已解决。\"\n    resolution_round: 18\n\n  - id: R9-C2\n    category: scope\n    severity: should-fix\n    summary: \"线性 SEM 假设对 EMNLP 读者可达性和泛化性不足\"\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"R20 R2-W2 再提。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-3。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE：偏差公式在非线性模型（matching, doubly-robust, deep learning）下是否成立是开放问题。NLP 读者更关心实际使用的模型。\"\n    action_items:\n      - round: 21\n        action: \"SF-3 fix: Limitations references B.7 and B.14\"\n        assigned_to: paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R9-S1\n    category: novelty\n    severity: should-fix\n    summary: \"'first to characterize' novelty claim 需限定\"\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"R20 R2-W3 再提。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N1: 'first systematic analysis' 在特定组合上站得住但更多是覆盖度贡献。R1 AGREE 但认为 FWL+ASV 超越单纯覆盖度。\"\n\n  - id: R9-S3\n    category: experiments\n    severity: should-fix\n    summary: \"LLM 配置多样性有限（缺 <7B, >70B, ordinal）\"\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 22\n    mentions:\n      - round: 20\n        reviewers: []\n        note: \"R20 未单独提出。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续多轮未提出。\"\n\n  - id: R11-W2\n    category: presentation\n    severity: minor\n    summary: \"Section 3.1 缺少 Notation roadmap——plim/FWL 对 NLP 读者不友好\"\n    status: in_progress\n    first_raised_round: 11\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MI-1: Existing footnote covers。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE notation 密度高。R2-m3 建议 notation table。\"\n\n  - id: R12-MI2\n    category: presentation\n    severity: minor\n    summary: \"Figure 2 视觉问题\"\n    status: in_progress\n    first_raised_round: 12\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 R1-minor-1 + R2-m1：y轴量级差异大，建议统一 scale 或加 median 标线。\"\n\n  - id: R15-W1\n    category: presentation\n    severity: should-fix\n    summary: \"Table 1 Violation vs Sign Flip 列定义模糊\"\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续四轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续五轮未提出。\"\n\n  - id: R15-W2\n    category: presentation\n    severity: should-fix\n    summary: \"Abstract FWL invariance 声明缺少 'under linear OLS' 限定词\"\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续两轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续三轮未提出。\"\n\n  - id: R16-N1\n    category: presentation\n    severity: should-fix\n    summary: \"2.1% sign reversal 限定不清晰——secondary coefficient 还是 primary coefficient？\"\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续两轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续三轮未提出。\"\n\n  - id: R16-N2\n    category: presentation\n    severity: should-fix\n    summary: \"Correction guidance 深度不足——作为三大贡献之一，Section 4.5 仅半页\"\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: [R2]\n        note: \"R21 MI-2: R1 rebut（FWL invariance 赋予价值）。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 分歧：R2-W1 认为 PPI++ 作为独立 contribution 不合适；R1 rebut（FWL 负面结果+topology-aware decision procedure 超越单纯应用）。R1 建议调整措辞为 'topology-aware correction guidance including FWL futility result'。\"\n\n  - id: R17-N1\n    category: format\n    severity: must-fix\n    summary: \"Abstract 超过 EMNLP 2026 的 200 words 限制（实际约 245 words）\"\n    status: wont_fix\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"REBUT: Abstract is 183 words. Reviewer count of ~245 includes LaTeX markup.\"\n    resolution_round: 17\n\n  - id: R17-W1\n    category: soundness\n    severity: should-fix\n    summary: \"Collider sign preservation 仅有经验验证\"\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续四轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续五轮未提出。\"\n\n  - id: R17-W2\n    category: format\n    severity: minor\n    summary: \"Bib 含未引用条目\"\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续两轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续三轮未提出。\"\n\n  - id: R20-N1\n    category: soundness\n    severity: must-fix\n    summary: \"Theorem 2 的 symmetric C₀ 假设在实际 LLM 混淆矩阵中很少成立——缺少合理性讨论和经验量化\"\n    status: in_progress\n    first_raised_round: 20\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MF-1 合并。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 与 R8-C1 合并。R1-minor-3: Remark 4 与正文脱节（VAST d_rel=0.30-0.38 远非对称，但正文暗示 Theorem 2 涵盖 K=3 主要情形）。双方 AGREE。\"\n\n  - id: R20-N2\n    category: method\n    severity: should-fix\n    summary: \"Algorithm 1 决策阈值缺乏理论依据和跨设置稳定性验证\"\n    status: in_progress\n    first_raised_round: 20\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 Q4: 已 addressed。MI-2 分歧。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE：阈值从 MC 经验选取，缺乏形式化依据和对 DGP 参数变化的敏感度讨论。\"\n\n  - id: R21-SF4\n    category: soundness\n    severity: should-fix\n    summary: \"Conjecture 1 adversarial search 4 种结构族基于直觉选择，系统性不明\"\n    status: in_progress\n    first_raised_round: 21\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-4: 低优先级。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N2 合并：adversarial 4 种结构是否覆盖 worst case 不清楚。\"\n\n  - id: R21-MI3\n    category: scope\n    severity: minor\n    summary: \"Venue 适配度处于边界——核心贡献在统计/计量层面\"\n    status: in_progress\n    first_raised_round: 21\n    last_seen_round: 22\n    mentions:\n      - round: 21\n        reviewers: [R2]\n        note: \"R2-W6: ARR 允许跨学科。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 分歧：R2-W4 认为偏统计/计量；R1 REBUT（NLP 动机核心、先例充分、Findings 明确接受）。共识：不构成拒稿理由。\"\n\n  - id: R21-Q2\n    category: method\n    severity: should-fix\n    summary: \"DAG 不确定时实践者应如何使用框架——缺少 worst-case guidance\"\n    status: in_progress\n    first_raised_round: 21\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。\"\n\n  # === Round 22 新发现 ===\n\n  - id: R22-N1\n    category: novelty\n    severity: must-fix\n    summary: \"相对于测量误差文献（Carroll 2006, Brenner 1993, Buonaccorsi 2010）的增量创新有限——'系统性覆盖'而非'方法论突破'\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"双方 AGREE：技术手段标准（线性代数、FWL 分解），K≥3 推广更多是覆盖度贡献。R1 补充 FWL invariance 和 ASV 定量化是非平凡增量。共识：Findings 足够，进主会需要更强论证。\"\n    action_items:\n      - round: 22\n        action: \"P1-1: FWL invariance repositioned as novel futility result absent from measurement error literature\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R22-W1\n    category: soundness\n    severity: should-fix\n    summary: \"ASV 需要 gold labels 估计 C₀ 存在 '鸡生蛋' 问题——gold-label budget 极少时 ASV 可靠性未讨论\"\n    status: open\n    first_raised_round: 22\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R1-W2 提出，R2 部分 AGREE：PPI++ 也需要 gold labels 所以在同一 budget 内；B.8 bootstrap 收敛需 ~500 gold labels。但 50-100 samples 时的 ASV reliability 未讨论。\"\n\n  - id: R22-W2\n    category: presentation\n    severity: should-fix\n    summary: \"'provably' 在 abstract/正文中使用隐含三个强假设（non-differential + proportional effects + C_A > 0），应附加限定条件\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R1-W5 提出，R2 部分 REBUT：sign preservation（Proposition 1）覆盖一般 K，'provably' 技术上成立。但 R2 同意隐含条件应在 narrative 中提及。共识：建议将 'provably' 附注条件或改为 'under [assumptions], we prove that...'。\"\n    action_items:\n      - round: 22\n        action: \"P0-1: 全文 'provably' 附加条件限定\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R22-W3\n    category: presentation\n    severity: should-fix\n    summary: \"K=2 sign preservation 叙事过于简化——exposure topology 在对角元素 <0.5 时也可 sign reversal\"\n    status: wont_fix\n    first_raised_round: 22\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R2-W5 提出，R1 AGREE：'absent in the binary case' 未限定到 confounding，造成过度概括。建议修改为 'K≥3 introduces sign reversal possibilities for confounding and mediation topologies where K=2 guarantees attenuation'。\"\n    resolution: \"WONT_FIX: Reviewer 独立核实 K=2 下全部 7 拓扑 49/49 场景零 sign-flip，原文 'absent in the binary case' 对所有拓扑成立，审稿建议反而更窄。保留原文更准确。\"\n    resolution_round: 22\n\n  - id: R22-MR1\n    category: related_work\n    severity: should-fix\n    summary: \"缺少 Mahajan (2006), Hu (2008) — 多值误分类非参数识别和非线性模型处理\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R2 提出，R1 AGREE。与本文 K≥3 identifiability 和 Appendix B.14 直接相关。\"\n    action_items:\n      - round: 22\n        action: \"P1-2: 添加 Mahajan (2006) + Hu (2008) 引用，可选 Cornfield (1959) + Törnberg (2024)\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R22-MR2\n    category: related_work\n    severity: minor\n    summary: \"建议引用 Cornfield et al. (1959) sensitivity analysis 源头、Törnberg (2024) LLM 注释质量实证\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 22\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R2 提出。R1 AGREE Cornfield 和 Törnberg。R1 REBUT Plank (2022)——不同问题（disagreement vs error propagation）。\"",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "4147dda0-92f4-4461-91ef-922c860732ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 对 Reviewer 1 审稿意见的逐条回应  ## Must-Fix 问题  **[AGREE] R1-N1: Theorem 1 仅对 proportional effects 成立**  同意这是一个重要的理论完整性缺陷。我在自己的 N2 中也独立提出了 Conjecture 1 未证明的问题。补充两点：  1. 论文的理论贡…",
+  "leafUuid": "105b5b94-5271-4f18-8c86-04b733be1d27",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer rebuttal to classification bias analysis paper",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-24T04:12:42.038Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I have the full issue tracker. Now let me synthesize the final report. Let me organize the key findings from both reviewers' cross-responses.
+
+**Convergence points (both R1 and R2 agree):**
+
+1. **Conjecture 1 未证明** (R1-N3, R2-N2) — Critical. Both agree this is a fundamental completeness gap.
+
+2. **Non-differential assumption tension** (R1-N2, R2-W1→upgraded) — Both agree the paper's own stress test shows 13.3% violation rate, creating internal inconsistency. 
+
+R1 rates it critical, and R2 aligns with that sharper assessment.
+
+3. **Theorem 1 proportional effects limitation** (R1-N1) — R2 agrees but notes proportional effects isn't as problematic as R1 frames it. Both identify this as a key constraint.
+
+4. **Linear SEM limitation** (R1-W1, R2-W2) — Both flag this.
+
+5. **Real-world empirical validation** (R1-W4, R2-N3) — Both agree the empirical grounding is weak, though R1 credits the paper with richer validation than R2 initially acknowledged. They converge on viewing this as an understandable limitation.
+
+6. **Related work**
+
+—Both point to Cinelli & Hazlett and regression calibration as relevant comparisons.
+
+On divergences, R1 questions the novelty of the FWL result as a corollary, while R2 pushes back on the practical utility argument. For Theorem 2's symmetric assumption, R1 sees it as needing correction while R2 treats it as a reasonable intermediate step. R1 defends the abstract framing against R2's concern that it's the wrong focus, and R1 also justifies Figure 2's density given space constraints. The remaining disagreement centers on how severe the incremental novelty issue is, though both settle on a 3.5 score and recommend Findings.
+
+Now I'm structuring the full report following the standard format—summary, strengths, weaknesses, questions, missing references, external review, visual layout, overall assessment, and detailed comments. I should also update the issue tracker with these Round 23 findings and verify I'm applying the correct Step 4 process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "105b5b94-5271-4f18-8c86-04b733be1d27",
+  "isSidechain": false,
+  "requestId": "req_011CbLjyG5cxKDziKZFwugCd",
+  "type": "assistant",
+  "uuid": "d39aa078-d839-40f6-9b76-e3622e3461b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMB86pJJJx7byyfBEqnxyQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10859,
+      "cache_read_input_tokens": 38751,
+      "output_tokens": 746,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 746,
+          "cache_read_input_tokens": 38751,
+          "cache_creation_input_tokens": 10859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-24T04:12:42.159Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013m2dLr9KJEGNy6KzQ3D7JG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d39aa078-d839-40f6-9b76-e3622e3461b9",
+  "isSidechain": false,
+  "requestId": "req_011CbLjyG5cxKDziKZFwugCd",
+  "type": "assistant",
+  "uuid": "270800a0-6e5f-4b32-b55d-fc84e60eb84f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMB86pJJJx7byyfBEqnxyQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10859,
+      "cache_read_input_tokens": 38751,
+      "output_tokens": 746,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 746,
+          "cache_read_input_tokens": 38751,
+          "cache_creation_input_tokens": 10859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T04:12:42.182Z_
+
+<details><summary>↩ Tool result · `toolu_013m2dLr9KJEGNy6KzQ3D7JG`</summary>
+
+````text
+0	---
+1	name: review-director-session-start
+2	description: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。
+3	priority: 9
+4	scope: global
+5	tags:
+6	- workflow
+7	- review
+8	- session
+9	version: 3
+10	roles:
+11	- review_director
+12	---
+13	
+14	# Review Director Session 启动流程（圆桌会议模式）
+15	
+16	## 初始化
+17	
+18	1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）
+19	2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在
+20	3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）
+21	4. 向用户简要汇报：
+22	   - **投稿目标**：venue 和 deadline
+23	   - **论文状态**：当前草稿位置和版本
+24	   - **资料完整性**：提交的材料是否齐全
+25	   - **下一步**：即将开始的圆桌审稿流程
+26	
+27	## 评审流程（收到论文提交后执行）
+28	
+29	### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）
+30	
+31	1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全
+32	2. 确认目标投稿 venue（从提交消息中获取）
+33	3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：
+34	   - `"&lt;venue name> 2026 call for papers" site:aclweb.org`
+35	   - `"&lt;venue name> 2026 submission deadline"`
+36	   - `"&lt;venue name> 2026 author guidelines"`
+37	4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续
+38	5. 提取当前版本的格式要求：
+39	   - 页数限制（正文 / 附录 / 参考文献）
+40	   - 模板（ACL / IEEE / NeurIPS / ICML / ...）
+41	   - 匿名规则（double-blind / single-blind / open）
+42	   - 附录规则（是否允许、是否参与审稿）
+43	   - 引用格式（natbib / biblatex / 特定 .bst）
+44	6. 将以上信息作为上下文，随任务一起传递给 Reviewer
+45	
+46	⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。
+47	
+48	### Step 0.5 — 决定 Reviewer 编排
+49	
+50	根据 venue 类型和论文特点，决定：
+51	- 需要几个 Reviewer（1-5 人）
+52	- 每个 Reviewer 的审查侧重
+53	
+54	参考：
+55	- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）
+56	- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）
+57	- **Workshop / 短文**：1 人（全面审查）
+58	
+59	向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。
+60	
+61	### Step 0.6 — 外部审稿线（与 Step 1 并行）
+62	
+63	检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：
+64	- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片
+65	- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程
+66	- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告
+67	- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注
+68	
+69	### Step 0.7 — 视觉审查派发（与 Step 1 并行）
+70	
+71	派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：
+72	
+73	```
+74	dispatch_visual_check(project="{project}", review_chat_id="{review_chat_id}")
+75	```
+76	
+77	- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）
+78	- **不参与评分和交叉讨论**，结果仅作为参考信息
+79	- 启动和完成通知自动发送到 Group C
+80	- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告
+81	- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成
+82	
+83	### Step 1 — Round N：独立审稿
+84	
+85	携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：
+86	
+87	```
+88	director_post_to_reviewer(reviewer_id="1", round_number=N, text="你负责 {focus}。...")
+89	director_post_to_reviewer(reviewer_id="2", round_number=N, text="你负责 {focus}。...")
+90	...（按需）
+91	```
+92	
+93	消息中必须包含：
+94	- venue 名称和截止日期
+95	- 页数限制和模板名称
+96	- 匿名规则
+97	- 论文文件路径
+98	- **该 Reviewer 的审查侧重**（在消息中明确指定）
+99	
+100	收集所有 Reviewer 的审稿结果。
+101	
+102	### Step 2 — 交叉分享（原文转发 + 逐条回应）
+103	
+104	将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：
+105	
+106	```
+107	director_post_to_reviewer(reviewer_id="2", round_number=N, text="""
+108	以下是 Reviewer 1 的完整审稿意见：
+109	
+110	{Reviewer 1 的原文}
+111	
+112	请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+113	""")
+114	```
+115	
+116	对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。
+117	
+118	收集所有交叉回应。
+119	
+120	### Step 3 — 收敛判断
+121	
+122	分析所有 Reviewer 的意见和交叉回应：
+123	
+124	- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4
+125	- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题
+126	- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点
+127	
+128	### Step 4 — 汇总报告 & 投递
+129	
+130	合并所有轮次的发现，形成统一审稿报告：
+131	
+132	1. 报告结构：
+133	   - **Summary**：论文概述（2-3 句）
+134	   - **Strengths**：优点（逐条列出）
+135	   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）
+136	   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）
+137	   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）
+138	   - **Questions**：需要作者澄清的问题
+139	   - **Missing References**：遗漏的重要相关工作
+140	   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态
+141	   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——
+142	     - `done` → 直接拼入 findings
+143	     - `running` → 写"仍在进行中，本报告不等待，完成后会自动补发到 Group C"
+144	     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发
+145	     - `not_started` → 写未派发
+146	     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section
+147	   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度
+148	   - **Detailed Comments**：逐节详细意见
+149	2. **同步 Issue Tracker**（投递前必做）：
+150	   - 用 `read_local_file("projects/{project}/artifacts/review_issues.yaml")` 读当前 tracker（不存在视为空）
+151	   - 对本轮所有 Weakness/Must-Fix/Should-Fix:
+152	     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`
+153	     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）
+154	   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:
+155	     - 在 `mentions` 追加 `note: "本轮未提及,可能已修复,待 Research Director 确认"`
+156	   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回
+157	3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director
+158	4. 向用户（Group C）汇报审核完成
+159	
+160	此流程只在 session 启动时执行一次。
+161	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "270800a0-6e5f-4b32-b55d-fc84e60eb84f",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "80a4310e-464f-499d-a171-30aa4c224480",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+      "content": "---\nname: review-director-session-start\ndescription: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。\npriority: 9\nscope: global\ntags:\n- workflow\n- review\n- session\nversion: 3\nroles:\n- review_director\n---\n\n# Review Director Session 启动流程（圆桌会议模式）\n\n## 初始化\n\n1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）\n2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在\n3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）\n4. 向用户简要汇报：\n   - **投稿目标**：venue 和 deadline\n   - **论文状态**：当前草稿位置和版本\n   - **资料完整性**：提交的材料是否齐全\n   - **下一步**：即将开始的圆桌审稿流程\n\n## 评审流程（收到论文提交后执行）\n\n### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）\n\n1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全\n2. 确认目标投稿 venue（从提交消息中获取）\n3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：\n   - `\"&lt;venue name> 2026 call for papers\" site:aclweb.org`\n   - `\"&lt;venue name> 2026 submission deadline\"`\n   - `\"&lt;venue name> 2026 author guidelines\"`\n4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续\n5. 提取当前版本的格式要求：\n   - 页数限制（正文 / 附录 / 参考文献）\n   - 模板（ACL / IEEE / NeurIPS / ICML / ...）\n   - 匿名规则（double-blind / single-blind / open）\n   - 附录规则（是否允许、是否参与审稿）\n   - 引用格式（natbib / biblatex / 特定 .bst）\n6. 将以上信息作为上下文，随任务一起传递给 Reviewer\n\n⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。\n\n### Step 0.5 — 决定 Reviewer 编排\n\n根据 venue 类型和论文特点，决定：\n- 需要几个 Reviewer（1-5 人）\n- 每个 Reviewer 的审查侧重\n\n参考：\n- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）\n- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）\n- **Workshop / 短文**：1 人（全面审查）\n\n向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。\n\n### Step 0.6 — 外部审稿线（与 Step 1 并行）\n\n检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：\n- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片\n- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程\n- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告\n- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注\n\n### Step 0.7 — 视觉审查派发（与 Step 1 并行）\n\n派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：\n\n```\ndispatch_visual_check(project=\"{project}\", review_chat_id=\"{review_chat_id}\")\n```\n\n- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）\n- **不参与评分和交叉讨论**，结果仅作为参考信息\n- 启动和完成通知自动发送到 Group C\n- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告\n- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成\n\n### Step 1 — Round N：独立审稿\n\n携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"1\", round_number=N, text=\"你负责 {focus}。...\")\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"你负责 {focus}。...\")\n...（按需）\n```\n\n消息中必须包含：\n- venue 名称和截止日期\n- 页数限制和模板名称\n- 匿名规则\n- 论文文件路径\n- **该 Reviewer 的审查侧重**（在消息中明确指定）\n\n收集所有 Reviewer 的审稿结果。\n\n### Step 2 — 交叉分享（原文转发 + 逐条回应）\n\n将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"\"\"\n以下是 Reviewer 1 的完整审稿意见：\n\n{Reviewer 1 的原文}\n\n请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\"\"\")\n```\n\n对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。\n\n收集所有交叉回应。\n\n### Step 3 — 收敛判断\n\n分析所有 Reviewer 的意见和交叉回应：\n\n- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4\n- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题\n- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点\n\n### Step 4 — 汇总报告 & 投递\n\n合并所有轮次的发现，形成统一审稿报告：\n\n1. 报告结构：\n   - **Summary**：论文概述（2-3 句）\n   - **Strengths**：优点（逐条列出）\n   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）\n   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）\n   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）\n   - **Questions**：需要作者澄清的问题\n   - **Missing References**：遗漏的重要相关工作\n   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态\n   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——\n     - `done` → 直接拼入 findings\n     - `running` → 写\"仍在进行中，本报告不等待，完成后会自动补发到 Group C\"\n     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发\n     - `not_started` → 写未派发\n     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section\n   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度\n   - **Detailed Comments**：逐节详细意见\n2. **同步 Issue Tracker**（投递前必做）：\n   - 用 `read_local_file(\"projects/{project}/artifacts/review_issues.yaml\")` 读当前 tracker（不存在视为空）\n   - 对本轮所有 Weakness/Must-Fix/Should-Fix:\n     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`\n     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）\n   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:\n     - 在 `mentions` 追加 `note: \"本轮未提及,可能已修复,待 Research Director 确认\"`\n   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回\n3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director\n4. 向用户（Group C）汇报审核完成\n\n此流程只在 session 启动时执行一次。\n",
+      "numLines": 162,
+      "startLine": 0,
+      "totalLines": 162
+    }
+  },
+  "sourceToolAssistantUUID": "270800a0-6e5f-4b32-b55d-fc84e60eb84f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-24T04:13:26.553Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me synthesize the final report. Let me carefully go through both reviewers' findings and cross-responses.
+
+Let me organize the report:
+
+**Summary**: The paper presents a systematic framework for analyzing how LLM annotation errors propagate through causal inference, covering 7 DAG topologies × K categories. Key contributions: (1) bias taxonomy across topologies with K≥3 qualitative findings, (2) Annotation Sensitivity Value (ASV) diagnostic tool, (3) topology-aware correction guidance including FWL futility result.
+
+**Strengths** (from both reviewers):
+
+
+The work systematically examines all 7 topologies with novel qualitative phenomena emerging at K≥3 (like sign reversal in exposure topology), grounded in strong theoretical results for K=2 and K=3 cases. The authors validate their findings extensively through over 545,000 adversarial curves and provide practical tools like Algorithm 1 for practitioners, plus real confusion matrices from 23 LLM configurations that demonstrate the FWL futility result's relevance to NLP.
+
+**Weaknesses** (categorized by consensus):
+Both reviewers identify critical gaps: Conjecture 1 remains unproven, and the non-differential assumption needs clarification. Now I'm mapping the reviewer feedback across rounds to identify which issues are new versus recurring. The core problems from Round 22 persist—Theorem 1's proportional effects scope, the non-differential assumption tension, and the unproven Conjecture 1—but the cross-responses add more granular critique. I need to update the tracker to reflect these continuities and flag any genuinely novel concerns that emerged in this round. Now I'm mapping out the remaining weaknesses for R2—there's a non-differential discussion issue that needs its own category, plus gaps in the related work around regression calibration and the Cinelli & Hazlett comparison that should be addressed in the next round, along with a minor abstract overclaim and some figure density concerns. Round 23 is also surfacing new related work gaps I hadn't caught before, particularly around regression calibration methods and partial R² comparisons.
+
+Looking more carefully at what's genuinely novel in Round 23, I'm seeing the regression calibration comparison as a real gap, plus some methodological concerns around B_OV observability and how estimation error propagates through the analysis. There's also the DAG misspecification issue under measurement error that builds on earlier critiques, an ethics question about AI assistance in proof development, and a worst-case magnitude concern with K=7 that I should track separately.
+
+Now I'm noticing R2's defense of FWL's practical value actually shifts how I should frame the consensus on those earlier points about practical utility. The reviewers have converged strongly on the three critical issues—Conjecture 1, the non-differential assumption, and proportional effects—plus several should-fix items, with only minor disagreements on framing rather than substance. I've already done the visual check with no critical flags, so I'm ready to synthesize everything into the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80a4310e-464f-499d-a171-30aa4c224480",
+  "isSidechain": false,
+  "requestId": "req_011CbLjzmM3EbJr2uANstx96",
+  "type": "assistant",
+  "uuid": "bd3195c9-c914-442a-8097-1da89271d026",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqXGWRmbAqfsZzTuFCJMcS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4070,
+      "cache_read_input_tokens": 49610,
+      "output_tokens": 14967,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14967,
+          "cache_read_input_tokens": 49610,
+          "cache_creation_input_tokens": 4070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-24T04:13:28.560Z_
+
+两位 Reviewer 交叉回应已完成，关键问题达成共识。开始合成最终报告并更新 Issue Tracker。
+
+---
+
+**Round 23 圆桌审稿 — 收敛判断**
+
+两位 Reviewer 在以下关键问题上独立收敛：
+1. Conjecture 1 未证明（双方 Critical）
+2. Non-differential 假设与自身 stress test 的内部矛盾（双方 Critical）
+3. Proportional effects 实践不可验证（双方 Critical/Should-Fix）
+4. Linear SEM 局限性（双方 Should-Fix）
+5. 端到端真实因果验证缺失（双方 Should-Fix）
+
+分歧点（FWL novelty、Theorem 2 对称假设、Abstract framing、Figure 2 密度）均为程度判断而非方向性矛盾，不需要额外轮次。
+
+**判断：已收敛，进入 Step 4 报告合成。**
+
+现在更新 Issue Tracker 并提交审稿报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd3195c9-c914-442a-8097-1da89271d026",
+  "isSidechain": false,
+  "requestId": "req_011CbLjzmM3EbJr2uANstx96",
+  "type": "assistant",
+  "uuid": "4652fd47-17f3-41ce-b45f-b08cd9d272fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqXGWRmbAqfsZzTuFCJMcS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4070,
+      "cache_read_input_tokens": 49610,
+      "output_tokens": 14967,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14967,
+          "cache_read_input_tokens": 49610,
+          "cache_creation_input_tokens": 4070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T04:17:03.636Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_review_issues · `toolu_01PMQG8oMCs2cimfjw8HXs7o`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "issues_yaml": "issues:\n  # === Round 1-7 历史 (resolved，保留摘要) ===\n\n  - id: R1-N1\n    category: soundness\n    severity: must-fix\n    summary: \"Theorem 1 适用范围过窄（仅 confounding+proportional effects），K≥3 证明不完整\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 7\n    resolution: \"Theorem 1 现正确限定为 K=2；K≥3 由 Observation 1 和 Conjecture 1 覆盖。\"\n    resolution_round: 7\n\n  - id: R1-N2\n    category: soundness\n    severity: should-fix\n    summary: \"3/5 安全拓扑的符号保持仅有数值验证，Abstract 用 'establish' 暗示已证明\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 3\n    resolution: \"Abstract 已准确区分 prove/verify。\"\n    resolution_round: 4\n\n  - id: R1-N3\n    category: soundness\n    severity: must-fix\n    summary: \"ASV C(δ) 定义域错误\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"Section 3.3 已引入 δ_max 约束。\"\n    resolution_round: 2\n\n  - id: R2-N1\n    category: presentation\n    severity: must-fix\n    summary: \"83.4% sign reversal headline framing 过度声称\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 5\n    resolution: \"Introduction 已重写。\"\n    resolution_round: 5\n\n  - id: R2-N2\n    category: novelty\n    severity: should-fix\n    summary: \"'first systematic framework' 过度声明\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已修复。\"\n    resolution_round: 2\n\n  - id: R2-N3\n    category: related_work\n    severity: must-fix\n    summary: \"4 篇关键相关工作未引用\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已修复。\"\n    resolution_round: 2\n\n  - id: R1-W2\n    category: clarity\n    severity: should-fix\n    summary: \"Sign preservation 的 DGP 条件在实践中难以事前验证\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    resolution: \"Section 3.2 已添加 ASV 替代讨论。\"\n    resolution_round: 3\n\n  - id: R1-W3\n    category: experiments\n    severity: should-fix\n    summary: \"实证验证不完整：缺少商业 LLM\"\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 23\n    mentions:\n      - round: 7\n        reviewers: [R2]\n        note: \"Limitations 中讨论即可。\"\n      - round: 20\n        reviewers: []\n        note: \"R20 未单独提出。Limitations 已覆盖。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续多轮未提出。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 R1-W4/R2-W4 合并：仅 3 个英文文本分类数据集（HumAID/VAST/CivilComments），最大 K=10，缺 non-text/non-English/non-LLM/K>20。R2 认为理论导向+页数限制下合理，应在 limitations 中明确。\"\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R2-W2\n    category: presentation\n    severity: should-fix\n    summary: \"98 场景 zero sign reversals 与 sign reversal narrative 的 tension\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已解决。\"\n    resolution_round: 2\n\n  - id: R2-W3\n    category: method\n    severity: should-fix\n    summary: \"ASV 对 C₀ 估计不确定性的敏感性\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    resolution: \"Bootstrap ASV 分析已完成。\"\n    resolution_round: 3\n\n  - id: R2-W4\n    category: scope\n    severity: should-fix\n    summary: \"线性 SEM 假设限制；Algorithm 1 缺 linear-only caveat\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 5\n    resolution: \"Section 4.5 FWL 段加 'Under linear OLS' 限定。\"\n    resolution_round: 5\n\n  - id: R1-W4\n    category: experiments\n    severity: should-fix\n    summary: \"MC MAPE 报告不充分\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    resolution: \"已修复。\"\n    resolution_round: 2\n\n  - id: MISC-1\n    category: presentation\n    severity: minor\n    summary: \"符号不统一（τ vs β_T）、Proposition 编号不一致\"\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 5\n    resolution: \"method.tex 添加 τ 在各拓扑下含义的明确说明。\"\n    resolution_round: 5\n\n  - id: NEW-1\n    category: soundness\n    severity: must-fix\n    summary: \"Non-differential misclassification 假设讨论不足——论文自身 stress test 显示系统性违反\"\n    status: in_progress\n    first_raised_round: 2\n    last_seen_round: 23\n    mentions:\n      - round: 18\n        reviewers: [R1, R2]\n        note: \"R18 升级为 must-fix。R18 fix 完成。\"\n      - round: 19\n        reviewers: []\n        note: \"R19 未单独提出。连续两轮未提出，R18 修复充分。\"\n      - round: 20\n        reviewers: [R1, R2]\n        note: \"R20 再提，要求主文前置讨论。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-1: 主文讨论不足，要求 NLP task mapping。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 再次升级为 critical。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 双方强共识 critical。R1 用论文自身数据（B.6 Table 8/9: 13.3% baseline violation, 14/16 K≥3 configs sign reversal at α=0.01）构成内部一致性矛盾。R2 补充 violation 主要是 content-dependent 而非 outcome-dependent，但此论点未在论文中发展。两位 Reviewer 一致认为这是影响接收决定的核心问题。\"\n    action_items:\n      - round: 20\n        action: \"W6 fix: Section 3.1 expanded non-differential discussion\"\n        assigned_to: paper_agent\n        status: done\n      - round: 21\n        action: \"SF-1 fix: NLP task mapping added\"\n        assigned_to: paper_agent\n        status: done\n      - round: 22\n        action: \"P0-2: 坦诚策略——主文增加非差异性假设脆弱性承认 + 退化数据 (2.0%→9.67% at ε=0.2)\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: NEW-2\n    category: related_work\n    severity: should-fix\n    summary: \"缺少 Feder et al. (2022) 和 Cheng et al. (2024)\"\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 5\n    resolution: \"已引用。\"\n    resolution_round: 5\n\n  - id: NEW-3\n    category: soundness\n    severity: should-fix\n    summary: \"Conjecture 1 数值验证规模\"\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 2\n    resolution: \"210,000 matrices + adversarial + analytic plim。\"\n    resolution_round: 3\n\n  - id: R3-NEW-1\n    category: format\n    severity: must-fix\n    summary: \"正文超出 EMNLP 2026 Long Paper 8 页限制\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 19\n    resolution: \"R18 压缩后编译验证 main text ≤8 pages。连续多轮无复发。\"\n    resolution_round: 19\n\n  - id: R3-NEW-2\n    category: soundness\n    severity: should-fix\n    summary: \"FWL invariance 结论缺乏 precise statement 和推导\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"FWL 证明完整。\"\n    resolution_round: 5\n\n  - id: R3-NEW-3\n    category: scope\n    severity: should-fix\n    summary: \"缺少 outcome misclassification 讨论\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"Limitations 已添加。\"\n    resolution_round: 4\n\n  - id: R3-NEW-4\n    category: presentation\n    severity: minor\n    summary: \"Abstract/Introduction 信息过载（数字密度）\"\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: []\n        note: \"R20 未单独提出。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-W3 再提。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。\"\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R3-NEW-5\n    category: related_work\n    severity: should-fix\n    summary: \"缺少 5 篇相关引用（Round 3 要求的）\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 3\n    resolution: \"全部 5 篇已引用。\"\n    resolution_round: 4\n\n  - id: R3-NEW-6\n    category: reproducibility\n    severity: should-fix\n    summary: \"未承诺代码/数据公开\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"Conclusion 已添加代码公开承诺。\"\n    resolution_round: 4\n\n  - id: R3-NEW-7\n    category: novelty\n    severity: should-fix\n    summary: \"新颖性定位不清：未明确界定已知结果 vs 新贡献\"\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"确认'首次跨 7 种拓扑系统比较'成立。\"\n    resolution_round: 5\n\n  - id: R3-NEW-8\n    category: experiments\n    severity: should-fix\n    summary: \"经验验证使用模拟 DGP 而非真实因果数据——缺少端到端因果应用验证\"\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R1, R2]\n        note: \"R20 升级为 critical。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MF-2: 仍为 must-fix。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 降级为 should-fix（可理解的局限）。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 双方共识：Section 4.4 用真实混淆矩阵但合成 DGP，B.19/B.20 也是构造场景。R1 补充论文实证成分比 R2 描述更丰富（23 real LLM CMs, B.18 case study, B.19-B.20 semi-real），但核心批评成立——缺少 researcher 不知 ground truth 的真实因果场景。共识定级 should-fix。\"\n    action_items:\n      - round: 21\n        action: \"MF-2 fix: Semi-real case study with 10 VAST K=3 production LLM confusion matrices\"\n        assigned_to: agent + paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R4-W6\n    category: novelty\n    severity: should-fix\n    summary: \"ASV 方法论创新有限——E-value 直接移植质疑\"\n    status: in_progress\n    first_raised_round: 4\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"R20 R2-W5 再提 ASV 与 E-values 区分度。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N1 合并讨论。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 R2 再提 ASV 为 one-parameter sweep，Algorithm 1 更像 practical guideline。R1 部分同意方法论深度有限，但认为 K≥3 引入质性新现象（structural dichotomy）赋予独立价值。共识：ASV 是 solid systematic contribution 而非 methodological breakthrough。\"\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R4-W7\n    category: presentation\n    severity: should-fix\n    summary: \"论文广度有余深度不足\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 7\n    resolution: \"Appendix pointer 已添加。\"\n    resolution_round: 8\n\n  - id: R4-W8\n    category: scope\n    severity: should-fix\n    summary: \"DAG 拓扑必须先验已知——Algorithm 1 依赖正确拓扑输入\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"Limitations 已添加相关讨论。\"\n    resolution_round: 5\n\n  - id: R4-W10\n    category: method\n    severity: minor\n    summary: \"PPI++ 对 M-bias 有害 (-88%) 缺乏机制解释\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 15\n    resolution: \"Section 4.5 已包含完整机制解释。\"\n    resolution_round: 15\n\n  - id: R4-W12\n    category: presentation\n    severity: minor\n    summary: \"引用格式问题\"\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 7\n    resolution: \"格式合规检查通过。\"\n    resolution_round: 8\n\n  - id: R5-N1\n    category: presentation\n    severity: must-fix\n    summary: \"Table 1 的 sign-flip guarantee ✓ 掩盖了 DGP 条件性\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"Table 1 已实现三级符号 ✓/✓*/✗。\"\n    resolution_round: 5\n\n  - id: R5-N2\n    category: soundness\n    severity: should-fix\n    summary: \"Conjecture 1 的 ε 在极端条件下可达 0.14-0.15\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"Conjecture 1 rewritten with per-topology ε bounds。\"\n    resolution_round: 5\n\n  - id: R5-N3\n    category: presentation\n    severity: must-fix\n    summary: \"'Primary coefficient never reverses' 仅为经验发现，缺乏理论保证\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 11\n    resolution: \"Abstract 已改为经验事实描述。\"\n    resolution_round: 11\n\n  - id: R5-MR\n    category: related_work\n    severity: should-fix\n    summary: \"Round 5 新发现的缺失引用\"\n    status: resolved\n    first_raised_round: 5\n    last_seen_round: 5\n    resolution: \"三篇引用已添加。\"\n    resolution_round: 5\n\n  - id: R6-M1\n    category: soundness\n    severity: should-fix\n    summary: \"Theorem 1 对 K≥3 未证明但标记为 Theorem\"\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 7\n    resolution: \"Theorem 1 现正确限定为 K=2。\"\n    resolution_round: 7\n\n  - id: R6-M3\n    category: soundness\n    severity: must-fix\n    summary: \"Proportional effects 假设在 NLP 中是强限制，且 Limitations 中完全缺失\"\n    status: in_progress\n    first_raised_round: 6\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R1]\n        note: \"R20 R1 升级为 critical。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-2: NLP 适用性缺少实质论证。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 R1-N3: proportional effects 验证用满足假设的 DGP。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 R1 维持 critical：proportional effects 在 NLP 场景中几乎不可验证且很少成立，non-proportional sparse DGP 24.2% 违反率被正文忽略。R2 认为 'ordinal 单调效应' 场景下是合理近似，R1 判断稍过强，但同意缺少 NLP 中何时合理的实质讨论。共识：不是循环论证，但实践讨论严重缺失。\"\n    action_items:\n      - round: 21\n        action: \"SF-2 fix: NLP domain-specific argument added\"\n        assigned_to: paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R6-M4\n    category: presentation\n    severity: must-fix\n    summary: \"Abstract sign reversal rate 与 Section 4.2 数值不一致\"\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 7\n    resolution: \"数值统一。\"\n    resolution_round: 7\n\n  - id: R8-C1\n    category: soundness\n    severity: must-fix\n    summary: \"K≥3 ASV 理论基础为 conjectural——Conjecture 1 未证明削弱框架可靠性\"\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R1, R2]\n        note: \"R20 再提。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MF-1: 结构性矛盾。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方强共识 critical。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 双方完全一致 critical。R1 补充 Appendix B.12 Table 11 K=7 worst-case deviation 0.060 比 K=3 的 0.003 大一个数量级，暗示 large-K（如 HumAID K=10）下 approximate monotonicity 质量恶化。R2 补充依赖链：Conjecture 1 → ASV ordering → Algorithm 1 Step 1 → correction routing 正确性。若 conjecture 有反例，Algorithm 1 可能给出错误建议。545,945 adversarial curves 是 strong evidence 但 absence of evidence ≠ evidence of absence。\"\n    action_items:\n      - round: 21\n        action: \"MF-1 fix: Main text Theorem 2 repositioned as theoretical anchor\"\n        assigned_to: paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R8-C2\n    category: soundness\n    severity: should-fix\n    summary: \"Proportional effects 在 NLP 中不可验证\"\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R1]\n        note: \"与 R6-M3 合并。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"与 R6-M3 合并。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"与 R6-M3 合并。R22 继续活跃。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"与 R6-M3 合并。R23 继续活跃。\"\n\n  - id: R8-W1\n    category: novelty\n    severity: should-fix\n    summary: \"ASV contribution 定位\"\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"与 R4-W6 合并。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N1 合并。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 与 R4-W6 合并。共识：solid systematic contribution，非 methodological breakthrough。\"\n\n  - id: R8-W2\n    category: soundness\n    severity: should-fix\n    summary: \"Non-differential 假设讨论不足\"\n    status: resolved\n    first_raised_round: 8\n    last_seen_round: 19\n    resolution: \"随 NEW-1 一同解决。\"\n    resolution_round: 19\n\n  - id: R8-W3\n    category: method\n    severity: minor\n    summary: \"δ* uncertainty bound 过宽\"\n    status: resolved\n    first_raised_round: 8\n    last_seen_round: 18\n    resolution: \"连续五轮未被提出，视为已解决。\"\n    resolution_round: 18\n\n  - id: R9-C2\n    category: scope\n    severity: should-fix\n    summary: \"线性 SEM 假设对 EMNLP 读者可达性和泛化性不足\"\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"R20 R2-W2 再提。\"\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-3。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 双方 AGREE。R1 补充 B.7 nonlinear DGP 测试提供部分 robustness evidence（structured violation 下 sign-flip 仍为 0%），但 linear bias expressions 与 nonlinear bias magnitudes 的对应关系未建立。R2 更尖锐：matrix-based correction 在 logistic regression 下 bias reduction ≈ 0%，practical recommendations 对非线性模型几乎完全不适用。\"\n    action_items:\n      - round: 21\n        action: \"SF-3 fix: Limitations references B.7 and B.14\"\n        assigned_to: paper_agent\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: R9-S1\n    category: novelty\n    severity: should-fix\n    summary: \"'first to characterize' novelty claim 需限定\"\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: [R2]\n        note: \"R20 R2-W3 再提。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N1。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 与 R22-N1 合并。双方同意技术手段标准，贡献主要在系统性覆盖度。R1 认为 K≥3 质性新现象赋予部分独立价值。\"\n\n  - id: R9-S3\n    category: experiments\n    severity: should-fix\n    summary: \"LLM 配置多样性有限（缺 <7B, >70B, ordinal）\"\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 23\n    mentions:\n      - round: 20\n        reviewers: []\n        note: \"R20 未单独提出。\"\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续多轮未提出。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。连续多轮未提出，可能已被 R1-W3 数据集多样性问题吸收。\"\n\n  - id: R11-W2\n    category: presentation\n    severity: minor\n    summary: \"Section 3.1 缺少 Notation roadmap——plim/FWL 对 NLP 读者不友好\"\n    status: in_progress\n    first_raised_round: 11\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MI-1: Existing footnote covers。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE notation 密度高。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。\"\n\n  - id: R12-MI2\n    category: presentation\n    severity: minor\n    summary: \"Figure 2 视觉问题\"\n    status: in_progress\n    first_raised_round: 12\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"R21 未单独提出。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 R1-minor-1 + R2-m1。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 分歧：R2 认为信息密度过高，R1 rebut 认为并排 histogram 在 8 页限制下密度合理。共识降为 minor 建议。视觉审查 Agent 也指出轴标签字号偏小（~7pt）。\"\n\n  - id: R15-W1\n    category: presentation\n    severity: should-fix\n    summary: \"Table 1 Violation vs Sign Flip 列定义模糊\"\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续四轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续五轮未提出。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。连续六轮未提出，可能已不构成问题。\"\n\n  - id: R15-W2\n    category: presentation\n    severity: should-fix\n    summary: \"Abstract FWL invariance 声明缺少 'under linear OLS' 限定词\"\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续两轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续三轮未提出。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。连续四轮未提出。\"\n\n  - id: R16-N1\n    category: presentation\n    severity: should-fix\n    summary: \"2.1% sign reversal 限定不清晰——secondary coefficient 还是 primary coefficient？\"\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续两轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续三轮未提出。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。连续四轮未提出。\"\n\n  - id: R16-N2\n    category: presentation\n    severity: should-fix\n    summary: \"Correction guidance 深度不足——作为三大贡献之一，Section 4.5 仅半页\"\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: [R2]\n        note: \"R21 MI-2: R1 rebut（FWL invariance 赋予价值）。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 分歧。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 分歧持续：R2 认为 PPI++ 作为独立贡献不合适（Algorithm 1 本质是 practical guideline），R1 rebut（FWL 负面结果有实践传播价值，observation 的重要性 > 证明技巧深度）。R2 同意 R1 的 framing 建议：定位为 'a practically important observation that follows from FWL'。共识：应调整贡献声明措辞，不暗示 deep theoretical contribution。\"\n\n  - id: R17-N1\n    category: format\n    severity: must-fix\n    summary: \"Abstract 超过 EMNLP 2026 的 200 words 限制（实际约 245 words）\"\n    status: wont_fix\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"REBUT: Abstract is 183 words. Reviewer count of ~245 includes LaTeX markup.\"\n    resolution_round: 17\n\n  - id: R17-W1\n    category: soundness\n    severity: should-fix\n    summary: \"Collider sign preservation 仅有经验验证\"\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续四轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续五轮未提出。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。连续六轮未提出。\"\n\n  - id: R17-W2\n    category: format\n    severity: minor\n    summary: \"Bib 含未引用条目\"\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: []\n        note: \"连续两轮未提出。\"\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。连续三轮未提出。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。连续四轮未提出。\"\n\n  - id: R20-N1\n    category: soundness\n    severity: must-fix\n    summary: \"Theorem 2 的 symmetric C₀ 假设在实际 LLM 混淆矩阵中很少成立——缺少合理性讨论和经验量化\"\n    status: in_progress\n    first_raised_round: 20\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 MF-1 合并。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 与 R8-C1 合并。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 分歧：R1 维持 should-fix（VAST d_rel=0.30-0.38 远非对称，Remark 4 与正文脱节），R2 rebut（Theorem 2 定位为 theoretical stepping stone，对称假设是理论推导中的过渡步骤，论文处理得当；真正问题仍是 Conjecture 1）。共识：Theorem 2 symmetric 假设本身不是 must-fix，但需确保正文不暗示 Theorem 2 直接适用于实际 K=3 场景。\"\n\n  - id: R20-N2\n    category: method\n    severity: should-fix\n    summary: \"Algorithm 1 决策阈值缺乏理论依据和跨设置稳定性验证\"\n    status: in_progress\n    first_raised_round: 20\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 Q4: 已 addressed。MI-2 分歧。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 双方 AGREE。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。\"\n\n  - id: R21-SF4\n    category: soundness\n    severity: should-fix\n    summary: \"Conjecture 1 adversarial search 4 种结构族基于直觉选择，系统性不明\"\n    status: in_progress\n    first_raised_round: 21\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: [R1, R2]\n        note: \"R21 SF-4: 低优先级。\"\n      - round: 22\n        reviewers: [R2]\n        note: \"R22 R2-N2 合并。\"\n      - round: 23\n        reviewers: [R2]\n        note: \"R23 R2 补充：adversarial 4 种结构是否覆盖 worst case 不清楚。R1 同意。与 R8-C1 合并。\"\n\n  - id: R21-MI3\n    category: scope\n    severity: minor\n    summary: \"Venue 适配度处于边界——核心贡献在统计/计量层面\"\n    status: in_progress\n    first_raised_round: 21\n    last_seen_round: 23\n    mentions:\n      - round: 21\n        reviewers: [R2]\n        note: \"R2-W6: ARR 允许跨学科。\"\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R22 共识：不构成拒稿理由。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。R22 已达成共识不构成拒稿理由。\"\n\n  - id: R21-Q2\n    category: method\n    severity: should-fix\n    summary: \"DAG 不确定时实践者应如何使用框架——缺少 worst-case guidance\"\n    status: in_progress\n    first_raised_round: 21\n    last_seen_round: 23\n    mentions:\n      - round: 22\n        reviewers: []\n        note: \"R22 未单独提出。\"\n      - round: 23\n        reviewers: [R1]\n        note: \"R23 R1-Q2 提出 DAG misspecification 在有 measurement error 下也受影响，应在 limitations 讨论。R2 AGREE。\"\n\n  - id: R22-N1\n    category: novelty\n    severity: should-fix\n    summary: \"相对于测量误差文献（Carroll 2006, Brenner 1993, Buonaccorsi 2010）的增量创新有限——'系统性覆盖'而非'方法论突破'\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 23\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"双方 AGREE。\"\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R23 双方再次收敛。R2 维持增量性判断（技术手段标准，one-parameter sweep）。R1 部分同意但强调 K≥3 引入质性新现象（structural dichotomy: exposure 83.6% sign reversal vs 其他 0-2.1%；7 拓扑差异化行为不是 Brenner 1993 的简单推广）。共识：贡献 1 核心价值在 K≥3 质性新现象，贡献 2-3 方法论深度有限。定性为 'solid systematic contribution with novel qualitative insights'。Findings 足够。\"\n    action_items:\n      - round: 22\n        action: \"P1-1: FWL invariance repositioned as novel futility result absent from measurement error literature\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R22-W1\n    category: soundness\n    severity: should-fix\n    summary: \"ASV 需要 gold labels 估计 C₀ 存在 '鸡生蛋' 问题——gold-label budget 极少时 ASV 可靠性未讨论\"\n    status: open\n    first_raised_round: 22\n    last_seen_round: 23\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R1-W2 提出，R2 部分 AGREE。\"\n      - round: 23\n        reviewers: [R1]\n        note: \"R23 R1-Q1 追问 B_OV 可观测性：Proposition 1(a) 涉及真实 A 而非 observed A*，bootstrap 通过 C⁻¹ 间接估计，但 estimation error propagation 未讨论。ASV 实用性潜在瓶颈。\"\n\n  - id: R22-W2\n    category: presentation\n    severity: should-fix\n    summary: \"'provably' 在 abstract/正文中使用隐含三个强假设（non-differential + proportional effects + C_A > 0），应附加限定条件\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 23\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"共识：建议将 'provably' 附注条件。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。R22 共识已形成。\"\n    action_items:\n      - round: 22\n        action: \"P0-1: 全文 'provably' 附加条件限定\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R22-W3\n    category: presentation\n    severity: should-fix\n    summary: \"K=2 sign preservation 叙事过于简化——exposure topology 在对角元素 <0.5 时也可 sign reversal\"\n    status: wont_fix\n    first_raised_round: 22\n    last_seen_round: 22\n    resolution: \"WONT_FIX: Reviewer 独立核实 K=2 下全部 7 拓扑 49/49 场景零 sign-flip，原文 'absent in the binary case' 对所有拓扑成立。\"\n    resolution_round: 22\n\n  - id: R22-MR1\n    category: related_work\n    severity: should-fix\n    summary: \"缺少 Mahajan (2006), Hu (2008) — 多值误分类非参数识别和非线性模型处理\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 23\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R2 提出，R1 AGREE。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。R22 共识已形成。\"\n    action_items:\n      - round: 22\n        action: \"P1-2: 添加 Mahajan (2006) + Hu (2008) 引用\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R22-MR2\n    category: related_work\n    severity: minor\n    summary: \"建议引用 Cornfield et al. (1959) sensitivity analysis 源头、Törnberg (2024) LLM 注释质量实证\"\n    status: in_progress\n    first_raised_round: 22\n    last_seen_round: 23\n    mentions:\n      - round: 22\n        reviewers: [R1, R2]\n        note: \"R2 提出。R1 AGREE Cornfield 和 Törnberg。\"\n      - round: 23\n        reviewers: []\n        note: \"R23 未单独提出。R22 共识已形成。\"\n\n  # === Round 23 新发现 ===\n\n  - id: R23-NEW-1\n    category: related_work\n    severity: should-fix\n    summary: \"缺少与 Cinelli & Hazlett (2020) partial R² sensitivity analysis 的方法论对比\"\n    status: open\n    first_raised_round: 23\n    last_seen_round: 23\n    mentions:\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R2-W3 提出，R1 AGREE。Section 2 引用了 Cinelli & Hazlett (2020) 但未对比 ASV 与 partial R² 的方法论异同。\"\n\n  - id: R23-NEW-2\n    category: related_work\n    severity: minor\n    summary: \"缺少 regression calibration (Carroll et al. 2006) 方法论讨论——即使不适用于 categorical misclassification 也应说明原因\"\n    status: open\n    first_raised_round: 23\n    last_seen_round: 23\n    mentions:\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R2-W3 提出，R1 AGREE。Section 4.5 讨论 5 种 correction methods 但未提及 regression calibration。\"\n\n  - id: R23-NEW-3\n    category: soundness\n    severity: should-fix\n    summary: \"B_OV (Proposition 1a) 涉及真实 A 而非 observed A*——间接估计的 error propagation 未讨论\"\n    status: open\n    first_raised_round: 23\n    last_seen_round: 23\n    mentions:\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R1-Q1 提出，R2 AGREE 是 ASV 实用性的潜在瓶颈。Section 3.3 用 bootstrap (A* → C⁻¹ → A) 近似，但 estimation error 对 ASV 计算的影响未量化。\"\n\n  - id: R23-NEW-4\n    category: method\n    severity: should-fix\n    summary: \"C(δ) 线性插值路径不反映 LLM 实际质量变化模式——不同 prompt/temperature 下混淆矩阵结构可能定性改变\"\n    status: open\n    first_raised_round: 23\n    last_seen_round: 23\n    mentions:\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R1-W3 提出，R2 AGREE 但认为是 sensitivity analysis 通用问题（E-values 类似），非本文特有缺陷。共识：应 acknowledge 但不必改变方法。\"\n\n  - id: R23-NEW-5\n    category: scope\n    severity: minor\n    summary: \"DAG discovery 在有 measurement error 下也受影响——DAG misspecification 应在 limitations 讨论\"\n    status: open\n    first_raised_round: 23\n    last_seen_round: 23\n    mentions:\n      - round: 23\n        reviewers: [R1, R2]\n        note: \"R1-Q2 提出，R2 AGREE。论文假设 DAG 已知，但未讨论 DAG 错误时框架行为。\"\n\n  - id: R23-NEW-6\n    category: soundness\n    severity: minor\n    summary: \"AI 辅助定理证明未在 Section D 明确披露——ACL policy 要求充分描述 AI 使用\"\n    status: open\n    first_raised_round: 23\n    last_seen_round: 23\n    mentions:\n      - round: 23\n        reviewers: [R1]\n        note: \"R1-Q5 提出。Section D 披露 'coding, designing, drafting' 但未说明 AI 是否辅助 proof development。R2 AGREE 这是 ethics concern。\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4652fd47-17f3-41ce-b45f-b08cd9d272fb",
+  "isSidechain": false,
+  "requestId": "req_011CbLjzmM3EbJr2uANstx96",
+  "type": "assistant",
+  "uuid": "183e28ea-99e4-44c2-8b22-81403bd0652f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqXGWRmbAqfsZzTuFCJMcS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4070,
+      "cache_read_input_tokens": 49610,
+      "output_tokens": 14967,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14967,
+          "cache_read_input_tokens": 49610,
+          "cache_creation_input_tokens": 4070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 对 Reviewer 1 审稿意见的逐条回应  ## Must-Fix 问题  **[AGREE] R1-N1: Theorem 1 仅对 proportional effects 成立**  同意这是一个重要的理论完整性缺陷。我在自己的 N2 中也独立提出了 Conjecture 1 未证明的问题。补充两点：  1. 论文的理论贡…",
+  "leafUuid": "183e28ea-99e4-44c2-8b22-81403bd0652f",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer rebuttal to classification bias analysis paper",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T04:17:03.756Z_
+
+<details><summary>↩ Tool result · `toolu_01PMQG8oMCs2cimfjw8HXs7o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml\", \"bytes\": 29582}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "183e28ea-99e4-44c2-8b22-81403bd0652f",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "b5a8c999-3567-4157-bdc9-c59112601725",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 29582}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml\", \"bytes\": 29582}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "183e28ea-99e4-44c2-8b22-81403bd0652f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39 · 2026-05-24T04:17:03.760Z_
+
+```json
+{
+  "parentUuid": "b5a8c999-3567-4157-bdc9-c59112601725",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "987c6b5d-63cb-402a-871f-2e6131954ae9",
+  "timestamp": "2026-05-24T04:17:03.760Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-24T04:17:06.509Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the issue tracker has been updated. Now let me compose the final review report and submit it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "987c6b5d-63cb-402a-871f-2e6131954ae9",
+  "isSidechain": false,
+  "requestId": "req_011CbLkL3iKNbzbp45Cwckxb",
+  "type": "assistant",
+  "uuid": "1c04eeca-0aab-47c6-8970-03313a287cae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZJCianxu4CShhQ18EM37b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15149,
+      "cache_read_input_tokens": 53680,
+      "output_tokens": 6742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6742,
+          "cache_read_input_tokens": 53680,
+          "cache_creation_input_tokens": 15149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-24T04:17:08.052Z_
+
+Issue Tracker 已更新。现在提交审稿报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c04eeca-0aab-47c6-8970-03313a287cae",
+  "isSidechain": false,
+  "requestId": "req_011CbLkL3iKNbzbp45Cwckxb",
+  "type": "assistant",
+  "uuid": "b792c344-43db-43b4-b4b0-1392a71cba2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZJCianxu4CShhQ18EM37b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15149,
+      "cache_read_input_tokens": 53680,
+      "output_tokens": 6742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6742,
+          "cache_read_input_tokens": 53680,
+          "cache_creation_input_tokens": 15149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-24T04:19:43.519Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_review_report_to_research_director · `toolu_017WS7RXcCu8dxgmTfK2FukU`</summary>
+
+```json
+{
+  "report": "# Round 23 审稿报告\n\n**Venue**: EMNLP 2026 (via ARR)  \n**格式**: Long Paper, 8-page main text limit  \n**审稿模式**: Fresh (重新审稿)  \n**Reviewer 编排**: 2 人（R1: 方法严谨性/理论完整性; R2: 新颖性/完整性/相关工作）  \n**轮次**: 1 轮（交叉回应后达成共识，无需额外轮次）\n\n---\n\n## Summary\n\n本文系统分析 LLM 标注误差在因果推断中的传播机制，覆盖 7 种 DAG 拓扑 × K 类别。核心贡献包括：(1) K≥3 下标注误差引发质性新现象（exposure 拓扑 83.6% sign reversal vs 其他拓扑 0-2.1%），建立跨拓扑的 bias taxonomy；(2) Annotation Sensitivity Value (ASV) 诊断工具，量化混淆矩阵到 sign flip 的最小扰动；(3) FWL futility result 证明 4 种 covariate 拓扑下矩阵校正在 OLS 中无效，以及 topology-aware correction guidance。理论框架建立在 non-differential misclassification + linear SEM + proportional effects 三个核心假设之上。\n\n---\n\n## Strengths\n\n**S1. 系统性覆盖的独立价值。** 首次在统一框架下比较 7 种 DAG 拓扑 × K 类别的标注误差传播行为。K≥3 引入的 structural dichotomy 是质性新现象（而非 K=2 的量的推广）：exposure 拓扑在 K≥3 下从安全变为高危（83.6% sign reversal），confounding/mediation 在 K≥3 下也出现非零 violation rate（13.7% under realistic accuracy）。这不是 Brenner (1993) 的直接推广。\n\n**S2. 严格的理论层次。** K=2 exact proof (Theorem 1) → K=3 symmetric exact (Theorem 2) → general K≥3 conjecture with extensive numerical verification (545,945 adversarial curves)。理论推导在适用范围内是正确和完整的。\n\n**S3. FWL futility result 的实践价值。** 虽然证明技巧简短（FWL 定理的直接推论），但 observation 本身对 NLP 实践者有重要警示价值：使用 confusion matrix 校正标注再跑回归在 4 种 covariate 拓扑下 provably useless。这是一个 counterintuitive negative result。（两位 Reviewer 对其 novelty 有分歧——见 Divergence D1。）\n\n**S4. 真实 LLM 混淆矩阵的验证。** Section 4.4 使用 23 个真实 LLM 配置的混淆矩阵验证 bias ranking 和 sign-flip predictions；Appendix B.18 Political Ad case study、B.19-B.20 semi-real case study 提供超越纯模拟的实证成分。\n\n**S5. 数值验证覆盖面广。** MC 模拟 MAPE 1.6%，100,000 Dirichlet-sampled matrices，adversarial monotonicity 验证，bootstrap CI 收敛分析。在计算数学标准下，这是 strong evidence。\n\n**S6. 实践工具完整。** Algorithm 1 将理论发现转化为决策流程（risk assessment → correction routing → FWL check），对 practitioner 有直接指导价值。\n\n---\n\n## Weaknesses\n\n### Must-Fix（两位 Reviewer 共识）\n\n**MF-1 [Critical | R1-N3 + R2-N2 | 共识 AGREE]: Conjecture 1 未证明，削弱 K≥3 ASV 框架的理论可靠性。**\n\nConjecture 1（general K≥3 approximate envelope monotonicity）是 ASV 框架的理论基石。依赖链：Conjecture 1 → ASV vulnerability ranking 有序性 → Algorithm 1 Step 1 risk level 判断 → correction routing 正确性。若 conjecture 存在反例，Algorithm 1 可能给出错误建议。\n\n数值验证虽然广泛（545,945 adversarial curves, max step deviation < 0.04），但存在两个隐忧：(a) Appendix B.12 Table 11 显示 K=7 worst-case magnitude deviation 0.060，比 K=3 的 0.003 大一个数量级——approximate monotonicity 质量随 K 增大恶化，在 HumAID K=10 下可靠性存疑；(b) adversarial search 的 4 种结构族基于直觉选择，是否覆盖 worst case 不清楚。\n\n论文应讨论：如果 approximate monotonicity 偶尔被违反（ε < 0.017），Algorithm 1 的 robustness 如何？小幅违反是否导致 correction routing 质变？\n\n**MF-2 [Critical | R1-N2 + R2-W1→升级 | 共识 AGREE]: Non-differential misclassification 假设与论文自身 stress test 结果构成内部一致性矛盾。**\n\n论文全部理论结果依赖 non-differential misclassification（标注误差独立于 outcome），但论文自己的实证检验显示该假设在目标场景中被系统性违反：\n- Appendix B.6 Table 8-9: 13.3% baseline violation rate\n- 14/16 K≥3 exposure configurations 在 α=0.01 下出现 structured departures（正文 p.4）\n- Appendix B.26 Y-stratified permutation test 在 VAST 数据上 13.3% violation rate\n\nR2 补充 violation 主要是 content-dependent（topic/sentiment driven）而非纯粹 outcome-dependent，在控制 topic 后可能不违反假设。但这个论点在论文中未被充分发展。当理论框架的核心假设在目标应用中被系统性违反时，理论结果的实际指导价值需要更诚实的讨论。\n\n**MF-3 [Critical/Should-Fix | R1-N1 + R2 partially agree | 共识 PARTIALLY AGREE]: Theorem 1 的 proportional effects 假设在 NLP 中几乎不可验证。**\n\nTheorem 1 要求所有类别的 treatment effect 按同一比例缩放。论文的数值验证使用满足该假设的 DGP，non-proportional sparse DGP 下 24.2% 违反率被正文忽略。R2 认为 R1 对假设不合理性的判断\"稍过强\"（ordinal 单调效应场景下是合理近似），但双方共识：论文缺少\"NLP 中何时/何种任务下 proportional effects 合理\"的实质讨论。\n\n---\n\n### Should-Fix（两位 Reviewer 共识或多数同意）\n\n**SF-1 [R1-W1 + R2-W2 | 共识 AGREE]: Linear SEM 假设严重限制 practical recommendations 的适用范围。**\n\nAppendix B.7 nonlinear DGP 测试显示 sign-flip rate 在 structured violation 下仍为 0%（部分 robustness），但 matrix-based correction 在 logistic regression 下 bias reduction ≈ 0%，FWL invariance 在非线性模型下形式上不再成立。论文的 practical recommendations 对非线性模型（matching, doubly-robust, deep learning）几乎完全不适用。这对 EMNLP 读者群体（更多使用非线性模型）构成重大适用性限制。\n\n**SF-2 [R1-W4 + R2-N3 | 共识 AGREE]: 端到端真实因果验证缺失。**\n\n论文的 \"empirical validation\" 本质是 theory-MC consistency check + retrospective analysis（已知 ground truth 或 simulated outcomes）。缺少在 researcher 不知 ground truth 的真实因果推断场景中展示框架 decision-making value 的验证。理想验证：对一个有 gold-standard causal effect 的 NLP 任务，展示 Algorithm 1 routing 后的 corrected estimate 比 naive estimate 更接近 ground truth。\n\n两位 Reviewer 均认为获取同时有 gold labels 和已知因果效应的真实数据很困难，因此定级 should-fix 而非 must-fix。\n\n**SF-3 [R2-W3 | R1 AGREE]: 相关工作缺口。**\n- 缺少与 Cinelli & Hazlett (2020) partial R² sensitivity analysis 的方法论对比\n- 缺少 regression calibration (Carroll et al. 2006) 在 categorical misclassification 下的不适用性讨论\n- PPI++ 理论 guarantees (Angelopoulos et al. 2023) 值得在 Related Work 中讨论（R1 认为非重大遗漏）\n\n**SF-4 [R1-W3 | R2 AGREE]: C(δ) 线性插值参数化的局限性。**\n\nC(δ) = (1-δ)I + δC₀ 假设误分类模式在质量变化时保持结构不变，但 LLM 在不同 prompt/temperature 下混淆矩阵结构可能定性改变。ASV 的 \"minimum perturbation to sign flip\" 解释可能不准确。R2 认为这是 sensitivity analysis 通用问题（E-values 类似），非本文特有缺陷。应 acknowledge 但不必改变方法。\n\n**SF-5 [R1-Q1 + R2 AGREE]: B_OV 间接可观测性问题。**\n\nProposition 1(a) 中 B_OV = Cov(g(A), f(A)) / Var(f(A)) 涉及真实 A 而非 observed A*。Section 3.3 通过 bootstrap (A* → C⁻¹ → A) 间接估计，但 estimation error propagation 未讨论。这是 ASV 从理论到实用的潜在瓶颈。\n\n---\n\n### Minor Issues\n\n**m1**: Figure 2 轴标签字号偏小（~7pt），视觉审查和 R2 均指出。R1 认为密度在 8 页限制下合理。\n\n**m2**: Section 3.1 notation 密度高（plim/FWL 对 NLP 读者不友好），R2 建议 notation table。\n\n**m3**: DAG misspecification under measurement error 应在 limitations 讨论。\n\n**m4**: AI assistance in proof development 未在 Section D 明确披露（ACL policy 要求充分描述）。\n\n---\n\n## Reviewer Consensus\n\n以下问题两位 Reviewer 达成完全或实质性共识：\n\n| 编号 | 问题 | 共识类型 | 严重性 |\n|------|------|----------|--------|\n| MF-1 | Conjecture 1 未证明 | [AGREE] 双方完全一致 | Critical |\n| MF-2 | Non-differential 假设内部矛盾 | [AGREE] 双方完全一致 | Critical |\n| MF-3 | Proportional effects 实践讨论缺失 | [PARTIALLY AGREE] | Critical/Should-Fix |\n| SF-1 | Linear SEM 限制 | [AGREE] 双方完全一致 | Should-Fix |\n| SF-2 | 端到端真实验证缺失 | [AGREE] 双方完全一致 | Should-Fix |\n| SF-3 | 相关工作缺口 | [AGREE] | Should-Fix |\n| SF-4 | C(δ) 参数化局限 | [AGREE] | Should-Fix |\n| SF-5 | B_OV 可观测性 | [AGREE] | Should-Fix |\n\n---\n\n## Reviewer Divergence\n\n**D1 [FWL futility result novelty]: R1 认为 novelty 不足（FWL 定理直接推论，3-4 步证明），R2 认为 observation 的实践价值大于证明技巧的深度。**\n\n共识落点：R2 同意 R1 的 framing 建议——论文应将此定位为 \"a practically important observation that follows from FWL\"，而非暗示 deep theoretical contribution。贡献列表中与 bias taxonomy 和 ASV 并列可能给人过高 novelty 印象。\n\n**D2 [Theorem 2 symmetric assumption]: R1 认为 should-fix（VAST d_rel=0.30-0.38 远非对称，Remark 4 与正文脱节），R2 rebut（Theorem 2 定位为 theoretical stepping stone，论文处理得当）。**\n\n共识落点：Theorem 2 symmetric 假设本身不是 must-fix，但正文不应暗示 Theorem 2 直接适用于实际 K=3 场景。真正问题仍是 Conjecture 1。\n\n**D3 [Abstract \"annotation quality is the wrong thing to worry about\"]: R2 认为 overclaiming，R1 rebut（这是合理的 framing statement，正文内容支撑）。**\n\n共识落点：R1 论证更有说服力——Table 1 确实说明 aggregate accuracy 不是正确 metric，counterintuitive hook 是合理写作策略。保留。\n\n**D4 [核心贡献的增量性]: R2 强调技术手段标准、ASV 为 one-parameter sweep，R1 强调 K≥3 引入质性新现象赋予独立价值。**\n\n共识落点：双方在结论上相近——贡献 1 的核心价值在 K≥3 质性新现象而非量的推广；贡献 2-3 方法论深度有限。定性为 \"solid systematic contribution with novel qualitative insights\"。\n\n---\n\n## Questions for Authors\n\n**Q1**: Proposition 1(a) 中 B_OV 的估计依赖通过 C⁻¹ 从 A* 反推 A 的分布。这个间接估计步骤的 error propagation 如何？在 gold label budget 极少（50-100 samples）时 ASV 是否仍可靠？\n\n**Q2**: 如果 Conjecture 1 的 approximate monotonicity 在实践中偶尔被违反（ε < 0.017），Algorithm 1 的 correction routing 是否会发生质变——即推荐错误的 correction method？\n\n**Q3**: 论文能否提供一个 NLP 任务的具体例子，说明在什么条件下 proportional effects 假设是合理的近似？（如 ordinal sentiment classification）\n\n**Q4**: Non-differential misclassification violation 中，content-dependent 和 outcome-dependent 的区别是否可以被利用——即在控制 topic 后，论文的理论结果在条件 non-differential 意义下是否仍然成立？\n\n**Q5**: Section D 的 AI assistance 披露是否覆盖了定理证明过程？ACL 2025/2026 policy 要求 \"describe the use in sufficient detail\"。\n\n---\n\n## Missing References\n\n**必须引用**:\n- Cinelli & Hazlett (2020) — partial R² sensitivity analysis，与 ASV 方法论对比（Section 2 已引用但未对比）\n- Regression calibration (Carroll et al. 2006) — 即使不适用于 categorical case 也应说明原因\n\n**建议引用（R22 遗留）**:\n- Mahajan (2006) — polytomous misclassification 非参数识别\n- Hu (2008) — 非线性模型下的误分类处理\n- Cornfield et al. (1959) — sensitivity analysis 方法论源头\n- Törnberg (2024) — LLM 注释质量实证\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n未请求外部审稿。\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**: ✅ 已完成  \n**结果**: 0 critical, 1 warning, 6 info\n\n| 严重性 | 位置 | 发现 |\n|--------|------|------|\n| ⚠️ warning | p.23 | 附录单页堆叠 4 个 display items（Figure 5 + Figure 6 + Table 5 + Figure 7），版面极度拥挤 |\n| ℹ️ info | p.1-2 | 连续 2 页纯文本，无 display item。ACL 格式下属常规 |\n| ℹ️ info | p.5 | Figure 2 轴标签和拓扑名称字号偏小（~7pt） |\n| ℹ️ info | p.6 | 纯文本页（定理密集），属理论推导例外 |\n| ℹ️ info | p.8 | Figure 4 尺寸较小，适当放大可增强视觉冲击力 |\n| ℹ️ info | p.28-29 | Tables 12-13 列数多、字号小、数字密度高 |\n| ℹ️ info | p.35 | Algorithm 1 占 60% 页面，底部 40% 空白 |\n\n---\n\n## Overall Assessment\n\n**评分: 3.5 — Borderline Conference（推荐 Findings）**\n\n**置信度: High（两位 Reviewer 独立给出相同评分，关键问题强共识）**\n\n本文在系统性和覆盖面上做出了扎实贡献——首次在统一框架下揭示 K≥3 标注误差传播的质性新现象（structural dichotomy），FWL futility result 对 NLP 实践者有直接警示价值。理论框架在 K=2 和 K=3 symmetric 范围内是完整的。\n\n阻碍进入主会议的核心障碍：\n\n1. **理论完整性缺口**：最重要的 general K≥3 case 停留在 conjecture 而非 theorem，ASV 框架的核心性质缺乏证明保障。K=7 worst-case deviation 的增长趋势加剧了这一担忧。\n\n2. **假设-实证矛盾**：论文理论依赖的 non-differential misclassification 假设在论文自己的 stress test 中被系统性违反（13.3% violation rate），形成内部一致性问题。若不能在条件 non-differential 或 robustness 层面化解这个矛盾，理论结果的实际指导价值存疑。\n\n3. **实践适用范围窄**：Linear SEM + proportional effects + non-differential 三个假设叠加，使得框架的直接适用场景在 NLP 中相当有限。Correction recommendations 对非线性模型几乎不适用。\n\n4. **方法论深度有限**：ASV 本质是 one-parameter sweep，Algorithm 1 更接近 practical guideline 而非 algorithmic contribution。贡献定位应为 \"solid systematic contribution with novel qualitative insights\" 而非 methodological breakthrough。\n\n**Findings 推荐理由**：覆盖度贡献真实（7 拓扑 × K≥3 的系统比较此前不存在）、K≥3 sign reversal 是质性新发现、FWL futility result 有传播价值。这些足以支撑 Findings 级别发表，但不足以进入主会议。\n\n---\n\n## Detailed Comments\n\n### Section 1 (Introduction)\n- \"annotation quality is the wrong thing to worry about\" framing 是合理的 counterintuitive hook（R1 rebut R2 的 overclaim 指控成立），但后续论证应更早连接到假设条件。\n- Contribution list 中 FWL futility 与 bias taxonomy 和 ASV 并列，可能给人过高 novelty 印象。建议调整措辞为 \"topology-aware correction guidance including a FWL futility result\"。\n\n### Section 3 (Theory)\n- Theorem 1 (K=2) 和 Theorem 2 (K=3 symmetric) 证明完整，无误。\n- Conjecture 1 是核心软肋——数值验证覆盖面广但不能替代证明。K=7 worst-case deviation 0.060 vs K=3 的 0.003 暗示 large-K 质量恶化。\n- Section 3.1 notation 密度高（plim/FWL），对 NLP 读者有一定障碍。现有 footnote 覆盖基本定义，但可考虑 notation table。\n- \"provably\" 一词在 abstract/正文中使用隐含 non-differential + proportional effects + C_A > 0 三个假设，应附加限定。\n\n### Section 3.3 (ASV)\n- ASV 的 C(δ) = (1-δ)I + δC₀ 参数化是标准 sensitivity analysis 做法，但应 acknowledge LLM 质量变化可能不沿此路径。\n- B_OV 通过 bootstrap (A* → C⁻¹ → A) 间接估计，estimation error propagation 未讨论。\n- Gold label budget 极少（< 500）时 ASV reliability 是开放问题。\n\n### Section 4.2 (Empirical Results)\n- Table 1 有效传达 structural dichotomy。\n- Figure 2 信息密度可接受（R1 rebut R2），但轴标签 ~7pt 偏小。\n\n### Section 4.4 (Validation)\n- 23 real LLM confusion matrices 的验证比纯模拟更有说服力，但仍是 retrospective analysis。\n- B.19-B.20 semi-real case study 补充了实践色彩，但仍使用构造的因果关系。\n\n### Section 4.5 (Correction Guidance)\n- FWL futility result 在 OLS 下正确且有实践价值。\n- 5 种 correction methods 的对比有用，但 regression calibration 缺席。\n- 对非线性模型的 recommendations 几乎完全缺失——这是最大的实践适用性缺口。\n\n### Appendix\n- B.6 stress test 结果自毁假设——论文需要更诚实地面对这个矛盾。\n- B.12 adversarial verification 覆盖面广，但 4 种结构族的选择基础不清楚。\n- p.23 版面拥挤（4 个 display items），建议分页。\n\n### Limitations\n- 当前 limitations 缺少：proportional effects 在 NLP 中的适用性讨论、DAG misspecification 影响、非线性模型的明确不适用声明。",
+  "project": "causal_annot_error_attrib",
+  "reviewer_ids_acknowledged": [
+    1,
+    2
+  ],
+  "cross_response_reviewer_ids": [
+    1,
+    2
+  ],
+  "overall_score": "3.5 - Borderline Conference (推荐 Findings)",
+  "review_chat_id": "oc_9f117624057fcf6cb95db4d67f525246"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b792c344-43db-43b4-b4b0-1392a71cba2c",
+  "isSidechain": false,
+  "requestId": "req_011CbLkL3iKNbzbp45Cwckxb",
+  "type": "assistant",
+  "uuid": "4a5b5440-e386-4618-b131-362b2754a129",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BZJCianxu4CShhQ18EM37b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15149,
+      "cache_read_input_tokens": 53680,
+      "output_tokens": 6742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6742,
+          "cache_read_input_tokens": 53680,
+          "cache_creation_input_tokens": 15149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-24T04:19:47.175Z_
+
+<details><summary>↩ Tool result · `toolu_017WS7RXcCu8dxgmTfK2FukU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a5b5440-e386-4618-b131-362b2754a129",
+  "isSidechain": false,
+  "promptId": "808a3ab5-43ac-4bae-952f-08d68ac70118",
+  "type": "user",
+  "uuid": "37d7751a-12fb-4cd6-bf53-4efb82626204",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "4a5b5440-e386-4618-b131-362b2754a129",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/review_director_d2e6d7be",
+  "sessionId": "f168a970-8e3c-4f0f-a680-70cc6478c7a0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

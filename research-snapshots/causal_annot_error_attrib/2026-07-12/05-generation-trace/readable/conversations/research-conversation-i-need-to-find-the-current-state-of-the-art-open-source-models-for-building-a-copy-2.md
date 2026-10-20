@@ -1,0 +1,2153 @@
+# Research conversation: I need to find the current state-of-the-art open-source models for building a Vision-Language-Action (VLA) system in 202
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a882ea2155c47ecea.jsonl`
+- **Structured JSON:** [`8d43a897432d0786f967.json`](../../sessions/8d/8d43a897432d0786f967.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 1 · 2026-05-18T18:27:05.180Z_
+
+I need to find the current state-of-the-art open-source models for building a Vision-Language-Action (VLA) system in 2026. Search for:
+
+1. WebSearch: "best open source VLA model 2026 robot manipulation"
+2. WebSearch: "state of the art vision language action model 2026 open source"
+3. WebSearch: "best open source multimodal LLM 2026" (for the language backbone)
+4. WebSearch: "top open source vision language model 2026 robotics"
+5. WebSearch: "OpenVLA pi0 octo 2026 successor best VLA"
+6. WebSearch: "best open source LLM 2026 code generation reasoning"
+
+Report:
+- The current top open-source VLA models (name, parameters, key capabilities)
+- The current top open-source multimodal LLMs suitable as backbones (name, parameters)
+- Which models have available weights on HuggingFace
+- Any VLA models that already support chain-of-thought or reasoning tokens
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "25552a40-e4ff-4038-a653-f714efa5e6c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T18:27:05.183Z_
+
+```json
+{
+  "parentUuid": "25552a40-e4ff-4038-a653-f714efa5e6c6",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e275266d-571e-4317-8613-3cc3ac818b28",
+  "timestamp": "2026-05-18T18:27:05.183Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-18T18:27:08.061Z_
+
+
+
+I'll search for all of this information. Let me first load the WebSearch tool, then run all the searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e275266d-571e-4317-8613-3cc3ac818b28",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJ62zHcrdHes7BeH1Q",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "90236502-fd8a-4737-a705-c48e1c00a48b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UnCpo1LRDAop4CZmgr6QPx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 799,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T18:27:08.392Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H1uZpPjcEtKraUGJkXqseD`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90236502-fd8a-4737-a705-c48e1c00a48b",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJ62zHcrdHes7BeH1Q",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fb918db5-45ab-424d-9a28-03db79318620",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UnCpo1LRDAop4CZmgr6QPx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 799
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 799,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 799,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T18:27:08.394Z_
+
+<details><summary>↩ Tool result · `toolu_01H1uZpPjcEtKraUGJkXqseD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb918db5-45ab-424d-9a28-03db79318620",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "44d49155-b54f-49ac-b379-1ebe583d73b2",
+  "sourceToolAssistantUUID": "fb918db5-45ab-424d-9a28-03db79318620",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-18T18:27:10.891Z_
+
+
+
+Now let me run all six searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44d49155-b54f-49ac-b379-1ebe583d73b2",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "063c25ea-cbe8-43a4-93f7-4e8365b2ddb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T18:27:11.420Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NXaffgapYe5ifSZ4ABZdXP`</summary>
+
+```json
+{
+  "query": "best open source VLA model 2026 robot manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "063c25ea-cbe8-43a4-93f7-4e8365b2ddb4",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e19fddc8-4040-4e94-b0e5-6b8b96e71a04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T18:27:11.935Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013cZ7g1Y2HjGixwbzB9wAdx`</summary>
+
+```json
+{
+  "query": "state of the art vision language action model 2026 open source"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e19fddc8-4040-4e94-b0e5-6b8b96e71a04",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "567dd19d-fa1f-49a6-96c0-8badbda68f6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T18:27:11.939Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CFJopfipMdnSSeFMRHNCNN`</summary>
+
+```json
+{
+  "query": "best open source multimodal LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "567dd19d-fa1f-49a6-96c0-8badbda68f6c",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6ff45116-1ba4-47af-87d0-96a749feb3d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T18:27:12.457Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U6EgYzdB2STyCnXinuedvD`</summary>
+
+```json
+{
+  "query": "top open source vision language model 2026 robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ff45116-1ba4-47af-87d0-96a749feb3d6",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "25f0cc61-9652-4326-8609-c69f53c8ee83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T18:27:12.939Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E6UbAzavjYyfQFgsepwyGH`</summary>
+
+```json
+{
+  "query": "OpenVLA pi0 octo 2026 successor best VLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25f0cc61-9652-4326-8609-c69f53c8ee83",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "05965b6b-8948-440f-a45a-c94f99736e17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-18T18:27:12.985Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LP9fRp9igVMYdedfEKCrf7`</summary>
+
+```json
+{
+  "query": "best open source LLM 2026 code generation reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05965b6b-8948-440f-a45a-c94f99736e17",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWJL5azLDW3kYM3MzHt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6be66e6d-a605-45ed-8ae1-e7c56083a4c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ev7AvCTYtGtFuxUz4rGky",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9022,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1420
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 9022,
+          "cache_creation_input_tokens": 1420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1420,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T18:27:18.735Z_
+
+<details><summary>↩ Tool result · `toolu_013cZ7g1Y2HjGixwbzB9wAdx`</summary>
+
+```text
+Web search results for query: "state of the art vision language action model 2026 open source"
+
+Links: [{"title":"OpenVLA: An Open-Source Vision-Language-Action Model | OpenReview","url":"https://openreview.net/forum?id=ZMnD6QZAE6"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model | alphaXiv","url":"https://www.alphaxiv.org/overview/2406.09246v3"},{"title":"Multimodal AI: The Best Open-Source Vision Language Models in 2026","url":"https://www.bentoml.com/blog/multimodal-ai-a-guide-to-open-source-vision-language-models"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model","url":"https://arxiv.org/pdf/2604.05672"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"Survey of Open-Source Vision Language Models (2026) | Hacker News","url":"https://news.ycombinator.com/item?id=47247663"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"Dexbotic: Open-Source Vision-Language-Action Toolbox","url":"https://arxiv.org/pdf/2510.23511"}]
+
+Based on the search results, here are the state-of-the-art open-source vision-language-action models as of 2026:
+
+## Recent State-of-the-Art Models
+
+**A1 (April 2026):** A1 is a fully open-source and transparent VLA framework designed for low-cost, high-throughput inference that achieves state-of-the-art success rates while significantly reducing inference cost. On RoboChallenge, A1 achieves an average success rate of 29.00%, outperforming baselines including π0 (28.33%), X-VLA (21.33%), and RDT-1B (15.00%). A1 releases the full training stack including training code, data processing pipeline, intermediate checkpoints, and evaluation scripts to enable end-to-end reproducibility.
+
+**OpenVLA:** OpenVLA is a state-of-the-art, open-source 7B-parameter VLA model that obtains strong performance for cross-embodiment robot control out-of-the-box and can be easily adapted to new robot setups via parameter-efficient fine-tuning. It was introduced in June 2024 by researchers at Stanford and was trained on the Open X-Embodiment dataset, a collaboration between 21 institutions that collected over one million episodes on 22 different embodiments.
+
+**Dexbotic:** Dexbotic is an open-source Vision-Language-Action (VLA) model toolbox that aims to provide a one-stop VLA research service for professionals in the field of embodied intelligence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "567dd19d-fa1f-49a6-96c0-8badbda68f6c",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "aafc293d-9b8a-450a-abe4-70e5461a4c87",
+  "sourceToolAssistantUUID": "567dd19d-fa1f-49a6-96c0-8badbda68f6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T18:27:19.760Z_
+
+<details><summary>↩ Tool result · `toolu_01U6EgYzdB2STyCnXinuedvD`</summary>
+
+```text
+Web search results for query: "top open source vision language model 2026 robotics"
+
+Links: [{"title":"Best Open-Source Vision Language Models of 2026","url":"https://www.labellerr.com/blog/top-open-source-vision-language-models/"},{"title":"Top 10 Vision Language Models in 2026 | Benchmark, Use Cases","url":"https://dextralabs.com/blog/top-10-vision-language-models/"},{"title":"The Fastest Open Source Multimodal Models in 2026","url":"https://www.siliconflow.com/articles/en/fastest-open-source-multimodal-models"},{"title":"Top 10 Vision Language Models in 2026 | DataCamp","url":"https://www.datacamp.com/blog/top-vision-language-models"},{"title":"Multimodal AI: The Best Open-Source Vision Language Models in 2026","url":"https://www.bentoml.com/blog/multimodal-ai-a-guide-to-open-source-vision-language-models"},{"title":"Ultimate Guide - The Best Open Source Multimodal Models in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-multimodal-models-2025"}]
+
+Based on the search results, here are the top open-source vision language models for robotics in 2026:
+
+## Top Recommendations
+
+The top three recommendations for 2026 are GLM-4.1V-9B-Thinking, Qwen2.5-VL-32B-Instruct, and GLM-4.5V, each offering distinct advantages for robotics applications.
+
+## Notable Models for Robotics
+
+**Qwen 2.5 VL and DeepSeek-VL**: DeepSeek-VL has strong reasoning capabilities designed for scientific and real-world vision tasks, with use cases including visual reasoning for robotics and logical scene understanding.
+
+**GLM-4.6V**: GLM-4.6V is the latest open-source multimodal model developed by Z.ai, featuring native multimodal tool use, stronger visual reasoning, and a 128K context window. Compared with earlier GLM versions, GLM-4.6V closes the loop between perception, reasoning, and action.
+
+**LLaMA 3.2 Vision and Gemma 3**: Models like Qwen 2.5 VL (72B) and LLaMA 3.2 Vision come close for document understanding but may require fine-tuning for niche tasks.
+
+## Robotics Applications
+
+Vision-language models are giving robots the means to intelligently navigate their environments, making these open-source options valuable for autonomous robotics development.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25f0cc61-9652-4326-8609-c69f53c8ee83",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "ded5acbc-0603-4ae4-b513-8cc5869261ea",
+  "sourceToolAssistantUUID": "25f0cc61-9652-4326-8609-c69f53c8ee83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T18:27:20.524Z_
+
+<details><summary>↩ Tool result · `toolu_01CFJopfipMdnSSeFMRHNCNN`</summary>
+
+```text
+Web search results for query: "best open source multimodal LLM 2026"
+
+Links: [{"title":"Best Open Source LLMs in 2026: DeepSeek, Llama & More","url":"https://www.miniloop.ai/blog/best-open-source-llms-2026"},{"title":"Best Open-Source LLM 2026: 8 Tested, 3 Beat GPT-4 | TECHSY","url":"https://techsy.io/en/blog/best-open-source-llms-2026"},{"title":"Best Open-Source LLMs in 2026 - Featherless","url":"https://featherless.ai/blog/best-open-source-llms-2026"},{"title":"Best open source LLMs in 2026 | Respan","url":"https://www.respan.ai/blog/best-open-source-llms"},{"title":"Multimodal AI: The Best Open-Source Vision Language Models in 2026","url":"https://www.bentoml.com/blog/multimodal-ai-a-guide-to-open-source-vision-language-models"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"The Best Open Source and Open-Weight LLM Models to Run Locally in 2026","url":"https://huggingface.co/blog/daya-shankar/open-source-llm-models-to-run-locally"},{"title":"Ultimate Guide - The Best Open Source Multimodal Models in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-multimodal-models-2025"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"}]
+
+Based on the search results, here are the best open source multimodal LLMs in 2026:
+
+## Top Multimodal Models
+
+For 2026, the top three recommendations are GLM-4.5V, GLM-4.1V-9B-Thinking, and Qwen2.5-VL-32B-Instruct.
+
+**GLM-4.6V**: Developed by Z.ai, it features native multimodal tool use, stronger visual reasoning, and a 128K context window. It introduces end-to-end vision-driven tool use, allowing images, UI screenshots, document pages, and visual snippets to be provided directly as tool parameters.
+
+**Gemma 3**: The 4B, 12B, and 27B versions support text and image input, 128K context, and 140+ languages. Its multimodal scores (DocVQA 85.6%, ChartQA 76.3%) compete with models 3-5x larger, making it ideal for developers who want capable multimodal capabilities on limited hardware.
+
+**Llama 4**: Released in April 2025, Llama 4 is Meta's first natively multimodal model family and includes Llama 4 Scout (17B active parameters, 109B total), Llama 4 Maverick (17B active parameters, 400B total), and Llama 4 Behemoth (288B active parameters, 2T total).
+
+**Qwen 3**: With parameters ranging from 0.6B to 235B and a 128K context window, Qwen 3 is the most capable multilingual open source model.
+
+## General Purpose Standout
+
+DeepSeek-V3.2 is the best overall open source LLM in 2026, achieving 94.2% on MMLU (matching GPT-4o) and using an efficient MoE architecture (671B total, 37B active).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ff45116-1ba4-47af-87d0-96a749feb3d6",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "ecfa871b-65a8-4a43-b5b8-5e67971edac4",
+  "sourceToolAssistantUUID": "6ff45116-1ba4-47af-87d0-96a749feb3d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T18:27:22.592Z_
+
+<details><summary>↩ Tool result · `toolu_01E6UbAzavjYyfQFgsepwyGH`</summary>
+
+```text
+Web search results for query: "OpenVLA pi0 octo 2026 successor best VLA"
+
+Links: [{"title":"Physical Intelligence π0 vs OpenVLA: Best VLA Model for Robot Learning 2026 | SVRC","url":"https://www.roboticscenter.ai/physical-intelligence-pi0-vs-openvla"},{"title":"VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC","url":"https://www.roboticscenter.ai/learn/vla-models-comparison"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"Scaling VLA Model Training on a Budget: Lessons From 100+ Fine-Tunes | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/blog/scaling-vla-training-on-a-budget"},{"title":"GitHub - keon/awesome-physical-ai: A curated list of academic papers and resources on Physical AI — focusing on Vision-Language-Action (VLA) models, world models, embodied ai, and robotic foundation models.","url":"https://github.com/keon/awesome-physical-ai"},{"title":"𝜋₀: A Vision-Language-Action Flow Model for General Robot Control","url":"https://arxiv.org/html/2410.24164v1"},{"title":"GitHub - OpenMOSS/VLABench: Official repo of VLABench, a large scale benchmark designed for fairly evaluating VLA, Embodied Agent, and VLMs. · GitHub","url":"https://github.com/OpenMOSS/VLABench"},{"title":"LIBERO vs CALVIN (2026): Benchmark Comparison | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/datasets/compare/libero-vs-calvin"},{"title":"VLA & VLM Model Directory: OpenVLA, Octo, RT-X, π0 Compared | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/vla-models"}]
+
+Based on the search results, here's what I found about OpenVLA, π0 (Pi-Zero), Octo, and the VLA landscape in 2026:
+
+## Key VLA Models Comparison
+
+OpenVLA is the right choice for the vast majority of robot learning researchers and teams, with its open weights, Apache 2.0 license, consumer-GPU fine-tuning, and active community making it the practical foundation for building real robot policies. OpenVLA is a 7B-parameter open-source VLA model introduced in June 2024 by researchers at Stanford, trained on the Open X-Embodiment dataset from 21 institutions with over one million episodes on 22 different embodiments.
+
+π0 (Pi-Zero) from Physical Intelligence delivers state-of-the-art dexterity performance — but requires partnership access and cannot be self-hosted. Flow matching (π0): Actions are generated by iteratively denoising a random sample into a valid action trajectory, producing the smoothest actions and handling multi-modal distributions best, but requires multiple denoising steps at inference time.
+
+Octo is a lightweight open-source generalist robot policy from UC Berkeley, originally trained on Open X-Embodiment and released in smaller configurations (27M and 93M parameters). For 20–50 demonstrations, Octo is designed for rapid fine-tuning with minimal data.
+
+## Which Model to Choose?
+
+Choose Octo for small datasets and single embodiments; choose OpenVLA when you have >500 episodes or need language conditioning. Use Pi0 if you have access and need maximum benchmark performance.
+
+## Emerging Successors
+
+Several newer models are emerging: HiMoE-VLA ("Hierarchical Mixture-of-Experts for Generalist Vision-Language-Action Policies") from December 2025 substitutes Pi-style action experts with Hierarchical Mixture-of-Experts Transformer for better embodiment adaptation, and improves upon Pi0 across experiments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05965b6b-8948-440f-a45a-c94f99736e17",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "68be6e82-1d2b-40f5-83c1-04676c176ed9",
+  "sourceToolAssistantUUID": "05965b6b-8948-440f-a45a-c94f99736e17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T18:27:22.653Z_
+
+<details><summary>↩ Tool result · `toolu_01NXaffgapYe5ifSZ4ABZdXP`</summary>
+
+```text
+Web search results for query: "best open source VLA model 2026 robot manipulation"
+
+Links: [{"title":"Top 10 Physical AI Models Powering Real-World Robots in 2026 - MarkTechPost","url":"https://www.marktechpost.com/2026/04/28/top-10-physical-ai-models-powering-real-world-robots-in-2026/"},{"title":"VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC","url":"https://www.roboticscenter.ai/learn/vla-models-comparison"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"Robbyant Open-Sources LingBot-VLA as a “Universal Brain” for Robots | RoboticsTomorrow","url":"https://www.roboticstomorrow.com/news/2026/01/28/robbyant-open-sources-lingbot-vla-as-a-universal-brain-for-robots/26071/"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/pdf/2406.09246"},{"title":"A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model","url":"https://arxiv.org/pdf/2604.05672"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"}]
+
+Based on the search results, here are the leading open-source VLA (Vision-Language-Action) models for robot manipulation in 2026:
+
+## Top Open-Source VLA Models
+
+**OpenVLA** - A 7B-parameter open-source VLA trained on a diverse collection of 970,000 real-world robot demonstrations. Despite being 7× smaller, OpenVLA outperforms the closed RT-2-X (55B parameters) by 16.5 percentage points in absolute task success rate across 29 tasks and multiple robot embodiments.
+
+**SmolVLA** - On the LIBERO benchmark, SmolVLA achieves 82–90% success — within 5% of OpenVLA despite having 16x fewer parameters. The key advantage is inference speed: SmolVLA runs at 15–30 Hz on a single RTX 4090, fast enough for reactive manipulation.
+
+**LingBot-VLA** - Robbyant announced the open-source release of LingBot-VLA, a vision-language-action (VLA) model designed to serve as a "universal brain" for real-world robotics, which helps reduce post-training costs and accelerate the path to scalable deployment. In tests conducted across three distinct physical robot platforms, LingBot-VLA achieved higher task success rates than other evaluated models.
+
+**A1** - A fully open-source and transparent VLA framework designed for low-cost, high-throughput inference without sacrificing manipulation success. The full training stack (training code, data/data-processing pipeline, intermediate checkpoints, and evaluation scripts) is released to enable end-to-end reproducibility.
+
+OpenVLA and SmolVLA appear to be the most prominent choices, with OpenVLA offering superior performance and SmolVLA excelling in computational efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e19fddc8-4040-4e94-b0e5-6b8b96e71a04",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "c3629727-c3d3-487c-ab33-32f6ed925365",
+  "sourceToolAssistantUUID": "e19fddc8-4040-4e94-b0e5-6b8b96e71a04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T18:27:25.096Z_
+
+<details><summary>↩ Tool result · `toolu_01LP9fRp9igVMYdedfEKCrf7`</summary>
+
+```text
+Web search results for query: "best open source LLM 2026 code generation reasoning"
+
+Links: [{"title":"Best Open Source LLMs in 2026: DeepSeek, Llama & More","url":"https://www.miniloop.ai/blog/best-open-source-llms-2026"},{"title":"Ultimate Guide - Best Open Source LLM for Software Development in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-software-development"},{"title":"Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org","url":"https://whatllm.org/best-open-source-llm"},{"title":"Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License","url":"https://huggingface.co/blog/daya-shankar/open-source-llms"},{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"Best Open-Source LLM 2026: 8 Tested, 3 Beat GPT-4 | TECHSY","url":"https://techsy.io/en/blog/best-open-source-llms-2026"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio","url":"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"}]
+
+Based on the search results, here are the best open source LLMs in 2026 for code generation and reasoning:
+
+## Top Overall Models
+
+DeepSeek-V3.2 is the best overall open source LLM in 2026, achieving 94.2% on MMLU (matching GPT-4o) with an efficient MoE architecture (671B total, 37B active), and is fully open source under MIT license.
+
+## Specialized by Use Case
+
+For **code generation specifically**: Qwen2.5-Coder is recommended for code generation. Additionally, GLM-4.7 Thinking is the top open-weight coding model in 2026, free to self-host.
+
+For **reasoning**: DeepSeek-R1 is recommended for reasoning.
+
+For **agentic coding tasks**: On the May 12, 2026 LiveBench snapshot, Kimi K2.6 Thinking leads the open-source models with 78.57 Coding Avg and 58.33 Agentic Coding Avg. It is especially strong for coding, tool use, visual tasks, and long-horizon agent workflows, with front-end generation, full-stack prototypes, repo-level coding, and agent orchestration as core strengths.
+
+## Other Strong Contenders
+
+Qwen 3 235B-A22B currently leads on the broadest range of benchmarks, combining top-tier reasoning, coding, and multilingual capabilities under an Apache 2.0 license.
+
+GLM-5.1 is the latest flagship open-source LLM from Zhipu AI, designed for agentic engineering and complex, long-horizon software development tasks, building on the foundation of GLM-5 in reasoning, coding, and agentic workflows.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6be66e6d-a605-45ed-8ae1-e7c56083a4c2",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "aa2c83c9-f0b9-4283-8666-7c41f336818e",
+  "sourceToolAssistantUUID": "6be66e6d-a605-45ed-8ae1-e7c56083a4c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-18T18:27:28.623Z_
+
+Let me run a few more targeted searches to fill in gaps around HuggingFace availability, chain-of-thought/reasoning in VLA models, and some of the newer models mentioned.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa2c83c9-f0b9-4283-8666-7c41f336818e",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWKZAfV1sEP4UoWU7eQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6dc8c622-fc37-415f-8a06-05563c731296",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDhMmKffXNWo8iaht7A9KZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 10442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5675,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T18:27:29.674Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015RGqbJfwYimdsbnLfFK1SH`</summary>
+
+```json
+{
+  "query": "OpenVLA-2 2025 2026 HuggingFace weights chain of thought reasoning VLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6dc8c622-fc37-415f-8a06-05563c731296",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWKZAfV1sEP4UoWU7eQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f71b87f1-8a6a-450d-a317-6d34c1c81aac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDhMmKffXNWo8iaht7A9KZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 10442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5675,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T18:27:30.038Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0199hXtDHUoVbyArRdY43ZMZ`</summary>
+
+```json
+{
+  "query": "SmolVLA HuggingFace parameters open source 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f71b87f1-8a6a-450d-a317-6d34c1c81aac",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWKZAfV1sEP4UoWU7eQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5d42fe23-0ba6-45d1-bc6c-c749e45014ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDhMmKffXNWo8iaht7A9KZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 10442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5675,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T18:27:30.512Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015EKv71aAbyVNpAVqf5QP8b`</summary>
+
+```json
+{
+  "query": "A1 VLA model 2026 parameters HuggingFace arxiv transparent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d42fe23-0ba6-45d1-bc6c-c749e45014ec",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWKZAfV1sEP4UoWU7eQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0843d4a1-c53b-43a1-aab7-9f760f4eaf4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDhMmKffXNWo8iaht7A9KZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 10442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5675,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T18:27:30.997Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MCarEDpAE93yMEmwuad4WN`</summary>
+
+```json
+{
+  "query": "VLA model chain of thought reasoning tokens 2026 robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0843d4a1-c53b-43a1-aab7-9f760f4eaf4f",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWKZAfV1sEP4UoWU7eQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "03a0ce6c-aa2d-4896-94a5-77d1c2e81089",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDhMmKffXNWo8iaht7A9KZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 10442,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5675
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 10442,
+          "cache_creation_input_tokens": 5675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5675,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T18:27:36.179Z_
+
+<details><summary>↩ Tool result · `toolu_015RGqbJfwYimdsbnLfFK1SH`</summary>
+
+```text
+Web search results for query: "OpenVLA-2 2025 2026 HuggingFace weights chain of thought reasoning VLA"
+
+Links: [{"title":"GitHub - MichalZawalski/embodied-CoT: Embodied Chain of Thought: A robotic policy that reason to solve the task. · GitHub","url":"https://github.com/MichalZawalski/embodied-CoT"},{"title":"Robotic Control via Embodied Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2407.08693"},{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2602.01166"},{"title":"Improve Vision Language Model Chain-of-thought Reasoning","url":"https://arxiv.org/pdf/2410.16198"},{"title":"DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.22280"}]
+
+Based on the search results, I found several relevant papers and resources related to Vision-Language-Action (VLA) models with chain-of-thought reasoning:
+
+## Key Findings:
+
+**OpenVLA with Chain-of-Thought Approaches:**
+
+Embodied Chain-of-Thought Reasoning (ECoT) increases the absolute success rate of OpenVLA by 28% across challenging generalization tasks. Two ECoT models are available on HuggingFace, including ecot-openvla-7b-bridge, which was trained on the Bridge dataset annotated with reasoning for 80k steps.
+
+**Recent VLA CoT Developments:**
+
+Several recent approaches extend VLA models with reasoning capabilities:
+
+- LaRA-VLA reduces inference latency by up to 90% compared to explicit CoT-based approaches while improving performance
+- DualCoT-VLA uses visual-linguistic CoT reasoning in continuous latent space, where visual CoT extracts 3D spatial cues while linguistic CoT formulates high-level logical plans
+
+The search results show active development in combining OpenVLA models with chain-of-thought reasoning for improved robotic manipulation tasks, with models and datasets available on HuggingFace. However, I didn't find specific information about an "OpenVLA-2" model release in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f71b87f1-8a6a-450d-a317-6d34c1c81aac",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "e263ae6c-88b1-4eb1-b82a-ee212fdc1276",
+  "sourceToolAssistantUUID": "f71b87f1-8a6a-450d-a317-6d34c1c81aac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T18:27:37.000Z_
+
+<details><summary>↩ Tool result · `toolu_0199hXtDHUoVbyArRdY43ZMZ`</summary>
+
+```text
+Web search results for query: "SmolVLA HuggingFace parameters open source 2025 2026"
+
+Links: [{"title":"Hugging Face Releases SmolVLA, a Compact Open-Source Robotics Model -- Pure AI","url":"https://pureai.com/articles/2025/06/10/hugging-face-releases-smolvla.aspx"},{"title":"Hugging Face says its new robotics model is so efficient it can run on a MacBook | TechCrunch","url":"https://techcrunch.com/2025/06/04/hugging-face-says-its-new-robotics-model-is-so-efficient-it-can-run-on-a-macbook/"},{"title":"Hugging Face Releases SmolVLA: A Compact Vision-Language-Action Model for Affordable and Efficient Robotics - MarkTechPost","url":"https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/"},{"title":"AI and Robotics: With SmolVLA, Hugging Face Opens Vision-Language-Action Models to the Community","url":"https://www.actuia.com/en/news/ai-and-robotics-with-smolvla-hugging-face-opens-vision-language-action-models-to-the-community/"},{"title":"SmolVLA: An Open-Source Vision-Language-Action Model for Modern Robotics","url":"https://smolvla.net/index_en"},{"title":"lerobot/smolvla_base · Hugging Face","url":"https://huggingface.co/lerobot/smolvla_base"},{"title":"State of Open Source on Hugging Face: Spring 2026","url":"https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026"},{"title":"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics","url":"https://arxiv.org/pdf/2506.01844"}]
+
+Based on the search results, here's what I found about SmolVLA:
+
+## SmolVLA Overview
+
+Hugging Face introduced SmolVLA on June 3rd as an open-source Vision-Language-Action robotics model. At 450 million parameters, SmolVLA aims to offer efficient, reproducible performance for robotic tasks without reliance on proprietary datasets or expensive infrastructure.
+
+## Key Features
+
+This compact model can run on consumer hardware such as a MacBook or a standard GPU, while offering performance comparable to much larger models. Despite its relatively small size and modest training data — fewer than 30,000 episodes — SmolVLA matches or outperforms larger models like ACT on both simulated (LIBERO, Meta-World) and real-world (SO100, SO101) benchmarks.
+
+## Architecture and Implementation
+
+SmolVLA's architecture includes a modified SmolVLM2 encoder-decoder stack, reduced visual token use, and selectively truncated layers during inference. SmolVLA is trained entirely on community-collected datasets and is optimized to run on single-GPU or CPU environments.
+
+## Availability
+
+SmolVLA and its datasets are available on GitHub and the Hugging Face Hub. SmolVLA is released under an open license with accompanying code, training data, and deployment tools.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d42fe23-0ba6-45d1-bc6c-c749e45014ec",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "feb783f0-fa63-4c36-8cf3-4b611bc31602",
+  "sourceToolAssistantUUID": "5d42fe23-0ba6-45d1-bc6c-c749e45014ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T18:27:38.182Z_
+
+<details><summary>↩ Tool result · `toolu_01MCarEDpAE93yMEmwuad4WN`</summary>
+
+```text
+Web search results for query: "VLA model chain of thought reasoning tokens 2026 robot"
+
+Links: [{"title":"DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.22280"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://arxiv.org/html/2503.22020v1"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action   Models","url":"https://arxiv.org/pdf/2503.22020"},{"title":"LaST$_{0}$: Latent Spatio-Temporal Chain-of-Thought for Robotic Vision-Language-Action Model","url":"https://arxiv.org/pdf/2601.05248"},{"title":"dVLA: Diffusion Vision-Language-Action Model with Multimodal Chain-of-Thought","url":"https://arxiv.org/pdf/2509.25681"}]
+
+Based on the search results, I found several relevant papers on VLA models with chain-of-thought reasoning:
+
+## Key Findings:
+
+Vision-Language-Action (VLA) models currently represent a leading approach for robotic manipulation. Recent work has incorporated Chain-of-Thought (CoT) reasoning into VLA models, demonstrating improved task generalization.
+
+**Recent VLA CoT Methods:**
+
+1. **DualCoT-VLA** - A visual-linguistic CoT paradigm that reasons in the continuous latent space, where a visual CoT extracts low-level 3D spatial cues, while a linguistic CoT formulates high-level logical plans for comprehensive multimodal reasoning. It achieves state-of-the-art performance on the LIBERO and RoboCasa GR1 benchmarks.
+
+2. **CoT-VLA** - A method that incorporates explicit visual chain-of-thought reasoning into vision-language-action models by predicting future image frames autoregressively as visual goals before generating a short action sequence. It outperforms state-of-the-art VLA models by 17% in real-world manipulation tasks and 6% in simulation benchmarks.
+
+3. **LaST₀** - A latent spatio-temporal chain-of-thought model that addresses inference latency issues through latent space reasoning.
+
+4. **dVLA** - A model where the sub-step reasoning, often referred to as Chain-of-Thought, grounds high-level instructions into low-level sub-steps for improved guidance in action prediction.
+
+These 2026 models demonstrate the evolution toward more sophisticated reasoning capabilities in robotic VLA systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03a0ce6c-aa2d-4896-94a5-77d1c2e81089",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "e99eacb4-30ab-45dd-a7a6-6ba3a7921af3",
+  "sourceToolAssistantUUID": "03a0ce6c-aa2d-4896-94a5-77d1c2e81089",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T18:27:38.535Z_
+
+<details><summary>↩ Tool result · `toolu_015EKv71aAbyVNpAVqf5QP8b`</summary>
+
+```text
+Web search results for query: "A1 VLA model 2026 parameters HuggingFace arxiv transparent"
+
+Links: [{"title":"[2604.05672] A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model","url":"https://arxiv.org/abs/2604.05672"},{"title":"A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model","url":"https://arxiv.org/pdf/2604.05672"},{"title":"A Pragmatic VLA Foundation Model","url":"https://arxiv.org/html/2601.18692v1"},{"title":"𝐴₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model","url":"https://arxiv.org/html/2604.05672"},{"title":"Paper page - SimVLA: A Simple VLA Baseline for Robotic Manipulation","url":"https://huggingface.co/papers/2602.18224"},{"title":"[2604.19728] VLA Foundry: A Unified Framework for Training Vision-Language-Action Models","url":"https://arxiv.org/abs/2604.19728"},{"title":"GitHub - 2toinf/X-VLA: [ICLR 2026] The offical Implementation of \"Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model\" · GitHub","url":"https://github.com/2toinf/X-VLA"}]
+
+Based on the search results, I found information about the A1 VLA model from 2026:
+
+## A1 VLA Model Overview
+
+A1 is a fully open-source and transparent VLA framework designed for low-cost, high-throughput inference without sacrificing manipulation success. It addresses the challenge that Vision-Language-Action (VLA) models with billion-scale VLM backbones and iterative diffusion/flow-based action heads incur high latency and compute, making real-time control expensive on commodity hardware.
+
+## Key Parameters and Features
+
+The framework releases the full training stack including training code, data/data-processing pipeline, intermediate checkpoints, and evaluation scripts to enable end-to-end reproducibility. A1 targets the full inference pipeline by introducing a budget-aware adaptive inference scheme that jointly accelerates the backbone and the action head by monitoring action consistency across intermediate VLM layers to trigger early termination, and proposing Inter-Layer Truncated Flow Matching.
+
+## Performance
+
+As a completely transparent system with no dependencies on closed-source components, A1 achieves an average success rate of 29.00%, ranking sixth overall. Across simulation benchmarks and real robots, A1 achieves state-of-the-art success rates while significantly reducing inference cost (e.g., up to 72% lower per-episode latency for flow-matching inference and up to 76.6% backbone computation reduction).
+
+The model's code and project page are available on GitHub and additional information can be found in the arXiv paper (2604.05672).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0843d4a1-c53b-43a1-aab7-9f760f4eaf4f",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "2069b386-86ad-46c7-9cc5-fb053767d3b5",
+  "sourceToolAssistantUUID": "0843d4a1-c53b-43a1-aab7-9f760f4eaf4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T18:27:41.323Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xm1rA7dhEmFR6v26steush`</summary>
+
+```json
+{
+  "query": "HiMoE-VLA model 2025 2026 parameters HuggingFace open source"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2069b386-86ad-46c7-9cc5-fb053767d3b5",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWLYbiK4Dabfef8TbC1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d238c1af-4f5b-455b-9034-998894a53b6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155ujmsvPC8zmFA47d1FdbC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 687,
+      "cache_creation_input_tokens": 2615,
+      "cache_read_input_tokens": 16117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2615,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T18:27:42.253Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017yzw1ZQAZxNwXBkeyQxAdx`</summary>
+
+```json
+{
+  "query": "LingBot-VLA parameters architecture HuggingFace weights 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d238c1af-4f5b-455b-9034-998894a53b6b",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWLYbiK4Dabfef8TbC1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f11f842d-4c2a-4fa2-8722-39e4f7a18d7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155ujmsvPC8zmFA47d1FdbC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 687,
+      "cache_creation_input_tokens": 2615,
+      "cache_read_input_tokens": 16117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2615,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T18:27:42.481Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TFRdDuNbHNjqzHpnQ9uJV2`</summary>
+
+```json
+{
+  "query": "X-VLA ICLR 2026 parameters open source HuggingFace"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f11f842d-4c2a-4fa2-8722-39e4f7a18d7f",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWLYbiK4Dabfef8TbC1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fed6ed0b-5ac2-49fb-9614-a79587ea2cff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155ujmsvPC8zmFA47d1FdbC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 687,
+      "cache_creation_input_tokens": 2615,
+      "cache_read_input_tokens": 16117,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2615
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 687,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 16117,
+          "cache_creation_input_tokens": 2615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2615,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T18:27:49.145Z_
+
+<details><summary>↩ Tool result · `toolu_01TFRdDuNbHNjqzHpnQ9uJV2`</summary>
+
+```text
+Web search results for query: "X-VLA ICLR 2026 parameters open source HuggingFace"
+
+Links: [{"title":"GitHub - 2toinf/X-VLA: [ICLR 2026] The offical Implementation of \"Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model\" · GitHub","url":"https://github.com/2toinf/X-VLA"},{"title":"Add ICLR 2026 · huggingface/ai-deadlines at 5e6df6a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/5e6df6a255f953dab156a2849e468594a5b6a7df"},{"title":"davidheineman/iclr-2026 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/davidheineman/iclr-2026/viewer/default/main"},{"title":"X-VLA: The First Soft-Prompted Robot Foundation Model for Any Robot, Any Task · Hugging Face","url":"https://huggingface.co/docs/lerobot/xvla"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"2toINF/X-VLA-Pt · Hugging Face","url":"https://huggingface.co/2toINF/X-VLA-Pt"},{"title":"2toINF/X-VLA-SoftFold · Hugging Face","url":"https://huggingface.co/2toINF/X-VLA-SoftFold"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"}]
+
+Based on the search results, here's what I found about X-VLA:
+
+## Key Information
+
+X-VLA has been accepted to ICLR 2026. 
+
+**Model Parameters:** X-VLA is a 0.9B parameter instantiation trained with a carefully designed data processing and learning recipe. More specifically, the 0.9B-parameter X-VLA was trained on Bridge Data and evaluated across six simulations and three real-world robots.
+
+**Open Source & HuggingFace:** X-VLA is now natively integrated into the LeRobot platform, and the models are available on HuggingFace. You can find model variants on HuggingFace (such as 2toINF/X-VLA-Pt, 2toINF/X-VLA-WidowX, and 2toINF/X-VLA-SoftFold).
+
+**Architecture:** X-VLA introduces a Soft Prompt approach with minimally added parameters, infusing prompt-learning concepts into cross-embodiment robot learning with separate sets of learnable embeddings for each distinct embodiment. With only 1% of parameters tuned (9M), X-VLA-0.9B achieves near-optimal performance while using 300× fewer trainable parameters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fed6ed0b-5ac2-49fb-9614-a79587ea2cff",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "bbde7b52-89f8-41f7-81b1-a3f3c6024439",
+  "sourceToolAssistantUUID": "fed6ed0b-5ac2-49fb-9614-a79587ea2cff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T18:27:51.355Z_
+
+<details><summary>↩ Tool result · `toolu_01Xm1rA7dhEmFR6v26steush`</summary>
+
+```text
+Web search results for query: "HiMoE-VLA model 2025 2026 parameters HuggingFace open source"
+
+Links: [{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"HiMoE-VLA: Hierarchical Mixture-of-Experts for Generalist Vision-Language-Action Policies","url":"https://arxiv.org/pdf/2512.05693"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/html/2406.09246v2"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"Hunyuan-Large: An Open-Source MoE Model with 52 Billion Activated   Parameters by Tencent","url":"https://arxiv.org/pdf/2411.02265"},{"title":"openvla/openvla-7b · Hugging Face","url":"https://huggingface.co/openvla/openvla-7b"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/pdf/2406.09246"}]
+
+Based on the search results, I found information about HiMoE-VLA:
+
+## HiMoE-VLA Model Overview
+
+HiMoE-VLA is a novel vision-language-action (VLA) framework with a Hierarchical Mixture-of-Experts (HiMoE) architecture for the action module, designed to adaptively handle multiple sources of heterogeneity across layers and gradually abstract them into shared knowledge representations.
+
+Through extensive experimentation with simulation benchmarks and real-world robotic platforms, HiMoE-VLA demonstrates consistent performance improvements over existing VLA baselines, achieving higher accuracy and robust generalization across diverse robots and action spaces.
+
+## Availability
+
+The code and models are publicly available at https://github.com/ZhiyingDu/HiMoE-VLA.
+
+While the search results confirm HiMoE-VLA is an open-source project with publicly available code and models, the specific parameter count details were not found in these search results. The paper appears to be recent (from the arXiv reference 2512.05693, indicating December 2025), and it's designed to improve upon other VLA models in handling heterogeneous robotic data across different robots and action spaces.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d238c1af-4f5b-455b-9034-998894a53b6b",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "18353bbd-9ad1-443f-9692-4f28b1a7554f",
+  "sourceToolAssistantUUID": "d238c1af-4f5b-455b-9034-998894a53b6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T18:27:52.555Z_
+
+<details><summary>↩ Tool result · `toolu_017yzw1ZQAZxNwXBkeyQxAdx`</summary>
+
+```text
+Web search results for query: "LingBot-VLA parameters architecture HuggingFace weights 2026"
+
+Links: [{"title":"bazaar-research/lingbot-va · Hugging Face","url":"https://huggingface.co/bazaar-research/lingbot-va"},{"title":"bazaar-research/lingbot-vla · Hugging Face","url":"https://huggingface.co/bazaar-research/lingbot-vla"},{"title":"LingBot-VLA: 17.3% Success Rate on 100 Dual-Arm Manipulation Tasks – Industrial Monitor Direct","url":"https://industrialmonitordirect.com/blogs/knowledgebase/lingbot-vla-scaling-results-173-sr-with-depth-distillation"},{"title":"robbyant/lingbot-vla-4b · Hugging Face","url":"https://huggingface.co/robbyant/lingbot-vla-4b"},{"title":"GitHub - Robbyant/lingbot-vla: A Pragmatic VLA Foundation Model · GitHub","url":"https://github.com/Robbyant/lingbot-vla"},{"title":"LingBot-VLA download | SourceForge.net","url":"https://sourceforge.net/projects/lingbot-vla.mirror/"},{"title":"A Pragmatic VLA Foundation Model","url":"https://arxiv.org/pdf/2601.18692"}]
+
+Based on the search results, here's information about LingBot-VLA's parameters, architecture, and HuggingFace weights:
+
+## Architecture
+
+LingBot-VLA uses the Qwen2.5-VL-3B backbone with a Mixture-of-Transformers architecture, where the VLM and action expert share self-attention but have separate feedforward pathways. The high-efficiency execution uses a dual-stream mixture-of-transformers (MoT) architecture with Asynchronous Execution and KV Cache.
+
+## Model Parameters
+
+The model name itself reflects its scale: "LingBot-VLA-4B" refers to the 4 billion parameter version, based on the Qwen2.5-VL-3B backbone.
+
+## Training Data and Performance
+
+LingBot-VLA is a Vision-Language-Action (VLA) foundation model for dual-arm manipulation, trained on approximately 20,000 hours of teleoperated manipulation data across 9 robot embodiments.
+
+## HuggingFace Weights
+
+As of January 29, 2026, weights and code for the shared backbone were released. Pre-trained weights are available in two configurations: depth-free version and a depth-distilled version. The models can be accessed on HuggingFace under the repositories `robbyant/lingbot-vla-4b` and related variants.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f11f842d-4c2a-4fa2-8722-39e4f7a18d7f",
+  "isSidechain": true,
+  "promptId": "d55f5b67-f828-48f6-8580-f2cc71e420b6",
+  "agentId": "a882ea2155c47ecea",
+  "type": "user",
+  "uuid": "e985ddd9-9085-47e0-87b5-f7f35bd3ba6a",
+  "sourceToolAssistantUUID": "f11f842d-4c2a-4fa2-8722-39e4f7a18d7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-18T18:28:58.816Z_
+
+Here is my comprehensive report on the current state-of-the-art open-source models for building a VLA system in 2026.
+
+---
+
+## 1. Top Open-Source VLA Models
+
+| Model | Parameters | Key Capabilities | HuggingFace Weights |
+|---|---|---|---|
+| **OpenVLA** | 7B | The foundational open-source VLA. Trained on 970K real-world robot demos from the Open X-Embodiment dataset (21 institutions, 22 embodiments). Outperforms closed RT-2-X (55B) by 16.5% absolute success rate. Apache 2.0 license. Supports language-conditioned control. | Yes (`openvla/openvla-7b`) |
+| **SmolVLA** | 450M | Hugging Face's compact VLA. Achieves 82-90% success on LIBERO (within 5% of OpenVLA despite 16x fewer params). Runs at 15-30 Hz on a single RTX 4090. Built on SmolVLM2 backbone. Trained on fewer than 30K episodes of community-collected data. | Yes (`lerobot/smolvla_base`) |
+| **A1** | Not precisely stated (VLM-backbone scale) | Fully transparent VLA with budget-aware adaptive inference. Up to 72% lower per-episode latency and 76.6% backbone computation reduction. Achieves 29.00% on RoboChallenge, outperforming pi0 (28.33%) and X-VLA (21.33%). Full training stack released. | Yes (code + checkpoints on GitHub, April 2026) |
+| **LingBot-VLA** | 4B | Built on Qwen2.5-VL-3B backbone with Mixture-of-Transformers architecture. Trained on ~20K hours of teleoperated data across 9 robot embodiments. Designed for dual-arm manipulation. | Yes (`robbyant/lingbot-vla-4b`) |
+| **X-VLA** | 0.9B | ICLR 2026 paper. Uses soft-prompt approach for cross-embodiment learning -- only 1% of parameters (9M) need tuning per new embodiment. Integrated natively into Hugging Face's LeRobot platform. | Yes (`2toINF/X-VLA-Pt`, `2toINF/X-VLA-SoftFold`, etc.) |
+| **HiMoE-VLA** | Not publicly specified | Hierarchical Mixture-of-Experts action module. Improves upon pi0 across experiments via adaptive handling of multi-embodiment heterogeneity. | Yes (code + models on GitHub) |
+| **Octo** | 27M / 93M | Lightweight generalist policy from UC Berkeley. Best for small datasets (20-50 demos) and rapid fine-tuning on single embodiments. | Yes |
+| **Dexbotic** | Toolbox (multiple models) | An open-source VLA toolbox providing a one-stop research service for embodied intelligence. | Yes (arXiv + code) |
+
+**pi0 (Physical Intelligence)** is state-of-the-art for dexterity but is NOT open-source -- it requires partnership access and cannot be self-hosted.
+
+---
+
+## 2. Top Open-Source Multimodal LLMs Suitable as VLA Backbones
+
+These are the vision-language models you would use as the "brain" if building a custom VLA:
+
+| Model | Parameters | Why It Matters for VLA |
+|---|---|---|
+| **Qwen2.5-VL** | 3B / 7B / 32B / 72B | Already used as the backbone for LingBot-VLA-4B. Strong visual reasoning, 128K context. Apache 2.0. |
+| **GLM-4.6V** | Not specified | Native multimodal tool use, strong visual reasoning, 128K context. Closes the loop between perception, reasoning, and action. |
+| **GLM-4.1V-9B-Thinking** | 9B | Specifically designed for visual reasoning with thinking/chain-of-thought capabilities. |
+| **Gemma 3** | 4B / 12B / 27B | Multimodal (text+image), 128K context, 140+ languages. DocVQA 85.6%. Efficient enough to run on limited hardware. |
+| **Llama 4 Scout / Maverick** | 17B active (109B-400B total MoE) | Meta's first natively multimodal family. Strong general capabilities. |
+| **SmolVLM2** | Sub-1B | Used as the encoder-decoder backbone for SmolVLA. Extremely efficient for edge deployment. |
+
+For the general-purpose LLM backbone (reasoning/code generation for agentic VLA pipelines):
+
+| Model | Parameters | Strengths |
+|---|---|---|
+| **DeepSeek-V3.2** | 671B total / 37B active (MoE) | Best overall open-source LLM. 94.2% MMLU. MIT license. |
+| **Qwen 3** | Up to 235B (22B active MoE) | Top-tier reasoning + coding + multilingual. Apache 2.0. |
+| **DeepSeek-R1** | Various | Best for pure reasoning tasks. |
+| **Kimi K2.6 Thinking** | Not specified | Leading open-source model for agentic coding (78.57 Coding Avg on LiveBench May 2026). |
+
+---
+
+## 3. HuggingFace Availability Summary
+
+Models with **confirmed weights on HuggingFace**:
+- `openvla/openvla-7b` -- OpenVLA
+- `lerobot/smolvla_base` -- SmolVLA
+- `robbyant/lingbot-vla-4b` -- LingBot-VLA
+- `2toINF/X-VLA-Pt`, `2toINF/X-VLA-SoftFold`, `2toINF/X-VLA-WidowX` -- X-VLA
+- `bazaar-research/lingbot-vla` -- LingBot-VLA variant
+- Octo -- available via HuggingFace/GitHub
+- A1 -- intermediate checkpoints released (GitHub)
+- HiMoE-VLA -- code + models on GitHub
+
+All major multimodal LLMs (Qwen2.5-VL, Gemma 3, Llama 4, GLM-4.6V, DeepSeek-V3.2, Qwen 3) have weights on HuggingFace.
+
+---
+
+## 4. VLA Models with Chain-of-Thought / Reasoning Tokens
+
+This is a rapidly evolving area. The following models explicitly support CoT or reasoning in the VLA context:
+
+| Model | Approach | Key Result |
+|---|---|---|
+| **ECoT-OpenVLA** (Embodied CoT) | Annotates OpenVLA training data with explicit reasoning steps. Weights available on HuggingFace (`ecot-openvla-7b-bridge`). | +28% absolute success rate on generalization tasks over base OpenVLA. |
+| **CoT-VLA** | Predicts future image frames autoregressively as visual goals before generating actions. | +17% over SOTA VLAs in real-world manipulation; +6% in simulation. |
+| **DualCoT-VLA** | Parallel visual-linguistic CoT in continuous latent space. Visual CoT extracts 3D spatial cues; linguistic CoT formulates high-level plans. | SOTA on LIBERO and RoboCasa GR1 benchmarks. |
+| **LaRA-VLA** (Latent Reasoning VLA) | Latent thinking and prediction -- reasoning happens in latent space rather than explicit text tokens. | Up to 90% inference latency reduction vs. explicit CoT approaches, with improved performance. |
+| **LaST0** | Latent spatio-temporal chain-of-thought. Addresses the inference speed bottleneck of explicit CoT. | Efficient latent-space reasoning for real-time control. |
+| **dVLA** | Diffusion VLA with multimodal CoT. Grounds high-level instructions into low-level sub-steps. | Improved action prediction through sub-step reasoning. |
+
+**Key takeaway on reasoning**: The field is splitting into two camps -- (1) explicit CoT (like ECoT-OpenVLA, CoT-VLA) that generates text/visual reasoning tokens but is slower, and (2) latent reasoning (like LaRA-VLA, LaST0, DualCoT-VLA) that performs reasoning in continuous latent space for much faster inference. If you need real-time control, the latent approaches are preferred; if you need interpretability, explicit CoT is better.
+
+---
+
+## Practical Recommendations
+
+- **Best starting point**: OpenVLA (7B) with ECoT fine-tuning if you want reasoning, or SmolVLA (450M) if you need real-time inference on consumer hardware.
+- **Best efficiency**: X-VLA (0.9B) with soft-prompt tuning -- only 9M parameters need training per new robot embodiment.
+- **Best for dual-arm**: LingBot-VLA (4B) trained specifically on dual-arm manipulation data.
+- **Best for custom backbone**: Use Qwen2.5-VL (proven in LingBot-VLA) or GLM-4.1V-9B-Thinking (built-in visual reasoning).
+- **Most transparent/reproducible**: A1 -- full training stack, data pipeline, and intermediate checkpoints released.
+
+Sources:
+- [Top 10 Physical AI Models Powering Real-World Robots in 2026](https://www.marktechpost.com/2026/04/28/top-10-physical-ai-models-powering-real-world-robots-in-2026/)
+- [VLA Models Compared: OpenVLA vs pi0 vs SmolVLA vs RT-2 (2026 Guide)](https://www.roboticscenter.ai/learn/vla-models-comparison)
+- [A1: A Fully Transparent Open-Source VLA Model (arXiv)](https://arxiv.org/abs/2604.05672)
+- [SmolVLA: HuggingFace Release](https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/)
+- [SmolVLA on HuggingFace](https://huggingface.co/lerobot/smolvla_base)
+- [OpenVLA on HuggingFace](https://huggingface.co/openvla/openvla-7b)
+- [LingBot-VLA on HuggingFace](https://huggingface.co/robbyant/lingbot-vla-4b)
+- [X-VLA (ICLR 2026) on HuggingFace](https://huggingface.co/2toINF/X-VLA-Pt)
+- [X-VLA in LeRobot](https://huggingface.co/docs/lerobot/xvla)
+- [Embodied Chain-of-Thought Reasoning (GitHub)](https://github.com/MichalZawalski/embodied-CoT)
+- [CoT-VLA: Visual Chain-of-Thought Reasoning (arXiv)](https://arxiv.org/html/2503.22020v1)
+- [DualCoT-VLA (arXiv)](https://arxiv.org/pdf/2603.22280)
+- [LaRA-VLA: Latent Reasoning VLA (arXiv)](https://arxiv.org/pdf/2602.01166)
+- [LaST0: Latent Spatio-Temporal CoT (arXiv)](https://arxiv.org/pdf/2601.05248)
+- [HiMoE-VLA (arXiv)](https://arxiv.org/pdf/2512.05693)
+- [Robbyant Open-Sources LingBot-VLA](https://www.roboticstomorrow.com/news/2026/01/28/robbyant-open-sources-lingbot-vla-as-a-universal-brain-for-robots/26071/)
+- [Physical Intelligence pi0 vs OpenVLA](https://www.roboticscenter.ai/physical-intelligence-pi0-vs-openvla)
+- [Best Open-Source Multimodal Vision Language Models in 2026](https://www.bentoml.com/blog/multimodal-ai-a-guide-to-open-source-vision-language-models)
+- [Best Open Source LLMs in 2026](https://www.miniloop.ai/blog/best-open-source-llms-2026)
+- [Dexbotic VLA Toolbox (arXiv)](https://arxiv.org/pdf/2510.23511)
+- [WholebodyVLA (ICLR 2026)](https://github.com/OpenDriveLab/WholebodyVLA)
+- [VLA Foundry: Unified Framework (arXiv)](https://arxiv.org/abs/2604.19728)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e985ddd9-9085-47e0-87b5-f7f35bd3ba6a",
+  "isSidechain": true,
+  "agentId": "a882ea2155c47ecea",
+  "requestId": "req_011CbAWMahVu5Cumvp2CDQUr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "032d1a0c-5f28-48bb-91ce-bc1f3fa860ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ee74ae46-033d-42d9-90c8-f7218628900f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XsJHthDtbX21gN3oVA5U2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 818,
+      "cache_creation_input_tokens": 2239,
+      "cache_read_input_tokens": 18732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

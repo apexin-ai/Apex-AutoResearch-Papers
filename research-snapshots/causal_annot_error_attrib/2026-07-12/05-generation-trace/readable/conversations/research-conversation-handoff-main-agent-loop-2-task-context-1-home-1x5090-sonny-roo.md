@@ -1,0 +1,1619 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 home-1x5090 用 **sonny** 账户，**不能用 roo
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-1/d7cc0198-92ec-4d47-b21d-f9da346f797a.jsonl`
+- **Structured JSON:** [`68440de5a4a831b296b9.json`](../../sessions/68/68440de5a4a831b296b9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T17:55:21.079Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T17:55:21.079Z",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #2。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 home-1x5090 用 **sonny** 账户，**不能用 root/miniconda3**（sonny 无权访问 /root/miniconda3，plan_009 第一次就因此失败）\n- 项目目录 `/home/sonny/causal_annot_error_attrib/`，数据在 `results/` 子目录（不是 `data/`）\n- API endpoint `http://47.94.22.126/v1` 使用 OPENROUTER_API_KEY——**当前 402 余额耗尽**，不要提交 API 标注任务除非确认已充值\n- vLLM 与 RTX 5090 (Blackwell sm_120) 不兼容，本地推理只能用 transformers + model.generate()\n- τ_true 必须用 plim(C=I)，不是 DGP 直接参数（IV plim(I)=0.6598≠β₁=0.5）\n- GPU 编号始终从 0 开始（home-1x5090 只有 1 块 RTX 5090 = cuda:0）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: home-1x5090, account=sonny, Ubuntu 22.04, Python 3.10.12 (system python3)\n- **工作目录**: `/home/sonny/causal_annot_error_attrib/`\n- **数据目录**: `results/{humaid,civil_comments,vast}/` — HumAID K=10 (8/9 valid), VAST K=3, Civil Comments K=2\n- **本地模型**: Qwen2.5-7B-Instruct（路径需 SSH 确认，上次通过 transformers 加载）\n- **标注脚本**: `annotate.py`（支持 `--local-model` 和 API 两种模式）\n- **Toolkit 包**: `annot_sensitivity/`（47 tests passed, 7 modules）\n- **活跃进程**: 无（0 running workers, 0 active crons, 0 running experiments）\n- **论文**: `docs/paper/main.tex` — 16 pages (8 main + 8 appendix), 31 citations, 编译通过\n\n### 3. 📊 当前状态\n**全部 14 个实验已完成**（13 success + 1 failed）。无 RUNNING/PREPARING 实验。无活跃 Worker 或 Cron。\n\n刚完成的关键里程碑：\n- Dream 审稿反馈 5 项全部修复并 commit（Related work +5 refs, ASV vs PBA, Brenner footnote, IV Dirichlet subspace, Non-diff stress test）\n- plan_006 全量实证验证完成：210 scenarios, 14 configs, 0 sign flips, topology 是 bias 主决定因素\n- plan_010 toolkit 发布：35 tests passed\n\n**等待中**：\n- Re-dream **BLOCKED**：连续 6 次 Phase 1 crash，已报 Manager，等系统恢复\n- plan_003 剩余标注任务等 API 充值（非阻塞，civil_comments 全 9 组合零数据 + qwen3 few-shot-5 全 402）\n- fig5/fig6 需用 filtered data 重新生成（未启动）\n\n### 4. 📋 待办（条件触发式）\n- Re-dream 系统恢复 → 立即提交 re-dream，验证 5 项修复是否通过\n- API 充值确认 → spawn worker resume plan_003 剩余组合（civil_comments 需先排查数据格式问题）\n- Director 指示重新生成 fig5/fig6 → spawn worker 用 plan_006 filtered data 生成\n- Director 指示写新章节/修改论文 → 加载 paper-writing-norms skill 后派 worker\n- plan_003 civil_comments 数据格式排查 → 确认 civil_comments.jsonl 的 label field 是否与 annotate.py 匹配\n\n### 5. 🎯 战略上下文\n**项目状态**: 论文基本成型，目标 AAAI 2027（abstract deadline 2026-07-21，~61 天）。3 个 Core Claims 覆盖率 83%/100%/100%。唯一缺口是 plan_003 的 API 标注数据（Claim 1 实证补充，非阻塞——plan_006 已用现有数据完成实证验证）。\n\n**核心结论链**:\n- D010: τ sign_flip = 0% 结构性保证适用于 5/7 拓扑（排除 exposure 83% + IV 52%）\n- D014: PPI++ (93.8% bias reduction) 全面碾压其他校正方法\n- D016: F1 高 ≠ 因果估计安全（F1=0.72 但 IV bias >100%）\n- D017: topology（非 K 或 model size）是 bias 的主要决定因素\n\n**易错点**:\n- 不要把 all-coef sign flip（高）和 τ-specific sign flip（低/零）混淆——论文 claim 基于后者\n- IV 回归分析中 10.7% non-finite Wald estimates 被静默过滤——论文必须注明\n- DSL 仅在 confounding/mediation 有效（2/7），不要推荐为通用方法\n- vast K=3 标注质量低（46-48%），但这反而提供了\"7B vs 235B 对比\"维度，不是缺陷\n- PPI++ 在 mbias+realistic_llm 下 bias_red=-25.1%（恶化），论文需诚实报告\n\n## 可查的历史\n前 3 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T17:55:21.082Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T17:55:21.082Z",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a"
+}
+```
+
+---
+
+## Round 1
+
+25 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T17:55:21.117Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #2。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 服务器 home-1x5090 用 **sonny** 账户，**不能用 root/miniconda3**（sonny 无权访问 /root/miniconda3，plan_009 第一次就因此失败）
+- 项目目录 `/home/sonny/causal_annot_error_attrib/`，数据在 `results/` 子目录（不是 `data/`）
+- API endpoint `http://47.94.22.126/v1` 使用 OPENROUTER_API_KEY——**当前 402 余额耗尽**，不要提交 API 标注任务除非确认已充值
+- vLLM 与 RTX 5090 (Blackwell sm_120) 不兼容，本地推理只能用 transformers + model.generate()
+- τ_true 必须用 plim(C=I)，不是 DGP 直接参数（IV plim(I)=0.6598≠β₁=0.5）
+- GPU 编号始终从 0 开始（home-1x5090 只有 1 块 RTX 5090 = cuda:0）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: home-1x5090, account=sonny, Ubuntu 22.04, Python 3.10.12 (system python3)
+- **工作目录**: `/home/sonny/causal_annot_error_attrib/`
+- **数据目录**: `results/{humaid,civil_comments,vast}/` — HumAID K=10 (8/9 valid), VAST K=3, Civil Comments K=2
+- **本地模型**: Qwen2.5-7B-Instruct（路径需 SSH 确认，上次通过 transformers 加载）
+- **标注脚本**: `annotate.py`（支持 `--local-model` 和 API 两种模式）
+- **Toolkit 包**: `annot_sensitivity/`（47 tests passed, 7 modules）
+- **活跃进程**: 无（0 running workers, 0 active crons, 0 running experiments）
+- **论文**: `docs/paper/main.tex` — 16 pages (8 main + 8 appendix), 31 citations, 编译通过
+
+### 3. 📊 当前状态
+**全部 14 个实验已完成**（13 success + 1 failed）。无 RUNNING/PREPARING 实验。无活跃 Worker 或 Cron。
+
+刚完成的关键里程碑：
+- Dream 审稿反馈 5 项全部修复并 commit（Related work +5 refs, ASV vs PBA, Brenner footnote, IV Dirichlet subspace, Non-diff stress test）
+- plan_006 全量实证验证完成：210 scenarios, 14 configs, 0 sign flips, topology 是 bias 主决定因素
+- plan_010 toolkit 发布：35 tests passed
+
+**等待中**：
+- Re-dream **BLOCKED**：连续 6 次 Phase 1 crash，已报 Manager，等系统恢复
+- plan_003 剩余标注任务等 API 充值（非阻塞，civil_comments 全 9 组合零数据 + qwen3 few-shot-5 全 402）
+- fig5/fig6 需用 filtered data 重新生成（未启动）
+
+### 4. 📋 待办（条件触发式）
+- Re-dream 系统恢复 → 立即提交 re-dream，验证 5 项修复是否通过
+- API 充值确认 → spawn worker resume plan_003 剩余组合（civil_comments 需先排查数据格式问题）
+- Director 指示重新生成 fig5/fig6 → spawn worker 用 plan_006 filtered data 生成
+- Director 指示写新章节/修改论文 → 加载 paper-writing-norms skill 后派 worker
+- plan_003 civil_comments 数据格式排查 → 确认 civil_comments.jsonl 的 label field 是否与 annotate.py 匹配
+
+### 5. 🎯 战略上下文
+**项目状态**: 论文基本成型，目标 AAAI 2027（abstract deadline 2026-07-21，~61 天）。3 个 Core Claims 覆盖率 83%/100%/100%。唯一缺口是 plan_003 的 API 标注数据（Claim 1 实证补充，非阻塞——plan_006 已用现有数据完成实证验证）。
+
+**核心结论链**:
+- D010: τ sign_flip = 0% 结构性保证适用于 5/7 拓扑（排除 exposure 83% + IV 52%）
+- D014: PPI++ (93.8% bias reduction) 全面碾压其他校正方法
+- D016: F1 高 ≠ 因果估计安全（F1=0.72 但 IV bias >100%）
+- D017: topology（非 K 或 model size）是 bias 的主要决定因素
+
+**易错点**:
+- 不要把 all-coef sign flip（高）和 τ-specific sign flip（低/零）混淆——论文 claim 基于后者
+- IV 回归分析中 10.7% non-finite Wald estimates 被静默过滤——论文必须注明
+- DSL 仅在 confounding/mediation 有效（2/7），不要推荐为通用方法
+- vast K=3 标注质量低（46-48%），但这反而提供了"7B vs 235B 对比"维度，不是缺陷
+- PPI++ 在 mbias+realistic_llm 下 bias_red=-25.1%（恶化），论文需诚实报告
+
+## 可查的历史
+前 3 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "3747f352-8f2f-4add-8cbb-d158ee976351",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T17:55:21.116Z_
+
+```json
+{
+  "parentUuid": "3747f352-8f2f-4add-8cbb-d158ee976351",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2d5672d3-5cb3-4b77-ba59-a075c2dbb76e",
+  "timestamp": "2026-05-21T17:55:21.116Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T17:55:21.117Z_
+
+```json
+{
+  "parentUuid": "2d5672d3-5cb3-4b77-ba59-a075c2dbb76e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0bb764a4-2a20-4412-a8ad-833defedadcc",
+  "timestamp": "2026-05-21T17:55:21.117Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T17:55:21.117Z_
+
+```json
+{
+  "parentUuid": "0bb764a4-2a20-4412-a8ad-833defedadcc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "410ede65-cef4-4186-b64f-80bbf1654b09",
+  "timestamp": "2026-05-21T17:55:21.117Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal annotation error attribution loop 2",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T17:55:28.144Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session start. Let me follow the protocol: read registry, reconcile crons, read report.md, read ROADMAP.md, then report to Director.
+
+Let me start by loading the necessary MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "410ede65-cef4-4186-b64f-80bbf1654b09",
+  "isSidechain": false,
+  "requestId": "req_011CbG9JUkZCw4bzP4HzB9WM",
+  "type": "assistant",
+  "uuid": "77c27af3-9dc9-40bc-83b2-d25fc26def33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KzynLMyizLuiBvE3QFEzG7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28503,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 28503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T17:55:28.361Z_
+
+Loop #2 启动。硬约束已确认：sonny 账户、plim(C=I) 作为 τ_true、API 402 blocked、vLLM 不兼容 5090、GPU 从 0 开始。
+
+执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77c27af3-9dc9-40bc-83b2-d25fc26def33",
+  "isSidechain": false,
+  "requestId": "req_011CbG9JUkZCw4bzP4HzB9WM",
+  "type": "assistant",
+  "uuid": "3cf25da1-cb3a-4a76-91ae-17bbf51fa19b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KzynLMyizLuiBvE3QFEzG7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28503,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 28503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T17:55:29.063Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BBhvkeyRDH9Ao8yMmpcvSu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cf25da1-cb3a-4a76-91ae-17bbf51fa19b",
+  "isSidechain": false,
+  "requestId": "req_011CbG9JUkZCw4bzP4HzB9WM",
+  "type": "assistant",
+  "uuid": "73562427-5652-4bac-83d0-0cf4460c8d10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KzynLMyizLuiBvE3QFEzG7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28503,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 28503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T17:55:29.070Z_
+
+<details><summary>↩ Tool result · `toolu_01BBhvkeyRDH9Ao8yMmpcvSu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73562427-5652-4bac-83d0-0cf4460c8d10",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "5db820fe-654b-4902-a725-95d2ceffd2ff",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "73562427-5652-4bac-83d0-0cf4460c8d10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T17:55:32.069Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01HK3nKx95GPPcB5KQP2u9VR`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5db820fe-654b-4902-a725-95d2ceffd2ff",
+  "isSidechain": false,
+  "requestId": "req_011CbG9K4pRfSYWqTCmKNdsR",
+  "type": "assistant",
+  "uuid": "c3a9dc05-ed5c-49df-be0c-4d46182e69a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GJcMXff848zFTdFKYkYgce",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 40344,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 40344,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T17:55:32.588Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01JReWfHuSgevd38xf2oQt8Z`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3a9dc05-ed5c-49df-be0c-4d46182e69a2",
+  "isSidechain": false,
+  "requestId": "req_011CbG9K4pRfSYWqTCmKNdsR",
+  "type": "assistant",
+  "uuid": "341c39e5-d532-4f07-9c2d-424368aa0788",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GJcMXff848zFTdFKYkYgce",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 40344,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 40344,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T17:55:32.156Z_
+
+<details><summary>↩ Tool result · `toolu_01HK3nKx95GPPcB5KQP2u9VR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code\": {\"__init__.py\": 53, \"bias.py\": 174, \"asv.py\": 119, \"correction.py\": 422, \"confusion.py\": 129, \"dgp.py\": 213, \"utils.py\": 95, \"test_core.py\": \"35 tests\"}, \"example_output\": {\"confounding_k3_bias_pct\": \"+10.20%\", \"magnitude_asv\": 0.967, \"sign_flip_asv\": null, \"recommended_with_gold\": \"ppi\", \"recommended_without_gold\": \"dsl\"}}}, \"plan003_empirical_confusion_matrices\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:13:12.825Z\", \"updated_at\": \"2026-05-20T23:12:39.443Z\", \"hypothesis\": \"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\", \"metrics\": {\"status_detail\": \"PAUSED - API 402 Payment Required (OPENROUTER_API_KEY)\", \"api_endpoint\": \"http://47.94.22.126/v1/chat/completions\", \"data_dir\": \"results/\", \"humaid_recount_20260520T2312\": {\"deepseek_zero-shot\": {\"total\": 1500, \"pred_valid\": 1500, \"errors\": 0, \"status\": \"OK\"}, \"deepseek_few-shot-3\": {\"total\": 1500, \"pred_valid\": 1345, \"errors\": 155, \"error_type\": \"parsing\", \"status\": \"WARN\"}, \"deepseek_few-shot-5\": {\"total\": 1500, \"pred_valid\": 1237, \"errors\": 263, \"error_type\": \"parsing\", \"status\": \"WARN\"}, \"llama4_zero-shot\": {\"total\": 1500, \"pred_valid\": 1500, \"errors\": 0, \"status\": \"OK\"}, \"llama4_few-shot-3\": {\"total\": 1500, \"pred_valid\": 1498, \"errors\": 2, \"status\": \"OK\"}, \"llama4_few-shot-5\": {\"total\": 1500, \"pred_valid\": 1471, \"errors\": 29, \"status\": \"WARN\"}, \"qwen3_zero-shot\": {\"total\": 1500, \"pred_valid\": 1500, \"errors\": 0, \"status\": \"OK\"}, \"qwen3_few-shot-3\": {\"total\": 1500, \"pred_valid\": 1423, \"errors\": 77, \"error_type\": \"402\", \"status\": \"WARN\"}, \"qwen3_few-shot-5\": {\"total\": 1500, \"pred_valid\": 0, \"errors\": 1500, \"error_type\": \"402\", \"status\": \"FAIL\"}}, \"humaid_summary\": \"4 OK (≥1498) + 4 WARN (1237-1471) + 1 FAIL (qwen3_fs5 all 402)\", \"humaid_usable\": \"8/9 files have valid data\", \"data_fields\": {\"true_label\": \"gold_label\", \"pred_label\": \"pred_label\"}, \"note\": \"deepseek errors are parsing/format, NOT 402. Only qwen3 errors are 402.\"}, \"conclusion\": \"failed\", \"notes\": \"失败原因: API 402 Payment Required — OPENROUTER_API_KEY 额度耗尽 | error_type: resource | 进度: 6/27 complete (HumAID 4 + VAST 2), 5 partial (HumAID 3 + VAST 1), 16 failed (civil_comments 9 + vast 6 + humaid 1) | civil_comments 全 9 组合零数据（可能有数据格式问题）| 脚本支持 resume（streaming write + --model filter），补额后可接续 | 建议: (1) 充值 OPENROUTER_API_KEY (2) 排查 civil_comments 数据格式 (3) resume 未完成任务\"}, \"plan007_correction_guidance\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T18:48:04.784Z\", \"updated_at\": \"2026-05-20T20:48:37.062Z\", \"hypothesis\": \"不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。\", \"parent\": \"plan001_dag_taxonomy\", \"conclusion\": \"success\", \"metrics\": {\"total_combos\": 210, \"runtime_sec\": 2792, \"ppi_grand_mean_bias_red\": \"93.8%\", \"ppi_grand_mean_coverage\": \"96.8%\", \"ppi_win_rate\": \"95.2% (40/42)\", \"mcsimex_grand_mean_bias_red\": \"20.9%\", \"dsl_grand_mean_bias_red\": \"-144.8%\", \"naive_plugin_grand_mean_bias_red\": \"-20.0%\", \"mla_grand_mean_bias_red\": \"-37.4%\", \"fwl_invariance_verified\": true, \"fwl_invariance_topologies\": \"confounding, mediation, collider, mbias (0.0% bias_red for naive/mla)\", \"dsl_effective_topologies\": \"confounding (49.8%), mediation (70.3%)\", \"dsl_failure_topologies\": \"mbias (-768%), iv (-187%), collider (-89%), exposure (-60%), frontdoor (-29%)\", \"ppi_weakness\": \"mbias+realistic_llm: -25.1% bias_red (but 99% coverage)\"}}, \"plan009_pathological_matrices\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:10:16.587Z\", \"updated_at\": \"2026-05-20T18:57:41.687Z\", \"hypothesis\": \"病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\\\"安全区\\\"和\\\"灾难区\\\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。\", \"parent\": \"plan001_dag_taxonomy\", \"notes\": \"retry#1 conda fix OK, but --device cuda:0 not a valid arg (script uses --M/--N/--K/--topos/--dry-run). tee masked exit code → cron误判clean exit. retry#2: remove --device, add pipefail\", \"conclusion\": \"success\", \"metrics\": {\"regression_dichotomy\": {\"benign_topologies\": {\"list\": [\"confounding\", \"mediation\", \"collider\", \"frontdoor\", \"mbias\"], \"R2_range\": \"0.61-0.77\", \"primary_predictor\": \"effective_rank\", \"secondary_predictors\": [\"spectral_gap\", \"condition_number\"]}, \"dangerous_topologies\": {\"list\": [\"exposure\", \"iv\"], \"exposure_R2\": 0.11, \"iv_R2\": \"~0\", \"iv_note\": \"regression has no explanatory power — Wald denominator sign reversal is discrete, not predicted by continuous matrix features\", \"exposure_note\": \"near_perm eps=0.01: 15% catastrophic bias above threshold\"}, \"global_R2\": \"~0 (cross-topology aggregation destroys predictive power — different bias mechanisms)\"}, \"risk_tiers\": {\"low\": {\"topologies\": [\"mbias\"], \"max_bias\": \"<0.04\", \"note\": \"safe even under worst-case pathological C\"}, \"medium\": {\"topologies\": [\"confounding\", \"mediation\", \"collider\", \"frontdoor\"], \"bias_range\": \"0.1-0.31\", \"catastrophic_fraction\": \"0%\", \"R2\": \"0.70-0.77\", \"note\": \"bounded bias, matrix features predictive\"}, \"high\": {\"topologies\": [\"exposure\", \"iv\"], \"note\": \"catastrophic regardless of C quality — exposure: structural identification failure; IV: Wald estimator explosion (near_perm eps=0.01 cat=61-73%, rank-deficient bias reaches millions)\"}}, \"most_consistent_predictor\": \"condition_number (significant in 5/5 medium-risk topologies)\", \"hypothesis_assessment\": {\"H1_predictable_catastrophic\": \"partially — risk tier determined by topology, not C features\", \"H2_matrix_features_strong\": \"topology-dependent — 5/7 R²>0.6, exposure/IV fail\", \"H3_safety_threshold\": \"not confirmed — boundary is topology-based, not C-feature threshold\", \"H4_diagnostic_features\": \"partially — condition_number most consistent, but needs topology-specific criteria\"}, \"iv_filtering\": {\"n_filtered\": 3000, \"n_total\": 28000, \"pct_infinite\": 10.7, \"note\": \"non-finite Wald values silently filtered from regression; must note in paper\"}, \"pathological_C_types\": [\"near_permutation (eps=0.01,0.05,0.1,0.2)\", \"rank_deficient\", \"block_diagonal\"], \"K_values\": [3, 5, 7], \"M_per_config\": 1000, \"N_per_sim\": 5000000, \"runtime_seconds\": 25, \"analysis_report\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_analysis.md\", \"output_files\": {\"summary_json\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\", \"regression_txt\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\", \"analysis_md\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_analysis.md\"}}}, \"plan005_asv_extended\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:50:28.045Z\", \"updated_at\": \"2026-05-20T18:39:06.768Z\", \"hypothesis\": \"The ASV (Annotation Sensitivity Value) framework generalizes from simple confounding to M-bias, IV, and front-door topologies: annotation misclassification sensitivity varies by DAG structure because each estimator's probability limit depends differently on the confusion matrix C. M-bias adjustment for misclassified A should show near-zero sensitivity (misclassification reduces spurious bias), IV Wald estimator should be immediately sensitive (C directly scales the first-stage), and front-door should show moderate sensitivity.\", \"parent\": \"plan004_asv_framework\", \"conclusion\": \"success\", \"metrics\": {\"envelope_violations\": {\"mbias\": 0, \"iv\": 0, \"frontdoor\": 0}, \"plim_at_identity\": {\"mbias\": 0.5128, \"iv\": 0.6598, \"frontdoor\": 0.4998}, \"asv_tau05\": {\"mbias\": {\"sign_flip\": null, \"magnitude_10pct\": null}, \"iv\": {\"sign_flip_range\": \"1.1-6.7\", \"magnitude_10pct_range\": \"0.101-0.607\"}, \"frontdoor\": {\"sign_flip\": null, \"magnitude_10pct_range\": \"0.064-0.387\"}}, \"mc_coverage\": {\"mbias_tau005\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"mbias_tau01\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"iv_tau005\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"iv_tau01\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"frontdoor_tau005\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"frontdoor_tau01\": {\"plim_acc\": 1, \"bias_bounded\": 1}}, \"v_fixed_signif_filter\": {\"mbias\": {\"type_i\": 0, \"power_tau005\": \"95.8-99.2%\", \"power_tau01\": \"100%\"}, \"iv\": {\"type_i\": 0, \"power_tau005\": \"0%\", \"power_tau01\": \"0%\", \"note\": \"correct — Wald estimator immediately fragile, signif_ASV≈0 blocks all rejections\"}, \"frontdoor\": {\"type_i\": 0, \"power_tau005\": \"100%\", \"power_tau01\": \"100%\"}}, \"fixes_applied\": [\"C1: compute_signif_asv_fast added\", \"C2: magnitude ASV tau≈0 returns 0.0\", \"W1: IV tau_true=plim_iv(I)=0.6598\", \"W2: M-bias tau_true=plim_mb(I)=0.5128\"], \"fixed_script\": \"/home/sonny/causal_annot_error_attrib/plan_005_asv_extended_fixed.py\", \"runtime_seconds\": 46.2}}, \"plan002_k57_extension\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:55:55.239Z\", \"updated_at\": \"2026-05-20T16:11:38.784Z\", \"hypothesis\": \"K=3 下观察到的拓扑依赖偏差模式（sign_flip=0% 结构性保证、IV 最脆弱、M-bias 免疫）在 K=5,7 下是否保持：K 增大引入更多 off-diagonal 自由度，可能使偏差更严重（更高 violation/amplification rate）或出现 K=3 未见的新偏差模式。同时验证 matrix-form bias 表达式的 general-K 推广是否成立，并通过 eigendecomposition 识别 dominant bias modes。\", \"parent\": \"plan001_dag_taxonomy\", \"conclusion\": \"success\", \"metrics\": {\"cross_k_comparison_7topo\": {\"confounding\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.993, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1614, \"worst_case_diag70\": 0.2744, \"worst_case_diag50\": 0.2993}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1107, \"worst_case_diag70\": 0.2156, \"worst_case_diag50\": 0.2462}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0933, \"worst_case_diag70\": 0.1859, \"worst_case_diag50\": 0.2264}}, \"mediation\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.838, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1223, \"worst_case_diag70\": 0.251, \"worst_case_diag50\": 0.3032}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.966, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0867, \"worst_case_diag70\": 0.1832, \"worst_case_diag50\": 0.2396}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0607, \"worst_case_diag70\": 0.1421, \"worst_case_diag50\": 0.1879}}, \"collider\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.666, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0503, \"worst_case_diag70\": 0.1064, \"worst_case_diag50\": 0.1256}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.955, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0477, \"worst_case_diag70\": 0.1087, \"worst_case_diag50\": 0.1306}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.992, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0352, \"worst_case_diag70\": 0.0826, \"worst_case_diag50\": 0.1131}}, \"exposure\": {\"K3\": {\"tau_specific_sign_flip\": \"N/A (all-coef fallback; MVP beta1 flip=83.4%)\", \"all_coef_sign_flip\": 0.99, \"violation\": 1, \"amplification\": 0.999, \"worst_case_diag90\": 0.2726, \"worst_case_diag70\": 0.7092, \"worst_case_diag50\": 1.1438}, \"K5\": {\"tau_specific_sign_flip\": \"N/A (all-coef fallback)\", \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 0.998, \"worst_case_diag90\": 0.2097, \"worst_case_diag70\": 0.5782, \"worst_case_diag50\": 0.8784}, \"K7\": {\"tau_specific_sign_flip\": \"N/A (all-coef fallback)\", \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 0.999, \"worst_case_diag90\": 0.1853, \"worst_case_diag70\": 0.4913, \"worst_case_diag50\": 0.7441}}, \"mbias\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.667, \"violation\": 0.584, \"amplification\": 0.089, \"worst_case_diag90\": 0.0106, \"worst_case_diag70\": 0.0226, \"worst_case_diag50\": 0.0287}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.954, \"violation\": 1, \"amplification\": 0, \"worst_case_diag90\": 0.0154, \"worst_case_diag70\": 0.0374, \"worst_case_diag50\": 0.0487}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.992, \"violation\": 1, \"amplification\": 0, \"worst_case_diag90\": 0.0133, \"worst_case_diag70\": 0.0319, \"worst_case_diag50\": 0.0449}}, \"iv\": {\"K3\": {\"tau_specific_sign_flip\": 0.526, \"all_coef_sign_flip\": 0.526, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.2993, \"worst_case_diag70\": 1.6444, \"worst_case_diag50\": 14.0463, \"note\": \"Wald estimator extremely unstable at low accuracy\"}, \"K5\": {\"tau_specific_sign_flip\": 0.514, \"all_coef_sign_flip\": 0.514, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.4053, \"worst_case_diag70\": 2.1036, \"worst_case_diag50\": 9.6932}, \"K7\": {\"tau_specific_sign_flip\": 0.523, \"all_coef_sign_flip\": 0.523, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.3605, \"worst_case_diag70\": 1.8132, \"worst_case_diag50\": 8.2204}}, \"frontdoor\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.836, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1407, \"worst_case_diag70\": 0.2604, \"worst_case_diag50\": 0.2966}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.967, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1057, \"worst_case_diag70\": 0.2066, \"worst_case_diag50\": 0.2507}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.993, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0785, \"worst_case_diag70\": 0.1646, \"worst_case_diag50\": 0.2119}}}, \"conclusion_summary\": {\"structural_guarantee\": \"tau_specific_sign_flip = 0% across ALL K for 5/7 topologies (confounding/mediation/collider/mbias/frontdoor)\", \"iv_new_finding\": \"IV ~52% tau sign flip (K-invariant) — Wald denominator sign reversal under random C\", \"exposure_clarification\": \"Exposure tau_spec_sflip column is all-coef fallback. Actual beta1-specific flip rate = 83.4% (from MVP)\", \"worst_case_trend\": \"Decreasing with K for 5/7 topologies (K=3 most conservative). IV catastrophic at low accuracy (WC_d50 up to 14x). Exposure decreasing.\", \"mbias_special\": \"Amplification drops to 0% at K>=5\", \"rng_fix\": \"Deterministic per-(topo,K,threshold) seeds via SHA-256. Previous values had RNG ordering artifact.\"}, \"runtime_seconds\": 20, \"gpu\": \"RTX 5090 cuda:0\", \"script\": \"/home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py\"}}, \"plan001_dag_taxonomy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:28:52.009Z\", \"updated_at\": \"2026-05-20T16:04:01.701Z\", \"hypothesis\": \"K=3 非差异性误分类在不同因果拓扑下的偏差模式差异：哪些拓扑（mediation/collider/M-bias/instrument/front-door）出现方向反转或效应放大（如 exposure DAG），哪些保持单调衰减（如 confounding DAG）。Claim 1 支撑：多分类标注错误的偏差方向依赖于因果结构。\", \"metrics\": {\"collider\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.688, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 0, \"small_tau_0.05\": {\"tau_I\": 0.015733, \"tau_violation\": 0.96, \"tau_sign_flip\": 0, \"tau_amplification\": 0.992}, \"small_tau_0.1\": {\"tau_I\": 0.06118, \"tau_violation\": 0.974, \"tau_sign_flip\": 0, \"tau_amplification\": 0.995}}, \"mbias\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.651, \"amplification\": 0.112}, \"tau_specific\": {\"violation\": 0.532, \"sign_flip\": 0, \"amplification\": 0.104}, \"misclass_amplifies_rate\": 0.292, \"small_tau_0.05\": {\"tau_I\": 0.057669, \"tau_violation\": 0.532, \"tau_sign_flip\": 0, \"tau_amplification\": 0.104}, \"small_tau_0.1\": {\"tau_I\": 0.107669, \"tau_violation\": 0.532, \"tau_sign_flip\": 0, \"tau_amplification\": 0.104}}, \"mediation_mixed\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.835, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 1, \"small_tau_0.05\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"mediation_same\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.666, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 1, \"small_tau_0.05\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"frontdoor_mixed\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.998, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 1, \"small_tau_0.05\": {\"tau_I\": 0.050177, \"lambda_U\": 0.1, \"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_I\": 0.100169, \"lambda_U\": 0.2, \"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"frontdoor_same\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 1, \"amplification\": 1}, \"tau_specific\": {\"violation\": 0.999, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 0.9997, \"small_tau_0.05\": {\"tau_I\": 0.050177, \"lambda_U\": 0.1, \"tau_violation\": 0.999, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_I\": 0.100169, \"lambda_U\": 0.2, \"tau_violation\": 0.999, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"iv_note\": \"IV metrics not computed in plan_001 (only 6 fixed C structures tested, no dedicated IV tau_specific analysis). First measured in plan_002: 52% tau_specific_sign_flip from 100k random C (Wald denominator sign reversal). See plan002_k57_extension for full IV results.\"}, \"conclusion\": \"success\"}, \"plan004_asv_framework\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:10:38.004Z\", \"updated_at\": \"2026-05-20T14:08:28.282Z\", \"hypothesis\": \"ASV framework with delta>1 support and vulnerability/protection dual-direction correctly predicts annotation error sensitivity: (1) confounding/mediation bias is monotonically increasing in delta, (2) collider bias is monotonically decreasing, (3) plim formulas achieve >95% MC coverage, (4) ASV-informed rejection controls Type I error better than naive while preserving power.\", \"conclusion\": \"success\", \"metrics\": {\"v2_sign_flip_filter\": \"✅ effective (Type I=0%, power=100%)\", \"v3_envelope_monotonicity\": \"✅ solved (0 violations)\", \"v3_magnitude_reporting\": \"✅ informative values for all topologies\", \"v3_magnitude_filter\": \"❌ rejected (scale-dependent, not viable as binary test)\", \"v3_fixed_signif_filter\": \"✅ Type I=0% all topologies, power=100% for τ≥0.1\", \"v3_significance_filter\": {\"confounding_tau005\": {\"type_i\": 0, \"power\": 1}, \"confounding_tau010\": {\"type_i\": 0, \"power\": 1}, \"mediation_tau005\": {\"type_i\": 0, \"power\": 0}, \"mediation_tau010\": {\"type_i\": 0, \"power\": 1}, \"collider_tau005\": {\"type_i\": 0, \"power\": 0}, \"collider_tau010\": {\"type_i\": 0, \"power\": 1}, \"note\": \"τ=0.05 mediation/collider power=0% is correct — attenuating topologies are fragile at small effects\"}, \"v3_fixed_status\": \"complete — significance filter validated\", \"v3_envelope_violations\": 0, \"v3_magnitude_asv_tau0.5_range\": \"0.076-0.487\", \"v3_magnitude_asv_tau0.05_range\": \"0.008-0.047\", \"v3_magnitude_asv_tau0.1_range\": \"0.014-0.093\", \"v3_coverage_tau0.05\": \"100.0%\", \"v3_coverage_tau0.1\": \"100.0%\", \"n_sensitivity_mediation_tau005\": {\"topology\": \"mediation\", \"tau\": 0.05, \"C0\": \"sym_mild\", \"mc_reps\": 500, \"N_1000\": {\"naive_power\": 0.89, \"asv_power\": 0, \"median_se\": 0.070025, \"median_signif_asv\": 0}, \"N_2000\": {\"naive_power\": 0.998, \"asv_power\": 0, \"median_se\": 0.049649, \"median_signif_asv\": 0}, \"N_5000\": {\"naive_power\": 1, \"asv_power\": 0, \"median_se\": 0.031301, \"median_signif_asv\": 0}, \"N_10000\": {\"naive_power\": 1, \"asv_power\": 1, \"median_se\": 0.022152, \"median_signif_asv\": null}, \"N_20000\": {\"naive_power\": 1, \"asv_power\": 1, \"median_se\": 0.01566, \"median_signif_asv\": null}, \"N_50000\": {\"naive_power\": 1, \"asv_power\": 1, \"median_se\": 0.009903, \"median_signif_asv\": null}, \"recovery_N\": 10000, \"interpretation\": \"Sharp phase transition at N~6000-10000. Below: 1.96*SE > tau=0.05 so signif_ASV=0 (ASV kills all rejections). Above: 1.96*SE < tau=0.05 so signif_ASV=None (infinite robustness), ASV passes all.\"}}}, \"plan_004_asv_v3_fixed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:59:14.591Z\", \"updated_at\": \"2026-05-20T13:59:50.010Z\", \"hypothesis\": \"Significance-based ASV (v2 logic: min delta where |plim tau| < z_crit*SE) controls Type I error when used as hypothesis test filter, because under H0 the plim starts at tau_true=0 at delta=0, immediately non-significant, giving ASV=0 < 1 which blocks rejection. Magnitude ASV failed because tau=0 returns None which passed the filter.\", \"conclusion\": \"success\"}, \"plan008_binarization_collapse\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:13:14.577Z\", \"updated_at\": \"2026-05-20T13:12:21.888Z\", \"hypothesis\": \"将 K≥3 标注变量折叠为二分类（K→2）不是安全的简化——折叠本身引入新的、方向不可预测的偏差，且该偏差与 DAG 拓扑交互。6 个拓扑的折叠偏差 Δ=|bias_K3 - bias_K2| 具有系统性差异，证明多分类处理不可简化为二分类。MVP 已在 confounding DAG 观察到 Δ=0.103。Claim 1 支撑：binarization 是危险的捷径。parent: plan001_dag_taxonomy\", \"parent\": \"plan001_dag_taxonomy\", \"conclusion\": \"success\", \"metrics\": {\"confounding\": {\"D_mean\": 0.0253, \"D_med\": 0.0182, \"D_P95\": 0.0733, \"D_max\": 0.2213, \"frac_gt_001\": 0.686, \"frac_gt_005\": 0.138, \"sign_flip\": 0}, \"mediation\": {\"D_mean\": 0.0446, \"D_med\": 0.0355, \"D_P95\": 0.1179, \"D_max\": 0.252, \"frac_gt_001\": 0.835, \"frac_gt_005\": 0.36, \"sign_flip\": 0}, \"collider\": {\"D_mean\": 0.0169, \"D_med\": 0.0125, \"D_P95\": 0.0472, \"D_max\": 0.1069, \"frac_gt_001\": 0.572, \"frac_gt_005\": 0.039, \"sign_flip\": 0}, \"M-bias\": {\"D_mean\": 0.0063, \"D_med\": 0.0054, \"D_P95\": 0.0147, \"D_max\": 0.0328, \"frac_gt_001\": 0.181, \"frac_gt_005\": 0, \"sign_flip\": 0}, \"exposure\": {\"D_mean\": 0.5164, \"D_med\": 0.506, \"D_P95\": 0.8453, \"D_max\": 1.3876, \"frac_gt_001\": 1, \"frac_gt_005\": 0.999, \"sign_flip\": 0.14}, \"IV\": {\"D_mean\": 0.926, \"D_med\": 0.9394, \"D_P95\": 1.3426, \"D_max\": 2.0809, \"frac_gt_001\": 1, \"frac_gt_005\": 1, \"sign_flip\": 0.175}}}, \"mvp_exposure_dirichlet_subspace\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:50:20.630Z\", \"updated_at\": \"2026-05-20T07:50:46.158Z\", \"hypothesis\": \"Dirichlet(1,1,1) 均匀先验下 85% 违反率在高对角占优子空间（min(diag(C))≥0.7，接近真实 LLM 精度）是否骤降：若 >10% 则论文 claim 对实际 LLM 有现实意义，若 <1% 需标注适用范围\", \"metrics\": {\"full_space_violation\": 0.849, \"full_space_sign_rev\": 0.833, \"full_space_amplif\": 0.275, \"diag50_violation\": 0.325, \"diag50_sign_rev\": 0.216, \"diag50_amplif\": 0.113, \"diag70_violation\": 0.137, \"diag70_sign_rev\": 0.021, \"diag70_amplif\": 0.117, \"diag90_violation\": 0.119, \"diag90_sign_rev\": 0, \"diag90_amplif\": 0.119, \"samples_per_subspace\": 50000, \"assessment\": \"ALL subspaces STRONG (>10%)\"}, \"conclusion\": \"success\"}, \"mvp_exposure_dag\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:43:17.960Z\", \"updated_at\": \"2026-05-20T07:44:09.380Z\", \"hypothesis\": \"K=3 非差异性 exposure 误分类打破二分类 bias-toward-null 保证：存在 C 结构使 treatment effect 估计产生符号反转或效应放大，而 K=2 下非差异性误分类始终保证衰减\", \"conclusion\": \"success\", \"metrics\": {\"theory_mc_match\": \"5/5\", \"pass_criteria\": \"3/3\", \"violation_rate\": 0.85, \"sign_reversal_rate\": 0.834, \"amplification_rate\": 0.141, \"K2_toward_null\": \"6/6\", \"worst_severity\": 2.83, \"named_structures_with_violation\": \"3/6\"}}, \"mvp_confounding_dag\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:43:15.817Z\", \"updated_at\": \"2026-05-20T07:44:08.993Z\", \"hypothesis\": \"K=3 混淆矩阵下 confounding DAG 的 OLS 偏差可由 plim=(E[Z'Z])^{-1}E[Z'X]β 精确预测，且 K=3 偏差与二分类折叠偏差系统性不同（多分类保留更多混杂信息）\", \"conclusion\": \"success\", \"metrics\": {\"theory_mc_match\": \"6/6\", \"pass_criteria\": \"3/3\", \"max_binary_collapse_delta\": 0.103, \"bias_range\": \"0.132-0.298\", \"ovb_reference\": 0.3, \"direction_reversal_found\": false, \"random_search_100k_min_bias\": 0.063}}}, \"count\": 14, \"total\": 14, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0713}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3a9dc05-ed5c-49df-be0c-4d46182e69a2",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "90fd0a42-5e4b-434c-864c-fc0242095bec",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan006_asv_empirical\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T01:39:26.646Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:40:58.748Z\\\", \\\"hypothesis\\\": \\\"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scenarios\\\": 210, \\\"configs\\\": 14, \\\"topologies\\\": 7, \\\"k_values\\\": [2, 3, 10], \\\"models\\\": [\\\"llama4\\\", \\\"deepseek\\\", \\\"qwen3\\\", \\\"qwen2.5-7b\\\"], \\\"sign_flips\\\": 0, \\\"overall_asv_unsafe_pct\\\": 43.8, \\\"k2_mean_bias_pct\\\": 36.9, \\\"k3_mean_bias_pct\\\": 65.3, \\\"k10_mean_bias_pct\\\": 12.2, \\\"k2_iv_bias_pct\\\": 116.5, \\\"k3_iv_bias_pct\\\": 252.3, \\\"k10_iv_bias_pct\\\": 30.3, \\\"f1_disconnect\\\": \\\"civil_comments F1=0.72-0.75 but IV bias 101-131%\\\", \\\"7b_vs_235b_bias_ratio\\\": 1.24}}, \\\"plan010_annot_sensitivity_toolkit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T23:42:54.354Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:43:44.830Z\\\", \\\"hypothesis\\\": \\\"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tests_passed\\\": \\\"35/35\\\", \\\"modules\\\": 7, \\\"topologies\\\": 7, \\\"correction_methods\\\": 5, \\\"lines_of_code\\\": {\\\"__init__.py\\\": 53, \\\"bias.py\\\": 174, \\\"asv.py\\\": 119, \\\"correction.py\\\": 422, \\\"confusion.py\\\": 129, \\\"dgp.py\\\": 213, \\\"utils.py\\\": 95, \\\"test_core.py\\\": \\\"35 tests\\\"}, \\\"example_output\\\": {\\\"confounding_k3_bias_pct\\\": \\\"+10.20%\\\", \\\"magnitude_asv\\\": 0.967, \\\"sign_flip_asv\\\": null, \\\"recommended_with_gold\\\": \\\"ppi\\\", \\\"recommended_without_gold\\\": \\\"dsl\\\"}}}, \\\"plan003_empirical_confusion_matrices\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T10:13:12.825Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:12:39.443Z\\\", \\\"hypothesis\\\": \\\"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\\\", \\\"metrics\\\": {\\\"status_detail\\\": \\\"PAUSED - API 402 Payment Required (OPENROUTER_API_KEY)\\\", \\\"api_endpoint\\\": \\\"http://47.94.22.126/v1/chat/completions\\\", \\\"data_dir\\\": \\\"results/\\\", \\\"humaid_recount_20260520T2312\\\": {\\\"deepseek_zero-shot\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1500, \\\"errors\\\": 0, \\\"status\\\": \\\"OK\\\"}, \\\"deepseek_few-shot-3\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1345, \\\"errors\\\": 155, \\\"error_type\\\": \\\"parsing\\\", \\\"status\\\": \\\"WARN\\\"}, \\\"deepseek_few-shot-5\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1237, \\\"errors\\\": 263, \\\"error_type\\\": \\\"parsing\\\", \\\"status\\\": \\\"WARN\\\"}, \\\"llama4_zero-shot\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1500, \\\"errors\\\": 0, \\\"status\\\": \\\"OK\\\"}, \\\"llama4_few-shot-3\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1498, \\\"errors\\\": 2, \\\"status\\\": \\\"OK\\\"}, \\\"llama4_few-shot-5\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1471, \\\"errors\\\": 29, \\\"status\\\": \\\"WARN\\\"}, \\\"qwen3_zero-shot\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1500, \\\"errors\\\": 0, \\\"status\\\": \\\"OK\\\"}, \\\"qwen3_few-shot-3\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 1423, \\\"errors\\\": 77, \\\"error_type\\\": \\\"402\\\", \\\"status\\\": \\\"WARN\\\"}, \\\"qwen3_few-shot-5\\\": {\\\"total\\\": 1500, \\\"pred_valid\\\": 0, \\\"errors\\\": 1500, \\\"error_type\\\": \\\"402\\\", \\\"status\\\": \\\"FAIL\\\"}}, \\\"humaid_summary\\\": \\\"4 OK (≥1498) + 4 WARN (1237-1471) + 1 FAIL (qwen3_fs5 all 402)\\\", \\\"humaid_usable\\\": \\\"8/9 files have valid data\\\", \\\"data_fields\\\": {\\\"true_label\\\": \\\"gold_label\\\", \\\"pred_label\\\": \\\"pred_label\\\"}, \\\"note\\\": \\\"deepseek errors are parsing/format, NOT 402. Only qwen3 errors are 402.\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: API 402 Payment Required — OPENROUTER_API_KEY 额度耗尽 | error_type: resource | 进度: 6/27 complete (HumAID 4 + VAST 2), 5 partial (HumAID 3 + VAST 1), 16 failed (civil_comments 9 + vast 6 + humaid 1) | civil_comments 全 9 组合零数据（可能有数据格式问题）| 脚本支持 resume（streaming write + --model filter），补额后可接续 | 建议: (1) 充值 OPENROUTER_API_KEY (2) 排查 civil_comments 数据格式 (3) resume 未完成任务\\\"}, \\\"plan007_correction_guidance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T18:48:04.784Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:48:37.062Z\\\", \\\"hypothesis\\\": \\\"不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。\\\", \\\"parent\\\": \\\"plan001_dag_taxonomy\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_combos\\\": 210, \\\"runtime_sec\\\": 2792, \\\"ppi_grand_mean_bias_red\\\": \\\"93.8%\\\", \\\"ppi_grand_mean_coverage\\\": \\\"96.8%\\\", \\\"ppi_win_rate\\\": \\\"95.2% (40/42)\\\", \\\"mcsimex_grand_mean_bias_red\\\": \\\"20.9%\\\", \\\"dsl_grand_mean_bias_red\\\": \\\"-144.8%\\\", \\\"naive_plugin_grand_mean_bias_red\\\": \\\"-20.0%\\\", \\\"mla_grand_mean_bias_red\\\": \\\"-37.4%\\\", \\\"fwl_invariance_verified\\\": true, \\\"fwl_invariance_topologies\\\": \\\"confounding, mediation, collider, mbias (0.0% bias_red for naive/mla)\\\", \\\"dsl_effective_topologies\\\": \\\"confounding (49.8%), mediation (70.3%)\\\", \\\"dsl_failure_topologies\\\": \\\"mbias (-768%), iv (-187%), collider (-89%), exposure (-60%), frontdoor (-29%)\\\", \\\"ppi_weakness\\\": \\\"mbias+realistic_llm: -25.1% bias_red (but 99% coverage)\\\"}}, \\\"plan009_pathological_matrices\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T16:10:16.587Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:57:41.687Z\\\", \\\"hypothesis\\\": \\\"病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\\\\\\\"安全区\\\\\\\"和\\\\\\\"灾难区\\\\\\\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。\\\", \\\"parent\\\": \\\"plan001_dag_taxonomy\\\", \\\"notes\\\": \\\"retry#1 conda fix OK, but --device cuda:0 not a valid arg (script uses --M/--N/--K/--topos/--dry-run). tee masked exit code → cron误判clean exit. retry#2: remove --device, add pipefail\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"regression_dichotomy\\\": {\\\"benign_topologies\\\": {\\\"list\\\": [\\\"confounding\\\", \\\"mediation\\\", \\\"collider\\\", \\\"frontdoor\\\", \\\"mbias\\\"], \\\"R2_range\\\": \\\"0.61-0.77\\\", \\\"primary_predictor\\\": \\\"effective_rank\\\", \\\"secondary_predictors\\\": [\\\"spectral_gap\\\", \\\"condition_number\\\"]}, \\\"dangerous_topologies\\\": {\\\"list\\\": [\\\"exposure\\\", \\\"iv\\\"], \\\"exposure_R2\\\": 0.11, \\\"iv_R2\\\": \\\"~0\\\", \\\"iv_note\\\": \\\"regression has no explanatory power — Wald denominator sign reversal is discrete, not predicted by continuous matrix features\\\", \\\"exposure_note\\\": \\\"near_perm eps=0.01: 15% catastrophic bias above threshold\\\"}, \\\"global_R2\\\": \\\"~0 (cross-topology aggregation destroys predictive power — different bias mechanisms)\\\"}, \\\"risk_tiers\\\": {\\\"low\\\": {\\\"topologies\\\": [\\\"mbias\\\"], \\\"max_bias\\\": \\\"<0.04\\\", \\\"note\\\": \\\"safe even under worst-case pathological C\\\"}, \\\"medium\\\": {\\\"topologies\\\": [\\\"confounding\\\", \\\"mediation\\\", \\\"collider\\\", \\\"frontdoor\\\"], \\\"bias_range\\\": \\\"0.1-0.31\\\", \\\"catastrophic_fraction\\\": \\\"0%\\\", \\\"R2\\\": \\\"0.70-0.77\\\", \\\"note\\\": \\\"bounded bias, matrix features predictive\\\"}, \\\"high\\\": {\\\"topologies\\\": [\\\"exposure\\\", \\\"iv\\\"], \\\"note\\\": \\\"catastrophic regardless of C quality — exposure: structural identification failure; IV: Wald estimator explosion (near_perm eps=0.01 cat=61-73%, rank-deficient bias reaches millions)\\\"}}, \\\"most_consistent_predictor\\\": \\\"condition_number (significant in 5/5 medium-risk topologies)\\\", \\\"hypothesis_assessment\\\": {\\\"H1_predictable_catastrophic\\\": \\\"partially — risk tier determined by topology, not C features\\\", \\\"H2_matrix_features_strong\\\": \\\"topology-dependent — 5/7 R²>0.6, exposure/IV fail\\\", \\\"H3_safety_threshold\\\": \\\"not confirmed — boundary is topology-based, not C-feature threshold\\\", \\\"H4_diagnostic_features\\\": \\\"partially — condition_number most consistent, but needs topology-specific criteria\\\"}, \\\"iv_filtering\\\": {\\\"n_filtered\\\": 3000, \\\"n_total\\\": 28000, \\\"pct_infinite\\\": 10.7, \\\"note\\\": \\\"non-finite Wald values silently filtered from regression; must note in paper\\\"}, \\\"pathological_C_types\\\": [\\\"near_permutation (eps=0.01,0.05,0.1,0.2)\\\", \\\"rank_deficient\\\", \\\"block_diagonal\\\"], \\\"K_values\\\": [3, 5, 7], \\\"M_per_config\\\": 1000, \\\"N_per_sim\\\": 5000000, \\\"runtime_seconds\\\": 25, \\\"analysis_report\\\": \\\"/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_analysis.md\\\", \\\"output_files\\\": {\\\"summary_json\\\": \\\"/home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\\\", \\\"regression_txt\\\": \\\"/home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\\\", \\\"analysis_md\\\": \\\"/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_analysis.md\\\"}}}, \\\"plan005_asv_extended\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T13:50:28.045Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:39:06.768Z\\\", \\\"hypothesis\\\": \\\"The ASV (Annotation Sensitivity Value) framework generalizes from simple confounding to M-bias, IV, and front-door topologies: annotation misclassification sensitivity varies by DAG structure because each estimator's probability limit depends differently on the confusion matrix C. M-bias adjustment for misclassified A should show near-zero sensitivity (misclassification reduces spurious bias), IV Wald estimator should be immediately sensitive (C directly scales the first-stage), and front-door should show moderate sensitivity.\\\", \\\"parent\\\": \\\"plan004_asv_framework\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"envelope_violations\\\": {\\\"mbias\\\": 0, \\\"iv\\\": 0, \\\"frontdoor\\\": 0}, \\\"plim_at_identity\\\": {\\\"mbias\\\": 0.5128, \\\"iv\\\": 0.6598, \\\"frontdoor\\\": 0.4998}, \\\"asv_tau05\\\": {\\\"mbias\\\": {\\\"sign_flip\\\": null, \\\"magnitude_10pct\\\": null}, \\\"iv\\\": {\\\"sign_flip_range\\\": \\\"1.1-6.7\\\", \\\"magnitude_10pct_range\\\": \\\"0.101-0.607\\\"}, \\\"frontdoor\\\": {\\\"sign_flip\\\": null, \\\"magnitude_10pct_range\\\": \\\"0.064-0.387\\\"}}, \\\"mc_coverage\\\": {\\\"mbias_tau005\\\": {\\\"plim_acc\\\": 1, \\\"bias_bounded\\\": 1}, \\\"mbias_tau01\\\": {\\\"plim_acc\\\": 1, \\\"bias_bounded\\\": 1}, \\\"iv_tau005\\\": {\\\"plim_acc\\\": 1, \\\"bias_bounded\\\": 1}, \\\"iv_tau01\\\": {\\\"plim_acc\\\": 1, \\\"bias_bounded\\\": 1}, \\\"frontdoor_tau005\\\": {\\\"plim_acc\\\": 1, \\\"bias_bounded\\\": 1}, \\\"frontdoor_tau01\\\": {\\\"plim_acc\\\": 1, \\\"bias_bounded\\\": 1}}, \\\"v_fixed_signif_filter\\\": {\\\"mbias\\\": {\\\"type_i\\\": 0, \\\"power_tau005\\\": \\\"95.8-99.2%\\\", \\\"power_tau01\\\": \\\"100%\\\"}, \\\"iv\\\": {\\\"type_i\\\": 0, \\\"power_tau005\\\": \\\"0%\\\", \\\"power_tau01\\\": \\\"0%\\\", \\\"note\\\": \\\"correct — Wald estimator immediately fragile, signif_ASV≈0 blocks all rejections\\\"}, \\\"frontdoor\\\": {\\\"type_i\\\": 0, \\\"power_tau005\\\": \\\"100%\\\", \\\"power_tau01\\\": \\\"100%\\\"}}, \\\"fixes_applied\\\": [\\\"C1: compute_signif_asv_fast added\\\", \\\"C2: magnitude ASV tau≈0 returns 0.0\\\", \\\"W1: IV tau_true=plim_iv(I)=0.6598\\\", \\\"W2: M-bias tau_true=plim_mb(I)=0.5128\\\"], \\\"fixed_script\\\": \\\"/home/sonny/causal_annot_error_attrib/plan_005_asv_extended_fixed.py\\\", \\\"runtime_seconds\\\": 46.2}}, \\\"plan002_k57_extension\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T14:55:55.239Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:11:38.784Z\\\", \\\"hypothesis\\\": \\\"K=3 下观察到的拓扑依赖偏差模式（sign_flip=0% 结构性保证、IV 最脆弱、M-bias 免疫）在 K=5,7 下是否保持：K 增大引入更多 off-diagonal 自由度，可能使偏差更严重（更高 violation/amplification rate）或出现 K=3 未见的新偏差模式。同时验证 matrix-form bias 表达式的 general-K 推广是否成立，并通过 eigendecomposition 识别 dominant bias modes。\\\", \\\"parent\\\": \\\"plan001_dag_taxonomy\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"cross_k_comparison_7topo\\\": {\\\"confounding\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.993, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.1614, \\\"worst_case_diag70\\\": 0.2744, \\\"worst_case_diag50\\\": 0.2993}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 1, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.1107, \\\"worst_case_diag70\\\": 0.2156, \\\"worst_case_diag50\\\": 0.2462}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 1, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0933, \\\"worst_case_diag70\\\": 0.1859, \\\"worst_case_diag50\\\": 0.2264}}, \\\"mediation\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.838, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.1223, \\\"worst_case_diag70\\\": 0.251, \\\"worst_case_diag50\\\": 0.3032}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.966, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0867, \\\"worst_case_diag70\\\": 0.1832, \\\"worst_case_diag50\\\": 0.2396}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 1, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0607, \\\"worst_case_diag70\\\": 0.1421, \\\"worst_case_diag50\\\": 0.1879}}, \\\"collider\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.666, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0503, \\\"worst_case_diag70\\\": 0.1064, \\\"worst_case_diag50\\\": 0.1256}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.955, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0477, \\\"worst_case_diag70\\\": 0.1087, \\\"worst_case_diag50\\\": 0.1306}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.992, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0352, \\\"worst_case_diag70\\\": 0.0826, \\\"worst_case_diag50\\\": 0.1131}}, \\\"exposure\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": \\\"N/A (all-coef fallback; MVP beta1 flip=83.4%)\\\", \\\"all_coef_sign_flip\\\": 0.99, \\\"violation\\\": 1, \\\"amplification\\\": 0.999, \\\"worst_case_diag90\\\": 0.2726, \\\"worst_case_diag70\\\": 0.7092, \\\"worst_case_diag50\\\": 1.1438}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": \\\"N/A (all-coef fallback)\\\", \\\"all_coef_sign_flip\\\": 1, \\\"violation\\\": 1, \\\"amplification\\\": 0.998, \\\"worst_case_diag90\\\": 0.2097, \\\"worst_case_diag70\\\": 0.5782, \\\"worst_case_diag50\\\": 0.8784}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": \\\"N/A (all-coef fallback)\\\", \\\"all_coef_sign_flip\\\": 1, \\\"violation\\\": 1, \\\"amplification\\\": 0.999, \\\"worst_case_diag90\\\": 0.1853, \\\"worst_case_diag70\\\": 0.4913, \\\"worst_case_diag50\\\": 0.7441}}, \\\"mbias\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.667, \\\"violation\\\": 0.584, \\\"amplification\\\": 0.089, \\\"worst_case_diag90\\\": 0.0106, \\\"worst_case_diag70\\\": 0.0226, \\\"worst_case_diag50\\\": 0.0287}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.954, \\\"violation\\\": 1, \\\"amplification\\\": 0, \\\"worst_case_diag90\\\": 0.0154, \\\"worst_case_diag70\\\": 0.0374, \\\"worst_case_diag50\\\": 0.0487}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.992, \\\"violation\\\": 1, \\\"amplification\\\": 0, \\\"worst_case_diag90\\\": 0.0133, \\\"worst_case_diag70\\\": 0.0319, \\\"worst_case_diag50\\\": 0.0449}}, \\\"iv\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": 0.526, \\\"all_coef_sign_flip\\\": 0.526, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.2993, \\\"worst_case_diag70\\\": 1.6444, \\\"worst_case_diag50\\\": 14.0463, \\\"note\\\": \\\"Wald estimator extremely unstable at low accuracy\\\"}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": 0.514, \\\"all_coef_sign_flip\\\": 0.514, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.4053, \\\"worst_case_diag70\\\": 2.1036, \\\"worst_case_diag50\\\": 9.6932}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": 0.523, \\\"all_coef_sign_flip\\\": 0.523, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.3605, \\\"worst_case_diag70\\\": 1.8132, \\\"worst_case_diag50\\\": 8.2204}}, \\\"frontdoor\\\": {\\\"K3\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.836, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.1407, \\\"worst_case_diag70\\\": 0.2604, \\\"worst_case_diag50\\\": 0.2966}, \\\"K5\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.967, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.1057, \\\"worst_case_diag70\\\": 0.2066, \\\"worst_case_diag50\\\": 0.2507}, \\\"K7\\\": {\\\"tau_specific_sign_flip\\\": 0, \\\"all_coef_sign_flip\\\": 0.993, \\\"violation\\\": 1, \\\"amplification\\\": 1, \\\"worst_case_diag90\\\": 0.0785, \\\"worst_case_diag70\\\": 0.1646, \\\"worst_case_diag50\\\": 0.2119}}}, \\\"conclusion_summary\\\": {\\\"structural_guarantee\\\": \\\"tau_specific_sign_flip = 0% across ALL K for 5/7 topologies (confounding/mediation/collider/mbias/frontdoor)\\\", \\\"iv_new_finding\\\": \\\"IV ~52% tau sign flip (K-invariant) — Wald denominator sign reversal under random C\\\", \\\"exposure_clarification\\\": \\\"Exposure tau_spec_sflip column is all-coef fallback. Actual beta1-specific flip rate = 83.4% (from MVP)\\\", \\\"worst_case_trend\\\": \\\"Decreasing with K for 5/7 topologies (K=3 most conservative). IV catastrophic at low accuracy (WC_d50 up to 14x). Exposure decreasing.\\\", \\\"mbias_special\\\": \\\"Amplification drops to 0% at K>=5\\\", \\\"rng_fix\\\": \\\"Deterministic per-(topo,K,threshold) seeds via SHA-256. Previous values had RNG ordering artifact.\\\"}, \\\"runtime_seconds\\\": 20, \\\"gpu\\\": \\\"RTX 5090 cuda:0\\\", \\\"script\\\": \\\"/home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py\\\"}}, \\\"plan001_dag_taxonomy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T09:28:52.009Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:04:01.701Z\\\", \\\"hypothesis\\\": \\\"K=3 非差异性误分类在不同因果拓扑下的偏差模式差异：哪些拓扑（mediation/collider/M-bias/instrument/front-door）出现方向反转或效应放大（如 exposure DAG），哪些保持单调衰减（如 confounding DAG）。Claim 1 支撑：多分类标注错误的偏差方向依赖于因果结构。\\\", \\\"metrics\\\": {\\\"collider\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.688, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 0, \\\"small_tau_0.05\\\": {\\\"tau_I\\\": 0.015733, \\\"tau_violation\\\": 0.96, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 0.992}, \\\"small_tau_0.1\\\": {\\\"tau_I\\\": 0.06118, \\\"tau_violation\\\": 0.974, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 0.995}}, \\\"mbias\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.651, \\\"amplification\\\": 0.112}, \\\"tau_specific\\\": {\\\"violation\\\": 0.532, \\\"sign_flip\\\": 0, \\\"amplification\\\": 0.104}, \\\"misclass_amplifies_rate\\\": 0.292, \\\"small_tau_0.05\\\": {\\\"tau_I\\\": 0.057669, \\\"tau_violation\\\": 0.532, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 0.104}, \\\"small_tau_0.1\\\": {\\\"tau_I\\\": 0.107669, \\\"tau_violation\\\": 0.532, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 0.104}}, \\\"mediation_mixed\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.835, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 1, \\\"small_tau_0.05\\\": {\\\"tau_violation\\\": 1, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}, \\\"small_tau_0.1\\\": {\\\"tau_violation\\\": 1, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}}, \\\"mediation_same\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.666, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 1, \\\"small_tau_0.05\\\": {\\\"tau_violation\\\": 1, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}, \\\"small_tau_0.1\\\": {\\\"tau_violation\\\": 1, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}}, \\\"frontdoor_mixed\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.998, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 1, \\\"small_tau_0.05\\\": {\\\"tau_I\\\": 0.050177, \\\"lambda_U\\\": 0.1, \\\"tau_violation\\\": 1, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}, \\\"small_tau_0.1\\\": {\\\"tau_I\\\": 0.100169, \\\"lambda_U\\\": 0.2, \\\"tau_violation\\\": 1, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}}, \\\"frontdoor_same\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 1, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 0.999, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 0.9997, \\\"small_tau_0.05\\\": {\\\"tau_I\\\": 0.050177, \\\"lambda_U\\\": 0.1, \\\"tau_violation\\\": 0.999, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}, \\\"small_tau_0.1\\\": {\\\"tau_I\\\": 0.100169, \\\"lambda_U\\\": 0.2, \\\"tau_violation\\\": 0.999, \\\"tau_sign_flip\\\": 0, \\\"tau_amplification\\\": 1}}, \\\"iv_note\\\": \\\"IV metrics not computed in plan_001 (only 6 fixed C structures tested, no dedicated IV tau_specific analysis). First measured in plan_002: 52% tau_specific_sign_flip from 100k random C (Wald denominator sign reversal). See plan002_k57_extension for full IV results.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan004_asv_framework\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T12:10:38.004Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:08:28.282Z\\\", \\\"hypothesis\\\": \\\"ASV framework with delta>1 support and vulnerability/protection dual-direction correctly predicts annotation error sensitivity: (1) confounding/mediation bias is monotonically increasing in delta, (2) collider bias is monotonically decreasing, (3) plim formulas achieve >95% MC coverage, (4) ASV-informed rejection controls Type I error better than naive while preserving power.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"v2_sign_flip_filter\\\": \\\"✅ effective (Type I=0%, power=100%)\\\", \\\"v3_envelope_monotonicity\\\": \\\"✅ solved (0 violations)\\\", \\\"v3_magnitude_reporting\\\": \\\"✅ informative values for all topologies\\\", \\\"v3_magnitude_filter\\\": \\\"❌ rejected (scale-dependent, not viable as binary test)\\\", \\\"v3_fixed_signif_filter\\\": \\\"✅ Type I=0% all topologies, power=100% for τ≥0.1\\\", \\\"v3_significance_filter\\\": {\\\"confounding_tau005\\\": {\\\"type_i\\\": 0, \\\"power\\\": 1}, \\\"confounding_tau010\\\": {\\\"type_i\\\": 0, \\\"power\\\": 1}, \\\"mediation_tau005\\\": {\\\"type_i\\\": 0, \\\"power\\\": 0}, \\\"mediation_tau010\\\": {\\\"type_i\\\": 0, \\\"power\\\": 1}, \\\"collider_tau005\\\": {\\\"type_i\\\": 0, \\\"power\\\": 0}, \\\"collider_tau010\\\": {\\\"type_i\\\": 0, \\\"power\\\": 1}, \\\"note\\\": \\\"τ=0.05 mediation/collider power=0% is correct — attenuating topologies are fragile at small effects\\\"}, \\\"v3_fixed_status\\\": \\\"complete — significance filter validated\\\", \\\"v3_envelope_violations\\\": 0, \\\"v3_magnitude_asv_tau0.5_range\\\": \\\"0.076-0.487\\\", \\\"v3_magnitude_asv_tau0.05_range\\\": \\\"0.008-0.047\\\", \\\"v3_magnitude_asv_tau0.1_range\\\": \\\"0.014-0.093\\\", \\\"v3_coverage_tau0.05\\\": \\\"100.0%\\\", \\\"v3_coverage_tau0.1\\\": \\\"100.0%\\\", \\\"n_sensitivity_mediation_tau005\\\": {\\\"topology\\\": \\\"mediation\\\", \\\"tau\\\": 0.05, \\\"C0\\\": \\\"sym_mild\\\", \\\"mc_reps\\\": 500, \\\"N_1000\\\": {\\\"naive_power\\\": 0.89, \\\"asv_power\\\": 0, \\\"median_se\\\": 0.070025, \\\"median_signif_asv\\\": 0}, \\\"N_2000\\\": {\\\"naive_power\\\": 0.998, \\\"asv_power\\\": 0, \\\"median_se\\\": 0.049649, \\\"median_signif_asv\\\": 0}, \\\"N_5000\\\": {\\\"naive_power\\\": 1, \\\"asv_power\\\": 0, \\\"median_se\\\": 0.031301, \\\"median_signif_asv\\\": 0}, \\\"N_10000\\\": {\\\"naive_power\\\": 1, \\\"asv_power\\\": 1, \\\"median_se\\\": 0.022152, \\\"median_signif_asv\\\": null}, \\\"N_20000\\\": {\\\"naive_power\\\": 1, \\\"asv_power\\\": 1, \\\"median_se\\\": 0.01566, \\\"median_signif_asv\\\": null}, \\\"N_50000\\\": {\\\"naive_power\\\": 1, \\\"asv_power\\\": 1, \\\"median_se\\\": 0.009903, \\\"median_signif_asv\\\": null}, \\\"recovery_N\\\": 10000, \\\"interpretation\\\": \\\"Sharp phase transition at N~6000-10000. Below: 1.96*SE > tau=0.05 so signif_ASV=0 (ASV kills all rejections). Above: 1.96*SE < tau=0.05 so signif_ASV=None (infinite robustness), ASV passes all.\\\"}}}, \\\"plan_004_asv_v3_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T13:59:14.591Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:59:50.010Z\\\", \\\"hypothesis\\\": \\\"Significance-based ASV (v2 logic: min delta where |plim tau| < z_crit*SE) controls Type I error when used as hypothesis test filter, because under H0 the plim starts at tau_true=0 at delta=0, immediately non-significant, giving ASV=0 < 1 which blocks rejection. Magnitude ASV failed because tau=0 returns None which passed the filter.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan008_binarization_collapse\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T12:13:14.577Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:12:21.888Z\\\", \\\"hypothesis\\\": \\\"将 K≥3 标注变量折叠为二分类（K→2）不是安全的简化——折叠本身引入新的、方向不可预测的偏差，且该偏差与 DAG 拓扑交互。6 个拓扑的折叠偏差 Δ=|bias_K3 - bias_K2| 具有系统性差异，证明多分类处理不可简化为二分类。MVP 已在 confounding DAG 观察到 Δ=0.103。Claim 1 支撑：binarization 是危险的捷径。parent: plan001_dag_taxonomy\\\", \\\"parent\\\": \\\"plan001_dag_taxonomy\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"confounding\\\": {\\\"D_mean\\\": 0.0253, \\\"D_med\\\": 0.0182, \\\"D_P95\\\": 0.0733, \\\"D_max\\\": 0.2213, \\\"frac_gt_001\\\": 0.686, \\\"frac_gt_005\\\": 0.138, \\\"sign_flip\\\": 0}, \\\"mediation\\\": {\\\"D_mean\\\": 0.0446, \\\"D_med\\\": 0.0355, \\\"D_P95\\\": 0.1179, \\\"D_max\\\": 0.252, \\\"frac_gt_001\\\": 0.835, \\\"frac_gt_005\\\": 0.36, \\\"sign_flip\\\": 0}, \\\"collider\\\": {\\\"D_mean\\\": 0.0169, \\\"D_med\\\": 0.0125, \\\"D_P95\\\": 0.0472, \\\"D_max\\\": 0.1069, \\\"frac_gt_001\\\": 0.572, \\\"frac_gt_005\\\": 0.039, \\\"sign_flip\\\": 0}, \\\"M-bias\\\": {\\\"D_mean\\\": 0.0063, \\\"D_med\\\": 0.0054, \\\"D_P95\\\": 0.0147, \\\"D_max\\\": 0.0328, \\\"frac_gt_001\\\": 0.181, \\\"frac_gt_005\\\": 0, \\\"sign_flip\\\": 0}, \\\"exposure\\\": {\\\"D_mean\\\": 0.5164, \\\"D_med\\\": 0.506, \\\"D_P95\\\": 0.8453, \\\"D_max\\\": 1.3876, \\\"frac_gt_001\\\": 1, \\\"frac_gt_005\\\": 0.999, \\\"sign_flip\\\": 0.14}, \\\"IV\\\": {\\\"D_mean\\\": 0.926, \\\"D_med\\\": 0.9394, \\\"D_P95\\\": 1.3426, \\\"D_max\\\": 2.0809, \\\"frac_gt_001\\\": 1, \\\"frac_gt_005\\\": 1, \\\"sign_flip\\\": 0.175}}}, \\\"mvp_exposure_dirichlet_subspace\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T07:50:20.630Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:46.158Z\\\", \\\"hypothesis\\\": \\\"Dirichlet(1,1,1) 均匀先验下 85% 违反率在高对角占优子空间（min(diag(C))≥0.7，接近真实 LLM 精度）是否骤降：若 >10% 则论文 claim 对实际 LLM 有现实意义，若 <1% 需标注适用范围\\\", \\\"metrics\\\": {\\\"full_space_violation\\\": 0.849, \\\"full_space_sign_rev\\\": 0.833, \\\"full_space_amplif\\\": 0.275, \\\"diag50_violation\\\": 0.325, \\\"diag50_sign_rev\\\": 0.216, \\\"diag50_amplif\\\": 0.113, \\\"diag70_violation\\\": 0.137, \\\"diag70_sign_rev\\\": 0.021, \\\"diag70_amplif\\\": 0.117, \\\"diag90_violation\\\": 0.119, \\\"diag90_sign_rev\\\": 0, \\\"diag90_amplif\\\": 0.119, \\\"samples_per_subspace\\\": 50000, \\\"assessment\\\": \\\"ALL subspaces STRONG (>10%)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_exposure_dag\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T07:43:17.960Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:44:09.380Z\\\", \\\"hypothesis\\\": \\\"K=3 非差异性 exposure 误分类打破二分类 bias-toward-null 保证：存在 C 结构使 treatment effect 估计产生符号反转或效应放大，而 K=2 下非差异性误分类始终保证衰减\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"theory_mc_match\\\": \\\"5/5\\\", \\\"pass_criteria\\\": \\\"3/3\\\", \\\"violation_rate\\\": 0.85, \\\"sign_reversal_rate\\\": 0.834, \\\"amplification_rate\\\": 0.141, \\\"K2_toward_null\\\": \\\"6/6\\\", \\\"worst_severity\\\": 2.83, \\\"named_structures_with_violation\\\": \\\"3/6\\\"}}, \\\"mvp_confounding_dag\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T07:43:15.817Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:44:08.993Z\\\", \\\"hypothesis\\\": \\\"K=3 混淆矩阵下 confounding DAG 的 OLS 偏差可由 plim=(E[Z'Z])^{-1}E[Z'X]β 精确预测，且 K=3 偏差与二分类折叠偏差系统性不同（多分类保留更多混杂信息）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"theory_mc_match\\\": \\\"6/6\\\", \\\"pass_criteria\\\": \\\"3/3\\\", \\\"max_binary_collapse_delta\\\": 0.103, \\\"bias_range\\\": \\\"0.132-0.298\\\", \\\"ovb_reference\\\": 0.3, \\\"direction_reversal_found\\\": false, \\\"random_search_100k_min_bias\\\": 0.063}}}, \\\"count\\\": 14, \\\"total\\\": 14, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0713}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code\": {\"__init__.py\": 53, \"bias.py\": 174, \"asv.py\": 119, \"correction.py\": 422, \"confusion.py\": 129, \"dgp.py\": 213, \"utils.py\": 95, \"test_core.py\": \"35 tests\"}, \"example_output\": {\"confounding_k3_bias_pct\": \"+10.20%\", \"magnitude_asv\": 0.967, \"sign_flip_asv\": null, \"recommended_with_gold\": \"ppi\", \"recommended_without_gold\": \"dsl\"}}}, \"plan003_empirical_confusion_matrices\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:13:12.825Z\", \"updated_at\": \"2026-05-20T23:12:39.443Z\", \"hypothesis\": \"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\", \"metrics\": {\"status_detail\": \"PAUSED - API 402 Payment Required (OPENROUTER_API_KEY)\", \"api_endpoint\": \"http://47.94.22.126/v1/chat/completions\", \"data_dir\": \"results/\", \"humaid_recount_20260520T2312\": {\"deepseek_zero-shot\": {\"total\": 1500, \"pred_valid\": 1500, \"errors\": 0, \"status\": \"OK\"}, \"deepseek_few-shot-3\": {\"total\": 1500, \"pred_valid\": 1345, \"errors\": 155, \"error_type\": \"parsing\", \"status\": \"WARN\"}, \"deepseek_few-shot-5\": {\"total\": 1500, \"pred_valid\": 1237, \"errors\": 263, \"error_type\": \"parsing\", \"status\": \"WARN\"}, \"llama4_zero-shot\": {\"total\": 1500, \"pred_valid\": 1500, \"errors\": 0, \"status\": \"OK\"}, \"llama4_few-shot-3\": {\"total\": 1500, \"pred_valid\": 1498, \"errors\": 2, \"status\": \"OK\"}, \"llama4_few-shot-5\": {\"total\": 1500, \"pred_valid\": 1471, \"errors\": 29, \"status\": \"WARN\"}, \"qwen3_zero-shot\": {\"total\": 1500, \"pred_valid\": 1500, \"errors\": 0, \"status\": \"OK\"}, \"qwen3_few-shot-3\": {\"total\": 1500, \"pred_valid\": 1423, \"errors\": 77, \"error_type\": \"402\", \"status\": \"WARN\"}, \"qwen3_few-shot-5\": {\"total\": 1500, \"pred_valid\": 0, \"errors\": 1500, \"error_type\": \"402\", \"status\": \"FAIL\"}}, \"humaid_summary\": \"4 OK (≥1498) + 4 WARN (1237-1471) + 1 FAIL (qwen3_fs5 all 402)\", \"humaid_usable\": \"8/9 files have valid data\", \"data_fields\": {\"true_label\": \"gold_label\", \"pred_label\": \"pred_label\"}, \"note\": \"deepseek errors are parsing/format, NOT 402. Only qwen3 errors are 402.\"}, \"conclusion\": \"failed\", \"notes\": \"失败原因: API 402 Payment Required — OPENROUTER_API_KEY 额度耗尽 | error_type: resource | 进度: 6/27 complete (HumAID 4 + VAST 2), 5 partial (HumAID 3 + VAST 1), 16 failed (civil_comments 9 + vast 6 + humaid 1) | civil_comments 全 9 组合零数据（可能有数据格式问题）| 脚本支持 resume（streaming write + --model filter），补额后可接续 | 建议: (1) 充值 OPENROUTER_API_KEY (2) 排查 civil_comments 数据格式 (3) resume 未完成任务\"}, \"plan007_correction_guidance\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T18:48:04.784Z\", \"updated_at\": \"2026-05-20T20:48:37.062Z\", \"hypothesis\": \"不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。\", \"parent\": \"plan001_dag_taxonomy\", \"conclusion\": \"success\", \"metrics\": {\"total_combos\": 210, \"runtime_sec\": 2792, \"ppi_grand_mean_bias_red\": \"93.8%\", \"ppi_grand_mean_coverage\": \"96.8%\", \"ppi_win_rate\": \"95.2% (40/42)\", \"mcsimex_grand_mean_bias_red\": \"20.9%\", \"dsl_grand_mean_bias_red\": \"-144.8%\", \"naive_plugin_grand_mean_bias_red\": \"-20.0%\", \"mla_grand_mean_bias_red\": \"-37.4%\", \"fwl_invariance_verified\": true, \"fwl_invariance_topologies\": \"confounding, mediation, collider, mbias (0.0% bias_red for naive/mla)\", \"dsl_effective_topologies\": \"confounding (49.8%), mediation (70.3%)\", \"dsl_failure_topologies\": \"mbias (-768%), iv (-187%), collider (-89%), exposure (-60%), frontdoor (-29%)\", \"ppi_weakness\": \"mbias+realistic_llm: -25.1% bias_red (but 99% coverage)\"}}, \"plan009_pathological_matrices\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:10:16.587Z\", \"updated_at\": \"2026-05-20T18:57:41.687Z\", \"hypothesis\": \"病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\\\"安全区\\\"和\\\"灾难区\\\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。\", \"parent\": \"plan001_dag_taxonomy\", \"notes\": \"retry#1 conda fix OK, but --device cuda:0 not a valid arg (script uses --M/--N/--K/--topos/--dry-run). tee masked exit code → cron误判clean exit. retry#2: remove --device, add pipefail\", \"conclusion\": \"success\", \"metrics\": {\"regression_dichotomy\": {\"benign_topologies\": {\"list\": [\"confounding\", \"mediation\", \"collider\", \"frontdoor\", \"mbias\"], \"R2_range\": \"0.61-0.77\", \"primary_predictor\": \"effective_rank\", \"secondary_predictors\": [\"spectral_gap\", \"condition_number\"]}, \"dangerous_topologies\": {\"list\": [\"exposure\", \"iv\"], \"exposure_R2\": 0.11, \"iv_R2\": \"~0\", \"iv_note\": \"regression has no explanatory power — Wald denominator sign reversal is discrete, not predicted by continuous matrix features\", \"exposure_note\": \"near_perm eps=0.01: 15% catastrophic bias above threshold\"}, \"global_R2\": \"~0 (cross-topology aggregation destroys predictive power — different bias mechanisms)\"}, \"risk_tiers\": {\"low\": {\"topologies\": [\"mbias\"], \"max_bias\": \"<0.04\", \"note\": \"safe even under worst-case pathological C\"}, \"medium\": {\"topologies\": [\"confounding\", \"mediation\", \"collider\", \"frontdoor\"], \"bias_range\": \"0.1-0.31\", \"catastrophic_fraction\": \"0%\", \"R2\": \"0.70-0.77\", \"note\": \"bounded bias, matrix features predictive\"}, \"high\": {\"topologies\": [\"exposure\", \"iv\"], \"note\": \"catastrophic regardless of C quality — exposure: structural identification failure; IV: Wald estimator explosion (near_perm eps=0.01 cat=61-73%, rank-deficient bias reaches millions)\"}}, \"most_consistent_predictor\": \"condition_number (significant in 5/5 medium-risk topologies)\", \"hypothesis_assessment\": {\"H1_predictable_catastrophic\": \"partially — risk tier determined by topology, not C features\", \"H2_matrix_features_strong\": \"topology-dependent — 5/7 R²>0.6, exposure/IV fail\", \"H3_safety_threshold\": \"not confirmed — boundary is topology-based, not C-feature threshold\", \"H4_diagnostic_features\": \"partially — condition_number most consistent, but needs topology-specific criteria\"}, \"iv_filtering\": {\"n_filtered\": 3000, \"n_total\": 28000, \"pct_infinite\": 10.7, \"note\": \"non-finite Wald values silently filtered from regression; must note in paper\"}, \"pathological_C_types\": [\"near_permutation (eps=0.01,0.05,0.1,0.2)\", \"rank_deficient\", \"block_diagonal\"], \"K_values\": [3, 5, 7], \"M_per_config\": 1000, \"N_per_sim\": 5000000, \"runtime_seconds\": 25, \"analysis_report\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_analysis.md\", \"output_files\": {\"summary_json\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\", \"regression_txt\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\", \"analysis_md\": \"/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_analysis.md\"}}}, \"plan005_asv_extended\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:50:28.045Z\", \"updated_at\": \"2026-05-20T18:39:06.768Z\", \"hypothesis\": \"The ASV (Annotation Sensitivity Value) framework generalizes from simple confounding to M-bias, IV, and front-door topologies: annotation misclassification sensitivity varies by DAG structure because each estimator's probability limit depends differently on the confusion matrix C. M-bias adjustment for misclassified A should show near-zero sensitivity (misclassification reduces spurious bias), IV Wald estimator should be immediately sensitive (C directly scales the first-stage), and front-door should show moderate sensitivity.\", \"parent\": \"plan004_asv_framework\", \"conclusion\": \"success\", \"metrics\": {\"envelope_violations\": {\"mbias\": 0, \"iv\": 0, \"frontdoor\": 0}, \"plim_at_identity\": {\"mbias\": 0.5128, \"iv\": 0.6598, \"frontdoor\": 0.4998}, \"asv_tau05\": {\"mbias\": {\"sign_flip\": null, \"magnitude_10pct\": null}, \"iv\": {\"sign_flip_range\": \"1.1-6.7\", \"magnitude_10pct_range\": \"0.101-0.607\"}, \"frontdoor\": {\"sign_flip\": null, \"magnitude_10pct_range\": \"0.064-0.387\"}}, \"mc_coverage\": {\"mbias_tau005\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"mbias_tau01\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"iv_tau005\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"iv_tau01\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"frontdoor_tau005\": {\"plim_acc\": 1, \"bias_bounded\": 1}, \"frontdoor_tau01\": {\"plim_acc\": 1, \"bias_bounded\": 1}}, \"v_fixed_signif_filter\": {\"mbias\": {\"type_i\": 0, \"power_tau005\": \"95.8-99.2%\", \"power_tau01\": \"100%\"}, \"iv\": {\"type_i\": 0, \"power_tau005\": \"0%\", \"power_tau01\": \"0%\", \"note\": \"correct — Wald estimator immediately fragile, signif_ASV≈0 blocks all rejections\"}, \"frontdoor\": {\"type_i\": 0, \"power_tau005\": \"100%\", \"power_tau01\": \"100%\"}}, \"fixes_applied\": [\"C1: compute_signif_asv_fast added\", \"C2: magnitude ASV tau≈0 returns 0.0\", \"W1: IV tau_true=plim_iv(I)=0.6598\", \"W2: M-bias tau_true=plim_mb(I)=0.5128\"], \"fixed_script\": \"/home/sonny/causal_annot_error_attrib/plan_005_asv_extended_fixed.py\", \"runtime_seconds\": 46.2}}, \"plan002_k57_extension\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:55:55.239Z\", \"updated_at\": \"2026-05-20T16:11:38.784Z\", \"hypothesis\": \"K=3 下观察到的拓扑依赖偏差模式（sign_flip=0% 结构性保证、IV 最脆弱、M-bias 免疫）在 K=5,7 下是否保持：K 增大引入更多 off-diagonal 自由度，可能使偏差更严重（更高 violation/amplification rate）或出现 K=3 未见的新偏差模式。同时验证 matrix-form bias 表达式的 general-K 推广是否成立，并通过 eigendecomposition 识别 dominant bias modes。\", \"parent\": \"plan001_dag_taxonomy\", \"conclusion\": \"success\", \"metrics\": {\"cross_k_comparison_7topo\": {\"confounding\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.993, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1614, \"worst_case_diag70\": 0.2744, \"worst_case_diag50\": 0.2993}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1107, \"worst_case_diag70\": 0.2156, \"worst_case_diag50\": 0.2462}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0933, \"worst_case_diag70\": 0.1859, \"worst_case_diag50\": 0.2264}}, \"mediation\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.838, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1223, \"worst_case_diag70\": 0.251, \"worst_case_diag50\": 0.3032}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.966, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0867, \"worst_case_diag70\": 0.1832, \"worst_case_diag50\": 0.2396}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0607, \"worst_case_diag70\": 0.1421, \"worst_case_diag50\": 0.1879}}, \"collider\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.666, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0503, \"worst_case_diag70\": 0.1064, \"worst_case_diag50\": 0.1256}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.955, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0477, \"worst_case_diag70\": 0.1087, \"worst_case_diag50\": 0.1306}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.992, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0352, \"worst_case_diag70\": 0.0826, \"worst_case_diag50\": 0.1131}}, \"exposure\": {\"K3\": {\"tau_specific_sign_flip\": \"N/A (all-coef fallback; MVP beta1 flip=83.4%)\", \"all_coef_sign_flip\": 0.99, \"violation\": 1, \"amplification\": 0.999, \"worst_case_diag90\": 0.2726, \"worst_case_diag70\": 0.7092, \"worst_case_diag50\": 1.1438}, \"K5\": {\"tau_specific_sign_flip\": \"N/A (all-coef fallback)\", \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 0.998, \"worst_case_diag90\": 0.2097, \"worst_case_diag70\": 0.5782, \"worst_case_diag50\": 0.8784}, \"K7\": {\"tau_specific_sign_flip\": \"N/A (all-coef fallback)\", \"all_coef_sign_flip\": 1, \"violation\": 1, \"amplification\": 0.999, \"worst_case_diag90\": 0.1853, \"worst_case_diag70\": 0.4913, \"worst_case_diag50\": 0.7441}}, \"mbias\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.667, \"violation\": 0.584, \"amplification\": 0.089, \"worst_case_diag90\": 0.0106, \"worst_case_diag70\": 0.0226, \"worst_case_diag50\": 0.0287}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.954, \"violation\": 1, \"amplification\": 0, \"worst_case_diag90\": 0.0154, \"worst_case_diag70\": 0.0374, \"worst_case_diag50\": 0.0487}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.992, \"violation\": 1, \"amplification\": 0, \"worst_case_diag90\": 0.0133, \"worst_case_diag70\": 0.0319, \"worst_case_diag50\": 0.0449}}, \"iv\": {\"K3\": {\"tau_specific_sign_flip\": 0.526, \"all_coef_sign_flip\": 0.526, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.2993, \"worst_case_diag70\": 1.6444, \"worst_case_diag50\": 14.0463, \"note\": \"Wald estimator extremely unstable at low accuracy\"}, \"K5\": {\"tau_specific_sign_flip\": 0.514, \"all_coef_sign_flip\": 0.514, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.4053, \"worst_case_diag70\": 2.1036, \"worst_case_diag50\": 9.6932}, \"K7\": {\"tau_specific_sign_flip\": 0.523, \"all_coef_sign_flip\": 0.523, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.3605, \"worst_case_diag70\": 1.8132, \"worst_case_diag50\": 8.2204}}, \"frontdoor\": {\"K3\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.836, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1407, \"worst_case_diag70\": 0.2604, \"worst_case_diag50\": 0.2966}, \"K5\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.967, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.1057, \"worst_case_diag70\": 0.2066, \"worst_case_diag50\": 0.2507}, \"K7\": {\"tau_specific_sign_flip\": 0, \"all_coef_sign_flip\": 0.993, \"violation\": 1, \"amplification\": 1, \"worst_case_diag90\": 0.0785, \"worst_case_diag70\": 0.1646, \"worst_case_diag50\": 0.2119}}}, \"conclusion_summary\": {\"structural_guarantee\": \"tau_specific_sign_flip = 0% across ALL K for 5/7 topologies (confounding/mediation/collider/mbias/frontdoor)\", \"iv_new_finding\": \"IV ~52% tau sign flip (K-invariant) — Wald denominator sign reversal under random C\", \"exposure_clarification\": \"Exposure tau_spec_sflip column is all-coef fallback. Actual beta1-specific flip rate = 83.4% (from MVP)\", \"worst_case_trend\": \"Decreasing with K for 5/7 topologies (K=3 most conservative). IV catastrophic at low accuracy (WC_d50 up to 14x). Exposure decreasing.\", \"mbias_special\": \"Amplification drops to 0% at K>=5\", \"rng_fix\": \"Deterministic per-(topo,K,threshold) seeds via SHA-256. Previous values had RNG ordering artifact.\"}, \"runtime_seconds\": 20, \"gpu\": \"RTX 5090 cuda:0\", \"script\": \"/home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py\"}}, \"plan001_dag_taxonomy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:28:52.009Z\", \"updated_at\": \"2026-05-20T16:04:01.701Z\", \"hypothesis\": \"K=3 非差异性误分类在不同因果拓扑下的偏差模式差异：哪些拓扑（mediation/collider/M-bias/instrument/front-door）出现方向反转或效应放大（如 exposure DAG），哪些保持单调衰减（如 confounding DAG）。Claim 1 支撑：多分类标注错误的偏差方向依赖于因果结构。\", \"metrics\": {\"collider\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.688, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 0, \"small_tau_0.05\": {\"tau_I\": 0.015733, \"tau_violation\": 0.96, \"tau_sign_flip\": 0, \"tau_amplification\": 0.992}, \"small_tau_0.1\": {\"tau_I\": 0.06118, \"tau_violation\": 0.974, \"tau_sign_flip\": 0, \"tau_amplification\": 0.995}}, \"mbias\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.651, \"amplification\": 0.112}, \"tau_specific\": {\"violation\": 0.532, \"sign_flip\": 0, \"amplification\": 0.104}, \"misclass_amplifies_rate\": 0.292, \"small_tau_0.05\": {\"tau_I\": 0.057669, \"tau_violation\": 0.532, \"tau_sign_flip\": 0, \"tau_amplification\": 0.104}, \"small_tau_0.1\": {\"tau_I\": 0.107669, \"tau_violation\": 0.532, \"tau_sign_flip\": 0, \"tau_amplification\": 0.104}}, \"mediation_mixed\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.835, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 1, \"small_tau_0.05\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"mediation_same\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.666, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 1, \"small_tau_0.05\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"frontdoor_mixed\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 0.998, \"amplification\": 1}, \"tau_specific\": {\"violation\": 1, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 1, \"small_tau_0.05\": {\"tau_I\": 0.050177, \"lambda_U\": 0.1, \"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_I\": 0.100169, \"lambda_U\": 0.2, \"tau_violation\": 1, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"frontdoor_same\": {\"all_coef\": {\"violation\": 1, \"sign_flip\": 1, \"amplification\": 1}, \"tau_specific\": {\"violation\": 0.999, \"sign_flip\": 0, \"amplification\": 1}, \"misclass_amplifies_rate\": 0.9997, \"small_tau_0.05\": {\"tau_I\": 0.050177, \"lambda_U\": 0.1, \"tau_violation\": 0.999, \"tau_sign_flip\": 0, \"tau_amplification\": 1}, \"small_tau_0.1\": {\"tau_I\": 0.100169, \"lambda_U\": 0.2, \"tau_violation\": 0.999, \"tau_sign_flip\": 0, \"tau_amplification\": 1}}, \"iv_note\": \"IV metrics not computed in plan_001 (only 6 fixed C structures tested, no dedicated IV tau_specific analysis). First measured in plan_002: 52% tau_specific_sign_flip from 100k random C (Wald denominator sign reversal). See plan002_k57_extension for full IV results.\"}, \"conclusion\": \"success\"}, \"plan004_asv_framework\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:10:38.004Z\", \"updated_at\": \"2026-05-20T14:08:28.282Z\", \"hypothesis\": \"ASV framework with delta>1 support and vulnerability/protection dual-direction correctly predicts annotation error sensitivity: (1) confounding/mediation bias is monotonically increasing in delta, (2) collider bias is monotonically decreasing, (3) plim formulas achieve >95% MC coverage, (4) ASV-informed rejection controls Type I error better than naive while preserving power.\", \"conclusion\": \"success\", \"metrics\": {\"v2_sign_flip_filter\": \"✅ effective (Type I=0%, power=100%)\", \"v3_envelope_monotonicity\": \"✅ solved (0 violations)\", \"v3_magnitude_reporting\": \"✅ informative values for all topologies\", \"v3_magnitude_filter\": \"❌ rejected (scale-dependent, not viable as binary test)\", \"v3_fixed_signif_filter\": \"✅ Type I=0% all topologies, power=100% for τ≥0.1\", \"v3_significance_filter\": {\"confounding_tau005\": {\"type_i\": 0, \"power\": 1}, \"confounding_tau010\": {\"type_i\": 0, \"power\": 1}, \"mediation_tau005\": {\"type_i\": 0, \"power\": 0}, \"mediation_tau010\": {\"type_i\": 0, \"power\": 1}, \"collider_tau005\": {\"type_i\": 0, \"power\": 0}, \"collider_tau010\": {\"type_i\": 0, \"power\": 1}, \"note\": \"τ=0.05 mediation/collider power=0% is correct — attenuating topologies are fragile at small effects\"}, \"v3_fixed_status\": \"complete — significance filter validated\", \"v3_envelope_violations\": 0, \"v3_magnitude_asv_tau0.5_range\": \"0.076-0.487\", \"v3_magnitude_asv_tau0.05_range\": \"0.008-0.047\", \"v3_magnitude_asv_tau0.1_range\": \"0.014-0.093\", \"v3_coverage_tau0.05\": \"100.0%\", \"v3_coverage_tau0.1\": \"100.0%\", \"n_sensitivity_mediation_tau005\": {\"topology\": \"mediation\", \"tau\": 0.05, \"C0\": \"sym_mild\", \"mc_reps\": 500, \"N_1000\": {\"naive_power\": 0.89, \"asv_power\": 0, \"median_se\": 0.070025, \"median_signif_asv\": 0}, \"N_2000\": {\"naive_power\": 0.998, \"asv_power\": 0, \"median_se\": 0.049649, \"median_signif_asv\": 0}, \"N_5000\": {\"naive_power\": 1, \"asv_power\": 0, \"median_se\": 0.031301, \"median_signif_asv\": 0}, \"N_10000\": {\"naive_power\": 1, \"asv_power\": 1, \"median_se\": 0.022152, \"median_signif_asv\": null}, \"N_20000\": {\"naive_power\": 1, \"asv_power\": 1, \"median_se\": 0.01566, \"median_signif_asv\": null}, \"N_50000\": {\"naive_power\": 1, \"asv_power\": 1, \"median_se\": 0.009903, \"median_signif_asv\": null}, \"recovery_N\": 10000, \"interpretation\": \"Sharp phase transition at N~6000-10000. Below: 1.96*SE > tau=0.05 so signif_ASV=0 (ASV kills all rejections). Above: 1.96*SE < tau=0.05 so signif_ASV=None (infinite robustness), ASV passes all.\"}}}, \"plan_004_asv_v3_fixed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:59:14.591Z\", \"updated_at\": \"2026-05-20T13:59:50.010Z\", \"hypothesis\": \"Significance-based ASV (v2 logic: min delta where |plim tau| < z_crit*SE) controls Type I error when used as hypothesis test filter, because under H0 the plim starts at tau_true=0 at delta=0, immediately non-significant, giving ASV=0 < 1 which blocks rejection. Magnitude ASV failed because tau=0 returns None which passed the filter.\", \"conclusion\": \"success\"}, \"plan008_binarization_collapse\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:13:14.577Z\", \"updated_at\": \"2026-05-20T13:12:21.888Z\", \"hypothesis\": \"将 K≥3 标注变量折叠为二分类（K→2）不是安全的简化——折叠本身引入新的、方向不可预测的偏差，且该偏差与 DAG 拓扑交互。6 个拓扑的折叠偏差 Δ=|bias_K3 - bias_K2| 具有系统性差异，证明多分类处理不可简化为二分类。MVP 已在 confounding DAG 观察到 Δ=0.103。Claim 1 支撑：binarization 是危险的捷径。parent: plan001_dag_taxonomy\", \"parent\": \"plan001_dag_taxonomy\", \"conclusion\": \"success\", \"metrics\": {\"confounding\": {\"D_mean\": 0.0253, \"D_med\": 0.0182, \"D_P95\": 0.0733, \"D_max\": 0.2213, \"frac_gt_001\": 0.686, \"frac_gt_005\": 0.138, \"sign_flip\": 0}, \"mediation\": {\"D_mean\": 0.0446, \"D_med\": 0.0355, \"D_P95\": 0.1179, \"D_max\": 0.252, \"frac_gt_001\": 0.835, \"frac_gt_005\": 0.36, \"sign_flip\": 0}, \"collider\": {\"D_mean\": 0.0169, \"D_med\": 0.0125, \"D_P95\": 0.0472, \"D_max\": 0.1069, \"frac_gt_001\": 0.572, \"frac_gt_005\": 0.039, \"sign_flip\": 0}, \"M-bias\": {\"D_mean\": 0.0063, \"D_med\": 0.0054, \"D_P95\": 0.0147, \"D_max\": 0.0328, \"frac_gt_001\": 0.181, \"frac_gt_005\": 0, \"sign_flip\": 0}, \"exposure\": {\"D_mean\": 0.5164, \"D_med\": 0.506, \"D_P95\": 0.8453, \"D_max\": 1.3876, \"frac_gt_001\": 1, \"frac_gt_005\": 0.999, \"sign_flip\": 0.14}, \"IV\": {\"D_mean\": 0.926, \"D_med\": 0.9394, \"D_P95\": 1.3426, \"D_max\": 2.0809, \"frac_gt_001\": 1, \"frac_gt_005\": 1, \"sign_flip\": 0.175}}}, \"mvp_exposure_dirichlet_subspace\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:50:20.630Z\", \"updated_at\": \"2026-05-20T07:50:46.158Z\", \"hypothesis\": \"Dirichlet(1,1,1) 均匀先验下 85% 违反率在高对角占优子空间（min(diag(C))≥0.7，接近真实 LLM 精度）是否骤降：若 >10% 则论文 claim 对实际 LLM 有现实意义，若 <1% 需标注适用范围\", \"metrics\": {\"full_space_violation\": 0.849, \"full_space_sign_rev\": 0.833, \"full_space_amplif\": 0.275, \"diag50_violation\": 0.325, \"diag50_sign_rev\": 0.216, \"diag50_amplif\": 0.113, \"diag70_violation\": 0.137, \"diag70_sign_rev\": 0.021, \"diag70_amplif\": 0.117, \"diag90_violation\": 0.119, \"diag90_sign_rev\": 0, \"diag90_amplif\": 0.119, \"samples_per_subspace\": 50000, \"assessment\": \"ALL subspaces STRONG (>10%)\"}, \"conclusion\": \"success\"}, \"mvp_exposure_dag\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:43:17.960Z\", \"updated_at\": \"2026-05-20T07:44:09.380Z\", \"hypothesis\": \"K=3 非差异性 exposure 误分类打破二分类 bias-toward-null 保证：存在 C 结构使 treatment effect 估计产生符号反转或效应放大，而 K=2 下非差异性误分类始终保证衰减\", \"conclusion\": \"success\", \"metrics\": {\"theory_mc_match\": \"5/5\", \"pass_criteria\": \"3/3\", \"violation_rate\": 0.85, \"sign_reversal_rate\": 0.834, \"amplification_rate\": 0.141, \"K2_toward_null\": \"6/6\", \"worst_severity\": 2.83, \"named_structures_with_violation\": \"3/6\"}}, \"mvp_confounding_dag\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:43:15.817Z\", \"updated_at\": \"2026-05-20T07:44:08.993Z\", \"hypothesis\": \"K=3 混淆矩阵下 confounding DAG 的 OLS 偏差可由 plim=(E[Z'Z])^{-1}E[Z'X]β 精确预测，且 K=3 偏差与二分类折叠偏差系统性不同（多分类保留更多混杂信息）\", \"conclusion\": \"success\", \"metrics\": {\"theory_mc_match\": \"6/6\", \"pass_criteria\": \"3/3\", \"max_binary_collapse_delta\": 0.103, \"bias_range\": \"0.132-0.298\", \"ovb_reference\": 0.3, \"direction_reversal_found\": false, \"random_search_100k_min_bias\": 0.063}}}, \"count\": 14, \"total\": 14, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0713}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c3a9dc05-ed5c-49df-be0c-4d46182e69a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T17:55:32.610Z_
+
+<details><summary>↩ Tool result · `toolu_01JReWfHuSgevd38xf2oQt8Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "341c39e5-d532-4f07-9c2d-424368aa0788",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "54fef06b-d39e-4e8c-a268-a820b7e604b0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "341c39e5-d532-4f07-9c2d-424368aa0788",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T17:55:33.047Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Q6HbLUmvnCuvjA9XgBcRRC`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54fef06b-d39e-4e8c-a268-a820b7e604b0",
+  "isSidechain": false,
+  "requestId": "req_011CbG9K4pRfSYWqTCmKNdsR",
+  "type": "assistant",
+  "uuid": "a4e39a40-b7a4-4e4b-86ab-da150cf0f76e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GJcMXff848zFTdFKYkYgce",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 40344,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 40344,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T17:55:33.124Z_
+
+<details><summary>↩ Tool result · `toolu_01UfZAYEjJjvcXWgaPfK98dy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/ROADMAP.md\", \"content\": \"# causal_annot_error_attrib — Research Dashboard\\n\\n> 最后更新: 2026-05-21 05:44 UTC | 更新原因: Dream 审稿反馈全部 5 项修复完成，stress test committed\\n\\n> 详见 paper_framing.md（story/claims）、experiment_plan.yaml（实验列表）\\n\\n## 核心方向\\n多分类 LLM 标注误差在因果推断中的偏差传播：K×K 混淆矩阵 × 7 DAG 拓扑偏差分类 + ASV 灵敏度框架 + 校正指导。\\n\\n## 当前阶段：Dream 审稿反馈修改完成 → Re-Dream 待系统恢复\\n\\n### Target Venue\\n- Primary: AAAI 2027（abstract 2026-07-21, paper 2026-07-28, ~68 天）\\n\\n### Core Claims 覆盖率\\n| Claim | 完成/总计 | 状态 |\\n|-------|-----------|------|\\n| 1. Multi-class bias taxonomy | **5/6 (83%)** | plan_001✅ plan_002✅ plan_008✅ plan_009✅ plan_010✅ plan_003⚠️(API 402) |\\n| 2. ASV framework | **3/3 (100%)** | plan_004✅ plan_005✅ plan_006✅ |\\n| 3. Correction guidance | **1/1 (100%)** | plan_007✅ |\\n\\n### Dream 审稿反馈修改（全部完成 ✅）\\n| Dream 问题 | 状态 | Commit |\\n|------------|------|--------|\\n| Related work 极薄 | ✅ | +5 refs (Carroll, Dosemeci, Jurek, Lash, Grimmer). 总 31 citations |\\n| ASV vs Lash PBA 未阐述 | ✅ | Related work 三维度对比 |\\n| Brenner (1993) 矛盾 | ✅ | method.tex 脚注 (sign reversal vs amplification) |\\n| IV Dirichlet subspace | ✅ | Appendix section + Table (sign flip→0% at d≥0.5, amplification 100%) |\\n| Non-differential stress test | ✅ | Appendix section + limitations 交叉引用 (ε=0.05 → +2.3pp) |\\n\\n### 关键发现\\n- 5/7 拓扑 τ_sign_flip=0%; 2/7 危险（exposure 83%, IV 52%）\\n- IV Dirichlet: sign flip 0% at diag≥0.5, amplification 100% at all levels\\n- Non-diff stress test: ε≤0.05 → violation 仅增 2.3pp，假设 robust\\n- PPI++(93.8%) >> MC-SIMEX(20.9%) >> DSL(2/7 only)\\n- HumAID (K=10): 8 valid configs, IV bias 12.4–42.1%, 55.4% ASV-unsafe\\n- 跨K实证: 0 sign flips / 126 scenarios, 7B/235B ratio 1.24\\n\\n## 论文写作\\n- 编译通过 16 pages (8 main + 8 appendix), 0 critical warnings, 31 citations\\n- 全部 Dream 写作修复已 commit (8617499, fb88983)\\n\\n## 近期任务\\n- [x] Dream W1-W5: 全部 5 个跨档结构性问题修复\\n- [x] Commit all changes (2 commits)\\n- [ ] Re-dream → **BLOCKED**: 连续 6 次 Phase 1 crash, 已报 Manager\\n- [ ] fig5/fig6 重新生成（含 filtered data）\\n- [ ] API 充值 → plan_003 剩余组合（非阻塞）\\n\\n## GPU 预算\\nhome-1x5090: 1× RTX 5090（当前空闲，无 running 实验）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D017 | 2026-05-21 | 保持 14 configs / 98 scenarios；ASV-unsafe 阈值 ≤1.0 (3 | plan006_asv_empirical |\\n| D016 | 2026-05-21 | plan_006 全量结果确认跨K实证验证：K越小bias越大（K=3 IV 252%），F1 di | plan006_asv_empirical, plan003_empirical_confusion_matrices |\\n| D015 | 2026-05-20 | plan_006 humaid 实证结果确认理论框架：IV 最脆弱(42% bias), colli | plan003_empirical_confusion_matrices, plan005_asv_extended, plan004_asv_framework |\\n| D014 | 2026-05-20 | plan_007 全量结果确立 Claim 3 correction guidance 层级：PPI | plan007_correction_guidance |\\n| D013 | 2026-05-20 | plan_009 证实病态矩阵诊断指标（spectral_gap, condition_number | plan009_pathological_matrices |\\n| D012 | 2026-05-20 | plan_007 预览发现：Frisch-Waugh 定理导致 naive_plugin/MLA 对 | plan007_correction_guidance |\\n| D011 | 2026-05-20 | paper_framing Claim 1 拓扑数从 6 改为 7（正式纳入 exposure mi | plan001_dag_taxonomy, plan002_k57_extension |\\n| D010 | 2026-05-20 | D010: τ sign_flip 结构性保证修正为 5/7 拓扑（排除 exposure + IV | plan002_k57_extension, plan001_dag_taxonomy |\\n| D009 | 2026-05-20 | D008 修正：6 拓扑 ASV 排序为多维度（非单一排序）。Magnitude: front-do | plan005_asv_extended, plan004_asv_framework |\\n| D008 | 2026-05-20 | 6 拓扑 ASV 灵敏度排序确立：IV(极脆弱) > front-door > confoundin | plan004_asv_framework, plan005_asv_extended |\\n\\n\\n\\n\", \"lines\": 70}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6e9c27d-71be-44e3-9708-179cb6ffa45b",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "c71835ea-1563-4737-b999-fcc527e430e9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/ROADMAP.md\\\", \\\"content\\\": \\\"# causal_annot_error_attrib — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 05:44 UTC | 更新原因: Dream 审稿反馈全部 5 项修复完成，stress test committed\\\\n\\\\n> 详见 paper_framing.md（story/claims）、experiment_plan.yaml（实验列表）\\\\n\\\\n## 核心方向\\\\n多分类 LLM 标注误差在因果推断中的偏差传播：K×K 混淆矩阵 × 7 DAG 拓扑偏差分类 + ASV 灵敏度框架 + 校正指导。\\\\n\\\\n## 当前阶段：Dream 审稿反馈修改完成 → Re-Dream 待系统恢复\\\\n\\\\n### Target Venue\\\\n- Primary: AAAI 2027（abstract 2026-07-21, paper 2026-07-28, ~68 天）\\\\n\\\\n### Core Claims 覆盖率\\\\n| Claim | 完成/总计 | 状态 |\\\\n|-------|-----------|------|\\\\n| 1. Multi-class bias taxonomy | **5/6 (83%)** | plan_001✅ plan_002✅ plan_008✅ plan_009✅ plan_010✅ plan_003⚠️(API 402) |\\\\n| 2. ASV framework | **3/3 (100%)** | plan_004✅ plan_005✅ plan_006✅ |\\\\n| 3. Correction guidance | **1/1 (100%)** | plan_007✅ |\\\\n\\\\n### Dream 审稿反馈修改（全部完成 ✅）\\\\n| Dream 问题 | 状态 | Commit |\\\\n|------------|------|--------|\\\\n| Related work 极薄 | ✅ | +5 refs (Carroll, Dosemeci, Jurek, Lash, Grimmer). 总 31 citations |\\\\n| ASV vs Lash PBA 未阐述 | ✅ | Related work 三维度对比 |\\\\n| Brenner (1993) 矛盾 | ✅ | method.tex 脚注 (sign reversal vs amplification) |\\\\n| IV Dirichlet subspace | ✅ | Appendix section + Table (sign flip→0% at d≥0.5, amplification 100%) |\\\\n| Non-differential stress test | ✅ | Appendix section + limitations 交叉引用 (ε=0.05 → +2.3pp) |\\\\n\\\\n### 关键发现\\\\n- 5/7 拓扑 τ_sign_flip=0%; 2/7 危险（exposure 83%, IV 52%）\\\\n- IV Dirichlet: sign flip 0% at diag≥0.5, amplification 100% at all levels\\\\n- Non-diff stress test: ε≤0.05 → violation 仅增 2.3pp，假设 robust\\\\n- PPI++(93.8%) >> MC-SIMEX(20.9%) >> DSL(2/7 only)\\\\n- HumAID (K=10): 8 valid configs, IV bias 12.4–42.1%, 55.4% ASV-unsafe\\\\n- 跨K实证: 0 sign flips / 126 scenarios, 7B/235B ratio 1.24\\\\n\\\\n## 论文写作\\\\n- 编译通过 16 pages (8 main + 8 appendix), 0 critical warnings, 31 citations\\\\n- 全部 Dream 写作修复已 commit (8617499, fb88983)\\\\n\\\\n## 近期任务\\\\n- [x] Dream W1-W5: 全部 5 个跨档结构性问题修复\\\\n- [x] Commit all changes (2 commits)\\\\n- [ ] Re-dream → **BLOCKED**: 连续 6 次 Phase 1 crash, 已报 Manager\\\\n- [ ] fig5/fig6 重新生成（含 filtered data）\\\\n- [ ] API 充值 → plan_003 剩余组合（非阻塞）\\\\n\\\\n## GPU 预算\\\\nhome-1x5090: 1× RTX 5090（当前空闲，无 running 实验）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D017 | 2026-05-21 | 保持 14 configs / 98 scenarios；ASV-unsafe 阈值 ≤1.0 (3 | plan006_asv_empirical |\\\\n| D016 | 2026-05-21 | plan_006 全量结果确认跨K实证验证：K越小bias越大（K=3 IV 252%），F1 di | plan006_asv_empirical, plan003_empirical_confusion_matrices |\\\\n| D015 | 2026-05-20 | plan_006 humaid 实证结果确认理论框架：IV 最脆弱(42% bias), colli | plan003_empirical_confusion_matrices, plan005_asv_extended, plan004_asv_framework |\\\\n| D014 | 2026-05-20 | plan_007 全量结果确立 Claim 3 correction guidance 层级：PPI | plan007_correction_guidance |\\\\n| D013 | 2026-05-20 | plan_009 证实病态矩阵诊断指标（spectral_gap, condition_number | plan009_pathological_matrices |\\\\n| D012 | 2026-05-20 | plan_007 预览发现：Frisch-Waugh 定理导致 naive_plugin/MLA 对 | plan007_correction_guidance |\\\\n| D011 | 2026-05-20 | paper_framing Claim 1 拓扑数从 6 改为 7（正式纳入 exposure mi | plan001_dag_taxonomy, plan002_k57_extension |\\\\n| D010 | 2026-05-20 | D010: τ sign_flip 结构性保证修正为 5/7 拓扑（排除 exposure + IV | plan002_k57_extension, plan001_dag_taxonomy |\\\\n| D009 | 2026-05-20 | D008 修正：6 拓扑 ASV 排序为多维度（非单一排序）。Magnitude: front-do | plan005_asv_extended, plan004_asv_framework |\\\\n| D008 | 2026-05-20 | 6 拓扑 ASV 灵敏度排序确立：IV(极脆弱) > front-door > confoundin | plan004_asv_framework, plan005_asv_extended |\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 70}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/ROADMAP.md\", \"content\": \"# causal_annot_error_attrib — Research Dashboard\\n\\n> 最后更新: 2026-05-21 05:44 UTC | 更新原因: Dream 审稿反馈全部 5 项修复完成，stress test committed\\n\\n> 详见 paper_framing.md（story/claims）、experiment_plan.yaml（实验列表）\\n\\n## 核心方向\\n多分类 LLM 标注误差在因果推断中的偏差传播：K×K 混淆矩阵 × 7 DAG 拓扑偏差分类 + ASV 灵敏度框架 + 校正指导。\\n\\n## 当前阶段：Dream 审稿反馈修改完成 → Re-Dream 待系统恢复\\n\\n### Target Venue\\n- Primary: AAAI 2027（abstract 2026-07-21, paper 2026-07-28, ~68 天）\\n\\n### Core Claims 覆盖率\\n| Claim | 完成/总计 | 状态 |\\n|-------|-----------|------|\\n| 1. Multi-class bias taxonomy | **5/6 (83%)** | plan_001✅ plan_002✅ plan_008✅ plan_009✅ plan_010✅ plan_003⚠️(API 402) |\\n| 2. ASV framework | **3/3 (100%)** | plan_004✅ plan_005✅ plan_006✅ |\\n| 3. Correction guidance | **1/1 (100%)** | plan_007✅ |\\n\\n### Dream 审稿反馈修改（全部完成 ✅）\\n| Dream 问题 | 状态 | Commit |\\n|------------|------|--------|\\n| Related work 极薄 | ✅ | +5 refs (Carroll, Dosemeci, Jurek, Lash, Grimmer). 总 31 citations |\\n| ASV vs Lash PBA 未阐述 | ✅ | Related work 三维度对比 |\\n| Brenner (1993) 矛盾 | ✅ | method.tex 脚注 (sign reversal vs amplification) |\\n| IV Dirichlet subspace | ✅ | Appendix section + Table (sign flip→0% at d≥0.5, amplification 100%) |\\n| Non-differential stress test | ✅ | Appendix section + limitations 交叉引用 (ε=0.05 → +2.3pp) |\\n\\n### 关键发现\\n- 5/7 拓扑 τ_sign_flip=0%; 2/7 危险（exposure 83%, IV 52%）\\n- IV Dirichlet: sign flip 0% at diag≥0.5, amplification 100% at all levels\\n- Non-diff stress test: ε≤0.05 → violation 仅增 2.3pp，假设 robust\\n- PPI++(93.8%) >> MC-SIMEX(20.9%) >> DSL(2/7 only)\\n- HumAID (K=10): 8 valid configs, IV bias 12.4–42.1%, 55.4% ASV-unsafe\\n- 跨K实证: 0 sign flips / 126 scenarios, 7B/235B ratio 1.24\\n\\n## 论文写作\\n- 编译通过 16 pages (8 main + 8 appendix), 0 critical warnings, 31 citations\\n- 全部 Dream 写作修复已 commit (8617499, fb88983)\\n\\n## 近期任务\\n- [x] Dream W1-W5: 全部 5 个跨档结构性问题修复\\n- [x] Commit all changes (2 commits)\\n- [ ] Re-dream → **BLOCKED**: 连续 6 次 Phase 1 crash, 已报 Manager\\n- [ ] fig5/fig6 重新生成（含 filtered data）\\n- [ ] API 充值 → plan_003 剩余组合（非阻塞）\\n\\n## GPU 预算\\nhome-1x5090: 1× RTX 5090（当前空闲，无 running 实验）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D017 | 2026-05-21 | 保持 14 configs / 98 scenarios；ASV-unsafe 阈值 ≤1.0 (3 | plan006_asv_empirical |\\n| D016 | 2026-05-21 | plan_006 全量结果确认跨K实证验证：K越小bias越大（K=3 IV 252%），F1 di | plan006_asv_empirical, plan003_empirical_confusion_matrices |\\n| D015 | 2026-05-20 | plan_006 humaid 实证结果确认理论框架：IV 最脆弱(42% bias), colli | plan003_empirical_confusion_matrices, plan005_asv_extended, plan004_asv_framework |\\n| D014 | 2026-05-20 | plan_007 全量结果确立 Claim 3 correction guidance 层级：PPI | plan007_correction_guidance |\\n| D013 | 2026-05-20 | plan_009 证实病态矩阵诊断指标（spectral_gap, condition_number | plan009_pathological_matrices |\\n| D012 | 2026-05-20 | plan_007 预览发现：Frisch-Waugh 定理导致 naive_plugin/MLA 对 | plan007_correction_guidance |\\n| D011 | 2026-05-20 | paper_framing Claim 1 拓扑数从 6 改为 7（正式纳入 exposure mi | plan001_dag_taxonomy, plan002_k57_extension |\\n| D010 | 2026-05-20 | D010: τ sign_flip 结构性保证修正为 5/7 拓扑（排除 exposure + IV | plan002_k57_extension, plan001_dag_taxonomy |\\n| D009 | 2026-05-20 | D008 修正：6 拓扑 ASV 排序为多维度（非单一排序）。Magnitude: front-do | plan005_asv_extended, plan004_asv_framework |\\n| D008 | 2026-05-20 | 6 拓扑 ASV 灵敏度排序确立：IV(极脆弱) > front-door > confoundin | plan004_asv_framework, plan005_asv_extended |\\n\\n\\n\\n\", \"lines\": 70}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e6e9c27d-71be-44e3-9708-179cb6ffa45b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T17:55:33.057Z_
+
+<details><summary>↩ Tool result · `toolu_01Q6HbLUmvnCuvjA9XgBcRRC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan006_asv_empirical** (success): 真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\\n- **plan010_annot_sensitivity_toolkit** (success): 封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\\n- **plan003_empirical_confusion_matrices** (failed): Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\\n\\n## 趋势\\n成功 13 / 负向 0 / 失败 1 / 共 14\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\n\\n## 告警\\n- plan003_empirical_confusion_matrices: 训练失败 — unknown\\n\", \"total_chars\": 1083, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4e39a40-b7a4-4e4b-86ab-da150cf0f76e",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "eca49c1f-a9fa-4174-88b7-0a12007b2e93",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **plan006_asv_empirical** (success): 真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\\\\n- **plan010_annot_sensitivity_toolkit** (success): 封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\\\\n- **plan003_empirical_confusion_matrices** (failed): Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\\\\n\\\\n## 趋势\\\\n成功 13 / 负向 0 / 失败 1 / 共 14\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nhome-1x5090: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- plan003_empirical_confusion_matrices: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1083, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan006_asv_empirical** (success): 真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\\n- **plan010_annot_sensitivity_toolkit** (success): 封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\\n- **plan003_empirical_confusion_matrices** (failed): Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\\n\\n## 趋势\\n成功 13 / 负向 0 / 失败 1 / 共 14\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\n\\n## 告警\\n- plan003_empirical_confusion_matrices: 训练失败 — unknown\\n\", \"total_chars\": 1083, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a4e39a40-b7a4-4e4b-86ab-da150cf0f76e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T17:55:33.116Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01UfZAYEjJjvcXWgaPfK98dy`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eca49c1f-a9fa-4174-88b7-0a12007b2e93",
+  "isSidechain": false,
+  "requestId": "req_011CbG9K4pRfSYWqTCmKNdsR",
+  "type": "assistant",
+  "uuid": "e6e9c27d-71be-44e3-9708-179cb6ffa45b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GJcMXff848zFTdFKYkYgce",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 40344,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 40344,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #2。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 服务器 home-1x5090 用 **sonny** 账户，**不能用 root/miniconda3**（sonny 无权访问 /root/miniconda3，plan_009 第一次就因此失败） - 项目目录 `/home/s…",
+  "leafUuid": "c71835ea-1563-4737-b999-fcc527e430e9",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal annotation error attribution loop 2",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-21T17:55:48.225Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Session-start initialization complete. Let me summarize what I found:
+
+**Registry**: 14 experiments, all DONE (13 success + 1 failed). No RUNNING/PREPARING experiments. Matches handoff.
+
+**Crons**: 0 reconciled. No active crons.
+
+**Report.md**: Matches handoff - no running experiments, no pending items.
+
+**ROADMAP.md**: 
+- Dream feedback all 5 items fixed
+- Re-dream BLOCKED (Phase 1 crash)
+- fig5/fig6 need regeneration
+
+
+- API recharge needed for plan_003
+- AAAI 2027 deadline: abstract due in about 61 days, paper due in about 68 days
+
+Everything checks out against the handoff. Now I need to report to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c71835ea-1563-4737-b999-fcc527e430e9",
+  "isSidechain": false,
+  "requestId": "req_011CbG9KNZGiak671dMUqczS",
+  "type": "assistant",
+  "uuid": "c86a071c-c86d-4031-bef1-5b4171adccc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JbbpMnJ96qzW57DRhouhCr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15016,
+      "cache_read_input_tokens": 41491,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 41491,
+          "cache_creation_input_tokens": 15016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-21T17:55:48.292Z_
+
+Registry 确认：14 实验全部 DONE（13 success + 1 failed），0 RUNNING，0 active crons。与 handoff 一致，无过时状态。
+
+向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c86a071c-c86d-4031-bef1-5b4171adccc0",
+  "isSidechain": false,
+  "requestId": "req_011CbG9KNZGiak671dMUqczS",
+  "type": "assistant",
+  "uuid": "e27a1ee3-aaee-4c8f-a290-9f74c9a81cb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JbbpMnJ96qzW57DRhouhCr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15016,
+      "cache_read_input_tokens": 41491,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 41491,
+          "cache_creation_input_tokens": 15016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T17:55:48.781Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TbiQAWxExUg9GfnLDGAVJT`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e27a1ee3-aaee-4c8f-a290-9f74c9a81cb5",
+  "isSidechain": false,
+  "requestId": "req_011CbG9KNZGiak671dMUqczS",
+  "type": "assistant",
+  "uuid": "5cec7b86-e120-4962-bb07-0b3768c2d951",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JbbpMnJ96qzW57DRhouhCr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15016,
+      "cache_read_input_tokens": 41491,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15016,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 41491,
+          "cache_creation_input_tokens": 15016,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15016
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T17:55:48.785Z_
+
+<details><summary>↩ Tool result · `toolu_01TbiQAWxExUg9GfnLDGAVJT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cec7b86-e120-4962-bb07-0b3768c2d951",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "6dd660ef-59ea-4f3b-8069-778eca646e02",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "5cec7b86-e120-4962-bb07-0b3768c2d951",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T17:56:00.127Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_019BHYoGjUJPodYsUeJXJdGv`</summary>
+
+```json
+{
+  "text": "[资源] GPU 0/1 (home-1x5090 RTX 5090 空闲) | Worker 0 (GPU 0 / CPU 0) | 磁盘: 未检测\n\nLoop #2 session 启动，状态同步完成。\n\n**当前状态**: 14 实验全部 DONE（13 success + 1 failed），0 RUNNING，0 active crons，0 active workers。GPU 空闲。\n\n**阻塞项**:\n1. Re-dream BLOCKED — 连续 6 次 Phase 1 crash，已报 Manager，等系统恢复\n2. plan_003 剩余标注 BLOCKED — API 402 余额耗尽，等充值\n3. fig5/fig6 重新生成 — 等 Director 指示\n\n**就绪可执行**:\n- AAAI 2027 abstract deadline 2026-07-21（~61 天），paper deadline 2026-07-28（~68 天）\n- 论文 16 pages 编译通过，Dream 反馈 5 项全部修复已 commit\n- 3 Core Claims 覆盖率 83%/100%/100%，唯一缺口是 plan_003 API 标注（非阻塞）\n\n**等待 Director 指示**: 当前无可自主推进的任务（全部待办项依赖外部条件解除）。如有新任务或阻塞解除请告知。",
+  "project": "causal_annot_error_attrib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6dd660ef-59ea-4f3b-8069-778eca646e02",
+  "isSidechain": false,
+  "requestId": "req_011CbG9LXY3WD3s1c6WgLGCU",
+  "type": "assistant",
+  "uuid": "9b9a98f7-006c-4a8c-b951-5841cb018bf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLM6uG889xHBL8vaT1H4BS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 56507,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 56507,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T17:56:03.699Z_
+
+<details><summary>↩ Tool result · `toolu_019BHYoGjUJPodYsUeJXJdGv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b9a98f7-006c-4a8c-b951-5841cb018bf2",
+  "isSidechain": false,
+  "promptId": "b394e804-d8c1-43a9-98c9-be20e3e04ce2",
+  "type": "user",
+  "uuid": "f44f776e-b059-4fb7-ade1-54b465ed1d97",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "9b9a98f7-006c-4a8c-b951-5841cb018bf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_82826270",
+  "sessionId": "d7cc0198-92ec-4d47-b21d-f9da346f797a",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

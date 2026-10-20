@@ -1,0 +1,1044 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/1a0553d0-b519-446e-9c95-723f2a392d5c.jsonl`
+- **Structured JSON:** [`932b38a2762047153434.json`](../../sessions/93/932b38a2762047153434.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:54:55.442Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:54:55.442Z",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research material. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n```\n\n## ⚠️ 致命性前置问题：投稿venue严重不匹配\n\n在进入正式评估之前，必须指出一个**致命性问题**：本 proposal 投稿目标为 **CoRL 2026（Conference on Robot Learning）**。CoRL 的 scope 明确要求论文必须聚焦于 **robotics 与 machine learning 的交叉**，要求 \"submissions should focus on a core robotics problem\"，鼓励报告 real-robot experiments 或提供 simulation-to-real 的证据。\n\n本 proposal 是一个纯粹的 **LLM 安全对齐可复现性审计**，涉及 DPO/PPO/GRPO 在 Qwen3-Instruct 上的 seed variance 分析，**没有任何机器人学习内容**。即使 CoRL 列出了 \"learning approaches to robot safety and alignment\" 作为 topic，这指的是**机器人**的安全和对齐，而非通用 LLM 安全对齐。\n\n**在 CoRL 投稿此论文的中稿概率接近 0%，大概率会被 desk reject。** 此论文更适合的 venue 包括：NeurIPS、ICML、ICLR、ACL、EMNLP 等。\n\n---\n\n以下评估假设将此 proposal 投稿至一个**合适的 venue**（如 NeurIPS/ICML 2026 的 safety track），评估 idea 本身的质量。\n\n---\n\n```\n【领域调研】:\n\n- [arXiv:2512.12066] Larsen (Dec 2025), \"The Instability of Safety\": \n  引入 SSI（Safety Stability Index），测试 4 个 7-12B 模型在 876 harmful prompts 上、\n  20 种采样配置下的 refusal 一致性。发现 18-28% prompts 出现 refuse/comply flip。\n  关键限制：仅测量 inference-time variance（固定权重，变 sampling），不涉及 training-time variance。\n  ✅ Proposal 对该论文的描述准确。\n\n- [arXiv:2506.17209] Fraser et al. (June 2025, LLMSEC), \"Fine-Tuning Lowers Safety\":\n  在 Llama-3.2-1B 和 Mistral-7B 上用 5 seeds 做 SFT（LoRA + 4-bit），\n  在 SORRY-Bench 上发现最高 9pp 的 harmfulness score variance。\n  关键限制：仅 SFT（非 preference optimization），仅 2 个小模型，仅 5 seeds，LoRA 初始化和 seed variance 混杂。\n  ✅ Proposal 对该论文的描述准确，gap 定位合理。\n\n- [arXiv:2603.19335] OXRL (March 2026), \"Do Post-Training Algorithms Actually Differ?\":\n  统一框架覆盖 51 种 post-training 算法，Qwen 2.5 at 0.5B-7B，3-5 seeds，\n  发现 scale-dependent ranking inversions（SimPO 从 1.5B 最差到 7B 最好）。\n  capability variance baseline: ±0.57pp on GSM8K for SGRPO at 1.5B。\n  关键限制：无任何 safety evaluation。\n  ✅ Proposal 引用准确。\n\n- [arXiv:2505.20065] SafeDPO (ICLR 2026 Oral):\n  在 PKU-SafeRLHF-30K 上用 DPO 达到 ~97% harmless ratio。\n  确认存在于 ICLR 2026 Oral，arXiv ID 正确。\n  关键限制：未报告 cross-seed variance。\n  ✅ Proposal 引用准确。\n\n- [arXiv:2506.00676] SafeTuneBed (May 2025):\n  安全微调工具包，3-seed 平均，提到 \"refusal consistency\" 但未正式定义。\n  ✅ 存在且描述准确。\n\n- [arXiv:2511.12982] SafeGRPO (Nov 2025):\n  classifier-as-reward paradigm for GRPO safety alignment。\n  ✅ 存在且描述准确。\n\n- 调研总结：LLM 安全对齐的 seed variance / 可复现性是一个被近期工作零散触及但\n  尚未系统化的问题。Larsen 和 Fraser 分别从 inference-time 和 SFT training-time \n  提供了碎片化证据；OXRL 建立了 capability variance baseline 但没做 safety；\n  SafeDPO 展示了 preference optimization 的 safety 有效性但没报告 variance。\n  Proposal 定位的 gap——对 preference optimization 方法做系统化 training-time \n  safety reproducibility audit——确实存在，没有被已有工作完全覆盖。\n```\n\n```\n【Trivial Alternative 检验】:\n\n存在显著的 trivial alternative 威胁：\n\n1. **\"少量 seeds 就够了\"替代方案**：Fraser et al. 仅用 5 seeds 就已经发现了 9pp variance \n   这一核心现象。如果核心 claim 是 \"safety 比 capability 更 fragile under retraining\"，\n   那么用 5 seeds × 3 algorithms × 2 scales（30 runs 而非 260 runs）可能就足以验证。\n   20 seeds 的增量价值主要在 variance estimation 的 precision 和 power analysis 的 \n   rigor，这是统计学上的精细化，而非概念上的飞跃。\n\n2. **\"跑一遍就能猜到\"威胁**：安全对齐本来就被广泛认为是 fragile 的（jailbreaking、\n   fine-tuning attacks、representation engineering 文献已反复论证）。\"Safety 比 \n   capability 更 fragile under retraining\" 这个 finding，如果为 positive，多数审稿人\n   大概率会说 \"I would have guessed this\"。增量价值在于 *量化* 这种 fragility，\n   但量化本身的 novelty 有限。\n\n增量价值在于：(a) minimum-seed lookup tables 的治理实用性，(b) 跨算法/跨尺度的\n系统性 variance decomposition，(c) 硬件和 reward model 的独立影响量化。\n但这些更接近 \"thoroughly executed empirical study\" 而非 \"new insight\"。\n```\n\n```\n【前提假设检验】:\n\n核心 claim 逻辑链中有以下未验证假设：\n\n1. **\"Full FT vs LoRA 是关键 confound\" 假设**：Proposal 花 ~50% 额外 compute 用 \n   full fine-tuning 替代 LoRA，理由是 LoRA 初始化引入额外 variance。但这一假设\n   本身没有实证——Fraser et al. 没有做 LoRA vs full FT 对比，可能 LoRA 初始化\n   variance 实际上远小于 seed variance。如果是这样，额外 50% 的 compute 没有\n   买到真正的 insight。\n\n2. **\"σ̂_safety ≈ 3.9pp 可以从 SFT 外推到 DPO/PPO/GRPO\" 假设**：Power analysis \n   使用 Fraser et al. 的 SFT variance 估计。但 SFT 和 preference optimization \n   的训练动态完全不同（DPO 有 reference model regularization，PPO 有 reward model \n   引导），实际 variance 可能更大也可能更小。如果 DPO 的 variance 显著小于预期\n   （因为 reference model regularization），20 seeds 可能是 overkill；反之亦然。\n   Power analysis 的前提不够稳健。\n\n3. **\"Qwen3-Instruct 结果可推广\" 假设**：仅在一个模型家族（Qwen3）上实验，\n   但 claim 是关于 \"preference-based alignment\" 的一般性结论。如果 Qwen3 的 \n   safety alignment 实现方式特殊，结论的可推广性受限。\n\n4. **\"Temperature=0 能隔离 training-time variance\" 假设**：在 evaluation 时使用\n   deterministic decoding（temp=0），但 Larsen 发现即使 temp=0 也有 5-12% flip rate。\n   这意味着 SCI-T 仍然包含部分 inference-time 噪声，并非纯粹的 training-time variance。\n```\n\n```\n【3 维度打分】:\n\n1. Novelty: 弱-中 — \n   核心贡献是将 Fraser et al. 的 SFT seed variance 发现扩展到 preference optimization，\n   并用更多 seeds + 更多 algorithms + 更大 scale 系统化。SCI-T 是 SSI 的直接机械式推广\n   （同一公式，换了 variance source）。ANOVA variance decomposition 是标准统计工具的\n   应用。整体更接近 \"scale-up empirical study\" 而非 \"conceptual innovation\"。\n   \n   与 OXRL (arXiv:2603.19335) 相比：OXRL 已经建立了 controlled post-training comparison \n   的范式（51 algorithms, Qwen, multiple scales）；本 proposal 本质上是在 OXRL 的范式上\n   加了 safety evaluation + 更多 seeds。\n   \n   与 Fraser et al. (arXiv:2506.17209) 相比：scale-up 是真实的（SFT→DPO/PPO/GRPO, \n   2 models→3 scales, 5 seeds→20 seeds, 1 benchmark→4），但核心 insight 是同一个。\n   \n   最大的 novelty 在 minimum-seed lookup tables——但这更是一个 engineering/governance \n   deliverable，而非学术 novelty。\n\n2. Significance: 中 — \n   研究问题（safety alignment 的 training-time reproducibility）确实重要，对 AI \n   governance 和 safety evaluation 实践有直接实用价值。EU AI Act 和 NIST AI RMF \n   确实需要这类 reproducibility standards。但：\n   \n   (a) 如果核心 finding 是 \"safety 比 capability 更 fragile\"——这已经是社区的 prior，\n   不会改变任何人的行为模式；\n   (b) 如果核心 finding 是量化的 minimum-seed tables——这对工业实践有用但学术影响力有限；\n   (c) 结果仅基于 Qwen3 一个模型家族，推广性受限。\n   \n   总体是一个 \"useful but not field-changing\" 的贡献。\n\n3. Related Work: 强 — \n   Proposal 对 related work 的覆盖非常全面且准确。经调研验证：\n   - Larsen (arXiv:2512.12066)、Fraser et al. (arXiv:2506.17209)、OXRL (arXiv:2603.19335)、\n     SafeDPO (arXiv:2505.20065) 均真实存在且描述准确\n   - Gap 定位合理：确实没有已发表工作同时覆盖 preference optimization + multi-scale + \n     multi-seed + safety evaluation\n   - 差异化定位清晰（vs Larsen: inference→training; vs Fraser: SFT→preference optimization; \n     vs OXRL: capability→safety）\n```\n\n```\n【概率估计】: 15-25%，中位 20%\n\n（注：此概率假设投稿至合适 venue 如 NeurIPS/ICML safety track。\n投稿 CoRL 2026 的中稿概率接近 0%，因为完全不在 scope 内。）\n\n【估计理由】: \nIdea 方向站得住脚——研究问题真实存在、gap 真实、related work 定位清晰（Related Work \n维度为\"强\"）。但 idea 内核薄弱：核心 finding 无论正负都不会让审稿人感到 surprising\n（\"safety 比 capability fragile\" 是 expected result），SCI-T 是 SSI 的机械式推广而非\n概念创新，整体更像是一个 thoroughly executed empirical study 而非有独立学术价值的发现。\nTrivial alternative 威胁显著——Fraser et al. 用 5 seeds 就已经建立了核心现象的存在性。\n\n限制上界的维度是 **Novelty（弱-中）**：即使实验执行完美、结果 clean，审稿人大概率\n会认为 \"this is a well-executed study confirming what we already suspected\"，\n给出 borderline reject 或 weak accept，导致在 top venue 的竞争中处于劣势。\n\n【主要风险】:\n1. **\"Expected result\" 风险**：核心发现 \"safety is more fragile than capability\" \n   符合社区 prior，审稿人会说 \"I would have guessed this\"，削弱论文的学术贡献度。\n   这是 idea 层面的根本性制约，无法通过改进实验设计来解决。\n2. **\"Scale-up ≠ Novelty\" 风险**：审稿人可能认为从 Fraser et al. 的 5-seed SFT study \n   到 260-run preference optimization audit 是 \"more compute, not more insight\"——\n   除非结果中出现 genuinely unexpected 的 finding（如 \"某些 algorithm/scale 组合下\n   safety 反而比 capability 更稳定\"），否则 novelty 分数很难超过 borderline。\n```\n\n---\n\n**关于 venue 的关键提醒：** 无论 idea 质量如何，**这篇论文完全不在 CoRL（Conference on Robot Learning）的 scope 内**，投稿 CoRL 2026 主会大概率会被 desk reject。建议考虑 NeurIPS 2026、ICML 2026、或 EMNLP 2026 的 safety/alignment track，或者 SafeAI workshop 等。\n\nSources:\n- [The Instability of Safety (arXiv:2512.12066)](https://arxiv.org/abs/2512.12066)\n- [Fine-Tuning Lowers Safety (arXiv:2506.17209)](https://arxiv.org/abs/2506.17209)\n- [OXRL: Do Post-Training Algorithms Actually Differ? (arXiv:2603.19335)](https://arxiv.org/abs/2603.19335)\n- [SafeDPO (arXiv:2505.20065, ICLR 2026 Oral)](https://arxiv.org/abs/2505.20065)\n- [SafeGRPO (arXiv:2511.12982)](https://arxiv.org/html/2511.12982)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [LLM-Safety Evaluations Lack Robustness (arXiv:2503.02574)](https://arxiv.org/abs/2503.02574)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to complete my evaluation. Let me compile the results.\n\n---\n\n```\n【阶段】: Triage\n```\n\n## ⚠️ 前置关键发现：致命的投稿方向问题\n\n在进入 idea 质量评估之前，必须首先指出一个**致命的结构性问题**：**本 proposal 与 CoRL 2026 的投稿范围完全不匹配。**\n\nCoRL (Conference on Robot Learning) 2026 的 Call for Papers 明确声明：\n> *\"Submissions without a robotics focus will be returned without review.\"*\n\nCoRL 接收的主题包括：robot perception/control、imitation learning for robotics、RL for physical robots、robot manipulation/navigation/locomotion/driving/flight 等。虽然 CoRL 有一个 topic 叫 \"learning approaches to robot safety and alignment\"，但这指的是**机器人物理安全**（如碰撞避免、安全约束RL），而非 LLM 文本安全对齐。\n\n本 proposal 是纯粹的 **LLM safety alignment 可复现性研究**，没有任何 robotics 组件。投 CoRL **将以极高概率（~99%）被 desk reject**，根本不会进入同行评审流程。\n\n**合适的投稿方向**应为：NeurIPS 2026、ICML 2026、ACL/EMNLP 2026、AAAI 2027、或 SafeGenAI/TrustNLP 等 workshop。\n\n以下评估将在 **假设投稿至合适 NLP/ML venue**（如 NeurIPS 2026）的前提下，对 idea 本身质量进行客观评分。\n\n---\n\n```\n【领域调研】:\n```\n\n- **[Larsen, arXiv:2512.12066] (Dec 2025)**: 提出 SSI 指标，发现 18-28% 的 prompt 在不同推理种子和温度下发生 refuse/comply 翻转。这是**推理时**的不稳定性，模型权重固定。论文确实存在，描述准确。本 proposal 的 SCI-T 是对 SSI 从 inference-time 到 training-time 的直接扩展。\n- **[Fraser et al., arXiv:2506.17209] (June 2025, LLMSEC)**: 在 Llama-3.2-1B 和 Mistral-7B 上用 LoRA+4-bit 做 SFT，5 seeds 发现最高 9pp harmfulness score 方差。论文确实存在，描述准确。但仅限 SFT（非偏好优化），仅 5 seeds，仅 LoRA，仅 SORRY-Bench。\n- **[OXRL, arXiv:2603.19335] (March 2026)**: 在 Qwen 2.5 上对 51 种 post-training 算法做控制实验，发现 scale-dependent ranking inversions（SimPO 1.5B 最差→7B 最好）。3-5 seeds, ±0.57pp GSM8K std。论文确实存在，描述准确。关键：**仅评估 capability，无 safety 评估**。\n- **[SafeDPO, arXiv:2505.20065] (ICLR 2026 Oral)**: DPO 在 PKU-SafeRLHF-30K 上达到 ~97% harmless ratio。确认为 ICLR 2026 Oral。**未报告 cross-seed variance**。\n- **[SafeGRPO, arXiv:2511.12982] (Nov 2025)**: 验证了 classifier-as-reward 范式用于 GRPO safety alignment。\n- **[arXiv:2503.02574] (March 2025)**: 评估 pipeline 选择导致高达 28% ASR 方差，支持 proposal 的 fixed-pipeline 设计。\n- **[SafeTuneBed, arXiv:2506.00676] (May 2025)**: Safety fine-tuning toolkit，3-seed 平均，提及 \"refusal consistency\" 但无正式定义。\n- **近期相关新工作**: arXiv:2602.07340（safety alignment robustness via geometry control）、arXiv:2603.22829（balanced DPO for safety）、arXiv:2504.02193（multi-model synthetic preference pitfalls）等显示 safety alignment fragility 是活跃研究方向，但**无人做过系统的 training-time reproducibility audit**。\n\n- **调研总结**: Safety alignment 的脆弱性已有初步证据（Larsen: inference-time；Fraser: SFT training-time），但 preference-based alignment (DPO/PPO/GRPO) 的 training-time safety 可复现性确实是一个**真实但可预见的空白**。Proposal 正确识别了这个 gap，但 gap 的存在 ≠ 填补它的发现会 surprising。\n\n---\n\n```\n【Trivial Alternative 检验】:\n```\n\n**存在明显的 trivial alternative 威胁。**\n\n1. **低成本替代：3-5 seeds + 置信区间报告**。Fraser et al. 用 5 seeds 就已经展示了 safety variance 的存在。OXRL 用 3-5 seeds 建立了 capability baseline。一个研究者只需在 DPO 上跑 5 seeds（3 scales），报告 safety vs. capability variance 的比较，就能传达本 proposal **核心发现的 80%**——即 safety 比 capability 更 fragile under retraining。这只需 ~45 runs（vs. 260 runs），成本降低 5-6 倍。\n\n2. **增量价值在哪？** Proposal 的增量价值在于：(a) 20 seeds 的统计 power 更强，(b) 3 种算法的覆盖，(c) ANOVA 方差分解，(d) minimum-seed lookup tables。这些是**精度和实用性的提升**，不是**insight 层面的新发现**。核心 claim \"safety is more fragile than capabilities under retraining\" 几乎可以用 trivial baseline 验证。\n\n3. **SCI-T 指标的增量价值有限**：SCI-T(p) = max_c(n_c) / K，其中 c ∈ {REFUSE, COMPLY}。这本质上就是一个 per-prompt majority agreement ratio，是 SSI 的 trivial adaptation（把 inference seeds 换成 training seeds），没有技术深度。\n\n---\n\n```\n【前提假设检验】:\n```\n\n核心逻辑链中有以下未经验证的假设：\n\n1. **σ̂_safety ≈ 3.9pp 从 SFT 推广到 DPO/PPO/GRPO 的假设**（高风险）：Fraser et al. 的 3.9pp variance 来自 SFT+LoRA+4-bit 在 Llama-1B 上的结果。DPO/PPO/GRPO 是完全不同的优化范式，full fine-tuning 的 variance 特征可能与 LoRA 截然不同，scale 也不同。用 SFT+LoRA 的 σ̂ 做 preference optimization+full FT 的 power analysis，其有效性存疑。如果实际 σ̂ 远小于 3.9pp，20 seeds 的 power analysis 结论会完全不同。\n\n2. **\"Safety 比 capability 更 fragile\" 的核心假设被视为待验证**，但审稿人可能认为这几乎是 obvious 的：safety alignment 是后训练阶段施加的、相对薄弱的行为约束，而 capabilities 更多来自预训练，当然后训练 seed 对 safety 的影响 > 对 capability 的影响。这不是 \"surprising\" 发现，而是 \"confirmatory\" 发现。\n\n3. **PKU-SafeRLHF-30K 作为唯一训练数据的代表性**：Proposal 使用单一 safety preference dataset。不同的 safety preference data（如 Anthropic HH-RLHF、BeaverTails）可能产生不同的 variance pattern。结论的 generalizability 受限于单一数据源。\n\n4. **Fixed evaluation pipeline 能完全隔离 training-time variance**：虽然 temperature=0 的确定性解码减少了评估噪声，但 WildGuard 本身作为 7B 分类器的决策边界可能引入系统偏差，且 bf16 推理在不同硬件上可能有微小数值差异。\n\n---\n\n```\n【3 维度打分】:\n```\n\n**1. Novelty: 弱-中 (偏弱)** \n\n理由：Proposal 正确识别了一个真实的研究空白——preference-based alignment 的 training-time safety reproducibility 尚未被系统研究。但：\n- 核心贡献是一个**大规模测量研究**（measurement study），不是方法创新。测量研究的 novelty 高度依赖\"结果是否 surprising\"。\n- 预期核心发现 \"safety is more fragile than capabilities\" 基于 Fraser et al. 和 Larsen 的已有证据，几乎可以被先验预测（审稿人会说 \"I would have guessed this\"）。\n- SCI-T 是 SSI 的 trivial adaptation（替换 inference seeds → training seeds），不构成方法论贡献。\n- ANOVA 方差分解是标准统计方法的直接应用。\n- 相比 Fraser et al. (2506.17209) 的增量主要在**规模**（更多seeds、更多算法、full FT），而非**insight 质量**。这是一种 \"scaling up an existing idea\" 而非 \"new idea\"。\n\n**2. Significance: 中**\n\n理由：\n- 研究问题本身是重要的：AI 安全部署确实需要了解 safety alignment 的 reproducibility bounds。这与 EU AI Act 和 NIST AI RMF 的实际监管需求对接。\n- Minimum-seed lookup tables 是有实际应用价值的 deliverable。\n- 但 significance 被两个因素限制：(a) 对现有 safety alignment 方法的设计不会产生影响（这是一个 characterization 研究，不 prescribe 如何改进）；(b) 结论的 generalizability 受限于 Qwen3-Instruct 单一模型族和 PKU-SafeRLHF 单一数据集。\n- 对比 OXRL (2603.19335) 发现的 scale-dependent ranking inversions（genuinely surprising），本 proposal 预期发现的 insight density 较低。\n\n**3. Related Work: 强**\n\n理由：\n- 对已有工作的覆盖全面且准确。所有引用的关键论文（Larsen、Fraser et al.、OXRL、SafeDPO、SafeGRPO）经验证确实存在，描述准确。\n- 差异化定位清晰：明确区分了 inference-time vs. training-time variance、SFT vs. preference optimization、LoRA vs. full FT。\n- 对每个相关工作的局限性分析到位（Fraser: 仅 SFT/LoRA/5 seeds；OXRL: 仅 capability；Larsen: 仅 inference-time）。\n- 唯一不足：未讨论 arXiv:2602.07340（safety alignment robustness via geometry control）等 2026 年初的新工作，这些工作虽然不直接竞争，但从不同角度研究 safety alignment fragility。\n\n---\n\n```\n【概率估计】: [15% - 30%] 中位 22%\n\n（注：此概率基于投稿至合适的 NLP/ML venue 如 NeurIPS 2026 的假设。\n投稿 CoRL 2026 的中稿概率：~0-1%，因会被 desk reject。）\n```\n\n```\n【估计理由】:\n```\n\n此 proposal 是一个设计严谨、覆盖全面的大规模 measurement study，Related Work 梳理堪称优秀。但 idea 的上界被 **Novelty 维度严重限制**：\n\n1. 核心发现 \"safety is more fragile than capabilities under retraining\" 高度可预测，不会让审稿人 surprised。这将 idea 锁定在 25-35% 区间以下。\n2. 存在明显的 trivial alternative 威胁——5 seeds 就能传达核心 message 的大部分，260 runs 的增量主要是精度而非 insight。这进一步压低至 15-25% 区间。\n3. SCI-T 作为核心方法贡献过于 trivial，无法单独支撑一个 top venue 论文。\n4. Related Work 的强覆盖和实验设计的严谨能部分补救，将下界从 15% 拉到可能的 20% 附近，但无法突破 idea 本身的天花板。\n\n综合判断：如果投稿合适 venue 且实验执行完美，中位概率约 22%。idea 质量处于 \"方向正确、gap 真实、但核心发现不 surprising\" 的区间。\n\n```\n【主要风险】:\n```\n\n1. **\"Confirmatory, not surprising\" 拒稿风险**：最可能的拒稿理由是审稿人认为 \"we already know safety is fragile; scaling up the measurement doesn't constitute a novel contribution\"。核心发现缺乏 counter-intuitive 的维度——如果结果是 \"safety is equally stable as capabilities\"，反而更 novel。\n2. **Trivial alternative 质疑**：审稿人可能指出少量 seeds（3-5）即可达到核心 practical value（报告 CI），质疑 20 seeds + 260 runs 的 elaborate setup 是否 justified——尤其当增量 insight 有限时，compute 成本与 insight 不成比例。\n\n---\n\n**关于 CoRL 投稿的最终建议**：此 proposal 投 CoRL 2026 是完全错误的方向选择，将导致不经评审直接退稿。建议作者重新考虑投稿至 NeurIPS 2026 Datasets and Benchmarks Track（更匹配 measurement study 性质）、EMNLP 2026、或 SafeGenAI workshop。\n\nSources:\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [The Instability of Safety (Larsen, 2512.12066)](https://arxiv.org/abs/2512.12066)\n- [Fine-Tuning Lowers Safety (Fraser et al., 2506.17209)](https://arxiv.org/abs/2506.17209)\n- [OXRL: Do Post-Training Algorithms Actually Differ? (2603.19335)](https://arxiv.org/abs/2603.19335)\n- [SafeDPO (2505.20065, ICLR 2026 Oral)](https://arxiv.org/abs/2505.20065)\n- [CoRL 2026 Conference](https://www.corl.org/)\n- [LLM-Safety Evaluations Lack Robustness (2503.02574)](https://arxiv.org/abs/2503.02574)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient information to conduct my evaluation. Let me compile the assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【⚠️ 致命前置问题：投稿会议与论文内容严重不匹配】\n\nCoRL (Conference on Robot Learning) 的主题范围包括：robot perception, robot control, imitation learning for robotics, \nRL for physical robots, robot manipulation/navigation/locomotion, sim-to-real transfer 等。虽然 CoRL 列出了 \n\"learning approaches to robot safety and alignment\" 作为一个话题方向，但这指的是**机器人系统的安全**（物理安全、\n安全控制策略），而非 LLM 文本安全对齐。\n\n本 proposal 的全部内容——DPO/PPO/GRPO 对齐算法、文本安全评估 (WildGuard, HarmBench, SORRY-Bench)、\nrefusal behavior、harmlessness scores——完全属于 NLP/LLM alignment 领域，与机器人学习零交集。\n这篇论文更适合投稿 NeurIPS、ICML、ICLR、ACL、EMNLP 或 AIES/FAccT 等会议。\n\n在 CoRL，本文极大概率被 desk reject 或因 out-of-scope 获得极低分数。\n这一问题独立于 idea 质量本身，但对中稿概率有决定性影响。\n\n以下评估分两部分：(A) 假设投到 CoRL 的实际概率；(B) idea 本身的内在质量（venue-agnostic）。\n\n=====================================================================\n\n【领域调研】:\n\n1. Larsen (arXiv:2512.12066, Dec 2025): 提出 Safety Stability Index (SSI)，测量 inference-time 的安全\n   一致性。在 4 个 7-12B 模型上发现 18-28% 的 prompt 在不同 seed/temperature 下会 flip refusal/compliance。\n   关键区别：SSI 测量的是固定权重下的生成随机性，不是 training-time 的权重差异。\n   → 本 proposal 的 SCI-T 是 SSI 的直接类比（将 \"across sampling seeds\" 替换为 \"across training seeds\"）。\n\n2. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC): 首次展示 training-seed safety variance。\n   5 个 SFT seeds 在 Llama-3.2-1B 和 Mistral-7B (LoRA + 4-bit) 上产生最高 9pp harmfulness score 差异。\n   → 本 proposal 的核心前提（safety variance exists）已被此工作初步验证。本文是其 scale-up。\n\n3. OXRL (arXiv:2603.19335, March 2026): 51 个 post-training 算法在 Qwen 2.5 上的 controlled study，\n   发现 scale-dependent ranking inversions (SimPO 在 1.5B 最差、7B 最佳)。3-5 seeds，仅评估 capability。\n   → 本 proposal 复用了其框架思路但加入 safety 维度。OXRL 报告了 ±0.57pp capability variance。\n\n4. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral): DPO 在 PKU-SafeRLHF-30K 上达到 ~97% harmless ratio。\n   无 cross-seed variance 报告。→ 本 proposal 使用相同数据集和方法，填补 variance 空白。\n\n5. SafeTuneBed (arXiv:2506.00676, May 2025): Safety fine-tuning toolkit，3 seeds 平均，\n   提到 \"refusal consistency\" 但未正式定义。→ 验证该方向有需求但无人正式做。\n\n6. \"LLM-Safety Evaluations Lack Robustness\" (arXiv:2503.02574, March 2025): evaluation pipeline 选择\n   导致最高 28% ASR variance。→ 支持 proposal 的 fixed-evaluation-pipeline 设计。\n\n7. SafeGRPO (arXiv:2511.12982, Nov 2025): 验证 classifier-as-reward 用于 GRPO safety alignment。\n   → 支持 proposal 使用 WildGuard 作为 GRPO reward 的设计。\n\n- 调研总结: Safety alignment 的 reproducibility 是一个正在形成但尚未系统化的研究方向。\n  Fraser et al. 开了头（SFT, 小规模），OXRL 做了 capability 的 controlled study 但没碰 safety。\n  本 proposal 位于这两条线的交叉点：将 OXRL 式的 controlled multi-algorithm study 引入 safety 领域。\n  Gap 确实存在，但这个 gap 更多是 \"scale up existing observation\" 而非 \"discover something new\"。\n\n=====================================================================\n\n【Trivial Alternative 检验】:\n\n存在。以下是一个成本显著更低的 trivial baseline：\n\n(1) **缩小实验规模的 baseline**: 用 5-10 seeds（而非 20）、1-2 个算法（如 DPO + PPO）、\n    1-2 个 scale，仍然可以验证 \"safety variance > capability variance\" 这一核心 claim。\n    Fraser et al. 用 5 seeds 就已经观测到了 9pp variance。增加到 20 seeds 提高的是统计精度，\n    不是改变核心发现。一个更精简的 study（~40-60 runs vs 260 runs）可能得到相同的定性结论。\n\n(2) **直接复用 Fraser et al. 的 setup 加 preference optimization**: 在 Fraser 的框架上\n    简单加入 DPO/PPO trainer 即可验证 \"preference optimization 也有同样问题\"。\n\n增量价值在于：(a) 20 seeds 的统计置信度更高，能产出 power-justified minimum-seed tables；\n(b) 方差分解可以 disentangle seed/algorithm/scale/hardware effects；(c) full FT vs LoRA 的对比\n消除了 initialization confound。但这些都是 **精度提升**，不是 **洞察提升**。核心结论\n（\"safety is fragile under retraining\"）很可能不需要 260 runs 就能得到。\n\n=====================================================================\n\n【前提假设检验】:\n\n核心 claim: \"Safety properties exhibit significantly higher cross-seed variance than capability \nproperties at the same scale.\"\n\n未经验证的关键假设：\n\n(1) **\"Safety variance from SFT generalizes to preference optimization\" 假设**:\n    Fraser et al. 的 variance 数据来自 SFT (supervised fine-tuning)，不是 DPO/PPO/GRPO。\n    Proposal 用 Fraser 的 SFT σ̂_safety ≈ 3.9pp 做 power analysis，但 DPO/PPO/GRPO 的\n    optimization landscape 与 SFT 完全不同（DPO 有 reference model regularization，\n    PPO 有 reward model + value function + clipping，GRPO 有 group normalization）。\n    这些正则化机制可能**降低** seed variance，也可能**放大**它。用 SFT 的 variance\n    估计做 power analysis 的前提假设未经验证。\n\n(2) **\"Full FT vs LoRA 的 variance 差异方向\" 假设**:\n    Proposal 假设 LoRA 引入了额外 initialization noise（A/B matrix random init），\n    因此 full FT 能\"更干净地隔离 seed variance\"。但也有可能 LoRA 的低秩约束反而**降低**了\n    variance（因为参数空间更小、优化更稳定），而 full FT 在高维空间中 seed variance 更大。\n    这个方向性假设是 proposal 选择 full FT 的核心理由，但未提供论证。\n\n(3) **\"Safety 的 fragility 是训练层面而非数据/评估层面\" 的假设**:\n    arXiv:2503.02574 已经证明 evaluation pipeline 本身能引入 28% ASR variance。\n    虽然 proposal 固定了 evaluation pipeline，但 safety 评估本身的 metric noise \n    （WildGuard 的分类边界、prompt ambiguity）可能远大于 capability metrics \n    （GSM8K 有明确答案）。观测到的 \"safety variance > capability variance\" \n    可能部分反映的是 **metric reliability 的差异** 而非 training fragility 的差异。\n    这是一个严重的 confound，proposal 未讨论。\n\n=====================================================================\n\n【3 维度打分】:\n\n1. Novelty: 弱-中 (Weak-to-Medium)\n\n   理由：核心贡献是将已有观察（Fraser et al. 的 SFT seed variance）scale up 到 preference \n   optimization 领域。SCI-T 是 SSI 的 trivial 类比（换掉 \"across sampling\" → \"across training seeds\"），\n   公式完全同构 (max_c(n_c)/K)。ANOVA 是标准统计方法。真正的 \"新\" 在于实验规模（260 runs, 3 algorithms, \n   3 scales），但规模不是 novelty——它是 engineering effort。\n   \n   与 Fraser et al. (2506.17209) 相比：本质上是同一个 research question 的 bigger version。\n   与 OXRL (2603.19335) 相比：将 OXRL 的 capability-focused controlled study 加上 safety 评估。\n   这两个 delta 都是增量的、可预见的 next steps，不是 conceptual leap。\n\n2. Significance: 中 (Medium)\n\n   理由：研究问题本身是重要的——safety alignment 的 reproducibility 关乎 AI governance 和部署决策。\n   Minimum-seed lookup tables 对 regulatory framework (EU AI Act, NIST AI RMF) 有实用价值。\n   \n   但核心 limitation 是：\"If the result is positive (safety is more fragile than capability), \n   would reviewers say 'surprising'?\" **不会。** Safety alignment 比 capability 更脆弱是\n   领域内的共识直觉（safety 依赖更表层的 behavior patterns，capability 植根于 pre-training）。\n   Larsen (2512.12066) 和 Fraser et al. (2506.17209) 都已经初步证实了这一点。\n   本 proposal 用更多 runs 去量化一个已知的现象，提供了 precision 但不太可能提供 surprise。\n   \n   如果结果是 negative（safety 不比 capability 更 fragile），那才真正 surprising——但 proposal \n   的整个 framing 和 power analysis 都假设了 positive result，对 negative result 的讨论不足。\n\n3. Related Work: 强 (Strong)\n\n   理由：对已有工作的覆盖非常全面和准确。所有关键引用（Larsen, Fraser, OXRL, SafeDPO, SafeGRPO, \n   SafeTuneBed, arXiv:2503.02574）都真实存在且描述准确。Gap 的识别清晰——确实没有工作同时覆盖 \n   (a) preference optimization, (b) multi-scale, (c) ≥20 seeds, (d) multi-benchmark, \n   (e) formal consistency metric, (f) ANOVA decomposition。差异化定位做得很好。\n   \n   唯一的小瑕疵：proposal 声称 Fraser et al. 的 σ̂_safety ≈ 3.9pp 是从 \"range/d₂ for n=5\" \n   估计的，但这种从 range 估计 σ 的方法在 n=5 时精度很差，且 Fraser 的 variance 来自 SFT+LoRA \n   而非 preference optimization，跨方法的 variance 外推不一定成立。\n\n=====================================================================\n\n【概率估计 — CoRL 2026】: 2% - 5%，中位 3%\n\n理由：这是一篇纯 NLP/LLM safety alignment 论文，与 CoRL (Conference on Robot Learning) 的\nscope 严重不匹配。论文无任何机器人学习内容（无 embodied AI, 无 robot control, 无 sim-to-real, \n无 physical safety）。极大概率被 desk reject 或被 area chair 判定 out of scope。\n即使进入评审，reviewer pool 是 robotics/RL 研究者，对 LLM safety 评估 benchmark \n(WildGuard, HarmBench, SORRY-Bench) 不熟悉，难以给出有利评价。\n\n【概率估计 — 如果投到合适会议 (NeurIPS/ICML/ICLR)】: 18% - 30%，中位 23%\n\n理由：Idea 方向站得住脚，gap 识别清晰，related work 扎实，实验设计严谨。但 novelty 主要在\n实验规模而非 conceptual contribution；核心发现（safety > capability variance）在直觉上可预期，\n不会让 reviewer 感到 surprising；SCI-T 是 trivial metric extension；存在 trivial alternative \n威胁（更小规模实验可能得到相同定性结论）。作为 empirical study，需要结果本身足够有趣\n（如发现 scale 有 non-monotonic effect on fragility, 或某个算法意外 robust）才能突破 25% 线。\n\n=====================================================================\n\n【主要风险】:\n\n1. **致命风险 — 会议不匹配**: 投稿 CoRL 2026 是方向性错误。本文是纯 NLP safety alignment 工作，\n   CoRL 的 scope 是 robot learning。这一问题无法通过修改论文内容补救（除非彻底重写为 \n   robot safety alignment 方向）。建议改投 NeurIPS 2026, ICML 2026, 或 EMNLP 2026。\n\n2. **Idea 层面风险 — \"I would have guessed this\" 问题**: 核心 hypothesis（safety is more \n   fragile than capability）是领域共识直觉，positive result 不会让 reviewer surprised。\n   如果实验结果只是确认了大家的预期（\"是的，safety variance 确实更大\"），reviewer 可能评价为\n   \"confirmatory but not insightful\"。论文需要在 WHERE/WHY/HOW 维度上提供超出 \"yes it's fragile\" \n   的洞察（如哪些 harm categories 最 fragile？fragility 和 model scale 是什么关系？\n   算法间的 fragility ranking 是否和 capability ranking 反转？），但这些是实验结果，\n   不是 idea 本身能保证的。\n```\n\nSources:\n- [The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior](https://arxiv.org/abs/2512.12066)\n- [Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency](https://arxiv.org/abs/2506.17209)\n- [Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales](https://arxiv.org/abs/2603.19335)\n- [SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety](https://arxiv.org/abs/2505.20065)\n- [SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning](https://arxiv.org/abs/2506.00676)\n- [LLM-Safety Evaluations Lack Robustness](https://arxiv.org/abs/2503.02574)\n- [SafeGRPO: Self-Rewarded Multimodal Safety Alignment](https://arxiv.org/abs/2511.12982)\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [On the Extreme Variance of Certified Local Robustness Across Model Seeds](https://arxiv.org/pdf/2601.13303)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment\n\n## Description\nPreliminary evidence shows that safety alignment is fragile: Larsen (2025) found 18–28% of prompts flip between refusal and compliance across inference seeds, and Fraser et al. (2025) found up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on small models using LoRA. Yet no study has systematically measured training-time safety reproducibility for the preference optimization methods (DPO, PPO-RLHF, GRPO) that actually power deployed alignment, characterized how fragility scales with model size, disentangled LoRA initialization variance from seed variance, or provided power-justified minimum-seed recommendations for reliable safety claims. We propose the first large-scale training-time safety reproducibility audit of preference-based alignment. Using TRL v1.0's unified training stack with full fine-tuning throughout (eliminating LoRA initialization as a confound), we train DPO, PPO-RLHF, and GRPO on Qwen3-Instruct at 1.7B, 4B, and 8B scales with 20 seeds per configuration using PKU-SafeRLHF-30K safety preference data (~260 total runs including hardware and reward model ablations). The three algorithms cover distinct paradigms: offline preference optimization (DPO), online reward-model-based RL (PPO with Skywork/ArmoRM/FsfairX reward models), and online classifier-based RL (GRPO with WildGuard as safety reward). We evaluate on WildGuard, HarmBench, SORRY-Bench, and four capability benchmarks under a fixed evaluation pipeline. We introduce SCI-T (Safety Consistency Index for Training), extending Larsen's inference-time SSI to training-time: while SSI measures agreement across sampling randomness with fixed weights, SCI-T measures agreement across different training seeds under fixed inference—capturing fundamentally different learned safety boundaries. We decompose variance via ANOVA across seed, algorithm, scale, hardware, and reward model factors, testing the central hypothesis that safety is significantly more fragile than capabilities under retraining. A priori power analysis using Fraser et al.'s empirical variance (σ̂_safety ≈ 3.9pp) and OXRL's capability baseline (σ̂_capability ≈ 0.55pp) confirms 20 seeds provides ≥88% power for detecting safety/capability variance ratios ≥3:1 and ≥82% power for ANOVA interaction effects. The primary deliverable is empirically-grounded minimum-seed lookup tables for AI governance frameworks.\n\n## Core Problem\nWhen the same preference-based alignment algorithm (DPO/PPO-RLHF/GRPO) is rerun with different random seeds, hardware configurations, or reward model instances, how much do safety properties—refusal behavior, harmlessness scores, and instance-level safety decisions—vary compared to general capabilities? Preliminary evidence from SFT (Fraser et al. 2025) and inference-time sampling (Larsen 2025) shows safety decisions are surprisingly inconsistent, but no study has systematically measured training-time safety reproducibility for the preference optimization methods that actually power deployed safety alignment (PPO-RLHF at OpenAI/Anthropic, DPO in open-source pipelines, GRPO at DeepSeek), or characterized how this fragility scales with model size.\n\n## Opportunity\nThree converging lines of evidence create a clear gap. First, Larsen (arXiv:2512.12066) introduced the Safety Stability Index (SSI) showing 18–28% of prompts flip between refusal and compliance across inference seeds and temperatures—but this measures generation-level variance with fixed model weights, not the deeper question of whether retraining produces models with fundamentally different safety boundaries. Second, Fraser et al. (arXiv:2506.17209) demonstrated up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and SORRY-Bench—establishing that training-time safety variance exists but leaving preference-based alignment (DPO/PPO/GRPO), larger scales, multi-benchmark evaluation, LoRA-vs-full-FT variance confounds, and formal consistency metrics unexplored. Third, OXRL (arXiv:2603.19335) revealed dramatic scale-dependent ranking inversions across post-training algorithms on capability benchmarks using Qwen 2.5 at 0.5B–7B, but evaluated no safety properties. Fourth, SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) demonstrated that safety alignment via DPO on PKU-SafeRLHF-30K can achieve ~97% harmless ratio, establishing both the dataset and method as mature—but reported no cross-seed variance. Meanwhile, TRL v1.0 (March 2026) now provides a unified training stack for DPO, PPO, and GRPO, eliminating infrastructure confounds. We propose to close this gap with the first large-scale, multi-algorithm, multi-scale reproducibility audit of training-time safety alignment, using full fine-tuning throughout to cleanly isolate training-seed variance from LoRA initialization noise.\n\n## Related Work / Landscape\nLarsen (arXiv:2512.12066, Dec 2025) introduced the SSI metric measuring per-prompt refusal agreement across inference configurations (5 seeds × 4 temperatures), finding 18–28% flip rates on BeaverTails across four 7–12B models. Critically, SSI captures generation-level stochasticity (same weights, different sampling), not model-level variance from retraining. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC) studied SFT seed variance with 5 seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and AdamW-8bit optimizer, evaluating on SORRY-Bench (440 class-balanced unsafe instructions); they found up to 9pp harmfulness score variance (e.g., 0.73 to 0.82 on Llama-1B fine-tuned on Dolly) and called for 'multiple runs to estimate random variation' but used only SFT, not preference optimization, and did not disentangle LoRA initialization variance from true seed variance. SafeTuneBed (arXiv:2506.00676, May 2025) offers a fine-tuning safety toolkit that averages results over 3 seeds and lists 'refusal consistency' as a metric but never formally defines or operationalizes it. OXRL (arXiv:2603.19335, March 2026) provides a controlled framework for 51 post-training algorithms using Qwen 2.5 Instruct at 0.5B–7B with full FT at ≤3B and LoRA (rank 16, α=32) at 7B, using 3–5 seeds per configuration on GSM8K self-play data—but evaluates only capability benchmarks with no safety evaluation. Notably, OXRL found scale-dependent ranking inversions (SimPO worst at 1.5B, best at 7B) and cross-seed std of ±0.57pp on GSM8K for SGRPO at 1.5B with 5 seeds, establishing a baseline for capability variance. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) achieves ~97% harmless ratio using DPO on PKU-SafeRLHF-30K but reports no cross-seed variance. The 'LLM-Safety Evaluations Lack Robustness' paper (arXiv:2503.02574, March 2025) demonstrates that evaluation pipeline choices cause up to 28% ASR variance, motivating fixed-evaluation-pipeline designs. SafeGRPO (arXiv:2511.12982, Nov 2025) proposes rule-governed reward construction for GRPO-based safety alignment, demonstrating that safety classifiers can serve as GRPO reward signals—validating our approach to using WildGuard as GRPO's safety reward function. TRL v1.0 (March 2026) provides a unified post-training stack for SFT, DPO, PPO, and GRPO with consistent infrastructure, enabling fair cross-algorithm comparison. PKU-SafeRLHF (arXiv:2406.15513, ACL 2025) provides 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories and 3 severity levels—the standard safety preference dataset used by SafeDPO and related work. Open-source reward models (Skywork-Reward-Llama-3.1-8B-v0.2, ArmoRM-Llama3-8B-v0.1, FsfairX-LLaMA3-RM-v0.1) achieve strong RewardBench scores including explicit safety dimensions, enabling controlled reward model ablations for PPO. No published work combines: (a) three distinct alignment paradigms (offline DPO, online PPO-RLHF, online GRPO), (b) multiple model scales with full fine-tuning, (c) ≥20 seeds per configuration with a priori power justification, (d) multiple safety benchmarks with fixed evaluation pipeline, (e) a formal training-time consistency metric, and (f) separated variance decomposition across seed, algorithm, scale, hardware, and reward model factors.\n\n## Approach\nPhase 1 — Infrastructure (3 weeks): Build unified training and evaluation pipeline using TRL v1.0 as the training backbone and OXRL-inspired evaluation infrastructure. Training setup: Configure DPO, PPO-RLHF, and GRPO trainers in TRL v1.0 with full fine-tuning at all scales using DeepSpeed ZeRO-2 for memory management at 8B. We use full fine-tuning throughout (not LoRA) to eliminate LoRA random A/B matrix initialization as a variance source—a confound identified in Fraser et al.'s LoRA-based SFT study where LoRA initialization and seed variance were entangled. This increases compute by ~50% at 8B but produces cleaner variance isolation, which is essential for a paper whose central contribution is variance decomposition. Preference dataset: PKU-SafeRLHF-30K (PKU-Alignment, ACL 2025), selected for three reasons: (i) decoupled safety/helpfulness annotations enable isolating safety-specific preference learning, (ii) it is the standard benchmark used by SafeDPO (ICLR 2026 Oral) enabling direct comparability, (iii) 19 harm categories with 3 severity levels enable fine-grained analysis of which safety dimensions are most fragile. Dataset adaptation per algorithm: DPO receives safety preference pairs directly (safer response as chosen, less safe as rejected); PPO uses the 27K prompts with an external reward model scoring generated responses; GRPO uses the same prompts with WildGuard (7B) as a binary safety classifier reward (safe=1, unsafe=0), following the classifier-as-reward paradigm validated by SafeGRPO (arXiv:2511.12982). Evaluation pipeline: Fix the evaluation pipeline completely (WildGuard as primary safety judge, deterministic decoding at temperature=0, fixed chat template, bf16 quantization) per the robustness findings of arXiv:2503.02574 to isolate training-time variance from evaluation-time variance. Integrate WildGuard (prompt + response classification, 7B Mistral-based), HarmBench (400 harmful behaviors with 7B Mistral classifier), SORRY-Bench (440 category-balanced unsafe instructions), and capability benchmarks (GSM8K, MATH, AlpacaEval 2, MT-Bench).\n\nPhase 2 — Training Runs (6–7 weeks): Algorithm selection rationale: We select DPO, PPO-RLHF, and GRPO to cover three fundamentally distinct alignment paradigms—(i) DPO: offline, reference-model-regularized preference optimization without a reward model, the dominant method in open-source safety alignment; (ii) PPO-RLHF: online, reward-model-based reinforcement learning, the method deployed for safety-critical systems at OpenAI and Anthropic; (iii) GRPO: online, group-relative optimization with classifier-based rewards, the emerging paradigm (DeepSeek-R1) increasingly applied to safety via SafeGRPO. This replaces the originally proposed SimPO, which is architecturally a DPO variant (reference-free but still offline preference optimization)—including both DPO and SimPO would over-represent the offline paradigm while leaving online RL unrepresented, creating an algorithmic coverage gap for the methods that actually power deployed safety alignment. Core runs: Train DPO, PPO, and GRPO on Qwen3-Instruct at three scales (1.7B, 4B, 8B) with 20 random seeds each, holding all hyperparameters fixed per algorithm. Full fine-tuning with DeepSpeed ZeRO-2; 1 H100 for 1.7B/4B DPO/GRPO, 2 H100s for 8B and all PPO runs (policy + reference + reward/value models). Total core: 180 runs (3 × 3 × 20). Hardware ablation: For the 8B DPO configuration, run 20 seeds on A100-80GB vs H100-80GB and 20 seeds with bf16 vs fp16 to isolate hardware/precision effects (40 additional runs, comparing against the 20 core H100/bf16 runs). Reward model ablation: For the 8B PPO configuration, run 20 seeds each with three independently-developed open-source reward models: (RM1) Skywork-Reward-Llama-3.1-8B-v0.2 — Bradley-Terry RM, #1 on RewardBench among 8B models, trained on Skywork's curated preference data; (RM2) ArmoRM-Llama3-8B-v0.1 — multi-objective RM with mixture-of-experts gating across 19 reward dimensions including an explicit safety objective, 89.0 RewardBench overall; (RM3) FsfairX-LLaMA3-RM-v0.1 — Bradley-Terry RM trained on the RLHFlow dataset, different training distribution from Skywork. The core PPO runs use ArmoRM as default (its explicit safety dimension makes it most appropriate for safety alignment); the ablation adds 40 additional runs with Skywork-RM and FsfairX-RM. All three RMs are ~8B parameters, Llama-3-based, publicly available, and independently trained with different objectives, architectures (Bradley-Terry vs MoE-gated multi-objective), and training data—providing genuine variance in the reward signal. Total runs: 180 core + 40 hardware + 40 reward model = 260 runs.\n\nPhase 3 — Evaluation and Analysis (3–4 weeks): For each of 260 checkpoints, evaluate safety (WildGuard refusal rate on WildGuardTest 5K subset, HarmBench ASR with 400 behaviors, SORRY-Bench harmfulness with 440 prompts) and capabilities (GSM8K 1.3K, MATH 5K, AlpacaEval 2 805 prompts, MT-Bench 80 turns). All safety evaluations use deterministic decoding (temperature=0) to ensure SCI-T captures training-time variance only. Introduce the Safety Consistency Index for Training (SCI-T), explicitly extending Larsen's SSI from inference-time to training-time: SCI-T(p) = max_c(n_c) / K where n_c counts training-seed runs in category c ∈ {REFUSE, COMPLY} and K = number of seeds. While SSI measures whether the same model produces consistent safety decisions across sampling randomness, SCI-T measures whether different models (from different training seeds) make consistent safety decisions under fixed inference conditions (temperature=0). This distinction matters because training-time inconsistency implies fundamentally different learned safety boundaries, not mere sampling noise. Compute SCI-T for every prompt × algorithm × scale combination. Apply ANOVA decomposition: Var(safety_metric) = Var(seed) + Var(algorithm) + Var(scale) + Var(hardware) + Var(reward_model) + Var(algorithm×scale) + residual. Test the central hypothesis: safety properties exhibit significantly higher cross-seed variance than capability properties at the same scale, and this differential fragility changes with scale. Additionally analyze which of PKU-SafeRLHF's 19 harm categories show highest SCI-T fragility—identifying 'fragile safety categories' that are most sensitive to training randomness.\n\nPhase 4 — Minimum-Seed Recommendations (2–3 weeks): A priori power justification for 20 seeds: We apply Cédric et al.'s (2018) framework to our own experimental design before running. From Fraser et al.'s empirical data: 5 SFT seeds on Llama-1B produced harmfulness scores ranging 0.73–0.82, yielding σ̂_safety ≈ 3.9pp (range/d₂ for n=5). From OXRL: 5 SGRPO seeds at 1.5B on GSM8K produced ±0.57pp std, yielding σ̂_capability ≈ 0.55pp. For our central F-test (H₀: σ²_safety = σ²_capability vs H₁: σ²_safety > σ²_capability) with df=(19,19): at true variance ratio λ=3 (conservative estimate from Fraser/OXRL data suggesting λ≈50), power ≥ 0.88 at α=0.05. For ANOVA main effects (3 levels, N=180, medium effect f=0.25): power ≈ 0.92. For ANOVA interactions (3×3 design, df=(4,171)): power ≈ 0.82 for medium effects. For variance estimation precision: with n=20 (df=19), the 95% CI for σ² spans a factor of 3.69 (χ²_{0.975,19}/χ²_{0.025,19} = 32.85/8.91), sufficient for categorizing configurations as 'high-fragility' vs 'low-fragility.' Conclusion: 20 seeds per cell provides ≥80% power for all planned analyses, meeting the standard power threshold. Adaptive provision: if Phase 2 pilot (first 5 seeds per cell) reveals smaller effect sizes than estimated, we increase to 25 seeds with ~25% additional compute within budget contingency. Post-hoc deliverable: Using the full empirical variance estimates, derive minimum seed counts needed for P(detecting a true safety difference ≥ δ) ≥ 0.8 at α=0.05 via inverse power analysis. Produce concrete lookup tables: 'To claim safety refusal rate ≥ R% with 95% confidence for algorithm X at scale Y, run ≥ N seeds.' This is the actionable regulatory deliverable targeting EU AI Act verifiable safety requirements and NIST AI RMF reproducibility standards.\n\n## Inspiration\nExtension: Larsen's SSI measures inference-time safety agreement; we extend this concept to training-time agreement across different model weights, a fundamentally harder reproducibility challenge since different weights may encode different safety boundaries. Scale-up: Fraser et al.'s SFT seed study (2 models, 5 seeds, 1 benchmark, LoRA) demonstrated the phenomenon exists; we scale to 3 algorithms × 3 model sizes × 20 seeds × 4 benchmarks with full fine-tuning (eliminating LoRA initialization variance) and formal ANOVA decomposition. Bridge: OXRL's controlled post-training infrastructure + TRL v1.0's unified training stack + PKU-SafeRLHF-30K's decoupled safety preference data + WildGuard/HarmBench classifiers can be composed to create a safety-aware reproducibility audit pipeline that none provides alone. Safety reward signals: SafeGRPO's demonstration that safety classifiers can serve as GRPO reward functions validates our approach to using WildGuard as GRPO's reward signal for safety alignment. Reward model variance: ArmoRM's multi-objective design (with explicit safety dimension), Skywork-Reward's top RewardBench performance, and FsfairX's Bradley-Terry approach provide three independently-trained reward models for PPO ablation, operationalizing RVPO's concern about inter-reward variance. Statistical grounding: Cédric et al.'s power analysis framework for RL seed selection (arXiv:1806.08295) provides the methodology for deriving minimum-seed recommendations—never applied to safety alignment. We apply it a priori to justify our 20-seed design.\n\n## Key References\n- The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior (arXiv:2512.12066, Dec 2025) — introduces SSI metric for inference-time refusal consistency; SCI-T extends SSI to training-time\n- Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency (arXiv:2506.17209, June 2025, LLMSEC) — first evidence of training-seed safety variance: 9pp range across 5 SFT seeds on Llama-1B with LoRA/4-bit, SORRY-Bench; establishes σ̂_safety ≈ 3.9pp used in our power analysis\n- SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning (arXiv:2506.00676, May 2025) — safety fine-tuning toolkit with 3-seed averaging; mentions 'refusal consistency' without formal definition\n- Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales (arXiv:2603.19335, March 2026) — OXRL framework, Qwen 2.5 at 0.5B–7B, scale-dependent ranking inversions, ±0.57pp GSM8K std providing σ̂_capability baseline for our power analysis\n- LLM-Safety Evaluations Lack Robustness (arXiv:2503.02574, March 2025) — evaluation pipeline variance up to 28%, motivates our fixed-pipeline design\n- PKU-SafeRLHF: Towards Multi-Level Safety Alignment for LLMs with Human Preference (arXiv:2406.15513, ACL 2025) — 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories; our primary training dataset\n- SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety (arXiv:2505.20065, ICLR 2026 Oral) — achieves ~97% harmless ratio via DPO on PKU-SafeRLHF-30K; establishes dataset+method maturity but reports no cross-seed variance\n- SafeGRPO: Self-Rewarded Multimodal Safety Alignment via Rule-Governed Policy Optimization (arXiv:2511.12982, Nov 2025) — validates classifier-as-reward paradigm for GRPO safety alignment; motivates our WildGuard-as-reward design\n- TRL v1.0: Post-Training Library Built to Move with the Field (Hugging Face, March 2026) — unified training stack for DPO, PPO, GRPO eliminating infrastructure confounds across algorithms\n- How Many Random Seeds? Statistical Power Analysis in Deep RL Experiments (arXiv:1806.08295, 2018) — methodology for minimum-seed derivation via power analysis; we extend to safety alignment and apply a priori to justify our 20-seed design\n- What Matters For Safety Alignment? (arXiv:2601.03868, Jan 2026) — cross-model safety comparison across 32 models and 13 families\n- WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs (arXiv:2406.18495, 2024) — 7B safety classifier achieving 94.7% F1 on response harmfulness; our primary safety judge and GRPO reward signal\n- Skywork-Reward: Bag of Tricks for Reward Modeling in LLMs (arXiv:2410.18451, 2024) — Skywork-Reward-Llama-3.1-8B-v0.2, #1 8B model on RewardBench; one of three PPO reward models in our ablation\n- Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (arXiv:2406.12845, 2024) — ArmoRM-Llama3-8B-v0.1, 89.0 RewardBench with explicit safety dimension; default PPO reward model\n- Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping (arXiv 2020) — seed variance methodology for NLP\n- Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning LLMs (IJCNLP-AACL 2025) — macro/micro consistency metrics for LLM fine-tuning\n- RVPO: Risk-Sensitive Alignment via Variance Regularization (arXiv:2605.05750, May 2026) — inter-reward variance penalization in single runs; motivates reward model ablation\n- Improving Safety Alignment via Balanced Direct Preference Optimization (arXiv:2603.22829, March 2026) — safety alignment overfitting in DPO\n- Safety Training Persists Through Helpfulness Optimization in LLM Agents (arXiv:2603.02229, March 2026) — safety-helpfulness Pareto frontier under DPO\n- Reproducibility in Machine-Learning-Based Research: Overview, Barriers, and Drivers (AI Magazine 2025)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '~2,800 H100-hours total: ~1,600 training (260 runs across 3 algorithms × 3 scales × 20+ seeds, all full fine-tuning with DeepSpeed ZeRO-2; PPO runs require 2 H100s for policy+reference+RM) + ~1,200 evaluation (260 checkpoints × 8 benchmarks including WildGuard 7B and HarmBench 7B classifier inference, each checkpoint requiring ~3-4 GPU-hours for generation + classification across all benchmarks)', 'timeline': '17–19 weeks (infrastructure + TRL v1.0 pipeline setup 3w, training runs 6–7w on 8×H100 cluster, evaluation 3–4w, statistical analysis + minimum-seed derivation + paper writing 5–6w)', 'estimated_gpu_cost': '$7,000 at ~$2.50/H100-hr on mid-tier providers'}\n- **human_in_loop**: {'gpu_hours': '~2,800 H100-hours (identical core compute; full FT precludes further memory optimization)', 'timeline': '14–16 weeks (Claude accelerates TRL v1.0 pipeline integration, ANOVA analysis scripts, power analysis code, per-category fragility analysis, and paper drafting)', 'claude_api_cost': '$500–700 (Sonnet 4.6 for code generation, statistical analysis automation, and drafting; ~150M tokens)', 'estimated_gpu_cost': '$7,000'}\n- **auto_research**: {'gpu_hours': '~2,800 H100-hours', 'timeline': '11–14 weeks (parallelized experiment orchestration with automated sweep management, evaluation pipelines, and ANOVA analysis)', 'claude_api_cost': '$1,500–2,200 (experiment orchestration, automated analysis, full paper draft generation; ~600M tokens)', 'estimated_gpu_cost': '$7,000', 'speed_bottleneck': 'GPU cluster queue time for 260 training jobs (PPO runs ~2× longer than DPO/GRPO due to multi-model training); sequential dependency between training completion and safety evaluation; WildGuard 7B + HarmBench 7B classifier inference throughput across 260 checkpoints × ~6K safety evaluation prompts each'}\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:54:55.445Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:54:55.445Z",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:54:55.458Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research material. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+```
+
+## ⚠️ 致命性前置问题：投稿venue严重不匹配
+
+在进入正式评估之前，必须指出一个**致命性问题**：本 proposal 投稿目标为 **CoRL 2026（Conference on Robot Learning）**。CoRL 的 scope 明确要求论文必须聚焦于 **robotics 与 machine learning 的交叉**，要求 "submissions should focus on a core robotics problem"，鼓励报告 real-robot experiments 或提供 simulation-to-real 的证据。
+
+本 proposal 是一个纯粹的 **LLM 安全对齐可复现性审计**，涉及 DPO/PPO/GRPO 在 Qwen3-Instruct 上的 seed variance 分析，**没有任何机器人学习内容**。即使 CoRL 列出了 "learning approaches to robot safety and alignment" 作为 topic，这指的是**机器人**的安全和对齐，而非通用 LLM 安全对齐。
+
+**在 CoRL 投稿此论文的中稿概率接近 0%，大概率会被 desk reject。** 此论文更适合的 venue 包括：NeurIPS、ICML、ICLR、ACL、EMNLP 等。
+
+---
+
+以下评估假设将此 proposal 投稿至一个**合适的 venue**（如 NeurIPS/ICML 2026 的 safety track），评估 idea 本身的质量。
+
+---
+
+```
+【领域调研】:
+
+- [arXiv:2512.12066] Larsen (Dec 2025), "The Instability of Safety": 
+  引入 SSI（Safety Stability Index），测试 4 个 7-12B 模型在 876 harmful prompts 上、
+  20 种采样配置下的 refusal 一致性。发现 18-28% prompts 出现 refuse/comply flip。
+  关键限制：仅测量 inference-time variance（固定权重，变 sampling），不涉及 training-time variance。
+  ✅ Proposal 对该论文的描述准确。
+
+- [arXiv:2506.17209] Fraser et al. (June 2025, LLMSEC), "Fine-Tuning Lowers Safety":
+  在 Llama-3.2-1B 和 Mistral-7B 上用 5 seeds 做 SFT（LoRA + 4-bit），
+  在 SORRY-Bench 上发现最高 9pp 的 harmfulness score variance。
+  关键限制：仅 SFT（非 preference optimization），仅 2 个小模型，仅 5 seeds，LoRA 初始化和 seed variance 混杂。
+  ✅ Proposal 对该论文的描述准确，gap 定位合理。
+
+- [arXiv:2603.19335] OXRL (March 2026), "Do Post-Training Algorithms Actually Differ?":
+  统一框架覆盖 51 种 post-training 算法，Qwen 2.5 at 0.5B-7B，3-5 seeds，
+  发现 scale-dependent ranking inversions（SimPO 从 1.5B 最差到 7B 最好）。
+  capability variance baseline: ±0.57pp on GSM8K for SGRPO at 1.5B。
+  关键限制：无任何 safety evaluation。
+  ✅ Proposal 引用准确。
+
+- [arXiv:2505.20065] SafeDPO (ICLR 2026 Oral):
+  在 PKU-SafeRLHF-30K 上用 DPO 达到 ~97% harmless ratio。
+  确认存在于 ICLR 2026 Oral，arXiv ID 正确。
+  关键限制：未报告 cross-seed variance。
+  ✅ Proposal 引用准确。
+
+- [arXiv:2506.00676] SafeTuneBed (May 2025):
+  安全微调工具包，3-seed 平均，提到 "refusal consistency" 但未正式定义。
+  ✅ 存在且描述准确。
+
+- [arXiv:2511.12982] SafeGRPO (Nov 2025):
+  classifier-as-reward paradigm for GRPO safety alignment。
+  ✅ 存在且描述准确。
+
+- 调研总结：LLM 安全对齐的 seed variance / 可复现性是一个被近期工作零散触及但
+  尚未系统化的问题。Larsen 和 Fraser 分别从 inference-time 和 SFT training-time 
+  提供了碎片化证据；OXRL 建立了 capability variance baseline 但没做 safety；
+  SafeDPO 展示了 preference optimization 的 safety 有效性但没报告 variance。
+  Proposal 定位的 gap——对 preference optimization 方法做系统化 training-time 
+  safety reproducibility audit——确实存在，没有被已有工作完全覆盖。
+```
+
+```
+【Trivial Alternative 检验】:
+
+存在显著的 trivial alternative 威胁：
+
+1. **"少量 seeds 就够了"替代方案**：Fraser et al. 仅用 5 seeds 就已经发现了 9pp variance 
+   这一核心现象。如果核心 claim 是 "safety 比 capability 更 fragile under retraining"，
+   那么用 5 seeds × 3 algorithms × 2 scales（30 runs 而非 260 runs）可能就足以验证。
+   20 seeds 的增量价值主要在 variance estimation 的 precision 和 power analysis 的 
+   rigor，这是统计学上的精细化，而非概念上的飞跃。
+
+2. **"跑一遍就能猜到"威胁**：安全对齐本来就被广泛认为是 fragile 的（jailbreaking、
+   fine-tuning attacks、representation engineering 文献已反复论证）。"Safety 比 
+   capability 更 fragile under retraining" 这个 finding，如果为 positive，多数审稿人
+   大概率会说 "I would have guessed this"。增量价值在于 *量化* 这种 fragility，
+   但量化本身的 novelty 有限。
+
+增量价值在于：(a) minimum-seed lookup tables 的治理实用性，(b) 跨算法/跨尺度的
+系统性 variance decomposition，(c) 硬件和 reward model 的独立影响量化。
+但这些更接近 "thoroughly executed empirical study" 而非 "new insight"。
+```
+
+```
+【前提假设检验】:
+
+核心 claim 逻辑链中有以下未验证假设：
+
+1. **"Full FT vs LoRA 是关键 confound" 假设**：Proposal 花 ~50% 额外 compute 用 
+   full fine-tuning 替代 LoRA，理由是 LoRA 初始化引入额外 variance。但这一假设
+   本身没有实证——Fraser et al. 没有做 LoRA vs full FT 对比，可能 LoRA 初始化
+   variance 实际上远小于 seed variance。如果是这样，额外 50% 的 compute 没有
+   买到真正的 insight。
+
+2. **"σ̂_safety ≈ 3.9pp 可以从 SFT 外推到 DPO/PPO/GRPO" 假设**：Power analysis 
+   使用 Fraser et al. 的 SFT variance 估计。但 SFT 和 preference optimization 
+   的训练动态完全不同（DPO 有 reference model regularization，PPO 有 reward model 
+   引导），实际 variance 可能更大也可能更小。如果 DPO 的 variance 显著小于预期
+   （因为 reference model regularization），20 seeds 可能是 overkill；反之亦然。
+   Power analysis 的前提不够稳健。
+
+3. **"Qwen3-Instruct 结果可推广" 假设**：仅在一个模型家族（Qwen3）上实验，
+   但 claim 是关于 "preference-based alignment" 的一般性结论。如果 Qwen3 的 
+   safety alignment 实现方式特殊，结论的可推广性受限。
+
+4. **"Temperature=0 能隔离 training-time variance" 假设**：在 evaluation 时使用
+   deterministic decoding（temp=0），但 Larsen 发现即使 temp=0 也有 5-12% flip rate。
+   这意味着 SCI-T 仍然包含部分 inference-time 噪声，并非纯粹的 training-time variance。
+```
+
+```
+【3 维度打分】:
+
+1. Novelty: 弱-中 — 
+   核心贡献是将 Fraser et al. 的 SFT seed variance 发现扩展到 preference optimization，
+   并用更多 seeds + 更多 algorithms + 更大 scale 系统化。SCI-T 是 SSI 的直接机械式推广
+   （同一公式，换了 variance source）。ANOVA variance decomposition 是标准统计工具的
+   应用。整体更接近 "scale-up empirical study" 而非 "conceptual innovation"。
+   
+   与 OXRL (arXiv:2603.19335) 相比：OXRL 已经建立了 controlled post-training comparison 
+   的范式（51 algorithms, Qwen, multiple scales）；本 proposal 本质上是在 OXRL 的范式上
+   加了 safety evaluation + 更多 seeds。
+   
+   与 Fraser et al. (arXiv:2506.17209) 相比：scale-up 是真实的（SFT→DPO/PPO/GRPO, 
+   2 models→3 scales, 5 seeds→20 seeds, 1 benchmark→4），但核心 insight 是同一个。
+   
+   最大的 novelty 在 minimum-seed lookup tables——但这更是一个 engineering/governance 
+   deliverable，而非学术 novelty。
+
+2. Significance: 中 — 
+   研究问题（safety alignment 的 training-time reproducibility）确实重要，对 AI 
+   governance 和 safety evaluation 实践有直接实用价值。EU AI Act 和 NIST AI RMF 
+   确实需要这类 reproducibility standards。但：
+   
+   (a) 如果核心 finding 是 "safety 比 capability 更 fragile"——这已经是社区的 prior，
+   不会改变任何人的行为模式；
+   (b) 如果核心 finding 是量化的 minimum-seed tables——这对工业实践有用但学术影响力有限；
+   (c) 结果仅基于 Qwen3 一个模型家族，推广性受限。
+   
+   总体是一个 "useful but not field-changing" 的贡献。
+
+3. Related Work: 强 — 
+   Proposal 对 related work 的覆盖非常全面且准确。经调研验证：
+   - Larsen (arXiv:2512.12066)、Fraser et al. (arXiv:2506.17209)、OXRL (arXiv:2603.19335)、
+     SafeDPO (arXiv:2505.20065) 均真实存在且描述准确
+   - Gap 定位合理：确实没有已发表工作同时覆盖 preference optimization + multi-scale + 
+     multi-seed + safety evaluation
+   - 差异化定位清晰（vs Larsen: inference→training; vs Fraser: SFT→preference optimization; 
+     vs OXRL: capability→safety）
+```
+
+```
+【概率估计】: 15-25%，中位 20%
+
+（注：此概率假设投稿至合适 venue 如 NeurIPS/ICML safety track。
+投稿 CoRL 2026 的中稿概率接近 0%，因为完全不在 scope 内。）
+
+【估计理由】: 
+Idea 方向站得住脚——研究问题真实存在、gap 真实、related work 定位清晰（Related Work 
+维度为"强"）。但 idea 内核薄弱：核心 finding 无论正负都不会让审稿人感到 surprising
+（"safety 比 capability fragile" 是 expected result），SCI-T 是 SSI 的机械式推广而非
+概念创新，整体更像是一个 thoroughly executed empirical study 而非有独立学术价值的发现。
+Trivial alternative 威胁显著——Fraser et al. 用 5 seeds 就已经建立了核心现象的存在性。
+
+限制上界的维度是 **Novelty（弱-中）**：即使实验执行完美、结果 clean，审稿人大概率
+会认为 "this is a well-executed study confirming what we already suspected"，
+给出 borderline reject 或 weak accept，导致在 top venue 的竞争中处于劣势。
+
+【主要风险】:
+1. **"Expected result" 风险**：核心发现 "safety is more fragile than capability" 
+   符合社区 prior，审稿人会说 "I would have guessed this"，削弱论文的学术贡献度。
+   这是 idea 层面的根本性制约，无法通过改进实验设计来解决。
+2. **"Scale-up ≠ Novelty" 风险**：审稿人可能认为从 Fraser et al. 的 5-seed SFT study 
+   到 260-run preference optimization audit 是 "more compute, not more insight"——
+   除非结果中出现 genuinely unexpected 的 finding（如 "某些 algorithm/scale 组合下
+   safety 反而比 capability 更稳定"），否则 novelty 分数很难超过 borderline。
+```
+
+---
+
+**关于 venue 的关键提醒：** 无论 idea 质量如何，**这篇论文完全不在 CoRL（Conference on Robot Learning）的 scope 内**，投稿 CoRL 2026 主会大概率会被 desk reject。建议考虑 NeurIPS 2026、ICML 2026、或 EMNLP 2026 的 safety/alignment track，或者 SafeAI workshop 等。
+
+Sources:
+- [The Instability of Safety (arXiv:2512.12066)](https://arxiv.org/abs/2512.12066)
+- [Fine-Tuning Lowers Safety (arXiv:2506.17209)](https://arxiv.org/abs/2506.17209)
+- [OXRL: Do Post-Training Algorithms Actually Differ? (arXiv:2603.19335)](https://arxiv.org/abs/2603.19335)
+- [SafeDPO (arXiv:2505.20065, ICLR 2026 Oral)](https://arxiv.org/abs/2505.20065)
+- [SafeGRPO (arXiv:2511.12982)](https://arxiv.org/html/2511.12982)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [LLM-Safety Evaluations Lack Robustness (arXiv:2503.02574)](https://arxiv.org/abs/2503.02574)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient information to complete my evaluation. Let me compile the results.
+
+---
+
+```
+【阶段】: Triage
+```
+
+## ⚠️ 前置关键发现：致命的投稿方向问题
+
+在进入 idea 质量评估之前，必须首先指出一个**致命的结构性问题**：**本 proposal 与 CoRL 2026 的投稿范围完全不匹配。**
+
+CoRL (Conference on Robot Learning) 2026 的 Call for Papers 明确声明：
+> *"Submissions without a robotics focus will be returned without review."*
+
+CoRL 接收的主题包括：robot perception/control、imitation learning for robotics、RL for physical robots、robot manipulation/navigation/locomotion/driving/flight 等。虽然 CoRL 有一个 topic 叫 "learning approaches to robot safety and alignment"，但这指的是**机器人物理安全**（如碰撞避免、安全约束RL），而非 LLM 文本安全对齐。
+
+本 proposal 是纯粹的 **LLM safety alignment 可复现性研究**，没有任何 robotics 组件。投 CoRL **将以极高概率（~99%）被 desk reject**，根本不会进入同行评审流程。
+
+**合适的投稿方向**应为：NeurIPS 2026、ICML 2026、ACL/EMNLP 2026、AAAI 2027、或 SafeGenAI/TrustNLP 等 workshop。
+
+以下评估将在 **假设投稿至合适 NLP/ML venue**（如 NeurIPS 2026）的前提下，对 idea 本身质量进行客观评分。
+
+---
+
+```
+【领域调研】:
+```
+
+- **[Larsen, arXiv:2512.12066] (Dec 2025)**: 提出 SSI 指标，发现 18-28% 的 prompt 在不同推理种子和温度下发生 refuse/comply 翻转。这是**推理时**的不稳定性，模型权重固定。论文确实存在，描述准确。本 proposal 的 SCI-T 是对 SSI 从 inference-time 到 training-time 的直接扩展。
+- **[Fraser et al., arXiv:2506.17209] (June 2025, LLMSEC)**: 在 Llama-3.2-1B 和 Mistral-7B 上用 LoRA+4-bit 做 SFT，5 seeds 发现最高 9pp harmfulness score 方差。论文确实存在，描述准确。但仅限 SFT（非偏好优化），仅 5 seeds，仅 LoRA，仅 SORRY-Bench。
+- **[OXRL, arXiv:2603.19335] (March 2026)**: 在 Qwen 2.5 上对 51 种 post-training 算法做控制实验，发现 scale-dependent ranking inversions（SimPO 1.5B 最差→7B 最好）。3-5 seeds, ±0.57pp GSM8K std。论文确实存在，描述准确。关键：**仅评估 capability，无 safety 评估**。
+- **[SafeDPO, arXiv:2505.20065] (ICLR 2026 Oral)**: DPO 在 PKU-SafeRLHF-30K 上达到 ~97% harmless ratio。确认为 ICLR 2026 Oral。**未报告 cross-seed variance**。
+- **[SafeGRPO, arXiv:2511.12982] (Nov 2025)**: 验证了 classifier-as-reward 范式用于 GRPO safety alignment。
+- **[arXiv:2503.02574] (March 2025)**: 评估 pipeline 选择导致高达 28% ASR 方差，支持 proposal 的 fixed-pipeline 设计。
+- **[SafeTuneBed, arXiv:2506.00676] (May 2025)**: Safety fine-tuning toolkit，3-seed 平均，提及 "refusal consistency" 但无正式定义。
+- **近期相关新工作**: arXiv:2602.07340（safety alignment robustness via geometry control）、arXiv:2603.22829（balanced DPO for safety）、arXiv:2504.02193（multi-model synthetic preference pitfalls）等显示 safety alignment fragility 是活跃研究方向，但**无人做过系统的 training-time reproducibility audit**。
+
+- **调研总结**: Safety alignment 的脆弱性已有初步证据（Larsen: inference-time；Fraser: SFT training-time），但 preference-based alignment (DPO/PPO/GRPO) 的 training-time safety 可复现性确实是一个**真实但可预见的空白**。Proposal 正确识别了这个 gap，但 gap 的存在 ≠ 填补它的发现会 surprising。
+
+---
+
+```
+【Trivial Alternative 检验】:
+```
+
+**存在明显的 trivial alternative 威胁。**
+
+1. **低成本替代：3-5 seeds + 置信区间报告**。Fraser et al. 用 5 seeds 就已经展示了 safety variance 的存在。OXRL 用 3-5 seeds 建立了 capability baseline。一个研究者只需在 DPO 上跑 5 seeds（3 scales），报告 safety vs. capability variance 的比较，就能传达本 proposal **核心发现的 80%**——即 safety 比 capability 更 fragile under retraining。这只需 ~45 runs（vs. 260 runs），成本降低 5-6 倍。
+
+2. **增量价值在哪？** Proposal 的增量价值在于：(a) 20 seeds 的统计 power 更强，(b) 3 种算法的覆盖，(c) ANOVA 方差分解，(d) minimum-seed lookup tables。这些是**精度和实用性的提升**，不是**insight 层面的新发现**。核心 claim "safety is more fragile than capabilities under retraining" 几乎可以用 trivial baseline 验证。
+
+3. **SCI-T 指标的增量价值有限**：SCI-T(p) = max_c(n_c) / K，其中 c ∈ {REFUSE, COMPLY}。这本质上就是一个 per-prompt majority agreement ratio，是 SSI 的 trivial adaptation（把 inference seeds 换成 training seeds），没有技术深度。
+
+---
+
+```
+【前提假设检验】:
+```
+
+核心逻辑链中有以下未经验证的假设：
+
+1. **σ̂_safety ≈ 3.9pp 从 SFT 推广到 DPO/PPO/GRPO 的假设**（高风险）：Fraser et al. 的 3.9pp variance 来自 SFT+LoRA+4-bit 在 Llama-1B 上的结果。DPO/PPO/GRPO 是完全不同的优化范式，full fine-tuning 的 variance 特征可能与 LoRA 截然不同，scale 也不同。用 SFT+LoRA 的 σ̂ 做 preference optimization+full FT 的 power analysis，其有效性存疑。如果实际 σ̂ 远小于 3.9pp，20 seeds 的 power analysis 结论会完全不同。
+
+2. **"Safety 比 capability 更 fragile" 的核心假设被视为待验证**，但审稿人可能认为这几乎是 obvious 的：safety alignment 是后训练阶段施加的、相对薄弱的行为约束，而 capabilities 更多来自预训练，当然后训练 seed 对 safety 的影响 > 对 capability 的影响。这不是 "surprising" 发现，而是 "confirmatory" 发现。
+
+3. **PKU-SafeRLHF-30K 作为唯一训练数据的代表性**：Proposal 使用单一 safety preference dataset。不同的 safety preference data（如 Anthropic HH-RLHF、BeaverTails）可能产生不同的 variance pattern。结论的 generalizability 受限于单一数据源。
+
+4. **Fixed evaluation pipeline 能完全隔离 training-time variance**：虽然 temperature=0 的确定性解码减少了评估噪声，但 WildGuard 本身作为 7B 分类器的决策边界可能引入系统偏差，且 bf16 推理在不同硬件上可能有微小数值差异。
+
+---
+
+```
+【3 维度打分】:
+```
+
+**1. Novelty: 弱-中 (偏弱)** 
+
+理由：Proposal 正确识别了一个真实的研究空白——preference-based alignment 的 training-time safety reproducibility 尚未被系统研究。但：
+- 核心贡献是一个**大规模测量研究**（measurement study），不是方法创新。测量研究的 novelty 高度依赖"结果是否 surprising"。
+- 预期核心发现 "safety is more fragile than capabilities" 基于 Fraser et al. 和 Larsen 的已有证据，几乎可以被先验预测（审稿人会说 "I would have guessed this"）。
+- SCI-T 是 SSI 的 trivial adaptation（替换 inference seeds → training seeds），不构成方法论贡献。
+- ANOVA 方差分解是标准统计方法的直接应用。
+- 相比 Fraser et al. (2506.17209) 的增量主要在**规模**（更多seeds、更多算法、full FT），而非**insight 质量**。这是一种 "scaling up an existing idea" 而非 "new idea"。
+
+**2. Significance: 中**
+
+理由：
+- 研究问题本身是重要的：AI 安全部署确实需要了解 safety alignment 的 reproducibility bounds。这与 EU AI Act 和 NIST AI RMF 的实际监管需求对接。
+- Minimum-seed lookup tables 是有实际应用价值的 deliverable。
+- 但 significance 被两个因素限制：(a) 对现有 safety alignment 方法的设计不会产生影响（这是一个 characterization 研究，不 prescribe 如何改进）；(b) 结论的 generalizability 受限于 Qwen3-Instruct 单一模型族和 PKU-SafeRLHF 单一数据集。
+- 对比 OXRL (2603.19335) 发现的 scale-dependent ranking inversions（genuinely surprising），本 proposal 预期发现的 insight density 较低。
+
+**3. Related Work: 强**
+
+理由：
+- 对已有工作的覆盖全面且准确。所有引用的关键论文（Larsen、Fraser et al.、OXRL、SafeDPO、SafeGRPO）经验证确实存在，描述准确。
+- 差异化定位清晰：明确区分了 inference-time vs. training-time variance、SFT vs. preference optimization、LoRA vs. full FT。
+- 对每个相关工作的局限性分析到位（Fraser: 仅 SFT/LoRA/5 seeds；OXRL: 仅 capability；Larsen: 仅 inference-time）。
+- 唯一不足：未讨论 arXiv:2602.07340（safety alignment robustness via geometry control）等 2026 年初的新工作，这些工作虽然不直接竞争，但从不同角度研究 safety alignment fragility。
+
+---
+
+```
+【概率估计】: [15% - 30%] 中位 22%
+
+（注：此概率基于投稿至合适的 NLP/ML venue 如 NeurIPS 2026 的假设。
+投稿 CoRL 2026 的中稿概率：~0-1%，因会被 desk reject。）
+```
+
+```
+【估计理由】:
+```
+
+此 proposal 是一个设计严谨、覆盖全面的大规模 measurement study，Related Work 梳理堪称优秀。但 idea 的上界被 **Novelty 维度严重限制**：
+
+1. 核心发现 "safety is more fragile than capabilities under retraining" 高度可预测，不会让审稿人 surprised。这将 idea 锁定在 25-35% 区间以下。
+2. 存在明显的 trivial alternative 威胁——5 seeds 就能传达核心 message 的大部分，260 runs 的增量主要是精度而非 insight。这进一步压低至 15-25% 区间。
+3. SCI-T 作为核心方法贡献过于 trivial，无法单独支撑一个 top venue 论文。
+4. Related Work 的强覆盖和实验设计的严谨能部分补救，将下界从 15% 拉到可能的 20% 附近，但无法突破 idea 本身的天花板。
+
+综合判断：如果投稿合适 venue 且实验执行完美，中位概率约 22%。idea 质量处于 "方向正确、gap 真实、但核心发现不 surprising" 的区间。
+
+```
+【主要风险】:
+```
+
+1. **"Confirmatory, not surprising" 拒稿风险**：最可能的拒稿理由是审稿人认为 "we already know safety is fragile; scaling up the measurement doesn't constitute a novel contribution"。核心发现缺乏 counter-intuitive 的维度——如果结果是 "safety is equally stable as capabilities"，反而更 novel。
+2. **Trivial alternative 质疑**：审稿人可能指出少量 seeds（3-5）即可达到核心 practical value（报告 CI），质疑 20 seeds + 260 runs 的 elaborate setup 是否 justified——尤其当增量 insight 有限时，compute 成本与 insight 不成比例。
+
+---
+
+**关于 CoRL 投稿的最终建议**：此 proposal 投 CoRL 2026 是完全错误的方向选择，将导致不经评审直接退稿。建议作者重新考虑投稿至 NeurIPS 2026 Datasets and Benchmarks Track（更匹配 measurement study 性质）、EMNLP 2026、或 SafeGenAI workshop。
+
+Sources:
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [The Instability of Safety (Larsen, 2512.12066)](https://arxiv.org/abs/2512.12066)
+- [Fine-Tuning Lowers Safety (Fraser et al., 2506.17209)](https://arxiv.org/abs/2506.17209)
+- [OXRL: Do Post-Training Algorithms Actually Differ? (2603.19335)](https://arxiv.org/abs/2603.19335)
+- [SafeDPO (2505.20065, ICLR 2026 Oral)](https://arxiv.org/abs/2505.20065)
+- [CoRL 2026 Conference](https://www.corl.org/)
+- [LLM-Safety Evaluations Lack Robustness (2503.02574)](https://arxiv.org/abs/2503.02574)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient information to conduct my evaluation. Let me compile the assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【⚠️ 致命前置问题：投稿会议与论文内容严重不匹配】
+
+CoRL (Conference on Robot Learning) 的主题范围包括：robot perception, robot control, imitation learning for robotics, 
+RL for physical robots, robot manipulation/navigation/locomotion, sim-to-real transfer 等。虽然 CoRL 列出了 
+"learning approaches to robot safety and alignment" 作为一个话题方向，但这指的是**机器人系统的安全**（物理安全、
+安全控制策略），而非 LLM 文本安全对齐。
+
+本 proposal 的全部内容——DPO/PPO/GRPO 对齐算法、文本安全评估 (WildGuard, HarmBench, SORRY-Bench)、
+refusal behavior、harmlessness scores——完全属于 NLP/LLM alignment 领域，与机器人学习零交集。
+这篇论文更适合投稿 NeurIPS、ICML、ICLR、ACL、EMNLP 或 AIES/FAccT 等会议。
+
+在 CoRL，本文极大概率被 desk reject 或因 out-of-scope 获得极低分数。
+这一问题独立于 idea 质量本身，但对中稿概率有决定性影响。
+
+以下评估分两部分：(A) 假设投到 CoRL 的实际概率；(B) idea 本身的内在质量（venue-agnostic）。
+
+=====================================================================
+
+【领域调研】:
+
+1. Larsen (arXiv:2512.12066, Dec 2025): 提出 Safety Stability Index (SSI)，测量 inference-time 的安全
+   一致性。在 4 个 7-12B 模型上发现 18-28% 的 prompt 在不同 seed/temperature 下会 flip refusal/compliance。
+   关键区别：SSI 测量的是固定权重下的生成随机性，不是 training-time 的权重差异。
+   → 本 proposal 的 SCI-T 是 SSI 的直接类比（将 "across sampling seeds" 替换为 "across training seeds"）。
+
+2. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC): 首次展示 training-seed safety variance。
+   5 个 SFT seeds 在 Llama-3.2-1B 和 Mistral-7B (LoRA + 4-bit) 上产生最高 9pp harmfulness score 差异。
+   → 本 proposal 的核心前提（safety variance exists）已被此工作初步验证。本文是其 scale-up。
+
+3. OXRL (arXiv:2603.19335, March 2026): 51 个 post-training 算法在 Qwen 2.5 上的 controlled study，
+   发现 scale-dependent ranking inversions (SimPO 在 1.5B 最差、7B 最佳)。3-5 seeds，仅评估 capability。
+   → 本 proposal 复用了其框架思路但加入 safety 维度。OXRL 报告了 ±0.57pp capability variance。
+
+4. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral): DPO 在 PKU-SafeRLHF-30K 上达到 ~97% harmless ratio。
+   无 cross-seed variance 报告。→ 本 proposal 使用相同数据集和方法，填补 variance 空白。
+
+5. SafeTuneBed (arXiv:2506.00676, May 2025): Safety fine-tuning toolkit，3 seeds 平均，
+   提到 "refusal consistency" 但未正式定义。→ 验证该方向有需求但无人正式做。
+
+6. "LLM-Safety Evaluations Lack Robustness" (arXiv:2503.02574, March 2025): evaluation pipeline 选择
+   导致最高 28% ASR variance。→ 支持 proposal 的 fixed-evaluation-pipeline 设计。
+
+7. SafeGRPO (arXiv:2511.12982, Nov 2025): 验证 classifier-as-reward 用于 GRPO safety alignment。
+   → 支持 proposal 使用 WildGuard 作为 GRPO reward 的设计。
+
+- 调研总结: Safety alignment 的 reproducibility 是一个正在形成但尚未系统化的研究方向。
+  Fraser et al. 开了头（SFT, 小规模），OXRL 做了 capability 的 controlled study 但没碰 safety。
+  本 proposal 位于这两条线的交叉点：将 OXRL 式的 controlled multi-algorithm study 引入 safety 领域。
+  Gap 确实存在，但这个 gap 更多是 "scale up existing observation" 而非 "discover something new"。
+
+=====================================================================
+
+【Trivial Alternative 检验】:
+
+存在。以下是一个成本显著更低的 trivial baseline：
+
+(1) **缩小实验规模的 baseline**: 用 5-10 seeds（而非 20）、1-2 个算法（如 DPO + PPO）、
+    1-2 个 scale，仍然可以验证 "safety variance > capability variance" 这一核心 claim。
+    Fraser et al. 用 5 seeds 就已经观测到了 9pp variance。增加到 20 seeds 提高的是统计精度，
+    不是改变核心发现。一个更精简的 study（~40-60 runs vs 260 runs）可能得到相同的定性结论。
+
+(2) **直接复用 Fraser et al. 的 setup 加 preference optimization**: 在 Fraser 的框架上
+    简单加入 DPO/PPO trainer 即可验证 "preference optimization 也有同样问题"。
+
+增量价值在于：(a) 20 seeds 的统计置信度更高，能产出 power-justified minimum-seed tables；
+(b) 方差分解可以 disentangle seed/algorithm/scale/hardware effects；(c) full FT vs LoRA 的对比
+消除了 initialization confound。但这些都是 **精度提升**，不是 **洞察提升**。核心结论
+（"safety is fragile under retraining"）很可能不需要 260 runs 就能得到。
+
+=====================================================================
+
+【前提假设检验】:
+
+核心 claim: "Safety properties exhibit significantly higher cross-seed variance than capability 
+properties at the same scale."
+
+未经验证的关键假设：
+
+(1) **"Safety variance from SFT generalizes to preference optimization" 假设**:
+    Fraser et al. 的 variance 数据来自 SFT (supervised fine-tuning)，不是 DPO/PPO/GRPO。
+    Proposal 用 Fraser 的 SFT σ̂_safety ≈ 3.9pp 做 power analysis，但 DPO/PPO/GRPO 的
+    optimization landscape 与 SFT 完全不同（DPO 有 reference model regularization，
+    PPO 有 reward model + value function + clipping，GRPO 有 group normalization）。
+    这些正则化机制可能**降低** seed variance，也可能**放大**它。用 SFT 的 variance
+    估计做 power analysis 的前提假设未经验证。
+
+(2) **"Full FT vs LoRA 的 variance 差异方向" 假设**:
+    Proposal 假设 LoRA 引入了额外 initialization noise（A/B matrix random init），
+    因此 full FT 能"更干净地隔离 seed variance"。但也有可能 LoRA 的低秩约束反而**降低**了
+    variance（因为参数空间更小、优化更稳定），而 full FT 在高维空间中 seed variance 更大。
+    这个方向性假设是 proposal 选择 full FT 的核心理由，但未提供论证。
+
+(3) **"Safety 的 fragility 是训练层面而非数据/评估层面" 的假设**:
+    arXiv:2503.02574 已经证明 evaluation pipeline 本身能引入 28% ASR variance。
+    虽然 proposal 固定了 evaluation pipeline，但 safety 评估本身的 metric noise 
+    （WildGuard 的分类边界、prompt ambiguity）可能远大于 capability metrics 
+    （GSM8K 有明确答案）。观测到的 "safety variance > capability variance" 
+    可能部分反映的是 **metric reliability 的差异** 而非 training fragility 的差异。
+    这是一个严重的 confound，proposal 未讨论。
+
+=====================================================================
+
+【3 维度打分】:
+
+1. Novelty: 弱-中 (Weak-to-Medium)
+
+   理由：核心贡献是将已有观察（Fraser et al. 的 SFT seed variance）scale up 到 preference 
+   optimization 领域。SCI-T 是 SSI 的 trivial 类比（换掉 "across sampling" → "across training seeds"），
+   公式完全同构 (max_c(n_c)/K)。ANOVA 是标准统计方法。真正的 "新" 在于实验规模（260 runs, 3 algorithms, 
+   3 scales），但规模不是 novelty——它是 engineering effort。
+   
+   与 Fraser et al. (2506.17209) 相比：本质上是同一个 research question 的 bigger version。
+   与 OXRL (2603.19335) 相比：将 OXRL 的 capability-focused controlled study 加上 safety 评估。
+   这两个 delta 都是增量的、可预见的 next steps，不是 conceptual leap。
+
+2. Significance: 中 (Medium)
+
+   理由：研究问题本身是重要的——safety alignment 的 reproducibility 关乎 AI governance 和部署决策。
+   Minimum-seed lookup tables 对 regulatory framework (EU AI Act, NIST AI RMF) 有实用价值。
+   
+   但核心 limitation 是："If the result is positive (safety is more fragile than capability), 
+   would reviewers say 'surprising'?" **不会。** Safety alignment 比 capability 更脆弱是
+   领域内的共识直觉（safety 依赖更表层的 behavior patterns，capability 植根于 pre-training）。
+   Larsen (2512.12066) 和 Fraser et al. (2506.17209) 都已经初步证实了这一点。
+   本 proposal 用更多 runs 去量化一个已知的现象，提供了 precision 但不太可能提供 surprise。
+   
+   如果结果是 negative（safety 不比 capability 更 fragile），那才真正 surprising——但 proposal 
+   的整个 framing 和 power analysis 都假设了 positive result，对 negative result 的讨论不足。
+
+3. Related Work: 强 (Strong)
+
+   理由：对已有工作的覆盖非常全面和准确。所有关键引用（Larsen, Fraser, OXRL, SafeDPO, SafeGRPO, 
+   SafeTuneBed, arXiv:2503.02574）都真实存在且描述准确。Gap 的识别清晰——确实没有工作同时覆盖 
+   (a) preference optimization, (b) multi-scale, (c) ≥20 seeds, (d) multi-benchmark, 
+   (e) formal consistency metric, (f) ANOVA decomposition。差异化定位做得很好。
+   
+   唯一的小瑕疵：proposal 声称 Fraser et al. 的 σ̂_safety ≈ 3.9pp 是从 "range/d₂ for n=5" 
+   估计的，但这种从 range 估计 σ 的方法在 n=5 时精度很差，且 Fraser 的 variance 来自 SFT+LoRA 
+   而非 preference optimization，跨方法的 variance 外推不一定成立。
+
+=====================================================================
+
+【概率估计 — CoRL 2026】: 2% - 5%，中位 3%
+
+理由：这是一篇纯 NLP/LLM safety alignment 论文，与 CoRL (Conference on Robot Learning) 的
+scope 严重不匹配。论文无任何机器人学习内容（无 embodied AI, 无 robot control, 无 sim-to-real, 
+无 physical safety）。极大概率被 desk reject 或被 area chair 判定 out of scope。
+即使进入评审，reviewer pool 是 robotics/RL 研究者，对 LLM safety 评估 benchmark 
+(WildGuard, HarmBench, SORRY-Bench) 不熟悉，难以给出有利评价。
+
+【概率估计 — 如果投到合适会议 (NeurIPS/ICML/ICLR)】: 18% - 30%，中位 23%
+
+理由：Idea 方向站得住脚，gap 识别清晰，related work 扎实，实验设计严谨。但 novelty 主要在
+实验规模而非 conceptual contribution；核心发现（safety > capability variance）在直觉上可预期，
+不会让 reviewer 感到 surprising；SCI-T 是 trivial metric extension；存在 trivial alternative 
+威胁（更小规模实验可能得到相同定性结论）。作为 empirical study，需要结果本身足够有趣
+（如发现 scale 有 non-monotonic effect on fragility, 或某个算法意外 robust）才能突破 25% 线。
+
+=====================================================================
+
+【主要风险】:
+
+1. **致命风险 — 会议不匹配**: 投稿 CoRL 2026 是方向性错误。本文是纯 NLP safety alignment 工作，
+   CoRL 的 scope 是 robot learning。这一问题无法通过修改论文内容补救（除非彻底重写为 
+   robot safety alignment 方向）。建议改投 NeurIPS 2026, ICML 2026, 或 EMNLP 2026。
+
+2. **Idea 层面风险 — "I would have guessed this" 问题**: 核心 hypothesis（safety is more 
+   fragile than capability）是领域共识直觉，positive result 不会让 reviewer surprised。
+   如果实验结果只是确认了大家的预期（"是的，safety variance 确实更大"），reviewer 可能评价为
+   "confirmatory but not insightful"。论文需要在 WHERE/WHY/HOW 维度上提供超出 "yes it's fragile" 
+   的洞察（如哪些 harm categories 最 fragile？fragility 和 model scale 是什么关系？
+   算法间的 fragility ranking 是否和 capability ranking 反转？），但这些是实验结果，
+   不是 idea 本身能保证的。
+```
+
+Sources:
+- [The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior](https://arxiv.org/abs/2512.12066)
+- [Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency](https://arxiv.org/abs/2506.17209)
+- [Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales](https://arxiv.org/abs/2603.19335)
+- [SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety](https://arxiv.org/abs/2505.20065)
+- [SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning](https://arxiv.org/abs/2506.00676)
+- [LLM-Safety Evaluations Lack Robustness](https://arxiv.org/abs/2503.02574)
+- [SafeGRPO: Self-Rewarded Multimodal Safety Alignment](https://arxiv.org/abs/2511.12982)
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [On the Extreme Variance of Certified Local Robustness Across Model Seeds](https://arxiv.org/pdf/2601.13303)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment
+
+## Description
+Preliminary evidence shows that safety alignment is fragile: Larsen (2025) found 18–28% of prompts flip between refusal and compliance across inference seeds, and Fraser et al. (2025) found up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on small models using LoRA. Yet no study has systematically measured training-time safety reproducibility for the preference optimization methods (DPO, PPO-RLHF, GRPO) that actually power deployed alignment, characterized how fragility scales with model size, disentangled LoRA initialization variance from seed variance, or provided power-justified minimum-seed recommendations for reliable safety claims. We propose the first large-scale training-time safety reproducibility audit of preference-based alignment. Using TRL v1.0's unified training stack with full fine-tuning throughout (eliminating LoRA initialization as a confound), we train DPO, PPO-RLHF, and GRPO on Qwen3-Instruct at 1.7B, 4B, and 8B scales with 20 seeds per configuration using PKU-SafeRLHF-30K safety preference data (~260 total runs including hardware and reward model ablations). The three algorithms cover distinct paradigms: offline preference optimization (DPO), online reward-model-based RL (PPO with Skywork/ArmoRM/FsfairX reward models), and online classifier-based RL (GRPO with WildGuard as safety reward). We evaluate on WildGuard, HarmBench, SORRY-Bench, and four capability benchmarks under a fixed evaluation pipeline. We introduce SCI-T (Safety Consistency Index for Training), extending Larsen's inference-time SSI to training-time: while SSI measures agreement across sampling randomness with fixed weights, SCI-T measures agreement across different training seeds under fixed inference—capturing fundamentally different learned safety boundaries. We decompose variance via ANOVA across seed, algorithm, scale, hardware, and reward model factors, testing the central hypothesis that safety is significantly more fragile than capabilities under retraining. A priori power analysis using Fraser et al.'s empirical variance (σ̂_safety ≈ 3.9pp) and OXRL's capability baseline (σ̂_capability ≈ 0.55pp) confirms 20 seeds provides ≥88% power for detecting safety/capability variance ratios ≥3:1 and ≥82% power for ANOVA interaction effects. The primary deliverable is empirically-grounded minimum-seed lookup tables for AI governance frameworks.
+
+## Core Problem
+When the same preference-based alignment algorithm (DPO/PPO-RLHF/GRPO) is rerun with different random seeds, hardware configurations, or reward model instances, how much do safety properties—refusal behavior, harmlessness scores, and instance-level safety decisions—vary compared to general capabilities? Preliminary evidence from SFT (Fraser et al. 2025) and inference-time sampling (Larsen 2025) shows safety decisions are surprisingly inconsistent, but no study has systematically measured training-time safety reproducibility for the preference optimization methods that actually power deployed safety alignment (PPO-RLHF at OpenAI/Anthropic, DPO in open-source pipelines, GRPO at DeepSeek), or characterized how this fragility scales with model size.
+
+## Opportunity
+Three converging lines of evidence create a clear gap. First, Larsen (arXiv:2512.12066) introduced the Safety Stability Index (SSI) showing 18–28% of prompts flip between refusal and compliance across inference seeds and temperatures—but this measures generation-level variance with fixed model weights, not the deeper question of whether retraining produces models with fundamentally different safety boundaries. Second, Fraser et al. (arXiv:2506.17209) demonstrated up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and SORRY-Bench—establishing that training-time safety variance exists but leaving preference-based alignment (DPO/PPO/GRPO), larger scales, multi-benchmark evaluation, LoRA-vs-full-FT variance confounds, and formal consistency metrics unexplored. Third, OXRL (arXiv:2603.19335) revealed dramatic scale-dependent ranking inversions across post-training algorithms on capability benchmarks using Qwen 2.5 at 0.5B–7B, but evaluated no safety properties. Fourth, SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) demonstrated that safety alignment via DPO on PKU-SafeRLHF-30K can achieve ~97% harmless ratio, establishing both the dataset and method as mature—but reported no cross-seed variance. Meanwhile, TRL v1.0 (March 2026) now provides a unified training stack for DPO, PPO, and GRPO, eliminating infrastructure confounds. We propose to close this gap with the first large-scale, multi-algorithm, multi-scale reproducibility audit of training-time safety alignment, using full fine-tuning throughout to cleanly isolate training-seed variance from LoRA initialization noise.
+
+## Related Work / Landscape
+Larsen (arXiv:2512.12066, Dec 2025) introduced the SSI metric measuring per-prompt refusal agreement across inference configurations (5 seeds × 4 temperatures), finding 18–28% flip rates on BeaverTails across four 7–12B models. Critically, SSI captures generation-level stochasticity (same weights, different sampling), not model-level variance from retraining. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC) studied SFT seed variance with 5 seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and AdamW-8bit optimizer, evaluating on SORRY-Bench (440 class-balanced unsafe instructions); they found up to 9pp harmfulness score variance (e.g., 0.73 to 0.82 on Llama-1B fine-tuned on Dolly) and called for 'multiple runs to estimate random variation' but used only SFT, not preference optimization, and did not disentangle LoRA initialization variance from true seed variance. SafeTuneBed (arXiv:2506.00676, May 2025) offers a fine-tuning safety toolkit that averages results over 3 seeds and lists 'refusal consistency' as a metric but never formally defines or operationalizes it. OXRL (arXiv:2603.19335, March 2026) provides a controlled framework for 51 post-training algorithms using Qwen 2.5 Instruct at 0.5B–7B with full FT at ≤3B and LoRA (rank 16, α=32) at 7B, using 3–5 seeds per configuration on GSM8K self-play data—but evaluates only capability benchmarks with no safety evaluation. Notably, OXRL found scale-dependent ranking inversions (SimPO worst at 1.5B, best at 7B) and cross-seed std of ±0.57pp on GSM8K for SGRPO at 1.5B with 5 seeds, establishing a baseline for capability variance. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) achieves ~97% harmless ratio using DPO on PKU-SafeRLHF-30K but reports no cross-seed variance. The 'LLM-Safety Evaluations Lack Robustness' paper (arXiv:2503.02574, March 2025) demonstrates that evaluation pipeline choices cause up to 28% ASR variance, motivating fixed-evaluation-pipeline designs. SafeGRPO (arXiv:2511.12982, Nov 2025) proposes rule-governed reward construction for GRPO-based safety alignment, demonstrating that safety classifiers can serve as GRPO reward signals—validating our approach to using WildGuard as GRPO's safety reward function. TRL v1.0 (March 2026) provides a unified post-training stack for SFT, DPO, PPO, and GRPO with consistent infrastructure, enabling fair cross-algorithm comparison. PKU-SafeRLHF (arXiv:2406.15513, ACL 2025) provides 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories and 3 severity levels—the standard safety preference dataset used by SafeDPO and related work. Open-source reward models (Skywork-Reward-Llama-3.1-8B-v0.2, ArmoRM-Llama3-8B-v0.1, FsfairX-LLaMA3-RM-v0.1) achieve strong RewardBench scores including explicit safety dimensions, enabling controlled reward model ablations for PPO. No published work combines: (a) three distinct alignment paradigms (offline DPO, online PPO-RLHF, online GRPO), (b) multiple model scales with full fine-tuning, (c) ≥20 seeds per configuration with a priori power justification, (d) multiple safety benchmarks with fixed evaluation pipeline, (e) a formal training-time consistency metric, and (f) separated variance decomposition across seed, algorithm, scale, hardware, and reward model factors.
+
+## Approach
+Phase 1 — Infrastructure (3 weeks): Build unified training and evaluation pipeline using TRL v1.0 as the training backbone and OXRL-inspired evaluation infrastructure. Training setup: Configure DPO, PPO-RLHF, and GRPO trainers in TRL v1.0 with full fine-tuning at all scales using DeepSpeed ZeRO-2 for memory management at 8B. We use full fine-tuning throughout (not LoRA) to eliminate LoRA random A/B matrix initialization as a variance source—a confound identified in Fraser et al.'s LoRA-based SFT study where LoRA initialization and seed variance were entangled. This increases compute by ~50% at 8B but produces cleaner variance isolation, which is essential for a paper whose central contribution is variance decomposition. Preference dataset: PKU-SafeRLHF-30K (PKU-Alignment, ACL 2025), selected for three reasons: (i) decoupled safety/helpfulness annotations enable isolating safety-specific preference learning, (ii) it is the standard benchmark used by SafeDPO (ICLR 2026 Oral) enabling direct comparability, (iii) 19 harm categories with 3 severity levels enable fine-grained analysis of which safety dimensions are most fragile. Dataset adaptation per algorithm: DPO receives safety preference pairs directly (safer response as chosen, less safe as rejected); PPO uses the 27K prompts with an external reward model scoring generated responses; GRPO uses the same prompts with WildGuard (7B) as a binary safety classifier reward (safe=1, unsafe=0), following the classifier-as-reward paradigm validated by SafeGRPO (arXiv:2511.12982). Evaluation pipeline: Fix the evaluation pipeline completely (WildGuard as primary safety judge, deterministic decoding at temperature=0, fixed chat template, bf16 quantization) per the robustness findings of arXiv:2503.02574 to isolate training-time variance from evaluation-time variance. Integrate WildGuard (prompt + response classification, 7B Mistral-based), HarmBench (400 harmful behaviors with 7B Mistral classifier), SORRY-Bench (440 category-balanced unsafe instructions), and capability benchmarks (GSM8K, MATH, AlpacaEval 2, MT-Bench).
+
+Phase 2 — Training Runs (6–7 weeks): Algorithm selection rationale: We select DPO, PPO-RLHF, and GRPO to cover three fundamentally distinct alignment paradigms—(i) DPO: offline, reference-model-regularized preference optimization without a reward model, the dominant method in open-source safety alignment; (ii) PPO-RLHF: online, reward-model-based reinforcement learning, the method deployed for safety-critical systems at OpenAI and Anthropic; (iii) GRPO: online, group-relative optimization with classifier-based rewards, the emerging paradigm (DeepSeek-R1) increasingly applied to safety via SafeGRPO. This replaces the originally proposed SimPO, which is architecturally a DPO variant (reference-free but still offline preference optimization)—including both DPO and SimPO would over-represent the offline paradigm while leaving online RL unrepresented, creating an algorithmic coverage gap for the methods that actually power deployed safety alignment. Core runs: Train DPO, PPO, and GRPO on Qwen3-Instruct at three scales (1.7B, 4B, 8B) with 20 random seeds each, holding all hyperparameters fixed per algorithm. Full fine-tuning with DeepSpeed ZeRO-2; 1 H100 for 1.7B/4B DPO/GRPO, 2 H100s for 8B and all PPO runs (policy + reference + reward/value models). Total core: 180 runs (3 × 3 × 20). Hardware ablation: For the 8B DPO configuration, run 20 seeds on A100-80GB vs H100-80GB and 20 seeds with bf16 vs fp16 to isolate hardware/precision effects (40 additional runs, comparing against the 20 core H100/bf16 runs). Reward model ablation: For the 8B PPO configuration, run 20 seeds each with three independently-developed open-source reward models: (RM1) Skywork-Reward-Llama-3.1-8B-v0.2 — Bradley-Terry RM, #1 on RewardBench among 8B models, trained on Skywork's curated preference data; (RM2) ArmoRM-Llama3-8B-v0.1 — multi-objective RM with mixture-of-experts gating across 19 reward dimensions including an explicit safety objective, 89.0 RewardBench overall; (RM3) FsfairX-LLaMA3-RM-v0.1 — Bradley-Terry RM trained on the RLHFlow dataset, different training distribution from Skywork. The core PPO runs use ArmoRM as default (its explicit safety dimension makes it most appropriate for safety alignment); the ablation adds 40 additional runs with Skywork-RM and FsfairX-RM. All three RMs are ~8B parameters, Llama-3-based, publicly available, and independently trained with different objectives, architectures (Bradley-Terry vs MoE-gated multi-objective), and training data—providing genuine variance in the reward signal. Total runs: 180 core + 40 hardware + 40 reward model = 260 runs.
+
+Phase 3 — Evaluation and Analysis (3–4 weeks): For each of 260 checkpoints, evaluate safety (WildGuard refusal rate on WildGuardTest 5K subset, HarmBench ASR with 400 behaviors, SORRY-Bench harmfulness with 440 prompts) and capabilities (GSM8K 1.3K, MATH 5K, AlpacaEval 2 805 prompts, MT-Bench 80 turns). All safety evaluations use deterministic decoding (temperature=0) to ensure SCI-T captures training-time variance only. Introduce the Safety Consistency Index for Training (SCI-T), explicitly extending Larsen's SSI from inference-time to training-time: SCI-T(p) = max_c(n_c) / K where n_c counts training-seed runs in category c ∈ {REFUSE, COMPLY} and K = number of seeds. While SSI measures whether the same model produces consistent safety decisions across sampling randomness, SCI-T measures whether different models (from different training seeds) make consistent safety decisions under fixed inference conditions (temperature=0). This distinction matters because training-time inconsistency implies fundamentally different learned safety boundaries, not mere sampling noise. Compute SCI-T for every prompt × algorithm × scale combination. Apply ANOVA decomposition: Var(safety_metric) = Var(seed) + Var(algorithm) + Var(scale) + Var(hardware) + Var(reward_model) + Var(algorithm×scale) + residual. Test the central hypothesis: safety properties exhibit significantly higher cross-seed variance than capability properties at the same scale, and this differential fragility changes with scale. Additionally analyze which of PKU-SafeRLHF's 19 harm categories show highest SCI-T fragility—identifying 'fragile safety categories' that are most sensitive to training randomness.
+
+Phase 4 — Minimum-Seed Recommendations (2–3 weeks): A priori power justification for 20 seeds: We apply Cédric et al.'s (2018) framework to our own experimental design before running. From Fraser et al.'s empirical data: 5 SFT seeds on Llama-1B produced harmfulness scores ranging 0.73–0.82, yielding σ̂_safety ≈ 3.9pp (range/d₂ for n=5). From OXRL: 5 SGRPO seeds at 1.5B on GSM8K produced ±0.57pp std, yielding σ̂_capability ≈ 0.55pp. For our central F-test (H₀: σ²_safety = σ²_capability vs H₁: σ²_safety > σ²_capability) with df=(19,19): at true variance ratio λ=3 (conservative estimate from Fraser/OXRL data suggesting λ≈50), power ≥ 0.88 at α=0.05. For ANOVA main effects (3 levels, N=180, medium effect f=0.25): power ≈ 0.92. For ANOVA interactions (3×3 design, df=(4,171)): power ≈ 0.82 for medium effects. For variance estimation precision: with n=20 (df=19), the 95% CI for σ² spans a factor of 3.69 (χ²_{0.975,19}/χ²_{0.025,19} = 32.85/8.91), sufficient for categorizing configurations as 'high-fragility' vs 'low-fragility.' Conclusion: 20 seeds per cell provides ≥80% power for all planned analyses, meeting the standard power threshold. Adaptive provision: if Phase 2 pilot (first 5 seeds per cell) reveals smaller effect sizes than estimated, we increase to 25 seeds with ~25% additional compute within budget contingency. Post-hoc deliverable: Using the full empirical variance estimates, derive minimum seed counts needed for P(detecting a true safety difference ≥ δ) ≥ 0.8 at α=0.05 via inverse power analysis. Produce concrete lookup tables: 'To claim safety refusal rate ≥ R% with 95% confidence for algorithm X at scale Y, run ≥ N seeds.' This is the actionable regulatory deliverable targeting EU AI Act verifiable safety requirements and NIST AI RMF reproducibility standards.
+
+## Inspiration
+Extension: Larsen's SSI measures inference-time safety agreement; we extend this concept to training-time agreement across different model weights, a fundamentally harder reproducibility challenge since different weights may encode different safety boundaries. Scale-up: Fraser et al.'s SFT seed study (2 models, 5 seeds, 1 benchmark, LoRA) demonstrated the phenomenon exists; we scale to 3 algorithms × 3 model sizes × 20 seeds × 4 benchmarks with full fine-tuning (eliminating LoRA initialization variance) and formal ANOVA decomposition. Bridge: OXRL's controlled post-training infrastructure + TRL v1.0's unified training stack + PKU-SafeRLHF-30K's decoupled safety preference data + WildGuard/HarmBench classifiers can be composed to create a safety-aware reproducibility audit pipeline that none provides alone. Safety reward signals: SafeGRPO's demonstration that safety classifiers can serve as GRPO reward functions validates our approach to using WildGuard as GRPO's reward signal for safety alignment. Reward model variance: ArmoRM's multi-objective design (with explicit safety dimension), Skywork-Reward's top RewardBench performance, and FsfairX's Bradley-Terry approach provide three independently-trained reward models for PPO ablation, operationalizing RVPO's concern about inter-reward variance. Statistical grounding: Cédric et al.'s power analysis framework for RL seed selection (arXiv:1806.08295) provides the methodology for deriving minimum-seed recommendations—never applied to safety alignment. We apply it a priori to justify our 20-seed design.
+
+## Key References
+- The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior (arXiv:2512.12066, Dec 2025) — introduces SSI metric for inference-time refusal consistency; SCI-T extends SSI to training-time
+- Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency (arXiv:2506.17209, June 2025, LLMSEC) — first evidence of training-seed safety variance: 9pp range across 5 SFT seeds on Llama-1B with LoRA/4-bit, SORRY-Bench; establishes σ̂_safety ≈ 3.9pp used in our power analysis
+- SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning (arXiv:2506.00676, May 2025) — safety fine-tuning toolkit with 3-seed averaging; mentions 'refusal consistency' without formal definition
+- Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales (arXiv:2603.19335, March 2026) — OXRL framework, Qwen 2.5 at 0.5B–7B, scale-dependent ranking inversions, ±0.57pp GSM8K std providing σ̂_capability baseline for our power analysis
+- LLM-Safety Evaluations Lack Robustness (arXiv:2503.02574, March 2025) — evaluation pipeline variance up to 28%, motivates our fixed-pipeline design
+- PKU-SafeRLHF: Towards Multi-Level Safety Alignment for LLMs with Human Preference (arXiv:2406.15513, ACL 2025) — 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories; our primary training dataset
+- SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety (arXiv:2505.20065, ICLR 2026 Oral) — achieves ~97% harmless ratio via DPO on PKU-SafeRLHF-30K; establishes dataset+method maturity but reports no cross-seed variance
+- SafeGRPO: Self-Rewarded Multimodal Safety Alignment via Rule-Governed Policy Optimization (arXiv:2511.12982, Nov 2025) — validates classifier-as-reward paradigm for GRPO safety alignment; motivates our WildGuard-as-reward design
+- TRL v1.0: Post-Training Library Built to Move with the Field (Hugging Face, March 2026) — unified training stack for DPO, PPO, GRPO eliminating infrastructure confounds across algorithms
+- How Many Random Seeds? Statistical Power Analysis in Deep RL Experiments (arXiv:1806.08295, 2018) — methodology for minimum-seed derivation via power analysis; we extend to safety alignment and apply a priori to justify our 20-seed design
+- What Matters For Safety Alignment? (arXiv:2601.03868, Jan 2026) — cross-model safety comparison across 32 models and 13 families
+- WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs (arXiv:2406.18495, 2024) — 7B safety classifier achieving 94.7% F1 on response harmfulness; our primary safety judge and GRPO reward signal
+- Skywork-Reward: Bag of Tricks for Reward Modeling in LLMs (arXiv:2410.18451, 2024) — Skywork-Reward-Llama-3.1-8B-v0.2, #1 8B model on RewardBench; one of three PPO reward models in our ablation
+- Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (arXiv:2406.12845, 2024) — ArmoRM-Llama3-8B-v0.1, 89.0 RewardBench with explicit safety dimension; default PPO reward model
+- Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping (arXiv 2020) — seed variance methodology for NLP
+- Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning LLMs (IJCNLP-AACL 2025) — macro/micro consistency metrics for LLM fine-tuning
+- RVPO: Risk-Sensitive Alignment via Variance Regularization (arXiv:2605.05750, May 2026) — inter-reward variance penalization in single runs; motivates reward model ablation
+- Improving Safety Alignment via Balanced Direct Preference Optimization (arXiv:2603.22829, March 2026) — safety alignment overfitting in DPO
+- Safety Training Persists Through Helpfulness Optimization in LLM Agents (arXiv:2603.02229, March 2026) — safety-helpfulness Pareto frontier under DPO
+- Reproducibility in Machine-Learning-Based Research: Overview, Barriers, and Drivers (AI Magazine 2025)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '~2,800 H100-hours total: ~1,600 training (260 runs across 3 algorithms × 3 scales × 20+ seeds, all full fine-tuning with DeepSpeed ZeRO-2; PPO runs require 2 H100s for policy+reference+RM) + ~1,200 evaluation (260 checkpoints × 8 benchmarks including WildGuard 7B and HarmBench 7B classifier inference, each checkpoint requiring ~3-4 GPU-hours for generation + classification across all benchmarks)', 'timeline': '17–19 weeks (infrastructure + TRL v1.0 pipeline setup 3w, training runs 6–7w on 8×H100 cluster, evaluation 3–4w, statistical analysis + minimum-seed derivation + paper writing 5–6w)', 'estimated_gpu_cost': '$7,000 at ~$2.50/H100-hr on mid-tier providers'}
+- **human_in_loop**: {'gpu_hours': '~2,800 H100-hours (identical core compute; full FT precludes further memory optimization)', 'timeline': '14–16 weeks (Claude accelerates TRL v1.0 pipeline integration, ANOVA analysis scripts, power analysis code, per-category fragility analysis, and paper drafting)', 'claude_api_cost': '$500–700 (Sonnet 4.6 for code generation, statistical analysis automation, and drafting; ~150M tokens)', 'estimated_gpu_cost': '$7,000'}
+- **auto_research**: {'gpu_hours': '~2,800 H100-hours', 'timeline': '11–14 weeks (parallelized experiment orchestration with automated sweep management, evaluation pipelines, and ANOVA analysis)', 'claude_api_cost': '$1,500–2,200 (experiment orchestration, automated analysis, full paper draft generation; ~600M tokens)', 'estimated_gpu_cost': '$7,000', 'speed_bottleneck': 'GPU cluster queue time for 260 training jobs (PPO runs ~2× longer than DPO/GRPO due to multi-model training); sequential dependency between training completion and safety evaluation; WildGuard 7B + HarmBench 7B classifier inference throughput across 260 checkpoints × ~6K safety evaluation prompts each'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "40e4b93b-34ed-4427-95ee-78e2d78a6816",
+  "type": "user",
+  "uuid": "b80f93dc-9684-4a2d-a572-76eb3c4dfc29",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:54:55.456Z_
+
+```json
+{
+  "parentUuid": "b80f93dc-9684-4a2d-a572-76eb3c4dfc29",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "a4409b3f-db25-4198-b6b9-e92e1433e683",
+  "timestamp": "2026-05-19T18:54:55.456Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:54:55.456Z_
+
+```json
+{
+  "parentUuid": "a4409b3f-db25-4198-b6b9-e92e1433e683",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b9d0045c-17a9-4190-b9cb-87cea8ad7eb1",
+  "timestamp": "2026-05-19T18:54:55.456Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research material. Let me compile my ass…",
+  "leafUuid": "b9d0045c-17a9-4190-b9cb-87cea8ad7eb1",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess LLM safety alignment reproducibility study proposal",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:55:17.868Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews of this proposal and synthesize them as the Meta Judge.
+
+Let me first extract the key data points:
+
+**Reviewer 1:**
+- Novelty: 弱-中
+- Significance: 中
+- Related Work: 强
+- Probability: [15%-25%] 中位 20%
+- CoRL venue: ~0% (desk reject)
+- Key concerns: Expected result risk, scale-up ≠ novelty, trivial alternative, SCI-T is trivial extension of SSI
+
+**Reviewer 2:**
+
+
+- Novelty: 弱-中 (偏弱)
+- Significance: 中
+- Related Work: 强
+- Probability: [15%-30%] 中位 22%
+- CoRL venue: ~0-1% (desk reject)
+- Key concerns: Confirmatory not surprising, trivial alternative, SCI-T trivial, metric reliability confound
+
+**Reviewer 3:**
+- Novelty: 弱-中
+- Significance: 中
+- Related Work: 强
+- CoRL probability: [2%-5%] 中位 3%
+- Appropriate venue probability: [18%-30%] 中位 23%
+- Key concerns: I would have guessed this, trivial alternative, metric reliability vs training fragility confound
+
+Now I'm looking at where the reviewers align and where they diverge. All three agree that CoRL is the wrong venue entirely—essentially a desk reject with near-zero probability. They're also unanimous on novelty being weak-to-medium, significance being medium, and related work being strong. The trivial alternative concern appears across all reviews, as does the observation that the core finding about safety being more fragile than capability feels expected rather than surprising. SCI-T comes across as a minor variation of SSI, and there's a shared worry about whether the safety metric from SFT actually transfers to preference optimization settings. The gap itself is real and correctly identified, and all the references check out. For appropriate venues, the three reviewers cluster around 20-23% median probability.
+
+The interesting divergence is that R3 flagged something the others didn't explicitly mention—that safety metrics are inherently noisier than capability metrics like GSM8K, which creates a confound with the training fragility story. R2 also noted a missed related work citation. Beyond that, the reviews are remarkably consistent in their assessment, with very tight agreement on the probability estimates.
+
+For the implementation details, all three reviewers converge on the same rough numbers: around 2,800 H100-hours of compute, approximately $7,000 in GPU costs, a 17-19 week timeline, and no need for new benchmarks or human annotation. Now I'm ready to synthesize the Meta Judge output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9d0045c-17a9-4190-b9cb-87cea8ad7eb1",
+  "isSidechain": false,
+  "requestId": "req_011CbCSE8QoEhtCEqLZNnbHW",
+  "type": "assistant",
+  "uuid": "5cf5072f-1e74-4173-8fca-c0ae10a4834b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013stnmAdw2mUgq4RjuQceca",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21592,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 2647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21592,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2647,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 21592,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21592
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:55:57.803Z_
+
+【阶段】: Meta Judge
+【三次中位】: [20%, 22%, 23%]  std=1.2%
+【共识维度】: 
+- **Novelty = 弱-中**（3/3 一致）：SCI-T 是 SSI 的 trivial 类比；核心贡献是 scale-up empirical study 而非 conceptual innovation；核心发现 "safety > capability variance" 高度可预测（"I would have guessed this"）
+- **Significance = 中**（3/3 一致）：研究问题本身重要（AI governance 有实际需求），minimum-seed lookup tables 有实用价值，但 characterization study 不 prescribe 改进方向，且单模型族+单数据集限制泛化性
+- **Related Work = 强**（3/3 一致）：所有关键引用经验证真实准确，gap 识别清晰，差异化定位到位
+- **Trivial Alternative 威胁显著**（3/3 一致）：5 seeds × 少量算法即可传达核心 message 的 ~80%，260 runs 的增量主要是统计精度而非 insight
+- **σ̂_safety 从 SFT 外推到 DPO/PPO/GRPO 的前提未经验证**（3/3 一致）：power analysis 基础脆弱
+- **CoRL 投稿 = 致命 venue 不匹配**（3/3 一致）：纯 LLM safety alignment 工作，无任何 robotics 内容，将被 desk reject
+【异常维度】: 
+- R3 独立提出 **metric reliability confound**：safety 评估指标（WildGuard 分类边界、prompt 歧义性）本身的噪声可能远大于 capability 指标（GSM8K 有确定性答案），观测到的 "safety variance > capability variance" 可能部分反映的是 metric noise 差异而非 training fragility 差异。此点 R1/R2 未提及，但经评估**逻辑成立且严重**——它可能从根本上混淆核心 claim 的因果归因，应作为实质性风险纳入而非降权
+- R2 提及 arXiv:2602.07340 等 2026 年初新工作未被覆盖（Related Work 小瑕疵，不影响总体"强"判定）
+【最终概率】: [15% - 25%] 中位 21%
+【一致性】: 高（std=1.2%，三位审稿人在所有 rubric 维度的判决完全一致）
+【综合理由】: 
+
+三位审稿人展现出罕见的高度一致性——Novelty/Significance/Related Work 三个维度的定性判决完全相同，概率估计紧密聚集（20%/22%/23%），核心风险点高度重叠。这使得综合判断具有很高的信心。
+
+**概率上界由 Novelty 锁死**：三位审稿人一致认为核心 finding 高度可预测、SCI-T 是 trivial 扩展、增量主要在规模而非 insight。这将 idea 天花板锁定在 ~25-30%，即使实验执行完美也难突破。
+
+**概率下界由 Related Work 强度和实验设计严谨性托底**：gap 识别准确、差异化清晰、power analysis 有形式化论证（虽前提待验证）、实验设计覆盖全面——这些将下界稳定在 15% 左右，不至于更低。
+
+**最终中位取 21%**（略低于三份的算术均值 21.7%）：依据"宁缺毋滥"原则，考虑到 R3 提出的 metric reliability confound 是一个被低估但实质性的风险（若 safety 指标本身比 capability 指标噪声更大，核心 claim 的归因将被动摇），该风险在其他两位评审中未被充分计价，因此最终中位微调向保守方向。
+
+**关于 CoRL 投稿**：三位审稿人一致判定 venue 致命不匹配，投 CoRL 2026 概率接近 0%。此为结构性问题，与 idea 质量无关。
+
+【建议】: 不推荐（投 CoRL）/ 边缘（若改投合适 venue 如 NeurIPS 2026 Datasets & Benchmarks Track）
+
+【实施评估】:
+  - 计算资源: ~2,800 H100-hours（~1,600 训练 + ~1,200 评估），约 $7,000 GPU 成本（中等规模集群即可，8×H100 节点），DeepSpeed ZeRO-2 用于 8B 规模内存管理
+  - 数据需求: PKU-SafeRLHF-30K（公开可得）、WildGuardTest（公开）、HarmBench 400 behaviors（公开）、SORRY-Bench 440 prompts（公开）、GSM8K/MATH/AlpacaEval 2/MT-Bench（均公开）。无需构建新数据集
+  - 人工介入: 无需人工标注。pipeline 搭建和统计分析需要研究者介入，但无 crowd-sourcing 或专家标注需求
+  - 训练需求: 需大量模型训练（260 次 full fine-tuning runs，覆盖 1.7B/4B/8B 三个规模），但每次训练规模中等（非从头预训练）。PPO runs 需同时加载 policy+reference+reward/value model，对显存要求更高
+  - 新 Benchmark: 不需要。复用现有 safety benchmarks（WildGuard, HarmBench, SORRY-Bench）和 capability benchmarks（GSM8K, MATH 等）。SCI-T 是新指标但计算简单
+  - 预估周期: 14-19 周（基础设施 3 周 + 训练 6-7 周 + 评估 3-4 周 + 分析与写作 5-6 周），若有自动化加速可压缩至 11-14 周
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cf5072f-1e74-4173-8fca-c0ae10a4834b",
+  "isSidechain": false,
+  "requestId": "req_011CbCSE8QoEhtCEqLZNnbHW",
+  "type": "assistant",
+  "uuid": "30e172f3-f203-4f1a-a1d6-40c13cf2e992",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013stnmAdw2mUgq4RjuQceca",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21592,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 2647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21592,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2647,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 21592,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21592
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research material. Let me compile my ass…",
+  "leafUuid": "30e172f3-f203-4f1a-a1d6-40c13cf2e992",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess LLM safety alignment reproducibility study proposal",
+  "sessionId": "1a0553d0-b519-446e-9c95-723f2a392d5c"
+}
+```
+
+---

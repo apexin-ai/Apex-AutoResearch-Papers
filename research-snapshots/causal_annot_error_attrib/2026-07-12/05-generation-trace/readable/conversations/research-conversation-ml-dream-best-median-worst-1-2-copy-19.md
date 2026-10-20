@@ -1,0 +1,791 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。 你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/4c780e80-1830-4383-9086-428d009aa1fd.jsonl`
+- **Structured JSON:** [`1308d546b4e6fbd5753f.json`](../../sessions/13/1308d546b4e6fbd5753f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T07:45:58.788Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T07:45:58.788Z",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd",
+  "content": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。\n\n你需要同时定义 best / median / worst 三档：\n1. 每档的核心假设（哪些假设成立/不成立）\n2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）\n3. 每档的论文叙事方向——\n   - best: 原始 framing 完全成立，claims 无需调整\n   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验\n   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）\n\n三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性\n自行判断。但必须确保三档之间的数字和叙事逻辑一致。\n\n# Project context\nproject: causal_annot_error_attrib\nfocus: Key uncertainty: will mediator/collider DAGs show direction reversal under non-differential multi-class error? Confounding DAG was monotonic in MVP. Also: is ASV framework practically useful enough vs just reporting confusion matrices?\n\n## paper_framing.md\n\n# Paper Framing — causal_annot_error_attrib\n\n## Target Venue\n- Primary: AAAI 2027 (abstract: 2026-07-21, paper: 2026-07-28)\n- Secondary: ARR October 2026 (~2026-10-15, commit to NAACL 2027 / ACL 2027)\n- Tertiary: ICWSM 2027 Round 2 (2026-09-15)\n\n## Title\nMulti-Class Annotation Errors Are Not Created Equal: Bias Taxonomy, Sensitivity Analysis, and Correction Guidance for LLM-Annotated Causal Studies\n\n## Core Claims (3 条)\n\n1. **Multi-class bias taxonomy**: For K≥3 annotation variables, the direction and magnitude of downstream bias depend on the interaction between the K×K confusion matrix structure and the DAG topology — breaking guarantees that hold in the binary case. We provide closed-form bias expressions for K=3 and matrix-form expressions with interpretability tools for general K, across 6 canonical social-science DAG topologies (confounding, mediation, collider, M-bias, instrument, front-door).\n\n2. **Annotation Sensitivity Values (ASVs)**: A sensitivity analysis framework for annotation-induced bias. ASVs quantify the minimum degree of differential annotation error needed to overturn a downstream conclusion, parameterized by a reference confusion matrix and amplification factor δ. Reported alongside estimates, analogous to E-values for unmeasured confounding. Formal proofs (monotonicity + sharpness) for 3 priority topologies; MC-validated conjectures for the remaining 3.\n\n3. **Correction guidance framework**: A principled decision framework mapping {DAG topology × error structure × ASV} to the appropriate correction method (DSL, PPI, MLA, naive plug-in), characterizing regimes where each applies and where no existing method suffices — including dependence-aware multi-LLM correction as an open problem.\n\n## Story Spine\n\n- **Problem**: LLMs are rapidly replacing human annotators in CSS, but Baumann et al. (2025) show 31% of downstream conclusions are already incorrect. Researchers lack diagnostic tools to answer: (a) which annotation error structures propagate bias under their causal design, and (b) how robust their conclusions are to annotation error. Kim et al. (ICML 2025) show cross-model errors are highly correlated (60% agreement when both err), meaning ensembles cannot escape systematic bias — researchers MUST analyze the error structure of their chosen annotator, which is exactly what our tools enable.\n\n- **Existing approaches & gaps**: Wood-Doughty et al. (2018) apply DAG reasoning to text classifier errors but produce no formal bias theorems (binary only). TeBlunthuis et al. (2024) provide the most complete binary treatment with MLA correction but are limited to K=2, single classifier. Lee & Wood-Doughty (2024) extend to categorical + LLM classifiers but cover only 1 DAG topology (unobserved confounding), with no systematic taxonomy or sensitivity analysis. VanderWeele & Li (2019) provide sensitivity bounds but only for binary risk ratios. Jerzak et al. (EMNLP 2025) benchmark correction methods but treat error as monolithic — if different confusion matrix structures produce qualitatively different bias in different DAG topologies, unconditional benchmarking is itself misleading.\n\n- **Our framing**: Multi-class annotation errors are not created equal. The same confusion matrix that produces innocuous residual bias in one DAG topology can produce direction-reversing toxic bias in another. We provide the first systematic characterization of this interaction (the taxonomy), a tool to quantify robustness (ASVs), and guidance for when/how to correct (the framework). This is not a new correction method — it is the missing diagnostic layer that tells researchers which correction is appropriate, or whether correction is needed at all.\n\n- **Headline result template**: \"Across 6 DAG topologies with K=3,5,7, our bias expressions correctly predict bias direction and magnitude within 95% MC confidence intervals. On 3 CSS tasks annotated by 3 LLMs, ASVs provide calibrated robustness indicators, and our taxonomy identifies cases where commonly applied corrections would increase rather than decrease bias.\"\n\n## Core Insight (Lead Finding) — DUAL VERSION, gate on plan_001\n\n### Version A (≥1 topology shows direction reversal under K≥3 non-differential exposure misclassification)\nThe binary guarantee that \"non-differential exposure misclassification biases toward the null\" (Bross 1954) breaks in the multi-class case. For specific confusion matrix structures in specific DAG topologies, K≥3 non-differential error can amplify or reverse effect estimates. Brenner (1993) identified this possibility for polytomous confounder misclassification (\"bias can go in either direction\"); we provide the first systematic characterization across 6 DAG topologies with exact conditions for each {C structure × topology} cell. Furthermore, binarizing a K-class variable to \"escape\" into the binary regime is itself hazardous — collapsing introduces new, direction-unpredictable bias (MVP evidence: Δ up to 0.103).\n\n### Version B (no direction reversal found across topologies)\nMulti-class annotation error is structurally irreducible to the binary case: the downstream bias magnitude depends on the full K×K confusion matrix in ways that binary sensitivity/specificity cannot predict, and binarizing a K-class variable introduces new bias (MVP evidence: Δ up to 0.103). While non-differential error preserves bias direction across tested topologies (a useful practitioners' guarantee), the magnitude varies dramatically with confusion matrix structure (0.13–0.30 in confounding DAG alone), and this variation is topology-dependent. ASVs provide the missing robustness measure for this quantitative — not directional — uncertainty.\n\n**Gate**: plan_001 results determine which version. ≥2 topologies with reversal → A; 1 → A with that topology as lead; 0 → B. See D003.\n\n## MVP Evidence\n\n**Confounding DAG + K=3** (confounder misclassification):\n- Theoretical bias expressions match MC perfectly (6/6 structures within 95% CI) — framework validated\n- Binary collapse ≠ multi-class: Δ up to 0.103 (near-permutation C), proving K=3 retains more confounding control than binarization\n- 100k random C search: confounding DAG bias is monotonically toward OVB — this topology is \"well-behaved\" (predictable direction)\n- NOTE: Confounding DAG tests residual confounding, NOT bias-toward-null (Bross 1954). Criterion 2 (away-from-null bias) holds for binary too in this topology. See M001.\n\n**Exposure DAG K=3** (exposure misclassification — D002/D004 CONFIRMED):\n- 100k random C: 85% violate bias-toward-null, 83.4% sign reversal, 14.1% amplification\n- K=2 control: 6/6 toward null (binary guarantee holds)\n- Worst case: β=1.0 → estimate=-0.84 (sign reversal + 2.83x amplification)\n- Mechanism: near-permutation C causes label swap → effect direction flips (structurally impossible in K=2)\n- **Two-DAG contrast**: confounding (monotonic, predictable) vs exposure (unpredictable, topology-dependent) — validates core claim\n\n## Venue Fit Risks\n\n- **AAAI**: Broad AI audience — emphasize general methodology for \"automated annotation measurement error,\" not LLM-specific. Frame as extending classical measurement error theory to modern automated labeling.\n- **ARR/NAACL**: NLP audience — CSS track is natural fit. May want more empirical NLP experiments. Balance theory with practical LLM annotation scenarios.\n- **Cross-discipline bridge**: Epidemiology (measurement error theory) × NLP (annotation errors). Epi reviewers check proof rigor; NLP reviewers check empirical relevance. Must serve both.\n\n## Anticipated Reviewer Concerns & Planned Responses\n\n1. **\"Trivial extension of binary to multi-class\"** → Brenner (1993) proved direction reversal; our taxonomy provides the first systematic characterization across 6 topologies. Binarizing K-class introduces NEW unpredictable bias (MVP evidence). The complexity jump is structural: binary has 2 free parameters (sensitivity, specificity) → scalar bias; K=5 has 20 free parameters → matrix-valued bias requiring eigendecomposition for interpretation. [Experiments: plan_001, plan_008]\n\n2. **\"Lee & Wood-Doughty (2024) already did categorical\"** → They cover 1 topology (unobserved confounding) on 1 dataset (MIMIC). We cover 6 topologies with systematic taxonomy + ASVs + correction guidance. Their work is a stepping stone; ours is the full framework. [Experiments: plan_001]\n\n3. **\"Why these 6 DAG topologies?\"** → These are the canonical CSS causal designs used by Hernán & Cole (2009) and TeBlunthuis et al. (2024). They cover the major roles an annotated variable can play: confounder, mediator, collider, instrument, front-door criterion variable. [Experiments: plan_001]\n\n4. **\"K≥5 expressions aren't actionable\"** → Three interpretability tools: (a) eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar bounds, (c) diagnostic visualizations. [Experiments: plan_002]\n\n5. **\"ASV sharpness only proved for 3 topologies\"** → Honest scoping reflecting algebraic complexity. Remaining 3 validated via MC with numerical sharpness evidence. Full proofs identified as immediate future work. [Experiments: plan_004, plan_005]\n\n6. **\"Correlated multi-LLM errors?\"** → Kim et al. (ICML 2025) actually STRENGTHENS our case: if ensembles can't fix errors (60% agreement when both err), error structure analysis is the only viable approach. Multi-annotator correction with dependence is identified as an open problem. [Framework discussion]\n\n7. **\"Empirical validation scope\"** → 3 CSS tasks × 3 LLMs × 3 DAG-relevant scenarios. Tasks selected to cover K=2,3,5 annotation complexity. [Experiments: plan_003, plan_006]\n\n\n## experiment_plan (with registry status)\n\n- id: plan_001\n  claim: 1\n  description: Derive and MC-validate bias expressions for 6 DAG topologies with K=3\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  registry_id: null\n  details: 'For each topology (confounding, mediation, collider, M-bias, instrument,\n    front-door): derive closed-form K=3 bias expression, validate with MC (1000 reps\n    × N=10000, 6 confusion matrix structures including near-permutation extreme).\n    Key question: which topologies show direction reversal under non-differential\n    error? Confounding already validated in MVP (no reversal, monotonic toward OVB).\n\n    '\n  status: planned\n- id: plan_002\n  claim: 1\n  description: Extend bias expressions to K=5,7 — matrix notation + interpretability\n    tools\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  details: 'Matrix-form expressions for general K. Three interpretability tools: (a)\n    eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar\n    bounds collapsing matrix to conservative scalar, (c) diagnostic visualizations\n    mapping confusion matrix regions to bias magnitude. Validate on confounding +\n    mediation + collider DAGs with K=5,7.\n\n    '\n  status: planned\n- id: plan_003\n  claim: 1\n  description: 'Empirical confusion matrices: 3 LLMs × 3 CSS tasks vs gold-standard'\n  priority: P0\n  gpu_budget_hours: 0\n  api_cost_estimate: $300-550\n  deps: []\n  details: 'Tasks: protest event coding (K=5, ACLED/GPT-RE), stance detection (K=3,\n    SemEval/VAST), toxicity (K=2, as special case / consistency check, Civil Comments).\n    Models: Llama 4 Maverick (Together.ai), Qwen 3.5 Plus (OpenRouter), DeepSeek V4\n    (DeepSeek API). ~30K annotations per model × 3 datasets × 3 prompt variants. Output:\n    empirical confusion matrices, inter-model correlation analysis, downstream regression\n    bias vs gold-standard baseline.\n\n    '\n  status: planned\n- id: plan_008\n  claim: 1\n  description: 'Binarization collapse analysis: K→2 folding bias across all 6 topologies'\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  details: 'For each of 6 topologies with K=3,5,7: collapse to binary, compare bias\n    from full multi-class expression vs binarized expression. Demonstrate that binarization\n    is not a safe shortcut — can amplify or reverse bias. MVP showed Δ up to 0.089\n    for confounding DAG K=3.\n\n    '\n  status: planned\n- id: plan_004\n  claim: 2\n  description: 'ASV framework: formal proofs for confounding, mediation, collider'\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  details: 'Derive ASV expressions for 3 priority topologies. Formal proofs of: (a)\n    monotonicity (ASV increases with δ amplification), (b) sharpness (bound is achievable\n    for some confusion matrix). MC validation: coverage at 90%, 95%, 99% levels across\n    1000 scenarios.\n\n    '\n  status: planned\n- id: plan_005\n  claim: 2\n  description: ASV MC validation for M-bias, instrument, front-door topologies\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - plan_004\n  details: 'ASV expressions + MC validation of monotonicity and coverage. Sharpness\n    stated as conjectures supported by numerical evidence. If any topology fails monotonicity\n    under MC, flag and investigate.\n\n    '\n  status: planned\n- id: plan_006\n  claim: 2\n  description: ASV calibration on empirical data (3 CSS tasks × 3 LLMs)\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_003\n  - plan_004\n  details: 'Apply ASVs to empirical confusion matrices from plan_003. Validate coverage\n    on held-out gold-standard splits. Report ASV alongside downstream effect estimates\n    for each task. Compare ASV interpretability with raw confusion matrix reporting.\n\n    '\n  status: planned\n- id: plan_007\n  claim: 3\n  description: 'Correction guidance framework: decision mapping + validation'\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  - plan_004\n  - plan_003\n  details: 'Decision framework: {topology × error structure × ASV} → correction method\n    (DSL / PPI / MLA / naive plug-in / \"no existing method adequate\"). MC validation:\n    recommended method produces least bias in ≥90% of scenarios. Empirical validation\n    on plan_003 data. Characterize regimes where no existing method suffices (correlated\n    errors, differential multi-class, etc.) — identify as open problems.\n\n    '\n  status: planned\n- id: plan_009\n  claim: 1\n  description: Pathological confusion matrix analysis (near-permutation, rank-deficient)\n  priority: P2\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  details: 'Extreme C structures: near-permutation, rank-deficient, block-diagonal.\n    Characterize when bias becomes catastrophic across topologies. Identify structural\n    conditions (spectral gap, diagonal dominance ratio) that predict bias severity\n    — candidate features for practitioners.\n\n    '\n  status: planned\n- id: plan_010\n  claim:\n  - 1\n  - 2\n  - 3\n  description: annot-sensitivity Python toolkit (open-source release)\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  - plan_004\n  - plan_007\n  details: 'Package: user-specified DAG + confusion matrix(es) + downstream estimate\n    → bias expressions (scalar K≤3, matrix K>3 with interpretability) + ASV bounds\n    + sensitivity curves + correction recommendation + diagnostic plots. pip-installable,\n    with worked examples for each topology.\n\n    '\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: mvp_confounding_dag\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    theory_mc_match: 6/6\n    pass_criteria: 3/3\n    max_binary_collapse_delta: 0.103\n    bias_range: 0.132-0.298\n    ovb_reference: 0.3\n    direction_reversal_found: false\n    random_search_100k_min_bias: 0.063\n- exp_id: mvp_exposure_dag\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    theory_mc_match: 5/5\n    pass_criteria: 3/3\n    violation_rate: 0.85\n    sign_reversal_rate: 0.834\n    amplification_rate: 0.141\n    K2_toward_null: 6/6\n    worst_severity: 2.83\n    named_structures_with_violation: 3/6\n\n# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）\n\n```yaml\ntiers:\n  best:\n    meaning: \"...\"\n    key_assumptions: [...]\n    number_ranges: {metric_a: [low, high], metric_b: [...]}\n    narrative_direction: \"...\"\n  median:\n    meaning: \"...\"\n    ...\n  worst:\n    meaning: \"...\"\n    ...\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T07:45:58.792Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T07:45:58.792Z",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T07:45:58.833Z_
+
+你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。
+
+你需要同时定义 best / median / worst 三档：
+1. 每档的核心假设（哪些假设成立/不成立）
+2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）
+3. 每档的论文叙事方向——
+   - best: 原始 framing 完全成立，claims 无需调整
+   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验
+   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）
+
+三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性
+自行判断。但必须确保三档之间的数字和叙事逻辑一致。
+
+# Project context
+project: causal_annot_error_attrib
+focus: Key uncertainty: will mediator/collider DAGs show direction reversal under non-differential multi-class error? Confounding DAG was monotonic in MVP. Also: is ASV framework practically useful enough vs just reporting confusion matrices?
+
+## paper_framing.md
+
+# Paper Framing — causal_annot_error_attrib
+
+## Target Venue
+- Primary: AAAI 2027 (abstract: 2026-07-21, paper: 2026-07-28)
+- Secondary: ARR October 2026 (~2026-10-15, commit to NAACL 2027 / ACL 2027)
+- Tertiary: ICWSM 2027 Round 2 (2026-09-15)
+
+## Title
+Multi-Class Annotation Errors Are Not Created Equal: Bias Taxonomy, Sensitivity Analysis, and Correction Guidance for LLM-Annotated Causal Studies
+
+## Core Claims (3 条)
+
+1. **Multi-class bias taxonomy**: For K≥3 annotation variables, the direction and magnitude of downstream bias depend on the interaction between the K×K confusion matrix structure and the DAG topology — breaking guarantees that hold in the binary case. We provide closed-form bias expressions for K=3 and matrix-form expressions with interpretability tools for general K, across 6 canonical social-science DAG topologies (confounding, mediation, collider, M-bias, instrument, front-door).
+
+2. **Annotation Sensitivity Values (ASVs)**: A sensitivity analysis framework for annotation-induced bias. ASVs quantify the minimum degree of differential annotation error needed to overturn a downstream conclusion, parameterized by a reference confusion matrix and amplification factor δ. Reported alongside estimates, analogous to E-values for unmeasured confounding. Formal proofs (monotonicity + sharpness) for 3 priority topologies; MC-validated conjectures for the remaining 3.
+
+3. **Correction guidance framework**: A principled decision framework mapping {DAG topology × error structure × ASV} to the appropriate correction method (DSL, PPI, MLA, naive plug-in), characterizing regimes where each applies and where no existing method suffices — including dependence-aware multi-LLM correction as an open problem.
+
+## Story Spine
+
+- **Problem**: LLMs are rapidly replacing human annotators in CSS, but Baumann et al. (2025) show 31% of downstream conclusions are already incorrect. Researchers lack diagnostic tools to answer: (a) which annotation error structures propagate bias under their causal design, and (b) how robust their conclusions are to annotation error. Kim et al. (ICML 2025) show cross-model errors are highly correlated (60% agreement when both err), meaning ensembles cannot escape systematic bias — researchers MUST analyze the error structure of their chosen annotator, which is exactly what our tools enable.
+
+- **Existing approaches & gaps**: Wood-Doughty et al. (2018) apply DAG reasoning to text classifier errors but produce no formal bias theorems (binary only). TeBlunthuis et al. (2024) provide the most complete binary treatment with MLA correction but are limited to K=2, single classifier. Lee & Wood-Doughty (2024) extend to categorical + LLM classifiers but cover only 1 DAG topology (unobserved confounding), with no systematic taxonomy or sensitivity analysis. VanderWeele & Li (2019) provide sensitivity bounds but only for binary risk ratios. Jerzak et al. (EMNLP 2025) benchmark correction methods but treat error as monolithic — if different confusion matrix structures produce qualitatively different bias in different DAG topologies, unconditional benchmarking is itself misleading.
+
+- **Our framing**: Multi-class annotation errors are not created equal. The same confusion matrix that produces innocuous residual bias in one DAG topology can produce direction-reversing toxic bias in another. We provide the first systematic characterization of this interaction (the taxonomy), a tool to quantify robustness (ASVs), and guidance for when/how to correct (the framework). This is not a new correction method — it is the missing diagnostic layer that tells researchers which correction is appropriate, or whether correction is needed at all.
+
+- **Headline result template**: "Across 6 DAG topologies with K=3,5,7, our bias expressions correctly predict bias direction and magnitude within 95% MC confidence intervals. On 3 CSS tasks annotated by 3 LLMs, ASVs provide calibrated robustness indicators, and our taxonomy identifies cases where commonly applied corrections would increase rather than decrease bias."
+
+## Core Insight (Lead Finding) — DUAL VERSION, gate on plan_001
+
+### Version A (≥1 topology shows direction reversal under K≥3 non-differential exposure misclassification)
+The binary guarantee that "non-differential exposure misclassification biases toward the null" (Bross 1954) breaks in the multi-class case. For specific confusion matrix structures in specific DAG topologies, K≥3 non-differential error can amplify or reverse effect estimates. Brenner (1993) identified this possibility for polytomous confounder misclassification ("bias can go in either direction"); we provide the first systematic characterization across 6 DAG topologies with exact conditions for each {C structure × topology} cell. Furthermore, binarizing a K-class variable to "escape" into the binary regime is itself hazardous — collapsing introduces new, direction-unpredictable bias (MVP evidence: Δ up to 0.103).
+
+### Version B (no direction reversal found across topologies)
+Multi-class annotation error is structurally irreducible to the binary case: the downstream bias magnitude depends on the full K×K confusion matrix in ways that binary sensitivity/specificity cannot predict, and binarizing a K-class variable introduces new bias (MVP evidence: Δ up to 0.103). While non-differential error preserves bias direction across tested topologies (a useful practitioners' guarantee), the magnitude varies dramatically with confusion matrix structure (0.13–0.30 in confounding DAG alone), and this variation is topology-dependent. ASVs provide the missing robustness measure for this quantitative — not directional — uncertainty.
+
+**Gate**: plan_001 results determine which version. ≥2 topologies with reversal → A; 1 → A with that topology as lead; 0 → B. See D003.
+
+## MVP Evidence
+
+**Confounding DAG + K=3** (confounder misclassification):
+- Theoretical bias expressions match MC perfectly (6/6 structures within 95% CI) — framework validated
+- Binary collapse ≠ multi-class: Δ up to 0.103 (near-permutation C), proving K=3 retains more confounding control than binarization
+- 100k random C search: confounding DAG bias is monotonically toward OVB — this topology is "well-behaved" (predictable direction)
+- NOTE: Confounding DAG tests residual confounding, NOT bias-toward-null (Bross 1954). Criterion 2 (away-from-null bias) holds for binary too in this topology. See M001.
+
+**Exposure DAG K=3** (exposure misclassification — D002/D004 CONFIRMED):
+- 100k random C: 85% violate bias-toward-null, 83.4% sign reversal, 14.1% amplification
+- K=2 control: 6/6 toward null (binary guarantee holds)
+- Worst case: β=1.0 → estimate=-0.84 (sign reversal + 2.83x amplification)
+- Mechanism: near-permutation C causes label swap → effect direction flips (structurally impossible in K=2)
+- **Two-DAG contrast**: confounding (monotonic, predictable) vs exposure (unpredictable, topology-dependent) — validates core claim
+
+## Venue Fit Risks
+
+- **AAAI**: Broad AI audience — emphasize general methodology for "automated annotation measurement error," not LLM-specific. Frame as extending classical measurement error theory to modern automated labeling.
+- **ARR/NAACL**: NLP audience — CSS track is natural fit. May want more empirical NLP experiments. Balance theory with practical LLM annotation scenarios.
+- **Cross-discipline bridge**: Epidemiology (measurement error theory) × NLP (annotation errors). Epi reviewers check proof rigor; NLP reviewers check empirical relevance. Must serve both.
+
+## Anticipated Reviewer Concerns & Planned Responses
+
+1. **"Trivial extension of binary to multi-class"** → Brenner (1993) proved direction reversal; our taxonomy provides the first systematic characterization across 6 topologies. Binarizing K-class introduces NEW unpredictable bias (MVP evidence). The complexity jump is structural: binary has 2 free parameters (sensitivity, specificity) → scalar bias; K=5 has 20 free parameters → matrix-valued bias requiring eigendecomposition for interpretation. [Experiments: plan_001, plan_008]
+
+2. **"Lee & Wood-Doughty (2024) already did categorical"** → They cover 1 topology (unobserved confounding) on 1 dataset (MIMIC). We cover 6 topologies with systematic taxonomy + ASVs + correction guidance. Their work is a stepping stone; ours is the full framework. [Experiments: plan_001]
+
+3. **"Why these 6 DAG topologies?"** → These are the canonical CSS causal designs used by Hernán & Cole (2009) and TeBlunthuis et al. (2024). They cover the major roles an annotated variable can play: confounder, mediator, collider, instrument, front-door criterion variable. [Experiments: plan_001]
+
+4. **"K≥5 expressions aren't actionable"** → Three interpretability tools: (a) eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar bounds, (c) diagnostic visualizations. [Experiments: plan_002]
+
+5. **"ASV sharpness only proved for 3 topologies"** → Honest scoping reflecting algebraic complexity. Remaining 3 validated via MC with numerical sharpness evidence. Full proofs identified as immediate future work. [Experiments: plan_004, plan_005]
+
+6. **"Correlated multi-LLM errors?"** → Kim et al. (ICML 2025) actually STRENGTHENS our case: if ensembles can't fix errors (60% agreement when both err), error structure analysis is the only viable approach. Multi-annotator correction with dependence is identified as an open problem. [Framework discussion]
+
+7. **"Empirical validation scope"** → 3 CSS tasks × 3 LLMs × 3 DAG-relevant scenarios. Tasks selected to cover K=2,3,5 annotation complexity. [Experiments: plan_003, plan_006]
+
+
+## experiment_plan (with registry status)
+
+- id: plan_001
+  claim: 1
+  description: Derive and MC-validate bias expressions for 6 DAG topologies with K=3
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: null
+  details: 'For each topology (confounding, mediation, collider, M-bias, instrument,
+    front-door): derive closed-form K=3 bias expression, validate with MC (1000 reps
+    × N=10000, 6 confusion matrix structures including near-permutation extreme).
+    Key question: which topologies show direction reversal under non-differential
+    error? Confounding already validated in MVP (no reversal, monotonic toward OVB).
+
+    '
+  status: planned
+- id: plan_002
+  claim: 1
+  description: Extend bias expressions to K=5,7 — matrix notation + interpretability
+    tools
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  details: 'Matrix-form expressions for general K. Three interpretability tools: (a)
+    eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar
+    bounds collapsing matrix to conservative scalar, (c) diagnostic visualizations
+    mapping confusion matrix regions to bias magnitude. Validate on confounding +
+    mediation + collider DAGs with K=5,7.
+
+    '
+  status: planned
+- id: plan_003
+  claim: 1
+  description: 'Empirical confusion matrices: 3 LLMs × 3 CSS tasks vs gold-standard'
+  priority: P0
+  gpu_budget_hours: 0
+  api_cost_estimate: $300-550
+  deps: []
+  details: 'Tasks: protest event coding (K=5, ACLED/GPT-RE), stance detection (K=3,
+    SemEval/VAST), toxicity (K=2, as special case / consistency check, Civil Comments).
+    Models: Llama 4 Maverick (Together.ai), Qwen 3.5 Plus (OpenRouter), DeepSeek V4
+    (DeepSeek API). ~30K annotations per model × 3 datasets × 3 prompt variants. Output:
+    empirical confusion matrices, inter-model correlation analysis, downstream regression
+    bias vs gold-standard baseline.
+
+    '
+  status: planned
+- id: plan_008
+  claim: 1
+  description: 'Binarization collapse analysis: K→2 folding bias across all 6 topologies'
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  details: 'For each of 6 topologies with K=3,5,7: collapse to binary, compare bias
+    from full multi-class expression vs binarized expression. Demonstrate that binarization
+    is not a safe shortcut — can amplify or reverse bias. MVP showed Δ up to 0.089
+    for confounding DAG K=3.
+
+    '
+  status: planned
+- id: plan_004
+  claim: 2
+  description: 'ASV framework: formal proofs for confounding, mediation, collider'
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  details: 'Derive ASV expressions for 3 priority topologies. Formal proofs of: (a)
+    monotonicity (ASV increases with δ amplification), (b) sharpness (bound is achievable
+    for some confusion matrix). MC validation: coverage at 90%, 95%, 99% levels across
+    1000 scenarios.
+
+    '
+  status: planned
+- id: plan_005
+  claim: 2
+  description: ASV MC validation for M-bias, instrument, front-door topologies
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_004
+  details: 'ASV expressions + MC validation of monotonicity and coverage. Sharpness
+    stated as conjectures supported by numerical evidence. If any topology fails monotonicity
+    under MC, flag and investigate.
+
+    '
+  status: planned
+- id: plan_006
+  claim: 2
+  description: ASV calibration on empirical data (3 CSS tasks × 3 LLMs)
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_003
+  - plan_004
+  details: 'Apply ASVs to empirical confusion matrices from plan_003. Validate coverage
+    on held-out gold-standard splits. Report ASV alongside downstream effect estimates
+    for each task. Compare ASV interpretability with raw confusion matrix reporting.
+
+    '
+  status: planned
+- id: plan_007
+  claim: 3
+  description: 'Correction guidance framework: decision mapping + validation'
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  - plan_004
+  - plan_003
+  details: 'Decision framework: {topology × error structure × ASV} → correction method
+    (DSL / PPI / MLA / naive plug-in / "no existing method adequate"). MC validation:
+    recommended method produces least bias in ≥90% of scenarios. Empirical validation
+    on plan_003 data. Characterize regimes where no existing method suffices (correlated
+    errors, differential multi-class, etc.) — identify as open problems.
+
+    '
+  status: planned
+- id: plan_009
+  claim: 1
+  description: Pathological confusion matrix analysis (near-permutation, rank-deficient)
+  priority: P2
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  details: 'Extreme C structures: near-permutation, rank-deficient, block-diagonal.
+    Characterize when bias becomes catastrophic across topologies. Identify structural
+    conditions (spectral gap, diagonal dominance ratio) that predict bias severity
+    — candidate features for practitioners.
+
+    '
+  status: planned
+- id: plan_010
+  claim:
+  - 1
+  - 2
+  - 3
+  description: annot-sensitivity Python toolkit (open-source release)
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  - plan_004
+  - plan_007
+  details: 'Package: user-specified DAG + confusion matrix(es) + downstream estimate
+    → bias expressions (scalar K≤3, matrix K>3 with interpretability) + ASV bounds
+    + sensitivity curves + correction recommendation + diagnostic plots. pip-installable,
+    with worked examples for each topology.
+
+    '
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: mvp_confounding_dag
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    theory_mc_match: 6/6
+    pass_criteria: 3/3
+    max_binary_collapse_delta: 0.103
+    bias_range: 0.132-0.298
+    ovb_reference: 0.3
+    direction_reversal_found: false
+    random_search_100k_min_bias: 0.063
+- exp_id: mvp_exposure_dag
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    theory_mc_match: 5/5
+    pass_criteria: 3/3
+    violation_rate: 0.85
+    sign_reversal_rate: 0.834
+    amplification_rate: 0.141
+    K2_toward_null: 6/6
+    worst_severity: 2.83
+    named_structures_with_violation: 3/6
+
+# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）
+
+```yaml
+tiers:
+  best:
+    meaning: "..."
+    key_assumptions: [...]
+    number_ranges: {metric_a: [low, high], metric_b: [...]}
+    narrative_direction: "..."
+  median:
+    meaning: "..."
+    ...
+  worst:
+    meaning: "..."
+    ...
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9d03a2fc-e9d0-4672-98bf-fddc81ac5146",
+  "type": "user",
+  "uuid": "33d412d4-89c7-41f2-93df-5f04e22e2024",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T07:45:58.832Z_
+
+```json
+{
+  "parentUuid": "33d412d4-89c7-41f2-93df-5f04e22e2024",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1f455b35-c040-46ec-8fe5-cf858325d9a3",
+  "timestamp": "2026-05-20T07:45:58.832Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T07:45:58.832Z_
+
+```json
+{
+  "parentUuid": "1f455b35-c040-46ec-8fe5-cf858325d9a3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "395852f6-87db-4b62-ae2a-a83e7cda86e0",
+  "timestamp": "2026-05-20T07:45:58.832Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "395852f6-87db-4b62-ae2a-a83e7cda86e0",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-scenario tiers for Dream annotation error study",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T07:47:06.093Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to define three tiers (best/median/worst) for a Dream simulation based on their research project on causal annotation error attribution. Let me analyze the research context carefully.
+
+Key project context:
+- Focus: Multi-class annotation errors in causal studies, bias taxonomy across 6 DAG topologies
+- MVP done: confounding DAG (monotonic, no reversal) and exposure DAG (85% violate bias-toward-null, 83.4% sign reversal)
+- Key uncertainty: Will mediator/collider DAGs show direction reversal under non-differential multi-class error?
+
+
+- Paper framing hinges on whether Version A (reversal found) or Version B (no reversal) gets validated across remaining topologies
+
+Now I'm mapping out what success looks like at each tier. The best case would be if multiple additional topologies demonstrate direction reversal, the ASV framework holds up with strong theoretical guarantees, and the empirical results show the correction methods are actually useful in practice. The median scenario is trickier—maybe only one or two more topologies show reversal, the ASV proofs work but with weaker bounds, and the practical utility becomes less clear. The worst case would be if the remaining DAGs don't show reversal patterns, forcing a pivot to Version B framing and limiting the scope of the bias taxonomy.
+
+I need to track seven specific metrics across the remaining five topologies: how many show direction reversal, whether theory matches the Monte Carlo results, ASV coverage accuracy, proof sharpness, the binarization collapse effect, empirical calibration quality, and whether the correction framework actually recommends the right method. Let me map out the topology status—confounding is done with no reversal, exposure showed massive reversal, and I still need to test mediation, collider, M-bias, instrumental, and front-door. Looking more carefully at the focus question about whether mediator and collider DAGs show direction reversal under non-differential multi-class error, I realize the exposure DAG result is already confirmed as a separate finding. The key uncertainty is whether the remaining topologies in plan_001 — beyond the confounding case we've already tested — will exhibit the same reversal pattern. The gate criteria suggests we need at least 2 topologies with reversal to move forward with version A, and we've got 1 confirmed, so the question is what the next topologies reveal.
+
+Now I'm laying out what success looks like at different levels. The best case would be 3+ topologies showing reversal including both mediation and collider, with strong theory-MC alignment across all 6 topologies, complete ASV proofs for the priority cases, empirical evidence that ASVs outperform standard confusion matrix reporting, correction framework hitting 95%+ accuracy, and substantial binarization collapse effects. The median scenario would be 2 topologies with reversal — exposure plus one of the key remaining ones — which still qualifies for version A but with a narrower lead.
+
+For the worst case, if only exposure shows reversal and the other topologies stay monotonic, or if ASV monotonicity breaks down, I'd need to pivot toward version B framing that emphasizes magnitude effects rather than direction reversals. The theory-MC match gives me a concrete metric too: best case is 36/36 structures within the 95% CI across all topologies, median around 30-35/36, and worst case 25-30/36 where some topologies might need numerical validation instead.
+
+On direction reversals specifically, I'm hoping for at least 3 topologies showing reversal effects, but realistically 2 is the median target with exposure plus one other. For ASV coverage I want 93-97% at nominal 95%, and the correction framework should hit 85-93% accuracy in the median scenario. The binarization effect size is another key threshold—ideally max Δ ≥ 0.15 across topologies, though 0.08-0.15 is more realistic.
+
+For empirical ASV calibration across the 9 scenarios, the best case is correct ordering on all of them, median is 6-8 correct, and worst case drops below 6. But actually, I need to reconsider what "worst case" really means here—it's not that nothing works, since the exposure reversal is already confirmed. Worst case is that no new topologies beyond exposure show reversal, meaning the phenomenon is topology-specific rather than general. Even then, the ASV framework still functions, just not dramatically better than alternatives, so I'd need to reframe around topology-dependent magnitude variation instead.
+
+But the exposure reversal itself is a strong result, and the binary collapse evidence is solid, so even in the worst scenario I can reframe it as showing why the exposure topology is uniquely dangerous and present the diagnostic framework. Now I'm setting up the YAML with key metrics: reversal topology count, theory-MC match rate, ASV coverage at 95%, sharpness proofs, binarization bias differences, correction framework accuracy, and empirical ASV ordering accuracy.
+
+Writing YAML metrics... Let me reconsider the number ranges more carefully to ensure best ≥ median ≥ worst consistency.
+
+reversal_topologies: best [3,5], median [2,2], worst [1,1]
+theory_mc_match_rate: best [0.95, 1.0], median [0.85, 0.95], worst [0.70, 0.85]
+asv_coverage_at_95: best [0.93, 0.97], median [0.88, 0.93], worst [0.80, 0.88]
+asv_sharpness_proofs: best [3,3], median [2,3], worst [1,2]
+binarization_max_delta: best [0.15, 0.25], median [0.10, 0.15], worst [0.05, 0.10]
+correction_framework_accuracy: best [0.93, 0.98], median [0.85, 0.93], worst [0.70, 0.85]
+empirical_asv_ordering_accuracy: best [8, 9], median [6, 8], worst [3, 6] (out of 9 scenarios)
+
+I need to reconsider what "ordering accuracy" means across 9 scenarios and whether a different metric like Kendall's tau or pairwise comparison accuracy would be clearer. Let me simplify by focusing on the most critical metrics and restructuring around whether sign reversal rates matter for new topologies—in the exposure DAG I saw 85% violation and 83.4% sign reversal rates, so I should expect similar patterns in mediation and collider scenarios, with best cases showing high violation rates, median cases showing lower but non-zero rates, and worst cases approaching zero like confounding. Now I'll write this up with precision and research grounding, starting with the narrative directions where version A represents full validation of the non-differential multi-class error framework.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "395852f6-87db-4b62-ae2a-a83e7cda86e0",
+  "isSidechain": false,
+  "requestId": "req_011CbDT2QC7A1V2nx6njnKZv",
+  "type": "assistant",
+  "uuid": "0a124d7d-6a5d-496d-9343-f7c7f2f4a60a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fNGr8SbWztp75BbYXC8t",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10254,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 5229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10254,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 5229,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 10254,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10254
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T07:47:51.597Z_
+
+```yaml
+tiers:
+  best:
+    meaning: "≥3 topologies (含 exposure) 出现方向反转；ASV 框架在所有优先拓扑上均具备单调性+紧性证明；经验数据清晰展示 ASV 的实用价值"
+    key_assumptions:
+      - "mediation 和 collider DAG 在 non-differential K≥3 误分类下均出现方向反转（100k random C 搜索 violation rate ≥30%）"
+      - "至少 1 个额外拓扑（M-bias/instrument/front-door）也出现反转"
+      - "ASV 单调性和紧性在 confounding/mediation/collider 三个优先拓扑上均有完整形式化证明"
+      - "经验混淆矩阵（3 LLM × 3 task）覆盖足够多样的 C 结构，ASV 排序与实际 bias 严重度一致"
+      - "correction framework 在 ≥93% 场景中推荐最优方法"
+    number_ranges:
+      reversal_topologies_count: [3, 5]           # 含 exposure，总共 6 个拓扑
+      mediation_violation_rate: [0.30, 0.85]      # 100k random C 中违反 toward-null 的比例
+      collider_violation_rate: [0.30, 0.85]
+      theory_mc_match_rate: [0.95, 1.0]           # {topology × C structure} 理论值落入 95% MC CI 的比例
+      asv_coverage_at_95_nominal: [0.93, 0.97]    # 经验覆盖率 at 95% 名义水平
+      asv_sharpness_formal_proofs: [3, 3]         # 有完整紧性证明的拓扑数
+      binarization_max_delta: [0.15, 0.25]        # 跨拓扑 K→2 折叠最大 bias 差异
+      correction_framework_accuracy: [0.93, 0.98] # 推荐方法为最优的场景比例
+      empirical_asv_concordance: [8, 9]           # 9 个经验场景中 ASV 正确排序 robustness 的数量
+    narrative_direction: >
+      Version A 完全成立。Lead finding: non-differential multi-class error 在多个 DAG 拓扑中打破经典
+      toward-null 保证，且反转模式是拓扑依赖的。Taxonomy 揭示了不可化约的 {C structure × topology}
+      交互效应。三条 claims 无需调整：taxonomy 覆盖广、ASV 有完整理论保证、correction guidance
+      在几乎所有场景有效。Headline: "the same confusion matrix that is benign in confounding
+      topology produces direction-reversing bias in mediation/collider."
+
+  median:
+    meaning: "2 个拓扑出现方向反转（exposure + mediation 或 collider 之一）；ASV 紧性证明仅覆盖 2 个拓扑；经验验证可用但不够 dramatic"
+    key_assumptions:
+      - "mediation 或 collider 中恰好 1 个出现方向反转（violation rate 15-40%），另 1 个单调"
+      - "M-bias/instrument/front-door 均为单调（无反转），但 magnitude 变异显著"
+      - "ASV 单调性对所有拓扑成立，但紧性仅对 2 个拓扑有形式化证明"
+      - "经验 ASV 排序大部分正确，但在低 bias 区间区分力不足"
+      - "correction framework 整体有效，但 2-3 个边界场景中方法不可区分"
+    number_ranges:
+      reversal_topologies_count: [2, 2]
+      mediation_violation_rate: [0.0, 0.40]       # 可能为 0（若 collider 是反转的那个）
+      collider_violation_rate: [0.0, 0.40]        # 可能为 0（若 mediation 是反转的那个）
+      theory_mc_match_rate: [0.85, 0.95]
+      asv_coverage_at_95_nominal: [0.88, 0.93]
+      asv_sharpness_formal_proofs: [2, 2]
+      binarization_max_delta: [0.10, 0.15]
+      correction_framework_accuracy: [0.85, 0.93]
+      empirical_asv_concordance: [6, 8]
+    narrative_direction: >
+      Version A 成立但需收窄 scope。Lead finding 聚焦于 exposure + 1 个拓扑的对比，而非
+      "广泛打破经典保证"。Claim 1 调整：taxonomy 仍然有效，但方向反转是 topology-specific
+      而非 universal，需强调 magnitude 不可预测性作为补充论据。Claim 2 调整：ASV 紧性降级为
+      "2 个拓扑有证明 + 4 个有 MC 数值证据"，增加一段讨论紧性证明的技术障碍。Claim 3 不变。
+      需补充实验：对反转拓扑做更细粒度的 C structure 条件分析（何时反转、何时不反转），
+      以增强实用价值。可能需要额外 1-2 个经验任务来补偿理论覆盖面的缩窄。
+
+  worst:
+    meaning: "仅 exposure DAG 出现方向反转，其余 5 个拓扑均单调；或 ASV 单调性在某拓扑失效需修补"
+    key_assumptions:
+      - "mediation/collider/M-bias/instrument/front-door 在 non-differential K≥3 下均无方向反转"
+      - "所有非 exposure 拓扑的 bias 行为类似 confounding：方向可预测，magnitude 随 C structure 变化"
+      - "ASV 单调性可能在 1 个拓扑（如 collider）失效，需要修改 ASV 定义或加条件"
+      - "经验混淆矩阵集中在 diagonal-dominant 区域，极端 C 结构罕见，ASV 实用价值难以充分展示"
+      - "correction framework 在多数场景退化为 'use MLA'，决策树区分力不足"
+    number_ranges:
+      reversal_topologies_count: [1, 1]
+      mediation_violation_rate: [0.0, 0.0]
+      collider_violation_rate: [0.0, 0.0]
+      theory_mc_match_rate: [0.70, 0.85]          # 部分拓扑需数值解而非 closed-form
+      asv_coverage_at_95_nominal: [0.80, 0.88]
+      asv_sharpness_formal_proofs: [1, 2]
+      binarization_max_delta: [0.05, 0.10]
+      correction_framework_accuracy: [0.70, 0.85]
+      empirical_asv_concordance: [3, 6]
+    narrative_direction: >
+      切换至 Version B framing，不降级 venue 目标。Reframe 核心 insight：方向反转集中在
+      exposure misclassification（这本身是重要发现——exposure 是 CSS 中最常被 LLM 标注的变量），
+      而其余拓扑虽方向可预测，magnitude 变异幅度大且不可由 binary sensitivity/specificity 推断
+      （confounding DAG 已证明 0.13-0.30 范围）。新 lead finding: "multi-class annotation error
+      的危险性是 topology-dependent 的：exposure misclassification 在方向和幅度上均不可预测，
+      其余拓扑方向可预测但幅度需全 K×K 矩阵才能量化——binary 框架在两种情况下均不足。"
+      Claim 1 从 "breaks guarantees across topologies" 调整为 "reveals a sharp topology-dependent
+      dichotomy"。Claim 2 的 ASV 定位从 "robustness to direction reversal" 调整为 "robustness
+      to magnitude uncertainty"，降低紧性要求。Claim 3 增加权重：当 taxonomy 发现不够 dramatic 时，
+      correction guidance 的实用价值成为主要卖点。需额外投入：(a) 深挖 exposure topology 的反转
+      机制（spectral 分析），(b) 扩充经验实验至 4-5 个 task 以补偿理论贡献的缩窄，
+      (c) 考虑增加 user study 展示 ASV 对研究者决策的影响。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a124d7d-6a5d-496d-9343-f7c7f2f4a60a",
+  "isSidechain": false,
+  "requestId": "req_011CbDT2QC7A1V2nx6njnKZv",
+  "type": "assistant",
+  "uuid": "66872cee-110c-47ac-9c86-0d63c2b27eb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fNGr8SbWztp75BbYXC8t",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10254,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 5229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10254,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 5229,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 10254,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10254
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "66872cee-110c-47ac-9c86-0d63c2b27eb9",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-scenario tiers for Dream annotation error study",
+  "sessionId": "4c780e80-1830-4383-9086-428d009aa1fd"
+}
+```
+
+---

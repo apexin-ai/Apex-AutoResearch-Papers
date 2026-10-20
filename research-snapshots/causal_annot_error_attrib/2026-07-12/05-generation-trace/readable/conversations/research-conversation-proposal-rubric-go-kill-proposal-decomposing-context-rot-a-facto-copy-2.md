@@ -1,0 +1,3150 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: ## Decomposing Context Rot: A Facto
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-3/afa749b6-22d2-4359-b401-71974165fae7.jsonl`
+- **Structured JSON:** [`df5f94a7e2159835da21.json`](../../sessions/df/df5f94a7e2159835da21.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:39:25.115Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:39:25.115Z",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLMs\n\n## Description\n\nThree research threads have independently claimed different dominant bottlenecks for long-context LLM degradation (\"context rot\"), but each generalizes beyond its evidential scope: PI-LLM (arXiv:2506.08184) demonstrates log-linear accuracy collapse under proactive interference using synthetic key-value pairs, but frames conclusions as universal \"working memory limits\"; EMB-S (arXiv:2601.20276) shows semantic discrimination failure at 326M-token scale, but claims it is \"the dominant bottleneck\" based solely on retrieval access evidence; Sculptor (arXiv:2508.04664, ICLR 2026) builds PI mitigation tools assuming PI dominance without measuring its relative contribution. These are untested universality assumptions—each work's scope-of-claim exceeds its scope-of-evidence—and no study has subjected them to a common empirical test. We propose PI-ContextRot, a diagnostic benchmark that uses factorial ANOVA to test these competing universality claims by jointly decomposing context rot into four factors: proactive interference, position bias, semantic distractor similarity, and raw context length. Our balanced 3⁴ design (81 cells, 35 instances per cell per task, 8,505 total) reports partial η² effect sizes that directly rank each factor's contribution and—critically—quantify their interactions.\n\nWe address three research questions: (RQ1) What is the relative causal contribution of each factor and their interactions to context rot, and which prior universality claims survive factorial testing? (RQ1a) Do the factors interact super-additively, implying that independent mitigation strategies (e.g., Sculptor's PI-only approach) are insufficient and joint mitigation is necessary—or are interactions negligible, validating current piecemeal approaches? (RQ2) Do different architecture families exhibit distinct bottleneck profiles? The Dual-Process finding that PI resistance does not scale with model size (R²=0.06, arXiv:2603.00270), SSM over-smoothing causing token representations to become indistinguishable with depth (arXiv:2501.00658, ICLR 2025), and the theoretical proof that U-shaped position bias is a structural Transformer property arising from causal masking + residual connections (arXiv:2602.16837) collectively predict that dense Transformers, GDN-hybrid, MoE, and SSM-hybrid architectures are bottlenecked by fundamentally different factors. If confirmed, this implies that universal context engineering is misguided—optimal context management must be architecture-aware.\n\nEvaluating 13 models across four architecture families—dense Transformer (Llama-3.1-8B), GDN-hybrid (Qwen3.5-9B, Qwen3.5-27B), MoE (Llama-4-Scout-17B-16E, Qwen3.5-122B-A10B, DeepSeek-V4-Flash), SSM-hybrid (Jamba-1.5-Mini, Jamba-1.5-Large)—plus 5 frontier APIs (GPT-4.1, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini 2.5 Pro, Qwen3.5-397B-A17B), we supplement behavioral analysis with tiered mechanistic probing: attention entropy across all open-weight models, plus attribution patching (AtP*, arXiv:2403.00745) on Llama-3.1-8B (standard dense) and Qwen3.5-9B (GDN-hybrid, softmax layers only).\n\n## Core Problem\n\nThree literatures each claim a different dominant cause of context rot, yet each tested only its favored factor in isolation. No factorial study has measured the relative contributions of interference, position, similarity, and length within a single design—nor tested whether these contributions vary across architectures with fundamentally different attention and state-management mechanisms.\n\n## Opportunity\n\nThe interference literature (PI-LLM arXiv:2506.08184: log-linear accuracy decline; Dual-Process arXiv:2603.00270: PI dominates RI with Cohen's d=1.73, PI resistance does not scale with model size at R²=0.06), the semantic interference literature (EMB-S arXiv:2601.20276: \"semantic discrimination, not context length, is the dominant bottleneck\" at 326M-token scale), and the context rot characterization literature (Chroma 2025: non-uniform degradation across 18 models) each claim implicit priority for their studied factor. CogniLoad (arXiv:2509.18458) explicitly acknowledged that \"current benchmarks do not offer the factorial control needed to disentangle these loads\"—but itself controls only length, difficulty, and distractor density, omitting position bias and proactive interference. A hypothesis-neutral factorial study provides the first impartial empirical test of these universality claims. Furthermore, three independent findings predict architecture-specific bottleneck profiles: (1) PI resistance not scaling with size (Dual-Process), (2) SSM over-smoothing making deep representations indistinguishable (arXiv:2501.00658, ICLR 2025), and (3) U-shaped position bias being a structural Transformer property (arXiv:2602.16837)—suggesting that the dominant factor differs fundamentally across dense, GDN-hybrid, MoE, and SSM-hybrid architectures.\n\n## Landscape\n\nChroma Research (2025) systematically documented context rot across 18 models but noted that 'investigating mechanistic interpretability is beyond scope.' PI-LLM (arXiv:2506.08184) demonstrated log-linear retrieval accuracy decline under proactive interference but only tested synthetic key-value retrieval. The Dual-Process paper (arXiv:2603.00270, Chattaraj & Raj) found PI and RI are uncorrelated (R²=0.044) with distinct mechanisms across 39 models, and crucially that PI resistance doesn't scale with model size (R²=0.06). EMB-S (arXiv:2601.20276) introduced adversarial NIAH with collision-tested near-miss hard negatives at 326M-token scale, decoupling evidence access from usage under semantic interference—but measures access degradation rather than decomposing contributing factors. CogniLoad (arXiv:2509.18458, Kaiser et al.) provides factorial control over length, difficulty, and distractor density but NOT position bias or proactive interference load, and explicitly acknowledged the gap. LONGPIBENCH controls position but not interference. 100-LongBench (arXiv:2505.19293, ACL Findings 2025) disentangles baseline ability from long-context-specific performance via LongScore—decomposing at the ability level, whereas PI-ContextRot decomposes at the causal factor level, providing finer-grained diagnostics. Sculptor (arXiv:2508.04664, ICLR 2026) proposes active context management to mitigate PI but assumes PI dominance without quantifying its relative contribution. The noise decomposition framework 'When Does Divide and Conquer Work' (arXiv:2506.16411, ICLR 2026) decomposes long-context failures into task/model/aggregator noise for chunking strategies but does not manipulate interference or position as controlled factors. Cross-Component Interference (arXiv:2605.05716) validates factorial methodology for context-window analysis by demonstrating significant interaction effects in agent scaffolding (single-tool agents outperforming full-component systems by 32%); PI-ContextRot extends this paradigm from macro-level scaffolding components down to micro-level information factors (interference, position, similarity, length). Concurrent work: LongMINT (arXiv:2605.18565, Lee et al.) evaluates memory under multi-target interference in long-horizon agent systems but focuses on agent memory architectures. SleepGate (arXiv:2603.14517, Xie) proposes KV-cache consolidation for resolving PI but addresses mitigation rather than diagnosis. Intelligence Degradation (arXiv:2601.15300) identifies critical context-length thresholds but does not control for interference or semantic similarity. No existing work performs a joint factorial decomposition of context rot into interference, position, similarity, and length components with effect sizes on realistic NLP tasks across multiple architecture families.\n\n## Approach\n\n**Benchmark Construction.** PI-ContextRot uses a balanced 3⁴ factorial design with four factors: (1) proactive interference load—number of semantically similar but superseded passages preceding the target (0/3/8 levels, spanning PI-LLM's log-linear curve); (2) target information position (early/middle/late tercile); (3) semantic similarity between distractors and target (low/medium/high, controlled via BGE-M3 cosine similarity at <0.3, 0.5–0.7, >0.85); (4) context length (8K/32K/128K tokens, with 256K as optional supplementary level for models supporting it). Operationalization note: similarity controls distractor-target semantic distance, while interference load controls the count of topic-relevant but superseded passages—these are conceptually distinct even though both involve semantic relatedness, and pilot validation confirms their empirical separability.\n\n**Orthogonality Preservation.** Each passage (target and distractors) is constrained to ~500 tokens. Remaining context budget is filled with topic-neutral filler passages (unrelated Wikipedia domains, validated via BGE-M3 cosine < 0.2 against target/distractors) to reach target length. This ensures interference load and context length are genuinely orthogonal. We adopt absolute interference count (not relative density) for comparability with PI-LLM's findings; a supplementary analysis compares absolute vs. proportional density effects. Acknowledged limitation: the length factor conflates raw length with filler-to-signal ratio (44% filler at 8K vs. ~96% at 128K); this mirrors ecologically valid long-context usage patterns but is discussed as a scope boundary.\n\n**Instance Generation and Quality Control.** Three-stage pipeline: (1) Template-based construction from Wikipedia and CommonCrawl-News sources; (2) LLM-augmented refinement (distractor generation at controlled similarity, answer-contamination verification); (3) Pilot validation: 5 instances per cell (405 total) undergo human review for task solvability, similarity-band calibration (reporting inter-annotator agreement on BGE-M3 thresholds), and distractor answer-contamination absence. Temporal reasoning tasks use 2026 news sources for leakage mitigation.\n\n**Tasks and Dependent Variables.** Three task types, all 4-way multiple choice for unified accuracy metric: (1) Multi-document QA; (2) Entity state tracking; (3) Temporal reasoning over news articles. Primary DV: accuracy (enabling direct cross-task ANOVA with task type as grouping variable). Auxiliary continuous DV: log-probability of correct answer (available for open-weight models and API models supporting logprobs), providing finer-grained degradation measurement less susceptible to floor/ceiling compression.\n\n**Scale and Power.** 81 cells × 35 instances × 3 tasks = 8,505 instances. Power analysis (G*Power, F-test family): ≥0.95 power for medium effects (partial η² ≥ 0.06) on main effects and two-way interactions; ≥0.80 for small effects (partial η² ≥ 0.01) on two-way interactions; α = 0.05, n = 35 per cell per task (N_task = 2,835).\n\n**Model Selection.** 13 models across four architecture families: (a) Dense Transformer: Llama-3.1-8B (standard GQA softmax attention, 128K context); (b) GDN-hybrid: Qwen3.5-9B, Qwen3.5-27B (75% Gated Delta Network linear attention + 25% softmax, 262K context); (c) MoE: Llama-4-Scout-17B-16E, Qwen3.5-122B-A10B, DeepSeek-V4-Flash; (d) SSM-hybrid: Jamba-1.5-Mini, Jamba-1.5-Large. Plus 5 frontier APIs: GPT-4.1, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini 2.5 Pro, Qwen3.5-397B-A17B. The Llama-3.1-8B vs. Qwen3.5-9B comparison at similar scale (~8-9B params) provides a clean dense-vs-GDN-hybrid natural experiment.\n\n**Prompt Standardization.** Each model uses its official chat template with semantically identical task instructions. Prompt sensitivity pilot (20 instances × 2-3 variants per model) confirms <3% variance from format.\n\n**Statistical Analysis.** Full-factorial ANOVA reporting partial η² for each factor and all two-way interactions, with Bonferroni-corrected post-hoc contrasts. Architecture family as between-subjects grouping variable for RQ2. Pre-registered interaction hypotheses: (H1) interference × position is significant (motivated by Dual-Process: PI protects primacy while position bias affects middle tokens); (H2) interference × similarity is super-additive (high-similarity distractors under high PI create compounding discrimination difficulty). Robustness: GLMM with logit link on instance-level binary accuracy (task/model as random effects, four factors + interactions as fixed effects) reported in supplementary to confirm ANOVA conclusions under proper distributional assumptions.\n\n**Tiered Mechanistic Analysis.** (a) Attention entropy across all 8 open-weight models (HEAD-ENTROPY methodology). For MoE models: entropy reported separately for routed vs. shared expert attention, with expert routing entropy as auxiliary. For DeepSeek-V4-Flash's compressed sparse attention: Stream (arXiv:2510.19875) methodology adapted. For Jamba SSM-hybrid: entropy on Transformer layers, supplemented by cosine distance between SSM hidden states at different positions as SSM-specific probe. For Qwen3.5 GDN-hybrid: entropy on softmax layers, with GDN state-update magnitude as hybrid-specific probe. (b) Attribution patching via AtP* (arXiv:2403.00745) on Llama-3.1-8B (standard dense, full applicability) and Qwen3.5-9B (applied to 25% softmax attention layers; GDN layers require adapted probe, reported with explicit scope limitation).\n\n**Validation Analysis.** Spearman rank correlation between PI-ContextRot factor-level η² profiles and model rankings on RULER (arXiv:2404.06654) and LongBench Pro (arXiv:2601.02872), using published data (no additional inference).\n\n**API Reproducibility.** Temperature=0, version IDs and timestamps recorded, full request/response metadata logged. Reproducibility statement acknowledges API non-reproducibility; exact call window reported.\n\n## Resource Estimate\n\n{'manual': {'gpu_hours': '1,050–1,400 (inference on 8 open-weight models including Llama-3.1-8B across 8,505 instances at up to 128K context; AtP* on Llama-3.1-8B + Qwen3.5-9B adds ~160 hrs; attention entropy adds ~60 hrs)', 'timeline': '14–16 weeks (2 wks benchmark construction with pilot validation, 5 wks inference, 2.5 wks mechanistic analysis, 3 wks writing, 1.5 wks buffer)', 'estimated_gpu_cost': '$2,600–$4,200 at $2–3/H100-hr', 'api_model_cost': '$3,500–$5,500 (GPT-4.1 ~$1,000, Claude Sonnet 4.6 ~$1,500, DeepSeek-V4-Pro ~$850, Gemini 2.5 Pro ~$650, Qwen3.5-397B-A17B ~$800)'}, 'human_in_loop': {'gpu_hours': '700–900', 'timeline': '10–12 weeks', 'claude_api_cost': '$500–$700', 'estimated_gpu_cost': '$1,700–$2,700', 'api_model_cost': '$3,500–$5,500'}, 'auto_research': {'gpu_hours': '1,400–1,800', 'timeline': '5–7 weeks', 'claude_api_cost': '$900–$1,300', 'estimated_gpu_cost': '$3,500–$5,400', 'api_model_cost': '$4,000–$6,000', 'speed_bottleneck': 'Sequential evaluation of large models at 128K context'}}\n\n## Inspired By\n\nThe implicit priority dispute between PI-LLM's interference findings, EMB-S's semantic discrimination findings, and Sculptor's unquantified PI assumption + CogniLoad's explicit acknowledgment that factorial control is missing + Dual-Process finding that PI resistance doesn't scale with model size + SSM over-smoothing (arXiv:2501.00658) and position bias theory (arXiv:2602.16837) predicting architecture-specific bottleneck profiles\n\n## Target Venues\n\n- ICLR 2027 (estimated submission: September–October 2026 — primary target, 18-20 weeks from today, sufficient for full study with complete mechanistic analysis)\n- AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — stretch target if execution is ahead of schedule)\n- NeurIPS 2026 Workshops (suggested deadline: August 29, 2026 — for preliminary results with subset of models)\n- ACL 2027 via ARR (estimated ARR cycle: October–November 2026 — backup)\n\n## Key References\n\n- Context Rot: Evaluating LLM Performance Degradation with Increasing Input Tokens (Chroma Research 2025)\n- Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length (arXiv 2025, Wang et al., arXiv:2506.08184)\n- Transformers Remember First, Forget Last: Dual-Process Interference in LLMs (arXiv 2026, Chattaraj & Raj, arXiv:2603.00270)\n- Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale (arXiv 2026, EMB-S, arXiv:2601.20276)\n- Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management (ICLR 2026, arXiv:2508.04664)\n- CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density (arXiv 2025, Kaiser et al., arXiv:2509.18458)\n- 100-LongBench: Are de facto Long-Context Benchmarks Literally Evaluating Long-Context Ability? (ACL Findings 2025, arXiv:2505.19293)\n- Distance between Relevant Information Pieces Causes Bias in Long-Context LLMs (arXiv 2024, LongPiBench)\n- When Does Divide and Conquer Work for Long Context LLM? A Noise Decomposition Framework (ICLR 2026, arXiv:2506.16411)\n- AtP*: An Efficient and Scalable Method for Localizing LLM Behaviour to Components (Google DeepMind, arXiv:2403.00745)\n- Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models (arXiv 2026, Xie, arXiv:2603.14517)\n- Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination via Natural Length Distribution Analysis (arXiv 2026, arXiv:2601.15300)\n- LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems (arXiv 2026, Lee et al., arXiv:2605.18565)\n- More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding (arXiv 2026, arXiv:2605.05716)\n- Long-Context Generalization with Sparse Attention (ICLR 2026)\n- Stream: Sparse Attention Mechanistic Interpretability for Long-Context (arXiv 2025, arXiv:2510.19875)\n- LongBench Pro (arXiv 2026, arXiv:2601.02872)\n- Understanding and Mitigating Bottlenecks of State Space Models through the Lens of Recency and Over-smoothing (ICLR 2025, arXiv:2501.00658)\n- A Residual-Aware Theory of Position Bias in Transformers (arXiv 2026, arXiv:2602.16837)\n- RULER: What's the Real Context Size of Your Long-Context Language Models? (arXiv 2024, arXiv:2404.06654)\n- Applying Statistics to LLM Evaluations (Wolfe 2025 — methodological reference for power analysis in LLM benchmarks)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:39:25.118Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:39:25.118Z",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:39:25.133Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLMs
+
+## Description
+
+Three research threads have independently claimed different dominant bottlenecks for long-context LLM degradation ("context rot"), but each generalizes beyond its evidential scope: PI-LLM (arXiv:2506.08184) demonstrates log-linear accuracy collapse under proactive interference using synthetic key-value pairs, but frames conclusions as universal "working memory limits"; EMB-S (arXiv:2601.20276) shows semantic discrimination failure at 326M-token scale, but claims it is "the dominant bottleneck" based solely on retrieval access evidence; Sculptor (arXiv:2508.04664, ICLR 2026) builds PI mitigation tools assuming PI dominance without measuring its relative contribution. These are untested universality assumptions—each work's scope-of-claim exceeds its scope-of-evidence—and no study has subjected them to a common empirical test. We propose PI-ContextRot, a diagnostic benchmark that uses factorial ANOVA to test these competing universality claims by jointly decomposing context rot into four factors: proactive interference, position bias, semantic distractor similarity, and raw context length. Our balanced 3⁴ design (81 cells, 35 instances per cell per task, 8,505 total) reports partial η² effect sizes that directly rank each factor's contribution and—critically—quantify their interactions.
+
+We address three research questions: (RQ1) What is the relative causal contribution of each factor and their interactions to context rot, and which prior universality claims survive factorial testing? (RQ1a) Do the factors interact super-additively, implying that independent mitigation strategies (e.g., Sculptor's PI-only approach) are insufficient and joint mitigation is necessary—or are interactions negligible, validating current piecemeal approaches? (RQ2) Do different architecture families exhibit distinct bottleneck profiles? The Dual-Process finding that PI resistance does not scale with model size (R²=0.06, arXiv:2603.00270), SSM over-smoothing causing token representations to become indistinguishable with depth (arXiv:2501.00658, ICLR 2025), and the theoretical proof that U-shaped position bias is a structural Transformer property arising from causal masking + residual connections (arXiv:2602.16837) collectively predict that dense Transformers, GDN-hybrid, MoE, and SSM-hybrid architectures are bottlenecked by fundamentally different factors. If confirmed, this implies that universal context engineering is misguided—optimal context management must be architecture-aware.
+
+Evaluating 13 models across four architecture families—dense Transformer (Llama-3.1-8B), GDN-hybrid (Qwen3.5-9B, Qwen3.5-27B), MoE (Llama-4-Scout-17B-16E, Qwen3.5-122B-A10B, DeepSeek-V4-Flash), SSM-hybrid (Jamba-1.5-Mini, Jamba-1.5-Large)—plus 5 frontier APIs (GPT-4.1, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini 2.5 Pro, Qwen3.5-397B-A17B), we supplement behavioral analysis with tiered mechanistic probing: attention entropy across all open-weight models, plus attribution patching (AtP*, arXiv:2403.00745) on Llama-3.1-8B (standard dense) and Qwen3.5-9B (GDN-hybrid, softmax layers only).
+
+## Core Problem
+
+Three literatures each claim a different dominant cause of context rot, yet each tested only its favored factor in isolation. No factorial study has measured the relative contributions of interference, position, similarity, and length within a single design—nor tested whether these contributions vary across architectures with fundamentally different attention and state-management mechanisms.
+
+## Opportunity
+
+The interference literature (PI-LLM arXiv:2506.08184: log-linear accuracy decline; Dual-Process arXiv:2603.00270: PI dominates RI with Cohen's d=1.73, PI resistance does not scale with model size at R²=0.06), the semantic interference literature (EMB-S arXiv:2601.20276: "semantic discrimination, not context length, is the dominant bottleneck" at 326M-token scale), and the context rot characterization literature (Chroma 2025: non-uniform degradation across 18 models) each claim implicit priority for their studied factor. CogniLoad (arXiv:2509.18458) explicitly acknowledged that "current benchmarks do not offer the factorial control needed to disentangle these loads"—but itself controls only length, difficulty, and distractor density, omitting position bias and proactive interference. A hypothesis-neutral factorial study provides the first impartial empirical test of these universality claims. Furthermore, three independent findings predict architecture-specific bottleneck profiles: (1) PI resistance not scaling with size (Dual-Process), (2) SSM over-smoothing making deep representations indistinguishable (arXiv:2501.00658, ICLR 2025), and (3) U-shaped position bias being a structural Transformer property (arXiv:2602.16837)—suggesting that the dominant factor differs fundamentally across dense, GDN-hybrid, MoE, and SSM-hybrid architectures.
+
+## Landscape
+
+Chroma Research (2025) systematically documented context rot across 18 models but noted that 'investigating mechanistic interpretability is beyond scope.' PI-LLM (arXiv:2506.08184) demonstrated log-linear retrieval accuracy decline under proactive interference but only tested synthetic key-value retrieval. The Dual-Process paper (arXiv:2603.00270, Chattaraj & Raj) found PI and RI are uncorrelated (R²=0.044) with distinct mechanisms across 39 models, and crucially that PI resistance doesn't scale with model size (R²=0.06). EMB-S (arXiv:2601.20276) introduced adversarial NIAH with collision-tested near-miss hard negatives at 326M-token scale, decoupling evidence access from usage under semantic interference—but measures access degradation rather than decomposing contributing factors. CogniLoad (arXiv:2509.18458, Kaiser et al.) provides factorial control over length, difficulty, and distractor density but NOT position bias or proactive interference load, and explicitly acknowledged the gap. LONGPIBENCH controls position but not interference. 100-LongBench (arXiv:2505.19293, ACL Findings 2025) disentangles baseline ability from long-context-specific performance via LongScore—decomposing at the ability level, whereas PI-ContextRot decomposes at the causal factor level, providing finer-grained diagnostics. Sculptor (arXiv:2508.04664, ICLR 2026) proposes active context management to mitigate PI but assumes PI dominance without quantifying its relative contribution. The noise decomposition framework 'When Does Divide and Conquer Work' (arXiv:2506.16411, ICLR 2026) decomposes long-context failures into task/model/aggregator noise for chunking strategies but does not manipulate interference or position as controlled factors. Cross-Component Interference (arXiv:2605.05716) validates factorial methodology for context-window analysis by demonstrating significant interaction effects in agent scaffolding (single-tool agents outperforming full-component systems by 32%); PI-ContextRot extends this paradigm from macro-level scaffolding components down to micro-level information factors (interference, position, similarity, length). Concurrent work: LongMINT (arXiv:2605.18565, Lee et al.) evaluates memory under multi-target interference in long-horizon agent systems but focuses on agent memory architectures. SleepGate (arXiv:2603.14517, Xie) proposes KV-cache consolidation for resolving PI but addresses mitigation rather than diagnosis. Intelligence Degradation (arXiv:2601.15300) identifies critical context-length thresholds but does not control for interference or semantic similarity. No existing work performs a joint factorial decomposition of context rot into interference, position, similarity, and length components with effect sizes on realistic NLP tasks across multiple architecture families.
+
+## Approach
+
+**Benchmark Construction.** PI-ContextRot uses a balanced 3⁴ factorial design with four factors: (1) proactive interference load—number of semantically similar but superseded passages preceding the target (0/3/8 levels, spanning PI-LLM's log-linear curve); (2) target information position (early/middle/late tercile); (3) semantic similarity between distractors and target (low/medium/high, controlled via BGE-M3 cosine similarity at <0.3, 0.5–0.7, >0.85); (4) context length (8K/32K/128K tokens, with 256K as optional supplementary level for models supporting it). Operationalization note: similarity controls distractor-target semantic distance, while interference load controls the count of topic-relevant but superseded passages—these are conceptually distinct even though both involve semantic relatedness, and pilot validation confirms their empirical separability.
+
+**Orthogonality Preservation.** Each passage (target and distractors) is constrained to ~500 tokens. Remaining context budget is filled with topic-neutral filler passages (unrelated Wikipedia domains, validated via BGE-M3 cosine < 0.2 against target/distractors) to reach target length. This ensures interference load and context length are genuinely orthogonal. We adopt absolute interference count (not relative density) for comparability with PI-LLM's findings; a supplementary analysis compares absolute vs. proportional density effects. Acknowledged limitation: the length factor conflates raw length with filler-to-signal ratio (44% filler at 8K vs. ~96% at 128K); this mirrors ecologically valid long-context usage patterns but is discussed as a scope boundary.
+
+**Instance Generation and Quality Control.** Three-stage pipeline: (1) Template-based construction from Wikipedia and CommonCrawl-News sources; (2) LLM-augmented refinement (distractor generation at controlled similarity, answer-contamination verification); (3) Pilot validation: 5 instances per cell (405 total) undergo human review for task solvability, similarity-band calibration (reporting inter-annotator agreement on BGE-M3 thresholds), and distractor answer-contamination absence. Temporal reasoning tasks use 2026 news sources for leakage mitigation.
+
+**Tasks and Dependent Variables.** Three task types, all 4-way multiple choice for unified accuracy metric: (1) Multi-document QA; (2) Entity state tracking; (3) Temporal reasoning over news articles. Primary DV: accuracy (enabling direct cross-task ANOVA with task type as grouping variable). Auxiliary continuous DV: log-probability of correct answer (available for open-weight models and API models supporting logprobs), providing finer-grained degradation measurement less susceptible to floor/ceiling compression.
+
+**Scale and Power.** 81 cells × 35 instances × 3 tasks = 8,505 instances. Power analysis (G*Power, F-test family): ≥0.95 power for medium effects (partial η² ≥ 0.06) on main effects and two-way interactions; ≥0.80 for small effects (partial η² ≥ 0.01) on two-way interactions; α = 0.05, n = 35 per cell per task (N_task = 2,835).
+
+**Model Selection.** 13 models across four architecture families: (a) Dense Transformer: Llama-3.1-8B (standard GQA softmax attention, 128K context); (b) GDN-hybrid: Qwen3.5-9B, Qwen3.5-27B (75% Gated Delta Network linear attention + 25% softmax, 262K context); (c) MoE: Llama-4-Scout-17B-16E, Qwen3.5-122B-A10B, DeepSeek-V4-Flash; (d) SSM-hybrid: Jamba-1.5-Mini, Jamba-1.5-Large. Plus 5 frontier APIs: GPT-4.1, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini 2.5 Pro, Qwen3.5-397B-A17B. The Llama-3.1-8B vs. Qwen3.5-9B comparison at similar scale (~8-9B params) provides a clean dense-vs-GDN-hybrid natural experiment.
+
+**Prompt Standardization.** Each model uses its official chat template with semantically identical task instructions. Prompt sensitivity pilot (20 instances × 2-3 variants per model) confirms <3% variance from format.
+
+**Statistical Analysis.** Full-factorial ANOVA reporting partial η² for each factor and all two-way interactions, with Bonferroni-corrected post-hoc contrasts. Architecture family as between-subjects grouping variable for RQ2. Pre-registered interaction hypotheses: (H1) interference × position is significant (motivated by Dual-Process: PI protects primacy while position bias affects middle tokens); (H2) interference × similarity is super-additive (high-similarity distractors under high PI create compounding discrimination difficulty). Robustness: GLMM with logit link on instance-level binary accuracy (task/model as random effects, four factors + interactions as fixed effects) reported in supplementary to confirm ANOVA conclusions under proper distributional assumptions.
+
+**Tiered Mechanistic Analysis.** (a) Attention entropy across all 8 open-weight models (HEAD-ENTROPY methodology). For MoE models: entropy reported separately for routed vs. shared expert attention, with expert routing entropy as auxiliary. For DeepSeek-V4-Flash's compressed sparse attention: Stream (arXiv:2510.19875) methodology adapted. For Jamba SSM-hybrid: entropy on Transformer layers, supplemented by cosine distance between SSM hidden states at different positions as SSM-specific probe. For Qwen3.5 GDN-hybrid: entropy on softmax layers, with GDN state-update magnitude as hybrid-specific probe. (b) Attribution patching via AtP* (arXiv:2403.00745) on Llama-3.1-8B (standard dense, full applicability) and Qwen3.5-9B (applied to 25% softmax attention layers; GDN layers require adapted probe, reported with explicit scope limitation).
+
+**Validation Analysis.** Spearman rank correlation between PI-ContextRot factor-level η² profiles and model rankings on RULER (arXiv:2404.06654) and LongBench Pro (arXiv:2601.02872), using published data (no additional inference).
+
+**API Reproducibility.** Temperature=0, version IDs and timestamps recorded, full request/response metadata logged. Reproducibility statement acknowledges API non-reproducibility; exact call window reported.
+
+## Resource Estimate
+
+{'manual': {'gpu_hours': '1,050–1,400 (inference on 8 open-weight models including Llama-3.1-8B across 8,505 instances at up to 128K context; AtP* on Llama-3.1-8B + Qwen3.5-9B adds ~160 hrs; attention entropy adds ~60 hrs)', 'timeline': '14–16 weeks (2 wks benchmark construction with pilot validation, 5 wks inference, 2.5 wks mechanistic analysis, 3 wks writing, 1.5 wks buffer)', 'estimated_gpu_cost': '$2,600–$4,200 at $2–3/H100-hr', 'api_model_cost': '$3,500–$5,500 (GPT-4.1 ~$1,000, Claude Sonnet 4.6 ~$1,500, DeepSeek-V4-Pro ~$850, Gemini 2.5 Pro ~$650, Qwen3.5-397B-A17B ~$800)'}, 'human_in_loop': {'gpu_hours': '700–900', 'timeline': '10–12 weeks', 'claude_api_cost': '$500–$700', 'estimated_gpu_cost': '$1,700–$2,700', 'api_model_cost': '$3,500–$5,500'}, 'auto_research': {'gpu_hours': '1,400–1,800', 'timeline': '5–7 weeks', 'claude_api_cost': '$900–$1,300', 'estimated_gpu_cost': '$3,500–$5,400', 'api_model_cost': '$4,000–$6,000', 'speed_bottleneck': 'Sequential evaluation of large models at 128K context'}}
+
+## Inspired By
+
+The implicit priority dispute between PI-LLM's interference findings, EMB-S's semantic discrimination findings, and Sculptor's unquantified PI assumption + CogniLoad's explicit acknowledgment that factorial control is missing + Dual-Process finding that PI resistance doesn't scale with model size + SSM over-smoothing (arXiv:2501.00658) and position bias theory (arXiv:2602.16837) predicting architecture-specific bottleneck profiles
+
+## Target Venues
+
+- ICLR 2027 (estimated submission: September–October 2026 — primary target, 18-20 weeks from today, sufficient for full study with complete mechanistic analysis)
+- AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — stretch target if execution is ahead of schedule)
+- NeurIPS 2026 Workshops (suggested deadline: August 29, 2026 — for preliminary results with subset of models)
+- ACL 2027 via ARR (estimated ARR cycle: October–November 2026 — backup)
+
+## Key References
+
+- Context Rot: Evaluating LLM Performance Degradation with Increasing Input Tokens (Chroma Research 2025)
+- Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length (arXiv 2025, Wang et al., arXiv:2506.08184)
+- Transformers Remember First, Forget Last: Dual-Process Interference in LLMs (arXiv 2026, Chattaraj & Raj, arXiv:2603.00270)
+- Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale (arXiv 2026, EMB-S, arXiv:2601.20276)
+- Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management (ICLR 2026, arXiv:2508.04664)
+- CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density (arXiv 2025, Kaiser et al., arXiv:2509.18458)
+- 100-LongBench: Are de facto Long-Context Benchmarks Literally Evaluating Long-Context Ability? (ACL Findings 2025, arXiv:2505.19293)
+- Distance between Relevant Information Pieces Causes Bias in Long-Context LLMs (arXiv 2024, LongPiBench)
+- When Does Divide and Conquer Work for Long Context LLM? A Noise Decomposition Framework (ICLR 2026, arXiv:2506.16411)
+- AtP*: An Efficient and Scalable Method for Localizing LLM Behaviour to Components (Google DeepMind, arXiv:2403.00745)
+- Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models (arXiv 2026, Xie, arXiv:2603.14517)
+- Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination via Natural Length Distribution Analysis (arXiv 2026, arXiv:2601.15300)
+- LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems (arXiv 2026, Lee et al., arXiv:2605.18565)
+- More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding (arXiv 2026, arXiv:2605.05716)
+- Long-Context Generalization with Sparse Attention (ICLR 2026)
+- Stream: Sparse Attention Mechanistic Interpretability for Long-Context (arXiv 2025, arXiv:2510.19875)
+- LongBench Pro (arXiv 2026, arXiv:2601.02872)
+- Understanding and Mitigating Bottlenecks of State Space Models through the Lens of Recency and Over-smoothing (ICLR 2025, arXiv:2501.00658)
+- A Residual-Aware Theory of Position Bias in Transformers (arXiv 2026, arXiv:2602.16837)
+- RULER: What's the Real Context Size of Your Long-Context Language Models? (arXiv 2024, arXiv:2404.06654)
+- Applying Statistics to LLM Evaluations (Wolfe 2025 — methodological reference for power analysis in LLM benchmarks)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "8929c3bf-8170-4603-bddb-e55fa762af19",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:39:25.132Z_
+
+```json
+{
+  "parentUuid": "8929c3bf-8170-4603-bddb-e55fa762af19",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "2fee2c60-a194-4ecd-af63-be5971ba3739",
+  "timestamp": "2026-05-20T05:39:25.132Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:39:25.132Z_
+
+```json
+{
+  "parentUuid": "2fee2c60-a194-4ecd-af63-be5971ba3739",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "ef009ffd-85f8-4ff4-bfa1-b889e74d5e81",
+  "timestamp": "2026-05-20T05:39:25.132Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLM…",
+  "leafUuid": "ef009ffd-85f8-4ff4-bfa1-b889e74d5e81",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Factorial analysis of long-context LLM degradation",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:39:29.666Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for EMNLP 2026 submission. Before scoring, I need to do thorough web searches to understand the field landscape. Let me first load the WebSearch tool, then conduct several targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef009ffd-85f8-4ff4-bfa1-b889e74d5e81",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNdukXqDqRa1pf5XFX",
+  "type": "assistant",
+  "uuid": "a066492c-8182-4da5-8822-a94811528ea4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K1q4mN3BVATJ7gT8jNj7MP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6626,
+      "cache_read_input_tokens": 13882,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 13882,
+          "cache_creation_input_tokens": 6626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T05:39:29.987Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KrRhQi6WxkaYsuF4yBktwi`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a066492c-8182-4da5-8822-a94811528ea4",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNdukXqDqRa1pf5XFX",
+  "type": "assistant",
+  "uuid": "04b0e597-a4c8-4bda-8f06-d8bfd83edec1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K1q4mN3BVATJ7gT8jNj7MP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6626,
+      "cache_read_input_tokens": 13882,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 13882,
+          "cache_creation_input_tokens": 6626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T05:39:30.001Z_
+
+<details><summary>↩ Tool result · `toolu_01KrRhQi6WxkaYsuF4yBktwi`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04b0e597-a4c8-4bda-8f06-d8bfd83edec1",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "709cfd38-9f5e-4335-84b7-efd24822d7aa",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "04b0e597-a4c8-4bda-8f06-d8bfd83edec1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-20T05:39:32.853Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me conduct several targeted web searches to understand the field landscape before evaluating this proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "709cfd38-9f5e-4335-84b7-efd24822d7aa",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNzvYaguFT5dUJ716n",
+  "type": "assistant",
+  "uuid": "7bbc80b6-0d5a-465a-a1c4-033e81045c5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFekSMwR3LpHR7Gt2jgXj5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 20508,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 20508,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T05:39:33.815Z_
+
+Let me conduct the required field research before evaluating. I'll run multiple searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bbc80b6-0d5a-465a-a1c4-033e81045c5b",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNzvYaguFT5dUJ716n",
+  "type": "assistant",
+  "uuid": "f0a29b7f-8d5f-4149-832b-ff748d2b1244",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFekSMwR3LpHR7Gt2jgXj5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 20508,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 20508,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T05:39:34.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016vC2sQJEZSn3q52HHsxZJk`</summary>
+
+```json
+{
+  "query": "factorial analysis long-context LLM degradation context rot benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0a29b7f-8d5f-4149-832b-ff748d2b1244",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNzvYaguFT5dUJ716n",
+  "type": "assistant",
+  "uuid": "c4f8126a-31eb-4d8f-b44f-5606f61cfea3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFekSMwR3LpHR7Gt2jgXj5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 20508,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 20508,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T05:39:35.884Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fcy1JpcXjphjnXVs1Ltehz`</summary>
+
+```json
+{
+  "query": "proactive interference LLM working memory PI-LLM arXiv 2506.08184 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4f8126a-31eb-4d8f-b44f-5606f61cfea3",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNzvYaguFT5dUJ716n",
+  "type": "assistant",
+  "uuid": "c1837e7d-53ba-40c6-8c61-775128bae8dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFekSMwR3LpHR7Gt2jgXj5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 20508,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 20508,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T05:39:36.291Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0163fogZTNKembFgAw6ktgR1`</summary>
+
+```json
+{
+  "query": "long-context LLM benchmark RULER LongBench evaluation position bias interference 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1837e7d-53ba-40c6-8c61-775128bae8dd",
+  "isSidechain": false,
+  "requestId": "req_011CbDHNzvYaguFT5dUJ716n",
+  "type": "assistant",
+  "uuid": "80b04536-13ce-4eba-99bf-2a1d508ad5da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFekSMwR3LpHR7Gt2jgXj5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 20508,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 20508,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T05:39:41.704Z_
+
+<details><summary>↩ Tool result · `toolu_01Fcy1JpcXjphjnXVs1Ltehz`</summary>
+
+```text
+Web search results for query: "proactive interference LLM working memory PI-LLM arXiv 2506.08184 2025"
+
+Links: [{"title":"[2506.08184] Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length","url":"https://arxiv.org/abs/2506.08184"},{"title":"[2506.08184v3] Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length","url":"https://www.arxiv.org/abs/2506.08184v3"},{"title":"Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length | OpenReview","url":"https://openreview.net/forum?id=y8jS7mDurI"},{"title":"Proactive Interference Limits LLM Working Memory","url":"https://www.emergentmind.com/papers/2506.08184"},{"title":"Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250608184W/abstract"},{"title":"Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length","url":"https://www.researchgate.net/publication/392560721_Unable_to_forget_Proactive_lnterference_Reveals_Working_Memory_Limits_in_LLMs_Beyond_Context_Length"},{"title":"Cog2ai/pi-llm-bench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/Cog2ai/pi-llm-bench"}]
+
+I found comprehensive information about the paper. Here's what the search revealed:
+
+## Paper Overview
+
+The arXiv paper 2506.08184 is titled "Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length," authored by Chupei Wang from the University of Virginia and Jiaqiu Vince Sun from New York University, with acceptance at the ICML 2025 Workshop on Long Context Foundation Models.
+
+## Main Concept
+
+The research adapts the proactive interference (PI) paradigm from cognitive science, where earlier information disrupts recall of newer updates.
+
+## PI-LLM Evaluation
+
+PI-LLM is an evaluation that sequentially streams semantically related key-value updates and queries only the final values. Although these final values are clearly positioned just before the query, LLM retrieval accuracy declines log-linearly toward zero as interference accumulates; errors arise from retrieving previously overwritten values.
+
+## Key Findings
+
+Attempts to mitigate interference via prompt engineering (e.g., instructing models to ignore earlier input) yield limited success, revealing a fundamental constraint on LLMs' ability to disentangle interference and flexibly manipulate information, suggesting a working memory bottleneck beyond mere context access.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1837e7d-53ba-40c6-8c61-775128bae8dd",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "7b1b63da-7c2f-4473-a4b6-25dae3f049d7",
+  "toolUseResult": {
+    "query": "proactive interference LLM working memory PI-LLM arXiv 2506.08184 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TFgdeTwhrhjqhP96KbbHZV",
+        "content": [
+          {
+            "title": "[2506.08184] Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length",
+            "url": "https://arxiv.org/abs/2506.08184"
+          },
+          {
+            "title": "[2506.08184v3] Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length",
+            "url": "https://www.arxiv.org/abs/2506.08184v3"
+          },
+          {
+            "title": "Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length | OpenReview",
+            "url": "https://openreview.net/forum?id=y8jS7mDurI"
+          },
+          {
+            "title": "Proactive Interference Limits LLM Working Memory",
+            "url": "https://www.emergentmind.com/papers/2506.08184"
+          },
+          {
+            "title": "Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250608184W/abstract"
+          },
+          {
+            "title": "Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length",
+            "url": "https://www.researchgate.net/publication/392560721_Unable_to_forget_Proactive_lnterference_Reveals_Working_Memory_Limits_in_LLMs_Beyond_Context_Length"
+          },
+          {
+            "title": "Cog2ai/pi-llm-bench · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/Cog2ai/pi-llm-bench"
+          }
+        ]
+      },
+      "I found comprehensive information about the paper. Here's what the search revealed:\n\n## Paper Overview\n\nThe arXiv paper 2506.08184 is titled \"Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length,\" authored by Chupei Wang from the University of Virginia and Jiaqiu Vince Sun from New York University, with acceptance at the ICML 2025 Workshop on Long Context Foundation Models.\n\n## Main Concept\n\nThe research adapts the proactive interference (PI) paradigm from cognitive science, where earlier information disrupts recall of newer updates.\n\n## PI-LLM Evaluation\n\nPI-LLM is an evaluation that sequentially streams semantically related key-value updates and queries only the final values. Although these final values are clearly positioned just before the query, LLM retrieval accuracy declines log-linearly toward zero as interference accumulates; errors arise from retrieving previously overwritten values.\n\n## Key Findings\n\nAttempts to mitigate interference via prompt engineering (e.g., instructing models to ignore earlier input) yield limited success, revealing a fundamental constraint on LLMs' ability to disentangle interference and flexibly manipulate information, suggesting a working memory bottleneck beyond mere context access."
+    ],
+    "durationSeconds": 5.813341564,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c1837e7d-53ba-40c6-8c61-775128bae8dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T05:39:42.493Z_
+
+<details><summary>↩ Tool result · `toolu_016vC2sQJEZSn3q52HHsxZJk`</summary>
+
+```text
+Web search results for query: "factorial analysis long-context LLM degradation context rot benchmark 2025 2026"
+
+Links: [{"title":"Context Rot: How Increasing Input Tokens Impacts LLM Performance | Chroma","url":"https://research.trychroma.com/context-rot"},{"title":"ChromaDB: Context Rot: Evaluating LLM Performance Degradation with Increasing Input Tokens - ZenML LLMOps Database","url":"https://www.zenml.io/llmops-database/context-rot-evaluating-llm-performance-degradation-with-increasing-input-tokens"},{"title":"Context Degradation in LLMs","url":"https://www.emergentmind.com/topics/context-degradation-in-large-language-models"},{"title":"Context rot: the emerging challenge that could hold back LLM progress","url":"https://www.understandingai.org/p/context-rot-the-emerging-challenge"},{"title":"Context Rot: When Long Context Fails - Maven","url":"https://maven.com/p/37bdf2/context-rot-when-long-context-fails"},{"title":"Long Context, Less Focus: A Scaling Gap in LLMs Revealed through Privacy and Personalization","url":"https://arxiv.org/pdf/2602.15028"},{"title":"Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination via Natural Length Distribution Analysis","url":"https://arxiv.org/pdf/2601.15300"},{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://arxiv.org/pdf/2510.05381"},{"title":"Context Discipline and Performance Correlation: Analyzing LLM Performance and Quality Degradation Under Varying Context Lengths","url":"https://arxiv.org/pdf/2601.11564"}]
+
+Based on the search results, I found substantial research on context degradation in long-context LLMs from 2025-2026. Here's what the recent studies reveal:
+
+## Key Findings on Context Rot and LLM Degradation
+
+Research shows that models do not use their context uniformly, with performance growing increasingly unreliable as input length grows. ChromaDB's technical report examines how large language models experience performance degradation as input context length increases, challenging the assumption that models process context uniformly.
+
+## Multiple Sources of Degradation
+
+Recent analysis identifies several mechanisms behind context degradation:
+
+- Transformers distribute fixed attention across growing tokens, attenuating focus on relevant spans as context length increases
+- Models are susceptible to being "lured" by coherent but irrelevant context, shifting responses toward distractors
+- Task-specific and architectural bottlenecks accelerate degradation, exposing limitations in base transformer attention scaling
+
+## Critical Threshold Effects
+
+LLMs exhibit performance degradation when processing contexts approaching certain critical thresholds, with intelligence degradation defined as a >30% drop in composite task performance. Research on Qwen2.5-7B identified critical thresholds at 40-50% of maximum context length, where F1 scores drop catastrophically.
+
+## Benchmark Development
+
+Extensive evaluations reveal consistent performance degradation as context length increases, explained as an inherent limitation of soft attention in fixed-capacity Transformers, suggesting a general scaling gap—"long context, less focus".
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4f8126a-31eb-4d8f-b44f-5606f61cfea3",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "e707ec64-0adf-4197-8b22-c321ea57a1e4",
+  "toolUseResult": {
+    "query": "factorial analysis long-context LLM degradation context rot benchmark 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015LbJuCcWpnNf5yXEJxpesU",
+        "content": [
+          {
+            "title": "Context Rot: How Increasing Input Tokens Impacts LLM Performance | Chroma",
+            "url": "https://research.trychroma.com/context-rot"
+          },
+          {
+            "title": "ChromaDB: Context Rot: Evaluating LLM Performance Degradation with Increasing Input Tokens - ZenML LLMOps Database",
+            "url": "https://www.zenml.io/llmops-database/context-rot-evaluating-llm-performance-degradation-with-increasing-input-tokens"
+          },
+          {
+            "title": "Context Degradation in LLMs",
+            "url": "https://www.emergentmind.com/topics/context-degradation-in-large-language-models"
+          },
+          {
+            "title": "Context rot: the emerging challenge that could hold back LLM progress",
+            "url": "https://www.understandingai.org/p/context-rot-the-emerging-challenge"
+          },
+          {
+            "title": "Context Rot: When Long Context Fails - Maven",
+            "url": "https://maven.com/p/37bdf2/context-rot-when-long-context-fails"
+          },
+          {
+            "title": "Long Context, Less Focus: A Scaling Gap in LLMs Revealed through Privacy and Personalization",
+            "url": "https://arxiv.org/pdf/2602.15028"
+          },
+          {
+            "title": "Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination via Natural Length Distribution Analysis",
+            "url": "https://arxiv.org/pdf/2601.15300"
+          },
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://arxiv.org/pdf/2510.05381"
+          },
+          {
+            "title": "Context Discipline and Performance Correlation: Analyzing LLM Performance and Quality Degradation Under Varying Context Lengths",
+            "url": "https://arxiv.org/pdf/2601.11564"
+          }
+        ]
+      },
+      "Based on the search results, I found substantial research on context degradation in long-context LLMs from 2025-2026. Here's what the recent studies reveal:\n\n## Key Findings on Context Rot and LLM Degradation\n\nResearch shows that models do not use their context uniformly, with performance growing increasingly unreliable as input length grows. ChromaDB's technical report examines how large language models experience performance degradation as input context length increases, challenging the assumption that models process context uniformly.\n\n## Multiple Sources of Degradation\n\nRecent analysis identifies several mechanisms behind context degradation:\n\n- Transformers distribute fixed attention across growing tokens, attenuating focus on relevant spans as context length increases\n- Models are susceptible to being \"lured\" by coherent but irrelevant context, shifting responses toward distractors\n- Task-specific and architectural bottlenecks accelerate degradation, exposing limitations in base transformer attention scaling\n\n## Critical Threshold Effects\n\nLLMs exhibit performance degradation when processing contexts approaching certain critical thresholds, with intelligence degradation defined as a >30% drop in composite task performance. Research on Qwen2.5-7B identified critical thresholds at 40-50% of maximum context length, where F1 scores drop catastrophically.\n\n## Benchmark Development\n\nExtensive evaluations reveal consistent performance degradation as context length increases, explained as an inherent limitation of soft attention in fixed-capacity Transformers, suggesting a general scaling gap—\"long context, less focus\"."
+    ],
+    "durationSeconds": 7.6598972829999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c4f8126a-31eb-4d8f-b44f-5606f61cfea3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T05:39:44.240Z_
+
+<details><summary>↩ Tool result · `toolu_0163fogZTNKembFgAw6ktgR1`</summary>
+
+```text
+Web search results for query: "long-context LLM benchmark RULER LongBench evaluation position bias interference 2025 2026"
+
+Links: [{"title":"Distance between Relevant Information Pieces Causes Bias in Long-Context LLMs","url":"https://arxiv.org/pdf/2410.14641"},{"title":"Long context models in the enterprise: benchmarks and beyond","url":"https://snorkel.ai/blog/long-context-models-in-the-enterprise-benchmarks-and-beyond/"},{"title":"LongBench Pro: A More Realistic and Comprehensive Bilingual Long-Context Evaluation Benchmark","url":"https://arxiv.org/html/2601.02872v1"},{"title":"\\texttwemoji1f4af-LongBench: Are de facto Long-Context Benchmarks Literally Evaluating Long-Context Ability?","url":"https://arxiv.org/html/2505.19293v1"},{"title":"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval","url":"https://arxiv.org/html/2510.05381v1"},{"title":"LongBench: Are de facto Long-Context Benchmarks Literally","url":"https://aclanthology.org/2025.findings-acl.903.pdf"},{"title":"Counting-Stars: A Multi-evidence, Position-aware, and Scalable Benchmark   for Evaluating Long-Context Large Language Models","url":"https://arxiv.org/pdf/2403.11802"},{"title":"Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems","url":"https://arxiv.org/pdf/2411.01101"}]
+
+Based on the web search results, here's what I found regarding long-context LLM benchmarks and related evaluation challenges:
+
+## Key Benchmarks and Evaluation Methods
+
+Synthetic benchmarks like RULER and Helmet enable controlled evaluation at scale, while manually annotated benchmarks like Clongeval and LongBenchv2 ensure authenticity through complex tasks and realistic scenarios.
+
+## Position Bias and Interference Issues
+
+Position bias—a tendency to favor or neglect certain context regions—has emerged as a fundamental challenge for LLMs in long-context processing, with three key manifestations: primacy (overweighting early context), recency (preferring recent information), and a U-shaped pattern where middle-context information is neglected.
+
+LongPIBench is a benchmark designed to assess positional bias involving multiple pieces of relevant information, revealing that while most current models are more robust against the "lost in the middle" issue, there also exist noticeable biases related to the spacing of relevant information pieces.
+
+## Recent Evaluation Developments (2025-2026)
+
+Long-context evaluation measures whether LLMs can reliably retrieve, integrate, and reason over evidence that is sparse and distributed across lengthy documents, and it must address confounders such as positional effects and the gap between advertised context length and effective reasoning length.
+
+Various evaluation benchmarks and metrics have been proposed, including LongBench, L-Eval, NIAH (Needle in the Haystack), and RULER. A newer benchmark called 💯-LongBench (from May 2025) addresses concerns that existing benchmarks may not properly distinguish between base model ability and genuine long-context capability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80b04536-13ce-4eba-99bf-2a1d508ad5da",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "9cf2b888-2685-4189-9be3-0bdb75c8391e",
+  "toolUseResult": {
+    "query": "long-context LLM benchmark RULER LongBench evaluation position bias interference 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012qHYdeyG9Fi6rFZ4vqWBo4",
+        "content": [
+          {
+            "title": "Distance between Relevant Information Pieces Causes Bias in Long-Context LLMs",
+            "url": "https://arxiv.org/pdf/2410.14641"
+          },
+          {
+            "title": "Long context models in the enterprise: benchmarks and beyond",
+            "url": "https://snorkel.ai/blog/long-context-models-in-the-enterprise-benchmarks-and-beyond/"
+          },
+          {
+            "title": "LongBench Pro: A More Realistic and Comprehensive Bilingual Long-Context Evaluation Benchmark",
+            "url": "https://arxiv.org/html/2601.02872v1"
+          },
+          {
+            "title": "\\texttwemoji1f4af-LongBench: Are de facto Long-Context Benchmarks Literally Evaluating Long-Context Ability?",
+            "url": "https://arxiv.org/html/2505.19293v1"
+          },
+          {
+            "title": "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval",
+            "url": "https://arxiv.org/html/2510.05381v1"
+          },
+          {
+            "title": "LongBench: Are de facto Long-Context Benchmarks Literally",
+            "url": "https://aclanthology.org/2025.findings-acl.903.pdf"
+          },
+          {
+            "title": "Counting-Stars: A Multi-evidence, Position-aware, and Scalable Benchmark   for Evaluating Long-Context Large Language Models",
+            "url": "https://arxiv.org/pdf/2403.11802"
+          },
+          {
+            "title": "Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems",
+            "url": "https://arxiv.org/pdf/2411.01101"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding long-context LLM benchmarks and related evaluation challenges:\n\n## Key Benchmarks and Evaluation Methods\n\nSynthetic benchmarks like RULER and Helmet enable controlled evaluation at scale, while manually annotated benchmarks like Clongeval and LongBenchv2 ensure authenticity through complex tasks and realistic scenarios.\n\n## Position Bias and Interference Issues\n\nPosition bias—a tendency to favor or neglect certain context regions—has emerged as a fundamental challenge for LLMs in long-context processing, with three key manifestations: primacy (overweighting early context), recency (preferring recent information), and a U-shaped pattern where middle-context information is neglected.\n\nLongPIBench is a benchmark designed to assess positional bias involving multiple pieces of relevant information, revealing that while most current models are more robust against the \"lost in the middle\" issue, there also exist noticeable biases related to the spacing of relevant information pieces.\n\n## Recent Evaluation Developments (2025-2026)\n\nLong-context evaluation measures whether LLMs can reliably retrieve, integrate, and reason over evidence that is sparse and distributed across lengthy documents, and it must address confounders such as positional effects and the gap between advertised context length and effective reasoning length.\n\nVarious evaluation benchmarks and metrics have been proposed, including LongBench, L-Eval, NIAH (Needle in the Haystack), and RULER. A newer benchmark called 💯-LongBench (from May 2025) addresses concerns that existing benchmarks may not properly distinguish between base model ability and genuine long-context capability."
+    ],
+    "durationSeconds": 7.943491335000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "80b04536-13ce-4eba-99bf-2a1d508ad5da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-20T05:39:46.449Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do a few more targeted searches to understand the competitive landscape better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cf2b888-2685-4189-9be3-0bdb75c8391e",
+  "isSidechain": false,
+  "requestId": "req_011CbDHQ3VMjrrTiS5oFGJZk",
+  "type": "assistant",
+  "uuid": "b69a6848-d837-42c4-9d7d-acee045e33e6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YGueGbbkfS1nF4Z7CoWwSa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 21180,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 21180,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-20T05:39:47.513Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016qYJBG1hoKSdGKEXk9L2n2`</summary>
+
+```json
+{
+  "query": "Sculptor active context management ICLR 2026 arXiv 2508.04664 proactive interference LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b69a6848-d837-42c4-9d7d-acee045e33e6",
+  "isSidechain": false,
+  "requestId": "req_011CbDHQ3VMjrrTiS5oFGJZk",
+  "type": "assistant",
+  "uuid": "3b370266-c87d-4c87-8ce9-006fe088409c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YGueGbbkfS1nF4Z7CoWwSa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 21180,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 21180,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T05:39:48.478Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VZ6vMapBzCA4ji5R6JALws`</summary>
+
+```json
+{
+  "query": "CogniLoad synthetic benchmark distractor density factorial control LLM arXiv 2509.18458"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b370266-c87d-4c87-8ce9-006fe088409c",
+  "isSidechain": false,
+  "requestId": "req_011CbDHQ3VMjrrTiS5oFGJZk",
+  "type": "assistant",
+  "uuid": "203ac5c4-7703-4c60-8c74-ed4c0d2c4671",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YGueGbbkfS1nF4Z7CoWwSa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 21180,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 21180,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLM…",
+  "leafUuid": "203ac5c4-7703-4c60-8c74-ed4c0d2c4671",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Factorial analysis of long-context LLM degradation",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:39:52.860Z_
+
+<details><summary>↩ Tool result · `toolu_016qYJBG1hoKSdGKEXk9L2n2`</summary>
+
+```text
+Web search results for query: "Sculptor active context management ICLR 2026 arXiv 2508.04664 proactive interference LLM"
+
+Links: [{"title":"ICLR Poster Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://iclr.cc/virtual/2026/poster/10010394"},{"title":"[2508.04664v1] Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://arxiv.org/abs/2508.04664v1"},{"title":"[2508.04664] Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://arxiv.org/abs/2508.04664"},{"title":"Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://arxiv.org/html/2508.04664v1"},{"title":"Mo Li","url":"https://mor-li.github.io/"},{"title":"(PDF) Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://www.researchgate.net/publication/394362750_Sculptor_Empowering_LLMs_with_Cognitive_Agency_via_Active_Context_Management"},{"title":"Paper page - Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://huggingface.co/papers/2508.04664"},{"title":"Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management","url":"https://www.arxiv.org/pdf/2508.04664v1"},{"title":"Sculptor: Empowering LLMs with Cognitive Agency via Active ...","url":"https://www.alphaxiv.org/overview/2508.04664v1"},{"title":"Sculptor: Empowering LLMs with Cognitive Agency via ...","url":"https://www.arxiv.org/pdf/2508.04664"}]
+
+Based on the search results, here's what I found:
+
+Sculptor is a framework that equips LLMs with three categories of tools: (1) context fragmentation, (2) summary, hide, and restore, and (3) precise search, and proposes a complementary approach of empowering LLMs with Active Context Management (ACM) tools to actively sculpt their internal working memory.
+
+Large Language Models (LLMs) suffer from significant performance degradation when processing long contexts due to proactive interference, where irrelevant information in earlier parts of the context disrupts reasoning and memory recall.
+
+The approach enables LLMs to proactively manage their attention and working memory, analogous to how humans selectively focus on relevant information while filtering out distractions.
+
+Experimental evaluation on diverse long-context benchmarks demonstrates that Sculptor significantly improves performance even without specific training, leveraging LLMs' inherent capabilities.
+
+The paper (arXiv 2508.04664) was authored by Mo Li, L.H. Xu, Qitai Tan, Long Ma, Ting Cao, and Yunxin Liu, and is published in the Proceedings of the International Conference on Learning Representations (ICLR) 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b370266-c87d-4c87-8ce9-006fe088409c",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "1c429501-912d-4084-ac30-49181d53155d",
+  "toolUseResult": {
+    "query": "Sculptor active context management ICLR 2026 arXiv 2508.04664 proactive interference LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WpyeDPxRrwEsrPqzdV6yoN",
+        "content": [
+          {
+            "title": "ICLR Poster Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://iclr.cc/virtual/2026/poster/10010394"
+          },
+          {
+            "title": "[2508.04664v1] Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://arxiv.org/abs/2508.04664v1"
+          },
+          {
+            "title": "[2508.04664] Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://arxiv.org/abs/2508.04664"
+          },
+          {
+            "title": "Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://arxiv.org/html/2508.04664v1"
+          },
+          {
+            "title": "Mo Li",
+            "url": "https://mor-li.github.io/"
+          },
+          {
+            "title": "(PDF) Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://www.researchgate.net/publication/394362750_Sculptor_Empowering_LLMs_with_Cognitive_Agency_via_Active_Context_Management"
+          },
+          {
+            "title": "Paper page - Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://huggingface.co/papers/2508.04664"
+          },
+          {
+            "title": "Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management",
+            "url": "https://www.arxiv.org/pdf/2508.04664v1"
+          },
+          {
+            "title": "Sculptor: Empowering LLMs with Cognitive Agency via Active ...",
+            "url": "https://www.alphaxiv.org/overview/2508.04664v1"
+          },
+          {
+            "title": "Sculptor: Empowering LLMs with Cognitive Agency via ...",
+            "url": "https://www.arxiv.org/pdf/2508.04664"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\nSculptor is a framework that equips LLMs with three categories of tools: (1) context fragmentation, (2) summary, hide, and restore, and (3) precise search, and proposes a complementary approach of empowering LLMs with Active Context Management (ACM) tools to actively sculpt their internal working memory.\n\nLarge Language Models (LLMs) suffer from significant performance degradation when processing long contexts due to proactive interference, where irrelevant information in earlier parts of the context disrupts reasoning and memory recall.\n\nThe approach enables LLMs to proactively manage their attention and working memory, analogous to how humans selectively focus on relevant information while filtering out distractions.\n\nExperimental evaluation on diverse long-context benchmarks demonstrates that Sculptor significantly improves performance even without specific training, leveraging LLMs' inherent capabilities.\n\nThe paper (arXiv 2508.04664) was authored by Mo Li, L.H. Xu, Qitai Tan, Long Ma, Ting Cao, and Yunxin Liu, and is published in the Proceedings of the International Conference on Learning Representations (ICLR) 2026."
+    ],
+    "durationSeconds": 5.342098040000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3b370266-c87d-4c87-8ce9-006fe088409c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T05:39:54.518Z_
+
+<details><summary>↩ Tool result · `toolu_01VZ6vMapBzCA4ji5R6JALws`</summary>
+
+```text
+Web search results for query: "CogniLoad synthetic benchmark distractor density factorial control LLM arXiv 2509.18458"
+
+Links: [{"title":"[2509.18458] CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density","url":"https://arxiv.org/abs/2509.18458"},{"title":"CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density","url":"https://arxiv.org/pdf/2509.18458"},{"title":"CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density | OpenReview","url":"https://openreview.net/forum?id=0Sex2H5Jnn"},{"title":"CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density - NR","url":"https://nr.no/en/publication/10341511/"},{"title":"CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250918458K/abstract"},{"title":"CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density","url":"https://arxiv.org/html/2509.18458"},{"title":"Decomposing Reasoning Efficiency in Large Language Models","url":"https://openreview.net/pdf?id=mym1D6mIZR"}]
+
+Based on the search results, I found detailed information about the CogniLoad paper (arXiv 2509.18458):
+
+## Overview
+
+CogniLoad is a novel synthetic benchmark grounded in Cognitive Load Theory (CLT) for evaluating Large Language Models' reasoning capabilities.
+
+## Key Features
+
+CogniLoad generates natural-language logic puzzles with independently tunable parameters: intrinsic difficulty (d) controls intrinsic load; distractor-to-signal ratio (ρ) regulates extraneous load; and task length (N) serves as an operational proxy for conditions demanding germane load.
+
+## Research Findings
+
+Evaluating 22 state-of-the-art reasoning LLMs, CogniLoad reveals distinct performance sensitivities, identifying task length as a dominant constraint and uncovering varied tolerances to intrinsic complexity and U-shaped responses to distractor ratios.
+
+## Significance
+
+By offering systematic, factorial control over these cognitive load dimensions, CogniLoad provides a reproducible, scalable, and diagnostically rich tool for dissecting LLM reasoning limitations and guiding future model development.
+
+The paper was published in September 2025 and includes code and dataset available on GitHub and Hugging Face respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "203ac5c4-7703-4c60-8c74-ed4c0d2c4671",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "8b6314c8-dd0b-4b68-8f2f-ee48dd9cbd03",
+  "toolUseResult": {
+    "query": "CogniLoad synthetic benchmark distractor density factorial control LLM arXiv 2509.18458",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017iBEPEm1a1ewoEVqA8nqTF",
+        "content": [
+          {
+            "title": "[2509.18458] CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density",
+            "url": "https://arxiv.org/abs/2509.18458"
+          },
+          {
+            "title": "CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density",
+            "url": "https://arxiv.org/pdf/2509.18458"
+          },
+          {
+            "title": "CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density | OpenReview",
+            "url": "https://openreview.net/forum?id=0Sex2H5Jnn"
+          },
+          {
+            "title": "CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density - NR",
+            "url": "https://nr.no/en/publication/10341511/"
+          },
+          {
+            "title": "CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250918458K/abstract"
+          },
+          {
+            "title": "CogniLoad: A Synthetic Natural Language Reasoning Benchmark With Tunable Length, Intrinsic Difficulty, and Distractor Density",
+            "url": "https://arxiv.org/html/2509.18458"
+          },
+          {
+            "title": "Decomposing Reasoning Efficiency in Large Language Models",
+            "url": "https://openreview.net/pdf?id=mym1D6mIZR"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the CogniLoad paper (arXiv 2509.18458):\n\n## Overview\n\nCogniLoad is a novel synthetic benchmark grounded in Cognitive Load Theory (CLT) for evaluating Large Language Models' reasoning capabilities.\n\n## Key Features\n\nCogniLoad generates natural-language logic puzzles with independently tunable parameters: intrinsic difficulty (d) controls intrinsic load; distractor-to-signal ratio (ρ) regulates extraneous load; and task length (N) serves as an operational proxy for conditions demanding germane load.\n\n## Research Findings\n\nEvaluating 22 state-of-the-art reasoning LLMs, CogniLoad reveals distinct performance sensitivities, identifying task length as a dominant constraint and uncovering varied tolerances to intrinsic complexity and U-shaped responses to distractor ratios.\n\n## Significance\n\nBy offering systematic, factorial control over these cognitive load dimensions, CogniLoad provides a reproducible, scalable, and diagnostically rich tool for dissecting LLM reasoning limitations and guiding future model development.\n\nThe paper was published in September 2025 and includes code and dataset available on GitHub and Hugging Face respectively."
+    ],
+    "durationSeconds": 6.036408562,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "203ac5c4-7703-4c60-8c74-ed4c0d2c4671",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T05:40:00.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BqwMkWUdjNo2S3KS5CyDqo`</summary>
+
+```json
+{
+  "query": "Dual-Process interference LLMs proactive retroactive arXiv 2603.00270 Chattaraj 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b6314c8-dd0b-4b68-8f2f-ee48dd9cbd03",
+  "isSidechain": false,
+  "requestId": "req_011CbDHQoRoUP1djqvUMWd2e",
+  "type": "assistant",
+  "uuid": "ef254478-0306-4e8f-9444-8fbd62774e79",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137uUkJkpc8BHvNasn1icnk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1740,
+      "cache_read_input_tokens": 23818,
+      "output_tokens": 146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1740,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 146,
+          "cache_read_input_tokens": 23818,
+          "cache_creation_input_tokens": 1740,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1740
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T05:40:01.351Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0126Yk3Nv3g1hd21X4jTbqN6`</summary>
+
+```json
+{
+  "query": "EMB-S semantic interference NIAH 326M token arXiv 2601.20276 adversarial needle haystack 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef254478-0306-4e8f-9444-8fbd62774e79",
+  "isSidechain": false,
+  "requestId": "req_011CbDHQoRoUP1djqvUMWd2e",
+  "type": "assistant",
+  "uuid": "4aca6743-36b8-4a17-ad49-b4af8ac6439b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137uUkJkpc8BHvNasn1icnk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1740,
+      "cache_read_input_tokens": 23818,
+      "output_tokens": 146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1740,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 146,
+          "cache_read_input_tokens": 23818,
+          "cache_creation_input_tokens": 1740,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1740
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T05:40:06.247Z_
+
+<details><summary>↩ Tool result · `toolu_01BqwMkWUdjNo2S3KS5CyDqo`</summary>
+
+```text
+Web search results for query: "Dual-Process interference LLMs proactive retroactive arXiv 2603.00270 Chattaraj 2026"
+
+Links: [{"title":"(PDF) Transformers Remember First, Forget Last: Dual-Process Interference in LLMs","url":"https://www.researchgate.net/publication/401469380_Transformers_Remember_First_Forget_Last_Dual-Process_Interference_in_LLMs"},{"title":"Transformers Remember First, Forget Last: Dual-Process Interference in LLMs","url":"https://arxiv.org/html/2603.00270v1"},{"title":"[2603.00270] Transformers Remember First, Forget Last: Dual-Process Interference in LLMs","url":"https://arxiv.org/abs/2603.00270"},{"title":"Transformers Remember First, Forget Last: Dual-Process Interference in LLMs | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2603.00270"},{"title":"Transformers Remember First, Forget Last: Dual-Process Interference in LLMs","url":"https://arxiv.org/pdf/2603.00270"},{"title":"[2603.14517] Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models","url":"https://arxiv.org/abs/2603.14517"}]
+
+I found the research paper you're looking for. Here's information about it:
+
+**Paper Title:** Transformers Remember First, Forget Last: Dual-Process Interference in LLMs
+
+**Authors:** Sourav Chattaraj and Kanak Raj
+
+**Core Findings:** Every model shows the same pattern: proactive interference (PI) dominates retroactive interference (RI) universally (Cohen's d = 1.73, p < 0.0001), meaning early encodings are protected at the cost of recent information -- the opposite of human memory, where RI typically dominates.
+
+**Research Methodology:** The researchers adapt classical interference paradigms from cognitive psychology to answer this question, testing 39 LLMs across diverse architectures and scales.
+
+**Key Insight:** Three findings indicate that RI and PI reflect separate memory mechanisms.
+
+The paper was submitted to arXiv on February 27, 2026, with a revised version on March 19, 2026. It investigates how large language models handle conflicting information in context, specifically examining which memories survive when early and recent information conflict.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef254478-0306-4e8f-9444-8fbd62774e79",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "cc8a5e1a-9858-4686-96db-8c82f2a679ef",
+  "toolUseResult": {
+    "query": "Dual-Process interference LLMs proactive retroactive arXiv 2603.00270 Chattaraj 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NqepBbfKzG1cPWP4hGCDFY",
+        "content": [
+          {
+            "title": "(PDF) Transformers Remember First, Forget Last: Dual-Process Interference in LLMs",
+            "url": "https://www.researchgate.net/publication/401469380_Transformers_Remember_First_Forget_Last_Dual-Process_Interference_in_LLMs"
+          },
+          {
+            "title": "Transformers Remember First, Forget Last: Dual-Process Interference in LLMs",
+            "url": "https://arxiv.org/html/2603.00270v1"
+          },
+          {
+            "title": "[2603.00270] Transformers Remember First, Forget Last: Dual-Process Interference in LLMs",
+            "url": "https://arxiv.org/abs/2603.00270"
+          },
+          {
+            "title": "Transformers Remember First, Forget Last: Dual-Process Interference in LLMs | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2603.00270"
+          },
+          {
+            "title": "Transformers Remember First, Forget Last: Dual-Process Interference in LLMs",
+            "url": "https://arxiv.org/pdf/2603.00270"
+          },
+          {
+            "title": "[2603.14517] Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.14517"
+          }
+        ]
+      },
+      "I found the research paper you're looking for. Here's information about it:\n\n**Paper Title:** Transformers Remember First, Forget Last: Dual-Process Interference in LLMs\n\n**Authors:** Sourav Chattaraj and Kanak Raj\n\n**Core Findings:** Every model shows the same pattern: proactive interference (PI) dominates retroactive interference (RI) universally (Cohen's d = 1.73, p < 0.0001), meaning early encodings are protected at the cost of recent information -- the opposite of human memory, where RI typically dominates.\n\n**Research Methodology:** The researchers adapt classical interference paradigms from cognitive psychology to answer this question, testing 39 LLMs across diverse architectures and scales.\n\n**Key Insight:** Three findings indicate that RI and PI reflect separate memory mechanisms.\n\nThe paper was submitted to arXiv on February 27, 2026, with a revised version on March 19, 2026. It investigates how large language models handle conflicting information in context, specifically examining which memories survive when early and recent information conflict."
+    ],
+    "durationSeconds": 6.119910610999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ef254478-0306-4e8f-9444-8fbd62774e79",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T05:40:08.018Z_
+
+<details><summary>↩ Tool result · `toolu_0126Yk3Nv3g1hd21X4jTbqN6`</summary>
+
+```text
+Web search results for query: "EMB-S semantic interference NIAH 326M token arXiv 2601.20276 adversarial needle haystack 2026"
+
+Links: [{"title":"[2601.20276] Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale","url":"https://arxiv.org/abs/2601.20276"},{"title":"Beyond the Needle’s Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale","url":"https://arxiv.org/html/2601.20276"},{"title":"Different Loci of Semantic Interference in Picture Naming vs. Word-Picture Matching Tasks","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4865493/"},{"title":"An Information-Theoretic Account of Semantic Interference in Word Production","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8200775/"},{"title":"Lexical Access in Comprehension vs. Production: Spatiotemporal Localization of Semantic Facilitation and Interference","url":"https://www.biorxiv.org/content/10.1101/449157.full.pdf"},{"title":"Mental Chronometry of Speaking in Dialogue: Semantic Interference Turns into Facilitation","url":"https://www.biorxiv.org/content/10.1101/2020.09.08.287458.full.pdf"},{"title":"Distributional properties of semantic interference in picture naming: Bayesian meta-analyses","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9038827/"},{"title":"Distributional analysis of semantic interference in picture naming","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6159766/"}]
+
+Based on the search results, I found information about your query:
+
+EMB-S (EverMemBench-S) is an adversarial NIAH-style benchmark built on a 326M-token MemoryBank. The benchmark is designed to evaluate long-context language models, with queries paired with collision-tested near-miss hard negatives and gold evidence sets spanning one or more documents, validated via human screening and LLM verification.
+
+The research addresses limitations in traditional evaluation methods. The popular Needle-in-a-Haystack (NIAH) evaluation mostly measures benign span localization, where the needle is near-unique and the haystack is largely irrelevant. In contrast, EMB-S augments NIAH with collision-tested near-miss hard negatives and gold evidence sets (single- or multi-document), transforming needle finding into semantic discrimination under dense, constraint-violating distractors.
+
+The benchmark also proposes a decoupled diagnostic protocol that reports evidence access (document-ID localization) separately from end-to-end QA quality under full-context prompting. The paper was published on January 28, 2026, with arXiv ID 2601.20276.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4aca6743-36b8-4a17-ad49-b4af8ac6439b",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "0fa6df2b-17c7-4ece-94d9-7c51ddc83cb0",
+  "toolUseResult": {
+    "query": "EMB-S semantic interference NIAH 326M token arXiv 2601.20276 adversarial needle haystack 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ku2TyFm76SCGPPcWBT94eK",
+        "content": [
+          {
+            "title": "[2601.20276] Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale",
+            "url": "https://arxiv.org/abs/2601.20276"
+          },
+          {
+            "title": "Beyond the Needle’s Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale",
+            "url": "https://arxiv.org/html/2601.20276"
+          },
+          {
+            "title": "Different Loci of Semantic Interference in Picture Naming vs. Word-Picture Matching Tasks",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4865493/"
+          },
+          {
+            "title": "An Information-Theoretic Account of Semantic Interference in Word Production",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8200775/"
+          },
+          {
+            "title": "Lexical Access in Comprehension vs. Production: Spatiotemporal Localization of Semantic Facilitation and Interference",
+            "url": "https://www.biorxiv.org/content/10.1101/449157.full.pdf"
+          },
+          {
+            "title": "Mental Chronometry of Speaking in Dialogue: Semantic Interference Turns into Facilitation",
+            "url": "https://www.biorxiv.org/content/10.1101/2020.09.08.287458.full.pdf"
+          },
+          {
+            "title": "Distributional properties of semantic interference in picture naming: Bayesian meta-analyses",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9038827/"
+          },
+          {
+            "title": "Distributional analysis of semantic interference in picture naming",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6159766/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about your query:\n\nEMB-S (EverMemBench-S) is an adversarial NIAH-style benchmark built on a 326M-token MemoryBank. The benchmark is designed to evaluate long-context language models, with queries paired with collision-tested near-miss hard negatives and gold evidence sets spanning one or more documents, validated via human screening and LLM verification.\n\nThe research addresses limitations in traditional evaluation methods. The popular Needle-in-a-Haystack (NIAH) evaluation mostly measures benign span localization, where the needle is near-unique and the haystack is largely irrelevant. In contrast, EMB-S augments NIAH with collision-tested near-miss hard negatives and gold evidence sets (single- or multi-document), transforming needle finding into semantic discrimination under dense, constraint-violating distractors.\n\nThe benchmark also proposes a decoupled diagnostic protocol that reports evidence access (document-ID localization) separately from end-to-end QA quality under full-context prompting. The paper was published on January 28, 2026, with arXiv ID 2601.20276."
+    ],
+    "durationSeconds": 6.662414391000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4aca6743-36b8-4a17-ad49-b4af8ac6439b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-20T05:40:11.572Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me do one more search to understand the cross-architecture analysis landscape and any very recent work on decomposing long-context failures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fa6df2b-17c7-4ece-94d9-7c51ddc83cb0",
+  "isSidechain": false,
+  "requestId": "req_011CbDHRo9xPWP11FA9hXtjW",
+  "type": "assistant",
+  "uuid": "c407669e-2be0-42ff-b842-2e01471cf407",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBmUVXj1KKPrZrBfNxkTiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1582,
+      "cache_read_input_tokens": 25558,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 25558,
+          "cache_creation_input_tokens": 1582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T05:40:13.127Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HkxP6N3ZTWVBALRfZvngsM`</summary>
+
+```json
+{
+  "query": "SSM hybrid architecture Jamba over-smoothing long context bottleneck Mamba transformer comparison 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c407669e-2be0-42ff-b842-2e01471cf407",
+  "isSidechain": false,
+  "requestId": "req_011CbDHRo9xPWP11FA9hXtjW",
+  "type": "assistant",
+  "uuid": "60a66614-3a04-4304-a311-ac955d1be2d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBmUVXj1KKPrZrBfNxkTiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1582,
+      "cache_read_input_tokens": 25558,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 25558,
+          "cache_creation_input_tokens": 1582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T05:40:13.705Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UABkW7i7aiLXLeeQcwj7rG`</summary>
+
+```json
+{
+  "query": "ANOVA effect size benchmark LLM evaluation factorial design partial eta squared 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60a66614-3a04-4304-a311-ac955d1be2d6",
+  "isSidechain": false,
+  "requestId": "req_011CbDHRo9xPWP11FA9hXtjW",
+  "type": "assistant",
+  "uuid": "096f7cf5-1867-43fe-a889-19f4852fe938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBmUVXj1KKPrZrBfNxkTiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1582,
+      "cache_read_input_tokens": 25558,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 25558,
+          "cache_creation_input_tokens": 1582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T05:40:20.407Z_
+
+<details><summary>↩ Tool result · `toolu_01UABkW7i7aiLXLeeQcwj7rG`</summary>
+
+```text
+Web search results for query: "ANOVA effect size benchmark LLM evaluation factorial design partial eta squared 2025 2026"
+
+Links: [{"title":"Eta-Squared & Partial Eta-Squared: ANOVA Effect Size Guide Calculator | MetricGate","url":"https://metricgate.com/docs/eta-squared/"},{"title":"GraphPad Prism 11 Statistics Guide - Understanding ANOVA Effect Sizes","url":"https://www.graphpad.com/guides/prism/latest/statistics/stat_anova_effect_sizes.htm"},{"title":"Recommended effect size statistics for repeated measures ...","url":"https://link.springer.com/content/pdf/10.3758/BF03192707.pdf"},{"title":"How to Interpret Effect Size: Cohen's d, Eta Squared, R² | StatMate","url":"https://statmate.org/blog/understanding-effect-size"},{"title":"10 Effect Sizes for ANOVAs – Guide to Effect Sizes and Confidence Intervals","url":"https://matthewbjane.quarto.pub/Effect-Sizes-for-ANOVAs.html"},{"title":"How to Report ANOVA Results in APA 7th Edition — Partial Eta Squared Effect Size, F-Statistic & Post-Hoc | StatMate","url":"https://statmate.org/blog/anova-apa-reporting"}]
+
+I've completed the web search for your query. Here are the key findings about ANOVA effect size benchmarks, partial eta squared, and factorial design evaluation:
+
+## ANOVA Effect Size Benchmarks
+
+Cohen's benchmarks for partial eta squared are: <0.01 negligible, 0.01–0.06 small, 0.06–0.14 medium, ≥0.14 large. For partial eta squared (η²p), .01 indicates a small effect, .06 a medium effect, and .14 a large effect.
+
+## Partial Eta Squared in Factorial Designs
+
+Partial eta-squared removes other factors from the denominator and is recommended for factorial ANOVA and reported by SPSS by default. Partial eta squared is commonly reported in factorial ANOVA designs, and unlike eta squared which uses total variance as the denominator, partial eta squared uses only the variance relevant to the effect being examined.
+
+Partial eta squared is recommended by APA for factorial designs because it is not deflated by variance explained by other factors. This makes it particularly useful because it helps with understanding the unique contribution of each factor in factorial designs where you want to assess each factor independently.
+
+The search results primarily focus on statistical methodology and benchmarks rather than specific LLM (Large Language Model) evaluation frameworks from 2025-2026. If you're looking for more specific information about how these statistical measures are applied to LLM evaluations, you may need to search for more recent literature on LLM benchmarking methodologies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "096f7cf5-1867-43fe-a889-19f4852fe938",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "79f28270-aca9-41b8-b28a-9090698f9c92",
+  "toolUseResult": {
+    "query": "ANOVA effect size benchmark LLM evaluation factorial design partial eta squared 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QUwKomLx2JaoatQDhqek4V",
+        "content": [
+          {
+            "title": "Eta-Squared & Partial Eta-Squared: ANOVA Effect Size Guide Calculator | MetricGate",
+            "url": "https://metricgate.com/docs/eta-squared/"
+          },
+          {
+            "title": "GraphPad Prism 11 Statistics Guide - Understanding ANOVA Effect Sizes",
+            "url": "https://www.graphpad.com/guides/prism/latest/statistics/stat_anova_effect_sizes.htm"
+          },
+          {
+            "title": "Recommended effect size statistics for repeated measures ...",
+            "url": "https://link.springer.com/content/pdf/10.3758/BF03192707.pdf"
+          },
+          {
+            "title": "How to Interpret Effect Size: Cohen's d, Eta Squared, R² | StatMate",
+            "url": "https://statmate.org/blog/understanding-effect-size"
+          },
+          {
+            "title": "10 Effect Sizes for ANOVAs – Guide to Effect Sizes and Confidence Intervals",
+            "url": "https://matthewbjane.quarto.pub/Effect-Sizes-for-ANOVAs.html"
+          },
+          {
+            "title": "How to Report ANOVA Results in APA 7th Edition — Partial Eta Squared Effect Size, F-Statistic & Post-Hoc | StatMate",
+            "url": "https://statmate.org/blog/anova-apa-reporting"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here are the key findings about ANOVA effect size benchmarks, partial eta squared, and factorial design evaluation:\n\n## ANOVA Effect Size Benchmarks\n\nCohen's benchmarks for partial eta squared are: <0.01 negligible, 0.01–0.06 small, 0.06–0.14 medium, ≥0.14 large. For partial eta squared (η²p), .01 indicates a small effect, .06 a medium effect, and .14 a large effect.\n\n## Partial Eta Squared in Factorial Designs\n\nPartial eta-squared removes other factors from the denominator and is recommended for factorial ANOVA and reported by SPSS by default. Partial eta squared is commonly reported in factorial ANOVA designs, and unlike eta squared which uses total variance as the denominator, partial eta squared uses only the variance relevant to the effect being examined.\n\nPartial eta squared is recommended by APA for factorial designs because it is not deflated by variance explained by other factors. This makes it particularly useful because it helps with understanding the unique contribution of each factor in factorial designs where you want to assess each factor independently.\n\nThe search results primarily focus on statistical methodology and benchmarks rather than specific LLM (Large Language Model) evaluation frameworks from 2025-2026. If you're looking for more specific information about how these statistical measures are applied to LLM evaluations, you may need to search for more recent literature on LLM benchmarking methodologies."
+    ],
+    "durationSeconds": 6.693235720000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "096f7cf5-1867-43fe-a889-19f4852fe938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLM…",
+  "leafUuid": "79f28270-aca9-41b8-b28a-9090698f9c92",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Factorial analysis of long-context LLM degradation",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T05:40:21.095Z_
+
+<details><summary>↩ Tool result · `toolu_01HkxP6N3ZTWVBALRfZvngsM`</summary>
+
+```text
+Web search results for query: "SSM hybrid architecture Jamba over-smoothing long context bottleneck Mamba transformer comparison 2025 2026"
+
+Links: [{"title":"Introducing Jamba: AI21's Groundbreaking SSM-Transformer Model | AI21","url":"https://www.ai21.com/blog/announcing-jamba/"},{"title":"Jamba: A Hybrid Transformer-Mamba Language Model","url":"https://arxiv.org/html/2403.19887v1"},{"title":"Jamba Model: An Innovative Fusion of Transformer and Mamba in Artificial Intelligence","url":"https://deepfa.ir/en/blog/jamba-model-hybrid-transformer-mamba-architecture"},{"title":"Architectural Evolution in Large Language Models: A Deep Dive into Jamba’s Hybrid Transformer-Mamba Design | by Greg Robison | Medium","url":"https://gregrobison.medium.com/architectural-evolution-in-large-language-models-a-deep-dive-into-jambas-hybrid-transformer-mamba-c3efa8ca8cae"},{"title":"Jamba: A Hybrid Transformer-Mamba Language Model Opher Lieber∗ Barak Lenz∗","url":"https://arxiv.org/pdf/2403.19887"},{"title":"Attention was never enough: Tracing the rise of hybrid LLMs | AI21","url":"https://www.ai21.com/blog/rise-of-hybrid-llms/"},{"title":"Characterizing State Space Model (SSM) and SSM-Transformer Hybrid Language Model Performance with Long Context Length","url":"https://arxiv.org/html/2507.12442v2"},{"title":"HYBRID TRANSFORMER-MAMBA LANGUAGE MODELS","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a9ed43fa31dc8b4a7d7a673d713dcb5f-Paper-Conference.pdf"}]
+
+Based on the search results, here's what I found about SSM hybrid architecture, Jamba, and related topics:
+
+## Jamba: A Hybrid SSM-Transformer Architecture
+
+Jamba is the first production-grade Mamba-based model built on a novel SSM-Transformer hybrid architecture, offering 3X throughput on long contexts compared to Mixtral 8x7B and a massive 256K context window.
+
+## How the Hybrid Architecture Addresses Limitations
+
+By enhancing Mamba Structured State Space model (SSM) technology with elements of the traditional Transformer architecture, Jamba compensates for the inherent limitations of a pure SSM model. Pure SSM models like Mamba excel in efficiency, but may have limitations in complex tasks requiring deep contextual understanding, which Jamba addresses by incorporating Transformer layers and providing higher analytical power.
+
+## Long Context and Efficiency Benefits
+
+Thanks to its hybrid Attention-Mamba architecture, Jamba's KV cache takes only 4GB even at a 256K token context, compared to Mixtral's requirement of 32GB. Mamba processes sequences with linear-time complexity and generates new tokens with constant-time inference, directly addressing the quadratic bottleneck of the Transformer.
+
+## Latest Developments (2025)
+
+AI21 Labs scaled its hybrid Mamba–Transformer architecture to 398B total parameters with 94B active in Jamba 1.5, which interleaves Mamba and attention layers and supports 256K-token context, achieving state-of-the-art performance on NVIDIA's RULER benchmark.
+
+The hybrid approach represents a significant evolution in addressing the scalability and efficiency challenges of pure Transformer models for long-context tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60a66614-3a04-4304-a311-ac955d1be2d6",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "12b24acd-b3f2-4da0-8987-2c9b742a4996",
+  "toolUseResult": {
+    "query": "SSM hybrid architecture Jamba over-smoothing long context bottleneck Mamba transformer comparison 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MnDKYQS9XPiaFhT1Hnqgkt",
+        "content": [
+          {
+            "title": "Introducing Jamba: AI21's Groundbreaking SSM-Transformer Model | AI21",
+            "url": "https://www.ai21.com/blog/announcing-jamba/"
+          },
+          {
+            "title": "Jamba: A Hybrid Transformer-Mamba Language Model",
+            "url": "https://arxiv.org/html/2403.19887v1"
+          },
+          {
+            "title": "Jamba Model: An Innovative Fusion of Transformer and Mamba in Artificial Intelligence",
+            "url": "https://deepfa.ir/en/blog/jamba-model-hybrid-transformer-mamba-architecture"
+          },
+          {
+            "title": "Architectural Evolution in Large Language Models: A Deep Dive into Jamba’s Hybrid Transformer-Mamba Design | by Greg Robison | Medium",
+            "url": "https://gregrobison.medium.com/architectural-evolution-in-large-language-models-a-deep-dive-into-jambas-hybrid-transformer-mamba-c3efa8ca8cae"
+          },
+          {
+            "title": "Jamba: A Hybrid Transformer-Mamba Language Model Opher Lieber∗ Barak Lenz∗",
+            "url": "https://arxiv.org/pdf/2403.19887"
+          },
+          {
+            "title": "Attention was never enough: Tracing the rise of hybrid LLMs | AI21",
+            "url": "https://www.ai21.com/blog/rise-of-hybrid-llms/"
+          },
+          {
+            "title": "Characterizing State Space Model (SSM) and SSM-Transformer Hybrid Language Model Performance with Long Context Length",
+            "url": "https://arxiv.org/html/2507.12442v2"
+          },
+          {
+            "title": "HYBRID TRANSFORMER-MAMBA LANGUAGE MODELS",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a9ed43fa31dc8b4a7d7a673d713dcb5f-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SSM hybrid architecture, Jamba, and related topics:\n\n## Jamba: A Hybrid SSM-Transformer Architecture\n\nJamba is the first production-grade Mamba-based model built on a novel SSM-Transformer hybrid architecture, offering 3X throughput on long contexts compared to Mixtral 8x7B and a massive 256K context window.\n\n## How the Hybrid Architecture Addresses Limitations\n\nBy enhancing Mamba Structured State Space model (SSM) technology with elements of the traditional Transformer architecture, Jamba compensates for the inherent limitations of a pure SSM model. Pure SSM models like Mamba excel in efficiency, but may have limitations in complex tasks requiring deep contextual understanding, which Jamba addresses by incorporating Transformer layers and providing higher analytical power.\n\n## Long Context and Efficiency Benefits\n\nThanks to its hybrid Attention-Mamba architecture, Jamba's KV cache takes only 4GB even at a 256K token context, compared to Mixtral's requirement of 32GB. Mamba processes sequences with linear-time complexity and generates new tokens with constant-time inference, directly addressing the quadratic bottleneck of the Transformer.\n\n## Latest Developments (2025)\n\nAI21 Labs scaled its hybrid Mamba–Transformer architecture to 398B total parameters with 94B active in Jamba 1.5, which interleaves Mamba and attention layers and supports 256K-token context, achieving state-of-the-art performance on NVIDIA's RULER benchmark.\n\nThe hybrid approach represents a significant evolution in addressing the scalability and efficiency challenges of pure Transformer models for long-context tasks."
+    ],
+    "durationSeconds": 7.963314198,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "60a66614-3a04-4304-a311-ac955d1be2d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-20T05:40:21.101Z_
+
+```json
+{
+  "parentUuid": "12b24acd-b3f2-4da0-8987-2c9b742a4996",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "65d9cb6a-4901-4a99-bc93-14f1af8f8a76",
+  "timestamp": "2026-05-20T05:40:21.101Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T05:40:24.342Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C82CSvRVv7dPuV2qZMT1yv`</summary>
+
+```json
+{
+  "query": "Gated Delta Network GDN hybrid attention Qwen architecture linear attention 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65d9cb6a-4901-4a99-bc93-14f1af8f8a76",
+  "isSidechain": false,
+  "requestId": "req_011CbDHSm4yKMfeyN3fQRduh",
+  "type": "assistant",
+  "uuid": "ab2f7d4c-265f-4154-9a0b-d336b535c0ac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fwk8urvHtJ36VVNRm3iRbL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 723,
+      "cache_creation_input_tokens": 1195,
+      "cache_read_input_tokens": 27140,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1195,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 723,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 27140,
+          "cache_creation_input_tokens": 1195,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1195
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T05:40:25.108Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U52gUs2S3djomFFvJhpaJ5`</summary>
+
+```json
+{
+  "query": "\"cross-component interference\" LLM agent scaffolding arXiv 2605.05716 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab2f7d4c-265f-4154-9a0b-d336b535c0ac",
+  "isSidechain": false,
+  "requestId": "req_011CbDHSm4yKMfeyN3fQRduh",
+  "type": "assistant",
+  "uuid": "6e6d233f-ea59-4590-b3d6-bac2c6307349",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fwk8urvHtJ36VVNRm3iRbL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 723,
+      "cache_creation_input_tokens": 1195,
+      "cache_read_input_tokens": 27140,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1195,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 723,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 27140,
+          "cache_creation_input_tokens": 1195,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1195
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T05:40:33.399Z_
+
+<details><summary>↩ Tool result · `toolu_01C82CSvRVv7dPuV2qZMT1yv`</summary>
+
+```text
+Web search results for query: "Gated Delta Network GDN hybrid attention Qwen architecture linear attention 2025 2026"
+
+Links: [{"title":"Attention Backend — SGLang","url":"https://sgl-project.github.io/advanced_features/attention_backend.html"},{"title":"Qwen3.5: Scaling Hybrid Attention to 397B Parameters","url":"https://kaitchup.substack.com/p/qwen35-scaling-hybrid-attention-to"},{"title":"[Deep Dive] Qwen 3.5 Brings Native Multimodality and Long Context to Small Open Models","url":"https://trilogyai.substack.com/p/deep-dive-qwen-35-brings-native-multimodality"},{"title":"Gated DeltaNet | Sebastian Raschka, PhD","url":"https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/"},{"title":"qwen3.5-gated-deltanet-analysis · GitHub","url":"https://gist.github.com/justinchuby/0213aa253664fb72e9adb0089816de15"},{"title":"FlashQLA: High-Performance Linear Attention Library for NVIDIA Hopper GPUs • Dev|Journal","url":"https://earezki.com/ai-news/2026-04-29-qwen-team-releases-flashqla-a-high-performance-linear-attention-kernel-library-that-achieves-up-to-3-speedup-on-nvidia-hopper-gpus/"},{"title":"Beyond Standard LLMs - by Sebastian Raschka, PhD","url":"https://magazine.sebastianraschka.com/p/beyond-standard-llms"},{"title":"A Persistent-State Dataflow Accelerator for Memory-Bound Linear Attention Decode on FPGA","url":"https://arxiv.org/pdf/2603.05931"},{"title":"Gated DeltaNet for Linear Attention - rasbt/LLMs-from-scratch","url":"https://github.com/rasbt/LLMs-from-scratch/blob/main/ch04/08_deltanet/README.md"}]
+
+Based on the search results, here's what I found about Gated Delta Network (GDN), hybrid attention, and the Qwen architecture:
+
+## Overview
+
+GDN (Gated Delta Network) is a linear attention mechanism with O(n) complexity, used in hybrid models that alternate GDN linear attention layers with standard full attention layers.
+
+## Qwen Architecture Implementation
+
+Qwen3-Next used Gated DeltaNet (GDN) to speed up inference and reduce memory usage. The architecture shifts to a hybrid design combining Gated Delta Networks (a linear attention mechanism) with sparse Mixture-of-Experts (MoE) routing.
+
+The hybrid pattern is consistent across recent Qwen models: By default, every 4th layer is full attention (controlled by full_attention_interval): [linear, linear, linear, full_attention, linear, linear, linear, full_attention, ...] This means ~75% of layers are linear attention and ~25% are full softmax attention.
+
+## Technical Advantages
+
+Linear attention with GDN scales well and can produce state-of-the-art LLMs, while remaining significantly more cost-effective at inference time. FlashQLA optimizes the Gated Delta Network (GDN) architecture used in the Qwen3.5 and Qwen3.6 model families. The library achieves a 2-3x speedup in forward passes and a 2x speedup in backward passes over the Flash Linear Attention (FLA) Triton baseline.
+
+## Key Components
+
+Qwen3.5/Qwen3-Next uses Gated DeltaNet — a state-of-the-art linear attention mechanism that combines: Delta rule for error-correcting memory updates (superior retrieval) Exponential gating for adaptive memory decay (prevents saturation) Causal Conv1D for local context (replaces positional encoding) L2 normalization on Q/K (replaces softmax normalization) Hybrid architecture with interleaved full-attention layers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab2f7d4c-265f-4154-9a0b-d336b535c0ac",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "66a68424-305f-41ee-8984-8cd43bcda1bd",
+  "toolUseResult": {
+    "query": "Gated Delta Network GDN hybrid attention Qwen architecture linear attention 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0135q2ewgGWndsEnnqXiKm77",
+        "content": [
+          {
+            "title": "Attention Backend — SGLang",
+            "url": "https://sgl-project.github.io/advanced_features/attention_backend.html"
+          },
+          {
+            "title": "Qwen3.5: Scaling Hybrid Attention to 397B Parameters",
+            "url": "https://kaitchup.substack.com/p/qwen35-scaling-hybrid-attention-to"
+          },
+          {
+            "title": "[Deep Dive] Qwen 3.5 Brings Native Multimodality and Long Context to Small Open Models",
+            "url": "https://trilogyai.substack.com/p/deep-dive-qwen-35-brings-native-multimodality"
+          },
+          {
+            "title": "Gated DeltaNet | Sebastian Raschka, PhD",
+            "url": "https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/"
+          },
+          {
+            "title": "qwen3.5-gated-deltanet-analysis · GitHub",
+            "url": "https://gist.github.com/justinchuby/0213aa253664fb72e9adb0089816de15"
+          },
+          {
+            "title": "FlashQLA: High-Performance Linear Attention Library for NVIDIA Hopper GPUs • Dev|Journal",
+            "url": "https://earezki.com/ai-news/2026-04-29-qwen-team-releases-flashqla-a-high-performance-linear-attention-kernel-library-that-achieves-up-to-3-speedup-on-nvidia-hopper-gpus/"
+          },
+          {
+            "title": "Beyond Standard LLMs - by Sebastian Raschka, PhD",
+            "url": "https://magazine.sebastianraschka.com/p/beyond-standard-llms"
+          },
+          {
+            "title": "A Persistent-State Dataflow Accelerator for Memory-Bound Linear Attention Decode on FPGA",
+            "url": "https://arxiv.org/pdf/2603.05931"
+          },
+          {
+            "title": "Gated DeltaNet for Linear Attention - rasbt/LLMs-from-scratch",
+            "url": "https://github.com/rasbt/LLMs-from-scratch/blob/main/ch04/08_deltanet/README.md"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Gated Delta Network (GDN), hybrid attention, and the Qwen architecture:\n\n## Overview\n\nGDN (Gated Delta Network) is a linear attention mechanism with O(n) complexity, used in hybrid models that alternate GDN linear attention layers with standard full attention layers.\n\n## Qwen Architecture Implementation\n\nQwen3-Next used Gated DeltaNet (GDN) to speed up inference and reduce memory usage. The architecture shifts to a hybrid design combining Gated Delta Networks (a linear attention mechanism) with sparse Mixture-of-Experts (MoE) routing.\n\nThe hybrid pattern is consistent across recent Qwen models: By default, every 4th layer is full attention (controlled by full_attention_interval): [linear, linear, linear, full_attention, linear, linear, linear, full_attention, ...] This means ~75% of layers are linear attention and ~25% are full softmax attention.\n\n## Technical Advantages\n\nLinear attention with GDN scales well and can produce state-of-the-art LLMs, while remaining significantly more cost-effective at inference time. FlashQLA optimizes the Gated Delta Network (GDN) architecture used in the Qwen3.5 and Qwen3.6 model families. The library achieves a 2-3x speedup in forward passes and a 2x speedup in backward passes over the Flash Linear Attention (FLA) Triton baseline.\n\n## Key Components\n\nQwen3.5/Qwen3-Next uses Gated DeltaNet — a state-of-the-art linear attention mechanism that combines: Delta rule for error-correcting memory updates (superior retrieval) Exponential gating for adaptive memory decay (prevents saturation) Causal Conv1D for local context (replaces positional encoding) L2 normalization on Q/K (replaces softmax normalization) Hybrid architecture with interleaved full-attention layers."
+    ],
+    "durationSeconds": 9.049424983999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ab2f7d4c-265f-4154-9a0b-d336b535c0ac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T05:40:33.499Z_
+
+<details><summary>↩ Tool result · `toolu_01U52gUs2S3djomFFvJhpaJ5`</summary>
+
+```text
+Web search results for query: ""cross-component interference" LLM agent scaffolding arXiv 2605.05716 2026"
+
+Links: [{"title":"[2605.05716] More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding","url":"https://arxiv.org/abs/2605.05716"},{"title":"More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding","url":"https://arxiv.org/html/2605.05716"},{"title":"Arbiter: Detecting Interference in LLM Agent System Prompts","url":"https://arxiv.org/pdf/2603.08993"},{"title":"[2603.08993] Arbiter: Detecting Interference in LLM Agent System Prompts","url":"https://arxiv.org/abs/2603.08993"},{"title":"Evidence-Decision-Feedback: Theory-Driven Adaptive Scaffolding for LLM Agents","url":"https://arxiv.org/pdf/2602.01415"},{"title":"A Theory of Adaptive Scaffolding for LLM-Based Pedagogical Agents","url":"https://arxiv.org/pdf/2508.01503"}]
+
+Based on the search results, here's what I found about arXiv paper 2605.05716:
+
+## Paper Overview
+
+The paper studies cross-component interference (CCI): degradation when LLM agent scaffolding components interact destructively, even though LLM agent systems are typically built by stacking scaffolding components (planning, tools, memory, self-reflection, retrieval) assuming more is better.
+
+## Methodology
+
+The authors ran a full factorial experiment over all 2^5=32 subsets of five components on HotpotQA and GSM8K with Llama-3.1-8B/70B (96 conditions, up to 10 seeds).
+
+## Key Findings
+
+The All-In system is consistently suboptimal: on HotpotQA, a single-tool agent surpasses All-In by 32% (F1 0.233 vs 0.177, p=0.023); on GSM8K, a 3-component subset beats All-In by 79% (0.43 vs 0.24, p=0.010).
+
+Optimal component count is task-dependent (k*=1-4) and scale-sensitive: at 70B, combinations that hurt at 8B provide gains, though All-In still trails the best subset.
+
+The authors fit a main-effects regression (R^2=0.916, adj-R^2=0.899, LOOCV=0.872), computed exact Shapley values, and found 183/325 submodularity violations (56.3%), showing greedy selection is unreliable.
+
+**Author:** Ming Liu from Amazon
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e6d233f-ea59-4590-b3d6-bac2c6307349",
+  "isSidechain": false,
+  "promptId": "404b3860-d6ab-4f16-9d6a-3047bacab80c",
+  "type": "user",
+  "uuid": "0f8ec17e-b788-4c53-a7b6-2d4f5044c4ee",
+  "toolUseResult": {
+    "query": "\"cross-component interference\" LLM agent scaffolding arXiv 2605.05716 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CNKbMWCjW5A2RhjBSQAp1a",
+        "content": [
+          {
+            "title": "[2605.05716] More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding",
+            "url": "https://arxiv.org/abs/2605.05716"
+          },
+          {
+            "title": "More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding",
+            "url": "https://arxiv.org/html/2605.05716"
+          },
+          {
+            "title": "Arbiter: Detecting Interference in LLM Agent System Prompts",
+            "url": "https://arxiv.org/pdf/2603.08993"
+          },
+          {
+            "title": "[2603.08993] Arbiter: Detecting Interference in LLM Agent System Prompts",
+            "url": "https://arxiv.org/abs/2603.08993"
+          },
+          {
+            "title": "Evidence-Decision-Feedback: Theory-Driven Adaptive Scaffolding for LLM Agents",
+            "url": "https://arxiv.org/pdf/2602.01415"
+          },
+          {
+            "title": "A Theory of Adaptive Scaffolding for LLM-Based Pedagogical Agents",
+            "url": "https://arxiv.org/pdf/2508.01503"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2605.05716:\n\n## Paper Overview\n\nThe paper studies cross-component interference (CCI): degradation when LLM agent scaffolding components interact destructively, even though LLM agent systems are typically built by stacking scaffolding components (planning, tools, memory, self-reflection, retrieval) assuming more is better.\n\n## Methodology\n\nThe authors ran a full factorial experiment over all 2^5=32 subsets of five components on HotpotQA and GSM8K with Llama-3.1-8B/70B (96 conditions, up to 10 seeds).\n\n## Key Findings\n\nThe All-In system is consistently suboptimal: on HotpotQA, a single-tool agent surpasses All-In by 32% (F1 0.233 vs 0.177, p=0.023); on GSM8K, a 3-component subset beats All-In by 79% (0.43 vs 0.24, p=0.010).\n\nOptimal component count is task-dependent (k*=1-4) and scale-sensitive: at 70B, combinations that hurt at 8B provide gains, though All-In still trails the best subset.\n\nThe authors fit a main-effects regression (R^2=0.916, adj-R^2=0.899, LOOCV=0.872), computed exact Shapley values, and found 183/325 submodularity violations (56.3%), showing greedy selection is unreliable.\n\n**Author:** Ming Liu from Amazon"
+    ],
+    "durationSeconds": 8.388358776,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6e6d233f-ea59-4590-b3d6-bac2c6307349",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-20T05:41:05.896Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the landscape. Let me synthesize my findings and provide a thorough evaluation.
+
+Key observations from my research:
+
+1. **The research question is well-motivated**: Multiple independent research threads (PI-LLM, EMB-S, Sculptor, CogniLoad, Dual-Process) have indeed identified different factors contributing to context rot, and each has been studied largely in isolation. The proposal correctly identifies a gap: no study has done a joint factorial decomposition.
+
+2. **The factorial ANOVA methodology is sound**: Using partial η² to decompose variance is a well-established approach. 
+
+The Cross-Component Interference paper validates this exact analytical framework for studying LLMs, and the power analysis appears properly designed.
+
+3. **The architecture comparison angle is interesting**: With GDN-hybrid (Qwen3.5), SSM-hybrid (Jamba), MoE, and dense Transformer all having different attention mechanisms, testing whether bottleneck profiles differ is a genuinely interesting research question.
+
+4. **CogniLoad explicitly acknowledged the gap**: The CogniLoad paper controls for length, difficulty, and distractor density but NOT position bias or proactive interference — and the authors themselves noted this. This proposal directly addresses that gap.
+
+5. **Novel contributions are emerging**: The combination of these elements—joint factorial analysis, architectural diversity, and filling acknowledged gaps—creates a compelling research case.
+
+The core novelty lies in applying factorial decomposition to context rot, which is methodologically solid but primarily diagnostic rather than introducing new techniques. The real contribution is in the experimental design and how it bridges existing research gaps. The strengths are substantial: well-motivated by multiple research threads, rigorous statistical methodology with proper power analysis, comprehensive model coverage, and interesting architecture-specific hypotheses paired with mechanistic analysis through attention entropy and attribution patching. The main concern is that this is fundamentally a benchmark paper, which is harder to place at top venues unless the empirical findings are genuinely surprising. There's also the question of ecological validity with the 4-way multiple choice format.
+
+The length factor presents a significant confound—it mixes raw length with the filler-to-signal ratio, which shifts dramatically from 44% at 8K tokens to 96% at 128K. The 3⁴ factorial design may lack sufficient power for higher-order interactions beyond two-way effects with n=35 per cell. Running inference across 13 models and 8,505 instances at 128K tokens is computationally intensive. The paper's impact ultimately hinges on whether the results reveal clear patterns or if all factors contribute roughly equally, which would dilute the narrative.
+
+The mechanistic analysis feels somewhat disconnected—testing attention entropy on just 2 models is fairly shallow for claiming mechanistic insights. Overall, this is a well-designed diagnostic benchmark with solid methodology and a timely research question, but it's an empirical paper whose success depends entirely on what the data shows. The scope is ambitious—13 models, 3 tasks, factorial ANOVA, mechanistic probing, and validation analysis—perhaps too much for a single paper. For EMNLP 2026, the topic is highly relevant and benchmark papers do get accepted, though the methodology's rigor will need to be matched by compelling findings.
+
+The main limitation is that this is fundamentally diagnostic rather than prescriptive—it identifies problems without proposing solutions. Combined with the unknown results, ambitious scope risking incomplete execution, and some confounds in the factorial design, I'd estimate around 30-40% acceptance probability. It's a solid proposal, but without novel methods or guaranteed impactful findings, it's a borderline case.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f8ec17e-b788-4c53-a7b6-2d4f5044c4ee",
+  "isSidechain": false,
+  "requestId": "req_011CbDHTg67829CfJWMyWX6H",
+  "type": "assistant",
+  "uuid": "df4a5594-d27a-4a1d-a048-35e4e4e28110",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yFwxAVu6AVR7JQ1cx1BMN",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2613,
+      "cache_read_input_tokens": 28335,
+      "output_tokens": 6737,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6737,
+          "cache_read_input_tokens": 28335,
+          "cache_creation_input_tokens": 2613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-20T05:43:14.944Z_
+
+Now I have sufficient research context. Let me compile the full evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [PI-LLM / arXiv:2506.08184] (ICML 2025 Workshop LongContext): 本 proposal 的核心动机之一。展示了在合成 key-value 检索任务上，proactive interference 导致对数线性准确率下降。但仅测试了合成 KV 检索，scope-of-claim 超过 scope-of-evidence。PI-ContextRot 直接回应这一过度泛化。
+- [Dual-Process / arXiv:2603.00270] (arXiv preprint, 2026): 在 39 个 LLM 上发现 PI 显著强于 RI (Cohen's d=1.73)，且 PI resistance 不随模型规模增长 (R²=0.06)。这一发现为本 proposal 的 RQ2（架构特异性假说）提供了关键动机。
+- [EMB-S / arXiv:2601.20276] (arXiv preprint, 2026): 在 326M token 规模构建对抗性 NIAH，展示语义判别能力而非上下文长度本身是主要瓶颈。同样是单因素研究，proposal 正确指出其 universality claim 超出了证据范围。
+- [Sculptor / arXiv:2508.04664] (ICLR 2026): 提出主动上下文管理工具缓解 PI，但假设 PI 是主导因素，未量化其相对贡献。proposal 将其作为"未经检验的假设"的典型案例，论证合理。
+- [CogniLoad / arXiv:2509.18458] (arXiv preprint, 2025): 基于认知负荷理论的合成 benchmark，控制了 length、difficulty、distractor density，但**明确承认**缺少对 position bias 和 proactive interference 的阶乘控制。这直接为 PI-ContextRot 提供了 gap 声明的文献支撑。
+- [100-LongBench / arXiv:2505.19293] (ACL Findings 2025): 用 LongScore 分离基础能力与长上下文特有性能，但分解层级是 ability level，不是 causal factor level。互补而非竞争关系。
+- [Cross-Component Interference / arXiv:2605.05716] (arXiv preprint, 2026): 在 agent scaffolding 上使用全阶乘实验，验证了阶乘方法论在 LLM 分析中的有效性（单工具 agent 超过全组件系统 32%），为本 proposal 的方法论选择提供了先例支持。
+- [SSM Over-smoothing / arXiv:2501.00658] (ICLR 2025): 理论证明 SSM 深层表示趋同，为 SSM-hybrid 架构的独特瓶颈假说提供理论依据。
+- [Position Bias Theory / arXiv:2602.16837] (arXiv preprint, 2026): 证明 U 形位置偏差是 causal masking + residual connections 的结构性属性，支持 proposal 的架构特异性预测。
+- [Qwen3.5 GDN-hybrid architecture] (2026): Qwen3.5 使用 ~75% Gated Delta Network 线性注意力 + ~25% 全注意力的混合架构，这确实构成了一个与标准 dense Transformer 截然不同的注意力范式，使跨架构对比有实质意义。
+
+- **调研总结**: 该领域存在一个被多篇论文明确承认的 gap——多个因素（interference、position、semantic similarity、length）各自被独立研究，但从未在同一阶乘框架下进行联合分解。CogniLoad 的作者自己承认了这一点。PI-ContextRot 是第一个尝试填补这一 gap 的工作，定位准确。但这类诊断性 benchmark 论文的接收率取决于实验发现的深度和意外性。
+
+【整体印象】:
+如果我是审稿人，第一反应是：这是一篇**动机清晰、方法论严谨、覆盖面广**的分析/benchmark 论文。研究问题的提出方式令人信服——proposal 精确引用了多篇论文的 universality claim 与 scope-of-evidence 之间的落差，构建了一个"hypothesis-neutral 仲裁者"的叙事。阶乘 ANOVA + partial η² 的方法论选择合理且有先例（Cross-Component Interference 论文在 agent 领域验证了这一范式）。
+
+**倾向性**: 偏向 weak accept / borderline。这篇论文如果执行得好，能产出对社区有价值的实证发现。但作为纯诊断/分析论文，它的价值高度依赖于：(1) 是否发现了出乎意料的因素排序或交互效应；(2) 架构特异性假说是否得到证实。如果结果"太平淡"（各因素贡献相近、无显著交互），审稿人可能认为这只是"确认了我们已经知道的事情"。
+
+【核心贡献】:
+1. **第一个联合阶乘分解框架**：将 interference、position、similarity、length 四个被独立研究的因素放入同一 3⁴ 阶乘设计，用 partial η² 量化各因素的相对贡献和交互效应。
+2. **跨架构瓶颈图谱**：覆盖 4 种架构家族（dense Transformer、GDN-hybrid、MoE、SSM-hybrid）的 13 个模型，测试"不同架构是否有不同的瓶颈特征"这一预测。
+3. **对现有 universality claims 的实证检验**：为 PI-LLM、EMB-S、Sculptor 等工作的过度泛化提供第一个独立验证。
+
+贡献的**价值**是中等偏高——如果结果揭示了显著的交互效应或架构特异性，这对长上下文研究社区有直接的指导意义（例如，是否需要架构感知的上下文管理策略）。但贡献类型是诊断性的，不提出新方法或新解决方案。
+
+【方法合理性】:
+**总体合理**，但有几个值得注意的点：
+
+✅ 合理之处：
+- 阶乘 ANOVA + partial η² 是回答"相对贡献"问题的标准统计工具
+- 3⁴ 设计（81 cells × 35 instances × 3 tasks = 8,505）的 power analysis 做得认真（≥0.95 power for medium effects）
+- 正交性保持策略（固定通道长度 ~500 tokens，用中性填充达到目标长度）合理
+- 用 GLMM 作为 ANOVA 的鲁棒性检验是好的统计实践
+- BGE-M3 控制语义相似度，有清晰的阈值（<0.3 / 0.5-0.7 / >0.85）
+
+⚠️ 需注意：
+1. **长度因素的混淆变量**：proposal 自己承认 length 因素与 filler-to-signal ratio 混淆（8K 时 44% filler vs 128K 时 ~96%）。这是一个实质性限制——ANOVA 中 length 因素的 η² 可能反映的是 signal 稀释而非真正的"长度效应"。proposal 称"mirrors ecologically valid usage"，这是合理的辩护，但审稿人可能要求更强的去混淆。
+2. **4-way MC 格式的生态效度**：将所有任务统一为 4-way MC 便于统计分析，但真实的长上下文退化在生成任务中更显著。审稿人可能质疑：在 MC 格式下测量的因素权重是否能推广到开放式生成？
+3. **是否有更简单的替代方案**：一个审稿人可能问——为什么不直接在已有 benchmark（如 RULER 或 LongBench）上做因素控制分析，而是要从头构建新 benchmark？答案是：已有 benchmark 没有对这四个因素做正交控制，但这需要在论文中更强力地论证。
+4. **机制分析的深度**：AtP* 仅在 2 个模型上运行，attention entropy 是较浅层的探针。这部分承诺过多但深度有限，可能被审稿人视为"点缀"而非实质贡献。
+
+【5 维度打分】:
+
+1. 研究问题: 【强】— 多篇已发表论文（PI-LLM、EMB-S、CogniLoad）各自独立研究了 context rot 的不同因素，并做出了超出证据范围的 universality claims。CogniLoad 明确承认缺少阶乘控制。这不是一个人造的 gap，而是文献中被明确记录的空白。"不同架构是否有不同的瓶颈？"这一 RQ 在 GDN-hybrid 和 SSM-hybrid 逐渐主流化的当下，具有实际指导意义。
+
+2. 方法与创新: 【中】— 阶乘 ANOVA 本身不是新方法，但将其系统性地应用于 context rot 分解是新颖的。Cross-Component Interference (arXiv:2605.05716) 已在 agent scaffolding 上验证了阶乘方法论的有效性，本 proposal 将其从宏观组件层面扩展到微观信息因素层面。正交性保持策略和多层次机制分析增加了方法论深度。但核心创新仍是"在正确的问题上使用标准工具"而非"提出新工具"。与 CogniLoad (arXiv:2509.18458) 相比，本工作增加了 position bias 和 proactive interference 两个关键维度，但在 difficulty 控制上反而更简单（CogniLoad 控制了 intrinsic difficulty）。
+
+3. 实验设计: 【强】— 这是 proposal 最突出的部分。8,505 instances 的规模、正式的 power analysis（G*Power, ≥0.95 for medium effects）、完整的 pre-registered hypotheses (H1, H2)、GLMM 鲁棒性检验、prompt sensitivity pilot、BGE-M3 相似度校准、人工 pilot validation——这些在 LLM benchmark 论文中很少见到如此完整的统计规划。与 PI-LLM 的纯合成 KV 对和 EMB-S 的纯检索任务相比，本工作的 3 种任务类型（Multi-doc QA、Entity state tracking、Temporal reasoning）更全面。13 个模型跨 4 种架构家族的覆盖也优于大多数同类工作。**但**：长度-filler 混淆和 MC 格式限制了实验设计的完美性。
+
+4. 可行性: 【中】— 估算的资源需求合理（~$6,000-$10,000 总成本、14-16 周时间线）。但存在执行风险：(a) 128K context 推理在大模型上非常慢，8,505 × 13 models 的推理量巨大；(b) benchmark 构建中的 3 级 similarity 控制（BGE-M3 cosine <0.3 / 0.5-0.7 / >0.85）在真实语料上可能难以精确实现；(c) 时间线紧张——14-16 周几乎没有容错空间，特别是 benchmark 质量控制可能超时。注意 proposal 的目标投稿是 ICLR 2027 (Sep-Oct 2026)，距今约 18-20 周，时间上勉强可行但很紧。
+
+5. 写作与呈现: 【强】— Proposal 的叙事结构非常清晰：先建立"universality claims 超出 scope-of-evidence"的论证，再用"hypothesis-neutral 阶乘测试"作为解决方案，最后用架构特异性假说增加深度。引用密集且精准，每个 claim 都有具体的文献支撑（包括具体的统计数字如 R²=0.06、Cohen's d=1.73）。对自身局限的坦诚（长度混淆、API 不可复现性）也增加了可信度。唯一的问题是：scope 可能太大，8 页正文可能装不下这么多内容（13 模型 × 3 任务 × 阶乘结果 × 机制分析 × 跨架构比较）。
+
+【概率估计】: [28% - 42%] 中位 35%
+
+【估计理由】:
+该 proposal 在研究问题动机、实验设计严谨性和写作质量上都达到了较高水平，填补了文献中被明确记录的空白（CogniLoad 自己承认的阶乘控制缺失）。跨架构瓶颈图谱的研究角度有独特价值。
+
+但存在以下因素限制了概率上限：
+1. **纯诊断/分析论文的天花板**：没有提出新方法或新解决方案，贡献类型是"我们发现了 X"而非"我们解决了 X"。虽然 EMNLP 接收分析论文，但这类论文需要特别深刻的 insight 才能突破 borderline。
+2. **结果依赖性极高**：如果阶乘分析显示"各因素大致相当、交互效应不显著"，论文将缺乏令人印象深刻的 headline finding。proposal 无法保证结果会有足够的 narrative force。
+3. **长度-filler 混淆**和 **MC 格式限制**是可预见的审稿人攻击点。
+4. **scope 过大**：13 模型 + 机制分析 + 跨架构比较在 8 页内可能难以充分展开，审稿人可能感觉每个部分都浅尝辄止。
+5. **目标投稿时间线**：proposal 自身列的目标不包括 EMNLP（列的是 ICLR 2027 / AAAI 2027），暗示作者可能也认为执行周期偏长。若实际投 EMNLP 2026（deadline 通常在 5-6 月），时间可能不足。
+
+综合来看，这是一篇 solid 但 not exceptional 的 proposal。如果执行良好且结果有惊喜（如发现强交互效应或显著的架构特异性），概率可达 40%+；如果结果平淡，可能降至 25% 左右。
+
+【主要风险】:
+1. **结果平淡风险**：如果阶乘分析显示各因素贡献相近且交互效应微弱，论文将难以构建令人信服的叙事。纯诊断论文需要 surprising findings 才能拿到 accept，而 proposal 无法预先保证结果的意外性。
+2. **Scope 过大与深度不足的矛盾**：13 模型 × 3 任务 × 4 因素 × 机制分析的覆盖面与 8 页篇幅的限制可能迫使每个分析点都只能浅尝辄止，导致审稿人评论"breadth over depth"。特别是机制分析（仅 2 模型 AtP*）在如此宏大的框架中可能显得单薄。
+
+【实施评估】:
+  - 计算资源: 需要 1,050-1,400 GPU hours（H100），含推理、AtP* 和 attention entropy 分析。成本约 $2,600-$4,200。这在学术组条件下可行但不低——需要至少 2-4 张 H100 持续运行数周。大模型（Qwen3.5-122B、Jamba-1.5-Large）的 128K 推理尤其耗时。
+  - 数据需求: 需构建 8,505 个 benchmark 实例，来源为 Wikipedia 和 CommonCrawl-News。数据构建本身不需要昂贵的人工标注，但 3 级 similarity 控制（BGE-M3 cosine 阈值）的精确实现需要仔细的工程工作。Temporal reasoning 任务使用 2026 新闻以缓解数据泄露是好的做法。
+  - 人工介入: Pilot validation（405 instances 人工审核）是主要人工环节。需评估任务可解性、similarity 校准（含标注者间一致性报告）和答案污染缺失。规模可控，约 2-3 人 1 周。
+  - 训练需求: **无模型训练**。纯推理 + 分析论文。这降低了技术风险和资源需求。
+  - 新 Benchmark: **是**——PI-ContextRot 本身就是一个新的诊断 benchmark。需发布到 Hugging Face / GitHub 以便复现。
+  - 预估周期: 14-16 周（2 周 benchmark 构建 + 5 周推理 + 2.5 周机制分析 + 3 周写作 + 1.5 周 buffer）。时间线紧张但在乐观场景下可行。主要瓶颈是大模型在 128K context 下的序列推理。
+```
+
+Sources:
+- [Context Rot: Evaluating LLM Performance Degradation](https://research.trychroma.com/context-rot)
+- [PI-LLM: Unable to Forget (arXiv:2506.08184)](https://arxiv.org/abs/2506.08184)
+- [Dual-Process Interference in LLMs (arXiv:2603.00270)](https://arxiv.org/abs/2603.00270)
+- [EMB-S: Beyond the Needle's Illusion (arXiv:2601.20276)](https://arxiv.org/abs/2601.20276)
+- [Sculptor: Active Context Management (arXiv:2508.04664)](https://arxiv.org/abs/2508.04664)
+- [CogniLoad Benchmark (arXiv:2509.18458)](https://arxiv.org/abs/2509.18458)
+- [100-LongBench (arXiv:2505.19293)](https://arxiv.org/abs/2505.19293)
+- [Cross-Component Interference (arXiv:2605.05716)](https://arxiv.org/abs/2605.05716)
+- [LongBench Pro (arXiv:2601.02872)](https://arxiv.org/html/2601.02872v1)
+- [Qwen3.5 GDN Hybrid Attention](https://kaitchup.substack.com/p/qwen35-scaling-hybrid-attention-to)
+- [Gated DeltaNet Architecture](https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/)
+- [Intelligence Degradation in Long-Context LLMs (arXiv:2601.15300)](https://arxiv.org/pdf/2601.15300)
+- [LongPIBench: Position Bias in Long-Context LLMs](https://arxiv.org/pdf/2410.14641)
+- [SSM Over-smoothing (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/file/a9ed43fa31dc8b4a7d7a673d713dcb5f-Paper-Conference.pdf)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df4a5594-d27a-4a1d-a048-35e4e4e28110",
+  "isSidechain": false,
+  "requestId": "req_011CbDHTg67829CfJWMyWX6H",
+  "type": "assistant",
+  "uuid": "8e5c4166-deae-4429-8700-499cf82c45cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yFwxAVu6AVR7JQ1cx1BMN",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2613,
+      "cache_read_input_tokens": 28335,
+      "output_tokens": 6737,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6737,
+          "cache_read_input_tokens": 28335,
+          "cache_creation_input_tokens": 2613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLM…",
+  "leafUuid": "8e5c4166-deae-4429-8700-499cf82c45cd",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Factorial analysis of long-context LLM degradation",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLM…",
+  "leafUuid": "8e5c4166-deae-4429-8700-499cf82c45cd",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Factorial analysis of long-context LLM degradation",
+  "sessionId": "afa749b6-22d2-4359-b401-71974165fae7"
+}
+```
+
+---

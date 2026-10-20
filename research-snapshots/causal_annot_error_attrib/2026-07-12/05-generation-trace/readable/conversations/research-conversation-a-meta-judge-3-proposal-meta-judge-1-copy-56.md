@@ -1,0 +1,837 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/5d7c736f-e5e7-4f1c-b305-cff2bbe2a865.jsonl`
+- **Structured JSON:** [`b594e2ca7806c05bb7db.json`](../../sessions/b5/b594e2ca7806c05bb7db.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T09:57:35.496Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T09:57:35.496Z",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have comprehensive research coverage. Let me compile the full evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- GenPRM (AAAI 2026, arXiv:2504.00891): 当前 SOTA 生成式 PRM，使用 CoT + 代码验证进行步骤级评判。纯神经方法，在 ProcessBench 和数学推理任务上表现优异，仅需 23K 训练数据。本 proposal 的 neural leg 采用相同架构，且将 GenPRM 列为 Tier 1 baseline。\n- RRM / \"Curing Miracle Steps\" (ACL 2026, arXiv:2510.07774): 首次系统定义并量化 miracle steps 问题，通过 Gemini 生成的 rubric 奖励减少 71% 的 miracle steps，AIME2024 Verified Pass@1024 从 26.7% 提升至 62.6%。本 proposal 直接延续此问题定义，但用形式化方法替代启发式方法。\n- VeriCoT (arXiv 2025, arXiv:2511.04662): 将 CoT 步骤形式化为 FOL (SMT-LIB) 并用 Z3 验证逻辑一致性。在 ProofWriter/LegalBench/BioASQ 上验证有效，平均 46% 相对改善。**这是本 proposal formal leg 的最直接先驱**——核心逻辑操作（Z3 entailment checking）完全相同，proposal 的差异化在于 learned routing、PRM 集成和数学领域。\n- FoVer (ACL 2026 Findings, arXiv:2505.15960): 用 Z3/Isabelle 进行 PRM 训练数据合成（非推理时验证）。在 12 个推理基准上改善 PRM。本 proposal 借用其 autoformalization pipeline 构建 formalizability classifier 训练数据。\n- Reward Under Attack (arXiv 2026, arXiv:2603.06621): 揭示当前 SOTA PRM 的系统性脆弱性——43% 的奖励来自风格捷径，无效推理轨迹获得 >0.9 奖励。发布 PRM-BiasBench。本 proposal 的对抗鲁棒性贡献直接回应此发现。\n- Safe (ACL 2025, arXiv:2506.04592): Lean 4 步骤级形式化验证，~81% formalizability，4-state taxonomy。无 routing 机制。本 proposal 将其列为 Tier 2 baseline。\n- TRIM (arXiv 2026, arXiv:2601.10245): 基于 PRM 不确定性在不同大小 LLM 间进行步骤级 routing。MATH-500 上 5x 成本效率提升。本 proposal 的 routing 概念受其启发，但目标是 verifier 类型而非模型大小。\n- ThinkPRM (arXiv 2025, arXiv:2504.16828): 生成式 PRM，通过长 CoT 验证推理。仅需 1K 合成样本 + 8K process labels 即可超越 100x 数据训练的判别式 PRM。Tier 1 baseline。\n- PRoSFI (arXiv 2026, arXiv:2603.29500): Lean-only 结构化中间表示，形式化验证后给予奖励。7B 模型上实现。Tier 2 baseline。\n- ARES (EMNLP 2025, arXiv:2507.12948): 基于 Hoeffding 界的概率soundness 保证，72.1% Macro-F1（+8.2 点）。本 proposal 采用其 premise-configuration sampling 进行链级聚合。\n- PRMBench (ACL 2025, arXiv:2501.03124): 6,216 问题、83,456 步骤标签的细粒度 PRM 基准。最佳模型 68.8 vs 人类 83.8。本 proposal 使用其作为评估基准。\n\n- 调研总结: PRM 领域正处于从纯神经方法向形式化增强方法的快速过渡期。核心矛盾已被清晰揭示（Reward Under Attack），多种解决路径正在探索中（Lean-based: Safe/PRoSFI; Z3-based: VeriCoT/FoVer; Rubric-based: RRM）。**但目前没有任何工作实现了在推理时基于 learned routing 在 formal 和 neural verifier 之间进行动态分派**，这是本 proposal 的独特位置。该领域竞争激烈，相关工作密集。\n\n【整体印象】:\n这是一份高质量、经过深思熟虑的 proposal。如果我是审稿人，第一反应是 **weak accept leaning**。原因如下：\n\n（+）问题动机极其充分——miracle steps 被 RRM 清晰定义，PRM 的风格漏洞被 Reward Under Attack 实证揭露，两者合力构成了一个真实且紧迫的研究需求。\n（+）\"learned formalizability routing\"这一核心创新在文献中确实没有先例——TRIM 做 model-size routing，VeriCoT 做 uniform formalization，Safe 做 Lean-only，都不做 formal-vs-neural verifier routing。\n（+）实验设计异常完备——四级 baseline、11 个 ablation 变体、compute-normalized 对比、T-sensitivity 分析、对抗鲁棒性测试、pilot study with go/no-go criteria——这在 proposal 阶段是顶级水准。\n（+）background theory T 的参数化为 miracle step 检测提供了可调节的理论框架，具有独立的学术价值。\n\n（-）核心风险在于 Z3 autoformalization 的有效覆盖率和忠实度——如果有效覆盖率仅 20-30%，formal leg 对整体性能的贡献可能有限。\n（-）可能被审稿人视为\"VeriCoT + GenPRM + learned router\"的系统级组合，而非根本性创新。\n（-）MiracleStepBench 的构建标准（\"standard mathematical knowledge\" 的边界）存在主观性。\n\n【核心贡献】:\n1. **首次将 formal derivability checking 嵌入 PRM 框架并配以 learned routing**——这是该 proposal 最独特的贡献。它不是简单的 formal verification（VeriCoT/Safe 已做），也不是简单的 PRM scoring（GenPRM/ThinkPRM 已做），而是**在 PRM 框架内根据步骤的可形式化程度动态选择验证策略**。这个组合在文献中确实是空白。\n\n2. **Background theory T 的参数化**——将 miracle step 检测从二元判断变为可配置框架。这提供了分析 LLM 如何调用隐式数学知识的诊断工具。\n\n3. **条件可证明对抗鲁棒性**——对于成功且忠实形式化的步骤，Z3 判决对表面形式扰动具有可证明的不变性。这直接回应了 Reward Under Attack 揭示的 43% 风格捷径问题。\n\n对领域的价值：中等偏高。如果 Z3 覆盖率足够高且 routing 确实有效，这将是 PRM 可靠性的一个重要进步；如果覆盖率不足，贡献主要在分析框架层面（T 参数化、formal-vs-neural 分析）。\n\n【方法合理性】:\n方法整体合理，但有几个需要关注的点：\n\n1. **Z3 vs Lean 的选择**：proposal 的论证（precision-over-coverage trade-off，sub-second latency，无需 proof search）是合理的。Z3 在可判定片段（QF_LRA, QF_NIA, propositional）内是 complete 的，这为 formal leg 提供了可靠的理论基础。但 30-50% 有效覆盖率的估计需要 pilot study 验证。\n\n2. **Autoformalization 作为瓶颈**：整个 formal leg 的可靠性取决于 NL→Z3 的 autoformalization 质量。当前 LLM 的 autoformalization 能力仍有限，特别是对于复杂的数学推理步骤。Back-translation audit 是合理的缓解措施，但可能无法捕捉所有语义漂移。\n\n3. **是否有更简单的替代方案？** \n   - **Try-formal-first fallback**（无 learned routing）：proposal 已将其纳入 ablation，这很好。如果这个 naive baseline 表现相近，learned routing 的价值会大打折扣。\n   - **纯 neural + adversarial training**：直接在 PRM-BiasBench 上做对抗训练可能更简单地缓解风格漏洞。但这无法提供 formal leg 的可证明鲁棒性。\n   - **RRM 风格的 rubric rewards + Z3 验证**：不做 PRM 集成，直接用 Z3 作为 RRM 的替代验证器。更简单但失去了 PRM reranking 能力。\n\n4. **ARES 聚合的适用性**：对 Z3-verified 步骤（variance=0）应用 Hoeffding 界是数学上正确的（退化情况），但 proposal 承诺的 tightness analysis 对 formal-dominated vs neural-dominated chains 很重要——需要展示混合链的界比纯神经链更紧。\n\n5. **Joint training 的复杂性**：router + neural verifier 的联合优化可能存在训练不稳定性（router 的梯度可能冲突于 verifier 的梯度）。proposal 未详细讨论训练策略。\n\n【5 维度打分】:\n  1. 研究问题: 【强】— Miracle steps 是 LLM 数学推理中被 RRM (ACL 2026) 实证记录的关键失败模式，Reward Under Attack (arXiv 2026) 进一步证实了纯神经 PRM 的系统性脆弱性（43% 风格捷径）。这两个发现合力构成了一个清晰、紧迫且有实际影响的研究问题。Background theory T 的参数化为研究 LLM 隐式推理提供了新的分析维度。问题的时效性和重要性都很高。\n\n  2. 方法与创新: 【中偏强】— Learned formalizability routing 在文献中确实是新颖的——VeriCoT 做 uniform formalization，TRIM 做 model-size routing，Safe/PRoSFI 做 Lean-only verification，没有任何工作在推理时基于 learned score 在 formal 和 neural verifier 间 routing。但核心组件（Z3 entailment checking ≈ VeriCoT，generative neural verifier ≈ GenPRM，aggregation ≈ ARES）都有直接先驱。创新主要在**架构级组合和 routing 机制**，而非根本性方法突破。T 参数化是有趣的理论贡献但实验影响待验证。条件对抗鲁棒性论证严格但依赖 autoformalization faithfulness 假设。\n\n  3. 实验设计: 【强】— 这是本 proposal 最突出的优势。四级 baseline 覆盖了领域内几乎所有重要对比点（GenPRM、ThinkPRM、FoVer-PRM、Safe、PRoSFI、RRM、LLM-as-Judge）。11 个 ablation 变体设计精巧，特别是 oracle routing（提供 routing 精度上界）、naive fallback（隔离 learned routing 价值）、7B neural leg（隔离模型大小效应）。Compute-normalized comparison 和 Pareto frontier 直接回应了\"更复杂 ≠ 更好\"的潜在质疑。Pilot study with go/no-go criteria（有效覆盖率 ≥ 20%）显示了严谨的研究态度。T-sensitivity analysis 和 adversarial robustness 测试增加了分析深度。在 proposal 阶段，这是我见过的最完备的实验设计之一。\n\n  4. 可行性: 【中】— 主要风险点：(a) Z3 有效覆盖率的不确定性——proposal 估计 30-50%，但这基于推测而非实证。Pilot study 设计了 go/no-go 标准（≥ 20%），但即使 20% 的覆盖率，formal leg 的边际贡献可能有限。(b) Autoformalization 质量——NL→Z3 的自动形式化是当前 LLM 的已知薄弱环节，特别是涉及几何、组合等领域时。(c) Qwen3-32B 的计算需求——fine-tuning 32B 模型 + Z3 autoformalization 的 LLM 调用 + Z3 solving，整体计算成本可能较高。(d) MiracleStepBench 构建需要高质量人工标注，Cohen's κ ≥ 0.7 在\"可推导性\"这种偏主观判断上可能需要多轮迭代。(e) 训练数据的构建（FoVer-40K + ProcessBench + bootstrapped annotations）涉及多个 pipeline，工程复杂度较高。\n\n  5. 写作与呈现: 【强】— Proposal 组织清晰，逻辑链条完整：问题定义 → 文献定位 → 方法设计 → 评估方案。对相关工作的定位极其精准（特别是与 VeriCoT 的四点差异化论证），显示出对领域的深度理解。技术细节充分（CNF-negation derivability, Hoeffding bounds, decidable fragments）。唯一的小瑕疵是 joint training 策略的细节不足（router 和 neural verifier 如何联合优化？是否交替训练？loss 的权重分配？）。\n\n【概率估计】: [30% - 44%] 中位 37%\n\n【估计理由】:\n该 proposal 在研究问题时效性、文献定位精度和实验设计完备性上达到了很高水准。Learned formalizability routing 的 novelty claim 是成立的——在现有文献中确实找不到直接先驱。实验方案的周密程度（tiered baselines, oracle routing ablation, compute-normalized comparison, pilot study with go/no-go）本身就是重要的加分项，显示了成熟的研究方法论。\n\n但以下因素限制了概率上界：\n(1) 核心创新是架构级组合（Z3 entailment + GenPRM + learned router），而非根本性方法突破——部分审稿人可能认为 novelty 不够 \"deep\"。\n(2) 方法的有效性高度依赖于 Z3 autoformalization 覆盖率这一尚未验证的经验性前提。如果 pilot study 结果不理想，整篇论文的核心价值会被大幅削弱。\n(3) 竞争激烈——同期（2025-2026）有大量 PRM + formal verification 的工作（FoVer, Safe, PRoSFI, VeriCoT），reviewer pool 中可能有这些工作的作者，他们可能更苛刻地评判差异化。\n(4) \"条件可证明鲁棒性\"的条件（faithful autoformalization）本身是一个难以保证的假设，可能被审稿人质疑为 \"假设太强，实际价值有限\"。\n\n上界 44% 对应以下乐观情景：pilot study 显示 ≥ 40% 有效覆盖率，learned routing 相比 naive fallback 有显著提升，MiracleStepBench 标注质量高，compute-normalized 对比显示 Pareto 优势。下界 30% 对应审稿人认为这是系统级组合缺乏深度创新、或 autoformalization bottleneck 使 formal leg 贡献边际化。\n\n【主要风险】:\n1. **Z3 autoformalization 有效覆盖率不足 + 忠实度不可靠**：如果有效覆盖率仅 20-25%，且 autoformalization 引入语义漂移，则 formal leg 在整体系统中的贡献可能微乎其微，整篇论文的核心价值（hybrid routing）失去实证支撑。审稿人可能质疑：\"为什么不直接用更好的 neural verifier？\"\n2. **Novelty depth 不足的感知风险**：审稿人可能将此工作总结为 \"VeriCoT 的 Z3 检查 + GenPRM 的神经验证 + TRIM 风格的 routing + ARES 的聚合\"，认为这是一个工程性组合而非概念性突破。虽然 proposal 对各组件的差异化做了充分论证，但在 competitive review 中，\"系统论文\" 的标签仍可能导致 borderline reject。\n\n【实施评估】:\n  - 计算资源: 中高。需要 (a) Qwen3-32B fine-tuning（~8×A100 或等效），(b) 大规模 autoformalization 的 LLM inference（per-step Z3 translation），(c) Z3 solving（单步 30s timeout，但大批量仍有开销），(d) bootstrapping formalizability labels 的 pipeline。推理时成本高于纯神经 PRM。\n  - 数据需求: 中等。FoVer-40K 已公开，ProcessBench 已公开，MATH/AIME/AMC 公开。需自行构建：(a) bootstrapped Z3-formalizability annotations from MATH，(b) MiracleStepBench（500+ 人工标注样本）。\n  - 人工介入: 中等。MiracleStepBench 构建需要 (a) 数学背景的标注者判断步骤可推导性，(b) 200+ 样本的 autoformalization faithfulness 人工审计，(c) Cohen's κ 校准可能需要多轮迭代。\n  - 训练需求: 需要训练 (a) formalizability classifier（lightweight，低成本），(b) Qwen3-32B neural verifier fine-tuning（中高成本），(c) 可能的 joint optimization（router + verifier，复杂度取决于训练策略）。\n  - 新 Benchmark: 需构建 MiracleStepBench——这是一个中等规模但高质量要求的 benchmark，涉及人工标注 + Z3 形式化验证的双重信号。标注周期和质量控制是主要瓶颈。\n  - 预估周期: 6-8 个月。Pilot study（1-1.5 月）→ 数据构建与标注（1.5-2 月，可并行）→ 模型训练与调试（1.5-2 月）→ 全面实验与分析（1-1.5 月）→ 论文撰写（1 月）。前提是计算资源到位且 pilot study 通过 go/no-go 标准。\n```\n\nSources:\n- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026)](https://arxiv.org/abs/2510.07774)\n- [VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks](https://arxiv.org/abs/2511.04662)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)](https://arxiv.org/abs/2505.15960)\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)\n- [Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)](https://aclanthology.org/2025.acl-long.594/)\n- [TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks](https://arxiv.org/abs/2601.10245)\n- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries](https://arxiv.org/abs/2603.29500)\n- [ARES: Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)](https://arxiv.org/abs/2507.12948)\n- [PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)](https://arxiv.org/abs/2501.03124)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have comprehensive research data. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [RRM: Curing Miracle Steps in LLM Math Reasoning with Rubric Rewards](https://arxiv.org/abs/2510.07774) (ACL 2026): 最直接的前驱工作。定义了 miracle steps 概念，用 Gemini 生成的 rubric reward 减少 71% miracle steps。FRH-PRM 的核心差异在于用形式化验证（Z3）替代启发式 rubric，并嵌入 PRM 框架，这是一个有意义的技术升级。\n- [GenPRM](https://arxiv.org/abs/2504.00891) (AAAI 2026): 当前 SOTA 生成式 PRM，用 CoT+code verification 做步骤级判断。FRH-PRM 的 neural leg 直接基于此架构，但加入了 formal leg routing——GenPRM 纯神经方法仍受 Reward Under Attack 暴露的风格攻击影响。\n- [VeriCoT](https://arxiv.org/abs/2511.04662) (arXiv 2025): 技术上最接近的竞争者——将 CoT 步骤形式化为 FOL 并用 Z3 验证。关键差异：VeriCoT 无 learned routing（对所有步骤统一形式化，浪费算力）、无 PRM 集成、仅在 ProofWriter/LegalBench/BioASQ 上评测（非数学推理）。FRH-PRM 的差异化是成立的。\n- [FoVer](https://arxiv.org/abs/2505.15960) (ACL 2026 Findings): 用 Z3/Isabelle 做 PRM 训练数据合成，不用于推理时验证。FRH-PRM 可复用其 pipeline 来 bootstrap formalizability labels，技术路线衔接合理。\n- [Safe](https://arxiv.org/abs/2506.04592) (ACL 2025 Main): Lean 4 步骤级验证，~81% formalizability，4-state taxonomy，但无 routing 机制。证明了形式化验证在数学推理中的可行性，但 Lean 需要 proof synthesis（开放问题）。\n- [Reward Under Attack](https://arxiv.org/abs/2603.06621) (arXiv 2026): 揭示 PRM 的系统性脆弱性——43% 的 reward 来自风格捷径，无效轨迹获得 >0.9 reward。FRH-PRM 的 formal leg 对 style attack 的理论鲁棒性直接回应了这一发现，motivation 非常强。\n- [TRIM](https://arxiv.org/abs/2601.10245) (arXiv 2026, under review ICLR 2026): 基于 PRM uncertainty 在不同大小 LLM 间路由。FRH-PRM 的路由维度不同——是 verifier type（formal vs. neural）而非 model size，这是一个正交且新颖的设计。\n- [ARES](https://arxiv.org/abs/2507.12948) (EMNLP 2025): Hoeffding-bounded 推理链 soundness 保证。FRH-PRM 的聚合层直接采用此方法，且 Z3 确定性 verdict 是 Hoeffding bound 的退化情况——理论衔接清晰。\n- [ThinkPRM](https://arxiv.org/abs/2504.16828) (arXiv 2025): 生成式长 CoT PRM，轻量 fine-tuning 即可超越全量训练的判别式 PRM。与 GenPRM 同属 Tier 1 baseline。\n- [PRoSFI](https://arxiv.org/abs/2603.29500) (arXiv 2026): Lean-only 结构化中间体，每步由 formal prover 验证。Lean-only 方案，与 FRH-PRM 的 Z3 hybrid 路线形成对比。\n- [PRMBench](https://arxiv.org/abs/2501.03124) (ACL 2025): 6,216 problems, 83,456 step labels 的细粒度 PRM benchmark。proposal 计划使用此 benchmark，评测标准对齐。\n\n- **调研总结**: PRM 领域在 2025-2026 经历了爆发式增长，两条技术路线并行发展：纯神经生成式 PRM（GenPRM, ThinkPRM）和形式化验证辅助 PRM（FoVer, Safe, PRoSFI）。但两条路线目前是割裂的——没有工作在推理时动态路由到不同类型的 verifier。FRH-PRM 的\"formalizability-based routing\"填补了这一空白，同时直接回应了 Reward Under Attack 揭示的 PRM 鲁棒性危机。该定位在当前文献中确实没有直接竞争者。\n\n【整体印象】:\n作为审稿人，我的第一反应是 **weak accept 倾向**。这是一篇研究动机清晰、技术路线合理、实验设计异常完备的 proposal。核心 idea——在 PRM 框架内通过 learned routing 将步骤动态分配给 formal 或 neural verifier——在文献中确实找不到直接先例。proposal 对相关工作的把握非常深入，差异化论证令人信服。\n\n但我会有两个主要顾虑：(1) Z3 在数学推理中的有效覆盖率可能远低于估计的 30-50%，特别是在 AIME/AMC 级别的竞赛数学中，大量步骤涉及几何直觉、组合论证等难以形式化的推理；(2) 整个系统的多个组件（router, autoformalization, Z3 verification, neural leg, ARES aggregation）各自引入误差，端到端的错误传播可能削弱理论上的优势。\n\n不过，proposal 自身已经识别了 Z3 覆盖率风险，并设计了 go/no-go pilot study（≥20% threshold），这种诚实的自我评估反而增加了可信度。\n\n【核心贡献】:\n1. **Formalizability-routed hybrid verification**：首次在 PRM 中引入 learned routing，将步骤动态分配给 Z3 formal verification 或 neural verification。这不是简单的 try-formal-first fallback（ablation 中有对比），而是通过 formalizability classifier 做 confidence-aware routing。\n2. **背景理论 T 的参数化**：将 miracle step 检测从二元判断转变为可配置框架（T=∅ vs. T=basic-arithmetic vs. T=extended-algebra），这提供了一个分析 LLM 隐式数学知识使用的诊断工具。\n3. **条件可认证鲁棒性**：对成功且忠实形式化的步骤，Z3 verdict 在理论上不受表面形式扰动影响，直接回应 Reward Under Attack 的发现。\n\n这些贡献对领域的价值是**中等偏上**的：routing 机制本身是一个有实际工程价值的创新；T 的参数化在理论上有趣但实际影响取决于不同 T 下是否有显著差异；条件鲁棒性的\"条件\"（成功且忠实形式化）可能限制其实际覆盖。\n\n【方法合理性】:\n方法整体合理，各组件有明确的技术依据：\n- **Z3 over Lean** 的选择有原则性论证（precision-over-coverage trade-off, automated solving vs. proof synthesis），这是一个合理的设计决策。\n- **Formalizability classifier** 用 FoVer-style pipeline bootstrap 训练数据是自然且可行的。\n- **ARES aggregation** 的复用是恰当的，Z3 确定性 verdict 作为 Hoeffding bound 退化情况的处理在数学上是正确的。\n\n**潜在替代方案的考量**：\n- 一个更简单的替代方案是 \"try-formal-first with timeout fallback\"（无 learned routing），proposal 已将其作为 ablation variant（\"Naive try-formal-first fallback\"）。如果此 ablation 的结果接近 full model，learned routing 的贡献就会被质疑——这是审稿人会关注的关键实验。\n- 另一个替代方案是直接用 Lean（如 Safe，~81% coverage）而非 Z3（估计 30-50%），虽然 proposal 给出了 latency 和 proof-search 的论证，但 coverage 差距可能是致命的。若 Z3 有效覆盖率低于 20%，routing 的价值就大打折扣。\n\n【5 维度打分】:\n\n  1. **研究问题: 强** — Miracle steps 是 LLM 数学推理中被实证确认的关键失败模式（RRM, ACL 2026 减少 71%），且当前 SOTA PRM 被证实系统性可被攻击（Reward Under Attack 揭示 43% reward 来自风格捷径）。在 PRM 中引入 formal verification routing 来同时解决检测精度和鲁棒性问题，研究问题定位清晰、时效性强、有明确的实际价值。\n\n  2. **方法与创新: 中（偏强）** — Learned formalizability routing 在文献中确实没有直接先例（VeriCoT 不做 routing，TRIM 在 model size 而非 verifier type 上 routing，Safe/FoVer/PRoSFI 都不涉及推理时 routing）。但审稿人可能批评这是 \"组合式创新\"——将已有组件（Z3 verification from VeriCoT/FoVer, neural PRM from GenPRM, routing concept from TRIM, aggregation from ARES）拼接在一起。proposal 需要通过实验证明组合产生了超越各组件之和的效果。T 的参数化概念上有吸引力，但其实际 novelty 取决于不同 T 下是否产生有意义的不同分析结论。\n\n  3. **实验设计: 强** — 这是 proposal 最突出的亮点。四层 baseline 覆盖了领域内几乎所有重要竞争者（GenPRM, ThinkPRM, FoVer, Safe, PRoSFI, RRM）；ablation study 设计了 11 个变体，覆盖了所有关键设计选择（learned routing vs. naive fallback vs. oracle routing, model size, aggregation strategy, back-translation filter）；compute-normalized comparison 和 Pareto frontier 回应了效率质疑；adversarial evaluation 使用 PRM-BiasBench 直接测试鲁棒性 claim；pilot study 有明确的 go/no-go 标准。这是我在 proposal 阶段见过的最完备的实验方案之一。唯一的轻微不足是 MiracleStepBench 的 500+ samples 规模偏小，Cohen's κ ≥ 0.7 的目标可以提高到 ≥ 0.75。\n\n  4. **可行性: 中** — 主要风险在于 Z3 的有效覆盖率。proposal 估计 30-50%，但对于 AIME/AMC 级别的竞赛数学（大量涉及几何、组合论证、数论），autoformalization 到 Z3 可处理的 decidable fragment（QF_LRA, QF_NIA）的成功率可能远低于此。如果有效覆盖率接近 go/no-go threshold（20%），formal leg 的影响将非常有限。此外，autoformalization faithfulness 是一个 known hard problem——如果形式化过程本身引入语义偏移，Z3 的正确验证反而可能产生 false confidence。200 样本的 human audit 可能不足以充分评估 faithfulness。计算资源方面，Qwen3-32B neural leg + Z3 + formalizability classifier 的综合开销需要认真评估。总体而言，proposal 的 pilot study 设计缓解了部分风险，但执行中的不确定性仍然显著。\n\n  5. **写作与呈现: 强** — Proposal 逻辑清晰，从 problem motivation 到 method design 到 evaluation plan 的论证链条完整。对相关工作的对比分析非常细致（特别是与 VeriCoT 的四点差异化论证）。技术细节到位（CNF-negation derivability, decidable fragments, Hoeffding bound 的退化情况分析）。背景理论 T 的参数化表述简洁优雅。唯一的写作风险是系统复杂度高，正式论文中需要一个清晰的 system diagram 来帮助读者理解全流程。\n\n【概率估计】: [28% - 40%] 中位 34%\n\n【估计理由】:\n**上推因素**: (1) 研究问题定位精准，miracle step detection + PRM robustness 双重时效性；(2) routing 概念在文献中确实找不到直接先例；(3) 实验方案异常完备，远超多数 submission 的 proposal 阶段质量；(4) 对领域的把握深度令人印象深刻。\n**下拉因素**: (1) \"组合式创新\" 的感知风险——每个组件都有先例，审稿人可能认为集成本身 novelty 不足；(2) Z3 有效覆盖率的不确定性是系统级风险——如果仅 20-25% 的步骤经过 formal verification，整体效果可能只是 marginal improvement over neural-only baseline；(3) 端到端系统复杂度高（5+ 组件），负面结果的归因困难；(4) PRM 领域进展极快，执行期间可能出现更直接的竞争者。\n**中位 34% 的定位**: 这篇 proposal 在 \"方向正确 + 方法合理 + 实验完备\" 的基础上，有一个genuinely novel 的 routing 机制。但它并非那种让审稿人眼前一亮的 paradigm-shifting idea，而更像一个 solid engineering contribution with theoretical backing。在 AAAI 的接收标准下，它处于 \"borderline accept\" 区间——如果实验结果强劲（特别是 ablation 证明 learned routing 显著优于 naive fallback），中稿概率会向 40% 靠拢；如果 Z3 覆盖率低且 marginal gain 不显著，则可能滑向 28%。\n\n【主要风险】:\n1. **Z3 有效覆盖率不足**: 如果 pilot study 显示有效覆盖率仅 20-25%，formal leg 对整体性能的贡献可能微乎其微，使得 FRH-PRM 在数值上与 neural-only baseline（GenPRM）难以拉开差距。审稿人会质疑\"为何不直接用更好的 neural verifier\"。\n2. **\"组合创新\" 质疑**: 审稿人 #2/3 可能认为这是将 VeriCoT 的 Z3 验证 + GenPRM 的神经验证 + TRIM 的路由概念 + ARES 的聚合拼接在一起，各组件均有先例，集成的 intellectual contribution 有限。需要通过 ablation 强有力地证明 learned routing 带来的增益不可被更简单的替代方案复制。\n\n【实施评估】:\n  - **计算资源**: 中等偏高。Qwen3-32B 作为 neural leg 需要多卡 GPU（至少 2×A100-80G 用于推理，4-8×A100 用于 fine-tuning）；Z3 求解本身轻量（CPU），但 LLM autoformalization 需要额外推理开销。Formalizability classifier 的训练和推理开销较小。\n  - **数据需求**: 中等。需要 (1) FoVer-40K 数据（已公开）；(2) ProcessBench（已公开）；(3) MATH 训练集 bootstrap Z3-formalizability annotations（需要大量 LLM autoformalization 调用）；(4) MiracleStepBench 需要人工标注。\n  - **人工介入**: MiracleStepBench 构建需要数学背景的标注员，500+ samples 的标注 + inter-annotator agreement 计算。Back-translation audit 的 200+ 样本也需要专家审核。工作量约 2-3 人月（含标注员协调）。\n  - **训练需求**: (1) Formalizability classifier（轻量，数小时级）；(2) Qwen3-32B neural verifier fine-tuning（中等，数天级，需要 4-8 GPU）；(3) Joint optimization of router + neural verifier（需要设计联合训练 pipeline）。\n  - **新 Benchmark**: MiracleStepBench 是新构建的。500+ samples 规模偏小但对于 targeted benchmark 可接受。主要风险在于 inter-annotator agreement 和标注质量。\n  - **预估周期**: 4-6 个月。Pilot study (1 月) → 数据准备与标注 (1.5 月, 可与 pilot 部分重叠) → 模型训练与实验 (2 月) → 论文写作 (1 月)。考虑到 AAAI 2026 的投稿截线（通常 8 月），时间紧凑但可行。\n```\n\nSources:\n- [RRM: Curing Miracle Steps in LLM Math Reasoning](https://arxiv.org/abs/2510.07774)\n- [GenPRM: Scaling Test-Time Compute of PRMs](https://arxiv.org/abs/2504.00891)\n- [VeriCoT: Neuro-symbolic CoT Validation](https://arxiv.org/abs/2511.04662)\n- [FoVer: Efficient PRM Training Data Synthesis](https://arxiv.org/abs/2505.15960)\n- [Safe: Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)\n- [Reward Under Attack: PRM Robustness](https://arxiv.org/abs/2603.06621)\n- [TRIM: Hybrid Inference via Targeted Routing](https://arxiv.org/abs/2601.10245)\n- [ARES: Probabilistic Soundness Guarantees](https://arxiv.org/abs/2507.12948)\n- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [PRoSFI: Formally Verifiable Reasoning](https://arxiv.org/abs/2603.29500)\n- [PRMBench](https://arxiv.org/abs/2501.03124)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient information to make a comprehensive evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- GenPRM (AAAI 2026, arXiv:2504.00891): 当前 SOTA 生成式 PRM，使用 CoT+代码验证，模型覆盖 1.5B-70B。是本 proposal 的核心 neural-only baseline。GenPRM 仍为纯神经网络方法，不具备形式验证能力，直接受到 Reward Under Attack 所揭示的风格化攻击影响。\n- RRM / Rubric Rewards (ACL 2026, arXiv:2510.07774): 最直接的 miracle step 竞品。通过 Gemini 生成的 rubric 评分减少 71% miracle steps，Verified Pass@1024 从 26.7%→62.6%。但依赖启发式/模型依赖的 miracle 定义（非形式化定义），且需外部大模型 (Gemini) 生成 rubric。Proposal 的形式化非蕴含定义是对 RRM 的严格化升级。\n- VeriCoT (arXiv 2025, arXiv:2511.04662): 最直接的技术竞品——同样使用 Z3/SMT 做 CoT 推理步骤的逻辑一致性验证。关键差异：(1) 无学习路由，对所有步骤统一形式化；(2) 非 PRM 框架，不产生可用于 reranking/RL 的 reward；(3) 评估域为 ProofWriter/LegalBench/BioASQ，非数学推理。Proposal 的 novelty claim 相对 VeriCoT 成立。\n- FoVer (ACL 2026 Findings, arXiv:2505.15960): 使用 Z3/Isabelle 做 PRM 训练数据合成，不在推理时做验证。Proposal 正确引用为训练数据来源和 formalizability classifier 的 bootstrap pipeline。\n- Safe (ACL 2025, arXiv:2506.04592): Lean 4 步级验证框架，~81% formalizability，4-state taxonomy。无路由机制。提供了 Lean 方向的 coverage 参考点。\n- ThinkPRM (arXiv 2025, arXiv:2504.16828): 生成式长 CoT 验证，仅需约 1K 合成验证 CoT + 8K 过程标签。在 ProcessBench、MATH-500、AIME'24 上表现优异。重要 baseline。\n- ARES (EMNLP 2025, arXiv:2507.12948): 提供 Hoeffding-bounded 概率正确性保证，72.1% Macro-F1，+8.2 points。Proposal 将其用于聚合层，合理。\n- TRIM (arXiv 2026, arXiv:2601.10245): 步级路由，但在不同 size 的 LLM 之间路由（小模型→大模型），而非验证器类型之间。路由概念相近但目标不同。\n- PRoSFI (arXiv 2026, arXiv:2603.29500): Lean-only 结构化中间表示用于可验证推理。7B 模型级别，与 proposal 的 Z3 路径互补。\n- Reward Under Attack (arXiv 2026, arXiv:2603.06621): 揭示 PRM 的核心漏洞——43% 的 reward 来自风格捷径，无效轨迹获得 >0.9 reward。直接动机化了 proposal 的对抗鲁棒性主张。\n- Z3 autoformalization 覆盖率现状: StepFun-Formalizer-32B 在 FormalMATH-Lite 上 BEq@1 为 40.5%；GPT-O3 在形式化数学上仅解决 25.2%。这暗示 proposal 估计的 30-50% Z3 有效覆盖率偏乐观，实际可能在 20-40% 区间。\n\n- 调研总结: PRM 领域正处于从纯神经网络向形式验证增强过渡的关键节点。形式验证用于 PRM 训练数据（FoVer）和独立验证（VeriCoT、Safe）均有先例，但**推理时形式-神经混合路由 PRM** 确实是空白。Miracle step 问题已被 RRM 标识但仅有启发式解决方案。Proposal 填补了这一具体空白，定位精准。\n\n【整体印象】:\n作为审稿人，我的第一反应是：这是一份对领域有深刻理解、技术设计精细、实验规划异常详尽的 proposal。它识别了一个真实且重要的问题（miracle steps + PRM 脆弱性），提出了一个原理上优雅的解决方案（形式化非蕴含检测 + 学习路由），并且以罕见的严谨度规划了评估。我会倾向 weak accept，但需要看到 Z3 有效覆盖率的实际数据来确认核心假设是否成立。主要顾虑是：(1) 形式化覆盖率可能不足以在聚合指标上产生显著差异；(2) 审稿人可能认为这是现有组件（FoVer pipeline + TRIM routing + VeriCoT Z3 checking + GenPRM architecture）的工程组合。\n\n【核心贡献】:\n1. **形式化非蕴含作为 miracle step 检测的操作化定义**——将 miracle step 从启发式概念（RRM 的 rubric 评分）提升为可形式验证的逻辑概念（predecessors ∪ T ⊭ s），这是概念层面的实质贡献。\n2. **参数化背景理论 T**——将 miracle step 检测从二元判断变为可配置框架，允许分析 LLM 如何调用隐式数学知识。这提供了一个新的分析视角，超越了简单的对错判断。\n3. **学习路由实现形式-神经混合 PRM**——首个在推理时在不同类型验证器之间路由的 PRM 系统。\n4. **条件可证明对抗鲁棒性**——对于成功且忠实形式化的步骤，Z3 判定对表面形式扰动不变。这为 Reward Under Attack 揭示的问题提供了原理性的（而非经验性的）部分解决方案。\n\n贡献对领域的价值：中等偏高。形式化定义和参数化 T 是概念贡献；混合路由 PRM 是系统贡献；条件鲁棒性是理论贡献。综合起来，如果实验能支撑，这是一篇有多维度贡献的工作。\n\n【方法合理性】:\n方法整体合理，各组件的技术选择有清晰的理由：\n\n- **Z3 over Lean 的选择**合理——Z3 是自动化求解器，无需证明搜索，在可判定片段内完备，延迟低。Lean 需要证明合成（本身是 open problem），引入了混淆失败模式。这是一个有原则的 precision-over-coverage 权衡。\n- **学习路由 vs. 朴素 fallback**有合理动机——避免对不可形式化步骤的徒劳尝试，节省计算。ablation 中的 naive-try-formal-first 变体和 oracle routing 上界验证设计良好。\n- **ARES 聚合**选择合理——提供概率保证，Z3 验证步骤的零方差特性正确利用。\n- **CNF 否定可导出性检验**（合取前驱断言 ∪ T 与否定步骤断言，UNSAT=蕴含）是标准的形式化验证方法，技术上正确。\n\n**潜在质疑**：\n1. 更简单的替代方案：是否只用\"尝试 Z3，失败则回退神经网络\"就足够了？proposal 中的 naive fallback ablation 正好验证这一点，设计周到。\n2. 自动形式化忠实度：back-translation audit 是否足够验证语义等价？这仍是代理指标，而非形式化验证的忠实度保证——存在 back-translation 成功但语义微妙偏差的风险。\n3. 路由器训练数据质量：formalizability classifier 的训练依赖 LLM 自动形式化的成功/失败标签，但失败原因可能不仅是步骤不可形式化（可能是 LLM 形式化能力不足）。这个混淆需要在分析中被讨论。\n\n【5 维度打分】:\n  1. 研究问题: 【强】 — Miracle steps 是 LLM 数学推理中被文献明确记录的实质性问题（RRM 量化了 71% 的减少空间）。PRM 对抗鲁棒性已被 Reward Under Attack 揭示为系统性缺陷（43% reward 来自风格捷径）。这两个问题的交叉——用形式验证同时解决 miracle step 检测和 PRM 鲁棒性——具有明确的研究价值。问题既有理论深度（形式化非蕴含）又有实践意义（PRM 可靠性影响下游 RL 训练）。\n\n  2. 方法与创新: 【中偏强】 — Novelty claim 经调研确认成立：无先例工作在推理时实现形式-神经路由 PRM，VeriCoT 无路由无 PRM 集成，FoVer 仅用于训练数据，TRIM 在模型大小间路由而非验证器类型。参数化 T 是一个真正新颖的分析框架。但单个组件（Z3 autoformalization、generative PRM、learned routing）均非原创，组合创新的评价取决于审稿人偏好——有些审稿人重视系统性组合中的新洞见，有些可能认为这是\"工程拼接\"。\"条件可证明鲁棒性\"的 claim 需要更明确的形式化陈述和证明（目前只有一句话描述）。\n\n  3. 实验设计: 【强】 — 实验规划的深度在 proposal 阶段罕见。11 个 ablation 变体覆盖了所有关键消融（路由 vs. 无路由、Z3-only、neural-only、oracle 上界、模型大小隔离、聚合方式变体）。4 层 baseline 体系（neural PRM → formal-enhanced → miracle-specific → zero-shot）全面且公平，涵盖了领域内所有主要竞品（GenPRM、ThinkPRM、FoVer-PRM、Safe、PRoSFI、RRM）。计算归一化比较（iso-compute Pareto frontier）、T-sensitivity 分析、对抗鲁棒性评估（PRM-BiasBench）、Z3 pilot study 的 go/no-go 设计均显示方法论成熟。MiracleStepBench 构建有清晰的两阶段标注协议和质量指标（Cohen's κ ≥ 0.7）。唯一的弱点是 500+ 样本的 MiracleStepBench 规模偏小。\n\n  4. 可行性: 【中】 — 这是最大的不确定性维度。核心风险：\n     (a) Z3 有效覆盖率：proposal 估计 30-50%，但文献中的自动形式化成功率（StepFun 40.5% BEq@1, GPT-O3 25.2%）暗示这可能偏乐观，尤其考虑 Z3 仅处理可判定片段。go/no-go 阈值 20% 是诚实的但也说明存在项目失败风险。\n     (b) 自动形式化 pipeline 的工程量不小——需要构建 LLM→Z3 的转换、back-translation 审计、formalizability classifier 训练数据的 bootstrap。\n     (c) MiracleStepBench 构建需要人工标注，target Cohen's κ ≥ 0.7 需要多轮迭代和标注员培训。\n     (d) Qwen3-32B 的微调和推理成本非 trivial。\n     (e) 时间压力：AAAI 2026 截稿前完成 pilot study + 全部实验 + benchmark 构建 + 撰写，时间紧张。\n\n  5. 写作与呈现: 【强】 — Proposal 结构清晰，逻辑链完整：问题定义→研究格局→方法→评估，每个环节都有充分的理由支撑。与竞品的差异化分析（特别是 VeriCoT 的 4 点对比）具体且令人信服。技术细节精确（CNF 否定、Hoeffding bounds、QF_LRA/QF_NIA）同时保持可读性。引用密度高但不堆砌，每个引用都服务于论证。Go/no-go 设计和 fallback 方案（Z3+Lean hybrid / cvc5）显示了成熟的项目管理意识。\n\n【概率估计】: [28% - 43%] 中位 35%\n\n【估计理由】:\n核心推理：这份 proposal 在研究问题的重要性（强）、novelty 的可辩护性（中偏强）、实验设计的严谨性（强）、写作质量（强）上均达到或超过 AAAI 可接收论文的门槛水平。将概率从 baseline（AAAI 接收率 ~23%）向上调整的因素：(1) 填补了明确的技术空白（formal-neural routing PRM），(2) 实验设计深度超越同行，(3) 同时回应了两个 timely 问题（miracle steps + PRM 鲁棒性），(4) 参数化 T 提供了超越单纯性能提升的分析价值。向下拉的因素：(1) Z3 覆盖率不确定性可能导致核心结果不如预期，(2) \"组合现有组件\"的审稿人感知风险，(3) 条件鲁棒性 claim 的形式化程度不足可能被质疑，(4) 实际改进幅度可能因形式化覆盖有限而 marginal（如果 miracle steps 不集中在可形式化步骤中）。综合来看，这是一篇高于平均投稿质量、但存在实质性执行风险的 proposal，中位估计 35%。\n\n【主要风险】:\n1. **Z3 有效覆盖率不足**：如果 autoformalization × Z3 solve rate 低于 20%，形式化验证腿覆盖的步骤太少，在聚合指标（MATH BoN、ProcessBench F1）上无法产生统计显著的改进，整个系统退化为\"带少量 Z3 点缀的 GenPRM\"。此时 iso-compute 比较可能不利，审稿人会质疑系统复杂性是否 justified。\n2. **\"组件拼接\"质疑**：审稿人可能认为 FRH-PRM = FoVer autoformalization + TRIM routing idea + VeriCoT Z3 checking + GenPRM neural verifier + ARES aggregation，每个组件都有先例，组合的 intellectual contribution 不足以支撑顶会论文。需要在论文中强力论证组合产生的 emergent properties（如参数化 T 的分析能力、条件鲁棒性保证）是非 trivial 的贡献。\n\n【实施评估】:\n  - 计算资源: 中高。Qwen3-32B 微调需要多卡 A100/H100（至少 4×A100 80G），Z3 自动形式化的 LLM 调用（可用更小模型），Z3 求解本身计算量低（sub-second per step）。Best-of-N 评估（N=256）需要大量推理计算。估计总 GPU 需求：200-500 A100 小时用于训练 + 500-1000 A100 小时用于评估。\n  - 数据需求: FoVer-40K（公开）+ ProcessBench（公开）+ MATH 训练集（公开）+ 自动生成的 Z3-formalizability 标注。需要人工标注 MiracleStepBench（500+ samples，2-3 名标注员，估计 2-4 周）。200+ 人工审计 autoformalization 忠实度样本。\n  - 人工介入: 中。MiracleStepBench 标注（需要数学功底的标注员）、autoformalization 忠实度审计、T 配置设计。\n  - 训练需求: 需要训练 (1) formalizability classifier（轻量），(2) Qwen3-32B neural verifier fine-tuning（主要训练成本），(3) 可能需要联合优化 router + verifier。\n  - 新 Benchmark: 是。MiracleStepBench（500+ samples，两阶段标注），是 proposal 的重要贡献但也是重要工作量。\n  - 预估周期: 4-6 个月。Z3 pilot study (2-3 周) → formalizability classifier + autoformalization pipeline (3-4 周) → neural verifier fine-tuning (2-3 周) → MiracleStepBench 构建 (3-4 周，可并行) → 全面评估 (3-4 周) → 写作 (2-3 周)。考虑到 AAAI 2026 截稿时间，时间相当紧张。\n```\n\nSources:\n- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026)](https://arxiv.org/abs/2510.07774)\n- [VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks](https://arxiv.org/abs/2511.04662)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)](https://arxiv.org/abs/2505.15960)\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)\n- [Safe: Enhancing Mathematical Reasoning via Step-aware Formal Verification (ACL 2025)](https://arxiv.org/abs/2506.04592)\n- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [ARES: Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)](https://arxiv.org/abs/2507.12948)\n- [TRIM: Hybrid Inference via Targeted Stepwise Routing (arXiv 2026)](https://arxiv.org/abs/2601.10245)\n- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning (arXiv 2026)](https://arxiv.org/abs/2603.29500)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Formalizability-Routed Hybrid PRMs for Miracle Step Detection\n\n## Core Problem\n\nMiracle steps — reasoning steps whose conclusions are correct but not logically derivable from their predecessors — are a critical failure mode in LLM mathematical reasoning. We propose FRH-PRM, a Process Reward Model that routes each step to formal (Z3) or neural verification via a learned formalizability score. Our central contributions are:\n\n1. **Operationalizing formal non-entailment as miracle step detection within a PRM framework.** We define: step s is a miracle step relative to background theory T iff ¬(predecessors ∪ T ⊧ s). Prior work (RRM, ACL 2026) detects miracles via Gemini-generated rubric heuristics; VeriCoT (arXiv 2025) uses Z3 entailment checking but without formalizability-based routing, without PRM integration, and only on logic/legal/biomedical tasks. FRH-PRM is the first to embed formal derivability checking into a PRM with learned routing for mathematical reasoning.\n\n2. **Parameterized detection via background theory T.** The choice of T (accepted axioms/theorems) defines the explicitness threshold: T=∅ demands every inference be explicit; T=basic-arithmetic permits standard computational steps; T=extended-algebra permits algebraic identities. This parameterization turns miracle step detection from a binary judgment into a configurable framework, enabling analysis of how LLMs invoke implicit mathematical knowledge.\n\n3. **Conditional certifiable adversarial robustness.** For steps that are both successfully and faithfully autoformalized, the Z3 derivability verdict is provably invariant to surface-form perturbations — it depends only on logical content. This provides principled defense against the stylistic exploitation documented by Reward Under Attack (arXiv 2026), where 43% of neural PRM reward derives from stylistic shortcuts and invalid trajectories receive >0.9 reward.\n\n## Research Landscape\n\n**Neural PRMs and their vulnerabilities.** GenPRM (AAAI 2026) and ThinkPRM (arXiv 2025) represent SOTA generative PRMs using CoT+code verification, but remain purely neural and thus vulnerable to the attacks documented in Reward Under Attack (arXiv 2026). ARES (EMNLP 2025) provides Hoeffding-bounded soundness guarantees but uses neural entailment checkers.\n\n**Formal verification for PRM.** FoVer (ACL 2026 Findings) uses Z3/Isabelle for PRM training data synthesis (not inference-time verification). Safe (ACL 2025) provides Lean 4-based step-level verification with ~81% formalizability and 4-state taxonomy but no routing. PRoSFI (arXiv 2026) is Lean-only with structured intermediaries.\n\n**Routing.** TRIM (arXiv 2026) routes across LLM sizes based on PRM uncertainty, not verifier types. No prior work routes between formal and neural verifiers at inference time.\n\n**Miracle step detection.** RRM (ACL 2026) reduces miracle steps 71% via Gemini rubric rewards but relies on heuristic, model-dependent definitions and an external large model.\n\n**Key differentiation from VeriCoT (arXiv 2025).** VeriCoT formalizes CoT steps to FOL (SMT-LIB) and checks Z3 entailment — the same logical operation as our formal leg. Critical differences: (1) VeriCoT applies formalization uniformly to all steps with no learned routing, wasting compute on unformalizable steps and producing uninformative \"Untranslatable\" labels; FRH-PRM's learned router avoids futile attempts and provides confidence-aware hybrid verdicts. (2) VeriCoT is a standalone validation tool without PRM scoring; FRH-PRM produces calibrated step-level rewards for best-of-N reranking and RL training. (3) VeriCoT evaluates on ProofWriter/LegalBench/BioASQ; FRH-PRM targets mathematical reasoning (MATH, AIME, ProcessBench). (4) VeriCoT handles background knowledge ad-hoc via premise extraction; FRH-PRM explicitly parameterizes T.\n\n## Proposed Approach\n\n**Formalizability Classifier.** Lightweight classifier predicting per-step Z3-formalizability. Training data bootstrapped via FoVer-style pipeline (ACL 2026 Findings): LLM attempts Z3 autoformalization of MATH/ProcessBench reasoning steps, recording success/failure as labels. Design choice: Z3 over Lean as a principled precision-over-coverage trade-off — Z3 is an automated solver requiring no proof search, complete within decidable fragments (QF_LRA, QF_NIA, propositional), with sub-second latency. Lean offers broader coverage (~81% per Safe) but requires proof synthesis (an open problem) and introduces proof-search failure as a confounding failure mode. We estimate Z3 effective coverage at 30–50% for math reasoning steps; pilot study will quantify.\n\n**Formal Leg.** High-formalizability steps are autoformalized to Z3 assertions via LLM, then verified via CNF-negation derivability: conjoin predecessor assertions ∪ T with negated step assertion; UNSAT = entailed, SAT = potential miracle, UNKNOWN/timeout(30s) = fallback to neural. Autoformalization faithfulness is verified via back-translation audit (see Evaluation).\n\n**Neural Leg.** Low-formalizability steps and formal-leg fallbacks route to fine-tuned Qwen3-32B generative verifier (GenPRM architecture, AAAI 2026): CoT reasoning + code verification.\n\n**Aggregation.** Step verdicts aggregate via ARES (EMNLP 2025) premise-configuration sampling with Hoeffding chain-level bounds. For Z3-verified steps, verdicts are deterministic (variance=0) — a degenerate case of bounded random variables; Hoeffding bounds remain valid but we additionally report tightness analysis for formal-dominated vs. neural-dominated chains.\n\n**Training.** Joint optimization of router + neural verifier on FoVer-40K (ACL 2026 Findings) + ProcessBench + bootstrapped Z3-formalizability annotations from MATH training data.\n\n## Evaluation Plan\n\n**Benchmarks.** (1) ProcessBench — step-level error detection F1; (2) PRMBench (ACL 2025, 6,216 problems, 83,456 step labels) — fine-grained error type analysis; (3) MiracleStepBench (new) — miracle step detection F1; (4) MATH-500, AIME'24, AMC'23 — best-of-N reranking pass@1 (N=8/64/256).\n\n**MiracleStepBench Construction.** Two-phase annotation: (Phase 1) Human annotators label steps as miracle/non-miracle based on \"Is the conclusion derivable from preceding steps and standard mathematical knowledge?\" — 500+ samples, target Cohen's κ ≥ 0.7. (Phase 2) Z3 formal verification run as independent signal; report agreement rate between human intuition and formal verdict. Initial candidate pool from RRM (ACL 2026) annotations with rubric scores below threshold; threshold sensitivity analysis included. Report: problem count, step count, miracle step ratio, difficulty distribution, subdomain breakdown.\n\n**Baselines (tiered).**\n- Tier 1 (neural-only PRMs): GenPRM (AAAI 2026), ThinkPRM (arXiv 2025), Qwen2.5-Math-PRM-7B, Math-Shepherd\n- Tier 2 (formal-enhanced): FoVer-PRM (ACL 2026 Findings), Safe (ACL 2025), PRoSFI (arXiv 2026)\n- Tier 3 (miracle-step specific): RRM (ACL 2026)\n- Tier 4 (zero-shot): LLM-as-Judge (GPT-4o)\n\n**Compute-Normalized Comparison.** Report FLOPs, wall-clock time, and API cost per chain. Iso-compute comparison: under matched budget, FRH-PRM vs. GenPRM/ThinkPRM with additional sampling. Performance-vs-compute Pareto frontier plotted.\n\n**Ablation Study.**\n\n| Variant | ProcessBench F1 | MiracleStepBench F1 | MATH BoN@64 |\n|---|---|---|---|\n| FRH-PRM (full, Qwen3-32B neural leg) | — | — | — |\n| FRH-PRM (Qwen3-7B neural leg) | — | — | — |\n| Naive try-formal-first fallback | — | — | — |\n| Z3-only (skip unformalizable) | — | — | — |\n| Neural-only (all Qwen3-32B) | — | — | — |\n| Random routing (50/50) | — | — | — |\n| Oracle routing (ground-truth formalizability) | — | — | — |\n| ARES → majority vote | — | — | — |\n| ARES → min | — | — | — |\n| ARES (neural-only resampling) | — | — | — |\n| FRH-PRM + back-translation filter | — | — | — |\n\nKey ablation rationale: Naive fallback tests whether learned routing adds value beyond avoiding Z3 timeouts. Oracle routing provides routing accuracy ceiling. 7B neural leg isolates routing contribution from model-size effects. Back-translation filter tests autoformalization faithfulness impact.\n\n**T-Sensitivity Analysis.** Evaluate miracle step detection under three background theory configurations: T=∅ (strict: every inference explicit), T=basic-arithmetic (permits standard computation), T=extended-algebra (permits algebraic identities). Report miracle step ratio and detection precision/recall under each T.\n\n**Adversarial Robustness.** Use PRM-BiasBench (Reward Under Attack, arXiv 2026). Per-leg analysis: Z3 leg robustness (expected invariant to style attacks for faithfully formalized steps) vs. neural leg (expected vulnerable). Router attack: test whether adversarial paraphrases shift formalizability scores to misroute steps. Report reward inflation rate and attack success rate.\n\n**Z3 Pilot Study.** Before full experiments: autoformalize + Z3-verify 500 MATH steps and 500 ProcessBench steps. Report: (1) autoformalization success rate, (2) Z3 solve rate (30s timeout), (3) effective coverage = (1)×(2), (4) autoformalization faithfulness rate (200+ human-audited samples, semantic equivalence between NL step and Z3 assertion). Analyze by subdomain (arithmetic/algebra expected high; geometry/combinatorics expected low). Go/no-go: effective coverage ≥ 20% on MATH, ≥ 15% on ProcessBench; below threshold → fallback to Z3+Lean hybrid backend or cvc5.\n\n**Formalizability Distribution Analysis.** Report per-subdomain formalizability score distributions as a diagnostic lens on LLM reasoning styles: high formalizability = logically transparent steps; low = intuitive/heuristic steps.\n\n## Key References\n\n- Curing Miracle Steps in LLM Math Reasoning with Rubric Rewards (ACL 2026)\n- Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)\n- GenPRM: Scaling Test-Time Compute of PRMs via Generative Reasoning (AAAI 2026)\n- Safe: Mathematical Reasoning via Step-aware Formal Verification (ACL 2025)\n- Process Reward Models That Think (arXiv 2025)\n- Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)\n- TRIM: Hybrid Inference via Targeted Stepwise Routing (arXiv 2026)\n- Reward Under Attack: Robustness of Process Reward Models (arXiv 2026)\n- PRoSFI: Formally Verifiable Reasoning via Structured Intermediaries (arXiv 2026)\n- VeriCoT: Neuro-symbolic CoT Validation via Logical Consistency (arXiv 2025)\n- PRMBench: Fine-grained Benchmark for Process-Level Reward Models (ACL 2025)\n- Qwen2.5-Math-PRM (ProcessBench baseline)\n- Math-Shepherd (baseline)\n- PRM800K (baseline data reference)"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T09:57:35.503Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T09:57:35.503Z",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T09:57:35.521Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have comprehensive research coverage. Let me compile the full evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- GenPRM (AAAI 2026, arXiv:2504.00891): 当前 SOTA 生成式 PRM，使用 CoT + 代码验证进行步骤级评判。纯神经方法，在 ProcessBench 和数学推理任务上表现优异，仅需 23K 训练数据。本 proposal 的 neural leg 采用相同架构，且将 GenPRM 列为 Tier 1 baseline。
+- RRM / "Curing Miracle Steps" (ACL 2026, arXiv:2510.07774): 首次系统定义并量化 miracle steps 问题，通过 Gemini 生成的 rubric 奖励减少 71% 的 miracle steps，AIME2024 Verified Pass@1024 从 26.7% 提升至 62.6%。本 proposal 直接延续此问题定义，但用形式化方法替代启发式方法。
+- VeriCoT (arXiv 2025, arXiv:2511.04662): 将 CoT 步骤形式化为 FOL (SMT-LIB) 并用 Z3 验证逻辑一致性。在 ProofWriter/LegalBench/BioASQ 上验证有效，平均 46% 相对改善。**这是本 proposal formal leg 的最直接先驱**——核心逻辑操作（Z3 entailment checking）完全相同，proposal 的差异化在于 learned routing、PRM 集成和数学领域。
+- FoVer (ACL 2026 Findings, arXiv:2505.15960): 用 Z3/Isabelle 进行 PRM 训练数据合成（非推理时验证）。在 12 个推理基准上改善 PRM。本 proposal 借用其 autoformalization pipeline 构建 formalizability classifier 训练数据。
+- Reward Under Attack (arXiv 2026, arXiv:2603.06621): 揭示当前 SOTA PRM 的系统性脆弱性——43% 的奖励来自风格捷径，无效推理轨迹获得 >0.9 奖励。发布 PRM-BiasBench。本 proposal 的对抗鲁棒性贡献直接回应此发现。
+- Safe (ACL 2025, arXiv:2506.04592): Lean 4 步骤级形式化验证，~81% formalizability，4-state taxonomy。无 routing 机制。本 proposal 将其列为 Tier 2 baseline。
+- TRIM (arXiv 2026, arXiv:2601.10245): 基于 PRM 不确定性在不同大小 LLM 间进行步骤级 routing。MATH-500 上 5x 成本效率提升。本 proposal 的 routing 概念受其启发，但目标是 verifier 类型而非模型大小。
+- ThinkPRM (arXiv 2025, arXiv:2504.16828): 生成式 PRM，通过长 CoT 验证推理。仅需 1K 合成样本 + 8K process labels 即可超越 100x 数据训练的判别式 PRM。Tier 1 baseline。
+- PRoSFI (arXiv 2026, arXiv:2603.29500): Lean-only 结构化中间表示，形式化验证后给予奖励。7B 模型上实现。Tier 2 baseline。
+- ARES (EMNLP 2025, arXiv:2507.12948): 基于 Hoeffding 界的概率soundness 保证，72.1% Macro-F1（+8.2 点）。本 proposal 采用其 premise-configuration sampling 进行链级聚合。
+- PRMBench (ACL 2025, arXiv:2501.03124): 6,216 问题、83,456 步骤标签的细粒度 PRM 基准。最佳模型 68.8 vs 人类 83.8。本 proposal 使用其作为评估基准。
+
+- 调研总结: PRM 领域正处于从纯神经方法向形式化增强方法的快速过渡期。核心矛盾已被清晰揭示（Reward Under Attack），多种解决路径正在探索中（Lean-based: Safe/PRoSFI; Z3-based: VeriCoT/FoVer; Rubric-based: RRM）。**但目前没有任何工作实现了在推理时基于 learned routing 在 formal 和 neural verifier 之间进行动态分派**，这是本 proposal 的独特位置。该领域竞争激烈，相关工作密集。
+
+【整体印象】:
+这是一份高质量、经过深思熟虑的 proposal。如果我是审稿人，第一反应是 **weak accept leaning**。原因如下：
+
+（+）问题动机极其充分——miracle steps 被 RRM 清晰定义，PRM 的风格漏洞被 Reward Under Attack 实证揭露，两者合力构成了一个真实且紧迫的研究需求。
+（+）"learned formalizability routing"这一核心创新在文献中确实没有先例——TRIM 做 model-size routing，VeriCoT 做 uniform formalization，Safe 做 Lean-only，都不做 formal-vs-neural verifier routing。
+（+）实验设计异常完备——四级 baseline、11 个 ablation 变体、compute-normalized 对比、T-sensitivity 分析、对抗鲁棒性测试、pilot study with go/no-go criteria——这在 proposal 阶段是顶级水准。
+（+）background theory T 的参数化为 miracle step 检测提供了可调节的理论框架，具有独立的学术价值。
+
+（-）核心风险在于 Z3 autoformalization 的有效覆盖率和忠实度——如果有效覆盖率仅 20-30%，formal leg 对整体性能的贡献可能有限。
+（-）可能被审稿人视为"VeriCoT + GenPRM + learned router"的系统级组合，而非根本性创新。
+（-）MiracleStepBench 的构建标准（"standard mathematical knowledge" 的边界）存在主观性。
+
+【核心贡献】:
+1. **首次将 formal derivability checking 嵌入 PRM 框架并配以 learned routing**——这是该 proposal 最独特的贡献。它不是简单的 formal verification（VeriCoT/Safe 已做），也不是简单的 PRM scoring（GenPRM/ThinkPRM 已做），而是**在 PRM 框架内根据步骤的可形式化程度动态选择验证策略**。这个组合在文献中确实是空白。
+
+2. **Background theory T 的参数化**——将 miracle step 检测从二元判断变为可配置框架。这提供了分析 LLM 如何调用隐式数学知识的诊断工具。
+
+3. **条件可证明对抗鲁棒性**——对于成功且忠实形式化的步骤，Z3 判决对表面形式扰动具有可证明的不变性。这直接回应了 Reward Under Attack 揭示的 43% 风格捷径问题。
+
+对领域的价值：中等偏高。如果 Z3 覆盖率足够高且 routing 确实有效，这将是 PRM 可靠性的一个重要进步；如果覆盖率不足，贡献主要在分析框架层面（T 参数化、formal-vs-neural 分析）。
+
+【方法合理性】:
+方法整体合理，但有几个需要关注的点：
+
+1. **Z3 vs Lean 的选择**：proposal 的论证（precision-over-coverage trade-off，sub-second latency，无需 proof search）是合理的。Z3 在可判定片段（QF_LRA, QF_NIA, propositional）内是 complete 的，这为 formal leg 提供了可靠的理论基础。但 30-50% 有效覆盖率的估计需要 pilot study 验证。
+
+2. **Autoformalization 作为瓶颈**：整个 formal leg 的可靠性取决于 NL→Z3 的 autoformalization 质量。当前 LLM 的 autoformalization 能力仍有限，特别是对于复杂的数学推理步骤。Back-translation audit 是合理的缓解措施，但可能无法捕捉所有语义漂移。
+
+3. **是否有更简单的替代方案？** 
+   - **Try-formal-first fallback**（无 learned routing）：proposal 已将其纳入 ablation，这很好。如果这个 naive baseline 表现相近，learned routing 的价值会大打折扣。
+   - **纯 neural + adversarial training**：直接在 PRM-BiasBench 上做对抗训练可能更简单地缓解风格漏洞。但这无法提供 formal leg 的可证明鲁棒性。
+   - **RRM 风格的 rubric rewards + Z3 验证**：不做 PRM 集成，直接用 Z3 作为 RRM 的替代验证器。更简单但失去了 PRM reranking 能力。
+
+4. **ARES 聚合的适用性**：对 Z3-verified 步骤（variance=0）应用 Hoeffding 界是数学上正确的（退化情况），但 proposal 承诺的 tightness analysis 对 formal-dominated vs neural-dominated chains 很重要——需要展示混合链的界比纯神经链更紧。
+
+5. **Joint training 的复杂性**：router + neural verifier 的联合优化可能存在训练不稳定性（router 的梯度可能冲突于 verifier 的梯度）。proposal 未详细讨论训练策略。
+
+【5 维度打分】:
+  1. 研究问题: 【强】— Miracle steps 是 LLM 数学推理中被 RRM (ACL 2026) 实证记录的关键失败模式，Reward Under Attack (arXiv 2026) 进一步证实了纯神经 PRM 的系统性脆弱性（43% 风格捷径）。这两个发现合力构成了一个清晰、紧迫且有实际影响的研究问题。Background theory T 的参数化为研究 LLM 隐式推理提供了新的分析维度。问题的时效性和重要性都很高。
+
+  2. 方法与创新: 【中偏强】— Learned formalizability routing 在文献中确实是新颖的——VeriCoT 做 uniform formalization，TRIM 做 model-size routing，Safe/PRoSFI 做 Lean-only verification，没有任何工作在推理时基于 learned score 在 formal 和 neural verifier 间 routing。但核心组件（Z3 entailment checking ≈ VeriCoT，generative neural verifier ≈ GenPRM，aggregation ≈ ARES）都有直接先驱。创新主要在**架构级组合和 routing 机制**，而非根本性方法突破。T 参数化是有趣的理论贡献但实验影响待验证。条件对抗鲁棒性论证严格但依赖 autoformalization faithfulness 假设。
+
+  3. 实验设计: 【强】— 这是本 proposal 最突出的优势。四级 baseline 覆盖了领域内几乎所有重要对比点（GenPRM、ThinkPRM、FoVer-PRM、Safe、PRoSFI、RRM、LLM-as-Judge）。11 个 ablation 变体设计精巧，特别是 oracle routing（提供 routing 精度上界）、naive fallback（隔离 learned routing 价值）、7B neural leg（隔离模型大小效应）。Compute-normalized comparison 和 Pareto frontier 直接回应了"更复杂 ≠ 更好"的潜在质疑。Pilot study with go/no-go criteria（有效覆盖率 ≥ 20%）显示了严谨的研究态度。T-sensitivity analysis 和 adversarial robustness 测试增加了分析深度。在 proposal 阶段，这是我见过的最完备的实验设计之一。
+
+  4. 可行性: 【中】— 主要风险点：(a) Z3 有效覆盖率的不确定性——proposal 估计 30-50%，但这基于推测而非实证。Pilot study 设计了 go/no-go 标准（≥ 20%），但即使 20% 的覆盖率，formal leg 的边际贡献可能有限。(b) Autoformalization 质量——NL→Z3 的自动形式化是当前 LLM 的已知薄弱环节，特别是涉及几何、组合等领域时。(c) Qwen3-32B 的计算需求——fine-tuning 32B 模型 + Z3 autoformalization 的 LLM 调用 + Z3 solving，整体计算成本可能较高。(d) MiracleStepBench 构建需要高质量人工标注，Cohen's κ ≥ 0.7 在"可推导性"这种偏主观判断上可能需要多轮迭代。(e) 训练数据的构建（FoVer-40K + ProcessBench + bootstrapped annotations）涉及多个 pipeline，工程复杂度较高。
+
+  5. 写作与呈现: 【强】— Proposal 组织清晰，逻辑链条完整：问题定义 → 文献定位 → 方法设计 → 评估方案。对相关工作的定位极其精准（特别是与 VeriCoT 的四点差异化论证），显示出对领域的深度理解。技术细节充分（CNF-negation derivability, Hoeffding bounds, decidable fragments）。唯一的小瑕疵是 joint training 策略的细节不足（router 和 neural verifier 如何联合优化？是否交替训练？loss 的权重分配？）。
+
+【概率估计】: [30% - 44%] 中位 37%
+
+【估计理由】:
+该 proposal 在研究问题时效性、文献定位精度和实验设计完备性上达到了很高水准。Learned formalizability routing 的 novelty claim 是成立的——在现有文献中确实找不到直接先驱。实验方案的周密程度（tiered baselines, oracle routing ablation, compute-normalized comparison, pilot study with go/no-go）本身就是重要的加分项，显示了成熟的研究方法论。
+
+但以下因素限制了概率上界：
+(1) 核心创新是架构级组合（Z3 entailment + GenPRM + learned router），而非根本性方法突破——部分审稿人可能认为 novelty 不够 "deep"。
+(2) 方法的有效性高度依赖于 Z3 autoformalization 覆盖率这一尚未验证的经验性前提。如果 pilot study 结果不理想，整篇论文的核心价值会被大幅削弱。
+(3) 竞争激烈——同期（2025-2026）有大量 PRM + formal verification 的工作（FoVer, Safe, PRoSFI, VeriCoT），reviewer pool 中可能有这些工作的作者，他们可能更苛刻地评判差异化。
+(4) "条件可证明鲁棒性"的条件（faithful autoformalization）本身是一个难以保证的假设，可能被审稿人质疑为 "假设太强，实际价值有限"。
+
+上界 44% 对应以下乐观情景：pilot study 显示 ≥ 40% 有效覆盖率，learned routing 相比 naive fallback 有显著提升，MiracleStepBench 标注质量高，compute-normalized 对比显示 Pareto 优势。下界 30% 对应审稿人认为这是系统级组合缺乏深度创新、或 autoformalization bottleneck 使 formal leg 贡献边际化。
+
+【主要风险】:
+1. **Z3 autoformalization 有效覆盖率不足 + 忠实度不可靠**：如果有效覆盖率仅 20-25%，且 autoformalization 引入语义漂移，则 formal leg 在整体系统中的贡献可能微乎其微，整篇论文的核心价值（hybrid routing）失去实证支撑。审稿人可能质疑："为什么不直接用更好的 neural verifier？"
+2. **Novelty depth 不足的感知风险**：审稿人可能将此工作总结为 "VeriCoT 的 Z3 检查 + GenPRM 的神经验证 + TRIM 风格的 routing + ARES 的聚合"，认为这是一个工程性组合而非概念性突破。虽然 proposal 对各组件的差异化做了充分论证，但在 competitive review 中，"系统论文" 的标签仍可能导致 borderline reject。
+
+【实施评估】:
+  - 计算资源: 中高。需要 (a) Qwen3-32B fine-tuning（~8×A100 或等效），(b) 大规模 autoformalization 的 LLM inference（per-step Z3 translation），(c) Z3 solving（单步 30s timeout，但大批量仍有开销），(d) bootstrapping formalizability labels 的 pipeline。推理时成本高于纯神经 PRM。
+  - 数据需求: 中等。FoVer-40K 已公开，ProcessBench 已公开，MATH/AIME/AMC 公开。需自行构建：(a) bootstrapped Z3-formalizability annotations from MATH，(b) MiracleStepBench（500+ 人工标注样本）。
+  - 人工介入: 中等。MiracleStepBench 构建需要 (a) 数学背景的标注者判断步骤可推导性，(b) 200+ 样本的 autoformalization faithfulness 人工审计，(c) Cohen's κ 校准可能需要多轮迭代。
+  - 训练需求: 需要训练 (a) formalizability classifier（lightweight，低成本），(b) Qwen3-32B neural verifier fine-tuning（中高成本），(c) 可能的 joint optimization（router + verifier，复杂度取决于训练策略）。
+  - 新 Benchmark: 需构建 MiracleStepBench——这是一个中等规模但高质量要求的 benchmark，涉及人工标注 + Z3 形式化验证的双重信号。标注周期和质量控制是主要瓶颈。
+  - 预估周期: 6-8 个月。Pilot study（1-1.5 月）→ 数据构建与标注（1.5-2 月，可并行）→ 模型训练与调试（1.5-2 月）→ 全面实验与分析（1-1.5 月）→ 论文撰写（1 月）。前提是计算资源到位且 pilot study 通过 go/no-go 标准。
+```
+
+Sources:
+- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)](https://arxiv.org/abs/2504.00891)
+- [Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026)](https://arxiv.org/abs/2510.07774)
+- [VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks](https://arxiv.org/abs/2511.04662)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)](https://arxiv.org/abs/2505.15960)
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)
+- [Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)](https://aclanthology.org/2025.acl-long.594/)
+- [TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks](https://arxiv.org/abs/2601.10245)
+- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)
+- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries](https://arxiv.org/abs/2603.29500)
+- [ARES: Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)](https://arxiv.org/abs/2507.12948)
+- [PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)](https://arxiv.org/abs/2501.03124)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have comprehensive research data. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [RRM: Curing Miracle Steps in LLM Math Reasoning with Rubric Rewards](https://arxiv.org/abs/2510.07774) (ACL 2026): 最直接的前驱工作。定义了 miracle steps 概念，用 Gemini 生成的 rubric reward 减少 71% miracle steps。FRH-PRM 的核心差异在于用形式化验证（Z3）替代启发式 rubric，并嵌入 PRM 框架，这是一个有意义的技术升级。
+- [GenPRM](https://arxiv.org/abs/2504.00891) (AAAI 2026): 当前 SOTA 生成式 PRM，用 CoT+code verification 做步骤级判断。FRH-PRM 的 neural leg 直接基于此架构，但加入了 formal leg routing——GenPRM 纯神经方法仍受 Reward Under Attack 暴露的风格攻击影响。
+- [VeriCoT](https://arxiv.org/abs/2511.04662) (arXiv 2025): 技术上最接近的竞争者——将 CoT 步骤形式化为 FOL 并用 Z3 验证。关键差异：VeriCoT 无 learned routing（对所有步骤统一形式化，浪费算力）、无 PRM 集成、仅在 ProofWriter/LegalBench/BioASQ 上评测（非数学推理）。FRH-PRM 的差异化是成立的。
+- [FoVer](https://arxiv.org/abs/2505.15960) (ACL 2026 Findings): 用 Z3/Isabelle 做 PRM 训练数据合成，不用于推理时验证。FRH-PRM 可复用其 pipeline 来 bootstrap formalizability labels，技术路线衔接合理。
+- [Safe](https://arxiv.org/abs/2506.04592) (ACL 2025 Main): Lean 4 步骤级验证，~81% formalizability，4-state taxonomy，但无 routing 机制。证明了形式化验证在数学推理中的可行性，但 Lean 需要 proof synthesis（开放问题）。
+- [Reward Under Attack](https://arxiv.org/abs/2603.06621) (arXiv 2026): 揭示 PRM 的系统性脆弱性——43% 的 reward 来自风格捷径，无效轨迹获得 >0.9 reward。FRH-PRM 的 formal leg 对 style attack 的理论鲁棒性直接回应了这一发现，motivation 非常强。
+- [TRIM](https://arxiv.org/abs/2601.10245) (arXiv 2026, under review ICLR 2026): 基于 PRM uncertainty 在不同大小 LLM 间路由。FRH-PRM 的路由维度不同——是 verifier type（formal vs. neural）而非 model size，这是一个正交且新颖的设计。
+- [ARES](https://arxiv.org/abs/2507.12948) (EMNLP 2025): Hoeffding-bounded 推理链 soundness 保证。FRH-PRM 的聚合层直接采用此方法，且 Z3 确定性 verdict 是 Hoeffding bound 的退化情况——理论衔接清晰。
+- [ThinkPRM](https://arxiv.org/abs/2504.16828) (arXiv 2025): 生成式长 CoT PRM，轻量 fine-tuning 即可超越全量训练的判别式 PRM。与 GenPRM 同属 Tier 1 baseline。
+- [PRoSFI](https://arxiv.org/abs/2603.29500) (arXiv 2026): Lean-only 结构化中间体，每步由 formal prover 验证。Lean-only 方案，与 FRH-PRM 的 Z3 hybrid 路线形成对比。
+- [PRMBench](https://arxiv.org/abs/2501.03124) (ACL 2025): 6,216 problems, 83,456 step labels 的细粒度 PRM benchmark。proposal 计划使用此 benchmark，评测标准对齐。
+
+- **调研总结**: PRM 领域在 2025-2026 经历了爆发式增长，两条技术路线并行发展：纯神经生成式 PRM（GenPRM, ThinkPRM）和形式化验证辅助 PRM（FoVer, Safe, PRoSFI）。但两条路线目前是割裂的——没有工作在推理时动态路由到不同类型的 verifier。FRH-PRM 的"formalizability-based routing"填补了这一空白，同时直接回应了 Reward Under Attack 揭示的 PRM 鲁棒性危机。该定位在当前文献中确实没有直接竞争者。
+
+【整体印象】:
+作为审稿人，我的第一反应是 **weak accept 倾向**。这是一篇研究动机清晰、技术路线合理、实验设计异常完备的 proposal。核心 idea——在 PRM 框架内通过 learned routing 将步骤动态分配给 formal 或 neural verifier——在文献中确实找不到直接先例。proposal 对相关工作的把握非常深入，差异化论证令人信服。
+
+但我会有两个主要顾虑：(1) Z3 在数学推理中的有效覆盖率可能远低于估计的 30-50%，特别是在 AIME/AMC 级别的竞赛数学中，大量步骤涉及几何直觉、组合论证等难以形式化的推理；(2) 整个系统的多个组件（router, autoformalization, Z3 verification, neural leg, ARES aggregation）各自引入误差，端到端的错误传播可能削弱理论上的优势。
+
+不过，proposal 自身已经识别了 Z3 覆盖率风险，并设计了 go/no-go pilot study（≥20% threshold），这种诚实的自我评估反而增加了可信度。
+
+【核心贡献】:
+1. **Formalizability-routed hybrid verification**：首次在 PRM 中引入 learned routing，将步骤动态分配给 Z3 formal verification 或 neural verification。这不是简单的 try-formal-first fallback（ablation 中有对比），而是通过 formalizability classifier 做 confidence-aware routing。
+2. **背景理论 T 的参数化**：将 miracle step 检测从二元判断转变为可配置框架（T=∅ vs. T=basic-arithmetic vs. T=extended-algebra），这提供了一个分析 LLM 隐式数学知识使用的诊断工具。
+3. **条件可认证鲁棒性**：对成功且忠实形式化的步骤，Z3 verdict 在理论上不受表面形式扰动影响，直接回应 Reward Under Attack 的发现。
+
+这些贡献对领域的价值是**中等偏上**的：routing 机制本身是一个有实际工程价值的创新；T 的参数化在理论上有趣但实际影响取决于不同 T 下是否有显著差异；条件鲁棒性的"条件"（成功且忠实形式化）可能限制其实际覆盖。
+
+【方法合理性】:
+方法整体合理，各组件有明确的技术依据：
+- **Z3 over Lean** 的选择有原则性论证（precision-over-coverage trade-off, automated solving vs. proof synthesis），这是一个合理的设计决策。
+- **Formalizability classifier** 用 FoVer-style pipeline bootstrap 训练数据是自然且可行的。
+- **ARES aggregation** 的复用是恰当的，Z3 确定性 verdict 作为 Hoeffding bound 退化情况的处理在数学上是正确的。
+
+**潜在替代方案的考量**：
+- 一个更简单的替代方案是 "try-formal-first with timeout fallback"（无 learned routing），proposal 已将其作为 ablation variant（"Naive try-formal-first fallback"）。如果此 ablation 的结果接近 full model，learned routing 的贡献就会被质疑——这是审稿人会关注的关键实验。
+- 另一个替代方案是直接用 Lean（如 Safe，~81% coverage）而非 Z3（估计 30-50%），虽然 proposal 给出了 latency 和 proof-search 的论证，但 coverage 差距可能是致命的。若 Z3 有效覆盖率低于 20%，routing 的价值就大打折扣。
+
+【5 维度打分】:
+
+  1. **研究问题: 强** — Miracle steps 是 LLM 数学推理中被实证确认的关键失败模式（RRM, ACL 2026 减少 71%），且当前 SOTA PRM 被证实系统性可被攻击（Reward Under Attack 揭示 43% reward 来自风格捷径）。在 PRM 中引入 formal verification routing 来同时解决检测精度和鲁棒性问题，研究问题定位清晰、时效性强、有明确的实际价值。
+
+  2. **方法与创新: 中（偏强）** — Learned formalizability routing 在文献中确实没有直接先例（VeriCoT 不做 routing，TRIM 在 model size 而非 verifier type 上 routing，Safe/FoVer/PRoSFI 都不涉及推理时 routing）。但审稿人可能批评这是 "组合式创新"——将已有组件（Z3 verification from VeriCoT/FoVer, neural PRM from GenPRM, routing concept from TRIM, aggregation from ARES）拼接在一起。proposal 需要通过实验证明组合产生了超越各组件之和的效果。T 的参数化概念上有吸引力，但其实际 novelty 取决于不同 T 下是否产生有意义的不同分析结论。
+
+  3. **实验设计: 强** — 这是 proposal 最突出的亮点。四层 baseline 覆盖了领域内几乎所有重要竞争者（GenPRM, ThinkPRM, FoVer, Safe, PRoSFI, RRM）；ablation study 设计了 11 个变体，覆盖了所有关键设计选择（learned routing vs. naive fallback vs. oracle routing, model size, aggregation strategy, back-translation filter）；compute-normalized comparison 和 Pareto frontier 回应了效率质疑；adversarial evaluation 使用 PRM-BiasBench 直接测试鲁棒性 claim；pilot study 有明确的 go/no-go 标准。这是我在 proposal 阶段见过的最完备的实验方案之一。唯一的轻微不足是 MiracleStepBench 的 500+ samples 规模偏小，Cohen's κ ≥ 0.7 的目标可以提高到 ≥ 0.75。
+
+  4. **可行性: 中** — 主要风险在于 Z3 的有效覆盖率。proposal 估计 30-50%，但对于 AIME/AMC 级别的竞赛数学（大量涉及几何、组合论证、数论），autoformalization 到 Z3 可处理的 decidable fragment（QF_LRA, QF_NIA）的成功率可能远低于此。如果有效覆盖率接近 go/no-go threshold（20%），formal leg 的影响将非常有限。此外，autoformalization faithfulness 是一个 known hard problem——如果形式化过程本身引入语义偏移，Z3 的正确验证反而可能产生 false confidence。200 样本的 human audit 可能不足以充分评估 faithfulness。计算资源方面，Qwen3-32B neural leg + Z3 + formalizability classifier 的综合开销需要认真评估。总体而言，proposal 的 pilot study 设计缓解了部分风险，但执行中的不确定性仍然显著。
+
+  5. **写作与呈现: 强** — Proposal 逻辑清晰，从 problem motivation 到 method design 到 evaluation plan 的论证链条完整。对相关工作的对比分析非常细致（特别是与 VeriCoT 的四点差异化论证）。技术细节到位（CNF-negation derivability, decidable fragments, Hoeffding bound 的退化情况分析）。背景理论 T 的参数化表述简洁优雅。唯一的写作风险是系统复杂度高，正式论文中需要一个清晰的 system diagram 来帮助读者理解全流程。
+
+【概率估计】: [28% - 40%] 中位 34%
+
+【估计理由】:
+**上推因素**: (1) 研究问题定位精准，miracle step detection + PRM robustness 双重时效性；(2) routing 概念在文献中确实找不到直接先例；(3) 实验方案异常完备，远超多数 submission 的 proposal 阶段质量；(4) 对领域的把握深度令人印象深刻。
+**下拉因素**: (1) "组合式创新" 的感知风险——每个组件都有先例，审稿人可能认为集成本身 novelty 不足；(2) Z3 有效覆盖率的不确定性是系统级风险——如果仅 20-25% 的步骤经过 formal verification，整体效果可能只是 marginal improvement over neural-only baseline；(3) 端到端系统复杂度高（5+ 组件），负面结果的归因困难；(4) PRM 领域进展极快，执行期间可能出现更直接的竞争者。
+**中位 34% 的定位**: 这篇 proposal 在 "方向正确 + 方法合理 + 实验完备" 的基础上，有一个genuinely novel 的 routing 机制。但它并非那种让审稿人眼前一亮的 paradigm-shifting idea，而更像一个 solid engineering contribution with theoretical backing。在 AAAI 的接收标准下，它处于 "borderline accept" 区间——如果实验结果强劲（特别是 ablation 证明 learned routing 显著优于 naive fallback），中稿概率会向 40% 靠拢；如果 Z3 覆盖率低且 marginal gain 不显著，则可能滑向 28%。
+
+【主要风险】:
+1. **Z3 有效覆盖率不足**: 如果 pilot study 显示有效覆盖率仅 20-25%，formal leg 对整体性能的贡献可能微乎其微，使得 FRH-PRM 在数值上与 neural-only baseline（GenPRM）难以拉开差距。审稿人会质疑"为何不直接用更好的 neural verifier"。
+2. **"组合创新" 质疑**: 审稿人 #2/3 可能认为这是将 VeriCoT 的 Z3 验证 + GenPRM 的神经验证 + TRIM 的路由概念 + ARES 的聚合拼接在一起，各组件均有先例，集成的 intellectual contribution 有限。需要通过 ablation 强有力地证明 learned routing 带来的增益不可被更简单的替代方案复制。
+
+【实施评估】:
+  - **计算资源**: 中等偏高。Qwen3-32B 作为 neural leg 需要多卡 GPU（至少 2×A100-80G 用于推理，4-8×A100 用于 fine-tuning）；Z3 求解本身轻量（CPU），但 LLM autoformalization 需要额外推理开销。Formalizability classifier 的训练和推理开销较小。
+  - **数据需求**: 中等。需要 (1) FoVer-40K 数据（已公开）；(2) ProcessBench（已公开）；(3) MATH 训练集 bootstrap Z3-formalizability annotations（需要大量 LLM autoformalization 调用）；(4) MiracleStepBench 需要人工标注。
+  - **人工介入**: MiracleStepBench 构建需要数学背景的标注员，500+ samples 的标注 + inter-annotator agreement 计算。Back-translation audit 的 200+ 样本也需要专家审核。工作量约 2-3 人月（含标注员协调）。
+  - **训练需求**: (1) Formalizability classifier（轻量，数小时级）；(2) Qwen3-32B neural verifier fine-tuning（中等，数天级，需要 4-8 GPU）；(3) Joint optimization of router + neural verifier（需要设计联合训练 pipeline）。
+  - **新 Benchmark**: MiracleStepBench 是新构建的。500+ samples 规模偏小但对于 targeted benchmark 可接受。主要风险在于 inter-annotator agreement 和标注质量。
+  - **预估周期**: 4-6 个月。Pilot study (1 月) → 数据准备与标注 (1.5 月, 可与 pilot 部分重叠) → 模型训练与实验 (2 月) → 论文写作 (1 月)。考虑到 AAAI 2026 的投稿截线（通常 8 月），时间紧凑但可行。
+```
+
+Sources:
+- [RRM: Curing Miracle Steps in LLM Math Reasoning](https://arxiv.org/abs/2510.07774)
+- [GenPRM: Scaling Test-Time Compute of PRMs](https://arxiv.org/abs/2504.00891)
+- [VeriCoT: Neuro-symbolic CoT Validation](https://arxiv.org/abs/2511.04662)
+- [FoVer: Efficient PRM Training Data Synthesis](https://arxiv.org/abs/2505.15960)
+- [Safe: Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)
+- [Reward Under Attack: PRM Robustness](https://arxiv.org/abs/2603.06621)
+- [TRIM: Hybrid Inference via Targeted Routing](https://arxiv.org/abs/2601.10245)
+- [ARES: Probabilistic Soundness Guarantees](https://arxiv.org/abs/2507.12948)
+- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)
+- [PRoSFI: Formally Verifiable Reasoning](https://arxiv.org/abs/2603.29500)
+- [PRMBench](https://arxiv.org/abs/2501.03124)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient information to make a comprehensive evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- GenPRM (AAAI 2026, arXiv:2504.00891): 当前 SOTA 生成式 PRM，使用 CoT+代码验证，模型覆盖 1.5B-70B。是本 proposal 的核心 neural-only baseline。GenPRM 仍为纯神经网络方法，不具备形式验证能力，直接受到 Reward Under Attack 所揭示的风格化攻击影响。
+- RRM / Rubric Rewards (ACL 2026, arXiv:2510.07774): 最直接的 miracle step 竞品。通过 Gemini 生成的 rubric 评分减少 71% miracle steps，Verified Pass@1024 从 26.7%→62.6%。但依赖启发式/模型依赖的 miracle 定义（非形式化定义），且需外部大模型 (Gemini) 生成 rubric。Proposal 的形式化非蕴含定义是对 RRM 的严格化升级。
+- VeriCoT (arXiv 2025, arXiv:2511.04662): 最直接的技术竞品——同样使用 Z3/SMT 做 CoT 推理步骤的逻辑一致性验证。关键差异：(1) 无学习路由，对所有步骤统一形式化；(2) 非 PRM 框架，不产生可用于 reranking/RL 的 reward；(3) 评估域为 ProofWriter/LegalBench/BioASQ，非数学推理。Proposal 的 novelty claim 相对 VeriCoT 成立。
+- FoVer (ACL 2026 Findings, arXiv:2505.15960): 使用 Z3/Isabelle 做 PRM 训练数据合成，不在推理时做验证。Proposal 正确引用为训练数据来源和 formalizability classifier 的 bootstrap pipeline。
+- Safe (ACL 2025, arXiv:2506.04592): Lean 4 步级验证框架，~81% formalizability，4-state taxonomy。无路由机制。提供了 Lean 方向的 coverage 参考点。
+- ThinkPRM (arXiv 2025, arXiv:2504.16828): 生成式长 CoT 验证，仅需约 1K 合成验证 CoT + 8K 过程标签。在 ProcessBench、MATH-500、AIME'24 上表现优异。重要 baseline。
+- ARES (EMNLP 2025, arXiv:2507.12948): 提供 Hoeffding-bounded 概率正确性保证，72.1% Macro-F1，+8.2 points。Proposal 将其用于聚合层，合理。
+- TRIM (arXiv 2026, arXiv:2601.10245): 步级路由，但在不同 size 的 LLM 之间路由（小模型→大模型），而非验证器类型之间。路由概念相近但目标不同。
+- PRoSFI (arXiv 2026, arXiv:2603.29500): Lean-only 结构化中间表示用于可验证推理。7B 模型级别，与 proposal 的 Z3 路径互补。
+- Reward Under Attack (arXiv 2026, arXiv:2603.06621): 揭示 PRM 的核心漏洞——43% 的 reward 来自风格捷径，无效轨迹获得 >0.9 reward。直接动机化了 proposal 的对抗鲁棒性主张。
+- Z3 autoformalization 覆盖率现状: StepFun-Formalizer-32B 在 FormalMATH-Lite 上 BEq@1 为 40.5%；GPT-O3 在形式化数学上仅解决 25.2%。这暗示 proposal 估计的 30-50% Z3 有效覆盖率偏乐观，实际可能在 20-40% 区间。
+
+- 调研总结: PRM 领域正处于从纯神经网络向形式验证增强过渡的关键节点。形式验证用于 PRM 训练数据（FoVer）和独立验证（VeriCoT、Safe）均有先例，但**推理时形式-神经混合路由 PRM** 确实是空白。Miracle step 问题已被 RRM 标识但仅有启发式解决方案。Proposal 填补了这一具体空白，定位精准。
+
+【整体印象】:
+作为审稿人，我的第一反应是：这是一份对领域有深刻理解、技术设计精细、实验规划异常详尽的 proposal。它识别了一个真实且重要的问题（miracle steps + PRM 脆弱性），提出了一个原理上优雅的解决方案（形式化非蕴含检测 + 学习路由），并且以罕见的严谨度规划了评估。我会倾向 weak accept，但需要看到 Z3 有效覆盖率的实际数据来确认核心假设是否成立。主要顾虑是：(1) 形式化覆盖率可能不足以在聚合指标上产生显著差异；(2) 审稿人可能认为这是现有组件（FoVer pipeline + TRIM routing + VeriCoT Z3 checking + GenPRM architecture）的工程组合。
+
+【核心贡献】:
+1. **形式化非蕴含作为 miracle step 检测的操作化定义**——将 miracle step 从启发式概念（RRM 的 rubric 评分）提升为可形式验证的逻辑概念（predecessors ∪ T ⊭ s），这是概念层面的实质贡献。
+2. **参数化背景理论 T**——将 miracle step 检测从二元判断变为可配置框架，允许分析 LLM 如何调用隐式数学知识。这提供了一个新的分析视角，超越了简单的对错判断。
+3. **学习路由实现形式-神经混合 PRM**——首个在推理时在不同类型验证器之间路由的 PRM 系统。
+4. **条件可证明对抗鲁棒性**——对于成功且忠实形式化的步骤，Z3 判定对表面形式扰动不变。这为 Reward Under Attack 揭示的问题提供了原理性的（而非经验性的）部分解决方案。
+
+贡献对领域的价值：中等偏高。形式化定义和参数化 T 是概念贡献；混合路由 PRM 是系统贡献；条件鲁棒性是理论贡献。综合起来，如果实验能支撑，这是一篇有多维度贡献的工作。
+
+【方法合理性】:
+方法整体合理，各组件的技术选择有清晰的理由：
+
+- **Z3 over Lean 的选择**合理——Z3 是自动化求解器，无需证明搜索，在可判定片段内完备，延迟低。Lean 需要证明合成（本身是 open problem），引入了混淆失败模式。这是一个有原则的 precision-over-coverage 权衡。
+- **学习路由 vs. 朴素 fallback**有合理动机——避免对不可形式化步骤的徒劳尝试，节省计算。ablation 中的 naive-try-formal-first 变体和 oracle routing 上界验证设计良好。
+- **ARES 聚合**选择合理——提供概率保证，Z3 验证步骤的零方差特性正确利用。
+- **CNF 否定可导出性检验**（合取前驱断言 ∪ T 与否定步骤断言，UNSAT=蕴含）是标准的形式化验证方法，技术上正确。
+
+**潜在质疑**：
+1. 更简单的替代方案：是否只用"尝试 Z3，失败则回退神经网络"就足够了？proposal 中的 naive fallback ablation 正好验证这一点，设计周到。
+2. 自动形式化忠实度：back-translation audit 是否足够验证语义等价？这仍是代理指标，而非形式化验证的忠实度保证——存在 back-translation 成功但语义微妙偏差的风险。
+3. 路由器训练数据质量：formalizability classifier 的训练依赖 LLM 自动形式化的成功/失败标签，但失败原因可能不仅是步骤不可形式化（可能是 LLM 形式化能力不足）。这个混淆需要在分析中被讨论。
+
+【5 维度打分】:
+  1. 研究问题: 【强】 — Miracle steps 是 LLM 数学推理中被文献明确记录的实质性问题（RRM 量化了 71% 的减少空间）。PRM 对抗鲁棒性已被 Reward Under Attack 揭示为系统性缺陷（43% reward 来自风格捷径）。这两个问题的交叉——用形式验证同时解决 miracle step 检测和 PRM 鲁棒性——具有明确的研究价值。问题既有理论深度（形式化非蕴含）又有实践意义（PRM 可靠性影响下游 RL 训练）。
+
+  2. 方法与创新: 【中偏强】 — Novelty claim 经调研确认成立：无先例工作在推理时实现形式-神经路由 PRM，VeriCoT 无路由无 PRM 集成，FoVer 仅用于训练数据，TRIM 在模型大小间路由而非验证器类型。参数化 T 是一个真正新颖的分析框架。但单个组件（Z3 autoformalization、generative PRM、learned routing）均非原创，组合创新的评价取决于审稿人偏好——有些审稿人重视系统性组合中的新洞见，有些可能认为这是"工程拼接"。"条件可证明鲁棒性"的 claim 需要更明确的形式化陈述和证明（目前只有一句话描述）。
+
+  3. 实验设计: 【强】 — 实验规划的深度在 proposal 阶段罕见。11 个 ablation 变体覆盖了所有关键消融（路由 vs. 无路由、Z3-only、neural-only、oracle 上界、模型大小隔离、聚合方式变体）。4 层 baseline 体系（neural PRM → formal-enhanced → miracle-specific → zero-shot）全面且公平，涵盖了领域内所有主要竞品（GenPRM、ThinkPRM、FoVer-PRM、Safe、PRoSFI、RRM）。计算归一化比较（iso-compute Pareto frontier）、T-sensitivity 分析、对抗鲁棒性评估（PRM-BiasBench）、Z3 pilot study 的 go/no-go 设计均显示方法论成熟。MiracleStepBench 构建有清晰的两阶段标注协议和质量指标（Cohen's κ ≥ 0.7）。唯一的弱点是 500+ 样本的 MiracleStepBench 规模偏小。
+
+  4. 可行性: 【中】 — 这是最大的不确定性维度。核心风险：
+     (a) Z3 有效覆盖率：proposal 估计 30-50%，但文献中的自动形式化成功率（StepFun 40.5% BEq@1, GPT-O3 25.2%）暗示这可能偏乐观，尤其考虑 Z3 仅处理可判定片段。go/no-go 阈值 20% 是诚实的但也说明存在项目失败风险。
+     (b) 自动形式化 pipeline 的工程量不小——需要构建 LLM→Z3 的转换、back-translation 审计、formalizability classifier 训练数据的 bootstrap。
+     (c) MiracleStepBench 构建需要人工标注，target Cohen's κ ≥ 0.7 需要多轮迭代和标注员培训。
+     (d) Qwen3-32B 的微调和推理成本非 trivial。
+     (e) 时间压力：AAAI 2026 截稿前完成 pilot study + 全部实验 + benchmark 构建 + 撰写，时间紧张。
+
+  5. 写作与呈现: 【强】 — Proposal 结构清晰，逻辑链完整：问题定义→研究格局→方法→评估，每个环节都有充分的理由支撑。与竞品的差异化分析（特别是 VeriCoT 的 4 点对比）具体且令人信服。技术细节精确（CNF 否定、Hoeffding bounds、QF_LRA/QF_NIA）同时保持可读性。引用密度高但不堆砌，每个引用都服务于论证。Go/no-go 设计和 fallback 方案（Z3+Lean hybrid / cvc5）显示了成熟的项目管理意识。
+
+【概率估计】: [28% - 43%] 中位 35%
+
+【估计理由】:
+核心推理：这份 proposal 在研究问题的重要性（强）、novelty 的可辩护性（中偏强）、实验设计的严谨性（强）、写作质量（强）上均达到或超过 AAAI 可接收论文的门槛水平。将概率从 baseline（AAAI 接收率 ~23%）向上调整的因素：(1) 填补了明确的技术空白（formal-neural routing PRM），(2) 实验设计深度超越同行，(3) 同时回应了两个 timely 问题（miracle steps + PRM 鲁棒性），(4) 参数化 T 提供了超越单纯性能提升的分析价值。向下拉的因素：(1) Z3 覆盖率不确定性可能导致核心结果不如预期，(2) "组合现有组件"的审稿人感知风险，(3) 条件鲁棒性 claim 的形式化程度不足可能被质疑，(4) 实际改进幅度可能因形式化覆盖有限而 marginal（如果 miracle steps 不集中在可形式化步骤中）。综合来看，这是一篇高于平均投稿质量、但存在实质性执行风险的 proposal，中位估计 35%。
+
+【主要风险】:
+1. **Z3 有效覆盖率不足**：如果 autoformalization × Z3 solve rate 低于 20%，形式化验证腿覆盖的步骤太少，在聚合指标（MATH BoN、ProcessBench F1）上无法产生统计显著的改进，整个系统退化为"带少量 Z3 点缀的 GenPRM"。此时 iso-compute 比较可能不利，审稿人会质疑系统复杂性是否 justified。
+2. **"组件拼接"质疑**：审稿人可能认为 FRH-PRM = FoVer autoformalization + TRIM routing idea + VeriCoT Z3 checking + GenPRM neural verifier + ARES aggregation，每个组件都有先例，组合的 intellectual contribution 不足以支撑顶会论文。需要在论文中强力论证组合产生的 emergent properties（如参数化 T 的分析能力、条件鲁棒性保证）是非 trivial 的贡献。
+
+【实施评估】:
+  - 计算资源: 中高。Qwen3-32B 微调需要多卡 A100/H100（至少 4×A100 80G），Z3 自动形式化的 LLM 调用（可用更小模型），Z3 求解本身计算量低（sub-second per step）。Best-of-N 评估（N=256）需要大量推理计算。估计总 GPU 需求：200-500 A100 小时用于训练 + 500-1000 A100 小时用于评估。
+  - 数据需求: FoVer-40K（公开）+ ProcessBench（公开）+ MATH 训练集（公开）+ 自动生成的 Z3-formalizability 标注。需要人工标注 MiracleStepBench（500+ samples，2-3 名标注员，估计 2-4 周）。200+ 人工审计 autoformalization 忠实度样本。
+  - 人工介入: 中。MiracleStepBench 标注（需要数学功底的标注员）、autoformalization 忠实度审计、T 配置设计。
+  - 训练需求: 需要训练 (1) formalizability classifier（轻量），(2) Qwen3-32B neural verifier fine-tuning（主要训练成本），(3) 可能需要联合优化 router + verifier。
+  - 新 Benchmark: 是。MiracleStepBench（500+ samples，两阶段标注），是 proposal 的重要贡献但也是重要工作量。
+  - 预估周期: 4-6 个月。Z3 pilot study (2-3 周) → formalizability classifier + autoformalization pipeline (3-4 周) → neural verifier fine-tuning (2-3 周) → MiracleStepBench 构建 (3-4 周，可并行) → 全面评估 (3-4 周) → 写作 (2-3 周)。考虑到 AAAI 2026 截稿时间，时间相当紧张。
+```
+
+Sources:
+- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)](https://arxiv.org/abs/2504.00891)
+- [Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026)](https://arxiv.org/abs/2510.07774)
+- [VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks](https://arxiv.org/abs/2511.04662)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)](https://arxiv.org/abs/2505.15960)
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)
+- [Safe: Enhancing Mathematical Reasoning via Step-aware Formal Verification (ACL 2025)](https://arxiv.org/abs/2506.04592)
+- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)
+- [ARES: Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)](https://arxiv.org/abs/2507.12948)
+- [TRIM: Hybrid Inference via Targeted Stepwise Routing (arXiv 2026)](https://arxiv.org/abs/2601.10245)
+- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning (arXiv 2026)](https://arxiv.org/abs/2603.29500)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Formalizability-Routed Hybrid PRMs for Miracle Step Detection
+
+## Core Problem
+
+Miracle steps — reasoning steps whose conclusions are correct but not logically derivable from their predecessors — are a critical failure mode in LLM mathematical reasoning. We propose FRH-PRM, a Process Reward Model that routes each step to formal (Z3) or neural verification via a learned formalizability score. Our central contributions are:
+
+1. **Operationalizing formal non-entailment as miracle step detection within a PRM framework.** We define: step s is a miracle step relative to background theory T iff ¬(predecessors ∪ T ⊧ s). Prior work (RRM, ACL 2026) detects miracles via Gemini-generated rubric heuristics; VeriCoT (arXiv 2025) uses Z3 entailment checking but without formalizability-based routing, without PRM integration, and only on logic/legal/biomedical tasks. FRH-PRM is the first to embed formal derivability checking into a PRM with learned routing for mathematical reasoning.
+
+2. **Parameterized detection via background theory T.** The choice of T (accepted axioms/theorems) defines the explicitness threshold: T=∅ demands every inference be explicit; T=basic-arithmetic permits standard computational steps; T=extended-algebra permits algebraic identities. This parameterization turns miracle step detection from a binary judgment into a configurable framework, enabling analysis of how LLMs invoke implicit mathematical knowledge.
+
+3. **Conditional certifiable adversarial robustness.** For steps that are both successfully and faithfully autoformalized, the Z3 derivability verdict is provably invariant to surface-form perturbations — it depends only on logical content. This provides principled defense against the stylistic exploitation documented by Reward Under Attack (arXiv 2026), where 43% of neural PRM reward derives from stylistic shortcuts and invalid trajectories receive >0.9 reward.
+
+## Research Landscape
+
+**Neural PRMs and their vulnerabilities.** GenPRM (AAAI 2026) and ThinkPRM (arXiv 2025) represent SOTA generative PRMs using CoT+code verification, but remain purely neural and thus vulnerable to the attacks documented in Reward Under Attack (arXiv 2026). ARES (EMNLP 2025) provides Hoeffding-bounded soundness guarantees but uses neural entailment checkers.
+
+**Formal verification for PRM.** FoVer (ACL 2026 Findings) uses Z3/Isabelle for PRM training data synthesis (not inference-time verification). Safe (ACL 2025) provides Lean 4-based step-level verification with ~81% formalizability and 4-state taxonomy but no routing. PRoSFI (arXiv 2026) is Lean-only with structured intermediaries.
+
+**Routing.** TRIM (arXiv 2026) routes across LLM sizes based on PRM uncertainty, not verifier types. No prior work routes between formal and neural verifiers at inference time.
+
+**Miracle step detection.** RRM (ACL 2026) reduces miracle steps 71% via Gemini rubric rewards but relies on heuristic, model-dependent definitions and an external large model.
+
+**Key differentiation from VeriCoT (arXiv 2025).** VeriCoT formalizes CoT steps to FOL (SMT-LIB) and checks Z3 entailment — the same logical operation as our formal leg. Critical differences: (1) VeriCoT applies formalization uniformly to all steps with no learned routing, wasting compute on unformalizable steps and producing uninformative "Untranslatable" labels; FRH-PRM's learned router avoids futile attempts and provides confidence-aware hybrid verdicts. (2) VeriCoT is a standalone validation tool without PRM scoring; FRH-PRM produces calibrated step-level rewards for best-of-N reranking and RL training. (3) VeriCoT evaluates on ProofWriter/LegalBench/BioASQ; FRH-PRM targets mathematical reasoning (MATH, AIME, ProcessBench). (4) VeriCoT handles background knowledge ad-hoc via premise extraction; FRH-PRM explicitly parameterizes T.
+
+## Proposed Approach
+
+**Formalizability Classifier.** Lightweight classifier predicting per-step Z3-formalizability. Training data bootstrapped via FoVer-style pipeline (ACL 2026 Findings): LLM attempts Z3 autoformalization of MATH/ProcessBench reasoning steps, recording success/failure as labels. Design choice: Z3 over Lean as a principled precision-over-coverage trade-off — Z3 is an automated solver requiring no proof search, complete within decidable fragments (QF_LRA, QF_NIA, propositional), with sub-second latency. Lean offers broader coverage (~81% per Safe) but requires proof synthesis (an open problem) and introduces proof-search failure as a confounding failure mode. We estimate Z3 effective coverage at 30–50% for math reasoning steps; pilot study will quantify.
+
+**Formal Leg.** High-formalizability steps are autoformalized to Z3 assertions via LLM, then verified via CNF-negation derivability: conjoin predecessor assertions ∪ T with negated step assertion; UNSAT = entailed, SAT = potential miracle, UNKNOWN/timeout(30s) = fallback to neural. Autoformalization faithfulness is verified via back-translation audit (see Evaluation).
+
+**Neural Leg.** Low-formalizability steps and formal-leg fallbacks route to fine-tuned Qwen3-32B generative verifier (GenPRM architecture, AAAI 2026): CoT reasoning + code verification.
+
+**Aggregation.** Step verdicts aggregate via ARES (EMNLP 2025) premise-configuration sampling with Hoeffding chain-level bounds. For Z3-verified steps, verdicts are deterministic (variance=0) — a degenerate case of bounded random variables; Hoeffding bounds remain valid but we additionally report tightness analysis for formal-dominated vs. neural-dominated chains.
+
+**Training.** Joint optimization of router + neural verifier on FoVer-40K (ACL 2026 Findings) + ProcessBench + bootstrapped Z3-formalizability annotations from MATH training data.
+
+## Evaluation Plan
+
+**Benchmarks.** (1) ProcessBench — step-level error detection F1; (2) PRMBench (ACL 2025, 6,216 problems, 83,456 step labels) — fine-grained error type analysis; (3) MiracleStepBench (new) — miracle step detection F1; (4) MATH-500, AIME'24, AMC'23 — best-of-N reranking pass@1 (N=8/64/256).
+
+**MiracleStepBench Construction.** Two-phase annotation: (Phase 1) Human annotators label steps as miracle/non-miracle based on "Is the conclusion derivable from preceding steps and standard mathematical knowledge?" — 500+ samples, target Cohen's κ ≥ 0.7. (Phase 2) Z3 formal verification run as independent signal; report agreement rate between human intuition and formal verdict. Initial candidate pool from RRM (ACL 2026) annotations with rubric scores below threshold; threshold sensitivity analysis included. Report: problem count, step count, miracle step ratio, difficulty distribution, subdomain breakdown.
+
+**Baselines (tiered).**
+- Tier 1 (neural-only PRMs): GenPRM (AAAI 2026), ThinkPRM (arXiv 2025), Qwen2.5-Math-PRM-7B, Math-Shepherd
+- Tier 2 (formal-enhanced): FoVer-PRM (ACL 2026 Findings), Safe (ACL 2025), PRoSFI (arXiv 2026)
+- Tier 3 (miracle-step specific): RRM (ACL 2026)
+- Tier 4 (zero-shot): LLM-as-Judge (GPT-4o)
+
+**Compute-Normalized Comparison.** Report FLOPs, wall-clock time, and API cost per chain. Iso-compute comparison: under matched budget, FRH-PRM vs. GenPRM/ThinkPRM with additional sampling. Performance-vs-compute Pareto frontier plotted.
+
+**Ablation Study.**
+
+| Variant | ProcessBench F1 | MiracleStepBench F1 | MATH BoN@64 |
+|---|---|---|---|
+| FRH-PRM (full, Qwen3-32B neural leg) | — | — | — |
+| FRH-PRM (Qwen3-7B neural leg) | — | — | — |
+| Naive try-formal-first fallback | — | — | — |
+| Z3-only (skip unformalizable) | — | — | — |
+| Neural-only (all Qwen3-32B) | — | — | — |
+| Random routing (50/50) | — | — | — |
+| Oracle routing (ground-truth formalizability) | — | — | — |
+| ARES → majority vote | — | — | — |
+| ARES → min | — | — | — |
+| ARES (neural-only resampling) | — | — | — |
+| FRH-PRM + back-translation filter | — | — | — |
+
+Key ablation rationale: Naive fallback tests whether learned routing adds value beyond avoiding Z3 timeouts. Oracle routing provides routing accuracy ceiling. 7B neural leg isolates routing contribution from model-size effects. Back-translation filter tests autoformalization faithfulness impact.
+
+**T-Sensitivity Analysis.** Evaluate miracle step detection under three background theory configurations: T=∅ (strict: every inference explicit), T=basic-arithmetic (permits standard computation), T=extended-algebra (permits algebraic identities). Report miracle step ratio and detection precision/recall under each T.
+
+**Adversarial Robustness.** Use PRM-BiasBench (Reward Under Attack, arXiv 2026). Per-leg analysis: Z3 leg robustness (expected invariant to style attacks for faithfully formalized steps) vs. neural leg (expected vulnerable). Router attack: test whether adversarial paraphrases shift formalizability scores to misroute steps. Report reward inflation rate and attack success rate.
+
+**Z3 Pilot Study.** Before full experiments: autoformalize + Z3-verify 500 MATH steps and 500 ProcessBench steps. Report: (1) autoformalization success rate, (2) Z3 solve rate (30s timeout), (3) effective coverage = (1)×(2), (4) autoformalization faithfulness rate (200+ human-audited samples, semantic equivalence between NL step and Z3 assertion). Analyze by subdomain (arithmetic/algebra expected high; geometry/combinatorics expected low). Go/no-go: effective coverage ≥ 20% on MATH, ≥ 15% on ProcessBench; below threshold → fallback to Z3+Lean hybrid backend or cvc5.
+
+**Formalizability Distribution Analysis.** Report per-subdomain formalizability score distributions as a diagnostic lens on LLM reasoning styles: high formalizability = logically transparent steps; low = intuitive/heuristic steps.
+
+## Key References
+
+- Curing Miracle Steps in LLM Math Reasoning with Rubric Rewards (ACL 2026)
+- Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)
+- GenPRM: Scaling Test-Time Compute of PRMs via Generative Reasoning (AAAI 2026)
+- Safe: Mathematical Reasoning via Step-aware Formal Verification (ACL 2025)
+- Process Reward Models That Think (arXiv 2025)
+- Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)
+- TRIM: Hybrid Inference via Targeted Stepwise Routing (arXiv 2026)
+- Reward Under Attack: Robustness of Process Reward Models (arXiv 2026)
+- PRoSFI: Formally Verifiable Reasoning via Structured Intermediaries (arXiv 2026)
+- VeriCoT: Neuro-symbolic CoT Validation via Logical Consistency (arXiv 2025)
+- PRMBench: Fine-grained Benchmark for Process-Level Reward Models (ACL 2025)
+- Qwen2.5-Math-PRM (ProcessBench baseline)
+- Math-Shepherd (baseline)
+- PRM800K (baseline data reference)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "58ad087e-511d-4383-a453-12b2fb3c6bb2",
+  "type": "user",
+  "uuid": "b8493ec7-bbbe-467c-98b4-cb7a399eb79d",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T09:57:35.518Z_
+
+```json
+{
+  "parentUuid": "b8493ec7-bbbe-467c-98b4-cb7a399eb79d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "e29f23c4-0ed3-4930-aa9b-8fb55463e394",
+  "timestamp": "2026-05-29T09:57:35.518Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T09:57:35.518Z_
+
+```json
+{
+  "parentUuid": "e29f23c4-0ed3-4930-aa9b-8fb55463e394",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0ea96b74-1882-4b4f-b83e-b90038d4f5e8",
+  "timestamp": "2026-05-29T09:57:35.518Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have comprehensive research coverage. Let me compile the…",
+  "leafUuid": "0ea96b74-1882-4b4f-b83e-b90038d4f5e8",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Synthesize three PRM reviewer assessments into meta judgment",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T09:58:07.304Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews and synthesize them as Meta Judge.
+
+**Review 1**: [30% - 44%] 中位 37%
+**Review 2**: [28% - 40%] 中位 34%
+**Review 3**: [28% - 43%] 中位 35%
+
+三个中位数: 37%, 34%, 35%
+Mean = 35.3%, Median = 35%
+Std of midpoints: sqrt(((37-35.33)^2 + (34-35.33)^2 + (35-35.33)^2)/3) = sqrt((2.78 + 1.78 + 0.11)/3) = sqrt(1.56) ≈ 1.25%
+
+
+The standard deviation is quite low at 1.25%, indicating strong agreement across reviewers. Now I'm going through each rubric dimension to identify consensus patterns. The research question receives unanimous strong ratings from all three reviewers, the methodology shows consistent medium-to-strong assessments across the board, and experimental design is unanimously rated as strong. I'm continuing to check the remaining dimensions for consensus. 现在我看到了几个关键的共识风险点：Z3的覆盖率不确定性、自动形式化的保真度假设，以及条件鲁棒性中"条件"定义可能引发的质疑。此外，MiracleStepBench的样本规模和联合训练的策略细节也存在不足。有趣的是，R3提到了具体的自动形式化成功率数据，这与其他评审者的观点形成了对比。
+
+综合三位评审者的意见，他们在核心判断上高度一致——这是一篇边界线上的论文，倾向于弱接受，关键取决于Z3验证覆盖率的实际表现。考虑到评审意见的高度一致性（标准差约1.25%），我应该采用接近中位数的概率估计，并相应地缩小置信区间。三位评审者中位数的中位数约为35%。
+
+根据高一致性的指导原则，我将概率区间设定在29%到42%之间，中位数为35%。现在我需要综合所有三位评审者的意见来撰写实现评估部分。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ea96b74-1882-4b4f-b83e-b90038d4f5e8",
+  "isSidechain": false,
+  "requestId": "req_011CbWfLjyhGEU7kqwU6iJeM",
+  "type": "assistant",
+  "uuid": "43320db2-0c7a-440f-a08d-4c9b027dba21",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXKwjs6xYqmQC4a6JXz7Wf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21788,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 4224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4224,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 21788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-29T09:59:15.135Z_
+
+【阶段】: Meta Judge
+【三次中位】: [37%, 34%, 35%]  std=1.25%
+【共识维度】:
+- 研究问题: **强** (3/3) — 三位审稿人一致认为 miracle steps + PRM 鲁棒性危机构成了清晰、紧迫且有实际影响的研究问题，时效性极佳
+- 方法与创新: **中偏强** (3/3) — 三位一致确认 learned formalizability routing 在文献中无直接先例（VeriCoT 无路由、TRIM 路由 model size、Safe/PRoSFI 为 Lean-only），novelty claim 成立；但同时三位均指出"组合式创新"感知风险（Z3≈VeriCoT + neural≈GenPRM + routing≈TRIM + aggregation≈ARES），各组件均非原创
+- 实验设计: **强** (3/3) — 三位不约而同用"罕见的完备度""在 proposal 阶段见过的最完备"等措辞，11 个 ablation、四级 baseline、compute-normalized Pareto、pilot study go/no-go 均获高度认可
+- 可行性: **中** (3/3) — 三位一致将 Z3 有效覆盖率列为系统级核心风险，均认为 30-50% 估计偏乐观，pilot study 的 go/no-go 设计缓解但不消除此风险
+- 写作与呈现: **强** (3/3) — 结构清晰、论证链完整、差异化分析精准（特别是 VeriCoT 四点对比），技术细节充分
+- Z3 覆盖率风险: **致命级关注** (3/3) — 三位均将此列为首要风险，均认为若有效覆盖率仅 20-25%，formal leg 贡献将边际化，核心价值论证失效
+- "组合式创新"感知: **中等风险** (3/3) — 三位均提出此质疑但也均认为 routing 概念本身确有差异化空间
+- Autoformalization faithfulness: **中等风险** (3/3) — 三位均指出 back-translation audit 是代理指标，难以完全保证语义等价
+- 条件鲁棒性"条件"过强: **中等风险** (2/3, R1+R3) — 条件可证明鲁棒性依赖"成功且忠实形式化"假设，实际覆盖有限
+- MiracleStepBench 规模偏小: **轻微风险** (2/3, R2+R3) — 500+ samples 对于 targeted benchmark 可接受但偏小
+- Joint training 细节不足: **轻微风险** (2/3, R1+R2) — router + neural verifier 联合优化策略未详细讨论
+
+【异常维度】:
+- R3 独有：引用了具体 autoformalization 成功率数据（StepFun 40.5% BEq@1, GPT-O3 25.2%），用于论证 30-50% 估计偏乐观 → 有文献支撑的有效论据，应适度采纳（加强覆盖率风险的权重）
+- R1 独有：提到"RRM 风格 rubric rewards + Z3"作为更简单替代方案 → 有效但 proposal 已部分回应（RRM 是 Tier 3 baseline）
+- R2 独有：强调端到端 5+ 组件的错误传播累积 → 有效的系统级质疑，但非致命
+- R3 独有：指出 formalizability classifier 训练数据的混淆问题（Z3 形式化失败 ≠ 步骤不可形式化，可能只是 LLM 能力不足） → 有效的技术性洞察，值得关注但不改变整体判断
+
+【最终概率】: [29% - 42%] 中位 35%
+【一致性】: 高（std=1.25%，三位审稿人在所有 5 个 rubric 维度上判决完全一致，概率区间高度重叠）
+
+【综合理由】:
+三份评审展现出罕见的高度一致性——不仅中位概率集中在 34-37% 的窄带内（std=1.25%），而且在所有 5 个 rubric 维度上判决完全相同（强/中偏强/强/中/强）。这种收敛大幅增加了估计的置信度。
+
+**概率锚定逻辑**：
+
+1. **Idea 质量天花板**：研究问题=强、方法与创新=中偏强。这个组合对应的天花板约 42-45%。Novelty 的"中偏强"而非"强"是关键限制因素——三位审稿人一致认为 routing 概念虽无直接先例，但核心组件均为已有方法的重新组合，不构成根本性方法论突破。参数化 T 和条件鲁棒性是有价值的附加贡献，但不足以将 novelty 推至"强"。
+
+2. **实验完备性地板**：实验设计=强，这是 proposal 最大的加分项，将地板从 AAAI baseline (~23%) 推至 ~29%。四级 baseline 覆盖全面、11 个 ablation 设计精巧、compute-normalized 对比和 pilot study 展示了成熟的方法论，这在同行投稿中具有显著竞争优势。
+
+3. **可行性折扣**：可行性=中，三位审稿人均将 Z3 有效覆盖率列为首要风险。R3 引用的具体数据（StepFun 40.5%, GPT-O3 25.2%）为覆盖率偏乐观的判断提供了文献支撑。若覆盖率低于阈值，formal leg 的贡献边际化将削弱核心价值主张。此风险将中位从天花板区域拉至 35%。
+
+4. **处理异常维度**：R3 的 autoformalization 成功率数据是唯一有文献支撑的异常论据，已通过略微加强覆盖率风险权重纳入（这也是最终中位偏向 R2/R3 的 34-35% 而非 R1 的 37% 的原因）。其他异常维度（错误传播、classifier 混淆）是有效但非决定性的补充论据。
+
+5. **最终区间**：鉴于高一致性，将三份评审的合集区间 [28%-44%] 适度收窄至 [29%-42%]。下界 29% 对应：审稿人认定为系统级组合+Z3 覆盖率不足+marginal improvement；上界 42% 对应：pilot study 覆盖率 ≥40% + learned routing 显著优于 naive fallback + 参数化 T 产出有意义的分析洞见 + compute-normalized Pareto 优势。
+
+【建议】: 边缘（Borderline — 质量高于平均投稿，但核心价值主张依赖于尚未验证的经验性前提，执行风险显著）
+
+【实施评估】:
+  - 计算资源: **中高**。(a) Qwen3-32B fine-tuning 需 4-8×A100-80G，估计训练 200-500 A100 小时；(b) Z3 autoformalization 的 LLM 推理调用（可用较小模型降低成本）；(c) Z3 求解本身轻量（sub-second per step, CPU 即可）；(d) Best-of-N 评估（N=256）需大量推理计算，估计 500-1000 A100 小时；(e) Formalizability classifier 训练开销可忽略。总计约 700-1500 A100 小时。
+  - 数据需求: **中等**。公开可得：FoVer-40K、ProcessBench、MATH/AIME/AMC、PRM-BiasBench、PRMBench。需自行构建：bootstrapped Z3-formalizability annotations（LLM 批量调用）、MiracleStepBench（500+ 人工标注样本）。数据获取无硬障碍。
+  - 人工介入: **中等**。(a) MiracleStepBench 标注需 2-3 名具数学背景的标注员，500+ 样本 + Cohen's κ 校准可能需多轮迭代，估计 2-4 周；(b) Autoformalization faithfulness 人工审计 200+ 样本，需专家审核语义等价性；(c) 参数化 T 的配置设计需领域专家参与。总人工成本约 2-3 人月。
+  - 训练需求: **需要模型训练**。(a) Formalizability classifier（轻量，数小时级）；(b) Qwen3-32B neural verifier fine-tuning（主要成本，数天级）；(c) Router + neural verifier 联合优化（训练策略尚需设计，三位审稿人中两位指出此处细节不足）。
+  - 新 Benchmark: **需构建 MiracleStepBench**。500+ 样本、两阶段标注协议、Cohen's κ ≥ 0.7 目标。规模偏小（两位审稿人指出），但作为 targeted diagnostic benchmark 可接受。标注质量控制是主要瓶颈。
+  - 预估周期: **5-7 个月**（综合三位审稿人估计取中偏保守）。Pilot study (1-1.5 月) → 数据构建与标注 (1.5-2 月, 部分可并行) → 模型训练与调试 (1.5-2 月) → 全面实验与分析 (1-1.5 月) → 论文撰写与修改 (1 月)。需注意 AAAI 2026 截稿时间约束，时间紧张但在计算资源到位的前提下可行。关键前置条件：pilot study 须通过 go/no-go 标准（有效覆盖率 ≥ 20%），否则需启用 fallback 方案（Z3+Lean hybrid 或 cvc5），这将额外增加 1-2 月开发时间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43320db2-0c7a-440f-a08d-4c9b027dba21",
+  "isSidechain": false,
+  "requestId": "req_011CbWfLjyhGEU7kqwU6iJeM",
+  "type": "assistant",
+  "uuid": "7a805c0a-64fe-4132-b6e6-fd0dffbde82d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXKwjs6xYqmQC4a6JXz7Wf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21788,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 4224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4224,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 21788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have comprehensive research coverage. Let me compile the…",
+  "leafUuid": "7a805c0a-64fe-4132-b6e6-fd0dffbde82d",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Synthesize three PRM reviewer assessments into meta judgment",
+  "sessionId": "5d7c736f-e5e7-4f1c-b305-cff2bbe2a865"
+}
+```
+
+---

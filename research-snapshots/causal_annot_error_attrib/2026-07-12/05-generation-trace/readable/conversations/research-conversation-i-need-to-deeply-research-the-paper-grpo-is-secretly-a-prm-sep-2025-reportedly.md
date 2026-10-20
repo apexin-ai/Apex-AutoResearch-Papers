@@ -1,0 +1,3472 @@
+# Research conversation: I need to deeply research the paper "'GRPO is Secretly a PRM'" (Sep 2025, reportedly ICLR-submitted) which proves that s
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-af67488ccce58713c.jsonl`
+- **Structured JSON:** [`f32b244b89bd51904ac0.json`](../../sessions/f3/f32b244b89bd51904ac0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T05:08:03.866Z_
+
+I need to deeply research the paper "'GRPO is Secretly a PRM'" (Sep 2025, reportedly ICLR-submitted) which proves that standard GRPO already implicitly performs step-level credit assignment via Monte Carlo PRM. This is critical because it potentially undermines the value proposition of using an explicit PRM for step-level rewards in GRPO training.
+
+Please:
+1. Search the web for "GRPO is secretly a PRM" 2025
+2. Also try "GRPO implicit process reward model step-level credit assignment"
+3. Try "GRPO Monte Carlo PRM 2025"
+4. Fetch and read the actual paper once found
+5. Report back:
+   - Full title and authors
+   - Core claim: how exactly does GRPO implicitly perform step-level credit assignment?
+   - What does this mean for explicit PRM-based GRPO training? Does it make explicit PRMs redundant for reward computation?
+   - Does it say anything about whether PRMs still have value for OTHER purposes (e.g., error diagnosis, curriculum guidance)?
+   - Key experiments and evidence
+   - Limitations of the implicit credit assignment (where explicit PRMs might still help)
+   
+Be thorough - this directly challenges part of the proposed method.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "9da2e1a0-2616-45cb-86a2-cbb0d38dd629",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T05:08:03.870Z_
+
+```json
+{
+  "parentUuid": "9da2e1a0-2616-45cb-86a2-cbb0d38dd629",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8f1eab27-c917-4c34-b705-6a3865faf19a",
+  "timestamp": "2026-05-28T05:08:03.870Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-28T05:08:03.871Z_
+
+```json
+{
+  "parentUuid": "8f1eab27-c917-4c34-b705-6a3865faf19a",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b4a21f76-0836-4e61-990c-5ef3915c1eb2",
+  "timestamp": "2026-05-28T05:08:03.871Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-28T05:08:06.853Z_
+
+
+
+I'll conduct a thorough web search for this paper using multiple queries.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a21f76-0836-4e61-990c-5ef3915c1eb2",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPTHSLrRofLD3KQUqaD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6b84f42f-f5d5-4992-98e8-2811bed2fb98",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQQ82CzB2bPPY2qjN6ZGz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 7411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1633,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T05:08:07.093Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EUsto316Ue32e7WfbVdu2F`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b84f42f-f5d5-4992-98e8-2811bed2fb98",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPTHSLrRofLD3KQUqaD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e9c4a270-b3a4-4643-a57a-11086de94b3a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQQ82CzB2bPPY2qjN6ZGz9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 7411,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1633
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 7411,
+          "cache_creation_input_tokens": 1633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1633,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T05:08:07.096Z_
+
+<details><summary>↩ Tool result · `toolu_01EUsto316Ue32e7WfbVdu2F`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9c4a270-b3a4-4643-a57a-11086de94b3a",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "9fce323f-2848-418c-806a-b2e2b46a9e06",
+  "sourceToolAssistantUUID": "e9c4a270-b3a4-4643-a57a-11086de94b3a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-28T05:08:09.750Z_
+
+
+
+Now let me run multiple searches in parallel to find this paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fce323f-2848-418c-806a-b2e2b46a9e06",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPTXTTQ8sBcNBWi81qJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "36800940-9e07-4f85-b89d-ea682b876568",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQWa2p139PyKe8j2mMNDRs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 9044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1118,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T05:08:10.207Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TsXVr7RccqERGvqpVF7bK3`</summary>
+
+```json
+{
+  "query": "GRPO is secretly a PRM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36800940-9e07-4f85-b89d-ea682b876568",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPTXTTQ8sBcNBWi81qJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c0a38248-4417-4831-b187-c0097a387c58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQWa2p139PyKe8j2mMNDRs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 9044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1118,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T05:08:10.720Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EkiNeNDkZSAoFdKGaZcE3S`</summary>
+
+```json
+{
+  "query": "GRPO implicit process reward model step-level credit assignment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0a38248-4417-4831-b187-c0097a387c58",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPTXTTQ8sBcNBWi81qJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "27e2dac5-be12-4d6c-8d3c-b2efd05a356c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQWa2p139PyKe8j2mMNDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 9044,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1118
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 9044,
+          "cache_creation_input_tokens": 1118,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1118,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T05:08:10.727Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G7C1yaTjJsQo22eUsEWgEm`</summary>
+
+```json
+{
+  "query": "GRPO Monte Carlo PRM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27e2dac5-be12-4d6c-8d3c-b2efd05a356c",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPTXTTQ8sBcNBWi81qJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "49920d3a-5a9c-43fb-9d8a-e50f0d1bb54f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQWa2p139PyKe8j2mMNDRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 9044,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1118
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 9044,
+          "cache_creation_input_tokens": 1118,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1118,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T05:08:15.773Z_
+
+<details><summary>↩ Tool result · `toolu_01TsXVr7RccqERGvqpVF7bK3`</summary>
+
+```text
+Web search results for query: "GRPO is secretly a PRM 2025"
+
+Links: [{"title":"[2509.21154] GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/abs/2509.21154"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan","url":"https://arxiv.org/pdf/2509.21154"},{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/html/2509.21154v2"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL","url":"https://openreview.net/pdf?id=o0k034W6vx"},{"title":"GRPO is Secretly a Process Reward Model | OpenReview","url":"https://openreview.net/forum?id=o0k034W6vx"},{"title":"Paper page - GRPO is Secretly a Process Reward Model","url":"https://huggingface.co/papers/2509.21154"},{"title":"[Literature Review] GRPO is Secretly a Process Reward Model","url":"https://www.themoonlight.io/en/review/grpo-is-secretly-a-process-reward-model"},{"title":"GitHub - coli-saar/grpo-prm: Code for the paper \"GRPO is Secretly a Process Reward Model\": https://arxiv.org/abs/2509.21154","url":"https://github.com/coli-saar/grpo-prm"},{"title":"GRPO: Group Relative Policy Optimization","url":"https://www.emergentmind.com/topics/grpo"},{"title":"GRPO is Secretly a Process Reward Model | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.21154v2"}]
+
+I found research on this topic! The Group Relative Policy Optimization (GRPO) RL algorithm equipped with an outcome reward model is in fact equivalent to a PRM-aware RL objective equipped with a non-trivial, Monte-Carlo-based PRM (given mild assumptions).
+
+The paper, titled "GRPO is Secretly a Process Reward Model," was authored by Michael Sullivan and Alexander Koller. It was submitted on September 25, 2025, with the latest version released on February 20, 2026.
+
+The key findings include:
+
+- The GRPO RL algorithm induces a non-trivial process reward model (PRM), under certain assumptions regarding within-group overlap of token sequences across completions, and these assumptions are met under real-world conditions.
+
+- The researchers identified a flaw in the GRPO objective that interacts with imbalanced process steps and rewards to hinder both exploration and exploitation.
+
+- They proposed a simple modification to the algorithm to mitigate this defect (λ-GRPO), and showed that LLMs tuned with λ-GRPO outperform LLMs tuned with standard GRPO on downstream reasoning tasks and reach peak performance more rapidly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0a38248-4417-4831-b187-c0097a387c58",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "c6d93245-b382-42a9-bde8-f4a4efd3f173",
+  "sourceToolAssistantUUID": "c0a38248-4417-4831-b187-c0097a387c58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T05:08:17.991Z_
+
+<details><summary>↩ Tool result · `toolu_01G7C1yaTjJsQo22eUsEWgEm`</summary>
+
+```text
+Web search results for query: "GRPO Monte Carlo PRM 2025"
+
+Links: [{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/html/2509.21154v2"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan","url":"https://arxiv.org/pdf/2509.21154"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL","url":"https://openreview.net/pdf/1f109913a199dad205fa51f554aaa5e2a5a782d5.pdf"},{"title":"Tackling AI Inference Challenges: Tsinghua Team Proposes ReST - RL, a New Unified Paradigm for LLM Reinforcement Learning","url":"https://eu.36kr.com/en/p/3460660218910342"},{"title":"F1 2025 Monaco Grand Prix weather forecast - Latest today from Monte Carlo for lights out - GPFans.com","url":"https://www.gpfans.com/en/f1-news/1050350/f1-2025-monaco-grand-prix-weather-forecast-latest-monte-carlo/"},{"title":"Formula 1 Grand Prix de Monaco 2025 - Official Ticketing","url":"https://monaco-grandprix.com/en/"},{"title":"2025 Monte Carlo Rally - Wikipedia","url":"https://en.wikipedia.org/wiki/2025_Monte_Carlo_Rally"},{"title":"Monaco Grand Prix 2026 | Monte-Carlo Société des Bains de Mer","url":"https://www.montecarlosbm.com/en/agenda/monaco-grand-prix"},{"title":"Monaco Grand Prix 2025 - F1 Race","url":"https://www.formula1.com/en/racing/2025/monaco"},{"title":"Overview | 2025 Monaco Grand Prix","url":"https://www.formula1db.com/races/2025-monaco-grand-prix"}]
+
+Based on the search results, here's what I found about GRPO, Monte Carlo, and PRM:
+
+## GRPO as a Process Reward Model
+
+GRPO induces a Monte-Carlo-based PRM, according to research from 2025. This is the key finding of a research paper titled "GRPO is Secretly a Process Reward Model."
+
+The research proves theoretically that GRPO assigns rewards (and advantages) derived from outcome-level rewards and Monte-Carlo-sampled completions to sub-trajectories, whenever subsets of trajectories within each group share identical prefixes. The research shows empirically that this identical-prefix condition is almost always met under real-world conditions, yielding rich step-level process reward structures.
+
+## Practical Implications
+
+The research shows that it is possible to leverage the hidden, built-in PRM structure within the vanilla GRPO algorithm to boost model performance with a negligible impact on training time and cost.
+
+The research also notes that GRPO has been employed with PRMs in Shao et al. (2024) and Feng et al. (2025), with different approaches to incorporating step-level rewards into the GRPO framework.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49920d3a-5a9c-43fb-9d8a-e50f0d1bb54f",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "b0a705fd-b270-44b2-9de3-6485a9e349ce",
+  "sourceToolAssistantUUID": "49920d3a-5a9c-43fb-9d8a-e50f0d1bb54f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T05:08:20.916Z_
+
+<details><summary>↩ Tool result · `toolu_01EkiNeNDkZSAoFdKGaZcE3S`</summary>
+
+```text
+Web search results for query: "GRPO implicit process reward model step-level credit assignment"
+
+Links: [{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/html/2509.21154"},{"title":"Generative Rejection-Based Policy Optimization","url":"https://www.emergentmind.com/topics/generative-rejection-based-policy-optimization-grpo"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan","url":"https://arxiv.org/pdf/2509.21154"},{"title":"EP-GRPO: Entropy-Progress Aligned Group Relative Policy Optimization with Implicit Process Guidance","url":"https://arxiv.org/html/2605.04960"},{"title":"Step-wise GRPO in Reinforcement Learning","url":"https://www.emergentmind.com/topics/step-wise-grpo"},{"title":"[2605.04960] EP-GRPO: Entropy-Progress Aligned Group Relative Policy Optimization with Implicit Process Guidance","url":"https://arxiv.org/abs/2605.04960"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards","url":"https://arxiv.org/html/2509.19199v3"},{"title":"Stepwise Credit Assignment for GRPO on Flow-Matching Models","url":"https://arxiv.org/pdf/2603.28718"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"Reducing Credit Assignment Variance via Counterfactual Reasoning Paths","url":"https://arxiv.org/html/2605.16302"}]
+
+Based on the search results, here's what I found about GRPO's implicit process reward model and step-level credit assignment:
+
+## Key Findings
+
+Process reward models (PRMs) assign reward to intermediate steps within a trajectory, allowing for finer-grained credit assignment than outcome-level signals during LLM reinforcement learning.
+
+GRPO is a policy-gradient algorithm that normalizes rewards across groups of sampled trajectories to enhance credit assignment and implicitly builds a process reward model using groupwise score normalization.
+
+The theoretical analysis shows that the GRPO objective is equivalent to a PRM-aware objective with a Monte Carlo PRM: although GRPO appears to assign credit uniformly to each token within a trajectory, there are in fact finer-grained reward dynamics at play.
+
+GRPO implicitly assigns a step-level reward and advantage to the tokens of each process step, computed as functions of the mean outcome-level reward of each trajectory, and both the division of the trajectory into steps and the assignment of rewards to those steps are dependent upon the PRM in question.
+
+However, GRPO performs sub-trajectory-level credit assignment whenever trajectories within a group share overlapping prefixes. If the prefixes of the trajectories within a group do not overlap with one another in practice, then this implicit PRM is trivial—equivalent to an ORM.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27e2dac5-be12-4d6c-8d3c-b2efd05a356c",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "8558ada4-7156-455a-a0d5-54e5911739a6",
+  "sourceToolAssistantUUID": "27e2dac5-be12-4d6c-8d3c-b2efd05a356c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-28T05:08:23.877Z_
+
+Excellent, I found the paper. Now let me fetch the full paper content from the arxiv HTML version and the OpenReview page for detailed analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8558ada4-7156-455a-a0d5-54e5911739a6",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPUYH6YP7eqTHtyFrMa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9e63a250-b084-4515-81f0-66818fb9504f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018TtmrLfgGhR3jDMy5E8mgc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 791,
+      "cache_creation_input_tokens": 1687,
+      "cache_read_input_tokens": 10162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1687,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T05:08:27.022Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RvGqvySSYBidbVdvf1kYYE`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.21154v2",
+  "prompt": "Extract the complete paper content including: 1) Full title and all authors with affiliations, 2) The complete abstract, 3) All sections of the paper especially the theoretical proofs about how GRPO implicitly performs step-level credit assignment via Monte Carlo PRM, 4) The key theorems and propositions, 5) The definition of the implicit PRM and how it relates to Monte Carlo estimation, 6) The lambda-GRPO modification, 7) All experimental results and evidence, 8) Discussion of limitations of the implicit credit assignment, 9) Whether explicit PRMs are made redundant or still have value, 10) The conditions/assumptions required for the equivalence to hold, 11) Any discussion of where explicit PRMs might still help."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e63a250-b084-4515-81f0-66818fb9504f",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPUYH6YP7eqTHtyFrMa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "42b9d41e-d2a8-4737-915a-8794f68c764b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018TtmrLfgGhR3jDMy5E8mgc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 791,
+      "cache_creation_input_tokens": 1687,
+      "cache_read_input_tokens": 10162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1687,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T05:08:28.699Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015bDi98qnxEg3LFxRwpaEyD`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=o0k034W6vx",
+  "prompt": "Extract the full reviews, ratings, and any author responses for the paper \"GRPO is Secretly a Process Reward Model\". Include reviewer criticisms, strengths, weaknesses, and any discussion about limitations of the paper's claims."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42b9d41e-d2a8-4737-915a-8794f68c764b",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPUYH6YP7eqTHtyFrMa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e66f8abe-e336-4b55-9fac-3be928171952",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018TtmrLfgGhR3jDMy5E8mgc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 791,
+      "cache_creation_input_tokens": 1687,
+      "cache_read_input_tokens": 10162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1687,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T05:08:33.007Z_
+
+<details><summary>↩ Tool result · `toolu_015bDi98qnxEg3LFxRwpaEyD`</summary>
+
+```text
+# Response
+
+I cannot extract the full reviews, ratings, and author responses you've requested because **they are not included in the provided web page content**.
+
+The page displays only the paper's metadata and abstract, including:
+- Title and author information
+- Submission date (19 Sept 2025, modified 11 Feb 2026)
+- Keywords and abstract
+- Basic venue information (ICLR 2026)
+
+The abstract mentions that the paper addresses "a flaw in the GRPO objective" regarding "non-uniformly distributed process steps," but no peer reviewer comments, detailed criticisms, ratings, or author responses appear in this excerpt.
+
+To access that information, you would need to visit the full OpenReview page directly, where reviews typically become visible after certain conference milestones (depending on the venue's review timeline).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e66f8abe-e336-4b55-9fac-3be928171952",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "78a8cc77-20ff-47a5-a984-b13cc78d1b31",
+  "sourceToolAssistantUUID": "e66f8abe-e336-4b55-9fac-3be928171952",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T05:08:42.971Z_
+
+<details><summary>↩ Tool result · `toolu_01RvGqvySSYBidbVdvf1kYYE`</summary>
+
+```text
+# GRPO is Secretly a Process Reward Model - Comprehensive Summary
+
+## Paper Metadata
+
+**Title:** GRPO is Secretly a Process Reward Model
+
+**Author:** Michael Sullivan, Department of Language Science and Technology, Saarland University
+
+## Abstract
+
+The paper proves theoretically and empirically that "the GRPO RL algorithm induces a non-trivial process reward model (PRM), under certain assumptions regarding within-group overlap of token sequences across completions." The authors identify a flaw in GRPO's hidden PRM structure and propose λ-GRPO, a modification that improves validation accuracy and downstream reasoning performance without significant computational overhead.
+
+## Core Theoretical Contribution
+
+### Theorem 1 (Main Result)
+
+The fundamental theoretical finding establishes equivalence: for any query, policy, and group of completions, the standard GRPO loss equals a PRM-aware objective. Specifically, "LGRPO(𝔾) = LPRM(𝔾)."
+
+This means standard GRPO automatically assigns step-level rewards via Monte Carlo estimation without explicit modification.
+
+### The Implicit PRM Structure
+
+**Process Sets Definition:** The paper introduces ℬ(𝔾), which represents "sets λ⊆𝔾 of completions such that all g^(i)∈λ are identical up to the nth token." These form a tree structure based on shared prefixes among trajectories.
+
+**Step-Level Rewards:** For each process set, the reward is computed as "R̂(λ) = Σg^(i)∈λ ri / |λ|" — the mean outcome-level reward of trajectories sharing that prefix. This constitutes Monte Carlo-based step-level credit assignment.
+
+**Step-Level Advantage:** Each token receives advantage "Ai,t = (Ri,t - rmean(𝔾)) / rstd(𝔾)", treating shared-prefix subtrajectories as process steps.
+
+## Critical Flaw Identified
+
+The paper identifies that GRPO's implicit PRM suffers from non-uniform process step distribution. When a process set λ contains many trajectories (large |λ|):
+
+- If A(λ) > 0: The probability increase is compounded by |λ|, harming exploration
+- If A(λ) < 0: The probability decrease is compounded by |λ|, harming exploitation
+
+## The λ-GRPO Solution
+
+The proposed modification introduces normalization: "Lλ-GRPO(𝔾) = ... (Pi,t·ai - Di,t) / |λ^(i,t)|"
+
+This scaling factor cancels the |λ| weighting, ensuring "each process set contributes equally to the loss at index t." The computational cost remains negligible since it only detects structures already present during training.
+
+## Empirical Validation
+
+**Non-Triviality Results:** Analysis of 6,700+ groups showed only ~0.2% had trivial ℬ(𝔾) structures (group size 6), and 0% with group size 36. Path depth increased dramatically as validation accuracy saturated.
+
+**Performance Improvements:**
+- λ-GRPO reached higher validation accuracy in fewer training steps
+- >10% average validation accuracy increase compared to standard GRPO
+- Training speedup of approximately 2x
+- Consistent improvements on downstream reasoning benchmarks (AIME24, MATH-500, AMC23, Minerva, OlympiadBench)
+
+## Required Assumptions
+
+Two key assumptions underpin the theoretical analysis:
+
+1. Use of the DAPO token-level policy gradient objective (rather than original GRPO's sample-level loss)
+2. Number of update iterations per batch (μ) set to 1, fixing the probability ratio at 1.0
+
+## Relationship to Explicit PRMs
+
+The paper argues explicit Process Reward Models become less necessary. However, nuances remain:
+
+**Advantages of Implicit PRM:**
+- No costly step-level human annotation required
+- No learned parameters susceptible to reward hacking
+- Negligible computational overhead
+
+**Where Explicit PRMs May Retain Value:**
+The paper doesn't entirely claim explicit PRMs are obsolete. Rather, it suggests "future work may benefit instead from exploiting the step-level reward signal already available to the GRPO algorithm." Explicit PRMs with carefully curated step definitions might still provide value for specialized reasoning domains.
+
+## Limitations Acknowledged
+
+The authors note experiments used relatively small models (1-1.5B parameters) and a single training dataset (OpenRS). The proposed modification "merely lessens" rather than fully eliminates the anti-exploitation problem, suggesting "more extensive modifications" warrant future investigation.
+
+## Key Insight
+
+The paper demonstrates that standard GRPO's outcome-level rewards implicitly create structured step-level credit assignment whenever trajectories share prefixes—a near-universal condition in practice. This hidden structure can be leveraged with minimal modification for improved performance, potentially reducing reliance on expensive explicit Process Reward Models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42b9d41e-d2a8-4737-915a-8794f68c764b",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "eb1b3d55-e219-419d-a19c-0edc5ba4ad31",
+  "sourceToolAssistantUUID": "42b9d41e-d2a8-4737-915a-8794f68c764b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-28T05:08:47.210Z_
+
+Let me get more details from the paper, particularly the theoretical mechanics and any discussion of where explicit PRMs still have value.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb1b3d55-e219-419d-a19c-0edc5ba4ad31",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPWAkbYBkj1q89Wd4Bg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f0cdda33-8b26-46d7-8b18-aa1141190fd2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bqnMCpqE71GM3eMipfq7j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 211,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 11849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2369,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T05:08:52.008Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DWfsWYGsYChUe1181KGHhN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2509.21154",
+  "prompt": "Extract ALL content from this paper, focusing especially on: 1) The exact mathematical formulation of how GRPO's loss decomposes into a PRM-aware objective, 2) The definition of \"process sets\" and the tree structure, 3) The exact conditions under which the implicit PRM is non-trivial vs trivial, 4) Section discussing related work on explicit PRMs and how they compare, 5) Any discussion in the conclusion or discussion section about whether explicit PRMs are still useful for other purposes like error diagnosis or curriculum guidance, 6) The full experimental setup and all numerical results, 7) Proposition 2 about the flaw, 8) How lambda-GRPO fixes the issue, 9) All author names and affiliations, 10) Any footnotes or remarks about limitations of the implicit credit assignment compared to explicit PRMs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0cdda33-8b26-46d7-8b18-aa1141190fd2",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPWAkbYBkj1q89Wd4Bg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "59c30d59-80ea-4666-8f70-5da24a9bce28",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bqnMCpqE71GM3eMipfq7j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 211,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 11849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2369,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T05:08:52.902Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UYti9JFdTVoH45MVvwxUSU`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/papers/2509.21154",
+  "prompt": "Extract all discussion, comments, and community reactions to the paper \"GRPO is Secretly a Process Reward Model\". Include any critiques, questions about limitations, or discussions about whether explicit PRMs are still useful."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59c30d59-80ea-4666-8f70-5da24a9bce28",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPWAkbYBkj1q89Wd4Bg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "25c96017-c2f8-4a56-8f82-f6ba8e93ae32",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bqnMCpqE71GM3eMipfq7j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 211,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 11849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2369,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T05:08:53.770Z_
+
+<details><summary>↩ Tool result · `toolu_01UYti9JFdTVoH45MVvwxUSU`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (61.1KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt
+
+Preview (first 2KB):
+Title: GRPO is Secretly a Process Reward Model
+
+URL Source: https://arxiv.org/html/2509.21154
+
+Markdown Content:
+Michael Sullivan 
+
+Department of Language Science and Technology 
+
+Saarland Informatics Campus 
+
+Saarland University, Saarbrücken, Germany 
+
+msullivan@lst.uni-saarland.de
+
+###### Abstract
+
+We prove theoretically that the GRPO RL algorithm induces a non-trivial process reward model (PRM), under certain assumptions regarding within-group overlap of token sequences across completions. We then show empirically that these assumptions are met under real-world conditions: GRPO does in fact induce a non-trivial PRM. Leveraging the framework of GRPO-as-a-PRM, we identify a flaw in the GRPO objective: non-uniformly distributed process steps hinder both exploration and exploitation (under different conditions). We propose a simple modification to the algorithm to mitigate this defect (λ\lambda-GRPO), and show that LLMs trained with λ\lambda-GRPO achieve higher validation accuracy and performance on downstream reasoning tasks—and reach peak performance more rapidly—than LLMs trained with standard GRPO. Our results call into question the advantage of costly, explicitly-defined PRMs for GRPO: we show that it is possible to instead leverage the hidden, built-in PRM structure within the vanilla GRPO algorithm to boost model performance with a negligible impact on training time and cost.
+
+1 Introduction
+--------------
+
+Process reward models (PRMs)—models that assign reward to intermediate steps (see Section [2.2](https://arxiv.org/html/2509.21154v2#S2.SS2 "2.2 Process Reward Models (PRMs) ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model"))—allow for finer-grained reward assignment than outcome-level signals, thereby yielding improved multi-step reasoning performance (Lightman et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib12)). PRMs are therefore particularly applicable to RL training for step-by-step processes such as mathematical reasoning.
+
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25c96017-c2f8-4a56-8f82-f6ba8e93ae32",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "18edc4bf-733e-4a24-a672-36471294ae27",
+  "sourceToolAssistantUUID": "25c96017-c2f8-4a56-8f82-f6ba8e93ae32",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T05:09:02.832Z_
+
+<details><summary>↩ Tool result · `toolu_01DWfsWYGsYChUe1181KGHhN`</summary>
+
+```text
+# Summary of "GRPO is Secretly a Process Reward Model"
+
+## Authors & Affiliations
+Michael Sullivan and Alexander Koller (arXiv:2509.21154v3)
+
+## Core Mathematical Contribution
+
+The paper demonstrates that GRPO's loss decomposes into a process reward model (PRM) objective. The key insight is that GRPO implicitly learns intermediate step rewards through its policy gradient formulation, even without explicit PRM annotations.
+
+## Process Sets & Tree Structure
+
+The authors define process sets as sequences of intermediate states/steps within a reasoning trajectory. The implicit tree structure emerges from trajectories where each node represents a decision point, and edges represent step transitions. This enables credit assignment across multi-step reasoning.
+
+## Implicit vs Explicit PRM Conditions
+
+The implicit PRM becomes **non-trivial** when trajectory branching occurs—multiple paths lead to different outcomes. It becomes **trivial** (collapsing to outcome-only reward) when the policy commits to single deterministic paths without meaningful exploration of alternatives. The paper characterizes when the decomposition provides genuine intermediate signal versus merely redistributing final rewards.
+
+## Related Work Discussion
+
+The paper positions itself relative to explicit PRM methods (e.g., those by Lightman et al., and others on math problem solving). Key distinction: explicit PRMs require separate training on step-level annotations, while GRPO's implicit approach derives this from trajectory data alone. The related work section discusses how explicit PRMs like those in recent math reasoning work provide interpretable intermediate supervision but require additional annotation effort.
+
+## Proposition 2 & Lambda-GRPO Fix
+
+Proposition 2 identifies a flaw in standard GRPO: under certain conditions, the implicit credit assignment fails because the advantage estimation doesn't properly decompose across steps. Lambda-GRPO addresses this by introducing a hyperparameter that reweights the step-level advantages to ensure proper credit flow through intermediate steps, restoring the PRM structure.
+
+## Experimental Setup & Results
+
+- **Models tested**: Llama-3.2-1B-Instruct
+- **Benchmarks**: AIME (validation set) and AMC datasets
+- **Key finding**: Lambda-GRPO consistently outperforms standard GRPO by 2-5% on both benchmarks
+- **Numerical results**: Improvements demonstrated across multiple evaluation runs with statistical significance
+
+## Discussion of Explicit PRMs' Remaining Value
+
+While implicit PRMs work well for policy optimization, the conclusion acknowledges explicit PRMs retain utility for: error diagnosis (identifying where reasoning fails), curriculum guidance (prioritizing which steps to focus training), and interpretability in safety-critical applications.
+
+## Limitations & Implicit Credit Assignment
+
+The paper notes that implicit credit assignment lacks the transparency of explicit PRMs—practitioners cannot directly inspect which steps the model deems important. This limits applicability in domains requiring explainability or where understanding failure modes is critical beyond performance metrics.
+
+[Binary content (application/pdf, 1.2MB) also saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/webfetch-1779944932022-i59xut.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59c30d59-80ea-4666-8f70-5da24a9bce28",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "f1cb16f6-4e06-454e-9fad-5be69b107d3c",
+  "sourceToolAssistantUUID": "59c30d59-80ea-4666-8f70-5da24a9bce28",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-28T05:09:05.336Z_
+
+Let me read the full persisted output to get the complete paper content.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1cb16f6-4e06-454e-9fad-5be69b107d3c",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPXdUiCd5wYdsU6eFG7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "70a1ff88-3b35-44e2-b3f6-5d2ab0e98672",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017g3ngQqYvgQRMpHP8x1isn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 661,
+      "cache_creation_input_tokens": 1468,
+      "cache_read_input_tokens": 14218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1468,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T05:09:06.033Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019DeJwEjKAtVbQdivqNrou8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70a1ff88-3b35-44e2-b3f6-5d2ab0e98672",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPXdUiCd5wYdsU6eFG7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bf70ec7d-005e-41ba-8a17-89e85418f0f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017g3ngQqYvgQRMpHP8x1isn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 661,
+      "cache_creation_input_tokens": 1468,
+      "cache_read_input_tokens": 14218,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1468
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 661,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 14218,
+          "cache_creation_input_tokens": 1468,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1468,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T05:09:06.339Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019DeJwEjKAtVbQdivqNrou8`</summary>
+
+```text
+File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf70ec7d-005e-41ba-8a17-89e85418f0f6",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "afd06290-5a6f-4e84-87a9-36a16a1a2fb9",
+  "toolUseResult": "Error: File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "bf70ec7d-005e-41ba-8a17-89e85418f0f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-28T05:09:09.296Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0143sPTAiPocnGd1zpkcVXM2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt",
+  "limit": 1200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afd06290-5a6f-4e84-87a9-36a16a1a2fb9",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPXtsfuBiwUzMkA24ax",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b1fa3626-0c22-4dcf-ba79-817cd3f33617",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018jSvifvdHB2rAaJ7HkP4uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 15686,
+      "output_tokens": 145,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 864
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 145,
+          "cache_read_input_tokens": 15686,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 864,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T05:09:09.699Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0143sPTAiPocnGd1zpkcVXM2`</summary>
+
+```text
+File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1fa3626-0c22-4dcf-ba79-817cd3f33617",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "32403e7a-39c3-4f48-940f-84edec5ec6ea",
+  "toolUseResult": "Error: File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "b1fa3626-0c22-4dcf-ba79-817cd3f33617",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-28T05:09:13.197Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01R2ezNCz3TmPSoejUu2sai7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt",
+  "limit": 800,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32403e7a-39c3-4f48-940f-84edec5ec6ea",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPY8qZJYwLYd6v9jNj3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "abbd59fe-0368-4753-b256-bd8a2301ccba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SGrQKU5wvS2zNMfGMQNxSp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 16550,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 206
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 16550,
+          "cache_creation_input_tokens": 206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 206,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-28T05:09:13.477Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01R2ezNCz3TmPSoejUu2sai7`</summary>
+
+```text
+File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abbd59fe-0368-4753-b256-bd8a2301ccba",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "77f71912-cff6-47bd-8ee1-e2ef3a256db2",
+  "toolUseResult": "Error: File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "abbd59fe-0368-4753-b256-bd8a2301ccba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T05:09:16.359Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01X82X3iTqKfgAU3NZ4RHWRb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt",
+  "limit": 500,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77f71912-cff6-47bd-8ee1-e2ef3a256db2",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPYQyuiXbS15CnAMPA2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "33745d5f-911f-4efc-80a5-1eb8f93990d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvUDP5Fi4y3hswBZDUnGzq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 16756,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 222
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 16756,
+          "cache_creation_input_tokens": 222,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 222,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T05:09:16.680Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01X82X3iTqKfgAU3NZ4RHWRb`</summary>
+
+```text
+File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33745d5f-911f-4efc-80a5-1eb8f93990d9",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "7a256f12-25e1-4a91-925a-efd787bb00b8",
+  "toolUseResult": "Error: File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "33745d5f-911f-4efc-80a5-1eb8f93990d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-28T05:09:19.888Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Wq4UKd5ZVxQqbghFq6j4L7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt",
+  "limit": 300,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a256f12-25e1-4a91-925a-efd787bb00b8",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPYehufGxAfH2q5f6MF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6307cf19-4437-4f2c-87de-22e55a96ed4e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0194TyfnewN1WCu2MU6oTJPQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 16978,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 222,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T05:09:20.163Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Wq4UKd5ZVxQqbghFq6j4L7`</summary>
+
+```text
+File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6307cf19-4437-4f2c-87de-22e55a96ed4e",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "0a90f1ff-44ed-4914-91d6-7defbf54b7fe",
+  "toolUseResult": "Error: File content (25967 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "6307cf19-4437-4f2c-87de-22e55a96ed4e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T05:09:22.860Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KY97mcsehKWvpUQLb68ECT`</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a90f1ff-44ed-4914-91d6-7defbf54b7fe",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPYua7cc3xSecF4KYgp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8debc1a2-d94d-464b-b41e-183733bace2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYbuzkHkARWePwzMpaahAu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 17200,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 222
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 17200,
+          "cache_creation_input_tokens": 222,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 222,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T05:09:23.059Z_
+
+<details><summary>↩ Tool result · `toolu_01KY97mcsehKWvpUQLb68ECT`</summary>
+
+```text
+291 /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8debc1a2-d94d-464b-b41e-183733bace2b",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "b4c89f63-e12c-4cd7-a1a7-5e4480dc585a",
+  "sourceToolAssistantUUID": "8debc1a2-d94d-464b-b41e-183733bace2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-28T05:09:25.881Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011GeWrSJhXM6D13Uwu6zpbH`</summary>
+
+```json
+{
+  "command": "head -100 /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4c89f63-e12c-4cd7-a1a7-5e4480dc585a",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPZ7yFLMH3qER2THXuB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fc467368-c2d0-41d9-91b1-8ff718692376",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1muMq87jM3L2YdrAf1Enp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 17422,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 219
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 17422,
+          "cache_creation_input_tokens": 219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 219,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T05:09:25.950Z_
+
+<details><summary>↩ Tool result · `toolu_011GeWrSJhXM6D13Uwu6zpbH`</summary>
+
+```text
+Title: GRPO is Secretly a Process Reward Model
+
+URL Source: https://arxiv.org/html/2509.21154
+
+Markdown Content:
+Michael Sullivan 
+
+Department of Language Science and Technology 
+
+Saarland Informatics Campus 
+
+Saarland University, Saarbrücken, Germany 
+
+msullivan@lst.uni-saarland.de
+
+###### Abstract
+
+We prove theoretically that the GRPO RL algorithm induces a non-trivial process reward model (PRM), under certain assumptions regarding within-group overlap of token sequences across completions. We then show empirically that these assumptions are met under real-world conditions: GRPO does in fact induce a non-trivial PRM. Leveraging the framework of GRPO-as-a-PRM, we identify a flaw in the GRPO objective: non-uniformly distributed process steps hinder both exploration and exploitation (under different conditions). We propose a simple modification to the algorithm to mitigate this defect (λ\lambda-GRPO), and show that LLMs trained with λ\lambda-GRPO achieve higher validation accuracy and performance on downstream reasoning tasks—and reach peak performance more rapidly—than LLMs trained with standard GRPO. Our results call into question the advantage of costly, explicitly-defined PRMs for GRPO: we show that it is possible to instead leverage the hidden, built-in PRM structure within the vanilla GRPO algorithm to boost model performance with a negligible impact on training time and cost.
+
+1 Introduction
+--------------
+
+Process reward models (PRMs)—models that assign reward to intermediate steps (see Section [2.2](https://arxiv.org/html/2509.21154v2#S2.SS2 "2.2 Process Reward Models (PRMs) ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model"))—allow for finer-grained reward assignment than outcome-level signals, thereby yielding improved multi-step reasoning performance (Lightman et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib12)). PRMs are therefore particularly applicable to RL training for step-by-step processes such as mathematical reasoning.
+
+However, training neural PRMs requires costly, step-level human annotation (Zhang et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib28)), and such models are particularly susceptible to reward hacking (Cui et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib1)). These shortcomings have resulted in the limited adoption of learned PRMs for RL training Setlur et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib18)), leading to the development of Monte-Carlo-based and other heuristic, non-neural PRMs (e.g. Wang et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib22); Kazemnejad et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib9); Hou et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib8)).
+
+PRMs are typically employed with RL algorithms such as Proximal Policy Optimization (PPO; Schulman et al., [2017](https://arxiv.org/html/2509.21154v2#bib.bib17)) that employ a critic model and/or generalized advantage estimation (GAE). Although Group Relative Policy Optimization (GRPO; Shao et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib19)) greatly simplifies and reduces the memory consumption of RL training, leading to its adoption for a wide range of applications—e.g. tool use (Qian et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib15); Sullivan et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib20)), RLHF (Yang et al., [2025b](https://arxiv.org/html/2509.21154v2#bib.bib25)), and, in particular, mathematical reasoning (Shao et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib19); DeepSeek-AI, [2025](https://arxiv.org/html/2509.21154v2#bib.bib3))—it does so by eliminating the critic model and GAE of PPO (see Section [2.1](https://arxiv.org/html/2509.21154v2#S2.SS1 "2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")). GRPO has therefore not been widely used with PRMs: to the best of our knowledge, Shao et al. ([2024](https://arxiv.org/html/2509.21154v2#bib.bib19)), Yang et al. ([2025a](https://arxiv.org/html/2509.21154v2#bib.bib24)), and Feng et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib4)) are the only instances in which GRPO is employed with step-level rewards—and these approaches necessitate the modification of the algorithm to accommodate finer-grained reward signals.
+
+In this paper, we show that—under certain mild assumptions—GRPO induces a Monte-Carlo-based PRM (Section [3](https://arxiv.org/html/2509.21154v2#S3 "3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")). Specifically, we prove theoretically that GRPO assigns rewards (and advantages) derived from outcome-level rewards and Monte-Carlo-sampled completions to sub-trajectories, whenever subsets of trajectories within each group share identical prefixes. We then show empirically that this identical-prefix condition is almost always met under real-world conditions, yielding rich step-level process reward structures. These two findings definitively demonstrate that the GRPO objective covertly assigns and optimizes for complex, structured step-level rewards and advantages.
+
+An investigation of the properties of GRPO’s hidden PRM reveals a defect in the objective function that hinders both exploration and exploitation (under different conditions) during RL training (Section [4](https://arxiv.org/html/2509.21154v2#S4 "4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model")): namely, a vulnerability to non-uniformly-distributed process steps within a group. To mitigate this shortcoming, we propose including a PRM-aware normalization factor into the GRPO loss function (λ\lambda-GRPO).
+
+We show that λ\lambda-GRPO results in higher validation accuracy and a ∼\sim 2x training speedup over standard GRPO (Section [5](https://arxiv.org/html/2509.21154v2#S5 "5 Experiments ‣ GRPO is Secretly a Process Reward Model")). On downstream reasoning benchmarks, λ\lambda-GRPO consistently improves over standard GRPO, demonstrating the superiority of our method.
+
+Our findings call into question the utility of dedicated PRMs for GRPO, and suggest that future work may benefit instead from exploiting the step-level reward signal already available to the GRPO algorithm.
+
+2 Background
+------------
+
+### 2.1 GRPO
+
+GRPO is a variant of PPO that discards the critic model and GAE of the latter. Instead, for each query q q in the training set, GRPO nondeterministically samples a group 𝔾{\mathbb{G}} of k k trajectories (completions to q q) and computes the advantage a i{a}_{i} for the completion g(i)∈𝔾 g^{(i)}\in{\mathbb{G}} relative to the mean (outcome) reward of 𝔾{\mathbb{G}}, as in Equation [1](https://arxiv.org/html/2509.21154v2#S2.E1 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model") (where r i{r}_{i} is the reward for g(i)g^{(i)}).
+
+a i=r i−r mean​(𝔾)r std​(𝔾){a}_{i}=\frac{{r}_{i}-r_{\text{{mean}}}({\mathbb{G}})}{r_{\text{{std}}}({\mathbb{G}})}(1)
+
+In our theoretical analysis in Section [3](https://arxiv.org/html/2509.21154v2#S3 "3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), we make two key assumptions: first, we assume the use of the DAPO token-level policy gradient objective (Yu et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib27)), rather than sample-level loss. Although it differs from the original GRPO formulation laid out in Shao et al. ([2024](https://arxiv.org/html/2509.21154v2#bib.bib19)), Yu et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib27)) show that this objective leads to more stable training, and it is the standard GRPO loss function employed in commonly-used RL packages (e.g. the TRL GRPO trainer 1 1 1[https://huggingface.co/docs/trl/main/en/grpo_trainer](https://huggingface.co/docs/trl/main/en/grpo_trainer)).
+
+Second, we assume that the number of update iterations per batch (μ\mu) is set to μ=1\mu=1. Under this assumption, the ratio P i,t{P}_{i,t} is fixed at 1.0 1.0 (see Equation [2b](https://arxiv.org/html/2509.21154v2#S2.E2.2 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")), allowing us to ignore the clipping factor of the GRPO loss function in our theoretical analysis.
+
+Under these two assumptions, the per-group GRPO loss L GRPO​(𝔾)L_{\text{GRPO}}({\mathbb{G}}) reduces to that in Equation [2](https://arxiv.org/html/2509.21154v2#S2.E2 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model").
+
+L GRPO​(𝔾)=1∑g(i)∈𝔾 len​(g(i))​∑g(i)∈𝔾∑t=0 len​(g(i))−1(P i,t⋅a i)−D i,t\displaystyle L_{\text{GRPO}}({\mathbb{G}})=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\sum_{g^{(i)}\in{\mathbb{G}}}\sum_{t=0}^{\textit{len}(g^{(i)})-1}({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}(2a)
+
+P i,t=π θ​(g t(i)|q,g:t(i))π θ old​(g t(i)|q,g:t(i)){P}_{i,t}=\frac{\pi_{\theta}(g^{(i)}_{t}\hskip 2.84526pt|\hskip 2.84526ptq,g^{(i)}_{:t})}{\pi_{\theta_{\textit{old}}}(g^{(i)}_{t}\hskip 2.84526pt|\hskip 2.84526ptq,g^{(i)}_{:t})}(2b)
+
+D i,t=β⋅(π θ ref​(g t(i)|q,g:t(i))π θ​(g t(i)|q,g:t(i))−ln​π θ ref​(g t(i)|q,g:t(i))π θ​(g t(i)|q,g:t(i))−1){D}_{i,t}=\beta\cdot\left(\frac{\pi_{\theta_{\textit{ref}}}(g^{(i)}_{t}\hskip 2.84526pt|\hskip 2.84526ptq,g^{(i)}_{:t})}{\pi_{\theta}(g^{(i)}_{t}\hskip 2.84526pt|\hskip 2.84526ptq,g^{(i)}_{:t})}-\textit{ln}\frac{\pi_{\theta_{\textit{ref}}}(g^{(i)}_{t}\hskip 2.84526pt|\hskip 2.84526ptq,g^{(i)}_{:t})}{\pi_{\theta}(g^{(i)}_{t}\hskip 2.84526pt|\hskip 2.84526ptq,g^{(i)}_{:t})}-1\right)(2c)
+
+### 2.2 Process Reward Models (PRMs)
+
+Given an alphabet Σ\Sigma (i.e. set of tokens), we formally define a PRM as a function f ϕ:Σ∗→(Σ∗×ℝ)∗f_{\phi}\colon\Sigma^{*}\to(\Sigma^{*}\times\mathbb{R})^{*} parameterized by ϕ\phi that maps a trajectory y∈Σ∗y\in\Sigma^{*} to the sequence f ϕ​(y)=((y:i 1,r 0(y)),(y i 1:i 2,r 1(y)),…,(y i n−1:,r n−1(y)))f_{\phi}(y)=((y_{:i_{1}},r^{(y)}_{0}),(y_{i_{1}:i_{2}},r^{(y)}_{1}),\dots,(y_{i_{n-1}:},r^{(y)}_{n-1})) of pairs of process steps (sub-trajectories) y i k:i k+1 y_{i_{k}:i_{k+1}} and step-level rewards r k(y)r^{(y)}_{k}.
+
+While PRMs are typically contrasted with outcome reward models (ORMs)—which assign a single reward to the entire trajectory—under the above definition, an ORM f ϕ′′f_{\phi^{\prime}}^{\prime} is simply a trivial PRM: i.e. f ϕ′′​(y)=((y,r 0(y)))f_{\phi^{\prime}}^{\prime}(y)=((y,r^{(y)}_{0})).
+
+Both the division of the trajectory y y into steps and the assignment of rewards to those steps are dependent upon the PRM in question. When trajectories are clearly delineated into individual steps—e.g. via ReACT-style prompting Yao et al. ([2023](https://arxiv.org/html/2509.21154v2#bib.bib26)) or instructing the model to divide its reasoning into demarcated steps—the PRM can simply be directed to assign a reward to each pre-defined step (e.g. Li & Li, [2025](https://arxiv.org/html/2509.21154v2#bib.bib11)). In other cases, trajectories are heuristically split into steps—for example, at high-entropy tokens (e.g. Hou et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib8)).
+
+Although the assignment of step-level reward can be performed by a model with learned parameters ϕ\phi(e.g. Uesato et al., [2022](https://arxiv.org/html/2509.21154v2#bib.bib21)), Kazemnejad et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib9)) and Hou et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib8)) combine Monte Carlo estimation with outcome-level rewards to yield heuristic PRMs that do not require the labor-intensive annotation of—and are less susceptible to reward-hacking than—their learned counterparts. In cases such as these in which the PRM f ϕ f_{\phi} is not learned, we simply consider ϕ\phi to be fixed/trivial.
+
+3 The PRM in the Machine
+------------------------
+
+![Image 1: Refer to caption](https://arxiv.org/html/2509.21154v2/x1.png)
+
+Figure 1: Toy example of a group 𝔾={g(1),…,g(6)}{\mathbb{G}}=\{g^{(1)},\dots,g^{(6)}\} (left) and its corresponding ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) tree (right). Tokens (boxes) are numbered for readability—subscripted numbers within boxes only indicate position. Each process set (node in the ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) tree) is a set of trajectories that share a common prefix, and corresponds to a process step (subtrajectory) spanning those shared tokens: in this figure, colored nodes in ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) correspond to those subsequences in 𝔾{\mathbb{G}} that span tokens/boxes of the same color 2 2 2 Same-colored boxes in 𝔾{\mathbb{G}} indicate identical sequences of tokens across trajectories only: for example, g:4(3)=g:4(4)g^{(3)}_{:4}=g^{(4)}_{:4} and g 4:6(4)=g 4:6(5)g^{(4)}_{4:6}=g^{(5)}_{4:6}, but it is not necessarily the case that e.g. g 0(3)=g 1(3)g^{(3)}_{0}=g^{(3)}_{1}.. GRPO implicitly assigns a step-level reward and advantage to the tokens of each process step, which are computed as functions of the mean outcome-level reward of each trajectory in the corresponding process set. 
+
+In Section [3.1](https://arxiv.org/html/2509.21154v2#S3.SS1 "3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), we prove that GRPO theoretically induces a PRM (given the assumptions of Section [2.1](https://arxiv.org/html/2509.21154v2#S2.SS1 "2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")) as defined in Section [2.2](https://arxiv.org/html/2509.21154v2#S2.SS2 "2.2 Process Reward Models (PRMs) ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model"). However, this PRM is only non-trivial—i.e. not equivalent to an ORM—if subsets of trajectories within each group share identical initial sub-trajectories.
+
+In Section [3.2](https://arxiv.org/html/2509.21154v2#S3.SS2 "3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), we empirically demonstrate that such rich, overlapping prefix structures arise very frequently under real-world conditions: this shows that GRPO is “secretly” a non-trivial PRM.
+
+### 3.1 Theoretical Analysis
+
+Let ℬ​(𝔾)={λ⊆𝔾|∃n≥0​∀g(i),g(k)∈λ:g:n(i)=g:n(k)}{\mathcal{B}}({\mathbb{G}})=\{\lambda\subseteq{\mathbb{G}}\hskip 2.84526pt|\hskip 2.84526pt\exists n\geq 0\forall g^{(i)},g^{(k)}\in\lambda\colon g^{(i)}_{:n}=g^{(k)}_{:n}\} be the set of all process sets: sets λ⊆𝔾\lambda\subseteq{\mathbb{G}} of completions such that all g(i)∈λ g^{(i)}\in\lambda are identical up to the n t​h n^{th} token, for some n≥0 n\geq 0 (see Figure [2](https://arxiv.org/html/2509.21154v2#footnote2 "footnote 2 ‣ Figure 1 ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")). Note that there is a natural tree structure on ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}), which is induced by the ⊇\supseteq relation.
+
+Each λ∈ℬ​(𝔾)\lambda\in{\mathcal{B}}({\mathbb{G}}) defines a process step within each g(i)∈λ g^{(i)}\in\lambda, spanning the subsequence g s​(λ):e​(λ)(i)g^{(i)}_{s(\lambda):e(\lambda)} from the s​(λ)t​h s(\lambda)^{th} to the e​(λ)t​h e(\lambda)^{th} tokens of g(i)g^{(i)}. The endpoint e​(λ)e(\lambda) is defined as the largest n n such that g:n(i)=g:n(k)g^{(i)}_{:n}=g^{(k)}_{:n} for all g(i),g(k)∈λ g^{(i)},g^{(k)}\in\lambda, and s​(λ)s(\lambda) is defined as the endpoint of the immediate parent P​a ℬ​(𝔾)​(λ)Pa_{{\mathcal{B}}({\mathbb{G}})}(\lambda) of λ\lambda in the tree structure induced on ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}).
+
+e​(λ)=max​{n≥0|∀g(i),g(k)∈λ:g:n(i)=g:n(k)}s​(λ)={0 if​λ=root​(ℬ​(G))e​(P​a ℬ​(𝔾)​(λ))otherwise\begin{split}&e(\lambda)=\textit{max}\{n\geq 0\hskip 2.84526pt|\hskip 2.84526pt\forall g^{(i)},g^{(k)}\in\lambda:g^{(i)}_{:n}=g^{(k)}_{:n}\}\\ &s(\lambda)=\begin{cases}0&\text{if }\lambda=\textit{root}(\mathcal{B}(G))\\ e(Pa_{{\mathcal{B}}({\mathbb{G}})}(\lambda))&\text{otherwise}\end{cases}\end{split}
+
+For example, s​({g(4),g(5)})=e​({g(3),g(4),g(5)})=4 s(\{g^{(4)},g^{(5)}\})=e(\{g^{(3)},g^{(4)},g^{(5)}\})=4 in Figure [2](https://arxiv.org/html/2509.21154v2#footnote2 "footnote 2 ‣ Figure 1 ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), and e​({g(4),g(5)})=6 e(\{g^{(4)},g^{(5)}\})=6: the process step corresponding to {g(4),g(5)}\{g^{(4)},g^{(5)}\} spans g 4:6(4)g^{(4)}_{4:6} and g 4:6(5)g^{(5)}_{4:6}.
+
+For each g(i)∈𝔾 g^{(i)}\in{\mathbb{G}} and each 0≤t<len​(g(i))0\leq t<\textit{len}(g^{(i)}), let λ(i,t)∈ℬ​(𝔾)\lambda^{(i,t)}\in{\mathcal{B}}({\mathbb{G}}) denote the unique process set such that g(i)∈λ(i,t)g^{(i)}\in\lambda^{(i,t)} and s​(λ(i,t))≤t<e​(λ(i,t))s(\lambda^{(i,t)})\leq t<e(\lambda^{(i,t)}). In other words, λ(i,t)\lambda^{(i,t)} is the process step to which the token g t(i)g^{(i)}_{t} belongs. In Figure [2](https://arxiv.org/html/2509.21154v2#footnote2 "footnote 2 ‣ Figure 1 ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), λ(i,t)\lambda^{(i,t)} corresponds to the set whose color matches that of g t(i)g^{(i)}_{t}: λ(1,0)={g(1),g(2)}\lambda^{(1,0)}=\{g^{(1)},g^{(2)}\}, λ(1,3)={g(1)}\lambda^{(1,3)}=\{g^{(1)}\}, λ(5,5)={g(4),g(5)}\lambda^{(5,5)}=\{g^{(4)},g^{(5)}\}, etc.
+
+Now, for each process step defined by some λ∈ℬ​(𝔾)\lambda\in{\mathcal{B}}({\mathbb{G}}), we define the step-level reward R^​(λ)\hat{R}(\lambda) via Monte Carlo estimation (Equation [3](https://arxiv.org/html/2509.21154v2#S3.E3 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")): R^​(λ)\hat{R}(\lambda) is the mean outcome-level reward of each trajectory in λ\lambda. In other words, R^​(λ)\hat{R}(\lambda) is the mean reward of each leaf node dominated by λ\lambda in the tree structure induced on ℬ​(𝔾){\mathcal{B}}({\mathbb{G}})—i.e. of each sampled completion to the process step defined by λ\lambda.
+
+R^​(λ)=∑g(i)∈λ r i|λ|\hat{R}(\lambda)=\frac{\sum_{g^{(i)}\in\lambda}{r}_{i}}{|\lambda|}(3)
+
+For each trajectory g(i)∈𝔾 g^{(i)}\in{\mathbb{G}} and each 0≤t<len​(g(i))0\leq t<\textit{len}(g^{(i)}) define the reward R i,t{R}_{i,t} for the token g t(i)g^{(i)}_{t} as the reward of the process step to which g t(i)g^{(i)}_{t} belongs: R i,t=R^​(λ(i,t)){R}_{i,t}=\hat{R}(\lambda^{(i,t)}). For example, in Figure [2](https://arxiv.org/html/2509.21154v2#footnote2 "footnote 2 ‣ Figure 1 ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), the step-level reward for the sub-trajectories g:4(3)g^{(3)}_{:4}, g:4(4)g^{(4)}_{:4}, g:4(5)g^{(5)}_{:4} is the mean of the outcome-level rewards for g(3)g^{(3)}, g(4)g^{(4)}, and g(5)g^{(5)}: R 3,0=⋯=R 5,3=mean​({r 3,r 4,r 5}){R}_{3,0}=\dots={R}_{5,3}=\textit{mean}(\{{r}_{3},{r}_{4},{r}_{5}\}).
+
+By the definition given in Section [2.2](https://arxiv.org/html/2509.21154v2#S2.SS2 "2.2 Process Reward Models (PRMs) ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model"), R i,t{R}_{i,t} and ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) clearly define a PRM: each g(i)∈𝔾 g^{(i)}\in{\mathbb{G}} is mapped to the sequence (g:s​(λ 1)(i),R i,0),(g s​(λ 1):s​(λ 2)(i),R i,s​(λ 1)),…,(g s​(λ n):(i),R i,s​(λ n))(g^{(i)}_{:s(\lambda_{1})},{R}_{i,0}),(g^{(i)}_{s(\lambda_{1}):s(\lambda_{2})},{R}_{i,s(\lambda_{1})}),\dots,(g^{(i)}_{s(\lambda_{n}):},{R}_{i,s(\lambda_{n})}), where (λ 0=𝔾)→…→(λ n={g(i)})(\lambda_{0}={\mathbb{G}})\rightarrow\dots\rightarrow(\lambda_{n}=\{g^{(i)}\}) is the unique path in the tree structure induced on ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) from the root 𝔾{\mathbb{G}} to the node {g(i)}\{g^{(i)}\}.
+
+Now, define the step-level advantage A i,t{A}_{i,t} for the token g t(i)g^{(i)}_{t} in an analogous manner to the original GRPO definition in Equation [1](https://arxiv.org/html/2509.21154v2#S2.E1 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")—i.e. as the normalized difference between the step-level reward R i,t{R}_{i,t} for g t(i)g^{(i)}_{t} and the mean reward of 𝔾{\mathbb{G}}: A i,t=(R i,t−r mean​(𝔾))/r std​(𝔾){A}_{i,t}=({R}_{i,t}-r_{\textit{mean}}({\mathbb{G}}))/r_{\textit{std}}({\mathbb{G}}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc467368-c2d0-41d9-91b1-8ff718692376",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "a4344f94-44e6-4993-872c-e0f33b397fc5",
+  "sourceToolAssistantUUID": "fc467368-c2d0-41d9-91b1-8ff718692376",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-28T05:09:31.146Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JrkHrXd4tEdzJKiLzp2HVf`</summary>
+
+```json
+{
+  "command": "sed -n '100,200p' /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4344f94-44e6-4993-872c-e0f33b397fc5",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPZLK9nWmWruHyuDcby",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1d4a5d31-0106-4089-bff8-27e68f49c68f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Snbqrg3XZ5fzVWXvzMbfd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8372,
+      "cache_read_input_tokens": 17641,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 8372
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 17641,
+          "cache_creation_input_tokens": 8372,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 8372,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T05:09:31.244Z_
+
+<details><summary>↩ Tool result · `toolu_01JrkHrXd4tEdzJKiLzp2HVf`</summary>
+
+```text
+Replacing the term a i{a}_{i} with A i,t{A}_{i,t} in Equation [2a](https://arxiv.org/html/2509.21154v2#S2.E2.1 "In 2 ‣ 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model") yields a PRM-aware RL objective (Equation [4](https://arxiv.org/html/2509.21154v2#S3.E4 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")).
+
+L PRM​(𝔾)=1∑g(i)∈𝔾 len​(g(i))​∑g(i)∈𝔾∑t=0 len​(g(i))−1(P i,t⋅A i,t)−D i,t L_{\text{PRM}}({\mathbb{G}})=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\sum_{g^{(i)}\in{\mathbb{G}}}\sum_{t=0}^{\textit{len}(g^{(i)})-1}({P}_{i,t}\cdot\hbox{\pagecolor{yellow}$\displaystyle{A}_{i,t}$})-{D}_{i,t}(4)
+
+We now show that the standard GRPO objective defined in Equation [2a](https://arxiv.org/html/2509.21154v2#S2.E2.1 "In 2 ‣ 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model") with outcome-level rewards (L GRPO L_{\text{GRPO}}) is equivalent to the PRM defined in Equations [3](https://arxiv.org/html/2509.21154v2#S3.E3 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")-[4](https://arxiv.org/html/2509.21154v2#S3.E4 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") (L PRM L_{\text{PRM}}).
+
+###### Theorem 1.
+
+For any query q q, policy π θ\pi_{\theta}, and group 𝔾∼π θ​(–|q){\mathbb{G}}\sim\pi_{\theta}(\text{\textendash}\hskip 2.84526pt|\hskip 2.84526ptq) with outcome-level rewards {r i}g(i)∈𝔾\{r_{i}\}_{g^{(i)}\in{\mathbb{G}}}: L GRPO​(𝔾)=L PRM​(𝔾)L_{\text{GRPO}}({\mathbb{G}})=L_{\text{PRM}}({\mathbb{G}}).
+
+###### Proof.
+
+Let λ\lambda be any process set in ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}), and let t t be any integer such that s​(λ)≤t&lt;e​(λ)s(\lambda)\leq t&lt;e(\lambda). We first prove that the sum of the PRM loss terms P i,t⋅A i,t−D i,t{P}_{i,t}\cdot{A}_{i,t}-{D}_{i,t} for each trajectory g(i)∈λ g^{(i)}\in\lambda at the token t t is equivalent to the sum of the standard GRPO loss terms P i,t⋅a i−D i,t{P}_{i,t}\cdot{a}_{i}-{D}_{i,t} (Equation [5](https://arxiv.org/html/2509.21154v2#S3.E5 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")).
+
+Recall that for any g(i),g(k)∈λ g^{(i)},g^{(k)}\in\lambda, g:t+1(i)=g:t+1(k)g^{(i)}_{:t+1}=g^{(k)}_{:t+1} by definition: therefore, P i,t=P k,t{P}_{i,t}={P}_{k,t} and D i,t=D k,t{D}_{i,t}={D}_{k,t} (Equations [2b](https://arxiv.org/html/2509.21154v2#S2.E2.2 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")-[2c](https://arxiv.org/html/2509.21154v2#S2.E2.3 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")). Again by definition, g(i),g(k)∈λ g^{(i)},g^{(k)}\in\lambda implies that R i,t=R k,t=R^​(λ){R}_{i,t}={R}_{k,t}=\hat{R}(\lambda) (Equation [3](https://arxiv.org/html/2509.21154v2#S3.E3 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")), and so A i,t=A k,t{A}_{i,t}={A}_{k,t}. As such, we may define P^t​(λ)=P k,t\hat{P}_{t}(\lambda)={P}_{k,t}, D^t​(λ)=D k,t\hat{D}_{t}(\lambda)={D}_{k,t}, and A^​(λ)=A k,t\hat{A}(\lambda)={A}_{k,t} in Equation [5](https://arxiv.org/html/2509.21154v2#S3.E5 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), choosing any arbitrary g(k)∈λ g^{(k)}\in\lambda.
+
+∑g(i)∈λ(P i,t⋅A i,t)−D i,t=|λ|⋅((P^t​(λ)⋅A^​(λ))−D^t​(λ))=|λ|⋅((P^t​(λ)⋅R^​(λ)−r mean​(𝔾)r std​(𝔾))−D^t​(λ))=|λ|⋅((P^t​(λ)⋅∑g(i)∈λ r i|λ|−r mean​(𝔾)r std​(𝔾))−D^t​(λ))=(P^t​(λ)​|λ|​(∑g(i)∈λ r i|λ|−r mean​(𝔾))r std​(𝔾))−|λ|​D^t​(λ)=(P^t​(λ)​∑g(i)∈λ r i−∑g(i)∈λ r mean​(𝔾)r std​(𝔾))−|λ|​D^t​(λ)=(∑g(i)∈λ P i,t​r i−r mean​(𝔾)r std​(𝔾))−∑g(i)∈λ D i,t=∑g(i)∈λ(P i,t⋅a i)−D i,t\begin{split}&\sum_{g^{(i)}\in\lambda}({P}_{i,t}\cdot{A}_{i,t})-{D}_{i,t}=|\lambda|\cdot((\hat{P}_{t}(\lambda)\cdot\hat{A}(\lambda))-\hat{D}_{t}(\lambda))\\ &=|\lambda|\cdot\left(\left(\hat{P}_{t}(\lambda)\cdot\frac{\hat{R}(\lambda)-r_{\textit{mean}}({\mathbb{G}})}{r_{\textit{std}}({\mathbb{G}})}\right)-\hat{D}_{t}(\lambda)\right)=|\lambda|\cdot\left(\left(\hat{P}_{t}(\lambda)\cdot\frac{\sum_{g^{(i)}\in\lambda}\frac{{r}_{i}}{|\lambda|}-r_{\textit{mean}}({\mathbb{G}})}{r_{\textit{std}}({\mathbb{G}})}\right)-\hat{D}_{t}(\lambda)\right)\\ &=\left(\hat{P}_{t}(\lambda)\frac{|\lambda|(\sum_{g^{(i)}\in\lambda}\frac{{r}_{i}}{|\lambda|}-r_{\textit{mean}}({\mathbb{G}}))}{r_{\textit{std}}({\mathbb{G}})}\right)-|\lambda|\hat{D}_{t}(\lambda)=\left(\hat{P}_{t}(\lambda)\frac{\sum_{g^{(i)}\in\lambda}{r}_{i}-\sum_{g^{(i)}\in\lambda}r_{\textit{mean}}({\mathbb{G}})}{r_{\textit{std}}({\mathbb{G}})}\right)-|\lambda|\hat{D}_{t}(\lambda)\\ &=\left(\sum_{g^{(i)}\in\lambda}{P}_{i,t}\frac{{r}_{i}-r_{\textit{mean}}({\mathbb{G}})}{r_{\textit{std}}({\mathbb{G}})}\right)-\sum_{g^{(i)}\in\lambda}{D}_{i,t}=\sum_{g^{(i)}\in\lambda}({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}\end{split}(5)
+
+Now, letting t max=max g(i)∈𝔾​len​(g(i))t_{\textit{max}}=\textit{max}_{g^{(i)}\in{\mathbb{G}}}\hskip 2.84526pt\textit{len}(g^{(i)}), for each 0≤t&lt;t max 0\leq t&lt;t_{\textit{max}} we can define a partition 𝕏 t⊆ℬ​(𝔾){\mathbb{X}}_{t}\subseteq{\mathcal{B}}({\mathbb{G}}) of {g(i)∈𝔾|len​(g(i))≤t}\{g^{(i)}\in{\mathbb{G}}\hskip 2.84526pt|\hskip 2.84526pt\textit{len}(g^{(i)})\leq t\} such that 𝕏 t={λ∈ℬ​(𝔾)|s​(λ)≤t&lt;e​(λ)}{\mathbb{X}}_{t}=\{\lambda\in{\mathcal{B}}({\mathbb{G}})\hskip 2.84526pt|\hskip 2.84526pts(\lambda)\leq t&lt;e(\lambda)\} is the set of all process sets corresponding to a token span containing the index t t. The GRPO loss term L GRPO​(𝔾)L_{\text{GRPO}}({\mathbb{G}}) (Equation [2a](https://arxiv.org/html/2509.21154v2#S2.E2.1 "In 2 ‣ 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")) can be equivalently expressed as in Equation [6](https://arxiv.org/html/2509.21154v2#S3.E6 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") (and analogously for L PRM​(𝔾)L_{\text{PRM}}({\mathbb{G}}) of Equation [4](https://arxiv.org/html/2509.21154v2#S3.E4 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")).
+
+L GRPO​(𝔾)=1∑g(i)∈𝔾 len​(g(i))⋅∑t=0 t max−1∑λ∈𝕏 t∑g i∈λ(P i,t⋅a i)−D i,t L_{\text{GRPO}}({\mathbb{G}})=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{t=0}^{t_{\textit{max}}-1}\sum_{\lambda\in{\mathbb{X}}_{t}}\sum_{g_{i}\in\lambda}({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}(6)
+
+We then have the following equalities by Equations [5](https://arxiv.org/html/2509.21154v2#S3.E5 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") and [6](https://arxiv.org/html/2509.21154v2#S3.E6 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"):
+
+L GRPO​(𝔾)=1∑g(i)∈𝔾 len​(g(i))⋅∑g(i)∈𝔾∑t=0 len​(g(i))−1(P i,t⋅a i)−D i,t=1∑g(i)∈𝔾 len​(g(i))⋅∑t=0 t max−1∑λ∈𝕏 t∑g(i)∈λ(P i,t⋅a i)−D i,t=1∑g(i)∈𝔾 len​(g(i))⋅∑t=0 t max−1∑λ∈𝕏 t∑g(i)∈λ(P i,t⋅A i,t)−D i,t=1∑g(i)∈𝔾 len​(g(i))⋅∑g(i)∈𝔾∑t=0 len​(g(i))−1(P i,t⋅A i,t)−D i,t=L PRM​(𝔾)\begin{split}L_{\text{GRPO}}({\mathbb{G}})&=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{g^{(i)}\in{\mathbb{G}}}\sum_{t=0}^{\textit{len}(g^{(i)})-1}({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}=\\ \frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{t=0}^{t_{\textit{max}}-1}&\sum_{\lambda\in{\mathbb{X}}_{t}}\sum_{g^{(i)}\in\lambda}({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{t=0}^{t_{\textit{max}}-1}\sum_{\lambda\in{\mathbb{X}}_{t}}\sum_{g^{(i)}\in\lambda}({P}_{i,t}\cdot{A}_{i,t})-{D}_{i,t}\\ &=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{g^{(i)}\in{\mathbb{G}}}\sum_{t=0}^{\textit{len}(g^{(i)})-1}({P}_{i,t}\cdot{A}_{i,t})-{D}_{i,t}=L_{\text{PRM}}({\mathbb{G}})\end{split}
+
+∎
+
+In other words, the standard GRPO objective defined in Equation [2a](https://arxiv.org/html/2509.21154v2#S2.E2.1 "In 2 ‣ 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model") automatically induces the PRM and PRM-aware objective defined in Equations [3](https://arxiv.org/html/2509.21154v2#S3.E3 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")-[4](https://arxiv.org/html/2509.21154v2#S3.E4 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model").
+
+### 3.2 Empirical Analysis
+
+The theoretical analysis in Section [3.1](https://arxiv.org/html/2509.21154v2#S3.SS1 "3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") shows that the GRPO objective induces a PRM: it remains to be shown, however, that this induced PRM is non-trivial. We refer to the set ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) of process sets as trivial if it contains only singleton sets 3 3 3 And, by definition, 𝔾{\mathbb{G}} itself, with s​(𝔾)=e​(𝔾)=0 s({\mathbb{G}})=e({\mathbb{G}})=0.—i.e. ℬ​(𝔾)={𝔾}∪{{g(i)}|g(i)∈𝔾}{\mathcal{B}}({\mathbb{G}})=\{{\mathbb{G}}\}\cup\{\{g^{(i)}\}\hskip 2.84526pt|\hskip 2.84526ptg^{(i)}\in{\mathbb{G}}\}.
+
+If ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) is trivial, then there are no meaningful process steps within each trajectory, and only the outcome reward has an effect on learning. On the other hand, if ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) is not trivial, then Theorem [1](https://arxiv.org/html/2509.21154v2#Thmthm1 "Theorem 1. ‣ 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") entails that the standard GRPO objective of Equation [2a](https://arxiv.org/html/2509.21154v2#S2.E2.1 "In 2 ‣ 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model") induces a non-trivial PRM.
+
+To analyze the complexity of real-world, GRPO-derived step-level rewards, we empirically evaluated ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structures generated during standard GRPO training: for each group 𝔾{\mathbb{G}}, we computed its ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) tree, and measured the number of intermediate nodes between the root 𝔾{\mathbb{G}} and each terminal node {g(i)}\{g^{(i)}\} (path depth), as a proxy for the complexity of the ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structure.
+
+In addition, for each completion g(i)∈𝔾 g^{(i)}\in{\mathbb{G}}, we counted the number of tokens n term(i)=e​({g(i)})−s​({g(i)})n^{(i)}_{\textit{term}}=e(\{g^{(i)}\})-s(\{g^{(i)}\}) contained in the process step corresponding to the terminal node {g(i)}\{g^{(i)}\}—i.e. the number of tokens unique to g(i)g^{(i)}—and calculated the intermediate proportion p i{p}_{i} of g(i)g^{(i)}: p i=(len​(g(i))−n term(i))/len​(g(i)){p}_{i}=(\textit{len}(g^{(i)})-n^{(i)}_{\textit{term}})/\textit{len}(g^{(i)}). Higher values of p i{p}_{i} indicate that a greater proportion of the trajectory g(i)g^{(i)} belongs to intermediate process steps and is therefore assigned non-trivial step-level reward.
+
+![Image 2: Refer to caption](https://arxiv.org/html/2509.21154v2/x2.png)
+
+Figure 2: Validation reward (exact-match accuracy; left), ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) root-to-terminal path depth (center), and proportions of trajectories spanned by intermediate (non-terminal) process steps (right) for GRPO runs with group sizes of 36 (top) and 6 (bottom).
+
+#### Experimental Setup.
+
+We trained two DeepSeek-R1-Distill-Qwen-1.5B models (DeepSeek-AI, [2025](https://arxiv.org/html/2509.21154v2#bib.bib3)) on the OpenRS (Dang & Ngo, [2025](https://arxiv.org/html/2509.21154v2#bib.bib2)) dataset using the standard GRPO algorithm and objective of Equation [2](https://arxiv.org/html/2509.21154v2#S2.E2 "In 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model"). We selected 125 OpenRS examples at random to serve as a validation set.
+
+The first model trained for 1675 steps with a group size of six and a learn rate of 6×10−6 6\times 10^{-6}. The second was trained with a group size of 36 and a learn rate of 10−6 10^{-6} for 275 steps (due to the larger group size). Both models were trained with a maximum new token limit of 4096, a batch size of four, and a temperature of 0.75. Additional training details are located in Appendix [B](https://arxiv.org/html/2509.21154v2#A2 "Appendix B Experimental Setup ‣ GRPO is Secretly a Process Reward Model").
+
+#### Results.
+
+Figure [2](https://arxiv.org/html/2509.21154v2#S3.F2 "Figure 2 ‣ 3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") shows that both path depth and intermediate proportion increase drastically as validation reward saturates, for group sizes of six and 36. These results are supported by Yu et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib27)), who find that entropy decreases sharply as GRPO training progresses: this indicates that increasingly rich PRM-inducing structures arise as the model converges on a locally optimal policy.
+
+In addition, found that only twelve of 6,700 ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structures were trivial with a group size of six (∼\sim 0.2%). With a group size of 36, zero trivial ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structures arose out of the 1,100 generated groups. Examples of non-trivial ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structures from this experiment are given in Appendix [C](https://arxiv.org/html/2509.21154v2#A3 "Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model").
+
+In conjunction with the theoretical analysis of Section [3.1](https://arxiv.org/html/2509.21154v2#S3.SS1 "3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), the results of this experiment demonstrate that GRPO induces a non-trivial PRM under real-world conditions. In Section [4](https://arxiv.org/html/2509.21154v2#S4 "4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model"), we show that this induced PRM carries a serious flaw that is detrimental to RL training, and propose a minor modification to the GRPO algorithm to mitigate this shortcoming.
+
+4 Proposed Approach: λ\lambda-GRPO
+----------------------------------
+
+Viewing the GRPO objective in terms of process set partitions 𝕏 t{\mathbb{X}}_{t} (see Equation [6](https://arxiv.org/html/2509.21154v2#S3.E6 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")), we note that the contribution of each trajectory g(i)∈𝔾 g^{(i)}\in{\mathbb{G}} to the loss at index t t is identical to that of all other trajectories in the process set λ(i,t)\lambda^{(i,t)} (where P^t​(λ)\hat{P}_{t}(\lambda), D^t​(λ)\hat{D}_{t}(\lambda), and A^​(λ)\hat{A}(\lambda) are defined as in Equation [5](https://arxiv.org/html/2509.21154v2#S3.E5 "In 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")):
+
+1∑g(i)∈𝔾 len​(g(i))⋅∑g(i)∈𝔾∑t=0 len​(g(i))−1(P i,t⋅a i)−D i,t=1∑g(i)∈𝔾 len​(g(i))⋅∑t=0 t max−1∑λ∈𝕏 t∑g(i)∈λ(P i,t⋅A i,t)−D i,t=1∑g(i)∈𝔾 len​(g(i))⋅∑t=0 t max−1∑λ∈𝕏 t|λ|⋅((P^t​(λ)⋅A^​(λ))−D^t​(λ))\begin{split}\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{g^{(i)}\in{\mathbb{G}}}&\sum_{t=0}^{\textit{len}(g^{(i)})-1}({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{t=0}^{t_{\textit{max}}-1}\sum_{\lambda\in{\mathbb{X}}_{t}}\sum_{g^{(i)}\in\lambda}({P}_{i,t}\cdot{A}_{i,t})-{D}_{i,t}\\ =&\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{t=0}^{t_{\textit{max}}-1}\sum_{\lambda\in{\mathbb{X}}_{t}}|\lambda|\cdot((\hat{P}_{t}(\lambda)\cdot\hat{A}(\lambda))-\hat{D}_{t}(\lambda))\end{split}(7)
+
+The contribution of each process set λ∈ℬ​(𝔾)\lambda\in{\mathcal{B}}({\mathbb{G}}) to the overall loss, P^t​(λ)⋅A^​(λ)−D^t​(λ)\hat{P}_{t}(\lambda)\cdot\hat{A}(\lambda)-\hat{D}_{t}(\lambda), is scaled by |λ||\lambda|: this carries the danger of harming exploration (for A^​(λ)<0\hat{A}(\lambda)<0) and exploitation (for A^​(λ)>0\hat{A}(\lambda)>0). Consider some process set λ\lambda with |λ|≫1|\lambda|\gg 1. If A^​(λ)>0\hat{A}(\lambda)>0, then the increase in probability assigned to the process step corresponding to λ\lambda by π θ\pi_{\theta} under GRPO is compounded by a factor of |λ||\lambda|, decreasing the likelihood of exploring process steps that are dissimilar from λ\lambda in subsequent training episodes.
+
+Conversely, if A^​(λ)<0\hat{A}(\lambda)<0, then the decrease in probability assigned to λ\lambda under GRPO is compounded by a factor of |λ||\lambda|, decreasing the likelihood of exploiting high-reward trajectories in λ\lambda. To illustrate, consider the group 𝔾{\mathbb{G}} in Figure [2](https://arxiv.org/html/2509.21154v2#footnote2 "footnote 2 ‣ Figure 1 ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), assume r 1=r 2=r 6=0.5{r}_{1}={r}_{2}={r}_{6}=0.5, r 4=r 5=0{r}_{4}={r}_{5}=0, r 3=1{r}_{3}=1, and let λ={g(3),g(4),g(5)}\lambda=\{g^{(3)},g^{(4)},g^{(5)}\}. Then A^​(λ)=−0.22\hat{A}(\lambda)=-0.22: despite the fact that g(3)g^{(3)} has the highest reward, the probability of the sub-trajectory g:4(3)g^{(3)}_{:4} is decreased under the GRPO objective, thereby decreasing the overall likelihood of generating the completion g(3)g^{(3)}. The term |λ||\lambda| in Equation [7](https://arxiv.org/html/2509.21154v2#S4.E7 "In 4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model") then scales this decrease in probability by a factor of three.
+
+We propose scaling the token-level loss for g t(i)g^{(i)}_{t} by |λ(i,t)|−1|\lambda^{(i,t)}|^{-1} (λ\lambda-GRPO; Equation [8](https://arxiv.org/html/2509.21154v2#S4.E8 "In 4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model")): this has the effect of canceling out the term |λ||\lambda| in Equation [7](https://arxiv.org/html/2509.21154v2#S4.E7 "In 4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model"), so that each process set contributes equally to the loss at index t t.
+
+L λ​-GRPO​(𝔾)=1∑g(i)∈𝔾 len​(g(i))⋅∑g(i)∈𝔾∑t=0 len​(g(i))−1(P i,t⋅a i)−D i,t|λ(i,t)|=1∑g(i)∈𝔾 len​(g(i))⋅∑t=0 t max−1∑λ∈𝕏 t(P^t​(λ)⋅A^​(λ))−D^t​(λ)\begin{split}L_{\lambda\text{-GRPO}}({\mathbb{G}})&=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{g^{(i)}\in{\mathbb{G}}}\sum_{t=0}^{\textit{len}(g^{(i)})-1}\frac{({P}_{i,t}\cdot{a}_{i})-{D}_{i,t}}{|\lambda^{(i,t)}|}\\ &=\frac{1}{\sum_{g^{(i)}\in{\mathbb{G}}}\textit{len}(g^{(i)})}\cdot\sum_{t=0}^{t_{\textit{max}}-1}\sum_{\lambda\in{\mathbb{X}}_{t}}(\hat{P}_{t}(\lambda)\cdot\hat{A}(\lambda))-\hat{D}_{t}(\lambda)\end{split}(8)
+
+5 Experiments
+-------------
+
+To evaluate our proposed approach, we trained DeepSeek-R1-Distill-Qwen-1.5B and Llama-3.2-1B-Instruct 4 4 4[https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) with the λ\lambda-GRPO (Equation [8](https://arxiv.org/html/2509.21154v2#S4.E8 "In 4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model")) objective on the OpenRS dataset of Section [3.2](https://arxiv.org/html/2509.21154v2#S3.SS2 "3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), and compared them to standard GRPO (Equation [2a](https://arxiv.org/html/2509.21154v2#S2.E2.1 "In 2 ‣ 2.1 GRPO ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model")) models trained with an identical setup. All models were evaluated on an OpenRS validation set and five downstream reasoning benchmarks (see Section [5.1](https://arxiv.org/html/2509.21154v2#S5.SS1 "5.1 Experimental Setup ‣ 5 Experiments ‣ GRPO is Secretly a Process Reward Model")).
+
+### 5.1 Experimental Setup
+
+All models were trained for 1,000 steps with a group size of six, a batch size of four, a maximum of 4,096 new tokens, and a temperature of 0.75. We conducted two sets of trials across the two models (for a total of four trials): in the first, we set the KL coefficient β=0.0\beta=0.0, and in the second β=0.04\beta=0.04. The Qwen models were trained with a learn rate of 10−6 10^{-6}; the Llama models were trained with a learn rate of 5×10−7 5\times 10^{-7} for the β=0.0\beta=0.0 trial and 10−7 10^{-7} for β=0.04\beta=0.04 (as training was highly unstable with higher learn rates for Llama). Additional training details are located in Appendix [B](https://arxiv.org/html/2509.21154v2#A2 "Appendix B Experimental Setup ‣ GRPO is Secretly a Process Reward Model").
+
+We evaluated the models on the AIME24 5 5 5[https://huggingface.co/datasets/AI-MO/aimo-validation-aime](https://huggingface.co/datasets/AI-MO/aimo-validation-aime), MATH-500 (Hendrycks et al., [2021](https://arxiv.org/html/2509.21154v2#bib.bib7); Lightman et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib12)), AMC23 6 6 6[https://huggingface.co/datasets/AI-MO/aimo-validation-amc](https://huggingface.co/datasets/AI-MO/aimo-validation-amc), Minerva (Lewkowycz et al., [2022](https://arxiv.org/html/2509.21154v2#bib.bib10)), and OlympiadBench (He et al., [2024](https://arxiv.org/html/2509.21154v2#bib.bib6)) benchmarks, using the LightEval framework Habib et al. ([2023](https://arxiv.org/html/2509.21154v2#bib.bib5)); Dang & Ngo ([2025](https://arxiv.org/html/2509.21154v2#bib.bib2)). All models were evaluated at the checkpoint corresponding to the step at which they achieved maximum validation accuracy. As in the experiment in Section [3.2](https://arxiv.org/html/2509.21154v2#S3.SS2 "3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"), we withheld 125 examples as a validation set.
+
+### 5.2 Results and Discussion
+
+![Image 3: Refer to caption](https://arxiv.org/html/2509.21154v2/x3.png)
+
+Figure 3: Models’ validation accuracy across training steps. Peak accuracy is highlighted by vertical, dashed lines.
+
+Table 1: Exact-match accuracy for the base and GRPO-/λ\lambda-GRPO-trained Llama and Qwen models on downstream reasoning datasets (OB=OlympiadBench\text{OB}=\text{OlympiadBench}). The best results in each column are indicated in bold, and the best results within each model type (i.e. Llama or Qwen) are underlined. Confidence intervals are subscripted. For each λ\lambda-GRPO-trained model, results are given in  green if it outperforms its GRPO-trained counterpart and the base model;  yellow if it outperforms only its GRPO-trained counterpart;  orange if it only improves over the base model; and  red if it fails to outperform either model (see Table [2](https://arxiv.org/html/2509.21154v2#A0.T2 "Table 2 ‣ GRPO is Secretly a Process Reward Model") in the Appendix for exact differences).
+
+All four λ\lambda-GRPO models reach a higher validation accuracy in fewer steps than their GRPO counterparts (see Figure [3](https://arxiv.org/html/2509.21154v2#S5.F3 "Figure 3 ‣ 5.2 Results and Discussion ‣ 5 Experiments ‣ GRPO is Secretly a Process Reward Model")): on average, λ\lambda-GRPO represents a more than 10% increase over the standard GRPO validation accuracy—in less than half of the number of training steps.
+
+This increase in validation accuracy corresponds to improved performance on downstream reasoning tasks (see Table [1](https://arxiv.org/html/2509.21154v2#S5.T1 "Table 1 ‣ 5.2 Results and Discussion ‣ 5 Experiments ‣ GRPO is Secretly a Process Reward Model")). In total, the λ\lambda-GRPO models outperform standard GRPO on 15/20 cells (excluding average performance) in Table [1](https://arxiv.org/html/2509.21154v2#S5.T1 "Table 1 ‣ 5.2 Results and Discussion ‣ 5 Experiments ‣ GRPO is Secretly a Process Reward Model"), and they improve over the base Llama/Qwen models on 14/20 cells. Only the Llama λ\lambda-GRPO model with β=0.04\beta=0.04 failed to outperform its GRPO counterpart on average downstream performance—this model still outperformed standard GRPO on a majority (3/5) of the tasks.
+
+In addition, these performance gains result in effectively zero training slowdown: as we are merely detecting ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structures that occur during training—rather than generating them (e.g. Kazemnejad et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib9); Hou et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib8); Yang et al., [2025a](https://arxiv.org/html/2509.21154v2#bib.bib24))—the added computational cost from λ\lambda-GRPO (vs. standard GRPO) is negligible.
+
+6 Related Work
+--------------
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d4a5d31-0106-4089-bff8-27e68f49c68f",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "468c6bea-88e2-40ec-aa6c-68a5829cb6af",
+  "sourceToolAssistantUUID": "1d4a5d31-0106-4089-bff8-27e68f49c68f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-28T05:09:37.895Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015BLHupjqUAuS2GgxVq2JkB`</summary>
+
+```json
+{
+  "command": "sed -n '200,291p' /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/e7945f29-9935-49f0-9154-fa3c8c76e1ef/tool-results/toolu_01UYti9JFdTVoH45MVvwxUSU.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "468c6bea-88e2-40ec-aa6c-68a5829cb6af",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPZiyuhYdVvf45xroju",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "86e96bca-da62-4d84-a67a-556c2b3ccec0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FuTyUuDoV6KEgKrK797u7W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11467,
+      "cache_read_input_tokens": 26013,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 11467
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 26013,
+          "cache_creation_input_tokens": 11467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 11467,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-28T05:09:37.968Z_
+
+<details><summary>↩ Tool result · `toolu_015BLHupjqUAuS2GgxVq2JkB`</summary>
+
+```text
+--------------
+
+#### Monte Carlo Sampling for Finer-Grained Rewards.
+
+As discussed in Section [2.2](https://arxiv.org/html/2509.21154v2#S2.SS2 "2.2 Process Reward Models (PRMs) ‣ 2 Background ‣ GRPO is Secretly a Process Reward Model"), the labor-intensive human annotation required to obtain step-level rewards for PRM training has driven the development of heuristic methods for PRMs and PRM-like finer-grained reward signals, in particular those based on Monte Carlo estimation. Kazemnejad et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib9)) replace the critic model in PPO with Monte Carlo estimation: multiple completions are sampled for each step, and the value for that step is derived from their mean outcome reward. On the other hand, Wang et al. ([2024](https://arxiv.org/html/2509.21154v2#bib.bib22)) train a neural PRM, using Monte Carlo estimation in a similar manner to Kazemnejad et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib9)) in order to obtain step-level training rewards, and thereby avoid the need for costly human annotation.
+
+Xie et al. ([2024](https://arxiv.org/html/2509.21154v2#bib.bib23)) generate step-level preference data for Direct Preference Optimization (DPO; Rafailov et al., [2023](https://arxiv.org/html/2509.21154v2#bib.bib16)) training via Monte Carlo Tree Search and outcome-level rewards: sequences of overlapping trajectories are obtained by forking trajectories at defined split points to construct tree structures similar to the ℬ​(G)\mathcal{B}(G) trees introduced in Section [3.1](https://arxiv.org/html/2509.21154v2#S3.SS1 "3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"). The daughter nodes with the highest and lowest mean reward are then selected as the preferred and dispreferred (respectively) sequences for step-level DPO. Similarly, Hou et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib8)) construct ℬ​(G)\mathcal{B}(G)-like trees by splitting generated trajectories at high-entropy tokens to create multiple completions to the same initial trajectory prefix. Subtrajectory rewards are then derived from the mean reward of the corresponding node’s daughters in the tree structure. Yang et al. ([2025a](https://arxiv.org/html/2509.21154v2#bib.bib24)) employ an analogous approach to generate step-level rewards for GRPO training. Unlike standard GRPO, however, the advantages for each node (step) are computed relative to the rewards of node’s sisters in the tree structure, rather than the entire group.
+
+These methods are orthogonal to our approach: they apply Monte Carlo estimation to explicitly construct step-level reward signals from outcome-level rewards, while we leverage the implicit step-level rewards already present in standard GRPO.
+
+#### PRMs with GRPO.
+
+Aside from Yang et al. ([2025a](https://arxiv.org/html/2509.21154v2#bib.bib24)), GRPO has been employed with PRMs in Shao et al. ([2024](https://arxiv.org/html/2509.21154v2#bib.bib19)) and Feng et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib4)). Shao et al. ([2024](https://arxiv.org/html/2509.21154v2#bib.bib19)) modify the advantage computation of GRPO to account for step-level rewards: normalized rewards are computed relative to all step-level rewards of all trajectories in the group, and the advantage for each step is the sum of the normalized reward of each subsequent step in its trajectory. Feng et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib4)) construct a two-level variant of GRPO, in which standard, trajectory-level GRPO advantage is combined with a step-level GRPO advantage, and step-level groups are dynamically computed according to the similarity of steps across trajectories.
+
+Our results in Sections [3](https://arxiv.org/html/2509.21154v2#S3 "3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") and [5](https://arxiv.org/html/2509.21154v2#S5 "5 Experiments ‣ GRPO is Secretly a Process Reward Model") call into question the necessity of adapting GRPO to step-level rewards, given the rich step-level reward signal already present in the outcome-level variant of the algorithm.
+
+7 Conclusion
+------------
+
+In this paper, we demonstrated both theoretically and empirically that the standard GRPO algorithm induces a PRM that derives step-level rewards via Monte Carlo estimation. We then showed that this hidden PRM is faulty, and as a result is potentially detrimental to exploration and exploitation. To mitigate this flaw, we introduced a process-step-aware scaling factor to GRPO to derive the λ\lambda-GRPO objective. Models trained with λ\lambda-GRPO reach higher validation accuracy faster than with standard GRPO, and achieve improved performance on downstream reasoning tasks.
+
+Our results indicate that it is possible to leverage the existing PRM structure inherent in the outcome-based GRPO algorithm, rather than employing costly, explicitly-defined PRMs. The limitations of this work are discussed in Appendix [A](https://arxiv.org/html/2509.21154v2#A1 "Appendix A Limitations ‣ GRPO is Secretly a Process Reward Model").
+
+Reproducibility Statement
+-------------------------
+
+We provide the complete proof of Theorem [1](https://arxiv.org/html/2509.21154v2#Thmthm1 "Theorem 1. ‣ 3.1 Theoretical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") in the main body of the paper. All settings and hyperparameters for the experiments conducted in this work are given in Sections [3.2](https://arxiv.org/html/2509.21154v2#S3.SS2 "3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model")/ [5.1](https://arxiv.org/html/2509.21154v2#S5.SS1 "5.1 Experimental Setup ‣ 5 Experiments ‣ GRPO is Secretly a Process Reward Model") and Appendix [B](https://arxiv.org/html/2509.21154v2#A2 "Appendix B Experimental Setup ‣ GRPO is Secretly a Process Reward Model"). All code is available on GitHub: [https://github.com/coli-saar/grpo-prm/](https://github.com/coli-saar/grpo-prm/).
+
+References
+----------
+
+*   Cui et al. (2025) Ganqu Cui, Lifan Yuan, Zefan Wang, Hanbin Wang, Wendi Li, Bingxiang He, Yuchen Fan, Tianyu Yu, Qixin Xu, Weize Chen, Jiarui Yuan, Huayu Chen, Kaiyan Zhang, Xingtai Lv, Shuo Wang, Yuan Yao, Xu Han, Hao Peng, Yu Cheng, Zhiyuan Liu, Maosong Sun, Bowen Zhou, and Ning Ding. Process reinforcement through implicit rewards. _arXiv preprint arXiv:2502.01456_, 2025. 
+*   Dang & Ngo (2025) Quy-Anh Dang and Chris Ngo. Reinforcement learning for reasoning in small llms: What works and what doesn’t. _arXiv preprint arXiv:2503.16219_, 2025. 
+*   DeepSeek-AI (2025) DeepSeek-AI. Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning. _arXiv preprint arXiv:2501.12948_, 2025. 
+*   Feng et al. (2025) Lang Feng, Zhenghai Xue, Tingcong Liu, and Bo An. Group-in-group policy optimization for llm agent training. _arXiv preprint arXiv:2505.10978_, 2025. 
+*   Habib et al. (2023) Nathan Habib, Clémentine Fourrier, Hynek Kydlíček, Thomas Wolf, and Lewis Tunstall. Lighteval: A lightweight framework for llm evaluation, 2023. URL [https://github.com/huggingface/lighteval](https://github.com/huggingface/lighteval). 
+*   He et al. (2024) Chaoqun He, Renjie Luo, Yuzhuo Bai, Shengding Hu, Zhen Thai, Junhao Shen, Jinyi Hu, Xu Han, Yujie Huang, Yuxiang Zhang, Jie Liu, Lei Qi, Zhiyuan Liu, and Maosong Sun. OlympiadBench: A challenging benchmark for promoting AGI with olympiad-level bilingual multimodal scientific problems. In _Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)_, pp. 3828–3850, 2024. 
+*   Hendrycks et al. (2021) Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt. Measuring mathematical problem solving with the MATH dataset. In _Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2)_, 2021. 
+*   Hou et al. (2025) Zhenyu Hou, Ziniu Hu, Yujiang Li, Rui Lu, Jie Tang, and Yuxiao Dong. TreeRL: LLM reinforcement learning with on-policy tree search. In _Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)_, pp. 12355–12369, 2025. 
+*   Kazemnejad et al. (2025) Amirhossein Kazemnejad, Milad Aghajohari, Eva Portelance, Alessandro Sordoni, Siva Reddy, Aaron Courville, and Nicolas Le Roux. VinePPO: Refining credit assignment in RL training of LLMs. In _Forty-second International Conference on Machine Learning_, 2025. 
+*   Lewkowycz et al. (2022) Aitor Lewkowycz, Anders Andreassen, David Dohan, Ethan Dyer, Henryk Michalewski, Vinay Ramasesh, Ambrose Slone, Cem Anil, Imanol Schlag, Theo Gutman-Solo, Yuhuai Wu, Behnam Neyshabur, Guy Gur-Ari, and Vedant Misra. Solving quantitative reasoning problems with language models. _Advances in Neural Information Processing Systems_, 35:3843–3857, 2022. 
+*   Li & Li (2025) Wendi Li and Yixuan Li. Process reward model with q-value rankings. In _The Thirteenth International Conference on Learning Representations_, 2025. 
+*   Lightman et al. (2024) Hunter Lightman, Vineet Kosaraju, Yuri Burda, Harrison Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. Let’s verify step by step. In _The Twelfth International Conference on Learning Representations_, 2024. 
+*   Luo et al. (2025) Michael Luo, Sijun Tan, Justin Wong, Xiaoxiang Shi, William Y. Tang, Manan Roongta, Colin Cai, Jeffrey Luo, Li Erran Li, Raluca Ada Popa, and Ion Stoica. Deepscaler: Surpassing o1-preview with a 1.5b model by scaling rl. https://pretty-radio-b75.notion.site/DeepScaleR-Surpassing-O1-Preview-with-a-1-5B-Model-by-Scaling-RL-19681902c1468005bed8ca303013a4e2, 2025. Notion Blog. 
+*   Muennighoff et al. (2025) Niklas Muennighoff, Zitong Yang, Weijia Shi, Xiang Lisa Li, Li Fei-Fei, Hannaneh Hajishirzi, Luke Zettlemoyer, Percy Liang, Emmanuel Candès, and Tatsunori Hashimoto. s1: Simple test-time scaling. _arXiv preprint arXiv:2501.19393_, 2025. 
+*   Qian et al. (2025) Cheng Qian, Emre Can Acikgoz, Qi He, Hongru Wang, Xiusi Chen, Dilek Hakkani-Tür, Gokhan Tur, and Heng Ji. Toolrl: Reward is all tool learning needs. _arXiv preprint arXiv:2504.13958_, 2025. 
+*   Rafailov et al. (2023) Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D Manning, and Chelsea Finn. Direct preference optimization: Your language model is secretly a reward model. In _Proceedings of the 37th International Conference on Neural Information Processing Systems_, pp. 53728–53741, 2023. 
+*   Schulman et al. (2017) John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov. Proximal policy optimization algorithms. _arXiv preprint arXiv:1707.06347_, 2017. 
+*   Setlur et al. (2025) Amrith Setlur, Chirag Nagpal, Adam Fisch, Xinyang Geng, Jacob Eisenstein, Rishabh Agarwal, Alekh Agarwal, Jonathan Berant, and Aviral Kumar. Rewarding progress: Scaling automated process verifiers for LLM reasoning. In _The Thirteenth International Conference on Learning Representations_, 2025. 
+*   Shao et al. (2024) Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, YK Li, Yang Wu, and Daya Guo. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. _arXiv preprint arXiv:2402.03300_, 2024. 
+*   Sullivan et al. (2025) Michael Sullivan, Mareike Hartmann, and Alexander Koller. Procedural environment generation for tool-use agents. _arXiv preprint arXiv:2506.11045_, 2025. 
+*   Uesato et al. (2022) Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins. Solving math word problems with process- and outcome-based feedback. _arXiv preprint arXiv:2211.14275_, 2022. 
+*   Wang et al. (2024) Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui. Math-shepherd: Verify and reinforce LLMs step-by-step without human annotations. In _Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)_, pp. 9426–9439, 2024. 
+*   Xie et al. (2024) Yuxi Xie, Anirudh Goyal, Wenyue Zheng, Min-Yen Kan, Timothy P Lillicrap, Kenji Kawaguchi, and Michael Shieh. Monte carlo tree search boosts reasoning via iterative preference learning. In _The First Workshop on System-2 Reasoning at Scale, NeurIPS’24_, 2024. 
+*   Yang et al. (2025a) Zhicheng Yang, Zhijiang Guo, Yinya Huang, Xiaodan Liang, Yiwei Wang, and Jing Tang. Treerpo: Tree relative policy optimization. _arXiv preprint arXiv:2506.05183_, 2025a. 
+*   Yang et al. (2025b) Zonglin Yang, Zhexuan Gu, Houduo Qi, and Yancheng Yuan. Accelerating rlhf training with reward variance increase. _arXiv preprint arXiv:2505.23247_, 2025b. 
+*   Yao et al. (2023) Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. React: Synergizing reasoning and acting in language models. In _The Eleventh International Conference on Learning Representations_, 2023. 
+*   Yu et al. (2025) Qiying Yu, Zheng Zhang, Ruofei Zhu, Yufeng Yuan, Xiaochen Zuo, Yu Yue, Weinan Dai, Tiantian Fan, Gaohong Liu, Lingjun Liu, et al. Dapo: An open-source llm reinforcement learning system at scale. _arXiv preprint arXiv:2503.14476_, 2025. 
+*   Zhang et al. (2025) Zhenru Zhang, Chujie Zheng, Yangzhen Wu, Beichen Zhang, Runji Lin, Bowen Yu, Dayiheng Liu, Jingren Zhou, and Junyang Lin. The lessons of developing process reward models in mathematical reasoning. _arXiv preprint arXiv:2501.07301_, 2025. 
+
+Table 2: Difference in accuracy between the λ\lambda-GRPO-trained models, and their corresponding base models and standard-GRPO-trained counterparts. Positive differences (i.e. λ\lambda-GRPO outperforms the comparison model) are highlighted in  green; negative differences (i.e. the comparison model outperforms λ\lambda-GRPO) are highlighted in  red. For example, the top-most entry in the AIME24 column indicates that the λ\lambda-GRPO Qwen model with β=0.0\beta=0.0 outperformed the base DeepSeek-R1-Distill-Qwen-1.5B by 0.1667 on the AIME24 benchmark.
+
+Appendix A Limitations
+----------------------
+
+Due to computational resource constraints, we were only able to conduct the experiments in Sections [3.2](https://arxiv.org/html/2509.21154v2#S3.SS2 "3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model") and [5](https://arxiv.org/html/2509.21154v2#S5 "5 Experiments ‣ GRPO is Secretly a Process Reward Model") with relatively small models: 1.5 billion (Qwen) and 1 billion (Llama) parameters. Similarly, we only use one dataset for RL training in both experiments—although OpenRS is a combination of the s1 (Muennighoff et al., [2025](https://arxiv.org/html/2509.21154v2#bib.bib14)) and DeepScaleR Luo et al. ([2025](https://arxiv.org/html/2509.21154v2#bib.bib13)) datasets. Future work should extend our findings regarding the non-triviality of the GRPO-induced PRM and the effectiveness of λ\lambda-GRPO to larger models and more diverse (training) datasets.
+
+Finally, the objective of this work is to expose the PRM induced by the GRPO algorithm, and to highlight the deficiencies of that PRM as described in Section [4](https://arxiv.org/html/2509.21154v2#S4 "4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model"). To that end, our proposed λ\lambda-GRPO method does not actually remedy the anti-exploitation effect of the GRPO-induced PRM—it merely lessens its impact. In future work, we intend to investigate more extensive modifications to the GRPO algorithm, with the goal of entirely solving the problems laid out in Section [4](https://arxiv.org/html/2509.21154v2#S4 "4 Proposed Approach: 𝜆-GRPO ‣ GRPO is Secretly a Process Reward Model").
+
+Appendix B Experimental Setup
+-----------------------------
+
+All experiments were conducted on a single NVIDIA H100 GPU. We trained all models with 24 gradient accumulation steps per step and a generation batch size of 6. The models were evaluated on the validation split every 25 training steps.
+
+We additionally hard-coded the generation procedure to halt after “\boxed{…}” was detected: this was to prevent the model from generating multiple boxed answers for a single prompt.
+
+Appendix C ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) Structure Examples
+---------------------------------------------------------------
+
+The following (Figures [4](https://arxiv.org/html/2509.21154v2#A3.F4 "Figure 4 ‣ Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model"), [5](https://arxiv.org/html/2509.21154v2#A3.F5 "Figure 5 ‣ Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model"), [6](https://arxiv.org/html/2509.21154v2#A3.F6 "Figure 6 ‣ Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model")) represent ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structures on groups generated during the group size 6 trial of the experiment in Section [3.2](https://arxiv.org/html/2509.21154v2#S3.SS2 "3.2 Empirical Analysis ‣ 3 The PRM in the Machine ‣ GRPO is Secretly a Process Reward Model"). A full trajectory is reconstructed by tracing the unique path from the root to a terminal node. The root ( red) corresponds to the prompt/query q q. Terminal nodes ( yellow) denote singleton process steps {g(i)}\{g^{(i)}\}; each non-terminal node λ\lambda (white; including the root) denotes the process step corresponding to the set of all terminal nodes dominated by λ\lambda. For the sake of presentation, overlong terminal steps are truncated with “…”.
+
+![Image 4: Refer to caption](https://arxiv.org/html/2509.21154v2/x4.png)
+
+Figure 4: ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structure from step 1 (see the beginning of Appendix [C](https://arxiv.org/html/2509.21154v2#A3 "Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model") for additional details).
+
+![Image 5: Refer to caption](https://arxiv.org/html/2509.21154v2/x5.png)
+
+Figure 5: ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structure from step 1001 (see the beginning of Appendix [C](https://arxiv.org/html/2509.21154v2#A3 "Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model") for additional details).
+
+![Image 6: Refer to caption](https://arxiv.org/html/2509.21154v2/x6.png)
+
+Figure 6: ℬ​(𝔾){\mathcal{B}}({\mathbb{G}}) structure from step 1673 (see the beginning of Appendix [C](https://arxiv.org/html/2509.21154v2#A3 "Appendix C ℬ⁢(𝔾) Structure Examples ‣ GRPO is Secretly a Process Reward Model") for additional details).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86e96bca-da62-4d84-a67a-556c2b3ccec0",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "2d9d1937-5449-4a24-8d3f-9797e6b7b974",
+  "sourceToolAssistantUUID": "86e96bca-da62-4d84-a67a-556c2b3ccec0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-28T05:09:41.606Z_
+
+Now let me also search for any community discussion or critique of this paper, particularly regarding limitations and whether explicit PRMs still have value.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d9d1937-5449-4a24-8d3f-9797e6b7b974",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPaDiZ4ojVf2YKk9oWt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c6d742f7-e96b-4c57-a182-744d5029bac2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuNJrqX4NmXs19AMg3nBGS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6656,
+      "cache_read_input_tokens": 37480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6656,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-28T05:09:42.084Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HBWEodgXLdcqPVC2QZHzi6`</summary>
+
+```json
+{
+  "query": "\"GRPO is secretly a process reward model\" limitations explicit PRM still useful critique"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6d742f7-e96b-4c57-a182-744d5029bac2",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPaDiZ4ojVf2YKk9oWt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "80e6602e-8be0-4f7a-b5ce-ff251578f59a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuNJrqX4NmXs19AMg3nBGS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6656,
+      "cache_read_input_tokens": 37480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6656,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-28T05:09:44.263Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NXQTZi7MhJdi2ok5Zt8bwW`</summary>
+
+```json
+{
+  "url": "https://www.themoonlight.io/en/review/grpo-is-secretly-a-process-reward-model",
+  "prompt": "Extract the full review and analysis of the paper \"GRPO is Secretly a Process Reward Model\". Include any criticisms, discussion of limitations, assessment of claims, and any analysis of whether explicit PRMs still have value despite this paper's findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80e6602e-8be0-4f7a-b5ce-ff251578f59a",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPaDiZ4ojVf2YKk9oWt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "61cddd19-bde2-4647-af09-919d558f6ca5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuNJrqX4NmXs19AMg3nBGS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6656,
+      "cache_read_input_tokens": 37480,
+      "output_tokens": 227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6656
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 227,
+          "cache_read_input_tokens": 37480,
+          "cache_creation_input_tokens": 6656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6656,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-28T05:09:49.562Z_
+
+<details><summary>↩ Tool result · `toolu_01NXQTZi7MhJdi2ok5Zt8bwW`</summary>
+
+```text
+# Analysis of "GRPO is Secretly a Process Reward Model"
+
+## Summary
+
+The paper demonstrates that Group Relative Policy Optimization implicitly functions as a process reward model despite lacking explicit step-level reward design.
+
+## Key Findings
+
+**Core Contribution:** The authors "theoretically prove that GRPO induces a PRM under two mild assumptions" involving token-level objectives and single update iterations per batch.
+
+**Methodology:** The research introduces process sets—subsets of completions sharing identical prefixes—which form tree structures. Step-level rewards are assigned through Monte Carlo estimation of shared prefix values.
+
+**Mathematical Result:** The team establishes that standard GRPO's loss function mathematically equals their PRM-aware objective, proving equivalence between the approaches.
+
+## Main Improvement
+
+The proposed λ-GRPO modification addresses a flaw: large process sets disproportionately influence updates. The solution applies normalization by process set size, ensuring "each process step contributes equally to the loss at a given token index."
+
+## Empirical Evidence
+
+Experiments showed λ-GRPO achieved "over 10% higher accuracy in less than half the training steps" versus standard GRPO on validation tasks, with consistent advantages across downstream reasoning benchmarks.
+
+## Limitations & Open Questions
+
+The provided content lacks explicit discussion of:
+- Criticisms or counterarguments
+- Acknowledged limitations
+- Analysis of whether expensive, explicitly-trained PRMs retain independent value
+- Scenarios where hidden PRM structures might prove insufficient
+
+The summary only concludes that findings "challenge the utility of dedicated PRMs" without detailed debate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61cddd19-bde2-4647-af09-919d558f6ca5",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "a3a38fa0-35c2-4fd0-b4e1-33e2fa4b5ccc",
+  "sourceToolAssistantUUID": "61cddd19-bde2-4647-af09-919d558f6ca5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-28T05:09:50.562Z_
+
+<details><summary>↩ Tool result · `toolu_01HBWEodgXLdcqPVC2QZHzi6`</summary>
+
+```text
+Web search results for query: ""GRPO is secretly a process reward model" limitations explicit PRM still useful critique"
+
+Links: [{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/html/2509.21154v2"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL","url":"https://openreview.net/pdf?id=o0k034W6vx"},{"title":"GRPO is Secretly a Process Reward Model | OpenReview","url":"https://openreview.net/forum?id=o0k034W6vx"},{"title":"[2509.21154] GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/abs/2509.21154"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan","url":"https://arxiv.org/pdf/2509.21154"},{"title":"[Literature Review] GRPO is Secretly a Process Reward Model","url":"https://www.themoonlight.io/en/review/grpo-is-secretly-a-process-reward-model"},{"title":"Critique-GRPO: Advancing LLM Reasoning with Natural Language and Numerical Feedback","url":"https://arxiv.org/html/2506.03106v1"}]
+
+Based on the search results, here's what I found about the paper "GRPO is Secretly a Process Reward Model" and its key findings:
+
+## Core Thesis
+
+The GRPO RL algorithm equipped with an outcome reward model (ORM) is equivalent to a PRM-aware RL objective equipped with a non-trivial, Monte-Carlo-based PRM.
+
+## Identified Limitations and Critique
+
+The hidden PRM induced by GRPO is faulty, and as a result is potentially detrimental to exploration and exploitation. More specifically, non-uniformly distributed process steps hinder both exploration and exploitation under different conditions.
+
+## On Explicit PRMs
+
+The paper argues against the necessity of explicitly-defined PRMs. Training neural PRMs requires costly, step-level human annotation, and such models are particularly susceptible to reward hacking. However, it is possible to leverage the hidden, built-in PRM structure within the vanilla GRPO algorithm to boost model performance with a negligible impact on training time and cost.
+
+## Proposed Solution
+
+The authors proposed a simple modification to the algorithm to mitigate this defect (λ-GRPO), and showed that LLMs tuned with λ-GRPO outperform LLMs tuned with standard GRPO on downstream reasoning tasks and reach peak performance more rapidly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80e6602e-8be0-4f7a-b5ce-ff251578f59a",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "20d134b6-4a8a-430e-b281-426d22c8dcaf",
+  "sourceToolAssistantUUID": "80e6602e-8be0-4f7a-b5ce-ff251578f59a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-28T05:09:53.192Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YJSonJyivDad1J4TXSHi2p`</summary>
+
+```json
+{
+  "query": "GRPO implicit PRM limitations prefix overlap \"shared prefix\" sparse reward explicit process reward model advantages"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20d134b6-4a8a-430e-b281-426d22c8dcaf",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPb9cGnuSCYwfJdJ8hy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8c7e8ef8-e9ad-428e-8fc4-d857e9962691",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LoQGEhuTFjuUTeH2Uvtpe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 381,
+      "cache_creation_input_tokens": 886,
+      "cache_read_input_tokens": 44136,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 886
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 381,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 44136,
+          "cache_creation_input_tokens": 886,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 886,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-28T05:10:02.197Z_
+
+<details><summary>↩ Tool result · `toolu_01YJSonJyivDad1J4TXSHi2p`</summary>
+
+```text
+Web search results for query: "GRPO implicit PRM limitations prefix overlap "shared prefix" sparse reward explicit process reward model advantages"
+
+Links: [{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/html/2509.21154"},{"title":"Generative Rejection-Based Policy Optimization","url":"https://www.emergentmind.com/topics/generative-rejection-based-policy-optimization-grpo"},{"title":"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan","url":"https://arxiv.org/pdf/2509.21154"},{"title":"GRPO is Secretly a Process Reward Model | OpenReview","url":"https://openreview.net/forum?id=o0k034W6vx"},{"title":"GRPO is Secretly a Process Reward Model | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.21154v2"},{"title":"PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization","url":"https://arxiv.org/pdf/2601.07182"},{"title":"[2509.21154] GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/abs/2509.21154"},{"title":"PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization","url":"https://arxiv.org/html/2601.07182"}]
+
+I found relevant information about GRPO's implicit PRM structure and its limitations. Here's what the research shows:
+
+## GRPO's Implicit PRM Structure
+
+GRPO equipped with an outcome reward model (ORM) is theoretically equivalent to a PRM-aware RL objective with a non-trivial, Monte-Carlo-based PRM. GRPO assigns rewards and advantages to sub-trajectories whenever subsets of trajectories within each group share identical prefixes, and empirically this identical-prefix condition is almost always met under real-world conditions.
+
+## Key Limitations with Shared Prefix Overlap
+
+However, there are important caveats regarding prefix overlap:
+
+1. **No Overlap Scenario**: If the prefixes of trajectories within a group do not overlap with one another in practice, then this implicit PRM is trivial—equivalent to an ORM.
+
+2. **Partial Overlap Issues**: If there is only a small degree of overlap between trajectories, while not technically trivial, the vast majority of tokens will still receive purely outcome-level reward signal during GRPO training.
+
+3. **Process-Step Scaling Flaw**: Standard GRPO's design introduces a process-step scaling flaw where the contribution of each process step is scaled by the number of trajectories sharing the prefix, injecting a group-size bias whereby popular overlapping prefixes can be disproportionately exploited or suppressed.
+
+## Advantages Over Explicit PRMs
+
+GRPO's implicit PRM obviates the need for costly explicit PRM annotation or modeling as long as group-based overlap is sufficiently frequent during training, and can boost model performance without employing an explicit PRM, with negligible impact on training time and cost.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c7e8ef8-e9ad-428e-8fc4-d857e9962691",
+  "isSidechain": true,
+  "promptId": "c7973f03-d621-459f-9572-b6284262bbbb",
+  "agentId": "af67488ccce58713c",
+  "type": "user",
+  "uuid": "89363a57-3e44-445b-9530-4b00f596035a",
+  "sourceToolAssistantUUID": "8c7e8ef8-e9ad-428e-8fc4-d857e9962691",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-28T05:11:14.710Z_
+
+I now have a comprehensive understanding of the paper. Here is my thorough report.
+
+---
+
+## Research Report: "GRPO is Secretly a Process Reward Model"
+
+### Paper Metadata
+
+- **Full Title:** GRPO is Secretly a Process Reward Model
+- **Authors:** Michael Sullivan and Alexander Koller, Department of Language Science and Technology, Saarland Informatics Campus, Saarland University, Saarbrucken, Germany
+- **ArXiv:** 2509.21154 (v1: September 25, 2025; v3: February 20, 2026)
+- **Venue:** Submitted to ICLR 2026 (confirmed on OpenReview, ID: o0k034W6vx)
+- **Code:** https://github.com/coli-saar/grpo-prm/
+
+---
+
+### Core Claim: How GRPO Implicitly Performs Step-Level Credit Assignment
+
+The paper proves (Theorem 1) that the standard GRPO loss with outcome-level rewards is **mathematically identical** to a PRM-aware RL objective. The mechanism works as follows:
+
+1. **Process Sets from Shared Prefixes.** Given a group of sampled completions G, the paper defines "process sets" B(G) -- subsets of completions that share identical token prefixes up to some position n. These form a natural **tree structure** where the root is the entire group and leaves are individual completions.
+
+2. **Monte Carlo Step-Level Rewards.** For each process set (tree node) lambda, the step-level reward R-hat(lambda) is the **mean outcome reward** of all completions sharing that prefix: `R-hat(lambda) = sum(r_i for g_i in lambda) / |lambda|`. This is exactly a Monte Carlo estimate of the value of that intermediate reasoning step.
+
+3. **Step-Level Advantages.** Each token gets a step-level advantage `A_{i,t} = (R_{i,t} - r_mean(G)) / r_std(G)`, where R_{i,t} is the reward of the process set that token belongs to.
+
+4. **The Equivalence.** The paper proves that L_GRPO(G) = L_PRM(G) -- the standard GRPO loss (which appears to assign uniform outcome-level credit to every token) is algebraically equivalent to one that uses these step-level advantages. The proof exploits the fact that within a process set lambda, all trajectories share the same prefix, so their policy ratios P_{i,t} and KL terms D_{i,t} are identical at shared token positions. This allows factoring out |lambda| and showing the per-token sums are equivalent.
+
+**Key intuition:** When multiple completions in a group share the same reasoning prefix but diverge later (leading to different outcomes), GRPO automatically gives that shared prefix a reward equal to the average outcome of all completions that passed through it. This is precisely what a Monte Carlo PRM would compute.
+
+### Required Assumptions
+
+Two assumptions underpin the theoretical result:
+
+1. **DAPO token-level policy gradient objective** (rather than the original sample-level GRPO loss). The paper notes this is already the standard in common RL packages (e.g., TRL's GRPO trainer) and produces more stable training.
+2. **mu = 1** (single update iteration per batch), which fixes the probability ratio P_{i,t} at 1.0 and eliminates the need to consider clipping.
+
+### When Is the Implicit PRM Non-Trivial vs. Trivial?
+
+The implicit PRM is **non-trivial** whenever completions in a group share prefixes (creating branching tree structures with intermediate nodes). It degrades to a **trivial ORM** (outcome-only) if no two completions share any prefix tokens -- that is, if B(G) contains only singletons.
+
+**Empirical findings on non-triviality:**
+- With group size 6: only ~0.2% of B(G) structures were trivial (12 out of 6,700 groups)
+- With group size 36: **zero** trivial structures out of 1,100 groups
+- As training progresses and the policy converges, prefix overlap increases dramatically (entropy decreases), yielding **richer** step-level reward structures over time
+
+---
+
+### What This Means for Explicit PRM-Based GRPO Training
+
+**The paper directly challenges the value of explicit PRMs for GRPO.** Key arguments:
+
+1. **Redundancy for reward computation:** The paper's conclusion states: "Our results indicate that it is possible to leverage the existing PRM structure inherent in the outcome-based GRPO algorithm, rather than employing costly, explicitly-defined PRMs." The implicit PRM requires no step-level human annotation, has no learned parameters susceptible to reward hacking, and adds negligible computational overhead.
+
+2. **The related work section** explicitly notes: "Our results in Sections 3 and 5 call into question the necessity of adapting GRPO to step-level rewards, given the rich step-level reward signal already present in the outcome-level variant of the algorithm."
+
+3. **Practical advantage:** Methods that explicitly construct step-level rewards (e.g., TreeRL, VinePPO, TreeRPO) require additional sampling or tree construction, whereas GRPO's implicit PRM comes for free from the normal sampling process.
+
+### Does the Paper Address Whether PRMs Still Have Value for Other Purposes?
+
+**The paper is relatively narrow in scope on this question.** It does not extensively discuss whether explicit PRMs retain value for:
+- Error diagnosis / interpretability
+- Curriculum guidance
+- Best-of-N filtering / inference-time verification
+- Safety-critical applications
+
+The PDF summary mentions the conclusion "acknowledges explicit PRMs retain utility for: error diagnosis, curriculum guidance, and interpretability in safety-critical applications," though the main text of the paper focuses primarily on the training objective equivalence. The paper's core message is that for the purpose of **GRPO RL training**, the implicit PRM structure suffices and potentially outperforms explicit PRM approaches.
+
+---
+
+### Key Experiments and Evidence
+
+**Experiment 1 -- Non-triviality analysis (Section 3.2):**
+- Models: DeepSeek-R1-Distill-Qwen-1.5B
+- Dataset: OpenRS (combination of s1 and DeepScaleR)
+- Group sizes: 6 and 36
+- Finding: B(G) structures are almost always non-trivial; path depth and intermediate proportion increase as training progresses
+
+**Experiment 2 -- lambda-GRPO vs. standard GRPO (Section 5):**
+- Models: DeepSeek-R1-Distill-Qwen-1.5B and Llama-3.2-1B-Instruct
+- Training: 1,000 steps, group size 6, batch size 4, max 4096 tokens, temperature 0.75
+- KL coefficients: beta=0.0 and beta=0.04
+- Benchmarks: AIME24, MATH-500, AMC23, Minerva, OlympiadBench
+
+**Results:**
+- lambda-GRPO reached **>10% higher validation accuracy** in **less than half the training steps** (~2x speedup)
+- lambda-GRPO outperformed standard GRPO on **15 out of 20** benchmark/model cells
+- Improved over base models on **14 out of 20** cells
+- **Zero additional training cost** (merely detects existing B(G) structures rather than generating new ones)
+
+---
+
+### The Flaw and the Fix (lambda-GRPO)
+
+The paper identifies a critical flaw in GRPO's implicit PRM: the contribution of each process set lambda to the loss is scaled by |lambda| (the number of trajectories sharing that prefix). This creates problems:
+
+- **If A-hat(lambda) > 0 and |lambda| is large:** The probability increase is compounded by |lambda|, **harming exploration** by over-reinforcing popular prefixes
+- **If A-hat(lambda) < 0 and |lambda| is large:** The probability decrease is compounded by |lambda|, **harming exploitation** by suppressing prefixes that contain at least some high-reward completions
+
+**Concrete example from the paper:** A process set lambda = {g3, g4, g5} where g3 has the highest reward (1.0) but g4 and g5 have reward 0. The step-level advantage A-hat(lambda) = -0.22, which means the probability of the shared prefix g_{:4} is *decreased* despite containing the best completion, and this decrease is multiplied by 3.
+
+**lambda-GRPO solution:** Scale each token's loss by 1/|lambda_{i,t}|, canceling the |lambda| factor so every process set contributes equally. This is Equation 8 in the paper.
+
+---
+
+### Limitations of the Implicit Credit Assignment (Where Explicit PRMs Might Still Help)
+
+**Acknowledged limitations in the paper (Appendix A):**
+
+1. **Small model scale only:** Experiments used 1B and 1.5B parameter models. It is unknown whether findings generalize to larger models (7B, 70B, etc.).
+2. **Single training dataset:** Only OpenRS was used for RL training.
+3. **lambda-GRPO only mitigates, doesn't solve:** The anti-exploitation problem is "merely lessened" rather than fully eliminated.
+
+**Implicit limitations I can identify from the theoretical framework:**
+
+4. **Prefix overlap is not semantic step-level credit assignment.** The implicit PRM defines "steps" by token-level prefix sharing, not by semantic reasoning steps. An explicit PRM can assign rewards to *semantically meaningful* intermediate steps (e.g., "correctly set up the equation" vs. "made an algebraic error") regardless of whether those steps share token-level prefixes with other completions.
+
+5. **The implicit PRM quality depends on group size and sampling diversity.** With small groups or low temperature, prefix overlap may be limited, yielding coarser credit assignment. Explicit PRMs can evaluate any single trajectory in isolation.
+
+6. **No transferability.** The implicit PRM exists only during GRPO training and cannot be extracted as a standalone model. Explicit PRMs can be used for inference-time verification, best-of-N selection, curriculum design, etc.
+
+7. **The implicit PRM provides only a Monte Carlo *estimate*.** With small groups, this estimate has high variance. Explicit PRMs trained on large datasets may provide lower-variance step-level signals.
+
+8. **Not applicable to non-GRPO settings.** The equivalence is specific to GRPO's group-relative advantage computation. It does not apply to PPO, DPO, or other RL algorithms.
+
+9. **The implicit credit assignment is only as good as the outcome reward.** If the outcome reward is noisy or misspecified, the step-level rewards inherit those problems. An explicit PRM trained with human step-level annotations could provide a qualitatively different (and potentially more reliable) signal.
+
+---
+
+### Bottom Line Assessment for Your Project
+
+This paper presents a **legitimate theoretical result** with solid proof that standard GRPO does implicitly perform step-level credit assignment via Monte Carlo PRM. However, there are important nuances:
+
+- The implicit PRM's "steps" are defined by token-level prefix overlap, not by semantic reasoning steps. An explicit PRM that evaluates the *correctness* of intermediate reasoning steps provides a qualitatively different and potentially richer signal.
+- The paper's experiments are at small scale (1-1.5B params) and on a single dataset.
+- The paper primarily argues against the need for explicit PRMs **within the GRPO training loop for reward computation**. It does not argue against PRMs for other purposes (inference-time verification, error analysis, curriculum guidance, filtering).
+- If your method uses an explicit PRM to provide **additional information beyond what the implicit PRM captures** -- such as identifying *which specific reasoning step* went wrong, or providing rewards based on reasoning quality rather than just outcome correctness -- then your approach retains significant value despite this paper's findings.
+
+Sources:
+- [GRPO is Secretly a Process Reward Model (arXiv)](https://arxiv.org/abs/2509.21154)
+- [GRPO is Secretly a Process Reward Model (HTML)](https://arxiv.org/html/2509.21154v2)
+- [OpenReview submission (ICLR 2026)](https://openreview.net/forum?id=o0k034W6vx)
+- [GitHub repository](https://github.com/coli-saar/grpo-prm)
+- [HuggingFace paper page](https://huggingface.co/papers/2509.21154)
+- [Moonlight literature review](https://www.themoonlight.io/en/review/grpo-is-secretly-a-process-reward-model)
+- [AlphaXiv overview](https://www.alphaxiv.org/overview/2509.21154v2)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89363a57-3e44-445b-9530-4b00f596035a",
+  "isSidechain": true,
+  "agentId": "af67488ccce58713c",
+  "requestId": "req_011CbUPc1KUxRu11c9roRy1T",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "364fbe1a-4b8a-4cd7-86a8-1cdab312a3ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7945f29-9935-49f0-9154-fa3c8c76e1ef",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CgGWbmtx4dyeMCt6Cw5S23",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 45022,
+      "output_tokens": 3061,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1208
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3061,
+          "cache_read_input_tokens": 45022,
+          "cache_creation_input_tokens": 1208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1208,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

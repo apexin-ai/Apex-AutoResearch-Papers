@@ -1,0 +1,746 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37.jsonl`
+- **Structured JSON:** [`6ad211936214d365f2d1.json`](../../sessions/6a/6ad211936214d365f2d1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:18:31.250Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:18:31.250Z",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to make my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n==========================================================\n⚠️ 致命前置问题：投稿 venue 严重不匹配\n==========================================================\nCoRL (Conference on Robot Learning) 2026 明确要求：\n\"Submissions should focus on a core robotics problem... \nSubmissions without a robotics focus will be returned without review.\"\n\n本 proposal 是一篇纯 NLP/LLM 分析型 benchmark 论文，\n没有任何 robotics 内容。投 CoRL = 必然 desk reject。\n\n如果用户确实打算投 CoRL，中稿概率为 0%，无需进入后续流程。\n以下评估假设投稿至适合的 NLP 顶会（ACL / EMNLP / NeurIPS \nDatasets & Benchmarks Track），评估 idea 本身的质量。\n==========================================================\n\n【领域调研】:\n\n- [Context Rot: How Increasing Input Tokens Impacts LLM Performance](https://research.trychroma.com/context-rot) (Chroma, July 2025): \n  测试 18 个 frontier 模型，证实所有模型随 input 增长均出现性能退化。是本 proposal 的起点之一。确认真实存在，proposal 引用准确。\n\n- [Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length](https://arxiv.org/abs/2506.08184) (arXiv 2506, 2025; 已出现在 OpenReview 多个 venue): \n  从认知科学引入 proactive interference 范式，发现 LLM 检索精度在干扰信息增长时呈 log-linear 下降。是本 proposal 引用的 PI-LLM。确认真实存在，描述准确。\n\n- [Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale](https://arxiv.org/abs/2601.20276) (arXiv 2601, 2026): \n  将 evidence access 与 end-to-end QA 性能解耦，发现 semantic discrimination（非纯 context length）是 long-context retrieval 的主要瓶颈。是本 proposal 引用的 EMB-S。确认真实存在，描述准确。\n\n- **[Context Length Alone Hurts LLM Performance Despite Perfect Retrieval](https://aclanthology.org/2025.findings-emnlp.1264/) (EMNLP 2025 Findings)**: \n  ⚠️ **本 proposal 未引用此工作。** 该论文系统性 disentangle 了 context length 与 retrieval quality、distractor effects，发现即使 retrieval 完美、distractor 最小化（纯 whitespace padding），仅 context length 本身就导致 24.2% 性能下降。这与本 proposal 的核心 claim（\"no work has measured the relative contribution of each factor\"）直接矛盾——至少 context length 作为独立因素已被隔离研究过。\n\n- [Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management](https://arxiv.org/abs/2508.04664) (ICLR 2026): \n  通过 active context management 工具让 LLM 自主管理 working memory，直接针对 proactive interference。Proposal 正确引用为下游应用方向。\n\n- [Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems](https://arxiv.org/abs/2411.01101) (2024): \n  研究 position bias 对 long-context reasoning 的影响，发现 self-consistency 在 positional bias 下反而放大错误。\n\n- [LOCA-bench](https://arxiv.org/abs/2602.07962) (2026): \n  通过可控 context growth 评估 language agents。\n\n- [Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination](https://arxiv.org/abs/2601.15300) (2026): \n  发现 LLM 存在 critical threshold（约 40-50% max context length），超过后性能 catastrophically 崩溃。\n\n- **调研总结**: Context rot / long-context degradation 是 2025-2026 的热门领域。各 individual factor（proactive interference、position bias、semantic distractor、raw length）已分别被独立研究。本 proposal 的定位是\"第一个将所有因素放入同一 factorial design 中联合测量相对贡献\"的工作。这个 gap 确实存在，但其增量价值取决于 factorial 组合是否能产生超出各因素独立研究总和的 insight。\n\n【Trivial Alternative 检验】:\n\n**存在显著的 trivial alternative 威胁。** \n\n核心问题：一个研究者已经可以把 Chroma、PI-LLM、EMB-S、以及 \"Context Length Alone Hurts\" 的结论摆在一起，做一个 meta-level synthesis，得出\"interference > position > length > similarity\"（或其他排序）的 rough ranking。Proposal 的增量价值在于：(a) 用统一的 factorial design 提供定量的 partial η² 效应量，(b) 控制混淆变量。但问题是：审稿人会问，为什么不直接在已有 benchmark（如 EMB-S 或 PI-LLM 的框架）上添加控制变量维度，而要 from scratch 构建全新的 81-cell benchmark？构建全新 benchmark 的 justification 需要更强的论证。\n\n此外，\"Context Length Alone Hurts\" 已经在 EMNLP 2025 Findings 上用控制实验 disentangle 了 context length 与其他因素——虽然不是完整的 factorial design，但方法论上是类似的思路，且已被接收。这进一步压缩了本 proposal 的 novelty space。\n\n【前提假设检验】:\n\n1. **\"Context rot 可以被 cleanly decompose 为 4 个正交因素\"** — 这是最核心的未验证假设。实际上这 4 个因素很可能高度交互（例如：长 context 本身导致更多 interference；高 similarity distractor 在不同 position 的效果不同）。Factorial ANOVA 虽然可以估计交互效应，但如果交互效应占主导（而非主效应），则\"decompose into constituent factors\"的 framing 本身就站不住脚——你得到的是一堆复杂的交互，而非清晰的\"factor ranking\"。\n\n2. **\"Synthetic factorial manipulation 能代表 realistic task degradation\"** — Proposal 声称要测量\"relative contribution to realistic task degradation\"，但 3⁴ factorial design 的控制性质意味着刺激材料必须是高度人工构造的。这与\"realistic\"之间存在张力。审稿人可能质疑：你在 synthetic 设置下得到的 effect size ranking 是否能 generalize 到 real-world 场景。\n\n3. **\"35 instances per cell 提供足够的 statistical power\"** — Power analysis 声称 ≥0.95 for medium effects，但 LLM 实验中的 effect size 分布未知（不同于心理学实验有成熟的 effect size 估计），且 model-level variance 可能很大。12 个 model 的 heterogeneity 使得 mixed-effects 分析更为复杂。\n\n4. **\"Partial η² 排名具有 prescriptive 价值\"** — Proposal 声称 effect-size ranking 可以指导\"interference-aware retrieval vs. position debiasing vs. length management\"的优先级。但 η² 是描述性统计，从\"哪个因素解释更多 variance\"到\"应该优先 mitigate 哪个因素\"的跳跃需要额外假设（例如各因素的 mitigation 成本相等）。\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中** — 各 individual factor 已被分别研究（PI-LLM 研究 interference，Chroma 研究 length，EMB-S 研究 semantic discrimination，\"Context Length Alone Hurts\" 研究 length 与其他因素的 disentanglement，LONGPIBENCH 研究 position bias）。Proposal 的 novelty 仅在于\"将它们放入同一个 factorial design\"。这是一个实验设计层面的贡献，而非概念层面的贡献。类似的 disentanglement 思路已在 EMNLP 2025 Findings 被接收（\"Context Length Alone Hurts\"），进一步压缩了 novelty。3⁴ factorial design 本身是标准统计方法，不构成方法论创新。\n\n2. **Significance: 中** — 理解 context rot 各因素的相对重要性确实对 practitioners 有价值，能指导 context engineering 策略的优先级。但核心问题是：如果 positive result 出来了（比如\"interference 贡献最大\"），审稿人的反应更可能是 \"I would have guessed this based on PI-LLM's results\" 而非 \"surprising\"。即使排序结果 counter-intuitive（比如\"raw length 比 interference 更重要\"），这也更像是一个 interesting data point 而非改变领域方向的 finding。对下游 mitigation 方法的 prescriptive 指导力被前提假设检验第 4 点削弱。\n\n3. **Related Work: 弱** — Proposal 遗漏了一篇关键竞争对手：\"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval\"（EMNLP 2025 Findings），该论文直接用控制实验 disentangle context length 与 distractor/retrieval 效应。这篇论文的存在直接挑战了 proposal 的\"first\"claim。此外，LONGPIBENCH、Counting-Stars 等 position bias benchmark 也未被讨论。对已有 disentanglement 工作的 related work 覆盖不足，差异化定位不清晰。\n\n【概率估计】: [15% - 25%] 中位 18%\n（注：此估计基于投稿 NLP 顶会如 ACL/EMNLP main conference。若投 CoRL，概率为 0%。）\n\n【估计理由】: \n- Novelty 是主要瓶颈：核心贡献是\"把已知因素放入 factorial design\"，这是实验设计层面的贡献而非概念创新。\"Context Length Alone Hurts\"（EMNLP 2025 Findings）已用类似思路做了部分 disentanglement，进一步压缩了 novelty space。\n- Significance 有 ceiling：\"factor ranking\" 结果无论如何排都不太可能 surprise 审稿人。\n- Related work 覆盖不足会被审稿人直接指出，特别是 \"first\" claim 在 \"Context Length Alone Hurts\" 存在的情况下需要 careful qualification。\n- 上界受限于 Novelty（弱-中）：即使实验执行完美、power analysis 无懈可击，idea 内核的增量价值有限。\n- 下界由 Significance（中）支撑：研究问题本身是领域关心的，factorial design 的执行如果扎实，有 Findings / Workshop 级别的机会。\n\n【主要风险】:\n1. **\"First\" claim 不成立**：遗漏了 \"Context Length Alone Hurts\"（EMNLP 2025 Findings）等已有 disentanglement 工作，审稿人会直接质疑 novelty claim 的真实性。\n2. **Synthetic vs. Realistic 的张力**：3⁴ factorial design 的高度控制性与\"realistic task degradation\"的 claim 之间存在根本矛盾，审稿人可能质疑 findings 的 ecological validity。\n```\n\n---\n\n**补充说明**：\n\n关于 **CoRL 2026 venue 匹配问题**——这是一个需要立即关注的致命问题。CoRL 2026 的 Call for Papers 明确声明 \"Submissions without a robotics focus will be returned without review\"。本 proposal 是一篇纯 NLP long-context analysis 论文，没有任何 robotics 内容，投 CoRL 会被 desk reject。建议考虑的替代 venue：\n- **ACL / EMNLP 2026 Main Conference** 或 **Findings**\n- **NeurIPS 2026 Datasets & Benchmarks Track**（如果强调 benchmark 贡献）\n- **COLM 2026**（如果存在的话，专注 language model 的 venue）\n\nSources:\n- [Context Rot: How Increasing Input Tokens Impacts LLM Performance | Chroma](https://research.trychroma.com/context-rot)\n- [Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs](https://arxiv.org/abs/2506.08184)\n- [Beyond the Needle's Illusion (EMB-S)](https://arxiv.org/abs/2601.20276)\n- [Context Length Alone Hurts LLM Performance Despite Perfect Retrieval](https://aclanthology.org/2025.findings-emnlp.1264/)\n- [Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management](https://arxiv.org/abs/2508.04664)\n- [Intelligence Degradation in Long-Context LLMs](https://arxiv.org/abs/2601.15300)\n- [LOCA-bench](https://arxiv.org/abs/2602.07962)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to make a thorough assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. Chroma \"Context Rot\" Report (July 2025, Technical Report):\n   - 评估 18 个前沿模型在 context 增长下的性能退化，首次系统化定义 \"context rot\" 概念\n   - 与本 proposal 的关系：proposal 的核心出发点之一，但 Chroma 报告本身已经涉及多个因素的交叉分析，只是没有正式的 factorial design\n   - 来源: https://research.trychroma.com/context-rot\n\n2. \"Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length\" (Wang & Sun, arXiv:2506.08184, ICML 2025 Workshop ICFM):\n   - 将认知科学中的 proactive interference 范式引入 LLM 评估，发现准确率随干扰积累呈 log-linear 下降\n   - 与本 proposal 的关系：proposal 引用的 PI-LLM，是 factorial 中 \"interference\" 因子的理论基础。论文真实存在，描述基本准确\n   - 来源: https://arxiv.org/abs/2506.08184\n\n3. \"Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale\" (arXiv:2601.20276, 2026):\n   - 将 evidence access 和 semantic discrimination 解耦，发现语义区分能力（而非纯粹 context 长度）是长上下文检索的主要瓶颈\n   - 与本 proposal 的关系：即 proposal 中的 \"EMB-S\"。注意——该论文已经做了因素解耦（access vs. discrimination），这与本 proposal 的 \"decomposition\" 目标有相当重叠\n\n4. \"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval\" (Du et al., EMNLP 2025 Findings):\n   - 关键发现：即便检索完美，纯粹的 context 长度增加仍导致 13.9%-85% 的性能下降\n   - 与本 proposal 的关系：**这篇高度相关的工作已经在做因素隔离（length vs. retrieval quality vs. distraction）**，但 proposal 未引用\n   - 来源: https://aclanthology.org/2025.findings-emnlp.1264/\n\n5. Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management (arXiv:2508.04664, ICLR 2026):\n   - 提出 Active Context Management 框架应对 proactive interference\n   - 与本 proposal 的关系：proposal 提到 Sculptor 作为 \"interference-aware retrieval\" 的代表，定位准确\n\n6. LONGPIBENCH (Distance between Relevant Information Pieces Causes Bias in Long-Context LLMs, arXiv:2410.14641):\n   - 专门评估位置偏差对多段相关信息处理的影响\n   - 与本 proposal 的关系：proposal 未提及，但这是 position bias 维度的直接竞争工作\n\n7. Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs via Sparse Attention (arXiv:2510.19875):\n   - 提出 Sparse Tracing 方法在长上下文中做 mechanistic interpretability，剪除 90-99% attention links\n   - 与本 proposal 的关系：proposal 的 mechanistic analysis 组件（attention entropy + AtP*）需要与此方法对比\n\n8. \"Lost in the Middle\" 及其后续工作 (Liu et al., 2023; follow-ups 2024-2025):\n   - 奠基性工作，定义了 U-shaped 位置偏差现象\n   - 与本 proposal 的关系：position bias 因子的来源，已有大量 follow-up 做了 mitigation\n\n- 调研总结: 长上下文 LLM 退化是一个活跃且已被大量研究的领域。Individual factors（length、position bias、interference、semantic similarity）各自已有独立的深入研究。\"因素解耦/隔离\"这一方向已有部分工作（\"Context Length Alone Hurts\" 隔离 length；EMB-S 解耦 access vs. discrimination），proposal 的增量在于用正式的 factorial ANOVA 框架把 4 个因素放在一起。这是一个方法论层面的贡献，而非概念突破。\n\n\n【Trivial Alternative 检验】:\n\n**存在成本更低的替代方案。** \n\n最直接的 trivial alternative：将现有文献（Chroma 2025、PI-LLM、EMB-S、\"Context Length Alone Hurts\"）的结论综合起来，即可获得对各因素相对重要性的定性排序。每篇论文已经隔离了至少一个因素，并量化了其 effect size。一篇系统性的 meta-analysis 或 survey 可以达到本 proposal 约 60-70% 的洞察力，且成本远低于构建全新 benchmark。\n\n此外，一个更简单的 ablation-style 实验设计（one-factor-at-a-time + 少量交互项）在 2-3 个模型上即可验证主要发现，不需要 12 模型 × 81 cell 的完整 factorial。\n\nProposal 的增量价值在于：(1) 交互效应的量化（e.g., interference × position 是否有 synergistic effect），这是 one-factor-at-a-time 无法捕获的；(2) partial η² 提供的标准化 effect size 允许跨因素的公平比较。但这个增量价值是否足够支撑一篇顶会论文，取决于交互效应是否足够大且出人意料。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中有以下未验证假设：\n\n1. **\"这四个因素可以被干净地独立操纵\"（可分离性假设）**：在真实任务中，length 和 interference 高度相关（更长的 context 自然包含更多 distractors）。Factorial design 的前提是因素可独立操纵，但人工构造独立变化的场景可能导致严重的 ecological validity 问题——合成的 \"高干扰但短 context\" 或 \"低干扰但长 context\" 场景可能脱离任何真实使用情境。\n\n2. **\"分解出的 effect sizes 可以直接指导 context engineering\"（可操作性假设）**：即便知道 interference 贡献 40% 的 effect size，这并不直接告诉工程师该怎么做。从 \"interference 是最大因素\" 到 \"应优先做 interference-aware retrieval\" 之间有一个跳跃——因为 mitigability 不等于 contribution。贡献最大的因素可能恰恰是最难 mitigate 的。\n\n3. **\"合成 benchmark 上的 effect size 排序可推广到真实任务\"（外部效度假设）**：3⁴ factorial 的 81 个 cell 必然是高度合成的。在合成数据上发现的 effect size 排序不一定在真实的 RAG / agent 场景中成立。\n\n\n【3 维度打分】:\n\n1. **Novelty: 弱** \n   — 核心贡献是\"用 factorial ANOVA 把已知的 4 个因素放在一个框架里测量\"。各因素已被独立研究得很透彻（PI-LLM for interference, \"Context Length Alone Hurts\" for length isolation, Lost-in-the-Middle for position bias, EMB-S for semantic discrimination）。\"联合测量\"本质上是实验设计方法论的应用，而非新的概念或发现。EMB-S (2026) 已经在做类似的解耦（evidence access vs. semantic discrimination），\"Context Length Alone Hurts\" (EMNLP 2025) 已经隔离了 length factor。Proposal 的 delta 收窄为\"加上完整 factorial 的交互项\"——这是 incremental 的。Mechanistic analysis 组件（attention entropy + AtP*）方面，Stream (2025) 已提出更先进的长上下文 interpretability 方法。\n\n2. **Significance: 中**\n   — 研究问题本身是重要的：理解长上下文失败的原因对 context engineering 和模型开发都有实际意义。12 个模型的跨架构比较（dense vs. MoE vs. SSM-hybrid）有一定价值。但存在两个显著限制：(a) 结果很可能是 \"it depends on model/task\"——即 factor 排序随模型和任务变化，削弱 actionable insights 的清晰度；(b) 即使结果清晰，从 \"factor X 贡献最大\" 到 \"应该优先 mitigate factor X\" 之间的 gap 未被填补。此外，benchmark 论文在 ML 顶会的接受门槛正在提高——社区越来越期望 benchmark 论文要么揭示反直觉的发现，要么成为持久的社区资源。\n\n3. **Related Work: 弱**\n   — Proposal 引用了 Chroma、PI-LLM、EMB-S 三篇作为主要 prior work，但**遗漏了**至少两篇高度相关的工作：(a) \"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval\" (EMNLP 2025 Findings)——该论文已经在隔离 length factor 方面做了与本 proposal 高度重叠的工作；(b) LONGPIBENCH——position bias 的控制实验 benchmark。此外，proposal 声称 \"these threads remain disconnected: no work has measured the relative contribution of each factor\"，但这一 claim 需要在了解上述遗漏工作后重新评估——因素隔离已有部分工作在做，差距没有 proposal 声称的那么大。Mechanistic interpretability 方面也未提及 Stream (2025) 和 retrieval heads 文献。\n\n\n【概率估计】: [12% - 22%] 中位 17%\n\n【估计理由】: \n三个维度中两个（Novelty, Related Work）评为弱，一个（Significance）评为中。核心制约因素是 **Novelty 上限低**：这本质上是一篇 \"benchmark + factorial ANOVA\" 论文，核心方法论（factorial design）来自实验心理学，不是新工具；各因素已被独立研究透彻，联合测量的增量有限。\"Surprising if positive\" 检验大概率不通过——无论哪个因素排序第一，审稿人都不太会觉得意外（interference 排第一？\"I would have guessed this given PI-LLM\"; length 排第一？\"Context Length Alone Hurts already showed this\"）。Related Work 的遗漏进一步削弱了 novelty claim 的可信度。\n\n**额外关键风险：venue mismatch。** CoRL (Conference on Robot Learning) 的核心主题是机器人学习，包括 manipulation、locomotion、robot perception、sim-to-real 等。本 proposal 是纯粹的 NLP/LLM 评估工作，完全不涉及机器人学。即使 idea 本身质量再高，在 CoRL 被 desk reject 的概率极高。如果投稿目标确实是 CoRL，概率应调整至 **2-5%**（几乎完全因为 scope mismatch）。如果投向 ACL/EMNLP/NeurIPS 等合适 venue，则 12-22% 的估计适用。\n\n【主要风险】:\n1. **Novelty 不足以支撑顶会论文**：factorial decomposition 是方法论应用而非概念创新；各因素已被独立研究充分；交互效应（唯一真正的 novelty delta）可能不够大或不够出人意料，无法让审稿人写出 \"surprising\"。\n2. **Ecological validity 质疑**：合成 factorial benchmark 的因素独立操纵可能产生人工的、不自然的测试场景，审稿人会质疑 effect size 排序能否推广到真实应用（RAG、agent pipeline），从而削弱 \"directly informs practical context engineering\" 的核心 value proposition。\n```\n\nSources:\n- [Context Rot – Chroma Research](https://research.trychroma.com/context-rot)\n- [Unable to Forget: Proactive Interference (PI-LLM) – arXiv](https://arxiv.org/abs/2506.08184)\n- [Beyond the Needle's Illusion (EMB-S) – arXiv](https://arxiv.org/pdf/2601.20276)\n- [Context Length Alone Hurts LLM Performance – EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.1264/)\n- [Sculptor: Active Context Management – ICLR 2026](https://arxiv.org/abs/2508.04664)\n- [LONGPIBENCH: Distance between Relevant Information Pieces – arXiv](https://arxiv.org/pdf/2410.14641)\n- [Stream: Mechanistic Interpretability for Long Context – arXiv](https://arxiv.org/abs/2510.19875)\n- [LongBench Pro – arXiv](https://arxiv.org/pdf/2601.02872)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have enough information to provide my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【致命问题 - 投稿目标错误】:\nCoRL 2026 (Conference on Robot Learning) 的 Call for Papers 明确声明 \"submissions without a robotics focus will be returned without review\"。本 proposal 是纯 NLP/LLM 评估工作，内容涉及长上下文语言模型的性能降解因子分解，与机器人学习完全无关。投稿 CoRL 将被 desk reject。\n适合的投稿目标应为 ACL 2026、EMNLP 2026、NeurIPS 2026 Datasets & Benchmarks Track 或 COLM 2026。\n\n以下评估基于 idea 本身的质量（假设投稿至适当的 NLP/ML 会议）。\n\n【领域调研】:\n- Chroma \"Context Rot\" (2025, technical report): 评测 18 个前沿模型在上下文增长时的性能降解，发现所有模型均出现退化，coherent text 比 shuffled text 退化更严重（recency bias）。与本 proposal 关系：proposal 引用正确，是动机之一。\n- \"Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs\" (arXiv:2506.08184, ICML 2025 LCFM Workshop): 用认知科学的 PI 范式证明 LLM retrieval accuracy 在干扰累积下呈 log-linear 下降。与本 proposal 关系：proposal 引用正确，是干扰维度的基础。\n- EMB-S / EverMemBench-S (arXiv:2601.20276, 2026): 用 collision-tested hard negatives 替代良性 haystack，证明 semantic discrimination 是长上下文记忆的主瓶颈。与本 proposal 关系：proposal 引用正确，是语义相似度维度的基础。\n- \"Context Length Alone Hurts LLM Performance Despite Perfect Retrieval\" (arXiv:2510.05381, 2025): **关键竞争工作** - 已做控制实验，在确保 perfect retrieval 的前提下隔离 length 因子，证明 length 本身独立造成降解。已部分做了 proposal 声称\"没人做过\"的因子分离。\n- Sculptor (arXiv:2508.04664, 2025): Active context management 工具包，基于干扰假说设计。与本 proposal 关系：proposal 提到其作为应用方向之一。\n- \"Positional Biases Shift as Inputs Approach Context Window Limits\" (arXiv:2508.07479, 2025): 已研究 position × length 交互效应。\n- Stream: Scaling up Mechanistic Interpretability to Long Context (arXiv:2510.19875, 2025): 提出 sparse tracing 使 mech interp 可扩展至百万 token。与本 proposal 的 attention entropy + AtP* 方法论相关。\n- RULER V2 (OpenReview, 2025/2026): 已将长上下文评估从基本 retrieval 扩展到复杂推理的多因子评测。\n\n- 调研总结: 长上下文 LLM 性能降解是活跃研究领域，各单因子（position bias, interference, semantic similarity, length）均已被独立研究且有专门论文。已有工作部分地做了因子隔离（如 arXiv:2510.05381 隔离了 length）和两因子交互（如 position × length）。本 proposal 的增量是\"完整 4 因子交叉的 factorial design\"，属于方法论整合而非概念突破。\n\n【Trivial Alternative 检验】:\n存在更简单的替代方案：\n1. **逐因子 ablation（one-factor-at-a-time）**：固定其他 3 个因子，逐一变化 1 个因子，成本仅为 factorial 的 ~1/7（12 条件 vs 81 条件），即可获得各因子的主效应大小。\n2. **扩展已有 benchmark**：在 RULER V2 或 BABILong 上加入 controlled distractor 和 position manipulation，无需从零构建新 benchmark。\n3. **已有工作已部分覆盖**：arXiv:2510.05381 已经做了 length 的隔离控制实验。\n\nFactorial 设计相对于这些替代方案的增量价值在于**检测交互效应**（如 interference × position 是否有超加性效应）。但问题是：(a) 交互效应是否足够大到有实践意义尚不确定；(b) 81 cells × 35 instances × 12 models = 大量计算投入，但 payoff 可能只是确认各因子独立（或近似独立）作用。\n\n【前提假设检验】:\n核心 claim 的逻辑链有以下未经验证的假设：\n1. **可分解性假设**：context rot 可以被干净地分解为 4 个独立因子。但在真实场景中，这 4 个因子可能高度耦合（如更长的上下文天然包含更多干扰信息和更多语义相似的段落），factorial design 的\"正交操控\"可能牺牲生态效度。\n2. **合成→真实迁移假设**：proposal 声称\"resolve an implicit disagreement across the three literatures\"并指导\"practical context engineering\"，但 3⁴ factorial 的 81 个 cell 是高度合成的控制条件，其结论能否迁移到真实的长文档场景（where factors co-vary naturally）是一个跳跃。\n3. **效应量排序→actionable guidance 假设**：即使获得了 partial η² 排序，这个排序可能是 model-specific 的（不同架构排序不同），难以给出通用的\"应该优先缓解哪个因子\"的建议。\n4. **机制分析的归因有效性**：attention entropy 是描述性指标而非因果性指标；AtP* 虽是因果性方法但仅适用于 ≤27B dense models，对 MoE/SSM-hybrid/API 模型无法做，削弱了\"causal circuits\"claim 的普适性。\n\n【3 维度打分】:\n1. Novelty: 弱-中 — 各单因子均已有专门论文研究（PI-LLM for interference, Lost-in-the-Middle + arXiv:2508.07479 for position, EMB-S for semantic similarity, arXiv:2510.05381 for length isolation）。部分两因子交互也已被研究。本 proposal 的增量是\"4 因子完整交叉 + formal power analysis\"，本质是实验设计方法论（factorial ANOVA）的应用，而非概念性创新。审稿人可能认为这是\"rigorous but incremental\"。\n   \n2. Significance: 中 — 对实践有一定指导价值（告诉从业者优先缓解哪个因子）。但受限于：(a) 结果可能 model-specific，通用性有限；(b) 如果核心发现是\"interference 是最大因子\"或\"length 是最大因子\"，审稿人很可能说\"I would have guessed this\"；(c) benchmark 论文的 significance 取决于是否能启发后续研究范式转变，本 proposal 更像\"确认性研究\"而非\"开创性研究\"。\n\n3. Related Work: 中 — 覆盖了 3 个核心引用（Chroma, PI-LLM, EMB-S）和 Sculptor，但缺失了直接竞争工作 arXiv:2510.05381（已做 length 因子隔离）、position × length 交互的已有工作、以及 Stream 等长上下文 mech interp 方法。差异化定位需要更 explicitly 说明为什么已有的 partial 因子分离工作不够、为什么需要 full factorial。\n\n【概率估计】: [15% - 28%] 中位 22%\n（注：此概率基于投稿至适当的 NLP 顶会如 ACL/EMNLP main，而非 CoRL。若投稿 CoRL，概率为 ~0%，desk reject。）\n\n【估计理由】: \n- Novelty 是主要限制因素：核心贡献是将已有的 4 个研究线索用 factorial design 整合，属于\"rigorous measurement paper\"而非\"surprising discovery paper\"。顶会对 benchmark 论文的 novelty 要求很高（需要揭示反直觉的发现或开创新的评测范式），而这篇更接近\"用更 rigorous 的方法确认已知现象\"。\n- Significance 受限于结果的可预测性：无论哪个因子排第一，都不太可能让审稿人感到 surprising。\n- 如果投稿 NeurIPS Datasets & Benchmarks Track，概率可能略高（25-30%），因为该 track 对方法论 rigor 给予更高权重。\n- Related Work 的遗漏（特别是 arXiv:2510.05381）可能在审稿中被指出，削弱\"first to decompose\"的 claim。\n\n【主要风险】:\n1. **\"So what\" 风险**：审稿人可能质疑——即使获得了 η² 排序，在合成设置下的 factor ranking 是否真能指导 real-world context engineering？结论的 actionability 存疑。\n2. **Novelty insufficiency 风险**：审稿人可能认为 factorial ANOVA 是统计方法论的直接应用（不是 ML/NLP 方法创新），且各单因子已被充分研究，\"crossing them\" 的增量不足以支撑顶会主会论文。\n```\n\n---\n\n**补充说明**：\n\n关于 **CoRL 2026 投稿目标**的问题需要最优先解决。CoRL 的 scope 严格限定在 robot learning，明确声明非机器人方向的论文不会进入审稿流程。建议将此 proposal 重新定位至以下会议之一：\n- **EMNLP 2026**（NLP 评测/分析类论文的自然归宿）\n- **NeurIPS 2026 Datasets & Benchmarks Track**（对实验 rigor 评价较高）\n- **COLM 2026**（专注 language model 研究）\n- **ACL 2026 Industry Track**（如果强调实践指导价值）\n\nSources:\n- [Context Rot: How Increasing Input Tokens Impacts LLM Performance | Chroma](https://research.trychroma.com/context-rot)\n- [Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs](https://arxiv.org/abs/2506.08184)\n- [Beyond the Needle's Illusion: Decoupled Evaluation under Semantic Interference](https://arxiv.org/pdf/2601.20276)\n- [Context Length Alone Hurts LLM Performance Despite Perfect Retrieval](https://arxiv.org/pdf/2510.05381)\n- [Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management](https://arxiv.org/abs/2508.04664)\n- [Positional Biases Shift as Inputs Approach Context Window Limits](https://arxiv.org/pdf/2508.07479)\n- [Stream: Scaling up Mechanistic Interpretability to Long Context](https://arxiv.org/abs/2510.19875)\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLMs\n\n## Description\nWe propose PI-ContextRot, the first diagnostic benchmark designed to causally decompose context rot — the well-documented degradation of LLM performance as input context grows — into its constituent factors: proactive interference, position bias, semantic distractor similarity, and raw length. While Chroma (2025) documented context rot across 18 models, PI-LLM (2025) demonstrated log-linear accuracy collapse under synthetic interference, and EMB-S (2026) showed semantic discrimination is the dominant bottleneck for long-context retrieval, these threads remain disconnected: no work has measured the relative contribution of each factor to realistic task degradation. Our balanced 3⁴ factorial design (3 interference levels × 3 positions × 3 similarity levels × 3 context lengths = 81 cells, 35 instances per cell per task, 8,505 total instances across multi-document QA, entity tracking, and temporal reasoning) is formally powered (≥0.95 for medium effects, ≥0.80 for small effects on two-way interactions). Evaluating 12 models across dense (Qwen3.5-9B/27B), MoE (Llama-4-Scout, Qwen3.5-122B-A10B, DeepSeek-V4-Flash), SSM-hybrid (Jamba-1.5-Mini/Large), and frontier API architectures (GPT-4.1, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini 2.5 Pro, Qwen3.5-397B-A17B), we report partial η² effect sizes quantifying each factor's contribution and their interactions. A tiered mechanistic analysis — attention entropy on all open-weight models plus attribution patching (AtP*) on dense models ≤27B — identifies the causal circuits underlying each factor. This decomposition directly informs practical context engineering: the effect-size rankings reveal whether mitigation efforts should prioritize interference-aware retrieval (as Sculptor assumes), position debiasing, or length management, resolving an implicit disagreement across the three literatures.\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:18:31.253Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:18:31.253Z",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:18:31.268Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to make my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+==========================================================
+⚠️ 致命前置问题：投稿 venue 严重不匹配
+==========================================================
+CoRL (Conference on Robot Learning) 2026 明确要求：
+"Submissions should focus on a core robotics problem... 
+Submissions without a robotics focus will be returned without review."
+
+本 proposal 是一篇纯 NLP/LLM 分析型 benchmark 论文，
+没有任何 robotics 内容。投 CoRL = 必然 desk reject。
+
+如果用户确实打算投 CoRL，中稿概率为 0%，无需进入后续流程。
+以下评估假设投稿至适合的 NLP 顶会（ACL / EMNLP / NeurIPS 
+Datasets & Benchmarks Track），评估 idea 本身的质量。
+==========================================================
+
+【领域调研】:
+
+- [Context Rot: How Increasing Input Tokens Impacts LLM Performance](https://research.trychroma.com/context-rot) (Chroma, July 2025): 
+  测试 18 个 frontier 模型，证实所有模型随 input 增长均出现性能退化。是本 proposal 的起点之一。确认真实存在，proposal 引用准确。
+
+- [Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length](https://arxiv.org/abs/2506.08184) (arXiv 2506, 2025; 已出现在 OpenReview 多个 venue): 
+  从认知科学引入 proactive interference 范式，发现 LLM 检索精度在干扰信息增长时呈 log-linear 下降。是本 proposal 引用的 PI-LLM。确认真实存在，描述准确。
+
+- [Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale](https://arxiv.org/abs/2601.20276) (arXiv 2601, 2026): 
+  将 evidence access 与 end-to-end QA 性能解耦，发现 semantic discrimination（非纯 context length）是 long-context retrieval 的主要瓶颈。是本 proposal 引用的 EMB-S。确认真实存在，描述准确。
+
+- **[Context Length Alone Hurts LLM Performance Despite Perfect Retrieval](https://aclanthology.org/2025.findings-emnlp.1264/) (EMNLP 2025 Findings)**: 
+  ⚠️ **本 proposal 未引用此工作。** 该论文系统性 disentangle 了 context length 与 retrieval quality、distractor effects，发现即使 retrieval 完美、distractor 最小化（纯 whitespace padding），仅 context length 本身就导致 24.2% 性能下降。这与本 proposal 的核心 claim（"no work has measured the relative contribution of each factor"）直接矛盾——至少 context length 作为独立因素已被隔离研究过。
+
+- [Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management](https://arxiv.org/abs/2508.04664) (ICLR 2026): 
+  通过 active context management 工具让 LLM 自主管理 working memory，直接针对 proactive interference。Proposal 正确引用为下游应用方向。
+
+- [Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems](https://arxiv.org/abs/2411.01101) (2024): 
+  研究 position bias 对 long-context reasoning 的影响，发现 self-consistency 在 positional bias 下反而放大错误。
+
+- [LOCA-bench](https://arxiv.org/abs/2602.07962) (2026): 
+  通过可控 context growth 评估 language agents。
+
+- [Intelligence Degradation in Long-Context LLMs: Critical Threshold Determination](https://arxiv.org/abs/2601.15300) (2026): 
+  发现 LLM 存在 critical threshold（约 40-50% max context length），超过后性能 catastrophically 崩溃。
+
+- **调研总结**: Context rot / long-context degradation 是 2025-2026 的热门领域。各 individual factor（proactive interference、position bias、semantic distractor、raw length）已分别被独立研究。本 proposal 的定位是"第一个将所有因素放入同一 factorial design 中联合测量相对贡献"的工作。这个 gap 确实存在，但其增量价值取决于 factorial 组合是否能产生超出各因素独立研究总和的 insight。
+
+【Trivial Alternative 检验】:
+
+**存在显著的 trivial alternative 威胁。** 
+
+核心问题：一个研究者已经可以把 Chroma、PI-LLM、EMB-S、以及 "Context Length Alone Hurts" 的结论摆在一起，做一个 meta-level synthesis，得出"interference > position > length > similarity"（或其他排序）的 rough ranking。Proposal 的增量价值在于：(a) 用统一的 factorial design 提供定量的 partial η² 效应量，(b) 控制混淆变量。但问题是：审稿人会问，为什么不直接在已有 benchmark（如 EMB-S 或 PI-LLM 的框架）上添加控制变量维度，而要 from scratch 构建全新的 81-cell benchmark？构建全新 benchmark 的 justification 需要更强的论证。
+
+此外，"Context Length Alone Hurts" 已经在 EMNLP 2025 Findings 上用控制实验 disentangle 了 context length 与其他因素——虽然不是完整的 factorial design，但方法论上是类似的思路，且已被接收。这进一步压缩了本 proposal 的 novelty space。
+
+【前提假设检验】:
+
+1. **"Context rot 可以被 cleanly decompose 为 4 个正交因素"** — 这是最核心的未验证假设。实际上这 4 个因素很可能高度交互（例如：长 context 本身导致更多 interference；高 similarity distractor 在不同 position 的效果不同）。Factorial ANOVA 虽然可以估计交互效应，但如果交互效应占主导（而非主效应），则"decompose into constituent factors"的 framing 本身就站不住脚——你得到的是一堆复杂的交互，而非清晰的"factor ranking"。
+
+2. **"Synthetic factorial manipulation 能代表 realistic task degradation"** — Proposal 声称要测量"relative contribution to realistic task degradation"，但 3⁴ factorial design 的控制性质意味着刺激材料必须是高度人工构造的。这与"realistic"之间存在张力。审稿人可能质疑：你在 synthetic 设置下得到的 effect size ranking 是否能 generalize 到 real-world 场景。
+
+3. **"35 instances per cell 提供足够的 statistical power"** — Power analysis 声称 ≥0.95 for medium effects，但 LLM 实验中的 effect size 分布未知（不同于心理学实验有成熟的 effect size 估计），且 model-level variance 可能很大。12 个 model 的 heterogeneity 使得 mixed-effects 分析更为复杂。
+
+4. **"Partial η² 排名具有 prescriptive 价值"** — Proposal 声称 effect-size ranking 可以指导"interference-aware retrieval vs. position debiasing vs. length management"的优先级。但 η² 是描述性统计，从"哪个因素解释更多 variance"到"应该优先 mitigate 哪个因素"的跳跃需要额外假设（例如各因素的 mitigation 成本相等）。
+
+【3 维度打分】:
+
+1. **Novelty: 弱-中** — 各 individual factor 已被分别研究（PI-LLM 研究 interference，Chroma 研究 length，EMB-S 研究 semantic discrimination，"Context Length Alone Hurts" 研究 length 与其他因素的 disentanglement，LONGPIBENCH 研究 position bias）。Proposal 的 novelty 仅在于"将它们放入同一个 factorial design"。这是一个实验设计层面的贡献，而非概念层面的贡献。类似的 disentanglement 思路已在 EMNLP 2025 Findings 被接收（"Context Length Alone Hurts"），进一步压缩了 novelty。3⁴ factorial design 本身是标准统计方法，不构成方法论创新。
+
+2. **Significance: 中** — 理解 context rot 各因素的相对重要性确实对 practitioners 有价值，能指导 context engineering 策略的优先级。但核心问题是：如果 positive result 出来了（比如"interference 贡献最大"），审稿人的反应更可能是 "I would have guessed this based on PI-LLM's results" 而非 "surprising"。即使排序结果 counter-intuitive（比如"raw length 比 interference 更重要"），这也更像是一个 interesting data point 而非改变领域方向的 finding。对下游 mitigation 方法的 prescriptive 指导力被前提假设检验第 4 点削弱。
+
+3. **Related Work: 弱** — Proposal 遗漏了一篇关键竞争对手："Context Length Alone Hurts LLM Performance Despite Perfect Retrieval"（EMNLP 2025 Findings），该论文直接用控制实验 disentangle context length 与 distractor/retrieval 效应。这篇论文的存在直接挑战了 proposal 的"first"claim。此外，LONGPIBENCH、Counting-Stars 等 position bias benchmark 也未被讨论。对已有 disentanglement 工作的 related work 覆盖不足，差异化定位不清晰。
+
+【概率估计】: [15% - 25%] 中位 18%
+（注：此估计基于投稿 NLP 顶会如 ACL/EMNLP main conference。若投 CoRL，概率为 0%。）
+
+【估计理由】: 
+- Novelty 是主要瓶颈：核心贡献是"把已知因素放入 factorial design"，这是实验设计层面的贡献而非概念创新。"Context Length Alone Hurts"（EMNLP 2025 Findings）已用类似思路做了部分 disentanglement，进一步压缩了 novelty space。
+- Significance 有 ceiling："factor ranking" 结果无论如何排都不太可能 surprise 审稿人。
+- Related work 覆盖不足会被审稿人直接指出，特别是 "first" claim 在 "Context Length Alone Hurts" 存在的情况下需要 careful qualification。
+- 上界受限于 Novelty（弱-中）：即使实验执行完美、power analysis 无懈可击，idea 内核的增量价值有限。
+- 下界由 Significance（中）支撑：研究问题本身是领域关心的，factorial design 的执行如果扎实，有 Findings / Workshop 级别的机会。
+
+【主要风险】:
+1. **"First" claim 不成立**：遗漏了 "Context Length Alone Hurts"（EMNLP 2025 Findings）等已有 disentanglement 工作，审稿人会直接质疑 novelty claim 的真实性。
+2. **Synthetic vs. Realistic 的张力**：3⁴ factorial design 的高度控制性与"realistic task degradation"的 claim 之间存在根本矛盾，审稿人可能质疑 findings 的 ecological validity。
+```
+
+---
+
+**补充说明**：
+
+关于 **CoRL 2026 venue 匹配问题**——这是一个需要立即关注的致命问题。CoRL 2026 的 Call for Papers 明确声明 "Submissions without a robotics focus will be returned without review"。本 proposal 是一篇纯 NLP long-context analysis 论文，没有任何 robotics 内容，投 CoRL 会被 desk reject。建议考虑的替代 venue：
+- **ACL / EMNLP 2026 Main Conference** 或 **Findings**
+- **NeurIPS 2026 Datasets & Benchmarks Track**（如果强调 benchmark 贡献）
+- **COLM 2026**（如果存在的话，专注 language model 的 venue）
+
+Sources:
+- [Context Rot: How Increasing Input Tokens Impacts LLM Performance | Chroma](https://research.trychroma.com/context-rot)
+- [Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs](https://arxiv.org/abs/2506.08184)
+- [Beyond the Needle's Illusion (EMB-S)](https://arxiv.org/abs/2601.20276)
+- [Context Length Alone Hurts LLM Performance Despite Perfect Retrieval](https://aclanthology.org/2025.findings-emnlp.1264/)
+- [Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management](https://arxiv.org/abs/2508.04664)
+- [Intelligence Degradation in Long-Context LLMs](https://arxiv.org/abs/2601.15300)
+- [LOCA-bench](https://arxiv.org/abs/2602.07962)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient information to make a thorough assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. Chroma "Context Rot" Report (July 2025, Technical Report):
+   - 评估 18 个前沿模型在 context 增长下的性能退化，首次系统化定义 "context rot" 概念
+   - 与本 proposal 的关系：proposal 的核心出发点之一，但 Chroma 报告本身已经涉及多个因素的交叉分析，只是没有正式的 factorial design
+   - 来源: https://research.trychroma.com/context-rot
+
+2. "Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs Beyond Context Length" (Wang & Sun, arXiv:2506.08184, ICML 2025 Workshop ICFM):
+   - 将认知科学中的 proactive interference 范式引入 LLM 评估，发现准确率随干扰积累呈 log-linear 下降
+   - 与本 proposal 的关系：proposal 引用的 PI-LLM，是 factorial 中 "interference" 因子的理论基础。论文真实存在，描述基本准确
+   - 来源: https://arxiv.org/abs/2506.08184
+
+3. "Beyond the Needle's Illusion: Decoupled Evaluation of Evidence Access and Use under Semantic Interference at 326M-Token Scale" (arXiv:2601.20276, 2026):
+   - 将 evidence access 和 semantic discrimination 解耦，发现语义区分能力（而非纯粹 context 长度）是长上下文检索的主要瓶颈
+   - 与本 proposal 的关系：即 proposal 中的 "EMB-S"。注意——该论文已经做了因素解耦（access vs. discrimination），这与本 proposal 的 "decomposition" 目标有相当重叠
+
+4. "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval" (Du et al., EMNLP 2025 Findings):
+   - 关键发现：即便检索完美，纯粹的 context 长度增加仍导致 13.9%-85% 的性能下降
+   - 与本 proposal 的关系：**这篇高度相关的工作已经在做因素隔离（length vs. retrieval quality vs. distraction）**，但 proposal 未引用
+   - 来源: https://aclanthology.org/2025.findings-emnlp.1264/
+
+5. Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management (arXiv:2508.04664, ICLR 2026):
+   - 提出 Active Context Management 框架应对 proactive interference
+   - 与本 proposal 的关系：proposal 提到 Sculptor 作为 "interference-aware retrieval" 的代表，定位准确
+
+6. LONGPIBENCH (Distance between Relevant Information Pieces Causes Bias in Long-Context LLMs, arXiv:2410.14641):
+   - 专门评估位置偏差对多段相关信息处理的影响
+   - 与本 proposal 的关系：proposal 未提及，但这是 position bias 维度的直接竞争工作
+
+7. Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs via Sparse Attention (arXiv:2510.19875):
+   - 提出 Sparse Tracing 方法在长上下文中做 mechanistic interpretability，剪除 90-99% attention links
+   - 与本 proposal 的关系：proposal 的 mechanistic analysis 组件（attention entropy + AtP*）需要与此方法对比
+
+8. "Lost in the Middle" 及其后续工作 (Liu et al., 2023; follow-ups 2024-2025):
+   - 奠基性工作，定义了 U-shaped 位置偏差现象
+   - 与本 proposal 的关系：position bias 因子的来源，已有大量 follow-up 做了 mitigation
+
+- 调研总结: 长上下文 LLM 退化是一个活跃且已被大量研究的领域。Individual factors（length、position bias、interference、semantic similarity）各自已有独立的深入研究。"因素解耦/隔离"这一方向已有部分工作（"Context Length Alone Hurts" 隔离 length；EMB-S 解耦 access vs. discrimination），proposal 的增量在于用正式的 factorial ANOVA 框架把 4 个因素放在一起。这是一个方法论层面的贡献，而非概念突破。
+
+
+【Trivial Alternative 检验】:
+
+**存在成本更低的替代方案。** 
+
+最直接的 trivial alternative：将现有文献（Chroma 2025、PI-LLM、EMB-S、"Context Length Alone Hurts"）的结论综合起来，即可获得对各因素相对重要性的定性排序。每篇论文已经隔离了至少一个因素，并量化了其 effect size。一篇系统性的 meta-analysis 或 survey 可以达到本 proposal 约 60-70% 的洞察力，且成本远低于构建全新 benchmark。
+
+此外，一个更简单的 ablation-style 实验设计（one-factor-at-a-time + 少量交互项）在 2-3 个模型上即可验证主要发现，不需要 12 模型 × 81 cell 的完整 factorial。
+
+Proposal 的增量价值在于：(1) 交互效应的量化（e.g., interference × position 是否有 synergistic effect），这是 one-factor-at-a-time 无法捕获的；(2) partial η² 提供的标准化 effect size 允许跨因素的公平比较。但这个增量价值是否足够支撑一篇顶会论文，取决于交互效应是否足够大且出人意料。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有以下未验证假设：
+
+1. **"这四个因素可以被干净地独立操纵"（可分离性假设）**：在真实任务中，length 和 interference 高度相关（更长的 context 自然包含更多 distractors）。Factorial design 的前提是因素可独立操纵，但人工构造独立变化的场景可能导致严重的 ecological validity 问题——合成的 "高干扰但短 context" 或 "低干扰但长 context" 场景可能脱离任何真实使用情境。
+
+2. **"分解出的 effect sizes 可以直接指导 context engineering"（可操作性假设）**：即便知道 interference 贡献 40% 的 effect size，这并不直接告诉工程师该怎么做。从 "interference 是最大因素" 到 "应优先做 interference-aware retrieval" 之间有一个跳跃——因为 mitigability 不等于 contribution。贡献最大的因素可能恰恰是最难 mitigate 的。
+
+3. **"合成 benchmark 上的 effect size 排序可推广到真实任务"（外部效度假设）**：3⁴ factorial 的 81 个 cell 必然是高度合成的。在合成数据上发现的 effect size 排序不一定在真实的 RAG / agent 场景中成立。
+
+
+【3 维度打分】:
+
+1. **Novelty: 弱** 
+   — 核心贡献是"用 factorial ANOVA 把已知的 4 个因素放在一个框架里测量"。各因素已被独立研究得很透彻（PI-LLM for interference, "Context Length Alone Hurts" for length isolation, Lost-in-the-Middle for position bias, EMB-S for semantic discrimination）。"联合测量"本质上是实验设计方法论的应用，而非新的概念或发现。EMB-S (2026) 已经在做类似的解耦（evidence access vs. semantic discrimination），"Context Length Alone Hurts" (EMNLP 2025) 已经隔离了 length factor。Proposal 的 delta 收窄为"加上完整 factorial 的交互项"——这是 incremental 的。Mechanistic analysis 组件（attention entropy + AtP*）方面，Stream (2025) 已提出更先进的长上下文 interpretability 方法。
+
+2. **Significance: 中**
+   — 研究问题本身是重要的：理解长上下文失败的原因对 context engineering 和模型开发都有实际意义。12 个模型的跨架构比较（dense vs. MoE vs. SSM-hybrid）有一定价值。但存在两个显著限制：(a) 结果很可能是 "it depends on model/task"——即 factor 排序随模型和任务变化，削弱 actionable insights 的清晰度；(b) 即使结果清晰，从 "factor X 贡献最大" 到 "应该优先 mitigate factor X" 之间的 gap 未被填补。此外，benchmark 论文在 ML 顶会的接受门槛正在提高——社区越来越期望 benchmark 论文要么揭示反直觉的发现，要么成为持久的社区资源。
+
+3. **Related Work: 弱**
+   — Proposal 引用了 Chroma、PI-LLM、EMB-S 三篇作为主要 prior work，但**遗漏了**至少两篇高度相关的工作：(a) "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval" (EMNLP 2025 Findings)——该论文已经在隔离 length factor 方面做了与本 proposal 高度重叠的工作；(b) LONGPIBENCH——position bias 的控制实验 benchmark。此外，proposal 声称 "these threads remain disconnected: no work has measured the relative contribution of each factor"，但这一 claim 需要在了解上述遗漏工作后重新评估——因素隔离已有部分工作在做，差距没有 proposal 声称的那么大。Mechanistic interpretability 方面也未提及 Stream (2025) 和 retrieval heads 文献。
+
+
+【概率估计】: [12% - 22%] 中位 17%
+
+【估计理由】: 
+三个维度中两个（Novelty, Related Work）评为弱，一个（Significance）评为中。核心制约因素是 **Novelty 上限低**：这本质上是一篇 "benchmark + factorial ANOVA" 论文，核心方法论（factorial design）来自实验心理学，不是新工具；各因素已被独立研究透彻，联合测量的增量有限。"Surprising if positive" 检验大概率不通过——无论哪个因素排序第一，审稿人都不太会觉得意外（interference 排第一？"I would have guessed this given PI-LLM"; length 排第一？"Context Length Alone Hurts already showed this"）。Related Work 的遗漏进一步削弱了 novelty claim 的可信度。
+
+**额外关键风险：venue mismatch。** CoRL (Conference on Robot Learning) 的核心主题是机器人学习，包括 manipulation、locomotion、robot perception、sim-to-real 等。本 proposal 是纯粹的 NLP/LLM 评估工作，完全不涉及机器人学。即使 idea 本身质量再高，在 CoRL 被 desk reject 的概率极高。如果投稿目标确实是 CoRL，概率应调整至 **2-5%**（几乎完全因为 scope mismatch）。如果投向 ACL/EMNLP/NeurIPS 等合适 venue，则 12-22% 的估计适用。
+
+【主要风险】:
+1. **Novelty 不足以支撑顶会论文**：factorial decomposition 是方法论应用而非概念创新；各因素已被独立研究充分；交互效应（唯一真正的 novelty delta）可能不够大或不够出人意料，无法让审稿人写出 "surprising"。
+2. **Ecological validity 质疑**：合成 factorial benchmark 的因素独立操纵可能产生人工的、不自然的测试场景，审稿人会质疑 effect size 排序能否推广到真实应用（RAG、agent pipeline），从而削弱 "directly informs practical context engineering" 的核心 value proposition。
+```
+
+Sources:
+- [Context Rot – Chroma Research](https://research.trychroma.com/context-rot)
+- [Unable to Forget: Proactive Interference (PI-LLM) – arXiv](https://arxiv.org/abs/2506.08184)
+- [Beyond the Needle's Illusion (EMB-S) – arXiv](https://arxiv.org/pdf/2601.20276)
+- [Context Length Alone Hurts LLM Performance – EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.1264/)
+- [Sculptor: Active Context Management – ICLR 2026](https://arxiv.org/abs/2508.04664)
+- [LONGPIBENCH: Distance between Relevant Information Pieces – arXiv](https://arxiv.org/pdf/2410.14641)
+- [Stream: Mechanistic Interpretability for Long Context – arXiv](https://arxiv.org/abs/2510.19875)
+- [LongBench Pro – arXiv](https://arxiv.org/pdf/2601.02872)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have enough information to provide my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【致命问题 - 投稿目标错误】:
+CoRL 2026 (Conference on Robot Learning) 的 Call for Papers 明确声明 "submissions without a robotics focus will be returned without review"。本 proposal 是纯 NLP/LLM 评估工作，内容涉及长上下文语言模型的性能降解因子分解，与机器人学习完全无关。投稿 CoRL 将被 desk reject。
+适合的投稿目标应为 ACL 2026、EMNLP 2026、NeurIPS 2026 Datasets & Benchmarks Track 或 COLM 2026。
+
+以下评估基于 idea 本身的质量（假设投稿至适当的 NLP/ML 会议）。
+
+【领域调研】:
+- Chroma "Context Rot" (2025, technical report): 评测 18 个前沿模型在上下文增长时的性能降解，发现所有模型均出现退化，coherent text 比 shuffled text 退化更严重（recency bias）。与本 proposal 关系：proposal 引用正确，是动机之一。
+- "Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs" (arXiv:2506.08184, ICML 2025 LCFM Workshop): 用认知科学的 PI 范式证明 LLM retrieval accuracy 在干扰累积下呈 log-linear 下降。与本 proposal 关系：proposal 引用正确，是干扰维度的基础。
+- EMB-S / EverMemBench-S (arXiv:2601.20276, 2026): 用 collision-tested hard negatives 替代良性 haystack，证明 semantic discrimination 是长上下文记忆的主瓶颈。与本 proposal 关系：proposal 引用正确，是语义相似度维度的基础。
+- "Context Length Alone Hurts LLM Performance Despite Perfect Retrieval" (arXiv:2510.05381, 2025): **关键竞争工作** - 已做控制实验，在确保 perfect retrieval 的前提下隔离 length 因子，证明 length 本身独立造成降解。已部分做了 proposal 声称"没人做过"的因子分离。
+- Sculptor (arXiv:2508.04664, 2025): Active context management 工具包，基于干扰假说设计。与本 proposal 关系：proposal 提到其作为应用方向之一。
+- "Positional Biases Shift as Inputs Approach Context Window Limits" (arXiv:2508.07479, 2025): 已研究 position × length 交互效应。
+- Stream: Scaling up Mechanistic Interpretability to Long Context (arXiv:2510.19875, 2025): 提出 sparse tracing 使 mech interp 可扩展至百万 token。与本 proposal 的 attention entropy + AtP* 方法论相关。
+- RULER V2 (OpenReview, 2025/2026): 已将长上下文评估从基本 retrieval 扩展到复杂推理的多因子评测。
+
+- 调研总结: 长上下文 LLM 性能降解是活跃研究领域，各单因子（position bias, interference, semantic similarity, length）均已被独立研究且有专门论文。已有工作部分地做了因子隔离（如 arXiv:2510.05381 隔离了 length）和两因子交互（如 position × length）。本 proposal 的增量是"完整 4 因子交叉的 factorial design"，属于方法论整合而非概念突破。
+
+【Trivial Alternative 检验】:
+存在更简单的替代方案：
+1. **逐因子 ablation（one-factor-at-a-time）**：固定其他 3 个因子，逐一变化 1 个因子，成本仅为 factorial 的 ~1/7（12 条件 vs 81 条件），即可获得各因子的主效应大小。
+2. **扩展已有 benchmark**：在 RULER V2 或 BABILong 上加入 controlled distractor 和 position manipulation，无需从零构建新 benchmark。
+3. **已有工作已部分覆盖**：arXiv:2510.05381 已经做了 length 的隔离控制实验。
+
+Factorial 设计相对于这些替代方案的增量价值在于**检测交互效应**（如 interference × position 是否有超加性效应）。但问题是：(a) 交互效应是否足够大到有实践意义尚不确定；(b) 81 cells × 35 instances × 12 models = 大量计算投入，但 payoff 可能只是确认各因子独立（或近似独立）作用。
+
+【前提假设检验】:
+核心 claim 的逻辑链有以下未经验证的假设：
+1. **可分解性假设**：context rot 可以被干净地分解为 4 个独立因子。但在真实场景中，这 4 个因子可能高度耦合（如更长的上下文天然包含更多干扰信息和更多语义相似的段落），factorial design 的"正交操控"可能牺牲生态效度。
+2. **合成→真实迁移假设**：proposal 声称"resolve an implicit disagreement across the three literatures"并指导"practical context engineering"，但 3⁴ factorial 的 81 个 cell 是高度合成的控制条件，其结论能否迁移到真实的长文档场景（where factors co-vary naturally）是一个跳跃。
+3. **效应量排序→actionable guidance 假设**：即使获得了 partial η² 排序，这个排序可能是 model-specific 的（不同架构排序不同），难以给出通用的"应该优先缓解哪个因子"的建议。
+4. **机制分析的归因有效性**：attention entropy 是描述性指标而非因果性指标；AtP* 虽是因果性方法但仅适用于 ≤27B dense models，对 MoE/SSM-hybrid/API 模型无法做，削弱了"causal circuits"claim 的普适性。
+
+【3 维度打分】:
+1. Novelty: 弱-中 — 各单因子均已有专门论文研究（PI-LLM for interference, Lost-in-the-Middle + arXiv:2508.07479 for position, EMB-S for semantic similarity, arXiv:2510.05381 for length isolation）。部分两因子交互也已被研究。本 proposal 的增量是"4 因子完整交叉 + formal power analysis"，本质是实验设计方法论（factorial ANOVA）的应用，而非概念性创新。审稿人可能认为这是"rigorous but incremental"。
+   
+2. Significance: 中 — 对实践有一定指导价值（告诉从业者优先缓解哪个因子）。但受限于：(a) 结果可能 model-specific，通用性有限；(b) 如果核心发现是"interference 是最大因子"或"length 是最大因子"，审稿人很可能说"I would have guessed this"；(c) benchmark 论文的 significance 取决于是否能启发后续研究范式转变，本 proposal 更像"确认性研究"而非"开创性研究"。
+
+3. Related Work: 中 — 覆盖了 3 个核心引用（Chroma, PI-LLM, EMB-S）和 Sculptor，但缺失了直接竞争工作 arXiv:2510.05381（已做 length 因子隔离）、position × length 交互的已有工作、以及 Stream 等长上下文 mech interp 方法。差异化定位需要更 explicitly 说明为什么已有的 partial 因子分离工作不够、为什么需要 full factorial。
+
+【概率估计】: [15% - 28%] 中位 22%
+（注：此概率基于投稿至适当的 NLP 顶会如 ACL/EMNLP main，而非 CoRL。若投稿 CoRL，概率为 ~0%，desk reject。）
+
+【估计理由】: 
+- Novelty 是主要限制因素：核心贡献是将已有的 4 个研究线索用 factorial design 整合，属于"rigorous measurement paper"而非"surprising discovery paper"。顶会对 benchmark 论文的 novelty 要求很高（需要揭示反直觉的发现或开创新的评测范式），而这篇更接近"用更 rigorous 的方法确认已知现象"。
+- Significance 受限于结果的可预测性：无论哪个因子排第一，都不太可能让审稿人感到 surprising。
+- 如果投稿 NeurIPS Datasets & Benchmarks Track，概率可能略高（25-30%），因为该 track 对方法论 rigor 给予更高权重。
+- Related Work 的遗漏（特别是 arXiv:2510.05381）可能在审稿中被指出，削弱"first to decompose"的 claim。
+
+【主要风险】:
+1. **"So what" 风险**：审稿人可能质疑——即使获得了 η² 排序，在合成设置下的 factor ranking 是否真能指导 real-world context engineering？结论的 actionability 存疑。
+2. **Novelty insufficiency 风险**：审稿人可能认为 factorial ANOVA 是统计方法论的直接应用（不是 ML/NLP 方法创新），且各单因子已被充分研究，"crossing them" 的增量不足以支撑顶会主会论文。
+```
+
+---
+
+**补充说明**：
+
+关于 **CoRL 2026 投稿目标**的问题需要最优先解决。CoRL 的 scope 严格限定在 robot learning，明确声明非机器人方向的论文不会进入审稿流程。建议将此 proposal 重新定位至以下会议之一：
+- **EMNLP 2026**（NLP 评测/分析类论文的自然归宿）
+- **NeurIPS 2026 Datasets & Benchmarks Track**（对实验 rigor 评价较高）
+- **COLM 2026**（专注 language model 研究）
+- **ACL 2026 Industry Track**（如果强调实践指导价值）
+
+Sources:
+- [Context Rot: How Increasing Input Tokens Impacts LLM Performance | Chroma](https://research.trychroma.com/context-rot)
+- [Unable to Forget: Proactive Interference Reveals Working Memory Limits in LLMs](https://arxiv.org/abs/2506.08184)
+- [Beyond the Needle's Illusion: Decoupled Evaluation under Semantic Interference](https://arxiv.org/pdf/2601.20276)
+- [Context Length Alone Hurts LLM Performance Despite Perfect Retrieval](https://arxiv.org/pdf/2510.05381)
+- [Sculptor: Empowering LLMs with Cognitive Agency via Active Context Management](https://arxiv.org/abs/2508.04664)
+- [Positional Biases Shift as Inputs Approach Context Window Limits](https://arxiv.org/pdf/2508.07479)
+- [Stream: Scaling up Mechanistic Interpretability to Long Context](https://arxiv.org/abs/2510.19875)
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Decomposing Context Rot: A Factorial Analysis of Interference, Position, and Length Effects in Long-Context LLMs
+
+## Description
+We propose PI-ContextRot, the first diagnostic benchmark designed to causally decompose context rot — the well-documented degradation of LLM performance as input context grows — into its constituent factors: proactive interference, position bias, semantic distractor similarity, and raw length. While Chroma (2025) documented context rot across 18 models, PI-LLM (2025) demonstrated log-linear accuracy collapse under synthetic interference, and EMB-S (2026) showed semantic discrimination is the dominant bottleneck for long-context retrieval, these threads remain disconnected: no work has measured the relative contribution of each factor to realistic task degradation. Our balanced 3⁴ factorial design (3 interference levels × 3 positions × 3 similarity levels × 3 context lengths = 81 cells, 35 instances per cell per task, 8,505 total instances across multi-document QA, entity tracking, and temporal reasoning) is formally powered (≥0.95 for medium effects, ≥0.80 for small effects on two-way interactions). Evaluating 12 models across dense (Qwen3.5-9B/27B), MoE (Llama-4-Scout, Qwen3.5-122B-A10B, DeepSeek-V4-Flash), SSM-hybrid (Jamba-1.5-Mini/Large), and frontier API architectures (GPT-4.1, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini 2.5 Pro, Qwen3.5-397B-A17B), we report partial η² effect sizes quantifying each factor's contribution and their interactions. A tiered mechanistic analysis — attention entropy on all open-weight models plus attribution patching (AtP*) on dense models ≤27B — identifies the causal circuits underlying each factor. This decomposition directly informs practical context engineering: the effect-size rankings reveal whether mitigation efforts should prioritize interference-aware retrieval (as Sculptor assumes), position debiasing, or length management, resolving an implicit disagreement across the three literatures.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a8387fec-c47a-49fa-a266-4388228e7c10",
+  "type": "user",
+  "uuid": "3d6f4de6-f247-45f6-97f6-b277f18afa7e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:18:31.267Z_
+
+```json
+{
+  "parentUuid": "3d6f4de6-f247-45f6-97f6-b277f18afa7e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "73c57d0e-61ca-4dbc-97ff-61b0a2517318",
+  "timestamp": "2026-05-20T03:18:31.267Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:18:31.267Z_
+
+```json
+{
+  "parentUuid": "73c57d0e-61ca-4dbc-97ff-61b0a2517318",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "21370bd0-7801-469c-917e-fac209b87273",
+  "timestamp": "2026-05-20T03:18:31.267Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make my assessment. Let me c…",
+  "leafUuid": "21370bd0-7801-469c-917e-fac209b87273",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decompose context rot factors in long-context LLMs",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:19:10.934Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments and synthesize them according to the Meta Judge format.
+
+**Reviewer 1**: Probability [15% - 25%] median 18%
+- Novelty: 弱-中
+- Significance: 中
+- Related Work: 弱
+- Key issues: Missing "Context Length Alone Hurts" citation, trivial alternative threat, synthetic vs realistic tension, venue mismatch (CoRL)
+
+**Reviewer 2**: Probability [12% - 22%] median 17%
+- Novelty: 弱
+- Significance: 中
+
+
+- Related Work: 弱
+- Key issues: Incremental contribution, ecological validity, venue mismatch
+
+**Reviewer 3**: Probability [15% - 28%] median 22%
+- Novelty: 弱-中
+- Significance: 中
+- Related Work: 中
+- Key issues: "So what" risk, novelty insufficiency, venue mismatch
+
+Now I'm calculating the aggregate probability across all three reviewers. The medians are 18%, 17%, and 22%, which when sorted give me 17%, 18%, 22% with a mean of 19% and a median of medians at 18%. The standard deviation calculation shows deviations of -2, -1, and 3 from the mean.
+
+Computing the variance as 4.67 and standard deviation as approximately 2.16% — this is well under 3%, indicating high consensus. The reviewers consistently agree that novelty is weak to weak-medium, significance is medium, and related work coverage ranges from weak to medium.
+
+All three reviewers flagged the missing citation for "Context Length Alone Hurts," the venue mismatch with CoRL as potentially fatal, the threat of trivial alternatives, tensions between synthetic and realistic evaluation, and concerns that the factorial ANOVA approach applies existing methodology rather than introducing conceptual innovation. They also note that factor ranking may not surprise the community. Two reviewers mention Stream (2025) for mechanistic interpretability comparison, while only one brings up RULER V2.
+
+The convergence across reviewers is remarkably high at around 2.16% standard deviation, which gives me confidence in the assessment. Taking the median of their probability ranges—17%, 18%, and 22%—yields 18% overall, with a reasonable bound of 13% to 24% given the strong alignment and the constraint that I shouldn't exceed the most generous reviewer's upper bound of 28%.
+
+All three reviewers flagged the venue mismatch between the paper's CoRL focus and the actual contribution as a critical issue, which is worth highlighting as a shared consensus point.
+
+For actually implementing this work, I'm looking at substantial computational requirements: roughly 102,000 inference calls across API-based and open-weight models, which means managing both API costs and GPU resources. The synthetic benchmark itself needs careful construction and validation across 81 parameter combinations and 35 instances per task. The timeline breaks down to about 2-3 months total—4-6 weeks for benchmark design, 2-3 weeks for running evaluations, and another 2-3 weeks for analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21370bd0-7801-469c-917e-fac209b87273",
+  "isSidechain": false,
+  "requestId": "req_011CbD6dTyqyLDjZBuoMNe61",
+  "type": "assistant",
+  "uuid": "55ca8c11-7573-4233-b098-6f4546dcd4d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M511tmVarB12BmfSMGtEoe",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13085,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 2750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13085,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2750,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13085,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13085
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:19:43.764Z_
+
+【阶段】: Meta Judge
+【三次中位】: [18%, 17%, 22%]  std=2.2%
+【共识维度】: 
+- Novelty=弱至弱-中（3/3）：核心贡献是"用 factorial ANOVA 整合已知因素"，属方法论应用而非概念创新
+- Significance=中（3/3）：研究问题有实践价值，但结果不太可能 surprise 审稿人
+- Related Work=弱（2/3，R1+R2）：遗漏关键竞争工作"Context Length Alone Hurts"（EMNLP 2025 Findings），削弱"first"claim
+- Venue Mismatch=致命（3/3）：CoRL 要求 robotics focus，本 proposal 是纯 NLP 工作，投 CoRL 必然 desk reject
+- Trivial Alternative 威胁（3/3）：meta-analysis 或 one-factor-at-a-time ablation 可获得大部分洞察
+- Ecological Validity 质疑（3/3）：合成 factorial 设计与"realistic task degradation"claim 存在根本张力
+- 结果可预测性（3/3）：无论哪个因素排第一，审稿人反应更可能是"I would have guessed this"
+【异常维度】: 
+- R3 单独提到 RULER V2 作为竞争工作（降权：与本 proposal 的 factor decomposition 目标重叠度有限）
+- R3 单独细化了 AtP* 仅适用于 ≤27B dense models 的局限性（有效观察但不改变整体判断）
+- R2 单独强调"it depends on model/task"导致通用 actionable insight 困难（合理但已被其他人间接涵盖）
+【最终概率】: [13% - 23%] 中位 18%
+【一致性】: 高（std=2.2% < 3%）
+【综合理由】: 三位审稿人高度一致地判定：(1) Novelty 是核心瓶颈——factorial ANOVA 是标准统计工具的应用，各因素已被独立研究透彻，增量仅在于"交互效应的量化"；(2) 即使实验执行完美，idea 内核的 ceiling 有限——benchmark/measurement 论文需要 surprising findings 才能进入顶会 main，而本 proposal 的结果无论如何排序都很难让审稿人觉得 surprising；(3) Related Work 遗漏了直接竞争对手"Context Length Alone Hurts"，这直接威胁"first"claim 的成立。三份评审的 std 仅 2.2%，一致性极高，无需加宽区间。最终中位取 18%，区间 [13%-23%] 反映：下界由 Novelty 弱+Related Work 遗漏限制（审稿人可能直接判 reject），上界由 Significance 中+如果 NeurIPS D&B track 允许的 rigor credit 支撑。额外致命风险：投 CoRL 概率为 0%，此评估仅适用于重定向至 ACL/EMNLP/NeurIPS D&B。
+【建议】: 不推荐（投 CoRL 为 KILL；即使转投 NLP venue，idea 质量天花板不足以支撑 main conference 论文，Findings/Workshop 级别可能性更高）
+【实施评估】:
+  - 计算资源: 12 模型 × 81 cells × 35 instances × 3 tasks ≈ 102K 次长上下文推理调用。API 模型（GPT-4.1, Claude 4.6, Gemini 2.5 Pro, DeepSeek-V4-Pro）需大量 API 费用（长上下文 token 密集，估计 $3K-8K）；开源模型（Qwen3.5-9B/27B/122B, Jamba-1.5, Llama-4-Scout）需 4×A100/H100 集群做推理，约 200-400 GPU-hours
+  - 数据需求: 需从零构建 PI-ContextRot benchmark（8,505 instances），涉及 multi-document QA、entity tracking、temporal reasoning 三类任务的合成生成，需设计可控的干扰/位置/相似度/长度操纵机制。无现成公开数据集可直接复用
+  - 人工介入: Benchmark 构建需要人工设计任务模板、验证合成实例质量（抽检 correctness + ecological validity）、以及 pilot study 验证因子操纵的有效性。估计 2-3 人 × 3-4 周
+  - 训练需求: 无模型训练（纯推理评估）。但 AtP* attribution patching 在 dense ≤27B 模型上需要梯度计算，单次归因的显存需求较高（27B 模型需 2×A100 80GB）
+  - 新 Benchmark: 是——PI-ContextRot 是全新 benchmark，需从零构建，且需配套开源代码/数据/leaderboard 以体现社区贡献
+  - 预估周期: Benchmark 设计+构建（5-6 周）→ Pilot study 验证（1-2 周）→ 全量推理实验（2-3 周）→ 统计分析+mechanistic analysis（2-3 周）→ 论文撰写（3-4 周）。总计约 3.5-4.5 个月
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55ca8c11-7573-4233-b098-6f4546dcd4d4",
+  "isSidechain": false,
+  "requestId": "req_011CbD6dTyqyLDjZBuoMNe61",
+  "type": "assistant",
+  "uuid": "8bd819bf-65e7-494a-b3ce-1f323254ea61",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M511tmVarB12BmfSMGtEoe",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13085,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 2750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13085,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2750,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13085,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13085
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make my assessment. Let me c…",
+  "leafUuid": "8bd819bf-65e7-494a-b3ce-1f323254ea61",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decompose context rot factors in long-context LLMs",
+  "sessionId": "4cbcc925-e90a-4a7b-aef2-8b3fa9e4ab37"
+}
+```
+
+---

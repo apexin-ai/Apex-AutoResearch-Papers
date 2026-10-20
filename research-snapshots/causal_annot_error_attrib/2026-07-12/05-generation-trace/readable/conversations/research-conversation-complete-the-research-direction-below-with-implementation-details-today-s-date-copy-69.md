@@ -1,0 +1,11814 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-18 (UTC).** Only recommend ve
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 159
+- **Recorded user turns:** 1
+- **Tool calls:** 55
+- **Original source:** `logs/chats/exported-trajectories/account-3/4360363e-9691-4f54-8644-9f9672f29ba3.jsonl`
+- **Structured JSON:** [`276e4c67232721a8c76a.json`](../../sessions/27/276e4c67232721a8c76a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T03:28:51.976Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T03:28:51.976Z",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Generator-as-Curriculum: Self-Improving Verifiers Without Fresh Labels\",\n  \"core_problem\": \"All verifier improvement methods implicitly assume access to fresh human-labeled data for verifier retraining, defeating the purpose of synthetic data scaling. Can the generator's own improving outputs serve as a free, automatically-graded curriculum for verifier training — enabling verifier improvement without any additional human annotation?\",\n  \"opportunity\": \"As the generator distribution p_θ_t approaches p_real, the generator's outputs become progressively harder for the verifier to correctly classify (closer to the decision boundary). This difficulty progression is structurally identical to curriculum learning — but it emerges for free from the co-evolutionary dynamics. Recent curriculum learning research (VCRL, arXiv 2509.19803; Progressive Mastery, arXiv 2506.04065) shows progressive difficulty scheduling improves learning. The key non-obvious insight: the information about 'what is hard for the verifier' is encoded in the generator's distribution shift Δp_t = p_θ_{t+1} - p_θ_t, which can be used to construct verifier training data at the right difficulty level without external labels. Naive periodic retraining on old data doesn't exploit this signal — it's the difference between random practice and targeted practice at the skill boundary.\",\n  \"landscape\": \"Curriculum learning for LLMs is well-studied: VCRL (2509.19803) uses variance-based difficulty ordering; Progressive Mastery (2506.04065) uses guided prompting for difficulty modulation; self-paced learning work dates back to 2010+. However, curriculum learning for VERIFIER training in co-evolutionary settings is unexplored. PRIME (arXiv 2502.01456, 2025) enables online PRM updates using only outcome labels, which is the closest to 'verifier improvement without process labels' but doesn't use generator outputs as curriculum — it uses policy rollouts. CoVerRL's verifier training uses majority voting as noisy supervision, not generator difficulty progression. RL Tango trains the verifier with outcome-level rewards plus class-aware reweighting. None exploit the structural insight that the generator's improving distribution creates a natural difficulty curriculum for the verifier. The 'Can Large Reasoning Models Self-Train?' paper (arXiv 2505.21444, 2025) studies self-training with controllable difficulty but in reasoning, not synthetic data verification.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-18; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T03:28:51.980Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T03:28:51.980Z",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+## Round 1
+
+157 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T03:28:52.004Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Generator-as-Curriculum: Self-Improving Verifiers Without Fresh Labels",
+  "core_problem": "All verifier improvement methods implicitly assume access to fresh human-labeled data for verifier retraining, defeating the purpose of synthetic data scaling. Can the generator's own improving outputs serve as a free, automatically-graded curriculum for verifier training — enabling verifier improvement without any additional human annotation?",
+  "opportunity": "As the generator distribution p_θ_t approaches p_real, the generator's outputs become progressively harder for the verifier to correctly classify (closer to the decision boundary). This difficulty progression is structurally identical to curriculum learning — but it emerges for free from the co-evolutionary dynamics. Recent curriculum learning research (VCRL, arXiv 2509.19803; Progressive Mastery, arXiv 2506.04065) shows progressive difficulty scheduling improves learning. The key non-obvious insight: the information about 'what is hard for the verifier' is encoded in the generator's distribution shift Δp_t = p_θ_{t+1} - p_θ_t, which can be used to construct verifier training data at the right difficulty level without external labels. Naive periodic retraining on old data doesn't exploit this signal — it's the difference between random practice and targeted practice at the skill boundary.",
+  "landscape": "Curriculum learning for LLMs is well-studied: VCRL (2509.19803) uses variance-based difficulty ordering; Progressive Mastery (2506.04065) uses guided prompting for difficulty modulation; self-paced learning work dates back to 2010+. However, curriculum learning for VERIFIER training in co-evolutionary settings is unexplored. PRIME (arXiv 2502.01456, 2025) enables online PRM updates using only outcome labels, which is the closest to 'verifier improvement without process labels' but doesn't use generator outputs as curriculum — it uses policy rollouts. CoVerRL's verifier training uses majority voting as noisy supervision, not generator difficulty progression. RL Tango trains the verifier with outcome-level rewards plus class-aware reweighting. None exploit the structural insight that the generator's improving distribution creates a natural difficulty curriculum for the verifier. The 'Can Large Reasoning Models Self-Train?' paper (arXiv 2505.21444, 2025) studies self-training with controllable difficulty but in reasoning, not synthetic data verification."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-18; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "5ba2ed67-ad6e-460a-b0b2-91daf27fe729",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T03:28:52.003Z_
+
+```json
+{
+  "parentUuid": "5ba2ed67-ad6e-460a-b0b2-91daf27fe729",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7f5a3750-cb48-4dc3-ab98-ec79fcaa6ecd",
+  "timestamp": "2026-05-18T03:28:52.003Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T03:28:52.003Z_
+
+```json
+{
+  "parentUuid": "7f5a3750-cb48-4dc3-ab98-ec79fcaa6ecd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "88833140-2895-40fd-9cad-7d59d42814f9",
+  "timestamp": "2026-05-18T03:28:52.003Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-18T03:28:55.926Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for concurrent work on this topic
+2. Verify references
+3. Find current SOTA open-source models
+4. Check venue deadlines
+5. Estimate costs based on real data
+6. Produce a complete JSON
+
+Let me start by doing several searches in parallel to gather the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88833140-2895-40fd-9cad-7d59d42814f9",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KoPevNKEHMPyAgKX5x",
+  "type": "assistant",
+  "uuid": "34ce35f2-0667-40f2-9dab-2d13fbc3f688",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGXSXo7tKy214L1WdVSK8u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7378,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-18T03:28:56.901Z_
+
+I'll research this thoroughly before filling in the implementation details. Let me start with concurrent work searches, reference verification, and venue deadline checks in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34ce35f2-0667-40f2-9dab-2d13fbc3f688",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KoPevNKEHMPyAgKX5x",
+  "type": "assistant",
+  "uuid": "75d7fa04-17ae-40aa-9729-6969388c47ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGXSXo7tKy214L1WdVSK8u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7378,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T03:28:57.180Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017oeiAA86JEJVaFWEoRWkcD`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75d7fa04-17ae-40aa-9729-6969388c47ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KoPevNKEHMPyAgKX5x",
+  "type": "assistant",
+  "uuid": "69fe24c7-c04b-4b85-a0d3-f0c15a8020be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGXSXo7tKy214L1WdVSK8u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7378,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T03:28:57.186Z_
+
+<details><summary>↩ Tool result · `toolu_017oeiAA86JEJVaFWEoRWkcD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69fe24c7-c04b-4b85-a0d3-f0c15a8020be",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "ecdafd86-c723-42f8-a9d8-456a48a93e78",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "69fe24c7-c04b-4b85-a0d3-f0c15a8020be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-18T03:28:59.792Z_
+
+Now let me launch parallel searches to gather all needed information.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecdafd86-c723-42f8-a9d8-456a48a93e78",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Kon2aG9LScAkDeUdbR",
+  "type": "assistant",
+  "uuid": "26d20f4f-205c-4d8d-baf4-bc87707ab2af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdQkX9sGEjWidWhSvUW4WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 19219,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 19219,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T03:29:00.270Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xh5Rs1HsuxURHRcnTdwi3H`</summary>
+
+```json
+{
+  "query": "generator curriculum verifier training self-improving without labels 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26d20f4f-205c-4d8d-baf4-bc87707ab2af",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Kon2aG9LScAkDeUdbR",
+  "type": "assistant",
+  "uuid": "0203b95f-7b80-49cb-877f-5c939d6d96ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdQkX9sGEjWidWhSvUW4WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 19219,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 19219,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T03:29:07.683Z_
+
+<details><summary>↩ Tool result · `toolu_01Xh5Rs1HsuxURHRcnTdwi3H`</summary>
+
+```text
+Web search results for query: "generator curriculum verifier training self-improving without labels 2026 arxiv"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2508.05004"},{"title":"Curriculum learning for self-supervised speaker verification","url":"https://arxiv.org/html/2203.14525v4"},{"title":"Self-Improving Code Generation via Semantic Entropy and Behavioral Consensus","url":"https://arxiv.org/html/2603.29292"},{"title":"Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗","url":"https://arxiv.org/pdf/2505.21444"},{"title":"[1807.09295] Improved Training with Curriculum GANs","url":"https://ar5iv.labs.arxiv.org/html/1807.09295"},{"title":"Learning to Self-Verify Makes Language Models Better Reasoners","url":"https://arxiv.org/html/2602.07594v1"},{"title":"[2505.14970] Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/abs/2505.14970"},{"title":"A Curriculum-style Self-training Approach for Source-Free Semantic Segmentation","url":"https://arxiv.org/html/2106.11653v5"},{"title":"Self-Training Large Language Models with Confident Reasoning","url":"https://arxiv.org/html/2505.17454v1"},{"title":"[2311.09195] Self-Supervised Curriculum Generation for Autonomous Reinforcement Learning without Task-Specific Knowledge","url":"https://arxiv.org/abs/2311.09195"}]
+
+I found several relevant papers from your search query. Here are the most relevant results:
+
+## Most Relevant - R-Zero Framework
+
+The most directly relevant paper appears to be about a self-supervised training loop that demonstrates broad applicability. The intelligent curriculum generated by an RL-trained Challenger is significantly more effective than that of a non-trained generator. The research investigates whether a training curriculum is not human-labeled, but entirely self-generated. The paper discusses obtaining answers from the current Solver and determining the pseudo-label via majority vote to construct the curriculum.
+
+## Related Papers on Self-Improving Without Labels
+
+**ConSelf** - ConSelf significantly outperforms baselines, validating the effectiveness of semantic entropy-based curriculum construction and consensus-driven optimization in improving code generation without external supervision.
+
+**Self-Training for Reasoning** - A curriculum-based self-training approach can enable the model to keep climbing on progressively harder tasks without ground-truth labels.
+
+**Self-Verifying Models** - Learning to self-verify can effectively improve generation performance, achieving accuracy comparable to standard generation training while yielding more efficient and effective reasoning traces.
+
+**Self-Evolving Curriculum (SEC)** - SEC is an automatic curriculum learning method that learns a curriculum policy concurrently with the RL fine-tuning process.
+
+These papers collectively address the topic of training systems with generator-verifier architectures that can self-improve through curriculum learning without requiring human-annotated labels.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0203b95f-7b80-49cb-877f-5c939d6d96ee",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "a9d8ba03-3673-49d2-8d1a-8d099606a800",
+  "toolUseResult": {
+    "query": "generator curriculum verifier training self-improving without labels 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016cn2GSpBMSNXi4FfTRMbxf",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2508.05004"
+          },
+          {
+            "title": "Curriculum learning for self-supervised speaker verification",
+            "url": "https://arxiv.org/html/2203.14525v4"
+          },
+          {
+            "title": "Self-Improving Code Generation via Semantic Entropy and Behavioral Consensus",
+            "url": "https://arxiv.org/html/2603.29292"
+          },
+          {
+            "title": "Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗",
+            "url": "https://arxiv.org/pdf/2505.21444"
+          },
+          {
+            "title": "[1807.09295] Improved Training with Curriculum GANs",
+            "url": "https://ar5iv.labs.arxiv.org/html/1807.09295"
+          },
+          {
+            "title": "Learning to Self-Verify Makes Language Models Better Reasoners",
+            "url": "https://arxiv.org/html/2602.07594v1"
+          },
+          {
+            "title": "[2505.14970] Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.14970"
+          },
+          {
+            "title": "A Curriculum-style Self-training Approach for Source-Free Semantic Segmentation",
+            "url": "https://arxiv.org/html/2106.11653v5"
+          },
+          {
+            "title": "Self-Training Large Language Models with Confident Reasoning",
+            "url": "https://arxiv.org/html/2505.17454v1"
+          },
+          {
+            "title": "[2311.09195] Self-Supervised Curriculum Generation for Autonomous Reinforcement Learning without Task-Specific Knowledge",
+            "url": "https://arxiv.org/abs/2311.09195"
+          }
+        ]
+      },
+      "I found several relevant papers from your search query. Here are the most relevant results:\n\n## Most Relevant - R-Zero Framework\n\nThe most directly relevant paper appears to be about a self-supervised training loop that demonstrates broad applicability. The intelligent curriculum generated by an RL-trained Challenger is significantly more effective than that of a non-trained generator. The research investigates whether a training curriculum is not human-labeled, but entirely self-generated. The paper discusses obtaining answers from the current Solver and determining the pseudo-label via majority vote to construct the curriculum.\n\n## Related Papers on Self-Improving Without Labels\n\n**ConSelf** - ConSelf significantly outperforms baselines, validating the effectiveness of semantic entropy-based curriculum construction and consensus-driven optimization in improving code generation without external supervision.\n\n**Self-Training for Reasoning** - A curriculum-based self-training approach can enable the model to keep climbing on progressively harder tasks without ground-truth labels.\n\n**Self-Verifying Models** - Learning to self-verify can effectively improve generation performance, achieving accuracy comparable to standard generation training while yielding more efficient and effective reasoning traces.\n\n**Self-Evolving Curriculum (SEC)** - SEC is an automatic curriculum learning method that learns a curriculum policy concurrently with the RL fine-tuning process.\n\nThese papers collectively address the topic of training systems with generator-verifier architectures that can self-improve through curriculum learning without requiring human-annotated labels."
+    ],
+    "durationSeconds": 7.409295953999999
+  },
+  "sourceToolAssistantUUID": "0203b95f-7b80-49cb-877f-5c939d6d96ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "a9d8ba03-3673-49d2-8d1a-8d099606a800",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T03:29:10.210Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DuyG6kSpuwyGTKmFggdsjt`</summary>
+
+```json
+{
+  "query": "co-evolutionary verifier generator synthetic data curriculum learning arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9d8ba03-3673-49d2-8d1a-8d099606a800",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KpYbxiUbyfgpUmTjQa",
+  "type": "assistant",
+  "uuid": "f30a6caa-6dda-4204-b6d7-0463794179c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nsAiAB17w1fRp5jAKPRek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 19955,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 19955,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T03:29:17.930Z_
+
+<details><summary>↩ Tool result · `toolu_01DuyG6kSpuwyGTKmFggdsjt`</summary>
+
+```text
+Web search results for query: "co-evolutionary verifier generator synthetic data curriculum learning arXiv 2026"
+
+Links: [{"title":"EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning","url":"https://arxiv.org/html/2510.17928v1"},{"title":"[2510.17928] EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning","url":"https://arxiv.org/abs/2510.17928"},{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://arxiv.org/html/2506.11442v1"},{"title":"EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for- ...","url":"https://www.researchgate.net/publication/396747789_EvoSyn_Generalizable_Evolutionary_Data_Synthesis_for_Verifiable_Learning/fulltext/68f8546fffdca73694b994f6/EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for-Verifiable-Learning.pdf?origin=scientificContributions"},{"title":"Synthetic Data Generation Using Large Language Models: Advances in Text and Code","url":"https://arxiv.org/html/2503.14023v1"},{"title":"[1901.05431] Evolutionarily-Curated Curriculum Learning for Deep Reinforcement Learning Agents","url":"https://arxiv.org/abs/1901.05431"},{"title":"[2410.03837] Learning Code Preference via Synthetic Evolution","url":"https://arxiv.org/abs/2410.03837"},{"title":"[2506.03136] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning","url":"https://arxiv.org/abs/2506.03136"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning","url":"https://arxiv.org/html/2506.03136v2"},{"title":"Artificial Intelligence Jun 2025","url":"https://arxiv.org/list/cs.AI/2025-06?skip=1400&show=1000"}]
+
+Based on the search results, I found several relevant papers related to your query about co-evolutionary approaches, verifier-generator systems, and synthetic data with curriculum learning:
+
+## Most Relevant Results:
+
+**1. EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning**
+
+This work introduces an evolutionary, task-agnostic, strategy-guided, executably-checkable data synthesis framework that, from minimal seed supervision, jointly synthesizes problems, diverse candidate solutions, and verification artifacts. Unlike prior approaches that require handcrafted, task-specific heuristics, EvoSyn automates this process: the model itself explores and evolves filtering strategies. It introduces a unified evaluation criterion for filtering strategies that is task-agnostic and measures consistency score with a small set of manually verified seed data.
+
+**2. Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning**
+
+This paper proposes CURE, a novel reinforcement learning framework with a dedicated reward design that co-evolves coding and unit test generation capabilities based on their interaction outcomes, without any ground-truth code as supervision.
+
+**3. ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification**
+
+This work fosters the co-evolution of a model's generation and verification capabilities through RL.
+
+These papers from arXiv in 2025-2026 align well with your query about co-evolutionary verifier-generator frameworks combined with synthetic data generation and curriculum learning approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f30a6caa-6dda-4204-b6d7-0463794179c4",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "5cd4b1dc-2577-4a9a-96be-7b85f5e62ca7",
+  "toolUseResult": {
+    "query": "co-evolutionary verifier generator synthetic data curriculum learning arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E8zgj6WyV41pUiBVh7TkDV",
+        "content": [
+          {
+            "title": "EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning",
+            "url": "https://arxiv.org/html/2510.17928v1"
+          },
+          {
+            "title": "[2510.17928] EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning",
+            "url": "https://arxiv.org/abs/2510.17928"
+          },
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://arxiv.org/html/2506.11442v1"
+          },
+          {
+            "title": "EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for- ...",
+            "url": "https://www.researchgate.net/publication/396747789_EvoSyn_Generalizable_Evolutionary_Data_Synthesis_for_Verifiable_Learning/fulltext/68f8546fffdca73694b994f6/EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for-Verifiable-Learning.pdf?origin=scientificContributions"
+          },
+          {
+            "title": "Synthetic Data Generation Using Large Language Models: Advances in Text and Code",
+            "url": "https://arxiv.org/html/2503.14023v1"
+          },
+          {
+            "title": "[1901.05431] Evolutionarily-Curated Curriculum Learning for Deep Reinforcement Learning Agents",
+            "url": "https://arxiv.org/abs/1901.05431"
+          },
+          {
+            "title": "[2410.03837] Learning Code Preference via Synthetic Evolution",
+            "url": "https://arxiv.org/abs/2410.03837"
+          },
+          {
+            "title": "[2506.03136] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2506.03136"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.03136v2"
+          },
+          {
+            "title": "Artificial Intelligence Jun 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-06?skip=1400&show=1000"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers related to your query about co-evolutionary approaches, verifier-generator systems, and synthetic data with curriculum learning:\n\n## Most Relevant Results:\n\n**1. EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning**\n\nThis work introduces an evolutionary, task-agnostic, strategy-guided, executably-checkable data synthesis framework that, from minimal seed supervision, jointly synthesizes problems, diverse candidate solutions, and verification artifacts. Unlike prior approaches that require handcrafted, task-specific heuristics, EvoSyn automates this process: the model itself explores and evolves filtering strategies. It introduces a unified evaluation criterion for filtering strategies that is task-agnostic and measures consistency score with a small set of manually verified seed data.\n\n**2. Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning**\n\nThis paper proposes CURE, a novel reinforcement learning framework with a dedicated reward design that co-evolves coding and unit test generation capabilities based on their interaction outcomes, without any ground-truth code as supervision.\n\n**3. ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification**\n\nThis work fosters the co-evolution of a model's generation and verification capabilities through RL.\n\nThese papers from arXiv in 2025-2026 align well with your query about co-evolutionary verifier-generator frameworks combined with synthetic data generation and curriculum learning approaches."
+    ],
+    "durationSeconds": 7.7142365040000005
+  },
+  "sourceToolAssistantUUID": "f30a6caa-6dda-4204-b6d7-0463794179c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T03:29:20.750Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Tp9rrEvPrAV5GhUcHXoBzg`</summary>
+
+```json
+{
+  "query": "PRIME online PRM verifier training outcome labels arXiv 2502.01456"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cd4b1dc-2577-4a9a-96be-7b85f5e62ca7",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KqJNUVbAKvdcyKNPsR",
+  "type": "assistant",
+  "uuid": "ef45337a-c1f6-487e-96ff-876b38e24d6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCEU7Z5YK66yQ9E2fNze5d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 20815,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 965,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 20815,
+          "cache_creation_input_tokens": 965,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 965
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T03:29:28.654Z_
+
+<details><summary>↩ Tool result · `toolu_01Tp9rrEvPrAV5GhUcHXoBzg`</summary>
+
+```text
+Web search results for query: "PRIME online PRM verifier training outcome labels arXiv 2502.01456"
+
+Links: [{"title":"[2502.01456] Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/abs/2502.01456"},{"title":"Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/html/2502.01456v1"},{"title":"GitHub - PRIME-RL/PRIME: Scalable RL solution for advanced reasoning of language models · GitHub","url":"https://github.com/PRIME-RL/PRIME"},{"title":"Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT RE- WARDS","url":"https://arxiv.org/pdf/2502.01456"},{"title":"Paper page - Process Reinforcement through Implicit Rewards","url":"https://huggingface.co/papers/2502.01456"},{"title":"[2502.01456v1] Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/abs/2502.01456v1"},{"title":"Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT REWARDS","url":"https://arxiv.org/pdf/2502.01456v1"},{"title":"PRIME-RL/EurusPRM-Stage2 · Hugging Face","url":"https://huggingface.co/PRIME-RL/EurusPRM-Stage2"},{"title":"arXiv:2507.01551v2 [cs.LG] 3 Jul 2025 Preprint.","url":"https://arxiv.org/pdf/2507.01551"},{"title":"PRIME: A Process-Outcome Alignment Benchmark for ...","url":"https://arxiv.org/pdf/2602.11570"}]
+
+Based on the search results, here's what I found about the paper arXiv 2502.01456:
+
+## Paper Overview
+
+PRIME (Process Reinforcement through IMplicit rEwards) enables online PRM updates using only policy rollouts and outcome labels through implicit process rewards.
+
+## Key Problem Addressed
+
+The challenges of training process reward models (PRMs) online, where collecting high-quality process labels is prohibitively expensive, making them particularly vulnerable to reward hacking.
+
+## Main Innovation
+
+Without the need for any process label, implicit PRM is trained as an outcome reward model (ORM) and then used as a PRM. This approach provides several benefits:
+
+- **Dense Reward**: Implicit PRM directly learns a Q-function that provides rewards for each token, which alleviates the reward sparsity issue without the need of an extra value model.
+
+- **Scalability**: Implicit PRM can be online updated with only outcome label. Therefore, we can directly update the PRM with on-policy rollouts given outcome verifiers, which mitigates the distribution shift as well as scalability issues for PRMs.
+
+- **Simplicity**: It is unnecessary to train a PRM beforehand, since the SFT model itself already serves as a strong starting point.
+
+## Training and Application
+
+PRIME could generally boost various RL algorithms, including RLOO, REINFORCE, PPO, and GRPO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef45337a-c1f6-487e-96ff-876b38e24d6c",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "3120c238-b393-46ec-8e22-240e199b468b",
+  "toolUseResult": {
+    "query": "PRIME online PRM verifier training outcome labels arXiv 2502.01456",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01StMAogP8nU1WT2aiVyF9Kq",
+        "content": [
+          {
+            "title": "[2502.01456] Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/abs/2502.01456"
+          },
+          {
+            "title": "Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/html/2502.01456v1"
+          },
+          {
+            "title": "GitHub - PRIME-RL/PRIME: Scalable RL solution for advanced reasoning of language models · GitHub",
+            "url": "https://github.com/PRIME-RL/PRIME"
+          },
+          {
+            "title": "Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT RE- WARDS",
+            "url": "https://arxiv.org/pdf/2502.01456"
+          },
+          {
+            "title": "Paper page - Process Reinforcement through Implicit Rewards",
+            "url": "https://huggingface.co/papers/2502.01456"
+          },
+          {
+            "title": "[2502.01456v1] Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/abs/2502.01456v1"
+          },
+          {
+            "title": "Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT REWARDS",
+            "url": "https://arxiv.org/pdf/2502.01456v1"
+          },
+          {
+            "title": "PRIME-RL/EurusPRM-Stage2 · Hugging Face",
+            "url": "https://huggingface.co/PRIME-RL/EurusPRM-Stage2"
+          },
+          {
+            "title": "arXiv:2507.01551v2 [cs.LG] 3 Jul 2025 Preprint.",
+            "url": "https://arxiv.org/pdf/2507.01551"
+          },
+          {
+            "title": "PRIME: A Process-Outcome Alignment Benchmark for ...",
+            "url": "https://arxiv.org/pdf/2602.11570"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper arXiv 2502.01456:\n\n## Paper Overview\n\nPRIME (Process Reinforcement through IMplicit rEwards) enables online PRM updates using only policy rollouts and outcome labels through implicit process rewards.\n\n## Key Problem Addressed\n\nThe challenges of training process reward models (PRMs) online, where collecting high-quality process labels is prohibitively expensive, making them particularly vulnerable to reward hacking.\n\n## Main Innovation\n\nWithout the need for any process label, implicit PRM is trained as an outcome reward model (ORM) and then used as a PRM. This approach provides several benefits:\n\n- **Dense Reward**: Implicit PRM directly learns a Q-function that provides rewards for each token, which alleviates the reward sparsity issue without the need of an extra value model.\n\n- **Scalability**: Implicit PRM can be online updated with only outcome label. Therefore, we can directly update the PRM with on-policy rollouts given outcome verifiers, which mitigates the distribution shift as well as scalability issues for PRMs.\n\n- **Simplicity**: It is unnecessary to train a PRM beforehand, since the SFT model itself already serves as a strong starting point.\n\n## Training and Application\n\nPRIME could generally boost various RL algorithms, including RLOO, REINFORCE, PPO, and GRPO."
+    ],
+    "durationSeconds": 7.899228664999999
+  },
+  "sourceToolAssistantUUID": "ef45337a-c1f6-487e-96ff-876b38e24d6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T03:29:31.333Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016hHu6dXDXtGJ3v3apLb5BZ`</summary>
+
+```json
+{
+  "query": "VCRL variance curriculum reinforcement learning arXiv 2509.19803"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3120c238-b393-46ec-8e22-240e199b468b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Kr6FkDMe3xJvyTtHVt",
+  "type": "assistant",
+  "uuid": "a3333e67-9568-4928-a10e-fa610e8b1409",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019YUXDBhPoYGKLdbuYFknjv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 21780,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 21780,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T03:29:39.337Z_
+
+<details><summary>↩ Tool result · `toolu_016hHu6dXDXtGJ3v3apLb5BZ`</summary>
+
+```text
+Web search results for query: "VCRL variance curriculum reinforcement learning arXiv 2509.19803"
+
+Links: [{"title":"[2509.19803] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2509.19803"},{"title":"Preprint VCRL: VARIANCE-BASED CURRICULUM REINFORCE-","url":"https://arxiv.org/pdf/2509.19803"},{"title":"Paper page - VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://huggingface.co/papers/2509.19803"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2509.19803v1"},{"title":"[2509.19803v1] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2509.19803v1"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.19803"},{"title":"[PDF] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/VCRL:-Variance-based-Curriculum-Reinforcement-for-Jiang-Feng/714abcc8b1c6527844a5f8ed691f1a85e7fb25a7"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/vcrl-variance-based-curriculum-reinforcement-learning-large"},{"title":"[Literature Review] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://www.themoonlight.io/en/review/vcrl-variance-based-curriculum-reinforcement-learning-for-large-language-models"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | by Mehrtash Souri | Sep, 2025 | Medium","url":"https://medium.com/@mehrtash.souri/vcrl-variance-based-curriculum-reinforcement-learning-for-large-language-models-0ed905f2a079"}]
+
+I found the paper you're looking for! Here's a summary of the research:
+
+## VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models
+
+**Paper Details:**
+- arXiv: 2509.19803
+- Submitted: September 24, 2025
+- Authors: Guochao Jiang, Wenfeng Feng, Guofeng Quan, Chuzhan Hao, Yuewei Zhang, Guohua Liu, Hao Wang
+
+**Key Contribution:**
+VCRL is a curriculum reinforcement learning framework that dynamically controls the difficulty of training samples based on the variance of group rewards.
+
+**Core Insight:**
+The variance of the rollout group's reward partly reflects the difficulty of the current sample for LLMs, with samples that are too easy or too difficult having lower variance, while samples with moderate difficulty having higher variance.
+
+**Problem Addressed:**
+Existing rollout-based reinforcement learning methods (GRPO, DAPO, GSPO, etc.) fail to explicitly consider LLMs' learning ability for samples of different difficulty levels, which is contrary to the human cognitive process of mathematical reasoning tasks from easy to difficult.
+
+**Method Components:**
+VCRL uses Variance-based Dynamic Sampling to select these samples for training, helping control the quality of the training batch. Additionally, VCRL uses Replay Learning with a memory bank to further boost training efficiency.
+
+**Results:**
+Experiments on five mathematical benchmarks and two models reveal the advantages of VCRL over the current LLM RL baselines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3333e67-9568-4928-a10e-fa610e8b1409",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "7648ad3e-4fa0-4c61-a695-4d9f8791672a",
+  "toolUseResult": {
+    "query": "VCRL variance curriculum reinforcement learning arXiv 2509.19803",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N6c9xhHBiGG3i6g4Shd2kF",
+        "content": [
+          {
+            "title": "[2509.19803] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2509.19803"
+          },
+          {
+            "title": "Preprint VCRL: VARIANCE-BASED CURRICULUM REINFORCE-",
+            "url": "https://arxiv.org/pdf/2509.19803"
+          },
+          {
+            "title": "Paper page - VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://huggingface.co/papers/2509.19803"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2509.19803v1"
+          },
+          {
+            "title": "[2509.19803v1] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2509.19803v1"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.19803"
+          },
+          {
+            "title": "[PDF] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/VCRL:-Variance-based-Curriculum-Reinforcement-for-Jiang-Feng/714abcc8b1c6527844a5f8ed691f1a85e7fb25a7"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/vcrl-variance-based-curriculum-reinforcement-learning-large"
+          },
+          {
+            "title": "[Literature Review] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://www.themoonlight.io/en/review/vcrl-variance-based-curriculum-reinforcement-learning-for-large-language-models"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | by Mehrtash Souri | Sep, 2025 | Medium",
+            "url": "https://medium.com/@mehrtash.souri/vcrl-variance-based-curriculum-reinforcement-learning-for-large-language-models-0ed905f2a079"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the research:\n\n## VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models\n\n**Paper Details:**\n- arXiv: 2509.19803\n- Submitted: September 24, 2025\n- Authors: Guochao Jiang, Wenfeng Feng, Guofeng Quan, Chuzhan Hao, Yuewei Zhang, Guohua Liu, Hao Wang\n\n**Key Contribution:**\nVCRL is a curriculum reinforcement learning framework that dynamically controls the difficulty of training samples based on the variance of group rewards.\n\n**Core Insight:**\nThe variance of the rollout group's reward partly reflects the difficulty of the current sample for LLMs, with samples that are too easy or too difficult having lower variance, while samples with moderate difficulty having higher variance.\n\n**Problem Addressed:**\nExisting rollout-based reinforcement learning methods (GRPO, DAPO, GSPO, etc.) fail to explicitly consider LLMs' learning ability for samples of different difficulty levels, which is contrary to the human cognitive process of mathematical reasoning tasks from easy to difficult.\n\n**Method Components:**\nVCRL uses Variance-based Dynamic Sampling to select these samples for training, helping control the quality of the training batch. Additionally, VCRL uses Replay Learning with a memory bank to further boost training efficiency.\n\n**Results:**\nExperiments on five mathematical benchmarks and two models reveal the advantages of VCRL over the current LLM RL baselines."
+    ],
+    "durationSeconds": 7.999894511000006
+  },
+  "sourceToolAssistantUUID": "a3333e67-9568-4928-a10e-fa610e8b1409",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T03:29:41.909Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T1awEzfL2dvXHxMTG8PNDb`</summary>
+
+```json
+{
+  "query": "Progressive Mastery guided prompting difficulty modulation arXiv 2506.04065"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7648ad3e-4fa0-4c61-a695-4d9f8791672a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KrstsZXTQYmsgNVBUT",
+  "type": "assistant",
+  "uuid": "6a1afca3-00ce-43ae-93e2-d41cd376443f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZxK5QMpHsBWD2hmjPL5Zd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1057,
+      "cache_read_input_tokens": 22629,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 22629,
+          "cache_creation_input_tokens": 1057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T03:29:47.660Z_
+
+<details><summary>↩ Tool result · `toolu_01T1awEzfL2dvXHxMTG8PNDb`</summary>
+
+```text
+Web search results for query: "Progressive Mastery guided prompting difficulty modulation arXiv 2506.04065"
+
+Links: [{"title":"[2506.04065] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning","url":"https://arxiv.org/abs/2506.04065"},{"title":"Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning","url":"https://arxiv.org/html/2506.04065"},{"title":"[Literature Review] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning","url":"https://www.themoonlight.io/en/review/progressive-mastery-customized-curriculum-learning-with-guided-prompting-for-mathematical-reasoning"},{"title":"[2301.12314] Progressive Prompts: Continual Learning for Language Models","url":"https://arxiv.org/abs/2301.12314"},{"title":"progressive prompts: continual learning for language models","url":"https://arxiv.org/pdf/2301.12314"},{"title":"Artificial Intelligence Jun 2025","url":"https://arxiv.org/list/cs.AI/2025-06?skip=2900&show=2000"},{"title":"ThinkDrive: Chain-of-Thought Guided Progressive Reinforcement Learning Fine-Tuning for Autonomous Driving","url":"https://arxiv.org/html/2601.04714"},{"title":"least-to-most prompting enables complex reasoning in ...","url":"https://arxiv.org/pdf/2205.10625"},{"title":"Computer Science Jun 2025","url":"https://www.arxiv.org/list/cs/2025-06?skip=10625&show=25"},{"title":"Reviving Dormant Memories: Investigating Catastrophic Forgetting in Language Models through Rationale-Guidance Difficulty","url":"https://arxiv.org/html/2411.11932v1"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found:
+
+The paper is titled "Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning" with arXiv ID 2506.04065.
+
+**Key Innovations:**
+
+The framework proposes Customized Curriculum Learning (CCL) with two key innovations: first, model-adaptive difficulty definition that customizes curriculum datasets based on each model's individual capabilities rather than using predefined difficulty metrics, and second, "Guided Prompting," which dynamically reduces sample difficulty through strategic hints, enabling effective utilization of challenging samples that would otherwise degrade performance.
+
+**Problem Being Addressed:**
+
+Large Language Models have achieved remarkable performance across various reasoning tasks, yet post-training is constrained by inefficient sample utilization and inflexible difficulty samples processing.
+
+**Approach:**
+
+Guided Prompting is a technique that augments input examples with targeted hints to dynamically modulate their difficulty during the training process.
+
+**Results:**
+
+Comprehensive experiments on supervised fine-tuning and reinforcement learning demonstrate that CCL significantly outperforms uniform training approaches across five mathematical reasoning benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a1afca3-00ce-43ae-93e2-d41cd376443f",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "547884c8-7567-4229-8006-4cc844adf56e",
+  "toolUseResult": {
+    "query": "Progressive Mastery guided prompting difficulty modulation arXiv 2506.04065",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019H6EWDMybAXu8wBU8caNsZ",
+        "content": [
+          {
+            "title": "[2506.04065] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2506.04065"
+          },
+          {
+            "title": "Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2506.04065"
+          },
+          {
+            "title": "[Literature Review] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning",
+            "url": "https://www.themoonlight.io/en/review/progressive-mastery-customized-curriculum-learning-with-guided-prompting-for-mathematical-reasoning"
+          },
+          {
+            "title": "[2301.12314] Progressive Prompts: Continual Learning for Language Models",
+            "url": "https://arxiv.org/abs/2301.12314"
+          },
+          {
+            "title": "progressive prompts: continual learning for language models",
+            "url": "https://arxiv.org/pdf/2301.12314"
+          },
+          {
+            "title": "Artificial Intelligence Jun 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-06?skip=2900&show=2000"
+          },
+          {
+            "title": "ThinkDrive: Chain-of-Thought Guided Progressive Reinforcement Learning Fine-Tuning for Autonomous Driving",
+            "url": "https://arxiv.org/html/2601.04714"
+          },
+          {
+            "title": "least-to-most prompting enables complex reasoning in ...",
+            "url": "https://arxiv.org/pdf/2205.10625"
+          },
+          {
+            "title": "Computer Science Jun 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-06?skip=10625&show=25"
+          },
+          {
+            "title": "Reviving Dormant Memories: Investigating Catastrophic Forgetting in Language Models through Rationale-Guidance Difficulty",
+            "url": "https://arxiv.org/html/2411.11932v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found:\n\nThe paper is titled \"Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning\" with arXiv ID 2506.04065.\n\n**Key Innovations:**\n\nThe framework proposes Customized Curriculum Learning (CCL) with two key innovations: first, model-adaptive difficulty definition that customizes curriculum datasets based on each model's individual capabilities rather than using predefined difficulty metrics, and second, \"Guided Prompting,\" which dynamically reduces sample difficulty through strategic hints, enabling effective utilization of challenging samples that would otherwise degrade performance.\n\n**Problem Being Addressed:**\n\nLarge Language Models have achieved remarkable performance across various reasoning tasks, yet post-training is constrained by inefficient sample utilization and inflexible difficulty samples processing.\n\n**Approach:**\n\nGuided Prompting is a technique that augments input examples with targeted hints to dynamically modulate their difficulty during the training process.\n\n**Results:**\n\nComprehensive experiments on supervised fine-tuning and reinforcement learning demonstrate that CCL significantly outperforms uniform training approaches across five mathematical reasoning benchmarks."
+    ],
+    "durationSeconds": 5.747018002999997
+  },
+  "sourceToolAssistantUUID": "6a1afca3-00ce-43ae-93e2-d41cd376443f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "547884c8-7567-4229-8006-4cc844adf56e",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T03:29:50.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XGqXGFuo1sppobYRLyhfQf`</summary>
+
+```json
+{
+  "query": "\"Can Large Reasoning Models Self-Train\" arXiv 2505.21444"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "547884c8-7567-4229-8006-4cc844adf56e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KsVWWSS53QvNPW9js8",
+  "type": "assistant",
+  "uuid": "d455222f-bba6-4f27-8121-6a095b2ce72a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGubEK24rqxGcjbjB8k2sV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 23686,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 841,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 23686,
+          "cache_creation_input_tokens": 841,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 841
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T03:29:57.124Z_
+
+<details><summary>↩ Tool result · `toolu_01XGqXGFuo1sppobYRLyhfQf`</summary>
+
+```text
+Web search results for query: ""Can Large Reasoning Models Self-Train" arXiv 2505.21444"
+
+Links: [{"title":"[2505.21444] Can Large Reasoning Models Self-Train?","url":"https://arxiv.org/abs/2505.21444"},{"title":"Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗","url":"https://arxiv.org/pdf/2505.21444"},{"title":"[2505.21444v1] Can Large Reasoning Models Self-Train?","url":"https://arxiv.org/abs/2505.21444v1"},{"title":"Can Large Reasoning Models Self-Train?","url":"https://arxiv.org/html/2505.21444v1"},{"title":"SRT: Can Large Reasoning Models Self-Train?","url":"https://self-rewarding-llm-training.github.io/"},{"title":"(PDF) Can Large Reasoning Models Self-Train?","url":"https://www.researchgate.net/publication/392132978_Can_Large_Reasoning_Models_Self-Train"},{"title":"GitHub - tajwarfahim/srt: Official implementation for the paper \"Can Large Reasoning Models Self-Train?\"","url":"https://github.com/tajwarfahim/srt"},{"title":"Paper page - Can Large Reasoning Models Self-Train?","url":"https://huggingface.co/papers/2505.21444"},{"title":"TTCS: Test-Time Curriculum Synthesis for Self-Evolving","url":"https://arxiv.org/html/2601.22628v1"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=11075&show=25"}]
+
+I found the paper "Can Large Reasoning Models Self-Train?" (arXiv 2505.21444). Here's a summary of the research:
+
+## Overview
+
+The paper investigates whether self-training - the process where a model learns from its own judgments - can be sustained within reinforcement learning. The authors propose an online self-training reinforcement learning algorithm that leverages the model's self-consistency to infer correctness signals and train without any ground-truth supervision.
+
+## Method and Results
+
+The work studies this question using majority voting as a simple self-feedback mechanism. On comprehensive experiments on both synthetic and real reasoning tasks, the basic approach improves not only the model's reasoning performance, but also its capability of generating better quality feedback for the next RL iteration, driving further model improvement. The algorithm applied to challenging mathematical reasoning tasks shows it quickly reaches performance levels rivaling reinforcement-learning methods trained explicitly on gold-standard answers.
+
+## Key Limitation
+
+However, the analysis reveals a critical limitation of such a self-training paradigm - prolonged RL with self-reward leads to reward hacking where models learn to maximize training (pseudo-)reward, resulting in sudden and complete performance collapse.
+
+## Authors
+
+The paper was authored by Sheikh Shafayat, Fahim Tajwar, Ruslan Salakhutdinov, Jeff Schneider, and Andrea Zanette.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d455222f-bba6-4f27-8121-6a095b2ce72a",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "74d7e824-9a7c-4a7a-90f3-62ea063357ca",
+  "toolUseResult": {
+    "query": "\"Can Large Reasoning Models Self-Train\" arXiv 2505.21444",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DFHMVXTuQvy8r5zJx9PBjq",
+        "content": [
+          {
+            "title": "[2505.21444] Can Large Reasoning Models Self-Train?",
+            "url": "https://arxiv.org/abs/2505.21444"
+          },
+          {
+            "title": "Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗",
+            "url": "https://arxiv.org/pdf/2505.21444"
+          },
+          {
+            "title": "[2505.21444v1] Can Large Reasoning Models Self-Train?",
+            "url": "https://arxiv.org/abs/2505.21444v1"
+          },
+          {
+            "title": "Can Large Reasoning Models Self-Train?",
+            "url": "https://arxiv.org/html/2505.21444v1"
+          },
+          {
+            "title": "SRT: Can Large Reasoning Models Self-Train?",
+            "url": "https://self-rewarding-llm-training.github.io/"
+          },
+          {
+            "title": "(PDF) Can Large Reasoning Models Self-Train?",
+            "url": "https://www.researchgate.net/publication/392132978_Can_Large_Reasoning_Models_Self-Train"
+          },
+          {
+            "title": "GitHub - tajwarfahim/srt: Official implementation for the paper \"Can Large Reasoning Models Self-Train?\"",
+            "url": "https://github.com/tajwarfahim/srt"
+          },
+          {
+            "title": "Paper page - Can Large Reasoning Models Self-Train?",
+            "url": "https://huggingface.co/papers/2505.21444"
+          },
+          {
+            "title": "TTCS: Test-Time Curriculum Synthesis for Self-Evolving",
+            "url": "https://arxiv.org/html/2601.22628v1"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=11075&show=25"
+          }
+        ]
+      },
+      "I found the paper \"Can Large Reasoning Models Self-Train?\" (arXiv 2505.21444). Here's a summary of the research:\n\n## Overview\n\nThe paper investigates whether self-training - the process where a model learns from its own judgments - can be sustained within reinforcement learning. The authors propose an online self-training reinforcement learning algorithm that leverages the model's self-consistency to infer correctness signals and train without any ground-truth supervision.\n\n## Method and Results\n\nThe work studies this question using majority voting as a simple self-feedback mechanism. On comprehensive experiments on both synthetic and real reasoning tasks, the basic approach improves not only the model's reasoning performance, but also its capability of generating better quality feedback for the next RL iteration, driving further model improvement. The algorithm applied to challenging mathematical reasoning tasks shows it quickly reaches performance levels rivaling reinforcement-learning methods trained explicitly on gold-standard answers.\n\n## Key Limitation\n\nHowever, the analysis reveals a critical limitation of such a self-training paradigm - prolonged RL with self-reward leads to reward hacking where models learn to maximize training (pseudo-)reward, resulting in sudden and complete performance collapse.\n\n## Authors\n\nThe paper was authored by Sheikh Shafayat, Fahim Tajwar, Ruslan Salakhutdinov, Jeff Schneider, and Andrea Zanette."
+    ],
+    "durationSeconds": 6.148710201000002
+  },
+  "sourceToolAssistantUUID": "d455222f-bba6-4f27-8121-6a095b2ce72a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-18T03:29:59.685Z_
+
+Now let me search for concurrent work, venue deadlines, and SOTA models in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74d7e824-9a7c-4a7a-90f3-62ea063357ca",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KtBvru7cr447EYZrAw",
+  "type": "assistant",
+  "uuid": "7d5f4e87-c608-4cba-a4d4-a455b0e5bfee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLFpqq3AGrND5rYMVA9JrP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 24527,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 24527,
+          "cache_creation_input_tokens": 834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T03:30:00.308Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011ZKsVs7Y9vskPcxGbcWLMb`</summary>
+
+```json
+{
+  "query": "verifier self-improvement generator distribution shift curriculum co-training 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d5f4e87-c608-4cba-a4d4-a455b0e5bfee",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KtBvru7cr447EYZrAw",
+  "type": "assistant",
+  "uuid": "44b0c07b-8423-436a-b55a-262ee7523e77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLFpqq3AGrND5rYMVA9JrP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 24527,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 24527,
+          "cache_creation_input_tokens": 834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T03:30:11.560Z_
+
+<details><summary>↩ Tool result · `toolu_011ZKsVs7Y9vskPcxGbcWLMb`</summary>
+
+```text
+Web search results for query: "verifier self-improvement generator distribution shift curriculum co-training 2026"
+
+Links: [{"title":"Best AI Curriculum Generator Tools For Training Businesses In 2026","url":"https://www.disco.co/blog/ai-curriculum-generator-tools-2026"},{"title":"9 Best AI Course Curriculum Generators for Educators 2026 - Teachfloor Blog","url":"https://www.teachfloor.com/blog/ai-curriculum-generator"},{"title":"MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"},{"title":"Best AI Curriculum Generator for Internal L&D in 2026","url":"https://www.disco.co/blog/best-ai-curriculum-generator-internal-ld-2026"},{"title":"Incentivizing LLMs to Self-Verify Their Answers","url":"https://arxiv.org/html/2506.01369v1"},{"title":"TeST: Test-time Self-Training under Distribution Shift","url":"https://www.researchgate.net/publication/368311797_TeST_Test-time_Self-Training_under_Distribution_Shift"},{"title":"Improving self-training under distribution shifts via ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/1b99db17b54735d22dbed15c24f2dbdc-Paper-Conference.pdf"},{"title":"TeST: Test-time self-training under distribution shift - Amazon Science","url":"https://www.amazon.science/publications/test-test-time-self-training-under-distribution-shift"},{"title":"Complementary Benefits of Contrastive Learning and Self-Training Under Distribution Shift | OpenReview","url":"https://openreview.net/forum?id=uWGH6jDTVv"},{"title":"2026 Change Management Training Courses and Workshops - Business Training Works, Inc.","url":"https://www.businesstrainingworks.com/change-management/"}]
+
+I found search results related to your query. Here's what I found:
+
+## Academic Research on Self-Improvement and Verification
+
+The search results include several research papers that directly address topics from your query:
+
+1. **"Mind the Gap: Examining the Self-Improvement..."** - This work provides a mathematical formulation of the self-improvement process and proposes the generation-verification gap (GV-Gap) as the central metric for evaluation. The research finds that in cross-verification (using different models for generation and verification), the GV-gap increases with verifier capability and decreases with generator capability.
+
+2. **"Incentivizing LLMs to Self-Verify Their Answers"** - This work proposes a framework that incentivizes LLMs to self-verify their own answers by unifying answer generation and verification within a single reinforcement learning process. Notably, the research identifies that post-trained models often result in a narrow generation distribution unrecognized by external verifiers, and this distribution shift may lead to incorrect solution verifications.
+
+3. **Distribution Shift in Self-Training** - Studies on self-training methods note that success depends on filtering incorrect pseudo labels, but distribution shifts make this difficult due to high noise rates even under high thresholds.
+
+## Curriculum and Co-training
+
+The search also returned results about AI curriculum generators for 2026, though these focus more on educational training tools rather than machine learning co-training techniques specifically.
+
+Would you like me to search for more specific information about any of these topics, such as co-training methods, curriculum learning approaches, or more recent 2026 research papers?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44b0c07b-8423-436a-b55a-262ee7523e77",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "5cfd8680-ef45-4281-860b-6ca6949c6874",
+  "toolUseResult": {
+    "query": "verifier self-improvement generator distribution shift curriculum co-training 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LqXMZKfCTzoNbmMFYF5yjp",
+        "content": [
+          {
+            "title": "Best AI Curriculum Generator Tools For Training Businesses In 2026",
+            "url": "https://www.disco.co/blog/ai-curriculum-generator-tools-2026"
+          },
+          {
+            "title": "9 Best AI Course Curriculum Generators for Educators 2026 - Teachfloor Blog",
+            "url": "https://www.teachfloor.com/blog/ai-curriculum-generator"
+          },
+          {
+            "title": "MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"
+          },
+          {
+            "title": "Best AI Curriculum Generator for Internal L&D in 2026",
+            "url": "https://www.disco.co/blog/best-ai-curriculum-generator-internal-ld-2026"
+          },
+          {
+            "title": "Incentivizing LLMs to Self-Verify Their Answers",
+            "url": "https://arxiv.org/html/2506.01369v1"
+          },
+          {
+            "title": "TeST: Test-time Self-Training under Distribution Shift",
+            "url": "https://www.researchgate.net/publication/368311797_TeST_Test-time_Self-Training_under_Distribution_Shift"
+          },
+          {
+            "title": "Improving self-training under distribution shifts via ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/1b99db17b54735d22dbed15c24f2dbdc-Paper-Conference.pdf"
+          },
+          {
+            "title": "TeST: Test-time self-training under distribution shift - Amazon Science",
+            "url": "https://www.amazon.science/publications/test-test-time-self-training-under-distribution-shift"
+          },
+          {
+            "title": "Complementary Benefits of Contrastive Learning and Self-Training Under Distribution Shift | OpenReview",
+            "url": "https://openreview.net/forum?id=uWGH6jDTVv"
+          },
+          {
+            "title": "2026 Change Management Training Courses and Workshops - Business Training Works, Inc.",
+            "url": "https://www.businesstrainingworks.com/change-management/"
+          }
+        ]
+      },
+      "I found search results related to your query. Here's what I found:\n\n## Academic Research on Self-Improvement and Verification\n\nThe search results include several research papers that directly address topics from your query:\n\n1. **\"Mind the Gap: Examining the Self-Improvement...\"** - This work provides a mathematical formulation of the self-improvement process and proposes the generation-verification gap (GV-Gap) as the central metric for evaluation. The research finds that in cross-verification (using different models for generation and verification), the GV-gap increases with verifier capability and decreases with generator capability.\n\n2. **\"Incentivizing LLMs to Self-Verify Their Answers\"** - This work proposes a framework that incentivizes LLMs to self-verify their own answers by unifying answer generation and verification within a single reinforcement learning process. Notably, the research identifies that post-trained models often result in a narrow generation distribution unrecognized by external verifiers, and this distribution shift may lead to incorrect solution verifications.\n\n3. **Distribution Shift in Self-Training** - Studies on self-training methods note that success depends on filtering incorrect pseudo labels, but distribution shifts make this difficult due to high noise rates even under high thresholds.\n\n## Curriculum and Co-training\n\nThe search also returned results about AI curriculum generators for 2026, though these focus more on educational training tools rather than machine learning co-training techniques specifically.\n\nWould you like me to search for more specific information about any of these topics, such as co-training methods, curriculum learning approaches, or more recent 2026 research papers?"
+    ],
+    "durationSeconds": 11.247544828999992
+  },
+  "sourceToolAssistantUUID": "44b0c07b-8423-436a-b55a-262ee7523e77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-18T03:30:11.565Z_
+
+```json
+{
+  "parentUuid": "5cfd8680-ef45-4281-860b-6ca6949c6874",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8a313b41-d82a-4328-aefb-7d2f7faedeaa",
+  "timestamp": "2026-05-18T03:30:11.565Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T03:30:16.776Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016wuoJSHRUFLAMZPyHCVHZj`</summary>
+
+```json
+{
+  "query": "CoVerRL verifier training majority voting reward model 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a313b41-d82a-4328-aefb-7d2f7faedeaa",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KuFm5KTXANiy4fQD4b",
+  "type": "assistant",
+  "uuid": "94efa6e9-2c9d-40da-a008-1aaacea1b0b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HScrbgswjGgDx59rWvZDue",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 25361,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 25361,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T03:30:24.798Z_
+
+<details><summary>↩ Tool result · `toolu_016wuoJSHRUFLAMZPyHCVHZj`</summary>
+
+```text
+Web search results for query: "CoVerRL verifier training majority voting reward model 2025 2026 arxiv"
+
+Links: [{"title":"Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2512.15146"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.23863"},{"title":"Training AI Co-Scientists Using Rubric Rewards","url":"https://arxiv.org/html/2512.23707"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly ...","url":"https://arxiv.org/pdf/2506.14245"},{"title":"Majority Voting for Code Generation","url":"https://arxiv.org/html/2604.15618"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗","url":"https://arxiv.org/pdf/2505.21444"},{"title":"TTRL: Test-Time Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=VuVhgEiu20"},{"title":"[2512.15146] Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2512.15146"},{"title":"[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/abs/2506.14245"}]
+
+I found several relevant papers from the search results. Here's what I discovered:
+
+## Key Research Papers
+
+**1. Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning**
+
+This paper addresses test-time reinforcement learning, which uses majority voting results as pseudo-labels for improving reasoning in LLMs, and proposes SCOPE (subgroup-specific step-wise confidence-weighted pseudo-label estimation), a framework integrating model confidence and dynamic subgroup partitioning. The voting strategy often induces confirmation bias and suffers from sparse rewards. SCOPE achieves relative improvements of 13.1% on AIME 2025 and 8.1% on AMC.
+
+**2. Test-Time Reinforcement Learning (TTRL)**
+
+This paper investigates RL on data without explicit labels for reasoning tasks in LLMs, finding that common practices like majority voting yield surprisingly effective rewards suitable for driving RL training, and introduces TTRL (Test-Time Reinforcement Learning). TTRL boosts the pass@1 performance of Qwen-2.5-Math-7B by approximately 211% on AIME 2024 with only unlabeled test data.
+
+**3. Self-Rewarded Training with Majority Voting**
+
+This work casts the majority vote mechanism as a reward function, granting positive reward to model outputs that match the most common answer.
+
+While my search didn't return a paper explicitly titled "CoVerRL," the results show active research in 2025-2026 on verifier training and majority voting for reward modeling in reinforcement learning with LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94efa6e9-2c9d-40da-a008-1aaacea1b0b5",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "0735d69b-ef86-447b-800d-79dba3a5332d",
+  "toolUseResult": {
+    "query": "CoVerRL verifier training majority voting reward model 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013LXU8wuBimn7UB3iJWYAZT",
+        "content": [
+          {
+            "title": "Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2512.15146"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.23863"
+          },
+          {
+            "title": "Training AI Co-Scientists Using Rubric Rewards",
+            "url": "https://arxiv.org/html/2512.23707"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly ...",
+            "url": "https://arxiv.org/pdf/2506.14245"
+          },
+          {
+            "title": "Majority Voting for Code Generation",
+            "url": "https://arxiv.org/html/2604.15618"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗",
+            "url": "https://arxiv.org/pdf/2505.21444"
+          },
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=VuVhgEiu20"
+          },
+          {
+            "title": "[2512.15146] Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2512.15146"
+          },
+          {
+            "title": "[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/abs/2506.14245"
+          }
+        ]
+      },
+      "I found several relevant papers from the search results. Here's what I discovered:\n\n## Key Research Papers\n\n**1. Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning**\n\nThis paper addresses test-time reinforcement learning, which uses majority voting results as pseudo-labels for improving reasoning in LLMs, and proposes SCOPE (subgroup-specific step-wise confidence-weighted pseudo-label estimation), a framework integrating model confidence and dynamic subgroup partitioning. The voting strategy often induces confirmation bias and suffers from sparse rewards. SCOPE achieves relative improvements of 13.1% on AIME 2025 and 8.1% on AMC.\n\n**2. Test-Time Reinforcement Learning (TTRL)**\n\nThis paper investigates RL on data without explicit labels for reasoning tasks in LLMs, finding that common practices like majority voting yield surprisingly effective rewards suitable for driving RL training, and introduces TTRL (Test-Time Reinforcement Learning). TTRL boosts the pass@1 performance of Qwen-2.5-Math-7B by approximately 211% on AIME 2024 with only unlabeled test data.\n\n**3. Self-Rewarded Training with Majority Voting**\n\nThis work casts the majority vote mechanism as a reward function, granting positive reward to model outputs that match the most common answer.\n\nWhile my search didn't return a paper explicitly titled \"CoVerRL,\" the results show active research in 2025-2026 on verifier training and majority voting for reward modeling in reinforcement learning with LLMs."
+    ],
+    "durationSeconds": 8.016678153
+  },
+  "sourceToolAssistantUUID": "94efa6e9-2c9d-40da-a008-1aaacea1b0b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-18T03:30:27.851Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SeCUS1taDZGiFLyisjv7Av`</summary>
+
+```json
+{
+  "query": "RL Tango verifier outcome reward class-aware reweighting arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0735d69b-ef86-447b-800d-79dba3a5332d",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KvF9Q1wL8dEmvR1j7Q",
+  "type": "assistant",
+  "uuid": "2505533b-7492-48a3-9b6a-a24cbaab777b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RfZaKjHE2k1cM6q2Z3LYUM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 939,
+      "cache_read_input_tokens": 26461,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 939,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 26461,
+          "cache_creation_input_tokens": 939,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 939
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T03:30:34.177Z_
+
+<details><summary>↩ Tool result · `toolu_01SeCUS1taDZGiFLyisjv7Av`</summary>
+
+```text
+Web search results for query: "RL Tango verifier outcome reward class-aware reweighting arxiv"
+
+Links: [{"title":"[2505.15034] RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://arxiv.org/abs/2505.15034"},{"title":"Paper page - RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://huggingface.co/papers/2505.15034"},{"title":"[Quick Review] RL Tango: Reinforcing Generator and Verifier Together for Language\\n Reasoning","url":"https://liner.com/review/rl-tango-reinforcing-generator-and-verifier-together-for-language-reasoning"},{"title":"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://arxiv.org/html/2505.15034v2"},{"title":"GitHub - kaiwenzha/RL-Tango: [NeurIPS 2025] RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://github.com/kaiwenzha/rl-tango"},{"title":"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.15034v2"},{"title":"RL Tango: Reinforcing Generator and Verifier Together for ...","url":"https://arxiv.org/pdf/2505.15034"},{"title":"[Literature Review] RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://www.themoonlight.io/en/review/rl-tango-reinforcing-generator-and-verifier-together-for-language-reasoning"},{"title":"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250515034Z/abstract"},{"title":"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://www.researchgate.net/publication/391953673_RL_Tango_Reinforcing_Generator_and_Verifier_Together_for_Language_Reasoning"}]
+
+Based on the web search results, I found relevant information about RL Tango's verifier outcome reward and class-aware reweighting approach.
+
+## RL Tango: Verifier Outcome Reward and Class-Aware Reweighting
+
+RL Tango is a novel framework that uses RL to concurrently train both an LLM generator and a verifier in an interleaved manner, with a generative, process-level LLM verifier trained via RL that co-evolves with the generator.
+
+### Verifier Outcome Reward
+
+The verifier is trained solely based on outcome-level verification correctness rewards without requiring explicit process-level annotations.
+
+### Class-Aware Reweighting
+
+TANGO utilizes a class-aware reweighting scheme during verifier advantage computation to mitigate class imbalance, preventing the verifier from collapsing to trivial solutions, especially in early training stages. More specifically, the class-aware reweighting uses a scaling factor inversely proportional to the square root of the respective sample counts, tracked via exponential moving average (EMA).
+
+### Performance Results
+
+The generator attains best-in-class performance across five competition-level math benchmarks and four challenging out-of-domain reasoning tasks, while the verifier leads on the ProcessBench dataset.
+
+The paper (arXiv:2505.15034) is available on arXiv with code available on GitHub at https://github.com/kaiwenzha/rl-tango.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2505533b-7492-48a3-9b6a-a24cbaab777b",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "ffa7574a-352e-459d-bf65-e84bb30653c4",
+  "toolUseResult": {
+    "query": "RL Tango verifier outcome reward class-aware reweighting arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BMsUhqb57rAzp5p5vFzjrw",
+        "content": [
+          {
+            "title": "[2505.15034] RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://arxiv.org/abs/2505.15034"
+          },
+          {
+            "title": "Paper page - RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://huggingface.co/papers/2505.15034"
+          },
+          {
+            "title": "[Quick Review] RL Tango: Reinforcing Generator and Verifier Together for Language\\n Reasoning",
+            "url": "https://liner.com/review/rl-tango-reinforcing-generator-and-verifier-together-for-language-reasoning"
+          },
+          {
+            "title": "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://arxiv.org/html/2505.15034v2"
+          },
+          {
+            "title": "GitHub - kaiwenzha/RL-Tango: [NeurIPS 2025] RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://github.com/kaiwenzha/rl-tango"
+          },
+          {
+            "title": "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2505.15034v2"
+          },
+          {
+            "title": "RL Tango: Reinforcing Generator and Verifier Together for ...",
+            "url": "https://arxiv.org/pdf/2505.15034"
+          },
+          {
+            "title": "[Literature Review] RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://www.themoonlight.io/en/review/rl-tango-reinforcing-generator-and-verifier-together-for-language-reasoning"
+          },
+          {
+            "title": "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250515034Z/abstract"
+          },
+          {
+            "title": "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://www.researchgate.net/publication/391953673_RL_Tango_Reinforcing_Generator_and_Verifier_Together_for_Language_Reasoning"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about RL Tango's verifier outcome reward and class-aware reweighting approach.\n\n## RL Tango: Verifier Outcome Reward and Class-Aware Reweighting\n\nRL Tango is a novel framework that uses RL to concurrently train both an LLM generator and a verifier in an interleaved manner, with a generative, process-level LLM verifier trained via RL that co-evolves with the generator.\n\n### Verifier Outcome Reward\n\nThe verifier is trained solely based on outcome-level verification correctness rewards without requiring explicit process-level annotations.\n\n### Class-Aware Reweighting\n\nTANGO utilizes a class-aware reweighting scheme during verifier advantage computation to mitigate class imbalance, preventing the verifier from collapsing to trivial solutions, especially in early training stages. More specifically, the class-aware reweighting uses a scaling factor inversely proportional to the square root of the respective sample counts, tracked via exponential moving average (EMA).\n\n### Performance Results\n\nThe generator attains best-in-class performance across five competition-level math benchmarks and four challenging out-of-domain reasoning tasks, while the verifier leads on the ProcessBench dataset.\n\nThe paper (arXiv:2505.15034) is available on arXiv with code available on GitHub at https://github.com/kaiwenzha/rl-tango."
+    ],
+    "durationSeconds": 6.323195235999999
+  },
+  "sourceToolAssistantUUID": "2505533b-7492-48a3-9b6a-a24cbaab777b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "ffa7574a-352e-459d-bf65-e84bb30653c4",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T03:30:36.490Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Tc2wzr7Svgy7Q5FMmrGx3V`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffa7574a-352e-459d-bf65-e84bb30653c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KvvNpBWU12KsfLCLuu",
+  "type": "assistant",
+  "uuid": "1044f9ae-d99f-42d5-b059-7e2112b1b88d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016aj2ze4qJny2AzSko9zsQM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 27400,
+      "output_tokens": 61,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1006,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 61,
+          "cache_read_input_tokens": 27400,
+          "cache_creation_input_tokens": 1006,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1006
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T03:30:41.460Z_
+
+<details><summary>↩ Tool result · `toolu_01Tc2wzr7Svgy7Q5FMmrGx3V`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 submission deadline"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"}]
+
+Based on the search results, here are the NeurIPS 2026 submission deadlines:
+
+## Main Submission Deadlines
+
+The abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.
+
+## Track-Specific Information
+
+The different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. However, the Evaluations & Datasets Track has the same full paper submission deadline of May 6, 2026 (AoE).
+
+## Important Requirements
+
+All authors must have an OpenReview profile when submitting.
+
+## Conference Details
+
+The conference is held Sunday, December 6th through Saturday the 12th, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1044f9ae-d99f-42d5-b059-7e2112b1b88d",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "c4fb5446-cdd1-45f7-9fe2-e2a44573ab78",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CZF1Ek56r16RkZdHqG9js9",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          }
+        ]
+      },
+      "Based on the search results, here are the NeurIPS 2026 submission deadlines:\n\n## Main Submission Deadlines\n\nThe abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.\n\n## Track-Specific Information\n\nThe different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. However, the Evaluations & Datasets Track has the same full paper submission deadline of May 6, 2026 (AoE).\n\n## Important Requirements\n\nAll authors must have an OpenReview profile when submitting.\n\n## Conference Details\n\nThe conference is held Sunday, December 6th through Saturday the 12th, 2026."
+    ],
+    "durationSeconds": 4.965499154000005
+  },
+  "sourceToolAssistantUUID": "1044f9ae-d99f-42d5-b059-7e2112b1b88d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T03:30:44.113Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QB6fSojj8qn7DRojEtqx7y`</summary>
+
+```json
+{
+  "query": "ICML 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4fb5446-cdd1-45f7-9fe2-e2a44573ab78",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KwTV5cpfow1Kq8HQw7",
+  "type": "assistant",
+  "uuid": "98c1e2b1-1aa9-40e3-9df9-963ddbbf23c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwrNx81SAuYb64GfaFMZHA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 28406,
+      "output_tokens": 60,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 60,
+          "cache_read_input_tokens": 28406,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T03:30:48.180Z_
+
+<details><summary>↩ Tool result · `toolu_01QB6fSojj8qn7DRojEtqx7y`</summary>
+
+```text
+Web search results for query: "ICML 2026 submission deadline"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"}]
+
+Based on the search results, the ICML 2026 submission deadline is January 28, 2026. 
+
+More specifically, the submission process has two parts:
+- The submission site opens on January 8, 2026
+- Abstract and paper submission deadlines are strict with no extensions given
+
+The Forty-Third annual conference will be held July 6-11, 2026 at the Coex Convention & Exhibition Center, which appears to be in Seoul, South Korea.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98c1e2b1-1aa9-40e3-9df9-963ddbbf23c9",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "b3cd9a7e-d612-4b22-8f41-a570c30ea248",
+  "toolUseResult": {
+    "query": "ICML 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WNwLoxbtEC5X5M653Vc4wU",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          }
+        ]
+      },
+      "Based on the search results, the ICML 2026 submission deadline is January 28, 2026. \n\nMore specifically, the submission process has two parts:\n- The submission site opens on January 8, 2026\n- Abstract and paper submission deadlines are strict with no extensions given\n\nThe Forty-Third annual conference will be held July 6-11, 2026 at the Coex Convention & Exhibition Center, which appears to be in Seoul, South Korea."
+    ],
+    "durationSeconds": 4.064311903000009
+  },
+  "sourceToolAssistantUUID": "98c1e2b1-1aa9-40e3-9df9-963ddbbf23c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-18T03:30:51.255Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TuWRci96eKSMRbTgPsMxF1`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3cd9a7e-d612-4b22-8f41-a570c30ea248",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KwxDiXYRaKucbjSvti",
+  "type": "assistant",
+  "uuid": "58dda98c-8124-469e-906e-0e135ef99e79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SBtvZVWNJkeKLA3GHDMFiW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 29101,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 29101,
+          "cache_creation_input_tokens": 573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T03:30:56.955Z_
+
+<details><summary>↩ Tool result · `toolu_01TuWRci96eKSMRbTgPsMxF1`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline call for papers"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"}]
+
+Based on the search results, I found some information about ICLR conferences, but the specific details about ICLR 2027 are limited. Here's what I found:
+
+The search results primarily show information about ICLR 2026, which is the most recent conference with detailed information available. ICLR 2027 is predicted to be in February 2027 based on historical patterns, with a mandatory abstract deadline typically 1 week before the paper deadline.
+
+There is also mention of an International Conference on Learning Representations in February 2027 in Lisbon, Portugal organized by the World Academy of Science, Engineering and Technology, with a final submission deadline of September 30, 2027.
+
+However, it's important to note that these dates are predicted based on previous year schedules and you should verify on the official conference website. For the most current and official ICLR 2027 submission deadlines and call for papers, I recommend checking the official ICLR website at iclr.cc, as a full call for papers has not yet been published for 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58dda98c-8124-469e-906e-0e135ef99e79",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "b6f7fd6f-bfe7-4852-a217-b67f324031f6",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JqYCCvVWgp1DQgPTW3WAGe",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"
+          }
+        ]
+      },
+      "Based on the search results, I found some information about ICLR conferences, but the specific details about ICLR 2027 are limited. Here's what I found:\n\nThe search results primarily show information about ICLR 2026, which is the most recent conference with detailed information available. ICLR 2027 is predicted to be in February 2027 based on historical patterns, with a mandatory abstract deadline typically 1 week before the paper deadline.\n\nThere is also mention of an International Conference on Learning Representations in February 2027 in Lisbon, Portugal organized by the World Academy of Science, Engineering and Technology, with a final submission deadline of September 30, 2027.\n\nHowever, it's important to note that these dates are predicted based on previous year schedules and you should verify on the official conference website. For the most current and official ICLR 2027 submission deadlines and call for papers, I recommend checking the official ICLR website at iclr.cc, as a full call for papers has not yet been published for 2027."
+    ],
+    "durationSeconds": 5.696604591999988
+  },
+  "sourceToolAssistantUUID": "58dda98c-8124-469e-906e-0e135ef99e79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-18T03:30:59.548Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PLfatzWgnzAhsseGToiaJY`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6f7fd6f-bfe7-4852-a217-b67f324031f6",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Kxbng6CijPakHKASPU",
+  "type": "assistant",
+  "uuid": "02a88155-f5f5-4597-aece-cd89d028d59b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019B6nEuYpA93Bt8cywYFAkG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 29674,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 762,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 29674,
+          "cache_creation_input_tokens": 762,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 762
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T03:31:03.113Z_
+
+<details><summary>↩ Tool result · `toolu_01PLfatzWgnzAhsseGToiaJY`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline October 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/iclr"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"}]
+
+Based on the search results, I found information related to ICLR conferences, but the results primarily show information about ICLR 2026 rather than a specific ICLR 2027 submission deadline in October 2026.
+
+The search results show that ICLR 2026 is scheduled for April 23-27, 2026 in Rio de Janeiro, Brazil, but they don't contain clear information about an ICLR 2027 submission deadline specifically in October 2026.
+
+One source mentions various conferences with submission deadlines in May 2026 and notifications in June 2026, but these appear to be for different conferences or different iterations of ICLR conferences throughout 2026 and 2027, not specifically for the main ICLR 2027 conference submission deadline.
+
+To find the official ICLR 2027 submission deadline, I'd recommend checking the official ICLR website directly at iclr.cc, as the search results don't provide a clear confirmation of an October 2026 submission deadline for ICLR 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02a88155-f5f5-4597-aece-cd89d028d59b",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "894ebcfc-5c98-47eb-be95-083be4f69b7e",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GiNdrP5xo6sFtJW3PtjGN3",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/iclr"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I found information related to ICLR conferences, but the results primarily show information about ICLR 2026 rather than a specific ICLR 2027 submission deadline in October 2026.\n\nThe search results show that ICLR 2026 is scheduled for April 23-27, 2026 in Rio de Janeiro, Brazil, but they don't contain clear information about an ICLR 2027 submission deadline specifically in October 2026.\n\nOne source mentions various conferences with submission deadlines in May 2026 and notifications in June 2026, but these appear to be for different conferences or different iterations of ICLR conferences throughout 2026 and 2027, not specifically for the main ICLR 2027 conference submission deadline.\n\nTo find the official ICLR 2027 submission deadline, I'd recommend checking the official ICLR website directly at iclr.cc, as the search results don't provide a clear confirmation of an October 2026 submission deadline for ICLR 2027."
+    ],
+    "durationSeconds": 3.561196110000019
+  },
+  "sourceToolAssistantUUID": "02a88155-f5f5-4597-aece-cd89d028d59b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-18T03:31:05.696Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DXc3mbUmz2yo4zttTnr1dC`</summary>
+
+```json
+{
+  "query": "AI ML conference submission deadlines after May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "894ebcfc-5c98-47eb-be95-083be4f69b7e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Ky44iuAP4R4Tt1gdrX",
+  "type": "assistant",
+  "uuid": "13d26560-19d8-4e30-b950-f7d017d465fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011D9nSLSwM6rvn5U3ms691L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 30436,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 30436,
+          "cache_creation_input_tokens": 734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T03:31:11.422Z_
+
+<details><summary>↩ Tool result · `toolu_01DXc3mbUmz2yo4zttTnr1dC`</summary>
+
+```text
+Web search results for query: "AI ML conference submission deadlines after May 2026"
+
+Links: [{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines - a Hugging Face Space by huggingface","url":"https://huggingface.co/spaces/huggingface/ai-deadlines"},{"title":"AI Conference Deadlines","url":"https://aideadlin.es/"},{"title":"AI Conference Deadlines 2026 | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/"},{"title":"AI Conference Deadlines","url":"https://mldeadlines.com/"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"GitHub - khairulislam/ML-conferences: List of ML conferences with important dates and accepted paper list · GitHub","url":"https://github.com/khairulislam/ML-conferences"},{"title":"Top Artificial Intelligence (AI) Conferences for 2026: A Researcher's Guide--iConf","url":"https://www.iconf.org/news/731"},{"title":"AI Conferences 2026 — CFP Deadlines & Dates (NeurIPS, ICML, CVPR, AAAI) | TLDL | TLDL","url":"https://www.tldl.io/resources/ai-conferences-2026"}]
+
+Based on the search results, here are some AI/ML conference submission deadlines after May 2026:
+
+## Conferences with Deadlines After May 2026:
+
+**AIES** - May 21, 2026 (Malmo, Sweden, Oct 12-14, 2026)
+
+**CIKM** - May 23, 2026 (Rome, Italy, Nov 7-11, 2026)
+
+**EMNLP** - May 25, 2026 (Budapest, Hungary, Oct 24-29, 2026)
+
+**CoRL** - May 28, 2026 (Austin, Texas, USA, Nov 10-12, 2026)
+
+**ICDM** - June 5, 2026 (Shenyang, China, Nov 12-15, 2026)
+
+**WACV** - Jun 24, 2026 (Disney Springs, Buena Vista, FL, USA, Jan 4-8, 2027)
+
+**ICSE** - 30 Jun, 2026 (Dublin, Ireland, April 25 - May 1, 2027)
+
+**AAAI** - July 28, 2026 (Montréal, Québec, Canada, Feb 16-23 2027)
+
+These represent some of the major AI and ML conference deadlines scheduled for after May 2026. For the most current and comprehensive list of deadlines, you can visit dedicated deadline tracking sites like AI Deadlines (aideadlines.org) or MLDeadlines (mldeadlines.com).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13d26560-19d8-4e30-b950-f7d017d465fe",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "5be3a2d4-9d6e-46b0-bc3a-b338eda45f23",
+  "toolUseResult": {
+    "query": "AI ML conference submission deadlines after May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015x2pr4Dcq95LzRGkuDA9yD",
+        "content": [
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines - a Hugging Face Space by huggingface",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://aideadlin.es/"
+          },
+          {
+            "title": "AI Conference Deadlines 2026 | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mldeadlines.com/"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "GitHub - khairulislam/ML-conferences: List of ML conferences with important dates and accepted paper list · GitHub",
+            "url": "https://github.com/khairulislam/ML-conferences"
+          },
+          {
+            "title": "Top Artificial Intelligence (AI) Conferences for 2026: A Researcher's Guide--iConf",
+            "url": "https://www.iconf.org/news/731"
+          },
+          {
+            "title": "AI Conferences 2026 — CFP Deadlines & Dates (NeurIPS, ICML, CVPR, AAAI) | TLDL | TLDL",
+            "url": "https://www.tldl.io/resources/ai-conferences-2026"
+          }
+        ]
+      },
+      "Based on the search results, here are some AI/ML conference submission deadlines after May 2026:\n\n## Conferences with Deadlines After May 2026:\n\n**AIES** - May 21, 2026 (Malmo, Sweden, Oct 12-14, 2026)\n\n**CIKM** - May 23, 2026 (Rome, Italy, Nov 7-11, 2026)\n\n**EMNLP** - May 25, 2026 (Budapest, Hungary, Oct 24-29, 2026)\n\n**CoRL** - May 28, 2026 (Austin, Texas, USA, Nov 10-12, 2026)\n\n**ICDM** - June 5, 2026 (Shenyang, China, Nov 12-15, 2026)\n\n**WACV** - Jun 24, 2026 (Disney Springs, Buena Vista, FL, USA, Jan 4-8, 2027)\n\n**ICSE** - 30 Jun, 2026 (Dublin, Ireland, April 25 - May 1, 2027)\n\n**AAAI** - July 28, 2026 (Montréal, Québec, Canada, Feb 16-23 2027)\n\nThese represent some of the major AI and ML conference deadlines scheduled for after May 2026. For the most current and comprehensive list of deadlines, you can visit dedicated deadline tracking sites like AI Deadlines (aideadlines.org) or MLDeadlines (mldeadlines.com)."
+    ],
+    "durationSeconds": 5.720367224999994
+  },
+  "sourceToolAssistantUUID": "13d26560-19d8-4e30-b950-f7d017d465fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-18T03:31:13.674Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GWTVs7Y9K8f6H3s6unBnhv`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5be3a2d4-9d6e-46b0-bc3a-b338eda45f23",
+  "isSidechain": false,
+  "requestId": "req_011Cb9KyfbeL1985skYL91sb",
+  "type": "assistant",
+  "uuid": "7b42b822-563f-4cef-8c6f-a8211d516fbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZYMizjEiJduQmopDVRmEn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 31170,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 31170,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T03:31:17.434Z_
+
+<details><summary>↩ Tool result · `toolu_01GWTVs7Y9K8f6H3s6unBnhv`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline July 2026"
+
+Links: [{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"}]
+
+Based on the search results, here's what I found about the AAAI 2027 submission deadline:
+
+The AAAI 2027 conference will be held in Montréal, Québec, Canada from February 16-23, 2027. However, the AAAI 2027 paper submission deadline is TBD according to current information.
+
+That said, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. This aligns with your query about a July 2026 deadline—while not officially announced yet, this timeframe is anticipated based on the conference's historical submission patterns.
+
+For the most up-to-date information, I recommend checking the official AAAI 2027 call for papers at https://aaai.org/conference/aaai/aaai-27/ or monitoring OpenReview at https://openreview.net/group?id=AAAI.org%2F2027%2FConference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b42b822-563f-4cef-8c6f-a8211d516fbe",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "27b45f03-0e7f-4c28-8e15-d4cfa7f69bc2",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WMrLfXG8Ys2xHBnomj4wCh",
+        "content": [
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the AAAI 2027 submission deadline:\n\nThe AAAI 2027 conference will be held in Montréal, Québec, Canada from February 16-23, 2027. However, the AAAI 2027 paper submission deadline is TBD according to current information.\n\nThat said, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. This aligns with your query about a July 2026 deadline—while not officially announced yet, this timeframe is anticipated based on the conference's historical submission patterns.\n\nFor the most up-to-date information, I recommend checking the official AAAI 2027 call for papers at https://aaai.org/conference/aaai/aaai-27/ or monitoring OpenReview at https://openreview.net/group?id=AAAI.org%2F2027%2FConference."
+    ],
+    "durationSeconds": 3.756239800999989
+  },
+  "sourceToolAssistantUUID": "7b42b822-563f-4cef-8c6f-a8211d516fbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "27b45f03-0e7f-4c28-8e15-d4cfa7f69bc2",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-18T03:31:19.786Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014RTkaGGta9wYR5T7ZjGLUD`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27b45f03-0e7f-4c28-8e15-d4cfa7f69bc2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Kz7LTAiNf1QBk32uxB",
+  "type": "assistant",
+  "uuid": "0d8ff673-9768-4eb6-b007-2315627ad480",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYBySUzjZWSrn25sMC6rGR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 32036,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 32036,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T03:31:25.313Z_
+
+<details><summary>↩ Tool result · `toolu_014RTkaGGta9wYR5T7ZjGLUD`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"}]
+
+Based on the search results, here's the information about EMNLP 2026:
+
+## Key Submission Information
+
+The EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 (UTC-12).
+
+EMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.
+
+## Important Dates
+
+The reviewer registration deadline for all authors is May 27, 2026, with author response and author-reviewer discussion scheduled for July 7-13, 2026, and meta review released July 30, 2026.
+
+## Conference Details
+
+EMNLP 2026 is being held in Budapest, Hungary, October 24-29, 2026.
+
+## Important Policies
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth"). 
+
+Since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026.
+
+The official call for papers can be found at https://2026.emnlp.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d8ff673-9768-4eb6-b007-2315627ad480",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "b73664e3-946a-47e2-bf16-fc4199dda760",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SxZANUDm81RUwPkSxxWcxb",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EMNLP 2026:\n\n## Key Submission Information\n\nThe EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 (UTC-12).\n\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.\n\n## Important Dates\n\nThe reviewer registration deadline for all authors is May 27, 2026, with author response and author-reviewer discussion scheduled for July 7-13, 2026, and meta review released July 30, 2026.\n\n## Conference Details\n\nEMNLP 2026 is being held in Budapest, Hungary, October 24-29, 2026.\n\n## Important Policies\n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\"). \n\nSince the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026.\n\nThe official call for papers can be found at https://2026.emnlp.org/calls/main_conference_papers/"
+    ],
+    "durationSeconds": 5.52244318100001
+  },
+  "sourceToolAssistantUUID": "0d8ff673-9768-4eb6-b007-2315627ad480",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-18T03:31:27.987Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ToHUtdxvpcr6YRWz9Z7heX`</summary>
+
+```json
+{
+  "query": "best open source LLM 2026 current state-of-the-art reasoning model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b73664e3-946a-47e2-bf16-fc4199dda760",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Kzh3EmFgEmAFgWcV8t",
+  "type": "assistant",
+  "uuid": "7412bcbb-2e12-431b-8f0d-29f0faf8c5e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SZBXRoiZuve7thfNLj4TqE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 32814,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32814,
+          "cache_creation_input_tokens": 1113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T03:31:35.579Z_
+
+<details><summary>↩ Tool result · `toolu_01ToHUtdxvpcr6YRWz9Z7heX`</summary>
+
+```text
+Web search results for query: "best open source LLM 2026 current state-of-the-art reasoning model"
+
+Links: [{"title":"Ultimate Guide - The Best Open Source LLMs for Reasoning in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"Top 10 Open-source Reasoning Models in 2026","url":"https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"},{"title":"Top Open-Source LLMs 2026: The Best Models & Comparison","url":"https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"},{"title":"Best Open Source LLM Leaderboard 2026","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org","url":"https://whatllm.org/best-open-source-llm"},{"title":"Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License","url":"https://huggingface.co/blog/daya-shankar/open-source-llms"},{"title":"The Best Open Source and Open-Weight LLM Models to Run Locally in 2026","url":"https://huggingface.co/blog/daya-shankar/open-source-llm-models-to-run-locally"},{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"11 Top Open-Source LLMs for 2026 and Their Uses | DataCamp","url":"https://www.datacamp.com/blog/top-open-source-llms"}]
+
+Based on the latest search results, here's an overview of the best open-source LLMs for reasoning in 2026:
+
+## Top State-of-the-Art Reasoning Models
+
+The top three recommendations for 2026 are DeepSeek-R1, MiniMax-M1-80k, and Kimi-Dev-72B, each chosen for their exceptional reasoning abilities, innovative architectures, and ability to tackle the most challenging logical problems.
+
+### Current Leaders
+
+**DeepSeek-R1**: For general reasoning tasks, DeepSeek-R1 offers OpenAI-o1 comparable performance. DeepSeek-R1 excels at general mathematical and logical reasoning comparable to closed-source models.
+
+**GLM-5.1**: Artificial Analysis currently describes GLM-5.1 as the leading open-weights model on its Intelligence Index, putting it ahead of DeepSeek, Kimi, and Qwen entries on most reasoning and coding benchmarks. It's a 744B-parameter Mixture of Experts model with 40B active parameters and a 200K-token context window, positioned for coding, reasoning, and agentic workflows.
+
+**Kimi K2.6**: Kimi K2.6 leads the live open-source ranking with a Quality Index of 53.905. On the May 12, 2026 LiveBench snapshot, Kimi K2.6 Thinking leads the open-source models with 78.57 Coding Avg and 58.33 Agentic Coding Avg.
+
+### Other Strong Contenders
+
+MiniMax-M1-80k provides exceptional computational savings for efficiency and long-context reasoning.
+
+Qwen3.5-397B-A17B combines a large MoE architecture with multimodal reasoning and ultra-long context support, making it one of the most capable open models for agentic and multimodal workloads.
+
+The landscape has evolved significantly, with open-source AI in 2026 no longer being just the cheaper alternative to closed models—for coding, reasoning, agentic workflows, long-context analysis, and local deployment, open-weight models are now good enough for serious production use.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7412bcbb-2e12-431b-8f0d-29f0faf8c5e8",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "3108a853-60ca-43e6-80e8-530a8054f06e",
+  "toolUseResult": {
+    "query": "best open source LLM 2026 current state-of-the-art reasoning model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D6pYDruqDmB6Zasy2GNgoz",
+        "content": [
+          {
+            "title": "Ultimate Guide - The Best Open Source LLMs for Reasoning in 2026",
+            "url": "https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning"
+          },
+          {
+            "title": "The Best Open-Source LLMs in 2026",
+            "url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"
+          },
+          {
+            "title": "Top 10 Open-source Reasoning Models in 2026",
+            "url": "https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"
+          },
+          {
+            "title": "Top Open-Source LLMs 2026: The Best Models & Comparison",
+            "url": "https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"
+          },
+          {
+            "title": "Best Open Source LLM Leaderboard 2026",
+            "url": "https://onyx.app/open-llm-leaderboard"
+          },
+          {
+            "title": "Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License",
+            "url": "https://huggingface.co/blog/daya-shankar/open-source-llms"
+          },
+          {
+            "title": "The Best Open Source and Open-Weight LLM Models to Run Locally in 2026",
+            "url": "https://huggingface.co/blog/daya-shankar/open-source-llm-models-to-run-locally"
+          },
+          {
+            "title": "Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy",
+            "url": "https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"
+          },
+          {
+            "title": "11 Top Open-Source LLMs for 2026 and Their Uses | DataCamp",
+            "url": "https://www.datacamp.com/blog/top-open-source-llms"
+          }
+        ]
+      },
+      "Based on the latest search results, here's an overview of the best open-source LLMs for reasoning in 2026:\n\n## Top State-of-the-Art Reasoning Models\n\nThe top three recommendations for 2026 are DeepSeek-R1, MiniMax-M1-80k, and Kimi-Dev-72B, each chosen for their exceptional reasoning abilities, innovative architectures, and ability to tackle the most challenging logical problems.\n\n### Current Leaders\n\n**DeepSeek-R1**: For general reasoning tasks, DeepSeek-R1 offers OpenAI-o1 comparable performance. DeepSeek-R1 excels at general mathematical and logical reasoning comparable to closed-source models.\n\n**GLM-5.1**: Artificial Analysis currently describes GLM-5.1 as the leading open-weights model on its Intelligence Index, putting it ahead of DeepSeek, Kimi, and Qwen entries on most reasoning and coding benchmarks. It's a 744B-parameter Mixture of Experts model with 40B active parameters and a 200K-token context window, positioned for coding, reasoning, and agentic workflows.\n\n**Kimi K2.6**: Kimi K2.6 leads the live open-source ranking with a Quality Index of 53.905. On the May 12, 2026 LiveBench snapshot, Kimi K2.6 Thinking leads the open-source models with 78.57 Coding Avg and 58.33 Agentic Coding Avg.\n\n### Other Strong Contenders\n\nMiniMax-M1-80k provides exceptional computational savings for efficiency and long-context reasoning.\n\nQwen3.5-397B-A17B combines a large MoE architecture with multimodal reasoning and ultra-long context support, making it one of the most capable open models for agentic and multimodal workloads.\n\nThe landscape has evolved significantly, with open-source AI in 2026 no longer being just the cheaper alternative to closed models—for coding, reasoning, agentic workflows, long-context analysis, and local deployment, open-weight models are now good enough for serious production use."
+    ],
+    "durationSeconds": 7.5872327709999805
+  },
+  "sourceToolAssistantUUID": "7412bcbb-2e12-431b-8f0d-29f0faf8c5e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-18T03:31:35.582Z_
+
+```json
+{
+  "parentUuid": "3108a853-60ca-43e6-80e8-530a8054f06e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "59dc17e5-2931-4388-a9e2-1596650b97da",
+  "timestamp": "2026-05-18T03:31:35.582Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T03:31:38.687Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GC5foyxbeJsPv2TPgmDxGu`</summary>
+
+```json
+{
+  "query": "EvoSyn evolutionary data synthesis verifiable learning arxiv 2510.17928"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59dc17e5-2931-4388-a9e2-1596650b97da",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L1StDxFYrroHfnStdg",
+  "type": "assistant",
+  "uuid": "734fbeda-8a0f-4911-8f21-502244e7005b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZqXmr2WEkLyEp6kiKhnt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 33927,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 33927,
+          "cache_creation_input_tokens": 1249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T03:31:46.548Z_
+
+<details><summary>↩ Tool result · `toolu_01GC5foyxbeJsPv2TPgmDxGu`</summary>
+
+```text
+Web search results for query: "EvoSyn evolutionary data synthesis verifiable learning arxiv 2510.17928"
+
+Links: [{"title":"[2510.17928] EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning","url":"https://arxiv.org/abs/2510.17928"},{"title":"EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning","url":"https://arxiv.org/html/2510.17928v1"},{"title":"Paper page - EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning","url":"https://huggingface.co/papers/2510.17928"},{"title":"Artificial Intelligence 2025","url":"https://arxiv.org/list/cs.AI/2025?skip=38100&show=1000"},{"title":"EvoSynth Paradigm: Evolutionary Program Synthesis","url":"https://www.emergentmind.com/topics/evosynth-paradigm"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=1900&show=250"},{"title":"Computer Science Oct 2025","url":"https://arxiv.org/list/cs/2025-10?skip=9000&show=100"},{"title":"[Literature Review] EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning","url":"https://www.themoonlight.io/en/review/evosyn-generalizable-evolutionary-data-synthesis-for-verifiable-learning"},{"title":"EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for- ...","url":"https://www.researchgate.net/publication/396747789_EvoSyn_Generalizable_Evolutionary_Data_Synthesis_for_Verifiable_Learning/fulltext/68f8546fffdca73694b994f6/EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for-Verifiable-Learning.pdf?origin=scientificContributions"},{"title":"Hybrid evolutionary learning for synthesizing multi-class ...","url":"https://www.sciencedirect.com/science/article/pii/S1568494602000601"}]
+
+Based on the search results, here's information about EvoSyn (arxiv 2510.17928):
+
+## Overview
+
+EvoSyn introduces a framework for generalizable evolutionary data synthesis for verifiable learning, with reliable verifiable data becoming a key driver of capability gains in modern language models.
+
+## Problem Statement
+
+Constructing generalizable synthetic verifiable data remains difficult due to hallucination-prone generation and weak or trivial verification artifacts, with existing approaches often relying on task-specific heuristics or post-hoc filters that do not transfer across domains.
+
+## Approach
+
+The paper proposes a general-purpose framework for synthesizing reliable data called Evolutionary Data Synthesis (EvoSyn). EvoSyn introduces a unified, task-agnostic evaluation criterion for filtering strategies that measures consistency score with a small set of manually verified seed data, making it applicable to any verification task.
+
+From small human-verified seed data, an evolutionary process discovers a data-filtering strategy via a consistency-based evaluator, which then guides synthesis by generating candidate solutions and tests for new problems, cross-executing them to rank and retain reliable instances.
+
+## Results
+
+On LiveCodeBench, EvoSyn-generated data significantly improves the performance of LLaMA-3.1 and Qwen3 models during RLVR training. On AgentBench-OS, EvoSyn yields substantial gains with distilled models surpassing their teacher model DeepSeek-R1.
+
+The paper was submitted on October 20, 2025 by He Du and collaborators including Dacheng Tao.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "734fbeda-8a0f-4911-8f21-502244e7005b",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "49635bb1-729f-479e-bce9-262f4561c462",
+  "toolUseResult": {
+    "query": "EvoSyn evolutionary data synthesis verifiable learning arxiv 2510.17928",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V3eHeeGUAdMfzxWSZRWhxa",
+        "content": [
+          {
+            "title": "[2510.17928] EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning",
+            "url": "https://arxiv.org/abs/2510.17928"
+          },
+          {
+            "title": "EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning",
+            "url": "https://arxiv.org/html/2510.17928v1"
+          },
+          {
+            "title": "Paper page - EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning",
+            "url": "https://huggingface.co/papers/2510.17928"
+          },
+          {
+            "title": "Artificial Intelligence 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025?skip=38100&show=1000"
+          },
+          {
+            "title": "EvoSynth Paradigm: Evolutionary Program Synthesis",
+            "url": "https://www.emergentmind.com/topics/evosynth-paradigm"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=1900&show=250"
+          },
+          {
+            "title": "Computer Science Oct 2025",
+            "url": "https://arxiv.org/list/cs/2025-10?skip=9000&show=100"
+          },
+          {
+            "title": "[Literature Review] EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning",
+            "url": "https://www.themoonlight.io/en/review/evosyn-generalizable-evolutionary-data-synthesis-for-verifiable-learning"
+          },
+          {
+            "title": "EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for- ...",
+            "url": "https://www.researchgate.net/publication/396747789_EvoSyn_Generalizable_Evolutionary_Data_Synthesis_for_Verifiable_Learning/fulltext/68f8546fffdca73694b994f6/EvoSyn-Generalizable-Evolutionary-Data-Synthesis-for-Verifiable-Learning.pdf?origin=scientificContributions"
+          },
+          {
+            "title": "Hybrid evolutionary learning for synthesizing multi-class ...",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1568494602000601"
+          }
+        ]
+      },
+      "Based on the search results, here's information about EvoSyn (arxiv 2510.17928):\n\n## Overview\n\nEvoSyn introduces a framework for generalizable evolutionary data synthesis for verifiable learning, with reliable verifiable data becoming a key driver of capability gains in modern language models.\n\n## Problem Statement\n\nConstructing generalizable synthetic verifiable data remains difficult due to hallucination-prone generation and weak or trivial verification artifacts, with existing approaches often relying on task-specific heuristics or post-hoc filters that do not transfer across domains.\n\n## Approach\n\nThe paper proposes a general-purpose framework for synthesizing reliable data called Evolutionary Data Synthesis (EvoSyn). EvoSyn introduces a unified, task-agnostic evaluation criterion for filtering strategies that measures consistency score with a small set of manually verified seed data, making it applicable to any verification task.\n\nFrom small human-verified seed data, an evolutionary process discovers a data-filtering strategy via a consistency-based evaluator, which then guides synthesis by generating candidate solutions and tests for new problems, cross-executing them to rank and retain reliable instances.\n\n## Results\n\nOn LiveCodeBench, EvoSyn-generated data significantly improves the performance of LLaMA-3.1 and Qwen3 models during RLVR training. On AgentBench-OS, EvoSyn yields substantial gains with distilled models surpassing their teacher model DeepSeek-R1.\n\nThe paper was submitted on October 20, 2025 by He Du and collaborators including Dacheng Tao."
+    ],
+    "durationSeconds": 7.856307578999986
+  },
+  "sourceToolAssistantUUID": "734fbeda-8a0f-4911-8f21-502244e7005b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T03:31:49.603Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0174t4yHwXzN87Y48fRU3dzz`</summary>
+
+```json
+{
+  "query": "ReVeal self-evolving code agents generation verification reinforcement learning arxiv 2506.11442"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49635bb1-729f-479e-bce9-262f4561c462",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L2FrizcCyM7PazhFZV",
+  "type": "assistant",
+  "uuid": "1984cb5a-e2b1-4be2-b2cb-2da3f0ad7394",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dbiQtNWGvWqqiHJfRPHHK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 35176,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 35176,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T03:31:56.669Z_
+
+<details><summary>↩ Tool result · `toolu_0174t4yHwXzN87Y48fRU3dzz`</summary>
+
+```text
+Web search results for query: "ReVeal self-evolving code agents generation verification reinforcement learning arxiv 2506.11442"
+
+Links: [{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://arxiv.org/html/2506.11442v1"},{"title":"[2506.11442] ReVeal: Self-Evolving Code Agents via Reliable Self-Verification","url":"https://arxiv.org/abs/2506.11442"},{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://www.arxiv.org/pdf/2506.11442v1"},{"title":"Paper page - ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://huggingface.co/papers/2506.11442"},{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.11442v1"},{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://www.researchgate.net/publication/392717329_ReVeal_Self-Evolving_Code_Agents_via_Iterative_Generation-Verification"},{"title":"Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://www.alphaxiv.org/abs/2506.11442v1"},{"title":"ReVeal: Iterative Code Generation & Verification","url":"https://www.emergentmind.com/papers/2506.11442"},{"title":"Self-Redraft: Eliciting Intrinsic Exploration-Exploitation Balance in Test-Time Scaling for Code Generation","url":"https://arxiv.org/html/2511.02854v1"},{"title":"A2FM: An Adaptive Agent Foundation Model for Tool-Aware Hybrid Reasoning","url":"https://arxiv.org/html/2510.12838v1"}]
+
+I found the paper for you! Here's what I found about ReVeal (arXiv 2506.11442):
+
+## Overview
+
+ReVeal is a multi-turn reinforcement learning framework that evolves code generation through self-verification and tool-based evaluation.
+
+## Key Features
+
+ReVeal enables LLMs to autonomously generate test cases, invoke external tools for precise feedback, and improves performance via a customized RL algorithm with dense, per-turn rewards.
+
+## Problem It Addresses
+
+Existing methods lack both meaningful verification signals from realistic environments and explicit optimization for verification, leading to unreliable self-verification.
+
+## Technical Approach
+
+ReVeal is a multi-turn reinforcement learning framework that enables code agents to engage in an iterative generation-verification loop, leveraging the model's reasoning capabilities to generate candidate solutions, construct executable verification plans and revise its outputs based on structured feedback from external tools.
+
+ReVeal structures long-horizon reasoning as iterative generation-verification turns and incorporates TAPO for turn-level credit assignment, fostering the co-evolution of code and test generation.
+
+## Results
+
+Using only 11k open-source TACO examples and without additional supervised fine-tuning, ReVeal's self-evolution continues to deliver consistent improvements, surpassing the strong DeepSeek-R1-Zero-Qwen-32B baseline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1984cb5a-e2b1-4be2-b2cb-2da3f0ad7394",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "8d3aa9d2-50af-42da-b76c-2bc51de2c138",
+  "toolUseResult": {
+    "query": "ReVeal self-evolving code agents generation verification reinforcement learning arxiv 2506.11442",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YcR8yvcUUiZsReVkWJjguD",
+        "content": [
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://arxiv.org/html/2506.11442v1"
+          },
+          {
+            "title": "[2506.11442] ReVeal: Self-Evolving Code Agents via Reliable Self-Verification",
+            "url": "https://arxiv.org/abs/2506.11442"
+          },
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://www.arxiv.org/pdf/2506.11442v1"
+          },
+          {
+            "title": "Paper page - ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://huggingface.co/papers/2506.11442"
+          },
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2506.11442v1"
+          },
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://www.researchgate.net/publication/392717329_ReVeal_Self-Evolving_Code_Agents_via_Iterative_Generation-Verification"
+          },
+          {
+            "title": "Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://www.alphaxiv.org/abs/2506.11442v1"
+          },
+          {
+            "title": "ReVeal: Iterative Code Generation & Verification",
+            "url": "https://www.emergentmind.com/papers/2506.11442"
+          },
+          {
+            "title": "Self-Redraft: Eliciting Intrinsic Exploration-Exploitation Balance in Test-Time Scaling for Code Generation",
+            "url": "https://arxiv.org/html/2511.02854v1"
+          },
+          {
+            "title": "A2FM: An Adaptive Agent Foundation Model for Tool-Aware Hybrid Reasoning",
+            "url": "https://arxiv.org/html/2510.12838v1"
+          }
+        ]
+      },
+      "I found the paper for you! Here's what I found about ReVeal (arXiv 2506.11442):\n\n## Overview\n\nReVeal is a multi-turn reinforcement learning framework that evolves code generation through self-verification and tool-based evaluation.\n\n## Key Features\n\nReVeal enables LLMs to autonomously generate test cases, invoke external tools for precise feedback, and improves performance via a customized RL algorithm with dense, per-turn rewards.\n\n## Problem It Addresses\n\nExisting methods lack both meaningful verification signals from realistic environments and explicit optimization for verification, leading to unreliable self-verification.\n\n## Technical Approach\n\nReVeal is a multi-turn reinforcement learning framework that enables code agents to engage in an iterative generation-verification loop, leveraging the model's reasoning capabilities to generate candidate solutions, construct executable verification plans and revise its outputs based on structured feedback from external tools.\n\nReVeal structures long-horizon reasoning as iterative generation-verification turns and incorporates TAPO for turn-level credit assignment, fostering the co-evolution of code and test generation.\n\n## Results\n\nUsing only 11k open-source TACO examples and without additional supervised fine-tuning, ReVeal's self-evolution continues to deliver consistent improvements, surpassing the strong DeepSeek-R1-Zero-Qwen-32B baseline."
+    ],
+    "durationSeconds": 7.062022376999987
+  },
+  "sourceToolAssistantUUID": "1984cb5a-e2b1-4be2-b2cb-2da3f0ad7394",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "8d3aa9d2-50af-42da-b76c-2bc51de2c138",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T03:31:59.419Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hsh17SiHRLj5cQmkMHJDur`</summary>
+
+```json
+{
+  "query": "CURE co-evolving LLM coder unit tester reinforcement learning arxiv 2506.03136"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d3aa9d2-50af-42da-b76c-2bc51de2c138",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L316VbRVvmvvKM5aAX",
+  "type": "assistant",
+  "uuid": "dabdafb3-4859-487c-a975-9feb8e641bf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7iEV7d8PCudZRE8FsHSYk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 36173,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 36173,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T03:32:04.659Z_
+
+<details><summary>↩ Tool result · `toolu_01Hsh17SiHRLj5cQmkMHJDur`</summary>
+
+```text
+Web search results for query: "CURE co-evolving LLM coder unit tester reinforcement learning arxiv 2506.03136"
+
+Links: [{"title":"[2506.03136] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning","url":"https://arxiv.org/abs/2506.03136"},{"title":"GitHub - Gen-Verse/CURE: [NeurIPS 2025 Spotlight] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning · GitHub","url":"https://github.com/Gen-Verse/CURE"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning","url":"https://arxiv.org/html/2506.03136v2"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning | Request PDF","url":"https://www.researchgate.net/publication/392372360_Co-Evolving_LLM_Coder_and_Unit_Tester_via_Reinforcement_Learning"},{"title":"[2506.03136v1] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning","url":"https://arxiv.org/abs/2506.03136v1"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=wPdBe9zxNr"},{"title":"Paper page - Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning","url":"https://huggingface.co/papers/2506.03136"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250603136W/abstract"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning |…","url":"https://www.opentrain.ai/papers/co-evolving-llm-coder-and-unit-tester-via-reinforcement-learning--arxiv-2506.03136/"},{"title":"Gen-Verse/ReasonFlux-Coder-7B · Hugging Face","url":"https://huggingface.co/Gen-Verse/ReasonFlux-Coder-7B"}]
+
+Based on the search results, here's what I found about the paper arxiv 2506.03136:
+
+## Overview
+
+CURE is a novel reinforcement learning framework with a dedicated reward design that co-evolves coding and unit test generation capabilities based on their interaction outcomes, without any ground-truth code as supervision.
+
+## Key Features
+
+This approach enables flexible and scalable training and allows the unit tester to learn directly from the coder's mistakes.
+
+## Performance Results
+
+The derived ReasonFlux-Coder-7B and 14B models improve code generation accuracy by 5.3% and Best-of-N accuracy by 9.0% after optimization on Qwen2.5-Instruct models, outperforming similarly sized Qwen-Coder, DeepSeek-Coder, and Seed-Coder. Additionally, they naturally extend to downstream tasks such as test-time scaling and agentic coding—achieving a 8.1% improvement over the base model.
+
+## Authors and Status
+
+The paper was authored by Yinjie Wang, Ling Yang, Ye Tian, Ke Shen, and Mengdi Wang. The code is available on GitHub as part of the Gen-Verse/CURE project.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dabdafb3-4859-487c-a975-9feb8e641bf9",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "0f13ae44-4f43-4a5d-8528-9944d21634e4",
+  "toolUseResult": {
+    "query": "CURE co-evolving LLM coder unit tester reinforcement learning arxiv 2506.03136",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YLBAtKT94TBftbbzSdDGKw",
+        "content": [
+          {
+            "title": "[2506.03136] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2506.03136"
+          },
+          {
+            "title": "GitHub - Gen-Verse/CURE: [NeurIPS 2025 Spotlight] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning · GitHub",
+            "url": "https://github.com/Gen-Verse/CURE"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.03136v2"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning | Request PDF",
+            "url": "https://www.researchgate.net/publication/392372360_Co-Evolving_LLM_Coder_and_Unit_Tester_via_Reinforcement_Learning"
+          },
+          {
+            "title": "[2506.03136v1] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2506.03136v1"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=wPdBe9zxNr"
+          },
+          {
+            "title": "Paper page - Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2506.03136"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250603136W/abstract"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning |…",
+            "url": "https://www.opentrain.ai/papers/co-evolving-llm-coder-and-unit-tester-via-reinforcement-learning--arxiv-2506.03136/"
+          },
+          {
+            "title": "Gen-Verse/ReasonFlux-Coder-7B · Hugging Face",
+            "url": "https://huggingface.co/Gen-Verse/ReasonFlux-Coder-7B"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper arxiv 2506.03136:\n\n## Overview\n\nCURE is a novel reinforcement learning framework with a dedicated reward design that co-evolves coding and unit test generation capabilities based on their interaction outcomes, without any ground-truth code as supervision.\n\n## Key Features\n\nThis approach enables flexible and scalable training and allows the unit tester to learn directly from the coder's mistakes.\n\n## Performance Results\n\nThe derived ReasonFlux-Coder-7B and 14B models improve code generation accuracy by 5.3% and Best-of-N accuracy by 9.0% after optimization on Qwen2.5-Instruct models, outperforming similarly sized Qwen-Coder, DeepSeek-Coder, and Seed-Coder. Additionally, they naturally extend to downstream tasks such as test-time scaling and agentic coding—achieving a 8.1% improvement over the base model.\n\n## Authors and Status\n\nThe paper was authored by Yinjie Wang, Ling Yang, Ye Tian, Ke Shen, and Mengdi Wang. The code is available on GitHub as part of the Gen-Verse/CURE project."
+    ],
+    "durationSeconds": 5.235621994000016
+  },
+  "sourceToolAssistantUUID": "dabdafb3-4859-487c-a975-9feb8e641bf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T03:32:07.371Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HNDJoEsP2pWP7DgmgvFLHj`</summary>
+
+```json
+{
+  "query": "Self-Evolving Curriculum SEC reinforcement learning LLM arxiv 2505.14970"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f13ae44-4f43-4a5d-8528-9944d21634e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L3bF5CJhQF5uK4WXow",
+  "type": "assistant",
+  "uuid": "611f7a6d-e088-4ae3-bd24-60d5b817da44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QKBtUR83uYroGRvLhHurL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 37088,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 37088,
+          "cache_creation_input_tokens": 1001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T03:32:13.647Z_
+
+<details><summary>↩ Tool result · `toolu_01HNDJoEsP2pWP7DgmgvFLHj`</summary>
+
+```text
+Web search results for query: "Self-Evolving Curriculum SEC reinforcement learning LLM arxiv 2505.14970"
+
+Links: [{"title":"[2505.14970] Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/abs/2505.14970"},{"title":"[2505.14970v1] Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/abs/2505.14970v1"},{"title":"[2505.14970v3] Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/abs/2505.14970v3"},{"title":"[PDF] Self-Evolving Curriculum for LLM Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Evolving-Curriculum-for-LLM-Reasoning-Chen-Lu/be1985ec9f0bce3b45c81e7b28b93acbaf7e20eb"},{"title":"Self-Evolving Curriculum for LLM Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250514970C/abstract"},{"title":"Self-Evolving Curriculum for LLM Reasoning","url":"https://www.emergentmind.com/papers/2505.14970"},{"title":"(PDF) Self-Evolving Curriculum for LLM Reasoning","url":"https://www.researchgate.net/publication/391953584_Self-Evolving_Curriculum_for_LLM_Reasoning"},{"title":"Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/html/2505.14970v1"},{"title":"Paper page - Self-Evolving Curriculum for LLM Reasoning","url":"https://huggingface.co/papers/2505.14970"},{"title":"Self-Evolving Curriculum for LLM Reasoning | alphaXiv","url":"https://www.alphaxiv.org/abs/2505.14970"}]
+
+I found the paper! Here's a summary of the research:
+
+## Self-Evolving Curriculum for LLM Reasoning (arXiv 2505.14970)
+
+Self-Evolving Curriculum (SEC) is an automatic curriculum learning method that learns a curriculum policy concurrently with the RL fine-tuning process.
+
+**Problem Addressed:**
+A crucial factor influencing RL fine-tuning success is the training curriculum: the order in which training problems are presented. While random curricula serve as common baselines, they remain suboptimal; manually designed curricula often rely heavily on heuristics, and online filtering methods can be computationally prohibitive.
+
+**Approach:**
+SEC formulates the curriculum selection process as a non-stationary Multi-Armed Bandit (MAB) problem that runs concurrently with the LLM's RL fine-tuning. The method leverages the absolute advantage from policy gradient methods as a proxy measure for immediate learning gain. At each training step, the curriculum policy selects categories to maximize this reward signal and is updated using the TD(0) method.
+
+**Results:**
+Across three distinct reasoning domains: planning, inductive reasoning, and mathematics, the experiments demonstrate that SEC significantly improves models' reasoning capabilities, enabling better generalization to harder, out-of-distribution test problems. Additionally, the approach achieves better skill balance when fine-tuning simultaneously on multiple reasoning domains.
+
+The paper was published on May 20, 2025, with multiple revisions available through October 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "611f7a6d-e088-4ae3-bd24-60d5b817da44",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "c035b8fe-c657-4789-affa-42b8995920c4",
+  "toolUseResult": {
+    "query": "Self-Evolving Curriculum SEC reinforcement learning LLM arxiv 2505.14970",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q48xF55erkeRCqHtrhM6uK",
+        "content": [
+          {
+            "title": "[2505.14970] Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.14970"
+          },
+          {
+            "title": "[2505.14970v1] Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.14970v1"
+          },
+          {
+            "title": "[2505.14970v3] Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.14970v3"
+          },
+          {
+            "title": "[PDF] Self-Evolving Curriculum for LLM Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Evolving-Curriculum-for-LLM-Reasoning-Chen-Lu/be1985ec9f0bce3b45c81e7b28b93acbaf7e20eb"
+          },
+          {
+            "title": "Self-Evolving Curriculum for LLM Reasoning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250514970C/abstract"
+          },
+          {
+            "title": "Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://www.emergentmind.com/papers/2505.14970"
+          },
+          {
+            "title": "(PDF) Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://www.researchgate.net/publication/391953584_Self-Evolving_Curriculum_for_LLM_Reasoning"
+          },
+          {
+            "title": "Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/html/2505.14970v1"
+          },
+          {
+            "title": "Paper page - Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://huggingface.co/papers/2505.14970"
+          },
+          {
+            "title": "Self-Evolving Curriculum for LLM Reasoning | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2505.14970"
+          }
+        ]
+      },
+      "I found the paper! Here's a summary of the research:\n\n## Self-Evolving Curriculum for LLM Reasoning (arXiv 2505.14970)\n\nSelf-Evolving Curriculum (SEC) is an automatic curriculum learning method that learns a curriculum policy concurrently with the RL fine-tuning process.\n\n**Problem Addressed:**\nA crucial factor influencing RL fine-tuning success is the training curriculum: the order in which training problems are presented. While random curricula serve as common baselines, they remain suboptimal; manually designed curricula often rely heavily on heuristics, and online filtering methods can be computationally prohibitive.\n\n**Approach:**\nSEC formulates the curriculum selection process as a non-stationary Multi-Armed Bandit (MAB) problem that runs concurrently with the LLM's RL fine-tuning. The method leverages the absolute advantage from policy gradient methods as a proxy measure for immediate learning gain. At each training step, the curriculum policy selects categories to maximize this reward signal and is updated using the TD(0) method.\n\n**Results:**\nAcross three distinct reasoning domains: planning, inductive reasoning, and mathematics, the experiments demonstrate that SEC significantly improves models' reasoning capabilities, enabling better generalization to harder, out-of-distribution test problems. Additionally, the approach achieves better skill balance when fine-tuning simultaneously on multiple reasoning domains.\n\nThe paper was published on May 20, 2025, with multiple revisions available through October 2025."
+    ],
+    "durationSeconds": 6.273028724999982
+  },
+  "sourceToolAssistantUUID": "611f7a6d-e088-4ae3-bd24-60d5b817da44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T03:32:16.939Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XHVu4Eewf184oe9XPCD5Ez`</summary>
+
+```json
+{
+  "query": "\"Mind the Gap\" self-improvement capabilities LLM generation verification gap ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c035b8fe-c657-4789-affa-42b8995920c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L4FdPfzJrshvhU8w6y",
+  "type": "assistant",
+  "uuid": "f230520f-59e5-45d5-bead-b2d1a81ce1a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RAySSkke6hEYdeAdW6A8Xm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 38089,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 38089,
+          "cache_creation_input_tokens": 957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T03:32:22.699Z_
+
+<details><summary>↩ Tool result · `toolu_01XHVu4Eewf184oe9XPCD5Ez`</summary>
+
+```text
+Web search results for query: ""Mind the Gap" self-improvement capabilities LLM generation verification gap ICLR 2026"
+
+Links: [{"title":"MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"},{"title":"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=mtJSMcF3ek"},{"title":"[2412.02674] Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models","url":"https://arxiv.org/abs/2412.02674"},{"title":"Published as a conference paper at ICLR 2026 THEORETICAL MODELING","url":"https://openreview.net/pdf?id=Hh7x3c0cZl"},{"title":"Mind the Gap: Examining the Self-Improvement Capabilities of","url":"https://arxiv.org/pdf/2412.02674"},{"title":"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models","url":"https://www.researchgate.net/publication/386419076_Mind_the_Gap_Examining_the_Self-Improvement_Capabilities_of_Large_Language_Models"},{"title":"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models | Carson Eisenach","url":"https://carson.eisenach.org/publication/mind-the-gap/"},{"title":"Track: Oral Session 6A","url":"https://iclr.cc/virtual/2025/session/31965"},{"title":"\"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models\"","url":"https://www.rohan-paul.com/p/mind-the-gap-examining-the-self-improvement"},{"title":"Theoretical Modeling of LLM Self-Improvement Training ...","url":"https://arxiv.org/pdf/2507.00075"}]
+
+Based on the search results, here's what I found about "Mind the Gap":
+
+## Overview
+
+Self-improvement is a mechanism in Large Language Model (LLM) pre-training, post-training and test-time inference. The work explores a framework where the model verifies its own outputs, filters or reweights data based on this verification, and distills the filtered data.
+
+## Key Contribution: Generation-Verification Gap
+
+The work provides a mathematical formulation for self-improvement, which is largely governed by a quantity which they formalize as the generation-verification gap. More specifically, the generation-verification gap (GV-Gap) is proposed as the central metric for evaluation, and captures the "precision" of the model's verification over its own generations.
+
+## Main Findings
+
+Through experiments with various model families and tasks, the work discovers a scaling phenomenon of self-improvement -- a variant of the generation-verification gap scales monotonically with the model pre-training flops. Additionally, the work examines when self-improvement is possible, an iterative self-improvement procedure, and ways to improve its performance.
+
+## Publication Venue
+
+The paper appears to have been published at ICLR 2025 based on the available sources, with an arXiv preprint from December 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f230520f-59e5-45d5-bead-b2d1a81ce1a1",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "453adcd5-7f5f-4d41-8845-e442542cb230",
+  "toolUseResult": {
+    "query": "\"Mind the Gap\" self-improvement capabilities LLM generation verification gap ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TWENrdB4gQrMw7wBWzPDJr",
+        "content": [
+          {
+            "title": "MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"
+          },
+          {
+            "title": "Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=mtJSMcF3ek"
+          },
+          {
+            "title": "[2412.02674] Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models",
+            "url": "https://arxiv.org/abs/2412.02674"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 THEORETICAL MODELING",
+            "url": "https://openreview.net/pdf?id=Hh7x3c0cZl"
+          },
+          {
+            "title": "Mind the Gap: Examining the Self-Improvement Capabilities of",
+            "url": "https://arxiv.org/pdf/2412.02674"
+          },
+          {
+            "title": "Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models",
+            "url": "https://www.researchgate.net/publication/386419076_Mind_the_Gap_Examining_the_Self-Improvement_Capabilities_of_Large_Language_Models"
+          },
+          {
+            "title": "Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models | Carson Eisenach",
+            "url": "https://carson.eisenach.org/publication/mind-the-gap/"
+          },
+          {
+            "title": "Track: Oral Session 6A",
+            "url": "https://iclr.cc/virtual/2025/session/31965"
+          },
+          {
+            "title": "\"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models\"",
+            "url": "https://www.rohan-paul.com/p/mind-the-gap-examining-the-self-improvement"
+          },
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training ...",
+            "url": "https://arxiv.org/pdf/2507.00075"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Mind the Gap\":\n\n## Overview\n\nSelf-improvement is a mechanism in Large Language Model (LLM) pre-training, post-training and test-time inference. The work explores a framework where the model verifies its own outputs, filters or reweights data based on this verification, and distills the filtered data.\n\n## Key Contribution: Generation-Verification Gap\n\nThe work provides a mathematical formulation for self-improvement, which is largely governed by a quantity which they formalize as the generation-verification gap. More specifically, the generation-verification gap (GV-Gap) is proposed as the central metric for evaluation, and captures the \"precision\" of the model's verification over its own generations.\n\n## Main Findings\n\nThrough experiments with various model families and tasks, the work discovers a scaling phenomenon of self-improvement -- a variant of the generation-verification gap scales monotonically with the model pre-training flops. Additionally, the work examines when self-improvement is possible, an iterative self-improvement procedure, and ways to improve its performance.\n\n## Publication Venue\n\nThe paper appears to have been published at ICLR 2025 based on the available sources, with an arXiv preprint from December 2024."
+    ],
+    "durationSeconds": 5.756734417999978
+  },
+  "sourceToolAssistantUUID": "f230520f-59e5-45d5-bead-b2d1a81ce1a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T03:32:25.763Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014D67qawwi9eEtLXzcPztLh`</summary>
+
+```json
+{
+  "query": "github verifier reward model training curriculum generator distribution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "453adcd5-7f5f-4d41-8845-e442542cb230",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L4vLJdC64tzFkCVmwa",
+  "type": "assistant",
+  "uuid": "e5468e12-0b1f-4d54-9c75-52c72e538814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GX9SeZsiDZaZGLgB8qknoh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 39046,
+      "output_tokens": 60,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 60,
+          "cache_read_input_tokens": 39046,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T03:32:34.320Z_
+
+<details><summary>↩ Tool result · `toolu_014D67qawwi9eEtLXzcPztLh`</summary>
+
+```text
+Web search results for query: "github verifier reward model training curriculum generator distribution"
+
+Links: [{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub","url":"https://github.com/smiles724/Awesome-LLM-RLVR"},{"title":"GitHub - RLHFlow/RLHF-Reward-Modeling: Recipes to train reward model for RLHF. · GitHub","url":"https://github.com/RLHFlow/RLHF-Reward-Modeling"},{"title":"GitHub - JLZhong23/awesome-reward-models · GitHub","url":"https://github.com/JLZhong23/awesome-reward-models"},{"title":"GitHub - mengdi-li/awesome-RLAIF: A continually updated list of literature on Reinforcement Learning from AI Feedback (RLAIF) · GitHub","url":"https://github.com/mengdi-li/awesome-RLAIF"},{"title":"GitHub - Westlake-AI/SemiReward: [ICLR 2024] SemiReward: A General Reward Model for Semi-supervised Learning","url":"https://github.com/Westlake-AI/SemiReward"},{"title":"reward-model · GitHub Topics · GitHub","url":"https://github.com/topics/reward-model"},{"title":"ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search","url":"https://rest-mcts.github.io/"},{"title":"GitHub - zankner/CLoud: Critique-out-Loud Reward Models","url":"https://github.com/zankner/CLoud"},{"title":"GitHub - Dahoas/reward-modeling","url":"https://github.com/Dahoas/reward-modeling"}]
+
+Based on the search results, here are the key findings related to your query about GitHub resources for verifier reward model training, curriculum generator, and distribution:
+
+## Reinforcement Learning with Verifiable Rewards (RLVR)
+
+RLVR is a paradigm for aligning LLMs through external reward verification, self-consistency, and bootstrap learning, enabling models to improve reasoning capabilities without relying heavily on human supervision.
+
+## Key Repositories and Projects
+
+**Awesome RLVR Collections:**
+- opendilab/awesome-RLVR includes research on reinforcement learning with verifiable rewards covering capability boundaries, pass@k analysis, reasoning pattern emergence, and curriculum learning approaches.
+- smiles724/Awesome-LLM-RLVR provides a curated list of research papers, tools, datasets, and frameworks for Reinforcement Learning with Verifiable Rewards in Large Language Models.
+
+**Reward Model Training:**
+- RLHFlow/RLHF-Reward-Modeling is a repo for training reward/preference models for DRL-based RLHF (PPO), Iterative SFT, and iterative DPO.
+- It includes tools for training Bradley-Terry reward models and pairwise preference models that take a prompt and two responses as input and directly predict preference probability.
+
+**Process Reward Models:**
+- ReST-MCTS* integrates process reward guidance with tree search for collecting higher-quality reasoning traces and can infer correct process rewards by estimating the probability a step helps lead to the correct answer.
+
+**Novel Approaches:**
+- CLoud (Critique-out-Loud) reward models produce Chain-of-Thought like critiques before predicting rewards, trained to both produce explicit reasoning about quality and score based on critique reasoning traces.
+
+These resources collectively address curriculum learning, verifier training, reward model distribution, and modern approaches to training reward models for LLM alignment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5468e12-0b1f-4d54-9c75-52c72e538814",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "d421388b-fc69-45db-8095-f80f86bb2ab6",
+  "toolUseResult": {
+    "query": "github verifier reward model training curriculum generator distribution",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WkzzMz4mXToGnwKxbJDUd2",
+        "content": [
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub",
+            "url": "https://github.com/smiles724/Awesome-LLM-RLVR"
+          },
+          {
+            "title": "GitHub - RLHFlow/RLHF-Reward-Modeling: Recipes to train reward model for RLHF. · GitHub",
+            "url": "https://github.com/RLHFlow/RLHF-Reward-Modeling"
+          },
+          {
+            "title": "GitHub - JLZhong23/awesome-reward-models · GitHub",
+            "url": "https://github.com/JLZhong23/awesome-reward-models"
+          },
+          {
+            "title": "GitHub - mengdi-li/awesome-RLAIF: A continually updated list of literature on Reinforcement Learning from AI Feedback (RLAIF) · GitHub",
+            "url": "https://github.com/mengdi-li/awesome-RLAIF"
+          },
+          {
+            "title": "GitHub - Westlake-AI/SemiReward: [ICLR 2024] SemiReward: A General Reward Model for Semi-supervised Learning",
+            "url": "https://github.com/Westlake-AI/SemiReward"
+          },
+          {
+            "title": "reward-model · GitHub Topics · GitHub",
+            "url": "https://github.com/topics/reward-model"
+          },
+          {
+            "title": "ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search",
+            "url": "https://rest-mcts.github.io/"
+          },
+          {
+            "title": "GitHub - zankner/CLoud: Critique-out-Loud Reward Models",
+            "url": "https://github.com/zankner/CLoud"
+          },
+          {
+            "title": "GitHub - Dahoas/reward-modeling",
+            "url": "https://github.com/Dahoas/reward-modeling"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about GitHub resources for verifier reward model training, curriculum generator, and distribution:\n\n## Reinforcement Learning with Verifiable Rewards (RLVR)\n\nRLVR is a paradigm for aligning LLMs through external reward verification, self-consistency, and bootstrap learning, enabling models to improve reasoning capabilities without relying heavily on human supervision.\n\n## Key Repositories and Projects\n\n**Awesome RLVR Collections:**\n- opendilab/awesome-RLVR includes research on reinforcement learning with verifiable rewards covering capability boundaries, pass@k analysis, reasoning pattern emergence, and curriculum learning approaches.\n- smiles724/Awesome-LLM-RLVR provides a curated list of research papers, tools, datasets, and frameworks for Reinforcement Learning with Verifiable Rewards in Large Language Models.\n\n**Reward Model Training:**\n- RLHFlow/RLHF-Reward-Modeling is a repo for training reward/preference models for DRL-based RLHF (PPO), Iterative SFT, and iterative DPO.\n- It includes tools for training Bradley-Terry reward models and pairwise preference models that take a prompt and two responses as input and directly predict preference probability.\n\n**Process Reward Models:**\n- ReST-MCTS* integrates process reward guidance with tree search for collecting higher-quality reasoning traces and can infer correct process rewards by estimating the probability a step helps lead to the correct answer.\n\n**Novel Approaches:**\n- CLoud (Critique-out-Loud) reward models produce Chain-of-Thought like critiques before predicting rewards, trained to both produce explicit reasoning about quality and score based on critique reasoning traces.\n\nThese resources collectively address curriculum learning, verifier training, reward model distribution, and modern approaches to training reward models for LLM alignment."
+    ],
+    "durationSeconds": 8.551470663999993
+  },
+  "sourceToolAssistantUUID": "e5468e12-0b1f-4d54-9c75-52c72e538814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "d421388b-fc69-45db-8095-f80f86bb2ab6",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T03:32:36.975Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015HDNzmyMKc4d51wGiHKoZG`</summary>
+
+```json
+{
+  "query": "PRIME-RL github implementation process reward model online training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d421388b-fc69-45db-8095-f80f86bb2ab6",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L5n3kpuiptb772CS55",
+  "type": "assistant",
+  "uuid": "29aedec7-12ab-4096-86c9-9a0453be9103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W2kiMfrXm7JdWdX5xEF4R9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 39943,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 39943,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T03:32:45.048Z_
+
+<details><summary>↩ Tool result · `toolu_015HDNzmyMKc4d51wGiHKoZG`</summary>
+
+```text
+Web search results for query: "PRIME-RL github implementation process reward model online training"
+
+Links: [{"title":"GitHub - PRIME-RL/PRIME: Scalable RL solution for advanced reasoning of language models · GitHub","url":"https://github.com/PRIME-RL/PRIME"},{"title":"GitHub - PRIME-RL/ImplicitPRM: Repo of paper \"Free Process Rewards without Process Labels\" · GitHub","url":"https://github.com/PRIME-RL/ImplicitPRM"},{"title":"PRIME/README.md at main · PRIME-RL/PRIME","url":"https://github.com/PRIME-RL/PRIME/blob/main/README.md"},{"title":"Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/html/2502.01456v1"},{"title":"PRIME-RL · GitHub","url":"https://github.com/PRIME-RL"},{"title":"GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub","url":"https://github.com/PRIME-RL/SimpleVLA-RL"},{"title":"GitHub - PrimeIntellect-ai/prime-rl: Agentic RL Training at Scale · GitHub","url":"https://github.com/PrimeIntellect-ai/prime-rl"},{"title":"Marktechpost AI Dev News ⚡ on X: \"PRIME ((Process Reinforcement through Implicit Rewards): An Open-Source Solution for Online Reinforcement Learning with Process Rewards to Advance Reasoning Abilities of Language Models Beyond Imitation or Distillation The system employs implicit process reward modeling (PRM), https://t.co/kUczwpnFvq\" / X","url":"https://x.com/Marktechpost/status/1875734139535790394?lang=en"},{"title":"GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub","url":"https://github.com/PRIME-RL/TTRL"},{"title":"Process Reinforcement through Implicit Rewards","url":"https://huggingface.co/blog/ganqu/prime"}]
+
+Based on the search results, here's what I found about the PRIME-RL GitHub implementation for process reward model online training:
+
+## Overview
+
+PRIME (Process Reinforcement through IMplicit REwards) is an open-source solution for online RL with process rewards, to advance reasoning abilities of language models beyond imitation or distillation.
+
+## Key Implementation Details
+
+**Architecture and Initialization:**
+In PRIME, the policy model and PRM are both initialized with the SFT model. It is unnecessary to train a PRM beforehand, since the SFT model itself already serves as a strong starting point.
+
+**Online Training Process:**
+For each RL iteration, the policy model first generates rollouts. Then, the implicit PRM and outcome verifier score the rollouts, and the implicit PRM gets updated on the rollouts with the outcome reward.
+
+**Scalability Advantages:**
+Implicit PRM can be online updated with only outcome label. Therefore, we can directly update the PRM with on-policy rollouts given outcome verifiers, which mitigates the distribution shift as well as scalability issues for PRMs.
+
+## Repository Structure
+
+The code includes training (Implementation and training scripts for PRIME), data_preprocessing (Data preparation, especially math data for PRIME), and eval (Evaluation scripts to reproduce PRIME results).
+
+## Implementation Framework
+
+The implementation extends from veRL. They utilize vLLM for inference and develop evaluation scripts based on Eurus, Qwen2.5-Math, and LiveCodeBench. Their data sources mainly include NuminaMath, APPS, CodeContests, TACO, and Codeforces.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29aedec7-12ab-4096-86c9-9a0453be9103",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "30d62514-7e6e-4609-b970-c67e2c1f4849",
+  "toolUseResult": {
+    "query": "PRIME-RL github implementation process reward model online training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NZ51YidaZHoGVz3JruSWqy",
+        "content": [
+          {
+            "title": "GitHub - PRIME-RL/PRIME: Scalable RL solution for advanced reasoning of language models · GitHub",
+            "url": "https://github.com/PRIME-RL/PRIME"
+          },
+          {
+            "title": "GitHub - PRIME-RL/ImplicitPRM: Repo of paper \"Free Process Rewards without Process Labels\" · GitHub",
+            "url": "https://github.com/PRIME-RL/ImplicitPRM"
+          },
+          {
+            "title": "PRIME/README.md at main · PRIME-RL/PRIME",
+            "url": "https://github.com/PRIME-RL/PRIME/blob/main/README.md"
+          },
+          {
+            "title": "Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/html/2502.01456v1"
+          },
+          {
+            "title": "PRIME-RL · GitHub",
+            "url": "https://github.com/PRIME-RL"
+          },
+          {
+            "title": "GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub",
+            "url": "https://github.com/PRIME-RL/SimpleVLA-RL"
+          },
+          {
+            "title": "GitHub - PrimeIntellect-ai/prime-rl: Agentic RL Training at Scale · GitHub",
+            "url": "https://github.com/PrimeIntellect-ai/prime-rl"
+          },
+          {
+            "title": "Marktechpost AI Dev News ⚡ on X: \"PRIME ((Process Reinforcement through Implicit Rewards): An Open-Source Solution for Online Reinforcement Learning with Process Rewards to Advance Reasoning Abilities of Language Models Beyond Imitation or Distillation The system employs implicit process reward modeling (PRM), https://t.co/kUczwpnFvq\" / X",
+            "url": "https://x.com/Marktechpost/status/1875734139535790394?lang=en"
+          },
+          {
+            "title": "GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub",
+            "url": "https://github.com/PRIME-RL/TTRL"
+          },
+          {
+            "title": "Process Reinforcement through Implicit Rewards",
+            "url": "https://huggingface.co/blog/ganqu/prime"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the PRIME-RL GitHub implementation for process reward model online training:\n\n## Overview\n\nPRIME (Process Reinforcement through IMplicit REwards) is an open-source solution for online RL with process rewards, to advance reasoning abilities of language models beyond imitation or distillation.\n\n## Key Implementation Details\n\n**Architecture and Initialization:**\nIn PRIME, the policy model and PRM are both initialized with the SFT model. It is unnecessary to train a PRM beforehand, since the SFT model itself already serves as a strong starting point.\n\n**Online Training Process:**\nFor each RL iteration, the policy model first generates rollouts. Then, the implicit PRM and outcome verifier score the rollouts, and the implicit PRM gets updated on the rollouts with the outcome reward.\n\n**Scalability Advantages:**\nImplicit PRM can be online updated with only outcome label. Therefore, we can directly update the PRM with on-policy rollouts given outcome verifiers, which mitigates the distribution shift as well as scalability issues for PRMs.\n\n## Repository Structure\n\nThe code includes training (Implementation and training scripts for PRIME), data_preprocessing (Data preparation, especially math data for PRIME), and eval (Evaluation scripts to reproduce PRIME results).\n\n## Implementation Framework\n\nThe implementation extends from veRL. They utilize vLLM for inference and develop evaluation scripts based on Eurus, Qwen2.5-Math, and LiveCodeBench. Their data sources mainly include NuminaMath, APPS, CodeContests, TACO, and Codeforces."
+    ],
+    "durationSeconds": 8.068600866000022
+  },
+  "sourceToolAssistantUUID": "29aedec7-12ab-4096-86c9-9a0453be9103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T03:32:47.577Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HwGKaDpfccb4xb8HXZuJkG`</summary>
+
+```json
+{
+  "query": "A100 GPU cloud rental cost per hour 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30d62514-7e6e-4609-b970-c67e2c1f4849",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L6aCeFrNWkxCHRLuGu",
+  "type": "assistant",
+  "uuid": "7cf1e0d7-5e7c-4651-8122-610faba952f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H45bYue7c3pmDcPMMrZGEx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1019,
+      "cache_read_input_tokens": 40974,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 40974,
+          "cache_creation_input_tokens": 1019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T03:32:55.129Z_
+
+<details><summary>↩ Tool result · `toolu_01HwGKaDpfccb4xb8HXZuJkG`</summary>
+
+```text
+Web search results for query: "A100 GPU cloud rental cost per hour 2026"
+
+Links: [{"title":"NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances","url":"https://www.thundercompute.com/blog/a100-gpu-pricing-showdown-2025-who-s-the-cheapest-for-deep-learning-workloads"},{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"NVIDIA A100: Pricing, Availability, and Best Cloud Options (2026) - Fluence","url":"https://www.fluence.network/blog/nvidia-a100/"},{"title":"GPU pricing | Google Cloud","url":"https://cloud.google.com/compute/gpus-pricing"},{"title":"A100 Cloud Pricing: Compare 38+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-a100"},{"title":"2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers","url":"https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"},{"title":"GPU Cloud Pricing 2026: H100 from $1.03/hr, B200 from $2.12/hr (15+ providers) | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud","url":"https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"},{"title":"AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda","url":"https://lambda.ai/pricing"}]
+
+Based on the search results, here's what A100 GPU cloud rental costs look like in 2026:
+
+## Current A100 Pricing (2026)
+
+Cloud rental ranges from $1.49 to $3.43 per GPU hour for A100 GPUs, though there's significant variation depending on the provider.
+
+**Pricing by Provider Type:**
+
+- **Specialized/Decentralized Platforms**: The A100 GPU cost per hour now ranges from $0.96 to $1.29 on decentralized and specialized platforms
+- **Budget Options**: Jarvislabs offers A100 80GB at $1.49/hr, RunPod at $1.49/hr, and Lambda Labs at $2.06/hr
+- **Hyperscalers**: AWS and Azure offer A100s only in 8-GPU instances at $3.40-$3.43/GPU/hr
+
+**Wide Range Across Market**: A100 pricing currently ranges from $0.09/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model. The lower end typically includes spot instances, while higher prices represent reserved or premium hyperscaler offerings.
+
+**Cost Context**: At 720 hours per month, one A100 can cost between $68.00 to $3,628.80 per month, depending on the provider.
+
+The best value appears to be on specialized cloud platforms and marketplaces, which offer significantly lower rates than major hyperscalers like AWS and Google Cloud.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7cf1e0d7-5e7c-4651-8122-610faba952f0",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "dab3ae2f-ecc3-42cc-8e2f-a4f37ff2313a",
+  "toolUseResult": {
+    "query": "A100 GPU cloud rental cost per hour 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013DFHpgbL6vCTeDau8iiz9Y",
+        "content": [
+          {
+            "title": "NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances",
+            "url": "https://www.thundercompute.com/blog/a100-gpu-pricing-showdown-2025-who-s-the-cheapest-for-deep-learning-workloads"
+          },
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...",
+            "url": "https://jarvislabs.ai/blog/a100-price"
+          },
+          {
+            "title": "NVIDIA A100: Pricing, Availability, and Best Cloud Options (2026) - Fluence",
+            "url": "https://www.fluence.network/blog/nvidia-a100/"
+          },
+          {
+            "title": "GPU pricing | Google Cloud",
+            "url": "https://cloud.google.com/compute/gpus-pricing"
+          },
+          {
+            "title": "A100 Cloud Pricing: Compare 38+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-a100"
+          },
+          {
+            "title": "2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers",
+            "url": "https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"
+          },
+          {
+            "title": "GPU Cloud Pricing 2026: H100 from $1.03/hr, B200 from $2.12/hr (15+ providers) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud",
+            "url": "https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"
+          },
+          {
+            "title": "AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda",
+            "url": "https://lambda.ai/pricing"
+          }
+        ]
+      },
+      "Based on the search results, here's what A100 GPU cloud rental costs look like in 2026:\n\n## Current A100 Pricing (2026)\n\nCloud rental ranges from $1.49 to $3.43 per GPU hour for A100 GPUs, though there's significant variation depending on the provider.\n\n**Pricing by Provider Type:**\n\n- **Specialized/Decentralized Platforms**: The A100 GPU cost per hour now ranges from $0.96 to $1.29 on decentralized and specialized platforms\n- **Budget Options**: Jarvislabs offers A100 80GB at $1.49/hr, RunPod at $1.49/hr, and Lambda Labs at $2.06/hr\n- **Hyperscalers**: AWS and Azure offer A100s only in 8-GPU instances at $3.40-$3.43/GPU/hr\n\n**Wide Range Across Market**: A100 pricing currently ranges from $0.09/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model. The lower end typically includes spot instances, while higher prices represent reserved or premium hyperscaler offerings.\n\n**Cost Context**: At 720 hours per month, one A100 can cost between $68.00 to $3,628.80 per month, depending on the provider.\n\nThe best value appears to be on specialized cloud platforms and marketplaces, which offer significantly lower rates than major hyperscalers like AWS and Google Cloud."
+    ],
+    "durationSeconds": 7.547837916999997
+  },
+  "sourceToolAssistantUUID": "7cf1e0d7-5e7c-4651-8122-610faba952f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T03:32:58.688Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fcx4sFkBzJ6i1b3AKw63sV`</summary>
+
+```json
+{
+  "query": "NeurIPS 2025 RL Tango paper venue confirmed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dab3ae2f-ecc3-42cc-8e2f-a4f37ff2313a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L7K1sRCJ5n5c72eZUB",
+  "type": "assistant",
+  "uuid": "51ee3ac0-9c49-4326-8118-664d563fe062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NZFgF3ieb7o7r2cGWm5UmG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 990,
+      "cache_read_input_tokens": 41993,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 41993,
+          "cache_creation_input_tokens": 990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T03:33:02.793Z_
+
+<details><summary>↩ Tool result · `toolu_01Fcx4sFkBzJ6i1b3AKw63sV`</summary>
+
+```text
+Web search results for query: "NeurIPS 2025 RL Tango paper venue confirmed"
+
+Links: [{"title":"NeurIPS 2025 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/neurips-paper-list/neurips-2025-paper-list/"},{"title":"NeurIPS.2025 - Oral | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/NeurIPS.2025?group=Oral"},{"title":"NeurIPS 2025: A Guide to Key Papers, Trends & Stats | IntuitionLabs","url":"https://intuitionlabs.ai/articles/neurips-2025-conference-summary-trends"},{"title":"NeurIPS.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/NeurIPS.2025"},{"title":"NeurIPS 2025 Awards","url":"https://neurips.cc/virtual/2025/awards_detail"},{"title":"Paper Digest: NeurIPS 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/11/neurips-2025-papers-highlights/"},{"title":"NeurIPS Poster RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/118724"},{"title":"Announcing the NeurIPS 2025 Best Paper Awards – NeurIPS Blog","url":"https://blog.neurips.cc/2025/11/26/announcing-the-neurips-2025-best-paper-awards/"},{"title":"NeurIPS Poster 1000 Layer Networks for Self-Supervised RL: Scaling Depth Can Enable New Goal-Reaching Capabilities","url":"https://neurips.cc/virtual/2025/poster/115731"},{"title":"NeurIPS 2025 Recap | Amplify Partners","url":"https://www.amplifypartners.com/blog-posts/neurips-2025-recap"}]
+
+Based on the search results, I found information about the RL Tango paper at NeurIPS 2025:
+
+Tango is a novel framework that uses RL to concurrently train both an LLM generator and a verifier in an interleaved manner, with a central innovation being its generative, process-level LLM verifier, which is trained via RL and co-evolves with the generator.
+
+The paper was presented as a poster presentation at NeurIPS 2025, and the venue has been confirmed as NeurIPS 2025 in San Diego (as indicated by the poster URL reference to the NeurIPS virtual conference site for San Diego).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51ee3ac0-9c49-4326-8118-664d563fe062",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "513a6d23-90ee-4121-a2e6-4c77574a58ad",
+  "toolUseResult": {
+    "query": "NeurIPS 2025 RL Tango paper venue confirmed",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TniHqqL4h1e8zWhDMdu2ap",
+        "content": [
+          {
+            "title": "NeurIPS 2025 Accepted Paper List - Paper Copilot",
+            "url": "https://papercopilot.com/paper-list/neurips-paper-list/neurips-2025-paper-list/"
+          },
+          {
+            "title": "NeurIPS.2025 - Oral | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/NeurIPS.2025?group=Oral"
+          },
+          {
+            "title": "NeurIPS 2025: A Guide to Key Papers, Trends & Stats | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/neurips-2025-conference-summary-trends"
+          },
+          {
+            "title": "NeurIPS.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/NeurIPS.2025"
+          },
+          {
+            "title": "NeurIPS 2025 Awards",
+            "url": "https://neurips.cc/virtual/2025/awards_detail"
+          },
+          {
+            "title": "Paper Digest: NeurIPS 2025 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2025/11/neurips-2025-papers-highlights/"
+          },
+          {
+            "title": "NeurIPS Poster RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/118724"
+          },
+          {
+            "title": "Announcing the NeurIPS 2025 Best Paper Awards – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2025/11/26/announcing-the-neurips-2025-best-paper-awards/"
+          },
+          {
+            "title": "NeurIPS Poster 1000 Layer Networks for Self-Supervised RL: Scaling Depth Can Enable New Goal-Reaching Capabilities",
+            "url": "https://neurips.cc/virtual/2025/poster/115731"
+          },
+          {
+            "title": "NeurIPS 2025 Recap | Amplify Partners",
+            "url": "https://www.amplifypartners.com/blog-posts/neurips-2025-recap"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the RL Tango paper at NeurIPS 2025:\n\nTango is a novel framework that uses RL to concurrently train both an LLM generator and a verifier in an interleaved manner, with a central innovation being its generative, process-level LLM verifier, which is trained via RL and co-evolves with the generator.\n\nThe paper was presented as a poster presentation at NeurIPS 2025, and the venue has been confirmed as NeurIPS 2025 in San Diego (as indicated by the poster URL reference to the NeurIPS virtual conference site for San Diego)."
+    ],
+    "durationSeconds": 4.100393819999997
+  },
+  "sourceToolAssistantUUID": "51ee3ac0-9c49-4326-8118-664d563fe062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T03:33:05.383Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U7tJMfGXNk2TCwyujDM84g`</summary>
+
+```json
+{
+  "query": "CURE co-evolving coder tester NeurIPS 2025 Spotlight"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "513a6d23-90ee-4121-a2e6-4c77574a58ad",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L7snM91ccoLb2nYiaC",
+  "type": "assistant",
+  "uuid": "a8895002-d367-4777-a7a5-bf7f51341d61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016DZc3xfHWUix4DBjRew6cg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 772,
+      "cache_read_input_tokens": 42983,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 772,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 42983,
+          "cache_creation_input_tokens": 772,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 772
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T03:33:13.130Z_
+
+<details><summary>↩ Tool result · `toolu_01U7tJMfGXNk2TCwyujDM84g`</summary>
+
+```text
+Web search results for query: "CURE co-evolving coder tester NeurIPS 2025 Spotlight"
+
+Links: [{"title":"GitHub - Gen-Verse/CURE: [NeurIPS 2025 Spotlight] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning · GitHub","url":"https://github.com/Gen-Verse/CURE"},{"title":"NeurIPS Poster CURE: Co-Evolving Coders and Unit Testers via Reinforcement Learning","url":"https://neurips.cc/virtual/2025/poster/115329"},{"title":"CURE: Co-Evolving Coders and Unit Testers via Reinforcement Learning | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/wPdBe9zxNr@OpenReview"},{"title":"Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=wPdBe9zxNr"},{"title":"CURE: Co-Evolving Coders and Unit Testers via Reinforcement Learning","url":"https://openreview.net/pdf/6be4b1f5dff8b39f2e222dc06ccafec29b4f4ec0.pdf"},{"title":"GitHub - Gen-Verse/ReasonFlux: [NeurIPS 2025 Spotlight] LLM post-training suite — featuring ReasonFlux, ReasonFlux-PRM, and ReasonFlux-Coder.","url":"https://github.com/Gen-Verse/ReasonFlux"},{"title":"CURE-Bench @ NeurIPS 2025 – AI Reasoning for ...","url":"https://curebench.ai/"},{"title":"Update from the CUREBench NeurIPS Competition","url":"https://www.linkedin.com/posts/marinkaz_update-from-the-curebench-neurips-competition-activity-7366482770396667910-b2Dm"},{"title":"CureAgent: A Training-Free Executor-Analyst Framework for Clinical Reasoning","url":"https://arxiv.org/html/2512.05576v1"},{"title":"Our Journey to the Top of CUREBench@NeurIPS 2025","url":"https://unibiointelligence.com/blog/curebench-neurips-2025"}]
+
+Based on the search results, here's what I found about CURE:
+
+## CURE: Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning
+
+CURE is a NeurIPS 2025 Spotlight presentation at the San Diego conference on December 5, 2025.
+
+### Overview
+CURE is a novel reinforcement learning framework with a dedicated reward design that co-evolves coding and unit test generation capabilities based on their interaction outcomes—without any ground-truth code as supervision.
+
+### Key Innovation
+The research highlights unit test generation as a key factor for enhancing coding ability, since accurate unit tests are essential for enabling self-checking and self-correction during inference, while traditional approaches for fine-tuning LLMs on unit test generation rely heavily on ground-truth code solutions in the training data. The unit tester requires no ground-truth code in the training data—it automatically learns from the coder's mistakes during the RL rollout process.
+
+### Research Results
+The models naturally extend to downstream tasks such as test-time scaling—achieving a 6.2% improvement over the base model—and agentic unit test generation, with a 25.1% improvement. ReasonFlux-Coder-7B and ReasonFlux-Coder-14B outperform similarly sized Qwen Coders and DeepSeek Coders.
+
+The work is authored by Yinjie Wang, Ling Yang, Ye Tian, Ke Shen, and Mengdi Wang, and code is available on GitHub at Gen-Verse/CURE.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8895002-d367-4777-a7a5-bf7f51341d61",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "aeb6ef56-cda1-48b6-b1de-d70c20c84122",
+  "toolUseResult": {
+    "query": "CURE co-evolving coder tester NeurIPS 2025 Spotlight",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016rs62sKHuh2ZdLr43SyQKW",
+        "content": [
+          {
+            "title": "GitHub - Gen-Verse/CURE: [NeurIPS 2025 Spotlight] Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning · GitHub",
+            "url": "https://github.com/Gen-Verse/CURE"
+          },
+          {
+            "title": "NeurIPS Poster CURE: Co-Evolving Coders and Unit Testers via Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2025/poster/115329"
+          },
+          {
+            "title": "CURE: Co-Evolving Coders and Unit Testers via Reinforcement Learning | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/wPdBe9zxNr@OpenReview"
+          },
+          {
+            "title": "Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=wPdBe9zxNr"
+          },
+          {
+            "title": "CURE: Co-Evolving Coders and Unit Testers via Reinforcement Learning",
+            "url": "https://openreview.net/pdf/6be4b1f5dff8b39f2e222dc06ccafec29b4f4ec0.pdf"
+          },
+          {
+            "title": "GitHub - Gen-Verse/ReasonFlux: [NeurIPS 2025 Spotlight] LLM post-training suite — featuring ReasonFlux, ReasonFlux-PRM, and ReasonFlux-Coder.",
+            "url": "https://github.com/Gen-Verse/ReasonFlux"
+          },
+          {
+            "title": "CURE-Bench @ NeurIPS 2025 – AI Reasoning for ...",
+            "url": "https://curebench.ai/"
+          },
+          {
+            "title": "Update from the CUREBench NeurIPS Competition",
+            "url": "https://www.linkedin.com/posts/marinkaz_update-from-the-curebench-neurips-competition-activity-7366482770396667910-b2Dm"
+          },
+          {
+            "title": "CureAgent: A Training-Free Executor-Analyst Framework for Clinical Reasoning",
+            "url": "https://arxiv.org/html/2512.05576v1"
+          },
+          {
+            "title": "Our Journey to the Top of CUREBench@NeurIPS 2025",
+            "url": "https://unibiointelligence.com/blog/curebench-neurips-2025"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CURE:\n\n## CURE: Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning\n\nCURE is a NeurIPS 2025 Spotlight presentation at the San Diego conference on December 5, 2025.\n\n### Overview\nCURE is a novel reinforcement learning framework with a dedicated reward design that co-evolves coding and unit test generation capabilities based on their interaction outcomes—without any ground-truth code as supervision.\n\n### Key Innovation\nThe research highlights unit test generation as a key factor for enhancing coding ability, since accurate unit tests are essential for enabling self-checking and self-correction during inference, while traditional approaches for fine-tuning LLMs on unit test generation rely heavily on ground-truth code solutions in the training data. The unit tester requires no ground-truth code in the training data—it automatically learns from the coder's mistakes during the RL rollout process.\n\n### Research Results\nThe models naturally extend to downstream tasks such as test-time scaling—achieving a 6.2% improvement over the base model—and agentic unit test generation, with a 25.1% improvement. ReasonFlux-Coder-7B and ReasonFlux-Coder-14B outperform similarly sized Qwen Coders and DeepSeek Coders.\n\nThe work is authored by Yinjie Wang, Ling Yang, Ye Tian, Ke Shen, and Mengdi Wang, and code is available on GitHub at Gen-Verse/CURE."
+    ],
+    "durationSeconds": 7.743657406000013
+  },
+  "sourceToolAssistantUUID": "a8895002-d367-4777-a7a5-bf7f51341d61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81 · 2026-05-18T03:33:13.133Z_
+
+```json
+{
+  "parentUuid": "aeb6ef56-cda1-48b6-b1de-d70c20c84122",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e0d51b1f-e55b-445e-9598-728b565b8fcd",
+  "timestamp": "2026-05-18T03:33:13.133Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-18T03:33:16.352Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NZdhXqJkD2zcUkbGa8kSAj`</summary>
+
+```json
+{
+  "query": "VCRL variance curriculum reinforcement learning venue ICLR NeurIPS 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0d51b1f-e55b-445e-9598-728b565b8fcd",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L8dxvQmCrnE6HfrGBq",
+  "type": "assistant",
+  "uuid": "be502759-3b00-40c6-bade-36db754c4d5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BQst5FkEi3xbAGsAQeDfaK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 43755,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 43755,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "be502759-3b00-40c6-bade-36db754c4d5d",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-18T03:33:28.021Z_
+
+<details><summary>↩ Tool result · `toolu_01NZdhXqJkD2zcUkbGa8kSAj`</summary>
+
+```text
+Web search results for query: "VCRL variance curriculum reinforcement learning venue ICLR NeurIPS 2026"
+
+Links: [{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2509.19803v1"},{"title":"[2509.19803] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2509.19803"},{"title":"Paper page - VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://huggingface.co/papers/2509.19803"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=FBhWTuMTYA"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.19803"},{"title":"[2509.19803v1] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2509.19803v1"},{"title":"Preprint VCRL: VARIANCE-BASED CURRICULUM REINFORCE-","url":"https://arxiv.org/pdf/2509.19803"},{"title":"VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models","url":"https://www.researchgate.net/publication/395806814_VCRL_Variance-based_Curriculum_Reinforcement_Learning_for_Large_Language_Models"},{"title":"VCRL: Variance-based Curriculum Reinforcement ...","url":"https://liner.com/review/vcrl-variancebased-curriculum-reinforcement-learning-for-large-language-models"},{"title":"VCRL: A New Approach to LLM Reinforcement Learning that Controls Learning Difficulty with Reward Variance | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/llm-paper/vcrl"}]
+
+Based on the search results, here's what I found about VCRL:
+
+## VCRL: Variance-based Curriculum Reinforcement Learning
+
+VCRL is a curriculum reinforcement learning framework that dynamically controls the difficulty of training samples based on the variance of group rewards.
+
+### Key Concept
+
+The variance of the rollout group's reward partly reflects the difficulty of the current sample for LLMs, with samples that are too easy or too difficult having lower variance, while samples with moderate difficulty having higher variance.
+
+### Methodology
+
+The framework incorporates two main components:
+
+1. **Variance-based Dynamic Sampling**: VCRL uses Variance-based Dynamic Sampling to select samples for training, helping control the quality of the training batch.
+
+2. **Replay Learning**: VCRL uses Replay Learning with a memory bank to further boost training efficiency.
+
+### Performance
+
+Experiments on five mathematical benchmarks and two models reveal the advantages of VCRL over the current LLM RL baselines. For the Qwen3-8B-Base model, VCRL achieved an average score of 57.76 across all benchmarks, significantly outperforming the strongest baseline GSPO (53.09).
+
+### Publication Status
+
+The paper was submitted on September 24, 2025, and is available on arXiv (2509.19803) and OpenReview. However, the search results do not contain information confirming whether it has been accepted to or will be presented at ICLR or NeurIPS 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be502759-3b00-40c6-bade-36db754c4d5d",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "824b9a10-46ce-4312-80d3-df0e01560aaf",
+  "toolUseResult": {
+    "query": "VCRL variance curriculum reinforcement learning venue ICLR NeurIPS 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016fpVghEV9bFyKQdohhEWkx",
+        "content": [
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2509.19803v1"
+          },
+          {
+            "title": "[2509.19803] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2509.19803"
+          },
+          {
+            "title": "Paper page - VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://huggingface.co/papers/2509.19803"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=FBhWTuMTYA"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.19803"
+          },
+          {
+            "title": "[2509.19803v1] VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2509.19803v1"
+          },
+          {
+            "title": "Preprint VCRL: VARIANCE-BASED CURRICULUM REINFORCE-",
+            "url": "https://arxiv.org/pdf/2509.19803"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models",
+            "url": "https://www.researchgate.net/publication/395806814_VCRL_Variance-based_Curriculum_Reinforcement_Learning_for_Large_Language_Models"
+          },
+          {
+            "title": "VCRL: Variance-based Curriculum Reinforcement ...",
+            "url": "https://liner.com/review/vcrl-variancebased-curriculum-reinforcement-learning-for-large-language-models"
+          },
+          {
+            "title": "VCRL: A New Approach to LLM Reinforcement Learning that Controls Learning Difficulty with Reward Variance | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media",
+            "url": "https://ai-scholar.tech/en/llm-paper/vcrl"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VCRL:\n\n## VCRL: Variance-based Curriculum Reinforcement Learning\n\nVCRL is a curriculum reinforcement learning framework that dynamically controls the difficulty of training samples based on the variance of group rewards.\n\n### Key Concept\n\nThe variance of the rollout group's reward partly reflects the difficulty of the current sample for LLMs, with samples that are too easy or too difficult having lower variance, while samples with moderate difficulty having higher variance.\n\n### Methodology\n\nThe framework incorporates two main components:\n\n1. **Variance-based Dynamic Sampling**: VCRL uses Variance-based Dynamic Sampling to select samples for training, helping control the quality of the training batch.\n\n2. **Replay Learning**: VCRL uses Replay Learning with a memory bank to further boost training efficiency.\n\n### Performance\n\nExperiments on five mathematical benchmarks and two models reveal the advantages of VCRL over the current LLM RL baselines. For the Qwen3-8B-Base model, VCRL achieved an average score of 57.76 across all benchmarks, significantly outperforming the strongest baseline GSPO (53.09).\n\n### Publication Status\n\nThe paper was submitted on September 24, 2025, and is available on arXiv (2509.19803) and OpenReview. However, the search results do not contain information confirming whether it has been accepted to or will be presented at ICLR or NeurIPS 2026."
+    ],
+    "durationSeconds": 11.664119056999974
+  },
+  "sourceToolAssistantUUID": "be502759-3b00-40c6-bade-36db754c4d5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-18T03:33:30.533Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RjGRRFmffPXL2o4rqS366A`</summary>
+
+```json
+{
+  "query": "openreview ICLR 2027 deadline announced October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "824b9a10-46ce-4312-80d3-df0e01560aaf",
+  "isSidechain": false,
+  "requestId": "req_011Cb9L9jfzaz43M75sj1JwX",
+  "type": "assistant",
+  "uuid": "97fbb0e0-c256-4e6c-8715-a4840716b923",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XCgS1jx2kiwmmCWPmApxbH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 44916,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 44916,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-18T03:33:34.806Z_
+
+<details><summary>↩ Tool result · `toolu_01RjGRRFmffPXL2o4rqS366A`</summary>
+
+```text
+Web search results for query: "openreview ICLR 2027 deadline announced October 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"ICLR 2026 | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"ICLR 2026 (@iclr_conf) / X","url":"https://x.com/iclr_conf"},{"title":"2026 Conference","url":"https://iclr.cc/Conferences/2026"},{"title":"ICLR 2026 Conference Submissions","url":"https://openreview.net/submissions?venue=ICLR.cc%2F2026%2FConference"},{"title":"ICLR 2026 Reviewer Guide","url":"https://iclr.cc/Conferences/2026/ReviewerGuide"}]
+
+I found information about ICLR 2026, but the search results don't contain specific information about ICLR 2027 deadlines announced in October 2026. The search results primarily focus on ICLR 2026, which took place in April 2026 in Rio de Janeiro. 
+
+Since today's date is May 18, 2026, an October 2026 announcement about ICLR 2027 deadlines would be a future event that hasn't occurred yet in the search results. The available information only covers ICLR 2026 details and doesn't include any announcement about ICLR 2027 submission deadlines or timelines.
+
+To find information about ICLR 2027 deadlines when they are announced, you would likely want to check the official ICLR website (iclr.cc) or the OpenReview page for ICLR 2027 directly in October 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97fbb0e0-c256-4e6c-8715-a4840716b923",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "903338d7-eef6-420f-9e2c-0cbb6562f32b",
+  "toolUseResult": {
+    "query": "openreview ICLR 2027 deadline announced October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XKML9WicC2aGZZnVstcLxm",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "ICLR 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "ICLR 2026 (@iclr_conf) / X",
+            "url": "https://x.com/iclr_conf"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://iclr.cc/Conferences/2026"
+          },
+          {
+            "title": "ICLR 2026 Conference Submissions",
+            "url": "https://openreview.net/submissions?venue=ICLR.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICLR 2026 Reviewer Guide",
+            "url": "https://iclr.cc/Conferences/2026/ReviewerGuide"
+          }
+        ]
+      },
+      "I found information about ICLR 2026, but the search results don't contain specific information about ICLR 2027 deadlines announced in October 2026. The search results primarily focus on ICLR 2026, which took place in April 2026 in Rio de Janeiro. \n\nSince today's date is May 18, 2026, an October 2026 announcement about ICLR 2027 deadlines would be a future event that hasn't occurred yet in the search results. The available information only covers ICLR 2026 details and doesn't include any announcement about ICLR 2027 submission deadlines or timelines.\n\nTo find information about ICLR 2027 deadlines when they are announced, you would likely want to check the official ICLR website (iclr.cc) or the OpenReview page for ICLR 2027 directly in October 2026."
+    ],
+    "durationSeconds": 4.24986526000005
+  },
+  "sourceToolAssistantUUID": "97fbb0e0-c256-4e6c-8715-a4840716b923",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-18T03:33:37.926Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MY2uzPBJVFGytKiq8yBwfy`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline conference on language models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "903338d7-eef6-420f-9e2c-0cbb6562f32b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LAEhVv63rZxBDe5M21",
+  "type": "assistant",
+  "uuid": "4a4e4492-d5d4-4602-a2ce-01f6fd9f0485",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013p9nZrZdFNAxtvCYiNjE5b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 45894,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 692,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 45894,
+          "cache_creation_input_tokens": 692,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 692
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-18T03:33:42.384Z_
+
+<details><summary>↩ Tool result · `toolu_01MY2uzPBJVFGytKiq8yBwfy`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline conference on language models"
+
+Links: [{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"COLM 2026 - Conference on Language Modeling Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/colm"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026","url":"https://colmweb.org/"},{"title":"Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research","url":"https://www.servicenow.com/research/event/2026-colm.html"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"Conference on Language Modeling (@COLM_conf) / Posts ...","url":"https://x.com/COLM_conf"},{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"COLM 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=colm26"}]
+
+Based on the search results, here is the information about COLM 2026:
+
+## COLM 2026 Submission Deadlines
+
+The abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.
+
+## Conference Details
+
+COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.
+
+## Additional Important Information
+
+- The submission link on OpenReview will open in February 2026.
+- There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations.
+- Review results will be released on May 22, 2026, with the rebuttal deadline on June 8, 2026, and final decisions on July 8, 2026.
+
+For questions about submissions, you can contact colm-pcs@googlegroups.com.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a4e4492-d5d4-4602-a2ce-01f6fd9f0485",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "f21a79a8-fcc1-4c64-bdd0-0c4ae5982e65",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline conference on language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016cK9LLhyPZgeCiB9SQVGZU",
+        "content": [
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "COLM 2026 - Conference on Language Modeling Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/colm"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026",
+            "url": "https://colmweb.org/"
+          },
+          {
+            "title": "Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research",
+            "url": "https://www.servicenow.com/research/event/2026-colm.html"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "Conference on Language Modeling (@COLM_conf) / Posts ...",
+            "url": "https://x.com/COLM_conf"
+          },
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "COLM 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=colm26"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about COLM 2026:\n\n## COLM 2026 Submission Deadlines\n\nThe abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.\n\n## Conference Details\n\nCOLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.\n\n## Additional Important Information\n\n- The submission link on OpenReview will open in February 2026.\n- There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations.\n- Review results will be released on May 22, 2026, with the rebuttal deadline on June 8, 2026, and final decisions on July 8, 2026.\n\nFor questions about submissions, you can contact colm-pcs@googlegroups.com."
+    ],
+    "durationSeconds": 4.454369141999981
+  },
+  "sourceToolAssistantUUID": "4a4e4492-d5d4-4602-a2ce-01f6fd9f0485",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-18T03:33:45.094Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QaZYEv3T7TeRqZYpQvnGwx`</summary>
+
+```json
+{
+  "query": "Qwen3.5 model size parameters release date 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f21a79a8-fcc1-4c64-bdd0-0c4ae5982e65",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LAo3g48oQbZjP7ivi9",
+  "type": "assistant",
+  "uuid": "d628f26b-4858-436e-a48f-3145f517e0fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAHUKXPr5dgoS7GRg8zwhA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 46586,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 46586,
+          "cache_creation_input_tokens": 785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-18T03:33:56.758Z_
+
+<details><summary>↩ Tool result · `toolu_01QaZYEv3T7TeRqZYpQvnGwx`</summary>
+
+```text
+Web search results for query: "Qwen3.5 model size parameters release date 2026"
+
+Links: [{"title":"Qwen 3.5 Review 2026: The Full Model Family — From 0.8B Edge to 122B Enterprise - ComputerTech","url":"https://computertech.co/qwen-3-5-review/"},{"title":"Qwen3.5 is the large language model series ...","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"Qwen 3.5 Medium Models: Benchmarks, Pricing, and Guide","url":"https://www.digitalapplied.com/blog/qwen-3-5-medium-model-series-benchmarks-pricing-guide"},{"title":"Qwen 3.5 Small Model Series Release: Local, private, free | STARTUP EDITION","url":"https://blog.mean.ceo/qwen-3-5-small-model-series-release/"},{"title":"Qwen 3 Release Date: AI Performance Analysis and Model Timeline - H3sync","url":"https://h3sync.com/blog/qwen-3-release-date/"},{"title":"Qwen 3.5 Small Models: Alibaba Delivers Compact Multimodal Powerhouses | by Nikhil | Neural Notions | Medium","url":"https://medium.com/neuralnotions/qwen-3-5-small-models-alibaba-delivers-compact-multimodal-powerhouses-9520af4d792e"},{"title":"Qwen 3.5: Alibaba’s 397B Open-Weight Multimodal Model","url":"https://www.thesys.dev/blogs/qwen-3-5"},{"title":"Qwen/Qwen3.5-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-27B"},{"title":"Qwen - Wikipedia","url":"https://en.wikipedia.org/wiki/Qwen"},{"title":"Qwen 3.5: The Complete Guide - Benchmarks, Local Setup, and How It Stacks Up Against Every Major Model","url":"https://techie007.substack.com/p/qwen-35-the-complete-guide-benchmarks"}]
+
+Based on the search results, here's comprehensive information about Qwen3.5 model sizes, parameters, and release dates in 2026:
+
+## Model Sizes and Parameters
+
+Qwen 3.5 covers nine sizes: Small series (0.8B, 2B, 4B, 9B — released March 2, 2026), Medium series (27B dense, 35B-A3B MoE, 122B-A10B MoE, and Flash API-only — released February 24), and the flagship 397B-A17B (released February 16).
+
+## Release Timeline
+
+The Qwen3.5 family was released in three waves during February and March 2026:
+
+- **Flagship Release (February 16):** Qwen3.5 was released, with the first release including a 397B-A17B MoE model.
+
+- **Medium Series (February 24):** Qwen3.5-122B-A10B, Qwen3.5-35B-A3B, and Qwen3.5-27B are released.
+
+- **Small Series (March 2):** Alibaba released Qwen 3.5 Small Model Series on March 1, 2026, with four variants: 0.8B, 2B, 4B, and 9B parameters.
+
+## Architecture Details
+
+Qwen 3.5 uses a hybrid Gated Delta Network + Mixture-of-Experts architecture, and for the MoE models, Qwen3.5-35B-A3B activates only 8.6% of its total parameters per forward pass (3B of 35B), routing each token through 8 specialized experts out of 256 total, plus 1 shared expert.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d628f26b-4858-436e-a48f-3145f517e0fa",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "6edae091-49bb-4941-8ef6-3877edbd5eea",
+  "toolUseResult": {
+    "query": "Qwen3.5 model size parameters release date 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QupuXKWKEcc4UHQDw98zLk",
+        "content": [
+          {
+            "title": "Qwen 3.5 Review 2026: The Full Model Family — From 0.8B Edge to 122B Enterprise - ComputerTech",
+            "url": "https://computertech.co/qwen-3-5-review/"
+          },
+          {
+            "title": "Qwen3.5 is the large language model series ...",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "Qwen 3.5 Medium Models: Benchmarks, Pricing, and Guide",
+            "url": "https://www.digitalapplied.com/blog/qwen-3-5-medium-model-series-benchmarks-pricing-guide"
+          },
+          {
+            "title": "Qwen 3.5 Small Model Series Release: Local, private, free | STARTUP EDITION",
+            "url": "https://blog.mean.ceo/qwen-3-5-small-model-series-release/"
+          },
+          {
+            "title": "Qwen 3 Release Date: AI Performance Analysis and Model Timeline - H3sync",
+            "url": "https://h3sync.com/blog/qwen-3-release-date/"
+          },
+          {
+            "title": "Qwen 3.5 Small Models: Alibaba Delivers Compact Multimodal Powerhouses | by Nikhil | Neural Notions | Medium",
+            "url": "https://medium.com/neuralnotions/qwen-3-5-small-models-alibaba-delivers-compact-multimodal-powerhouses-9520af4d792e"
+          },
+          {
+            "title": "Qwen 3.5: Alibaba’s 397B Open-Weight Multimodal Model",
+            "url": "https://www.thesys.dev/blogs/qwen-3-5"
+          },
+          {
+            "title": "Qwen/Qwen3.5-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-27B"
+          },
+          {
+            "title": "Qwen - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Qwen"
+          },
+          {
+            "title": "Qwen 3.5: The Complete Guide - Benchmarks, Local Setup, and How It Stacks Up Against Every Major Model",
+            "url": "https://techie007.substack.com/p/qwen-35-the-complete-guide-benchmarks"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Qwen3.5 model sizes, parameters, and release dates in 2026:\n\n## Model Sizes and Parameters\n\nQwen 3.5 covers nine sizes: Small series (0.8B, 2B, 4B, 9B — released March 2, 2026), Medium series (27B dense, 35B-A3B MoE, 122B-A10B MoE, and Flash API-only — released February 24), and the flagship 397B-A17B (released February 16).\n\n## Release Timeline\n\nThe Qwen3.5 family was released in three waves during February and March 2026:\n\n- **Flagship Release (February 16):** Qwen3.5 was released, with the first release including a 397B-A17B MoE model.\n\n- **Medium Series (February 24):** Qwen3.5-122B-A10B, Qwen3.5-35B-A3B, and Qwen3.5-27B are released.\n\n- **Small Series (March 2):** Alibaba released Qwen 3.5 Small Model Series on March 1, 2026, with four variants: 0.8B, 2B, 4B, and 9B parameters.\n\n## Architecture Details\n\nQwen 3.5 uses a hybrid Gated Delta Network + Mixture-of-Experts architecture, and for the MoE models, Qwen3.5-35B-A3B activates only 8.6% of its total parameters per forward pass (3B of 35B), routing each token through 8 specialized experts out of 256 total, plus 1 shared expert."
+    ],
+    "durationSeconds": 11.660139639
+  },
+  "sourceToolAssistantUUID": "d628f26b-4858-436e-a48f-3145f517e0fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-18T03:33:59.703Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TG4TEEnzdWkgMXL21eFKdR`</summary>
+
+```json
+{
+  "query": "GLM-5.1 open source model parameters architecture 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6edae091-49bb-4941-8ef6-3877edbd5eea",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LBrXZ7kBS9q7UTP5Uy",
+  "type": "assistant",
+  "uuid": "29a59299-7f6d-4988-84d6-541f22b09f54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JUahNZ3ps8zaQqkZpGBkEk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1067,
+      "cache_read_input_tokens": 47371,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 47371,
+          "cache_creation_input_tokens": 1067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-18T03:34:07.969Z_
+
+<details><summary>↩ Tool result · `toolu_01TG4TEEnzdWkgMXL21eFKdR`</summary>
+
+```text
+Web search results for query: "GLM-5.1 open source model parameters architecture 2026"
+
+Links: [{"title":"GLM-5.1: #1 Open Source AI Model? Full Review (2026)","url":"https://www.buildfastwithai.com/blogs/glm-5-1-open-source-review-2026"},{"title":"GLM 5.1: The Open-Source Model That Matches GPT and Claude on Coding | MindStudio","url":"https://www.mindstudio.ai/blog/glm-5-1-open-source-coding-model"},{"title":"What Is GLM 5.1? The Open-Source Model That Matches GPT-5.4 on Coding | MindStudio","url":"https://www.mindstudio.ai/blog/what-is-glm-5-1-open-source-coding-model"},{"title":"GLM-5.1: The Open-Source Model That Beat GPT-5.4 | Nerd Level Tech","url":"https://nerdleveltech.com/glm-5-1-open-source-beats-gpt-coding-benchmarks"},{"title":"GLM-5.1 API is now open source and available on APIYI: 7 key points analyzing this new open-source king that topped SWE-Bench Pro - Apiyi.com Blog","url":"https://help.apiyi.com/en/glm-5-1-open-source-api-launched-on-apiyi-en.html"},{"title":"GLM-5.1 Open Source: #1 on SWE-Bench Pro (What to Know)","url":"https://www.modemguides.com/blogs/ai-news/glm-5-1-open-source-benchmarks-local-ai"},{"title":"GLM-5.1: Architecture, Benchmarks, Capabilities & How to Use It - Analytics Vidhya","url":"https://www.analyticsvidhya.com/blog/2026/04/glm-5-1/"},{"title":"zai-org/GLM-5.1 · Hugging Face","url":"https://huggingface.co/zai-org/GLM-5.1"},{"title":"GLM-5.1: Open-Source Model That Tops SWE-Bench Pro — Effloow","url":"https://effloow.com/articles/glm-5-1-744b-moe-open-source-swebench-guide-2026"},{"title":"GLM-5.1 Review: Open-Source Model Tops SWE-Bench Pro | Awesome Agents","url":"https://awesomeagents.ai/reviews/review-glm-5-1/"}]
+
+Based on the search results, here's comprehensive information about GLM-5.1, the open-source model:
+
+## Model Parameters and Architecture
+
+GLM-5.1 is built on a 754-billion parameter Mixture-of-Experts (MoE) architecture with 40 billion active parameters per token, a 200,000 token context window, and the ability to generate up to 128,000 output tokens in a single response. The MoE design means the full 754B parameters are never activated simultaneously. Only the most relevant 40B are engaged per token, which keeps inference costs manageable for a model of this scale.
+
+The MoE model has 744 billion parameters, which it divides between 256 experts. The system implements top-8-routing, which permits eight experts to work on each token, plus one expert that operates across all tokens.
+
+## Release and Development
+
+GLM-5.1 is Z.ai's flagship open-source AI model, released on April 7, 2026, built specifically for agentic engineering and long-horizon software development tasks. It is a post-training upgrade to the GLM-5 base model, with the same 744-billion parameter Mixture-of-Experts (MoE) architecture but significantly enhanced coding, tool use, and autonomous execution capabilities.
+
+## Key Technical Features
+
+Z.ai also integrates DeepSeek Sparse Attention (DSA) to reduce deployment costs while preserving long-context performance. GLM-5.1 was trained entirely on Huawei Ascend 910B chips using the MindSpore framework, without using any Nvidia or AMD GPUs.
+
+## Licensing and Availability
+
+GLM-5.1 weights are available on Hugging Face under the MIT license, one of the most permissive open-source licenses available. You can download, modify, fine-tune, and deploy it commercially with no usage restrictions or royalty fees.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29a59299-7f6d-4988-84d6-541f22b09f54",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "9bd1195f-e0b6-4e06-a2cf-0d0761903eee",
+  "toolUseResult": {
+    "query": "GLM-5.1 open source model parameters architecture 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y2kavdgWkJo2WZn3nG56xv",
+        "content": [
+          {
+            "title": "GLM-5.1: #1 Open Source AI Model? Full Review (2026)",
+            "url": "https://www.buildfastwithai.com/blogs/glm-5-1-open-source-review-2026"
+          },
+          {
+            "title": "GLM 5.1: The Open-Source Model That Matches GPT and Claude on Coding | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/glm-5-1-open-source-coding-model"
+          },
+          {
+            "title": "What Is GLM 5.1? The Open-Source Model That Matches GPT-5.4 on Coding | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/what-is-glm-5-1-open-source-coding-model"
+          },
+          {
+            "title": "GLM-5.1: The Open-Source Model That Beat GPT-5.4 | Nerd Level Tech",
+            "url": "https://nerdleveltech.com/glm-5-1-open-source-beats-gpt-coding-benchmarks"
+          },
+          {
+            "title": "GLM-5.1 API is now open source and available on APIYI: 7 key points analyzing this new open-source king that topped SWE-Bench Pro - Apiyi.com Blog",
+            "url": "https://help.apiyi.com/en/glm-5-1-open-source-api-launched-on-apiyi-en.html"
+          },
+          {
+            "title": "GLM-5.1 Open Source: #1 on SWE-Bench Pro (What to Know)",
+            "url": "https://www.modemguides.com/blogs/ai-news/glm-5-1-open-source-benchmarks-local-ai"
+          },
+          {
+            "title": "GLM-5.1: Architecture, Benchmarks, Capabilities & How to Use It - Analytics Vidhya",
+            "url": "https://www.analyticsvidhya.com/blog/2026/04/glm-5-1/"
+          },
+          {
+            "title": "zai-org/GLM-5.1 · Hugging Face",
+            "url": "https://huggingface.co/zai-org/GLM-5.1"
+          },
+          {
+            "title": "GLM-5.1: Open-Source Model That Tops SWE-Bench Pro — Effloow",
+            "url": "https://effloow.com/articles/glm-5-1-744b-moe-open-source-swebench-guide-2026"
+          },
+          {
+            "title": "GLM-5.1 Review: Open-Source Model Tops SWE-Bench Pro | Awesome Agents",
+            "url": "https://awesomeagents.ai/reviews/review-glm-5-1/"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about GLM-5.1, the open-source model:\n\n## Model Parameters and Architecture\n\nGLM-5.1 is built on a 754-billion parameter Mixture-of-Experts (MoE) architecture with 40 billion active parameters per token, a 200,000 token context window, and the ability to generate up to 128,000 output tokens in a single response. The MoE design means the full 754B parameters are never activated simultaneously. Only the most relevant 40B are engaged per token, which keeps inference costs manageable for a model of this scale.\n\nThe MoE model has 744 billion parameters, which it divides between 256 experts. The system implements top-8-routing, which permits eight experts to work on each token, plus one expert that operates across all tokens.\n\n## Release and Development\n\nGLM-5.1 is Z.ai's flagship open-source AI model, released on April 7, 2026, built specifically for agentic engineering and long-horizon software development tasks. It is a post-training upgrade to the GLM-5 base model, with the same 744-billion parameter Mixture-of-Experts (MoE) architecture but significantly enhanced coding, tool use, and autonomous execution capabilities.\n\n## Key Technical Features\n\nZ.ai also integrates DeepSeek Sparse Attention (DSA) to reduce deployment costs while preserving long-context performance. GLM-5.1 was trained entirely on Huawei Ascend 910B chips using the MindSpore framework, without using any Nvidia or AMD GPUs.\n\n## Licensing and Availability\n\nGLM-5.1 weights are available on Hugging Face under the MIT license, one of the most permissive open-source licenses available. You can download, modify, fine-tune, and deploy it commercially with no usage restrictions or royalty fees."
+    ],
+    "durationSeconds": 8.260365286000015
+  },
+  "sourceToolAssistantUUID": "29a59299-7f6d-4988-84d6-541f22b09f54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "9bd1195f-e0b6-4e06-a2cf-0d0761903eee",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-18T03:34:10.304Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K66vvagazEtYoebBKmw9ub`</summary>
+
+```json
+{
+  "query": "Kimi K2.6 open source model parameters MoE architecture 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bd1195f-e0b6-4e06-a2cf-0d0761903eee",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LCgQsbuaD44fsN4Uaz",
+  "type": "assistant",
+  "uuid": "784c68a2-f52a-4761-8114-ed2c44165a1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144WJ83NfagxhDPQENvrWcN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1192,
+      "cache_read_input_tokens": 48438,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1192,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 48438,
+          "cache_creation_input_tokens": 1192,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1192
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-18T03:34:16.679Z_
+
+<details><summary>↩ Tool result · `toolu_01K66vvagazEtYoebBKmw9ub`</summary>
+
+```text
+Web search results for query: "Kimi K2.6 open source model parameters MoE architecture 2026"
+
+Links: [{"title":"Kimi K2.6 Model Overview: Architecture, Features & Capabilities","url":"https://deepinfra.com/blog/kimi-k2-6-model-overview"},{"title":"Kimi K2.6 Tech Blog: Advancing Open-Source Coding","url":"https://www.kimi.com/blog/kimi-k2-6"},{"title":"Kimi K2.6 Complete Guide — Open-Source Agentic Model With 300 Sub-Agents","url":"https://www.aimadetools.com/blog/kimi-k2-6-complete-guide/"},{"title":"Kimi K2.6 Beats Frontier Coding Models And It Is Open Source (April 2026)","url":"https://www.roborhythms.com/kimi-k2-6-release/"},{"title":"Kimmy K2.6 and Qwen 3.6: The Open-Source Models Closing the Frontier Gap | MindStudio","url":"https://www.mindstudio.ai/blog/kimmy-k2-6-qwen-3-6-open-source-frontier-models"},{"title":"Kimi K2.6 Explained: Moonshot AI's Open-Source Model That Ties GPT-5.5 on Coding (April 2026)","url":"https://miraflow.ai/blog/kimi-k2-6-explained-moonshot-ai-open-source-model-ties-gpt-5-5-coding"},{"title":"Kimi K2.6: Open-Source Just Beat GPT-5.5 at Coding","url":"https://www.buildfastwithai.com/blogs/kimi-k2-6-review-benchmarks"},{"title":"Kimi K2.6 on GMI Cloud: Architecture, Benchmarks & API Access","url":"https://www.gmicloud.ai/en/blog/kimi-k2-6-architecture-benchmarks-and-what-it-means-for-production-ai"},{"title":"Kimi K2.6 & Kimi Code Review: Saving 88% Coding Costs? | by Ewan Mak | Apr, 2026 | Medium","url":"https://medium.com/@tentenco/kimi-k2-6-kimi-code-review-saving-88-coding-costs-b7e8c5eaf5f1"},{"title":"How to Use Kimi K2.6: Complete Guide to Moonshot AI's New 1T-Parameter Open-Source Coding Model | Tosea.ai","url":"https://tosea.ai/blog/kimi-k2-6-complete-guide"}]
+
+Based on the search results, here's comprehensive information about Kimi K2.6:
+
+## Model Parameters and Architecture
+
+Kimi K2.6 is a native multimodal agentic model built on a 1-trillion parameter Mixture-of-Experts (MoE) architecture, with 32 billion parameters activated per token. It supports a 262,144-token context window and ships natively in INT4 quantization.
+
+The model features 384 experts per layer (8 routed plus 1 shared), Multi-head Latent Attention to compress KV cache, and SwiGLU activation.
+
+## Release and Licensing
+
+Kimi K2.6 is Moonshot AI's latest flagship open-source model, released on April 20, 2026 under a Modified MIT license.
+
+## Key Capabilities
+
+Kimi K2.6 includes an Agent Swarm system that scales to 300 domain-specialized sub-agents, executing up to 4,000 coordinated steps in a single autonomous run — up from 100 sub-agents and 1,500 steps in K2.5.
+
+The model handles text, images, and video in the same architecture without separate vision modules.
+
+## Performance and Benchmarks
+
+It scores 58.6% on SWE-Bench Pro, leading GPT-5.4 (57.7%) and Claude Opus 4.6 (53.4%), and runs 300 parallel sub-agents for long-horizon autonomous coding tasks.
+
+## Pricing
+
+Kimi K2.6 is priced at $0.60 input / $2.50 output per million tokens on the official API.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "784c68a2-f52a-4761-8114-ed2c44165a1a",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "cf600fd0-7bdf-4d3f-af4e-22ab5e615f77",
+  "toolUseResult": {
+    "query": "Kimi K2.6 open source model parameters MoE architecture 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0123Ri1nXyynmjuu54q9b4vi",
+        "content": [
+          {
+            "title": "Kimi K2.6 Model Overview: Architecture, Features & Capabilities",
+            "url": "https://deepinfra.com/blog/kimi-k2-6-model-overview"
+          },
+          {
+            "title": "Kimi K2.6 Tech Blog: Advancing Open-Source Coding",
+            "url": "https://www.kimi.com/blog/kimi-k2-6"
+          },
+          {
+            "title": "Kimi K2.6 Complete Guide — Open-Source Agentic Model With 300 Sub-Agents",
+            "url": "https://www.aimadetools.com/blog/kimi-k2-6-complete-guide/"
+          },
+          {
+            "title": "Kimi K2.6 Beats Frontier Coding Models And It Is Open Source (April 2026)",
+            "url": "https://www.roborhythms.com/kimi-k2-6-release/"
+          },
+          {
+            "title": "Kimmy K2.6 and Qwen 3.6: The Open-Source Models Closing the Frontier Gap | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/kimmy-k2-6-qwen-3-6-open-source-frontier-models"
+          },
+          {
+            "title": "Kimi K2.6 Explained: Moonshot AI's Open-Source Model That Ties GPT-5.5 on Coding (April 2026)",
+            "url": "https://miraflow.ai/blog/kimi-k2-6-explained-moonshot-ai-open-source-model-ties-gpt-5-5-coding"
+          },
+          {
+            "title": "Kimi K2.6: Open-Source Just Beat GPT-5.5 at Coding",
+            "url": "https://www.buildfastwithai.com/blogs/kimi-k2-6-review-benchmarks"
+          },
+          {
+            "title": "Kimi K2.6 on GMI Cloud: Architecture, Benchmarks & API Access",
+            "url": "https://www.gmicloud.ai/en/blog/kimi-k2-6-architecture-benchmarks-and-what-it-means-for-production-ai"
+          },
+          {
+            "title": "Kimi K2.6 & Kimi Code Review: Saving 88% Coding Costs? | by Ewan Mak | Apr, 2026 | Medium",
+            "url": "https://medium.com/@tentenco/kimi-k2-6-kimi-code-review-saving-88-coding-costs-b7e8c5eaf5f1"
+          },
+          {
+            "title": "How to Use Kimi K2.6: Complete Guide to Moonshot AI's New 1T-Parameter Open-Source Coding Model | Tosea.ai",
+            "url": "https://tosea.ai/blog/kimi-k2-6-complete-guide"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Kimi K2.6:\n\n## Model Parameters and Architecture\n\nKimi K2.6 is a native multimodal agentic model built on a 1-trillion parameter Mixture-of-Experts (MoE) architecture, with 32 billion parameters activated per token. It supports a 262,144-token context window and ships natively in INT4 quantization.\n\nThe model features 384 experts per layer (8 routed plus 1 shared), Multi-head Latent Attention to compress KV cache, and SwiGLU activation.\n\n## Release and Licensing\n\nKimi K2.6 is Moonshot AI's latest flagship open-source model, released on April 20, 2026 under a Modified MIT license.\n\n## Key Capabilities\n\nKimi K2.6 includes an Agent Swarm system that scales to 300 domain-specialized sub-agents, executing up to 4,000 coordinated steps in a single autonomous run — up from 100 sub-agents and 1,500 steps in K2.5.\n\nThe model handles text, images, and video in the same architecture without separate vision modules.\n\n## Performance and Benchmarks\n\nIt scores 58.6% on SWE-Bench Pro, leading GPT-5.4 (57.7%) and Claude Opus 4.6 (53.4%), and runs 300 parallel sub-agents for long-horizon autonomous coding tasks.\n\n## Pricing\n\nKimi K2.6 is priced at $0.60 input / $2.50 output per million tokens on the official API."
+    ],
+    "durationSeconds": 6.370963522000006
+  },
+  "sourceToolAssistantUUID": "784c68a2-f52a-4761-8114-ed2c44165a1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-18T03:34:19.270Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MUh5wUMNTrbw1P65txu5b6`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 exact submission deadline date May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf600fd0-7bdf-4d3f-af4e-22ab5e615f77",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LDKgDc7zrvMEGNdHEP",
+  "type": "assistant",
+  "uuid": "8e6ab648-b00e-41bf-9a6f-c7b72f4c3c6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUfyZnLj3ALNaD3HkNb2L6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 49630,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 49630,
+          "cache_creation_input_tokens": 1162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-18T03:34:23.157Z_
+
+<details><summary>↩ Tool result · `toolu_01MUh5wUMNTrbw1P65txu5b6`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 exact submission deadline date May 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://neurips.cc/public/JournalToConference"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"2025 Dates and Deadlines","url":"https://neurips.cc/Conferences/2025/Dates"},{"title":"NeurIPS 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=neurips26"},{"title":"Neural Information Processing Systems (NeurIPS), 2026 | ServiceNow AI Research","url":"https://www.servicenow.com/research/event/2026-neurips.html"}]
+
+Based on the search results, here are the NeurIPS 2026 submission deadlines in May 2026:
+
+**Main Track and Evaluations & Datasets Track:**
+- Abstract submission deadline: May 4, 2026 (AOE)
+- Full paper submission deadline, including all supplementary materials: May 6, 2026 AOE
+
+**Competition Track:**
+- Competition proposal submission deadline: May 15, 2026
+
+The main paper submissions close on **May 6, 2026**, with abstracts due two days earlier on **May 4, 2026**. All deadlines are in Anywhere on Earth (AOE) timezone.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e6ab648-b00e-41bf-9a6f-c7b72f4c3c6d",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "6d624308-ec10-4dd6-bff5-ffc4dc71745a",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 exact submission deadline date May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ko9k2Nk7XL8UdyPz6jaP49",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://neurips.cc/public/JournalToConference"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "2025 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2025/Dates"
+          },
+          {
+            "title": "NeurIPS 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=neurips26"
+          },
+          {
+            "title": "Neural Information Processing Systems (NeurIPS), 2026 | ServiceNow AI Research",
+            "url": "https://www.servicenow.com/research/event/2026-neurips.html"
+          }
+        ]
+      },
+      "Based on the search results, here are the NeurIPS 2026 submission deadlines in May 2026:\n\n**Main Track and Evaluations & Datasets Track:**\n- Abstract submission deadline: May 4, 2026 (AOE)\n- Full paper submission deadline, including all supplementary materials: May 6, 2026 AOE\n\n**Competition Track:**\n- Competition proposal submission deadline: May 15, 2026\n\nThe main paper submissions close on **May 6, 2026**, with abstracts due two days earlier on **May 4, 2026**. All deadlines are in Anywhere on Earth (AOE) timezone."
+    ],
+    "durationSeconds": 3.884517974000017
+  },
+  "sourceToolAssistantUUID": "8e6ab648-b00e-41bf-9a6f-c7b72f4c3c6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100 · 2026-05-18T03:34:26.171Z_
+
+NeurIPS 2026 deadline already passed (May 6). Let me check more upcoming venues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d624308-ec10-4dd6-bff5-ffc4dc71745a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LDoP6X6hDKZ7LmgczM",
+  "type": "assistant",
+  "uuid": "0e2ec86e-f16a-4277-baa0-03fdc04bf3d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tDZS595pcZXS1JVtnCJ7z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 50792,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 50792,
+          "cache_creation_input_tokens": 688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T03:34:26.259Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bo1EFWR2LpUsPXbdaTfBXR`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline exact date call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e2ec86e-f16a-4277-baa0-03fdc04bf3d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LDoP6X6hDKZ7LmgczM",
+  "type": "assistant",
+  "uuid": "72d46e2c-9565-4675-80fd-7a6b014a93f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tDZS595pcZXS1JVtnCJ7z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 50792,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 50792,
+          "cache_creation_input_tokens": 688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T03:34:29.613Z_
+
+<details><summary>↩ Tool result · `toolu_01Bo1EFWR2LpUsPXbdaTfBXR`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline exact date call for papers"
+
+Links: [{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"}]
+
+Based on the search results, the AAAI 2027 paper submission deadline is TBD (to be determined). No deadlines have been announced yet, though AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.
+
+However, based on historical patterns, submission deadlines for AAAI 2027 are expected around July–August 2026. 
+
+For the official call for papers information, the official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72d46e2c-9565-4675-80fd-7a6b014a93f9",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "d0c305c8-c234-4336-8002-538135d10b7f",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline exact date call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U9Ht6Lee5mHyCtP5KfLVq9",
+        "content": [
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          }
+        ]
+      },
+      "Based on the search results, the AAAI 2027 paper submission deadline is TBD (to be determined). No deadlines have been announced yet, though AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.\n\nHowever, based on historical patterns, submission deadlines for AAAI 2027 are expected around July–August 2026. \n\nFor the official call for papers information, the official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/."
+    ],
+    "durationSeconds": 3.3493376979999594
+  },
+  "sourceToolAssistantUUID": "72d46e2c-9565-4675-80fd-7a6b014a93f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T03:34:32.054Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B7tBFy1PNGiyeiu9W9kLUr`</summary>
+
+```json
+{
+  "query": "ICLR 2027 call for papers deadline submission date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0c305c8-c234-4336-8002-538135d10b7f",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LEGwnyfFEfYgMdxSmP",
+  "type": "assistant",
+  "uuid": "357ce783-70e1-461e-b1e0-c98c6aebc3a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016B9YrEnBNduw4jgEjA6iDx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 840,
+      "cache_read_input_tokens": 51480,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 840,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 51480,
+          "cache_creation_input_tokens": 840,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 840
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-18T03:34:36.276Z_
+
+<details><summary>↩ Tool result · `toolu_01B7tBFy1PNGiyeiu9W9kLUr`</summary>
+
+```text
+Web search results for query: "ICLR 2027 call for papers deadline submission date"
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"}]
+
+Based on the search results, I found limited information about ICLR 2027's official call for papers. The search results show information about ICLR 2025 and ICLR 2026, but the official ICLR website (iclr.cc) does not yet have a dedicated page for ICLR 2027's call for papers.
+
+However, one source indicates ICLR 2027 is scheduled for February 2027 with details "TBA" (to be announced), predicted based on historical patterns.
+
+For the most current and accurate information about ICLR 2027's submission deadline, I recommend:
+- Visiting the official ICLR website at iclr.cc
+- Signing up for announcements on their official channels
+- Contacting the program chairs at program-chairs@iclr.cc
+
+The official call for papers for ICLR 2027 has likely not yet been released, as it's typical for major conferences to announce their calls several months before the submission deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "357ce783-70e1-461e-b1e0-c98c6aebc3a1",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "55e37bbc-fe53-480e-99aa-77d47bd464f2",
+  "toolUseResult": {
+    "query": "ICLR 2027 call for papers deadline submission date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W5gHuDqCPiG5EGMEQC1knD",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I found limited information about ICLR 2027's official call for papers. The search results show information about ICLR 2025 and ICLR 2026, but the official ICLR website (iclr.cc) does not yet have a dedicated page for ICLR 2027's call for papers.\n\nHowever, one source indicates ICLR 2027 is scheduled for February 2027 with details \"TBA\" (to be announced), predicted based on historical patterns.\n\nFor the most current and accurate information about ICLR 2027's submission deadline, I recommend:\n- Visiting the official ICLR website at iclr.cc\n- Signing up for announcements on their official channels\n- Contacting the program chairs at program-chairs@iclr.cc\n\nThe official call for papers for ICLR 2027 has likely not yet been released, as it's typical for major conferences to announce their calls several months before the submission deadline."
+    ],
+    "durationSeconds": 4.218285396000021
+  },
+  "sourceToolAssistantUUID": "357ce783-70e1-461e-b1e0-c98c6aebc3a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105 · 2026-05-18T03:34:36.279Z_
+
+```json
+{
+  "parentUuid": "55e37bbc-fe53-480e-99aa-77d47bd464f2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9ad41572-6496-4512-9c53-ff9b3d94527c",
+  "timestamp": "2026-05-18T03:34:36.279Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-18T03:34:38.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LaDtXqFGbxA4wA7EQuUYDm`</summary>
+
+```json
+{
+  "query": "aideadlin.es conference deadlines June July August 2026 machine learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ad41572-6496-4512-9c53-ff9b3d94527c",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LEmTne6kDtwjrDYPG5",
+  "type": "assistant",
+  "uuid": "54e64c29-2554-4b03-84d2-f5431b9f845d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NdfCKv6pV4PNW5uCLSRHwK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 52320,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 52320,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-18T03:34:44.153Z_
+
+<details><summary>↩ Tool result · `toolu_01LaDtXqFGbxA4wA7EQuUYDm`</summary>
+
+```text
+Web search results for query: "aideadlin.es conference deadlines June July August 2026 machine learning"
+
+Links: [{"title":"AI Conference Deadlines","url":"https://aideadlin.es/"},{"title":"Calendar Overview of Conference Deadlines and Dates","url":"https://aideadlin.es/calendar/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines - a Hugging Face Space by huggingface","url":"https://huggingface.co/spaces/huggingface/ai-deadlines"},{"title":"Conference Deadlines - Ziping Zhao","url":"https://www.ncvxopt.com/conf/"},{"title":"AI Conference Deadlines","url":"https://deadlines.info/"},{"title":"AI Conference Deadlines","url":"https://mldeadlines.com/"},{"title":"AI Conference Deadlines 2026 | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/"},{"title":"Machine Learning (ML) - Computer Vision (CV)","url":"https://aideadlin.es/?sub=ML,CV"}]
+
+Based on the search results, I found information about AI conference deadlines. aideadlin.es provides countdowns to top CV/NLP/ML/Robotics/AI conference deadlines, and the search revealed several conferences scheduled for June, July, and August 2026:
+
+**June 2026:**
+- June 28 - July 3, 2026 in Guangzhou, China
+- June 29-July 3, 2026 in Dubai, UAE
+- June 2–5, 2026 in Edinburgh, United Kingdom
+- June 1-5, 2026 in Vienna, Austria
+- June 1-5, 2026 in Vienna, Austria
+
+**July 2026:**
+- July 6-12, 2026 in Seoul, Korea
+- July 5, 2026 in Seoul, South Korea
+- July 17-19, 2026 in Beijing, China
+
+**August 2026:**
+- August 17-21, 2026 in Amsterdam, Netherlands
+- August 17-21, 2026 in Lyon, France
+- August 24-26, 2026 in Vilnius, Lithuania
+- August 30-September 4, 2026 in Vienna, Austria
+
+For more detailed and current information, you can visit aideadlin.es directly, which provides a calendar overview of conference deadlines and dates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54e64c29-2554-4b03-84d2-f5431b9f845d",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "567625e8-380d-4ce0-9b78-5f1c579442bc",
+  "toolUseResult": {
+    "query": "aideadlin.es conference deadlines June July August 2026 machine learning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WxE3WT5QcPYDqp3DEC5j9o",
+        "content": [
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://aideadlin.es/"
+          },
+          {
+            "title": "Calendar Overview of Conference Deadlines and Dates",
+            "url": "https://aideadlin.es/calendar/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines - a Hugging Face Space by huggingface",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines"
+          },
+          {
+            "title": "Conference Deadlines - Ziping Zhao",
+            "url": "https://www.ncvxopt.com/conf/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://deadlines.info/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mldeadlines.com/"
+          },
+          {
+            "title": "AI Conference Deadlines 2026 | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/"
+          },
+          {
+            "title": "Machine Learning (ML) - Computer Vision (CV)",
+            "url": "https://aideadlin.es/?sub=ML,CV"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AI conference deadlines. aideadlin.es provides countdowns to top CV/NLP/ML/Robotics/AI conference deadlines, and the search revealed several conferences scheduled for June, July, and August 2026:\n\n**June 2026:**\n- June 28 - July 3, 2026 in Guangzhou, China\n- June 29-July 3, 2026 in Dubai, UAE\n- June 2–5, 2026 in Edinburgh, United Kingdom\n- June 1-5, 2026 in Vienna, Austria\n- June 1-5, 2026 in Vienna, Austria\n\n**July 2026:**\n- July 6-12, 2026 in Seoul, Korea\n- July 5, 2026 in Seoul, South Korea\n- July 17-19, 2026 in Beijing, China\n\n**August 2026:**\n- August 17-21, 2026 in Amsterdam, Netherlands\n- August 17-21, 2026 in Lyon, France\n- August 24-26, 2026 in Vilnius, Lithuania\n- August 30-September 4, 2026 in Vienna, Austria\n\nFor more detailed and current information, you can visit aideadlin.es directly, which provides a calendar overview of conference deadlines and dates."
+    ],
+    "durationSeconds": 5.286341536000021
+  },
+  "sourceToolAssistantUUID": "54e64c29-2554-4b03-84d2-f5431b9f845d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "567625e8-380d-4ce0-9b78-5f1c579442bc",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-18T03:34:47.008Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CVJ95pbiSf7YFTBjzNUdpp`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline May 25 ARR cycle confirmed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "567625e8-380d-4ce0-9b78-5f1c579442bc",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LFMgL3T4eHLUGaM9Vx",
+  "type": "assistant",
+  "uuid": "f9893e30-8844-49c9-a35f-7943c5ee2f05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFQYDcnHBmjBMjNva3cmgZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 53169,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 53169,
+          "cache_creation_input_tokens": 742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-18T03:34:52.262Z_
+
+<details><summary>↩ Tool result · `toolu_01CVJ95pbiSf7YFTBjzNUdpp`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline May 25 ARR cycle confirmed"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, I can confirm the information about the EMNLP 2026 submission deadline and ARR cycle:
+
+The ARR submission deadline for long and short papers is May 25, 2026, and papers must be submitted at the latest by the ARR 2026 May cycle.
+
+Additionally, there is an important clarification regarding the ARR May cycle: Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+Other key dates for EMNLP 2026 include:
+- Reviewer registration deadline for ALL authors: May 27, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9893e30-8844-49c9-a35f-7943c5ee2f05",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "d7024a7f-da94-4a9d-9274-1cb013a209ae",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline May 25 ARR cycle confirmed",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PStkirZCAxd4nJPcaABYLf",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I can confirm the information about the EMNLP 2026 submission deadline and ARR cycle:\n\nThe ARR submission deadline for long and short papers is May 25, 2026, and papers must be submitted at the latest by the ARR 2026 May cycle.\n\nAdditionally, there is an important clarification regarding the ARR May cycle: Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\nOther key dates for EMNLP 2026 include:\n- Reviewer registration deadline for ALL authors: May 27, 2026\n- EMNLP commitment deadline: August 2, 2026\n- Notification of acceptance: August 20, 2026"
+    ],
+    "durationSeconds": 5.250728643000009
+  },
+  "sourceToolAssistantUUID": "f9893e30-8844-49c9-a35f-7943c5ee2f05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-18T03:34:54.610Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GPJUHe4P52KKGmrBkdRJhw`</summary>
+
+```json
+{
+  "query": "AISTATS 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7024a7f-da94-4a9d-9274-1cb013a209ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LFwqQ9hXLwRjghMdRg",
+  "type": "assistant",
+  "uuid": "06a59d08-48d0-432a-b779-11bb7d24a3ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012D5VYz9abJachHwW4Hj7VK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1019,
+      "cache_read_input_tokens": 53911,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 53911,
+          "cache_creation_input_tokens": 1019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-18T03:34:59.590Z_
+
+<details><summary>↩ Tool result · `toolu_01GPJUHe4P52KKGmrBkdRJhw`</summary>
+
+```text
+Web search results for query: "AISTATS 2027 submission deadline call for papers"
+
+Links: [{"title":"aistats 2026","url":"https://virtual.aistats.org/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"2026 Dates and Deadlines","url":"https://virtual.aistats.org/Conferences/2026/Dates"},{"title":"Call for Papers: AISTATS 2026","url":"https://virtual.aistats.org/Conferences/2026/CallForPapers"},{"title":"Submission FAQ","url":"https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AD Conference Deadlines","url":"https://ad-deadlines.com/conference/?id=aistats23"},{"title":"Area Chair (AC) Guidelines","url":"https://virtual.aistats.org/Conferences/2026/ACGuidelines"},{"title":"Call for Papers| Artificial Intelligence and Statistics Conference","url":"http://aistats.org/aistats2024/call-for-papers.html"}]
+
+Based on the search results, I found information about AISTATS 2026, but not specific information about AISTATS 2027 submission deadlines yet. Here's what I found:
+
+## AISTATS 2026 (Current/Recent)
+
+AISTATS 2026 will be held February 16-23, 2027 in Montréal, Québec, Canada. However, this appears to be the 2026 conference scheduled for early 2027.
+
+For the current AISTATS 2026 submission deadlines:
+- Abstract submission deadline: Thursday, September 25, 2025 (AoE)
+- Full paper submission deadline: October 2, 2025 AOE; Supplementary material deadline: October 9, 2025 AOE
+
+## About AISTATS 2027
+
+The search results did not contain specific information about an AISTATS 2027 call for papers or submission deadlines. AISTATS invites submissions to the International Conference on Artificial Intelligence and Statistics, with the conference typically held annually, but details for the 2027 edition have not yet been announced in the available sources.
+
+For the most up-to-date information about AISTATS 2027 submission deadlines when they are announced, you may want to check the official AISTATS website (virtual.aistats.org) or subscribe to their mailing list.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06a59d08-48d0-432a-b779-11bb7d24a3ad",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "39ce3ac7-b082-4708-8347-10ccd426893e",
+  "toolUseResult": {
+    "query": "AISTATS 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TPw1NShL9wj3RFWafmx47L",
+        "content": [
+          {
+            "title": "aistats 2026",
+            "url": "https://virtual.aistats.org/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://virtual.aistats.org/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers: AISTATS 2026",
+            "url": "https://virtual.aistats.org/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Submission FAQ",
+            "url": "https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AD Conference Deadlines",
+            "url": "https://ad-deadlines.com/conference/?id=aistats23"
+          },
+          {
+            "title": "Area Chair (AC) Guidelines",
+            "url": "https://virtual.aistats.org/Conferences/2026/ACGuidelines"
+          },
+          {
+            "title": "Call for Papers| Artificial Intelligence and Statistics Conference",
+            "url": "http://aistats.org/aistats2024/call-for-papers.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AISTATS 2026, but not specific information about AISTATS 2027 submission deadlines yet. Here's what I found:\n\n## AISTATS 2026 (Current/Recent)\n\nAISTATS 2026 will be held February 16-23, 2027 in Montréal, Québec, Canada. However, this appears to be the 2026 conference scheduled for early 2027.\n\nFor the current AISTATS 2026 submission deadlines:\n- Abstract submission deadline: Thursday, September 25, 2025 (AoE)\n- Full paper submission deadline: October 2, 2025 AOE; Supplementary material deadline: October 9, 2025 AOE\n\n## About AISTATS 2027\n\nThe search results did not contain specific information about an AISTATS 2027 call for papers or submission deadlines. AISTATS invites submissions to the International Conference on Artificial Intelligence and Statistics, with the conference typically held annually, but details for the 2027 edition have not yet been announced in the available sources.\n\nFor the most up-to-date information about AISTATS 2027 submission deadlines when they are announced, you may want to check the official AISTATS website (virtual.aistats.org) or subscribe to their mailing list."
+    ],
+    "durationSeconds": 4.973892919000005
+  },
+  "sourceToolAssistantUUID": "06a59d08-48d0-432a-b779-11bb7d24a3ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-18T03:35:02.177Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F6viJPNPCzJu6Mx33brEVW`</summary>
+
+```json
+{
+  "query": "ICLR 2027 expected submission deadline October 2026 trybibby aideadlines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39ce3ac7-b082-4708-8347-10ccd426893e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LGVAZK6WXmw3qMS3Nd",
+  "type": "assistant",
+  "uuid": "d37398bb-8313-4a17-bf96-ddc334956b65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJNSXgCAMovnFZXa3xuM4m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 54930,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 54930,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-18T03:35:06.050Z_
+
+<details><summary>↩ Tool result · `toolu_01F6viJPNPCzJu6Mx33brEVW`</summary>
+
+```text
+Web search results for query: "ICLR 2027 expected submission deadline October 2026 trybibby aideadlines"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/iclr"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"}]
+
+Based on the search results, I found information about ICLR conferences, but the results primarily cover ICLR 2026 rather than ICLR 2027. 
+
+The search results show that ICLR 2026 is scheduled for April 23-25, 2026 in Rio de Janeiro, Brazil. However, I did not find specific information about an ICLR 2027 submission deadline in October 2026 in the search results.
+
+One source (mlciv.com) mentions that ICLR 2027 is predicted to be May 4-8, 2027, based on 2026 schedule patterns, but this is a prediction rather than an official deadline.
+
+For the most current and official ICLR 2027 submission deadlines, I would recommend checking:
+- The official ICLR website (iclr.cc)
+- The trybibby.com conference deadlines tracker that was mentioned in your search query
+
+These official sources would have the authoritative submission deadline information once it's announced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d37398bb-8313-4a17-bf96-ddc334956b65",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "950aa1ea-7263-4b99-b935-0197cd24a29b",
+  "toolUseResult": {
+    "query": "ICLR 2027 expected submission deadline October 2026 trybibby aideadlines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QLvaV7frt4nmeMjqm4BUsY",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/iclr"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR conferences, but the results primarily cover ICLR 2026 rather than ICLR 2027. \n\nThe search results show that ICLR 2026 is scheduled for April 23-25, 2026 in Rio de Janeiro, Brazil. However, I did not find specific information about an ICLR 2027 submission deadline in October 2026 in the search results.\n\nOne source (mlciv.com) mentions that ICLR 2027 is predicted to be May 4-8, 2027, based on 2026 schedule patterns, but this is a prediction rather than an official deadline.\n\nFor the most current and official ICLR 2027 submission deadlines, I would recommend checking:\n- The official ICLR website (iclr.cc)\n- The trybibby.com conference deadlines tracker that was mentioned in your search query\n\nThese official sources would have the authoritative submission deadline information once it's announced."
+    ],
+    "durationSeconds": 3.8687959839999677
+  },
+  "sourceToolAssistantUUID": "d37398bb-8313-4a17-bf96-ddc334956b65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-18T03:35:08.838Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KM2oZn2mjfZ86AzoF3p3Gx`</summary>
+
+```json
+{
+  "query": "veRL framework RLHF training GPU hours cost estimate LLM reward model training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "950aa1ea-7263-4b99-b935-0197cd24a29b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LGxmjibg2Wu5ggMeyv",
+  "type": "assistant",
+  "uuid": "f238d705-cc38-402c-9350-aac7c9bf8800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BV3mDcea61484Ybmqoqtbe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 55687,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 747,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 55687,
+          "cache_creation_input_tokens": 747,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 747
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-18T03:35:16.515Z_
+
+<details><summary>↩ Tool result · `toolu_01KM2oZn2mjfZ86AzoF3p3Gx`</summary>
+
+```text
+Web search results for query: "veRL framework RLHF training GPU hours cost estimate LLM reward model training"
+
+Links: [{"title":"GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub","url":"https://github.com/verl-project/verl"},{"title":"Verl: State-of-the-art RL Training for LLMs — SkyPilot Docs","url":"https://docs.skypilot.co/en/latest/examples/training/verl.html"},{"title":"GitHub - Intelligent-Internet/ii_verl: veRL: Volcano Engine Reinforcement Learning for LLM · GitHub","url":"https://github.com/Intelligent-Internet/ii_verl"},{"title":"verl · PyPI","url":"https://pypi.org/project/verl/"},{"title":"verl: Reinforcement learning training framework for large models, designed …","url":"https://jimmysong.io/ai/verl/"},{"title":"Reinforcement Learning Infrastructure | Introl Blog","url":"https://introl.com/blog/reinforcement-learning-infrastructure-rlhf-robotics-gpu-clusters-2025"},{"title":"What is the cost of training large language models?","url":"https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"},{"title":"OpenRLHF vs veRL: Ray Framework Deep Dive for Distributed RLHF (2025) | LLM Practical Experience Hub","url":"https://langcopilot.com/posts/2025-11-06-openrlhf-vs-verl-ray-framework-deep"},{"title":"verl 0.2 - Volcano Engine Reinforcement Learning for LLM","url":"https://pypi.org/project/verl/0.2/"},{"title":"How to train and scale AI math/coding agents using VeRL on any AI infra | SkyPilot Blog","url":"https://blog.skypilot.co/verl-rl-training/"}]
+
+Based on the search results, here's what I found about the veRL framework and RLHF training:
+
+## Overview of veRL Framework
+
+veRL is a flexible, efficient and production-ready RL training library for large language models (LLMs), and it is the open-source version of HybridFlow: A Flexible and Efficient RLHF Framework paper.
+
+## Key Features for RLHF Training
+
+veRL seamlessly integrates with existing LLM frameworks such as FSDP, Megatron-LM, vLLM, and SGLang, with flexible device mapping that supports various placement of models onto different sets of GPUs for efficient resource utilization and scalability across different cluster sizes. It supports reinforcement learning with PPO, GRPO, ReMax, REINFORCE++, RLOO, PRIME, and other algorithms.
+
+## GPU Requirements
+
+Regarding hardware specifications, a 70B Actor, 70B Reference, and separate Reward and Critic models may require 8-16 H100 GPUs just for model weights before accounting for optimizer states and activations. Additionally, RLHF training spends 80% of compute time on sample generation, making throughput optimization the critical infrastructure challenge.
+
+## Notable Achievements
+
+The RL scaling preview model trained using veRL reached OpenAI O1-level performance on math benchmarks (70.0 pass@1 on AIME).
+
+**Note:** The search results do not contain specific GPU hours or cost estimates for RLHF training with veRL. For detailed cost projections, you may need to consult the HybridFlow paper or veRL documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f238d705-cc38-402c-9350-aac7c9bf8800",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "62ac7cf2-276b-4f50-969b-51e6c0fce912",
+  "toolUseResult": {
+    "query": "veRL framework RLHF training GPU hours cost estimate LLM reward model training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XwUK1t6P3XL3GBmcpV7uxG",
+        "content": [
+          {
+            "title": "GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub",
+            "url": "https://github.com/verl-project/verl"
+          },
+          {
+            "title": "Verl: State-of-the-art RL Training for LLMs — SkyPilot Docs",
+            "url": "https://docs.skypilot.co/en/latest/examples/training/verl.html"
+          },
+          {
+            "title": "GitHub - Intelligent-Internet/ii_verl: veRL: Volcano Engine Reinforcement Learning for LLM · GitHub",
+            "url": "https://github.com/Intelligent-Internet/ii_verl"
+          },
+          {
+            "title": "verl · PyPI",
+            "url": "https://pypi.org/project/verl/"
+          },
+          {
+            "title": "verl: Reinforcement learning training framework for large models, designed …",
+            "url": "https://jimmysong.io/ai/verl/"
+          },
+          {
+            "title": "Reinforcement Learning Infrastructure | Introl Blog",
+            "url": "https://introl.com/blog/reinforcement-learning-infrastructure-rlhf-robotics-gpu-clusters-2025"
+          },
+          {
+            "title": "What is the cost of training large language models?",
+            "url": "https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"
+          },
+          {
+            "title": "OpenRLHF vs veRL: Ray Framework Deep Dive for Distributed RLHF (2025) | LLM Practical Experience Hub",
+            "url": "https://langcopilot.com/posts/2025-11-06-openrlhf-vs-verl-ray-framework-deep"
+          },
+          {
+            "title": "verl 0.2 - Volcano Engine Reinforcement Learning for LLM",
+            "url": "https://pypi.org/project/verl/0.2/"
+          },
+          {
+            "title": "How to train and scale AI math/coding agents using VeRL on any AI infra | SkyPilot Blog",
+            "url": "https://blog.skypilot.co/verl-rl-training/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the veRL framework and RLHF training:\n\n## Overview of veRL Framework\n\nveRL is a flexible, efficient and production-ready RL training library for large language models (LLMs), and it is the open-source version of HybridFlow: A Flexible and Efficient RLHF Framework paper.\n\n## Key Features for RLHF Training\n\nveRL seamlessly integrates with existing LLM frameworks such as FSDP, Megatron-LM, vLLM, and SGLang, with flexible device mapping that supports various placement of models onto different sets of GPUs for efficient resource utilization and scalability across different cluster sizes. It supports reinforcement learning with PPO, GRPO, ReMax, REINFORCE++, RLOO, PRIME, and other algorithms.\n\n## GPU Requirements\n\nRegarding hardware specifications, a 70B Actor, 70B Reference, and separate Reward and Critic models may require 8-16 H100 GPUs just for model weights before accounting for optimizer states and activations. Additionally, RLHF training spends 80% of compute time on sample generation, making throughput optimization the critical infrastructure challenge.\n\n## Notable Achievements\n\nThe RL scaling preview model trained using veRL reached OpenAI O1-level performance on math benchmarks (70.0 pass@1 on AIME).\n\n**Note:** The search results do not contain specific GPU hours or cost estimates for RLHF training with veRL. For detailed cost projections, you may need to consult the HybridFlow paper or veRL documentation directly."
+    ],
+    "durationSeconds": 7.672169046000054
+  },
+  "sourceToolAssistantUUID": "f238d705-cc38-402c-9350-aac7c9bf8800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-18T03:35:19.561Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MQzc3Qed3iGbdTHd2kZSSi`</summary>
+
+```json
+{
+  "query": "GRPO RLVR training cost GPU hours 7B 8B model A100 math reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62ac7cf2-276b-4f50-969b-51e6c0fce912",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LHjXYAg6bBizj2HBkn",
+  "type": "assistant",
+  "uuid": "233dc2bf-8936-4f67-8082-e880f86a7fa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DMPdNW4u37nSo1jSx32Ab",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 56434,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 56434,
+          "cache_creation_input_tokens": 986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-18T03:35:26.528Z_
+
+<details><summary>↩ Tool result · `toolu_01MQzc3Qed3iGbdTHd2kZSSi`</summary>
+
+```text
+Web search results for query: "GRPO RLVR training cost GPU hours 7B 8B model A100 math reasoning"
+
+Links: [{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"GRPO Fine-Tuning on GPU Cloud: Train Reasoning Models with Verifiable Rewards (2026 Guide) | Spheron Blog","url":"https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/"},{"title":"Not All Steps are Informative: On the Linearity of LLMs’ RLVR Training","url":"https://arxiv.org/html/2601.04537v1"},{"title":"From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained","url":"https://softmaxdata.com/blog/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"For anyone curious, it took 2048 A100 GPUs to train LLaMa, each GPU costs roughl... | Hacker News","url":"https://news.ycombinator.com/item?id=35008694"},{"title":"Training Math Reasoning Model with Reinforcement Learning - NVIDIA ADLR","url":"https://research.nvidia.com/labs/adlr/acemath_rl/"},{"title":"What is the cost of training large language models?","url":"https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"},{"title":"GRPO RL Training Guide | SkillUI","url":"https://skillui.com/en/skill/show/Orchestra-Research/AI-Research-SKILLs/grpo-rl-training"},{"title":"Reinforcement Learning for Reasoning in Large Language Models with One Training Example","url":"https://arxiv.org/html/2504.20571v1"}]
+
+Based on the search results, here's what I found about GRPO RLVR training costs for 7B and 8B models with A100 GPUs on math reasoning tasks:
+
+## Key Training Cost Data
+
+Training completes in ~27 hours on only eight A100 GPUs for a GRPO RLVR setup, demonstrating relatively efficient training.
+
+For more specific examples with model scaling:
+
+- Training DeepSeek-R1-Distill-Qwen-1.5B requires approximately 3,800 A100 GPU-hours (about 5 days on 32 A100s)
+
+- Scaling to the 7B parameter regime (DeepSeek-R1-Distill-Qwen-7B) follows similar patterns to smaller models
+
+- Experiments using 8 A100 GPUs were used for model training, with Qwen2.5-Math-7B trained for 1000 steps
+
+## Why GRPO is Efficient
+
+RLVR trains the LLM using RL with rewards derived from rule-based or deterministic verifiers, and the main difference between RLHF and RLVR is how we assign rewards—RLHF uses a reward model, while RLVR uses verifiable rewards. GRPO is extremely efficient because the Value Model is removed, replaced with statistics from calling the reward model multiple times, and the Reward Model is removed and replaced with just custom reward function which RLVR can be used.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "233dc2bf-8936-4f67-8082-e880f86a7fa2",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "4bdb819d-0c05-4cb6-949a-2fc0b99aa417",
+  "toolUseResult": {
+    "query": "GRPO RLVR training cost GPU hours 7B 8B model A100 math reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HiUS6XFm734PddCm7ccHVP",
+        "content": [
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          },
+          {
+            "title": "GRPO Fine-Tuning on GPU Cloud: Train Reasoning Models with Verifiable Rewards (2026 Guide) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/"
+          },
+          {
+            "title": "Not All Steps are Informative: On the Linearity of LLMs’ RLVR Training",
+            "url": "https://arxiv.org/html/2601.04537v1"
+          },
+          {
+            "title": "From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained",
+            "url": "https://softmaxdata.com/blog/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"
+          },
+          {
+            "title": "For anyone curious, it took 2048 A100 GPUs to train LLaMa, each GPU costs roughl... | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=35008694"
+          },
+          {
+            "title": "Training Math Reasoning Model with Reinforcement Learning - NVIDIA ADLR",
+            "url": "https://research.nvidia.com/labs/adlr/acemath_rl/"
+          },
+          {
+            "title": "What is the cost of training large language models?",
+            "url": "https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"
+          },
+          {
+            "title": "GRPO RL Training Guide | SkillUI",
+            "url": "https://skillui.com/en/skill/show/Orchestra-Research/AI-Research-SKILLs/grpo-rl-training"
+          },
+          {
+            "title": "Reinforcement Learning for Reasoning in Large Language Models with One Training Example",
+            "url": "https://arxiv.org/html/2504.20571v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRPO RLVR training costs for 7B and 8B models with A100 GPUs on math reasoning tasks:\n\n## Key Training Cost Data\n\nTraining completes in ~27 hours on only eight A100 GPUs for a GRPO RLVR setup, demonstrating relatively efficient training.\n\nFor more specific examples with model scaling:\n\n- Training DeepSeek-R1-Distill-Qwen-1.5B requires approximately 3,800 A100 GPU-hours (about 5 days on 32 A100s)\n\n- Scaling to the 7B parameter regime (DeepSeek-R1-Distill-Qwen-7B) follows similar patterns to smaller models\n\n- Experiments using 8 A100 GPUs were used for model training, with Qwen2.5-Math-7B trained for 1000 steps\n\n## Why GRPO is Efficient\n\nRLVR trains the LLM using RL with rewards derived from rule-based or deterministic verifiers, and the main difference between RLHF and RLVR is how we assign rewards—RLHF uses a reward model, while RLVR uses verifiable rewards. GRPO is extremely efficient because the Value Model is removed, replaced with statistics from calling the reward model multiple times, and the Reward Model is removed and replaced with just custom reward function which RLVR can be used."
+    ],
+    "durationSeconds": 6.961430601000029
+  },
+  "sourceToolAssistantUUID": "233dc2bf-8936-4f67-8082-e880f86a7fa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 120_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "4bdb819d-0c05-4cb6-949a-2fc0b99aa417",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 121_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-18T03:35:29.333Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R3Gj8ibdu53Ftz8th7AVK9`</summary>
+
+```json
+{
+  "query": "openreview \"Mind the Gap\" self-improvement LLM ICLR 2025 venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4bdb819d-0c05-4cb6-949a-2fc0b99aa417",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LJUKGNunCu1X9s6mXe",
+  "type": "assistant",
+  "uuid": "bc5cc1a2-83ef-46b8-8111-71340be6de0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SjmmWEL1xF5HXKGjRwByF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1003,
+      "cache_read_input_tokens": 57420,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 57420,
+          "cache_creation_input_tokens": 1003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-18T03:35:35.320Z_
+
+<details><summary>↩ Tool result · `toolu_01R3Gj8ibdu53Ftz8th7AVK9`</summary>
+
+```text
+Web search results for query: "openreview "Mind the Gap" self-improvement LLM ICLR 2025 venue"
+
+Links: [{"title":"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=mtJSMcF3ek"},{"title":"MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"},{"title":"[2412.02674] Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models","url":"https://arxiv.org/abs/2412.02674"},{"title":"Carnegie Mellon University at ICLR 2025 – Machine Learning Blog | ML@CMU | Carnegie Mellon University","url":"https://blog.ml.cmu.edu/2025/04/23/carnegie-mellon-university-at-iclr-2025/"}]
+
+I found the paper! Here are the search results for "Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models":
+
+## Paper Details
+
+The paper explores self-improvement as a mechanism in Large Language Model pre-training, post-training and test-time inference, where the model verifies its own outputs, filters or reweights data based on this verification, and distills the filtered data.
+
+## Key Contributions
+
+The paper provides a mathematical formulation for self-improvement, which is largely governed by a quantity formalized as the "generation-verification gap". Through experiments with various model families and tasks, the authors discover a scaling phenomenon of self-improvement—a variant of the generation-verification gap scales monotonically with the model pre-training flops.
+
+## Venue
+
+The paper has been submitted to ICLR 2025, as indicated by the primary area being foundation or frontier models, including LLMs and compliance with ICLR 2025 submission instructions. The authors are Yuda Song, Hanlin Zhang, Udaya Ghai, Carson Eisenach, Sham M. Kakade, and Dean Foster.
+
+The paper is available on OpenReview at: https://openreview.net/forum?id=mtJSMcF3ek
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc5cc1a2-83ef-46b8-8111-71340be6de0c",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "6080a9b9-bc6e-40ce-bac8-70505cfe5323",
+  "toolUseResult": {
+    "query": "openreview \"Mind the Gap\" self-improvement LLM ICLR 2025 venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D2gJEjFFTnVKwHV7k4eiHf",
+        "content": [
+          {
+            "title": "Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=mtJSMcF3ek"
+          },
+          {
+            "title": "MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2412.02674] Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models",
+            "url": "https://arxiv.org/abs/2412.02674"
+          },
+          {
+            "title": "Carnegie Mellon University at ICLR 2025 – Machine Learning Blog | ML@CMU | Carnegie Mellon University",
+            "url": "https://blog.ml.cmu.edu/2025/04/23/carnegie-mellon-university-at-iclr-2025/"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for \"Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models\":\n\n## Paper Details\n\nThe paper explores self-improvement as a mechanism in Large Language Model pre-training, post-training and test-time inference, where the model verifies its own outputs, filters or reweights data based on this verification, and distills the filtered data.\n\n## Key Contributions\n\nThe paper provides a mathematical formulation for self-improvement, which is largely governed by a quantity formalized as the \"generation-verification gap\". Through experiments with various model families and tasks, the authors discover a scaling phenomenon of self-improvement—a variant of the generation-verification gap scales monotonically with the model pre-training flops.\n\n## Venue\n\nThe paper has been submitted to ICLR 2025, as indicated by the primary area being foundation or frontier models, including LLMs and compliance with ICLR 2025 submission instructions. The authors are Yuda Song, Hanlin Zhang, Udaya Ghai, Carson Eisenach, Sham M. Kakade, and Dean Foster.\n\nThe paper is available on OpenReview at: https://openreview.net/forum?id=mtJSMcF3ek"
+    ],
+    "durationSeconds": 5.982767509999976
+  },
+  "sourceToolAssistantUUID": "bc5cc1a2-83ef-46b8-8111-71340be6de0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-18T03:35:37.962Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AssugSyM743U7hjsQq4Dzx`</summary>
+
+```json
+{
+  "query": "TTRL test-time reinforcement learning venue NeurIPS 2025 confirmed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6080a9b9-bc6e-40ce-bac8-70505cfe5323",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LK7yvnV1FL4LXiRbux",
+  "type": "assistant",
+  "uuid": "e9d7b219-fdd2-4551-a763-ad2c248e00be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014AgYSgjDW7KoCH1xrHpep7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 58423,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 661,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 58423,
+          "cache_creation_input_tokens": 661,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 661
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-18T03:35:41.630Z_
+
+<details><summary>↩ Tool result · `toolu_01AssugSyM743U7hjsQq4Dzx`</summary>
+
+```text
+Web search results for query: "TTRL test-time reinforcement learning venue NeurIPS 2025 confirmed"
+
+Links: [{"title":"GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub","url":"https://github.com/prime-rl/ttrl"},{"title":"NeurIPS Poster TTRL: Test-Time Reinforcement Learning","url":"https://neurips.cc/virtual/2025/poster/117645"},{"title":"TTRL: Test-Time Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=VuVhgEiu20"},{"title":"TTRL: Test-Time Reinforcement Learning Yuxin Zuo∗1,2 Kaiyan Zhang∗1 Li Sheng1,2","url":"https://openreview.net/pdf/3ff432e912f7ed9bbbacf9a7a16d7e5af88d721a.pdf"},{"title":"Test-Time Curricula for Targeted Reinforcement Learning","url":"https://arxiv.org/pdf/2510.04786"},{"title":"arXiv:2504.16084v3 [cs.CL] 30 Jun 2025 TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2504.16084"},{"title":"TTRL: Test-Time Reinforcement Learning","url":"https://neurips.cc/media/neurips-2025/Slides/117645_wsi6HPC.pdf"},{"title":"[2504.16084] TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2504.16084"},{"title":"Learning on the Job: Test-Time Curricula for Targeted Reinforcement Learning","url":"https://arxiv.org/html/2510.04786v1"},{"title":"arXiv:2504.16084v1 [cs.CL] 22 Apr 2025 TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2504.16084v1"}]
+
+Based on the web search results, I can confirm that TTRL (Test-Time Reinforcement Learning) was accepted as a NeurIPS 2025 poster. The paper was published at the 39th Conference on Neural Information Processing Systems (NeurIPS 2025).
+
+TTRL is an open-source solution for online RL on data without ground-truth labels, especially test data, and it introduces a novel method for training LLMs using RL on unlabeled data and enables self-evolution of LLMs by utilizing the priors in the pre-trained models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9d7b219-fdd2-4551-a763-ad2c248e00be",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "69cf4490-1be4-4700-99d5-502b6dd851fb",
+  "toolUseResult": {
+    "query": "TTRL test-time reinforcement learning venue NeurIPS 2025 confirmed",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ArD55c43wpX2prcUb4VHne",
+        "content": [
+          {
+            "title": "GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub",
+            "url": "https://github.com/prime-rl/ttrl"
+          },
+          {
+            "title": "NeurIPS Poster TTRL: Test-Time Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2025/poster/117645"
+          },
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=VuVhgEiu20"
+          },
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning Yuxin Zuo∗1,2 Kaiyan Zhang∗1 Li Sheng1,2",
+            "url": "https://openreview.net/pdf/3ff432e912f7ed9bbbacf9a7a16d7e5af88d721a.pdf"
+          },
+          {
+            "title": "Test-Time Curricula for Targeted Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2510.04786"
+          },
+          {
+            "title": "arXiv:2504.16084v3 [cs.CL] 30 Jun 2025 TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.16084"
+          },
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning",
+            "url": "https://neurips.cc/media/neurips-2025/Slides/117645_wsi6HPC.pdf"
+          },
+          {
+            "title": "[2504.16084] TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.16084"
+          },
+          {
+            "title": "Learning on the Job: Test-Time Curricula for Targeted Reinforcement Learning",
+            "url": "https://arxiv.org/html/2510.04786v1"
+          },
+          {
+            "title": "arXiv:2504.16084v1 [cs.CL] 22 Apr 2025 TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.16084v1"
+          }
+        ]
+      },
+      "Based on the web search results, I can confirm that TTRL (Test-Time Reinforcement Learning) was accepted as a NeurIPS 2025 poster. The paper was published at the 39th Conference on Neural Information Processing Systems (NeurIPS 2025).\n\nTTRL is an open-source solution for online RL on data without ground-truth labels, especially test data, and it introduces a novel method for training LLMs using RL on unlabeled data and enables self-evolution of LLMs by utilizing the priors in the pre-trained models."
+    ],
+    "durationSeconds": 3.6653905529999755
+  },
+  "sourceToolAssistantUUID": "e9d7b219-fdd2-4551-a763-ad2c248e00be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-18T03:35:45.156Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FhxDqtRTvtR7u62iLk1XrZ`</summary>
+
+```json
+{
+  "query": "\"Self-Evolving Curriculum\" SEC LLM reasoning venue NeurIPS ICML 2025 2026 accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69cf4490-1be4-4700-99d5-502b6dd851fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LKarwmWi8ywzGpfKXa",
+  "type": "assistant",
+  "uuid": "9f2f738e-5879-4864-b9ca-000d5deb961c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVn1TNzVFn8ZbRnL1q8gvM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 763,
+      "cache_read_input_tokens": 59084,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 59084,
+          "cache_creation_input_tokens": 763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-18T03:35:51.110Z_
+
+<details><summary>↩ Tool result · `toolu_01FhxDqtRTvtR7u62iLk1XrZ`</summary>
+
+```text
+Web search results for query: ""Self-Evolving Curriculum" SEC LLM reasoning venue NeurIPS ICML 2025 2026 accepted"
+
+Links: [{"title":"SELF-EVOLVING CURRICULUM FOR LLM REASONING","url":"https://arxiv.org/pdf/2505.14970"},{"title":"Accepted papers | FoRLM @ NeurIPS'25","url":"https://reasoning-workshop.github.io/accepted/"},{"title":"[2505.14970] Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/abs/2505.14970"},{"title":"Gautam Kamath – ICML Blog","url":"https://blog.icml.cc/author/gkamath/"},{"title":"Evaluating the Evolving LLM Lifecycle: Benchmarks, Emergent Abilities, and Scaling","url":"https://neurips.cc/virtual/2025/workshop/109549"},{"title":"NeurIPS 2025 Workshop LLM Evaluation | OpenReview","url":"https://openreview.net/group?id=NeurIPS.cc%2F2025%2FWorkshop%2FLLM_Evaluation"},{"title":"ICML 2026 Intro LLM Policy","url":"https://icml.cc/Conferences/2026/Intro-LLM-Policy"},{"title":"ICML 2026 Lay Summaries - ICML Blog","url":"https://blog.icml.cc/category/icml-2026/"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"}]
+
+Based on the search results, I found relevant information about the Self-Evolving Curriculum (SEC) paper:
+
+## Self-Evolving Curriculum for LLM Reasoning
+
+Self-Evolving Curriculum (SEC) is an automatic curriculum learning approach for RL fine-tuning of LLMs. The method adaptively learns a curriculum policy concurrently with the RL fine-tuning process, formulating curriculum selection as a non-stationary Multi-Armed Bandit (MAB) problem.
+
+### Publication Status
+
+The paper has been published on arXiv. The paper was first submitted on May 20, 2025, with subsequent versions uploaded in May 2025, September 2025, and October 2025.
+
+### Venue Information
+
+While my search results reference accepted papers for the FoRLM (Frontiers of Reasoning with Large Models) workshop at NeurIPS 2025, the specific SEC paper does not appear in the directly accessible accepted papers list in these results. However, the paper is available on arXiv (2505.14970) and has undergone multiple revisions, suggesting it may have been submitted to or discussed at various venues during the 2025-2026 period. The search results indicate active discussions about reasoning-focused LLM research at both NeurIPS and ICML during this timeframe.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f2f738e-5879-4864-b9ca-000d5deb961c",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "39bc102e-b440-49a7-97c2-16295e72e1d2",
+  "toolUseResult": {
+    "query": "\"Self-Evolving Curriculum\" SEC LLM reasoning venue NeurIPS ICML 2025 2026 accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BT78ePPLQBigPh2B7cngxh",
+        "content": [
+          {
+            "title": "SELF-EVOLVING CURRICULUM FOR LLM REASONING",
+            "url": "https://arxiv.org/pdf/2505.14970"
+          },
+          {
+            "title": "Accepted papers | FoRLM @ NeurIPS'25",
+            "url": "https://reasoning-workshop.github.io/accepted/"
+          },
+          {
+            "title": "[2505.14970] Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.14970"
+          },
+          {
+            "title": "Gautam Kamath – ICML Blog",
+            "url": "https://blog.icml.cc/author/gkamath/"
+          },
+          {
+            "title": "Evaluating the Evolving LLM Lifecycle: Benchmarks, Emergent Abilities, and Scaling",
+            "url": "https://neurips.cc/virtual/2025/workshop/109549"
+          },
+          {
+            "title": "NeurIPS 2025 Workshop LLM Evaluation | OpenReview",
+            "url": "https://openreview.net/group?id=NeurIPS.cc%2F2025%2FWorkshop%2FLLM_Evaluation"
+          },
+          {
+            "title": "ICML 2026 Intro LLM Policy",
+            "url": "https://icml.cc/Conferences/2026/Intro-LLM-Policy"
+          },
+          {
+            "title": "ICML 2026 Lay Summaries - ICML Blog",
+            "url": "https://blog.icml.cc/category/icml-2026/"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the Self-Evolving Curriculum (SEC) paper:\n\n## Self-Evolving Curriculum for LLM Reasoning\n\nSelf-Evolving Curriculum (SEC) is an automatic curriculum learning approach for RL fine-tuning of LLMs. The method adaptively learns a curriculum policy concurrently with the RL fine-tuning process, formulating curriculum selection as a non-stationary Multi-Armed Bandit (MAB) problem.\n\n### Publication Status\n\nThe paper has been published on arXiv. The paper was first submitted on May 20, 2025, with subsequent versions uploaded in May 2025, September 2025, and October 2025.\n\n### Venue Information\n\nWhile my search results reference accepted papers for the FoRLM (Frontiers of Reasoning with Large Models) workshop at NeurIPS 2025, the specific SEC paper does not appear in the directly accessible accepted papers list in these results. However, the paper is available on arXiv (2505.14970) and has undergone multiple revisions, suggesting it may have been submitted to or discussed at various venues during the 2025-2026 period. The search results indicate active discussions about reasoning-focused LLM research at both NeurIPS and ICML during this timeframe."
+    ],
+    "durationSeconds": 5.946873304000008
+  },
+  "sourceToolAssistantUUID": "9f2f738e-5879-4864-b9ca-000d5deb961c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-18T03:35:53.701Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WeEkh83Sdr4otVBJwTwaFF`</summary>
+
+```json
+{
+  "query": "\"Progressive Mastery\" curriculum learning mathematical reasoning venue 2025 2026 accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39bc102e-b440-49a7-97c2-16295e72e1d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LLHPzauoGLomS2WwZb",
+  "type": "assistant",
+  "uuid": "74c4440e-34b3-46d6-ad8e-8baa72763827",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgpoFdE15L8jfNjjzGKQUj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 59847,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 845,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 59847,
+          "cache_creation_input_tokens": 845,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 845
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-18T03:35:58.607Z_
+
+<details><summary>↩ Tool result · `toolu_01WeEkh83Sdr4otVBJwTwaFF`</summary>
+
+```text
+Web search results for query: ""Progressive Mastery" curriculum learning mathematical reasoning venue 2025 2026 accepted"
+
+Links: [{"title":"[2506.04065] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning","url":"https://arxiv.org/abs/2506.04065"},{"title":"Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning","url":"https://arxiv.org/html/2506.04065"},{"title":"[Literature Review] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning","url":"https://www.themoonlight.io/en/review/progressive-mastery-customized-curriculum-learning-with-guided-prompting-for-mathematical-reasoning"},{"title":"WISDOM: Progressive Curriculum Synthesis Makes LLMs Better Mathematical Reasoner | OpenReview","url":"https://openreview.net/forum?id=hFFAg5Dmw9"},{"title":"What is PSI-PMI? | New Jersey Center for Teaching and Learning","url":"https://njctl.org/who-we-are/what-is-psi-pmi/"},{"title":"Mathematics Mastery through Innovative Pedagogical Approaches – International Journal of Research and Innovation in Applied Science (IJRIAS)","url":"https://rsisinternational.org/journals/ijrias/articles/mathematics-mastery-through-innovative-pedagogical-approaches/"},{"title":"Math Kangaroo: Solutions for 2025 and Preparation for 2026 - Math Competitions | Think Academy US","url":"https://www.thethinkacademy.com/blog/math-kangaroo-solutions-for-2025-and-preparation-for-2026/"},{"title":"Progress Math","url":"https://www.progressmath.com/"},{"title":"Understand this learning area – Mathematics","url":"https://www.australiancurriculum.edu.au/curriculum-information/understand-this-learning-area/mathematics"},{"title":"Progressive Schools Curriculum Los Angeles CA — Children's Community School","url":"https://www.ccsteaches.org/curriculum"}]
+
+Based on the search results, I found information about "Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning."
+
+This is a research paper titled "Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning" with an arXiv submission on June 4, 2025.
+
+The paper proposes Customized Curriculum Learning (CCL), a novel framework with two key innovations: model-adaptive difficulty definition that customizes curriculum datasets based on each model's individual capabilities, and "Guided Prompting," which dynamically reduces sample difficulty through strategic hints.
+
+However, I did not find specific information in the search results about a particular venue or conference where this paper was accepted for 2025 or 2026. The paper appears on arXiv (a preprint repository) but the search results don't indicate acceptance at a specific conference venue. If you're looking for information about where this paper was submitted or accepted, you may want to check the arXiv page directly or look for information on conference proceedings sites like ICLR, NeurIPS, or similar venues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74c4440e-34b3-46d6-ad8e-8baa72763827",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "961db272-b75a-4186-aac2-3385886c3b29",
+  "toolUseResult": {
+    "query": "\"Progressive Mastery\" curriculum learning mathematical reasoning venue 2025 2026 accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QVBcXCCQ3CjRCLsW4AfKHL",
+        "content": [
+          {
+            "title": "[2506.04065] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2506.04065"
+          },
+          {
+            "title": "Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2506.04065"
+          },
+          {
+            "title": "[Literature Review] Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning",
+            "url": "https://www.themoonlight.io/en/review/progressive-mastery-customized-curriculum-learning-with-guided-prompting-for-mathematical-reasoning"
+          },
+          {
+            "title": "WISDOM: Progressive Curriculum Synthesis Makes LLMs Better Mathematical Reasoner | OpenReview",
+            "url": "https://openreview.net/forum?id=hFFAg5Dmw9"
+          },
+          {
+            "title": "What is PSI-PMI? | New Jersey Center for Teaching and Learning",
+            "url": "https://njctl.org/who-we-are/what-is-psi-pmi/"
+          },
+          {
+            "title": "Mathematics Mastery through Innovative Pedagogical Approaches – International Journal of Research and Innovation in Applied Science (IJRIAS)",
+            "url": "https://rsisinternational.org/journals/ijrias/articles/mathematics-mastery-through-innovative-pedagogical-approaches/"
+          },
+          {
+            "title": "Math Kangaroo: Solutions for 2025 and Preparation for 2026 - Math Competitions | Think Academy US",
+            "url": "https://www.thethinkacademy.com/blog/math-kangaroo-solutions-for-2025-and-preparation-for-2026/"
+          },
+          {
+            "title": "Progress Math",
+            "url": "https://www.progressmath.com/"
+          },
+          {
+            "title": "Understand this learning area – Mathematics",
+            "url": "https://www.australiancurriculum.edu.au/curriculum-information/understand-this-learning-area/mathematics"
+          },
+          {
+            "title": "Progressive Schools Curriculum Los Angeles CA — Children's Community School",
+            "url": "https://www.ccsteaches.org/curriculum"
+          }
+        ]
+      },
+      "Based on the search results, I found information about \"Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning.\"\n\nThis is a research paper titled \"Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning\" with an arXiv submission on June 4, 2025.\n\nThe paper proposes Customized Curriculum Learning (CCL), a novel framework with two key innovations: model-adaptive difficulty definition that customizes curriculum datasets based on each model's individual capabilities, and \"Guided Prompting,\" which dynamically reduces sample difficulty through strategic hints.\n\nHowever, I did not find specific information in the search results about a particular venue or conference where this paper was accepted for 2025 or 2026. The paper appears on arXiv (a preprint repository) but the search results don't indicate acceptance at a specific conference venue. If you're looking for information about where this paper was submitted or accepted, you may want to check the arXiv page directly or look for information on conference proceedings sites like ICLR, NeurIPS, or similar venues."
+    ],
+    "durationSeconds": 4.902118483000027
+  },
+  "sourceToolAssistantUUID": "74c4440e-34b3-46d6-ad8e-8baa72763827",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 130 · 2026-05-18T03:35:58.610Z_
+
+```json
+{
+  "parentUuid": "961db272-b75a-4186-aac2-3385886c3b29",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "11078abc-2805-4858-a4e0-871b82bb3549",
+  "timestamp": "2026-05-18T03:35:58.610Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 131 · 2026-05-18T03:36:02.595Z_
+
+Now let me search for a few more pieces: concurrent work specifically and the CoVerRL reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11078abc-2805-4858-a4e0-871b82bb3549",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LLqkAzW2urhpozbGLP",
+  "type": "assistant",
+  "uuid": "bbc27ed5-d847-4777-b321-9d514059aee0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUmP1AgrNaL9FXLxY9eLfu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 60692,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 60692,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-18T03:36:03.093Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xpd1HKNNhUwon3nHRvEajm`</summary>
+
+```json
+{
+  "query": "CoVerRL verifier co-training reinforcement learning arxiv paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbc27ed5-d847-4777-b321-9d514059aee0",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LLqkAzW2urhpozbGLP",
+  "type": "assistant",
+  "uuid": "ba2bc349-e26b-4e0b-8075-4289d62e3a67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUmP1AgrNaL9FXLxY9eLfu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 60692,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 60692,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-18T03:36:09.108Z_
+
+<details><summary>↩ Tool result · `toolu_01Xpd1HKNNhUwon3nHRvEajm`</summary>
+
+```text
+Web search results for query: "CoVerRL verifier co-training reinforcement learning arxiv paper"
+
+Links: [{"title":"[2603.17775] CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution","url":"https://arxiv.org/abs/2603.17775"},{"title":"CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution","url":"https://arxiv.org/html/2603.17775"},{"title":"[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/abs/2506.14245"},{"title":"Reinforcement Learning with Verifiable yet Noisy Rewards ...","url":"https://www.arxiv.org/pdf/2510.00915"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/html/2506.14245v2"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly ...","url":"https://arxiv.org/pdf/2506.14245"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"arXiv:2503.23829v2 [cs.CL] 1 Apr 2025","url":"https://arxiv.org/pdf/2503.23829"},{"title":"Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers","url":"https://arxiv.org/html/2510.00915v1"},{"title":"[2601.04411] Rate or Fate? RLV$^\\varepsilon$R: Reinforcement Learning with Verifiable Noisy Rewards","url":"https://arxiv.org/abs/2601.04411"}]
+
+Based on the search results, I found information about CoVerRL:
+
+## CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning
+
+CoVerRL is a framework where a single model alternates between generator and verifier roles, with each capability bootstrapping the other.
+
+### The Problem It Addresses
+
+Label-free reinforcement learning enables large language models to improve reasoning capabilities without ground-truth supervision, typically by treating majority-voted answers as pseudo-labels. However, the paper identifies a critical failure mode: as training maximizes self-consistency, output diversity collapses, causing the model to confidently reinforce systematic errors that evade detection.
+
+### The Solution
+
+Majority voting provides noisy but informative supervision for training the verifier, while the improving verifier progressively filters self-consistent errors from pseudo-labels. This co-evolution creates a virtuous cycle that maintains high reward accuracy throughout training.
+
+**arXiv Details:** The paper is identified as arXiv:2603.17775, published on March 18, 2026, with the title "CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution," authored by Teng Pan and 8 other authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba2bc349-e26b-4e0b-8075-4289d62e3a67",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "4f6d75c8-e235-455d-a270-aae0d991cd00",
+  "toolUseResult": {
+    "query": "CoVerRL verifier co-training reinforcement learning arxiv paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MaGrjFgP2jmW2TvdUPyHAc",
+        "content": [
+          {
+            "title": "[2603.17775] CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution",
+            "url": "https://arxiv.org/abs/2603.17775"
+          },
+          {
+            "title": "CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution",
+            "url": "https://arxiv.org/html/2603.17775"
+          },
+          {
+            "title": "[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/abs/2506.14245"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable yet Noisy Rewards ...",
+            "url": "https://www.arxiv.org/pdf/2510.00915"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/html/2506.14245v2"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly ...",
+            "url": "https://arxiv.org/pdf/2506.14245"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "arXiv:2503.23829v2 [cs.CL] 1 Apr 2025",
+            "url": "https://arxiv.org/pdf/2503.23829"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers",
+            "url": "https://arxiv.org/html/2510.00915v1"
+          },
+          {
+            "title": "[2601.04411] Rate or Fate? RLV$^\\varepsilon$R: Reinforcement Learning with Verifiable Noisy Rewards",
+            "url": "https://arxiv.org/abs/2601.04411"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CoVerRL:\n\n## CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning\n\nCoVerRL is a framework where a single model alternates between generator and verifier roles, with each capability bootstrapping the other.\n\n### The Problem It Addresses\n\nLabel-free reinforcement learning enables large language models to improve reasoning capabilities without ground-truth supervision, typically by treating majority-voted answers as pseudo-labels. However, the paper identifies a critical failure mode: as training maximizes self-consistency, output diversity collapses, causing the model to confidently reinforce systematic errors that evade detection.\n\n### The Solution\n\nMajority voting provides noisy but informative supervision for training the verifier, while the improving verifier progressively filters self-consistent errors from pseudo-labels. This co-evolution creates a virtuous cycle that maintains high reward accuracy throughout training.\n\n**arXiv Details:** The paper is identified as arXiv:2603.17775, published on March 18, 2026, with the title \"CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution,\" authored by Teng Pan and 8 other authors."
+    ],
+    "durationSeconds": 6.01180441099999
+  },
+  "sourceToolAssistantUUID": "ba2bc349-e26b-4e0b-8075-4289d62e3a67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 134_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "4f6d75c8-e235-455d-a270-aae0d991cd00",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 135_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-18T03:36:11.260Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016BwuixTaJAwcHZYt5W2yGg`</summary>
+
+```json
+{
+  "query": "arxiv 2603.17775 CoVerRL generator verifier co-evolution details method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f6d75c8-e235-455d-a270-aae0d991cd00",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LMcKofvM6REkPXVEtq",
+  "type": "assistant",
+  "uuid": "72182c68-b5c1-4013-82eb-c8aba57e98e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ybgQYxZz78MhrtWmcTBpy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 61661,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 61661,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-18T03:36:17.859Z_
+
+<details><summary>↩ Tool result · `toolu_016BwuixTaJAwcHZYt5W2yGg`</summary>
+
+```text
+Web search results for query: "arxiv 2603.17775 CoVerRL generator verifier co-evolution details method"
+
+Links: [{"title":"[2603.17775] CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution","url":"https://arxiv.org/abs/2603.17775"},{"title":"CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution","url":"https://arxiv.org/html/2603.17775"},{"title":"arXiv:2403.17775v3 [cs.LG] 15 Jul 2024","url":"https://arxiv.org/pdf/2403.17775"},{"title":"Arxiv","url":"http://arxiv.org/pdf/2310.17775"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=543&show=2000"},{"title":"Quantum Physics","url":"https://arxiv.org/list/quant-ph/recent?skip=221&show=2000"},{"title":"[2602.17775] Exact quantum decision diagrams with scaling guarantees for Clifford+$T$ circuits and beyond","url":"https://arxiv.org/abs/2602.17775"},{"title":"[2509.17775] Functional Information in Quantum Darwinism: An Operational Measure of Objectivity","url":"https://arxiv.org/abs/2509.17775"},{"title":"UNICORN: A Deep Learning Model for Integrating Multi-Stain Data in Histopathology","url":"https://arxiv.org/html/2409.17775"},{"title":"arXiv.org e-Print archive","url":"https://arxiv.org/"}]
+
+Based on the search results, here is information about arxiv paper 2603.17775 on CoVerRL:
+
+## Overview
+CoVerRL is a framework where a single model alternates between generator and verifier roles, with each capability bootstrapping the other.
+
+## The Problem: The Consensus Trap
+The framework addresses a critical failure mode where as training maximizes self-consistency, output diversity collapses, causing the model to confidently reinforce systematic errors that evade detection.
+
+## Method Details
+CoVerRL is a framework where a single model alternates between generator and verifier roles within a unified multi-turn RL process, where the generator produces candidate solutions and establishes pseudo-labels via majority voting, and the verifier scrutinizes reasoning processes to identify errors independent of answer frequency.
+
+The critical insight is bidirectional supervision: consensus-derived pseudo-labels provide contrastive signal for verifier training, while the improving verifier filters self-consistent errors from pseudo-labels, creating a virtuous cycle where better verification yields cleaner labels, producing more accurate rewards that further improve both generation and verification.
+
+## Results
+Experiments across Qwen and Llama model families demonstrate that CoVerRL outperforms label-free baselines by 4.7-5.9% on mathematical reasoning benchmarks. Self-verification accuracy improves from around 55% to over 85%, confirming that both capabilities genuinely co-evolve.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72182c68-b5c1-4013-82eb-c8aba57e98e8",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "615486ce-3ed9-4878-b695-65efbc8b4a00",
+  "toolUseResult": {
+    "query": "arxiv 2603.17775 CoVerRL generator verifier co-evolution details method",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019ThpPkjSbQ2ockfd8uSjws",
+        "content": [
+          {
+            "title": "[2603.17775] CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution",
+            "url": "https://arxiv.org/abs/2603.17775"
+          },
+          {
+            "title": "CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution",
+            "url": "https://arxiv.org/html/2603.17775"
+          },
+          {
+            "title": "arXiv:2403.17775v3 [cs.LG] 15 Jul 2024",
+            "url": "https://arxiv.org/pdf/2403.17775"
+          },
+          {
+            "title": "Arxiv",
+            "url": "http://arxiv.org/pdf/2310.17775"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=543&show=2000"
+          },
+          {
+            "title": "Quantum Physics",
+            "url": "https://arxiv.org/list/quant-ph/recent?skip=221&show=2000"
+          },
+          {
+            "title": "[2602.17775] Exact quantum decision diagrams with scaling guarantees for Clifford+$T$ circuits and beyond",
+            "url": "https://arxiv.org/abs/2602.17775"
+          },
+          {
+            "title": "[2509.17775] Functional Information in Quantum Darwinism: An Operational Measure of Objectivity",
+            "url": "https://arxiv.org/abs/2509.17775"
+          },
+          {
+            "title": "UNICORN: A Deep Learning Model for Integrating Multi-Stain Data in Histopathology",
+            "url": "https://arxiv.org/html/2409.17775"
+          },
+          {
+            "title": "arXiv.org e-Print archive",
+            "url": "https://arxiv.org/"
+          }
+        ]
+      },
+      "Based on the search results, here is information about arxiv paper 2603.17775 on CoVerRL:\n\n## Overview\nCoVerRL is a framework where a single model alternates between generator and verifier roles, with each capability bootstrapping the other.\n\n## The Problem: The Consensus Trap\nThe framework addresses a critical failure mode where as training maximizes self-consistency, output diversity collapses, causing the model to confidently reinforce systematic errors that evade detection.\n\n## Method Details\nCoVerRL is a framework where a single model alternates between generator and verifier roles within a unified multi-turn RL process, where the generator produces candidate solutions and establishes pseudo-labels via majority voting, and the verifier scrutinizes reasoning processes to identify errors independent of answer frequency.\n\nThe critical insight is bidirectional supervision: consensus-derived pseudo-labels provide contrastive signal for verifier training, while the improving verifier filters self-consistent errors from pseudo-labels, creating a virtuous cycle where better verification yields cleaner labels, producing more accurate rewards that further improve both generation and verification.\n\n## Results\nExperiments across Qwen and Llama model families demonstrate that CoVerRL outperforms label-free baselines by 4.7-5.9% on mathematical reasoning benchmarks. Self-verification accuracy improves from around 55% to over 85%, confirming that both capabilities genuinely co-evolve."
+    ],
+    "durationSeconds": 6.5961736680000325
+  },
+  "sourceToolAssistantUUID": "72182c68-b5c1-4013-82eb-c8aba57e98e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-18T03:36:21.227Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NoKBue9kyG5sHqqJ5rgk3h`</summary>
+
+```json
+{
+  "query": "TTCS test-time curriculum synthesis self-evolving arxiv 2601.22628"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "615486ce-3ed9-4878-b695-65efbc8b4a00",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LNFq3Q5S4kN71jTeGG",
+  "type": "assistant",
+  "uuid": "88af46bf-ac0f-46c9-a786-32ed90ef08d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tnqxsntm9Pojfq6BhQy655",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 62558,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 845,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 62558,
+          "cache_creation_input_tokens": 845,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 845
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-18T03:36:28.973Z_
+
+<details><summary>↩ Tool result · `toolu_01NoKBue9kyG5sHqqJ5rgk3h`</summary>
+
+```text
+Web search results for query: "TTCS test-time curriculum synthesis self-evolving arxiv 2601.22628"
+
+Links: [{"title":"[2601.22628] TTCS: Test-Time Curriculum Synthesis for Self-Evolving","url":"https://arxiv.org/abs/2601.22628"},{"title":"TTCS: Test-Time Curriculum Synthesis for Self-Evolving","url":"https://www.arxiv.org/pdf/2601.22628"},{"title":"TTCS: Test-Time Curriculum Synthesis for Self-Evolving","url":"https://arxiv.org/html/2601.22628v1"},{"title":"[Paper Note] TTCS: Test-Time Curriculum Synthesis for Self-Evolving, Chengyi Yang+, arXiv'26, 2026.01 · Issue #4374 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/4374"},{"title":"GitHub - XMUDeepLIT/TTCS: The code implementation for TTCS: Test-Time Curriculum Synthesis for Self-Evolving. · GitHub","url":"https://github.com/XMUDeepLIT/TTCS"},{"title":"TTCS: Test-Time Curriculum Synthesis for Self-Evolving | Papers | HyperAI","url":"https://beta.hyper.ai/en/papers/2601.22628"},{"title":"Computation and Language","url":"https://arxiv.org/list/cs.CL/pastweek?skip=640&show=100"},{"title":"GitHub - XMUDeepLIT/Awesome-Self-Evolving-Agents: A Survey of Self-Evolving Agents | A curated list of resources (surveys, papers, benchmarks, and opensource projects) on Self-Evolving Agents. · GitHub","url":"https://github.com/XMUDeepLIT/Awesome-Self-Evolving-Agents"},{"title":"Learning on the Job: Test-Time Curricula for Targeted Reinforcement Learning","url":"https://arxiv.org/html/2510.04786"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=3837&show=1000"}]
+
+I found detailed information about the paper you're searching for. Here's what I found:
+
+## TTCS: Test-Time Curriculum Synthesis for Self-Evolving (arXiv 2601.22628)
+
+This paper was authored by Chengyi Yang and 7 other authors, and was submitted on January 30, 2026.
+
+### Overview
+
+Test-Time Training offers a promising way to improve the reasoning ability of large language models (LLMs) by adapting the model using only the test questions. However, existing methods struggle with difficult reasoning problems for two reasons: raw test questions are often too difficult to yield high-quality pseudo-labels, and the limited size of test sets makes continuous online updates prone to instability.
+
+### Proposed Approach
+
+To address these limitations, the authors propose TTCS, a co-evolving test-time training framework. Specifically, TTCS initializes two policies from the same pretrained model: a question synthesizer and a reasoning solver. The solver's feedback guides the synthesizer to generate questions aligned with the model's current capability, and the generated question variants in turn stabilize the solver's test-time training.
+
+### Results
+
+Experiments show that TTCS consistently strengthens the reasoning ability on challenging mathematical benchmarks and transfers to general-domain tasks across different LLM backbones, highlighting a scalable path towards dynamically constructing test-time curricula for self-evolving.
+
+Code and implementation details are available at https://github.com/XMUDeepLIT/TTCS.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88af46bf-ac0f-46c9-a786-32ed90ef08d4",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "6a625de5-9373-4bc9-9a27-f5ad2e5b28d2",
+  "toolUseResult": {
+    "query": "TTCS test-time curriculum synthesis self-evolving arxiv 2601.22628",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013JniMYCnqk9Y2bMXTjX5RV",
+        "content": [
+          {
+            "title": "[2601.22628] TTCS: Test-Time Curriculum Synthesis for Self-Evolving",
+            "url": "https://arxiv.org/abs/2601.22628"
+          },
+          {
+            "title": "TTCS: Test-Time Curriculum Synthesis for Self-Evolving",
+            "url": "https://www.arxiv.org/pdf/2601.22628"
+          },
+          {
+            "title": "TTCS: Test-Time Curriculum Synthesis for Self-Evolving",
+            "url": "https://arxiv.org/html/2601.22628v1"
+          },
+          {
+            "title": "[Paper Note] TTCS: Test-Time Curriculum Synthesis for Self-Evolving, Chengyi Yang+, arXiv'26, 2026.01 · Issue #4374 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/4374"
+          },
+          {
+            "title": "GitHub - XMUDeepLIT/TTCS: The code implementation for TTCS: Test-Time Curriculum Synthesis for Self-Evolving. · GitHub",
+            "url": "https://github.com/XMUDeepLIT/TTCS"
+          },
+          {
+            "title": "TTCS: Test-Time Curriculum Synthesis for Self-Evolving | Papers | HyperAI",
+            "url": "https://beta.hyper.ai/en/papers/2601.22628"
+          },
+          {
+            "title": "Computation and Language",
+            "url": "https://arxiv.org/list/cs.CL/pastweek?skip=640&show=100"
+          },
+          {
+            "title": "GitHub - XMUDeepLIT/Awesome-Self-Evolving-Agents: A Survey of Self-Evolving Agents | A curated list of resources (surveys, papers, benchmarks, and opensource projects) on Self-Evolving Agents. · GitHub",
+            "url": "https://github.com/XMUDeepLIT/Awesome-Self-Evolving-Agents"
+          },
+          {
+            "title": "Learning on the Job: Test-Time Curricula for Targeted Reinforcement Learning",
+            "url": "https://arxiv.org/html/2510.04786"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=3837&show=1000"
+          }
+        ]
+      },
+      "I found detailed information about the paper you're searching for. Here's what I found:\n\n## TTCS: Test-Time Curriculum Synthesis for Self-Evolving (arXiv 2601.22628)\n\nThis paper was authored by Chengyi Yang and 7 other authors, and was submitted on January 30, 2026.\n\n### Overview\n\nTest-Time Training offers a promising way to improve the reasoning ability of large language models (LLMs) by adapting the model using only the test questions. However, existing methods struggle with difficult reasoning problems for two reasons: raw test questions are often too difficult to yield high-quality pseudo-labels, and the limited size of test sets makes continuous online updates prone to instability.\n\n### Proposed Approach\n\nTo address these limitations, the authors propose TTCS, a co-evolving test-time training framework. Specifically, TTCS initializes two policies from the same pretrained model: a question synthesizer and a reasoning solver. The solver's feedback guides the synthesizer to generate questions aligned with the model's current capability, and the generated question variants in turn stabilize the solver's test-time training.\n\n### Results\n\nExperiments show that TTCS consistently strengthens the reasoning ability on challenging mathematical benchmarks and transfers to general-domain tasks across different LLM backbones, highlighting a scalable path towards dynamically constructing test-time curricula for self-evolving.\n\nCode and implementation details are available at https://github.com/XMUDeepLIT/TTCS."
+    ],
+    "durationSeconds": 7.741091572000005
+  },
+  "sourceToolAssistantUUID": "88af46bf-ac0f-46c9-a786-32ed90ef08d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 140 · 2026-05-18T03:36:31.968Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014YZ2aUoBpQMKuUxBB3kgVM`</summary>
+
+```json
+{
+  "query": "\"Learning to Self-Verify\" LLM reasoners arxiv 2602.07594 venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a625de5-9373-4bc9-9a27-f5ad2e5b28d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LP5JoskeqnGgVGrU2t",
+  "type": "assistant",
+  "uuid": "38f7e4d3-eac9-4cc0-b54f-93ebc089486c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118x1RQtYj1LdVbohkhv6vw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 63403,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 63403,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-18T03:36:37.047Z_
+
+<details><summary>↩ Tool result · `toolu_014YZ2aUoBpQMKuUxBB3kgVM`</summary>
+
+```text
+Web search results for query: ""Learning to Self-Verify" LLM reasoners arxiv 2602.07594 venue"
+
+Links: [{"title":"[2602.07594] Learning to Self-Verify Makes Language Models Better Reasoners","url":"https://arxiv.org/abs/2602.07594"},{"title":"Learning to Self-Verify Makes Language Models Better Reasoners","url":"https://arxiv.org/html/2602.07594"},{"title":"Incentivizing LLMs to Self-Verify Their Answers","url":"https://arxiv.org/html/2506.01369v1"},{"title":"A Closer Look at the Self-Verification Abilities of Large Language Models in Logical Reasoning","url":"https://arxiv.org/html/2311.07954v2"},{"title":"S2r: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning","url":"https://arxiv.org/html/2502.12853v1"},{"title":"Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/html/2505.13445v1"},{"title":"[2212.09561] Large Language Models are Better Reasoners with Self-Verification","url":"https://arxiv.org/abs/2212.09561"},{"title":"Large Language Models are Better Reasoners with Self-Verification","url":"https://arxiv.org/pdf/2212.09561"},{"title":"Large Language Models are Better Reasoners with Self- ...","url":"https://aclanthology.org/2023.findings-emnlp.167.pdf"},{"title":"Self-Verification Prompting: Enhancing LLM Accuracy in Reasoning Tasks","url":"https://learnprompting.org/docs/advanced/self_criticism/self_verification"}]
+
+Based on the search results, here's the information about the paper with arxiv ID 2602.07594:
+
+## Paper Details
+
+**Title:** Learning to Self-Verify Makes Language Models Better Reasoners
+
+**ArXiv ID:** 2602.07594
+
+**Submission Date:** Submitted on 7 Feb 2026
+
+**Category:** cs (Computer Science)
+
+## Venue Information
+
+The search results do not explicitly specify a conference or journal venue for this paper. The paper appears to be a recent arXiv submission from February 2026, so it may not yet have been published at a specific conference or journal venue, or that information is not included in the available search results.
+
+## Key Contributions
+
+The paper investigates the asymmetry between generation and self-verification in LLMs, showing that improving generation does not lead to corresponding improvements in self-verification. However, learning to self-verify can effectively improve generation performance, achieving accuracy comparable to standard generation training while yielding more efficient and effective reasoning traces.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38f7e4d3-eac9-4cc0-b54f-93ebc089486c",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "edd78f60-0444-45b2-bf41-dc6cc906aed8",
+  "toolUseResult": {
+    "query": "\"Learning to Self-Verify\" LLM reasoners arxiv 2602.07594 venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EKfuGMKwoWddTgvef8xG8z",
+        "content": [
+          {
+            "title": "[2602.07594] Learning to Self-Verify Makes Language Models Better Reasoners",
+            "url": "https://arxiv.org/abs/2602.07594"
+          },
+          {
+            "title": "Learning to Self-Verify Makes Language Models Better Reasoners",
+            "url": "https://arxiv.org/html/2602.07594"
+          },
+          {
+            "title": "Incentivizing LLMs to Self-Verify Their Answers",
+            "url": "https://arxiv.org/html/2506.01369v1"
+          },
+          {
+            "title": "A Closer Look at the Self-Verification Abilities of Large Language Models in Logical Reasoning",
+            "url": "https://arxiv.org/html/2311.07954v2"
+          },
+          {
+            "title": "S2r: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2502.12853v1"
+          },
+          {
+            "title": "Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2505.13445v1"
+          },
+          {
+            "title": "[2212.09561] Large Language Models are Better Reasoners with Self-Verification",
+            "url": "https://arxiv.org/abs/2212.09561"
+          },
+          {
+            "title": "Large Language Models are Better Reasoners with Self-Verification",
+            "url": "https://arxiv.org/pdf/2212.09561"
+          },
+          {
+            "title": "Large Language Models are Better Reasoners with Self- ...",
+            "url": "https://aclanthology.org/2023.findings-emnlp.167.pdf"
+          },
+          {
+            "title": "Self-Verification Prompting: Enhancing LLM Accuracy in Reasoning Tasks",
+            "url": "https://learnprompting.org/docs/advanced/self_criticism/self_verification"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the paper with arxiv ID 2602.07594:\n\n## Paper Details\n\n**Title:** Learning to Self-Verify Makes Language Models Better Reasoners\n\n**ArXiv ID:** 2602.07594\n\n**Submission Date:** Submitted on 7 Feb 2026\n\n**Category:** cs (Computer Science)\n\n## Venue Information\n\nThe search results do not explicitly specify a conference or journal venue for this paper. The paper appears to be a recent arXiv submission from February 2026, so it may not yet have been published at a specific conference or journal venue, or that information is not included in the available search results.\n\n## Key Contributions\n\nThe paper investigates the asymmetry between generation and self-verification in LLMs, showing that improving generation does not lead to corresponding improvements in self-verification. However, learning to self-verify can effectively improve generation performance, achieving accuracy comparable to standard generation training while yielding more efficient and effective reasoning traces."
+    ],
+    "durationSeconds": 5.0748551520000325
+  },
+  "sourceToolAssistantUUID": "38f7e4d3-eac9-4cc0-b54f-93ebc089486c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-18T03:36:39.681Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RBbPjzmq4ktwUzYCFc3Hrh`</summary>
+
+```json
+{
+  "query": "huggingface datasets math reasoning verification NuminaMath APPS benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edd78f60-0444-45b2-bf41-dc6cc906aed8",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LPfnUkwFj6RfXQSvxw",
+  "type": "assistant",
+  "uuid": "aff17dab-52de-41d6-a006-f6d9ac5acd9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013veQ1VGT5231H5GPaVYe7v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 64407,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 64407,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-18T03:36:46.747Z_
+
+<details><summary>↩ Tool result · `toolu_01RBbPjzmq4ktwUzYCFc3Hrh`</summary>
+
+```text
+Web search results for query: "huggingface datasets math reasoning verification NuminaMath APPS benchmark"
+
+Links: [{"title":"evaluation-guidebook/contents/automated-benchmarks/some-evaluation-datasets.md at main · huggingface/evaluation-guidebook","url":"https://github.com/huggingface/evaluation-guidebook/blob/main/contents/automated-benchmarks/some-evaluation-datasets.md"},{"title":"open-r1/OpenR1-Math-220k · Datasets at Hugging Face","url":"https://huggingface.co/datasets/open-r1/OpenR1-Math-220k"},{"title":"README.md · open-r1/OpenR1-Math-220k at 472472d80032b525579a78b5fb8cf5c548ccccd4","url":"https://huggingface.co/datasets/open-r1/OpenR1-Math-220k/blob/472472d80032b525579a78b5fb8cf5c548ccccd4/README.md"},{"title":"AI-MO/NuminaMath-7B-TIR · Hugging Face","url":"https://huggingface.co/AI-MO/NuminaMath-7B-TIR"},{"title":"NuminaMath - a AI-MO Collection","url":"https://huggingface.co/collections/AI-MO/numinamath"},{"title":"Open R1: Update #2","url":"https://huggingface.co/blog/open-r1/update-2"},{"title":"How NuminaMath Won the 1st AIMO Progress Prize","url":"https://huggingface.co/blog/winning-aimo-progress-prize"},{"title":"AI-MO/NuminaMath-CoT · Datasets at Hugging Face","url":"https://huggingface.co/datasets/AI-MO/NuminaMath-CoT"},{"title":"AI-MO/NuminaMath-TIR · Datasets at Hugging Face","url":"https://huggingface.co/datasets/AI-MO/NuminaMath-TIR"},{"title":"PrimeIntellect/NuminaMath-QwQ-CoT-5M · Datasets at Hugging Face","url":"https://huggingface.co/datasets/PrimeIntellect/NuminaMath-QwQ-CoT-5M"}]
+
+Based on the search results, here are the key findings about HuggingFace datasets for math reasoning verification, NuminaMath, and the APPS benchmark:
+
+## NuminaMath Datasets
+
+NuminaMath includes a dataset of 70k+ math competition problems, with each solution generated by GPT-4 with tool-integrated reasoning (TIR). The data were primarily collected from online exam paper PDFs and mathematics discussion forums, with processing steps including OCR from the original PDFs, segmentation into problem-solution pairs, translation into English, realignment to produce a CoT reasoning format, and final answer formatting.
+
+## Verification Methods
+
+The NuminaMath-TIR dataset was created by selecting approximately 70k problems from the NuminaMath-CoT dataset and utilizing a pipeline leveraging GPT-4 to generate TORA-like reasoning paths, executing the code and producing results until the solution was complete, with solutions filtered out where the final answer did not match the reference.
+
+## OpenR1 Dataset with Math Verification
+
+The OpenR1-Math-220k dataset consists of 220k math problems with two to four reasoning traces generated by DeepSeek R1 for problems from NuminaMath 1.5, with the traces verified using Math Verify for most samples and Llama-3.3-70B-Instruct as a judge for 12% of the samples.
+
+Math Verify is a robust mathematical expression evaluation system designed to assess LLM-generated answers by extracting the final answers from model generations and comparing them against ground truth answers in the dataset.
+
+The search results don't specifically mention the APPS benchmark in relation to these NuminaMath datasets, so I cannot provide information about that connection based on these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aff17dab-52de-41d6-a006-f6d9ac5acd9e",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "3c798d68-07e9-46f7-8150-b9bdeb4e732d",
+  "toolUseResult": {
+    "query": "huggingface datasets math reasoning verification NuminaMath APPS benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017iUfBtUymN8fqmanhKsCLy",
+        "content": [
+          {
+            "title": "evaluation-guidebook/contents/automated-benchmarks/some-evaluation-datasets.md at main · huggingface/evaluation-guidebook",
+            "url": "https://github.com/huggingface/evaluation-guidebook/blob/main/contents/automated-benchmarks/some-evaluation-datasets.md"
+          },
+          {
+            "title": "open-r1/OpenR1-Math-220k · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/open-r1/OpenR1-Math-220k"
+          },
+          {
+            "title": "README.md · open-r1/OpenR1-Math-220k at 472472d80032b525579a78b5fb8cf5c548ccccd4",
+            "url": "https://huggingface.co/datasets/open-r1/OpenR1-Math-220k/blob/472472d80032b525579a78b5fb8cf5c548ccccd4/README.md"
+          },
+          {
+            "title": "AI-MO/NuminaMath-7B-TIR · Hugging Face",
+            "url": "https://huggingface.co/AI-MO/NuminaMath-7B-TIR"
+          },
+          {
+            "title": "NuminaMath - a AI-MO Collection",
+            "url": "https://huggingface.co/collections/AI-MO/numinamath"
+          },
+          {
+            "title": "Open R1: Update #2",
+            "url": "https://huggingface.co/blog/open-r1/update-2"
+          },
+          {
+            "title": "How NuminaMath Won the 1st AIMO Progress Prize",
+            "url": "https://huggingface.co/blog/winning-aimo-progress-prize"
+          },
+          {
+            "title": "AI-MO/NuminaMath-CoT · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/AI-MO/NuminaMath-CoT"
+          },
+          {
+            "title": "AI-MO/NuminaMath-TIR · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/AI-MO/NuminaMath-TIR"
+          },
+          {
+            "title": "PrimeIntellect/NuminaMath-QwQ-CoT-5M · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/PrimeIntellect/NuminaMath-QwQ-CoT-5M"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about HuggingFace datasets for math reasoning verification, NuminaMath, and the APPS benchmark:\n\n## NuminaMath Datasets\n\nNuminaMath includes a dataset of 70k+ math competition problems, with each solution generated by GPT-4 with tool-integrated reasoning (TIR). The data were primarily collected from online exam paper PDFs and mathematics discussion forums, with processing steps including OCR from the original PDFs, segmentation into problem-solution pairs, translation into English, realignment to produce a CoT reasoning format, and final answer formatting.\n\n## Verification Methods\n\nThe NuminaMath-TIR dataset was created by selecting approximately 70k problems from the NuminaMath-CoT dataset and utilizing a pipeline leveraging GPT-4 to generate TORA-like reasoning paths, executing the code and producing results until the solution was complete, with solutions filtered out where the final answer did not match the reference.\n\n## OpenR1 Dataset with Math Verification\n\nThe OpenR1-Math-220k dataset consists of 220k math problems with two to four reasoning traces generated by DeepSeek R1 for problems from NuminaMath 1.5, with the traces verified using Math Verify for most samples and Llama-3.3-70B-Instruct as a judge for 12% of the samples.\n\nMath Verify is a robust mathematical expression evaluation system designed to assess LLM-generated answers by extracting the final answers from model generations and comparing them against ground truth answers in the dataset.\n\nThe search results don't specifically mention the APPS benchmark in relation to these NuminaMath datasets, so I cannot provide information about that connection based on these results."
+    ],
+    "durationSeconds": 7.063029947999981
+  },
+  "sourceToolAssistantUUID": "aff17dab-52de-41d6-a006-f6d9ac5acd9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144 · 2026-05-18T03:36:51.356Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012oRN2WzJiSw4xYhJMwtzu3`</summary>
+
+```json
+{
+  "query": "Qwen3.5-32B or Qwen3-8B GRPO training GPU hours cost reward model verifier 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c798d68-07e9-46f7-8150-b9bdeb4e732d",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LQPJJzzrwBwXRPj3Qc",
+  "type": "assistant",
+  "uuid": "244e3671-82ac-4dc2-8d67-9ae691cd2a21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMWRH7JENALF3qLdQL8ySU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1073,
+      "cache_read_input_tokens": 65182,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 65182,
+          "cache_creation_input_tokens": 1073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 145_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "244e3671-82ac-4dc2-8d67-9ae691cd2a21",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 146_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 147 · 2026-05-18T03:37:03.190Z_
+
+<details><summary>↩ Tool result · `toolu_012oRN2WzJiSw4xYhJMwtzu3`</summary>
+
+```text
+Web search results for query: "Qwen3.5-32B or Qwen3-8B GRPO training GPU hours cost reward model verifier 2026"
+
+Links: [{"title":"GPU Requirements 2026: Llama 4 = 1× H100 ($2.50/hr), DeepSeek V3.2 = 8× H200 ($36/hr), Qwen 3.5 27B = 1× H100 | Spheron Blog","url":"https://www.spheron.network/blog/gpu-requirements-cheat-sheet-2026/"},{"title":"Qwen 3 Hardware Guide — 0.8B to 72B VRAM Requirements | Compute Market","url":"https://www.compute-market.com/blog/qwen-3-local-hardware-guide-2026"},{"title":"Comprehensive Hardware Requirements Report for Qwen3 (Part II) - DEV Community","url":"https://dev.to/ai4b/comprehensive-hardware-requirements-report-for-qwen3-part-ii-4i5l"},{"title":"Qwen3-32B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen3-32b"},{"title":"What GPU is required to run the Qwen/QwQ-32B model ...","url":"https://jarvislabs.ai/ai-faqs/what-gpu-is-required-to-run-qwen-qwq-32b-model-from-hugging-face"},{"title":"Qwen Qwen3 32B: VRAM Needs, GPU Requirements & Benchmark Speeds - localai.computer","url":"https://localai.computer/models/qwen-qwen3-32b"},{"title":"Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog","url":"https://willitrunai.com/blog/qwen-3-gpu-requirements"},{"title":"Qwen3-VL-8B-Instruct VRAM Requirement + Unsloth Fine-Tuning (Patch Size, trust_remote_code)","url":"https://kaitchup.substack.com/p/qwen3-vl-fine-tuning-on-your-computer"},{"title":"Qwen3 32B API Pricing 2026 - Costs, Performance & Providers","url":"https://pricepertoken.com/pricing-page/model/qwen-qwen3-32b"},{"title":"Qwen3 VL 32B Instruct API Pricing 2026 - Costs, Performance & Providers","url":"https://pricepertoken.com/pricing-page/model/qwen-qwen3-vl-32b-instruct"}]
+
+Now let me search more specifically for GRPO training, reward model, and verifier information:
+
+Links: [{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"The State of Reinforcement Learning for LLM Reasoning","url":"https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"},{"title":"How Top AI Labs Are Building RL Agents in 2026","url":"https://blog.dailydoseofds.com/p/how-top-ai-labs-are-building-rl-agents"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"RLVR Beyond Math and Code: The Verifier Problem Nobody Has Solved | Subhadip Mitra","url":"https://subhadipmitra.com/blog/2026/rlvr-beyond-math-code/"},{"title":"Mastering LLM Post-Training: A Practical Guide to SFT, DPO, and GRPO with TRL • Dev|Journal","url":"https://earezki.com/ai-news/2026-05-01-a-coding-guide-on-llm-post-training-with-trl-from-supervised-fine-tuning-to-dpo-and-grpo-reasoning/"},{"title":"A Coding Guide on LLM Post Training with TRL from Supervised Fine Tuning to DPO and GRPO Reasoning - MarkTechPost","url":"https://www.marktechpost.com/2026/05/01/a-coding-guide-on-llm-post-training-with-trl-from-supervised-fine-tuning-to-dpo-and-grpo-reasoning/"},{"title":"Use large language model to enhance reasoning of another large language model through reward updated GRPO | Scientific Reports","url":"https://www.nature.com/articles/s41598-026-39296-8"}]
+
+Based on my web search results, I can provide you with comprehensive information about GRPO training, GPU costs, and related concepts for Qwen models in 2026:
+
+## Qwen Model Hardware Requirements
+
+Qwen 3 32B is suitable for models like Phi-4 14B and Llama 3.1 8B, and Qwen 3.5 27B is a dense 27B model that fits on a single H100 80GB at FP8 with ~27 GB VRAM at $2.50/hr. For the 32B model, at Q4 it needs ~19 GB—just over what a 24GB GPU can hold comfortably.
+
+## GRPO Training: Overview and Mechanism
+
+GRPO (Group Relative Policy Optimization) is an RL algorithm that samples multiple responses per prompt and computes advantages by comparing them within the group. GRPO (introduced in DeepSeekMath, then used in DeepSeek-R1) eliminates the critic entirely. For each prompt, it samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation.
+
+## Reward Model and Verifier Systems
+
+RLVR (Reinforcement Learning with Verifiable Rewards) trains models on tasks where correctness can be automatically checked, like math problems and code execution. Instead of human preference labels, the reward signal comes from programmatic verification.
+
+A reward function and verifier to verify if the output is good or bad are needed. With only these 2, we can essentially call a language model an infinite times until we get a good answer.
+
+## Cost Information
+
+The best-performing model, Qwen 2.5-3B-Instruct, achieved 98.2% and 98.5% mean token accuracy on the respective datasets, with a compute time of 40–42 hours and a cost of $78–$82. For coding and general tasks, Qwen3-32B at $2.50/hr is a better dollar-per-quality choice.
+
+The search results don't contain specific information about GPU hours or costs explicitly for Qwen 3.5-32B or Qwen 3-8B GRPO training at scale, though the inference costs and hardware requirements are well documented above.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "244e3671-82ac-4dc2-8d67-9ae691cd2a21",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "62feac1f-8d07-4811-bd0d-9b104d36b56e",
+  "toolUseResult": {
+    "query": "Qwen3.5-32B or Qwen3-8B GRPO training GPU hours cost reward model verifier 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GXb3238CiRjsBUTWwtAUp4",
+        "content": [
+          {
+            "title": "GPU Requirements 2026: Llama 4 = 1× H100 ($2.50/hr), DeepSeek V3.2 = 8× H200 ($36/hr), Qwen 3.5 27B = 1× H100 | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-requirements-cheat-sheet-2026/"
+          },
+          {
+            "title": "Qwen 3 Hardware Guide — 0.8B to 72B VRAM Requirements | Compute Market",
+            "url": "https://www.compute-market.com/blog/qwen-3-local-hardware-guide-2026"
+          },
+          {
+            "title": "Comprehensive Hardware Requirements Report for Qwen3 (Part II) - DEV Community",
+            "url": "https://dev.to/ai4b/comprehensive-hardware-requirements-report-for-qwen3-part-ii-4i5l"
+          },
+          {
+            "title": "Qwen3-32B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen3-32b"
+          },
+          {
+            "title": "What GPU is required to run the Qwen/QwQ-32B model ...",
+            "url": "https://jarvislabs.ai/ai-faqs/what-gpu-is-required-to-run-qwen-qwq-32b-model-from-hugging-face"
+          },
+          {
+            "title": "Qwen Qwen3 32B: VRAM Needs, GPU Requirements & Benchmark Speeds - localai.computer",
+            "url": "https://localai.computer/models/qwen-qwen3-32b"
+          },
+          {
+            "title": "Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog",
+            "url": "https://willitrunai.com/blog/qwen-3-gpu-requirements"
+          },
+          {
+            "title": "Qwen3-VL-8B-Instruct VRAM Requirement + Unsloth Fine-Tuning (Patch Size, trust_remote_code)",
+            "url": "https://kaitchup.substack.com/p/qwen3-vl-fine-tuning-on-your-computer"
+          },
+          {
+            "title": "Qwen3 32B API Pricing 2026 - Costs, Performance & Providers",
+            "url": "https://pricepertoken.com/pricing-page/model/qwen-qwen3-32b"
+          },
+          {
+            "title": "Qwen3 VL 32B Instruct API Pricing 2026 - Costs, Performance & Providers",
+            "url": "https://pricepertoken.com/pricing-page/model/qwen-qwen3-vl-32b-instruct"
+          }
+        ]
+      },
+      "Now let me search more specifically for GRPO training, reward model, and verifier information:",
+      {
+        "tool_use_id": "srvtoolu_017PBapdrKAY3FPTZkkCiom4",
+        "content": [
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"
+          },
+          {
+            "title": "The State of Reinforcement Learning for LLM Reasoning",
+            "url": "https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"
+          },
+          {
+            "title": "How Top AI Labs Are Building RL Agents in 2026",
+            "url": "https://blog.dailydoseofds.com/p/how-top-ai-labs-are-building-rl-agents"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          },
+          {
+            "title": "RLVR Beyond Math and Code: The Verifier Problem Nobody Has Solved | Subhadip Mitra",
+            "url": "https://subhadipmitra.com/blog/2026/rlvr-beyond-math-code/"
+          },
+          {
+            "title": "Mastering LLM Post-Training: A Practical Guide to SFT, DPO, and GRPO with TRL • Dev|Journal",
+            "url": "https://earezki.com/ai-news/2026-05-01-a-coding-guide-on-llm-post-training-with-trl-from-supervised-fine-tuning-to-dpo-and-grpo-reasoning/"
+          },
+          {
+            "title": "A Coding Guide on LLM Post Training with TRL from Supervised Fine Tuning to DPO and GRPO Reasoning - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/05/01/a-coding-guide-on-llm-post-training-with-trl-from-supervised-fine-tuning-to-dpo-and-grpo-reasoning/"
+          },
+          {
+            "title": "Use large language model to enhance reasoning of another large language model through reward updated GRPO | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-026-39296-8"
+          }
+        ]
+      },
+      "Based on my web search results, I can provide you with comprehensive information about GRPO training, GPU costs, and related concepts for Qwen models in 2026:\n\n## Qwen Model Hardware Requirements\n\nQwen 3 32B is suitable for models like Phi-4 14B and Llama 3.1 8B, and Qwen 3.5 27B is a dense 27B model that fits on a single H100 80GB at FP8 with ~27 GB VRAM at $2.50/hr. For the 32B model, at Q4 it needs ~19 GB—just over what a 24GB GPU can hold comfortably.\n\n## GRPO Training: Overview and Mechanism\n\nGRPO (Group Relative Policy Optimization) is an RL algorithm that samples multiple responses per prompt and computes advantages by comparing them within the group. GRPO (introduced in DeepSeekMath, then used in DeepSeek-R1) eliminates the critic entirely. For each prompt, it samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation.\n\n## Reward Model and Verifier Systems\n\nRLVR (Reinforcement Learning with Verifiable Rewards) trains models on tasks where correctness can be automatically checked, like math problems and code execution. Instead of human preference labels, the reward signal comes from programmatic verification.\n\nA reward function and verifier to verify if the output is good or bad are needed. With only these 2, we can essentially call a language model an infinite times until we get a good answer.\n\n## Cost Information\n\nThe best-performing model, Qwen 2.5-3B-Instruct, achieved 98.2% and 98.5% mean token accuracy on the respective datasets, with a compute time of 40–42 hours and a cost of $78–$82. For coding and general tasks, Qwen3-32B at $2.50/hr is a better dollar-per-quality choice.\n\nThe search results don't contain specific information about GPU hours or costs explicitly for Qwen 3.5-32B or Qwen 3-8B GRPO training at scale, though the inference costs and hardware requirements are well documented above."
+    ],
+    "durationSeconds": 11.829229216000007
+  },
+  "sourceToolAssistantUUID": "244e3671-82ac-4dc2-8d67-9ae691cd2a21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 148 · 2026-05-18T03:39:32.043Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to compile the complete research direction. Let me synthesize all findings:
+
+## Key findings:
+
+### Concurrent work:
+1. **CoVerRL (arXiv 2603.17775, March 2026)** - This is very close! It does generator-verifier co-evolution with majority voting as noisy supervision. But it uses consensus-derived pseudo-labels, NOT the generator's distribution shift as curriculum signal. Key difference: CoVerRL focuses on breaking the "consensus trap" via bidirectional supervision, while our approach specifically exploits the *difficulty progression* emerging from generator improvement as a free curriculum for the verifier.
+
+
+2. **TTCS (arXiv 2601.22628, Jan 2026)** - Handles test-time curriculum synthesis with co-evolving components, but that's for test-time training rather than verifier improvement during co-training. **EvoSyn (arXiv 2510.17928)** uses evolved filtering strategies for data synthesis, not generator distribution shift as a curriculum signal. **CURE (NeurIPS 2025 Spotlight)** explores co-evolution in the code domain with coder and tester, and **RL Tango (NeurIPS 2025)** appears to be another related approach, though the details are cut off.
+
+Looking at the broader landscape, **"Mind the Gap" (ICLR 2025)** formalizes the generation-verification gap but doesn't leverage it as a curriculum signal. **SEC (arXiv 2505.14970)** applies curriculum learning to LLM reasoning, but targets the generator's curriculum selection through multi-armed bandits rather than the verifier's. The real gap is that no existing work exploits how the generator's improving distribution naturally creates difficulty progression for the verifier—CoVerRL gets closest by addressing consensus traps, while RL Tango co-trains with class-aware reweighting instead of difficulty scheduling, and TTCS operates at test-time rather than during training.
+
+The core insight is to extract difficulty signals from how much the generator's distribution shifts between training rounds and use those to construct targeted verifier batches. I'd train the generator on verifiable tasks, then at each round collect samples from both the current and next generator versions to identify boundary cases where behavior changes most—these are exactly what the verifier needs to learn. The curriculum itself weights training data by distribution shift magnitude, starting with easier samples far from the boundary and progressively moving toward harder ones, all grounded in outcome verification for automatic labeling.
+
+For baselines, I'd compare against random retraining, CoVerRL-style co-evolution, PRIME-style online process reward models, and a fixed verifier. On the model side, Qwen3.5-27B or Qwen3-8B make sense as the base—both are open-source and well-integrated with existing frameworks, whereas the MoE variants would blow the budget for an academic project. For publication timing, AAAI 2027 and ICLR 2027 are realistic targets given the work involved, though EMNLP 2026 is technically still open but too tight to hit properly.
+
+The core contribution here is solid—I'm identifying a novel structural insight about how generator distribution shift acts as a natural curriculum for the verifier, then proposing a concrete method to leverage it. The approach is clean, grounded in established work like PRIME and GRPO, and clearly differentiated from CoVerRL and RL Tango.
+
+Whether this lands as "solid" or "top-tier" really hinges on the empirical results. Given the novelty of the insight and how well it's differentiated from concurrent work, strong validation could definitely push it into top-tier territory.
+
+For resources, I'm looking at needing roughly 500-800 GPU hours on A100s across multiple GRPO training runs on a 7B-8B model, with verifier training being lighter. That translates to about 3-5 months of wall-clock time given the human iteration cycles, and somewhere in the $750-$1200 range in compute costs.
+
+If I go human-in-loop with an agent handling the code execution, I can cut the idle time down to 400-600 GPU hours and compress the timeline to 4-8 weeks, though I'd need to budget for Claude API calls around $200-400. Full automation would let me run 3-5x more experiments in 1-3 weeks with near-zero idle time, but that pushes GPU costs up to $1200-$2250 and API spending to $300-600.
+
+I'm also verifying the references I'm citing—checking that VCRL, Progressive Mastery, and PRIME are all properly documented. Finishing up the paper list with SEC and TTCS, then reconsidering the venue strategy — the guidance is clear that I should target the absolute highest-tier venues regardless of timeline constraints, so ICLR 2027 and NeurIPS 2026 are the primary targets, with AAAI 2027 as a strong backup option. I need to verify these deadlines are actually after today's date. EMNLP 2026 is confirmed for May 25, which is just a week away, while AAAI and ICLR 2027 are still TBD but historically fall in August and October. For the contribution level, this work presents a genuinely novel insight about generator distribution shift as a curriculum mechanism, with differentiation from related approaches and strong empirical backing, so I'd classify it as top-tier.
+
+Now I'm refining the approach description to be more precise about what we're doing—we're taking the generator's improving outputs and using them as an automatically-graded difficulty signal to guide verifier retraining, computing a difficulty score for each output at every co-training iteration. based on the KL divergence between the generator's current and previous token-level distributions, capturing samples near the evolving decision boundary. We construct verifier training batches by sampling proportionally to this difficulty score, combined with outcome-based automatic labels (e.g., math correctness checks), eliminating all need for human process annotations. We instantiate this within a GRPO-based co-training loop using Qwen3.5-27B, with the verifier as an implicit PRM (following PRIME), and evaluate on math reasoning benchmarks (MATH, GSM8K, AIME, AMC). We compare against CoVerRL's consensus-based co-evolution, RL Tango's class-aware reweighting, PRIME's online PRM updates, and a naive periodic retraining baseline to isolate the contribution of difficulty-aware curriculum scheduling.
+
+Now I'm checking whether this approach is actually feasible. At each training round, I can measure difficulty through the generator's behavioral shift on each problem—specifically, how much the correctness probability changes between rounds—since problems where the generator improves are exactly where the verifier needs to learn. I can also identify hard examples by looking for problems where the new generator produces mixed correct and incorrect solutions, indicating they're near the decision boundary. For implementation, I'd estimate these signals using pass@k sampling from the generator.
+
+Actually, a simpler approach works better: after each generator update, I collect rollouts on the training set and compute how much the pass rate changed for each problem. Problems with large pass rate changes are where the generator evolved most and need verifier updates, while problems near 50% pass rate sit at the difficulty boundary. I can combine these signals by weighting each problem proportionally to both the magnitude of change and the entropy of its pass rate distribution.
+
+Now I'm thinking about which model to use. The current open-source SOTA options are Qwen3.5-27B (dense, released Feb 2026), Qwen3-8B (smaller and more efficient), and GLM-5.
+
+1 (though the larger MoE variants like Kimi K2.6 and DeepSeek-R1 are too massive for practical RL training). For this research, I'll stick with the 7B-8B and 27B-32B range, so I'm going with Qwen3.5-9B as my smaller baseline and Qwen3.5-27B as the larger one—both are recent, dense, and well-suited for GRPO training.
+
+For the project name, I'm settling on something shorter and more descriptive than my initial attempt.
+
+Now I'm drafting the executive summary, which captures the core contribution: we're using the generator's improving distribution as a free curriculum signal for the verifier, computing difficulty scores from pass-rate changes and boundary proximity, then weighting verifier training batches accordingly. The method sits within a GRPO co-training loop and compares against CoVerRL and RL Tango on math benchmarks.
+
+For cost estimates, I'm working through the GPU requirements—GRPO training on 8 A100s takes roughly 27 hours per run for a 7B model, and with 5-8 co-training rounds where each round involves both generator and verifier training, I'm looking at substantial compute needs per iteration. Looking at different implementation approaches, the costs scale significantly based on how much automation we use. A fully manual setup with human design each round would need around 400-600 GPU-hours with high idle time, taking 3-5 months and costing roughly $750 in compute. A human-in-the-loop version where the agent handles more ablations would run 500-800 GPU-hours with moderate idle over 4-8 weeks, plus $200-400 in API costs. Full automation would require 1000-2000 GPU-hours but complete the work in 1-3 weeks for around $2250 in GPU costs and $300-600 in API usage. Now I'm compiling the key references I've verified for the paper. I'm finalizing the venue timeline, noting that AAAI 2027 and ICLR 2027 deadlines are traditionally after May but not yet officially confirmed. For the approach, I'm articulating how Curriculum-from-Generator extracts difficulty signals from the generator's distribution shifts across co-training rounds—scoring problems by pass-rate changes between checkpoints and boundary proximity via entropy, then sampling verifier batches proportionally to these scores with automatic labels, all within a PRIME-style co-training loop using Qwen models on math benchmarks, which differs from CoVerRL's consensus-based approach.
+
+Now I'm compiling the JSON structure and noticing a tension: the instructions say to keep existing fields unchanged, but the concurrent work search requires updating the landscape section if I find highly similar work like TTCS and EvoSyn. I need to reconcile whether "keep all existing fields" means preserve their content exactly or just preserve their presence in the structure.
+
+Looking at the landscape, CoVerRL is already mentioned, but I should add the specific arxiv ID (2603.17775) and clarify how the March 2026 preprint differs from what was previously known. For the target venues, I'm checking submission deadlines: EMNLP 2026 works with its May 25 deadline, AAAI 2027 and ICLR 2027 are likely viable depending on their actual deadlines later this year.
+
+Since this is fundamentally an RL/ML contribution rather than NLP-focused, ICLR 2027 would be the strongest fit as a top-tier venue. The core contribution—identifying Δp_t as a natural curriculum signal and implementing it cleanly in CfG—is novel, but the empirical gains over concurrent work like CoVerRL and RL Tango will determine whether this lands as solid or stronger. If improvements are modest (1-2%), it's incremental; if they're substantial (5%+), it's more competitive. I'm leaning toward rating this as solid given the novelty and clean differentiation, though the final assessment depends on empirical results.
+
+All the necessary datasets and frameworks are accessible—NuminaMath, MATH, GSM8K, and AIME are available, and the building blocks like PRIME, veRL, GRPO, and Qwen models are all open-source or on HuggingFace. Now I'll compile the final JSON output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62feac1f-8d07-4811-bd0d-9b104d36b56e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LRbaXBt9QRaxd6nFB2",
+  "type": "assistant",
+  "uuid": "bee35596-d693-42ca-95bc-e742acfb0400",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2d4BQtQZYZak4V1Pm1nRG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1925,
+      "cache_read_input_tokens": 66255,
+      "output_tokens": 6487,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6487,
+          "cache_read_input_tokens": 66255,
+          "cache_creation_input_tokens": 1925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 149 · 2026-05-18T03:39:32.045Z_
+
+Now I have sufficient data to compile the complete research direction. Let me verify one more thing about the CoVerRL concurrent work timing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bee35596-d693-42ca-95bc-e742acfb0400",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LRbaXBt9QRaxd6nFB2",
+  "type": "assistant",
+  "uuid": "862723c3-97c1-4721-9be4-50ffe1c1bb41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2d4BQtQZYZak4V1Pm1nRG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1925,
+      "cache_read_input_tokens": 66255,
+      "output_tokens": 6487,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6487,
+          "cache_read_input_tokens": 66255,
+          "cache_creation_input_tokens": 1925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 150 · 2026-05-18T03:39:32.046Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FCnb6GKNcot8eobGXdr3oB`</summary>
+
+```json
+{
+  "query": "CoVerRL arxiv 2603.17775 March 2026 generator verifier co-evolution consensus trap details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "862723c3-97c1-4721-9be4-50ffe1c1bb41",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LRbaXBt9QRaxd6nFB2",
+  "type": "assistant",
+  "uuid": "0fdf20e4-66a3-47c2-adba-49da9a4baf21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2d4BQtQZYZak4V1Pm1nRG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1925,
+      "cache_read_input_tokens": 66255,
+      "output_tokens": 6487,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6487,
+          "cache_read_input_tokens": 66255,
+          "cache_creation_input_tokens": 1925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 151_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "0fdf20e4-66a3-47c2-adba-49da9a4baf21",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 152_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 153 · 2026-05-18T03:39:39.213Z_
+
+<details><summary>↩ Tool result · `toolu_01FCnb6GKNcot8eobGXdr3oB`</summary>
+
+```text
+Web search results for query: "CoVerRL arxiv 2603.17775 March 2026 generator verifier co-evolution consensus trap details"
+
+Links: [{"title":"[2603.17775] CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution","url":"https://arxiv.org/abs/2603.17775"},{"title":"CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution","url":"https://arxiv.org/html/2603.17775"},{"title":"Paper page - RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning","url":"https://huggingface.co/papers/2505.15034"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/recent?skip=1259&show=2000"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1408&show=2000"},{"title":"Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://arxiv.org/html/2506.18203v1"},{"title":"Toward Scalable Automated Repository-Level Datasets for Software Vulnerability Detection","url":"https://arxiv.org/html/2603.17974"},{"title":"Arxiv","url":"https://arxiv.org/pdf/2408.15240"},{"title":"AVO: Agentic Variation Operators for Autonomous Evolutionary Search","url":"https://arxiv.org/html/2603.24517v1"},{"title":"[2506.18203] Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://arxiv.org/abs/2506.18203"}]
+
+Based on the search results, here are the details about CoVerRL (arxiv 2603.17775):
+
+**Overview:**
+CoVerRL is a framework for label-free reinforcement learning that enables large language models to improve reasoning capabilities without ground-truth supervision.
+
+**The Consensus Trap Problem:**
+The critical failure mode occurs as training maximizes self-consistency, output diversity collapses, causing the model to confidently reinforce systematic errors that evade detection. Majority voting captures consistency but cannot detect correctness, and when models repeatedly produce identical wrong answers—a phenomenon known as self-consistent errors—consensus-based rewards actively reinforce these mistakes.
+
+**The CoVerRL Solution:**
+CoVerRL is a framework where a single model alternates between generator and verifier roles, with each capability bootstrapping the other. The generator produces candidate solutions and establishes pseudo-labels via majority voting; the verifier scrutinizes reasoning processes to identify errors independent of answer frequency.
+
+**How It Works:**
+Majority voting provides noisy but informative supervision for training the verifier, while the improving verifier progressively filters self-consistent errors from pseudo-labels. This co-evolution creates a virtuous cycle that maintains high reward accuracy throughout training.
+
+**Results:**
+CoVerRL outperforms label-free baselines by 4.7-5.9% on mathematical reasoning benchmarks across Qwen and Llama model families. Self-verification accuracy improves from around 55% to over 85%, confirming that both capabilities genuinely co-evolve.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0fdf20e4-66a3-47c2-adba-49da9a4baf21",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "a49fb6a6-fa96-4378-bcbd-6654be147128",
+  "toolUseResult": {
+    "query": "CoVerRL arxiv 2603.17775 March 2026 generator verifier co-evolution consensus trap details",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SKPuKXSiUPZ64mgZncMnvi",
+        "content": [
+          {
+            "title": "[2603.17775] CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution",
+            "url": "https://arxiv.org/abs/2603.17775"
+          },
+          {
+            "title": "CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution",
+            "url": "https://arxiv.org/html/2603.17775"
+          },
+          {
+            "title": "Paper page - RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning",
+            "url": "https://huggingface.co/papers/2505.15034"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/recent?skip=1259&show=2000"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1408&show=2000"
+          },
+          {
+            "title": "Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://arxiv.org/html/2506.18203v1"
+          },
+          {
+            "title": "Toward Scalable Automated Repository-Level Datasets for Software Vulnerability Detection",
+            "url": "https://arxiv.org/html/2603.17974"
+          },
+          {
+            "title": "Arxiv",
+            "url": "https://arxiv.org/pdf/2408.15240"
+          },
+          {
+            "title": "AVO: Agentic Variation Operators for Autonomous Evolutionary Search",
+            "url": "https://arxiv.org/html/2603.24517v1"
+          },
+          {
+            "title": "[2506.18203] Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://arxiv.org/abs/2506.18203"
+          }
+        ]
+      },
+      "Based on the search results, here are the details about CoVerRL (arxiv 2603.17775):\n\n**Overview:**\nCoVerRL is a framework for label-free reinforcement learning that enables large language models to improve reasoning capabilities without ground-truth supervision.\n\n**The Consensus Trap Problem:**\nThe critical failure mode occurs as training maximizes self-consistency, output diversity collapses, causing the model to confidently reinforce systematic errors that evade detection. Majority voting captures consistency but cannot detect correctness, and when models repeatedly produce identical wrong answers—a phenomenon known as self-consistent errors—consensus-based rewards actively reinforce these mistakes.\n\n**The CoVerRL Solution:**\nCoVerRL is a framework where a single model alternates between generator and verifier roles, with each capability bootstrapping the other. The generator produces candidate solutions and establishes pseudo-labels via majority voting; the verifier scrutinizes reasoning processes to identify errors independent of answer frequency.\n\n**How It Works:**\nMajority voting provides noisy but informative supervision for training the verifier, while the improving verifier progressively filters self-consistent errors from pseudo-labels. This co-evolution creates a virtuous cycle that maintains high reward accuracy throughout training.\n\n**Results:**\nCoVerRL outperforms label-free baselines by 4.7-5.9% on mathematical reasoning benchmarks across Qwen and Llama model families. Self-verification accuracy improves from around 55% to over 85%, confirming that both capabilities genuinely co-evolve."
+    ],
+    "durationSeconds": 7.160515025999979
+  },
+  "sourceToolAssistantUUID": "0fdf20e4-66a3-47c2-adba-49da9a4baf21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154 · 2026-05-18T03:39:42.123Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TrLx4BVKP8T5aJD9U7zSBp`</summary>
+
+```json
+{
+  "query": "\"Shrinking the Generation-Verification Gap\" weak verifiers arxiv 2506.18203"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a49fb6a6-fa96-4378-bcbd-6654be147128",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Ld6fYwLUhoUNEt8xxT",
+  "type": "assistant",
+  "uuid": "d2b97f37-286f-47b2-8950-66efca8bef15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuV8ai8q2GUwWJrUwP6nPK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7276,
+      "cache_read_input_tokens": 68180,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7276,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 68180,
+          "cache_creation_input_tokens": 7276,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7276
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-18T03:39:47.828Z_
+
+<details><summary>↩ Tool result · `toolu_01TrLx4BVKP8T5aJD9U7zSBp`</summary>
+
+```text
+Web search results for query: ""Shrinking the Generation-Verification Gap" weak verifiers arxiv 2506.18203"
+
+Links: [{"title":"[2506.18203] Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://arxiv.org/abs/2506.18203"},{"title":"Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://arxiv.org/html/2506.18203v1"},{"title":"Weaver: Shrinking the Generation-Verification Gap with Weak Verifiers | Scaling Intelligence Lab at Stanford University","url":"https://scalingintelligence.stanford.edu/pubs/weaver/"},{"title":"(PDF) Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://www.researchgate.net/publication/392941409_Shrinking_the_Generation-Verification_Gap_with_Weak_Verifiers"},{"title":"Paper page - Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://huggingface.co/papers/2506.18203"},{"title":"[PDF] Shrinking the Generation-Verification Gap with Weak Verifiers | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Shrinking-the-Generation-Verification-Gap-with-Weak-Saad-Falcon-Buchanan/61d0b02e7d262923b704173c029276075a2c0e2b"},{"title":"Weaver: Shrinking the Generation-Verification Gap with Weak Verifiers — Jon Saad-Falcon","url":"https://jonsaadfalcon.com/papers/weaver"},{"title":"𝚐𝔪𝟾𝚡𝚡𝟾 on X: \"PAPER: https://t.co/auVyqkrDzk CODE: https://t.co/5Ftzjkl5rI HF: https://t.co/60WQ3Jplm6\" / X","url":"https://x.com/gm8xx8/status/1938383416065421467"},{"title":"Variation in Verification: Understanding Verification Dynamics in Large Language Models","url":"https://arxiv.org/html/2509.17995"},{"title":"Shrinking the Generation-Verification Gap with Weak Verifiers","url":"https://scalingintelligence.stanford.edu/pubs/weaver.pdf"}]
+
+I found the paper you were looking for! Here's the information about arxiv 2506.18203:
+
+## Shrinking the Generation-Verification Gap with Weak Verifiers
+
+This paper introduces Weaver, a framework for designing a strong verifier by combining multiple weak, imperfect verifiers.
+
+**Problem Addressed:**
+While LM judges and reward models have become broadly useful as general-purpose verifiers, a significant performance gap remains between them and oracle verifiers (verifiers with perfect accuracy). Currently, high-quality verifiers are either unscalable (e.g., humans) or limited in utility (e.g., tools like Lean).
+
+**Key Approach:**
+Weighted ensembles of verifiers, which typically require learning from labeled data, significantly outperform unweighted combinations due to differences in verifier accuracies. To reduce dependency on labeled data, Weaver leverages weak supervision to estimate each verifier's accuracy and combines outputs into a unified score that better reflects true response quality.
+
+**Authors and Affiliation:**
+The paper was authored by Jon Saad-Falcon, E. Kelly Buchanan, Mayee F. Chen, and 9 other co-authors from Stanford University, University of Wisconsin-Madison, and Together AI, published in June 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2b97f37-286f-47b2-8950-66efca8bef15",
+  "isSidechain": false,
+  "promptId": "55420ebc-dc6a-4533-af1e-776ffc45aa52",
+  "type": "user",
+  "uuid": "15de7dec-efe5-4e00-98ee-fccf39bc5445",
+  "toolUseResult": {
+    "query": "\"Shrinking the Generation-Verification Gap\" weak verifiers arxiv 2506.18203",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017AfnGcYWMFkcGarvEp1sk1",
+        "content": [
+          {
+            "title": "[2506.18203] Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://arxiv.org/abs/2506.18203"
+          },
+          {
+            "title": "Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://arxiv.org/html/2506.18203v1"
+          },
+          {
+            "title": "Weaver: Shrinking the Generation-Verification Gap with Weak Verifiers | Scaling Intelligence Lab at Stanford University",
+            "url": "https://scalingintelligence.stanford.edu/pubs/weaver/"
+          },
+          {
+            "title": "(PDF) Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://www.researchgate.net/publication/392941409_Shrinking_the_Generation-Verification_Gap_with_Weak_Verifiers"
+          },
+          {
+            "title": "Paper page - Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://huggingface.co/papers/2506.18203"
+          },
+          {
+            "title": "[PDF] Shrinking the Generation-Verification Gap with Weak Verifiers | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Shrinking-the-Generation-Verification-Gap-with-Weak-Saad-Falcon-Buchanan/61d0b02e7d262923b704173c029276075a2c0e2b"
+          },
+          {
+            "title": "Weaver: Shrinking the Generation-Verification Gap with Weak Verifiers — Jon Saad-Falcon",
+            "url": "https://jonsaadfalcon.com/papers/weaver"
+          },
+          {
+            "title": "𝚐𝔪𝟾𝚡𝚡𝟾 on X: \"PAPER: https://t.co/auVyqkrDzk CODE: https://t.co/5Ftzjkl5rI HF: https://t.co/60WQ3Jplm6\" / X",
+            "url": "https://x.com/gm8xx8/status/1938383416065421467"
+          },
+          {
+            "title": "Variation in Verification: Understanding Verification Dynamics in Large Language Models",
+            "url": "https://arxiv.org/html/2509.17995"
+          },
+          {
+            "title": "Shrinking the Generation-Verification Gap with Weak Verifiers",
+            "url": "https://scalingintelligence.stanford.edu/pubs/weaver.pdf"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here's the information about arxiv 2506.18203:\n\n## Shrinking the Generation-Verification Gap with Weak Verifiers\n\nThis paper introduces Weaver, a framework for designing a strong verifier by combining multiple weak, imperfect verifiers.\n\n**Problem Addressed:**\nWhile LM judges and reward models have become broadly useful as general-purpose verifiers, a significant performance gap remains between them and oracle verifiers (verifiers with perfect accuracy). Currently, high-quality verifiers are either unscalable (e.g., humans) or limited in utility (e.g., tools like Lean).\n\n**Key Approach:**\nWeighted ensembles of verifiers, which typically require learning from labeled data, significantly outperform unweighted combinations due to differences in verifier accuracies. To reduce dependency on labeled data, Weaver leverages weak supervision to estimate each verifier's accuracy and combines outputs into a unified score that better reflects true response quality.\n\n**Authors and Affiliation:**\nThe paper was authored by Jon Saad-Falcon, E. Kelly Buchanan, Mayee F. Chen, and 9 other co-authors from Stanford University, University of Wisconsin-Madison, and Together AI, published in June 2025."
+    ],
+    "durationSeconds": 5.7023788339999735
+  },
+  "sourceToolAssistantUUID": "d2b97f37-286f-47b2-8950-66efca8bef15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 156 · 2026-05-18T03:39:47.831Z_
+
+```json
+{
+  "parentUuid": "15de7dec-efe5-4e00-98ee-fccf39bc5445",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "522012b4-ddfa-4aed-bb87-ed94043a899a",
+  "timestamp": "2026-05-18T03:39:47.831Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 157 · 2026-05-18T03:40:53.955Z_
+
+I now have all the information needed. Let me compile the final JSON output.
+
+{
+  "title": "Generator-as-Curriculum: Self-Improving Verifiers Without Fresh Labels",
+  "core_problem": "All verifier improvement methods implicitly assume access to fresh human-labeled data for verifier retraining, defeating the purpose of synthetic data scaling. Can the generator's own improving outputs serve as a free, automatically-graded curriculum for verifier training — enabling verifier improvement without any additional human annotation?",
+  "opportunity": "As the generator distribution p_θ_t approaches p_real, the generator's outputs become progressively harder for the verifier to correctly classify (closer to the decision boundary). This difficulty progression is structurally identical to curriculum learning — but it emerges for free from the co-evolutionary dynamics. Recent curriculum learning research (VCRL, arXiv 2509.19803; Progressive Mastery, arXiv 2506.04065) shows progressive difficulty scheduling improves learning. The key non-obvious insight: the information about 'what is hard for the verifier' is encoded in the generator's distribution shift Δp_t = p_θ_{t+1} - p_θ_t, which can be used to construct verifier training data at the right difficulty level without external labels. Naive periodic retraining on old data doesn't exploit this signal — it's the difference between random practice and targeted practice at the skill boundary.",
+  "landscape": "Curriculum learning for LLMs is well-studied: VCRL (2509.19803) uses variance-based difficulty ordering; Progressive Mastery (2506.04065) uses guided prompting for difficulty modulation; self-paced learning work dates back to 2010+. However, curriculum learning for VERIFIER training in co-evolutionary settings is unexplored. PRIME (arXiv 2502.01456, 2025) enables online PRM updates using only outcome labels, which is the closest to 'verifier improvement without process labels' but doesn't use generator outputs as curriculum — it uses policy rollouts. CoVerRL (arXiv 2603.17775, March 2026) is the most relevant concurrent work: it co-evolves generator and verifier roles within a single model using majority-voting pseudo-labels to break the 'consensus trap,' achieving 4.7-5.9% gains on math benchmarks. However, CoVerRL's verifier training uses consensus-derived contrastive signal, not the generator's difficulty progression — it targets error filtering rather than difficulty-aware scheduling. RL Tango (NeurIPS 2025) trains the verifier with outcome-level rewards plus class-aware reweighting but does not exploit distribution shift as curriculum. TTCS (arXiv 2601.22628, Jan 2026) co-evolves a question synthesizer and reasoning solver for test-time curriculum, but operates at test time rather than during verifier co-training. SEC (arXiv 2505.14970) learns curriculum policy via multi-armed bandits for the generator's RL training, not the verifier's. The 'Can Large Reasoning Models Self-Train?' paper (arXiv 2505.21444, 2025) studies self-training with controllable difficulty but in reasoning, not synthetic data verification. None exploit the structural insight that the generator's improving distribution creates a natural difficulty curriculum specifically for verifier training.",
+  "approach": "We propose Curriculum-from-Generator (CfG), which extracts a difficulty curriculum for verifier training directly from the generator's distribution shift across co-training rounds. After each generator GRPO update on verifiable tasks, we score each training problem by (1) pass-rate change |Δpass_t(x)| between consecutive generator checkpoints, capturing where the generator's behavior shifted most, and (2) boundary proximity via entropy of the current pass rate, identifying problems the verifier most needs to discriminate. Verifier training batches are sampled proportionally to these combined scores with automatic outcome labels (math correctness checks), eliminating all need for human process annotations. We instantiate CfG within a PRIME-style implicit PRM co-training loop using Qwen3.5 models (9B and 27B dense) on NuminaMath, evaluating on MATH, GSM8K, and AIME benchmarks. We compare against CoVerRL's consensus-based co-evolution, RL Tango's class-aware reweighting, PRIME's online PRM updates, and naive periodic retraining to isolate the specific contribution of difficulty-aware curriculum scheduling for the verifier.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~500-800h A100 (8×A100 cluster; ~5 co-training rounds × 4 settings × ~25h each, plus rollouts and evaluation)",
+      "gpu_utilization": "Low (~20-30%); GPUs idle while researcher designs curriculum scoring, debugs co-training loop, and analyzes intermediate checkpoints between rounds",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers with RL-for-LLM experience",
+      "estimated_gpu_cost": "$750-$1,200 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~600-1000h A100 (agent runs more ablations and hyperparameter sweeps; ~30% more experiments than manual)",
+      "gpu_utilization": "Moderate (~50-60%); agent queues next experiment immediately but waits for human approval on curriculum scoring design choices and round-level decisions",
+      "timeline": "4-8 weeks",
+      "team": "1 researcher, ~30-45min/day reviewing agent proposals for curriculum scoring functions and co-training hyperparameters",
+      "claude_api_cost": "$200-$400 (~2000-4000 turns at ~$0.10/turn for experiment design, code generation, results analysis)",
+      "estimated_gpu_cost": "$900-$1,500",
+      "risk_note": "Curriculum scoring function design requires iterating on what signals from Δp_t are most informative; wrong scoring functions could waste GPU rounds before human catches the issue"
+    },
+    "auto_research": {
+      "gpu_hours": "~1500-2500h A100 (3-5× more exploration: agent tries multiple curriculum scoring variants, loss formulations, and co-training schedules; near-zero idle between experiments)",
+      "gpu_utilization": "Near-zero idle (~90-95% utilization); agent immediately launches next experiment upon completion, runs parallel ablations across GPU partitions",
+      "timeline": "1-3 weeks with 8-16 A100s available continuously",
+      "team": "0 (initial setup only: configure veRL/PRIME codebase, dataset paths, evaluation scripts)",
+      "claude_api_cost": "$400-$700 (~4000-7000 turns for experiment orchestration, failure diagnosis, paper writing)",
+      "estimated_gpu_cost": "$2,250-$3,750",
+      "speed_bottleneck": "GPU count is the primary bottleneck: each co-training round takes ~25-30h on 8 A100s; with 16+ GPUs and job parallelism, multiple ablations run concurrently. Secondary bottleneck: rollout generation throughput via vLLM for 27B model.",
+      "risk_note": "Agent may over-explore curriculum scoring variants without converging on the best design; automated ablation space can explode combinatorially if not constrained. CoVerRL (March 2026 concurrent work) may publish additional results before submission."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (expected submission deadline ~October 2026; highest-tier ML venue with deadline after today)",
+    "AAAI 2027 (expected submission deadline ~August 2026; Montréal, Feb 16-23, 2027)",
+    "EMNLP 2026 (confirmed ARR deadline May 25, 2026; Budapest, Oct 24-29, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PRIME: Process Reinforcement through Implicit Rewards (arXiv 2025)",
+    "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)",
+    "VCRL: Variance-based Curriculum Reinforcement Learning for Large Language Models (arXiv 2025)",
+    "CURE: Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning (NeurIPS 2025 Spotlight)",
+    "Can Large Reasoning Models Self-Train? (arXiv 2025)",
+    "Mind the Gap: Examining the Self-Improvement Capabilities of Large Language Models (ICLR 2025)",
+    "CoVerRL: Breaking the Consensus Trap in Label-Free Reasoning via Generator-Verifier Co-Evolution (arXiv 2026)",
+    "TTRL: Test-Time Reinforcement Learning (NeurIPS 2025)",
+    "Self-Evolving Curriculum for LLM Reasoning (arXiv 2025)",
+    "Progressive Mastery: Customized Curriculum Learning with Guided Prompting for Mathematical Reasoning (arXiv 2025)",
+    "EvoSyn: Generalizable Evolutionary Data Synthesis for Verifiable Learning (arXiv 2025)",
+    "TTCS: Test-Time Curriculum Synthesis for Self-Evolving (arXiv 2026)"
+  ],
+  "description": "We propose Curriculum-from-Generator (CfG), a method enabling verifier self-improvement without fresh human labels by exploiting the generator's improving distribution as a free curriculum signal. The key insight is that as the generator improves during co-training, the distribution shift Δp_t between successive rounds identifies samples near the verifier's decision boundary — structurally identical to curriculum learning but emerging for free from co-evolutionary dynamics. CfG computes per-problem difficulty scores from pass-rate changes and boundary proximity across generator rounds, then constructs verifier training batches weighted by these scores with automatic outcome-based labels. We instantiate CfG within a GRPO-based co-training loop using Qwen3.5 models (9B and 27B), with the verifier as an implicit PRM following PRIME, evaluating on MATH, GSM8K, and AIME. Unlike CoVerRL (arXiv 2603.17775), which uses consensus-derived pseudo-labels to break the consensus trap, CfG specifically targets difficulty-aware curriculum scheduling for the verifier — the distinction between random practice and targeted practice at the skill boundary. Unlike RL Tango's class-aware reweighting, CfG exploits the temporal signal in the generator's distribution evolution. This enables a fully self-contained training loop where verifier improvement is parasitic on generator improvement, requiring zero additional human annotation.",
+  "project_name": "gen_curriculum_verifier",
+  "source": "web_research"
+}
+
+Sources:
+- [PRIME: Process Reinforcement through Implicit Rewards](https://arxiv.org/abs/2502.01456)
+- [RL Tango (NeurIPS 2025)](https://arxiv.org/abs/2505.15034)
+- [VCRL: Variance-based Curriculum RL](https://arxiv.org/abs/2509.19803)
+- [CURE (NeurIPS 2025 Spotlight)](https://arxiv.org/abs/2506.03136)
+- [Can Large Reasoning Models Self-Train?](https://arxiv.org/abs/2505.21444)
+- [Mind the Gap (ICLR 2025)](https://arxiv.org/abs/2412.02674)
+- [CoVerRL (March 2026)](https://arxiv.org/abs/2603.17775)
+- [TTRL (NeurIPS 2025)](https://arxiv.org/abs/2504.16084)
+- [Self-Evolving Curriculum](https://arxiv.org/abs/2505.14970)
+- [Progressive Mastery](https://arxiv.org/abs/2506.04065)
+- [EvoSyn](https://arxiv.org/abs/2510.17928)
+- [TTCS (Jan 2026)](https://arxiv.org/abs/2601.22628)
+- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)
+- [EMNLP 2026 CFP](https://2026.emnlp.org/calls/main_conference_papers/)
+- [PRIME-RL GitHub](https://github.com/PRIME-RL/PRIME)
+- [veRL Framework](https://github.com/verl-project/verl)
+- [A100 GPU Pricing 2026](https://www.thundercompute.com/blog/a100-gpu-pricing-showdown-2025-who-s-the-cheapest-for-deep-learning-workloads)
+- [Qwen3.5 Model Family](https://computertech.co/qwen-3-5-review/)
+- [GRPO Fine-Tuning Guide](https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "522012b4-ddfa-4aed-bb87-ed94043a899a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9LdjTsfCJpcMzkH8Rrs",
+  "type": "assistant",
+  "uuid": "3302a92b-c36a-4d5a-8a9d-4feda76cc1e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ENn9nregdwwKhuiLiLtktX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 75456,
+      "output_tokens": 3186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1104,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3186,
+          "cache_read_input_tokens": 75456,
+          "cache_creation_input_tokens": 1104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1104
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 158_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-18 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Generator-as-…",
+  "leafUuid": "3302a92b-c36a-4d5a-8a9d-4feda76cc1e4",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 159_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generator-as-curriculum verifier improvement without labels",
+  "sessionId": "4360363e-9691-4f54-8644-9f9672f29ba3"
+}
+```
+
+---

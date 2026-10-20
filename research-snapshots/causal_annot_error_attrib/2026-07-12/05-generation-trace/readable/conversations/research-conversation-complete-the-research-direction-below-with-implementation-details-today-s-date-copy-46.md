@@ -1,0 +1,10002 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-19 (UTC).** Only recommend ve
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 139
+- **Recorded user turns:** 1
+- **Tool calls:** 46
+- **Original source:** `logs/chats/exported-trajectories/account-2/635447d6-7c2c-4017-9054-f4ca609b25de.jsonl`
+- **Structured JSON:** [`e18f2a5ad25ae8c269c4.json`](../../sessions/e1/e18f2a5ad25ae8c269c4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:53:31.191Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:53:31.191Z",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.\n\n{\n  \"title\": \"Disentangling Competing Biases for LLM Calibration Correction\",\n  \"core_problem\": \"LLM overconfidence arises from at least two competing biases — choice-supportive bias (favoring own answer) and contradictory-evidence overweighting — that require opposing corrections; can we disentangle and separately correct them?\",\n  \"opportunity\": \"Kumaran et al. (Nature Machine Intelligence, 2026) identified that LLM miscalibration results from two mechanistically distinct biases pulling in opposite directions: choice-supportive bias inflates confidence in selected answers, while contradictory-advice overweighting causes models to over-react to opposing evidence. Chhikara (TMLR 2025) showed distractor prompts reduce ECE by up to 90% but also found RLHF models are paradoxically miscalibrated on easy queries. Current calibration methods apply a single uniform correction (e.g., temperature scaling), which cannot simultaneously address biases that inflate and deflate confidence in different contexts. A disentanglement approach that identifies which bias dominates per-instance would enable targeted correction.\",\n  \"landscape\": \"Kumaran et al. (Nature MI, 2026) is the foundational paper identifying competing biases but proposes no correction framework. Chhikara (TMLR 2025) showed distractor prompts can expose and reduce overconfidence but didn't disentangle the underlying bias mechanisms. The 'Wired for Overconfidence' paper (2604.01457) identifies overconfidence circuits but treats overconfidence as monolithic. Ji et al. (EMNLP 2025) modulates a single verbal uncertainty direction but this captures only the net effect of competing biases. No existing method separately measures and corrects choice-supportive vs. evidence-weighting distortions, yet their opposing effects on calibration mean uniform correction is suboptimal.\",\n  \"inspired_by\": \"Gap: Competing biases create non-uniform miscalibration patterns that single-temperature methods cannot fix (field guide §5.1 on Kumaran et al., §5.2 on Chhikara). Pattern: Mechanistic disentanglement from representation engineering (field guide §3.1). Untried combination: Bias-specific circuit identification + per-instance bias diagnosis + opposing correction strategies.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"human_in_loop\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"auto_research\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\", \"speed_bottleneck\": \"...\"}\n  },\n  \"target_venues\": [\"Only venues with deadlines after 2026-05-19\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary (150-200 words)\",\n  \"project_name\": \"snake_case_identifier (max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with web_search that cited papers are real. Drop unverifiable ones.\n\n**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及\n\n## 可行性验证\n\n1. 搜索类似方法的已有实现（GitHub）\n2. 查找需要打败的具体 baseline 数字\n3. 了解类似实验的硬件/数据需求\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:53:31.195Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:53:31.195Z",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+## Round 1
+
+137 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:53:31.208Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.
+
+{
+  "title": "Disentangling Competing Biases for LLM Calibration Correction",
+  "core_problem": "LLM overconfidence arises from at least two competing biases — choice-supportive bias (favoring own answer) and contradictory-evidence overweighting — that require opposing corrections; can we disentangle and separately correct them?",
+  "opportunity": "Kumaran et al. (Nature Machine Intelligence, 2026) identified that LLM miscalibration results from two mechanistically distinct biases pulling in opposite directions: choice-supportive bias inflates confidence in selected answers, while contradictory-advice overweighting causes models to over-react to opposing evidence. Chhikara (TMLR 2025) showed distractor prompts reduce ECE by up to 90% but also found RLHF models are paradoxically miscalibrated on easy queries. Current calibration methods apply a single uniform correction (e.g., temperature scaling), which cannot simultaneously address biases that inflate and deflate confidence in different contexts. A disentanglement approach that identifies which bias dominates per-instance would enable targeted correction.",
+  "landscape": "Kumaran et al. (Nature MI, 2026) is the foundational paper identifying competing biases but proposes no correction framework. Chhikara (TMLR 2025) showed distractor prompts can expose and reduce overconfidence but didn't disentangle the underlying bias mechanisms. The 'Wired for Overconfidence' paper (2604.01457) identifies overconfidence circuits but treats overconfidence as monolithic. Ji et al. (EMNLP 2025) modulates a single verbal uncertainty direction but this captures only the net effect of competing biases. No existing method separately measures and corrects choice-supportive vs. evidence-weighting distortions, yet their opposing effects on calibration mean uniform correction is suboptimal.",
+  "inspired_by": "Gap: Competing biases create non-uniform miscalibration patterns that single-temperature methods cannot fix (field guide §5.1 on Kumaran et al., §5.2 on Chhikara). Pattern: Mechanistic disentanglement from representation engineering (field guide §3.1). Untried combination: Bias-specific circuit identification + per-instance bias diagnosis + opposing correction strategies."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {"gpu_hours": "...", "timeline": "...", "estimated_gpu_cost": "..."},
+      "human_in_loop": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "..."},
+      "auto_research": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "...", "speed_bottleneck": "..."}
+  },
+  "target_venues": ["Only venues with deadlines after 2026-05-19"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary (150-200 words)",
+  "project_name": "snake_case_identifier (max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with web_search that cited papers are real. Drop unverifiable ones.
+
+**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及
+
+## 可行性验证
+
+1. 搜索类似方法的已有实现（GitHub）
+2. 查找需要打败的具体 baseline 数字
+3. 了解类似实验的硬件/数据需求
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "548ef90d-a02d-463d-896c-d8c5afabd93f",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:53:31.207Z_
+
+```json
+{
+  "parentUuid": "548ef90d-a02d-463d-896c-d8c5afabd93f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "cb3aa6e2-3da6-45be-af91-a998c81a1aa8",
+  "timestamp": "2026-05-19T18:53:31.207Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:53:31.207Z_
+
+```json
+{
+  "parentUuid": "cb3aa6e2-3da6-45be-af91-a998c81a1aa8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c802596a-4e81-4876-951d-7df8bcede201",
+  "timestamp": "2026-05-19T18:53:31.207Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-19T18:53:35.569Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for competing/concurrent work on this topic
+2. Verify key references
+3. Find current top-performing open-source models
+4. Find venue deadlines
+5. Search for baseline numbers and existing implementations
+6. Compile everything into a single JSON object
+
+Let me start by launching several parallel searches to gather the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c802596a-4e81-4876-951d-7df8bcede201",
+  "isSidechain": false,
+  "requestId": "req_011CbCS7v8wfHzZEA267B7ed",
+  "type": "assistant",
+  "uuid": "e3bce961-cf01-46b9-a176-b3ec45820421",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018MW6YSF15KRL28Z8ENPksH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2505,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 2505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T18:53:35.752Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SBMUQFrU3qH7epZbwpeDYC`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3bce961-cf01-46b9-a176-b3ec45820421",
+  "isSidechain": false,
+  "requestId": "req_011CbCS7v8wfHzZEA267B7ed",
+  "type": "assistant",
+  "uuid": "cdeda572-3cbc-4a92-becf-5c92d1fc3ce0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018MW6YSF15KRL28Z8ENPksH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2505,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 2505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T18:53:35.761Z_
+
+<details><summary>↩ Tool result · `toolu_01SBMUQFrU3qH7epZbwpeDYC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdeda572-3cbc-4a92-becf-5c92d1fc3ce0",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "73dac9d6-9363-4c4a-8dcd-77f9fa021860",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "cdeda572-3cbc-4a92-becf-5c92d1fc3ce0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-19T18:53:39.144Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch multiple parallel searches to gather all the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73dac9d6-9363-4c4a-8dcd-77f9fa021860",
+  "isSidechain": false,
+  "requestId": "req_011CbCS8Fn97VETyRzpkcBg3",
+  "type": "assistant",
+  "uuid": "d261ba00-3e00-4884-9385-b8f8abf7fd3b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019wb9ECrzgugzoSesKBK2x1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 13879,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 13879,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-19T18:53:39.166Z_
+
+Let me launch parallel searches to gather all the information needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d261ba00-3e00-4884-9385-b8f8abf7fd3b",
+  "isSidechain": false,
+  "requestId": "req_011CbCS8Fn97VETyRzpkcBg3",
+  "type": "assistant",
+  "uuid": "1a31121b-2dde-4a90-a460-b63c7368c811",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019wb9ECrzgugzoSesKBK2x1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 13879,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 13879,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T18:53:39.659Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U9dfSsfgkoCELodaestn7W`</summary>
+
+```json
+{
+  "query": "Kumaran et al. Nature Machine Intelligence 2026 LLM competing biases choice-supportive contradictory evidence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a31121b-2dde-4a90-a460-b63c7368c811",
+  "isSidechain": false,
+  "requestId": "req_011CbCS8Fn97VETyRzpkcBg3",
+  "type": "assistant",
+  "uuid": "ca5c2b0f-5bce-447c-9ff0-ad45db958e2e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019wb9ECrzgugzoSesKBK2x1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 13879,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 13879,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T18:53:45.404Z_
+
+<details><summary>↩ Tool result · `toolu_01U9dfSsfgkoCELodaestn7W`</summary>
+
+```text
+Web search results for query: "Kumaran et al. Nature Machine Intelligence 2026 LLM competing biases choice-supportive contradictory evidence"
+
+Links: [{"title":"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-026-01217-9"},{"title":"Articles in 2026 | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/articles?type=article&year=2026"},{"title":"Browse Articles | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/articles"},{"title":"Research articles | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/research-articles"},{"title":"LLMs displaying less cognitive bias are not necessarily better decision makers | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-026-01208-w"},{"title":"Language Bias under Conflicting Information in Multilingual LLMs","url":"https://arxiv.org/pdf/2604.07123"},{"title":"Confronting LLMs with Traditional ML: Rethinking the Fairness of Large   Language Models in Tabular Classifications","url":"https://arxiv.org/pdf/2310.14607"},{"title":"AI–AI bias: Large language models favor communications generated by large language models","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12337326/"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The article "Competing Biases underlie Overconfidence and Underconfidence in LLMs" by Kumaran et al. was published in Nature Machine Intelligence on April 22, 2026, with authors including Dharshan Kumaran, Stephen M. Fleming, Larisa Markeeva, Joe Heyward, Andrea Banino, Mrinal Mathur, Razvan Pascanu, Simon Osindero, Benedetto De Martino, Petar Veličković, and Viorica Patraucean.
+
+The paper shows that large language model (LLM) confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning.
+
+The paper is available open access at Nature Machine Intelligence (DOI: 10.1038/s42256-026-01217-9), and a preprint version is available on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca5c2b0f-5bce-447c-9ff0-ad45db958e2e",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "c9099e4b-fcef-4acb-b22e-a1ca0c9f55d5",
+  "toolUseResult": {
+    "query": "Kumaran et al. Nature Machine Intelligence 2026 LLM competing biases choice-supportive contradictory evidence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BXUmCnjV3t9skg2p8XCvgZ",
+        "content": [
+          {
+            "title": "Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-026-01217-9"
+          },
+          {
+            "title": "Articles in 2026 | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/articles?type=article&year=2026"
+          },
+          {
+            "title": "Browse Articles | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/articles"
+          },
+          {
+            "title": "Research articles | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/research-articles"
+          },
+          {
+            "title": "LLMs displaying less cognitive bias are not necessarily better decision makers | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-026-01208-w"
+          },
+          {
+            "title": "Language Bias under Conflicting Information in Multilingual LLMs",
+            "url": "https://arxiv.org/pdf/2604.07123"
+          },
+          {
+            "title": "Confronting LLMs with Traditional ML: Rethinking the Fairness of Large   Language Models in Tabular Classifications",
+            "url": "https://arxiv.org/pdf/2310.14607"
+          },
+          {
+            "title": "AI–AI bias: Large language models favor communications generated by large language models",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12337326/"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe article \"Competing Biases underlie Overconfidence and Underconfidence in LLMs\" by Kumaran et al. was published in Nature Machine Intelligence on April 22, 2026, with authors including Dharshan Kumaran, Stephen M. Fleming, Larisa Markeeva, Joe Heyward, Andrea Banino, Mrinal Mathur, Razvan Pascanu, Simon Osindero, Benedetto De Martino, Petar Veličković, and Viorica Patraucean.\n\nThe paper shows that large language model (LLM) confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning.\n\nThe paper is available open access at Nature Machine Intelligence (DOI: 10.1038/s42256-026-01217-9), and a preprint version is available on arXiv."
+    ],
+    "durationSeconds": 5.740737952000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ca5c2b0f-5bce-447c-9ff0-ad45db958e2e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T18:53:48.482Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U6zyRBiHC2RzqmAs7fvXG6`</summary>
+
+```json
+{
+  "query": "Chhikara TMLR 2025 distractor prompts LLM calibration ECE overconfidence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9099e4b-fcef-4acb-b22e-a1ca0c9f55d5",
+  "isSidechain": false,
+  "requestId": "req_011CbCS8xqSQxRHogtxoVcCe",
+  "type": "assistant",
+  "uuid": "709c4482-0d6c-4844-8c57-d9eca056784f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WvBdkBzbZrW3tuNgCB6Qaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 15085,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 15085,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T18:53:55.536Z_
+
+<details><summary>↩ Tool result · `toolu_01U6zyRBiHC2RzqmAs7fvXG6`</summary>
+
+```text
+Web search results for query: "Chhikara TMLR 2025 distractor prompts LLM calibration ECE overconfidence"
+
+Links: [{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models | by Prateek Chhikara | Jan, 2026 | Medium","url":"https://medium.com/@prateekchhikara/mind-the-confidence-gap-overconfidence-calibration-and-distractor-effects-in-large-language-5628a9a41096"},{"title":"[2502.11028] Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/abs/2502.11028"},{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/html/2502.11028v3"},{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=lyaHnHDdZl"},{"title":"Overconfidence, Calibration, and Distractor Effects in Large ...","url":"https://openreview.net/pdf?id=lyaHnHDdZl"},{"title":"(PDF) Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://www.researchgate.net/publication/389090403_Mind_the_Confidence_Gap_Overconfidence_Calibration_and_Distractor_Effects_in_Large_Language_Models"},{"title":"Published in Transactions on Machine Learning Research (12/2025)","url":"https://arxiv.org/pdf/2502.11028"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/61db3269a30d2bf673d6735c26f9857939ec54c3.pdf"}]
+
+Based on the search results, here's what I found about the Chhikara TMLR 2025 paper:
+
+## Overview
+
+The paper addresses how Large Language Models show frequent overconfidence—misalignment between predicted confidence and true correctness—which poses significant risks in critical decision-making applications.
+
+## Research Approach
+
+The study presents a comprehensive analysis on calibration in LLMs across nine LLMs and three factual Question-Answering (QA) datasets, systematically comparing standard free-generation settings against structured distractor-augmented prompts.
+
+## Key Findings
+
+The evaluation reveals that explicitly incorporating distractors can substantially mitigate miscalibration, achieving relative accuracy improvements up to 460% and ECE reductions up to 90%. 
+
+Through detailed analyses across question types, the research identifies persistent calibration failures, particularly in person-based queries.
+
+## Methodology Details
+
+The paper proposes a structured distractor-augmented evaluation paradigm, where models select answers from one correct and multiple plausible incorrect options, enabling simultaneous assessment of accuracy improvements and Expected Calibration Error (ECE), and performs fine-grained analyses across question types to identify conditions of severe miscalibration.
+
+The paper was published in Transactions on Machine Learning Research (TMLR) in December 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "709c4482-0d6c-4844-8c57-d9eca056784f",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "9709d9df-8031-4295-baf5-fc5a6d90c332",
+  "toolUseResult": {
+    "query": "Chhikara TMLR 2025 distractor prompts LLM calibration ECE overconfidence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012EqXVExQ1qbZRVqBjYTh8E",
+        "content": [
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models | by Prateek Chhikara | Jan, 2026 | Medium",
+            "url": "https://medium.com/@prateekchhikara/mind-the-confidence-gap-overconfidence-calibration-and-distractor-effects-in-large-language-5628a9a41096"
+          },
+          {
+            "title": "[2502.11028] Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/abs/2502.11028"
+          },
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/html/2502.11028v3"
+          },
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=lyaHnHDdZl"
+          },
+          {
+            "title": "Overconfidence, Calibration, and Distractor Effects in Large ...",
+            "url": "https://openreview.net/pdf?id=lyaHnHDdZl"
+          },
+          {
+            "title": "(PDF) Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://www.researchgate.net/publication/389090403_Mind_the_Confidence_Gap_Overconfidence_Calibration_and_Distractor_Effects_in_Large_Language_Models"
+          },
+          {
+            "title": "Published in Transactions on Machine Learning Research (12/2025)",
+            "url": "https://arxiv.org/pdf/2502.11028"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/61db3269a30d2bf673d6735c26f9857939ec54c3.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Chhikara TMLR 2025 paper:\n\n## Overview\n\nThe paper addresses how Large Language Models show frequent overconfidence—misalignment between predicted confidence and true correctness—which poses significant risks in critical decision-making applications.\n\n## Research Approach\n\nThe study presents a comprehensive analysis on calibration in LLMs across nine LLMs and three factual Question-Answering (QA) datasets, systematically comparing standard free-generation settings against structured distractor-augmented prompts.\n\n## Key Findings\n\nThe evaluation reveals that explicitly incorporating distractors can substantially mitigate miscalibration, achieving relative accuracy improvements up to 460% and ECE reductions up to 90%. \n\nThrough detailed analyses across question types, the research identifies persistent calibration failures, particularly in person-based queries.\n\n## Methodology Details\n\nThe paper proposes a structured distractor-augmented evaluation paradigm, where models select answers from one correct and multiple plausible incorrect options, enabling simultaneous assessment of accuracy improvements and Expected Calibration Error (ECE), and performs fine-grained analyses across question types to identify conditions of severe miscalibration.\n\nThe paper was published in Transactions on Machine Learning Research (TMLR) in December 2025."
+    ],
+    "durationSeconds": 7.049793527999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "709c4482-0d6c-4844-8c57-d9eca056784f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "9709d9df-8031-4295-baf5-fc5a6d90c332",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T18:54:00.116Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QSGwPLJrPGSuYMHGTitgjV`</summary>
+
+```json
+{
+  "query": "arxiv 2604.01457 \"Wired for Overconfidence\" LLM overconfidence circuits"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9709d9df-8031-4295-baf5-fc5a6d90c332",
+  "isSidechain": false,
+  "requestId": "req_011CbCS9i8vxQ7A7P2wB4ojQ",
+  "type": "assistant",
+  "uuid": "82adcdee-1ee0-41f2-9891-b82baa22c8d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017N8h2cTPLkyWRpQCBu6mUA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1708,
+      "cache_read_input_tokens": 15085,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 15085,
+          "cache_creation_input_tokens": 1708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T18:54:07.141Z_
+
+<details><summary>↩ Tool result · `toolu_01QSGwPLJrPGSuYMHGTitgjV`</summary>
+
+```text
+Web search results for query: "arxiv 2604.01457 "Wired for Overconfidence" LLM overconfidence circuits"
+
+Links: [{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs | Takara TLDR","url":"https://tldr.takara.ai/p/2604.01457"},{"title":"Computation and Language","url":"https://arxiv.org/list/cs.CL/recent?skip=38&show=250"},{"title":"LLMs are Overconfident: Evaluating Confidence Interval Calibration with FermiEval","url":"https://arxiv.org/pdf/2510.26995"},{"title":"Large Language Models are overconfident and amplify human bias","url":"https://arxiv.org/pdf/2505.02151"},{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/pdf/2502.11028"}]
+
+I found the paper! Here are the key findings from arxiv 2604.01457, "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs":
+
+**Overview:**
+Large language models are often not just wrong, but confidently wrong: when they produce factually incorrect answers, they tend to verbalize overly high confidence rather than signal uncertainty. Such verbalized overconfidence can mislead users and weaken confidence scores as a reliable uncertainty signal, yet its internal mechanisms remain poorly understood.
+
+**Research Approach:**
+The paper presents a circuit-level mechanistic analysis of inflated verbalized confidence in LLMs, organized around three axes: capturing verbalized confidence as a differentiable internal signal, identifying the circuits that causally inflate it, and leveraging these insights for targeted inference-time recalibration.
+
+**Key Findings:**
+Across two instruction-tuned LLMs on three datasets, the researchers found that a compact set of MLP blocks and attention heads, concentrated in middle-to-late layers, consistently writes the confidence-inflation signal at the final token position.
+
+**Solutions:**
+Targeted inference-time interventions on these circuits substantially improve calibration, suggesting that verbalized overconfidence in LLMs is driven by identifiable internal circuits and can be mitigated through targeted intervention.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82adcdee-1ee0-41f2-9891-b82baa22c8d3",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "4d10e26d-6bf5-4e0c-b225-5c94a38eaf8b",
+  "toolUseResult": {
+    "query": "arxiv 2604.01457 \"Wired for Overconfidence\" LLM overconfidence circuits",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Dt3uyru29uTUHpseWnqL7W",
+        "content": [
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2604.01457"
+          },
+          {
+            "title": "Computation and Language",
+            "url": "https://arxiv.org/list/cs.CL/recent?skip=38&show=250"
+          },
+          {
+            "title": "LLMs are Overconfident: Evaluating Confidence Interval Calibration with FermiEval",
+            "url": "https://arxiv.org/pdf/2510.26995"
+          },
+          {
+            "title": "Large Language Models are overconfident and amplify human bias",
+            "url": "https://arxiv.org/pdf/2505.02151"
+          },
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/pdf/2502.11028"
+          }
+        ]
+      },
+      "I found the paper! Here are the key findings from arxiv 2604.01457, \"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs\":\n\n**Overview:**\nLarge language models are often not just wrong, but confidently wrong: when they produce factually incorrect answers, they tend to verbalize overly high confidence rather than signal uncertainty. Such verbalized overconfidence can mislead users and weaken confidence scores as a reliable uncertainty signal, yet its internal mechanisms remain poorly understood.\n\n**Research Approach:**\nThe paper presents a circuit-level mechanistic analysis of inflated verbalized confidence in LLMs, organized around three axes: capturing verbalized confidence as a differentiable internal signal, identifying the circuits that causally inflate it, and leveraging these insights for targeted inference-time recalibration.\n\n**Key Findings:**\nAcross two instruction-tuned LLMs on three datasets, the researchers found that a compact set of MLP blocks and attention heads, concentrated in middle-to-late layers, consistently writes the confidence-inflation signal at the final token position.\n\n**Solutions:**\nTargeted inference-time interventions on these circuits substantially improve calibration, suggesting that verbalized overconfidence in LLMs is driven by identifiable internal circuits and can be mitigated through targeted intervention."
+    ],
+    "durationSeconds": 7.020864431999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "82adcdee-1ee0-41f2-9891-b82baa22c8d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T18:54:09.845Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HHsmm3zF9MNKPC9EPZrpPk`</summary>
+
+```json
+{
+  "query": "Ji et al. EMNLP 2025 verbal uncertainty direction modulation LLM calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d10e26d-6bf5-4e0c-b225-5c94a38eaf8b",
+  "isSidechain": false,
+  "requestId": "req_011CbCSAZkgPNGZ4omWYak5D",
+  "type": "assistant",
+  "uuid": "887da149-b854-4907-b850-edf97ceb59bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LPCTZfu6HbpZKXww6HKjUm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 16793,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 16793,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T18:54:15.072Z_
+
+<details><summary>↩ Tool result · `toolu_01HHsmm3zF9MNKPC9EPZrpPk`</summary>
+
+```text
+Web search results for query: "Ji et al. EMNLP 2025 verbal uncertainty direction modulation LLM calibration"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.187/"},{"title":"Faithful Natural Language Uncertainty Expression in LLMs","url":"https://aclanthology.org/2025.emnlp-main.1505.pdf"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation","url":"https://arxiv.org/pdf/2512.22245"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce   Hallucinations","url":"https://arxiv.org/pdf/2503.14477"}]
+
+I found the paper! Here's what the search revealed:
+
+The paper is "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" by Ji, Ziwei and colleagues, published at EMNLP 2025 in Suzhou, China.
+
+The key findings of the work are:
+
+1. **Core Discovery**: The paper finds that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+2. **Direction Modulation**: The degree of uncertainty expressed by a model is mediated by a single direction, called the "Verbal Uncertainty Feature" (VUF), where hidden states of input questions answered with low and high verbal uncertainty can be linearly separated, allowing the use of contrastive pairs to identify a direction that can be intervened upon to control model expression of uncertainty.
+
+3. **Practical Impact**: The mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone, and the authors can intervene on verbal uncertainty at inference time and reduce hallucinations on short-form answers, achieving an average relative reduction of 32%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "887da149-b854-4907-b850-edf97ceb59bc",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "5ed8d86a-4d07-4f99-b665-86e05e43be42",
+  "toolUseResult": {
+    "query": "Ji et al. EMNLP 2025 verbal uncertainty direction modulation LLM calibration",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XgiZCQmy4A9QQfWyZv6gdQ",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.187/"
+          },
+          {
+            "title": "Faithful Natural Language Uncertainty Expression in LLMs",
+            "url": "https://aclanthology.org/2025.emnlp-main.1505.pdf"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation",
+            "url": "https://arxiv.org/pdf/2512.22245"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce   Hallucinations",
+            "url": "https://arxiv.org/pdf/2503.14477"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\nThe paper is \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\" by Ji, Ziwei and colleagues, published at EMNLP 2025 in Suzhou, China.\n\nThe key findings of the work are:\n\n1. **Core Discovery**: The paper finds that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\n2. **Direction Modulation**: The degree of uncertainty expressed by a model is mediated by a single direction, called the \"Verbal Uncertainty Feature\" (VUF), where hidden states of input questions answered with low and high verbal uncertainty can be linearly separated, allowing the use of contrastive pairs to identify a direction that can be intervened upon to control model expression of uncertainty.\n\n3. **Practical Impact**: The mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone, and the authors can intervene on verbal uncertainty at inference time and reduce hallucinations on short-form answers, achieving an average relative reduction of 32%."
+    ],
+    "durationSeconds": 5.222864600999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "887da149-b854-4907-b850-edf97ceb59bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-19T18:54:20.373Z_
+
+Good, all four key references are verified. Now let me search for concurrent work and more specifics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ed8d86a-4d07-4f99-b665-86e05e43be42",
+  "isSidechain": false,
+  "requestId": "req_011CbCSB9fNG34yXLn86rtFu",
+  "type": "assistant",
+  "uuid": "aa783cf2-998d-4e37-9ca4-3f17a4c80f14",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGtnRdy4vEoRAZrGnzepZ4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 17504,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 745,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 17504,
+          "cache_creation_input_tokens": 745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 745
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T18:54:21.185Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012Vio7bXABKK3JSdBkpgYdb`</summary>
+
+```json
+{
+  "query": "disentangling LLM calibration biases choice-supportive bias correction 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa783cf2-998d-4e37-9ca4-3f17a4c80f14",
+  "isSidechain": false,
+  "requestId": "req_011CbCSB9fNG34yXLn86rtFu",
+  "type": "assistant",
+  "uuid": "3ce60a30-61c3-4b52-9be6-58d941eed925",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGtnRdy4vEoRAZrGnzepZ4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 17504,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 745,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 17504,
+          "cache_creation_input_tokens": 745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 745
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:54:29.190Z_
+
+<details><summary>↩ Tool result · `toolu_012Vio7bXABKK3JSdBkpgYdb`</summary>
+
+```text
+Web search results for query: "disentangling LLM calibration biases choice-supportive bias correction 2026 arxiv"
+
+Links: [{"title":"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://arxiv.org/pdf/2512.03082"},{"title":"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://arxiv.org/html/2512.03082v1"},{"title":"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-026-01217-9"},{"title":"[2512.03082] Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://arxiv.org/abs/2512.03082"},{"title":"Mitigating Biases of Large Language Models in Stance Detection with   Counterfactual Augmented Calibration","url":"https://arxiv.org/pdf/2402.14296"}]
+
+Based on the web search results, I found several highly relevant papers addressing LLM calibration biases and choice-supportive bias correction:
+
+## Primary Result
+
+The most directly relevant paper is "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation," which demonstrates that some Large Language Models exhibit choice-supportive bias (CSB) when performing evaluations, systematically favoring their chosen options.
+
+The paper presents the first solution to address CSB through Reasoning Dependency Generation (RDG), a novel framework for generating unbiased reasoning data to mitigate choice-supportive bias through fine-tuning. RDG automatically constructs balanced reasoning QA pairs, explicitly (un)modeling the dependencies between choices, evidences, and justifications.
+
+RDG forces models to disentangle preference from validity during objective evaluation, directly targeting choice-supportive bias's root cause. Experiments show that LLMs fine-tuned on RDG-generated data demonstrate a 81.5% improvement in memory-based experiments and 94.3% improvement in the evaluation-based experiment, while maintaining similar performance on standard BBQ benchmarks.
+
+## Additional Relevant Work
+
+There's also a Nature Machine Intelligence article examining competing biases in LLMs: it identifies a choice-supportive bias where LLMs view their initial answers with inflated confidence and maintain their original responses at rates exceeding optimal decision-making, even when presented with contrary evidence.
+
+Both papers address the calibration and bias issues you're searching for, with the arxiv paper (2512.03082) being the most recent and directly focused on your query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ce60a30-61c3-4b52-9be6-58d941eed925",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "3d567f21-3518-42f0-a9fc-752c7c59416d",
+  "toolUseResult": {
+    "query": "disentangling LLM calibration biases choice-supportive bias correction 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018cjJjGtMWVbLkBo8DWh2ko",
+        "content": [
+          {
+            "title": "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://arxiv.org/pdf/2512.03082"
+          },
+          {
+            "title": "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://arxiv.org/html/2512.03082v1"
+          },
+          {
+            "title": "Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-026-01217-9"
+          },
+          {
+            "title": "[2512.03082] Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://arxiv.org/abs/2512.03082"
+          },
+          {
+            "title": "Mitigating Biases of Large Language Models in Stance Detection with   Counterfactual Augmented Calibration",
+            "url": "https://arxiv.org/pdf/2402.14296"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant papers addressing LLM calibration biases and choice-supportive bias correction:\n\n## Primary Result\n\nThe most directly relevant paper is \"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation,\" which demonstrates that some Large Language Models exhibit choice-supportive bias (CSB) when performing evaluations, systematically favoring their chosen options.\n\nThe paper presents the first solution to address CSB through Reasoning Dependency Generation (RDG), a novel framework for generating unbiased reasoning data to mitigate choice-supportive bias through fine-tuning. RDG automatically constructs balanced reasoning QA pairs, explicitly (un)modeling the dependencies between choices, evidences, and justifications.\n\nRDG forces models to disentangle preference from validity during objective evaluation, directly targeting choice-supportive bias's root cause. Experiments show that LLMs fine-tuned on RDG-generated data demonstrate a 81.5% improvement in memory-based experiments and 94.3% improvement in the evaluation-based experiment, while maintaining similar performance on standard BBQ benchmarks.\n\n## Additional Relevant Work\n\nThere's also a Nature Machine Intelligence article examining competing biases in LLMs: it identifies a choice-supportive bias where LLMs view their initial answers with inflated confidence and maintain their original responses at rates exceeding optimal decision-making, even when presented with contrary evidence.\n\nBoth papers address the calibration and bias issues you're searching for, with the arxiv paper (2512.03082) being the most recent and directly focused on your query."
+    ],
+    "durationSeconds": 8.001137407000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3ce60a30-61c3-4b52-9be6-58d941eed925",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T18:54:32.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V65EhEopRDVomziaTeRwGC`</summary>
+
+```json
+{
+  "query": "per-instance LLM calibration correction bias-specific mechanistic interpretability 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d567f21-3518-42f0-a9fc-752c7c59416d",
+  "isSidechain": false,
+  "requestId": "req_011CbCSCC1naG7NNtmzLPkdR",
+  "type": "assistant",
+  "uuid": "be1aa39b-8c59-4975-9567-8dae5df8188e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMBJWwuwHNkZ6PDzB37GrF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 18249,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 753,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 18249,
+          "cache_creation_input_tokens": 753,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 753
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T18:54:38.878Z_
+
+<details><summary>↩ Tool result · `toolu_01V65EhEopRDVomziaTeRwGC`</summary>
+
+```text
+Web search results for query: "per-instance LLM calibration correction bias-specific mechanistic interpretability 2026"
+
+Links: [{"title":"Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective","url":"https://arxiv.org/html/2506.05166v2"},{"title":"Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective","url":"https://arxiv.org/pdf/2506.05166"},{"title":"Bias in LLMs: Mechanistic Interpretability","url":"https://www.emergentmind.com/papers/2506.05166"},{"title":"Understanding Mechanistic Interpretability in AI Models | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"},{"title":"Activation Steering for Bias Mitigation: An Interpretable Approach to Safer LLMs","url":"https://arxiv.org/pdf/2508.09019"},{"title":"Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY","url":"https://arxiv.org/pdf/2510.02917"},{"title":"Analysing Moral Bias in Finetuned LLMs through Mechanistic Interpretability","url":"https://arxiv.org/pdf/2510.12229"}]
+
+Based on the search results, I found several relevant papers from 2025-2026 that address mechanistic interpretability and bias in LLMs:
+
+## Key Research Findings
+
+**Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective**
+
+Bias-related computations are highly localized, often concentrated in a small subset of layers. Demographic and gender biases within LLMs are primarily encoded in a localized manner across a small subset of layers and nodes, suggesting that biases can be pinpointed to specific components within the model.
+
+However, biases show instability across different conditions including lexical and syntactic variations and fine-tuning settings, with grammatical structure changes resulting in differing importance of components.
+
+**Activation Steering for Bias Mitigation**
+
+A recent approach uses techniques from mechanistic interpretability to both identify and actively mitigate bias directly within a model's internal workings. This method involves training linear "probes" on the internal activations of a model to detect the latent representations of various biases (e.g., gender, race, age).
+
+**Moral Bias Analysis**
+
+Different LLMs systematically reproduce human biases, particularly after finetuning, and although designed to align models with human preferences, finetuning also causes the internalization of human biases.
+
+These recent papers demonstrate active research into understanding and mitigating specific types of bias through mechanistic interpretability approaches in LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be1aa39b-8c59-4975-9567-8dae5df8188e",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "3bc53e72-ef2f-406b-943d-1bc6c714bcda",
+  "toolUseResult": {
+    "query": "per-instance LLM calibration correction bias-specific mechanistic interpretability 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JbXykU52hZtihNf8kdPZue",
+        "content": [
+          {
+            "title": "Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective",
+            "url": "https://arxiv.org/html/2506.05166v2"
+          },
+          {
+            "title": "Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective",
+            "url": "https://arxiv.org/pdf/2506.05166"
+          },
+          {
+            "title": "Bias in LLMs: Mechanistic Interpretability",
+            "url": "https://www.emergentmind.com/papers/2506.05166"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"
+          },
+          {
+            "title": "Activation Steering for Bias Mitigation: An Interpretable Approach to Safer LLMs",
+            "url": "https://arxiv.org/pdf/2508.09019"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "Analysing Moral Bias in Finetuned LLMs through Mechanistic Interpretability",
+            "url": "https://arxiv.org/pdf/2510.12229"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2025-2026 that address mechanistic interpretability and bias in LLMs:\n\n## Key Research Findings\n\n**Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective**\n\nBias-related computations are highly localized, often concentrated in a small subset of layers. Demographic and gender biases within LLMs are primarily encoded in a localized manner across a small subset of layers and nodes, suggesting that biases can be pinpointed to specific components within the model.\n\nHowever, biases show instability across different conditions including lexical and syntactic variations and fine-tuning settings, with grammatical structure changes resulting in differing importance of components.\n\n**Activation Steering for Bias Mitigation**\n\nA recent approach uses techniques from mechanistic interpretability to both identify and actively mitigate bias directly within a model's internal workings. This method involves training linear \"probes\" on the internal activations of a model to detect the latent representations of various biases (e.g., gender, race, age).\n\n**Moral Bias Analysis**\n\nDifferent LLMs systematically reproduce human biases, particularly after finetuning, and although designed to align models with human preferences, finetuning also causes the internalization of human biases.\n\nThese recent papers demonstrate active research into understanding and mitigating specific types of bias through mechanistic interpretability approaches in LLMs."
+    ],
+    "durationSeconds": 6.7530889420000095,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "be1aa39b-8c59-4975-9567-8dae5df8188e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T18:54:41.867Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NNWdUpVtaDZRsch8BzFVPU`</summary>
+
+```json
+{
+  "query": "LLM overconfidence circuit-level correction representation engineering calibration arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bc53e72-ef2f-406b-943d-1bc6c714bcda",
+  "isSidechain": false,
+  "requestId": "req_011CbCSCuTQPYxmdNcV93d1A",
+  "type": "assistant",
+  "uuid": "1f06eec7-439f-4d06-b922-5c2a4a1d3965",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URqjcW5EWzY1nJsMHCk6CZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 19002,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 19002,
+          "cache_creation_input_tokens": 750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T18:54:50.209Z_
+
+<details><summary>↩ Tool result · `toolu_01NNWdUpVtaDZRsch8BzFVPU`</summary>
+
+```text
+Web search results for query: "LLM overconfidence circuit-level correction representation engineering calibration arxiv 2026"
+
+Links: [{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/pdf/2505.21772"},{"title":"Calibration Across Layers: Understanding Calibration Evolution in LLMs","url":"https://arxiv.org/html/2511.00280v1"},{"title":"LLMs are Overconfident: Evaluating Confidence Interval Calibration with FermiEval","url":"https://arxiv.org/pdf/2510.26995"},{"title":"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models","url":"https://arxiv.org/pdf/2510.03136"},{"title":"Know When You’re Wrong: Aligning Confidence with Correctness for LLM Error Detection","url":"https://arxiv.org/html/2603.06604"}]
+
+I found several relevant papers on LLM overconfidence, calibration, and representation engineering. Here are the key results:
+
+## Top Results:
+
+**1. "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs"** (arxiv.org/pdf/2604.01457)
+
+This paper identifies specific MLP blocks and attention heads in middle-to-late layers that write confidence-inflation signals, and shows that targeted inference-time interventions on these circuits substantially improve calibration.
+
+**2. "Calibrating LLM Confidence by Probing Perturbed Representation Stability"** (arxiv.org/pdf/2505.21772)
+
+This work applies targeted adversarial perturbations to final hidden states and uses a lightweight classifier to predict answer correctness. Results show significant improvements across multiple calibration metrics compared to prior methods.
+
+**3. "Calibration Across Layers: Understanding Calibration Evolution in LLMs"** (arxiv.org/html/2511.00280v1)
+
+This paper uncovers a confidence correction phase in upper/later layers and identifies a low-dimensional calibration direction in the residual stream whose perturbation significantly improves calibration metrics without harming accuracy.
+
+**4. "LLMs are Overconfident: Evaluating Confidence Interval Calibration with FermiEval"** (arxiv.org/pdf/2510.26995)
+
+The work develops a theory explaining LLM overconfidence: when reasoning under uncertainty, they act as if sampling from a truncated region of their inferred distribution, neglecting its tails.
+
+These papers collectively represent recent work on circuit-level analysis, representation engineering, and calibration improvements for LLM confidence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f06eec7-439f-4d06-b922-5c2a4a1d3965",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "2a26d72d-6dc2-41a9-bf15-39c72dce691a",
+  "toolUseResult": {
+    "query": "LLM overconfidence circuit-level correction representation engineering calibration arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PckSbnz1HDWauN9wwLcMER",
+        "content": [
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/pdf/2505.21772"
+          },
+          {
+            "title": "Calibration Across Layers: Understanding Calibration Evolution in LLMs",
+            "url": "https://arxiv.org/html/2511.00280v1"
+          },
+          {
+            "title": "LLMs are Overconfident: Evaluating Confidence Interval Calibration with FermiEval",
+            "url": "https://arxiv.org/pdf/2510.26995"
+          },
+          {
+            "title": "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.03136"
+          },
+          {
+            "title": "Know When You’re Wrong: Aligning Confidence with Correctness for LLM Error Detection",
+            "url": "https://arxiv.org/html/2603.06604"
+          }
+        ]
+      },
+      "I found several relevant papers on LLM overconfidence, calibration, and representation engineering. Here are the key results:\n\n## Top Results:\n\n**1. \"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs\"** (arxiv.org/pdf/2604.01457)\n\nThis paper identifies specific MLP blocks and attention heads in middle-to-late layers that write confidence-inflation signals, and shows that targeted inference-time interventions on these circuits substantially improve calibration.\n\n**2. \"Calibrating LLM Confidence by Probing Perturbed Representation Stability\"** (arxiv.org/pdf/2505.21772)\n\nThis work applies targeted adversarial perturbations to final hidden states and uses a lightweight classifier to predict answer correctness. Results show significant improvements across multiple calibration metrics compared to prior methods.\n\n**3. \"Calibration Across Layers: Understanding Calibration Evolution in LLMs\"** (arxiv.org/html/2511.00280v1)\n\nThis paper uncovers a confidence correction phase in upper/later layers and identifies a low-dimensional calibration direction in the residual stream whose perturbation significantly improves calibration metrics without harming accuracy.\n\n**4. \"LLMs are Overconfident: Evaluating Confidence Interval Calibration with FermiEval\"** (arxiv.org/pdf/2510.26995)\n\nThe work develops a theory explaining LLM overconfidence: when reasoning under uncertainty, they act as if sampling from a truncated region of their inferred distribution, neglecting its tails.\n\nThese papers collectively represent recent work on circuit-level analysis, representation engineering, and calibration improvements for LLM confidence."
+    ],
+    "durationSeconds": 8.337444187000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1f06eec7-439f-4d06-b922-5c2a4a1d3965",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-19T18:54:50.211Z_
+
+```json
+{
+  "parentUuid": "2a26d72d-6dc2-41a9-bf15-39c72dce691a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "487ca513-9272-4f5b-b3de-297d63a24782",
+  "timestamp": "2026-05-19T18:54:50.211Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "487ca513-9272-4f5b-b3de-297d63a24782",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T18:54:52.777Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bz5Ki8v6YTjK9WKzFCH1AL`</summary>
+
+```json
+{
+  "query": "OpenReview LLM calibration bias disentanglement competing biases 2026 submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "487ca513-9272-4f5b-b3de-297d63a24782",
+  "isSidechain": false,
+  "requestId": "req_011CbCSDjsiev1Xw1BXCUhXN",
+  "type": "assistant",
+  "uuid": "8a9a42e3-272a-401c-8db2-1290fdeee80c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFDFFDnzCerMYaogK1J1To",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 19752,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 19752,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T18:55:02.799Z_
+
+<details><summary>↩ Tool result · `toolu_01Bz5Ki8v6YTjK9WKzFCH1AL`</summary>
+
+```text
+Web search results for query: "OpenReview LLM calibration bias disentanglement competing biases 2026 submission"
+
+Links: [{"title":"Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective | OpenReview","url":"https://openreview.net/forum?id=EpQ2CBJTjD"},{"title":"Quantifying and Mitigating Self-Preference Bias of LLM Judges","url":"https://arxiv.org/html/2604.22891v1"},{"title":"UniBias: Unveiling and Mitigating LLM Bias through Internal Attention and FFN Manipulation | OpenReview","url":"https://openreview.net/forum?id=luQiVmnviX"},{"title":"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-026-01217-9"},{"title":"Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge | OpenReview","url":"https://openreview.net/forum?id=3GTtZFiajM"},{"title":"No Free Lunch in Language Model Bias Mitigation? Targeted Bias Reduction Can Exacerbate Unmitigated LLM Biases","url":"https://arxiv.org/html/2511.18635v1"},{"title":"The Confidence Trap: Gender Bias and Predictive Certainty in LLMs","url":"https://arxiv.org/pdf/2601.07806"},{"title":"Self-Preference Bias in LLM-as-a-Judge | OpenReview","url":"https://openreview.net/forum?id=Ns8zGZ0lmM"},{"title":"BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation | OpenReview","url":"https://openreview.net/forum?id=QGOw6AU8Lp"}]
+
+I found several relevant research papers on OpenReview and related sources about LLM calibration, bias, and related topics from 2025-2026:
+
+## Key Findings:
+
+**LLM Calibration and Competing Biases:**
+Large language model confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning. This research from Nature Machine Intelligence directly addresses the "competing biases" aspect of your query.
+
+**Bias Disentanglement:**
+StereoSet allows for the disentanglement of a model's linguistic coherence from its stereotypical preference. This benchmark is being used to study how different types of bias can be separated in analysis.
+
+**OpenReview 2026 Submissions:**
+Several papers on OpenReview address LLM bias mechanisms:
+- One work adopts a mechanistic interpretability approach to analyze how biases are structurally represented within models such as GPT-2 and Llama2, focusing on demographic and gender biases and exploring different metrics to identify the internal edges responsible for biased behavior.
+- Another introduces UniBias, an inference-only method that effectively identifies and eliminates biased FFN vectors and attention heads.
+
+**Calibration and Bias:**
+Calibration ensures that an LLM's confidence in its predictions accurately reflects the likelihood of being correct, and without proper calibration, an LLM might provide overconfident yet incorrect outputs, misleading users into trusting biased or unreliable responses.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a9a42e3-272a-401c-8db2-1290fdeee80c",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "d4947d77-16ea-42bf-b135-943f53846163",
+  "toolUseResult": {
+    "query": "OpenReview LLM calibration bias disentanglement competing biases 2026 submission",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QDmXsH2ZFL65KWfBaEPdou",
+        "content": [
+          {
+            "title": "Dissecting Bias in LLMs: A Mechanistic Interpretability Perspective | OpenReview",
+            "url": "https://openreview.net/forum?id=EpQ2CBJTjD"
+          },
+          {
+            "title": "Quantifying and Mitigating Self-Preference Bias of LLM Judges",
+            "url": "https://arxiv.org/html/2604.22891v1"
+          },
+          {
+            "title": "UniBias: Unveiling and Mitigating LLM Bias through Internal Attention and FFN Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=luQiVmnviX"
+          },
+          {
+            "title": "Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-026-01217-9"
+          },
+          {
+            "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge | OpenReview",
+            "url": "https://openreview.net/forum?id=3GTtZFiajM"
+          },
+          {
+            "title": "No Free Lunch in Language Model Bias Mitigation? Targeted Bias Reduction Can Exacerbate Unmitigated LLM Biases",
+            "url": "https://arxiv.org/html/2511.18635v1"
+          },
+          {
+            "title": "The Confidence Trap: Gender Bias and Predictive Certainty in LLMs",
+            "url": "https://arxiv.org/pdf/2601.07806"
+          },
+          {
+            "title": "Self-Preference Bias in LLM-as-a-Judge | OpenReview",
+            "url": "https://openreview.net/forum?id=Ns8zGZ0lmM"
+          },
+          {
+            "title": "BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation | OpenReview",
+            "url": "https://openreview.net/forum?id=QGOw6AU8Lp"
+          }
+        ]
+      },
+      "I found several relevant research papers on OpenReview and related sources about LLM calibration, bias, and related topics from 2025-2026:\n\n## Key Findings:\n\n**LLM Calibration and Competing Biases:**\nLarge language model confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning. This research from Nature Machine Intelligence directly addresses the \"competing biases\" aspect of your query.\n\n**Bias Disentanglement:**\nStereoSet allows for the disentanglement of a model's linguistic coherence from its stereotypical preference. This benchmark is being used to study how different types of bias can be separated in analysis.\n\n**OpenReview 2026 Submissions:**\nSeveral papers on OpenReview address LLM bias mechanisms:\n- One work adopts a mechanistic interpretability approach to analyze how biases are structurally represented within models such as GPT-2 and Llama2, focusing on demographic and gender biases and exploring different metrics to identify the internal edges responsible for biased behavior.\n- Another introduces UniBias, an inference-only method that effectively identifies and eliminates biased FFN vectors and attention heads.\n\n**Calibration and Bias:**\nCalibration ensures that an LLM's confidence in its predictions accurately reflects the likelihood of being correct, and without proper calibration, an LLM might provide overconfident yet incorrect outputs, misleading users into trusting biased or unreliable responses."
+    ],
+    "durationSeconds": 10.017520894,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8a9a42e3-272a-401c-8db2-1290fdeee80c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T18:55:05.221Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B79Hgt6ZShgWbrisNUU5jf`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 deadline submission date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4947d77-16ea-42bf-b135-943f53846163",
+  "isSidechain": false,
+  "requestId": "req_011CbCSEfixjP4aYRNxPDfC1",
+  "type": "assistant",
+  "uuid": "8bf0d1ad-9373-412b-b6b5-b39dcc630e1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KKNr2ZsztjrufMBu5eECes",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 20647,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 20647,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T18:55:09.710Z_
+
+<details><summary>↩ Tool result · `toolu_01B79Hgt6ZShgWbrisNUU5jf`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 deadline submission date"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"Call For Evaluations & Datasets 2026","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X","url":"https://x.com/NeurIPSConf/status/2041303457554940336"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"}]
+
+Based on the search results, here are the key submission deadlines for NeurIPS 2026:
+
+**Main Paper Submission Deadlines:**
+
+The abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.
+
+**Conference Details:**
+
+The conference is held December 6th through 12th, 2026 at the International Convention Centre.
+
+**Other Track Deadlines:**
+
+- Competition proposal submission deadline is May 15, 2026
+- Workshop application deadline is June 06, 2026, AoE
+
+Note that the different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines, but they share the same abstract and paper submission deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8bf0d1ad-9373-412b-b6b5-b39dcc630e1d",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "3662c5a2-e422-4923-abba-9224e3a0dd39",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 deadline submission date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RXjGSQhJt47NezmGtTsPi9",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "Call For Evaluations & Datasets 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+            "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          }
+        ]
+      },
+      "Based on the search results, here are the key submission deadlines for NeurIPS 2026:\n\n**Main Paper Submission Deadlines:**\n\nThe abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.\n\n**Conference Details:**\n\nThe conference is held December 6th through 12th, 2026 at the International Convention Centre.\n\n**Other Track Deadlines:**\n\n- Competition proposal submission deadline is May 15, 2026\n- Workshop application deadline is June 06, 2026, AoE\n\nNote that the different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines, but they share the same abstract and paper submission deadlines."
+    ],
+    "durationSeconds": 4.483124571000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8bf0d1ad-9373-412b-b6b5-b39dcc630e1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T18:55:12.107Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YcTwU6KqGe7u82T6EMA9sK`</summary>
+
+```json
+{
+  "query": "ICML 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3662c5a2-e422-4923-abba-9224e3a0dd39",
+  "isSidechain": false,
+  "requestId": "req_011CbCSFBGxweD86rgWdb4RQ",
+  "type": "assistant",
+  "uuid": "8afce1ff-0a93-4316-bc5f-53b28bce84cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HkQMbsFDNctWY6D9jDXM9f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 783,
+      "cache_read_input_tokens": 21601,
+      "output_tokens": 60,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 783,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 60,
+          "cache_read_input_tokens": 21601,
+          "cache_creation_input_tokens": 783,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 783
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T18:55:18.257Z_
+
+<details><summary>↩ Tool result · `toolu_01YcTwU6KqGe7u82T6EMA9sK`</summary>
+
+```text
+Web search results for query: "ICML 2026 submission deadline"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"}]
+
+Based on the search results, here is the information about ICML 2026 submission deadlines:
+
+**Main Track Paper Submission:**
+The deadline for full paper submission to ICML 2026 is January 28, 2026.
+
+**Position Paper Track:**
+The position paper track has a separate deadline of January 24, 2026 (AOE - Anywhere on Earth), with an additional deadline of January 29, 2026 for the full submission.
+
+**Conference Details:**
+The Forty-Third annual ICML conference is held from Monday, July 6th through Saturday the 11th, 2026 at the Coex Convention & Exhibition Center.
+
+**Important Note:**
+Abstract and paper submission deadlines are strict, and in no circumstances will extensions be given.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8afce1ff-0a93-4316-bc5f-53b28bce84cf",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "9c16b7bf-c7c0-4b60-9d75-71c9f11e81e0",
+  "toolUseResult": {
+    "query": "ICML 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01An8eEw6chyFtkbPQcb8GDP",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about ICML 2026 submission deadlines:\n\n**Main Track Paper Submission:**\nThe deadline for full paper submission to ICML 2026 is January 28, 2026.\n\n**Position Paper Track:**\nThe position paper track has a separate deadline of January 24, 2026 (AOE - Anywhere on Earth), with an additional deadline of January 29, 2026 for the full submission.\n\n**Conference Details:**\nThe Forty-Third annual ICML conference is held from Monday, July 6th through Saturday the 11th, 2026 at the Coex Convention & Exhibition Center.\n\n**Important Note:**\nAbstract and paper submission deadlines are strict, and in no circumstances will extensions be given."
+    ],
+    "durationSeconds": 6.145500451999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8afce1ff-0a93-4316-bc5f-53b28bce84cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-19T18:55:20.761Z_
+
+ICML 2026 deadline has passed. Let me check more venues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c16b7bf-c7c0-4b60-9d75-71c9f11e81e0",
+  "isSidechain": false,
+  "requestId": "req_011CbCSFonRSMq4dYkGpcDw3",
+  "type": "assistant",
+  "uuid": "28243bb4-10e8-48fc-a2d3-03c07836136b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KePxL9e6nPaCkEhkSg6Jq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 22384,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 22384,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T18:55:21.138Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pz3NKvdAcsEgT3d62SWsj2`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28243bb4-10e8-48fc-a2d3-03c07836136b",
+  "isSidechain": false,
+  "requestId": "req_011CbCSFonRSMq4dYkGpcDw3",
+  "type": "assistant",
+  "uuid": "144be831-7d1f-4967-8814-8eb128a774d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KePxL9e6nPaCkEhkSg6Jq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 22384,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 22384,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T18:55:29.994Z_
+
+<details><summary>↩ Tool result · `toolu_01Pz3NKvdAcsEgT3d62SWsj2`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"}]
+
+Based on the search results, here are the key details for EMNLP 2026:
+
+## Conference Information
+EMNLP 2026 will be held in Budapest, Hungary, October 24-29, 2026.
+
+## Submission Deadline
+The EMNLP 2026 paper submission deadline is May 25, 2026 23:59:59 (UTC-12). All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+## Call for Papers Overview
+EMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing. EMNLP 2026 has a goal of curating a diverse technical program—in addition to traditional research results, papers may contribute negative findings, survey an area, announce the creation of a new resource, argue a position, report novel linguistic insights derived using existing computational techniques, and reproduce (or fail to reproduce) previous results.
+
+## Important Details
+Papers must be submitted, at latest, by the ARR 2026 May cycle. Authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+Additional key dates include:
+- Author registration form deadline: May 27, 2026
+- Author response and author-reviewer discussion: July 7-13, 2026
+- Meta review released: July 30, 2026
+
+For the full call for papers, visit: https://2026.emnlp.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "144be831-7d1f-4967-8814-8eb128a774d2",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "4a166573-785f-40a8-ab42-2d3b6d97ee07",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DUieRuWKvG1JhmmNsWPiGy",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          }
+        ]
+      },
+      "Based on the search results, here are the key details for EMNLP 2026:\n\n## Conference Information\nEMNLP 2026 will be held in Budapest, Hungary, October 24-29, 2026.\n\n## Submission Deadline\nThe EMNLP 2026 paper submission deadline is May 25, 2026 23:59:59 (UTC-12). All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\n## Call for Papers Overview\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing. EMNLP 2026 has a goal of curating a diverse technical program—in addition to traditional research results, papers may contribute negative findings, survey an area, announce the creation of a new resource, argue a position, report novel linguistic insights derived using existing computational techniques, and reproduce (or fail to reproduce) previous results.\n\n## Important Details\nPapers must be submitted, at latest, by the ARR 2026 May cycle. Authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.\n\nAdditional key dates include:\n- Author registration form deadline: May 27, 2026\n- Author response and author-reviewer discussion: July 7-13, 2026\n- Meta review released: July 30, 2026\n\nFor the full call for papers, visit: https://2026.emnlp.org/calls/main_conference_papers/"
+    ],
+    "durationSeconds": 8.850598641000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "144be831-7d1f-4967-8814-8eb128a774d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T18:55:32.615Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N97DcPMJoc9XdSN54XteNL`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a166573-785f-40a8-ab42-2d3b6d97ee07",
+  "isSidechain": false,
+  "requestId": "req_011CbCSGfz9VWB1iZmJk9DQW",
+  "type": "assistant",
+  "uuid": "03bb96eb-74d2-4015-beec-e8fe87e53daf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJFttxPweS4aw4XtDDPoz3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1198,
+      "cache_read_input_tokens": 22988,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 22988,
+          "cache_creation_input_tokens": 1198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T18:55:36.788Z_
+
+<details><summary>↩ Tool result · `toolu_01N97DcPMJoc9XdSN54XteNL`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline call for papers"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"}]
+
+Based on the search results, I found limited specific information about ICLR 2027. Here's what I discovered:
+
+ICLR 2027 is predicted to take place April 24-28, 2027, with the dates being predicted based on the previous year schedule and pending verification on the official conference website.
+
+However, the search results do not contain specific submission deadline information for ICLR 2027 yet. The most recent detailed call for papers information in the results is for ICLR 2026, which invites submissions from all areas of machine learning.
+
+For the most current and accurate ICLR 2027 submission deadline and call for papers information, I recommend:
+1. Visiting the official ICLR website (iclr.cc)
+2. Checking OpenReview.net for the official submission portal
+3. Subscribing to the ICLR mailing list for announcements
+
+Since ICLR 2027 details are likely not yet finalized, you may want to check back closer to the typical submission window, which historically follows a pattern of opening submissions several months before the conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03bb96eb-74d2-4015-beec-e8fe87e53daf",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "34d617ee-9a99-491c-b7e8-fcf235cfe2ad",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EznjxddHHTN3SAzsNcvF61",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          }
+        ]
+      },
+      "Based on the search results, I found limited specific information about ICLR 2027. Here's what I discovered:\n\nICLR 2027 is predicted to take place April 24-28, 2027, with the dates being predicted based on the previous year schedule and pending verification on the official conference website.\n\nHowever, the search results do not contain specific submission deadline information for ICLR 2027 yet. The most recent detailed call for papers information in the results is for ICLR 2026, which invites submissions from all areas of machine learning.\n\nFor the most current and accurate ICLR 2027 submission deadline and call for papers information, I recommend:\n1. Visiting the official ICLR website (iclr.cc)\n2. Checking OpenReview.net for the official submission portal\n3. Subscribing to the ICLR mailing list for announcements\n\nSince ICLR 2027 details are likely not yet finalized, you may want to check back closer to the typical submission window, which historically follows a pattern of opening submissions several months before the conference."
+    ],
+    "durationSeconds": 4.1680565399999905,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03bb96eb-74d2-4015-beec-e8fe87e53daf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "34d617ee-9a99-491c-b7e8-fcf235cfe2ad",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T18:55:39.421Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cjq9TqVMwzLGV8bmxqJYKS`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34d617ee-9a99-491c-b7e8-fcf235cfe2ad",
+  "isSidechain": false,
+  "requestId": "req_011CbCSHB2e9d2n36cBatAkf",
+  "type": "assistant",
+  "uuid": "fd6ce71f-1d3c-45aa-adba-60d635fb9cea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M49G9Ac18scqPGQ7meCP9N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 24186,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 24186,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T18:55:45.818Z_
+
+<details><summary>↩ Tool result · `toolu_01Cjq9TqVMwzLGV8bmxqJYKS`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline call for papers"
+
+Links: [{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"}]
+
+Based on the search results, here's the information about AAAI 2027 submission deadlines:
+
+## Key Deadlines
+
+For the Main Technical Track:
+- Open Review submission site opens for author registration: June 17, 2026
+- Open Review submission site opens for paper submission: June 24, 2026
+- Abstracts due: July 21, 2026 at 11:59 PM UTC-12
+- Full papers due: July 28, 2026 at 11:59 PM UTC-12
+- Supplementary material and code due: July 31, 2026 by 11:59 PM UTC-12
+
+Additional important dates include:
+- Notification of Phase 1 rejections: September 24, 2026
+- Author feedback window: October 19-25, 2026
+- Notification of final acceptance or rejection: November 30, 2026
+- Camera-ready files submission: December 14, 2026
+
+## Conference Details
+
+AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.
+
+Note that all deadlines are "anywhere on earth" (UTC-12), and deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.
+
+The official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd6ce71f-1d3c-45aa-adba-60d635fb9cea",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "b6abbaad-dd39-47d7-8db3-47a5b66c1490",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011nfMk6Wr67wSPdVDWpxGCm",
+        "content": [
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about AAAI 2027 submission deadlines:\n\n## Key Deadlines\n\nFor the Main Technical Track:\n- Open Review submission site opens for author registration: June 17, 2026\n- Open Review submission site opens for paper submission: June 24, 2026\n- Abstracts due: July 21, 2026 at 11:59 PM UTC-12\n- Full papers due: July 28, 2026 at 11:59 PM UTC-12\n- Supplementary material and code due: July 31, 2026 by 11:59 PM UTC-12\n\nAdditional important dates include:\n- Notification of Phase 1 rejections: September 24, 2026\n- Author feedback window: October 19-25, 2026\n- Notification of final acceptance or rejection: November 30, 2026\n- Camera-ready files submission: December 14, 2026\n\n## Conference Details\n\nAAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.\n\nNote that all deadlines are \"anywhere on earth\" (UTC-12), and deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.\n\nThe official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/."
+    ],
+    "durationSeconds": 6.394402717000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fd6ce71f-1d3c-45aa-adba-60d635fb9cea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T18:55:48.173Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0167EKRSQnYAzaJJZcMB44ZH`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6abbaad-dd39-47d7-8db3-47a5b66c1490",
+  "isSidechain": false,
+  "requestId": "req_011CbCSHqdMo6Fcf9adYidGT",
+  "type": "assistant",
+  "uuid": "2b5960f3-7c3e-4306-842f-2c51d7a05b45",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013enBYXWYA3tuhHgNAJHx6r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 24881,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 24881,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T18:55:56.669Z_
+
+<details><summary>↩ Tool result · `toolu_0167EKRSQnYAzaJJZcMB44ZH`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline call for papers"
+
+Links: [{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"COLM 2026: Submission Instructions","url":"https://colmweb.org/submission-instructions.html"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X","url":"https://x.com/aviral_kumar2/status/2000963068717625813"},{"title":"COLM 2026: FAQ","url":"https://colmweb.org/faq.html"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026 Conference | OpenReview","url":"https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"},{"title":"COLM 2026: Author Guide","url":"https://colmweb.org/AuthorGuide.html"}]
+
+Based on the search results, here are the key submission deadlines and details for COLM 2026:
+
+## Submission Deadlines
+
+The abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.
+
+## Key Submission Details
+
+There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations. Authors may use as many pages of appendices (after the bibliography) as they wish, but reviewers are not required to read the appendix.
+
+Anyone who plans to submit a paper as an author or a co-author will need to create (or update) their OpenReview profile by the abstract submission deadline.
+
+## Important Policies
+
+Full papers submitted to COLM cannot be under review for another conference simultaneously. If your paper was submitted to another venue such as ICML, it must be withdrawn from that venue prior to the COLM full paper submission deadline.
+
+For more detailed information about the call for papers, you can visit the official COLM 2026 website at https://colmweb.org/cfp.html.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b5960f3-7c3e-4306-842f-2c51d7a05b45",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "02b3cb01-8b3f-49ab-8eeb-32116fc2922f",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Aov9eQ5kwcGYLkZDvyV88j",
+        "content": [
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "COLM 2026: Submission Instructions",
+            "url": "https://colmweb.org/submission-instructions.html"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X",
+            "url": "https://x.com/aviral_kumar2/status/2000963068717625813"
+          },
+          {
+            "title": "COLM 2026: FAQ",
+            "url": "https://colmweb.org/faq.html"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"
+          },
+          {
+            "title": "COLM 2026: Author Guide",
+            "url": "https://colmweb.org/AuthorGuide.html"
+          }
+        ]
+      },
+      "Based on the search results, here are the key submission deadlines and details for COLM 2026:\n\n## Submission Deadlines\n\nThe abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.\n\n## Key Submission Details\n\nThere is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations. Authors may use as many pages of appendices (after the bibliography) as they wish, but reviewers are not required to read the appendix.\n\nAnyone who plans to submit a paper as an author or a co-author will need to create (or update) their OpenReview profile by the abstract submission deadline.\n\n## Important Policies\n\nFull papers submitted to COLM cannot be under review for another conference simultaneously. If your paper was submitted to another venue such as ICML, it must be withdrawn from that venue prior to the COLM full paper submission deadline.\n\nFor more detailed information about the call for papers, you can visit the official COLM 2026 website at https://colmweb.org/cfp.html."
+    ],
+    "durationSeconds": 8.491973562999977,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2b5960f3-7c3e-4306-842f-2c51d7a05b45",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-19T18:55:59.323Z_
+
+COLM deadline has passed. Let me check more venues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02b3cb01-8b3f-49ab-8eeb-32116fc2922f",
+  "isSidechain": false,
+  "requestId": "req_011CbCSJe1dwCtUdPZfbSFgh",
+  "type": "assistant",
+  "uuid": "1ad2a382-167f-4e43-b8f5-8a3a136d05c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KhUUAyzwA5r5CP8srnE23",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 25893,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 827,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 25893,
+          "cache_creation_input_tokens": 827,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 827
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-19T18:55:59.861Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019RHHNkwU5GVzkofV54jwHf`</summary>
+
+```json
+{
+  "query": "ACL 2026 submission deadline ARR cycle"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ad2a382-167f-4e43-b8f5-8a3a136d05c3",
+  "isSidechain": false,
+  "requestId": "req_011CbCSJe1dwCtUdPZfbSFgh",
+  "type": "assistant",
+  "uuid": "8358b942-d471-4da3-b183-1bd93748dd60",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KhUUAyzwA5r5CP8srnE23",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 25893,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 827,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 25893,
+          "cache_creation_input_tokens": 827,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 827
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-19T18:56:12.221Z_
+
+<details><summary>↩ Tool result · `toolu_019RHHNkwU5GVzkofV54jwHf`</summary>
+
+```text
+Web search results for query: "ACL 2026 submission deadline ARR cycle"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, here's the information about ACL 2026 submission deadlines in the ARR cycle:
+
+## Key Submission Deadlines for ACL 2026
+
+The submission deadline for papers to ARR is January 5, 2026. All deadlines are at 11:59PM UTC-12:00 ("anywhere on Earth").
+
+Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle to be considered for ACL 2026.
+
+## Important Review Timeline
+
+Following submission, there are several key dates for the reviewing process:
+
+- The deadline for completing the registration form is January 7th 2026 EoD AoE
+- The deadline for reviews is February 7th, and for meta-reviews March 3rd
+- ARR reviews & meta-reviews available to authors of the January cycle: March 10, 2026
+
+## Submission Requirements
+
+Starting from 2024, all main *ACL conferences used ARR exclusively, including ACL 2026. Authors commit their reviewed articles to a publication venue (e.g., ACL 2026), where Senior Area Chairs and Program Chairs make acceptance decisions from the ARR reviews and meta-reviews.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8358b942-d471-4da3-b183-1bd93748dd60",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "c71a5b03-2419-4231-baeb-7678640f3f00",
+  "toolUseResult": {
+    "query": "ACL 2026 submission deadline ARR cycle",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SPws8Gvoab9QZpKkNy6DQu",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about ACL 2026 submission deadlines in the ARR cycle:\n\n## Key Submission Deadlines for ACL 2026\n\nThe submission deadline for papers to ARR is January 5, 2026. All deadlines are at 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nPapers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle to be considered for ACL 2026.\n\n## Important Review Timeline\n\nFollowing submission, there are several key dates for the reviewing process:\n\n- The deadline for completing the registration form is January 7th 2026 EoD AoE\n- The deadline for reviews is February 7th, and for meta-reviews March 3rd\n- ARR reviews & meta-reviews available to authors of the January cycle: March 10, 2026\n\n## Submission Requirements\n\nStarting from 2024, all main *ACL conferences used ARR exclusively, including ACL 2026. Authors commit their reviewed articles to a publication venue (e.g., ACL 2026), where Senior Area Chairs and Program Chairs make acceptance decisions from the ARR reviews and meta-reviews."
+    ],
+    "durationSeconds": 12.356153176000022,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8358b942-d471-4da3-b183-1bd93748dd60",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52 · 2026-05-19T18:56:12.230Z_
+
+```json
+{
+  "parentUuid": "c71a5b03-2419-4231-baeb-7678640f3f00",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8f7352c4-7b9b-4e27-af23-bf510641f677",
+  "timestamp": "2026-05-19T18:56:12.230Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-19T18:56:14.774Z_
+
+ACL 2026 deadline passed. Let me check more upcoming venues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f7352c4-7b9b-4e27-af23-bf510641f677",
+  "isSidechain": false,
+  "requestId": "req_011CbCSKnZcWEVJX5auXWAh6",
+  "type": "assistant",
+  "uuid": "ce830358-ccbb-4c2d-9f00-c6b34b7ad0bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqyyVEPNpvWZvv2HUbwvzW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 26720,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 26720,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-19T18:56:15.061Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FQiRJn5VgTkJfBRV5iQnCf`</summary>
+
+```json
+{
+  "query": "AACL 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce830358-ccbb-4c2d-9f00-c6b34b7ad0bc",
+  "isSidechain": false,
+  "requestId": "req_011CbCSKnZcWEVJX5auXWAh6",
+  "type": "assistant",
+  "uuid": "0e8df2cb-3c8c-4eae-96dc-76f980841f86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqyyVEPNpvWZvv2HUbwvzW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 26720,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 26720,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T18:56:20.081Z_
+
+<details><summary>↩ Tool result · `toolu_01FQiRJn5VgTkJfBRV5iQnCf`</summary>
+
+```text
+Web search results for query: "AACL 2026 submission deadline call for papers"
+
+Links: [{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"AACL 2026 - Department of Linguistics","url":"https://lin.ufl.edu/aacl-2026/"},{"title":"AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X","url":"https://x.com/aaclmeeting/status/2041832211599733075"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"},{"title":"AACL 2026 (@aaclmeeting) / Posts / X","url":"https://x.com/aaclmeeting"},{"title":"Final call for EACL and ACL 2026 workshops","url":"https://groups.google.com/g/ML-news/c/3rH5gRoL_8k"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=acl26"}]
+
+Based on the search results, here's the information about AACL 2026's call for papers:
+
+## AACL 2026 Submission Details
+
+AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The ARR submission deadline for long and short papers is May 25, 2026.
+
+The conference is now accepting submissions for papers through the ACL Rolling Review (ARR) system. For more detailed information about the call for papers, you can visit the official CFP page at https://2026.aaclnet.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e8df2cb-3c8c-4eae-96dc-76f980841f86",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "2b90074a-a526-4ee4-8154-56ef58dcb92b",
+  "toolUseResult": {
+    "query": "AACL 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XiPQ9seUk5U22ZYm6dUrv5",
+        "content": [
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "AACL 2026 - Department of Linguistics",
+            "url": "https://lin.ufl.edu/aacl-2026/"
+          },
+          {
+            "title": "AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X",
+            "url": "https://x.com/aaclmeeting/status/2041832211599733075"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          },
+          {
+            "title": "AACL 2026 (@aaclmeeting) / Posts / X",
+            "url": "https://x.com/aaclmeeting"
+          },
+          {
+            "title": "Final call for EACL and ACL 2026 workshops",
+            "url": "https://groups.google.com/g/ML-news/c/3rH5gRoL_8k"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=acl26"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about AACL 2026's call for papers:\n\n## AACL 2026 Submission Details\n\nAACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The ARR submission deadline for long and short papers is May 25, 2026.\n\nThe conference is now accepting submissions for papers through the ACL Rolling Review (ARR) system. For more detailed information about the call for papers, you can visit the official CFP page at https://2026.aaclnet.org/calls/main_conference_papers/"
+    ],
+    "durationSeconds": 5.0148898730000075,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0e8df2cb-3c8c-4eae-96dc-76f980841f86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-19T18:56:22.579Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lswomw2BMFfwBK3Z1RWE3Q`</summary>
+
+```json
+{
+  "query": "AI conference deadlines after May 2026 machine learning NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b90074a-a526-4ee4-8154-56ef58dcb92b",
+  "isSidechain": false,
+  "requestId": "req_011CbCSLN7DovrMq5UjFjwcn",
+  "type": "assistant",
+  "uuid": "f116afd9-25f6-40fe-b15b-cb2e0fa03b21",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNcqmXHADFFn6w1Wqjar1P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 27481,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 27481,
+          "cache_creation_input_tokens": 791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-19T18:56:29.871Z_
+
+<details><summary>↩ Tool result · `toolu_01Lswomw2BMFfwBK3Z1RWE3Q`</summary>
+
+```text
+Web search results for query: "AI conference deadlines after May 2026 machine learning NLP"
+
+Links: [{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"GitHub - khairulislam/ML-conferences: List of ML conferences with important dates and accepted paper list · GitHub","url":"https://github.com/khairulislam/ML-conferences"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines 2026 | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/"},{"title":"AI Deadlines - a Hugging Face Space by huggingface","url":"https://huggingface.co/spaces/huggingface/ai-deadlines"},{"title":"AI Conference Deadlines","url":"https://nunoduarte.github.io/deadlines/"},{"title":"AI Conference Deadlines","url":"https://mldeadlines.com/"},{"title":"Top Artificial Intelligence (AI) Conferences for 2026: A Researcher's Guide--iConf","url":"https://www.iconf.org/news/731"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"}]
+
+Based on the search results, here are several AI/ML/NLP conference deadlines coming after May 2026:
+
+## Recent and Upcoming Deadlines (Late May 2026 onwards):
+
+AIES has a deadline of May 21, 2026 (May 14, 2026) for a conference in Oct 12-14, 2026 in Malmo, Sweden
+
+CIKM has a deadline of May 23, 2026 (May 16, 2026) for a conference in Nov 7-11, 2026 in Rome, Italy
+
+EMNLP has a deadline of May 25, 2026 for a conference in Oct 24-29, 2026 in Budapest, Hungary
+
+CoRL has a deadline of May 28, 2026 (May 25, 2026) for a conference in Nov 10-12, 2026 in Austin, Texas, USA
+
+## Later Summer 2026 Deadlines:
+
+ICDM has a deadline of June 5, 2026 for a conference in Nov 12-15, 2026 in Shenyang, China
+
+WACV has a deadline of Jun 24, 2026 for a conference in Jan 4-8, 2027 in Disney Springs, Buena Vista, FL, USA
+
+ICSE has a deadline of 30 Jun, 2026 (23 Jun, 2026) for a conference in April 25 - May 1, 2027 in Dublin, Ireland
+
+AAAI has a deadline of July 28, 2026 (July 21, 2026) for a conference in Feb 16-23 2027 in Montréal, Québec, Canada
+
+These represent a mix of top-tier machine learning, NLP, and AI conferences with submission deadlines after May 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f116afd9-25f6-40fe-b15b-cb2e0fa03b21",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "cce581ee-f2cb-430f-8700-b64980329b88",
+  "toolUseResult": {
+    "query": "AI conference deadlines after May 2026 machine learning NLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EWYoYhgTn2yuN9bziYqbWy",
+        "content": [
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "GitHub - khairulislam/ML-conferences: List of ML conferences with important dates and accepted paper list · GitHub",
+            "url": "https://github.com/khairulislam/ML-conferences"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines 2026 | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/"
+          },
+          {
+            "title": "AI Deadlines - a Hugging Face Space by huggingface",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://nunoduarte.github.io/deadlines/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mldeadlines.com/"
+          },
+          {
+            "title": "Top Artificial Intelligence (AI) Conferences for 2026: A Researcher's Guide--iConf",
+            "url": "https://www.iconf.org/news/731"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here are several AI/ML/NLP conference deadlines coming after May 2026:\n\n## Recent and Upcoming Deadlines (Late May 2026 onwards):\n\nAIES has a deadline of May 21, 2026 (May 14, 2026) for a conference in Oct 12-14, 2026 in Malmo, Sweden\n\nCIKM has a deadline of May 23, 2026 (May 16, 2026) for a conference in Nov 7-11, 2026 in Rome, Italy\n\nEMNLP has a deadline of May 25, 2026 for a conference in Oct 24-29, 2026 in Budapest, Hungary\n\nCoRL has a deadline of May 28, 2026 (May 25, 2026) for a conference in Nov 10-12, 2026 in Austin, Texas, USA\n\n## Later Summer 2026 Deadlines:\n\nICDM has a deadline of June 5, 2026 for a conference in Nov 12-15, 2026 in Shenyang, China\n\nWACV has a deadline of Jun 24, 2026 for a conference in Jan 4-8, 2027 in Disney Springs, Buena Vista, FL, USA\n\nICSE has a deadline of 30 Jun, 2026 (23 Jun, 2026) for a conference in April 25 - May 1, 2027 in Dublin, Ireland\n\nAAAI has a deadline of July 28, 2026 (July 21, 2026) for a conference in Feb 16-23 2027 in Montréal, Québec, Canada\n\nThese represent a mix of top-tier machine learning, NLP, and AI conferences with submission deadlines after May 2026."
+    ],
+    "durationSeconds": 7.287599885000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f116afd9-25f6-40fe-b15b-cb2e0fa03b21",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "cce581ee-f2cb-430f-8700-b64980329b88",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T18:56:32.199Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012R1NSbZ9vqgwq6QquzaBUz`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 full paper submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cce581ee-f2cb-430f-8700-b64980329b88",
+  "isSidechain": false,
+  "requestId": "req_011CbCSM5zdqzkSjvJNL99NC",
+  "type": "assistant",
+  "uuid": "172017cc-fdc1-4e18-ac2f-dd40b25e0229",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWLgnzqR94P2m9n19JyV2s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 883,
+      "cache_read_input_tokens": 28272,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 883,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 28272,
+          "cache_creation_input_tokens": 883,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 883
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T18:56:36.413Z_
+
+<details><summary>↩ Tool result · `toolu_012R1NSbZ9vqgwq6QquzaBUz`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 full paper submission deadline May 2026"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call For Evaluations & Datasets 2026","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"NeurIPS 2026 Evaluations & Datasets FAQ","url":"https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 LaTeX Template | Download & Formatting Guide | Underleaf","url":"https://www.underleaf.ai/templates/neurips"},{"title":"NeurIPS 2026 Papers","url":"https://neurips.cc/virtual/2026/papers.html"}]
+
+Based on the search results, here is the information about NeurIPS 2026 full paper submission deadlines:
+
+The full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE (Anywhere On Earth). This deadline applies across multiple tracks:
+
+- **Main Track**: Full papers are due on May 6th, 2026, Anywhere On Earth (AOE)
+- **Evaluations & Datasets Track**: Full paper submission deadline (including all supplementary materials) is May 6, 2026 (AoE)
+- **Position Papers Track**: Full papers are due on May 6th, 2026 (AOE)
+
+Additionally, the abstract submission deadline is May 4, 2026 (AOE), which comes two days before the full paper deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "172017cc-fdc1-4e18-ac2f-dd40b25e0229",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "e31e3705-4b79-498f-81ea-5da6b585dff5",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 full paper submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KPW5P3FfSJyukTdEVetayF",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call For Evaluations & Datasets 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets FAQ",
+            "url": "https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 LaTeX Template | Download & Formatting Guide | Underleaf",
+            "url": "https://www.underleaf.ai/templates/neurips"
+          },
+          {
+            "title": "NeurIPS 2026 Papers",
+            "url": "https://neurips.cc/virtual/2026/papers.html"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about NeurIPS 2026 full paper submission deadlines:\n\nThe full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE (Anywhere On Earth). This deadline applies across multiple tracks:\n\n- **Main Track**: Full papers are due on May 6th, 2026, Anywhere On Earth (AOE)\n- **Evaluations & Datasets Track**: Full paper submission deadline (including all supplementary materials) is May 6, 2026 (AoE)\n- **Position Papers Track**: Full papers are due on May 6th, 2026 (AOE)\n\nAdditionally, the abstract submission deadline is May 4, 2026 (AOE), which comes two days before the full paper deadline."
+    ],
+    "durationSeconds": 4.209695238999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "172017cc-fdc1-4e18-ac2f-dd40b25e0229",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-19T18:56:39.273Z_
+
+NeurIPS 2026 deadline (May 6) has passed. Now let me search for existing implementations, baseline numbers, and current models.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e31e3705-4b79-498f-81ea-5da6b585dff5",
+  "isSidechain": false,
+  "requestId": "req_011CbCSMZyddmSmGGux44UQE",
+  "type": "assistant",
+  "uuid": "cf8f83d6-e6e0-4624-bb01-5e16f116b965",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163Qz3G4D5PCo2fHv2AXU6P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 29155,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 671,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 29155,
+          "cache_creation_input_tokens": 671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 671
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T18:56:40.077Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DFRHYERDQdTTwRYEUh99iv`</summary>
+
+```json
+{
+  "query": "GitHub LLM calibration representation engineering probing confidence bias correction implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf8f83d6-e6e0-4624-bb01-5e16f116b965",
+  "isSidechain": false,
+  "requestId": "req_011CbCSMZyddmSmGGux44UQE",
+  "type": "assistant",
+  "uuid": "fc4de218-1ffa-4456-9f30-c64096a3e096",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163Qz3G4D5PCo2fHv2AXU6P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 29155,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 671,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 29155,
+          "cache_creation_input_tokens": 671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 671
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T18:56:47.203Z_
+
+<details><summary>↩ Tool result · `toolu_01DFRHYERDQdTTwRYEUh99iv`</summary>
+
+```text
+Web search results for query: "GitHub LLM calibration representation engineering probing confidence bias correction implementation"
+
+Links: [{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/pdf/2505.21772"},{"title":"[2505.21772] Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/abs/2505.21772"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.530/"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/html/2505.21772v1"},{"title":"GitHub - Ledengary/CCPS: Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://github.com/ledengary/CCPS"},{"title":"GitHub - UW-Madison-Lee-Lab/LLM-judge-reporting: A simple plug-in framework that corrects bias and computes confidence intervals in reporting LLM-as-a-judge evaluation, and an adaptive algorithm that efficiently allocates calibration samples to reduce uncertainty in estimates. · GitHub","url":"https://github.com/UW-Madison-Lee-Lab/LLM-judge-reporting"}]
+
+Based on the search results, I found relevant information about LLM calibration and representation engineering:
+
+## CCPS: Calibrating LLM Confidence by Probing Perturbed Representation Stability
+
+CCPS is a novel method analyzing internal representational stability in LLMs. It applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness.
+
+**Key Features:**
+- CCPS operates on frozen base LLMs, applying targeted adversarial perturbations to the final hidden states that generate an answer's tokens in a model-agnostic probing approach without modifying the base LLM
+- It was evaluated on LLMs from 8B to 32B parameters covering Llama, Qwen, and Mistral architectures using MMLU and MMLU-Pro benchmarks
+
+**Performance Results:**
+CCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points.
+
+**GitHub Repository:**
+The code is available at https://github.com/ledengary/CCPS with datasets on Hugging Face.
+
+There's also a related project on bias correction for LLM-as-a-judge evaluation with confidence intervals computation available at the UW-Madison-Lee-Lab GitHub repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc4de218-1ffa-4456-9f30-c64096a3e096",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "09e3708c-10af-4870-a802-913fc20ba7cf",
+  "toolUseResult": {
+    "query": "GitHub LLM calibration representation engineering probing confidence bias correction implementation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hhc5CCnETsSnG2ggWPCfBB",
+        "content": [
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/pdf/2505.21772"
+          },
+          {
+            "title": "[2505.21772] Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/abs/2505.21772"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.530/"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/html/2505.21772v1"
+          },
+          {
+            "title": "GitHub - Ledengary/CCPS: Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://github.com/ledengary/CCPS"
+          },
+          {
+            "title": "GitHub - UW-Madison-Lee-Lab/LLM-judge-reporting: A simple plug-in framework that corrects bias and computes confidence intervals in reporting LLM-as-a-judge evaluation, and an adaptive algorithm that efficiently allocates calibration samples to reduce uncertainty in estimates. · GitHub",
+            "url": "https://github.com/UW-Madison-Lee-Lab/LLM-judge-reporting"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about LLM calibration and representation engineering:\n\n## CCPS: Calibrating LLM Confidence by Probing Perturbed Representation Stability\n\nCCPS is a novel method analyzing internal representational stability in LLMs. It applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness.\n\n**Key Features:**\n- CCPS operates on frozen base LLMs, applying targeted adversarial perturbations to the final hidden states that generate an answer's tokens in a model-agnostic probing approach without modifying the base LLM\n- It was evaluated on LLMs from 8B to 32B parameters covering Llama, Qwen, and Mistral architectures using MMLU and MMLU-Pro benchmarks\n\n**Performance Results:**\nCCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points.\n\n**GitHub Repository:**\nThe code is available at https://github.com/ledengary/CCPS with datasets on Hugging Face.\n\nThere's also a related project on bias correction for LLM-as-a-judge evaluation with confidence intervals computation available at the UW-Madison-Lee-Lab GitHub repository."
+    ],
+    "durationSeconds": 7.1204441450000155,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fc4de218-1ffa-4456-9f30-c64096a3e096",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T18:56:51.313Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019fUEz3LLq9dpR1C2xCvAxt`</summary>
+
+```json
+{
+  "query": "GitHub \"wired for overconfidence\" mechanistic overconfidence LLM circuit code"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09e3708c-10af-4870-a802-913fc20ba7cf",
+  "isSidechain": false,
+  "requestId": "req_011CbCSNN53u2hZf3uxRzENw",
+  "type": "assistant",
+  "uuid": "67c6f4c1-48ca-4e2b-9ffb-aa241b4b7582",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYmz3d9JfyH9joiyGEHhiH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 29826,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 29826,
+          "cache_creation_input_tokens": 838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T18:56:57.635Z_
+
+<details><summary>↩ Tool result · `toolu_019fUEz3LLq9dpR1C2xCvAxt`</summary>
+
+```text
+Web search results for query: "GitHub "wired for overconfidence" mechanistic overconfidence LLM circuit code"
+
+Links: [{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs | Takara TLDR","url":"https://tldr.takara.ai/p/2604.01457"},{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"How Overconfidence in Initial Choices and Underconfidence Under Criticism Modulate Change of Mind in Large Language Models","url":"https://arxiv.org/pdf/2507.03120"},{"title":"GitHub - jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness: Awesome-LLM-Robustness: a curated list of Uncertainty, Reliability and Robustness in Large Language Models · GitHub","url":"https://github.com/jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness"},{"title":"Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders","url":"https://arxiv.org/pdf/2510.02917"},{"title":"GitHub - cooperleong00/Awesome-LLM-Interpretability: A curated list of LLM Interpretability related material - Tutorial, Library, Survey, Paper, Blog, etc.. · GitHub","url":"https://github.com/cooperleong00/Awesome-LLM-Interpretability"}]
+
+Based on the search results, I found relevant information about the paper "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs":
+
+The paper addresses how large language models often produce factually incorrect answers while verbalizing overly high confidence rather than signaling uncertainty, and how this verbalized overconfidence can mislead users and weaken confidence scores as a reliable uncertainty signal.
+
+The research presents a circuit-level mechanistic analysis organized around three axes: capturing verbalized confidence as a differentiable internal signal, identifying the circuits that causally inflate it, and leveraging these insights for targeted inference-time recalibration.
+
+The key finding is that a compact set of MLP blocks and attention heads, concentrated in middle-to-late layers, consistently writes the confidence-inflation signal at the final token position across two instruction-tuned LLMs on three datasets.
+
+The researchers further demonstrate that targeted inference-time interventions on these circuits substantially improve calibration, suggesting that verbalized overconfidence in LLMs is driven by identifiable internal circuits and can be mitigated through targeted intervention.
+
+The paper is available on arXiv at arxiv.org/pdf/2604.01457 and was published in April 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67c6f4c1-48ca-4e2b-9ffb-aa241b4b7582",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "aa61b9fd-1745-4173-b46e-01a826587084",
+  "toolUseResult": {
+    "query": "GitHub \"wired for overconfidence\" mechanistic overconfidence LLM circuit code",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sbbe9XKDiD7xsEXHqU4sre",
+        "content": [
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2604.01457"
+          },
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "How Overconfidence in Initial Choices and Underconfidence Under Criticism Modulate Change of Mind in Large Language Models",
+            "url": "https://arxiv.org/pdf/2507.03120"
+          },
+          {
+            "title": "GitHub - jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness: Awesome-LLM-Robustness: a curated list of Uncertainty, Reliability and Robustness in Large Language Models · GitHub",
+            "url": "https://github.com/jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness"
+          },
+          {
+            "title": "Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "GitHub - cooperleong00/Awesome-LLM-Interpretability: A curated list of LLM Interpretability related material - Tutorial, Library, Survey, Paper, Blog, etc.. · GitHub",
+            "url": "https://github.com/cooperleong00/Awesome-LLM-Interpretability"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the paper \"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs\":\n\nThe paper addresses how large language models often produce factually incorrect answers while verbalizing overly high confidence rather than signaling uncertainty, and how this verbalized overconfidence can mislead users and weaken confidence scores as a reliable uncertainty signal.\n\nThe research presents a circuit-level mechanistic analysis organized around three axes: capturing verbalized confidence as a differentiable internal signal, identifying the circuits that causally inflate it, and leveraging these insights for targeted inference-time recalibration.\n\nThe key finding is that a compact set of MLP blocks and attention heads, concentrated in middle-to-late layers, consistently writes the confidence-inflation signal at the final token position across two instruction-tuned LLMs on three datasets.\n\nThe researchers further demonstrate that targeted inference-time interventions on these circuits substantially improve calibration, suggesting that verbalized overconfidence in LLMs is driven by identifiable internal circuits and can be mitigated through targeted intervention.\n\nThe paper is available on arXiv at arxiv.org/pdf/2604.01457 and was published in April 2026."
+    ],
+    "durationSeconds": 6.318006218000024,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67c6f4c1-48ca-4e2b-9ffb-aa241b4b7582",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T18:57:01.365Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W8PuijD8ba6ckZ19PuqTL1`</summary>
+
+```json
+{
+  "query": "LLM calibration ECE baseline numbers temperature scaling MMLU TriviaQA 2025 2026 state of the art"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa61b9fd-1745-4173-b46e-01a826587084",
+  "isSidechain": false,
+  "requestId": "req_011CbCSP8n7r5AztnuKYuSrr",
+  "type": "assistant",
+  "uuid": "ad83c536-860f-4082-9a37-aef1fa475b52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011rNPSpvqJ3tJe7fyxLCo8X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 784,
+      "cache_read_input_tokens": 30664,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 30664,
+          "cache_creation_input_tokens": 784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T18:57:08.610Z_
+
+<details><summary>↩ Tool result · `toolu_01W8PuijD8ba6ckZ19PuqTL1`</summary>
+
+```text
+Web search results for query: "LLM calibration ECE baseline numbers temperature scaling MMLU TriviaQA 2025 2026 state of the art"
+
+Links: [{"title":"[Quick Review] Calibrating Language Models with Adaptive Temperature Scaling","url":"https://liner.com/review/calibrating-language-models-with-adaptive-temperature-scaling"},{"title":"Your Pre-trained LLM is Secretly an Unsupervised Confidence Calibrator","url":"https://www.arxiv.org/pdf/2505.16690v4"},{"title":"Calibrating Language Models with Adaptive Temperature Scaling","url":"https://arxiv.org/pdf/2409.19817"},{"title":"Calibrated Large Language Models for Binary Question Answering","url":"https://arxiv.org/pdf/2407.01122"},{"title":"BaseCal: Unsupervised Confidence Calibration via Base Model Signals","url":"https://arxiv.org/html/2601.03042"},{"title":"Calibrating Verbalized Probabilities for Large Language Models","url":"https://arxiv.org/pdf/2410.06707"},{"title":"Published at ICLR 2024 Workshop on Secure and Trustworthy Large Language Models","url":"https://openreview.net/pdf?id=BgfGqNpoMi"},{"title":"Towards Objective Fine-tuning: How LLMs' Prior Knowledge Causes Potential Poor Calibration?","url":"https://arxiv.org/pdf/2505.20903"},{"title":"Calibrating Long-form Generations from Large Language Models","url":"https://arxiv.org/pdf/2402.06544"},{"title":"Improving Semantic Uncertainty Quantification in Language Model Question-Answering via Token-Level Temperature Scaling","url":"https://arxiv.org/pdf/2604.07172"}]
+
+Based on the search results, here's what I found regarding LLM calibration, ECE (Expected Calibration Error), and temperature scaling for MMLU and TriviaQA:
+
+## Recent Calibration Methods and Baseline Numbers
+
+Adaptive Temperature Scaling (ATS) significantly outperforms existing calibration methods, achieving 10-50% better calibration across MMLU, TriviaQA, and TruthfulQA benchmarks for both Llama-2-7b-Chat and Qwen-7b-Chat models, as measured by Expected Calibration Error (ECE).
+
+## Specific ECE Improvements (2025)
+
+One method (DACA) improves the ECE of Llama-3-70B-Instruct from 12.870% to 7.844%, and reduces ECE of a recent Instruct model from 23.68% to 8.60%.
+
+## Unsupervised Approaches
+
+BaseCal achieves performance comparable to supervised Temperature Scaling (TS) on TriviaQA and MMLU despite being unsupervised, representing a recent direction in calibration methods.
+
+## Key Findings
+
+While unsupervised pre-training methods have shown success in producing well-calibrated LLMs, a challenge arises when these models undergo finetuning through reinforcement learning from human feedback (RLHF), with recent studies indicating a notable degradation in the calibration of LLMs post-RLHF finetuning.
+
+The research from 2025-2026 shows active progress in developing more sophisticated calibration techniques, with adaptive and unsupervised methods showing particular promise over traditional temperature scaling approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad83c536-860f-4082-9a37-aef1fa475b52",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "a57ed5de-b4a5-429c-b18c-61030549aece",
+  "toolUseResult": {
+    "query": "LLM calibration ECE baseline numbers temperature scaling MMLU TriviaQA 2025 2026 state of the art",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H8SibZb5zzbYbExCeMDKRC",
+        "content": [
+          {
+            "title": "[Quick Review] Calibrating Language Models with Adaptive Temperature Scaling",
+            "url": "https://liner.com/review/calibrating-language-models-with-adaptive-temperature-scaling"
+          },
+          {
+            "title": "Your Pre-trained LLM is Secretly an Unsupervised Confidence Calibrator",
+            "url": "https://www.arxiv.org/pdf/2505.16690v4"
+          },
+          {
+            "title": "Calibrating Language Models with Adaptive Temperature Scaling",
+            "url": "https://arxiv.org/pdf/2409.19817"
+          },
+          {
+            "title": "Calibrated Large Language Models for Binary Question Answering",
+            "url": "https://arxiv.org/pdf/2407.01122"
+          },
+          {
+            "title": "BaseCal: Unsupervised Confidence Calibration via Base Model Signals",
+            "url": "https://arxiv.org/html/2601.03042"
+          },
+          {
+            "title": "Calibrating Verbalized Probabilities for Large Language Models",
+            "url": "https://arxiv.org/pdf/2410.06707"
+          },
+          {
+            "title": "Published at ICLR 2024 Workshop on Secure and Trustworthy Large Language Models",
+            "url": "https://openreview.net/pdf?id=BgfGqNpoMi"
+          },
+          {
+            "title": "Towards Objective Fine-tuning: How LLMs' Prior Knowledge Causes Potential Poor Calibration?",
+            "url": "https://arxiv.org/pdf/2505.20903"
+          },
+          {
+            "title": "Calibrating Long-form Generations from Large Language Models",
+            "url": "https://arxiv.org/pdf/2402.06544"
+          },
+          {
+            "title": "Improving Semantic Uncertainty Quantification in Language Model Question-Answering via Token-Level Temperature Scaling",
+            "url": "https://arxiv.org/pdf/2604.07172"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding LLM calibration, ECE (Expected Calibration Error), and temperature scaling for MMLU and TriviaQA:\n\n## Recent Calibration Methods and Baseline Numbers\n\nAdaptive Temperature Scaling (ATS) significantly outperforms existing calibration methods, achieving 10-50% better calibration across MMLU, TriviaQA, and TruthfulQA benchmarks for both Llama-2-7b-Chat and Qwen-7b-Chat models, as measured by Expected Calibration Error (ECE).\n\n## Specific ECE Improvements (2025)\n\nOne method (DACA) improves the ECE of Llama-3-70B-Instruct from 12.870% to 7.844%, and reduces ECE of a recent Instruct model from 23.68% to 8.60%.\n\n## Unsupervised Approaches\n\nBaseCal achieves performance comparable to supervised Temperature Scaling (TS) on TriviaQA and MMLU despite being unsupervised, representing a recent direction in calibration methods.\n\n## Key Findings\n\nWhile unsupervised pre-training methods have shown success in producing well-calibrated LLMs, a challenge arises when these models undergo finetuning through reinforcement learning from human feedback (RLHF), with recent studies indicating a notable degradation in the calibration of LLMs post-RLHF finetuning.\n\nThe research from 2025-2026 shows active progress in developing more sophisticated calibration techniques, with adaptive and unsupervised methods showing particular promise over traditional temperature scaling approaches."
+    ],
+    "durationSeconds": 7.239602050000016,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ad83c536-860f-4082-9a37-aef1fa475b52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T18:57:11.304Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WCVAsXok8TsFGTeRhZXBxD`</summary>
+
+```json
+{
+  "query": "best open source LLM 2026 leaderboard Llama Qwen instruction tuned"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a57ed5de-b4a5-429c-b18c-61030549aece",
+  "isSidechain": false,
+  "requestId": "req_011CbCSPweRUS4B1ceFXnyWR",
+  "type": "assistant",
+  "uuid": "dbd743ca-6f8c-4e83-8415-b506f07e268f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UpChqnGqsa4fBTchpXYfik",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 31448,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 31448,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T18:57:20.372Z_
+
+<details><summary>↩ Tool result · `toolu_01WCVAsXok8TsFGTeRhZXBxD`</summary>
+
+```text
+Web search results for query: "best open source LLM 2026 leaderboard Llama Qwen instruction tuned"
+
+Links: [{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License","url":"https://huggingface.co/blog/daya-shankar/open-source-llms"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5","url":"https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag","url":"https://till-freitag.com/en/blog/open-source-llm-comparison"},{"title":"Best Open Source LLMs: Complete 2026 Guide | Contabo Blog","url":"https://contabo.com/blog/open-source-llms/"},{"title":"Ultimate Guide - The Fastest Open Source LLMs in 2026","url":"https://www.siliconflow.com/articles/en/fastest-open-source-LLMs"}]
+
+I've completed a web search for the best open source LLM 2026 leaderboards focusing on Llama, Qwen, and instruction-tuned models. Here are the key findings:
+
+## Top Performers in 2026 Open Source LLM Rankings
+
+Qwen 3.5 earns the best GPQA Diamond score of any model on the leaderboard at 88.4 and posts exceptional IFEval scores (92.6), meaning it follows complex instructions with high fidelity.
+
+For general-purpose use, Qwen3 or Gemma 4 are recommended as strong starting points. Qwen 3.5 is recommended if you have meaningful non-English usage, especially Chinese/Japanese/Korean, or you want the broadest size ladder (0.5B → 235B+) from a single family for fleet standardization.
+
+## Recent Frontier Models
+
+In the last 30 days, five frontier-class open-weight LLMs shipped: Meta's Llama 4 (Scout + Maverick), Alibaba's Qwen 3.5, DeepSeek V4 (Pro + Flash), Google's Gemma 4, and Mistral Medium 3.5. Kimi K2.6 and GLM-5.1 have also moved into the open-weight frontier in the last three weeks.
+
+## Instruction Following Excellence
+
+For best overall quality, Kimi K2.6 is the strongest open-weight pick in the live ranking. Kimi K2.5 and GLM-4.7 are the strongest performers for code generation and software engineering tasks.
+
+The 2026 landscape shows open-source LLMs closed the gap with proprietary models in 2025, and in 2026, they're on par in many areas – or better.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dbd743ca-6f8c-4e83-8415-b506f07e268f",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "fc167724-e742-427c-a96d-d1b17ce7f175",
+  "toolUseResult": {
+    "query": "best open source LLM 2026 leaderboard Llama Qwen instruction tuned",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VqQ63n5f1i5LNwh5vHmHay",
+        "content": [
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License",
+            "url": "https://huggingface.co/blog/daya-shankar/open-source-llms"
+          },
+          {
+            "title": "Best Open Source LLM 2026 Ranking + Ollama Guide",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5",
+            "url": "https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site",
+            "url": "https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026 — Compare Open-Weight Models",
+            "url": "https://www.vellum.ai/open-llm-leaderboard"
+          },
+          {
+            "title": "Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag",
+            "url": "https://till-freitag.com/en/blog/open-source-llm-comparison"
+          },
+          {
+            "title": "Best Open Source LLMs: Complete 2026 Guide | Contabo Blog",
+            "url": "https://contabo.com/blog/open-source-llms/"
+          },
+          {
+            "title": "Ultimate Guide - The Fastest Open Source LLMs in 2026",
+            "url": "https://www.siliconflow.com/articles/en/fastest-open-source-LLMs"
+          }
+        ]
+      },
+      "I've completed a web search for the best open source LLM 2026 leaderboards focusing on Llama, Qwen, and instruction-tuned models. Here are the key findings:\n\n## Top Performers in 2026 Open Source LLM Rankings\n\nQwen 3.5 earns the best GPQA Diamond score of any model on the leaderboard at 88.4 and posts exceptional IFEval scores (92.6), meaning it follows complex instructions with high fidelity.\n\nFor general-purpose use, Qwen3 or Gemma 4 are recommended as strong starting points. Qwen 3.5 is recommended if you have meaningful non-English usage, especially Chinese/Japanese/Korean, or you want the broadest size ladder (0.5B → 235B+) from a single family for fleet standardization.\n\n## Recent Frontier Models\n\nIn the last 30 days, five frontier-class open-weight LLMs shipped: Meta's Llama 4 (Scout + Maverick), Alibaba's Qwen 3.5, DeepSeek V4 (Pro + Flash), Google's Gemma 4, and Mistral Medium 3.5. Kimi K2.6 and GLM-5.1 have also moved into the open-weight frontier in the last three weeks.\n\n## Instruction Following Excellence\n\nFor best overall quality, Kimi K2.6 is the strongest open-weight pick in the live ranking. Kimi K2.5 and GLM-4.7 are the strongest performers for code generation and software engineering tasks.\n\nThe 2026 landscape shows open-source LLMs closed the gap with proprietary models in 2025, and in 2026, they're on par in many areas – or better."
+    ],
+    "durationSeconds": 9.063862527000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dbd743ca-6f8c-4e83-8415-b506f07e268f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "fc167724-e742-427c-a96d-d1b17ce7f175",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T18:57:24.123Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U4XExmTLMzAr2fRMeehs75`</summary>
+
+```json
+{
+  "query": "arxiv 2512.03082 \"Alleviating Choice Supportive Bias\" Reasoning Dependency Generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc167724-e742-427c-a96d-d1b17ce7f175",
+  "isSidechain": false,
+  "requestId": "req_011CbCSQpW62vBbrSEvm6xJW",
+  "type": "assistant",
+  "uuid": "d12f3970-9b62-4836-86de-d878fa6d8557",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAEZnMC9pL5Vhrk1jnNv48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 32390,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 32390,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T18:57:30.770Z_
+
+<details><summary>↩ Tool result · `toolu_01U4XExmTLMzAr2fRMeehs75`</summary>
+
+```text
+Web search results for query: "arxiv 2512.03082 "Alleviating Choice Supportive Bias" Reasoning Dependency Generation"
+
+Links: [{"title":"[2512.03082] Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://arxiv.org/abs/2512.03082"},{"title":"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://arxiv.org/html/2512.03082v1"},{"title":"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://arxiv.org/pdf/2512.03082"},{"title":"(PDF) Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation","url":"https://www.researchgate.net/publication/398312753_Alleviating_Choice_Supportive_Bias_in_LLM_with_Reasoning_Dependency_Generation"},{"title":"More Bias, Less Bias: BiasPrompting for Enhanced Multiple-Choice Question Answering","url":"https://arxiv.org/pdf/2511.20086"}]
+
+Based on the search results, here's what I found about arxiv 2512.03082:
+
+## Paper Summary
+
+The paper presents the first solution to address choice-supportive bias (CSB) through Reasoning Dependency Generation (RDG), a novel framework for generating unbiased reasoning data to mitigate choice-supportive bias through fine-tuning.
+
+**Key Problem:** Some Large Language Models exhibit choice-supportive bias when performing evaluations, systematically favoring their chosen options and potentially compromising the objectivity of AI-assisted decision making.
+
+**Proposed Approach:** RDG automatically constructs balanced reasoning QA pairs, explicitly (un)modeling the dependencies between choices, evidences, and justifications, and is able to generate a large-scale dataset of QA pairs across domains, incorporating Contextual Dependency Data and Dependency Decouple Data.
+
+**Results:** Experiments show that LLMs fine-tuned on RDG-generated data demonstrate an 81.5% improvement in memory-based experiments and 94.3% improvement in the evaluation-based experiment, while maintaining similar performance on standard BBQ benchmarks.
+
+The paper was submitted on November 28, 2025, and is authored by Nan Zhuang, Wenshuo Wang, Lekai Qian, Yuxiao Wang, Boyu Cao, and Qi Liu from South China University of Technology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d12f3970-9b62-4836-86de-d878fa6d8557",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "7384a082-05d6-4a5e-b5bf-5e86db5330b5",
+  "toolUseResult": {
+    "query": "arxiv 2512.03082 \"Alleviating Choice Supportive Bias\" Reasoning Dependency Generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0178MHxYZrCMSiVKM9Tf63gM",
+        "content": [
+          {
+            "title": "[2512.03082] Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://arxiv.org/abs/2512.03082"
+          },
+          {
+            "title": "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://arxiv.org/html/2512.03082v1"
+          },
+          {
+            "title": "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://arxiv.org/pdf/2512.03082"
+          },
+          {
+            "title": "(PDF) Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation",
+            "url": "https://www.researchgate.net/publication/398312753_Alleviating_Choice_Supportive_Bias_in_LLM_with_Reasoning_Dependency_Generation"
+          },
+          {
+            "title": "More Bias, Less Bias: BiasPrompting for Enhanced Multiple-Choice Question Answering",
+            "url": "https://arxiv.org/pdf/2511.20086"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arxiv 2512.03082:\n\n## Paper Summary\n\nThe paper presents the first solution to address choice-supportive bias (CSB) through Reasoning Dependency Generation (RDG), a novel framework for generating unbiased reasoning data to mitigate choice-supportive bias through fine-tuning.\n\n**Key Problem:** Some Large Language Models exhibit choice-supportive bias when performing evaluations, systematically favoring their chosen options and potentially compromising the objectivity of AI-assisted decision making.\n\n**Proposed Approach:** RDG automatically constructs balanced reasoning QA pairs, explicitly (un)modeling the dependencies between choices, evidences, and justifications, and is able to generate a large-scale dataset of QA pairs across domains, incorporating Contextual Dependency Data and Dependency Decouple Data.\n\n**Results:** Experiments show that LLMs fine-tuned on RDG-generated data demonstrate an 81.5% improvement in memory-based experiments and 94.3% improvement in the evaluation-based experiment, while maintaining similar performance on standard BBQ benchmarks.\n\nThe paper was submitted on November 28, 2025, and is authored by Nan Zhuang, Wenshuo Wang, Lekai Qian, Yuxiao Wang, Boyu Cao, and Qi Liu from South China University of Technology."
+    ],
+    "durationSeconds": 6.64184087699998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d12f3970-9b62-4836-86de-d878fa6d8557",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75 · 2026-05-19T18:57:30.779Z_
+
+```json
+{
+  "parentUuid": "7384a082-05d6-4a5e-b5bf-5e86db5330b5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b3ef504a-7daa-4d29-a3c6-a0c995494564",
+  "timestamp": "2026-05-19T18:57:30.779Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-19T18:57:35.617Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q4KwifcUpJWUJjJgZWZRMA`</summary>
+
+```json
+{
+  "query": "\"Calibrating Verbal Uncertainty\" Ji EMNLP 2025 ECE results numbers verbal uncertainty feature"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3ef504a-7daa-4d29-a3c6-a0c995494564",
+  "isSidechain": false,
+  "requestId": "req_011CbCSRb8h8qfn2AmsEk7Kk",
+  "type": "assistant",
+  "uuid": "87c51624-1eca-481e-b893-2ec5cfb44294",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3uzFwhueEBbgjBTgVJQ69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 33464,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 33464,
+          "cache_creation_input_tokens": 808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-19T18:57:43.428Z_
+
+<details><summary>↩ Tool result · `toolu_01Q4KwifcUpJWUJjJgZWZRMA`</summary>
+
+```text
+Web search results for query: ""Calibrating Verbal Uncertainty" Ji EMNLP 2025 ECE results numbers verbal uncertainty feature"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.187/"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.emnlp-main.187@ACL"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"The Second Workshop on Uncertainty-Aware NLP @ EMNLP 2025 | ACL Member Portal","url":"https://www.aclweb.org/portal/content/second-workshop-uncertainty-aware-nlp-emnlp-2025-1"},{"title":"dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.","url":"https://dblp.org/rec/journals/corr/abs-2503-14477.html"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce   Hallucinations","url":"https://arxiv.org/pdf/2503.14477"}]
+
+Based on the search results, here's information about "Calibrating Verbal Uncertainty" by Ji et al. at EMNLP 2025:
+
+## Key Findings
+
+The paper finds that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+## ECE Results and Performance
+
+Regarding the results with ECE (Expected Calibration Error) and other metrics, the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone, and they can intervene on verbal uncertainty at inference time and reduce hallucinations on short-form answers, achieving an average relative reduction of 32%.
+
+## Verbal Uncertainty as a Feature
+
+The paper shows that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+The paper addresses the problem of "overconfident hallucinations" in large language models, where LLMs often adopt an assertive language style also when making false claims, and such "overconfident hallucinations" mislead users and erode trust.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87c51624-1eca-481e-b893-2ec5cfb44294",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "42391917-2658-4a4d-8bc6-5db8b4d392f2",
+  "toolUseResult": {
+    "query": "\"Calibrating Verbal Uncertainty\" Ji EMNLP 2025 ECE results numbers verbal uncertainty feature",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QjFXBb5ya9CQ9xxTv4jPbT",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.187/"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.emnlp-main.187@ACL"
+          },
+          {
+            "title": "(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "The Second Workshop on Uncertainty-Aware NLP @ EMNLP 2025 | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/second-workshop-uncertainty-aware-nlp-emnlp-2025-1"
+          },
+          {
+            "title": "dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2503-14477.html"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce   Hallucinations",
+            "url": "https://arxiv.org/pdf/2503.14477"
+          }
+        ]
+      },
+      "Based on the search results, here's information about \"Calibrating Verbal Uncertainty\" by Ji et al. at EMNLP 2025:\n\n## Key Findings\n\nThe paper finds that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\n## ECE Results and Performance\n\nRegarding the results with ECE (Expected Calibration Error) and other metrics, the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone, and they can intervene on verbal uncertainty at inference time and reduce hallucinations on short-form answers, achieving an average relative reduction of 32%.\n\n## Verbal Uncertainty as a Feature\n\nThe paper shows that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.\n\nThe paper addresses the problem of \"overconfident hallucinations\" in large language models, where LLMs often adopt an assertive language style also when making false claims, and such \"overconfident hallucinations\" mislead users and erode trust."
+    ],
+    "durationSeconds": 7.806649315999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "87c51624-1eca-481e-b893-2ec5cfb44294",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-19T18:57:46.979Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013zQ92smZbeGz5nwqUMneuf`</summary>
+
+```json
+{
+  "query": "\"Calibration Across Layers\" LLM calibration direction residual stream 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42391917-2658-4a4d-8bc6-5db8b4d392f2",
+  "isSidechain": false,
+  "requestId": "req_011CbCSSWUBMFazW473UYnkR",
+  "type": "assistant",
+  "uuid": "0b96bcda-044d-45d2-8dec-a4c45a4ee2ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014i3adAFpX6RgwnnwT8D4Rk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 34272,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 34272,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-19T18:57:55.928Z_
+
+<details><summary>↩ Tool result · `toolu_013zQ92smZbeGz5nwqUMneuf`</summary>
+
+```text
+Web search results for query: ""Calibration Across Layers" LLM calibration direction residual stream 2025"
+
+Links: [{"title":"Calibration Across Layers: Understanding Calibration Evolution in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.742/"},{"title":"GitHub - Exploration-Lab/LLM-Calibration-Mechanism · GitHub","url":"https://github.com/Exploration-Lab/LLM-Calibration-Mechanism"},{"title":"[2511.00280] Calibration Across Layers: Understanding Calibration Evolution in LLMs","url":"https://arxiv.org/abs/2511.00280"},{"title":"(PDF) Calibration Across Layers: Understanding Calibration Evolution in LLMs","url":"https://www.researchgate.net/publication/397231243_Calibration_Across_Layers_Understanding_Calibration_Evolution_in_LLMs"},{"title":"Calibration Across Layers: Understanding Calibration Evolution in LLMs","url":"https://arxiv.org/pdf/2511.00280"},{"title":"Correctness-Optimized Residual Activation Lens (CORAL): Transferrable and Calibration-Aware Inference-Time Steering","url":"https://arxiv.org/html/2602.06022"},{"title":"LLM Layers Immediately Correct Each Other | OpenReview","url":"https://openreview.net/forum?id=7DY7kB8wyZ"}]
+
+I found the research paper "Calibration Across Layers: Understanding Calibration Evolution in LLMs" published in 2025. Here are the key findings:
+
+## Paper Overview
+
+Large Language Models (LLMs) have demonstrated inherent calibration capabilities, where predicted probabilities align well with correctness, despite prior findings that deep neural networks are often overconfident.
+
+## Main Findings
+
+The work investigates how calibration evolves throughout the network depth and uncovers a distinct confidence correction phase in the upper/later layers, where model confidence is actively recalibrated after decision certainty has been reached.
+
+## Calibration Direction in the Residual Stream
+
+The researchers identify a low-dimensional calibration direction in the residual stream whose perturbation significantly improves calibration metrics (ECE and MCE) without harming accuracy.
+
+## Key Insights
+
+The findings suggest that calibration is a distributed phenomenon, shaped throughout the network forward pass, not just in its final projection, providing new insights into how confidence-regulating mechanisms operate within LLMs.
+
+The paper was authored by Abhinav Joshi, Areeb Ahmad, and Ashutosh Modi, and was presented at the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP). The research analyzed multiple open-weight models on the MMLU benchmark.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b96bcda-044d-45d2-8dec-a4c45a4ee2ea",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "faebe88b-87c3-463b-a7e3-b15f7753a016",
+  "toolUseResult": {
+    "query": "\"Calibration Across Layers\" LLM calibration direction residual stream 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MSEpRePu1tPeSvNVgdusAt",
+        "content": [
+          {
+            "title": "Calibration Across Layers: Understanding Calibration Evolution in LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.742/"
+          },
+          {
+            "title": "GitHub - Exploration-Lab/LLM-Calibration-Mechanism · GitHub",
+            "url": "https://github.com/Exploration-Lab/LLM-Calibration-Mechanism"
+          },
+          {
+            "title": "[2511.00280] Calibration Across Layers: Understanding Calibration Evolution in LLMs",
+            "url": "https://arxiv.org/abs/2511.00280"
+          },
+          {
+            "title": "(PDF) Calibration Across Layers: Understanding Calibration Evolution in LLMs",
+            "url": "https://www.researchgate.net/publication/397231243_Calibration_Across_Layers_Understanding_Calibration_Evolution_in_LLMs"
+          },
+          {
+            "title": "Calibration Across Layers: Understanding Calibration Evolution in LLMs",
+            "url": "https://arxiv.org/pdf/2511.00280"
+          },
+          {
+            "title": "Correctness-Optimized Residual Activation Lens (CORAL): Transferrable and Calibration-Aware Inference-Time Steering",
+            "url": "https://arxiv.org/html/2602.06022"
+          },
+          {
+            "title": "LLM Layers Immediately Correct Each Other | OpenReview",
+            "url": "https://openreview.net/forum?id=7DY7kB8wyZ"
+          }
+        ]
+      },
+      "I found the research paper \"Calibration Across Layers: Understanding Calibration Evolution in LLMs\" published in 2025. Here are the key findings:\n\n## Paper Overview\n\nLarge Language Models (LLMs) have demonstrated inherent calibration capabilities, where predicted probabilities align well with correctness, despite prior findings that deep neural networks are often overconfident.\n\n## Main Findings\n\nThe work investigates how calibration evolves throughout the network depth and uncovers a distinct confidence correction phase in the upper/later layers, where model confidence is actively recalibrated after decision certainty has been reached.\n\n## Calibration Direction in the Residual Stream\n\nThe researchers identify a low-dimensional calibration direction in the residual stream whose perturbation significantly improves calibration metrics (ECE and MCE) without harming accuracy.\n\n## Key Insights\n\nThe findings suggest that calibration is a distributed phenomenon, shaped throughout the network forward pass, not just in its final projection, providing new insights into how confidence-regulating mechanisms operate within LLMs.\n\nThe paper was authored by Abhinav Joshi, Areeb Ahmad, and Ashutosh Modi, and was presented at the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP). The research analyzed multiple open-weight models on the MMLU benchmark."
+    ],
+    "durationSeconds": 8.945037760999986,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0b96bcda-044d-45d2-8dec-a4c45a4ee2ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-19T18:58:00.361Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014t6JpJHYH7X5dSVAG4Hwsw`</summary>
+
+```json
+{
+  "query": "COLING 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faebe88b-87c3-463b-a7e3-b15f7753a016",
+  "isSidechain": false,
+  "requestId": "req_011CbCSTRuNWa5iXSex8JP8F",
+  "type": "assistant",
+  "uuid": "e7733f6e-e79c-4dff-8034-fcff58ea688a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQr6Z1MJyAjRZ3fzB5ZhZJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 35201,
+      "output_tokens": 60,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 60,
+          "cache_read_input_tokens": 35201,
+          "cache_creation_input_tokens": 779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-19T18:58:03.846Z_
+
+<details><summary>↩ Tool result · `toolu_014t6JpJHYH7X5dSVAG4Hwsw`</summary>
+
+```text
+Web search results for query: "COLING 2026 submission deadline"
+
+Links: [{"title":"COLING 2026 - International Conference on Computational Linguistics Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/coling"},{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"CoNLL 2026 | CoNLL","url":"https://conll.org/"},{"title":"LREC 2026","url":"https://www.elra.info/lrec2026/"},{"title":"Computer Science conferences timeline","url":"https://lucjaulmes.github.io/cfp-timeline/"},{"title":"LREC | ELRA","url":"https://www.elra.info/elra-events/lrec/"},{"title":"COLING 2025 : [CFW] International Conference on Computational Linguistics - Call for Workshops (Deadline is Extended)","url":"http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=180669"},{"title":"Academic Deadlines Countdown Timer - Cosmo Zhang","url":"https://www.cosmozhang.xyz/countdown/"},{"title":"https://ivader.unist.ac.kr/importantDates","url":"https://ivader.unist.ac.kr/importantDates"}]
+
+Based on the search results, I found that COLING 2026 will be held in Abu Dhabi, UAE. However, the search results did not provide the specific submission deadline date for COLING 2026. 
+
+The first search result from ConferenceDeadlines.com appears to have this information but the content snippet doesn't display the actual deadline. I recommend visiting that page directly at https://www.conferencedeadlines.com/venue/coling or checking the official COLING 2026 conference website for the exact submission deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7733f6e-e79c-4dff-8034-fcff58ea688a",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "51aeb266-75a4-4274-828d-2af7b87fa915",
+  "toolUseResult": {
+    "query": "COLING 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TAVcokR84DBBLQbZxEET7G",
+        "content": [
+          {
+            "title": "COLING 2026 - International Conference on Computational Linguistics Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/coling"
+          },
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "CoNLL 2026 | CoNLL",
+            "url": "https://conll.org/"
+          },
+          {
+            "title": "LREC 2026",
+            "url": "https://www.elra.info/lrec2026/"
+          },
+          {
+            "title": "Computer Science conferences timeline",
+            "url": "https://lucjaulmes.github.io/cfp-timeline/"
+          },
+          {
+            "title": "LREC | ELRA",
+            "url": "https://www.elra.info/elra-events/lrec/"
+          },
+          {
+            "title": "COLING 2025 : [CFW] International Conference on Computational Linguistics - Call for Workshops (Deadline is Extended)",
+            "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=180669"
+          },
+          {
+            "title": "Academic Deadlines Countdown Timer - Cosmo Zhang",
+            "url": "https://www.cosmozhang.xyz/countdown/"
+          },
+          {
+            "title": "https://ivader.unist.ac.kr/importantDates",
+            "url": "https://ivader.unist.ac.kr/importantDates"
+          }
+        ]
+      },
+      "Based on the search results, I found that COLING 2026 will be held in Abu Dhabi, UAE. However, the search results did not provide the specific submission deadline date for COLING 2026. \n\nThe first search result from ConferenceDeadlines.com appears to have this information but the content snippet doesn't display the actual deadline. I recommend visiting that page directly at https://www.conferencedeadlines.com/venue/coling or checking the official COLING 2026 conference website for the exact submission deadline."
+    ],
+    "durationSeconds": 3.4823622329999924,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e7733f6e-e79c-4dff-8034-fcff58ea688a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-19T18:58:06.440Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011eEhPaVnsgHs4NCzK5vZ6x`</summary>
+
+```json
+{
+  "query": "NAACL 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51aeb266-75a4-4274-828d-2af7b87fa915",
+  "isSidechain": false,
+  "requestId": "req_011CbCSU1wVzVVbqyCbBsNmV",
+  "type": "assistant",
+  "uuid": "cbd3b01f-902a-4eaa-9f28-17f4264a1de7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNiqcEwgzVsamMyViynFwx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 35980,
+      "output_tokens": 61,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 61,
+          "cache_read_input_tokens": 35980,
+          "cache_creation_input_tokens": 607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-19T18:58:10.264Z_
+
+<details><summary>↩ Tool result · `toolu_011eEhPaVnsgHs4NCzK5vZ6x`</summary>
+
+```text
+Web search results for query: "NAACL 2026 submission deadline"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"NAACL 2026 - Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/naacl"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)","url":"https://naacl.org/"},{"title":"Announcements | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement"},{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"},{"title":"Links - Human Language Intelligence Lab","url":"https://hli.skku.edu/links"},{"title":"Where's Dan: Conference and Grant Deadlines","url":"https://web.stanford.edu/~jurafsky/deadlines.html"},{"title":"LINGUIST List 36.2630 Confs: Joint Call for Tutorial Proposals: EACL/ACL 2026 (Online)","url":"https://linguistlist.org/issues/36/2630/"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"}]
+
+Based on the search results, I found information about NAACL 2026 submission deadlines:
+
+NAACL 2026 uses the ACL Rolling Review (ARR) system exclusively for paper submissions. ARR switched from 8-week review cycles to 10-week cycles starting in May 2025.
+
+However, the search results don't provide the specific submission deadline date for NAACL 2026 papers through ARR. The information indicates that upcoming publication venues participating in ARR are listed on the ARR website, and NAACL 2026 participates in this system, but the actual deadline dates would need to be checked directly on the ACL Rolling Review website (aclrollingreview.org) or the NAACL 2026 conference page for the most current information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cbd3b01f-902a-4eaa-9f28-17f4264a1de7",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "fb8360d1-9899-4c52-9227-0696afdaf859",
+  "toolUseResult": {
+    "query": "NAACL 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SdYkeZbAJECPJGhaXKdB3H",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "NAACL 2026 - Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/naacl"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)",
+            "url": "https://naacl.org/"
+          },
+          {
+            "title": "Announcements | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement"
+          },
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          },
+          {
+            "title": "Links - Human Language Intelligence Lab",
+            "url": "https://hli.skku.edu/links"
+          },
+          {
+            "title": "Where's Dan: Conference and Grant Deadlines",
+            "url": "https://web.stanford.edu/~jurafsky/deadlines.html"
+          },
+          {
+            "title": "LINGUIST List 36.2630 Confs: Joint Call for Tutorial Proposals: EACL/ACL 2026 (Online)",
+            "url": "https://linguistlist.org/issues/36/2630/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about NAACL 2026 submission deadlines:\n\nNAACL 2026 uses the ACL Rolling Review (ARR) system exclusively for paper submissions. ARR switched from 8-week review cycles to 10-week cycles starting in May 2025.\n\nHowever, the search results don't provide the specific submission deadline date for NAACL 2026 papers through ARR. The information indicates that upcoming publication venues participating in ARR are listed on the ARR website, and NAACL 2026 participates in this system, but the actual deadline dates would need to be checked directly on the ACL Rolling Review website (aclrollingreview.org) or the NAACL 2026 conference page for the most current information."
+    ],
+    "durationSeconds": 3.820409950000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cbd3b01f-902a-4eaa-9f28-17f4264a1de7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "fb8360d1-9899-4c52-9227-0696afdaf859",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-19T18:58:13.274Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ECvZ27t5Ju18mUWQCZWQkC`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date expected"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb8360d1-9899-4c52-9227-0696afdaf859",
+  "isSidechain": false,
+  "requestId": "req_011CbCSUVGZ2494cKszyJCRR",
+  "type": "assistant",
+  "uuid": "524e598b-1db7-4216-9e9a-cc4d7f6dbf66",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBfNyDpua9MX4FQrL5aRRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 36587,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 664,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 36587,
+          "cache_creation_input_tokens": 664,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 664
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-19T18:58:18.186Z_
+
+<details><summary>↩ Tool result · `toolu_01ECvZ27t5Ju18mUWQCZWQkC`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date expected"
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"}]
+
+Based on the search results, I found information about ICLR 2027 submission deadlines:
+
+For ICLR 2027, the abstract/full-text paper submission deadline is June 01, 2026, with notification of acceptance/rejection expected on August 01, 2026.
+
+It's important to note that the search results indicate this information comes from WASET (World Academy of Science, Engineering and Technology), which appears to be tracking various ICLR-related conferences scheduled for 2027. For the most authoritative and up-to-date information about ICLR 2027, I would recommend checking the official ICLR website (iclr.cc) directly, as the official conference details may differ from third-party sources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "524e598b-1db7-4216-9e9a-cc4d7f6dbf66",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "38fae8bf-eebd-40e9-985b-6f7b33f8a3cf",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date expected",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DcVFBFxhYpGEJVv5B8xnuy",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2027 submission deadlines:\n\nFor ICLR 2027, the abstract/full-text paper submission deadline is June 01, 2026, with notification of acceptance/rejection expected on August 01, 2026.\n\nIt's important to note that the search results indicate this information comes from WASET (World Academy of Science, Engineering and Technology), which appears to be tracking various ICLR-related conferences scheduled for 2027. For the most authoritative and up-to-date information about ICLR 2027, I would recommend checking the official ICLR website (iclr.cc) directly, as the official conference details may differ from third-party sources."
+    ],
+    "durationSeconds": 4.906972958000027,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "524e598b-1db7-4216-9e9a-cc4d7f6dbf66",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-19T18:58:23.374Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KFqnfWPji1j1NFoavcjM72`</summary>
+
+```json
+{
+  "url": "https://trybibby.com/conference-deadlines",
+  "prompt": "List all AI/ML/NLP conference deadlines that are after May 19, 2026. Include the conference name, submission deadline date, and conference date. Focus on top-tier venues like NeurIPS, ICML, ICLR, EMNLP, ACL, AAAI, AISTATS, COLING, NAACL, AACL, and any other major venues."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38fae8bf-eebd-40e9-985b-6f7b33f8a3cf",
+  "isSidechain": false,
+  "requestId": "req_011CbCSV54YzWGfAB3xH28J7",
+  "type": "assistant",
+  "uuid": "46d02225-6db6-4e4c-a0dc-d25ae1a3131b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPnjpn2sFBeXJf6qfGrFAP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 639,
+      "cache_read_input_tokens": 37251,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 37251,
+          "cache_creation_input_tokens": 639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-19T18:58:28.823Z_
+
+<details><summary>↩ Tool result · `toolu_01KFqnfWPji1j1NFoavcjM72`</summary>
+
+```text
+# AI/ML Conference Deadlines After May 19, 2026
+
+Based on the conference registry, here are major venues in AI, Machine Learning, and Natural Language Processing:
+
+## Top-Tier ML Conferences
+
+**EMNLP 2026**
+- Submission: May 26, 2026
+- Conference: November 2026
+- Note: "ARR in" submission format
+
+**AAAI 2027** (Two rounds)
+- Abstract deadline: July 26, 2026
+- Full paper deadline: August 2, 2026
+- Conference: February 16–23, 2027 (Montréal)
+
+**ICLR 2027**
+- Abstract: September 19, 2026
+- Full paper: September 24, 2026
+- Conference: April/May 2027
+
+**AISTATS 2027**
+- Paper deadline: October 10, 2026
+- Conference: April 28–30, 2027
+
+**ICML 2027**
+- Paper deadline: January 29, 2027
+- Conference: July 2027
+
+**NeurIPS 2027**
+- Paper deadline: May 16, 2027
+- Conference: December 2027
+
+## NLP-Specific Venues
+
+**ACL 2027**
+- Submission: February 16, 2027
+- Conference: July 2027
+
+**NAACL 2027**
+- ARR commitment: October 16, 2026
+- Conference: April/May 2027
+
+**EACL 2027**
+- ARR commitment: October 16, 2026
+- Conference: March 30–April 3, 2027
+
+**EMNLP 2027**
+- Submission: May 29, 2027
+- Conference: November 2027
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46d02225-6db6-4e4c-a0dc-d25ae1a3131b",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "90058c30-722a-4fb2-b4c4-2c12231ac375",
+  "toolUseResult": {
+    "bytes": 456782,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AI/ML Conference Deadlines After May 19, 2026\n\nBased on the conference registry, here are major venues in AI, Machine Learning, and Natural Language Processing:\n\n## Top-Tier ML Conferences\n\n**EMNLP 2026**\n- Submission: May 26, 2026\n- Conference: November 2026\n- Note: \"ARR in\" submission format\n\n**AAAI 2027** (Two rounds)\n- Abstract deadline: July 26, 2026\n- Full paper deadline: August 2, 2026\n- Conference: February 16–23, 2027 (Montréal)\n\n**ICLR 2027**\n- Abstract: September 19, 2026\n- Full paper: September 24, 2026\n- Conference: April/May 2027\n\n**AISTATS 2027**\n- Paper deadline: October 10, 2026\n- Conference: April 28–30, 2027\n\n**ICML 2027**\n- Paper deadline: January 29, 2027\n- Conference: July 2027\n\n**NeurIPS 2027**\n- Paper deadline: May 16, 2027\n- Conference: December 2027\n\n## NLP-Specific Venues\n\n**ACL 2027**\n- Submission: February 16, 2027\n- Conference: July 2027\n\n**NAACL 2027**\n- ARR commitment: October 16, 2026\n- Conference: April/May 2027\n\n**EACL 2027**\n- ARR commitment: October 16, 2026\n- Conference: March 30–April 3, 2027\n\n**EMNLP 2027**\n- Submission: May 29, 2027\n- Conference: November 2027",
+    "durationMs": 5444,
+    "url": "https://trybibby.com/conference-deadlines"
+  },
+  "sourceToolAssistantUUID": "46d02225-6db6-4e4c-a0dc-d25ae1a3131b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-19T18:58:31.362Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RNsYg8eDRTjmhzSvaxsubg`</summary>
+
+```json
+{
+  "query": "sparse autoencoder LLM confidence calibration features 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90058c30-722a-4fb2-b4c4-2c12231ac375",
+  "isSidechain": false,
+  "requestId": "req_011CbCSVrbEb65T976A9SzZE",
+  "type": "assistant",
+  "uuid": "87d94d52-4b80-405f-baa2-6b599b82a8fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016sXbewYrLthMKngm4zNX2E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 37890,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 610,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 37890,
+          "cache_creation_input_tokens": 610,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 610
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-19T18:58:40.044Z_
+
+<details><summary>↩ Tool result · `toolu_01RNsYg8eDRTjmhzSvaxsubg`</summary>
+
+```text
+Web search results for query: "sparse autoencoder LLM confidence calibration features 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 SASFT: SPARSE AUTOENCODER-GUIDED","url":"https://arxiv.org/pdf/2507.14894"},{"title":"Sparse Autoencoder Framework","url":"https://www.emergentmind.com/topics/sparse-autoencoder-based-framework"},{"title":"Accepted Main Conference Papers - ACL 2025","url":"https://2025.aclweb.org/program/main_papers/"},{"title":"Sparse Autoencoders Find Highly Interpretable Features in Language Models | OpenReview","url":"https://openreview.net/forum?id=F76bwRSLeK"},{"title":"Sparse Semantic Dimension as a Generalization Certificate for LLMs","url":"https://arxiv.org/pdf/2602.11388"},{"title":"Does higher interpretability imply better utility? A Pairwise Analysis on Sparse Autoencoders","url":"https://arxiv.org/pdf/2510.03659"}]
+
+Based on the search results, here are the key findings about sparse autoencoders, LLMs, confidence calibration, and features in 2025-2026:
+
+## Recent Research Applications
+
+Sparse autoencoders (SAEs) are being used to identify and validate reasoning features in reasoning models like DeepSeek-R1. Additionally, certain features have been found to be strongly correlated with specific languages, and ablating these features only impacts the model's performance in one language.
+
+## Confidence Calibration and Features
+
+Concept confidence metrics include precision/recall for automated interpretations, with confidence scores exceeding 0.9 signaling robust, human-aligned concepts. More specifically, researchers have proposed a novel selection criterion called "Delta Token Confidence," which measures how much amplifying a feature changes the next token distribution.
+
+## Performance Improvements
+
+The Delta Token Confidence method improves the steering performance of three LLMs by 52.52% compared to the current best output score-based criterion. Scale SAE achieves a 99% reduction in feature redundancy and 24% lower reconstruction error compared to prior MoE-SAE methods.
+
+## Recent Work and Publications
+
+Recent ACL 2025 papers include work on improving the calibration of confidence scores in text generation and unveiling language-specific features in large language models via sparse autoencoders.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87d94d52-4b80-405f-baa2-6b599b82a8fb",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "f740714c-5bca-47d3-bec8-95706a5b82ea",
+  "toolUseResult": {
+    "query": "sparse autoencoder LLM confidence calibration features 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SFesDNC93xtZmr9rhmi5Y5",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 SASFT: SPARSE AUTOENCODER-GUIDED",
+            "url": "https://arxiv.org/pdf/2507.14894"
+          },
+          {
+            "title": "Sparse Autoencoder Framework",
+            "url": "https://www.emergentmind.com/topics/sparse-autoencoder-based-framework"
+          },
+          {
+            "title": "Accepted Main Conference Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/main_papers/"
+          },
+          {
+            "title": "Sparse Autoencoders Find Highly Interpretable Features in Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=F76bwRSLeK"
+          },
+          {
+            "title": "Sparse Semantic Dimension as a Generalization Certificate for LLMs",
+            "url": "https://arxiv.org/pdf/2602.11388"
+          },
+          {
+            "title": "Does higher interpretability imply better utility? A Pairwise Analysis on Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2510.03659"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about sparse autoencoders, LLMs, confidence calibration, and features in 2025-2026:\n\n## Recent Research Applications\n\nSparse autoencoders (SAEs) are being used to identify and validate reasoning features in reasoning models like DeepSeek-R1. Additionally, certain features have been found to be strongly correlated with specific languages, and ablating these features only impacts the model's performance in one language.\n\n## Confidence Calibration and Features\n\nConcept confidence metrics include precision/recall for automated interpretations, with confidence scores exceeding 0.9 signaling robust, human-aligned concepts. More specifically, researchers have proposed a novel selection criterion called \"Delta Token Confidence,\" which measures how much amplifying a feature changes the next token distribution.\n\n## Performance Improvements\n\nThe Delta Token Confidence method improves the steering performance of three LLMs by 52.52% compared to the current best output score-based criterion. Scale SAE achieves a 99% reduction in feature redundancy and 24% lower reconstruction error compared to prior MoE-SAE methods.\n\n## Recent Work and Publications\n\nRecent ACL 2025 papers include work on improving the calibration of confidence scores in text generation and unveiling language-specific features in large language models via sparse autoencoders."
+    ],
+    "durationSeconds": 8.677544573999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "87d94d52-4b80-405f-baa2-6b599b82a8fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-19T18:58:43.148Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019dwbxjyekh8WMHA8vZ4buH`</summary>
+
+```json
+{
+  "query": "GPU hours cost LLM mechanistic interpretability experiment representation probing 8B 70B 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f740714c-5bca-47d3-bec8-95706a5b82ea",
+  "isSidechain": false,
+  "requestId": "req_011CbCSWgWnZxWZMSfZBeWfu",
+  "type": "assistant",
+  "uuid": "f240a5ad-0922-4205-9cdb-5e03fd027ede",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Un3nV8GHoFXvRKpLqZgN9E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 38500,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 38500,
+          "cache_creation_input_tokens": 675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-19T18:58:51.094Z_
+
+<details><summary>↩ Tool result · `toolu_019dwbxjyekh8WMHA8vZ4buH`</summary>
+
+```text
+Web search results for query: "GPU hours cost LLM mechanistic interpretability experiment representation probing 8B 70B 2026"
+
+Links: [{"title":"GPU Cost Per Token: Benchmark 7 Major LLMs Across GPU Types in 2026 | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cost-per-token-benchmark-llm-inference-2026/"},{"title":"The LLM Inference Trilemma: Throughput, Latency, Cost | DigitalOcean","url":"https://www.digitalocean.com/blog/llm-inference-tradeoffs"},{"title":"Heretic vs Abliterated LLMs: Refusal Rates & Benchmarks (2026)","url":"https://aithinkerlab.com/heretic-ai-abliteration-benchmarks-2026/"},{"title":"eDIF: A European Deep Inference Fabric for Remote Interpretability of LLM","url":"https://arxiv.org/pdf/2508.10553"},{"title":"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions","url":"https://arxiv.org/pdf/2602.11180"},{"title":"A Systematic Characterization of LLM Inference on GPUs","url":"https://arxiv.org/pdf/2512.01644"},{"title":"GPU Economics: What Inference Actually Costs in 2026 - DEV Community","url":"https://dev.to/kaeltiwari/gpu-economics-what-inference-actually-costs-in-2026-2goo"},{"title":"Impact of decoding strategies on GPU energy usage in large language model text generation","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12808663/"}]
+
+I've performed the web search for your query about GPU hours cost for LLM mechanistic interpretability experiments with representation probing on 8B and 70B models in 2026.
+
+The search results include several relevant resources:
+
+1. **GPU Pricing for 2026**: As of April 2026, spot GPU instances on Spheron are available for B200 SXM6 at $2.07/GPU/hr, and an 8B model on a single L40S ($2.25/hr for one GPU) can push 10,000+ tokens/second, working out to about $0.06/M output tokens.
+
+2. **Mechanistic Interpretability Research**: Users conducted interventions such as activation patching, causal tracing, and representation analysis on models including GPT-2 and DeepSeek-R1-70B. Additionally, probing classifiers train auxiliary models to predict properties from internal representations, revealing what information is encoded in activations, and for alignment, probes have been used to detect when models represent harmful content.
+
+3. **Hardware Requirements**: Models above 70B require multi-GPU setups.
+
+The search results provide current pricing information and references to mechanistic interpretability research on large models, though they don't contain specific cost breakdowns dedicated solely to mechanistic interpretability experiments with representation probing on those model sizes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f240a5ad-0922-4205-9cdb-5e03fd027ede",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "37e183c8-af60-4ded-bd84-58c9bb7590e8",
+  "toolUseResult": {
+    "query": "GPU hours cost LLM mechanistic interpretability experiment representation probing 8B 70B 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DHB1xorVYZaa4FBxcVYHR6",
+        "content": [
+          {
+            "title": "GPU Cost Per Token: Benchmark 7 Major LLMs Across GPU Types in 2026 | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cost-per-token-benchmark-llm-inference-2026/"
+          },
+          {
+            "title": "The LLM Inference Trilemma: Throughput, Latency, Cost | DigitalOcean",
+            "url": "https://www.digitalocean.com/blog/llm-inference-tradeoffs"
+          },
+          {
+            "title": "Heretic vs Abliterated LLMs: Refusal Rates & Benchmarks (2026)",
+            "url": "https://aithinkerlab.com/heretic-ai-abliteration-benchmarks-2026/"
+          },
+          {
+            "title": "eDIF: A European Deep Inference Fabric for Remote Interpretability of LLM",
+            "url": "https://arxiv.org/pdf/2508.10553"
+          },
+          {
+            "title": "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions",
+            "url": "https://arxiv.org/pdf/2602.11180"
+          },
+          {
+            "title": "A Systematic Characterization of LLM Inference on GPUs",
+            "url": "https://arxiv.org/pdf/2512.01644"
+          },
+          {
+            "title": "GPU Economics: What Inference Actually Costs in 2026 - DEV Community",
+            "url": "https://dev.to/kaeltiwari/gpu-economics-what-inference-actually-costs-in-2026-2goo"
+          },
+          {
+            "title": "Impact of decoding strategies on GPU energy usage in large language model text generation",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12808663/"
+          }
+        ]
+      },
+      "I've performed the web search for your query about GPU hours cost for LLM mechanistic interpretability experiments with representation probing on 8B and 70B models in 2026.\n\nThe search results include several relevant resources:\n\n1. **GPU Pricing for 2026**: As of April 2026, spot GPU instances on Spheron are available for B200 SXM6 at $2.07/GPU/hr, and an 8B model on a single L40S ($2.25/hr for one GPU) can push 10,000+ tokens/second, working out to about $0.06/M output tokens.\n\n2. **Mechanistic Interpretability Research**: Users conducted interventions such as activation patching, causal tracing, and representation analysis on models including GPT-2 and DeepSeek-R1-70B. Additionally, probing classifiers train auxiliary models to predict properties from internal representations, revealing what information is encoded in activations, and for alignment, probes have been used to detect when models represent harmful content.\n\n3. **Hardware Requirements**: Models above 70B require multi-GPU setups.\n\nThe search results provide current pricing information and references to mechanistic interpretability research on large models, though they don't contain specific cost breakdowns dedicated solely to mechanistic interpretability experiments with representation probing on those model sizes."
+    ],
+    "durationSeconds": 7.9422621209999775,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f240a5ad-0922-4205-9cdb-5e03fd027ede",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-19T18:58:54.438Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sd7Pz6QmVaNM8mmnrpito3`</summary>
+
+```json
+{
+  "query": "\"Calibrating LLM Confidence\" \"Probing Perturbed Representation Stability\" CCPS ECE results numbers baseline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37e183c8-af60-4ded-bd84-58c9bb7590e8",
+  "isSidechain": false,
+  "requestId": "req_011CbCSXVp8ieKPSVAFjuaHH",
+  "type": "assistant",
+  "uuid": "70384db4-72f7-4877-a245-75c45ef17ccb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E9xPSDksMQgqr6H7zNKzB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 39175,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 842,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 39175,
+          "cache_creation_input_tokens": 842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 842
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-19T18:58:59.919Z_
+
+<details><summary>↩ Tool result · `toolu_01Sd7Pz6QmVaNM8mmnrpito3`</summary>
+
+```text
+Web search results for query: ""Calibrating LLM Confidence" "Probing Perturbed Representation Stability" CCPS ECE results numbers baseline"
+
+Links: [{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/pdf/2505.21772"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability | alphaXiv","url":"https://www.alphaxiv.org/abs/2505.21772"},{"title":"[2505.21772] Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/abs/2505.21772"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250521772K/abstract"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/html/2505.21772v1"},{"title":"[Literature Review] Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://www.themoonlight.io/en/review/calibrating-llm-confidence-by-probing-perturbed-representation-stability"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.530/"},{"title":"(PDF) Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://www.researchgate.net/publication/392168633_Calibrating_LLM_Confidence_by_Probing_Perturbed_Representation_Stability"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=LLM+distribution+confidence"}]
+
+Based on the search results, here are the key findings for the CCPS (Calibrating LLM Confidence by Probing Perturbed Representation Stability) method:
+
+## Method Overview
+CCPS applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness.
+
+## Evaluation Setup
+CCPS was evaluated on LLMs from 8B to 32B parameters (covering Llama, Qwen, and Mistral architectures) using MMLU and MMLU-Pro benchmarks in both multiple-choice and open-ended formats.
+
+## ECE and Baseline Results
+Across four LLMs and three MMLU variants, CCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points, all relative to the strongest prior method.
+
+These results demonstrate substantial improvements in both calibration metrics (ECE and Brier score) and performance metrics (accuracy and curve metrics) compared to existing confidence estimation approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70384db4-72f7-4877-a245-75c45ef17ccb",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "51576a6a-9e4c-465b-b75f-49c64c7bd820",
+  "toolUseResult": {
+    "query": "\"Calibrating LLM Confidence\" \"Probing Perturbed Representation Stability\" CCPS ECE results numbers baseline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JZUcHQWte2yK4npKzbEWCb",
+        "content": [
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/pdf/2505.21772"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2505.21772"
+          },
+          {
+            "title": "[2505.21772] Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/abs/2505.21772"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250521772K/abstract"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/html/2505.21772v1"
+          },
+          {
+            "title": "[Literature Review] Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://www.themoonlight.io/en/review/calibrating-llm-confidence-by-probing-perturbed-representation-stability"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.530/"
+          },
+          {
+            "title": "(PDF) Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://www.researchgate.net/publication/392168633_Calibrating_LLM_Confidence_by_Probing_Perturbed_Representation_Stability"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=LLM+distribution+confidence"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings for the CCPS (Calibrating LLM Confidence by Probing Perturbed Representation Stability) method:\n\n## Method Overview\nCCPS applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness.\n\n## Evaluation Setup\nCCPS was evaluated on LLMs from 8B to 32B parameters (covering Llama, Qwen, and Mistral architectures) using MMLU and MMLU-Pro benchmarks in both multiple-choice and open-ended formats.\n\n## ECE and Baseline Results\nAcross four LLMs and three MMLU variants, CCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points, all relative to the strongest prior method.\n\nThese results demonstrate substantial improvements in both calibration metrics (ECE and Brier score) and performance metrics (accuracy and curve metrics) compared to existing confidence estimation approaches."
+    ],
+    "durationSeconds": 5.475696152999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "70384db4-72f7-4877-a245-75c45ef17ccb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "51576a6a-9e4c-465b-b75f-49c64c7bd820",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-19T18:59:03.346Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017kwuVfyFdoHmm5UXe4wrqu`</summary>
+
+```json
+{
+  "query": "\"Wired for Overconfidence\" 2604.01457 ECE results specific numbers Llama Qwen calibration improvement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51576a6a-9e4c-465b-b75f-49c64c7bd820",
+  "isSidechain": false,
+  "requestId": "req_011CbCSY9YWYNUFAFx77A5Uz",
+  "type": "assistant",
+  "uuid": "90559bbb-4d25-418a-9989-5b8f76125c78",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NSFEyUDPmvsWj4ZT9rWvyc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1746,
+      "cache_read_input_tokens": 39175,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 39175,
+          "cache_creation_input_tokens": 1746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-19T18:59:23.245Z_
+
+<details><summary>↩ Tool result · `toolu_017kwuVfyFdoHmm5UXe4wrqu`</summary>
+
+```text
+Web search results for query: ""Wired for Overconfidence" 2604.01457 ECE results specific numbers Llama Qwen calibration improvement"
+
+Links: [{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs | Takara TLDR","url":"https://tldr.takara.ai/p/2604.01457"},{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"Identifying and Calibrating Overconfidence in Noisy Speech Recognition","url":"https://arxiv.org/pdf/2509.07195"},{"title":"Overconfidence and Calibration in Medical VQA: Empirical Findings and Hallucination-Aware Mitigation","url":"https://arxiv.org/html/2604.02543"},{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/pdf/2502.11028"},{"title":"How Flawed Is ECE? An Analysis via Logit Smoothing","url":"https://arxiv.org/pdf/2402.10046"}]
+
+Let me search for more specific numerical results from the paper:
+
+Links: [{"title":"Beyond the Mean: Within-Model Reliable Change Detection for LLM Evaluation","url":"https://arxiv.org/html/2604.27405"},{"title":"MTP support is being addedto llama.cpp, at least for the Qwen models ( https://g... | Hacker News","url":"https://news.ycombinator.com/item?id=48025248"},{"title":"Qwen3.6 on 24GB VRAM: Benchmark, Config, and Every Mistake | Amine Raji, PhD","url":"https://aminrj.com/posts/llamacpp-qwen36-35b/"},{"title":"Evaluating LLMs on Kazakhstan's mathematics exam for university admission","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12477718/"},{"title":"Qwen3.6-27B paired with llama.cpp speculative decoding delivers 10x token speedu... — Ep34 | Models & Agents Blog","url":"https://nerranetwork.com/blog/models_agents/ep034.html"},{"title":"Qwen-2.5 Outperforms Other Large Language Models in the Chinese National Nursing Licensing Examination: Retrospective Cross-Sectional Comparative Study","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11759905/"},{"title":"We ran Qwen3.6-27B on $800 of consumer GPUs, day one. Here's how llama.cpp and vLLM compared, and what each token actually costs. - LLMKube Blog","url":"https://llmkube.com/blog/qwen3-6-27b-bakeoff"},{"title":"Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)","url":"https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"}]
+
+Let me search more directly for the specific ECE numbers from the "Wired for Overconfidence" paper:
+
+Links: [{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/html/2604.01457v1"},{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"Identifying and Calibrating Overconfidence in Noisy Speech Recognition","url":"https://arxiv.org/pdf/2509.07195"},{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/pdf/2502.11028"},{"title":"How Flawed Is ECE? An Analysis via Logit Smoothing","url":"https://arxiv.org/pdf/2402.10046"}]
+
+Let me search for the specific numerical results table from the paper:
+
+Links: [{"title":"SteerConf: Steering LLMs for Confidence Elicitation","url":"https://arxiv.org/pdf/2503.02863"},{"title":"Identifying and Calibrating Overconfidence in Noisy Speech Recognition","url":"https://arxiv.org/html/2509.07195"},{"title":"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs","url":"https://arxiv.org/pdf/2604.01457"},{"title":"Optimal Transport-Induced Samples against Out-of-Distribution Overconfidence","url":"https://arxiv.org/html/2601.21320"},{"title":"Agentic Uncertainty Reveals Agentic Overconfidence","url":"https://arxiv.org/pdf/2602.06948"}]
+
+Let me do one more targeted search for the actual numerical results from the paper:
+
+Links: [{"title":"Qwen3 Technical Report","url":"https://arxiv.org/html/2505.09388v1"},{"title":"Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct","url":"https://arxiv.org/html/2601.14277v1"},{"title":"CogBias: Measuring and Mitigating Cognitive Bias in Large ...","url":"https://arxiv.org/pdf/2604.01366"},{"title":"Multiple Large Language Models’ Performance on the Chinese Medical Licensing Examination: Quantitative Comparative Study","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12707437/"},{"title":"AraTable: Benchmarking LLMs' Reasoning and Understanding of Arabic Tabular Data","url":"https://arxiv.org/pdf/2507.18442"},{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"},{"title":"Compressed Causal Reasoning: Quantization and GraphRAG Effects on Interventional and Counterfactual Accuracy","url":"https://arxiv.org/pdf/2512.13725"},{"title":"Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12518350/"}]
+
+Based on my web search results, I found information about the paper "Wired for Overconfidence" (arxiv 2604.01457), but I was unable to locate the specific numerical ECE results for Llama and Qwen models in the search results. Here's what I found:
+
+## Overview of "Wired for Overconfidence"
+
+The paper addresses the problem that large language models are often "confidently wrong"—when they produce factually incorrect answers, they tend to verbalize overly high confidence rather than signal uncertainty.
+
+The research presents a circuit-level mechanistic analysis of inflated verbalized confidence, identifying the circuits that causally inflate it across two instruction-tuned LLMs on three datasets, finding that a compact set of MLP blocks and attention heads concentrated in middle-to-late layers consistently writes the confidence-inflation signal at the final token position.
+
+## Calibration Improvements
+
+The study evaluates targeted interventions on the top-10 components using Expected Calibration Error (ECE), Brier score, and reliability curves to test whether circuit-level intervention generalizes beyond the overconfident discovery subset.
+
+The results show that targeted inference-time interventions on these circuits substantially improve calibration, suggesting that verbalized overconfidence in LLMs is driven by identifiable internal circuits and can be mitigated through targeted intervention.
+
+Unfortunately, the specific numerical ECE improvement values for Llama and Qwen models were not included in the accessible portions of the search results. To find those specific numbers, you would need to access the full paper directly on arXiv at https://arxiv.org/pdf/2604.01457.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90559bbb-4d25-418a-9989-5b8f76125c78",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "b8829e8e-7465-48fc-83cd-9aacaf82b595",
+  "toolUseResult": {
+    "query": "\"Wired for Overconfidence\" 2604.01457 ECE results specific numbers Llama Qwen calibration improvement",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MVotEx61p9HmpBhZtii2S6",
+        "content": [
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2604.01457"
+          },
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "Identifying and Calibrating Overconfidence in Noisy Speech Recognition",
+            "url": "https://arxiv.org/pdf/2509.07195"
+          },
+          {
+            "title": "Overconfidence and Calibration in Medical VQA: Empirical Findings and Hallucination-Aware Mitigation",
+            "url": "https://arxiv.org/html/2604.02543"
+          },
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/pdf/2502.11028"
+          },
+          {
+            "title": "How Flawed Is ECE? An Analysis via Logit Smoothing",
+            "url": "https://arxiv.org/pdf/2402.10046"
+          }
+        ]
+      },
+      "Let me search for more specific numerical results from the paper:",
+      {
+        "tool_use_id": "srvtoolu_018QLpf8XmG5zHPjprP2FdA8",
+        "content": [
+          {
+            "title": "Beyond the Mean: Within-Model Reliable Change Detection for LLM Evaluation",
+            "url": "https://arxiv.org/html/2604.27405"
+          },
+          {
+            "title": "MTP support is being addedto llama.cpp, at least for the Qwen models ( https://g... | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=48025248"
+          },
+          {
+            "title": "Qwen3.6 on 24GB VRAM: Benchmark, Config, and Every Mistake | Amine Raji, PhD",
+            "url": "https://aminrj.com/posts/llamacpp-qwen36-35b/"
+          },
+          {
+            "title": "Evaluating LLMs on Kazakhstan's mathematics exam for university admission",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12477718/"
+          },
+          {
+            "title": "Qwen3.6-27B paired with llama.cpp speculative decoding delivers 10x token speedu... — Ep34 | Models & Agents Blog",
+            "url": "https://nerranetwork.com/blog/models_agents/ep034.html"
+          },
+          {
+            "title": "Qwen-2.5 Outperforms Other Large Language Models in the Chinese National Nursing Licensing Examination: Retrospective Cross-Sectional Comparative Study",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11759905/"
+          },
+          {
+            "title": "We ran Qwen3.6-27B on $800 of consumer GPUs, day one. Here's how llama.cpp and vLLM compared, and what each token actually costs. - LLMKube Blog",
+            "url": "https://llmkube.com/blog/qwen3-6-27b-bakeoff"
+          },
+          {
+            "title": "Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)",
+            "url": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"
+          }
+        ]
+      },
+      "Let me search more directly for the specific ECE numbers from the \"Wired for Overconfidence\" paper:",
+      {
+        "tool_use_id": "srvtoolu_01NqhUoXx4hAjrCxgZy3YCND",
+        "content": [
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/html/2604.01457v1"
+          },
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "Identifying and Calibrating Overconfidence in Noisy Speech Recognition",
+            "url": "https://arxiv.org/pdf/2509.07195"
+          },
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/pdf/2502.11028"
+          },
+          {
+            "title": "How Flawed Is ECE? An Analysis via Logit Smoothing",
+            "url": "https://arxiv.org/pdf/2402.10046"
+          }
+        ]
+      },
+      "Let me search for the specific numerical results table from the paper:",
+      {
+        "tool_use_id": "srvtoolu_01FpMfav3vjA3mr1JqomVYsA",
+        "content": [
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://arxiv.org/pdf/2503.02863"
+          },
+          {
+            "title": "Identifying and Calibrating Overconfidence in Noisy Speech Recognition",
+            "url": "https://arxiv.org/html/2509.07195"
+          },
+          {
+            "title": "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs",
+            "url": "https://arxiv.org/pdf/2604.01457"
+          },
+          {
+            "title": "Optimal Transport-Induced Samples against Out-of-Distribution Overconfidence",
+            "url": "https://arxiv.org/html/2601.21320"
+          },
+          {
+            "title": "Agentic Uncertainty Reveals Agentic Overconfidence",
+            "url": "https://arxiv.org/pdf/2602.06948"
+          }
+        ]
+      },
+      "Let me do one more targeted search for the actual numerical results from the paper:",
+      {
+        "tool_use_id": "srvtoolu_017SdcD2RLK9MsZMa271nNgd",
+        "content": [
+          {
+            "title": "Qwen3 Technical Report",
+            "url": "https://arxiv.org/html/2505.09388v1"
+          },
+          {
+            "title": "Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct",
+            "url": "https://arxiv.org/html/2601.14277v1"
+          },
+          {
+            "title": "CogBias: Measuring and Mitigating Cognitive Bias in Large ...",
+            "url": "https://arxiv.org/pdf/2604.01366"
+          },
+          {
+            "title": "Multiple Large Language Models’ Performance on the Chinese Medical Licensing Examination: Quantitative Comparative Study",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12707437/"
+          },
+          {
+            "title": "AraTable: Benchmarking LLMs' Reasoning and Understanding of Arabic Tabular Data",
+            "url": "https://arxiv.org/pdf/2507.18442"
+          },
+          {
+            "title": "[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2407.21783"
+          },
+          {
+            "title": "Compressed Causal Reasoning: Quantization and GraphRAG Effects on Interventional and Counterfactual Accuracy",
+            "url": "https://arxiv.org/pdf/2512.13725"
+          },
+          {
+            "title": "Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12518350/"
+          }
+        ]
+      },
+      "Based on my web search results, I found information about the paper \"Wired for Overconfidence\" (arxiv 2604.01457), but I was unable to locate the specific numerical ECE results for Llama and Qwen models in the search results. Here's what I found:\n\n## Overview of \"Wired for Overconfidence\"\n\nThe paper addresses the problem that large language models are often \"confidently wrong\"—when they produce factually incorrect answers, they tend to verbalize overly high confidence rather than signal uncertainty.\n\nThe research presents a circuit-level mechanistic analysis of inflated verbalized confidence, identifying the circuits that causally inflate it across two instruction-tuned LLMs on three datasets, finding that a compact set of MLP blocks and attention heads concentrated in middle-to-late layers consistently writes the confidence-inflation signal at the final token position.\n\n## Calibration Improvements\n\nThe study evaluates targeted interventions on the top-10 components using Expected Calibration Error (ECE), Brier score, and reliability curves to test whether circuit-level intervention generalizes beyond the overconfident discovery subset.\n\nThe results show that targeted inference-time interventions on these circuits substantially improve calibration, suggesting that verbalized overconfidence in LLMs is driven by identifiable internal circuits and can be mitigated through targeted intervention.\n\nUnfortunately, the specific numerical ECE improvement values for Llama and Qwen models were not included in the accessible portions of the search results. To find those specific numbers, you would need to access the full paper directly on arXiv at https://arxiv.org/pdf/2604.01457."
+    ],
+    "durationSeconds": 19.892404026000005,
+    "searchCount": 5
+  },
+  "sourceToolAssistantUUID": "90559bbb-4d25-418a-9989-5b8f76125c78",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100 · 2026-05-19T18:59:23.254Z_
+
+```json
+{
+  "parentUuid": "b8829e8e-7465-48fc-83cd-9aacaf82b595",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "55232107-4de3-4cd5-aaf9-1d300cfe4280",
+  "timestamp": "2026-05-19T18:59:23.254Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-19T18:59:27.250Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018eK86AJwGSHob17ugB8pG2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.01457",
+  "prompt": "Extract the specific numerical ECE, Brier score, or calibration improvement results from this paper. What models did they test on? What datasets? What were the baseline ECE numbers and the improved ECE numbers after their circuit intervention?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55232107-4de3-4cd5-aaf9-1d300cfe4280",
+  "isSidechain": false,
+  "requestId": "req_011CbCSZsHWzNfpxUJbhg6o9",
+  "type": "assistant",
+  "uuid": "0b05555a-0ded-44e9-92ce-db282255a774",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012kGJx4PfgU3iZ6di5wmRWy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 40921,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 40921,
+          "cache_creation_input_tokens": 2268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-19T18:59:30.193Z_
+
+<details><summary>↩ Tool result · `toolu_018eK86AJwGSHob17ugB8pG2`</summary>
+
+```text
+I cannot extract the specific numerical results you're requesting based on the content provided. The web page shows only the arXiv abstract and metadata for the paper, which states that the researchers found "targeted inference-time interventions on these circuits substantially improve calibration" but does not include the actual ECE, Brier score, or calibration improvement numbers.
+
+To obtain the specific metrics you're asking for—baseline ECE values, improved ECE values after intervention, the models tested (beyond the mention of "two instruction-tuned LLMs"), and the specific datasets used—you would need to access the full PDF or HTML version of the paper at the links provided on the page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b05555a-0ded-44e9-92ce-db282255a774",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "cae8b10e-f76a-481c-b168-0900b5d5c82a",
+  "toolUseResult": {
+    "bytes": 46253,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the specific numerical results you're requesting based on the content provided. The web page shows only the arXiv abstract and metadata for the paper, which states that the researchers found \"targeted inference-time interventions on these circuits substantially improve calibration\" but does not include the actual ECE, Brier score, or calibration improvement numbers.\n\nTo obtain the specific metrics you're asking for—baseline ECE values, improved ECE values after intervention, the models tested (beyond the mention of \"two instruction-tuned LLMs\"), and the specific datasets used—you would need to access the full PDF or HTML version of the paper at the links provided on the page.",
+    "durationMs": 2935,
+    "url": "https://arxiv.org/abs/2604.01457"
+  },
+  "sourceToolAssistantUUID": "0b05555a-0ded-44e9-92ce-db282255a774",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-19T18:59:33.670Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FcAD6pJDcaW4hGeBnpXTsG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.01457v1",
+  "prompt": "Extract ALL specific numerical results: ECE values, Brier scores, calibration improvements, accuracy numbers. What models were tested? What datasets were used? What were the before/after numbers for the circuit intervention? List every quantitative result you can find."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cae8b10e-f76a-481c-b168-0900b5d5c82a",
+  "isSidechain": false,
+  "requestId": "req_011CbCSaP6th7uJ1cYJTbAEW",
+  "type": "assistant",
+  "uuid": "61d990b1-381b-4a3f-86db-b663299158c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YvCT729y6WzbDymvXwEDS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 284,
+      "cache_read_input_tokens": 43189,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 43189,
+          "cache_creation_input_tokens": 284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-19T18:59:46.191Z_
+
+<details><summary>↩ Tool result · `toolu_01FcAD6pJDcaW4hGeBnpXTsG`</summary>
+
+```text
+# Quantitative Results from "Wired for Overconfidence"
+
+## Models Tested
+- **Qwen2.5-3B-Instruct** (36 layers, GQA with 2 KV heads)
+- **Llama-3.2-3B-Instruct** (28 layers, GQA with 8 KV heads)
+
+## Datasets
+- PopQA (14,267 questions)
+- MMLU (14,042 multiple-choice questions)
+- NQOpen (3,610 questions)
+
+## Correlation Results
+TSLD (Target Set Logit Difference) correlation with verbalized confidence:
+- Qwen2.5-3B: r = 0.815
+- Llama-3.2-3B: r = 0.734
+
+## Circuit Validation: Completeness Metrics
+Ablating top-3,000 edges eliminated baseline TSLD:
+- Qwen/PopQA: 78.8% reduction
+- Qwen/NQOpen: 74.9% reduction
+- Llama/PopQA: 74.3% reduction
+- Llama/NQOpen: 74.1% reduction
+
+## Intervention Results: PopQA (Table 3)
+
+**Qwen2.5-3B:**
+- Baseline ECE: 0.492
+- Steering (α=0.5): ECE 0.111 (77.5% improvement), Brier 0.130 (69.7% improvement)
+- Mean ablation: ECE 0.295 (40.0% improvement)
+
+**Llama-3.2-3B:**
+- Baseline ECE: 0.570
+- Steering (α=0.6): ECE 0.020 (96.5% improvement), Brier 0.161 (67.4% improvement)
+- Mean ablation: ECE 0.018 (96.9% improvement)
+
+## Intervention Results: MMLU (Table 5)
+
+**Qwen2.5-3B:**
+- Baseline ECE: 0.281
+- Steering (α=0.6): ECE 0.188 (33.1% improvement)
+
+**Llama-3.2-3B:**
+- Baseline ECE: 0.171
+- Steering (α=0.8): ECE 0.074 (57.0% improvement)
+
+## Intervention Results: NQOpen (Table 6)
+
+**Qwen2.5-3B:**
+- Baseline ECE: 0.551
+- Steering (α=0.6): ECE 0.103 (81.2% improvement)
+
+**Llama-3.2-3B:**
+- Baseline ECE: 0.507
+- Steering (α=0.6): ECE 0.088 (82.6% improvement)
+
+## Circuit Concentration
+Top components identified were "concentrated in middle-to-late layers," with Qwen showing "MLP-dominant" patterns in layers 24-35, while Llama featured attention heads and mid-layer MLPs as key drivers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61d990b1-381b-4a3f-86db-b663299158c1",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "26c3b190-0d4f-413e-a9f9-f2239522a0e2",
+  "toolUseResult": {
+    "bytes": 227957,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Quantitative Results from \"Wired for Overconfidence\"\n\n## Models Tested\n- **Qwen2.5-3B-Instruct** (36 layers, GQA with 2 KV heads)\n- **Llama-3.2-3B-Instruct** (28 layers, GQA with 8 KV heads)\n\n## Datasets\n- PopQA (14,267 questions)\n- MMLU (14,042 multiple-choice questions)\n- NQOpen (3,610 questions)\n\n## Correlation Results\nTSLD (Target Set Logit Difference) correlation with verbalized confidence:\n- Qwen2.5-3B: r = 0.815\n- Llama-3.2-3B: r = 0.734\n\n## Circuit Validation: Completeness Metrics\nAblating top-3,000 edges eliminated baseline TSLD:\n- Qwen/PopQA: 78.8% reduction\n- Qwen/NQOpen: 74.9% reduction\n- Llama/PopQA: 74.3% reduction\n- Llama/NQOpen: 74.1% reduction\n\n## Intervention Results: PopQA (Table 3)\n\n**Qwen2.5-3B:**\n- Baseline ECE: 0.492\n- Steering (α=0.5): ECE 0.111 (77.5% improvement), Brier 0.130 (69.7% improvement)\n- Mean ablation: ECE 0.295 (40.0% improvement)\n\n**Llama-3.2-3B:**\n- Baseline ECE: 0.570\n- Steering (α=0.6): ECE 0.020 (96.5% improvement), Brier 0.161 (67.4% improvement)\n- Mean ablation: ECE 0.018 (96.9% improvement)\n\n## Intervention Results: MMLU (Table 5)\n\n**Qwen2.5-3B:**\n- Baseline ECE: 0.281\n- Steering (α=0.6): ECE 0.188 (33.1% improvement)\n\n**Llama-3.2-3B:**\n- Baseline ECE: 0.171\n- Steering (α=0.8): ECE 0.074 (57.0% improvement)\n\n## Intervention Results: NQOpen (Table 6)\n\n**Qwen2.5-3B:**\n- Baseline ECE: 0.551\n- Steering (α=0.6): ECE 0.103 (81.2% improvement)\n\n**Llama-3.2-3B:**\n- Baseline ECE: 0.507\n- Steering (α=0.6): ECE 0.088 (82.6% improvement)\n\n## Circuit Concentration\nTop components identified were \"concentrated in middle-to-late layers,\" with Qwen showing \"MLP-dominant\" patterns in layers 24-35, while Llama featured attention heads and mid-layer MLPs as key drivers.",
+    "durationMs": 12518,
+    "url": "https://arxiv.org/html/2604.01457v1"
+  },
+  "sourceToolAssistantUUID": "61d990b1-381b-4a3f-86db-b663299158c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-19T18:59:49.675Z_
+
+Excellent, very detailed numbers. Now let me do a few more searches for concurrent work and the EMNLP ARR deadline specifics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26c3b190-0d4f-413e-a9f9-f2239522a0e2",
+  "isSidechain": false,
+  "requestId": "req_011CbCSbZJLeqg6GLnLxAkmD",
+  "type": "assistant",
+  "uuid": "eece9e75-2445-4e2a-aa1f-7b2c1160bfed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQpqWegy1hJCYuoV3J5nfV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 43473,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 43473,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-19T18:59:50.334Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HbetB14k27R5wsNsetfhXt`</summary>
+
+```json
+{
+  "query": "arxiv 2026 March April May LLM calibration bias-specific correction per-instance disentangle overconfidence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eece9e75-2445-4e2a-aa1f-7b2c1160bfed",
+  "isSidechain": false,
+  "requestId": "req_011CbCSbZJLeqg6GLnLxAkmD",
+  "type": "assistant",
+  "uuid": "37f5450f-463f-4ec7-a21a-083c5fd06863",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQpqWegy1hJCYuoV3J5nfV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 43473,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 43473,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-19T19:00:01.105Z_
+
+<details><summary>↩ Tool result · `toolu_01HbetB14k27R5wsNsetfhXt`</summary>
+
+```text
+Web search results for query: "arxiv 2026 March April May LLM calibration bias-specific correction per-instance disentangle overconfidence"
+
+Links: [{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/html/2502.11028v3"},{"title":"The Dunning-Kruger Effect in Large Language Models: An Empirical Study of Confidence Calibration","url":"https://arxiv.org/html/2603.09985"},{"title":"Towards Objective Fine-tuning: How LLMs' Prior Knowledge Causes Potential Poor Calibration?","url":"https://arxiv.org/pdf/2505.20903"},{"title":"Discovery of Hidden Miscalibration Regimes","url":"https://arxiv.org/html/2605.13484"},{"title":"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models","url":"https://arxiv.org/pdf/2502.11028"},{"title":"Large Language Models are overconfident and amplify human bias","url":"https://arxiv.org/pdf/2505.02151"},{"title":"Know When You’re Wrong: Aligning Confidence with Correctness for LLM Error Detection","url":"https://arxiv.org/html/2603.06604"}]
+
+Based on the search results, I found several relevant papers from arxiv in early 2026 related to LLM calibration and overconfidence. Here are the most relevant findings:
+
+## Key Papers Found:
+
+1. **"Discovery of Hidden Miscalibration Regimes"** (May 2026): This work finds that input-dependent calibration heterogeneity appears across many settings but is not uniform: some model–dataset pairs exhibit mostly homogeneous bias, while others contain pronounced hidden regimes of overconfidence and underconfidence. The degree of heterogeneity predicts when local correction is most useful: in highly heterogeneous settings, the learned field reduces slice-level calibration error where confidence-based post-hoc methods can remain unreliable.
+
+2. **"Towards Objective Fine-tuning: How LLMs' Prior Knowledge Causes Potential Poor Calibration?"** (May 2026): The authors propose CogCalib, a cognition-aware framework that applies targeted learning strategies according to the model's prior knowledge, achieving an average 57% reduction in ECE compared to standard fine-tuning in Llama3-8B.
+
+3. **"Know When You're Wrong: Aligning Confidence with Correctness for LLM Error Detection"** (February 2026): This work showed that RLHF causes systematic overconfidence, while exploring reward calibration techniques to reduce it.
+
+4. **"The Dunning-Kruger Effect in Large Language Models"** (February 2026): A comprehensive empirical study on confidence calibration in LLMs.
+
+5. **"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models"** (February 2026): This conducts the first large-scale empirical study of LLM calibration, comparing performance under standard (free-generation) and distractor-augmented settings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37f5450f-463f-4ec7-a21a-083c5fd06863",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "8240167a-e112-473e-b6fd-8b239ed0e59a",
+  "toolUseResult": {
+    "query": "arxiv 2026 March April May LLM calibration bias-specific correction per-instance disentangle overconfidence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X24nP2kJ8ng2k7rsDuc7vN",
+        "content": [
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/html/2502.11028v3"
+          },
+          {
+            "title": "The Dunning-Kruger Effect in Large Language Models: An Empirical Study of Confidence Calibration",
+            "url": "https://arxiv.org/html/2603.09985"
+          },
+          {
+            "title": "Towards Objective Fine-tuning: How LLMs' Prior Knowledge Causes Potential Poor Calibration?",
+            "url": "https://arxiv.org/pdf/2505.20903"
+          },
+          {
+            "title": "Discovery of Hidden Miscalibration Regimes",
+            "url": "https://arxiv.org/html/2605.13484"
+          },
+          {
+            "title": "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models",
+            "url": "https://arxiv.org/pdf/2502.11028"
+          },
+          {
+            "title": "Large Language Models are overconfident and amplify human bias",
+            "url": "https://arxiv.org/pdf/2505.02151"
+          },
+          {
+            "title": "Know When You’re Wrong: Aligning Confidence with Correctness for LLM Error Detection",
+            "url": "https://arxiv.org/html/2603.06604"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from arxiv in early 2026 related to LLM calibration and overconfidence. Here are the most relevant findings:\n\n## Key Papers Found:\n\n1. **\"Discovery of Hidden Miscalibration Regimes\"** (May 2026): This work finds that input-dependent calibration heterogeneity appears across many settings but is not uniform: some model–dataset pairs exhibit mostly homogeneous bias, while others contain pronounced hidden regimes of overconfidence and underconfidence. The degree of heterogeneity predicts when local correction is most useful: in highly heterogeneous settings, the learned field reduces slice-level calibration error where confidence-based post-hoc methods can remain unreliable.\n\n2. **\"Towards Objective Fine-tuning: How LLMs' Prior Knowledge Causes Potential Poor Calibration?\"** (May 2026): The authors propose CogCalib, a cognition-aware framework that applies targeted learning strategies according to the model's prior knowledge, achieving an average 57% reduction in ECE compared to standard fine-tuning in Llama3-8B.\n\n3. **\"Know When You're Wrong: Aligning Confidence with Correctness for LLM Error Detection\"** (February 2026): This work showed that RLHF causes systematic overconfidence, while exploring reward calibration techniques to reduce it.\n\n4. **\"The Dunning-Kruger Effect in Large Language Models\"** (February 2026): A comprehensive empirical study on confidence calibration in LLMs.\n\n5. **\"Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models\"** (February 2026): This conducts the first large-scale empirical study of LLM calibration, comparing performance under standard (free-generation) and distractor-augmented settings."
+    ],
+    "durationSeconds": 10.768688962000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "37f5450f-463f-4ec7-a21a-083c5fd06863",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "8240167a-e112-473e-b6fd-8b239ed0e59a",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-19T19:00:05.257Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WHcE3CAGmJS5TSESL1zxnS`</summary>
+
+```json
+{
+  "query": "\"Discovery of Hidden Miscalibration Regimes\" arxiv 2605.13484 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8240167a-e112-473e-b6fd-8b239ed0e59a",
+  "isSidechain": false,
+  "requestId": "req_011CbCScf4tH5Tm8bf4KP8ER",
+  "type": "assistant",
+  "uuid": "5dccfb2a-ae9c-43dd-a406-9a5eef78706f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MvVHU13CdGEj7ckB4Pn7hX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 44362,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 44362,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-19T19:00:15.192Z_
+
+<details><summary>↩ Tool result · `toolu_01WHcE3CAGmJS5TSESL1zxnS`</summary>
+
+```text
+Web search results for query: ""Discovery of Hidden Miscalibration Regimes" arxiv 2605.13484 2026"
+
+Links: [{"title":"Discovery of Hidden Miscalibration Regimes","url":"https://arxiv.org/html/2605.13484"},{"title":"[2605.13484] Discovery of Hidden Miscalibration Regimes","url":"https://arxiv.org/abs/2605.13484"},{"title":"Calibrate to Discriminate: Improve In-Context Learning with Label-Free   Comparative Inference","url":"https://arxiv.org/pdf/2410.02210"},{"title":"Decision from Suboptimal Classifiers: Excess Risk Pre- and   Post-Calibration","url":"https://arxiv.org/pdf/2503.18025"},{"title":"Hallucination, Monofacts, and Miscalibration: An Empirical Investigation","url":"https://arxiv.org/pdf/2502.08666"},{"title":"Audited calibration under regime shift as a computational test of support-structured broadcast","url":"https://arxiv.org/pdf/2602.23382"},{"title":"Your 2 is My 1, Your 3 is My 9: Handling Arbitrary Miscalibrations in   Ratings","url":"https://arxiv.org/pdf/1806.05085"},{"title":"Discovery of a 13-Sharpe OOS Factor: Drift Regimes Unlock Hidden Cross-Sectional Predictability","url":"https://arxiv.org/html/2511.12490v1"}]
+
+I found the paper! Here's what the search revealed:
+
+The paper "Discovery of Hidden Miscalibration Regimes" (arXiv:2605.13484) addresses how calibration is commonly evaluated by comparing model confidence with empirical correctness, implicitly treating reliability as a function of the confidence score alone.
+
+However, the paper notes that this view can hide substantial structure: models may be systematically overconfident on some kinds of inputs and underconfident on others, causing global reliability diagnostics to obscure localised calibration failures.
+
+To address this, the authors formulate the problem of discovering hidden miscalibration regimes without assuming access to predefined data slices, define the corresponding miscalibration field and propose a diagnostic framework for estimating it. Their approach learns a calibration-aware representation of the input space and estimates signed local miscalibration by kernel smoothing in the learned geometry.
+
+Across four real-world LLM benchmarks and twelve LLMs, the researchers find that input-dependent calibration heterogeneity is prevalent.
+
+The paper was submitted on 13 May 2026 and authored by Katarzyna Kobalczyk and Mihaela van der Schaar.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5dccfb2a-ae9c-43dd-a406-9a5eef78706f",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "a6a3c4ba-9ef0-4e2f-8216-92d0334502d0",
+  "toolUseResult": {
+    "query": "\"Discovery of Hidden Miscalibration Regimes\" arxiv 2605.13484 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011NezgfjLuj3z6XzvUG5D6o",
+        "content": [
+          {
+            "title": "Discovery of Hidden Miscalibration Regimes",
+            "url": "https://arxiv.org/html/2605.13484"
+          },
+          {
+            "title": "[2605.13484] Discovery of Hidden Miscalibration Regimes",
+            "url": "https://arxiv.org/abs/2605.13484"
+          },
+          {
+            "title": "Calibrate to Discriminate: Improve In-Context Learning with Label-Free   Comparative Inference",
+            "url": "https://arxiv.org/pdf/2410.02210"
+          },
+          {
+            "title": "Decision from Suboptimal Classifiers: Excess Risk Pre- and   Post-Calibration",
+            "url": "https://arxiv.org/pdf/2503.18025"
+          },
+          {
+            "title": "Hallucination, Monofacts, and Miscalibration: An Empirical Investigation",
+            "url": "https://arxiv.org/pdf/2502.08666"
+          },
+          {
+            "title": "Audited calibration under regime shift as a computational test of support-structured broadcast",
+            "url": "https://arxiv.org/pdf/2602.23382"
+          },
+          {
+            "title": "Your 2 is My 1, Your 3 is My 9: Handling Arbitrary Miscalibrations in   Ratings",
+            "url": "https://arxiv.org/pdf/1806.05085"
+          },
+          {
+            "title": "Discovery of a 13-Sharpe OOS Factor: Drift Regimes Unlock Hidden Cross-Sectional Predictability",
+            "url": "https://arxiv.org/html/2511.12490v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\nThe paper \"Discovery of Hidden Miscalibration Regimes\" (arXiv:2605.13484) addresses how calibration is commonly evaluated by comparing model confidence with empirical correctness, implicitly treating reliability as a function of the confidence score alone.\n\nHowever, the paper notes that this view can hide substantial structure: models may be systematically overconfident on some kinds of inputs and underconfident on others, causing global reliability diagnostics to obscure localised calibration failures.\n\nTo address this, the authors formulate the problem of discovering hidden miscalibration regimes without assuming access to predefined data slices, define the corresponding miscalibration field and propose a diagnostic framework for estimating it. Their approach learns a calibration-aware representation of the input space and estimates signed local miscalibration by kernel smoothing in the learned geometry.\n\nAcross four real-world LLM benchmarks and twelve LLMs, the researchers find that input-dependent calibration heterogeneity is prevalent.\n\nThe paper was submitted on 13 May 2026 and authored by Katarzyna Kobalczyk and Mihaela van der Schaar."
+    ],
+    "durationSeconds": 9.930277883999981,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5dccfb2a-ae9c-43dd-a406-9a5eef78706f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-19T19:00:18.623Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0153Hfy72LhLvzDqu6pm72qd`</summary>
+
+```json
+{
+  "query": "ARR May 2026 cycle submission deadline exact date EMNLP AACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6a3c4ba-9ef0-4e2f-8216-92d0334502d0",
+  "isSidechain": false,
+  "requestId": "req_011CbCSdhL6f37hSxh2WX5wU",
+  "type": "assistant",
+  "uuid": "03cc0c9f-a597-47ab-b23c-6a8a190625de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UxGE6t2c6j8QYjAYm5nXPC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 45265,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 754,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 45265,
+          "cache_creation_input_tokens": 754,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 754
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-19T19:00:22.719Z_
+
+<details><summary>↩ Tool result · `toolu_0153Hfy72LhLvzDqu6pm72qd`</summary>
+
+```text
+Web search results for query: "ARR May 2026 cycle submission deadline exact date EMNLP AACL"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"}]
+
+Based on the search results, I found the exact submission deadline for the ARR May 2026 cycle for both EMNLP and AACL:
+
+The final ARR submission date for both EMNLP 2026 and AACL 2026 is May 25, 2026. 
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+Additionally, authors will need to explicitly declare which conference they intend to commit to (EMNLP or AACL) at submission time, and dual submissions are not allowed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03cc0c9f-a597-47ab-b23c-6a8a190625de",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "45170a1a-c6f3-4b2d-9ae7-27c95905ed84",
+  "toolUseResult": {
+    "query": "ARR May 2026 cycle submission deadline exact date EMNLP AACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WqB7PpBsyXVsJW5UwUmNYN",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          }
+        ]
+      },
+      "Based on the search results, I found the exact submission deadline for the ARR May 2026 cycle for both EMNLP and AACL:\n\nThe final ARR submission date for both EMNLP 2026 and AACL 2026 is May 25, 2026. \n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nAdditionally, authors will need to explicitly declare which conference they intend to commit to (EMNLP or AACL) at submission time, and dual submissions are not allowed."
+    ],
+    "durationSeconds": 4.09150216600002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03cc0c9f-a597-47ab-b23c-6a8a190625de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-19T19:00:25.842Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LGaebivSMQDQeqB3Ep991Y`</summary>
+
+```json
+{
+  "query": "AAAI 2027 abstract deadline July 21 full paper July 28 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45170a1a-c6f3-4b2d-9ae7-27c95905ed84",
+  "isSidechain": false,
+  "requestId": "req_011CbCSeFU825wRTQqCQCmuU",
+  "type": "assistant",
+  "uuid": "974688af-c254-43d1-9716-31f6405d8723",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PZDLvMhFrdCn6Crf6J2GA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 707,
+      "cache_read_input_tokens": 46019,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 707,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 46019,
+          "cache_creation_input_tokens": 707,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 707
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-19T19:00:31.176Z_
+
+<details><summary>↩ Tool result · `toolu_01LGaebivSMQDQeqB3Ep991Y`</summary>
+
+```text
+Web search results for query: "AAAI 2027 abstract deadline July 21 full paper July 28 2026"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"Evaluating Loon Lens Pro™, an AI-Driven Tool for Full-Text Screening in Systematic Reviews: A Validation Study","url":"https://www.medrxiv.org/content/10.1101/2025.02.11.25322087.full.pdf"},{"title":"Large Language Models for Detecting CONSORT Guideline Compliance in Published Randomized Clinical Trials: A Cross-Sectional Evaluation Study","url":"https://www.medrxiv.org/content/10.1101/2025.10.03.25337291.full.pdf"},{"title":"Platform for call transcription and summarization using generative artificial intelligence","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12126769"},{"title":"Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews","url":"https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"},{"title":"The Virtual Lab: AI Agents Design New SARS-CoV-2 Nanobodies with Experimental Validation","url":"https://www.biorxiv.org/content/10.1101/2024.11.11.623004.full.pdf"},{"title":"Assessing the feasibility and acceptability of a bespoke large language model pipeline to extract data from different study designs for public health evidence reviews","url":"https://www.medrxiv.org/content/10.1101/2025.07.21.25331917.full.pdf"}]
+
+Based on the search results, I found the information about AAAI 2027 deadlines:
+
+For AAAI-27, abstracts are due on July 21, 2026 at 11:59 PM UTC-12, and full papers are due on July 28, 2026 at 11:59 PM UTC-12. The conference will be held February 16 – February 23, 2027, and supplementary material and code are due by July 31, 2026.
+
+All deadlines use the "anywhere on earth" (UTC-12) time zone.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "974688af-c254-43d1-9716-31f6405d8723",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "43e9aa35-2dc7-459d-ab18-8af348c63413",
+  "toolUseResult": {
+    "query": "AAAI 2027 abstract deadline July 21 full paper July 28 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0151gAz9PbX3CvvRJbhAJmdH",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "Evaluating Loon Lens Pro™, an AI-Driven Tool for Full-Text Screening in Systematic Reviews: A Validation Study",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.02.11.25322087.full.pdf"
+          },
+          {
+            "title": "Large Language Models for Detecting CONSORT Guideline Compliance in Published Randomized Clinical Trials: A Cross-Sectional Evaluation Study",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.10.03.25337291.full.pdf"
+          },
+          {
+            "title": "Platform for call transcription and summarization using generative artificial intelligence",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12126769"
+          },
+          {
+            "title": "Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews",
+            "url": "https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"
+          },
+          {
+            "title": "The Virtual Lab: AI Agents Design New SARS-CoV-2 Nanobodies with Experimental Validation",
+            "url": "https://www.biorxiv.org/content/10.1101/2024.11.11.623004.full.pdf"
+          },
+          {
+            "title": "Assessing the feasibility and acceptability of a bespoke large language model pipeline to extract data from different study designs for public health evidence reviews",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.07.21.25331917.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the information about AAAI 2027 deadlines:\n\nFor AAAI-27, abstracts are due on July 21, 2026 at 11:59 PM UTC-12, and full papers are due on July 28, 2026 at 11:59 PM UTC-12. The conference will be held February 16 – February 23, 2027, and supplementary material and code are due by July 31, 2026.\n\nAll deadlines use the \"anywhere on earth\" (UTC-12) time zone."
+    ],
+    "durationSeconds": 5.33136109099997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "974688af-c254-43d1-9716-31f6405d8723",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116 · 2026-05-19T19:00:36.875Z_
+
+Now let me fetch the ICLR 2027 deadline more precisely and check for any more concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43e9aa35-2dc7-459d-ab18-8af348c63413",
+  "isSidechain": false,
+  "requestId": "req_011CbCSesgyATkoBFdePNcgv",
+  "type": "assistant",
+  "uuid": "96ddfba8-0067-45b6-a284-9cadaeb86f1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012hYQacofGNE7im8UnabSht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 46726,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 747,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 46726,
+          "cache_creation_input_tokens": 747,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 747
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-19T19:00:38.509Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019V3EFRSjADBhYih38B8n4p`</summary>
+
+```json
+{
+  "url": "https://mlciv.com/ai-deadlines/",
+  "prompt": "List ALL conference deadlines after May 19, 2026, especially ICLR 2027, NeurIPS 2026 workshops, EMNLP 2026, AAAI 2027, AISTATS 2027. Include the exact submission deadline dates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96ddfba8-0067-45b6-a284-9cadaeb86f1d",
+  "isSidechain": false,
+  "requestId": "req_011CbCSesgyATkoBFdePNcgv",
+  "type": "assistant",
+  "uuid": "901ecee1-ab9d-4dbd-a07a-1bc46532a23f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012hYQacofGNE7im8UnabSht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 46726,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 747,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 46726,
+          "cache_creation_input_tokens": 747,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 747
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-19T19:00:45.756Z_
+
+<details><summary>↩ Tool result · `toolu_019V3EFRSjADBhYih38B8n4p`</summary>
+
+```text
+# Conference Deadlines After May 19, 2026
+
+Based on the provided content, here are the major conference deadlines occurring after May 19, 2026:
+
+## ICLR 2027
+- **Conference Dates:** April 24-28, 2027
+- **Submission Details:** "Predicted based on previous year schedule. Please verify on the official conference website"
+- Location: TBA
+
+## EMNLP 2026
+- **Conference Dates:** October 24-29, 2026
+- **Submission Method:** "All submissions via ACL Rolling Review (ARR)"
+- Location: TBA
+
+## AAAI 2027
+- **Conference Dates:** February 2027
+- **Abstract Deadline:** Typically one week before paper deadline
+- **Submission Note:** "Predicted based on historical pattern"
+- Location: TBA
+
+## AISTATS 2027
+- **Conference Dates:** May 2-5, 2027
+- **Submission Details:** "Predicted based on previous year schedule. Please verify on the official conference website"
+- Location: TBA
+
+## Additional Notable Conferences After May 19, 2026
+
+- **ACL 2026:** July 2-7, 2026 (San Diego)
+- **ICML 2026:** July 6-11, 2026 (Seoul, South Korea)
+- **COLM 2025:** October 7-9, 2025 (Montreal)
+
+**Note:** The document does not provide specific submission deadlines for NeurIPS 2026 workshops, as NeurIPS entries were not included in the provided content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "901ecee1-ab9d-4dbd-a07a-1bc46532a23f",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "54dbfc9a-8646-4a05-beec-61d6d4227b1f",
+  "toolUseResult": {
+    "bytes": 1715531,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Conference Deadlines After May 19, 2026\n\nBased on the provided content, here are the major conference deadlines occurring after May 19, 2026:\n\n## ICLR 2027\n- **Conference Dates:** April 24-28, 2027\n- **Submission Details:** \"Predicted based on previous year schedule. Please verify on the official conference website\"\n- Location: TBA\n\n## EMNLP 2026\n- **Conference Dates:** October 24-29, 2026\n- **Submission Method:** \"All submissions via ACL Rolling Review (ARR)\"\n- Location: TBA\n\n## AAAI 2027\n- **Conference Dates:** February 2027\n- **Abstract Deadline:** Typically one week before paper deadline\n- **Submission Note:** \"Predicted based on historical pattern\"\n- Location: TBA\n\n## AISTATS 2027\n- **Conference Dates:** May 2-5, 2027\n- **Submission Details:** \"Predicted based on previous year schedule. Please verify on the official conference website\"\n- Location: TBA\n\n## Additional Notable Conferences After May 19, 2026\n\n- **ACL 2026:** July 2-7, 2026 (San Diego)\n- **ICML 2026:** July 6-11, 2026 (Seoul, South Korea)\n- **COLM 2025:** October 7-9, 2025 (Montreal)\n\n**Note:** The document does not provide specific submission deadlines for NeurIPS 2026 workshops, as NeurIPS entries were not included in the provided content.",
+    "durationMs": 7244,
+    "url": "https://mlciv.com/ai-deadlines/"
+  },
+  "sourceToolAssistantUUID": "901ecee1-ab9d-4dbd-a07a-1bc46532a23f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-19T19:00:48.626Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R6CXTDx8ABFLV7xbhQZcBr`</summary>
+
+```json
+{
+  "query": "ICLR 2027 official submission deadline September October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54dbfc9a-8646-4a05-beec-61d6d4227b1f",
+  "isSidechain": false,
+  "requestId": "req_011CbCSfx1wqoB11nUHmMthA",
+  "type": "assistant",
+  "uuid": "d57a7e1e-7384-4194-9612-5d97b6899c8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6DwPt9DNchNoEyUV2QdfW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1304,
+      "cache_read_input_tokens": 46726,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 46726,
+          "cache_creation_input_tokens": 1304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-19T19:00:55.803Z_
+
+<details><summary>↩ Tool result · `toolu_01R6CXTDx8ABFLV7xbhQZcBr`</summary>
+
+```text
+Web search results for query: "ICLR 2027 official submission deadline September October 2026"
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"}]
+
+Based on the search results, I found information about ICLR 2026 but not specific details about ICLR 2027's submission deadline. Let me search more specifically for ICLR 2027 dates.
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"},{"title":"International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona","url":"https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"},{"title":"International Conference on Learning Robots ICLR in May 2027 in Crete","url":"https://waset.org/learning-robots-conference-in-may-2027-in-crete"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"International Conference on Learning Representations ICLR on March 08-09, 2027 in Bangkok, Thailand - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-march-bangkok-th"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"ICLR 2027 | Apr 2027 | Singapore","url":"https://www.webmobi.com/discovery/events/iclr-2027-1769602270757"}]
+
+Based on my search results, I need to clarify an important point: The search results show various conferences organized by WASET (World Academy of Science, Engineering and Technology) with "ICLR" in their titles, but these appear to be different from the official **International Conference on Learning Representations** (the major machine learning conference).
+
+The official ICLR that you're likely referring to is typically held in late April or early May each year, and along with NeurIPS and ICML, it is one of the three primary conferences of highest impact and reputation in machine learning and artificial intelligence research.
+
+Unfortunately, the official ICLR 2027 announcement details with the submission deadline for September or October 2026 are not yet available in the search results. The results indicate that some 2026/2027 CFPs are not yet posted.
+
+For the most accurate and official information about ICLR 2027's submission deadline, I recommend checking the official ICLR website at **iclr.cc** directly, as the Call for Papers typically includes the exact submission deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d57a7e1e-7384-4194-9612-5d97b6899c8b",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "625b4208-d453-49eb-adb4-cab940203b4c",
+  "toolUseResult": {
+    "query": "ICLR 2027 official submission deadline September October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017bZts2Mb2khqfZJscjo5Do",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026 but not specific details about ICLR 2027's submission deadline. Let me search more specifically for ICLR 2027 dates.",
+      {
+        "tool_use_id": "srvtoolu_01LURStzRZcuKWgguEDtJvLm",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"
+          },
+          {
+            "title": "International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona",
+            "url": "https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"
+          },
+          {
+            "title": "International Conference on Learning Robots ICLR in May 2027 in Crete",
+            "url": "https://waset.org/learning-robots-conference-in-may-2027-in-crete"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR on March 08-09, 2027 in Bangkok, Thailand - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-march-bangkok-th"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "ICLR 2027 | Apr 2027 | Singapore",
+            "url": "https://www.webmobi.com/discovery/events/iclr-2027-1769602270757"
+          }
+        ]
+      },
+      "Based on my search results, I need to clarify an important point: The search results show various conferences organized by WASET (World Academy of Science, Engineering and Technology) with \"ICLR\" in their titles, but these appear to be different from the official **International Conference on Learning Representations** (the major machine learning conference).\n\nThe official ICLR that you're likely referring to is typically held in late April or early May each year, and along with NeurIPS and ICML, it is one of the three primary conferences of highest impact and reputation in machine learning and artificial intelligence research.\n\nUnfortunately, the official ICLR 2027 announcement details with the submission deadline for September or October 2026 are not yet available in the search results. The results indicate that some 2026/2027 CFPs are not yet posted.\n\nFor the most accurate and official information about ICLR 2027's submission deadline, I recommend checking the official ICLR website at **iclr.cc** directly, as the Call for Papers typically includes the exact submission deadlines."
+    ],
+    "durationSeconds": 7.172970188999956,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "d57a7e1e-7384-4194-9612-5d97b6899c8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 121 · 2026-05-19T19:00:55.807Z_
+
+```json
+{
+  "parentUuid": "625b4208-d453-49eb-adb4-cab940203b4c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "04e5b2fa-c49d-4fc8-a96f-a1ae82396e71",
+  "timestamp": "2026-05-19T19:00:55.807Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 122_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "04e5b2fa-c49d-4fc8-a96f-a1ae82396e71",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-19T19:00:58.558Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wu5LPYrMbqJfMiKJSbpeMg`</summary>
+
+```json
+{
+  "query": "H100 GPU cloud rental cost per hour 2026 cheapest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04e5b2fa-c49d-4fc8-a96f-a1ae82396e71",
+  "isSidechain": false,
+  "requestId": "req_011CbCSggvNVJ7RmR9QJyLmC",
+  "type": "assistant",
+  "uuid": "20eccd82-0483-42a8-9de8-6491a3cfee2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SuKMuUKUjFdFcrBtwAL75h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1343,
+      "cache_read_input_tokens": 48030,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 48030,
+          "cache_creation_input_tokens": 1343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-19T19:01:08.928Z_
+
+<details><summary>↩ Tool result · `toolu_01Wu5LPYrMbqJfMiKJSbpeMg`</summary>
+
+```text
+Web search results for query: "H100 GPU cloud rental cost per hour 2026 cheapest"
+
+Links: [{"title":"2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers","url":"https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"},{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"H100 Cloud Pricing: Compare 42+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-h100"},{"title":"NVIDIA H100 Pricing (May 2026): Cheapest Cloud GPU Rates","url":"https://www.thundercompute.com/blog/nvidia-h100-pricing"},{"title":"GPU Cloud Pricing 2026: H100 from $1.03/hr, B200 from $2.12/hr (15+ providers) | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"Silicon H100 - GPU Rental Price Tracker","url":"https://www.silicondata.com/products/silicon-index"},{"title":"NVIDIA H100 GPU Pricing: 2026 Rent vs. Buy Cost Analysis","url":"https://www.gmicloud.ai/en/blog/nvidia-h100-gpu-pricing-2026-rent-vs-buy-cost-analysis"},{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud ...","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud","url":"https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"},{"title":"GPU pricing | Google Cloud","url":"https://cloud.google.com/compute/gpus-pricing"}]
+
+Based on the latest information from May 2026, here's what I found about H100 GPU cloud rental costs:
+
+## Cheapest H100 Rental Options
+
+The lowest price is currently $1.18/hr per GPU (spot instance), though Vast.ai offers rates starting from $1.49/hr on their peer-to-peer marketplace.
+
+## On-Demand Pricing Overview
+
+Renting NVIDIA H100 GPUs in 2026 typically costs between $2.00 and $10.00 per GPU-hour, with specialized platforms like GMI Cloud offering entry pricing starting from $2.00/GPU-hour.
+
+Here are some specific provider rates:
+
+- GMI Cloud offers $2.00/hour for H100 PCIe and $2.40/hour for H100 SXM—40-60% below hyperscale cloud providers charging $4-8/hour
+- On Spheron, H100 PCIe is $2.01/hr on-demand
+- RunPod H100 pricing: $2.49/hr on-demand, $1.49/hr spot
+- AWS H100 on-demand runs ~$6.88/hr
+- Azure charges ~$12.29/hr per GPU on their ND H100 v5 instances
+
+## Key Takeaway
+
+GMI Cloud offers the most cost-effective H100 GPU rental at $2.00/hour for H100 PCIe, though spot instances on marketplaces like Vast.ai can be significantly cheaper at around $1.49/hr if you can tolerate potential interruptions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20eccd82-0483-42a8-9de8-6491a3cfee2b",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "b201379e-5d2c-4eab-a35f-d268c2e9c5d2",
+  "toolUseResult": {
+    "query": "H100 GPU cloud rental cost per hour 2026 cheapest",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N9WNZ9f2gfsEqnzPmhEifh",
+        "content": [
+          {
+            "title": "2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers",
+            "url": "https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"
+          },
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "H100 Cloud Pricing: Compare 42+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-h100"
+          },
+          {
+            "title": "NVIDIA H100 Pricing (May 2026): Cheapest Cloud GPU Rates",
+            "url": "https://www.thundercompute.com/blog/nvidia-h100-pricing"
+          },
+          {
+            "title": "GPU Cloud Pricing 2026: H100 from $1.03/hr, B200 from $2.12/hr (15+ providers) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "Silicon H100 - GPU Rental Price Tracker",
+            "url": "https://www.silicondata.com/products/silicon-index"
+          },
+          {
+            "title": "NVIDIA H100 GPU Pricing: 2026 Rent vs. Buy Cost Analysis",
+            "url": "https://www.gmicloud.ai/en/blog/nvidia-h100-gpu-pricing-2026-rent-vs-buy-cost-analysis"
+          },
+          {
+            "title": "NVIDIA H100 Price Guide 2026: GPU Costs, Cloud ...",
+            "url": "https://jarvislabs.ai/blog/h100-price"
+          },
+          {
+            "title": "Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud",
+            "url": "https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"
+          },
+          {
+            "title": "GPU pricing | Google Cloud",
+            "url": "https://cloud.google.com/compute/gpus-pricing"
+          }
+        ]
+      },
+      "Based on the latest information from May 2026, here's what I found about H100 GPU cloud rental costs:\n\n## Cheapest H100 Rental Options\n\nThe lowest price is currently $1.18/hr per GPU (spot instance), though Vast.ai offers rates starting from $1.49/hr on their peer-to-peer marketplace.\n\n## On-Demand Pricing Overview\n\nRenting NVIDIA H100 GPUs in 2026 typically costs between $2.00 and $10.00 per GPU-hour, with specialized platforms like GMI Cloud offering entry pricing starting from $2.00/GPU-hour.\n\nHere are some specific provider rates:\n\n- GMI Cloud offers $2.00/hour for H100 PCIe and $2.40/hour for H100 SXM—40-60% below hyperscale cloud providers charging $4-8/hour\n- On Spheron, H100 PCIe is $2.01/hr on-demand\n- RunPod H100 pricing: $2.49/hr on-demand, $1.49/hr spot\n- AWS H100 on-demand runs ~$6.88/hr\n- Azure charges ~$12.29/hr per GPU on their ND H100 v5 instances\n\n## Key Takeaway\n\nGMI Cloud offers the most cost-effective H100 GPU rental at $2.00/hour for H100 PCIe, though spot instances on marketplaces like Vast.ai can be significantly cheaper at around $1.49/hr if you can tolerate potential interruptions."
+    ],
+    "durationSeconds": 10.365980188000016,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "20eccd82-0483-42a8-9de8-6491a3cfee2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-19T19:01:11.841Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TkkVf1iGxbua4mFhKahgFA`</summary>
+
+```json
+{
+  "query": "representation engineering contrastive activation addition RepE LLM truthfulness 2025 2026 latest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b201379e-5d2c-4eab-a35f-d268c2e9c5d2",
+  "isSidechain": false,
+  "requestId": "req_011CbCShf7G8TQgfVGYrZCcf",
+  "type": "assistant",
+  "uuid": "0b53714d-28fa-4416-bad5-c4f27f1c3e6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RNxKDWK38yLxuPJRdFqdws",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 49373,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 49373,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-19T19:01:18.813Z_
+
+<details><summary>↩ Tool result · `toolu_01TkkVf1iGxbua4mFhKahgFA`</summary>
+
+```text
+Web search results for query: "representation engineering contrastive activation addition RepE LLM truthfulness 2025 2026 latest"
+
+Links: [{"title":"Representation Engineering (RepE)","url":"https://www.emergentmind.com/topics/representation-engineering-repe"},{"title":"Taxonomy, Opportunities, and Challenges of Representation Engineering for Large Language Models","url":"https://arxiv.org/html/2502.19649"},{"title":"Published in Transactions on Machine Learning Research (09/2025)","url":"https://openreview.net/pdf?id=2U1KIfmaU9"},{"title":"Representation Engineering for Large-Language Models: Survey and Research Challenges","url":"https://arxiv.org/html/2502.17601v1"},{"title":"Representation Engineering in AI Systems","url":"https://www.emergentmind.com/topics/representation-engineering"},{"title":"Representation Engineering","url":"https://www.aussieai.com/research/representation-engineering"},{"title":"arXiv:2502.19649v3 [cs.LG] 12 Mar 2025 - Jan Wehner","url":"https://janwehner.com/files/representation_engineering.pdf"},{"title":"Enhancing Multiple Dimensions of Trustworthiness in LLMs via Sparse   Activation Control","url":"https://arxiv.org/pdf/2411.02461"}]
+
+Based on the search results, here's what the latest research shows about representation engineering (RepE), contrastive activation addition, and LLM truthfulness:
+
+## Overview of Representation Engineering (RepE)
+
+RepE operates at the level of population codes, treating concepts such as truthfulness, safety, or reasoning capability as directions or subspaces in a model's high-dimensional internal state. RepE enables precise, data-efficient, and reversible control over model behaviors at inference time or with lightweight parameter updates, without full retraining or prompt engineering (with recent references from February 2025).
+
+## Contrastive Activation Addition for Truthfulness
+
+Contrast Vector Intervention is achieved by calculating contrast vectors through running paired contrastive prompts through the model and subtracting their activations. More specifically, to identify how truthfulness is represented, inputs are provided that instruct the model to be honest or to lie, the difference between activations for honest and dishonest inputs is calculated, which produces a vector that denotes a direction in the activation space which represents honesty.
+
+## Recent Applications and Developments
+
+Truthfulness is one of the most commonly steered concepts, measured in benchmarks like the TruthfulQA benchmark. Inference-Time Intervention (ITI) enhances the truthfulness of language models by shifting activations in specific directions during inference.
+
+The latest research from 2025 includes comprehensive taxonomies and surveys of RepE methodologies, highlighting both opportunities and ongoing challenges in applying these techniques to control LLM behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b53714d-28fa-4416-bad5-c4f27f1c3e6d",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "d69b30ce-75e9-4434-9ce1-a4b8078d1584",
+  "toolUseResult": {
+    "query": "representation engineering contrastive activation addition RepE LLM truthfulness 2025 2026 latest",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QWVqThf6k3ezRsRMXEjgvT",
+        "content": [
+          {
+            "title": "Representation Engineering (RepE)",
+            "url": "https://www.emergentmind.com/topics/representation-engineering-repe"
+          },
+          {
+            "title": "Taxonomy, Opportunities, and Challenges of Representation Engineering for Large Language Models",
+            "url": "https://arxiv.org/html/2502.19649"
+          },
+          {
+            "title": "Published in Transactions on Machine Learning Research (09/2025)",
+            "url": "https://openreview.net/pdf?id=2U1KIfmaU9"
+          },
+          {
+            "title": "Representation Engineering for Large-Language Models: Survey and Research Challenges",
+            "url": "https://arxiv.org/html/2502.17601v1"
+          },
+          {
+            "title": "Representation Engineering in AI Systems",
+            "url": "https://www.emergentmind.com/topics/representation-engineering"
+          },
+          {
+            "title": "Representation Engineering",
+            "url": "https://www.aussieai.com/research/representation-engineering"
+          },
+          {
+            "title": "arXiv:2502.19649v3 [cs.LG] 12 Mar 2025 - Jan Wehner",
+            "url": "https://janwehner.com/files/representation_engineering.pdf"
+          },
+          {
+            "title": "Enhancing Multiple Dimensions of Trustworthiness in LLMs via Sparse   Activation Control",
+            "url": "https://arxiv.org/pdf/2411.02461"
+          }
+        ]
+      },
+      "Based on the search results, here's what the latest research shows about representation engineering (RepE), contrastive activation addition, and LLM truthfulness:\n\n## Overview of Representation Engineering (RepE)\n\nRepE operates at the level of population codes, treating concepts such as truthfulness, safety, or reasoning capability as directions or subspaces in a model's high-dimensional internal state. RepE enables precise, data-efficient, and reversible control over model behaviors at inference time or with lightweight parameter updates, without full retraining or prompt engineering (with recent references from February 2025).\n\n## Contrastive Activation Addition for Truthfulness\n\nContrast Vector Intervention is achieved by calculating contrast vectors through running paired contrastive prompts through the model and subtracting their activations. More specifically, to identify how truthfulness is represented, inputs are provided that instruct the model to be honest or to lie, the difference between activations for honest and dishonest inputs is calculated, which produces a vector that denotes a direction in the activation space which represents honesty.\n\n## Recent Applications and Developments\n\nTruthfulness is one of the most commonly steered concepts, measured in benchmarks like the TruthfulQA benchmark. Inference-Time Intervention (ITI) enhances the truthfulness of language models by shifting activations in specific directions during inference.\n\nThe latest research from 2025 includes comprehensive taxonomies and surveys of RepE methodologies, highlighting both opportunities and ongoing challenges in applying these techniques to control LLM behavior."
+    ],
+    "durationSeconds": 6.967018195000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0b53714d-28fa-4416-bad5-c4f27f1c3e6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-19T19:01:22.166Z_
+
+Now I have all the information I need. Let me compile the complete JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d69b30ce-75e9-4434-9ce1-a4b8078d1584",
+  "isSidechain": false,
+  "requestId": "req_011CbCSiPatRoVPkBNjNWpP5",
+  "type": "assistant",
+  "uuid": "48a115ac-9487-4df5-ade1-100867bf1ae3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019EhizoZWUcDaEw23JStRdy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 50385,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 773,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 50385,
+          "cache_creation_input_tokens": 773,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 773
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-19T19:01:22.623Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RBtTJpD2SHLW6rvm7to5e5`</summary>
+
+```json
+{
+  "query": "Kumaran 2026 Nature Machine Intelligence competing biases exact title authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48a115ac-9487-4df5-ade1-100867bf1ae3",
+  "isSidechain": false,
+  "requestId": "req_011CbCSiPatRoVPkBNjNWpP5",
+  "type": "assistant",
+  "uuid": "20058100-540f-4262-8c5e-3a7c266f911a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019EhizoZWUcDaEw23JStRdy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 50385,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 773,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 50385,
+          "cache_creation_input_tokens": 773,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 773
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-19T19:01:31.588Z_
+
+<details><summary>↩ Tool result · `toolu_01RBtTJpD2SHLW6rvm7to5e5`</summary>
+
+```text
+Web search results for query: "Kumaran 2026 Nature Machine Intelligence competing biases exact title authors"
+
+Links: [{"title":"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-026-01217-9"},{"title":"Articles in 2026 | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/articles?type=article&year=2026"},{"title":"Browse Articles | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/articles"},{"title":"Research articles | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/research-articles"},{"title":"Competing interests | Nature Machine Intelligence","url":"https://www.nature.com/natmachintell/editorial-policies/competing-interests"},{"title":"Auditor Models to Suppress Poor AI Predictions Can Improve Human-AI Collaborative Performance","url":"https://www.medrxiv.org/content/10.1101/2025.06.24.25330212.full.pdf"},{"title":"What large language models know and what people think they know | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-024-00976-7"},{"title":"The accuracy-bias trade-offs in AI text detection tools and their impact on fairness in scholarly publication","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12453642/"}]
+
+Based on the search results, here is the information about the paper:
+
+**Exact Title:** Competing Biases underlie Overconfidence and Underconfidence in LLMs
+
+**Journal:** Nature Machine Intelligence
+
+**Publication Date:** Published: 22 April 2026
+
+**Authors:** Dharshan Kumaran, Stephen M. Fleming, Larisa Markeeva, Joe Heyward, Andrea Banino, Mrinal Mathur, Razvan Pascanu, Simon Osindero, Benedetto De Martino, Petar Veličković, and Viorica Patraucean
+
+**Volume and Pages:** Nature Machine Intelligence volume 8, pages 614–627 (2026)
+
+**Summary:** The research shows that large language model (LLM) confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20058100-540f-4262-8c5e-3a7c266f911a",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "281661f9-542e-4670-93eb-a903e8c745e3",
+  "toolUseResult": {
+    "query": "Kumaran 2026 Nature Machine Intelligence competing biases exact title authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A86Wv3mkmzS6mRrEtPnvsf",
+        "content": [
+          {
+            "title": "Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-026-01217-9"
+          },
+          {
+            "title": "Articles in 2026 | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/articles?type=article&year=2026"
+          },
+          {
+            "title": "Browse Articles | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/articles"
+          },
+          {
+            "title": "Research articles | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/research-articles"
+          },
+          {
+            "title": "Competing interests | Nature Machine Intelligence",
+            "url": "https://www.nature.com/natmachintell/editorial-policies/competing-interests"
+          },
+          {
+            "title": "Auditor Models to Suppress Poor AI Predictions Can Improve Human-AI Collaborative Performance",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.06.24.25330212.full.pdf"
+          },
+          {
+            "title": "What large language models know and what people think they know | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-024-00976-7"
+          },
+          {
+            "title": "The accuracy-bias trade-offs in AI text detection tools and their impact on fairness in scholarly publication",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12453642/"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the paper:\n\n**Exact Title:** Competing Biases underlie Overconfidence and Underconfidence in LLMs\n\n**Journal:** Nature Machine Intelligence\n\n**Publication Date:** Published: 22 April 2026\n\n**Authors:** Dharshan Kumaran, Stephen M. Fleming, Larisa Markeeva, Joe Heyward, Andrea Banino, Mrinal Mathur, Razvan Pascanu, Simon Osindero, Benedetto De Martino, Petar Veličković, and Viorica Patraucean\n\n**Volume and Pages:** Nature Machine Intelligence volume 8, pages 614–627 (2026)\n\n**Summary:** The research shows that large language model (LLM) confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning."
+    ],
+    "durationSeconds": 8.961442819999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "20058100-540f-4262-8c5e-3a7c266f911a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-19T19:01:34.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014Nyu8EhDYVZfoS9XpyEGHU`</summary>
+
+```json
+{
+  "query": "\"Joshi\" \"Calibration Across Layers\" EMNLP 2025 venue published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "281661f9-542e-4670-93eb-a903e8c745e3",
+  "isSidechain": false,
+  "requestId": "req_011CbCSjKwe1yGDtiTaLQW1C",
+  "type": "assistant",
+  "uuid": "03e22d90-1e65-4f38-87cd-679950d5924d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BFTSzpnZ84yGFmneHG87KM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 51158,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 713,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 51158,
+          "cache_creation_input_tokens": 713,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 713
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-19T19:01:39.397Z_
+
+<details><summary>↩ Tool result · `toolu_014Nyu8EhDYVZfoS9XpyEGHU`</summary>
+
+```text
+Web search results for query: ""Joshi" "Calibration Across Layers" EMNLP 2025 venue published"
+
+Links: [{"title":"Calibration Across Layers: Understanding Calibration Evolution in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.742/"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=22850&show=2000"},{"title":"Calibration Across Layers: Understanding Calibration Evolution in LLMs | Request PDF","url":"https://www.researchgate.net/publication/397421796_Calibration_Across_Layers_Understanding_Calibration_Evolution_in_LLMs"},{"title":"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models","url":"https://arxiv.org/pdf/2510.03136"},{"title":"[2511.00280] Calibration Across Layers: Understanding Calibration Evolution in LLMs","url":"https://arxiv.org/abs/2511.00280"},{"title":"Accepted Industry Track Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/ind_papers/"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**"Calibration Across Layers: Understanding Calibration Evolution in LLMs"** by Abhinav Joshi, Areeb Ahmad, and Ashutosh Modi was published at EMNLP 2025. The conference took place in Suzhou, China, and the paper appears in the proceedings as pages 14697–14725.
+
+The paper investigates how calibration evolves throughout a network's depth, uncovering a distinct confidence correction phase in the upper/later layers where model confidence is actively recalibrated after decision certainty has been reached.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03e22d90-1e65-4f38-87cd-679950d5924d",
+  "isSidechain": false,
+  "promptId": "a3ae2e4d-3755-4922-913a-98a3544f1021",
+  "type": "user",
+  "uuid": "5e767274-ad0e-47a5-8545-873106c61d8f",
+  "toolUseResult": {
+    "query": "\"Joshi\" \"Calibration Across Layers\" EMNLP 2025 venue published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ms13j8tmzA4uemfCMwuLMY",
+        "content": [
+          {
+            "title": "Calibration Across Layers: Understanding Calibration Evolution in LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.742/"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=22850&show=2000"
+          },
+          {
+            "title": "Calibration Across Layers: Understanding Calibration Evolution in LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/397421796_Calibration_Across_Layers_Understanding_Calibration_Evolution_in_LLMs"
+          },
+          {
+            "title": "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.03136"
+          },
+          {
+            "title": "[2511.00280] Calibration Across Layers: Understanding Calibration Evolution in LLMs",
+            "url": "https://arxiv.org/abs/2511.00280"
+          },
+          {
+            "title": "Accepted Industry Track Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/ind_papers/"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**\"Calibration Across Layers: Understanding Calibration Evolution in LLMs\"** by Abhinav Joshi, Areeb Ahmad, and Ashutosh Modi was published at EMNLP 2025. The conference took place in Suzhou, China, and the paper appears in the proceedings as pages 14697–14725.\n\nThe paper investigates how calibration evolves throughout a network's depth, uncovering a distinct confidence correction phase in the upper/later layers where model confidence is actively recalibrated after decision certainty has been reached."
+    ],
+    "durationSeconds": 4.796831860999984,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03e22d90-1e65-4f38-87cd-679950d5924d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133 · 2026-05-19T19:01:41.995Z_
+
+Now I have all the data I need. Let me compile the final JSON output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e767274-ad0e-47a5-8545-873106c61d8f",
+  "isSidechain": false,
+  "requestId": "req_011CbCSjuJ6ENo8Abb7eZ8m4",
+  "type": "assistant",
+  "uuid": "b6f80bb6-1b6b-4d2a-955f-6699d895b0bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSrdr9Te3nKvgxsFZ43PvD",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 51871,
+      "output_tokens": 4481,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 572,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4481,
+          "cache_read_input_tokens": 51871,
+          "cache_creation_input_tokens": 572,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 572
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 134 · 2026-05-19T19:02:34.871Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now compile all the research into a single JSON object. Let me organize everything:
+
+**Verified Key References:**
+1. Kumaran et al. "Competing Biases underlie Overconfidence and Underconfidence in LLMs" (Nature MI 2026) ✓
+2. Chhikara "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models" (TMLR 2025) ✓
+3. "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs" (arXiv 2604.01457, 2026) ✓
+
+
+4. Ji et al. "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" (EMNLP 2025) ✓
+5. Joshi et al. "Calibration Across Layers: Understanding Calibration Evolution in LLMs" (EMNLP 2025) ✓
+6. CCPS: "Calibrating LLM Confidence by Probing Perturbed Representation Stability" (EMNLP 2025) ✓
+7. Zhuang et al. "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation" (arXiv, 2025) ✓
+8. Kobalczyk & van der Schaar "Discovery of Hidden Miscalibration Regimes" (arXiv, 2026) ✓
+
+I'm noting some related work that's relevant but doesn't fully overlap with what I'm trying to do. The Kobalczyk paper identifies input-dependent calibration differences but doesn't separate out the specific bias types I'm focusing on. "Wired for Overconfidence" finds overconfidence circuits but treats it as a single phenomenon rather than breaking it down. Zhuang's work tackles choice-supportive bias but only through fine-tuning rather than mechanistic analysis. For submission, I'm targeting EMNLP 2026 since the deadline works with my timeline.
+
+Looking at the actual deadlines, ARR May 25 is only six days away—too tight for a complete paper. AAAI 2027 and ICLR 2027 are more realistic targets with better timelines, though I should also consider whether EMNLP 2026 is still feasible depending on how the ARR cycle works.
+
+For the approach, I'm thinking about using sparse autoencoders or probing classifiers to isolate the specific representation directions corresponding to choice-supportive bias and how the model overweights contradictory evidence. The plan is to build controlled datasets that test each bias separately, then apply representation analysis techniques to identify distinct features and develop targeted corrections based on per-instance diagnosis.
+
+On resources, this is going to be computationally intensive—I'm estimating around 200-400 GPU hours across multiple models and datasets with proper ablations, which translates to roughly $400-800 in costs. The timeline looks like 2-3 months of focused work to get through the representation analysis, probing, and full experimental evaluation across standard benchmarks.
+
+If I bring in Claude API for experiment design and code generation, that could cut human time by 30-40% and add maybe $100-200 in API costs. An autonomous research agent could potentially speed up the iteration cycle, though the real bottleneck is going to be human judgment on whether the bias disentanglement is actually working well—that's harder to automate.
+
+This feels like a solid contribution—the core idea of separately identifying and correcting these two competing biases is novel and builds naturally on existing calibration work. I'm thinking the project name should be something like "bias_disentangle_calib" and I'm starting to sketch out the full approach description now.
+
+The key insight is that we can construct targeted probe datasets to isolate each bias mechanism separately, then use contrastive activation analysis to find orthogonal directions in representation space for each one. We'd train a lightweight classifier to diagnose which bias is dominant for any given query, then apply targeted steering at inference time—dampening the relevant bias direction based on that diagnosis. This gives us non-uniform calibration that should beat simple temperature scaling. Now I'm working through the evaluation plan—targeting substantial ECE improvements across standard benchmarks like MMLU and TriviaQA at varying difficulty levels. I should also note the concurrent work in the landscape section and think through the computational requirements more carefully, estimating around 240 GPU hours total for the full pipeline from dataset construction through steering experiments.
+
+For the human-in-loop approach, Claude's guidance on experiment design could trim that down to roughly 200 GPU hours over 6-8 weeks with modest API costs, while a fully autonomous setup would need more exploration time and GPU resources but complete faster, though I'd still need human validation to ensure the discovered bias directions are actually meaningful. For model selection, I'm looking at the 2026 leaderboard to pick strong candidates like Qwen3 and Llama-4 variants that would work well for this analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6f80bb6-1b6b-4d2a-955f-6699d895b0bc",
+  "isSidechain": false,
+  "requestId": "req_011CbCSjuJ6ENo8Abb7eZ8m4",
+  "type": "assistant",
+  "uuid": "c4586b39-da47-4084-bae5-ee63e49f36ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSrdr9Te3nKvgxsFZ43PvD",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 51871,
+      "output_tokens": 4481,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 572,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4481,
+          "cache_read_input_tokens": 51871,
+          "cache_creation_input_tokens": 572,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 572
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 135 · 2026-05-19T19:03:05.792Z_
+
+Now I have all the information needed. Let me compile the final JSON output.
+
+{
+  "title": "Disentangling Competing Biases for LLM Calibration Correction",
+  "core_problem": "LLM overconfidence arises from at least two competing biases — choice-supportive bias (favoring own answer) and contradictory-evidence overweighting — that require opposing corrections; can we disentangle and separately correct them?",
+  "opportunity": "Kumaran et al. (Nature Machine Intelligence, 2026) identified that LLM miscalibration results from two mechanistically distinct biases pulling in opposite directions: choice-supportive bias inflates confidence in selected answers, while contradictory-advice overweighting causes models to over-react to opposing evidence. Chhikara (TMLR 2025) showed distractor prompts reduce ECE by up to 90% but also found RLHF models are paradoxically miscalibrated on easy queries. Current calibration methods apply a single uniform correction (e.g., temperature scaling), which cannot simultaneously address biases that inflate and deflate confidence in different contexts. A disentanglement approach that identifies which bias dominates per-instance would enable targeted correction.",
+  "landscape": "Kumaran et al. (Nature MI, 2026) is the foundational paper identifying competing biases but proposes no correction framework. Chhikara (TMLR 2025) showed distractor prompts can expose and reduce overconfidence but didn't disentangle the underlying bias mechanisms. The 'Wired for Overconfidence' paper (2604.01457) identifies overconfidence circuits in Qwen2.5-3B and Llama-3.2-3B, achieving up to 96.5% ECE reduction via circuit steering, but treats overconfidence as monolithic. Ji et al. (EMNLP 2025) modulates a single verbal uncertainty direction but this captures only the net effect of competing biases. Joshi et al. (EMNLP 2025) find a low-dimensional calibration direction in the residual stream but again treat it as a single axis. Zhuang et al. (arXiv 2512.03082) address choice-supportive bias via fine-tuning on Reasoning Dependency Generation data but do not disentangle it from evidence-overweighting at the representation level. Concurrent work by Kobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovers hidden miscalibration regimes showing input-dependent calibration heterogeneity, confirming that uniform correction is suboptimal, but does not attribute regimes to specific bias mechanisms. No existing method separately measures and corrects choice-supportive vs. evidence-weighting distortions, yet their opposing effects on calibration mean uniform correction is suboptimal.",
+  "inspired_by": "Gap: Competing biases create non-uniform miscalibration patterns that single-temperature methods cannot fix (field guide §5.1 on Kumaran et al., §5.2 on Chhikara). Pattern: Mechanistic disentanglement from representation engineering (field guide §3.1). Untried combination: Bias-specific circuit identification + per-instance bias diagnosis + opposing correction strategies.",
+  "approach": "We propose Bias-Disentangled Calibration (BDC), a framework that separately identifies and corrects choice-supportive bias and contradictory-evidence overweighting in LLM confidence via representation engineering. First, we construct contrastive probe datasets isolating each bias: paired prompts where models evaluate confidence in self-generated vs. externally-provided answers (choice-supportive), and prompts with graded contradictory evidence strength (evidence overweighting). Using contrastive activation analysis on these probes, we extract orthogonal representation-space directions corresponding to each bias in models such as Qwen3-8B-Instruct and Llama-4-Scout-17B-Instruct. We then train a lightweight per-instance linear classifier on intermediate-layer activations to diagnose which bias dominates for a given query. At inference time, we apply targeted activation steering—dampening the choice-supportive direction when it dominates, or attenuating the evidence-overweighting direction otherwise—enabling non-uniform calibration correction that adapts to the bias profile of each instance.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "240 H100-equivalent (probe dataset generation ~20h, contrastive activation extraction across 3 models × 4 datasets ~80h, probe/classifier training ~40h, steering experiments and ablations ~100h)",
+      "timeline": "8-10 weeks with 1-2 researchers",
+      "estimated_gpu_cost": "$480 at ~$2/hr H100 spot pricing"
+    },
+    "human_in_loop": {
+      "gpu_hours": "200 H100-equivalent (Claude optimizes experiment design, reducing wasted runs by ~20%)",
+      "timeline": "6-8 weeks",
+      "claude_api_cost": "$150 (experiment design, code scaffolding, results analysis, paper drafting)",
+      "estimated_gpu_cost": "$400 at ~$2/hr H100 spot pricing"
+    },
+    "auto_research": {
+      "gpu_hours": "300 H100-equivalent (broader hyperparameter/direction search, more model variants explored)",
+      "timeline": "3-4 weeks wall clock",
+      "claude_api_cost": "$350 (autonomous experiment loop, ablation design, statistical analysis)",
+      "estimated_gpu_cost": "$600 at ~$2/hr H100 spot pricing",
+      "speed_bottleneck": "Human validation that extracted directions genuinely correspond to distinct bias mechanisms rather than correlated confounds; qualitative inspection of per-instance diagnosis decisions required before trusting automated steering"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May cycle deadline: May 25, 2026 — tight but feasible for short paper)",
+    "AACL-IJCNLP 2026 (ARR May cycle deadline: May 25, 2026 — same ARR cycle as EMNLP)",
+    "AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — primary target)",
+    "ICLR 2027 (predicted abstract: Sep 19, full paper: Sep 24, 2026 — reach target)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Competing Biases underlie Overconfidence and Underconfidence in LLMs (Nature Machine Intelligence 2026)",
+    "Mind the Confidence Gap: Overconfidence, Calibration, and Distractor Effects in Large Language Models (TMLR 2025)",
+    "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs (arXiv 2604.01457, 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (EMNLP 2025)",
+    "Calibration Across Layers: Understanding Calibration Evolution in LLMs (EMNLP 2025)",
+    "Calibrating LLM Confidence by Probing Perturbed Representation Stability (EMNLP 2025)",
+    "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation (arXiv 2512.03082, 2025)",
+    "Discovery of Hidden Miscalibration Regimes (arXiv 2605.13484, 2026)"
+  ],
+  "description": "LLM miscalibration stems from at least two competing biases—choice-supportive bias (inflating confidence in selected answers) and contradictory-evidence overweighting (over-reacting to opposing information)—that require opposing corrections. Current calibration methods apply uniform corrections (e.g., temperature scaling) that cannot simultaneously address biases pulling in opposite directions. We propose Bias-Disentangled Calibration (BDC), which: (1) constructs controlled contrastive datasets isolating each bias mechanism; (2) uses representation engineering to extract distinct activation-space directions for each bias in models such as Qwen3-8B-Instruct and Llama-4-Scout-17B-Instruct; (3) trains a lightweight per-instance bias classifier that determines which bias dominates for any given query; and (4) applies targeted activation steering with opposing corrections based on the diagnosis. Building on Kumaran et al.'s identification of competing biases and the circuit-level overconfidence findings of Wired for Overconfidence, BDC is the first framework to disentangle and separately correct these mechanisms. We target >60% ECE reduction over temperature scaling baselines on MMLU, TriviaQA, PopQA, and NQOpen, evaluated across diverse query difficulty levels where existing methods systematically fail.",
+  "project_name": "bias_disentangle_calib",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4586b39-da47-4084-bae5-ee63e49f36ea",
+  "isSidechain": false,
+  "requestId": "req_011CbCSjuJ6ENo8Abb7eZ8m4",
+  "type": "assistant",
+  "uuid": "0138d196-d7d5-420a-9eb4-9c0a2d10052e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSrdr9Te3nKvgxsFZ43PvD",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 51871,
+      "output_tokens": 4481,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 572,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4481,
+          "cache_read_input_tokens": 51871,
+          "cache_creation_input_tokens": 572,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 572
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "0138d196-d7d5-420a-9eb4-9c0a2d10052e",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 137_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 138_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-19 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Disentangling Competing…",
+  "leafUuid": "0138d196-d7d5-420a-9eb4-9c0a2d10052e",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 139_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disentangling competing biases for LLM calibration correction",
+  "sessionId": "635447d6-7c2c-4017-9054-f4ca609b25de"
+}
+```
+
+---

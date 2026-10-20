@@ -1,0 +1,827 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6.jsonl`
+- **Structured JSON:** [`c8c9b383a4504e0585d5.json`](../../sessions/c8/c8c9b383a4504e0585d5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:35:14.374Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:35:14.374Z",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient field context to provide a thorough evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- Weller et al., \"On the Theoretical Limitations of Embedding-Based Retrieval\" (ICLR 2026): \n  本 proposal 最直接的基础工作。建立了 sign-rank 作为 single-vector retrieval 容量的复杂度度量，构建了 LIMIT benchmark，证明了对任意固定 embedding dimension d，存在组合文档集使得没有单向量模型能作为 top-k 返回。本 proposal 显式地将 MaxSim-rank 定位为其多向量对应物。\n\n- Wang et al., \"R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval\" (arXiv 2026, arXiv:2601.20844): \n  通过 cyclic polytopes 的 moment curve 构造证明 MED = Θ(k)，得出\"限制主要来自可学习性挑战，而非几何约束\"的结论。本 proposal 的上界构造直接借用了 cyclic polytope 分块技术。该论文仅覆盖 single-vector，proposal 声称的 gap（multi-vector 未被覆盖）成立。\n\n- Frick, Hosseini & Vasileuski, \"A Z₂-Topological Framework for Sign-rank Lower Bounds\" (arXiv 2026, arXiv:2604.01510): \n  定义了 sign matrix 的自由 Z₂-单纯复形 S(A)，证明 ind^{lin}_{Z₂}(S(A)) = rank±(A)−1。本 proposal 的下界策略 B 试图将此拓扑框架推广到 piecewise-linear MaxSim 评分。该论文严格限于 bilinear kernel，proposal 承认推广是\"核心技术挑战\"。\n\n- MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024): \n  证明 FDE 可以 ε-近似 MaxSim/Chamfer 相似度，将多向量搜索归约为单向量 MIPS。本 proposal 正确地将自身定位为研究 exact capacity（数据相关），而 MUVERA 研究 approximate capacity（数据无关），两者互补。\n\n- Archish S et al., \"On Strengths and Limitations of Single-Vector Embeddings\" (arXiv 2026, arXiv:2603.29519): \n  通过 toy Gaussian 模型比较 single-vector vs multi-vector 的 drowning susceptibility，明确指出 bounds \"suggestive but not tight\"，呼吁\"formal theoretical analysis of multi-vector embedding capacity\"。直接验证了 proposal 声称的 open problem 确实存在且被社区认可。\n\n- Hatami & Hosseini, \"A Borsuk-Ulam Lower Bound for Sign-Rank\" (STOC 2023) 及 Hatami & Mande (APPROX/RANDOM 2022): \n  前者用 Borsuk-Ulam 定理给出 sign-rank 下界的拓扑方法；后者揭示了三种已知 sign-rank 下界方法（VC dimension, Forster, monochromatic rectangle）的局限性。为理解 proposal 下界策略的难度提供背景。\n\n- 调研总结: Single-vector retrieval 的理论容量已在 2025-2026 年被多篇高质量论文基本刻画清楚（sign-rank = 必要且充分条件，MED = Θ(k)）。Multi-vector（特别是 MaxSim）的容量理论是一个被多篇论文明确标注的 open problem，目前确实不存在正式的理论框架。本 proposal 填补这一空白的定位是准确的、及时的，且不存在我能找到的直接竞争工作。\n\n【整体印象】: \n作为审稿人，第一反应是这是一篇理论定位非常精准、研究问题极为 well-motivated 的 proposal。它站在 2025-2026 年一系列高影响力工作（Weller/ICLR, Wang/arXiv, Frick/arXiv）的肩膀上，精确地指向了一个所有这些工作都未覆盖且多篇论文明确呼吁的 open problem。MaxSim-rank 的定义自然优雅，sum-of-all collapse 观察干净漂亮地隔离了 max 操作的关键角色。实验设计对一篇理论论文来说异常完善。\n\n然而，我的主要 concern 是：核心理论贡献（紧的下界）的可行性存在实质不确定性。Proposal 自身诚实地承认了两条下界策略的技术困难——Strategy A 需要\"无已知文献支持\"的 Z₂-index 子可加性，Strategy B 面临 sign complex 在 piecewise-linear 下的结构验证和 document-vector sharing 破坏乘积分解的问题。如果紧下界失败，论文的冲击力会显著下降。\n\n倾向：borderline accept / weak accept，取决于最终实际完成的理论结果深度。\n\n【核心贡献】: \n1. **MaxSim-rank 的定义与理论框架**：为 multi-vector retrieval 容量提供了第一个形式化复杂度度量。\n2. **上界 MaxSim-rank(A,k) ≤ ⌈rank±(2A−1)/k⌉**：通过分块 cyclic polytope 构造，证明 k 个向量每个只需 ~1/k 的维度即可实现相同 sign pattern。\n3. **Sum-of-all collapse 定理**：证明将 max 替换为 sum 使多向量退化为单向量，形式化隔离了 max 操作的不可替代性。\n4. **（如成功）紧的下界**：证明上界中的 1/k 因子不可改进，或给出接近紧的下界。\n\n贡献价值评估：即使没有紧下界，贡献 1-3 对领域有明确价值——它们建立了一个新的理论方向，并提供了第一批非平凡结果。如果紧下界成功，则贡献价值跃升，因为它将给出一个完整的\"容量二分法\"（exact capacity gain vs. approximate capacity equivalence）。\n\n【方法合理性】: \n方法总体合理，但存在层次分明的确定性梯度：\n\n- **高确定性**：MaxSim-rank 定义本身是自然且不可争议的。Sum-of-all collapse 是简单代数恒等式（Σᵢ Σⱼ⟨qᵢ, dⱼ⟩ = ⟨Σᵢqᵢ, Σⱼdⱼ⟩），完全可验证。\n- **中等确定性**：上界的 partitioned cyclic polytope 构造。利用正交子空间分块 + 每块独立实现部分 sign pattern 的思路合理，但需要仔细处理 max 操作在正交分块下的行为。Proposal 声称\"正交性防止跨块干扰\"，这在 argmax 选择不跨块的前提下成立，但需要验证 max 的选择确实在每块内独立操作。\n- **低确定性**：下界策略。将 Frick et al. 的 bilinear 拓扑框架推广到 piecewise-linear MaxSim 面临根本性困难——MaxSim 的 sign complex 不再是 bilinear kernel 诱导的单纯复形，max 操作引入的分段结构可能使拓扑工具失效。\n\n是否有更简单的替代方案？对于回答\"max 是否提供 capacity gain\"这个问题，信息论/counting argument（比较 sign pattern 数目）可能更直接，但只能给出 poly-logarithmic gap 的弱结论。要得到精确的 1/k 因子结论，拓扑方法似乎是必要的。\n\n【5 维度打分】:\n\n1. 研究问题: 【强】— 问题源自 2025-2026 年多篇高影响力工作（Weller/ICLR 2026, Wang/arXiv 2026, Archish S/arXiv 2026）明确标注的 open problem。理论意义清晰（single-vector 容量已刻画，multi-vector 完全空白），且有实际意义（ColBERT 等模型的理论基础）。\"无论答案是 yes 还是 no 都有意义\"的问题结构进一步增强了价值。\n\n2. 方法与创新: 【中偏强】— MaxSim-rank 定义作为 sign-rank 的多向量推广是自然且优雅的原创贡献。Sum-of-all collapse 虽然技术简单但具有重要的理论洞察。上界构造合理借鉴了 Wang et al. 的 cyclic polytope 技术。然而，核心创新——将 Frick et al. (arXiv 2026) 的 Z₂ 拓扑框架从 bilinear 推广到 piecewise-linear——面临实质性技术障碍，proposal 自身承认两条策略都有未解决的前置问题。与 MUVERA (NeurIPS 2024) 的互补定位（exact vs approximate capacity）展现了良好的理论视野。\n\n3. 实验设计: 【强】— 对一篇理论论文而言，实验设计异常完善。Exp 1 的 optimizer reliability + constructive certificate 设计直接应对 free-embedding 非凸优化的方法论质疑。Exp 3 的 parameter-matched scoring function comparison 是回答核心问题的最关键实验。六个实验覆盖了从方法验证到框架一致性检验（MUVERA cross-validation）到实际基准（LIMIT）的完整链条。对非凸优化局限性的预先声明（\"optimization failure does not prove MaxSim-rank > d\"）展现了方法论严谨性。与 Weller et al. (ICLR 2026) 的 LIMIT benchmark 和 free-embedding 方法论直接可比。\n\n4. 可行性: 【中】— 上界证明、sum-of-all collapse、定义框架、全部实验在给定计算预算（≤200 GPU-hours）内完全可行。然而，紧下界证明的可行性存在实质风险：Strategy A 依赖未知性质（Z₂-index sub-additivity under unions），Strategy B 需要验证 MaxSim sign complex 的结构性质且 document-vector sharing 可能破坏乘积分解。Fallback plan（counting arguments, specific matrix families）确保论文有底线产出，但\"near-tight bounds\"的冲击力显著低于\"tight bounds\"。\n\n5. 写作与呈现: 【强】— Proposal 的写作质量很高。Motivation 清晰地串联了领域脉络，\"Why Max Is the Essential Ingredient\" 一节用简洁代数论证隔离了核心机制，与 MUVERA 的互补性分析展现了深度理解。技术上对 strategy 的可行性层次分明（primary/secondary/fallback），对风险的坦诚承认增加了可信度。唯一的写作 concern 是论文可能试图涵盖太多内容（定义 + 上界 + 下界 + collapse theorem + 6 个实验），在 AAAI 的 8 页限制内需要精心取舍。\n\n【概率估计】: [25% - 42%] 中位 33%\n\n【估计理由】: \n研究问题和动机是本 proposal 最突出的优势——精准填补了一个被多篇顶会/arXiv 论文明确标注的理论空白，且问题定义优雅。上界构造、sum-of-all collapse、实验设计都展现了高质量的学术工作。然而，核心理论贡献（紧下界）的可行性是最大的不确定性来源。概率分布呈双峰：\n\n- **如果紧下界成功**（估计概率 ~30-40%）：论文给出完整的容量刻画，加上精心设计的实验验证，中稿概率 ~45-55%，属于 solid-to-strong submission。\n- **如果仅获得 near-tight bounds**（估计概率 ~40-50%）：论文仍有框架定义 + 上界 + collapse theorem + 实验验证，但冲击力下降，中稿概率 ~20-30%。\n- **如果下界完全失败**（估计概率 ~15-25%）：仅靠上界 + 定义 + 实验的\"framework paper\"，中稿概率 ~10-15%。\n\n加权综合后，整体中稿概率中位约 33%。上界 42% 对应紧下界成功 + 实验结果强的最优场景；下界 25% 对应仅获得弱下界但实验结果仍能部分弥补的场景。\n\n【主要风险】: \n1. **紧下界无法完成**：核心理论贡献的两条证明策略都面临未解决的拓扑前置问题。如果审稿人认为 paper 主要卖点是 tight characterization 但实际只有上界和 near-tight counting bounds，可能被认为 \"incomplete story\" 而拒稿。\n2. **8 页内容过载**：5 个模块化贡献 + 6 个实验需要极其精炼的写作，在 AAAI 的页面限制内可能被迫牺牲关键证明细节或实验分析，导致审稿人觉得\"什么都提到了但什么都没讲透\"。\n\n【实施评估】:\n  - 计算资源: ≤200 GPU-hours（单张现代 GPU），完全可行。Free-embedding 优化不需要大规模训练基础设施。\n  - 数据需求: 无外部数据集依赖。实验使用随机二值矩阵 + 结构化矩阵（Hadamard 等）+ LIMIT benchmark（已公开）。\n  - 人工介入: 主要人工投入在定理证明（下界策略），需要拓扑组合学和代数几何方面的专业知识。\n  - 训练需求: 无神经网络训练。所有实验使用 free embeddings（直接优化向量）。\n  - 新 Benchmark: 不需要构建新 benchmark。使用已有的 LIMIT + 合成矩阵。\n  - 预估周期: 理论部分 2-4 个月（取决于下界进展），实验部分 1-2 个月，写作 1 个月。总计 3-5 个月，但下界研究存在被卡住的风险，可能延长至 6+ 个月。\n```\n\nSources:\n- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)\n- [R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)\n- [A Z₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)\n- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)\n- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/pdf/2601.21853)\n- [A Borsuk-Ulam Lower Bound for Sign-Rank and Its Applications (STOC 2023)](https://dl.acm.org/doi/10.1145/3564246.3585210)\n- [Lower Bound Methods for Sign-Rank and Their Limitations (APPROX/RANDOM 2022)](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22)\n- [Google DeepMind LIMIT Repository](https://github.com/google-deepmind/limit)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to provide a comprehensive evaluation. Here is my assessment:\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (Weller et al., ICLR 2026): 奠基性工作，用 sign-rank 刻画单向量检索容量，证明维度 ≥ rank±(2A−1)−1 是必要且充分条件，并在 LIMIT benchmark（46 文档，k=2）上展示了灾难性失败。本 proposal 直接将其框架从单向量扩展到多向量。\n- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval](https://arxiv.org/abs/2601.20844) (Wang et al., arXiv 2026): 通过 cyclic polytope 证明 MED = Θ(k)，结论是\"限制主要来自可学习性挑战而非几何约束\"。本 proposal 的上界构造直接借鉴 cyclic polytope 方法，并试图将 Wang et al. 的结论扩展到多向量场景。\n- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds](https://arxiv.org/abs/2604.01510) (Frick et al., arXiv 2026): 用 Z₂-等变拓扑建立 sign-rank 下界框架，解决了 Gap Hamming Distance 的 sign-rank。本 proposal 的下界策略试图将此拓扑框架从双线性扩展到分段线性（MaxSim）评分——这是核心技术挑战。\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings](https://arxiv.org/abs/2405.19504) (NeurIPS 2024): 证明 FDE 可以 ε-近似 MaxSim/Chamfer 相似度，实现多向量到单向量的近似约化。本 proposal 与 MUVERA 形成精确/近似容量的互补关系——这是一个有深度的理论洞察。\n- [On Strengths and Limitations of Single-Vector Embeddings](https://arxiv.org/abs/2603.29519) (Archish S et al., arXiv 2026): 通过 toy Gaussian 模型比较单/多向量的 drowning 效应，明确呼吁\"需要对多向量嵌入容量进行正式理论分析\"。直接支持本 proposal 的动机。\n- [LEMUR: Learned Multi-Vector Retrieval](https://arxiv.org/abs/2601.21853) (arXiv 2026): 将多向量搜索归约为单向量搜索的实用框架，展示多向量的经验优势但无理论解释。\n- [Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe](https://arxiv.org/abs/2509.16411) (NeurIPS 2025): 研究层次检索的维度界，明确指出多向量维度界\"未被探索\"。\n- [Lower Bound Methods for Sign-Rank and Their Limitations](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22) (Hatami & Mande, APPROX/RANDOM 2022): 证明三种已知 sign-rank 下界方法对某些 n^Ω(1) sign-rank 矩阵只能给出常数下界——揭示下界证明的根本困难。这直接影响本 proposal 下界策略的可行性评估。\n- 调研总结: 单向量检索容量理论在 2025-2026 年经历了快速发展（Weller、Wang、Frick 三篇重要工作），已相当成熟。多向量容量理论是一个公认的开放问题，多篇论文明确指出其重要性。本 proposal 精准地定位在这个理论空白上，提出的 MaxSim-rank 是自然且必要的下一步。该方向目前尚无竞争性工作。\n\n【整体印象】: \n作为审稿人，我的第一反应是**谨慎积极**。这是一份高度成熟、数学严谨的理论 proposal，精准定位了一个被多篇顶会/顶刊论文明确标注的开放问题。研究问题的动机非常充分——不是人为制造的问题，而是领域自然演进中浮现的关键缺口。MaxSim-rank 的定义优雅自然，\"sum-of-all collapse\"定理是一个漂亮的结构性洞察。实验设计极为周全，罕见地在 proposal 阶段就达到了这样的完备度。\n\n然而，我的核心担忧在于**下界证明的可行性**。将 Frick et al. 的 Z₂-拓扑框架从双线性推广到 MaxSim 的分段线性评分，涉及至少两个独立的、非平凡的数学难题（sign complex 的结构验证、product decomposition 的可行性），且 proposal 自身坦率承认这些\"不是自动的扩展\"。如果下界证明失败，论文将退化为\"定义 + 上界 + 实验\"的组合，虽然仍有价值但显著削弱了核心贡献的力度。\n\n倾向：**弱 accept / borderline**，取决于下界证明的最终结果。\n\n【核心贡献】: \n本工作的核心贡献是建立**多向量检索容量的第一个形式化理论框架**。具体包括：\n1. MaxSim-rank 的形式化定义——类比 sign-rank 之于单向量，为多向量检索提供复杂性度量\n2. \"Sum-of-all collapse\"定理——严格证明没有 max 操作的多向量与单向量等价，隔离出 max 作为容量增益的必要条件\n3. 上界 MaxSim-rank(A,k) ≤ ⌈rank±(2A−1)/k⌉——通过分区 cyclic polytope 构造\n4. （若成功）下界证明——确立 MaxSim-rank ≈ rank±/k 的紧界\n\n对领域的价值：**高**。这将回答一个基本问题——ColBERT 等多向量模型的经验优势是容量现象还是优化现象——这对理解和设计检索系统有深远意义。与 MUVERA 的互补关系（精确容量严格超过单向量但在近似下差距消失）如果成立，将是一个极有深度的理论发现。\n\n【方法合理性】: \n方法整体合理，但技术挑战需分层评估：\n\n**坚实部分：**\n- MaxSim-rank 定义是 sign-rank 的自然推广，无争议\n- 上界构造（分区 cyclic polytope）思路清晰，利用正交子空间消除跨块干扰，技术上可行\n- \"Sum-of-all collapse\"证明是基础代数恒等式，完全可靠\n- 热带代数视角提供了有趣的结构性理解\n\n**高风险部分：**\n- 下界 Strategy B（k-fold product decomposition）：需要 (a) 验证 MaxSim sign complex 在分段线性评分下的拓扑结构，(b) 证明 Z₂-index 在乘积上的可加性，(c) 处理文档向量共享打破乘积分解的问题。这三个中任一个都是非平凡的研究问题。\n- 下界 Strategy A（ordering decomposition）：需要 Z₂-index 在并集下的次可加性——proposal 坦承\"在拓扑组合学文献中没有已建立的支持\"。\n\n**更简单的替代方案？** 对于严格的 Θ(rank±/k) 界，没有明显更简单的途径——sign-rank 下界本身就是困难的（Hatami & Mande 2022 证明了现有方法的根本局限）。但信息论 counting argument 可以给出 Ω(rank±/(k·polylog)) 的较弱下界，这是合理的 fallback。\n\n【5 维度打分】:\n  1. 研究问题: 【强】— 多向量检索容量是一个被至少 4 篇近期论文（Archish S et al. 2026, Wang et al. 2026, Hierarchical Retrieval NeurIPS 2025, Drowning in Documents SIGIR 2025）明确标注的开放问题。问题本身非常自然：单向量理论已成熟（Weller ICLR 2026, Wang 2026），多向量是必然的下一步。\"max 操作是否提供真正的容量增益\"这个问题干净、可形式化、答案无论正负都有重要意义。\n\n  2. 方法与创新: 【中偏强】— MaxSim-rank 定义是自然的概念创新；上界通过分区 cyclic polytope 构造有技术含量（直接扩展 Wang et al. 2026 的 cyclic polytope 方法）；sum-of-all collapse 是优雅的结构性结果。但核心创新——下界证明——依赖于将 Frick et al. (2026) 的 Z₂-拓扑框架从双线性扩展到分段线性，这不是一个已完成的技术贡献而是一个未解决的数学挑战。如果只有上界 + counting lower bound，与领域内已有的技术工具（cyclic polytope、信息论 counting）差异化不够鲜明。\n\n  3. 实验设计: 【强】— 这是该 proposal 的一个明显亮点。6 个实验环环相扣：Exp 1 先验证优化器可靠性（这一点常被忽视，体现了方法论严谨性）；Exp 2 测量 critical-n；Exp 3 是核心实验，通过固定参数预算比较 4 种评分函数——这直接回答中心问题；Exp 4 在已知 sign-rank 的矩阵族上做 ablation；Exp 5 与 MUVERA 框架交叉验证。实验设计中明确标注了方法论局限（free embedding 只提供上界、优化失败 ≠ 容量限制），这种自我审视在 proposal 阶段罕见且加分。\n\n  4. 可行性: 【中】— 分两层评估。实验部分高度可行（free embedding 优化，≤200 GPU-hours，无需神经网络训练）。理论部分风险显著：下界证明涉及前沿拓扑组合学问题，成功概率不确定；proposal 的 fallback plan（counting argument + 特定矩阵族的紧界）合理但会削弱贡献。整体而言，这是一个\"高风险高回报\"的理论项目，fallback 保证了可发表性但不保证顶会水平。\n\n  5. 写作与呈现: 【强】— Proposal 结构清晰，逻辑链条紧密：从动机（单向量理论已解决 → 多向量理论缺失）到方法（定义 → 上界 → 下界策略 → fallback）到实验设计。数学表述精确规范。对自身方法的局限性（下界策略的技术困难、实验方法论的限制）有坦率且准确的说明，这增加了可信度。tropical algebra 视角的引入为论文提供了额外的概念深度。\"Why Max Is the Essential Ingredient\" 一节的论证清晰有力。\n\n【概率估计】: [25% - 40%] 中位 32%\n\n【估计理由】: \n研究问题的质量和动机无可挑剔（+），MaxSim-rank 定义和 sum-of-all collapse 是扎实的贡献（+），实验设计在同类理论工作中属于上乘（+），写作清晰且数学严谨（+）。\n\n但有两个关键不确定性压低了估计：\n(1) **下界证明的高度不确定性**是最大风险。如果只有上界 + counting-based 弱下界 + 实验验证，论文的理论深度显著下降——从\"建立紧界的完整理论\"退化为\"提出框架 + 部分结果\"。在严格审稿中，这种\"我们定义了问题，证了一半\"的论文容易被批评为 incomplete。对比 Weller et al. (ICLR 2026) 提供了完整的充要条件，Wang et al. 提供了 MED = Θ(k) 的紧界——如果本文只能给出单边界，对比之下会显得不够成熟。\n(2) **审稿人匹配风险**。本文处于 IR 理论、通信复杂性、代数拓扑的交叉地带，需要同时熟悉 sign-rank 理论和多向量检索的审稿人。\n\n反面考量：即使下界不紧，\"MaxSim-rank 定义 + 上界 + sum-of-all collapse + 全面实验\"的组合仍然是一个有实质贡献的论文包——它开辟了一个新的理论方向，后续工作可以在此框架上改进下界。模块化贡献策略是聪明的，降低了全面失败的风险。\n\n综合判断：如果下界证明成功（紧界），概率可升至 40-50%；如果只有 fallback 结果，概率降至 22-28%。取期望值约 32%。\n\n【主要风险】: \n1. **下界证明失败导致贡献不完整**：将 Z₂-拓扑框架从双线性扩展到分段线性评分是未经验证的数学挑战。如果只有上界而无匹配下界，\"MaxSim-rank ≈ rank±/k\" 的核心主张沦为猜想，论文从 \"建立理论\" 退化为 \"提出猜想并给出部分证据\"，对审稿人而言说服力不足。\n2. **纯理论贡献 + 纯合成实验的双重抽象性**：所有实验均为 free embedding 优化 + 随机二值矩阵，仅 Exp 6（LIMIT benchmark，46 文档）有微弱的实践联系。审稿人可能质疑：这些理论界在实际神经编码器和大规模语料上是否有实际指导意义？缺乏任何 learned embedding 实验可能被视为与实践脱节。\n\n【实施评估】:\n  - 计算资源: 低。≤200 GPU-hours（单卡），仅需 free embedding 向量优化（无神经网络），完全可行。\n  - 数据需求: 极低。实验使用随机生成的二值矩阵和已有的 LIMIT benchmark（公开可用），无新数据收集需求。\n  - 人工介入: 低。实验流程高度自动化（binary search for critical-n），主要人工投入在理论证明上。\n  - 训练需求: 无模型训练。仅有直接向量优化（SGD/Adam on free embeddings），无 encoder 训练。\n  - 新 Benchmark: 不需要新 benchmark。使用已有的 LIMIT benchmark + 合成矩阵。\n  - 预估周期: \n    - 理论部分（下界证明）：高度不确定，可能需要 2-6 个月，且有失败风险。\n    - 上界 + sum-of-all collapse + 定义：2-4 周。\n    - 实验实现与运行：3-5 周。\n    - 论文写作：2-3 周。\n    - 总计（乐观/下界证明顺利）：3-4 个月。\n    - 总计（悲观/采用 fallback）：2-3 个月（理论更快但贡献更弱）。\n```\n\nSources:\n- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)\n- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)\n- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)\n- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)\n- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/abs/2601.21853)\n- [Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)](https://arxiv.org/abs/2509.16411)\n- [Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient context from the field research. Let me compile the full evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (Weller et al., ICLR 2026): 奠基性工作，将 sign-rank 与单向量嵌入容量直接挂钩，引入 LIMIT benchmark，证明 dim ≥ rank±(2A−1)−1 是必要充分条件。本 proposal 是其自然延伸——从单向量到多向量。\n- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval](https://arxiv.org/abs/2601.20844) (Wang et al., arXiv 2026): 证明 MED = Θ(k)（与语料规模无关），结论\"限制来自可学习性而非几何约束\"。本 proposal 的核心问题正是检验这一结论是否延伸至多向量——若 MaxSim 的 max 运算提供真实容量增益，则多向量优势确实源于几何而非仅仅可学习性。\n- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds](https://arxiv.org/abs/2604.01510) (Frick et al., arXiv 2026): 用 ℤ₂-等变拓扑给出 sign-rank 下界的最新最紧方法，但严格限定于双线性打分。本 proposal 的 Strategy B 试图将此框架推广到分段线性打分（MaxSim），是核心技术难点。\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings](https://arxiv.org/abs/2405.19504) (NeurIPS 2024): 将多向量相似度近似归约为单向量 MIPS，提供理论保证。Proposal 精准定位了与 MUVERA 的互补关系：MUVERA 处理近似容量，本文处理精确容量；若两者均成立，则\"多向量精确容量严格更高但近似容量等价\"是深刻洞察。\n- [On Strengths and Limitations of Single-Vector Embeddings](https://arxiv.org/abs/2603.29519) (Archish S et al., arXiv 2026): 实证比较单/多向量，明确呼吁\"需要多向量嵌入容量的正式理论分析\"。直接为本 proposal 提供了需求侧证据。\n- [LEMUR: Learned Multi-Vector Retrieval](https://arxiv.org/abs/2601.21853) (arXiv 2026): 最新多向量检索模型，实证表现优异但缺乏理论解释。本 proposal 正是要为此类模型提供容量理论基础。\n- [LIR: First Workshop on Late Interaction and Multi-Vector Retrieval @ ECIR 2026](https://arxiv.org/html/2511.00444): 表明多向量检索是 2026 年热点方向，有独立 workshop。\n- 调研总结: 单向量嵌入容量理论在 2025-2026 年已基本完成（Weller、Wang、Frick），但多向量容量理论完全空白，多篇论文明确将其列为 open problem。本 proposal 精准填补了这一空白，时机极佳，问题定位准确。\n\n【整体印象】:\n作为审稿人，第一反应是 \"lean accept\"。这是一篇定位精准、写作成熟、问题重要且时机恰当的理论 proposal。研究问题有明确的文献支撑（多篇论文显式呼吁），MaxSim-rank 的定义干净优雅，sum-of-all collapse 定理作为独立贡献已经很有价值（它用代数方式隔离了 max 操作的核心作用）。实验设计非常周全，远超大多数理论论文的实验标准。主要担忧集中在核心技术贡献（紧下界）的可行性上——proposal 自身也诚实地承认了这一点。如果最终只拿到 near-tight bounds 或特定矩阵族结果，论文整体贡献会显著下降。\n\n【核心贡献】:\n1. **MaxSim-rank 定义与框架**: 首个多向量检索的复杂度度量，类比 sign-rank 之于单向量。\n2. **Sum-of-all collapse 定理**: 优雅证明多向量表示本身（无 max）提供零容量增益，隔离了 max 操作的本质作用。\n3. **上界构造**: 通过分块 cyclic polytope 给出 MaxSim-rank ≤ ⌈rank±/k⌉。\n4. **下界尝试**: 试图将 Frick 等人的拓扑框架从双线性推广到分段线性打分。\n5. **综合实验验证**: 6 组实验，含参数预算对比、消融、与 MUVERA 的交叉验证。\n\n对领域的价值：如果紧下界成立（MaxSim-rank = Θ(rank±/k)），这将是检索理论的重要结果，正式解释了多向量模型的经验优势。即使仅有上界 + collapse 定理 + 实验，也是该方向的有价值开创性工作。\n\n【方法合理性】:\n方法整体合理，但存在梯度式的可行性差异：\n- **MaxSim-rank 定义**: 合理且自然，是 sign-rank 的正确推广。\n- **上界（分块 cyclic polytope）**: 思路清晰，利用正交子空间避免跨块干扰，数学上可行。\n- **下界 Strategy B（k-fold product + ℤ₂-index）**: 这是核心赌注。将 Frick 等人为双线性 kernel 定义的 sign complex 推广到分段线性（MaxSim），需要独立验证 sign complex 的结构（单纯 vs 胞腔复形）且文档向量共享可能破坏乘积分解。这不是\"简单推广\"，而是需要独立的技术突破。\n- **下界 Strategy A（ordering decomposition）**: Proposal 自己也标记为\"more speculative\"，依赖于 ℤ₂-index 在并集下的次可加性——这在拓扑组合学文献中没有已建立的支持。\n- **更简单的替代方案**: 信息论/counting 参数可能给出 Ω(rank±/(k·polylog)) 的弱下界，但无法回答核心问题（是否存在超越线性参数缩放的增益）。所以方法选择是合理的——要回答核心问题就必须走拓扑路线，但这也意味着高风险。\n\n【5 维度打分】:\n  1. 研究问题: [强] — 多向量检索容量理论是明确的 open problem，Weller (ICLR 2026)、Wang (arXiv 2026)、Archish S (arXiv 2026)、Hierarchical Retrieval (NeurIPS 2025) 四篇论文独立指出这一空白。问题本身对检索理论有基础性意义：\"max 操作是否提供超越参数缩放的表达能力增益\"是一个干净、深刻、either-way-significant 的问题。\n\n  2. 方法与创新: [中偏强] — MaxSim-rank 定义和 sum-of-all collapse 是扎实的新贡献。上界构造借助 cyclic polytope 分块是合理的。但核心创新（紧下界）的技术路径存在显著不确定性：Frick et al. (arXiv 2026) 的拓扑框架严格依赖双线性结构，推广到分段线性需要非平凡的新结果。Proposal 诚实地标注了这些挑战，但\"诚实标注困难\"和\"实际解决困难\"是两回事。如果下界无法证明，仅靠上界 + collapse + 实验，novelty 会降至中等水平。\n\n  3. 实验设计: [强] — 这是本 proposal 的一大亮点。6 组实验设计系统完整：Exp 1 验证优化器可靠性（对非凸问题至关重要）、Exp 2 测量 critical-n（与 Weller 直接可比）、Exp 3 是核心对照实验（四种打分函数在固定参数预算下的对比）、Exp 4 消融研究覆盖多种矩阵族、Exp 5 与 MUVERA 交叉验证、Exp 6 在 LIMIT benchmark 上验证实际相关性。特别值得肯定的是：(a) 明确了 free embedding 实验仅提供上界（优化失败 ≠ 容量不足）、(b) 引入构造性容量证书来区分优化失败和容量限制、(c) 报告置信区间和效应量。这远超大多数理论论文的实验标准。\n\n  4. 可行性: [中] — 关键分层：(a) 框架定义 + 上界 + collapse 定理 + 实验 ≈ 高可行性（~90%），这些都是可以在合理时间内完成的工作；(b) 紧下界 ≈ 低-中可行性（~20-35%），因为需要在拓扑组合学中取得新突破；(c) fallback plan（near-tight bounds / specific matrix families）≈ 中-高可行性（~60-70%）。整体而言，论文一定可以写出来，但最终论文的\"档次\"高度依赖下界结果。计算资源需求合理（~200 GPU-hours），不是瓶颈。\n\n  5. 写作与呈现: [强] — Proposal 逻辑清晰、结构紧凑、动机阐述有力。特别值得称道的是：(a) \"Why Max Is the Essential Ingredient\" 节用三个层次递进论证（MaxSim ≠ concatenation → sum-of-all collapses → tropical algebra connection）、(b) 对 MUVERA 互补性的分析精确且有洞察力、(c) 对技术困难的坦诚标注（尤其是 Strategy A/B 的 caveats）、(d) 模块化贡献的明确列举体现了风险管理意识。如果实际论文保持这一质量，写作不会是瓶颈。\n\n【概率估计】: [28% - 42%] 中位 35%\n\n【估计理由】:\n上界因素（拉高概率）：\n- 研究问题极其精准且有明确文献需求，时机完美\n- 框架定义（MaxSim-rank）+ 上界 + collapse 定理本身已构成有意义的贡献\n- 实验设计极为周全，远超同类理论论文\n- 写作质量高，展示出对领域的深刻理解\n- 与 MUVERA 的互补叙事提供了额外的理论深度\n- 模块化贡献设计提供了抗风险能力\n\n下界因素（压低概率）：\n- 核心技术贡献（紧下界）的可行性存疑。将 Frick 等人的拓扑框架从双线性推广到分段线性打分是一个开放的数学问题，不是工程实现问题。如果下界无法证明，论文贡献主要是\"框架 + 上界 + 实验证据\"，这虽有价值但在顶会竞争中 novelty 偏弱。\n- 理论检索容量论文的受众相对窄。虽然 AAAI 是综合会议，但审稿人匹配可能不理想——需要同时熟悉拓扑组合学、sign-rank 理论和信息检索的审稿人。\n- 如果最终只有 near-tight bounds（fallback plan），论文叙事会从\"解决了核心问题\"降级为\"开启了一个方向\"，这在竞争中不够有力。\n\n综合判断：这是一篇定位准确、技术功底深厚的 proposal，但中稿概率高度依赖核心技术结果（紧下界）的实现。若紧下界成立，概率可达 45-55%；若仅有 fallback，概率约 22-30%。中位估计取两种情境的加权期望（≈35%），权重参考 proposal 自身对可行性的评估和拓扑推广的一般难度。\n\n【主要风险】:\n1. **紧下界不可行**: 将 Frick 的 ℤ₂-拓扑框架从双线性推广到 MaxSim 的分段线性打分需要解决至少两个独立的非平凡数学问题（sign complex 结构验证 + 文档向量共享下的乘积分解）。如果这两个问题中任何一个无法解决，核心贡献大幅缩水，论文可能仅停留在\"有趣的框架定义 + 实验观察\"层面，难以在顶会中脱颖而出。\n2. **审稿人匹配困难**: 该工作处于拓扑组合学 × sign-rank 理论 × 信息检索的交叉地带，需要跨领域审稿人。AAAI 的审稿池中这类审稿人可能稀少，导致审稿质量参差不齐——可能出现审稿人无法评判拓扑论证的正确性而给出保守分数的情况。\n\n【实施评估】:\n  - 计算资源: 低需求。Free embedding 优化无需大规模 GPU 训练，~200 GPU-hours（单卡现代 GPU 约 8-10 天），完全可控。\n  - 数据需求: 极低。使用随机二值矩阵 + 已知 sign-rank 矩阵族（Hadamard 等） + LIMIT 数据集（公开可用，仅 46 文档）。\n  - 人工介入: 低。实验自动化程度高，主要人工工作在理论证明。\n  - 训练需求: 无神经网络训练。仅 free embedding 向量优化（直接梯度下降/softmax relaxation）。\n  - 新 Benchmark: 无需构建。使用已有的 LIMIT + 标准矩阵族。\n  - 预估周期: 理论部分 6-10 周（含拓扑推广的探索时间，若不可行需切换到 fallback），实验部分 3-4 周，写作 2-3 周。总计约 3-4 个月，但下界证明可能需要更长探索期（具有高度不确定性）。\n```\n\nSources:\n- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)\n- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)\n- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)\n- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)\n- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/abs/2601.21853)\n- [LIR: First Workshop on Late Interaction and Multi-Vector Retrieval @ ECIR 2026](https://arxiv.org/html/2511.00444)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?\n\n## Motivation and Central Question\n\nSingle-vector retrieval capacity is now well-characterized: sign-rank determines the minimum embedding dimension (Weller et al., ICLR 2026), and Wang et al. (arXiv 2026) proved MED = Θ(k) via cyclic polytopes, concluding that \"limitations stem primarily from learnability challenges, not geometric constraints.\" But multi-vector models (ColBERT, LEMUR (arXiv 2026)) empirically outperform single-vector — is this because MaxSim's max operation genuinely expands representational capacity, or merely redistributes parameters? Despite 4+ recent papers explicitly identifying this as a critical open problem — Archish S et al. (arXiv 2026) calls for \"formal theoretical analysis of multi-vector embedding capacity\"; Wang et al. (arXiv 2026) restricts to single-vector; Hierarchical Retrieval (NeurIPS 2025) notes multi-vector dimension bounds are \"unexplored\"; Drowning in Documents (SIGIR Workshop 2025) demonstrates practical urgency — no formal framework exists for multi-vector retrieval capacity.\n\nWe introduce MaxSim-rank, the first complexity measure for multi-vector retrieval, establishing a formal capacity theory for MaxSim scoring analogous to how sign-rank characterizes single-vector capacity. Given a binary relevance matrix A, MaxSim-rank(A, k) is the minimum dimension d such that k vectors per entity with sum-of-max-inner-product scoring realize A's sign pattern. The central question: **does MaxSim's max operation provide expressiveness beyond linear parameter scaling?** For fixed parameter budget B = kd, does (k vectors, d = B/k dims) under MaxSim achieve strictly greater sign-pattern capacity than (1 vector, B dims) under inner product?\n\nIf yes: the max operation creates genuine geometric capacity gains, formally explaining multi-vector models' empirical advantages as a capacity phenomenon. If no: multi-vector advantage must arise from learnability/optimization — extending Wang et al.'s single-vector finding and revealing that MaxSim's success is an optimization story, not a capacity story. Either answer is significant.\n\n## Why Max Is the Essential Ingredient\n\n**MaxSim ≠ concatenation.** Concatenating k vectors into one kd-dimensional vector yields ⟨concat(Q), concat(D)⟩ = Σᵢ⟨qᵢ, dᵢ⟩ — a sum of **fixed-position** inner products (query vector i always pairs with document vector i). MaxSim computes Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ — a sum of **optimally-matched** inner products. The max allows each query vector to select its best-matching document vector, creating piecewise-linear rather than bilinear scoring.\n\n**Sum-of-all collapses to single-vector.** Consider replacing max with sum: Σᵢ Σⱼ⟨qᵢ, dⱼ⟩ = ⟨Σᵢqᵢ, Σⱼdⱼ⟩. This is algebraically equivalent to a single inner product between the average query and average document vectors — identical sign-pattern capacity to single-vector. This proves that multi-vector representation alone (without max) provides zero capacity gain; any capacity advantage must arise precisely from the max operation's optimal-matching structure.\n\n**Tropical algebra observation.** MaxSim's operations — max (selection) and sum (aggregation of inner products) — correspond to tropical semiring (max, +) operations. MaxSim-rank vs sign-rank thus instantiates tropical algebraic complexity vs classical algebraic complexity in a concrete retrieval setting.\n\n## Research Landscape\n\n**Single-vector capacity (solved).** Weller et al. (ICLR 2026) proved dimension ≥ rank±(2A−1)−1 is necessary and sufficient, demonstrated catastrophic failures on LIMIT (46 documents, k=2), and showed critical-n grows cubically with dimension for free embeddings. Wang et al. (arXiv 2026) proved MED = Θ(k) independent of corpus size via cyclic polytopes. Frick et al. (arXiv 2026) achieved the tightest sign-rank lower bounds via Z₂-equivariant topology (ind^{lin}_{Z₂}(S(A)) = rank±(A)−1), strictly for bilinear scoring. Hatami & Mande (APPROX/RANDOM 2022) characterized the limitations of three known sign-rank lower bound methods (VC-dimension, Forster's method, monochromatic rectangle density), showing that for some n×n matrices with sign-rank n^{Ω(1)}, none yields super-constant bounds.\n\n**Multi-vector capacity (open — this paper).** Archish S et al. (arXiv 2026) compared single-vector vs multi-vector drowning susceptibility via toy Gaussian models, acknowledging bounds are \"suggestive but not tight.\" MUVERA (NeurIPS 2024) proved FDEs ε-approximate MaxSim/Chamfer similarity — an approximate, data-oblivious reduction (FDE dimension depends on ε and k, not on specific matrix A). LEMUR (arXiv 2026) demonstrates empirical multi-vector advantages without theoretical grounding.\n\n**Complementarity with MUVERA.** MUVERA shows multi-vector's approximate capacity can be matched by single-vector (FDE ε-approximation). This paper asks whether multi-vector's exact capacity strictly exceeds single-vector's. If both results hold, they yield a striking theoretical picture: multi-vector achieves strictly higher exact capacity, but this advantage vanishes under approximation — the gap between exact and approximate capacity is itself a fundamental insight into MaxSim's structure. MaxSim-rank is also data-dependent (dimension depends on matrix A's combinatorial structure), while FDE dimension is data-oblivious (universal for all matrices of given size); comparing the two quantifies the value of instance-adaptivity.\n\n## Proposed Approach\n\n**Definition.** MaxSim-rank(A, k) := min{d : ∃ query vectors {q^(i)_1,...,q^(i)_k} ⊂ R^d ∀i, document vectors {d^(j)_1,...,d^(j)_k} ⊂ R^d ∀j, s.t. sign(Σ_l max_m ⟨q^(i)_l, d^(j)_m⟩) = A_{ij} ∀i,j}.\n\n**Upper bound.** MaxSim-rank(A, k) ≤ ⌈rank±(2A−1)/k⌉ via partitioned cyclic polytope moment-curve constructions. Assign consecutive blocks of ⌈rank±/k⌉ moment-curve coordinates to each of k vectors. The blocks span orthogonal subspaces, so each sub-inner-product ⟨q^(i)_l, d^(j)_m⟩ depends only on block l's coordinates. Within each block, the max selects the best-matching document sub-vector; the sum across blocks reconstructs the target sign pattern. Orthogonality prevents cross-block interference.\n\n**Lower bound (two strategies, ranked by feasibility).** Extending lower bounds from bilinear to piecewise-linear scoring is the central technical challenge.\n\n- **Primary (Strategy B): k-fold product.** If the MaxSim sign complex decomposes as a k-fold product (one factor per query vector position) with Z₂-index additive over products (cf. Volovikov-type results), the k-factor reduction follows. **Key technical caveat:** (a) the MaxSim sign complex's structure (simplicial vs cell complex) under piecewise-linear scoring needs independent verification — Frick et al.'s definition relies on bilinear kernel structure; (b) document-vector sharing across queries may break the product decomposition. These are non-trivial intermediate results, not automatic extensions.\n\n- **Secondary (Strategy A): ordering decomposition.** Decompose MaxSim into k! bilinear orderings; the MaxSim sign complex becomes a union of bilinear sign complexes. Requires Z₂-index sub-additivity under unions — a property without established support in the topological combinatorics literature, making this more speculative.\n\n**Fallback plan.** If topological extensions fail: (a) information-theoretic/counting arguments for Ω(rank±(A)/(k · polylog)) lower bounds; (b) tight lower bounds for specific matrix families (Hadamard, structured sign matrices). Paper reframed as \"near-tight bounds.\" The upper bound, MaxSim-rank definition, sum-of-all collapse result, and experimental evidence remain independently valuable.\n\n**Modular contributions** (each independently meaningful): (1) MaxSim-rank definition and framework, (2) upper bound via partitioned cyclic polytopes, (3) sum-of-all collapse theorem isolating max operation, (4) lower bound (tight or near-tight), (5) comprehensive experimental validation.\n\n## Experimental Design\n\nNotation: k_vec = number of vectors per entity; k_ret = top-k in retrieval. All capacity experiments use free embeddings (directly optimized vectors, no neural encoder). **Methodological note:** free embedding experiments provide **upper bounds** on MaxSim-rank — successful realization at dimension d proves MaxSim-rank ≤ d, but optimization failure does not prove MaxSim-rank > d (since MaxSim optimization is non-convex). Theoretical lower bounds and constructive certificates complement experiments to provide two-sided evidence.\n\n**Exp 1: Optimizer Reliability & Capacity Certificates.** Before measuring capacity, validate optimization methodology for MaxSim's non-convex landscape:\n- For (d, k_vec, n) known feasible (d above theoretical threshold), run ≥100 restarts; report success-rate vs restarts curves per (d, k_vec) regime.\n- Compare softmax relaxation (temperature annealing τ→0) and Gumbel-softmax with straight-through estimator; report which performs better per regime.\n- **Constructive capacity certificate:** at configurations where the upper bound guarantees feasibility, directly construct solutions using the cyclic polytope partition and verify correctness. If constructive certificate succeeds but optimization search fails nearby, diagnose as optimization gap (not capacity limitation).\n\n**Exp 2: Critical-n Measurement.** Define critical-n(d, k_vec) = largest n s.t. free multi-vector embedding (best of R≥50 restarts) achieves 100% correct sign-pattern realization across T≥20 independent random binary matrices. Binary-search with termination at adjacent success/failure n differing by 1. Also report median critical-n (≥50% of matrices succeed) for robustness. Cap: n_max = 5000; if not reached, report as \"> 5000.\"\n- Grid: d ∈ {2, 4, 8, 16, 32, 64}, k_vec ∈ {1, 2, 4, 8, 16, 32}.\n- k_vec=1 replicates Weller et al.'s cubic growth (sanity check).\n- Log-log fit of critical-n vs d, verify exponent grows with k_vec, report 95% CI.\n- Report minimum margin at critical-n to detect capacity saturation.\n\n**Exp 3: Scoring Function & Parameter Allocation Comparison (Core Experiment).** This experiment directly addresses the central question. Fix parameter budget B = k_vec × d. Compare four scoring functions at matched total parameters:\n- **(a) Single-vector inner product:** 1 vector, B dims.\n- **(b) Fixed-position sum:** k_vec vectors, d dims, scoring = Σᵢ⟨qᵢ, dᵢ⟩ (bilinear, equivalent to (a)).\n- **(c) MaxSim:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩.\n- **(d) Chamfer similarity:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ + Σⱼ maxᵢ⟨qᵢ, dⱼ⟩ (bidirectional max-sum).\n- B ∈ {32, 64, 128, 256, 512}; for each B sweep k_vec ∈ {1, 2, 4, 8, ...}.\n- Measure critical-n for each (B, k_vec, scoring) across T≥20 matrices. Report effect size (capacity gain ratio = critical-n(MaxSim)/critical-n(single)) with paired comparison across matrix instances.\n- If (c) > (b) ≈ (a): max operation provides genuine capacity gain beyond parameter redistribution.\n- If (d) > (c): bidirectional matching provides additional capacity.\n\n**Exp 4: Ablation Studies.**\n- k_vec-sweep: matrices with known sign-rank upper bounds (via rank-r real matrices → sign, r ∈ {8, 16, 32, 64}; Hadamard matrices with sign-rank O(log n); Identity extensions with sign-rank n; Kronecker products of small known-sign-rank matrices). Sweep k_vec, verify MaxSim-rank ∝ 1/k_vec.\n- Matrix structure ablation: verify MaxSim-rank ∝ rank±(A)/k across diverse matrix families.\n\n**Exp 5: Cross-Framework Validation (MUVERA).** For matrices in Exp 4, compute MUVERA's theoretical FDE dimension for ε-approximation. Verify FDE dim ≥ MaxSim-rank (expected since FDE is data-oblivious/universal). This is a sanity check on framework consistency, not a claim of equivalence.\n\n**Exp 6: LIMIT Benchmark.** Free multi-vector embeddings on LIMIT's 46-document setup (Weller et al., ICLR 2026). Binary relevance matrices via top-k_ret ∈ {1, 2, 5}. Compare k_vec=1 vs k_vec ∈ {2, 4, 8}. Demonstrates practical relevance.\n\n**Compute budget.** Free-embedding optimization only (no neural training). Primary cost: Exp 2 grid (36 cells × binary search × 50 restarts) + Exp 3 (5 budgets × sweeps × 4 scoring × 20 matrices). Estimated ≤200 GPU-hours on a single modern GPU with n_max=5000 cap.\n\n## Key References\n\n- On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)\n- R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., arXiv 2026)\n- A Z₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., arXiv 2026)\n- MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)\n- On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., arXiv 2026)\n- LEMUR: Learned Multi-Vector Retrieval (arXiv 2026)\n- Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)\n- Drowning in Documents: Consequences of Scaling Reranker Inference (SIGIR Workshop 2025)\n- Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:35:14.377Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:35:14.377Z",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:35:14.430Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient field context to provide a thorough evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- Weller et al., "On the Theoretical Limitations of Embedding-Based Retrieval" (ICLR 2026): 
+  本 proposal 最直接的基础工作。建立了 sign-rank 作为 single-vector retrieval 容量的复杂度度量，构建了 LIMIT benchmark，证明了对任意固定 embedding dimension d，存在组合文档集使得没有单向量模型能作为 top-k 返回。本 proposal 显式地将 MaxSim-rank 定位为其多向量对应物。
+
+- Wang et al., "R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval" (arXiv 2026, arXiv:2601.20844): 
+  通过 cyclic polytopes 的 moment curve 构造证明 MED = Θ(k)，得出"限制主要来自可学习性挑战，而非几何约束"的结论。本 proposal 的上界构造直接借用了 cyclic polytope 分块技术。该论文仅覆盖 single-vector，proposal 声称的 gap（multi-vector 未被覆盖）成立。
+
+- Frick, Hosseini & Vasileuski, "A Z₂-Topological Framework for Sign-rank Lower Bounds" (arXiv 2026, arXiv:2604.01510): 
+  定义了 sign matrix 的自由 Z₂-单纯复形 S(A)，证明 ind^{lin}_{Z₂}(S(A)) = rank±(A)−1。本 proposal 的下界策略 B 试图将此拓扑框架推广到 piecewise-linear MaxSim 评分。该论文严格限于 bilinear kernel，proposal 承认推广是"核心技术挑战"。
+
+- MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024): 
+  证明 FDE 可以 ε-近似 MaxSim/Chamfer 相似度，将多向量搜索归约为单向量 MIPS。本 proposal 正确地将自身定位为研究 exact capacity（数据相关），而 MUVERA 研究 approximate capacity（数据无关），两者互补。
+
+- Archish S et al., "On Strengths and Limitations of Single-Vector Embeddings" (arXiv 2026, arXiv:2603.29519): 
+  通过 toy Gaussian 模型比较 single-vector vs multi-vector 的 drowning susceptibility，明确指出 bounds "suggestive but not tight"，呼吁"formal theoretical analysis of multi-vector embedding capacity"。直接验证了 proposal 声称的 open problem 确实存在且被社区认可。
+
+- Hatami & Hosseini, "A Borsuk-Ulam Lower Bound for Sign-Rank" (STOC 2023) 及 Hatami & Mande (APPROX/RANDOM 2022): 
+  前者用 Borsuk-Ulam 定理给出 sign-rank 下界的拓扑方法；后者揭示了三种已知 sign-rank 下界方法（VC dimension, Forster, monochromatic rectangle）的局限性。为理解 proposal 下界策略的难度提供背景。
+
+- 调研总结: Single-vector retrieval 的理论容量已在 2025-2026 年被多篇高质量论文基本刻画清楚（sign-rank = 必要且充分条件，MED = Θ(k)）。Multi-vector（特别是 MaxSim）的容量理论是一个被多篇论文明确标注的 open problem，目前确实不存在正式的理论框架。本 proposal 填补这一空白的定位是准确的、及时的，且不存在我能找到的直接竞争工作。
+
+【整体印象】: 
+作为审稿人，第一反应是这是一篇理论定位非常精准、研究问题极为 well-motivated 的 proposal。它站在 2025-2026 年一系列高影响力工作（Weller/ICLR, Wang/arXiv, Frick/arXiv）的肩膀上，精确地指向了一个所有这些工作都未覆盖且多篇论文明确呼吁的 open problem。MaxSim-rank 的定义自然优雅，sum-of-all collapse 观察干净漂亮地隔离了 max 操作的关键角色。实验设计对一篇理论论文来说异常完善。
+
+然而，我的主要 concern 是：核心理论贡献（紧的下界）的可行性存在实质不确定性。Proposal 自身诚实地承认了两条下界策略的技术困难——Strategy A 需要"无已知文献支持"的 Z₂-index 子可加性，Strategy B 面临 sign complex 在 piecewise-linear 下的结构验证和 document-vector sharing 破坏乘积分解的问题。如果紧下界失败，论文的冲击力会显著下降。
+
+倾向：borderline accept / weak accept，取决于最终实际完成的理论结果深度。
+
+【核心贡献】: 
+1. **MaxSim-rank 的定义与理论框架**：为 multi-vector retrieval 容量提供了第一个形式化复杂度度量。
+2. **上界 MaxSim-rank(A,k) ≤ ⌈rank±(2A−1)/k⌉**：通过分块 cyclic polytope 构造，证明 k 个向量每个只需 ~1/k 的维度即可实现相同 sign pattern。
+3. **Sum-of-all collapse 定理**：证明将 max 替换为 sum 使多向量退化为单向量，形式化隔离了 max 操作的不可替代性。
+4. **（如成功）紧的下界**：证明上界中的 1/k 因子不可改进，或给出接近紧的下界。
+
+贡献价值评估：即使没有紧下界，贡献 1-3 对领域有明确价值——它们建立了一个新的理论方向，并提供了第一批非平凡结果。如果紧下界成功，则贡献价值跃升，因为它将给出一个完整的"容量二分法"（exact capacity gain vs. approximate capacity equivalence）。
+
+【方法合理性】: 
+方法总体合理，但存在层次分明的确定性梯度：
+
+- **高确定性**：MaxSim-rank 定义本身是自然且不可争议的。Sum-of-all collapse 是简单代数恒等式（Σᵢ Σⱼ⟨qᵢ, dⱼ⟩ = ⟨Σᵢqᵢ, Σⱼdⱼ⟩），完全可验证。
+- **中等确定性**：上界的 partitioned cyclic polytope 构造。利用正交子空间分块 + 每块独立实现部分 sign pattern 的思路合理，但需要仔细处理 max 操作在正交分块下的行为。Proposal 声称"正交性防止跨块干扰"，这在 argmax 选择不跨块的前提下成立，但需要验证 max 的选择确实在每块内独立操作。
+- **低确定性**：下界策略。将 Frick et al. 的 bilinear 拓扑框架推广到 piecewise-linear MaxSim 面临根本性困难——MaxSim 的 sign complex 不再是 bilinear kernel 诱导的单纯复形，max 操作引入的分段结构可能使拓扑工具失效。
+
+是否有更简单的替代方案？对于回答"max 是否提供 capacity gain"这个问题，信息论/counting argument（比较 sign pattern 数目）可能更直接，但只能给出 poly-logarithmic gap 的弱结论。要得到精确的 1/k 因子结论，拓扑方法似乎是必要的。
+
+【5 维度打分】:
+
+1. 研究问题: 【强】— 问题源自 2025-2026 年多篇高影响力工作（Weller/ICLR 2026, Wang/arXiv 2026, Archish S/arXiv 2026）明确标注的 open problem。理论意义清晰（single-vector 容量已刻画，multi-vector 完全空白），且有实际意义（ColBERT 等模型的理论基础）。"无论答案是 yes 还是 no 都有意义"的问题结构进一步增强了价值。
+
+2. 方法与创新: 【中偏强】— MaxSim-rank 定义作为 sign-rank 的多向量推广是自然且优雅的原创贡献。Sum-of-all collapse 虽然技术简单但具有重要的理论洞察。上界构造合理借鉴了 Wang et al. 的 cyclic polytope 技术。然而，核心创新——将 Frick et al. (arXiv 2026) 的 Z₂ 拓扑框架从 bilinear 推广到 piecewise-linear——面临实质性技术障碍，proposal 自身承认两条策略都有未解决的前置问题。与 MUVERA (NeurIPS 2024) 的互补定位（exact vs approximate capacity）展现了良好的理论视野。
+
+3. 实验设计: 【强】— 对一篇理论论文而言，实验设计异常完善。Exp 1 的 optimizer reliability + constructive certificate 设计直接应对 free-embedding 非凸优化的方法论质疑。Exp 3 的 parameter-matched scoring function comparison 是回答核心问题的最关键实验。六个实验覆盖了从方法验证到框架一致性检验（MUVERA cross-validation）到实际基准（LIMIT）的完整链条。对非凸优化局限性的预先声明（"optimization failure does not prove MaxSim-rank > d"）展现了方法论严谨性。与 Weller et al. (ICLR 2026) 的 LIMIT benchmark 和 free-embedding 方法论直接可比。
+
+4. 可行性: 【中】— 上界证明、sum-of-all collapse、定义框架、全部实验在给定计算预算（≤200 GPU-hours）内完全可行。然而，紧下界证明的可行性存在实质风险：Strategy A 依赖未知性质（Z₂-index sub-additivity under unions），Strategy B 需要验证 MaxSim sign complex 的结构性质且 document-vector sharing 可能破坏乘积分解。Fallback plan（counting arguments, specific matrix families）确保论文有底线产出，但"near-tight bounds"的冲击力显著低于"tight bounds"。
+
+5. 写作与呈现: 【强】— Proposal 的写作质量很高。Motivation 清晰地串联了领域脉络，"Why Max Is the Essential Ingredient" 一节用简洁代数论证隔离了核心机制，与 MUVERA 的互补性分析展现了深度理解。技术上对 strategy 的可行性层次分明（primary/secondary/fallback），对风险的坦诚承认增加了可信度。唯一的写作 concern 是论文可能试图涵盖太多内容（定义 + 上界 + 下界 + collapse theorem + 6 个实验），在 AAAI 的 8 页限制内需要精心取舍。
+
+【概率估计】: [25% - 42%] 中位 33%
+
+【估计理由】: 
+研究问题和动机是本 proposal 最突出的优势——精准填补了一个被多篇顶会/arXiv 论文明确标注的理论空白，且问题定义优雅。上界构造、sum-of-all collapse、实验设计都展现了高质量的学术工作。然而，核心理论贡献（紧下界）的可行性是最大的不确定性来源。概率分布呈双峰：
+
+- **如果紧下界成功**（估计概率 ~30-40%）：论文给出完整的容量刻画，加上精心设计的实验验证，中稿概率 ~45-55%，属于 solid-to-strong submission。
+- **如果仅获得 near-tight bounds**（估计概率 ~40-50%）：论文仍有框架定义 + 上界 + collapse theorem + 实验验证，但冲击力下降，中稿概率 ~20-30%。
+- **如果下界完全失败**（估计概率 ~15-25%）：仅靠上界 + 定义 + 实验的"framework paper"，中稿概率 ~10-15%。
+
+加权综合后，整体中稿概率中位约 33%。上界 42% 对应紧下界成功 + 实验结果强的最优场景；下界 25% 对应仅获得弱下界但实验结果仍能部分弥补的场景。
+
+【主要风险】: 
+1. **紧下界无法完成**：核心理论贡献的两条证明策略都面临未解决的拓扑前置问题。如果审稿人认为 paper 主要卖点是 tight characterization 但实际只有上界和 near-tight counting bounds，可能被认为 "incomplete story" 而拒稿。
+2. **8 页内容过载**：5 个模块化贡献 + 6 个实验需要极其精炼的写作，在 AAAI 的页面限制内可能被迫牺牲关键证明细节或实验分析，导致审稿人觉得"什么都提到了但什么都没讲透"。
+
+【实施评估】:
+  - 计算资源: ≤200 GPU-hours（单张现代 GPU），完全可行。Free-embedding 优化不需要大规模训练基础设施。
+  - 数据需求: 无外部数据集依赖。实验使用随机二值矩阵 + 结构化矩阵（Hadamard 等）+ LIMIT benchmark（已公开）。
+  - 人工介入: 主要人工投入在定理证明（下界策略），需要拓扑组合学和代数几何方面的专业知识。
+  - 训练需求: 无神经网络训练。所有实验使用 free embeddings（直接优化向量）。
+  - 新 Benchmark: 不需要构建新 benchmark。使用已有的 LIMIT + 合成矩阵。
+  - 预估周期: 理论部分 2-4 个月（取决于下界进展），实验部分 1-2 个月，写作 1 个月。总计 3-5 个月，但下界研究存在被卡住的风险，可能延长至 6+ 个月。
+```
+
+Sources:
+- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)
+- [R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)
+- [A Z₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)
+- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)
+- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)
+- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/pdf/2601.21853)
+- [A Borsuk-Ulam Lower Bound for Sign-Rank and Its Applications (STOC 2023)](https://dl.acm.org/doi/10.1145/3564246.3585210)
+- [Lower Bound Methods for Sign-Rank and Their Limitations (APPROX/RANDOM 2022)](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22)
+- [Google DeepMind LIMIT Repository](https://github.com/google-deepmind/limit)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient information to provide a comprehensive evaluation. Here is my assessment:
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (Weller et al., ICLR 2026): 奠基性工作，用 sign-rank 刻画单向量检索容量，证明维度 ≥ rank±(2A−1)−1 是必要且充分条件，并在 LIMIT benchmark（46 文档，k=2）上展示了灾难性失败。本 proposal 直接将其框架从单向量扩展到多向量。
+- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval](https://arxiv.org/abs/2601.20844) (Wang et al., arXiv 2026): 通过 cyclic polytope 证明 MED = Θ(k)，结论是"限制主要来自可学习性挑战而非几何约束"。本 proposal 的上界构造直接借鉴 cyclic polytope 方法，并试图将 Wang et al. 的结论扩展到多向量场景。
+- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds](https://arxiv.org/abs/2604.01510) (Frick et al., arXiv 2026): 用 Z₂-等变拓扑建立 sign-rank 下界框架，解决了 Gap Hamming Distance 的 sign-rank。本 proposal 的下界策略试图将此拓扑框架从双线性扩展到分段线性（MaxSim）评分——这是核心技术挑战。
+- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings](https://arxiv.org/abs/2405.19504) (NeurIPS 2024): 证明 FDE 可以 ε-近似 MaxSim/Chamfer 相似度，实现多向量到单向量的近似约化。本 proposal 与 MUVERA 形成精确/近似容量的互补关系——这是一个有深度的理论洞察。
+- [On Strengths and Limitations of Single-Vector Embeddings](https://arxiv.org/abs/2603.29519) (Archish S et al., arXiv 2026): 通过 toy Gaussian 模型比较单/多向量的 drowning 效应，明确呼吁"需要对多向量嵌入容量进行正式理论分析"。直接支持本 proposal 的动机。
+- [LEMUR: Learned Multi-Vector Retrieval](https://arxiv.org/abs/2601.21853) (arXiv 2026): 将多向量搜索归约为单向量搜索的实用框架，展示多向量的经验优势但无理论解释。
+- [Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe](https://arxiv.org/abs/2509.16411) (NeurIPS 2025): 研究层次检索的维度界，明确指出多向量维度界"未被探索"。
+- [Lower Bound Methods for Sign-Rank and Their Limitations](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22) (Hatami & Mande, APPROX/RANDOM 2022): 证明三种已知 sign-rank 下界方法对某些 n^Ω(1) sign-rank 矩阵只能给出常数下界——揭示下界证明的根本困难。这直接影响本 proposal 下界策略的可行性评估。
+- 调研总结: 单向量检索容量理论在 2025-2026 年经历了快速发展（Weller、Wang、Frick 三篇重要工作），已相当成熟。多向量容量理论是一个公认的开放问题，多篇论文明确指出其重要性。本 proposal 精准地定位在这个理论空白上，提出的 MaxSim-rank 是自然且必要的下一步。该方向目前尚无竞争性工作。
+
+【整体印象】: 
+作为审稿人，我的第一反应是**谨慎积极**。这是一份高度成熟、数学严谨的理论 proposal，精准定位了一个被多篇顶会/顶刊论文明确标注的开放问题。研究问题的动机非常充分——不是人为制造的问题，而是领域自然演进中浮现的关键缺口。MaxSim-rank 的定义优雅自然，"sum-of-all collapse"定理是一个漂亮的结构性洞察。实验设计极为周全，罕见地在 proposal 阶段就达到了这样的完备度。
+
+然而，我的核心担忧在于**下界证明的可行性**。将 Frick et al. 的 Z₂-拓扑框架从双线性推广到 MaxSim 的分段线性评分，涉及至少两个独立的、非平凡的数学难题（sign complex 的结构验证、product decomposition 的可行性），且 proposal 自身坦率承认这些"不是自动的扩展"。如果下界证明失败，论文将退化为"定义 + 上界 + 实验"的组合，虽然仍有价值但显著削弱了核心贡献的力度。
+
+倾向：**弱 accept / borderline**，取决于下界证明的最终结果。
+
+【核心贡献】: 
+本工作的核心贡献是建立**多向量检索容量的第一个形式化理论框架**。具体包括：
+1. MaxSim-rank 的形式化定义——类比 sign-rank 之于单向量，为多向量检索提供复杂性度量
+2. "Sum-of-all collapse"定理——严格证明没有 max 操作的多向量与单向量等价，隔离出 max 作为容量增益的必要条件
+3. 上界 MaxSim-rank(A,k) ≤ ⌈rank±(2A−1)/k⌉——通过分区 cyclic polytope 构造
+4. （若成功）下界证明——确立 MaxSim-rank ≈ rank±/k 的紧界
+
+对领域的价值：**高**。这将回答一个基本问题——ColBERT 等多向量模型的经验优势是容量现象还是优化现象——这对理解和设计检索系统有深远意义。与 MUVERA 的互补关系（精确容量严格超过单向量但在近似下差距消失）如果成立，将是一个极有深度的理论发现。
+
+【方法合理性】: 
+方法整体合理，但技术挑战需分层评估：
+
+**坚实部分：**
+- MaxSim-rank 定义是 sign-rank 的自然推广，无争议
+- 上界构造（分区 cyclic polytope）思路清晰，利用正交子空间消除跨块干扰，技术上可行
+- "Sum-of-all collapse"证明是基础代数恒等式，完全可靠
+- 热带代数视角提供了有趣的结构性理解
+
+**高风险部分：**
+- 下界 Strategy B（k-fold product decomposition）：需要 (a) 验证 MaxSim sign complex 在分段线性评分下的拓扑结构，(b) 证明 Z₂-index 在乘积上的可加性，(c) 处理文档向量共享打破乘积分解的问题。这三个中任一个都是非平凡的研究问题。
+- 下界 Strategy A（ordering decomposition）：需要 Z₂-index 在并集下的次可加性——proposal 坦承"在拓扑组合学文献中没有已建立的支持"。
+
+**更简单的替代方案？** 对于严格的 Θ(rank±/k) 界，没有明显更简单的途径——sign-rank 下界本身就是困难的（Hatami & Mande 2022 证明了现有方法的根本局限）。但信息论 counting argument 可以给出 Ω(rank±/(k·polylog)) 的较弱下界，这是合理的 fallback。
+
+【5 维度打分】:
+  1. 研究问题: 【强】— 多向量检索容量是一个被至少 4 篇近期论文（Archish S et al. 2026, Wang et al. 2026, Hierarchical Retrieval NeurIPS 2025, Drowning in Documents SIGIR 2025）明确标注的开放问题。问题本身非常自然：单向量理论已成熟（Weller ICLR 2026, Wang 2026），多向量是必然的下一步。"max 操作是否提供真正的容量增益"这个问题干净、可形式化、答案无论正负都有重要意义。
+
+  2. 方法与创新: 【中偏强】— MaxSim-rank 定义是自然的概念创新；上界通过分区 cyclic polytope 构造有技术含量（直接扩展 Wang et al. 2026 的 cyclic polytope 方法）；sum-of-all collapse 是优雅的结构性结果。但核心创新——下界证明——依赖于将 Frick et al. (2026) 的 Z₂-拓扑框架从双线性扩展到分段线性，这不是一个已完成的技术贡献而是一个未解决的数学挑战。如果只有上界 + counting lower bound，与领域内已有的技术工具（cyclic polytope、信息论 counting）差异化不够鲜明。
+
+  3. 实验设计: 【强】— 这是该 proposal 的一个明显亮点。6 个实验环环相扣：Exp 1 先验证优化器可靠性（这一点常被忽视，体现了方法论严谨性）；Exp 2 测量 critical-n；Exp 3 是核心实验，通过固定参数预算比较 4 种评分函数——这直接回答中心问题；Exp 4 在已知 sign-rank 的矩阵族上做 ablation；Exp 5 与 MUVERA 框架交叉验证。实验设计中明确标注了方法论局限（free embedding 只提供上界、优化失败 ≠ 容量限制），这种自我审视在 proposal 阶段罕见且加分。
+
+  4. 可行性: 【中】— 分两层评估。实验部分高度可行（free embedding 优化，≤200 GPU-hours，无需神经网络训练）。理论部分风险显著：下界证明涉及前沿拓扑组合学问题，成功概率不确定；proposal 的 fallback plan（counting argument + 特定矩阵族的紧界）合理但会削弱贡献。整体而言，这是一个"高风险高回报"的理论项目，fallback 保证了可发表性但不保证顶会水平。
+
+  5. 写作与呈现: 【强】— Proposal 结构清晰，逻辑链条紧密：从动机（单向量理论已解决 → 多向量理论缺失）到方法（定义 → 上界 → 下界策略 → fallback）到实验设计。数学表述精确规范。对自身方法的局限性（下界策略的技术困难、实验方法论的限制）有坦率且准确的说明，这增加了可信度。tropical algebra 视角的引入为论文提供了额外的概念深度。"Why Max Is the Essential Ingredient" 一节的论证清晰有力。
+
+【概率估计】: [25% - 40%] 中位 32%
+
+【估计理由】: 
+研究问题的质量和动机无可挑剔（+），MaxSim-rank 定义和 sum-of-all collapse 是扎实的贡献（+），实验设计在同类理论工作中属于上乘（+），写作清晰且数学严谨（+）。
+
+但有两个关键不确定性压低了估计：
+(1) **下界证明的高度不确定性**是最大风险。如果只有上界 + counting-based 弱下界 + 实验验证，论文的理论深度显著下降——从"建立紧界的完整理论"退化为"提出框架 + 部分结果"。在严格审稿中，这种"我们定义了问题，证了一半"的论文容易被批评为 incomplete。对比 Weller et al. (ICLR 2026) 提供了完整的充要条件，Wang et al. 提供了 MED = Θ(k) 的紧界——如果本文只能给出单边界，对比之下会显得不够成熟。
+(2) **审稿人匹配风险**。本文处于 IR 理论、通信复杂性、代数拓扑的交叉地带，需要同时熟悉 sign-rank 理论和多向量检索的审稿人。
+
+反面考量：即使下界不紧，"MaxSim-rank 定义 + 上界 + sum-of-all collapse + 全面实验"的组合仍然是一个有实质贡献的论文包——它开辟了一个新的理论方向，后续工作可以在此框架上改进下界。模块化贡献策略是聪明的，降低了全面失败的风险。
+
+综合判断：如果下界证明成功（紧界），概率可升至 40-50%；如果只有 fallback 结果，概率降至 22-28%。取期望值约 32%。
+
+【主要风险】: 
+1. **下界证明失败导致贡献不完整**：将 Z₂-拓扑框架从双线性扩展到分段线性评分是未经验证的数学挑战。如果只有上界而无匹配下界，"MaxSim-rank ≈ rank±/k" 的核心主张沦为猜想，论文从 "建立理论" 退化为 "提出猜想并给出部分证据"，对审稿人而言说服力不足。
+2. **纯理论贡献 + 纯合成实验的双重抽象性**：所有实验均为 free embedding 优化 + 随机二值矩阵，仅 Exp 6（LIMIT benchmark，46 文档）有微弱的实践联系。审稿人可能质疑：这些理论界在实际神经编码器和大规模语料上是否有实际指导意义？缺乏任何 learned embedding 实验可能被视为与实践脱节。
+
+【实施评估】:
+  - 计算资源: 低。≤200 GPU-hours（单卡），仅需 free embedding 向量优化（无神经网络），完全可行。
+  - 数据需求: 极低。实验使用随机生成的二值矩阵和已有的 LIMIT benchmark（公开可用），无新数据收集需求。
+  - 人工介入: 低。实验流程高度自动化（binary search for critical-n），主要人工投入在理论证明上。
+  - 训练需求: 无模型训练。仅有直接向量优化（SGD/Adam on free embeddings），无 encoder 训练。
+  - 新 Benchmark: 不需要新 benchmark。使用已有的 LIMIT benchmark + 合成矩阵。
+  - 预估周期: 
+    - 理论部分（下界证明）：高度不确定，可能需要 2-6 个月，且有失败风险。
+    - 上界 + sum-of-all collapse + 定义：2-4 周。
+    - 实验实现与运行：3-5 周。
+    - 论文写作：2-3 周。
+    - 总计（乐观/下界证明顺利）：3-4 个月。
+    - 总计（悲观/采用 fallback）：2-3 个月（理论更快但贡献更弱）。
+```
+
+Sources:
+- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)
+- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)
+- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)
+- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)
+- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)
+- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/abs/2601.21853)
+- [Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)](https://arxiv.org/abs/2509.16411)
+- [Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient context from the field research. Let me compile the full evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (Weller et al., ICLR 2026): 奠基性工作，将 sign-rank 与单向量嵌入容量直接挂钩，引入 LIMIT benchmark，证明 dim ≥ rank±(2A−1)−1 是必要充分条件。本 proposal 是其自然延伸——从单向量到多向量。
+- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval](https://arxiv.org/abs/2601.20844) (Wang et al., arXiv 2026): 证明 MED = Θ(k)（与语料规模无关），结论"限制来自可学习性而非几何约束"。本 proposal 的核心问题正是检验这一结论是否延伸至多向量——若 MaxSim 的 max 运算提供真实容量增益，则多向量优势确实源于几何而非仅仅可学习性。
+- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds](https://arxiv.org/abs/2604.01510) (Frick et al., arXiv 2026): 用 ℤ₂-等变拓扑给出 sign-rank 下界的最新最紧方法，但严格限定于双线性打分。本 proposal 的 Strategy B 试图将此框架推广到分段线性打分（MaxSim），是核心技术难点。
+- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings](https://arxiv.org/abs/2405.19504) (NeurIPS 2024): 将多向量相似度近似归约为单向量 MIPS，提供理论保证。Proposal 精准定位了与 MUVERA 的互补关系：MUVERA 处理近似容量，本文处理精确容量；若两者均成立，则"多向量精确容量严格更高但近似容量等价"是深刻洞察。
+- [On Strengths and Limitations of Single-Vector Embeddings](https://arxiv.org/abs/2603.29519) (Archish S et al., arXiv 2026): 实证比较单/多向量，明确呼吁"需要多向量嵌入容量的正式理论分析"。直接为本 proposal 提供了需求侧证据。
+- [LEMUR: Learned Multi-Vector Retrieval](https://arxiv.org/abs/2601.21853) (arXiv 2026): 最新多向量检索模型，实证表现优异但缺乏理论解释。本 proposal 正是要为此类模型提供容量理论基础。
+- [LIR: First Workshop on Late Interaction and Multi-Vector Retrieval @ ECIR 2026](https://arxiv.org/html/2511.00444): 表明多向量检索是 2026 年热点方向，有独立 workshop。
+- 调研总结: 单向量嵌入容量理论在 2025-2026 年已基本完成（Weller、Wang、Frick），但多向量容量理论完全空白，多篇论文明确将其列为 open problem。本 proposal 精准填补了这一空白，时机极佳，问题定位准确。
+
+【整体印象】:
+作为审稿人，第一反应是 "lean accept"。这是一篇定位精准、写作成熟、问题重要且时机恰当的理论 proposal。研究问题有明确的文献支撑（多篇论文显式呼吁），MaxSim-rank 的定义干净优雅，sum-of-all collapse 定理作为独立贡献已经很有价值（它用代数方式隔离了 max 操作的核心作用）。实验设计非常周全，远超大多数理论论文的实验标准。主要担忧集中在核心技术贡献（紧下界）的可行性上——proposal 自身也诚实地承认了这一点。如果最终只拿到 near-tight bounds 或特定矩阵族结果，论文整体贡献会显著下降。
+
+【核心贡献】:
+1. **MaxSim-rank 定义与框架**: 首个多向量检索的复杂度度量，类比 sign-rank 之于单向量。
+2. **Sum-of-all collapse 定理**: 优雅证明多向量表示本身（无 max）提供零容量增益，隔离了 max 操作的本质作用。
+3. **上界构造**: 通过分块 cyclic polytope 给出 MaxSim-rank ≤ ⌈rank±/k⌉。
+4. **下界尝试**: 试图将 Frick 等人的拓扑框架从双线性推广到分段线性打分。
+5. **综合实验验证**: 6 组实验，含参数预算对比、消融、与 MUVERA 的交叉验证。
+
+对领域的价值：如果紧下界成立（MaxSim-rank = Θ(rank±/k)），这将是检索理论的重要结果，正式解释了多向量模型的经验优势。即使仅有上界 + collapse 定理 + 实验，也是该方向的有价值开创性工作。
+
+【方法合理性】:
+方法整体合理，但存在梯度式的可行性差异：
+- **MaxSim-rank 定义**: 合理且自然，是 sign-rank 的正确推广。
+- **上界（分块 cyclic polytope）**: 思路清晰，利用正交子空间避免跨块干扰，数学上可行。
+- **下界 Strategy B（k-fold product + ℤ₂-index）**: 这是核心赌注。将 Frick 等人为双线性 kernel 定义的 sign complex 推广到分段线性（MaxSim），需要独立验证 sign complex 的结构（单纯 vs 胞腔复形）且文档向量共享可能破坏乘积分解。这不是"简单推广"，而是需要独立的技术突破。
+- **下界 Strategy A（ordering decomposition）**: Proposal 自己也标记为"more speculative"，依赖于 ℤ₂-index 在并集下的次可加性——这在拓扑组合学文献中没有已建立的支持。
+- **更简单的替代方案**: 信息论/counting 参数可能给出 Ω(rank±/(k·polylog)) 的弱下界，但无法回答核心问题（是否存在超越线性参数缩放的增益）。所以方法选择是合理的——要回答核心问题就必须走拓扑路线，但这也意味着高风险。
+
+【5 维度打分】:
+  1. 研究问题: [强] — 多向量检索容量理论是明确的 open problem，Weller (ICLR 2026)、Wang (arXiv 2026)、Archish S (arXiv 2026)、Hierarchical Retrieval (NeurIPS 2025) 四篇论文独立指出这一空白。问题本身对检索理论有基础性意义："max 操作是否提供超越参数缩放的表达能力增益"是一个干净、深刻、either-way-significant 的问题。
+
+  2. 方法与创新: [中偏强] — MaxSim-rank 定义和 sum-of-all collapse 是扎实的新贡献。上界构造借助 cyclic polytope 分块是合理的。但核心创新（紧下界）的技术路径存在显著不确定性：Frick et al. (arXiv 2026) 的拓扑框架严格依赖双线性结构，推广到分段线性需要非平凡的新结果。Proposal 诚实地标注了这些挑战，但"诚实标注困难"和"实际解决困难"是两回事。如果下界无法证明，仅靠上界 + collapse + 实验，novelty 会降至中等水平。
+
+  3. 实验设计: [强] — 这是本 proposal 的一大亮点。6 组实验设计系统完整：Exp 1 验证优化器可靠性（对非凸问题至关重要）、Exp 2 测量 critical-n（与 Weller 直接可比）、Exp 3 是核心对照实验（四种打分函数在固定参数预算下的对比）、Exp 4 消融研究覆盖多种矩阵族、Exp 5 与 MUVERA 交叉验证、Exp 6 在 LIMIT benchmark 上验证实际相关性。特别值得肯定的是：(a) 明确了 free embedding 实验仅提供上界（优化失败 ≠ 容量不足）、(b) 引入构造性容量证书来区分优化失败和容量限制、(c) 报告置信区间和效应量。这远超大多数理论论文的实验标准。
+
+  4. 可行性: [中] — 关键分层：(a) 框架定义 + 上界 + collapse 定理 + 实验 ≈ 高可行性（~90%），这些都是可以在合理时间内完成的工作；(b) 紧下界 ≈ 低-中可行性（~20-35%），因为需要在拓扑组合学中取得新突破；(c) fallback plan（near-tight bounds / specific matrix families）≈ 中-高可行性（~60-70%）。整体而言，论文一定可以写出来，但最终论文的"档次"高度依赖下界结果。计算资源需求合理（~200 GPU-hours），不是瓶颈。
+
+  5. 写作与呈现: [强] — Proposal 逻辑清晰、结构紧凑、动机阐述有力。特别值得称道的是：(a) "Why Max Is the Essential Ingredient" 节用三个层次递进论证（MaxSim ≠ concatenation → sum-of-all collapses → tropical algebra connection）、(b) 对 MUVERA 互补性的分析精确且有洞察力、(c) 对技术困难的坦诚标注（尤其是 Strategy A/B 的 caveats）、(d) 模块化贡献的明确列举体现了风险管理意识。如果实际论文保持这一质量，写作不会是瓶颈。
+
+【概率估计】: [28% - 42%] 中位 35%
+
+【估计理由】:
+上界因素（拉高概率）：
+- 研究问题极其精准且有明确文献需求，时机完美
+- 框架定义（MaxSim-rank）+ 上界 + collapse 定理本身已构成有意义的贡献
+- 实验设计极为周全，远超同类理论论文
+- 写作质量高，展示出对领域的深刻理解
+- 与 MUVERA 的互补叙事提供了额外的理论深度
+- 模块化贡献设计提供了抗风险能力
+
+下界因素（压低概率）：
+- 核心技术贡献（紧下界）的可行性存疑。将 Frick 等人的拓扑框架从双线性推广到分段线性打分是一个开放的数学问题，不是工程实现问题。如果下界无法证明，论文贡献主要是"框架 + 上界 + 实验证据"，这虽有价值但在顶会竞争中 novelty 偏弱。
+- 理论检索容量论文的受众相对窄。虽然 AAAI 是综合会议，但审稿人匹配可能不理想——需要同时熟悉拓扑组合学、sign-rank 理论和信息检索的审稿人。
+- 如果最终只有 near-tight bounds（fallback plan），论文叙事会从"解决了核心问题"降级为"开启了一个方向"，这在竞争中不够有力。
+
+综合判断：这是一篇定位准确、技术功底深厚的 proposal，但中稿概率高度依赖核心技术结果（紧下界）的实现。若紧下界成立，概率可达 45-55%；若仅有 fallback，概率约 22-30%。中位估计取两种情境的加权期望（≈35%），权重参考 proposal 自身对可行性的评估和拓扑推广的一般难度。
+
+【主要风险】:
+1. **紧下界不可行**: 将 Frick 的 ℤ₂-拓扑框架从双线性推广到 MaxSim 的分段线性打分需要解决至少两个独立的非平凡数学问题（sign complex 结构验证 + 文档向量共享下的乘积分解）。如果这两个问题中任何一个无法解决，核心贡献大幅缩水，论文可能仅停留在"有趣的框架定义 + 实验观察"层面，难以在顶会中脱颖而出。
+2. **审稿人匹配困难**: 该工作处于拓扑组合学 × sign-rank 理论 × 信息检索的交叉地带，需要跨领域审稿人。AAAI 的审稿池中这类审稿人可能稀少，导致审稿质量参差不齐——可能出现审稿人无法评判拓扑论证的正确性而给出保守分数的情况。
+
+【实施评估】:
+  - 计算资源: 低需求。Free embedding 优化无需大规模 GPU 训练，~200 GPU-hours（单卡现代 GPU 约 8-10 天），完全可控。
+  - 数据需求: 极低。使用随机二值矩阵 + 已知 sign-rank 矩阵族（Hadamard 等） + LIMIT 数据集（公开可用，仅 46 文档）。
+  - 人工介入: 低。实验自动化程度高，主要人工工作在理论证明。
+  - 训练需求: 无神经网络训练。仅 free embedding 向量优化（直接梯度下降/softmax relaxation）。
+  - 新 Benchmark: 无需构建。使用已有的 LIMIT + 标准矩阵族。
+  - 预估周期: 理论部分 6-10 周（含拓扑推广的探索时间，若不可行需切换到 fallback），实验部分 3-4 周，写作 2-3 周。总计约 3-4 个月，但下界证明可能需要更长探索期（具有高度不确定性）。
+```
+
+Sources:
+- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)
+- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)
+- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)
+- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)
+- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)
+- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/abs/2601.21853)
+- [LIR: First Workshop on Late Interaction and Multi-Vector Retrieval @ ECIR 2026](https://arxiv.org/html/2511.00444)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?
+
+## Motivation and Central Question
+
+Single-vector retrieval capacity is now well-characterized: sign-rank determines the minimum embedding dimension (Weller et al., ICLR 2026), and Wang et al. (arXiv 2026) proved MED = Θ(k) via cyclic polytopes, concluding that "limitations stem primarily from learnability challenges, not geometric constraints." But multi-vector models (ColBERT, LEMUR (arXiv 2026)) empirically outperform single-vector — is this because MaxSim's max operation genuinely expands representational capacity, or merely redistributes parameters? Despite 4+ recent papers explicitly identifying this as a critical open problem — Archish S et al. (arXiv 2026) calls for "formal theoretical analysis of multi-vector embedding capacity"; Wang et al. (arXiv 2026) restricts to single-vector; Hierarchical Retrieval (NeurIPS 2025) notes multi-vector dimension bounds are "unexplored"; Drowning in Documents (SIGIR Workshop 2025) demonstrates practical urgency — no formal framework exists for multi-vector retrieval capacity.
+
+We introduce MaxSim-rank, the first complexity measure for multi-vector retrieval, establishing a formal capacity theory for MaxSim scoring analogous to how sign-rank characterizes single-vector capacity. Given a binary relevance matrix A, MaxSim-rank(A, k) is the minimum dimension d such that k vectors per entity with sum-of-max-inner-product scoring realize A's sign pattern. The central question: **does MaxSim's max operation provide expressiveness beyond linear parameter scaling?** For fixed parameter budget B = kd, does (k vectors, d = B/k dims) under MaxSim achieve strictly greater sign-pattern capacity than (1 vector, B dims) under inner product?
+
+If yes: the max operation creates genuine geometric capacity gains, formally explaining multi-vector models' empirical advantages as a capacity phenomenon. If no: multi-vector advantage must arise from learnability/optimization — extending Wang et al.'s single-vector finding and revealing that MaxSim's success is an optimization story, not a capacity story. Either answer is significant.
+
+## Why Max Is the Essential Ingredient
+
+**MaxSim ≠ concatenation.** Concatenating k vectors into one kd-dimensional vector yields ⟨concat(Q), concat(D)⟩ = Σᵢ⟨qᵢ, dᵢ⟩ — a sum of **fixed-position** inner products (query vector i always pairs with document vector i). MaxSim computes Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ — a sum of **optimally-matched** inner products. The max allows each query vector to select its best-matching document vector, creating piecewise-linear rather than bilinear scoring.
+
+**Sum-of-all collapses to single-vector.** Consider replacing max with sum: Σᵢ Σⱼ⟨qᵢ, dⱼ⟩ = ⟨Σᵢqᵢ, Σⱼdⱼ⟩. This is algebraically equivalent to a single inner product between the average query and average document vectors — identical sign-pattern capacity to single-vector. This proves that multi-vector representation alone (without max) provides zero capacity gain; any capacity advantage must arise precisely from the max operation's optimal-matching structure.
+
+**Tropical algebra observation.** MaxSim's operations — max (selection) and sum (aggregation of inner products) — correspond to tropical semiring (max, +) operations. MaxSim-rank vs sign-rank thus instantiates tropical algebraic complexity vs classical algebraic complexity in a concrete retrieval setting.
+
+## Research Landscape
+
+**Single-vector capacity (solved).** Weller et al. (ICLR 2026) proved dimension ≥ rank±(2A−1)−1 is necessary and sufficient, demonstrated catastrophic failures on LIMIT (46 documents, k=2), and showed critical-n grows cubically with dimension for free embeddings. Wang et al. (arXiv 2026) proved MED = Θ(k) independent of corpus size via cyclic polytopes. Frick et al. (arXiv 2026) achieved the tightest sign-rank lower bounds via Z₂-equivariant topology (ind^{lin}_{Z₂}(S(A)) = rank±(A)−1), strictly for bilinear scoring. Hatami & Mande (APPROX/RANDOM 2022) characterized the limitations of three known sign-rank lower bound methods (VC-dimension, Forster's method, monochromatic rectangle density), showing that for some n×n matrices with sign-rank n^{Ω(1)}, none yields super-constant bounds.
+
+**Multi-vector capacity (open — this paper).** Archish S et al. (arXiv 2026) compared single-vector vs multi-vector drowning susceptibility via toy Gaussian models, acknowledging bounds are "suggestive but not tight." MUVERA (NeurIPS 2024) proved FDEs ε-approximate MaxSim/Chamfer similarity — an approximate, data-oblivious reduction (FDE dimension depends on ε and k, not on specific matrix A). LEMUR (arXiv 2026) demonstrates empirical multi-vector advantages without theoretical grounding.
+
+**Complementarity with MUVERA.** MUVERA shows multi-vector's approximate capacity can be matched by single-vector (FDE ε-approximation). This paper asks whether multi-vector's exact capacity strictly exceeds single-vector's. If both results hold, they yield a striking theoretical picture: multi-vector achieves strictly higher exact capacity, but this advantage vanishes under approximation — the gap between exact and approximate capacity is itself a fundamental insight into MaxSim's structure. MaxSim-rank is also data-dependent (dimension depends on matrix A's combinatorial structure), while FDE dimension is data-oblivious (universal for all matrices of given size); comparing the two quantifies the value of instance-adaptivity.
+
+## Proposed Approach
+
+**Definition.** MaxSim-rank(A, k) := min{d : ∃ query vectors {q^(i)_1,...,q^(i)_k} ⊂ R^d ∀i, document vectors {d^(j)_1,...,d^(j)_k} ⊂ R^d ∀j, s.t. sign(Σ_l max_m ⟨q^(i)_l, d^(j)_m⟩) = A_{ij} ∀i,j}.
+
+**Upper bound.** MaxSim-rank(A, k) ≤ ⌈rank±(2A−1)/k⌉ via partitioned cyclic polytope moment-curve constructions. Assign consecutive blocks of ⌈rank±/k⌉ moment-curve coordinates to each of k vectors. The blocks span orthogonal subspaces, so each sub-inner-product ⟨q^(i)_l, d^(j)_m⟩ depends only on block l's coordinates. Within each block, the max selects the best-matching document sub-vector; the sum across blocks reconstructs the target sign pattern. Orthogonality prevents cross-block interference.
+
+**Lower bound (two strategies, ranked by feasibility).** Extending lower bounds from bilinear to piecewise-linear scoring is the central technical challenge.
+
+- **Primary (Strategy B): k-fold product.** If the MaxSim sign complex decomposes as a k-fold product (one factor per query vector position) with Z₂-index additive over products (cf. Volovikov-type results), the k-factor reduction follows. **Key technical caveat:** (a) the MaxSim sign complex's structure (simplicial vs cell complex) under piecewise-linear scoring needs independent verification — Frick et al.'s definition relies on bilinear kernel structure; (b) document-vector sharing across queries may break the product decomposition. These are non-trivial intermediate results, not automatic extensions.
+
+- **Secondary (Strategy A): ordering decomposition.** Decompose MaxSim into k! bilinear orderings; the MaxSim sign complex becomes a union of bilinear sign complexes. Requires Z₂-index sub-additivity under unions — a property without established support in the topological combinatorics literature, making this more speculative.
+
+**Fallback plan.** If topological extensions fail: (a) information-theoretic/counting arguments for Ω(rank±(A)/(k · polylog)) lower bounds; (b) tight lower bounds for specific matrix families (Hadamard, structured sign matrices). Paper reframed as "near-tight bounds." The upper bound, MaxSim-rank definition, sum-of-all collapse result, and experimental evidence remain independently valuable.
+
+**Modular contributions** (each independently meaningful): (1) MaxSim-rank definition and framework, (2) upper bound via partitioned cyclic polytopes, (3) sum-of-all collapse theorem isolating max operation, (4) lower bound (tight or near-tight), (5) comprehensive experimental validation.
+
+## Experimental Design
+
+Notation: k_vec = number of vectors per entity; k_ret = top-k in retrieval. All capacity experiments use free embeddings (directly optimized vectors, no neural encoder). **Methodological note:** free embedding experiments provide **upper bounds** on MaxSim-rank — successful realization at dimension d proves MaxSim-rank ≤ d, but optimization failure does not prove MaxSim-rank > d (since MaxSim optimization is non-convex). Theoretical lower bounds and constructive certificates complement experiments to provide two-sided evidence.
+
+**Exp 1: Optimizer Reliability & Capacity Certificates.** Before measuring capacity, validate optimization methodology for MaxSim's non-convex landscape:
+- For (d, k_vec, n) known feasible (d above theoretical threshold), run ≥100 restarts; report success-rate vs restarts curves per (d, k_vec) regime.
+- Compare softmax relaxation (temperature annealing τ→0) and Gumbel-softmax with straight-through estimator; report which performs better per regime.
+- **Constructive capacity certificate:** at configurations where the upper bound guarantees feasibility, directly construct solutions using the cyclic polytope partition and verify correctness. If constructive certificate succeeds but optimization search fails nearby, diagnose as optimization gap (not capacity limitation).
+
+**Exp 2: Critical-n Measurement.** Define critical-n(d, k_vec) = largest n s.t. free multi-vector embedding (best of R≥50 restarts) achieves 100% correct sign-pattern realization across T≥20 independent random binary matrices. Binary-search with termination at adjacent success/failure n differing by 1. Also report median critical-n (≥50% of matrices succeed) for robustness. Cap: n_max = 5000; if not reached, report as "> 5000."
+- Grid: d ∈ {2, 4, 8, 16, 32, 64}, k_vec ∈ {1, 2, 4, 8, 16, 32}.
+- k_vec=1 replicates Weller et al.'s cubic growth (sanity check).
+- Log-log fit of critical-n vs d, verify exponent grows with k_vec, report 95% CI.
+- Report minimum margin at critical-n to detect capacity saturation.
+
+**Exp 3: Scoring Function & Parameter Allocation Comparison (Core Experiment).** This experiment directly addresses the central question. Fix parameter budget B = k_vec × d. Compare four scoring functions at matched total parameters:
+- **(a) Single-vector inner product:** 1 vector, B dims.
+- **(b) Fixed-position sum:** k_vec vectors, d dims, scoring = Σᵢ⟨qᵢ, dᵢ⟩ (bilinear, equivalent to (a)).
+- **(c) MaxSim:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩.
+- **(d) Chamfer similarity:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ + Σⱼ maxᵢ⟨qᵢ, dⱼ⟩ (bidirectional max-sum).
+- B ∈ {32, 64, 128, 256, 512}; for each B sweep k_vec ∈ {1, 2, 4, 8, ...}.
+- Measure critical-n for each (B, k_vec, scoring) across T≥20 matrices. Report effect size (capacity gain ratio = critical-n(MaxSim)/critical-n(single)) with paired comparison across matrix instances.
+- If (c) > (b) ≈ (a): max operation provides genuine capacity gain beyond parameter redistribution.
+- If (d) > (c): bidirectional matching provides additional capacity.
+
+**Exp 4: Ablation Studies.**
+- k_vec-sweep: matrices with known sign-rank upper bounds (via rank-r real matrices → sign, r ∈ {8, 16, 32, 64}; Hadamard matrices with sign-rank O(log n); Identity extensions with sign-rank n; Kronecker products of small known-sign-rank matrices). Sweep k_vec, verify MaxSim-rank ∝ 1/k_vec.
+- Matrix structure ablation: verify MaxSim-rank ∝ rank±(A)/k across diverse matrix families.
+
+**Exp 5: Cross-Framework Validation (MUVERA).** For matrices in Exp 4, compute MUVERA's theoretical FDE dimension for ε-approximation. Verify FDE dim ≥ MaxSim-rank (expected since FDE is data-oblivious/universal). This is a sanity check on framework consistency, not a claim of equivalence.
+
+**Exp 6: LIMIT Benchmark.** Free multi-vector embeddings on LIMIT's 46-document setup (Weller et al., ICLR 2026). Binary relevance matrices via top-k_ret ∈ {1, 2, 5}. Compare k_vec=1 vs k_vec ∈ {2, 4, 8}. Demonstrates practical relevance.
+
+**Compute budget.** Free-embedding optimization only (no neural training). Primary cost: Exp 2 grid (36 cells × binary search × 50 restarts) + Exp 3 (5 budgets × sweeps × 4 scoring × 20 matrices). Estimated ≤200 GPU-hours on a single modern GPU with n_max=5000 cap.
+
+## Key References
+
+- On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)
+- R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., arXiv 2026)
+- A Z₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., arXiv 2026)
+- MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)
+- On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., arXiv 2026)
+- LEMUR: Learned Multi-Vector Retrieval (arXiv 2026)
+- Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)
+- Drowning in Documents: Consequences of Scaling Reranker Inference (SIGIR Workshop 2025)
+- Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2726f7c8-c193-4107-bf09-b3e22b74ba6b",
+  "type": "user",
+  "uuid": "6f803261-9b09-4137-af80-d96ed7eb0613",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:35:14.428Z_
+
+```json
+{
+  "parentUuid": "6f803261-9b09-4137-af80-d96ed7eb0613",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6b2b7b6e-e1f9-47e8-a0b8-1c0cd5725b64",
+  "timestamp": "2026-05-30T07:35:14.428Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:35:14.428Z_
+
+```json
+{
+  "parentUuid": "6b2b7b6e-e1f9-47e8-a0b8-1c0cd5725b64",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a20a107c-aab5-455a-8215-5822d2ac37b6",
+  "timestamp": "2026-05-30T07:35:14.428Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient field context to provide a thorough eval…",
+  "leafUuid": "a20a107c-aab5-455a-8215-5822d2ac37b6",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze multi-vector retrieval capacity with MaxSim-rank",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:35:41.240Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments systematically to produce a Meta Judge output.
+
+**Reviewer 1**: [25% - 42%] 中位 33%
+**Reviewer 2**: [25% - 40%] 中位 32%
+**Reviewer 3**: [28% - 42%] 中位 35%
+
+Three medians: 33%, 32%, 35%
+Mean of medians: 33.3%
+Std of medians: Let me calculate...
+- Mean = (33+32+35)/3 = 33.33
+
+
+- Variance = ((33-33.33)² + (32-33.33)² + (35-33.33)²)/3 = (0.11 + 1.78 + 2.78)/3 = 4.67/3 = 1.56
+- Std = √1.56 ≈ 1.25%
+
+This is very high consistency (std < 3%). Now I'm checking the consensus across the five rubric dimensions, starting with the research question where all three reviewers rated it as strong.
+
+For method and innovation, there's complete agreement at the medium-to-strong level across all reviewers. The experimental design also shows perfect consensus with all three giving it a strong rating. Feasibility is consistently rated as medium by everyone. And writing and presentation received strong ratings from all three reviewers, so there are no anomalies to flag here.
+
+Looking at the risk assessment, all three reviewers converge on the same two critical issues: the feasibility of proving tight lower bounds, and either page constraints or reviewer matching concerns. They all recognize the bimodal nature of the outcome—either the lower bound proof succeeds or it doesn't—and they all see the modular structure as a way to mitigate this risk.
+
+On the implementation side, there's complete alignment that compute requirements are minimal, there's no data dependency or model training needed, the theoretical proof is the main bottleneck, and the timeline sits at 3-5 months with significant uncertainty around the lower bound work. The standard deviation across ratings is about 1.25%, well below the 3% threshold, indicating very tight consensus.
+
+Now I'm looking at the three probability ranges from the reviewers and finding their intersection. The overlapping region is 28% to 40%, with the median of their individual medians landing at 33%. Given this high consistency, I should narrow the interval around the median neighborhood rather than taking the full outer bounds.
+
+I'll settle on 27% to 40% with a median of 33%. This sits just below the 36% threshold for a strong recommendation, putting it in the marginal category, though iteration could potentially push it higher.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a20a107c-aab5-455a-8215-5822d2ac37b6",
+  "isSidechain": false,
+  "requestId": "req_011CbYNJ4DkQT74RNPcVBdEF",
+  "type": "assistant",
+  "uuid": "fc669d79-8508-4a71-a1d2-8ae1a957a406",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019CwJU2opB1RQJRcuCJ8FJz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19950,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 2891,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2891,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 19950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-30T07:36:23.750Z_
+
+【阶段】: Meta Judge
+【三次中位】: [33%, 32%, 35%]  std=1.25%
+【共识维度】:
+- 研究问题: 强（3/3 一致）— 多向量检索容量是被 4+ 篇近期论文明确标注的 open problem，问题定义干净、either-way-significant
+- 方法与创新: 中偏强（3/3 一致）— MaxSim-rank 定义和 sum-of-all collapse 是扎实贡献；核心创新（紧下界）技术路径存在显著不确定性
+- 实验设计: 强（3/3 一致）— 6 组实验环环相扣，远超同类理论论文标准；方法论自我审视（free embedding 仅提供上界）加分
+- 可行性: 中（3/3 一致）— 框架+上界+collapse+实验高可行；紧下界低-中可行（~20-35%）；fallback 保底但削弱贡献
+- 写作与呈现: 强（3/3 一致）— 逻辑链条紧密，对风险坦诚标注增加可信度
+- 核心风险 #1: 紧下界证明可行性（3/3 一致标注为最大风险）— 两条策略均面临未解决的拓扑前置问题
+- 核心风险 #2: 下界失败后贡献完整性不足（3/3 一致）— "定义+上界+实验"组合 novelty 降至中等，难以在顶会竞争中脱颖而出
+- 概率双峰结构（3/3 一致）：紧下界成功 → 45-55%；仅 fallback → 20-30%
+
+【异常维度】:
+- 8 页内容过载风险（仅 R1 提及）：5 个模块化贡献 + 6 个实验在 AAAI 8 页限制内可能过载。R2、R3 未提及此问题。判断：有一定道理但不构成致命风险，精炼写作可化解，降权处理。
+- 审稿人匹配困难（R2、R3 提及，R1 未显式提及）：拓扑组合学 × sign-rank × IR 交叉地带的审稿人稀缺。虽然只有 2/3 显式提及，但这是理论交叉领域论文的通用风险，不特别针对本文，适度考虑。
+- 纯合成实验与实践脱节（仅 R2 提及）：所有实验均为 free embedding + 随机/结构化矩阵，缺乏 learned embedding 实验。R1、R3 未将此视为风险。判断：对理论论文而言标准不同，且 Exp 6（LIMIT benchmark）提供了微弱的实践连接，降权处理。
+
+【最终概率】: [27% - 40%] 中位 33%
+【一致性】: 高（std=1.25% < 3%）
+【综合理由】:
+三位审稿人在所有 5 个 rubric 维度上给出完全一致的判决（强/中偏强/强/中/强），在核心风险识别上高度一致（紧下界可行性、贡献完整性），在概率估计上极为收敛（中位 32-35%，std 仅 1.25%）。这是罕见的高一致性评审结果，表明 proposal 的优势和短板都非常清晰、不存在歧义。
+
+按高一致性规则取中位附近并缩窄区间：三份评审的下界交集为 28%，上界交集为 40%，中位的中位为 33%。考虑到三位审稿人独立且一致地识别出概率的双峰结构（紧下界成功 vs. fallback），33% 的加权期望值具有强鲁棒性。最终区间 [27%-40%] 略向下微扩（反映紧下界完全失败的尾部风险），上界不超过任何一份评审的最宽松上界。
+
+该 proposal 的核心特征是**高天花板 + 高不确定性**：idea 质量（研究问题 + 定义框架）足以支撑一篇顶会论文，但核心理论贡献（紧下界）的实现概率本身是一个独立的数学研究问题，不是工程实现问题。三位审稿人一致认为 fallback 方案保证了可发表性但不保证顶会水平，这一判断可信。
+
+【建议】: 边缘（中位 33% 接近但未达 36% 阈值，进入迭代优化有提升空间）
+
+【实施评估】:
+  - 计算资源: 低需求，≤200 GPU-hours（单卡现代 GPU），仅 free embedding 向量优化，无需大规模训练基础设施（3/3 一致）
+  - 数据需求: 极低，使用随机二值矩阵 + 结构化矩阵（Hadamard 等）+ LIMIT benchmark（公开可用，46 文档），无新数据收集需求（3/3 一致）
+  - 人工介入: 低，实验高度自动化，主要人工投入在定理证明，需要拓扑组合学和代数几何专业知识（3/3 一致）
+  - 训练需求: 无神经网络训练，仅直接向量优化（SGD/Adam on free embeddings）（3/3 一致）
+  - 新 Benchmark: 不需要，使用已有 LIMIT + 合成矩阵（3/3 一致）
+  - 预估周期: 理论部分 2-4 个月（高度不确定，下界证明可能被卡住），实验部分 3-5 周，写作 2-3 周。总计乐观 3-4 个月，悲观（含探索期）5-6 个月。瓶颈完全在理论证明而非实验或资源（3/3 一致）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc669d79-8508-4a71-a1d2-8ae1a957a406",
+  "isSidechain": false,
+  "requestId": "req_011CbYNJ4DkQT74RNPcVBdEF",
+  "type": "assistant",
+  "uuid": "d7b9a2cc-fb7b-4716-8692-6c47ed642d5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019CwJU2opB1RQJRcuCJ8FJz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19950,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 2891,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2891,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 19950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient field context to provide a thorough eval…",
+  "leafUuid": "d7b9a2cc-fb7b-4716-8692-6c47ed642d5b",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze multi-vector retrieval capacity with MaxSim-rank",
+  "sessionId": "c52de4b3-0c9c-4c27-9bde-8b122e0a6fd6"
+}
+```
+
+---

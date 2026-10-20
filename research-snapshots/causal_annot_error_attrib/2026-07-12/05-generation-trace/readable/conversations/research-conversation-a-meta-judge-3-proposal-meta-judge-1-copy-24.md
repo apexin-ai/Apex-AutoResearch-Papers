@@ -1,0 +1,1002 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/f3cdc48e-4200-40da-89e2-020ed7602395.jsonl`
+- **Structured JSON:** [`a035b980db1ccf36a6c2.json`](../../sessions/a0/a035b980db1ccf36a6c2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T12:50:42.302Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T12:50:42.302Z",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient context to provide a comprehensive assessment. Let me compile the final evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【Trivial Alternative 检验】:\n三个主要的 trivial alternatives 需要检视：\n\n1. **\"无序数据增强 (Flat Augmentation) 就够了\"**：即不需要 curriculum 排序，只需让分类器见到足够多样的编码数据即可。Proposal 已设计 flat augmentation 和 random-order baselines 来直接测试这一点——这是最关键的对照。但核心风险仍在：如果 random-order 和 curriculum 之间的差距 <10pp（H1 的 threshold），整篇论文的核心 claim 就被大幅削弱，而这个结果是完全可能发生的。\n\n2. **\"先解码再分类 (Decode-then-Classify)\"**：DecipherGuard (2025.09) 已提出带 deciphering layer 的 pipeline，在 22,000+ prompts 上比 LlamaGuard 提升 36-65% DSR。Proposal 虽以 \"Qwen-decode + LlamaGuard\" 和 \"deterministic decode + LlamaGuard\" 作为 baselines，但未提及 DecipherGuard 这一最直接的 pipeline 竞争者。如果 DecipherGuard 的 deciphering layer 在嵌套编码上也表现不差，那么 curriculum 方法的实际增量价值会受质疑。\n\n3. **\"更大模型/更好训练数据就行了\"**：Constitutional Classifiers++ (2026.01) 通过合成数据 + activation probing 将 jailbreak 成功率降至 4.4%。这是工业级强 baseline——如果 CC++ 已经近乎解决了这个问题，本文的实际贡献空间被压缩。\n\n**结论**：Proposal 对 alternative (1) 有良好的实验控制；但对 (2) 和 (3) 的差异化论证严重不足。\n\n【前提假设检验】:\n逻辑链条中有几个 \"想当然\" 的环节：\n\n1. **\"4B 模型能学会隐式解码复杂嵌套编码\"**——这是全文最强的前提假设。Base64(ROT13(homoglyph(text))) 在 token 层面的信息几乎完全被破坏，一个 4B 模型要隐式逆向多层编码并提取语义，这是非常强的能力假设。虽然 Trojan-Speak (2026.03) 证明了 curriculum 可以教会模型编码能力（攻击方向），但那是在 14B+ 模型上实现的，4B 是否足够存疑。\n\n2. **\"Curriculum ordering 的效果来自 progressive decoding skill acquisition 而非仅仅是更好的训练动态\"**——differential prediction 是一个好的测试设计，但如果实验结果是 \"approximately constant gap\"（即支持 catastrophic interference 假设），论文叙事将大幅弱化——虽然 proposal 声称 \"both outcomes are informative\"，但主要贡献框架是围绕 progressive decoding 构建的。\n\n3. **\"编码空间的组合结构提供了自然的难度排序\"**——Nesting depth 确实是一个直觉上合理的复杂度轴，但 ECS 的三个组件的加权组合是否真正捕获了\"对分类器的难度\"（而非对人类的难度）需要验证。Proposal 的 ECS validation 设计是合理的（cross-classifier correlation），但如果 ρ < 0.7，ECS 的理论基础就动摇了。\n\n4. **\"Mapping-function OOD 会有强迁移\"**——假设模型从 ROT13 学到的泛化到 custom Caesar cipher，这要求模型学到\"字符替换\"的抽象概念而非具体映射表。虽然合理，但并非必然。\n\n【5 维度打分】:\n\n  1. Novelty: 【中-】\n     — 核心 idea（用 curriculum learning 的编码复杂度排序训练安全分类器）是对已有技术在特定领域的直觉应用，并非 surprising。关键缺陷：\n     (a) Trojan-Speak (2026.03) 已使用 curriculum learning + GRPO 在编码空间训练模型（攻击方向），方法论工具箱高度重叠。本文本质上是\"Trojan-Speak 的防御镜像\"——有价值，但 novelty 被压缩。\n     (b) \"Curriculum helps with compositional challenges\" 是 curriculum learning 文献中已有的直觉。\n     (c) ECS 指标是三个直觉组件的加权和，贡献有限。\n     亮点：differential prediction 机制检验设计有新意；scope conditions 的主动界定是好的学术实践。但这些是方法论细节层面的优点，不足以拉高整体 novelty。\n\n  2. Technical Soundness: 【强】\n     — 实验设计是本 proposal 最突出的优点：\n     (a) 10 个 baselines 覆盖面广（ordering ablation、DG methods、pipeline、frontier LLM）；\n     (b) 统计严谨性好（5 seeds for core claims, bootstrap CI, Cohen's d, Bonferroni correction）；\n     (c) Compute fairness 有明确控制（FLOP matching, compute-matched static variant）；\n     (d) 防 shortcut 设计好（encoded-benign FPR 测试）；\n     (e) Representation analysis（CKA + linear probing + learning dynamics）提供了机制层面的证据；\n     (f) Differential prediction 是一个有力的 mechanism test。\n     唯一弱点：缺少 DecipherGuard 和 CC++ 作为 baseline。\n\n  3. Significance: 【中】\n     — 编码攻击是真实存在的安全威胁（76.2% 攻击成功率的报道）。但：\n     (a) 防御空间已相当拥挤：DecipherGuard、CC++、SecurityLingua、Representation Rerouting 等近一年内密集发表；\n     (b) Scope conditions 限制了实际影响——对结构不同的编码范式（Pig Latin, T9）可能无效，意味着攻击者仍可绕过；\n     (c) Arms race 本质：Bijection learning 攻击可以创建任意编码，从根本上挑战任何基于训练时编码覆盖的防御；\n     (d) CC++ 已将 jailbreak 成功率降至 4.4%，本文需要证明在 CC++ 之上还有增量价值。\n\n  4. Feasibility: 【强】\n     — 实验计划现实可行：\n     (a) 4× A100 80GB 是合理资源需求；\n     (b) 17 天时间线紧凑但有清晰的 buffer 和 fallback plan；\n     (c) API 成本可控（~$400）；\n     (d) Co-evolutionary 不稳定时有 static curriculum fallback；\n     (e) Tokenizer audit（Day 1-2）和 oracle pilot 是好的风险管控。\n     风险点：25 个训练 run 的 parallelization 假设 4 GPU 全程可用且无故障。\n\n  5. Related Work: 【弱】\n     — 这是本 proposal 最严重的缺陷。以下关键近期工作完全未被提及或讨论：\n     (a) **Trojan-Speak (2026.03)**：使用 curriculum learning + GRPO 在编码空间训练模型——方法论与本文高度重叠，是最直接的相关工作，未提及是致命遗漏；\n     (b) **DecipherGuard (2025.09)**：最直接的 encoding-specific 防御 baseline，未提及；\n     (c) **Constitutional Classifiers / CC++ (2025.01 / 2026.01)**：工业级强 baseline，未作为 baseline 纳入；\n     (d) **SecurityLingua (2025.06)**：prompt compression 防御方法，未提及；\n     (e) **Bijection Learning**：任意编码攻击，直接挑战本文的 scope conditions。\n     当前 related work 仅覆盖 2018-2021 的 curriculum/DG/compositional generalization 文献，对 2025-2026 的 encoding-specific safety 文献近乎空白。审稿人几乎必然会指出这一点。\n\n【概率估计】: [18% - 30%] 中位 24%\n\n【估计理由】:\nNovelty 和 Significance 均为\"中\"或以下 → 按 rubric，概率上限约 35%。但 Related Work 的严重缺陷（特别是遗漏 Trojan-Speak 这一高度重叠的近期工作）会进一步压低评分——审稿人会质疑作者是否了解领域现状。\n\n具体推理：\n- 基于 Novelty（中-）和 Significance（中），idea 质量上限约 30-35%\n- Technical Soundness（强）和 Feasibility（强）支撑了地板，防止跌入 15% 以下\n- Related Work（弱）严重拖后腿，可能导致 1-2 位审稿人直接给 borderline reject\n- 如果补上 related work gap（尤其是与 Trojan-Speak 的差异化论证、CC++ 作为 baseline），概率可以回升至 28-33%\n- 核心 idea \"curriculum for encoding robustness\" 的 surprise factor 不够——如果告诉审稿人 \"按编码复杂度排序训练数据能提高泛化\"，多数 NLP 安全方向的审稿人不会感到 surprised\n\n【主要风险】:\n1. **Trojan-Speak 重叠风险**：审稿人发现 Trojan-Speak 已使用几乎相同的工具箱（curriculum + GRPO + encoding space），会质疑本文 novelty 是否仅为\"攻防翻转\"——若无充分差异化论证，可能直接导致 reject。\n2. **Core claim 实验失败风险**：若 curriculum 与 random-order 的差距不显著（< 10pp），或 differential prediction 支持 catastrophic interference 而非 progressive decoding，论文叙事的核心将崩塌。此时论文仍有贡献（negative result + ECS + baselines 对比），但不足以达到 EMNLP 主会标准。\n\n【实施评估】:\n  - 计算资源: 4× A100 80GB，合理且可获取，总 GPU 时间约 264 GPU-hours（66h × 4 GPU）\n  - 数据需求: HarmBench + AdvBench + WildGuardTest（公开数据集）+ LMSYS-Chat-1M（公开）；编码生成器需自行实现（6 个 held-out 编码族 + 8 个训练编码类型）\n  - 人工介入: 较低——oracle 基于 GPT-4o + deterministic decoder 自动化；少量人工用于 tokenizer audit 和 encoding generator 验证\n  - 训练需求: 需要训练——25 个分类器 run（Qwen2.5-4B SFT）+ 攻击者训练（Qwen2.5-1.5B GRPO）；不涉及预训练\n  - 新 Benchmark: 需构建 EncoAttack（12,000 test cases），但设计已明确，实现难度中等\n  - 预估周期: 17 天（含 2 天 buffer）——在实验团队有经验且 GPU 全程可用的前提下可行，但时间余量紧张；若遇到 co-evolutionary 不稳定或 GPU 排队，可能需 20-25 天\n```\n\n**补充建议（如果继续推进）：**\n\n1. **紧急补充 Related Work**：必须加入 Trojan-Speak、DecipherGuard、CC++、SecurityLingua 的讨论，并明确差异化定位。特别是与 Trojan-Speak 的关系——可以框架为 \"Trojan-Speak 证明了 curriculum 在编码空间的有效性（攻击端），我们系统性地研究这一机制在防御端的运作方式及其 scope conditions\"。\n\n2. **增加 CC++ 作为 baseline**（或至少充分讨论为何不可比较——如 CC++ 依赖内部 activation 访问而本文是外部分类器）。\n\n3. **强化 novelty 叙事**：从 \"curriculum 用于编码鲁棒性\" 转向 \"对编码空间中 curriculum-induced generalization 的系统性实证研究 + scope conditions 界定\"——将重心从方法转向理解和分析性贡献。\n\n4. **讨论 Bijection Learning 攻击**：作为 scope condition 的一部分，坦诚讨论任意编码攻击对本方法的根本挑战。\n\nSources:\n- [DecipherGuard: Understanding and Deciphering Jailbreak Prompts](https://arxiv.org/abs/2509.16870)\n- [SecurityLingua: Efficient Defense of LLM Jailbreak Attacks via Security-Aware Prompt Compression](https://arxiv.org/abs/2506.12707)\n- [Constitutional Classifiers++: Efficient Production-Grade Defenses against Universal Jailbreaks](https://arxiv.org/html/2601.04603v1)\n- [Trojan-Speak: Bypassing Constitutional Classifiers with No Jailbreak Tax via Adversarial Finetuning](https://arxiv.org/abs/2603.29038)\n- [Next-generation Constitutional Classifiers (Anthropic)](https://www.anthropic.com/research/next-generation-constitutional-classifiers)\n- [Cost-Effective Constitutional Classifiers via Representation Re-use](https://alignment.anthropic.com/2025/cheap-monitors/)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nBased on my research into the current landscape, I can now provide a comprehensive evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【Trivial Alternative 检验】:\n两个主要 trivial alternative 需要认真对待：\n\n1. **\"直接多样化数据增强\"（Flat Augmentation）**: 不用 curriculum ordering，只是在训练时加入各种 encoding 类型的数据——这是最直接的 trivial alternative。Proposal 已将其作为 baseline (flat augmentation)，但核心问题是：如果 curriculum 相对 flat augmentation 只有 marginal improvement（比如 3-5pp 而非 10pp），整篇论文的贡献就会大幅缩水。H1 设定 ≥10pp 的阈值是合理的，但能否达到是个实证问题。\n\n2. **\"Decode-then-classify pipeline with better decoders\"**: 随着 small LM 能力提升（如 Qwen2.5-3B/7B 作为 decoder），error propagation 问题在实际中可能没有论文声称的那么严重。一个 3B decoder + LlamaGuard 的 pipeline 在 nested encoding 上的实际表现可能比预期更好。Proposal 虽然包含了此 baseline，但如果 pipeline 表现不差，则\"端到端 curriculum 方法\"的存在理由被削弱。\n\n3. **MrGuard (EMNLP 2025 main) 类似方法论**: MrGuard 已在多语言 guardrail 中使用 curriculum + GRPO。将同样方法应用于 encoding domain 是否构成足够的 novelty？\n\n【前提假设检验】:\n\n1. **\"4B 模型可以学到 implicit decoding\"**: 这是最核心的逻辑假设。对于高 ECS（多层嵌套编码），token 级别的语义信息被声称\"destroyed\"，但随后又声称模型学会了\"implicit decoding\"。如果信息在 tokenization 阶段就已损失，模型无法恢复它——这取决于 tokenizer 对各种 encoding 的实际保留率。Tokenizer audit 只要求 ≥90% 信息保留，但这是对 held-out encodings 的要求；训练时的 nested encodings 的保留率未明确验证。\n\n2. **\"Encoding space 具有 intrinsic compositional structure\"**: Proposal 声称 encoding space 天然适合 curriculum（不像其他领域 curriculum ordering 是 artificial 的），但这个声称本身需要验证。Nesting depth 确实是一个自然轴，但是否所有 encoding attack 都可以在这个轴上有意义地排列？混合攻击（partial encoding + plaintext mixing）可能不适合 ECS 的简单线性组合。\n\n3. **\"Differential prediction 可以区分两种机制\"**: \"Progressive decoding skill acquisition\" vs. \"catastrophic interference prevention\" 并非唯一两种可能解释。第三种可能：深层嵌套本身更难、variance 更大，所以任何 non-trivial 训练策略在深层都会有更大的 margin。Differential prediction 的解释力有限。\n\n4. **\"Scope condition (H2b) 不会破坏 narrative\"**: 如果 encoding-principle OOD 显示 curriculum 没有优势，论文的故事变成\"只在同结构编码中泛化\"——这一结论的实用性可能不够让审稿人信服。\n\n【5 维度打分】:\n\n1. Novelty: [中偏弱] — \n   核心方法论（curriculum + GRPO for guardrail robustness）与 MrGuard (EMNLP 2025 main) 高度相似，后者已在多语言场景中展示了 curriculum + GRPO 的有效性。本文的差异化在于：(a) ECS complexity metric, (b) OOD generalization + scope conditions, (c) differential prediction test for mechanism。这些是有价值的补充贡献，但\"将已知方法应用于相邻领域 + 更仔细的 mechanistic analysis\"在 novelty 上有天花板。Gamma-Guard (EMNLP 2025 main) 也已展示 lightweight adapter 方法用于 guardrail robustness。整体来看，核心 insight（\"按难度排序训练数据有助于组合泛化\"）直觉上合理但不够 surprising。\n\n2. Technical Soundness: [强] — \n   实验设计非常全面：10+ baselines、compute fairness 控制、5 seeds statistical rigor、representation analysis (CKA + linear probing)、encoded-benign FPR 防止 shortcut learning、pre-specified effect sizes、scope conditions 的诚实处理。Differential prediction 设计虽有局限但增加了 mechanistic depth。Class balance 设计（benign 也做 encoding augmentation）表明对 confound 有深入思考。这是这篇 proposal 最强的维度。\n\n3. Significance: [中] — \n   问题本身是 validated 的（EMNLP 2025 Findings 论文确认 guardrails 对 encoding mutations 脆弱）。但：(a) encoding jailbreak 只是众多攻击类型之一，(b) bijection learning 等新攻击表明对抗性编码在快速进化，固定的 curriculum 训练能否跟上？(c) 如果 scope condition 限制泛化到\"same structural family\"，实际部署价值有限——攻击者会直接使用 structurally different encodings。(d) 更宏观地，reasoning-based guardrails（如 R2-Guard, MrGuard）可能是更有前途的方向，让 explicit reasoning 处理各种 perturbation。\n\n4. Feasibility: [强] — \n   资源需求合理（4×A100, 17天），pipeline 清晰，有明确 fallback（co-evolution 不稳定则用 static curriculum），pilot study 设计合理。所有组件都基于公开可用的模型和数据。唯一风险是 co-evolutionary 训练的稳定性，但 fallback 已覆盖。\n\n5. Related Work: [中] — \n   对 curriculum adversarial training、DG、compositional generalization 的定位合理。但对最直接竞争者的处理不够：(a) MrGuard (EMNLP 2025 main) 使用 curriculum + GRPO 用于 multilingual guardrail robustness——方法论高度重叠，需要明确说明差异；(b) Gamma-Guard (EMNLP 2025 main) 提出 lightweight adapter for guardrail robustness；(c) JBShield (USENIX 2025) 展示跨 unseen jailbreak 的 transferability。这些直接竞争者若不充分讨论，审稿人会质疑 novelty claim。\n\n【概率估计】: [18% - 28%] 中位 23%\n\n【估计理由】: \nNovelty 和 Significance 都落在\"中偏弱\"到\"中\"区间，这直接约束了概率上限在 30% 左右。具体推理：\n\n- **上限约束 (Novelty/Significance)**: 核心方法论与 MrGuard (EMNLP 2025 main) 重叠是最大 novelty 风险。即使实验做得完美，\"已发表方法在相邻领域的应用 + 更细致的分析\"的 novelty ceiling 约在 30-35%。问题的 significance 适中（不是 LLM safety 最核心的问题），进一步压低上限到 ~28%。\n\n- **地板 (Technical Soundness/Feasibility)**: 实验设计确实很强，这避免了\"实验漏洞致命\"的最低分区间。Strong technical design 将下界从 ~15% 提升到 ~18%。\n\n- **风险加权**: (1) 如果 H1 的 effect size < 10pp → 论文核心 claim 不成立；(2) 如果 H2b 显示 curriculum 完全没优势 → 泛化故事被大幅削弱；(3) 如果审稿人将 MrGuard 视为直接先驱 → novelty 被质疑。这些风险的概率非 trivial。\n\n- **最终定位**: 在 EMNLP 主会 20-25% 录取率下，这篇论文处于 borderline 区域下方。好的一面是实验 rigor 可能打动 execution-oriented 的审稿人；差的一面是 novelty 不足以打动 idea-oriented 的审稿人。中位数 23% 反映了这种不确定性。\n\n【主要风险】: \n1. **Novelty 被 MrGuard 削弱**: MrGuard (EMNLP 2025 main) 已展示 curriculum + GRPO 用于 guardrail robustness。审稿人可能判定本文仅是\"换了个 domain\"的 incremental extension，特别是如果作者未能有力论证 encoding domain 的特殊挑战为何需要不同于 multilingual domain 的技术处理。\n2. **Effect size 不足以支撑 narrative**: 如果 curriculum vs. flat augmentation 的差距仅 3-5pp（而非预期的 10pp），论文的核心\"curriculum ordering matters\"claim 就变得 weak。此时大量的 mechanism analysis 变成了对 marginal effect 的过度解释。\n\n【实施评估】:\n  - 计算资源: 4×A100 80GB，合理且可获得\n  - 数据需求: HarmBench + AdvBench + WildGuardTest + LMSYS-Chat-1M（均公开可用）；encoding generators 需自建但 straightforward\n  - 人工介入: Oracle 标注依赖 GPT-4o（~$250），可控\n  - 训练需求: 是，需要训练 classifier (Qwen2.5-4B SFT) 和 attacker (Qwen2.5-1.5B GRPO)，25 个 classifier runs\n  - 新 Benchmark: 部分——EncoAttack 是新构建的 supplementary benchmark；held-out encoding families 需自定义实现\n  - 预估周期: 17 天（含 buffer），激进但可行；主要瓶颈是 25 个 classifier runs 的 GPU 排队\n```\n\n---\n\nSources:\n- [On Guardrail Models' Robustness to Mutations and Adversarial Attacks](https://aclanthology.org/2025.findings-emnlp.922/)\n- [MrGuard: A Multilingual Reasoning Guardrail for Universal LLM Safety](https://aclanthology.org/2025.emnlp-main.1392/)\n- [Gamma-Guard: Lightweight Residual Adapters for Robust Guardrails](https://aclanthology.org/2025.emnlp-main.614.pdf)\n- [Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation (2026)](https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf)\n- [JBShield: Defending Large Language Models from Jailbreak Attacks](https://www.usenix.org/system/files/conference/usenixsecurity25/sec25cycle1-prepub-341-zhang-shenyi.pdf)\n- [Defending Large Language Models Against Jailbreak Attacks via In-Decoding Safety-Awareness Probing](https://arxiv.org/html/2601.10543v1)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient context from the related work landscape. Let me synthesize my full assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【Trivial Alternative 检验】:\n两个关键的 trivial alternatives 需要审视：\n\n1. **\"Flat augmentation\"（多样编码数据直接训练，不排序）能否达到类似效果？**\n   这是本文最核心的存亡问题。Proposal 已将 flat augmentation 列为 baseline，这是正确的。但风险在于：如果 curriculum ordering 的优势仅有 3-5pp（而非声称的 ≥10pp），整篇论文的核心贡献将瓦解。Encoding space 的组合结构确实提供了非任意的 difficulty ordering（比一般 curriculum learning 的应用场景更有利），但优势的 *量级* 高度不确定。\n\n2. **\"Deterministic decode pipeline + 现有 guardrail\"对已知编码已极其有效。**\n   搜索显示 DecipherGuard (Sep 2025) 将 LlamaGuard 对 Base64 的 DSR 从 2.55% 提升至 98.74%。对已知单层编码，rule-based pipeline 几乎是完美方案。本文的 value proposition 实际上完全依赖于\"对 *unseen* 编码的泛化\"——这个场景的实际频率和重要性可被审稿人质疑。\n\n结论：并非完全 trivial，但 trivial alternative 对大部分实际场景已经够用。本文的增量价值集中在一个相对小的 OOD 泛化窗口，且该窗口是否足够重要尚需论证。\n\n【前提假设检验】:\n核心逻辑链中有两个\"想当然\"环节：\n\n1. **\"4B 分类器能从纯分类信号中学会隐式解码复杂嵌套编码\"——这是一个极强的假设。**\n   Base64 是确定性数学变换；ROT13(Base64(text)) 的解码需要精确的 compositional reasoning。一个仅接受 harmful/benign 二分类训练信号的 4B 模型，更可能学到的是编码文本的 *统计分布特征*（如 base64 的字符频率模式），而非真正的 decoding capability。如果是前者，则对统计特征相似的新编码有效，对特征不同的则无效——这不是 \"progressive decoding skill acquisition\"，而是 \"statistical pattern matching\"。Proposal 承认不 claim \"encoding-invariant features\"，但其 mechanism narrative 仍暗示了比统计特征匹配更深层的能力。\n\n2. **\"Curriculum ordering 的优势会随 nesting depth 增长\"（differential prediction）——这个预测虽然巧妙，但其 alternative interpretation 不充分。**\n   即使观察到优势随 depth 增长，也可能是因为 deeper nesting = 更难的样本 = 任何有序训练都比 random 好（simple difficulty-ordering effect），而非 \"compositional decoding skill building\"。这两个解释很难区分。\n\n【5 维度打分】:\n\n1. Novelty: [中] —\n   核心贡献是\"将 curriculum learning 应用于 encoding-robust jailbreak defense\"。Curriculum learning 本身成熟（Cai et al. 2018, Wang et al. 2021）；encoding jailbreak defense 是活跃方向（Constitutional Classifiers++ Jan 2026, DecipherGuard Sep 2025, OmniGuard EMNLP 2025, SecurityLingua Jun 2025）。本文的具体角度（ECS-ordered curriculum + OOD 泛化）在该领域尚未被做过，但核心 insight——\"structured difficulty ordering helps in compositional difficulty spaces\"——不会让审稿人 surprised。\n   \n   加分项：differential prediction 机制测试设计巧妙；scope conditions 的科学态度成熟；encoded-benign FPR 是关键 control。\n   减分项：ECS 本身是 obvious factors 的加权组合；co-evolutionary framework 是 bonus 且可能失败。\n\n2. Technical Soundness: [强] —\n   实验设计本身堪称 thorough：10 种方法的 baseline 矩阵；5 seeds + Bonferroni correction；compute fairness 显式处理；representation analysis (CKA + linear probing) 提供机制证据；learning dynamics tracking；encoded-benign FPR 防 shortcut。\n   \n   扣分项：(a) 缺少对 Constitutional Classifiers/CC++ 的讨论和对比——这是当前最强的 jailbreak defense system，虽为 system-level 不完全可比，但不提及会被审稿人追问；(b) DecipherGuard 作为同期 pipeline 方案未被明确对标；(c) differential prediction 的 alternative interpretation（见前提假设检验）未被充分 address。\n\n3. Significance: [中] —\n   编码攻击是真实威胁，但领域正快速拥挤：CC++ 已将 jailbreak 成功率压至极低；DecipherGuard 对已知编码近乎完美。本文的增量价值窗口——\"对 unseen 编码的泛化\"——是否是一个 *sufficiently important* 的实际问题？攻击者更新编码类型的速度 vs. rule-based decoder 更新的速度，哪个更快？如果 rule-based 更新足够快，则 OOD 泛化的实际需求存疑。\n   \n   科学层面的 significance 较好：curriculum 在 compositional transformation space 中的泛化能力是一个有意义的研究问题。但 EMNLP 主会更看重 NLP-specific impact。\n\n4. Feasibility: [中] —\n   4×A100 合理；66h wall-clock 可控；Oracle 成本适中（~$400）。\n   \n   风险点：(a) 17 天 timeline 含 25 次训练 run + 全套分析 + 写作，极为紧张——任何一个环节延迟都将挤压后续；(b) co-evolutionary loop 被承认可能不稳定，fallback 计划合理但意味着 H4 可能缺失；(c) 6 个 held-out 编码族的实现 + tokenizer audit 需要大量 engineering work，在 Day 1-3 完成有压力。\n\n5. Related Work: [中] —\n   对 curriculum learning、domain generalization、compositional generalization 三条文献线的定位清晰，差异化论述合理。\n   \n   关键缺失：\n   - **Constitutional Classifiers / CC++** (Anthropic, 2025/2026)：当前最强 jailbreak defense，必须讨论\n   - **DecipherGuard** (Sep 2025)：直接竞品 pipeline 方案\n   - **OmniGuard** (EMNLP 2025)：representation-based cross-modal/lingual detection，概念上与 encoding-invariant representation 相关\n   - **SecurityLingua** (Jun 2025)：prompt compression 方案\n   这些遗漏不致命（proposal 阶段可补），但若论文提交时仍缺失，会被审稿人视为 incomplete survey。\n\n【概率估计】: [23% - 33%] 中位 28%\n\n【估计理由】:\nNovelty 和 Significance 均为\"中\"，根据 rubric 约束，概率上限 ~35%。Technical Soundness 为\"强\"，将地板抬至 ~23%（实验设计不会成为被拒理由），但无法突破 idea 质量的天花板。\n\n具体推理：\n- 核心 insight \"structured curriculum helps in compositional difficulty spaces\" 不够 surprising → Novelty 中 → 天花板 ~35%\n- 应用场景的增量价值被 CC++、DecipherGuard 等竞品压缩 → Significance 中 → 天花板确认 ~35%\n- 实验设计 thorough + differential prediction 机制测试 + scope conditions 的科学态度 → 在天花板内尽量加分 → 从地板 23% 提至中位 28%\n- Related work 缺失可修复，不致命 → 不再额外扣分\n- 如果 curriculum vs. random 的实际优势不足 10pp，或 OOD 泛化结果不显著 → 概率降至下界 23%\n- 如果 differential prediction 被清晰验证 + scope conditions 有 clean story → 概率可达上界 33%\n\n【主要风险】:\n1. **Curriculum 优势量级不足**：如果 curriculum vs. random-order 的差距仅 3-5pp（而非 ≥10pp），核心贡献瓦解。审稿人会质问\"ordering 真的重要吗？\"——flat augmentation 可能就够了。这是最可能导致被拒的单一风险。\n2. **\"Unseen encoding 泛化\"的实际价值被质疑**：在 CC++ 和 DecipherGuard 等系统已覆盖已知编码的背景下，审稿人可能认为\"对新编码的泛化\"是一个不够重要的 niche 问题，尤其是当 encoding-principle OOD 结果可能显示 limited transfer 时（proposal 自己承认了这一点）。\n\n【实施评估】:\n  - 计算资源: 4×A100 80GB，中等规模，学术实验室可获取\n  - 数据需求: HarmBench + AdvBench + WildGuardTest + LMSYS-Chat-1M（公开可用）；需自建编码变体生成 pipeline\n  - 人工介入: Oracle 校准需 GPT-4o API ($250)；held-out 编码族需手工实现 6 种编码器；tokenizer audit 需人工验证\n  - 训练需求: 25 次分类器训练 run + 2 次 attacker 训练；总计 ~66h wall-clock（4 GPU 并行）\n  - 新 Benchmark: EncoAttack（12K test cases），为 supplementary benchmark，非 primary contribution\n  - 预估周期: 17 天（极紧张）；建议扩展至 25-30 天以留出 debugging 和迭代空间\n```\n\n**补充说明（面向迭代团队）：**\n\n如果团队决定继续推进，以下调整可能提升中稿率：\n\n1. **补齐 Related Work**：必须加入 Constitutional Classifiers++、DecipherGuard、OmniGuard 的对比讨论，说清本文与它们的互补性而非替代性。\n2. **强化 Significance 论证**：需要一个令人信服的 argument 说明为什么 OOD encoding 泛化不能被 \"定期更新 rule-based decoder\" 解决——例如，量化\"从新编码出现到 rule 更新\"的时间窗口中的安全风险。\n3. **降低对 mechanism narrative 的依赖**：如果 differential prediction 结果不 clean，不要硬推 \"progressive decoding skill acquisition\" 的 narrative——改为更保守的 \"structured training facilitates robust feature learning\" 即可。\n4. **准备 ablation 解释 alternative interpretation**：为 \"difficulty ordering effect vs. compositional skill building\" 准备额外实验（例如，non-compositional difficulty ordering 对比）。\n\nSources:\n- [Constitutional Classifiers (Anthropic)](https://www.anthropic.com/research/constitutional-classifiers)\n- [Constitutional Classifiers++ (Anthropic)](https://arxiv.org/pdf/2601.04603)\n- [DecipherGuard](https://arxiv.org/abs/2509.16870)\n- [OmniGuard (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.819/)\n- [SecurityLingua](https://arxiv.org/abs/2506.12707)\n- [Evaluating Robustness of LLM Safety Guardrails](https://arxiv.org/html/2511.22047v1)\n- [SafeProbing - In-Decoding Safety-Awareness](https://arxiv.org/abs/2601.10543)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n## Title\n\nEncoGuard: Encoding-Robust Content Extraction via Complexity-Structured Curriculum Training\n\n## Problem Statement\n\nEncoding-based jailbreak attacks (base64, ROT13, homoglyph substitution, and their nested compositions) exploit a fundamental vulnerability in LLM safety guardrails: classifiers trained on plaintext or limited encoding variations fail when inputs are transformed through unseen encoding schemes. Existing defenses have critical limitations:\n\n1. **Rule-based detection + decoding pipelines** (regex detection → known decoder → standard guardrail): Effective for known single-layer encodings with distinctive statistical signatures. Fail on: (a) partial encoding, (b) adversarial mixing of encoded/plaintext, (c) novel encodings without pre-programmed decoders.\n\n2. **Learned/LM-based canonicalization** (small LM decode → classify): Error propagation compounds across nesting layers; the canonicalizer itself becomes an adversarial attack surface; partial encoding requires semantic understanding to identify decode targets.\n\n3. **Frontier LLM zero-shot** (GPT-4/Claude prompted to detect harmful content regardless of encoding): Leverages pre-training exposure but impractical for deployment-scale guardrails ($0.01-0.03 per input, 1-3s latency vs. millisecond-level local inference).\n\nThe core challenge is achieving **generalization to unseen encoding families at deployment-practical cost**—a lightweight classifier that remains robust against encoding types never encountered during training.\n\n## Core Thesis\n\nWe hypothesize that a classifier trained via **complexity-structured curriculum**—where encoding attacks are presented in order of a principled complexity metric—acquires **encoding-robust content extraction capabilities** that generalize to held-out encoding types unseen during training.\n\n**Mechanism (Two-Regime, with Differential Prediction):**\n\n- **Low-ECS regime (simple encodings):** Content semantics remain partially accessible through tokenization. Curriculum forces the model to anchor harmful-content semantic features despite mild surface perturbation (**content anchoring**).\n\n- **High-ECS regime (complex/nested encodings):** Token-level content information is destroyed by multi-layer encoding. The model develops strategies for implicit decoding—recognizing encoding structure patterns and compositionally reconstructing content signal (**progressive decoding skill acquisition**).\n\n**Differential prediction distinguishing our mechanism from trivial catastrophic-interference prevention:** If the mechanism is progressive decoding skill acquisition (compositional skill building), curriculum's advantage over random-order should *increase with nesting depth* (deeper nesting requires more compositional decoding skill). If the mechanism is merely preventing catastrophic interference (protecting base content features), the advantage should be approximately uniform across nesting depths. We explicitly test this prediction.\n\n**Important clarification:** We do NOT claim literal \"encoding-invariant features\" in the information-theoretic sense (impossible for fully-scrambled sequences). Rather, curriculum builds a progressive hierarchy of decoding capabilities that transfers across encoding types sharing structural properties with training encodings. We explicitly characterize where this transfer succeeds (same encoding principle, different mapping) and where it reaches its limits (fundamentally different encoding paradigms)—establishing **scope conditions** for curriculum-induced generalization.\n\n## Relationship to Prior Work\n\n### Curriculum Adversarial Training\nCai et al. (IJCAI 2018): progressive perturbation magnitude for images. Wang et al. (NeurIPS 2021): ordered SGD by difficulty. Key differences:\n1. **Discrete compositional space vs. continuous perturbation:** Encoding attacks form a combinatorial space (N primitives × K nesting levels) requiring multi-dimensional complexity metrics, unlike scalar ε-balls.\n2. **OOD generalization vs. in-distribution robustness:** We explicitly test generalization to unseen encoding families, not just robustness to trained attack types.\n\n**Why curriculum works here but has mixed results elsewhere:** Encoding space possesses *intrinsic compositional structure with natural difficulty ordering*—nesting depth provides a non-arbitrary complexity axis. This contrasts with domains where curriculum orderings are artificial/researcher-imposed (known failure mode in curriculum literature).\n\n### Domain Generalization (DG)\nEach encoding type as a domain; OOD generalization ≈ DG to unseen domains. Standard DG methods (IRM, DANN, CORAL, DRO) ARE applicable to this setting (contrary to some claims about discrete spaces—DANN operates on representations, DRO on loss weighting). However, we hypothesize that **curriculum is superior to standard DG here** because DG methods treat domains as unstructured categories, while curriculum explicitly exploits the compositional complexity structure of the encoding space. We empirically validate this with Group DRO and DANN baselines.\n\n### Compositional Generalization\nThe encoding attack space (N primitives × K layers = O(N^K) compositions) is a discrete compositional transformation space, connecting to the compositional generalization literature (SCAN, COGS). Our work investigates whether structured curriculum can facilitate compositional generalization in transformation spaces—a question not addressed by prior compositional generalization work, which focuses on input-output mapping generalization rather than adversarial robustness.\n\n## Key Contributions\n\n1. **Primary Contribution (OOD Generalization + Scope Conditions):** Empirical demonstration that complexity-structured curriculum enables generalization to unseen encoding types at two levels—mapping-function OOD (strong transfer) and encoding-principle OOD (limited transfer, establishing scope conditions). Direct representation-level evidence (CKA + linear probing) + mechanistic differential prediction (nesting-depth-dependent advantage).\n\n2. **Encoding Complexity Score (ECS):** Formalized metric validated via cross-classifier correlation analysis; individual components quantified; shown to predict difficulty independently of training method.\n\n3. **Co-Evolutionary Training Framework:** GRPO attacker + SFT classifier with curriculum ordering, demonstrating co-evolution further improves upon static curriculum.\n\n4. **Deployment-Practical Encoding Defense:** 4B classifier achieving encoding robustness competitive with frontier LLM zero-shot at orders-of-magnitude lower latency and cost (quantified with formal inference benchmarks).\n\n## Methodology\n\n### Encoding Complexity Score (ECS)\n\n$$ECS(e) = \\alpha \\cdot \\text{NestingDepth}(e) + \\beta \\cdot \\text{CPT\\_Deviation}(e) + \\gamma \\cdot \\text{TokenizerPerplexity}(e)$$\n\n**Weight calibration:** Using a minimally-trained baseline classifier (Qwen2.5-4B fine-tuned only on plaintext harmful/benign data, ~1h training), measure each component's Spearman ρ with classifier error across 200 encoding variants. Weights set proportional to individual predictive power. This avoids circular dependency with curriculum training.\n\n**Component contribution analysis:** Report (a) single-component Spearman ρ, (b) leave-one-out ρ change, (c) composite vs. best single component. All computed on evaluation data without retraining.\n\n**Cross-classifier validation (H3):** Report ECS correlation with error rates from: (i) minimally-trained baseline, (ii) random-order trained classifier, (iii) curriculum-trained classifier. High correlation across all three demonstrates ECS captures intrinsic encoding difficulty, not training-method-specific difficulty.\n\n### Training Design\n\n**Attacker (Qwen2.5-1.5B, GRPO):**\n- Generates encoding attacks within current curriculum ECS band\n- Reward: +1 if bypasses classifier AND oracle confirms harmful\n- Entropy regularization prevents encoding-type collapse\n\n**Classifier (Qwen2.5-4B, SFT):**\n- Curriculum-ordered: Stage 1 (ECS ≤ threshold) → Stage 2 (ECS > threshold)\n- FPR rollback: revert if FPR > 2%\n- Semantic deduplication (cosine > 0.95)\n\n**Class Balance and Shortcut Prevention:**\n- Training batch composition: 50% harmful-encoded + 50% benign\n- **Critical:** Benign training data ALSO undergoes encoding augmentation (same encoding types and ECS distribution as harmful data). This prevents the classifier from learning \"encoded = harmful\" shortcut—it must learn to detect harmful *content* regardless of encoding, not merely detect encoding's *presence*.\n- Benign data source: LMSYS-Chat-1M (5K samples) + WildGuardTest benign (1K samples), encoded with same pipeline\n\n**Oracle:** GPT-4o + deterministic decoder cross-validation; disagreements excluded.\n\n**Fallback:** If co-evolutionary loop unstable by Day 7, switch to static curriculum SFT.\n\n### Baseline Definitions\n\n| Method | Data Source | Ordering | Key Variable | Seeds |\n|--------|------------|----------|--------------|-------|\n| **Curriculum (ours)** | Co-evolutionary/static, ECS-staged | Monotone ↑ ECS | — | 5 |\n| **Random-order** | Same data as curriculum | Shuffled | Ordering | 5 |\n| **Flat augmentation** | Uniform random encoding per prompt per epoch | Random | Data composition + ordering | 3 |\n| **Reverse curriculum** | Same data | Monotone ↓ ECS | Direction | 3 |\n| **Static curriculum** | Rule-based, ECS-ordered | Same as curriculum | Co-evolution effect | 3 |\n| **Group DRO** | Same data as flat | Worst-group (encoding type) loss | DG approach | 3 |\n| **DANN** | Same data as flat | Gradient reversal on encoding type | DG approach | 3 |\n| **Qwen2.5-1.5B decode → LlamaGuard-3** | N/A (inference) | N/A | Pipeline approach | 1 |\n| **Deterministic decode → LlamaGuard-3** | N/A (inference) | N/A | Rule-based pipeline | 1 |\n| **GPT-4 zero-shot** | N/A (API) | N/A | Cost/accuracy frontier | 1 |\n\nKey distinctions:\n- Random-order vs. Flat: Random-order = same data, shuffled (isolates ordering). Flat = uniform encoding sampling (different data distribution).\n- Group DRO / DANN: Standard DG methods using encoding type as domain label. Tests whether structured curriculum > unstructured domain-invariance objectives.\n\n### Compute Fairness\n\n- **H1-H3 (core claims):** Static curriculum vs. baselines. All use identical Qwen2.5-4B, identical training FLOPs (measured and reported), identical total steps. Variable: data ordering/composition/loss function.\n- **H4 (co-evolution, bonus):** Extra compute from attacker. Include compute-matched static variant (extra FLOPs → more training epochs) for fair comparison.\n- **Reporting:** Table with total classifier FLOPs, total system FLOPs (incl. attacker), wall-clock, training tokens per method.\n\n### Compute and Cost\n\n- Hardware: 4× A100 80GB\n- Per classifier run: ~8h\n- Total classifier runs: 5+5+3+3+3+3+3 = 25 runs → parallelized 4 at a time → ~50h\n- Attacker: 12h (2 rounds)\n- Oracle: ~18K calls ≈ $250\n- GPT-4 zero-shot eval: ~15K calls ≈ $150\n- Inference analyses (probing, CKA, latency): ~4h\n- Total: ~66h wall-clock training + evaluation\n\n## Experimental Design\n\n### Hypotheses\n\n- **H1 (Curriculum > Random):** Curriculum achieves ≥10pp lower encoding-ASR than random-order (95% bootstrap CI excludes 0, Cohen's d reported).\n- **H2a (Mapping-Function OOD):** Curriculum maintains ≤20% ASR on mapping-function OOD encodings (Braille, custom cipher, NATO phonetic) where baselines exceed 50%.\n- **H2b (Encoding-Principle OOD — Scope Condition):** On structurally different encoding principles (Pig Latin, T9 keypad), report curriculum vs. baselines gap. If curriculum outperforms by ≥15pp → evidence of broader generalization. If no significant difference → establishes scope boundary (curriculum generalizes within structural families, not across fundamentally different paradigms). Both outcomes are informative.\n- **H3 (ECS Predictiveness):** ECS correlates with error (Spearman ρ ≥ 0.7) across multiple classifiers; composite outperforms any single component.\n- **H4 (Co-evolution > Static, bonus):** Co-evolutionary > static by ≥5pp on composite encodings after compute normalization.\n\n**Differential Prediction (Mechanism Test):**\n- Partition test results by nesting depth (1, 2, 3)\n- Compute (curriculum ASR - random ASR) at each depth\n- Progressive decoding hypothesis → gap increases with depth\n- Catastrophic interference hypothesis → gap approximately constant\n- Report trend with significance test\n\n### Held-Out Encoding Families\n\n**Mapping-function OOD (same structural principle, different specific mapping):**\n- Braille Unicode substitution (character substitution — cf. homoglyphs)\n- Custom Caesar cipher with position-dependent shift (shift-based — cf. ROT13)\n- NATO phonetic alphabet (word-level substitution — novel granularity)\n- Morse code (symbolic encoding — cf. base64)\n\n**Encoding-principle OOD (boundary test — structurally different paradigm):**\n- Pig Latin variant (syllable rearrangement — morphological transformation, unlike any character/symbol substitution in training)\n- T9 phone keypad encoding (multi-character → single digit mapping with ambiguity — lossy encoding unlike all training encodings which are lossless)\n\n**Tokenizer Audit (Day 1-2):** Verify all held-out encodings survive tokenize → detokenize round-trip with information preservation rate ≥ 90%. Replace any encoding that fails this check.\n\n### Evaluation Protocol\n\n**External benchmarks (primary):**\n- HarmBench encoding-perturbed\n- JailbreakBench encoding subset\n- WildGuardTest encoding-perturbed\n\n**EncoAttack (supplementary):**\n- 500 base prompts: HarmBench (200) + AdvBench (150) + WildGuardTest (150)\n- 8 encoding types × 3 nesting levels = 12,000 test cases\n- Independent implementation from training pipeline\n- Validated ≥80% bypass on undefended LlamaGuard-3\n\n**Held-out encodings:** 6 families as above (4 mapping-function + 2 encoding-principle)\n\n**GPT-4 zero-shot reference:** Same test sets\n\n**Metrics:**\n- Encoding-ASR (primary)\n- **Clean FPR on plaintext benign** (WildGuardTest benign ~1000 + LMSYS-Chat-1M 1000)\n- **Encoded-benign FPR** (500 benign prompts × encoding augmented — CRITICAL: tests whether classifier detects harmful content vs. detects encoding presence)\n- FPR at multiple thresholds (0.5%, 1%, 2%, 5%) with Pareto frontier\n- Per-encoding-type breakdown\n- Nesting-depth-stratified curriculum advantage (differential prediction)\n- ECS correlation (composite + individual + cross-classifier)\n- Nesting-depth vs. decode-accuracy curve (error propagation for pipeline baselines)\n\n**Inference Performance:**\n- Latency: single A100, batch=1 and batch=32, median + p99 (ms)\n- Throughput: queries/second\n- Cost per query: based on A100 hourly rate vs. GPT-4 API\n- Compare: EncoGuard vs. Qwen-decode+LlamaGuard vs. GPT-4 zero-shot\n\n### Representation Analysis\n\n1. **CKA + Cosine Similarity:** 100 prompts × (plaintext + 8 encoding variants), penultimate-layer representations. Intra-prompt cross-encoding similarity: curriculum vs. baselines.\n\n2. **Linear Probing (Disentanglement):**\n   - Probe A: predict content category → curriculum should match or exceed baselines\n   - Probe B: predict encoding type → curriculum should show LOWER accuracy (encoding info discarded)\n   - Encoded-benign probing: verify that benign encoded inputs are NOT classified as harmful clusters\n\n3. **Learning Dynamics:** Per-checkpoint (500 steps) ASR curves, stratified by ECS level. Expected: curriculum shows staged convergence; random-order shows chaotic learning.\n\n### Statistical Rigor\n\n- Curriculum + random-order: 5 seeds each. Others: 3 seeds.\n- H1: 95% bootstrap CI on paired difference + Cohen's d\n- H2a/H2b: Reported with confidence intervals\n- Bonferroni correction for H1-H3 family\n- All results tables include mean ± std\n\n### Oracle Pilot (Day 1-2)\n\n100 samples per ECS band. GPT-4o + deterministic decoder agreement. < 80% → deterministic-only for that band.\n\n## Stability Mechanisms (Not Contributions)\n\n- Entropy regularization, FPR rollback, semantic deduplication\n- Trigger frequencies reported; full ablation in camera-ready\n\n## Acknowledged Limitations\n\n1. Full learned canonicalization (seq2seq) not trained as baseline; addressed via small-LM decode pipeline + nesting-depth error curve\n2. General principle validated only on encoding attacks; other compositional spaces = future work\n3. ECS weight sensitivity: ±20% perturbation in supplementary\n4. Encoding-principle OOD may show limited/no curriculum advantage—reported as scope condition\n\n## Timeline (17 days)\n\n**Phase 1: Setup + Pilot (Days 1-3)**\n- ECS implementation, encoding generators (all 6 held-out families), data pipeline\n- Tokenizer audit for all held-out encodings\n- Oracle pilot (100/band)\n- Fast pilot run (reduced data, 2h) → validate training dynamics, ECS threshold, class balance\n\n**Phase 2: Core Training (Days 4-9)**\n- Days 4-6: Curriculum (5 seeds) + random-order (5 seeds) [4 GPU parallel]\n- Days 7-8: Flat (3) + reverse (3) + Group DRO (3) + DANN (3) [parallel]\n- Day 9: Static curriculum (3) + compute-matched static (3) + co-evolutionary attempt\n\n**Phase 3: Evaluation + Analysis (Days 10-12)**\n- Day 10: Full benchmark eval + held-out + GPT-4 zero-shot + pipeline baselines\n- Day 11: Representation analysis + ECS stats + learning dynamics + encoded-benign eval\n- Day 12: Statistical tests, nesting-depth analysis, latency benchmarks, Pareto curves\n\n**Phase 4: Writing (Days 13-15)**\n- Drafting + figures + tables\n\n**Buffer (Days 16-17)**\n- Additional runs if needed, stability ablation, revision\n\n**Fallback:** Co-evolutionary unstable by Day 8 → focus H1-H3 with static curriculum."
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T12:50:42.306Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T12:50:42.306Z",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T12:50:42.319Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient context to provide a comprehensive assessment. Let me compile the final evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【Trivial Alternative 检验】:
+三个主要的 trivial alternatives 需要检视：
+
+1. **"无序数据增强 (Flat Augmentation) 就够了"**：即不需要 curriculum 排序，只需让分类器见到足够多样的编码数据即可。Proposal 已设计 flat augmentation 和 random-order baselines 来直接测试这一点——这是最关键的对照。但核心风险仍在：如果 random-order 和 curriculum 之间的差距 <10pp（H1 的 threshold），整篇论文的核心 claim 就被大幅削弱，而这个结果是完全可能发生的。
+
+2. **"先解码再分类 (Decode-then-Classify)"**：DecipherGuard (2025.09) 已提出带 deciphering layer 的 pipeline，在 22,000+ prompts 上比 LlamaGuard 提升 36-65% DSR。Proposal 虽以 "Qwen-decode + LlamaGuard" 和 "deterministic decode + LlamaGuard" 作为 baselines，但未提及 DecipherGuard 这一最直接的 pipeline 竞争者。如果 DecipherGuard 的 deciphering layer 在嵌套编码上也表现不差，那么 curriculum 方法的实际增量价值会受质疑。
+
+3. **"更大模型/更好训练数据就行了"**：Constitutional Classifiers++ (2026.01) 通过合成数据 + activation probing 将 jailbreak 成功率降至 4.4%。这是工业级强 baseline——如果 CC++ 已经近乎解决了这个问题，本文的实际贡献空间被压缩。
+
+**结论**：Proposal 对 alternative (1) 有良好的实验控制；但对 (2) 和 (3) 的差异化论证严重不足。
+
+【前提假设检验】:
+逻辑链条中有几个 "想当然" 的环节：
+
+1. **"4B 模型能学会隐式解码复杂嵌套编码"**——这是全文最强的前提假设。Base64(ROT13(homoglyph(text))) 在 token 层面的信息几乎完全被破坏，一个 4B 模型要隐式逆向多层编码并提取语义，这是非常强的能力假设。虽然 Trojan-Speak (2026.03) 证明了 curriculum 可以教会模型编码能力（攻击方向），但那是在 14B+ 模型上实现的，4B 是否足够存疑。
+
+2. **"Curriculum ordering 的效果来自 progressive decoding skill acquisition 而非仅仅是更好的训练动态"**——differential prediction 是一个好的测试设计，但如果实验结果是 "approximately constant gap"（即支持 catastrophic interference 假设），论文叙事将大幅弱化——虽然 proposal 声称 "both outcomes are informative"，但主要贡献框架是围绕 progressive decoding 构建的。
+
+3. **"编码空间的组合结构提供了自然的难度排序"**——Nesting depth 确实是一个直觉上合理的复杂度轴，但 ECS 的三个组件的加权组合是否真正捕获了"对分类器的难度"（而非对人类的难度）需要验证。Proposal 的 ECS validation 设计是合理的（cross-classifier correlation），但如果 ρ < 0.7，ECS 的理论基础就动摇了。
+
+4. **"Mapping-function OOD 会有强迁移"**——假设模型从 ROT13 学到的泛化到 custom Caesar cipher，这要求模型学到"字符替换"的抽象概念而非具体映射表。虽然合理，但并非必然。
+
+【5 维度打分】:
+
+  1. Novelty: 【中-】
+     — 核心 idea（用 curriculum learning 的编码复杂度排序训练安全分类器）是对已有技术在特定领域的直觉应用，并非 surprising。关键缺陷：
+     (a) Trojan-Speak (2026.03) 已使用 curriculum learning + GRPO 在编码空间训练模型（攻击方向），方法论工具箱高度重叠。本文本质上是"Trojan-Speak 的防御镜像"——有价值，但 novelty 被压缩。
+     (b) "Curriculum helps with compositional challenges" 是 curriculum learning 文献中已有的直觉。
+     (c) ECS 指标是三个直觉组件的加权和，贡献有限。
+     亮点：differential prediction 机制检验设计有新意；scope conditions 的主动界定是好的学术实践。但这些是方法论细节层面的优点，不足以拉高整体 novelty。
+
+  2. Technical Soundness: 【强】
+     — 实验设计是本 proposal 最突出的优点：
+     (a) 10 个 baselines 覆盖面广（ordering ablation、DG methods、pipeline、frontier LLM）；
+     (b) 统计严谨性好（5 seeds for core claims, bootstrap CI, Cohen's d, Bonferroni correction）；
+     (c) Compute fairness 有明确控制（FLOP matching, compute-matched static variant）；
+     (d) 防 shortcut 设计好（encoded-benign FPR 测试）；
+     (e) Representation analysis（CKA + linear probing + learning dynamics）提供了机制层面的证据；
+     (f) Differential prediction 是一个有力的 mechanism test。
+     唯一弱点：缺少 DecipherGuard 和 CC++ 作为 baseline。
+
+  3. Significance: 【中】
+     — 编码攻击是真实存在的安全威胁（76.2% 攻击成功率的报道）。但：
+     (a) 防御空间已相当拥挤：DecipherGuard、CC++、SecurityLingua、Representation Rerouting 等近一年内密集发表；
+     (b) Scope conditions 限制了实际影响——对结构不同的编码范式（Pig Latin, T9）可能无效，意味着攻击者仍可绕过；
+     (c) Arms race 本质：Bijection learning 攻击可以创建任意编码，从根本上挑战任何基于训练时编码覆盖的防御；
+     (d) CC++ 已将 jailbreak 成功率降至 4.4%，本文需要证明在 CC++ 之上还有增量价值。
+
+  4. Feasibility: 【强】
+     — 实验计划现实可行：
+     (a) 4× A100 80GB 是合理资源需求；
+     (b) 17 天时间线紧凑但有清晰的 buffer 和 fallback plan；
+     (c) API 成本可控（~$400）；
+     (d) Co-evolutionary 不稳定时有 static curriculum fallback；
+     (e) Tokenizer audit（Day 1-2）和 oracle pilot 是好的风险管控。
+     风险点：25 个训练 run 的 parallelization 假设 4 GPU 全程可用且无故障。
+
+  5. Related Work: 【弱】
+     — 这是本 proposal 最严重的缺陷。以下关键近期工作完全未被提及或讨论：
+     (a) **Trojan-Speak (2026.03)**：使用 curriculum learning + GRPO 在编码空间训练模型——方法论与本文高度重叠，是最直接的相关工作，未提及是致命遗漏；
+     (b) **DecipherGuard (2025.09)**：最直接的 encoding-specific 防御 baseline，未提及；
+     (c) **Constitutional Classifiers / CC++ (2025.01 / 2026.01)**：工业级强 baseline，未作为 baseline 纳入；
+     (d) **SecurityLingua (2025.06)**：prompt compression 防御方法，未提及；
+     (e) **Bijection Learning**：任意编码攻击，直接挑战本文的 scope conditions。
+     当前 related work 仅覆盖 2018-2021 的 curriculum/DG/compositional generalization 文献，对 2025-2026 的 encoding-specific safety 文献近乎空白。审稿人几乎必然会指出这一点。
+
+【概率估计】: [18% - 30%] 中位 24%
+
+【估计理由】:
+Novelty 和 Significance 均为"中"或以下 → 按 rubric，概率上限约 35%。但 Related Work 的严重缺陷（特别是遗漏 Trojan-Speak 这一高度重叠的近期工作）会进一步压低评分——审稿人会质疑作者是否了解领域现状。
+
+具体推理：
+- 基于 Novelty（中-）和 Significance（中），idea 质量上限约 30-35%
+- Technical Soundness（强）和 Feasibility（强）支撑了地板，防止跌入 15% 以下
+- Related Work（弱）严重拖后腿，可能导致 1-2 位审稿人直接给 borderline reject
+- 如果补上 related work gap（尤其是与 Trojan-Speak 的差异化论证、CC++ 作为 baseline），概率可以回升至 28-33%
+- 核心 idea "curriculum for encoding robustness" 的 surprise factor 不够——如果告诉审稿人 "按编码复杂度排序训练数据能提高泛化"，多数 NLP 安全方向的审稿人不会感到 surprised
+
+【主要风险】:
+1. **Trojan-Speak 重叠风险**：审稿人发现 Trojan-Speak 已使用几乎相同的工具箱（curriculum + GRPO + encoding space），会质疑本文 novelty 是否仅为"攻防翻转"——若无充分差异化论证，可能直接导致 reject。
+2. **Core claim 实验失败风险**：若 curriculum 与 random-order 的差距不显著（< 10pp），或 differential prediction 支持 catastrophic interference 而非 progressive decoding，论文叙事的核心将崩塌。此时论文仍有贡献（negative result + ECS + baselines 对比），但不足以达到 EMNLP 主会标准。
+
+【实施评估】:
+  - 计算资源: 4× A100 80GB，合理且可获取，总 GPU 时间约 264 GPU-hours（66h × 4 GPU）
+  - 数据需求: HarmBench + AdvBench + WildGuardTest（公开数据集）+ LMSYS-Chat-1M（公开）；编码生成器需自行实现（6 个 held-out 编码族 + 8 个训练编码类型）
+  - 人工介入: 较低——oracle 基于 GPT-4o + deterministic decoder 自动化；少量人工用于 tokenizer audit 和 encoding generator 验证
+  - 训练需求: 需要训练——25 个分类器 run（Qwen2.5-4B SFT）+ 攻击者训练（Qwen2.5-1.5B GRPO）；不涉及预训练
+  - 新 Benchmark: 需构建 EncoAttack（12,000 test cases），但设计已明确，实现难度中等
+  - 预估周期: 17 天（含 2 天 buffer）——在实验团队有经验且 GPU 全程可用的前提下可行，但时间余量紧张；若遇到 co-evolutionary 不稳定或 GPU 排队，可能需 20-25 天
+```
+
+**补充建议（如果继续推进）：**
+
+1. **紧急补充 Related Work**：必须加入 Trojan-Speak、DecipherGuard、CC++、SecurityLingua 的讨论，并明确差异化定位。特别是与 Trojan-Speak 的关系——可以框架为 "Trojan-Speak 证明了 curriculum 在编码空间的有效性（攻击端），我们系统性地研究这一机制在防御端的运作方式及其 scope conditions"。
+
+2. **增加 CC++ 作为 baseline**（或至少充分讨论为何不可比较——如 CC++ 依赖内部 activation 访问而本文是外部分类器）。
+
+3. **强化 novelty 叙事**：从 "curriculum 用于编码鲁棒性" 转向 "对编码空间中 curriculum-induced generalization 的系统性实证研究 + scope conditions 界定"——将重心从方法转向理解和分析性贡献。
+
+4. **讨论 Bijection Learning 攻击**：作为 scope condition 的一部分，坦诚讨论任意编码攻击对本方法的根本挑战。
+
+Sources:
+- [DecipherGuard: Understanding and Deciphering Jailbreak Prompts](https://arxiv.org/abs/2509.16870)
+- [SecurityLingua: Efficient Defense of LLM Jailbreak Attacks via Security-Aware Prompt Compression](https://arxiv.org/abs/2506.12707)
+- [Constitutional Classifiers++: Efficient Production-Grade Defenses against Universal Jailbreaks](https://arxiv.org/html/2601.04603v1)
+- [Trojan-Speak: Bypassing Constitutional Classifiers with No Jailbreak Tax via Adversarial Finetuning](https://arxiv.org/abs/2603.29038)
+- [Next-generation Constitutional Classifiers (Anthropic)](https://www.anthropic.com/research/next-generation-constitutional-classifiers)
+- [Cost-Effective Constitutional Classifiers via Representation Re-use](https://alignment.anthropic.com/2025/cheap-monitors/)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Based on my research into the current landscape, I can now provide a comprehensive evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【Trivial Alternative 检验】:
+两个主要 trivial alternative 需要认真对待：
+
+1. **"直接多样化数据增强"（Flat Augmentation）**: 不用 curriculum ordering，只是在训练时加入各种 encoding 类型的数据——这是最直接的 trivial alternative。Proposal 已将其作为 baseline (flat augmentation)，但核心问题是：如果 curriculum 相对 flat augmentation 只有 marginal improvement（比如 3-5pp 而非 10pp），整篇论文的贡献就会大幅缩水。H1 设定 ≥10pp 的阈值是合理的，但能否达到是个实证问题。
+
+2. **"Decode-then-classify pipeline with better decoders"**: 随着 small LM 能力提升（如 Qwen2.5-3B/7B 作为 decoder），error propagation 问题在实际中可能没有论文声称的那么严重。一个 3B decoder + LlamaGuard 的 pipeline 在 nested encoding 上的实际表现可能比预期更好。Proposal 虽然包含了此 baseline，但如果 pipeline 表现不差，则"端到端 curriculum 方法"的存在理由被削弱。
+
+3. **MrGuard (EMNLP 2025 main) 类似方法论**: MrGuard 已在多语言 guardrail 中使用 curriculum + GRPO。将同样方法应用于 encoding domain 是否构成足够的 novelty？
+
+【前提假设检验】:
+
+1. **"4B 模型可以学到 implicit decoding"**: 这是最核心的逻辑假设。对于高 ECS（多层嵌套编码），token 级别的语义信息被声称"destroyed"，但随后又声称模型学会了"implicit decoding"。如果信息在 tokenization 阶段就已损失，模型无法恢复它——这取决于 tokenizer 对各种 encoding 的实际保留率。Tokenizer audit 只要求 ≥90% 信息保留，但这是对 held-out encodings 的要求；训练时的 nested encodings 的保留率未明确验证。
+
+2. **"Encoding space 具有 intrinsic compositional structure"**: Proposal 声称 encoding space 天然适合 curriculum（不像其他领域 curriculum ordering 是 artificial 的），但这个声称本身需要验证。Nesting depth 确实是一个自然轴，但是否所有 encoding attack 都可以在这个轴上有意义地排列？混合攻击（partial encoding + plaintext mixing）可能不适合 ECS 的简单线性组合。
+
+3. **"Differential prediction 可以区分两种机制"**: "Progressive decoding skill acquisition" vs. "catastrophic interference prevention" 并非唯一两种可能解释。第三种可能：深层嵌套本身更难、variance 更大，所以任何 non-trivial 训练策略在深层都会有更大的 margin。Differential prediction 的解释力有限。
+
+4. **"Scope condition (H2b) 不会破坏 narrative"**: 如果 encoding-principle OOD 显示 curriculum 没有优势，论文的故事变成"只在同结构编码中泛化"——这一结论的实用性可能不够让审稿人信服。
+
+【5 维度打分】:
+
+1. Novelty: [中偏弱] — 
+   核心方法论（curriculum + GRPO for guardrail robustness）与 MrGuard (EMNLP 2025 main) 高度相似，后者已在多语言场景中展示了 curriculum + GRPO 的有效性。本文的差异化在于：(a) ECS complexity metric, (b) OOD generalization + scope conditions, (c) differential prediction test for mechanism。这些是有价值的补充贡献，但"将已知方法应用于相邻领域 + 更仔细的 mechanistic analysis"在 novelty 上有天花板。Gamma-Guard (EMNLP 2025 main) 也已展示 lightweight adapter 方法用于 guardrail robustness。整体来看，核心 insight（"按难度排序训练数据有助于组合泛化"）直觉上合理但不够 surprising。
+
+2. Technical Soundness: [强] — 
+   实验设计非常全面：10+ baselines、compute fairness 控制、5 seeds statistical rigor、representation analysis (CKA + linear probing)、encoded-benign FPR 防止 shortcut learning、pre-specified effect sizes、scope conditions 的诚实处理。Differential prediction 设计虽有局限但增加了 mechanistic depth。Class balance 设计（benign 也做 encoding augmentation）表明对 confound 有深入思考。这是这篇 proposal 最强的维度。
+
+3. Significance: [中] — 
+   问题本身是 validated 的（EMNLP 2025 Findings 论文确认 guardrails 对 encoding mutations 脆弱）。但：(a) encoding jailbreak 只是众多攻击类型之一，(b) bijection learning 等新攻击表明对抗性编码在快速进化，固定的 curriculum 训练能否跟上？(c) 如果 scope condition 限制泛化到"same structural family"，实际部署价值有限——攻击者会直接使用 structurally different encodings。(d) 更宏观地，reasoning-based guardrails（如 R2-Guard, MrGuard）可能是更有前途的方向，让 explicit reasoning 处理各种 perturbation。
+
+4. Feasibility: [强] — 
+   资源需求合理（4×A100, 17天），pipeline 清晰，有明确 fallback（co-evolution 不稳定则用 static curriculum），pilot study 设计合理。所有组件都基于公开可用的模型和数据。唯一风险是 co-evolutionary 训练的稳定性，但 fallback 已覆盖。
+
+5. Related Work: [中] — 
+   对 curriculum adversarial training、DG、compositional generalization 的定位合理。但对最直接竞争者的处理不够：(a) MrGuard (EMNLP 2025 main) 使用 curriculum + GRPO 用于 multilingual guardrail robustness——方法论高度重叠，需要明确说明差异；(b) Gamma-Guard (EMNLP 2025 main) 提出 lightweight adapter for guardrail robustness；(c) JBShield (USENIX 2025) 展示跨 unseen jailbreak 的 transferability。这些直接竞争者若不充分讨论，审稿人会质疑 novelty claim。
+
+【概率估计】: [18% - 28%] 中位 23%
+
+【估计理由】: 
+Novelty 和 Significance 都落在"中偏弱"到"中"区间，这直接约束了概率上限在 30% 左右。具体推理：
+
+- **上限约束 (Novelty/Significance)**: 核心方法论与 MrGuard (EMNLP 2025 main) 重叠是最大 novelty 风险。即使实验做得完美，"已发表方法在相邻领域的应用 + 更细致的分析"的 novelty ceiling 约在 30-35%。问题的 significance 适中（不是 LLM safety 最核心的问题），进一步压低上限到 ~28%。
+
+- **地板 (Technical Soundness/Feasibility)**: 实验设计确实很强，这避免了"实验漏洞致命"的最低分区间。Strong technical design 将下界从 ~15% 提升到 ~18%。
+
+- **风险加权**: (1) 如果 H1 的 effect size < 10pp → 论文核心 claim 不成立；(2) 如果 H2b 显示 curriculum 完全没优势 → 泛化故事被大幅削弱；(3) 如果审稿人将 MrGuard 视为直接先驱 → novelty 被质疑。这些风险的概率非 trivial。
+
+- **最终定位**: 在 EMNLP 主会 20-25% 录取率下，这篇论文处于 borderline 区域下方。好的一面是实验 rigor 可能打动 execution-oriented 的审稿人；差的一面是 novelty 不足以打动 idea-oriented 的审稿人。中位数 23% 反映了这种不确定性。
+
+【主要风险】: 
+1. **Novelty 被 MrGuard 削弱**: MrGuard (EMNLP 2025 main) 已展示 curriculum + GRPO 用于 guardrail robustness。审稿人可能判定本文仅是"换了个 domain"的 incremental extension，特别是如果作者未能有力论证 encoding domain 的特殊挑战为何需要不同于 multilingual domain 的技术处理。
+2. **Effect size 不足以支撑 narrative**: 如果 curriculum vs. flat augmentation 的差距仅 3-5pp（而非预期的 10pp），论文的核心"curriculum ordering matters"claim 就变得 weak。此时大量的 mechanism analysis 变成了对 marginal effect 的过度解释。
+
+【实施评估】:
+  - 计算资源: 4×A100 80GB，合理且可获得
+  - 数据需求: HarmBench + AdvBench + WildGuardTest + LMSYS-Chat-1M（均公开可用）；encoding generators 需自建但 straightforward
+  - 人工介入: Oracle 标注依赖 GPT-4o（~$250），可控
+  - 训练需求: 是，需要训练 classifier (Qwen2.5-4B SFT) 和 attacker (Qwen2.5-1.5B GRPO)，25 个 classifier runs
+  - 新 Benchmark: 部分——EncoAttack 是新构建的 supplementary benchmark；held-out encoding families 需自定义实现
+  - 预估周期: 17 天（含 buffer），激进但可行；主要瓶颈是 25 个 classifier runs 的 GPU 排队
+```
+
+---
+
+Sources:
+- [On Guardrail Models' Robustness to Mutations and Adversarial Attacks](https://aclanthology.org/2025.findings-emnlp.922/)
+- [MrGuard: A Multilingual Reasoning Guardrail for Universal LLM Safety](https://aclanthology.org/2025.emnlp-main.1392/)
+- [Gamma-Guard: Lightweight Residual Adapters for Robust Guardrails](https://aclanthology.org/2025.emnlp-main.614.pdf)
+- [Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation (2026)](https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf)
+- [JBShield: Defending Large Language Models from Jailbreak Attacks](https://www.usenix.org/system/files/conference/usenixsecurity25/sec25cycle1-prepub-341-zhang-shenyi.pdf)
+- [Defending Large Language Models Against Jailbreak Attacks via In-Decoding Safety-Awareness Probing](https://arxiv.org/html/2601.10543v1)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient context from the related work landscape. Let me synthesize my full assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【Trivial Alternative 检验】:
+两个关键的 trivial alternatives 需要审视：
+
+1. **"Flat augmentation"（多样编码数据直接训练，不排序）能否达到类似效果？**
+   这是本文最核心的存亡问题。Proposal 已将 flat augmentation 列为 baseline，这是正确的。但风险在于：如果 curriculum ordering 的优势仅有 3-5pp（而非声称的 ≥10pp），整篇论文的核心贡献将瓦解。Encoding space 的组合结构确实提供了非任意的 difficulty ordering（比一般 curriculum learning 的应用场景更有利），但优势的 *量级* 高度不确定。
+
+2. **"Deterministic decode pipeline + 现有 guardrail"对已知编码已极其有效。**
+   搜索显示 DecipherGuard (Sep 2025) 将 LlamaGuard 对 Base64 的 DSR 从 2.55% 提升至 98.74%。对已知单层编码，rule-based pipeline 几乎是完美方案。本文的 value proposition 实际上完全依赖于"对 *unseen* 编码的泛化"——这个场景的实际频率和重要性可被审稿人质疑。
+
+结论：并非完全 trivial，但 trivial alternative 对大部分实际场景已经够用。本文的增量价值集中在一个相对小的 OOD 泛化窗口，且该窗口是否足够重要尚需论证。
+
+【前提假设检验】:
+核心逻辑链中有两个"想当然"环节：
+
+1. **"4B 分类器能从纯分类信号中学会隐式解码复杂嵌套编码"——这是一个极强的假设。**
+   Base64 是确定性数学变换；ROT13(Base64(text)) 的解码需要精确的 compositional reasoning。一个仅接受 harmful/benign 二分类训练信号的 4B 模型，更可能学到的是编码文本的 *统计分布特征*（如 base64 的字符频率模式），而非真正的 decoding capability。如果是前者，则对统计特征相似的新编码有效，对特征不同的则无效——这不是 "progressive decoding skill acquisition"，而是 "statistical pattern matching"。Proposal 承认不 claim "encoding-invariant features"，但其 mechanism narrative 仍暗示了比统计特征匹配更深层的能力。
+
+2. **"Curriculum ordering 的优势会随 nesting depth 增长"（differential prediction）——这个预测虽然巧妙，但其 alternative interpretation 不充分。**
+   即使观察到优势随 depth 增长，也可能是因为 deeper nesting = 更难的样本 = 任何有序训练都比 random 好（simple difficulty-ordering effect），而非 "compositional decoding skill building"。这两个解释很难区分。
+
+【5 维度打分】:
+
+1. Novelty: [中] —
+   核心贡献是"将 curriculum learning 应用于 encoding-robust jailbreak defense"。Curriculum learning 本身成熟（Cai et al. 2018, Wang et al. 2021）；encoding jailbreak defense 是活跃方向（Constitutional Classifiers++ Jan 2026, DecipherGuard Sep 2025, OmniGuard EMNLP 2025, SecurityLingua Jun 2025）。本文的具体角度（ECS-ordered curriculum + OOD 泛化）在该领域尚未被做过，但核心 insight——"structured difficulty ordering helps in compositional difficulty spaces"——不会让审稿人 surprised。
+   
+   加分项：differential prediction 机制测试设计巧妙；scope conditions 的科学态度成熟；encoded-benign FPR 是关键 control。
+   减分项：ECS 本身是 obvious factors 的加权组合；co-evolutionary framework 是 bonus 且可能失败。
+
+2. Technical Soundness: [强] —
+   实验设计本身堪称 thorough：10 种方法的 baseline 矩阵；5 seeds + Bonferroni correction；compute fairness 显式处理；representation analysis (CKA + linear probing) 提供机制证据；learning dynamics tracking；encoded-benign FPR 防 shortcut。
+   
+   扣分项：(a) 缺少对 Constitutional Classifiers/CC++ 的讨论和对比——这是当前最强的 jailbreak defense system，虽为 system-level 不完全可比，但不提及会被审稿人追问；(b) DecipherGuard 作为同期 pipeline 方案未被明确对标；(c) differential prediction 的 alternative interpretation（见前提假设检验）未被充分 address。
+
+3. Significance: [中] —
+   编码攻击是真实威胁，但领域正快速拥挤：CC++ 已将 jailbreak 成功率压至极低；DecipherGuard 对已知编码近乎完美。本文的增量价值窗口——"对 unseen 编码的泛化"——是否是一个 *sufficiently important* 的实际问题？攻击者更新编码类型的速度 vs. rule-based decoder 更新的速度，哪个更快？如果 rule-based 更新足够快，则 OOD 泛化的实际需求存疑。
+   
+   科学层面的 significance 较好：curriculum 在 compositional transformation space 中的泛化能力是一个有意义的研究问题。但 EMNLP 主会更看重 NLP-specific impact。
+
+4. Feasibility: [中] —
+   4×A100 合理；66h wall-clock 可控；Oracle 成本适中（~$400）。
+   
+   风险点：(a) 17 天 timeline 含 25 次训练 run + 全套分析 + 写作，极为紧张——任何一个环节延迟都将挤压后续；(b) co-evolutionary loop 被承认可能不稳定，fallback 计划合理但意味着 H4 可能缺失；(c) 6 个 held-out 编码族的实现 + tokenizer audit 需要大量 engineering work，在 Day 1-3 完成有压力。
+
+5. Related Work: [中] —
+   对 curriculum learning、domain generalization、compositional generalization 三条文献线的定位清晰，差异化论述合理。
+   
+   关键缺失：
+   - **Constitutional Classifiers / CC++** (Anthropic, 2025/2026)：当前最强 jailbreak defense，必须讨论
+   - **DecipherGuard** (Sep 2025)：直接竞品 pipeline 方案
+   - **OmniGuard** (EMNLP 2025)：representation-based cross-modal/lingual detection，概念上与 encoding-invariant representation 相关
+   - **SecurityLingua** (Jun 2025)：prompt compression 方案
+   这些遗漏不致命（proposal 阶段可补），但若论文提交时仍缺失，会被审稿人视为 incomplete survey。
+
+【概率估计】: [23% - 33%] 中位 28%
+
+【估计理由】:
+Novelty 和 Significance 均为"中"，根据 rubric 约束，概率上限 ~35%。Technical Soundness 为"强"，将地板抬至 ~23%（实验设计不会成为被拒理由），但无法突破 idea 质量的天花板。
+
+具体推理：
+- 核心 insight "structured curriculum helps in compositional difficulty spaces" 不够 surprising → Novelty 中 → 天花板 ~35%
+- 应用场景的增量价值被 CC++、DecipherGuard 等竞品压缩 → Significance 中 → 天花板确认 ~35%
+- 实验设计 thorough + differential prediction 机制测试 + scope conditions 的科学态度 → 在天花板内尽量加分 → 从地板 23% 提至中位 28%
+- Related work 缺失可修复，不致命 → 不再额外扣分
+- 如果 curriculum vs. random 的实际优势不足 10pp，或 OOD 泛化结果不显著 → 概率降至下界 23%
+- 如果 differential prediction 被清晰验证 + scope conditions 有 clean story → 概率可达上界 33%
+
+【主要风险】:
+1. **Curriculum 优势量级不足**：如果 curriculum vs. random-order 的差距仅 3-5pp（而非 ≥10pp），核心贡献瓦解。审稿人会质问"ordering 真的重要吗？"——flat augmentation 可能就够了。这是最可能导致被拒的单一风险。
+2. **"Unseen encoding 泛化"的实际价值被质疑**：在 CC++ 和 DecipherGuard 等系统已覆盖已知编码的背景下，审稿人可能认为"对新编码的泛化"是一个不够重要的 niche 问题，尤其是当 encoding-principle OOD 结果可能显示 limited transfer 时（proposal 自己承认了这一点）。
+
+【实施评估】:
+  - 计算资源: 4×A100 80GB，中等规模，学术实验室可获取
+  - 数据需求: HarmBench + AdvBench + WildGuardTest + LMSYS-Chat-1M（公开可用）；需自建编码变体生成 pipeline
+  - 人工介入: Oracle 校准需 GPT-4o API ($250)；held-out 编码族需手工实现 6 种编码器；tokenizer audit 需人工验证
+  - 训练需求: 25 次分类器训练 run + 2 次 attacker 训练；总计 ~66h wall-clock（4 GPU 并行）
+  - 新 Benchmark: EncoAttack（12K test cases），为 supplementary benchmark，非 primary contribution
+  - 预估周期: 17 天（极紧张）；建议扩展至 25-30 天以留出 debugging 和迭代空间
+```
+
+**补充说明（面向迭代团队）：**
+
+如果团队决定继续推进，以下调整可能提升中稿率：
+
+1. **补齐 Related Work**：必须加入 Constitutional Classifiers++、DecipherGuard、OmniGuard 的对比讨论，说清本文与它们的互补性而非替代性。
+2. **强化 Significance 论证**：需要一个令人信服的 argument 说明为什么 OOD encoding 泛化不能被 "定期更新 rule-based decoder" 解决——例如，量化"从新编码出现到 rule 更新"的时间窗口中的安全风险。
+3. **降低对 mechanism narrative 的依赖**：如果 differential prediction 结果不 clean，不要硬推 "progressive decoding skill acquisition" 的 narrative——改为更保守的 "structured training facilitates robust feature learning" 即可。
+4. **准备 ablation 解释 alternative interpretation**：为 "difficulty ordering effect vs. compositional skill building" 准备额外实验（例如，non-compositional difficulty ordering 对比）。
+
+Sources:
+- [Constitutional Classifiers (Anthropic)](https://www.anthropic.com/research/constitutional-classifiers)
+- [Constitutional Classifiers++ (Anthropic)](https://arxiv.org/pdf/2601.04603)
+- [DecipherGuard](https://arxiv.org/abs/2509.16870)
+- [OmniGuard (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.819/)
+- [SecurityLingua](https://arxiv.org/abs/2506.12707)
+- [Evaluating Robustness of LLM Safety Guardrails](https://arxiv.org/html/2511.22047v1)
+- [SafeProbing - In-Decoding Safety-Awareness](https://arxiv.org/abs/2601.10543)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+## Title
+
+EncoGuard: Encoding-Robust Content Extraction via Complexity-Structured Curriculum Training
+
+## Problem Statement
+
+Encoding-based jailbreak attacks (base64, ROT13, homoglyph substitution, and their nested compositions) exploit a fundamental vulnerability in LLM safety guardrails: classifiers trained on plaintext or limited encoding variations fail when inputs are transformed through unseen encoding schemes. Existing defenses have critical limitations:
+
+1. **Rule-based detection + decoding pipelines** (regex detection → known decoder → standard guardrail): Effective for known single-layer encodings with distinctive statistical signatures. Fail on: (a) partial encoding, (b) adversarial mixing of encoded/plaintext, (c) novel encodings without pre-programmed decoders.
+
+2. **Learned/LM-based canonicalization** (small LM decode → classify): Error propagation compounds across nesting layers; the canonicalizer itself becomes an adversarial attack surface; partial encoding requires semantic understanding to identify decode targets.
+
+3. **Frontier LLM zero-shot** (GPT-4/Claude prompted to detect harmful content regardless of encoding): Leverages pre-training exposure but impractical for deployment-scale guardrails ($0.01-0.03 per input, 1-3s latency vs. millisecond-level local inference).
+
+The core challenge is achieving **generalization to unseen encoding families at deployment-practical cost**—a lightweight classifier that remains robust against encoding types never encountered during training.
+
+## Core Thesis
+
+We hypothesize that a classifier trained via **complexity-structured curriculum**—where encoding attacks are presented in order of a principled complexity metric—acquires **encoding-robust content extraction capabilities** that generalize to held-out encoding types unseen during training.
+
+**Mechanism (Two-Regime, with Differential Prediction):**
+
+- **Low-ECS regime (simple encodings):** Content semantics remain partially accessible through tokenization. Curriculum forces the model to anchor harmful-content semantic features despite mild surface perturbation (**content anchoring**).
+
+- **High-ECS regime (complex/nested encodings):** Token-level content information is destroyed by multi-layer encoding. The model develops strategies for implicit decoding—recognizing encoding structure patterns and compositionally reconstructing content signal (**progressive decoding skill acquisition**).
+
+**Differential prediction distinguishing our mechanism from trivial catastrophic-interference prevention:** If the mechanism is progressive decoding skill acquisition (compositional skill building), curriculum's advantage over random-order should *increase with nesting depth* (deeper nesting requires more compositional decoding skill). If the mechanism is merely preventing catastrophic interference (protecting base content features), the advantage should be approximately uniform across nesting depths. We explicitly test this prediction.
+
+**Important clarification:** We do NOT claim literal "encoding-invariant features" in the information-theoretic sense (impossible for fully-scrambled sequences). Rather, curriculum builds a progressive hierarchy of decoding capabilities that transfers across encoding types sharing structural properties with training encodings. We explicitly characterize where this transfer succeeds (same encoding principle, different mapping) and where it reaches its limits (fundamentally different encoding paradigms)—establishing **scope conditions** for curriculum-induced generalization.
+
+## Relationship to Prior Work
+
+### Curriculum Adversarial Training
+Cai et al. (IJCAI 2018): progressive perturbation magnitude for images. Wang et al. (NeurIPS 2021): ordered SGD by difficulty. Key differences:
+1. **Discrete compositional space vs. continuous perturbation:** Encoding attacks form a combinatorial space (N primitives × K nesting levels) requiring multi-dimensional complexity metrics, unlike scalar ε-balls.
+2. **OOD generalization vs. in-distribution robustness:** We explicitly test generalization to unseen encoding families, not just robustness to trained attack types.
+
+**Why curriculum works here but has mixed results elsewhere:** Encoding space possesses *intrinsic compositional structure with natural difficulty ordering*—nesting depth provides a non-arbitrary complexity axis. This contrasts with domains where curriculum orderings are artificial/researcher-imposed (known failure mode in curriculum literature).
+
+### Domain Generalization (DG)
+Each encoding type as a domain; OOD generalization ≈ DG to unseen domains. Standard DG methods (IRM, DANN, CORAL, DRO) ARE applicable to this setting (contrary to some claims about discrete spaces—DANN operates on representations, DRO on loss weighting). However, we hypothesize that **curriculum is superior to standard DG here** because DG methods treat domains as unstructured categories, while curriculum explicitly exploits the compositional complexity structure of the encoding space. We empirically validate this with Group DRO and DANN baselines.
+
+### Compositional Generalization
+The encoding attack space (N primitives × K layers = O(N^K) compositions) is a discrete compositional transformation space, connecting to the compositional generalization literature (SCAN, COGS). Our work investigates whether structured curriculum can facilitate compositional generalization in transformation spaces—a question not addressed by prior compositional generalization work, which focuses on input-output mapping generalization rather than adversarial robustness.
+
+## Key Contributions
+
+1. **Primary Contribution (OOD Generalization + Scope Conditions):** Empirical demonstration that complexity-structured curriculum enables generalization to unseen encoding types at two levels—mapping-function OOD (strong transfer) and encoding-principle OOD (limited transfer, establishing scope conditions). Direct representation-level evidence (CKA + linear probing) + mechanistic differential prediction (nesting-depth-dependent advantage).
+
+2. **Encoding Complexity Score (ECS):** Formalized metric validated via cross-classifier correlation analysis; individual components quantified; shown to predict difficulty independently of training method.
+
+3. **Co-Evolutionary Training Framework:** GRPO attacker + SFT classifier with curriculum ordering, demonstrating co-evolution further improves upon static curriculum.
+
+4. **Deployment-Practical Encoding Defense:** 4B classifier achieving encoding robustness competitive with frontier LLM zero-shot at orders-of-magnitude lower latency and cost (quantified with formal inference benchmarks).
+
+## Methodology
+
+### Encoding Complexity Score (ECS)
+
+$$ECS(e) = \alpha \cdot \text{NestingDepth}(e) + \beta \cdot \text{CPT\_Deviation}(e) + \gamma \cdot \text{TokenizerPerplexity}(e)$$
+
+**Weight calibration:** Using a minimally-trained baseline classifier (Qwen2.5-4B fine-tuned only on plaintext harmful/benign data, ~1h training), measure each component's Spearman ρ with classifier error across 200 encoding variants. Weights set proportional to individual predictive power. This avoids circular dependency with curriculum training.
+
+**Component contribution analysis:** Report (a) single-component Spearman ρ, (b) leave-one-out ρ change, (c) composite vs. best single component. All computed on evaluation data without retraining.
+
+**Cross-classifier validation (H3):** Report ECS correlation with error rates from: (i) minimally-trained baseline, (ii) random-order trained classifier, (iii) curriculum-trained classifier. High correlation across all three demonstrates ECS captures intrinsic encoding difficulty, not training-method-specific difficulty.
+
+### Training Design
+
+**Attacker (Qwen2.5-1.5B, GRPO):**
+- Generates encoding attacks within current curriculum ECS band
+- Reward: +1 if bypasses classifier AND oracle confirms harmful
+- Entropy regularization prevents encoding-type collapse
+
+**Classifier (Qwen2.5-4B, SFT):**
+- Curriculum-ordered: Stage 1 (ECS ≤ threshold) → Stage 2 (ECS > threshold)
+- FPR rollback: revert if FPR > 2%
+- Semantic deduplication (cosine > 0.95)
+
+**Class Balance and Shortcut Prevention:**
+- Training batch composition: 50% harmful-encoded + 50% benign
+- **Critical:** Benign training data ALSO undergoes encoding augmentation (same encoding types and ECS distribution as harmful data). This prevents the classifier from learning "encoded = harmful" shortcut—it must learn to detect harmful *content* regardless of encoding, not merely detect encoding's *presence*.
+- Benign data source: LMSYS-Chat-1M (5K samples) + WildGuardTest benign (1K samples), encoded with same pipeline
+
+**Oracle:** GPT-4o + deterministic decoder cross-validation; disagreements excluded.
+
+**Fallback:** If co-evolutionary loop unstable by Day 7, switch to static curriculum SFT.
+
+### Baseline Definitions
+
+| Method | Data Source | Ordering | Key Variable | Seeds |
+|--------|------------|----------|--------------|-------|
+| **Curriculum (ours)** | Co-evolutionary/static, ECS-staged | Monotone ↑ ECS | — | 5 |
+| **Random-order** | Same data as curriculum | Shuffled | Ordering | 5 |
+| **Flat augmentation** | Uniform random encoding per prompt per epoch | Random | Data composition + ordering | 3 |
+| **Reverse curriculum** | Same data | Monotone ↓ ECS | Direction | 3 |
+| **Static curriculum** | Rule-based, ECS-ordered | Same as curriculum | Co-evolution effect | 3 |
+| **Group DRO** | Same data as flat | Worst-group (encoding type) loss | DG approach | 3 |
+| **DANN** | Same data as flat | Gradient reversal on encoding type | DG approach | 3 |
+| **Qwen2.5-1.5B decode → LlamaGuard-3** | N/A (inference) | N/A | Pipeline approach | 1 |
+| **Deterministic decode → LlamaGuard-3** | N/A (inference) | N/A | Rule-based pipeline | 1 |
+| **GPT-4 zero-shot** | N/A (API) | N/A | Cost/accuracy frontier | 1 |
+
+Key distinctions:
+- Random-order vs. Flat: Random-order = same data, shuffled (isolates ordering). Flat = uniform encoding sampling (different data distribution).
+- Group DRO / DANN: Standard DG methods using encoding type as domain label. Tests whether structured curriculum > unstructured domain-invariance objectives.
+
+### Compute Fairness
+
+- **H1-H3 (core claims):** Static curriculum vs. baselines. All use identical Qwen2.5-4B, identical training FLOPs (measured and reported), identical total steps. Variable: data ordering/composition/loss function.
+- **H4 (co-evolution, bonus):** Extra compute from attacker. Include compute-matched static variant (extra FLOPs → more training epochs) for fair comparison.
+- **Reporting:** Table with total classifier FLOPs, total system FLOPs (incl. attacker), wall-clock, training tokens per method.
+
+### Compute and Cost
+
+- Hardware: 4× A100 80GB
+- Per classifier run: ~8h
+- Total classifier runs: 5+5+3+3+3+3+3 = 25 runs → parallelized 4 at a time → ~50h
+- Attacker: 12h (2 rounds)
+- Oracle: ~18K calls ≈ $250
+- GPT-4 zero-shot eval: ~15K calls ≈ $150
+- Inference analyses (probing, CKA, latency): ~4h
+- Total: ~66h wall-clock training + evaluation
+
+## Experimental Design
+
+### Hypotheses
+
+- **H1 (Curriculum > Random):** Curriculum achieves ≥10pp lower encoding-ASR than random-order (95% bootstrap CI excludes 0, Cohen's d reported).
+- **H2a (Mapping-Function OOD):** Curriculum maintains ≤20% ASR on mapping-function OOD encodings (Braille, custom cipher, NATO phonetic) where baselines exceed 50%.
+- **H2b (Encoding-Principle OOD — Scope Condition):** On structurally different encoding principles (Pig Latin, T9 keypad), report curriculum vs. baselines gap. If curriculum outperforms by ≥15pp → evidence of broader generalization. If no significant difference → establishes scope boundary (curriculum generalizes within structural families, not across fundamentally different paradigms). Both outcomes are informative.
+- **H3 (ECS Predictiveness):** ECS correlates with error (Spearman ρ ≥ 0.7) across multiple classifiers; composite outperforms any single component.
+- **H4 (Co-evolution > Static, bonus):** Co-evolutionary > static by ≥5pp on composite encodings after compute normalization.
+
+**Differential Prediction (Mechanism Test):**
+- Partition test results by nesting depth (1, 2, 3)
+- Compute (curriculum ASR - random ASR) at each depth
+- Progressive decoding hypothesis → gap increases with depth
+- Catastrophic interference hypothesis → gap approximately constant
+- Report trend with significance test
+
+### Held-Out Encoding Families
+
+**Mapping-function OOD (same structural principle, different specific mapping):**
+- Braille Unicode substitution (character substitution — cf. homoglyphs)
+- Custom Caesar cipher with position-dependent shift (shift-based — cf. ROT13)
+- NATO phonetic alphabet (word-level substitution — novel granularity)
+- Morse code (symbolic encoding — cf. base64)
+
+**Encoding-principle OOD (boundary test — structurally different paradigm):**
+- Pig Latin variant (syllable rearrangement — morphological transformation, unlike any character/symbol substitution in training)
+- T9 phone keypad encoding (multi-character → single digit mapping with ambiguity — lossy encoding unlike all training encodings which are lossless)
+
+**Tokenizer Audit (Day 1-2):** Verify all held-out encodings survive tokenize → detokenize round-trip with information preservation rate ≥ 90%. Replace any encoding that fails this check.
+
+### Evaluation Protocol
+
+**External benchmarks (primary):**
+- HarmBench encoding-perturbed
+- JailbreakBench encoding subset
+- WildGuardTest encoding-perturbed
+
+**EncoAttack (supplementary):**
+- 500 base prompts: HarmBench (200) + AdvBench (150) + WildGuardTest (150)
+- 8 encoding types × 3 nesting levels = 12,000 test cases
+- Independent implementation from training pipeline
+- Validated ≥80% bypass on undefended LlamaGuard-3
+
+**Held-out encodings:** 6 families as above (4 mapping-function + 2 encoding-principle)
+
+**GPT-4 zero-shot reference:** Same test sets
+
+**Metrics:**
+- Encoding-ASR (primary)
+- **Clean FPR on plaintext benign** (WildGuardTest benign ~1000 + LMSYS-Chat-1M 1000)
+- **Encoded-benign FPR** (500 benign prompts × encoding augmented — CRITICAL: tests whether classifier detects harmful content vs. detects encoding presence)
+- FPR at multiple thresholds (0.5%, 1%, 2%, 5%) with Pareto frontier
+- Per-encoding-type breakdown
+- Nesting-depth-stratified curriculum advantage (differential prediction)
+- ECS correlation (composite + individual + cross-classifier)
+- Nesting-depth vs. decode-accuracy curve (error propagation for pipeline baselines)
+
+**Inference Performance:**
+- Latency: single A100, batch=1 and batch=32, median + p99 (ms)
+- Throughput: queries/second
+- Cost per query: based on A100 hourly rate vs. GPT-4 API
+- Compare: EncoGuard vs. Qwen-decode+LlamaGuard vs. GPT-4 zero-shot
+
+### Representation Analysis
+
+1. **CKA + Cosine Similarity:** 100 prompts × (plaintext + 8 encoding variants), penultimate-layer representations. Intra-prompt cross-encoding similarity: curriculum vs. baselines.
+
+2. **Linear Probing (Disentanglement):**
+   - Probe A: predict content category → curriculum should match or exceed baselines
+   - Probe B: predict encoding type → curriculum should show LOWER accuracy (encoding info discarded)
+   - Encoded-benign probing: verify that benign encoded inputs are NOT classified as harmful clusters
+
+3. **Learning Dynamics:** Per-checkpoint (500 steps) ASR curves, stratified by ECS level. Expected: curriculum shows staged convergence; random-order shows chaotic learning.
+
+### Statistical Rigor
+
+- Curriculum + random-order: 5 seeds each. Others: 3 seeds.
+- H1: 95% bootstrap CI on paired difference + Cohen's d
+- H2a/H2b: Reported with confidence intervals
+- Bonferroni correction for H1-H3 family
+- All results tables include mean ± std
+
+### Oracle Pilot (Day 1-2)
+
+100 samples per ECS band. GPT-4o + deterministic decoder agreement. < 80% → deterministic-only for that band.
+
+## Stability Mechanisms (Not Contributions)
+
+- Entropy regularization, FPR rollback, semantic deduplication
+- Trigger frequencies reported; full ablation in camera-ready
+
+## Acknowledged Limitations
+
+1. Full learned canonicalization (seq2seq) not trained as baseline; addressed via small-LM decode pipeline + nesting-depth error curve
+2. General principle validated only on encoding attacks; other compositional spaces = future work
+3. ECS weight sensitivity: ±20% perturbation in supplementary
+4. Encoding-principle OOD may show limited/no curriculum advantage—reported as scope condition
+
+## Timeline (17 days)
+
+**Phase 1: Setup + Pilot (Days 1-3)**
+- ECS implementation, encoding generators (all 6 held-out families), data pipeline
+- Tokenizer audit for all held-out encodings
+- Oracle pilot (100/band)
+- Fast pilot run (reduced data, 2h) → validate training dynamics, ECS threshold, class balance
+
+**Phase 2: Core Training (Days 4-9)**
+- Days 4-6: Curriculum (5 seeds) + random-order (5 seeds) [4 GPU parallel]
+- Days 7-8: Flat (3) + reverse (3) + Group DRO (3) + DANN (3) [parallel]
+- Day 9: Static curriculum (3) + compute-matched static (3) + co-evolutionary attempt
+
+**Phase 3: Evaluation + Analysis (Days 10-12)**
+- Day 10: Full benchmark eval + held-out + GPT-4 zero-shot + pipeline baselines
+- Day 11: Representation analysis + ECS stats + learning dynamics + encoded-benign eval
+- Day 12: Statistical tests, nesting-depth analysis, latency benchmarks, Pareto curves
+
+**Phase 4: Writing (Days 13-15)**
+- Drafting + figures + tables
+
+**Buffer (Days 16-17)**
+- Additional runs if needed, stability ablation, revision
+
+**Fallback:** Co-evolutionary unstable by Day 8 → focus H1-H3 with static curriculum.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7932c7f4-42b5-4109-a7f7-7ce281579d55",
+  "type": "user",
+  "uuid": "7352caee-8b8e-44e6-8e00-6aaf397170f3",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T12:50:42.317Z_
+
+```json
+{
+  "parentUuid": "7352caee-8b8e-44e6-8e00-6aaf397170f3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "bfc085b4-7d50-4c18-9879-d16158fe32c8",
+  "timestamp": "2026-05-16T12:50:42.317Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T12:50:42.317Z_
+
+```json
+{
+  "parentUuid": "bfc085b4-7d50-4c18-9879-d16158fe32c8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8023739c-cd8f-46e9-911b-1067e0bedcd2",
+  "timestamp": "2026-05-16T12:50:42.317Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient context to provide a comprehensive asses…",
+  "leafUuid": "8023739c-cd8f-46e9-911b-1067e0bedcd2",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate encoding-robust guardrail curriculum proposal",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T12:51:18.361Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews and synthesize them as the Meta Judge.
+
+**Review 1 (审稿人 1):**
+- Novelty: 中- (medium-low)
+- Technical Soundness: 强 (strong)
+- Significance: 中 (medium)
+- Feasibility: 强 (strong)
+- Related Work: 弱 (weak)
+- Probability: [18% - 30%] 中位 24%
+- Key concerns: Trojan-Speak overlap, missing related work (DecipherGuard, CC++, SecurityLingua), novelty compressed by existing work
+
+
+- 
+The second reviewer raises similar concerns about novelty and technical soundness, though they rate the related work coverage as medium rather than weak. They flag potential overlap with MrGuard's curriculum and GRPO approach, and worry about whether the effect sizes justify publication in a top venue, given the paper targets a relatively niche OOD evaluation scenario. Their acceptance probability sits at 23%.
+
+The third reviewer gives comparable scores across most dimensions, with a slightly lower feasibility rating due to concerns about the augmentation strategy being too straightforward and an implicit assumption about 4B model decoding. They estimate 28% acceptance probability.
+
+Aggregating across all three reviewers, the median acceptance probability lands at 24%, with relatively tight clustering around that estimate—the standard deviation is only about 2.16 percentage points, suggesting reasonable consensus among reviewers despite their individual concerns. Looking at the consensus dimensions, Technical Soundness gets strong agreement across all reviewers, Significance is uniformly rated as medium, and Feasibility splits between strong and medium ratings. For Related Work, there's more variation with two reviewers marking it medium and one weak. The reviewers consistently flag the same core issues: the risk that flat augmentation could be a trivial baseline, critical gaps in citing CC++ and DecipherGuard, and concerns about whether the curriculum learning effect is substantial enough compared to random selection. They also recognize the experimental design is solid, though two reviewers worry about novelty overlap with prior work like Trojan-Speak and MrGuard. One unique observation is that R1 emphasizes Trojan-Speak as the most significant overlap, while R2 points to MrGuard from EMNLP 2025.
+
+Now I'm calculating the consensus range across the three reviewer scores. The standard deviation is quite low at around 2.6%, indicating strong agreement. Looking at the three ranges they provided, the median lower bound is 18%, the median upper bound is 30%, and the median midpoint is 24%. Given this high consistency, I should narrow the final range to approximately 19%-29% rather than taking the widest bounds.
+
+But I notice R3's upper bound of 33% is notably higher than the others, suggesting they rated Novelty more generously. Since I shouldn't exceed the most generous estimate, I'll compress the range slightly to 20%-29% with a midpoint of 25%.
+
+Now I'm synthesizing the implementation assessment across all three reviewers—they're aligned on the hardware requirements, datasets, and the need for classifier training with multiple runs.
+
+The main divergence is around the EncoAttack benchmark construction and timeline feasibility, where two-thirds recommend extending the 17-day window.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8023739c-cd8f-46e9-911b-1067e0bedcd2",
+  "isSidechain": false,
+  "requestId": "req_011Cb6H2VcbXBn24XYqUQ8pS",
+  "type": "assistant",
+  "uuid": "69cdf687-e753-42b4-b4f4-02a776f780af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFUSf75X6S7qiLDYFQRUfU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16913,
+      "cache_read_input_tokens": 15407,
+      "output_tokens": 3221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3221,
+          "cache_read_input_tokens": 15407,
+          "cache_creation_input_tokens": 16913,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16913
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T12:51:56.785Z_
+
+【阶段】: Meta Judge
+【三次中位】: [24%, 23%, 28%]  std=2.6%
+【共识维度】: 
+- Technical Soundness=强（3/3 一致）：实验设计全面、统计严谨、compute fairness 控制好
+- Novelty=中/中-（3/3 一致在"中"区间）：核心 insight 不够 surprising，与已有方法重叠
+- Significance=中（3/3 一致）：问题真实但增量价值被竞品压缩，OOD 泛化窗口狭窄
+- Feasibility=强/中（2/3 强，1/3 中）：资源合理，timeline 紧张但有 fallback
+- 核心风险共识（3/3）：curriculum vs. flat augmentation 效果差距可能不足 10pp → 核心 claim 瓦解
+- Related Work 缺失共识（3/3）：CC++ 和 DecipherGuard 必须纳入讨论
+- Trivial alternative 共识（3/3）：flat augmentation 是最直接威胁，proposal 有控制但结果高度不确定
+
+【异常维度】: 
+- R1 独有：Trojan-Speak (2026.03) 作为最关键重叠（方法论镜像），Related Work=弱（最严）
+- R2 独有：MrGuard (EMNLP 2025 main) 作为最关键重叠（curriculum+GRPO 在相邻领域已发表）
+- R3 独有：Feasibility=中（timeline 极紧张的判断更保守）；对 mechanism narrative 的 alternative interpretation 分析更深
+
+【最终概率】: [20% - 28%] 中位 24%
+【一致性】: 高（std=2.6% < 3%）
+【综合理由】: 
+三位审稿人高度一致地将此 proposal 定位在 EMNLP 主会录取线以下。共识逻辑清晰：
+
+1. **Novelty 天花板约束**：三人均判定核心 insight "structured curriculum helps compositional spaces" 不够 surprising。虽然 R1 和 R2 各自指出不同的具体重叠来源（R1→Trojan-Speak 方法论镜像；R2→MrGuard curriculum+GRPO 已发表），但结论一致——这是已有工具箱在相邻场景的应用，novelty 有上限。两个重叠来源虽然各只有 1 人提出，但它们指向同一结论（novelty 被压缩），因此整合时作为互相补强而非 outlier 处理。
+
+2. **Significance 被竞品压缩**：三人均指出 CC++（jailbreak 成功率降至 4.4%）和 DecipherGuard（已知编码近乎完美防御）大幅压缩了本文的增量价值空间。本文的 value proposition 集中在"对 unseen 编码的泛化"这一相对小的窗口。
+
+3. **Technical Soundness 托底**：三人一致认为实验设计是亮点（10+ baselines, 5 seeds, compute fairness, representation analysis），将概率地板抬至 ~20%，不会因为实验漏洞被直接 reject。
+
+4. **核心实证风险**：三人均认为如果 curriculum vs. random-order < 10pp，论文叙事将难以自洽。这是一个先验概率非低的风险。
+
+最终取中位 24%（略高于 R1/R2 的 23-24% 中心，因 R3 给出更有依据的乐观理由——differential prediction 若 clean 可达 33%）。上界 28% 对应最乐观情况（related work 补全 + 实验结果理想），下界 20% 对应 novelty 被审稿人判定为 incremental。
+
+【建议】: 边缘（Related Work 可修复，Novelty framing 可优化，但 idea 层面的天花板需要实质突破才能进入安全区）
+
+【实施评估】:
+  - 计算资源: 4×A100 80GB，总 GPU 时间约 264 GPU-hours（66h × 4 GPU），学术实验室标准配置可满足
+  - 数据需求: HarmBench + AdvBench + WildGuardTest + LMSYS-Chat-1M（均公开可用）；需自建 14 种编码变体生成器（8 训练 + 6 held-out），工程量中等
+  - 人工介入: 较低——Oracle 基于 GPT-4o 自动化（~$250）+ GPT-4 zero-shot eval（~$150）；tokenizer audit 和编码器验证需少量人工；无需人工标注
+  - 训练需求: 需要训练——25 个分类器 run（Qwen2.5-4B SFT，每 run ~8h）+ 2 轮攻击者训练（Qwen2.5-1.5B GRPO，~12h）；不涉及预训练
+  - 新 Benchmark: 需构建 EncoAttack（12,000 test cases），设计已明确，实现难度中等；为补充 benchmark 而非主贡献
+  - 预估周期: 17 天（proposal 声称）→ 建议扩展至 22-25 天（2/3 审稿人认为 timeline 紧张，co-evolutionary 不稳定、GPU 排队等风险需 buffer）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69cdf687-e753-42b4-b4f4-02a776f780af",
+  "isSidechain": false,
+  "requestId": "req_011Cb6H2VcbXBn24XYqUQ8pS",
+  "type": "assistant",
+  "uuid": "8423472e-6d82-41ff-aef3-9ed21ba1868a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFUSf75X6S7qiLDYFQRUfU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16913,
+      "cache_read_input_tokens": 15407,
+      "output_tokens": 3221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3221,
+          "cache_read_input_tokens": 15407,
+          "cache_creation_input_tokens": 16913,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16913
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient context to provide a comprehensive asses…",
+  "leafUuid": "8423472e-6d82-41ff-aef3-9ed21ba1868a",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate encoding-robust guardrail curriculum proposal",
+  "sessionId": "f3cdc48e-4200-40da-89e2-020ed7602395"
+}
+```
+
+---

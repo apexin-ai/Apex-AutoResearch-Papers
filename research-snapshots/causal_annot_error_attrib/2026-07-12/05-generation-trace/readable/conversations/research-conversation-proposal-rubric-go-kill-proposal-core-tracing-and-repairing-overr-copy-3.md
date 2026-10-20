@@ -1,0 +1,3086 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # CORe: Tracing and Repairing Overr
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-3/273e7f3a-554d-4071-aeea-209b3976b607.jsonl`
+- **Structured JSON:** [`78fe3a7ce7e30788d6ad.json`](../../sessions/78/78fe3a7ce7e30788d6ad.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:45:53.352Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:45:53.352Z",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# CORe: Tracing and Repairing Override Circuits in RAG\n\n## Core Problem and Primary Research Question\n\nRAG-augmented LLMs systematically override retrieved evidence with parametric memory during knowledge conflicts. Existing interventions (SpARE, CoRect, JuICE, IRCAN) target single component types selected via statistical heuristics, yet consistently plateau in performance. We hypothesize this plateau stems from compensatory dynamics within a distributed override circuit: the override mechanism spans attention heads, FFN layers, and copy suppression components with redundant pathways, so repairing one node causes others to compensate and restore the parametric override.\n\n**Primary research question:** Does the RAG override circuit exhibit compensatory dynamics — and if so, does coordinated multi-point intervention that addresses all compensatory pathways simultaneously outperform both single-point methods and naive stacking of independent single-point interventions?\n\nThis question has value regardless of outcome: if compensatory dynamics exist, they provide the first causal explanation for single-point intervention plateaus and necessitate coordinated repair; if they do not, then single-point failures stem from wrong target selection, and causal circuit tracing still provides principled target identification that heuristic methods lack.\n\n**Why naive stacking is insufficient:** Simply combining existing methods (e.g., JuICE head amplification + ParamMute FFN suppression + entropy neuron ablation) without circuit-level understanding risks: (1) contradictory intervention directions at shared components (a head amplified by JuICE may belong to a pathway that ParamMute needs dampened); (2) uncontrolled interaction effects without principled strength calibration; (3) no diagnostic capability to determine which combination is appropriate per instance. Causal circuit tracing provides the coordinating signal that naive stacking lacks.\n\n## Research Landscape\n\n**Single-component heuristic interventions (current paradigm):**\nJuICE (ICML 2025 Spotlight) discovered attention head superposition (same head promotes both memory and context), invalidating clean head-type dichotomies (PH3, IRCAN), and proposed dual-run head-level intervention achieving SOTA on 11 datasets — but remains head-level with no FFN or copy suppression analysis. CoRect (arXiv Feb 2026, arXiv:2602.08221) documented the flip phenomenon (56% of conflict failures: correct answer appears mid-layer then gets suppressed by deep FFN layers) and intervenes with additive rectification, but without circuit-level diagnosis of why specific layers suppress. SpARE (NAACL 2025 Oral) uses SAE features for steering with +10% EM gains, selecting targets via mutual information ranking at a single mid-layer point. ParamMute (NeurIPS 2025, arXiv:2502.15543) identifies mid-to-deep FFN layers (70%-90% relative depth) as critical for unfaithful generation and suppresses them — single component type. IRCAN (NeurIPS 2024) reweights context-aware neurons but uses statistical identification. CoCoA (EMNLP 2025) advances contrastive decoding with confidence-aware token-level adjustment, outperforming CAD and AdaCAD by up to 9.2 points — but operates at decoding level without internal mechanism understanding.\n\n**Multi-stage approaches:**\nCLEAR (arXiv:2510.12460, Oct 2025) implements three-stage intervention: fine-grained knowledge pruning → latent-state probing to localize conflicts → conflict-aware attention modulation. However, CLEAR uses probing-based correlation (no causal guarantee — probing localizes where conflicts manifest, not what causes them), requires conflict-aware fine-tuning (modifying model parameters), and modulates only attention (single component type). CORe differs in three ways: (1) causal circuit attribution via CD-T/PEAP vs. probing correlation; (2) pure inference-time intervention vs. fine-tuning; (3) coordinated 3-component intervention (FFN + attention + copy suppression) vs. attention-only.\n\n**Mechanism-level understanding:**\nCompetition of Mechanisms (ACL 2024) traced factual recall (MLP) vs. in-context copying (induction heads) competition via logit inspection and attention modification. Its generalization study (arXiv:2506.22977) found head specialization weakens substantially in Llama 3.1 8B, suggesting override circuits are more distributed in larger models. CORe addresses the more complex RAG three-way interaction (query → evidence integration → parametric override) rather than binary competition, and designs intervention rather than just tracing. Context Copying Modulation (EMNLP 2025 Findings, arXiv:2509.10663) identified entropy neurons as key components suppressing context copying — providing a mechanistic basis for copy suppression that CORe's third intervention point will leverage, but studied in isolation without connecting to the broader override circuit. PhantomCircuit (EMNLP 2025, arXiv:2505.14406) applied circuit analysis to knowledge overshadowing between training data sources (inter-training-data conflicts, not RAG context-parametric conflicts).\n\n**Geometric understanding:**\nSimulated Adoption (arXiv Feb 2026, arXiv:2602.04918) showed conflict resolution operates via orthogonal interference — geometric rotation rather than magnitude suppression — across Llama-3.1-8B, Qwen-3-4B, and GLM-4-9B. How Transformers Reject Wrong Answers (arXiv Mar 2026, arXiv:2603.13259) independently found that transformers actively suppress correct answers through rotational dynamics on a representation hypersphere, with a phase transition at 1.6B parameters. Promote, Suppress, Iterate (EMNLP 2025) revealed multi-stage promote-then-suppress dynamics. The Override Gap (arXiv Apr 2026, arXiv:2604.23750) found magnitude-dominant failure in hypernetwork-based adaptation (Doc-to-LoRA) — a distinct paradigm from in-context RAG, but cautioning against universalizing geometric assumptions. These three independent geometric findings (Simulated Adoption, Marín 2026, Promote-Suppress-Iterate) have not been unified; CORe's Phase 2 aims to do so specifically in the RAG context.\n\n**Gap:** No existing work combines (1) position-aware causal circuit tracing of RAG override mechanisms, (2) a unified geometric account of why correct answers appear then vanish (connecting the flip phenomenon, rotational suppression, and multi-stage dynamics), and (3) coordinated multi-point inference-time intervention that addresses compensatory pathways. Additionally, no method provides predictive diagnostics — the ability to explain per-instance why a given single-point intervention fails.\n\n## Proposed Approach\n\n**Phase 1 — Circuit Discovery via CD-T → PEAP Pipeline.** Run CD-T on Llama-3.1-8B, Qwen3-8B, and Gemma-2-9B with NQ-swap/ConFiQA/MemoTrap conflict prompts to identify candidate override components (coarse screen). Apply PEAP with query/passage/answer position schemas on the CD-T candidate set to produce position-aware edge attributions (fine-grained refinement). Reconcile both into a unified circuit graph via normalized causal effect scores: each component's score = weighted combination of CD-T decomposition contribution and PEAP gradient attribution, normalized to [0,1] per prompt. Fallback: if reconciliation degrades circuit quality metrics, revert to pure pipeline (CD-T candidates → PEAP edges) without score fusion. Scalability note: CD-T uses mathematical decomposition (not activation patching) and claims transformer-agnostic scalability; PEAP requires 2 forward + 1 backward pass per prompt-pair. A pilot study on 100 NQ-swap samples × Llama-3.1-8B will establish actual runtime and memory requirements before full-scale experiments. If CD-T proves impractical at 8B scale, HAGD (arXiv:2601.12879) offers O(n²log n) complexity as an alternative.\n\n**Phase 2 — Characterizing Override Geometry and Testing Compensatory Dynamics.**\nTwo sub-goals: (2a) Provide a unified geometric account of the flip phenomenon. Three independent observations suggest a coherent mechanism: CoRect's flip phenomenon (correct answer appears mid-layer then vanishes), Simulated Adoption's orthogonal interference (geometric rotation in conflict resolution), and Marín's rotational suppression (active rejection via rotation on hypersphere, arXiv:2603.13259). Testable unified hypothesis: deep FFN layers inject parametric direction vectors quasi-orthogonal to the context-aligned representation, implementing rotational suppression at the evidence-integration-to-override transition — the same geometric mechanism identified in simpler settings, but operating within RAG's multi-stage pipeline. Stage-wise ablation decomposes layer-wise residual stream updates at flip points into direction and magnitude components, testing whether ablating rotational vs. magnitude components selectively recovers the correct answer. The framework accommodates rotation-dominant, magnitude-dominant, or mixed outcomes.\n(2b) Test for compensatory dynamics: after Phase 1 identifies the circuit, selectively ablate individual pathway types (FFN override nodes only, retrieval heads only, copy suppression only) and measure whether remaining pathway types increase their override contribution to compensate. This directly tests the primary research question.\n\nFlip event operational definition (independent of CoRect's implementation): at layer L, the correct answer token's logit rank enters top-k; at layer L+Δ, it exits top-k. This captures the same phenomenon without dependency on CoRect's specific logit contrast methodology. Contingency: if flip events are not prevalent on certain models/architectures, Phase 3 intervention calibration falls back to Phase 1 circuit attribution scores alone (still principled, though without flip-specific geometry profiling).\n\n**Phase 3 — Geometry-Aware Coordinated 3-Point Intervention.** Inference-time intervention simultaneously addressing three override pathway components: (A) dampen parametric FFN re-promotion at identified override layers, (B) amplify retrieval head signals at evidence-integration positions, (C) inhibit copy suppression — informed by entropy neuron findings (Context Copying Modulation, EMNLP 2025 Findings, arXiv:2509.10663) — at output-proximal layers. Calibration is geometry-aware per Phase 2 profile: rotation-dominant → project out parametric direction; magnitude-dominant → scale activations; mixed → hybrid. All interventions implemented via single-pass forward hooks (no dual-run overhead).\n\n## Evaluation Design\n\n**Models:** Llama-3.1-8B, Qwen3-8B, Gemma-2-9B (3 architectures).\n\n**Datasets:** NQ-swap, ConFiQA, CoFaithfulQA, MemoTrap (entity substitution, multi-hop, faithfulness, memorization-trap conflict types).\n\n**Baselines:** JuICE (head-level SOTA), CoRect (FFN rectification), SpARE (SAE steering), ParamMute (FFN suppression), CoCoA (contrastive decoding SOTA, EMNLP 2025), IRCAN (neuron-level). Supplementary: Knowledgeable-R1 (ICLR 2026, RL-based), TCR (AAAI 2026, detection + soft-prompt). Additional critical baseline: **Naive Stack** (JuICE heads + ParamMute FFN suppression + entropy neuron ablation applied simultaneously without circuit guidance) — directly tests whether circuit-informed coordination adds value beyond independent method combination.\n\n**Metrics — Task Performance:** EM, token-level F1, memorization ratio (per ParamMute). **No-conflict control:** EM/F1 on standard (non-conflicting) RAG inputs + output perplexity, verifying intervention does not degrade normal generation quality. **Circuit Quality (Phase 1-2):** circuit faithfulness, completeness, sparsity (per CD-T/PEAP evaluation frameworks).\n\n**Ablation Matrix:**\n- Component isolation: (A) FFN dampening only, (B) retrieval head amplification only, (C) copy suppression inhibition only, (AB), (AC), (BC), (ABC = full CORe) — 7 configurations. Key test: does removing one component cause remaining components' effectiveness to degrade (evidence of compensatory dynamics)?\n- Intervention strategy: geometry-aware vs. magnitude-only calibration under same 3-point framework.\n- Sensitivity: 3-5 intervention strength values per component.\n- **Circuit transferability:** discover circuit on dataset A, apply intervention to datasets B/C/D without re-discovery — tests practical deployability.\n\n**Predictive Diagnostics Analysis:** For instances where baseline X fails but CORe succeeds, analyze which circuit pathways are active — demonstrating CORe's diagnostic capability beyond aggregate metric improvement.\n\n**Inference Efficiency:** (1) Per-sample cost: additional forward passes (CORe: 0, single-pass hooks; JuICE: 1 extra; CoRect: 1 extra; CoCoA: 1 extra), wall-clock time, peak GPU memory. (2) Amortized setup cost: GPU-hours for one-time circuit discovery per model (one-time; subsequent inference is hook-only).\n\n**Statistical Rigor:** Core comparisons (CORe vs. each primary baseline, full vs. ablated) report mean ± std over 3 runs with paired bootstrap significance tests.\n\n## Broader Significance\n\nBeyond RAG knowledge conflicts, the diagnose-then-intervene framework (position-aware circuit tracing → geometry characterization → coordinated multi-point repair) may generalize to other LLM internal conflict scenarios: instruction-following vs. safety guardrails, competing reasoning paths in multi-hop inference, cross-lingual knowledge interference. PhantomCircuit (EMNLP 2025, arXiv:2505.14406) has already demonstrated circuit-level analysis transfers across conflict types. We leave these extensions to future work.\n\n## Concurrent Work Check\n\nNo 2026 submission combines causal circuit tracing with multi-point RAG intervention. Closest: ParamMute (FFN-only, no circuit tracing), CLEAR (probing-based, requires fine-tuning, attention-only), ReDeEP (ICLR 2025, detection not repair), PhantomCircuit (training-data conflicts not RAG), Knowledgeable-R1 (ICLR 2026, RL-based not mechanistic), TCR (AAAI 2026, detection + soft-prompt, no mechanistic analysis).\n\n## Key References\n\n- Taming Knowledge Conflicts in Language Models [JuICE] (ICML 2025)\n- CoRect: Context-Aware Logit Contrast for Hidden State Rectification (arXiv 2026, arXiv:2602.08221)\n- Steering Knowledge Selection via SAE-Based Repr. Engineering [SpARE] (NAACL 2025)\n- Efficient Automated Circuit Discovery via Contextual Decomposition [CD-T] (ICLR 2025)\n- Position-aware Automatic Circuit Discovery [PEAP] (ACL 2025)\n- Simulated Adoption: Decoupling Magnitude and Direction in LLM Conflict Resolution (arXiv 2026, arXiv:2602.04918)\n- Resisting Contextual Interference in RAG [Knowledgeable-R1] (ICLR 2026)\n- Promote, Suppress, Iterate (EMNLP 2025)\n- ReDeEP: Detecting Hallucination in RAG via Mechanistic Interpretability (ICLR 2025)\n- ParamMute: Suppressing Knowledge-Critical FFNs for Faithful RAG (NeurIPS 2025, arXiv:2502.15543)\n- Competition of Mechanisms: Tracing How Language Models Handle Facts and Counterfactuals (ACL 2024) + On the Generalizability of Competition of Mechanisms (arXiv:2506.22977)\n- Context Copying Modulation: The Role of Entropy Neurons (EMNLP 2025 Findings, arXiv:2509.10663)\n- PhantomCircuit: Pierce the Mists of Knowledge Conflicts (EMNLP 2025, arXiv:2505.14406)\n- The Override Gap: Magnitude Account of Knowledge Conflict in Hypernetwork Adaptation (arXiv Apr 2026, arXiv:2604.23750)\n- Seeing through the Conflict (AAAI 2026)\n- How Transformers Reject Wrong Answers: Rotational Dynamics of Factual Constraint Processing (arXiv Mar 2026, arXiv:2603.13259)\n- CLEAR: Probing Latent Knowledge Conflict for Faithful RAG (arXiv:2510.12460, Oct 2025)\n- CoCoA: Confidence- and Context-Aware Adaptive Decoding (EMNLP 2025)\n- IRCAN: Identifying and Reweighting Context-Aware Neurons (NeurIPS 2024)\n- HAGD: Hierarchical Attribution Graph Decomposition (arXiv:2601.12879)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:45:53.357Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:45:53.357Z",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:45:53.372Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# CORe: Tracing and Repairing Override Circuits in RAG
+
+## Core Problem and Primary Research Question
+
+RAG-augmented LLMs systematically override retrieved evidence with parametric memory during knowledge conflicts. Existing interventions (SpARE, CoRect, JuICE, IRCAN) target single component types selected via statistical heuristics, yet consistently plateau in performance. We hypothesize this plateau stems from compensatory dynamics within a distributed override circuit: the override mechanism spans attention heads, FFN layers, and copy suppression components with redundant pathways, so repairing one node causes others to compensate and restore the parametric override.
+
+**Primary research question:** Does the RAG override circuit exhibit compensatory dynamics — and if so, does coordinated multi-point intervention that addresses all compensatory pathways simultaneously outperform both single-point methods and naive stacking of independent single-point interventions?
+
+This question has value regardless of outcome: if compensatory dynamics exist, they provide the first causal explanation for single-point intervention plateaus and necessitate coordinated repair; if they do not, then single-point failures stem from wrong target selection, and causal circuit tracing still provides principled target identification that heuristic methods lack.
+
+**Why naive stacking is insufficient:** Simply combining existing methods (e.g., JuICE head amplification + ParamMute FFN suppression + entropy neuron ablation) without circuit-level understanding risks: (1) contradictory intervention directions at shared components (a head amplified by JuICE may belong to a pathway that ParamMute needs dampened); (2) uncontrolled interaction effects without principled strength calibration; (3) no diagnostic capability to determine which combination is appropriate per instance. Causal circuit tracing provides the coordinating signal that naive stacking lacks.
+
+## Research Landscape
+
+**Single-component heuristic interventions (current paradigm):**
+JuICE (ICML 2025 Spotlight) discovered attention head superposition (same head promotes both memory and context), invalidating clean head-type dichotomies (PH3, IRCAN), and proposed dual-run head-level intervention achieving SOTA on 11 datasets — but remains head-level with no FFN or copy suppression analysis. CoRect (arXiv Feb 2026, arXiv:2602.08221) documented the flip phenomenon (56% of conflict failures: correct answer appears mid-layer then gets suppressed by deep FFN layers) and intervenes with additive rectification, but without circuit-level diagnosis of why specific layers suppress. SpARE (NAACL 2025 Oral) uses SAE features for steering with +10% EM gains, selecting targets via mutual information ranking at a single mid-layer point. ParamMute (NeurIPS 2025, arXiv:2502.15543) identifies mid-to-deep FFN layers (70%-90% relative depth) as critical for unfaithful generation and suppresses them — single component type. IRCAN (NeurIPS 2024) reweights context-aware neurons but uses statistical identification. CoCoA (EMNLP 2025) advances contrastive decoding with confidence-aware token-level adjustment, outperforming CAD and AdaCAD by up to 9.2 points — but operates at decoding level without internal mechanism understanding.
+
+**Multi-stage approaches:**
+CLEAR (arXiv:2510.12460, Oct 2025) implements three-stage intervention: fine-grained knowledge pruning → latent-state probing to localize conflicts → conflict-aware attention modulation. However, CLEAR uses probing-based correlation (no causal guarantee — probing localizes where conflicts manifest, not what causes them), requires conflict-aware fine-tuning (modifying model parameters), and modulates only attention (single component type). CORe differs in three ways: (1) causal circuit attribution via CD-T/PEAP vs. probing correlation; (2) pure inference-time intervention vs. fine-tuning; (3) coordinated 3-component intervention (FFN + attention + copy suppression) vs. attention-only.
+
+**Mechanism-level understanding:**
+Competition of Mechanisms (ACL 2024) traced factual recall (MLP) vs. in-context copying (induction heads) competition via logit inspection and attention modification. Its generalization study (arXiv:2506.22977) found head specialization weakens substantially in Llama 3.1 8B, suggesting override circuits are more distributed in larger models. CORe addresses the more complex RAG three-way interaction (query → evidence integration → parametric override) rather than binary competition, and designs intervention rather than just tracing. Context Copying Modulation (EMNLP 2025 Findings, arXiv:2509.10663) identified entropy neurons as key components suppressing context copying — providing a mechanistic basis for copy suppression that CORe's third intervention point will leverage, but studied in isolation without connecting to the broader override circuit. PhantomCircuit (EMNLP 2025, arXiv:2505.14406) applied circuit analysis to knowledge overshadowing between training data sources (inter-training-data conflicts, not RAG context-parametric conflicts).
+
+**Geometric understanding:**
+Simulated Adoption (arXiv Feb 2026, arXiv:2602.04918) showed conflict resolution operates via orthogonal interference — geometric rotation rather than magnitude suppression — across Llama-3.1-8B, Qwen-3-4B, and GLM-4-9B. How Transformers Reject Wrong Answers (arXiv Mar 2026, arXiv:2603.13259) independently found that transformers actively suppress correct answers through rotational dynamics on a representation hypersphere, with a phase transition at 1.6B parameters. Promote, Suppress, Iterate (EMNLP 2025) revealed multi-stage promote-then-suppress dynamics. The Override Gap (arXiv Apr 2026, arXiv:2604.23750) found magnitude-dominant failure in hypernetwork-based adaptation (Doc-to-LoRA) — a distinct paradigm from in-context RAG, but cautioning against universalizing geometric assumptions. These three independent geometric findings (Simulated Adoption, Marín 2026, Promote-Suppress-Iterate) have not been unified; CORe's Phase 2 aims to do so specifically in the RAG context.
+
+**Gap:** No existing work combines (1) position-aware causal circuit tracing of RAG override mechanisms, (2) a unified geometric account of why correct answers appear then vanish (connecting the flip phenomenon, rotational suppression, and multi-stage dynamics), and (3) coordinated multi-point inference-time intervention that addresses compensatory pathways. Additionally, no method provides predictive diagnostics — the ability to explain per-instance why a given single-point intervention fails.
+
+## Proposed Approach
+
+**Phase 1 — Circuit Discovery via CD-T → PEAP Pipeline.** Run CD-T on Llama-3.1-8B, Qwen3-8B, and Gemma-2-9B with NQ-swap/ConFiQA/MemoTrap conflict prompts to identify candidate override components (coarse screen). Apply PEAP with query/passage/answer position schemas on the CD-T candidate set to produce position-aware edge attributions (fine-grained refinement). Reconcile both into a unified circuit graph via normalized causal effect scores: each component's score = weighted combination of CD-T decomposition contribution and PEAP gradient attribution, normalized to [0,1] per prompt. Fallback: if reconciliation degrades circuit quality metrics, revert to pure pipeline (CD-T candidates → PEAP edges) without score fusion. Scalability note: CD-T uses mathematical decomposition (not activation patching) and claims transformer-agnostic scalability; PEAP requires 2 forward + 1 backward pass per prompt-pair. A pilot study on 100 NQ-swap samples × Llama-3.1-8B will establish actual runtime and memory requirements before full-scale experiments. If CD-T proves impractical at 8B scale, HAGD (arXiv:2601.12879) offers O(n²log n) complexity as an alternative.
+
+**Phase 2 — Characterizing Override Geometry and Testing Compensatory Dynamics.**
+Two sub-goals: (2a) Provide a unified geometric account of the flip phenomenon. Three independent observations suggest a coherent mechanism: CoRect's flip phenomenon (correct answer appears mid-layer then vanishes), Simulated Adoption's orthogonal interference (geometric rotation in conflict resolution), and Marín's rotational suppression (active rejection via rotation on hypersphere, arXiv:2603.13259). Testable unified hypothesis: deep FFN layers inject parametric direction vectors quasi-orthogonal to the context-aligned representation, implementing rotational suppression at the evidence-integration-to-override transition — the same geometric mechanism identified in simpler settings, but operating within RAG's multi-stage pipeline. Stage-wise ablation decomposes layer-wise residual stream updates at flip points into direction and magnitude components, testing whether ablating rotational vs. magnitude components selectively recovers the correct answer. The framework accommodates rotation-dominant, magnitude-dominant, or mixed outcomes.
+(2b) Test for compensatory dynamics: after Phase 1 identifies the circuit, selectively ablate individual pathway types (FFN override nodes only, retrieval heads only, copy suppression only) and measure whether remaining pathway types increase their override contribution to compensate. This directly tests the primary research question.
+
+Flip event operational definition (independent of CoRect's implementation): at layer L, the correct answer token's logit rank enters top-k; at layer L+Δ, it exits top-k. This captures the same phenomenon without dependency on CoRect's specific logit contrast methodology. Contingency: if flip events are not prevalent on certain models/architectures, Phase 3 intervention calibration falls back to Phase 1 circuit attribution scores alone (still principled, though without flip-specific geometry profiling).
+
+**Phase 3 — Geometry-Aware Coordinated 3-Point Intervention.** Inference-time intervention simultaneously addressing three override pathway components: (A) dampen parametric FFN re-promotion at identified override layers, (B) amplify retrieval head signals at evidence-integration positions, (C) inhibit copy suppression — informed by entropy neuron findings (Context Copying Modulation, EMNLP 2025 Findings, arXiv:2509.10663) — at output-proximal layers. Calibration is geometry-aware per Phase 2 profile: rotation-dominant → project out parametric direction; magnitude-dominant → scale activations; mixed → hybrid. All interventions implemented via single-pass forward hooks (no dual-run overhead).
+
+## Evaluation Design
+
+**Models:** Llama-3.1-8B, Qwen3-8B, Gemma-2-9B (3 architectures).
+
+**Datasets:** NQ-swap, ConFiQA, CoFaithfulQA, MemoTrap (entity substitution, multi-hop, faithfulness, memorization-trap conflict types).
+
+**Baselines:** JuICE (head-level SOTA), CoRect (FFN rectification), SpARE (SAE steering), ParamMute (FFN suppression), CoCoA (contrastive decoding SOTA, EMNLP 2025), IRCAN (neuron-level). Supplementary: Knowledgeable-R1 (ICLR 2026, RL-based), TCR (AAAI 2026, detection + soft-prompt). Additional critical baseline: **Naive Stack** (JuICE heads + ParamMute FFN suppression + entropy neuron ablation applied simultaneously without circuit guidance) — directly tests whether circuit-informed coordination adds value beyond independent method combination.
+
+**Metrics — Task Performance:** EM, token-level F1, memorization ratio (per ParamMute). **No-conflict control:** EM/F1 on standard (non-conflicting) RAG inputs + output perplexity, verifying intervention does not degrade normal generation quality. **Circuit Quality (Phase 1-2):** circuit faithfulness, completeness, sparsity (per CD-T/PEAP evaluation frameworks).
+
+**Ablation Matrix:**
+- Component isolation: (A) FFN dampening only, (B) retrieval head amplification only, (C) copy suppression inhibition only, (AB), (AC), (BC), (ABC = full CORe) — 7 configurations. Key test: does removing one component cause remaining components' effectiveness to degrade (evidence of compensatory dynamics)?
+- Intervention strategy: geometry-aware vs. magnitude-only calibration under same 3-point framework.
+- Sensitivity: 3-5 intervention strength values per component.
+- **Circuit transferability:** discover circuit on dataset A, apply intervention to datasets B/C/D without re-discovery — tests practical deployability.
+
+**Predictive Diagnostics Analysis:** For instances where baseline X fails but CORe succeeds, analyze which circuit pathways are active — demonstrating CORe's diagnostic capability beyond aggregate metric improvement.
+
+**Inference Efficiency:** (1) Per-sample cost: additional forward passes (CORe: 0, single-pass hooks; JuICE: 1 extra; CoRect: 1 extra; CoCoA: 1 extra), wall-clock time, peak GPU memory. (2) Amortized setup cost: GPU-hours for one-time circuit discovery per model (one-time; subsequent inference is hook-only).
+
+**Statistical Rigor:** Core comparisons (CORe vs. each primary baseline, full vs. ablated) report mean ± std over 3 runs with paired bootstrap significance tests.
+
+## Broader Significance
+
+Beyond RAG knowledge conflicts, the diagnose-then-intervene framework (position-aware circuit tracing → geometry characterization → coordinated multi-point repair) may generalize to other LLM internal conflict scenarios: instruction-following vs. safety guardrails, competing reasoning paths in multi-hop inference, cross-lingual knowledge interference. PhantomCircuit (EMNLP 2025, arXiv:2505.14406) has already demonstrated circuit-level analysis transfers across conflict types. We leave these extensions to future work.
+
+## Concurrent Work Check
+
+No 2026 submission combines causal circuit tracing with multi-point RAG intervention. Closest: ParamMute (FFN-only, no circuit tracing), CLEAR (probing-based, requires fine-tuning, attention-only), ReDeEP (ICLR 2025, detection not repair), PhantomCircuit (training-data conflicts not RAG), Knowledgeable-R1 (ICLR 2026, RL-based not mechanistic), TCR (AAAI 2026, detection + soft-prompt, no mechanistic analysis).
+
+## Key References
+
+- Taming Knowledge Conflicts in Language Models [JuICE] (ICML 2025)
+- CoRect: Context-Aware Logit Contrast for Hidden State Rectification (arXiv 2026, arXiv:2602.08221)
+- Steering Knowledge Selection via SAE-Based Repr. Engineering [SpARE] (NAACL 2025)
+- Efficient Automated Circuit Discovery via Contextual Decomposition [CD-T] (ICLR 2025)
+- Position-aware Automatic Circuit Discovery [PEAP] (ACL 2025)
+- Simulated Adoption: Decoupling Magnitude and Direction in LLM Conflict Resolution (arXiv 2026, arXiv:2602.04918)
+- Resisting Contextual Interference in RAG [Knowledgeable-R1] (ICLR 2026)
+- Promote, Suppress, Iterate (EMNLP 2025)
+- ReDeEP: Detecting Hallucination in RAG via Mechanistic Interpretability (ICLR 2025)
+- ParamMute: Suppressing Knowledge-Critical FFNs for Faithful RAG (NeurIPS 2025, arXiv:2502.15543)
+- Competition of Mechanisms: Tracing How Language Models Handle Facts and Counterfactuals (ACL 2024) + On the Generalizability of Competition of Mechanisms (arXiv:2506.22977)
+- Context Copying Modulation: The Role of Entropy Neurons (EMNLP 2025 Findings, arXiv:2509.10663)
+- PhantomCircuit: Pierce the Mists of Knowledge Conflicts (EMNLP 2025, arXiv:2505.14406)
+- The Override Gap: Magnitude Account of Knowledge Conflict in Hypernetwork Adaptation (arXiv Apr 2026, arXiv:2604.23750)
+- Seeing through the Conflict (AAAI 2026)
+- How Transformers Reject Wrong Answers: Rotational Dynamics of Factual Constraint Processing (arXiv Mar 2026, arXiv:2603.13259)
+- CLEAR: Probing Latent Knowledge Conflict for Faithful RAG (arXiv:2510.12460, Oct 2025)
+- CoCoA: Confidence- and Context-Aware Adaptive Decoding (EMNLP 2025)
+- IRCAN: Identifying and Reweighting Context-Aware Neurons (NeurIPS 2024)
+- HAGD: Hierarchical Attribution Graph Decomposition (arXiv:2601.12879)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "e05a5313-4d06-46d8-b218-6fdf942c7d94",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:45:53.368Z_
+
+```json
+{
+  "parentUuid": "e05a5313-4d06-46d8-b218-6fdf942c7d94",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6f79b0e4-81e5-4815-9bf6-867c4098ec5a",
+  "timestamp": "2026-05-30T07:45:53.368Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:45:53.368Z_
+
+```json
+{
+  "parentUuid": "6f79b0e4-81e5-4815-9bf6-867c4098ec5a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b35ec90e-c5ed-4e1f-9b6a-7d3d9ac377ab",
+  "timestamp": "2026-05-30T07:45:53.368Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # CORe: Tracing and Repairing Override Circuits in RAG  ## Core Problem and Primary Research Question  RAG-augment…",
+  "leafUuid": "b35ec90e-c5ed-4e1f-9b6a-7d3d9ac377ab",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate RAG override circuit proposal acceptability",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:45:59.815Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for AAAI 2026. Let me first do the required web searches to understand the current landscape, then provide a comprehensive evaluation.
+
+The proposal is about "CORe: Tracing and Repairing Override Circuits in RAG" - it proposes using causal circuit tracing to identify and repair the mechanisms by which LLMs override retrieved evidence with parametric memory in RAG systems.
+
+Let me start by searching for the key related works and the current state of the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b35ec90e-c5ed-4e1f-9b6a-7d3d9ac377ab",
+  "isSidechain": false,
+  "requestId": "req_011CbYP7A9Fn9RN9zHH5wTDf",
+  "type": "assistant",
+  "uuid": "f09cf618-41c8-4273-a599-4702f9ab62b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qAvQv1BTm4w9ckhsVh7kA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8039,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 229,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-30T07:46:00.319Z_
+
+I need to conduct thorough field research before evaluating this proposal. Let me start with targeted web searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f09cf618-41c8-4273-a599-4702f9ab62b3",
+  "isSidechain": false,
+  "requestId": "req_011CbYP7A9Fn9RN9zHH5wTDf",
+  "type": "assistant",
+  "uuid": "835da663-cd05-4c18-aaf9-5e9d10a5aa08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qAvQv1BTm4w9ckhsVh7kA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8039,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 229,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-30T07:46:00.991Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DXQxebJWhNAC2Q45eP5GDx`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "835da663-cd05-4c18-aaf9-5e9d10a5aa08",
+  "isSidechain": false,
+  "requestId": "req_011CbYP7A9Fn9RN9zHH5wTDf",
+  "type": "assistant",
+  "uuid": "00bdc693-a54e-4162-9499-41637436592b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qAvQv1BTm4w9ckhsVh7kA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8039,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 229,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-30T07:46:00.999Z_
+
+<details><summary>↩ Tool result · `toolu_01DXQxebJWhNAC2Q45eP5GDx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00bdc693-a54e-4162-9499-41637436592b",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "e4ef298d-6247-44a8-9798-236b7e69e552",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "00bdc693-a54e-4162-9499-41637436592b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-30T07:46:04.450Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now conduct the required web searches to understand the field landscape before evaluating the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4ef298d-6247-44a8-9798-236b7e69e552",
+  "isSidechain": false,
+  "requestId": "req_011CbYP7jtXE8FxnUDMHY6zL",
+  "type": "assistant",
+  "uuid": "f99f564c-91db-4dfc-895c-28b1293033dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cvFjoGci69CqbJ1dr4G3d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 19053,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 19053,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-30T07:46:05.059Z_
+
+Now let me conduct the required field research with multiple targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f99f564c-91db-4dfc-895c-28b1293033dd",
+  "isSidechain": false,
+  "requestId": "req_011CbYP7jtXE8FxnUDMHY6zL",
+  "type": "assistant",
+  "uuid": "b57d73b3-f338-4c91-be8a-2d50d2a6d8fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cvFjoGci69CqbJ1dr4G3d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 19053,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 19053,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T07:46:05.594Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wwv5aAk8v1RjpMB5HRN22s`</summary>
+
+```json
+{
+  "query": "RAG knowledge conflict LLM override parametric memory intervention 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b57d73b3-f338-4c91-be8a-2d50d2a6d8fc",
+  "isSidechain": false,
+  "requestId": "req_011CbYP7jtXE8FxnUDMHY6zL",
+  "type": "assistant",
+  "uuid": "4f3e0e19-ed5c-42d7-8c2f-6b0d1b7868d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cvFjoGci69CqbJ1dr4G3d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 19053,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 19053,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-30T07:46:13.435Z_
+
+<details><summary>↩ Tool result · `toolu_01Wwv5aAk8v1RjpMB5HRN22s`</summary>
+
+```text
+Web search results for query: "RAG knowledge conflict LLM override parametric memory intervention 2025 2026"
+
+Links: [{"title":"When Retrieved Evidence Conflicts with Model Memory: Knowledge Conflicts in RAG Systems | yAI","url":"https://yaihq.com/research/knowledge-conflicts-rag"},{"title":"Exploring Knowledge Conflicts for Faithful LLM Reasoning: Benchmark and Method","url":"https://arxiv.org/html/2604.11209v1"},{"title":"Investigating Tool-Memory Conflicts in Tool-Augmented LLMs","url":"https://arxiv.org/html/2601.09760"},{"title":"Accommodate Knowledge Conflicts in Retrieval-augmented LLMs: Towards Robust Response Generation in the Wild","url":"https://arxiv.org/html/2504.12982"},{"title":"[2604.09515] When LLMs Lag Behind: Knowledge Conflicts from Evolving APIs in Code Generation","url":"https://arxiv.org/abs/2604.09515"},{"title":"ICR: A framework for resolving knowledge conflicts in retrieval-augmented generation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231225028115"},{"title":"Taming Knowledge Conflicts in Language Models","url":"https://arxiv.org/html/2503.10996"},{"title":"Taming Knowledge Conflicts in Language Models","url":"https://arxiv.org/pdf/2503.10996"}]
+
+I found relevant research on RAG knowledge conflicts, parametric memory, and LLM override interventions from 2025-2026. Here are the key findings:
+
+## Knowledge Conflict Behavior
+
+LLMs exhibit contradictory behavior under conflict: they can be receptive to conflicting evidence when it is coherent and convincing; however, they show strong confirmation bias when external evidence partially aligns with parametric memory while other parts conflict. Evidence presented coherently and convincingly, rather than through simple entity substitution, is more likely to override parametric memory.
+
+## System Fragility
+
+Most RAG systems suffer a substantial performance drop when retrieved source documents contain hypothetical knowledge updates that conflict with the model's parametric knowledge. Additionally, memorization ratios remain below 50% across twelve LLMs from four model series; this indicates that models are highly receptive to external evidence when it is the only evidence available, even when it conflicts with their parametric memory.
+
+## Intervention Approaches
+
+Research identifies three main categories of mitigation strategies: Internal knowledge-driven methods that fine-tune or edit the model so retrieved evidence can override conflicts; external-validation methods that incorporate verification modules to ensure retrieved context reliability; and adaptive methods at the decoding stage that detect token-level conflicts through adjusting parametric and context logits.
+
+The field recognizes that depending on the application, users may require an LLM to either remain faithful to its parametric memory or prioritize contextual reliance for accurate and reliable outputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f3e0e19-ed5c-42d7-8c2f-6b0d1b7868d7",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "4af800a0-32b0-49f8-a44d-071dd34e9cda",
+  "toolUseResult": {
+    "query": "RAG knowledge conflict LLM override parametric memory intervention 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xc3ZFu5z6jVxPVUhHwgidF",
+        "content": [
+          {
+            "title": "When Retrieved Evidence Conflicts with Model Memory: Knowledge Conflicts in RAG Systems | yAI",
+            "url": "https://yaihq.com/research/knowledge-conflicts-rag"
+          },
+          {
+            "title": "Exploring Knowledge Conflicts for Faithful LLM Reasoning: Benchmark and Method",
+            "url": "https://arxiv.org/html/2604.11209v1"
+          },
+          {
+            "title": "Investigating Tool-Memory Conflicts in Tool-Augmented LLMs",
+            "url": "https://arxiv.org/html/2601.09760"
+          },
+          {
+            "title": "Accommodate Knowledge Conflicts in Retrieval-augmented LLMs: Towards Robust Response Generation in the Wild",
+            "url": "https://arxiv.org/html/2504.12982"
+          },
+          {
+            "title": "[2604.09515] When LLMs Lag Behind: Knowledge Conflicts from Evolving APIs in Code Generation",
+            "url": "https://arxiv.org/abs/2604.09515"
+          },
+          {
+            "title": "ICR: A framework for resolving knowledge conflicts in retrieval-augmented generation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225028115"
+          },
+          {
+            "title": "Taming Knowledge Conflicts in Language Models",
+            "url": "https://arxiv.org/html/2503.10996"
+          },
+          {
+            "title": "Taming Knowledge Conflicts in Language Models",
+            "url": "https://arxiv.org/pdf/2503.10996"
+          }
+        ]
+      },
+      "I found relevant research on RAG knowledge conflicts, parametric memory, and LLM override interventions from 2025-2026. Here are the key findings:\n\n## Knowledge Conflict Behavior\n\nLLMs exhibit contradictory behavior under conflict: they can be receptive to conflicting evidence when it is coherent and convincing; however, they show strong confirmation bias when external evidence partially aligns with parametric memory while other parts conflict. Evidence presented coherently and convincingly, rather than through simple entity substitution, is more likely to override parametric memory.\n\n## System Fragility\n\nMost RAG systems suffer a substantial performance drop when retrieved source documents contain hypothetical knowledge updates that conflict with the model's parametric knowledge. Additionally, memorization ratios remain below 50% across twelve LLMs from four model series; this indicates that models are highly receptive to external evidence when it is the only evidence available, even when it conflicts with their parametric memory.\n\n## Intervention Approaches\n\nResearch identifies three main categories of mitigation strategies: Internal knowledge-driven methods that fine-tune or edit the model so retrieved evidence can override conflicts; external-validation methods that incorporate verification modules to ensure retrieved context reliability; and adaptive methods at the decoding stage that detect token-level conflicts through adjusting parametric and context logits.\n\nThe field recognizes that depending on the application, users may require an LLM to either remain faithful to its parametric memory or prioritize contextual reliance for accurate and reliable outputs."
+    ],
+    "durationSeconds": 7.834064809000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4f3e0e19-ed5c-42d7-8c2f-6b0d1b7868d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-30T07:46:18.051Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F9R36xJNy7cRXGHcF9GJ91`</summary>
+
+```json
+{
+  "query": "JuICE ICML 2025 attention head superposition knowledge conflict taming"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4af800a0-32b0-49f8-a44d-071dd34e9cda",
+  "isSidechain": false,
+  "requestId": "req_011CbYP8dfzac21K5pQCwVJM",
+  "type": "assistant",
+  "uuid": "4d26cbd4-2f0e-43c8-9b90-a879a44416f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzUgnoKrEffvVt59SEwgdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 19810,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 19810,
+          "cache_creation_input_tokens": 834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-30T07:46:18.589Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0183yWNCxYvgECRh1fTWGa7s`</summary>
+
+```json
+{
+  "query": "CoRect context-aware logit contrast hidden state rectification RAG 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d26cbd4-2f0e-43c8-9b90-a879a44416f6",
+  "isSidechain": false,
+  "requestId": "req_011CbYP8dfzac21K5pQCwVJM",
+  "type": "assistant",
+  "uuid": "be0a37f4-55a8-4279-8071-f8d85b3e8b2a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzUgnoKrEffvVt59SEwgdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 19810,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 19810,
+          "cache_creation_input_tokens": 834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-30T07:46:19.530Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CddqPnHucUoRZCPfdtjdPm`</summary>
+
+```json
+{
+  "query": "causal circuit tracing LLM mechanistic interpretability CD-T PEAP 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be0a37f4-55a8-4279-8071-f8d85b3e8b2a",
+  "isSidechain": false,
+  "requestId": "req_011CbYP8dfzac21K5pQCwVJM",
+  "type": "assistant",
+  "uuid": "10265722-0aba-4dbe-9d44-e6ea7b248639",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzUgnoKrEffvVt59SEwgdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 19810,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 19810,
+          "cache_creation_input_tokens": 834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-30T07:46:25.671Z_
+
+<details><summary>↩ Tool result · `toolu_01F9R36xJNy7cRXGHcF9GJ91`</summary>
+
+```text
+Web search results for query: "JuICE ICML 2025 attention head superposition knowledge conflict taming"
+
+Links: [{"title":"Taming Knowledge Conflicts in Language Models | OpenReview","url":"https://openreview.net/forum?id=0cEZyhHEks"},{"title":"Taming Knowledge Conflicts in Language Models","url":"https://proceedings.mlr.press/v267/li25c.html"},{"title":"Taming Knowledge Conflicts in Language Models - Consensus","url":"https://www.consensus.app/papers/details/e4d26a0ad3c552a58d8120df44f438bc/"},{"title":"Taming Knowledge Conflicts in Language Models","url":"https://arxiv.org/pdf/2503.10996"},{"title":"[2503.10996] Taming Knowledge Conflicts in Language Models","url":"https://arxiv.org/abs/2503.10996"},{"title":"ICML Poster Taming Knowledge Conflicts in Language Models","url":"https://icml.cc/virtual/2025/poster/46677"},{"title":"Taming Knowledge Conflicts in Language Models","url":"https://arxiv.org/html/2503.10996"},{"title":"GitHub - GaotangLi/JUICE: [ICML'25 Spotlight] Taming Knowledge Conflict in Language Models","url":"https://github.com/GaotangLi/JUICE"}]
+
+Based on the search results, here's what I found about JuICE and the ICML 2025 paper:
+
+## Overview
+
+JuICE was published as an ICML 2025 spotlight paper, with authors Gaotang Li, Yuzhong Chen, and Hanghang Tong.
+
+## Key Findings on Attention Head Superposition
+
+The paper uncovers a critical phenomenon called the superposition of contextual information and parametric memory, where highly influential attention heads simultaneously contribute to both memory and context. This challenges previous assumptions that attention heads operate exclusively as either "memory heads" or "context heads."
+
+## The JuICE Method
+
+JuICE is a test-time attention intervention method that steers language models toward either parametric beliefs or contextual knowledge without requiring fine-tuning, and it identifies a set of reliable attention heads and leverages a dual-run approach to mitigate the superposition effects.
+
+## Experimental Results
+
+Extensive experiments across 11 datasets and 6 model architectures demonstrate that JuICE sets new state-of-the-art performance and robust generalization, achieving significant and consistent improvement across different domains under various conflict types.
+
+The code is available at https://github.com/GaotangLi/JUICE.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d26cbd4-2f0e-43c8-9b90-a879a44416f6",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "a7cdc640-c021-47f7-97b6-213eff224db9",
+  "toolUseResult": {
+    "query": "JuICE ICML 2025 attention head superposition knowledge conflict taming",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ef8AoikstwD3Sn6EeA84xL",
+        "content": [
+          {
+            "title": "Taming Knowledge Conflicts in Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=0cEZyhHEks"
+          },
+          {
+            "title": "Taming Knowledge Conflicts in Language Models",
+            "url": "https://proceedings.mlr.press/v267/li25c.html"
+          },
+          {
+            "title": "Taming Knowledge Conflicts in Language Models - Consensus",
+            "url": "https://www.consensus.app/papers/details/e4d26a0ad3c552a58d8120df44f438bc/"
+          },
+          {
+            "title": "Taming Knowledge Conflicts in Language Models",
+            "url": "https://arxiv.org/pdf/2503.10996"
+          },
+          {
+            "title": "[2503.10996] Taming Knowledge Conflicts in Language Models",
+            "url": "https://arxiv.org/abs/2503.10996"
+          },
+          {
+            "title": "ICML Poster Taming Knowledge Conflicts in Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/46677"
+          },
+          {
+            "title": "Taming Knowledge Conflicts in Language Models",
+            "url": "https://arxiv.org/html/2503.10996"
+          },
+          {
+            "title": "GitHub - GaotangLi/JUICE: [ICML'25 Spotlight] Taming Knowledge Conflict in Language Models",
+            "url": "https://github.com/GaotangLi/JUICE"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about JuICE and the ICML 2025 paper:\n\n## Overview\n\nJuICE was published as an ICML 2025 spotlight paper, with authors Gaotang Li, Yuzhong Chen, and Hanghang Tong.\n\n## Key Findings on Attention Head Superposition\n\nThe paper uncovers a critical phenomenon called the superposition of contextual information and parametric memory, where highly influential attention heads simultaneously contribute to both memory and context. This challenges previous assumptions that attention heads operate exclusively as either \"memory heads\" or \"context heads.\"\n\n## The JuICE Method\n\nJuICE is a test-time attention intervention method that steers language models toward either parametric beliefs or contextual knowledge without requiring fine-tuning, and it identifies a set of reliable attention heads and leverages a dual-run approach to mitigate the superposition effects.\n\n## Experimental Results\n\nExtensive experiments across 11 datasets and 6 model architectures demonstrate that JuICE sets new state-of-the-art performance and robust generalization, achieving significant and consistent improvement across different domains under various conflict types.\n\nThe code is available at https://github.com/GaotangLi/JUICE."
+    ],
+    "durationSeconds": 7.615728077,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4d26cbd4-2f0e-43c8-9b90-a879a44416f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-30T07:46:25.829Z_
+
+<details><summary>↩ Tool result · `toolu_0183yWNCxYvgECRh1fTWGa7s`</summary>
+
+```text
+Web search results for query: "CoRect context-aware logit contrast hidden state rectification RAG 2026"
+
+Links: [{"title":"[2602.08221] CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts","url":"https://arxiv.org/abs/2602.08221"},{"title":"CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts","url":"https://arxiv.org/html/2602.08221"},{"title":"CoRect: Context-Aware Logit Contrast for Hidden State Rectification to","url":"https://arxiv.org/pdf/2602.08221"},{"title":"CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models","url":"https://arxiv.org/pdf/2603.04406"},{"title":"Does RAG Know When Retrieval Is Wrong? Diagnosing Context Compliance under Knowledge Conflict","url":"https://arxiv.org/html/2605.14473"},{"title":"How Retrieved Context Shapes Internal Representations in RAG","url":"https://arxiv.org/pdf/2602.20091"},{"title":"Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2510.12460"}]
+
+Based on the search results, here's what I found:
+
+## CoRect: Context-Aware Logit Contrast for Hidden State Rectification
+
+CoRect addresses a key challenge in Retrieval-Augmented Generation (RAG): knowledge conflicts where model-internal parametric knowledge overrides retrieved evidence, leading to unfaithful outputs.
+
+### The Core Problem
+
+The failure stems from a parametric suppression phenomenon where, in deep layers, certain FFN layers overwrite context-sensitive representations with memorized priors.
+
+### The Solution
+
+CoRect (Context-Aware Logit Contrast for Hidden State Rectification) works by contrasting logits from contextualized and non-contextualized forward passes to identify layers that exhibit high parametric bias without requiring ground-truth targets, then rectifies the hidden states to preserve evidence-grounded information.
+
+### Performance
+
+Across question answering (QA) and summarization benchmarks, CoRect consistently improves faithfulness and reduces hallucinations compared to strong baselines.
+
+### Trade-offs
+
+While CoRect effectively mitigates knowledge conflicts, it introduces non-negligible computational overhead compared to standard decoding, requiring a multi-pass inference scheme and stage-wise hidden state rectification.
+
+The paper was published on arXiv on February 9, 2026, by Xuhua Ma and colleagues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be0a37f4-55a8-4279-8071-f8d85b3e8b2a",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "0408bac8-2017-4b4c-86e2-1ea2b168d918",
+  "toolUseResult": {
+    "query": "CoRect context-aware logit contrast hidden state rectification RAG 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EEjiffgfVSe9ntC8tEYa28",
+        "content": [
+          {
+            "title": "[2602.08221] CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts",
+            "url": "https://arxiv.org/abs/2602.08221"
+          },
+          {
+            "title": "CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts",
+            "url": "https://arxiv.org/html/2602.08221"
+          },
+          {
+            "title": "CoRect: Context-Aware Logit Contrast for Hidden State Rectification to",
+            "url": "https://arxiv.org/pdf/2602.08221"
+          },
+          {
+            "title": "CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models",
+            "url": "https://arxiv.org/pdf/2603.04406"
+          },
+          {
+            "title": "Does RAG Know When Retrieval Is Wrong? Diagnosing Context Compliance under Knowledge Conflict",
+            "url": "https://arxiv.org/html/2605.14473"
+          },
+          {
+            "title": "How Retrieved Context Shapes Internal Representations in RAG",
+            "url": "https://arxiv.org/pdf/2602.20091"
+          },
+          {
+            "title": "Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2510.12460"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\n## CoRect: Context-Aware Logit Contrast for Hidden State Rectification\n\nCoRect addresses a key challenge in Retrieval-Augmented Generation (RAG): knowledge conflicts where model-internal parametric knowledge overrides retrieved evidence, leading to unfaithful outputs.\n\n### The Core Problem\n\nThe failure stems from a parametric suppression phenomenon where, in deep layers, certain FFN layers overwrite context-sensitive representations with memorized priors.\n\n### The Solution\n\nCoRect (Context-Aware Logit Contrast for Hidden State Rectification) works by contrasting logits from contextualized and non-contextualized forward passes to identify layers that exhibit high parametric bias without requiring ground-truth targets, then rectifies the hidden states to preserve evidence-grounded information.\n\n### Performance\n\nAcross question answering (QA) and summarization benchmarks, CoRect consistently improves faithfulness and reduces hallucinations compared to strong baselines.\n\n### Trade-offs\n\nWhile CoRect effectively mitigates knowledge conflicts, it introduces non-negligible computational overhead compared to standard decoding, requiring a multi-pass inference scheme and stage-wise hidden state rectification.\n\nThe paper was published on arXiv on February 9, 2026, by Xuhua Ma and colleagues."
+    ],
+    "durationSeconds": 7.237574716000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "be0a37f4-55a8-4279-8071-f8d85b3e8b2a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T07:46:31.950Z_
+
+<details><summary>↩ Tool result · `toolu_01CddqPnHucUoRZCPfdtjdPm`</summary>
+
+```text
+Web search results for query: "causal circuit tracing LLM mechanistic interpretability CD-T PEAP 2025 2026"
+
+Links: [{"title":"Mechanistic Data Attribution: Tracing the Training Origins of Interpretable LLM Units","url":"https://arxiv.org/pdf/2601.21996"},{"title":"[2601.21996] Mechanistic Data Attribution: Tracing the Training Origins of Interpretable LLM Units","url":"https://arxiv.org/abs/2601.21996"},{"title":"Mechanistic Data Attribution: Tracing the Training Origins of Interpretable LLM Units","url":"https://arxiv.org/html/2601.21996v1"},{"title":"Understanding Mechanistic Interpretability in AI Models | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"},{"title":"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions","url":"https://arxiv.org/pdf/2602.11180"},{"title":"Automated Interpretability-Driven Model Auditing and Control: A Research Agenda","url":"https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"},{"title":"Efficient Automated Circuit Discovery in Transformers using Contextual   Decomposition","url":"https://arxiv.org/pdf/2407.00886"}]
+
+Based on the search results, I found several relevant papers on causal circuit tracing and mechanistic interpretability in LLMs:
+
+## Key Papers Found:
+
+### 1. Mechanistic Data Attribution (January 2026)
+Mechanistic Data Attribution (MDA) is a scalable framework that employs Influence Functions to trace interpretable units back to specific training samples. Through experiments on the Pythia family, the work causally validates that targeted intervention—removing or augmenting a small fraction of high-influence samples—significantly modulates the emergence of interpretable heads, whereas random interventions show no effect.
+
+### 2. CD-T (Contextual Decomposition for Transformers)
+CD-T enables mechanistic interpretability by computing contributions of combinations of internal components to final predictions or the output of target internal components. CD-T provides mechanistic interpretability while achieving improved computational efficiency (2x speedup) compared to path patching for circuit discovery.
+
+### 3. Recent Anthropic Circuit Tracing Work (2025)
+In 2025, Anthropic took a major leap forward with their circuit tracing work, applying attribution graphs to Claude 3.5 Haiku—a production-grade model—and publishing the results in two landmark papers.
+
+### 4. Circuit Discovery Methods
+Activation patching (also called causal tracing) systematically intervenes on activations to determine which components causally contribute to particular outputs, and by corrupting inputs and selectively restoring clean activations, researchers identify necessary and sufficient components for behaviors.
+
+The search results show active research in 2025-2026 on causal mechanisms for understanding LLM internals, though I didn't find specific references to "PEAP" in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10265722-0aba-4dbe-9d44-e6ea7b248639",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "35372566-57af-468f-88e6-eb28d934c4a7",
+  "toolUseResult": {
+    "query": "causal circuit tracing LLM mechanistic interpretability CD-T PEAP 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SwpixqiuvyhJSMEgA5YU9M",
+        "content": [
+          {
+            "title": "Mechanistic Data Attribution: Tracing the Training Origins of Interpretable LLM Units",
+            "url": "https://arxiv.org/pdf/2601.21996"
+          },
+          {
+            "title": "[2601.21996] Mechanistic Data Attribution: Tracing the Training Origins of Interpretable LLM Units",
+            "url": "https://arxiv.org/abs/2601.21996"
+          },
+          {
+            "title": "Mechanistic Data Attribution: Tracing the Training Origins of Interpretable LLM Units",
+            "url": "https://arxiv.org/html/2601.21996v1"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"
+          },
+          {
+            "title": "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions",
+            "url": "https://arxiv.org/pdf/2602.11180"
+          },
+          {
+            "title": "Automated Interpretability-Driven Model Auditing and Control: A Research Agenda",
+            "url": "https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"
+          },
+          {
+            "title": "Efficient Automated Circuit Discovery in Transformers using Contextual   Decomposition",
+            "url": "https://arxiv.org/pdf/2407.00886"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on causal circuit tracing and mechanistic interpretability in LLMs:\n\n## Key Papers Found:\n\n### 1. Mechanistic Data Attribution (January 2026)\nMechanistic Data Attribution (MDA) is a scalable framework that employs Influence Functions to trace interpretable units back to specific training samples. Through experiments on the Pythia family, the work causally validates that targeted intervention—removing or augmenting a small fraction of high-influence samples—significantly modulates the emergence of interpretable heads, whereas random interventions show no effect.\n\n### 2. CD-T (Contextual Decomposition for Transformers)\nCD-T enables mechanistic interpretability by computing contributions of combinations of internal components to final predictions or the output of target internal components. CD-T provides mechanistic interpretability while achieving improved computational efficiency (2x speedup) compared to path patching for circuit discovery.\n\n### 3. Recent Anthropic Circuit Tracing Work (2025)\nIn 2025, Anthropic took a major leap forward with their circuit tracing work, applying attribution graphs to Claude 3.5 Haiku—a production-grade model—and publishing the results in two landmark papers.\n\n### 4. Circuit Discovery Methods\nActivation patching (also called causal tracing) systematically intervenes on activations to determine which components causally contribute to particular outputs, and by corrupting inputs and selectively restoring clean activations, researchers identify necessary and sufficient components for behaviors.\n\nThe search results show active research in 2025-2026 on causal mechanisms for understanding LLM internals, though I didn't find specific references to \"PEAP\" in these results."
+    ],
+    "durationSeconds": 12.415615716999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "10265722-0aba-4dbe-9d44-e6ea7b248639",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # CORe: Tracing and Repairing Override Circuits in RAG  ## Core Problem and Primary Research Question  RAG-augment…",
+  "leafUuid": "35372566-57af-468f-88e6-eb28d934c4a7",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate RAG override circuit proposal acceptability",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-30T07:46:35.599Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MeVvmv4Tebt4Zguo5SJ7sZ`</summary>
+
+```json
+{
+  "query": "SpARE SAE steering knowledge selection NAACL 2025 ParamMute FFN suppression faithful RAG NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35372566-57af-468f-88e6-eb28d934c4a7",
+  "isSidechain": false,
+  "requestId": "req_011CbYP9zqFT3Nv53ZggMXBp",
+  "type": "assistant",
+  "uuid": "566103ad-f20f-4bf4-b331-07c2f2e5f11e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BNGazZ6C6X1qktKheCffKh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2318,
+      "cache_read_input_tokens": 20644,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 20644,
+          "cache_creation_input_tokens": 2318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-30T07:46:35.831Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QWGijhPB5LxM7rvDk82nyk`</summary>
+
+```json
+{
+  "query": "compensatory dynamics neural circuits LLM ablation redundant pathways distributed mechanism 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "566103ad-f20f-4bf4-b331-07c2f2e5f11e",
+  "isSidechain": false,
+  "requestId": "req_011CbYP9zqFT3Nv53ZggMXBp",
+  "type": "assistant",
+  "uuid": "80a5d6b0-4ebb-48f4-8d02-199a5eb3ba02",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BNGazZ6C6X1qktKheCffKh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2318,
+      "cache_read_input_tokens": 20644,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 20644,
+          "cache_creation_input_tokens": 2318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-30T07:46:42.686Z_
+
+<details><summary>↩ Tool result · `toolu_01QWGijhPB5LxM7rvDk82nyk`</summary>
+
+```text
+Web search results for query: "compensatory dynamics neural circuits LLM ablation redundant pathways distributed mechanism 2025 2026"
+
+Links: [{"title":"Neural circuits - Latest research and news | Nature","url":"https://www.nature.com/subjects/neural-circuit"},{"title":"Divergent mechanisms of neural adaptation and instability in the mammalian retina - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/40580962/"},{"title":"A Brain-like Synergistic Core in LLMs Drives Behaviour and Learning","url":"https://arxiv.org/pdf/2601.06851"},{"title":"The Achilles’ Heel of LLMs: How Altering a Handful of Neurons Can Cripple Language Abilities","url":"https://arxiv.org/html/2510.10238v1"},{"title":"Recurrent neural circuits overcome partial inactivation by compensation and re-learning","url":"https://www.biorxiv.org/content/10.1101/2021.11.12.468273.full.pdf"},{"title":"Optimal compensation for neuron loss","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5283835/"},{"title":"Ablation Testing Neural Networks: The Compensatory Masquerade | Towards Data Science","url":"https://towardsdatascience.com/ablation-testing-neural-networks-the-compensatory-masquerade-ba27d0037a88/"}]
+
+I found several relevant research results about compensatory dynamics, neural circuits, and LLM ablation studies. Here are the key findings:
+
+## LLM Ablation and Redundant Pathways
+
+LLMs contain a "synergistic core" in their middle layers, while their early and late layers are predominantly redundant. Ablating synergistic components causes disproportionate behavioral changes and performance loss, suggesting that synergistic regions are targets for performance improvement through fine-tuning.
+
+## Compensatory Mechanisms in Neural Circuits
+
+Research on compensatory dynamics shows that sensory circuits can exhibit remarkable resilience to disruption, often maintaining function through recruitment of compensatory mechanisms. In recurrent neural networks, in networks with parallel, redundant computation, inactivation of a subset of the circuit can have little to no effect on the network output.
+
+Compensatory mechanisms can be implemented through the dynamics of networks with a tight balance of excitation and inhibition, without requiring synaptic plasticity.
+
+## Learning and Recovery
+
+Recurrent neural networks that retain plasticity and continue learning after inactivation reconfigure themselves to regain accuracy, with recovery speed depending on the extent and temporal profile of the inactivation.
+
+These results illustrate how both biological and artificial neural systems employ distributed mechanisms and redundant pathways to maintain function when components are disrupted.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80a5d6b0-4ebb-48f4-8d02-199a5eb3ba02",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "1173512e-4650-4693-b5c9-cf05c98e98de",
+  "toolUseResult": {
+    "query": "compensatory dynamics neural circuits LLM ablation redundant pathways distributed mechanism 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SaJpXb5K71toTETjERtZ9k",
+        "content": [
+          {
+            "title": "Neural circuits - Latest research and news | Nature",
+            "url": "https://www.nature.com/subjects/neural-circuit"
+          },
+          {
+            "title": "Divergent mechanisms of neural adaptation and instability in the mammalian retina - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/40580962/"
+          },
+          {
+            "title": "A Brain-like Synergistic Core in LLMs Drives Behaviour and Learning",
+            "url": "https://arxiv.org/pdf/2601.06851"
+          },
+          {
+            "title": "The Achilles’ Heel of LLMs: How Altering a Handful of Neurons Can Cripple Language Abilities",
+            "url": "https://arxiv.org/html/2510.10238v1"
+          },
+          {
+            "title": "Recurrent neural circuits overcome partial inactivation by compensation and re-learning",
+            "url": "https://www.biorxiv.org/content/10.1101/2021.11.12.468273.full.pdf"
+          },
+          {
+            "title": "Optimal compensation for neuron loss",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5283835/"
+          },
+          {
+            "title": "Ablation Testing Neural Networks: The Compensatory Masquerade | Towards Data Science",
+            "url": "https://towardsdatascience.com/ablation-testing-neural-networks-the-compensatory-masquerade-ba27d0037a88/"
+          }
+        ]
+      },
+      "I found several relevant research results about compensatory dynamics, neural circuits, and LLM ablation studies. Here are the key findings:\n\n## LLM Ablation and Redundant Pathways\n\nLLMs contain a \"synergistic core\" in their middle layers, while their early and late layers are predominantly redundant. Ablating synergistic components causes disproportionate behavioral changes and performance loss, suggesting that synergistic regions are targets for performance improvement through fine-tuning.\n\n## Compensatory Mechanisms in Neural Circuits\n\nResearch on compensatory dynamics shows that sensory circuits can exhibit remarkable resilience to disruption, often maintaining function through recruitment of compensatory mechanisms. In recurrent neural networks, in networks with parallel, redundant computation, inactivation of a subset of the circuit can have little to no effect on the network output.\n\nCompensatory mechanisms can be implemented through the dynamics of networks with a tight balance of excitation and inhibition, without requiring synaptic plasticity.\n\n## Learning and Recovery\n\nRecurrent neural networks that retain plasticity and continue learning after inactivation reconfigure themselves to regain accuracy, with recovery speed depending on the extent and temporal profile of the inactivation.\n\nThese results illustrate how both biological and artificial neural systems employ distributed mechanisms and redundant pathways to maintain function when components are disrupted."
+    ],
+    "durationSeconds": 6.851274062000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "80a5d6b0-4ebb-48f4-8d02-199a5eb3ba02",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-30T07:46:42.848Z_
+
+<details><summary>↩ Tool result · `toolu_01MeVvmv4Tebt4Zguo5SJ7sZ`</summary>
+
+```text
+Web search results for query: "SpARE SAE steering knowledge selection NAACL 2025 ParamMute FFN suppression faithful RAG NeurIPS 2025"
+
+Links: [{"title":"Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering - ACL Anthology","url":"https://aclanthology.org/2025.naacl-long.264/"},{"title":"[Quick Review] Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering","url":"https://liner.com/review/steering-knowledge-selection-behaviours-in-llms-via-saebased-representation-engineering"},{"title":"Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering","url":"https://arxiv.org/html/2410.15999"},{"title":"March 2025 in Research","url":"http://www.neuralnoise.com/2025/march-research/"},{"title":"GitHub - yuzhaouoe/SAE-based-representation-engineering: [NAACL'25 Oral] Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering","url":"https://github.com/yuzhaouoe/SAE-based-representation-engineering"},{"title":"[2410.15999] Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering","url":"https://arxiv.org/abs/2410.15999"},{"title":"Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering","url":"https://www.rohan-paul.com/p/steering-knowledge-selection-behaviours"},{"title":"Steering Knowledge Selection Behaviours in LLMs","url":"https://arxiv.org/pdf/2410.15999"},{"title":"CorrSteer: Generation-Time LLM Steering via Correlated Sparse Autoencoder Features","url":"https://arxiv.org/html/2508.12535v2"}]
+
+Links: [{"title":"ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=CyUq9D99vE"},{"title":"[2502.15543] ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2502.15543"},{"title":"ParamMute: Suppressing Knowledge-Critical FFNs for ...","url":"https://neurips.cc/media/neurips-2025/Slides/119254.pdf"},{"title":"ParamMute: Suppressing Knowledge-Critical FFNs for ...","url":"https://openreview.net/pdf?id=CyUq9D99vE"},{"title":"[PDF] ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ParamMute:-Suppressing-Knowledge-Critical-FFNs-for-Huang-Liu/b17978c9f60bd857a87ee1967ca4939b8e68c868"},{"title":"arXiv:2502.15543v3 [cs.CL] 21 Jun 2025","url":"https://arxiv.org/pdf/2502.15543"},{"title":"GitHub - OpenBMB/ParamMute: ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation","url":"https://github.com/OpenBMB/ParamMute"}]
+
+Based on the search results, here's what I found about the two papers you're asking about:
+
+## SpARE (NAACL 2025)
+
+SpARE is a training-free representation engineering method that uses pre-trained sparse auto-encoders (SAEs) to control the knowledge selection behaviour of LLMs. SpARE identifies the functional features that control the knowledge selection behaviours and applies them to edit the internal activations of LLMs at inference time.
+
+SpARE can effectively control the usage of either knowledge source to resolve knowledge conflict in open-domain question-answering tasks, surpassing existing representation engineering methods (+10%) as well as contrastive decoding methods (+15%).
+
+## ParamMute (NeurIPS 2025)
+
+ParamMute investigates the internal mechanisms behind unfaithful generation and identifies a subset of mid-to-deep feed-forward networks (FFNs) that are disproportionately activated in such cases. The framework improves contextual faithfulness by suppressing the activation of unfaithfulness-associated FFNs and calibrating the model toward retrieved knowledge.
+
+The authors introduce CoFaithfulQA, a benchmark specifically designed to evaluate faithfulness in scenarios where internal knowledge conflicts with accurate external evidence. ParamMute significantly enhances faithfulness across both CoFaithfulQA and the established ConFiQA benchmark, achieving substantial reductions in reliance on parametric memory.
+
+Both papers address the challenge of managing knowledge conflicts in large language models, with SpARE focusing on steering knowledge selection behavior through SAEs, and ParamMute focusing on improving RAG faithfulness by suppressing knowledge-critical FFNs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "566103ad-f20f-4bf4-b331-07c2f2e5f11e",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "22ea14a7-68e0-484b-845c-955f36af207d",
+  "toolUseResult": {
+    "query": "SpARE SAE steering knowledge selection NAACL 2025 ParamMute FFN suppression faithful RAG NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BVsaysuEKq7oooMjaRzCTF",
+        "content": [
+          {
+            "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering - ACL Anthology",
+            "url": "https://aclanthology.org/2025.naacl-long.264/"
+          },
+          {
+            "title": "[Quick Review] Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering",
+            "url": "https://liner.com/review/steering-knowledge-selection-behaviours-in-llms-via-saebased-representation-engineering"
+          },
+          {
+            "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering",
+            "url": "https://arxiv.org/html/2410.15999"
+          },
+          {
+            "title": "March 2025 in Research",
+            "url": "http://www.neuralnoise.com/2025/march-research/"
+          },
+          {
+            "title": "GitHub - yuzhaouoe/SAE-based-representation-engineering: [NAACL'25 Oral] Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering",
+            "url": "https://github.com/yuzhaouoe/SAE-based-representation-engineering"
+          },
+          {
+            "title": "[2410.15999] Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering",
+            "url": "https://arxiv.org/abs/2410.15999"
+          },
+          {
+            "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering",
+            "url": "https://www.rohan-paul.com/p/steering-knowledge-selection-behaviours"
+          },
+          {
+            "title": "Steering Knowledge Selection Behaviours in LLMs",
+            "url": "https://arxiv.org/pdf/2410.15999"
+          },
+          {
+            "title": "CorrSteer: Generation-Time LLM Steering via Correlated Sparse Autoencoder Features",
+            "url": "https://arxiv.org/html/2508.12535v2"
+          }
+        ]
+      },
+      {
+        "tool_use_id": "srvtoolu_01NX1Mdbo46WyvsBXsxoiEKa",
+        "content": [
+          {
+            "title": "ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=CyUq9D99vE"
+          },
+          {
+            "title": "[2502.15543] ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2502.15543"
+          },
+          {
+            "title": "ParamMute: Suppressing Knowledge-Critical FFNs for ...",
+            "url": "https://neurips.cc/media/neurips-2025/Slides/119254.pdf"
+          },
+          {
+            "title": "ParamMute: Suppressing Knowledge-Critical FFNs for ...",
+            "url": "https://openreview.net/pdf?id=CyUq9D99vE"
+          },
+          {
+            "title": "[PDF] ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ParamMute:-Suppressing-Knowledge-Critical-FFNs-for-Huang-Liu/b17978c9f60bd857a87ee1967ca4939b8e68c868"
+          },
+          {
+            "title": "arXiv:2502.15543v3 [cs.CL] 21 Jun 2025",
+            "url": "https://arxiv.org/pdf/2502.15543"
+          },
+          {
+            "title": "GitHub - OpenBMB/ParamMute: ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation",
+            "url": "https://github.com/OpenBMB/ParamMute"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the two papers you're asking about:\n\n## SpARE (NAACL 2025)\n\nSpARE is a training-free representation engineering method that uses pre-trained sparse auto-encoders (SAEs) to control the knowledge selection behaviour of LLMs. SpARE identifies the functional features that control the knowledge selection behaviours and applies them to edit the internal activations of LLMs at inference time.\n\nSpARE can effectively control the usage of either knowledge source to resolve knowledge conflict in open-domain question-answering tasks, surpassing existing representation engineering methods (+10%) as well as contrastive decoding methods (+15%).\n\n## ParamMute (NeurIPS 2025)\n\nParamMute investigates the internal mechanisms behind unfaithful generation and identifies a subset of mid-to-deep feed-forward networks (FFNs) that are disproportionately activated in such cases. The framework improves contextual faithfulness by suppressing the activation of unfaithfulness-associated FFNs and calibrating the model toward retrieved knowledge.\n\nThe authors introduce CoFaithfulQA, a benchmark specifically designed to evaluate faithfulness in scenarios where internal knowledge conflicts with accurate external evidence. ParamMute significantly enhances faithfulness across both CoFaithfulQA and the established ConFiQA benchmark, achieving substantial reductions in reliance on parametric memory.\n\nBoth papers address the challenge of managing knowledge conflicts in large language models, with SpARE focusing on steering knowledge selection behavior through SAEs, and ParamMute focusing on improving RAG faithfulness by suppressing knowledge-critical FFNs."
+    ],
+    "durationSeconds": 7.244834259000003,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "566103ad-f20f-4bf4-b331-07c2f2e5f11e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-30T07:46:45.854Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do one more search to understand the competitive landscape better, specifically looking at multi-point intervention approaches and the geometric understanding of knowledge conflicts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22ea14a7-68e0-484b-845c-955f36af207d",
+  "isSidechain": false,
+  "requestId": "req_011CbYPAoRgeNcMJPk9bhxrh",
+  "type": "assistant",
+  "uuid": "c6624323-4862-4b2e-a300-64d8a58b8484",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y356dKHrXrevAw8WtbP1RT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 706,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 22962,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 706,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 22962,
+          "cache_creation_input_tokens": 1446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-30T07:46:46.804Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JJtAGk79Wuod6r2YowVdW4`</summary>
+
+```json
+{
+  "query": "multi-point intervention circuit discovery RAG faithfulness coordinated repair inference-time 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6624323-4862-4b2e-a300-64d8a58b8484",
+  "isSidechain": false,
+  "requestId": "req_011CbYPAoRgeNcMJPk9bhxrh",
+  "type": "assistant",
+  "uuid": "8c0c87f0-9efb-4628-96e8-c058d8480044",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y356dKHrXrevAw8WtbP1RT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 706,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 22962,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 706,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 22962,
+          "cache_creation_input_tokens": 1446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-30T07:46:47.190Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JeHtC5CzeboTfehZMXAE3U`</summary>
+
+```json
+{
+  "query": "\"simulated adoption\" orthogonal interference LLM conflict resolution geometric rotation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c0c87f0-9efb-4628-96e8-c058d8480044",
+  "isSidechain": false,
+  "requestId": "req_011CbYPAoRgeNcMJPk9bhxrh",
+  "type": "assistant",
+  "uuid": "b4273542-c6ff-4aeb-9046-d0d36ed03d5e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y356dKHrXrevAw8WtbP1RT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 706,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 22962,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 706,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 22962,
+          "cache_creation_input_tokens": 1446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-30T07:46:54.126Z_
+
+<details><summary>↩ Tool result · `toolu_01JJtAGk79Wuod6r2YowVdW4`</summary>
+
+```text
+Web search results for query: "multi-point intervention circuit discovery RAG faithfulness coordinated repair inference-time 2025 2026"
+
+Links: [{"title":"BlackboxNLP-2025 MIB Shared Task: Improving Circuit Faithfulness via Better Edge Selection","url":"https://arxiv.org/pdf/2510.25786"},{"title":"CUE-R: Beyond the Final Answer in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2604.05467"},{"title":"Have Faith in Faithfulness: Going Beyond Circuit Overlap When Finding   Model Mechanisms","url":"https://arxiv.org/pdf/2403.17806"},{"title":"Preprint. Under Review. RARE: RETRIEVAL-AWARE ROBUSTNESS EVALUATION","url":"https://www.cs.cmu.edu/~sherryw/assets/pubs/2025-rare.pdf"},{"title":"Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2510.12460"},{"title":"Rethinking Circuit Completeness in Language Models: AND, OR, and ADDER Gates","url":"https://arxiv.org/pdf/2505.10039"},{"title":"Toward Faithful Retrieval-Augmented Generation with Sparse Autoencoders","url":"https://arxiv.org/pdf/2512.08892"}]
+
+Based on the web search results, I found several relevant papers addressing different aspects of your query:
+
+## Circuit Discovery and Faithfulness
+
+The BlackboxNLP-2025 MIB Shared Task addresses circuit discovery—determining which parts of a model perform a given task—and proposes improvements to circuit discovery methods. The approach includes using bootstrapping to identify edges with consistent attribution scores, a ratio-based selection strategy to prioritize strong edges, and an integer linear programming formulation replacing greedy selection.
+
+Circuit discovery serves as an intervention-based approach to mechanistic interpretability, allowing extraction of subgraphs from a language model's computational graph that play significant roles in task performance. Recent attention has increasingly focused on circuit completeness in addition to faithfulness, where completeness is redefined such that when a circuit is removed, task performance should degrade significantly.
+
+## RAG Faithfulness
+
+CUE-R is an intervention-based framework for measuring per-evidence-item operational utility in RAG using shallow observable retrieval-use traces, which perturbs individual evidence items via REMOVE, REPLACE, and DUPLICATE operators to measure changes along utility axes including correctness and faithfulness.
+
+RAGLens is a lightweight SAE-based detector that flags unfaithful RAG outputs by leveraging LLM internal activations through feature selection and additive feature modeling.
+
+These papers represent recent work (2025-2026) addressing coordinated intervention-based approaches to improving faithfulness in both circuit discovery and retrieval-augmented generation systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c0c87f0-9efb-4628-96e8-c058d8480044",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "3b5a69cf-7273-4ba8-a0b9-ededdc560463",
+  "toolUseResult": {
+    "query": "multi-point intervention circuit discovery RAG faithfulness coordinated repair inference-time 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EYKuD5K3VS6sP5qdZDReEH",
+        "content": [
+          {
+            "title": "BlackboxNLP-2025 MIB Shared Task: Improving Circuit Faithfulness via Better Edge Selection",
+            "url": "https://arxiv.org/pdf/2510.25786"
+          },
+          {
+            "title": "CUE-R: Beyond the Final Answer in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2604.05467"
+          },
+          {
+            "title": "Have Faith in Faithfulness: Going Beyond Circuit Overlap When Finding   Model Mechanisms",
+            "url": "https://arxiv.org/pdf/2403.17806"
+          },
+          {
+            "title": "Preprint. Under Review. RARE: RETRIEVAL-AWARE ROBUSTNESS EVALUATION",
+            "url": "https://www.cs.cmu.edu/~sherryw/assets/pubs/2025-rare.pdf"
+          },
+          {
+            "title": "Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2510.12460"
+          },
+          {
+            "title": "Rethinking Circuit Completeness in Language Models: AND, OR, and ADDER Gates",
+            "url": "https://arxiv.org/pdf/2505.10039"
+          },
+          {
+            "title": "Toward Faithful Retrieval-Augmented Generation with Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2512.08892"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers addressing different aspects of your query:\n\n## Circuit Discovery and Faithfulness\n\nThe BlackboxNLP-2025 MIB Shared Task addresses circuit discovery—determining which parts of a model perform a given task—and proposes improvements to circuit discovery methods. The approach includes using bootstrapping to identify edges with consistent attribution scores, a ratio-based selection strategy to prioritize strong edges, and an integer linear programming formulation replacing greedy selection.\n\nCircuit discovery serves as an intervention-based approach to mechanistic interpretability, allowing extraction of subgraphs from a language model's computational graph that play significant roles in task performance. Recent attention has increasingly focused on circuit completeness in addition to faithfulness, where completeness is redefined such that when a circuit is removed, task performance should degrade significantly.\n\n## RAG Faithfulness\n\nCUE-R is an intervention-based framework for measuring per-evidence-item operational utility in RAG using shallow observable retrieval-use traces, which perturbs individual evidence items via REMOVE, REPLACE, and DUPLICATE operators to measure changes along utility axes including correctness and faithfulness.\n\nRAGLens is a lightweight SAE-based detector that flags unfaithful RAG outputs by leveraging LLM internal activations through feature selection and additive feature modeling.\n\nThese papers represent recent work (2025-2026) addressing coordinated intervention-based approaches to improving faithfulness in both circuit discovery and retrieval-augmented generation systems."
+    ],
+    "durationSeconds": 7.315229785999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8c0c87f0-9efb-4628-96e8-c058d8480044",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-30T07:46:54.962Z_
+
+<details><summary>↩ Tool result · `toolu_01JeHtC5CzeboTfehZMXAE3U`</summary>
+
+```text
+Web search results for query: ""simulated adoption" orthogonal interference LLM conflict resolution geometric rotation 2026"
+
+Links: [{"title":"[2602.04918] Simulated Adoption: Decoupling Magnitude and Direction in LLM In-Context Conflict Resolution","url":"https://arxiv.org/abs/2602.04918"},{"title":"Simulated Adoption: Decoupling Magnitude and Direction in LLM In-Context Conflict Resolution","url":"https://arxiv.org/pdf/2602.04918"},{"title":"Red Lines and Grey Zones in the Fog of War: Benchmarking Legal Risk, Moral Harm, and Regional Bias in Large Language Model Military Decision-Making","url":"https://arxiv.org/pdf/2510.03514"},{"title":"Realistic threat perception drives intergroup conflict: A causal, dynamic analysis using generative-agent simulations","url":"https://arxiv.org/pdf/2512.17066"},{"title":"GitHub - EnnengYang/Awesome-Model-Merging-Methods-Theories-Applications: Model Merging in LLMs, MLLMs, and Beyond: Methods, Theories, Applications and Opportunities. ACM Computing Surveys, 2026. · GitHub","url":"https://github.com/ennengyang/awesome-model-merging-methods-theories-applications"},{"title":"Evaluating Behavioral Alignment in Conflict Dialogue: A Multi-Dimensional Comparison of LLM Agents and Humans","url":"https://arxiv.org/pdf/2509.16394"}]
+
+The search found a highly relevant paper published in February 2026. Here are the key findings:
+
+The research addresses how Large Language Models prioritize conflicting in-context information over pre-existing parametric memory (a phenomenon termed sycophancy or compliance), and investigates whether this behavior arises from signal magnitude dilution or directional geometric alteration within the residual stream.
+
+The study conducted a layer-wise geometric analysis across three models (Qwen-3-4B, Llama-3.1-8B, and GLM-4-9B), decomposing residual stream updates into radial (norm-based) and angular (cosine-based) components.
+
+**Key Finding - "Orthogonal Interference":**
+
+The researchers observed that compliance is consistently characterized by "Orthogonal Interference," where the conflicting context injects a steering vector that is quasi-orthogonal to the ground-truth direction, effectively rotating the hidden state representation.
+
+This suggests that models do not "unlearn" or suppress the magnitude of internal truths but rather employ a mechanism of geometric displacement to bypass the correct unembedding vector, effectively simulating adoption while preserving the original structural magnitude.
+
+The paper challenges previous assumptions about how LLMs handle conflicting information and suggests that monitoring the directional/geometric properties of representations is necessary for detecting when models are appearing to comply with false information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4273542-c6ff-4aeb-9046-d0d36ed03d5e",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "4d3e8e71-07a9-4848-b12f-6e46c557b754",
+  "toolUseResult": {
+    "query": "\"simulated adoption\" orthogonal interference LLM conflict resolution geometric rotation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011y9VTgYqiordEiDAQRHjJq",
+        "content": [
+          {
+            "title": "[2602.04918] Simulated Adoption: Decoupling Magnitude and Direction in LLM In-Context Conflict Resolution",
+            "url": "https://arxiv.org/abs/2602.04918"
+          },
+          {
+            "title": "Simulated Adoption: Decoupling Magnitude and Direction in LLM In-Context Conflict Resolution",
+            "url": "https://arxiv.org/pdf/2602.04918"
+          },
+          {
+            "title": "Red Lines and Grey Zones in the Fog of War: Benchmarking Legal Risk, Moral Harm, and Regional Bias in Large Language Model Military Decision-Making",
+            "url": "https://arxiv.org/pdf/2510.03514"
+          },
+          {
+            "title": "Realistic threat perception drives intergroup conflict: A causal, dynamic analysis using generative-agent simulations",
+            "url": "https://arxiv.org/pdf/2512.17066"
+          },
+          {
+            "title": "GitHub - EnnengYang/Awesome-Model-Merging-Methods-Theories-Applications: Model Merging in LLMs, MLLMs, and Beyond: Methods, Theories, Applications and Opportunities. ACM Computing Surveys, 2026. · GitHub",
+            "url": "https://github.com/ennengyang/awesome-model-merging-methods-theories-applications"
+          },
+          {
+            "title": "Evaluating Behavioral Alignment in Conflict Dialogue: A Multi-Dimensional Comparison of LLM Agents and Humans",
+            "url": "https://arxiv.org/pdf/2509.16394"
+          }
+        ]
+      },
+      "The search found a highly relevant paper published in February 2026. Here are the key findings:\n\nThe research addresses how Large Language Models prioritize conflicting in-context information over pre-existing parametric memory (a phenomenon termed sycophancy or compliance), and investigates whether this behavior arises from signal magnitude dilution or directional geometric alteration within the residual stream.\n\nThe study conducted a layer-wise geometric analysis across three models (Qwen-3-4B, Llama-3.1-8B, and GLM-4-9B), decomposing residual stream updates into radial (norm-based) and angular (cosine-based) components.\n\n**Key Finding - \"Orthogonal Interference\":**\n\nThe researchers observed that compliance is consistently characterized by \"Orthogonal Interference,\" where the conflicting context injects a steering vector that is quasi-orthogonal to the ground-truth direction, effectively rotating the hidden state representation.\n\nThis suggests that models do not \"unlearn\" or suppress the magnitude of internal truths but rather employ a mechanism of geometric displacement to bypass the correct unembedding vector, effectively simulating adoption while preserving the original structural magnitude.\n\nThe paper challenges previous assumptions about how LLMs handle conflicting information and suggests that monitoring the directional/geometric properties of representations is necessary for detecting when models are appearing to comply with false information."
+    ],
+    "durationSeconds": 7.768209875,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b4273542-c6ff-4aeb-9046-d0d36ed03d5e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-30T07:46:54.967Z_
+
+```json
+{
+  "parentUuid": "4d3e8e71-07a9-4848-b12f-6e46c557b754",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5b5fb4a0-b778-4aa6-b76d-5d3aea01f24f",
+  "timestamp": "2026-05-30T07:46:54.967Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # CORe: Tracing and Repairing Override Circuits in RAG  ## Core Problem and Primary Research Question  RAG-augment…",
+  "leafUuid": "5b5fb4a0-b778-4aa6-b76d-5d3aea01f24f",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate RAG override circuit proposal acceptability",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-30T07:46:58.892Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the field. Let me compile the evaluation. Let me also do one more search to check for any very recent work that might be directly competing with CORe's approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b5fb4a0-b778-4aa6-b76d-5d3aea01f24f",
+  "isSidechain": false,
+  "requestId": "req_011CbYPBhCQofa5QMyiB2TFu",
+  "type": "assistant",
+  "uuid": "48899dff-7bff-42dc-9d11-c7b2b2858bb3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbKxGxexPBt2k3GbcGGdJi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 24408,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2417,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 24408,
+          "cache_creation_input_tokens": 2417,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2417
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-30T07:46:59.864Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MFXrrxiiUH29NSCkw2BtDZ`</summary>
+
+```json
+{
+  "query": "CLEAR probing latent knowledge conflict faithful RAG multi-stage attention modulation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48899dff-7bff-42dc-9d11-c7b2b2858bb3",
+  "isSidechain": false,
+  "requestId": "req_011CbYPBhCQofa5QMyiB2TFu",
+  "type": "assistant",
+  "uuid": "fd5dbbb3-f7ba-449e-b140-285480308d51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbKxGxexPBt2k3GbcGGdJi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 24408,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2417,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 24408,
+          "cache_creation_input_tokens": 2417,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2417
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-30T07:47:00.288Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MQdNGpYXUrAgEpCcBVundn`</summary>
+
+```json
+{
+  "query": "context copying modulation entropy neurons copy suppression EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd5dbbb3-f7ba-449e-b140-285480308d51",
+  "isSidechain": false,
+  "requestId": "req_011CbYPBhCQofa5QMyiB2TFu",
+  "type": "assistant",
+  "uuid": "6be3961b-1da0-4e8f-950f-fedc4548858a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbKxGxexPBt2k3GbcGGdJi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 24408,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2417,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 24408,
+          "cache_creation_input_tokens": 2417,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2417
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-30T07:47:06.328Z_
+
+<details><summary>↩ Tool result · `toolu_01MFXrrxiiUH29NSCkw2BtDZ`</summary>
+
+```text
+Web search results for query: "CLEAR probing latent knowledge conflict faithful RAG multi-stage attention modulation 2025"
+
+Links: [{"title":"[2510.12460v1] Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2510.12460v1"},{"title":"[2510.12460] Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2510.12460"},{"title":"PROBING LATENT KNOWLEDGE CONFLICT FOR FAITHFUL RETRIEVAL-AUGMENTED GENERATION","url":"https://arxiv.org/pdf/2510.12460"},{"title":"PROBING LATENT KNOWLEDGE CONFLICT FOR ...","url":"https://openreview.net/pdf/5d2200d660461b23802648abe0dbd119a5d99617.pdf"},{"title":"FaithfulRAG: Fact-Level Conflict Modeling for Context-Faithful Retrieval-Augmented Generation | Request PDF","url":"https://www.researchgate.net/publication/394303113_FaithfulRAG_Fact-Level_Conflict_Modeling_for_Context-Faithful_Retrieval-Augmented_Generation"},{"title":"Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=NhO6iEUISf"},{"title":"(PDF) PROBING LATENT KNOWLEDGE CONFLICT FOR FAITHFUL RETRIEVAL-AUGMENTED GENERATION","url":"https://www.researchgate.net/publication/396745926_PROBING_LATENT_KNOWLEDGE_CONFLICT_FOR_FAITHFUL_RETRIEVAL-AUGMENTED_GENERATION"},{"title":"Beyond Black-Box Interventions: Latent Probing for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/html/2510.12460"}]
+
+Based on the search results, I found detailed information about the paper you're looking for:
+
+## CLEAR: Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation
+
+CLEAR (Conflict-Localized and Enhanced Attention for RAG) is a framework designed to address the unfaithfulness issue in RAG systems, where model responses contradict evidence from retrieved context.
+
+### Key Components
+
+The framework consists of three main components: (i) decomposing context into fine-grained sentence-level knowledge, (ii) employing hidden-state probing to localize conflicting knowledge, and (iii) introducing conflict-aware fine-tuning to guide the model to accurately integrate retrieved evidence.
+
+### Core Insights
+
+Through probing-based analysis of hidden-state representations in LLMs, the research reveals three findings: knowledge integration occurs hierarchically, conflicts manifest as latent signals at the sentence level, and irrelevant context is often amplified when aligned with parametric knowledge.
+
+### Results
+
+Extensive experiments across three benchmarks demonstrate that CLEAR substantially improves both accuracy and contextual faithfulness, consistently outperforming strong baselines under diverse conflict conditions.
+
+The paper was published on October 14, 2025, and addresses a fundamental limitation in existing RAG systems by looking beyond black-box external interventions to understand how LLMs internally integrate retrieved evidence with their parametric memory.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd5dbbb3-f7ba-449e-b140-285480308d51",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "ea56787a-e492-46af-83db-904e4563fc87",
+  "toolUseResult": {
+    "query": "CLEAR probing latent knowledge conflict faithful RAG multi-stage attention modulation 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FbomQfkDEaLB4euQRaEaTe",
+        "content": [
+          {
+            "title": "[2510.12460v1] Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2510.12460v1"
+          },
+          {
+            "title": "[2510.12460] Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2510.12460"
+          },
+          {
+            "title": "PROBING LATENT KNOWLEDGE CONFLICT FOR FAITHFUL RETRIEVAL-AUGMENTED GENERATION",
+            "url": "https://arxiv.org/pdf/2510.12460"
+          },
+          {
+            "title": "PROBING LATENT KNOWLEDGE CONFLICT FOR ...",
+            "url": "https://openreview.net/pdf/5d2200d660461b23802648abe0dbd119a5d99617.pdf"
+          },
+          {
+            "title": "FaithfulRAG: Fact-Level Conflict Modeling for Context-Faithful Retrieval-Augmented Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/394303113_FaithfulRAG_Fact-Level_Conflict_Modeling_for_Context-Faithful_Retrieval-Augmented_Generation"
+          },
+          {
+            "title": "Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=NhO6iEUISf"
+          },
+          {
+            "title": "(PDF) PROBING LATENT KNOWLEDGE CONFLICT FOR FAITHFUL RETRIEVAL-AUGMENTED GENERATION",
+            "url": "https://www.researchgate.net/publication/396745926_PROBING_LATENT_KNOWLEDGE_CONFLICT_FOR_FAITHFUL_RETRIEVAL-AUGMENTED_GENERATION"
+          },
+          {
+            "title": "Beyond Black-Box Interventions: Latent Probing for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2510.12460"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're looking for:\n\n## CLEAR: Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation\n\nCLEAR (Conflict-Localized and Enhanced Attention for RAG) is a framework designed to address the unfaithfulness issue in RAG systems, where model responses contradict evidence from retrieved context.\n\n### Key Components\n\nThe framework consists of three main components: (i) decomposing context into fine-grained sentence-level knowledge, (ii) employing hidden-state probing to localize conflicting knowledge, and (iii) introducing conflict-aware fine-tuning to guide the model to accurately integrate retrieved evidence.\n\n### Core Insights\n\nThrough probing-based analysis of hidden-state representations in LLMs, the research reveals three findings: knowledge integration occurs hierarchically, conflicts manifest as latent signals at the sentence level, and irrelevant context is often amplified when aligned with parametric knowledge.\n\n### Results\n\nExtensive experiments across three benchmarks demonstrate that CLEAR substantially improves both accuracy and contextual faithfulness, consistently outperforming strong baselines under diverse conflict conditions.\n\nThe paper was published on October 14, 2025, and addresses a fundamental limitation in existing RAG systems by looking beyond black-box external interventions to understand how LLMs internally integrate retrieved evidence with their parametric memory."
+    ],
+    "durationSeconds": 6.459694363999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fd5dbbb3-f7ba-449e-b140-285480308d51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-30T07:47:07.051Z_
+
+<details><summary>↩ Tool result · `toolu_01MQdNGpYXUrAgEpCcBVundn`</summary>
+
+```text
+Web search results for query: "context copying modulation entropy neurons copy suppression EMNLP 2025"
+
+Links: [{"title":"Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.1116/"},{"title":"[2509.10663] Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts","url":"https://arxiv.org/abs/2509.10663"},{"title":"Instructions for *ACL Proceedings","url":"https://arxiv.org/html/2509.10663"},{"title":"Context Copying Modulation: The Role of Entropy Neurons in Managing","url":"https://openreview.net/pdf/43dda5dcd3df76ea3749f526c320b6692193ef26.pdf"},{"title":"Context Copying Modulation: The Role of Entropy Neurons in Managing","url":"https://www.arxiv.org/pdf/2509.10663"},{"title":"Preprint. Under review. COPY SUPPRESSION: COMPREHENSIVELY","url":"https://arxiv.org/pdf/2310.04625"},{"title":"Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts. | Semantic Scholar","url":"https://www.semanticscholar.org/search?q=Context+Copying+Modulation:+The+Role+of+Entropy+Neurons+in+Managing+Parametric+and+Contextual+Knowledge+Conflicts."}]
+
+I found the research paper you're looking for! Here are the key findings:
+
+Entropy neurons are responsible for suppressing context copying across a range of LLMs, and ablating them leads to a significant change in the generation process.
+
+Entropy neurons are a class of neurons in autoregressive transformer models that produce a significant effect on model output entropy while having moderate impact on token prediction ranking, and the paper investigates their role in resolving conflicts between contextual and parametric information.
+
+Entropy neurons represent less than 2‰ of feed forward network neurons in the last transformer layer but play a significant role in determining the knowledge source to use. More specifically, they inhibit the natural LLM's behavior of repeating sequences in the context, i.e. induction.
+
+The paper titled "Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts" was published in the Findings of EMNLP 2025 by Zineddine Tighidet, Andrea Mogini, Hedi Ben younes, Jiali Mei, Patrick Gallinari, and Benjamin Piwowarski.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6be3961b-1da0-4e8f-950f-fedc4548858a",
+  "isSidechain": false,
+  "promptId": "c6f73f3f-f755-44de-9d6d-cc80a6e7b844",
+  "type": "user",
+  "uuid": "afac150f-b9f8-4625-b8f5-236e3c289f58",
+  "toolUseResult": {
+    "query": "context copying modulation entropy neurons copy suppression EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VJahdepemVRR749JhVN4Kj",
+        "content": [
+          {
+            "title": "Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1116/"
+          },
+          {
+            "title": "[2509.10663] Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts",
+            "url": "https://arxiv.org/abs/2509.10663"
+          },
+          {
+            "title": "Instructions for *ACL Proceedings",
+            "url": "https://arxiv.org/html/2509.10663"
+          },
+          {
+            "title": "Context Copying Modulation: The Role of Entropy Neurons in Managing",
+            "url": "https://openreview.net/pdf/43dda5dcd3df76ea3749f526c320b6692193ef26.pdf"
+          },
+          {
+            "title": "Context Copying Modulation: The Role of Entropy Neurons in Managing",
+            "url": "https://www.arxiv.org/pdf/2509.10663"
+          },
+          {
+            "title": "Preprint. Under review. COPY SUPPRESSION: COMPREHENSIVELY",
+            "url": "https://arxiv.org/pdf/2310.04625"
+          },
+          {
+            "title": "Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts. | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/search?q=Context+Copying+Modulation:+The+Role+of+Entropy+Neurons+in+Managing+Parametric+and+Contextual+Knowledge+Conflicts."
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here are the key findings:\n\nEntropy neurons are responsible for suppressing context copying across a range of LLMs, and ablating them leads to a significant change in the generation process.\n\nEntropy neurons are a class of neurons in autoregressive transformer models that produce a significant effect on model output entropy while having moderate impact on token prediction ranking, and the paper investigates their role in resolving conflicts between contextual and parametric information.\n\nEntropy neurons represent less than 2‰ of feed forward network neurons in the last transformer layer but play a significant role in determining the knowledge source to use. More specifically, they inhibit the natural LLM's behavior of repeating sequences in the context, i.e. induction.\n\nThe paper titled \"Context Copying Modulation: The Role of Entropy Neurons in Managing Parametric and Contextual Knowledge Conflicts\" was published in the Findings of EMNLP 2025 by Zineddine Tighidet, Andrea Mogini, Hedi Ben younes, Jiali Mei, Patrick Gallinari, and Benjamin Piwowarski."
+    ],
+    "durationSeconds": 6.760541872999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6be3961b-1da0-4e8f-950f-fedc4548858a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-30T07:47:43.774Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive knowledge about the field. Let me synthesize my evaluation.
+
+Key observations from my research:
+
+1. **Field is very active**: RAG knowledge conflict is a hot topic with many recent papers (JuICE ICML 2025, SpARE NAACL 2025, ParamMute NeurIPS 2025, CoRect arXiv 2026, CLEAR 2025, etc.)
+
+2. **Single-component interventions are the current paradigm**: JuICE (attention heads), SpARE (SAE features), ParamMute (FFN layers), CoRect (hidden state rectification) all target single component types.
+
+
+3. **Geometric understanding is emerging**: Recent work like Simulated Adoption and Promote-Suppress-Iterate provide geometric insights into how models handle conflicting information, while compensatory dynamics—a concept from neuroscience—hasn't been explicitly examined in LLM circuits for RAG override scenarios.
+4. **There's a clear gap**: No existing work combines causal circuit tracing with multi-point interventions specifically for RAG, which makes this proposal novel.
+
+**Strengths:**
+1. Very well-motivated research question - the compensatory dynamics hypothesis elegantly explains why single-point interventions plateau
+2. Thorough literature review showing deep understanding of the field
+3. Well
+
+-designed evaluation plan with comprehensive baselines (including the crucial "naive stack" baseline)
+4. The "value regardless of outcome" framing is intellectually honest
+5. Three-phase approach is logical and well-structured
+6. Multiple models (3 architectures) and multiple datasets (4 types)
+7. Ablation matrix is comprehensive (7 configurations)
+8. Circuit transferability test is a practical contribution
+9. Good contingency planning (fallback if CD-T doesn't scale, fallback if flip events aren't prevalent)
+
+**Weaknesses/Risks:**
+The scope is ambitious—Phase 1 involves building the CD-T and PEAP pipeline, Phase 2 requires geometric characterization and compensatory dynamics testing, and Phase 3 demands 3-point interventions—which is substantial work for a single paper. The core compensatory dynamics hypothesis is speculative, and if circuits don't exhibit the expected compensatory behavior, the entire framing could collapse.
+
+CD-T scalability to 8B parameters remains uncertain even with pilot studies, and the fallback to HAGD introduces additional complexity. Unifying three independent geometric findings across architectures is ambitious and the flip phenomenon might behave differently per model. The geometry-aware calibration strategy—deciding between rotation, magnitude, or mixed adjustments per instance—adds another layer of difficulty. There's real risk of scope creep here: circuit discovery, geometric understanding, and intervention could each stand alone as separate papers. Some reviewers might dismiss the 3-point intervention as engineering rather than fundamental science.
+
+The CD-T and PEAP pipeline combination is principled but untested specifically for RAG, though the naive stack baseline is well-designed and the geometry-aware calibration is novel despite its added risk. The experimental setup is solid—comprehensive baselines, thorough ablations, good statistical rigor with bootstrap tests and multiple runs, plus the important no-conflict control. The core research question about why single-point interventions plateau is genuinely valuable and the methodology is principled, but the ambition to simultaneously tackle circuit discovery, geometric unification, and coordinated intervention is the paper's biggest vulnerability.
+
+The scope across three models and four datasets is ambitious for a single paper, and if the compensatory dynamics hypothesis doesn't hold, the entire narrative collapses. That said, the topic is timely, the methodology is sound, the experimental design is comprehensive, and the novelty claim seems valid since no existing work combines these three elements. I'm settling on around 30-40% probability for AAAI 2026—the proposal is well-crafted and could be strong if results materialize, but the execution risk is substantial.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afac150f-b9f8-4625-b8f5-236e3c289f58",
+  "isSidechain": false,
+  "requestId": "req_011CbYPCatBRd5mDEi3YcNiX",
+  "type": "assistant",
+  "uuid": "99c57f48-011f-46c5-b19c-ba53c39e7283",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dwDsD4cmhfF54QHj2KA2c",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1738,
+      "cache_read_input_tokens": 26825,
+      "output_tokens": 6103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6103,
+          "cache_read_input_tokens": 26825,
+          "cache_creation_input_tokens": 1738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-30T07:49:35.036Z_
+
+Now I have sufficient research to provide a thorough evaluation. Let me compile the assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [JuICE / Taming Knowledge Conflicts in Language Models](https://arxiv.org/abs/2503.10996) (ICML 2025 Spotlight): 发现注意力头的"superposition"现象（同一头同时促进记忆和上下文），提出dual-run头级干预，11数据集SOTA。CORe的最直接基线之一，CORe需在此基础上证明多组件协调干预的增量价值。
+- [CoRect: Context-Aware Logit Contrast for Hidden State Rectification](https://arxiv.org/abs/2602.08221) (arXiv Feb 2026): 记录了flip phenomenon（正确答案在中间层出现后被深层FFN抑制），提出对比logit方法做hidden state矫正。CORe Phase 2a的geometric unification直接建立在此发现之上，但CORe声称提供因果解释而非相关性检测。
+- [SpARE / SAE-Based Representation Engineering](https://aclanthology.org/2025.naacl-long.264/) (NAACL 2025 Oral): 用SAE特征做steering，+10% EM，但目标选择基于单层互信息排名。CORe声称通过因果归因提供更principled的目标选择。
+- [ParamMute: Suppressing Knowledge-Critical FFNs](https://arxiv.org/abs/2502.15543) (NeurIPS 2025): 识别中深层FFN（70%-90%相对深度）为不忠实生成的关键，通过抑制这些FFN提升忠实度。单组件类型干预，CORe的直接对比对象。
+- [Simulated Adoption: Decoupling Magnitude and Direction](https://arxiv.org/abs/2602.04918) (arXiv Feb 2026): 发现冲突解决通过正交干扰（几何旋转而非幅度抑制）实现，跨Llama-3.1-8B/Qwen-3-4B/GLM-4-9B验证。CORe Phase 2a的geometric unification的关键输入之一。
+- [Context Copying Modulation / Entropy Neurons](https://aclanthology.org/2025.findings-emnlp.1116/) (EMNLP 2025 Findings): 发现entropy neurons（<0.2% FFN神经元）在最后transformer层抑制上下文复制。CORe第三干预点（copy suppression inhibition）的机制基础。
+- [CLEAR: Probing Latent Knowledge Conflict](https://arxiv.org/abs/2510.12460) (arXiv Oct 2025): 三阶段干预（知识分解→探针定位→注意力调制），但基于probing相关性（非因果）、需微调、仅调制注意力。CORe区分自身的重要对比点。
+- [CD-T / Efficient Automated Circuit Discovery](https://arxiv.org/pdf/2407.00886) (ICLR 2025): 基于Contextual Decomposition的电路发现方法，声称transformer-agnostic可扩展性。CORe Phase 1的核心工具之一。
+- [Competition of Mechanisms](https://arxiv.org/abs/2506.22977) (ACL 2024 + arXiv 2025 generalization study): 追踪factual recall vs. in-context copying的竞争，发现Llama 3.1 8B中头专门化减弱，暗示override circuits在大模型中更分布式。直接支持CORe的分布式电路假说。
+
+- **调研总结**: RAG知识冲突领域正处于从"单组件启发式干预"向"机制理解驱动的系统干预"转型的节点。JuICE、SpARE、ParamMute等单组件方法各自取得了显著进展但都有天花板。几何理解（旋转vs.幅度）正在独立涌现但尚未统一。CORe的定位——因果电路追踪+几何统一+多点协调干预——准确地占据了一个尚无人填充的空白，时机恰好。
+
+【整体印象】:
+作为审稿人，我的第一反应是"这是一份精心构建的、野心很大的proposal"。研究问题切中要害——为什么单点干预会plateau？——这是领域内practitioners普遍感受到但尚无人系统性回答的问题。compensatory dynamics假说优雅且可测试，"无论结果如何都有价值"的双向设计体现了科学诚实性。文献综述异常全面，清晰地建立了gap。
+
+倾向：**Weak Accept**。问题好、方法有理、实验设计扎实，但scope过于宏大是最大隐患——在一篇论文中同时做电路发现、几何统一、三点干预，任何一个phase出问题都可能导致整体叙事断裂。如果执行良好、结果positive，这是一篇strong paper；但执行风险不容忽视。
+
+【核心贡献】:
+1. **Compensatory dynamics假说及其实证验证**: 首次提出并检验RAG override circuit中的补偿动力学，为单点干预plateau提供因果解释。这是最核心的科学贡献。
+2. **位置感知因果电路追踪应用于RAG**: 将CD-T/PEAP pipeline应用于RAG context-parametric冲突场景，产出可解释的circuit graph。
+3. **几何统一**: 将flip phenomenon、旋转抑制、多阶段promote-suppress动力学统一为一个框架（如果成功）。
+4. **Geometry-aware coordinated 3-point intervention**: 基于电路和几何诊断的多点推理时干预，配合naive stack baseline直接检验协调的价值。
+
+核心贡献对领域的价值：**中到高**。如果compensatory dynamics被验证，这改变了领域对"为什么干预失败"的理解，具有paradigm-shifting潜力。即使只是部分验证，位置感知电路追踪和predictive diagnostics也有独立价值。
+
+【方法合理性】:
+方法整体合理，逻辑链条清晰（电路发现→几何刻画→干预设计）。几个关键点：
+
+1. **CD-T + PEAP pipeline**: 这两个工具各自在ICLR 2025和ACL 2025发表，有独立验证。但它们从未在RAG场景下组合使用，组合后的效果未知。CD-T在8B模型上的可扩展性是实际风险，pilot study的设计是明智的，HAGD fallback也合理。
+2. **Compensatory dynamics测试**: 方法设计合理——ablate一种pathway，测量其他pathway的override贡献是否增加。这是标准的因果检验范式。
+3. **Geometry-aware calibration**: rotation-dominant → project out; magnitude-dominant → scale; mixed → hybrid。逻辑清晰，但per-instance的几何类型判断可能引入额外复杂性和噪声。
+4. **更简单的替代方案？** Naive stack baseline直接回答了这个问题。如果naive stack已经很好，那么circuit-guided coordination的额外价值会被质疑。但这也正是proposal设计的优点——它主动设置了这个检验。
+
+主要方法论风险：Phase 2a的geometric unification涉及三个独立发现（CoRect的flip、Simulated Adoption的旋转、Marín的球面旋转），它们可能不收敛为一个统一机制，特别是在不同架构上。
+
+【5 维度打分】:
+  1. 研究问题: **强** — "为什么单点干预plateau"是领域内公认的开放问题，JuICE/SpARE/ParamMute/CoRect各自SOTA但各有天花板，compensatory dynamics假说提供了一个可测试的因果解释。双向假设设计（存在/不存在compensatory dynamics都有科学价值）进一步增强了研究问题的robustness。研究问题同时服务于理解（为什么）和工程（怎么办），兼具科学价值和应用价值。
+  
+  2. 方法与创新: **中偏强** — CD-T（ICLR 2025）+ PEAP（ACL 2025）的组合在RAG场景的应用是新颖的，geometry-aware calibration有创新性。但核心工具都是已有方法的组合应用，创新更多在"组合方式"而非"基础方法"层面。与JuICE（发现superposition现象）、SpARE（SAE特征应用于steering）、ParamMute（识别关键FFN层）相比，CORe的方法创新更偏"系统集成"。审稿人可能会质疑：这是一个新方法还是已有方法的pipeline？需要通过compensatory dynamics的实证发现来证明组合不是简单拼接。
+  
+  3. 实验设计: **强** — 这是proposal最亮的部分之一。7配置ablation matrix直接检验核心假设；naive stack baseline是关键设计，主动回答"为什么不简单叠加"；3模型×4数据集覆盖全面；no-conflict control防止过度干预；circuit transferability测试实用价值高；inference efficiency对比（单pass hooks vs. 双run方法）体现工程关注。统计严格性（3 runs + paired bootstrap）也到位。缺一个adversarial analysis——如果模型在circuit discovery时看到的冲突模式与test时不同怎么办？
+  
+  4. 可行性: **中** — 这是最大的风险维度。三个phase中每个都有不小的执行风险：(1) CD-T在8B模型上的runtime/memory未知，pilot study是必要但结果可能不乐观；(2) geometric unification可能在不同架构上表现不一致；(3) 三点干预的参数空间（3-5强度值×3组件×7配置×3模型×4数据集）实验量巨大。proposal的contingency planning（HAGD fallback、flip不普遍时的退化方案）体现了成熟思考，但整体scope对于一个conference paper来说偏大。成功执行可能需要2-3个月的密集实验期。
+  
+  5. 写作与呈现: **强** — Proposal的文献综述异常全面，每篇相关工作都有精确的定位和差异化分析。Gap identification清晰有力。研究问题的framing（compensatory dynamics）具有很强的narrative coherence。Contingency planning的透明性增强了可信度。术语使用准确。唯一不足：方法描述部分信息密度很高，实际论文需要更多空间展开。
+
+【概率估计】: [30% - 42%] 中位 35%
+
+【估计理由】:
+**上行因素** (推向42%+):
+- 研究问题精准切中领域痛点，novelty claim在调研后确认成立——截至2026年5月无已发表工作组合因果电路追踪+多点RAG干预
+- 实验设计非常完备，naive stack baseline的设置是审稿人最想看到的关键对照
+- 文献综述的深度和精确度超出大多数submissions，体现了对领域的深刻理解
+- compensatory dynamics如果被验证，贡献级别可达Best Paper候选
+
+**下行因素** (推向30%以下):
+- Scope过大：三个phase中任何一个出问题（CD-T不可扩展、geometric unification不收敛、compensatory dynamics不存在），整个narrative就要重构
+- 方法创新更偏"系统集成"，审稿人可能认为这是engineering contribution而非scientific contribution
+- 如果compensatory dynamics不存在（这完全可能），paper虽仍有价值但narrative力度大幅下降
+- 如果naive stack已经工作得很好，circuit-guided coordination的额外价值可能不够显著
+
+**中位判断** (35%):
+这是一篇"高风险高回报"的投稿。研究问题好、设计扎实、gap真实存在。如果结果positive（compensatory dynamics存在 + 协调干预显著优于naive stack + 几何统一成功），这是40%+的strong accept候选。但如果任一核心假设不成立或execution不到位，可能落入"ambitious but inconclusive"的reject区间。35%的中位反映了：好的问题+好的设计 vs. 高执行风险+过大scope的权衡。
+
+【主要风险】:
+1. **Scope过大导致执行不完整**: 三个phase的完整执行（3模型×4数据集×7 ablation配置 + 几何分析 + 电路发现）工作量极大，deadline压力下很可能某些phase不够深入，导致审稿人认为"每个方面都浅尝辄止"。如果只能完整做好一部分，建议优先Phase 1 + compensatory dynamics test + 3-point intervention，geometric unification可作为supporting analysis而非主要贡献。
+2. **核心假设（compensatory dynamics）可能不成立**: 如果ablate一种pathway后其他pathway的override贡献并不增加，那么"为什么单点干预plateau"的问题回到原点。paper的"value regardless of outcome"framing能部分缓解，但审稿人可能认为negative result的价值不足以支撑一个AAAI oral/poster。
+
+【实施评估】:
+  - 计算资源: **高**。CD-T在8B模型上的decomposition + PEAP的forward/backward pass + 3模型×4数据集×7 ablation配置的完整实验矩阵。估计需要4-8× A100 80GB持续运行。Pilot study至关重要，可能需要1-2周GPU时间仅用于可行性验证。
+  - 数据需求: **中低**。NQ-swap、ConFiQA、MemoTrap、CoFaithfulQA均为已有公开数据集，无需构建新数据集。但可能需要自建部分conflict prompts用于circuit discovery phase的精细控制。
+  - 人工介入: **低至中**。电路图的解读和geometric analysis需要专家判断，但整体pipeline高度自动化。Intervention strength calibration可能需要一定手动调参。
+  - 训练需求: **无**。全部干预在推理时通过forward hooks实现，不需要模型训练或微调。这是CORe相对CLEAR的重要优势。
+  - 新 Benchmark: **无需**。使用已有benchmark组合。CoFaithfulQA（ParamMute引入）已可用。
+  - 预估周期: **3-4个月**（含pilot study 2-3周 + Phase 1电路发现 3-4周 + Phase 2几何分析和compensatory dynamics测试 3-4周 + Phase 3干预实现和完整实验 4-5周 + 论文写作 3-4周）。如果精简scope（例如减少模型数量或简化geometric unification），可压缩至2.5-3个月。
+```
+
+---
+
+Sources:
+- [Taming Knowledge Conflicts in Language Models (JuICE) - ICML 2025](https://arxiv.org/abs/2503.10996)
+- [CoRect: Context-Aware Logit Contrast for Hidden State Rectification](https://arxiv.org/abs/2602.08221)
+- [SpARE: Steering Knowledge Selection via SAE-Based Representation Engineering - NAACL 2025](https://aclanthology.org/2025.naacl-long.264/)
+- [ParamMute: Suppressing Knowledge-Critical FFNs for Faithful RAG - NeurIPS 2025](https://arxiv.org/abs/2502.15543)
+- [Simulated Adoption: Decoupling Magnitude and Direction in LLM Conflict Resolution](https://arxiv.org/abs/2602.04918)
+- [Context Copying Modulation: The Role of Entropy Neurons - EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.1116/)
+- [CLEAR: Probing Latent Knowledge Conflict for Faithful RAG](https://arxiv.org/abs/2510.12460)
+- [CD-T: Efficient Automated Circuit Discovery via Contextual Decomposition](https://arxiv.org/pdf/2407.00886)
+- [JuICE GitHub Repository](https://github.com/GaotangLi/JUICE)
+- [ParamMute GitHub Repository](https://github.com/OpenBMB/ParamMute)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99c57f48-011f-46c5-b19c-ba53c39e7283",
+  "isSidechain": false,
+  "requestId": "req_011CbYPCatBRd5mDEi3YcNiX",
+  "type": "assistant",
+  "uuid": "dcba9a07-fae4-4f2e-a88d-e2cd20b52cd1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dwDsD4cmhfF54QHj2KA2c",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1738,
+      "cache_read_input_tokens": 26825,
+      "output_tokens": 6103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6103,
+          "cache_read_input_tokens": 26825,
+          "cache_creation_input_tokens": 1738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # CORe: Tracing and Repairing Override Circuits in RAG  ## Core Problem and Primary Research Question  RAG-augment…",
+  "leafUuid": "dcba9a07-fae4-4f2e-a88d-e2cd20b52cd1",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate RAG override circuit proposal acceptability",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # CORe: Tracing and Repairing Override Circuits in RAG  ## Core Problem and Primary Research Question  RAG-augment…",
+  "leafUuid": "dcba9a07-fae4-4f2e-a88d-e2cd20b52cd1",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate RAG override circuit proposal acceptability",
+  "sessionId": "273e7f3a-554d-4071-aeea-209b3976b607"
+}
+```
+
+---

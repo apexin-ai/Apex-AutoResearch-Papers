@@ -1,0 +1,4472 @@
+# Research conversation: Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models ## Core Problem Current process reward model
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-2/49b1c0dc-8774-4509-bb1b-76c2cae52288.jsonl`
+- **Structured JSON:** [`e3105c9a44574bda5665.json`](../../sessions/e3/e3105c9a44574bda5665.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:32:39.249Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:32:39.249Z",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "content": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models\n\n## Core Problem\n\nCurrent process reward models detect consistency rather than causality — \"Reward Models Identify Consistency, Not Causality\" (arXiv:2502.14619, Feb 2025) established that PRMs learn to verify surface-level coherence between steps, not whether each step logically follows from its premises. This fundamental deficiency manifests as catastrophic reward hacking: \"Reward Under Attack\" (arXiv:2603.06621, Feb 2026) showed 43% of PRM reward gains are attributable to stylistic shortcuts, with RL-trained policies achieving >0.9 PRM scores but <4% actual accuracy. The root cause is that standard PRM training provides only point-wise step-correctness supervision, which conflates fluent-sounding steps with logically valid ones. Can we train PRMs whose optimization target is explicitly causality — sensitivity to logical dependency structure — rather than consistency?\n\n## Research Opportunity\n\nPARC/PERL (ICML 2025, arXiv:2502.02362) demonstrated that LLMs can extract premise dependency links between reasoning steps at >90% recall (on 70B+ models), and that premise-aware verification improves error detection by 6-16%. Crucially, \"From Chains to DAGs\" (arXiv:2601.17593, Jan 2026) showed that LLM hidden states already linearly encode DAG reasoning structure — node depth, pairwise distance, and adjacency are recoverable from intermediate layers via lightweight probes. This means premise dependency structure is not an external imposition but an internal representation that standard PRM training fails to leverage. Simultaneously, DAG-Math (arXiv:2510.19842, 2025) and ProofFlow (arXiv:2510.15981, 2025) have made dependency graph extraction from mathematical reasoning chains feasible at scale. No prior work combines these premise dependency structures with contrastive PRM training to explicitly shift the PRM optimization target from consistency-detection to causality-detection — addressing the documented root cause of PRM fragility at training time rather than through post-hoc corrections.\n\n## Research Landscape\n\n**PRM robustness failures and existing defenses.** \"Reward Under Attack\" (arXiv:2603.06621) established the three-tier diagnostic: static perturbation exploitability, adversarial token-level attacks, and RL-induced reward hacking. \"Reward Models Identify Consistency, Not Causality\" (arXiv:2502.14619) confirmed the theoretical root cause. Existing defenses span: CRA (Aug 2025, arXiv:2508.04216, post-hoc sparse autoencoder correction), APRM (Nov 2025, arXiv:2511.22888, adversarial training with harder negatives, +5.3pp OOD), CRM (ICLR 2026, arXiv:2509.26578, sequential conditioning on preceding steps), and PURE (NeurIPS 2025, arXiv:2504.15275, min-form credit aggregation). None uses explicit logical dependency structure during PRM training. Critically, APRM's adversarial negatives are domain-agnostic — the model learns to resist specific adversarial patterns but not to verify logical structure, leaving it vulnerable to novel attack types (cat-and-mouse problem). PGCT's DAG-anchored negatives instead train the PRM to verify premise-conclusion causality, a semantically grounded and transferable capability.\n\n**Infrastructure for DAG extraction.** PARC/PERL (ICML 2025, arXiv:2502.02362) showed premise links form extractable DAGs at >90% recall on 70B+ models; GenPRM (AAAI 2026, arXiv:2504.00891) provides code-verified step analysis; AgentEval (arXiv:2604.23581, 2026) showed DAG-based dependency modeling yields +22pp failure detection recall over flat evaluation.\n\n**Concurrent work.** CPMI (arXiv:2604.10660, April 2026) uses contrastive mutual information for PRM auto-labeling but does not employ premise dependency graphs. RewardFlow (arXiv:2603.18859, March 2026) propagates rewards over state-transition graphs in agentic tasks but uses no contrastive training and targets a different graph type. Graph of Verification (GoV) decomposes reasoning into DAGs for verification but is training-free. Thought-Path Contrastive Learning (AAAI 2025, arXiv:2409.14495) constructs premise-oriented contrastive examples for logical reading comprehension but operates on propositional-level premise-conclusion pairs, not multi-step mathematical reasoning DAGs, and targets discriminative reading accuracy rather than PRM robustness against reward hacking.\n\n**Performance gap.** The best open-source PRM on PRMBench scores 67.7 (PathFinder-PRM-7B, arXiv:2505.19706) vs. 83.8 human ceiling, leaving a 16-point gap where structural approaches could contribute. The specific combination of premise dependency DAGs with contrastive PRM training remains untried.\n\n## Proposed Approach\n\n**DAG extraction.** Extract premise dependency DAGs from mathematical reasoning chains using PARC's extraction method with Qwen2.5-72B-Instruct (targeting >90% recall as demonstrated on 70B-class models in PERL). Each reasoning step is a node; directed edges encode \"step j uses the result of step i as a premise.\"\n\n**Contrastive pair construction.** Construct structure-aware contrastive training pairs: (1) Graph-preserving surface perturbations — rephrased steps maintaining identical DAG topology — as positives; (2) Graph-breaking fluent perturbations — severed premise links, dangling references, logically invalid steps preserving surface fluency — as hard negatives. Quality assurance: re-extract DAGs from generated pairs via an independent LLM call to verify topology preservation/breaking; filter pairs failing verification; sample 1000 pairs for human audit to establish precision bounds.\n\n**Dual objective training.** Train a Qwen2.5-Math-7B-Instruct-based PRM with: (a) standard step-correctness BCE loss (point-wise supervision — each step independently labeled correct/incorrect), and (b) a graph-contrastive InfoNCE loss over DAG-anchored step embeddings (relational supervision — encoding structural relationships between steps in representation space). The combination ensures the model retains step-level discrimination while learning representations invariant to surface form but sensitive to logical dependency structure. This addresses a key limitation of CRM (ICLR 2026, arXiv:2509.26578), which conditions predictions sequentially on preceding steps but still operates in a point-wise prediction paradigm without encoding relational structure in the embedding space.\n\n**Data.** Augment PRM800K and Math-Shepherd seed chains (~300K solutions) with DAG annotations and ~600K contrastive pairs generated via LLM paraphrasing and targeted premise-link corruption. Include automated quality filtering pipeline (DAG re-extraction verification) to ensure pair fidelity.\n\n## Evaluation Plan\n\n**Benchmarks (4-tier evaluation):**\n1. **Step-level error detection**: PRMBench (ACL 2025, arXiv:2501.03124) with per-error-category breakdown (soundness / sensitivity / simplicity dimensions; redundancy, circular logic, step inconsistency, domain inconsistency, deceptive logical steps), targeting >70 overall (vs. 67.7 PathFinder-PRM SOTA) with disproportionate gains on logic-structure-related error types. Also ProcessBench.\n2. **Downstream best-of-N reranking**: MATH500, GSM8K, AIME 2024 with N ∈ {8, 16, 64} candidate solutions sampled from Qwen2.5-Math-7B-Instruct. Reports prm@N accuracy.\n3. **Adversarial robustness**: PRM-BiasBench and the perturbation suite from \"Reward Under Attack\" (arXiv:2603.06621), measuring reduction in stylistic shortcut exploitability.\n4. **RL closed-loop reward hacking**: Train a policy (Qwen2.5-Math-7B-Instruct) via GRPO using PGCT-PRM vs. baseline PRMs as reward signal. Measure reward-accuracy divergence curve and Pearson correlation between PRM score and ground-truth accuracy over training, on MATH and AIME.\n\n**Baselines (5 tiers):**\n1. Standard PRM: Qwen2.5-Math-PRM-7B (same base model, compute-matched)\n2. Robustness-focused: APRM (arXiv:2511.22888), CRA (arXiv:2508.04216)\n3. Architecture-level: CRM (ICLR 2026, arXiv:2509.26578), PURE (NeurIPS 2025, arXiv:2504.15275)\n4. Contrastive/concurrent: CPMI (arXiv:2604.10660)\n5. Error-aware: PathFinder-PRM-7B (arXiv:2505.19706)\n- Data-matched baseline: same ~900K total samples, contrastive pairs replaced with additional step-correctness annotations, standard BCE loss\n- Compute-matched baseline: equal total training FLOPs including DAG extraction overhead\n\n**Ablations (6 variants):**\n- A1: Remove InfoNCE loss (step-correctness only + DAG-augmented data) → isolate contrastive learning contribution\n- A2: Remove step-correctness loss (InfoNCE only) → test contrastive learning standalone capability\n- A3: Random perturbation replacing DAG-aware perturbation (contrastive learning without DAG structure) → **critical ablation isolating DAG structure contribution**\n- A4: Only graph-preserving positives (no graph-breaking negatives) → isolate hard negative contribution\n- A5: Only graph-breaking negatives (no graph-preserving positives) → isolate surface-invariance contribution\n- A6: Loss weighting sensitivity: λ ∈ {0.1, 0.3, 0.5, 0.7, 1.0}\n- A7: DAG noise sensitivity: inject 5%/10%/15%/20% random errors into DAG annotations → measure robustness to extraction noise\n\n## Key References\n\n- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2026, arXiv:2603.06621)\n- Reward Models Identify Consistency, Not Causality (arXiv 2025, arXiv:2502.14619)\n- Premise-Augmented Reasoning Chains Improve Error Identification in Math Reasoning with LLMs — PARC/PERL (ICML 2025, arXiv:2502.02362)\n- From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs (arXiv 2026, arXiv:2601.17593)\n- DAG-Math: Graph-of-Thought Guided Mathematical Reasoning in LLMs (arXiv 2025, arXiv:2510.19842)\n- ProofFlow: A Dependency Graph Approach to Faithful Proof Autoformalization (arXiv 2025, arXiv:2510.15981)\n- Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction — CRA (arXiv 2025, arXiv:2508.04216)\n- Adversarial Training for Process Reward Models — APRM (arXiv 2025, arXiv:2511.22888)\n- Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning — CRM (ICLR 2026, arXiv:2509.26578)\n- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning — PURE (NeurIPS 2025, arXiv:2504.15275)\n- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026, arXiv:2504.00891)\n- AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking (arXiv 2026, arXiv:2604.23581)\n- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025, arXiv:2501.03124)\n- Efficient Process Reward Modeling via Contrastive Mutual Information — CPMI (arXiv 2026, arXiv:2604.10660)\n- RewardFlow: Topology-Aware Reward Propagation on State Graphs (arXiv 2026, arXiv:2603.18859)\n- PathFinder-PRM: Exploring Path Diversity in Step-Level Reward Models (arXiv 2025, arXiv:2505.19706)\n- Thought-Path Contrastive Learning via Premise-Oriented Data Augmentation for Logical Reading Comprehension (AAAI 2025, arXiv:2409.14495)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 1200-1500 A100-hours (DAG extraction with 72B model: ~200h, contrastive pair generation + quality filtering: ~150h, PRM training with ablations: ~500h, baseline reproduction: ~100h, RL closed-loop evaluation: ~200h, best-of-N evaluation: ~50h), timeline: 16-20 weeks for 2-3 researchers, estimated_gpu_cost: $3,600-$4,500 at $3/hr A100 spot pricing\n- **human_in_loop**: gpu_hours: 900-1100 A100-hours (Claude accelerates DAG quality validation, contrastive pair filtering, and ablation design, reducing failed experiments ~30%), timeline: 12-16 weeks for 2 researchers, claude_api_cost: $600-$1,000 (data quality analysis, code generation, experiment triage), estimated_gpu_cost: $2,700-$3,300 at $3/hr A100 spot pricing\n- **auto_research**: gpu_hours: 1300-1800 A100-hours (more parallel sweeps offset by automated experiment selection), timeline: 8-10 weeks with automated pipeline, claude_api_cost: $1,200-$1,800 (automated DAG quality validation, contrastive pair generation, hyperparameter sweep orchestration, paper drafting), estimated_gpu_cost: $3,900-$5,400 at $3/hr A100 spot pricing, speed_bottleneck: DAG extraction quality validation — premise link accuracy must be audited per-domain (algebra vs. geometry vs. combinatorics) before contrastive pairs are trustworthy; serial human spot-checks required"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:32:39.254Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:32:39.254Z",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+## Round 1
+
+65 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:32:39.278Z_
+
+# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models
+
+## Core Problem
+
+Current process reward models detect consistency rather than causality — "Reward Models Identify Consistency, Not Causality" (arXiv:2502.14619, Feb 2025) established that PRMs learn to verify surface-level coherence between steps, not whether each step logically follows from its premises. This fundamental deficiency manifests as catastrophic reward hacking: "Reward Under Attack" (arXiv:2603.06621, Feb 2026) showed 43% of PRM reward gains are attributable to stylistic shortcuts, with RL-trained policies achieving >0.9 PRM scores but <4% actual accuracy. The root cause is that standard PRM training provides only point-wise step-correctness supervision, which conflates fluent-sounding steps with logically valid ones. Can we train PRMs whose optimization target is explicitly causality — sensitivity to logical dependency structure — rather than consistency?
+
+## Research Opportunity
+
+PARC/PERL (ICML 2025, arXiv:2502.02362) demonstrated that LLMs can extract premise dependency links between reasoning steps at >90% recall (on 70B+ models), and that premise-aware verification improves error detection by 6-16%. Crucially, "From Chains to DAGs" (arXiv:2601.17593, Jan 2026) showed that LLM hidden states already linearly encode DAG reasoning structure — node depth, pairwise distance, and adjacency are recoverable from intermediate layers via lightweight probes. This means premise dependency structure is not an external imposition but an internal representation that standard PRM training fails to leverage. Simultaneously, DAG-Math (arXiv:2510.19842, 2025) and ProofFlow (arXiv:2510.15981, 2025) have made dependency graph extraction from mathematical reasoning chains feasible at scale. No prior work combines these premise dependency structures with contrastive PRM training to explicitly shift the PRM optimization target from consistency-detection to causality-detection — addressing the documented root cause of PRM fragility at training time rather than through post-hoc corrections.
+
+## Research Landscape
+
+**PRM robustness failures and existing defenses.** "Reward Under Attack" (arXiv:2603.06621) established the three-tier diagnostic: static perturbation exploitability, adversarial token-level attacks, and RL-induced reward hacking. "Reward Models Identify Consistency, Not Causality" (arXiv:2502.14619) confirmed the theoretical root cause. Existing defenses span: CRA (Aug 2025, arXiv:2508.04216, post-hoc sparse autoencoder correction), APRM (Nov 2025, arXiv:2511.22888, adversarial training with harder negatives, +5.3pp OOD), CRM (ICLR 2026, arXiv:2509.26578, sequential conditioning on preceding steps), and PURE (NeurIPS 2025, arXiv:2504.15275, min-form credit aggregation). None uses explicit logical dependency structure during PRM training. Critically, APRM's adversarial negatives are domain-agnostic — the model learns to resist specific adversarial patterns but not to verify logical structure, leaving it vulnerable to novel attack types (cat-and-mouse problem). PGCT's DAG-anchored negatives instead train the PRM to verify premise-conclusion causality, a semantically grounded and transferable capability.
+
+**Infrastructure for DAG extraction.** PARC/PERL (ICML 2025, arXiv:2502.02362) showed premise links form extractable DAGs at >90% recall on 70B+ models; GenPRM (AAAI 2026, arXiv:2504.00891) provides code-verified step analysis; AgentEval (arXiv:2604.23581, 2026) showed DAG-based dependency modeling yields +22pp failure detection recall over flat evaluation.
+
+**Concurrent work.** CPMI (arXiv:2604.10660, April 2026) uses contrastive mutual information for PRM auto-labeling but does not employ premise dependency graphs. RewardFlow (arXiv:2603.18859, March 2026) propagates rewards over state-transition graphs in agentic tasks but uses no contrastive training and targets a different graph type. Graph of Verification (GoV) decomposes reasoning into DAGs for verification but is training-free. Thought-Path Contrastive Learning (AAAI 2025, arXiv:2409.14495) constructs premise-oriented contrastive examples for logical reading comprehension but operates on propositional-level premise-conclusion pairs, not multi-step mathematical reasoning DAGs, and targets discriminative reading accuracy rather than PRM robustness against reward hacking.
+
+**Performance gap.** The best open-source PRM on PRMBench scores 67.7 (PathFinder-PRM-7B, arXiv:2505.19706) vs. 83.8 human ceiling, leaving a 16-point gap where structural approaches could contribute. The specific combination of premise dependency DAGs with contrastive PRM training remains untried.
+
+## Proposed Approach
+
+**DAG extraction.** Extract premise dependency DAGs from mathematical reasoning chains using PARC's extraction method with Qwen2.5-72B-Instruct (targeting >90% recall as demonstrated on 70B-class models in PERL). Each reasoning step is a node; directed edges encode "step j uses the result of step i as a premise."
+
+**Contrastive pair construction.** Construct structure-aware contrastive training pairs: (1) Graph-preserving surface perturbations — rephrased steps maintaining identical DAG topology — as positives; (2) Graph-breaking fluent perturbations — severed premise links, dangling references, logically invalid steps preserving surface fluency — as hard negatives. Quality assurance: re-extract DAGs from generated pairs via an independent LLM call to verify topology preservation/breaking; filter pairs failing verification; sample 1000 pairs for human audit to establish precision bounds.
+
+**Dual objective training.** Train a Qwen2.5-Math-7B-Instruct-based PRM with: (a) standard step-correctness BCE loss (point-wise supervision — each step independently labeled correct/incorrect), and (b) a graph-contrastive InfoNCE loss over DAG-anchored step embeddings (relational supervision — encoding structural relationships between steps in representation space). The combination ensures the model retains step-level discrimination while learning representations invariant to surface form but sensitive to logical dependency structure. This addresses a key limitation of CRM (ICLR 2026, arXiv:2509.26578), which conditions predictions sequentially on preceding steps but still operates in a point-wise prediction paradigm without encoding relational structure in the embedding space.
+
+**Data.** Augment PRM800K and Math-Shepherd seed chains (~300K solutions) with DAG annotations and ~600K contrastive pairs generated via LLM paraphrasing and targeted premise-link corruption. Include automated quality filtering pipeline (DAG re-extraction verification) to ensure pair fidelity.
+
+## Evaluation Plan
+
+**Benchmarks (4-tier evaluation):**
+1. **Step-level error detection**: PRMBench (ACL 2025, arXiv:2501.03124) with per-error-category breakdown (soundness / sensitivity / simplicity dimensions; redundancy, circular logic, step inconsistency, domain inconsistency, deceptive logical steps), targeting >70 overall (vs. 67.7 PathFinder-PRM SOTA) with disproportionate gains on logic-structure-related error types. Also ProcessBench.
+2. **Downstream best-of-N reranking**: MATH500, GSM8K, AIME 2024 with N ∈ {8, 16, 64} candidate solutions sampled from Qwen2.5-Math-7B-Instruct. Reports prm@N accuracy.
+3. **Adversarial robustness**: PRM-BiasBench and the perturbation suite from "Reward Under Attack" (arXiv:2603.06621), measuring reduction in stylistic shortcut exploitability.
+4. **RL closed-loop reward hacking**: Train a policy (Qwen2.5-Math-7B-Instruct) via GRPO using PGCT-PRM vs. baseline PRMs as reward signal. Measure reward-accuracy divergence curve and Pearson correlation between PRM score and ground-truth accuracy over training, on MATH and AIME.
+
+**Baselines (5 tiers):**
+1. Standard PRM: Qwen2.5-Math-PRM-7B (same base model, compute-matched)
+2. Robustness-focused: APRM (arXiv:2511.22888), CRA (arXiv:2508.04216)
+3. Architecture-level: CRM (ICLR 2026, arXiv:2509.26578), PURE (NeurIPS 2025, arXiv:2504.15275)
+4. Contrastive/concurrent: CPMI (arXiv:2604.10660)
+5. Error-aware: PathFinder-PRM-7B (arXiv:2505.19706)
+- Data-matched baseline: same ~900K total samples, contrastive pairs replaced with additional step-correctness annotations, standard BCE loss
+- Compute-matched baseline: equal total training FLOPs including DAG extraction overhead
+
+**Ablations (6 variants):**
+- A1: Remove InfoNCE loss (step-correctness only + DAG-augmented data) → isolate contrastive learning contribution
+- A2: Remove step-correctness loss (InfoNCE only) → test contrastive learning standalone capability
+- A3: Random perturbation replacing DAG-aware perturbation (contrastive learning without DAG structure) → **critical ablation isolating DAG structure contribution**
+- A4: Only graph-preserving positives (no graph-breaking negatives) → isolate hard negative contribution
+- A5: Only graph-breaking negatives (no graph-preserving positives) → isolate surface-invariance contribution
+- A6: Loss weighting sensitivity: λ ∈ {0.1, 0.3, 0.5, 0.7, 1.0}
+- A7: DAG noise sensitivity: inject 5%/10%/15%/20% random errors into DAG annotations → measure robustness to extraction noise
+
+## Key References
+
+- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2026, arXiv:2603.06621)
+- Reward Models Identify Consistency, Not Causality (arXiv 2025, arXiv:2502.14619)
+- Premise-Augmented Reasoning Chains Improve Error Identification in Math Reasoning with LLMs — PARC/PERL (ICML 2025, arXiv:2502.02362)
+- From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs (arXiv 2026, arXiv:2601.17593)
+- DAG-Math: Graph-of-Thought Guided Mathematical Reasoning in LLMs (arXiv 2025, arXiv:2510.19842)
+- ProofFlow: A Dependency Graph Approach to Faithful Proof Autoformalization (arXiv 2025, arXiv:2510.15981)
+- Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction — CRA (arXiv 2025, arXiv:2508.04216)
+- Adversarial Training for Process Reward Models — APRM (arXiv 2025, arXiv:2511.22888)
+- Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning — CRM (ICLR 2026, arXiv:2509.26578)
+- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning — PURE (NeurIPS 2025, arXiv:2504.15275)
+- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026, arXiv:2504.00891)
+- AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking (arXiv 2026, arXiv:2604.23581)
+- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025, arXiv:2501.03124)
+- Efficient Process Reward Modeling via Contrastive Mutual Information — CPMI (arXiv 2026, arXiv:2604.10660)
+- RewardFlow: Topology-Aware Reward Propagation on State Graphs (arXiv 2026, arXiv:2603.18859)
+- PathFinder-PRM: Exploring Path Diversity in Step-Level Reward Models (arXiv 2025, arXiv:2505.19706)
+- Thought-Path Contrastive Learning via Premise-Oriented Data Augmentation for Logical Reading Comprehension (AAAI 2025, arXiv:2409.14495)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 1200-1500 A100-hours (DAG extraction with 72B model: ~200h, contrastive pair generation + quality filtering: ~150h, PRM training with ablations: ~500h, baseline reproduction: ~100h, RL closed-loop evaluation: ~200h, best-of-N evaluation: ~50h), timeline: 16-20 weeks for 2-3 researchers, estimated_gpu_cost: $3,600-$4,500 at $3/hr A100 spot pricing
+- **human_in_loop**: gpu_hours: 900-1100 A100-hours (Claude accelerates DAG quality validation, contrastive pair filtering, and ablation design, reducing failed experiments ~30%), timeline: 12-16 weeks for 2 researchers, claude_api_cost: $600-$1,000 (data quality analysis, code generation, experiment triage), estimated_gpu_cost: $2,700-$3,300 at $3/hr A100 spot pricing
+- **auto_research**: gpu_hours: 1300-1800 A100-hours (more parallel sweeps offset by automated experiment selection), timeline: 8-10 weeks with automated pipeline, claude_api_cost: $1,200-$1,800 (automated DAG quality validation, contrastive pair generation, hyperparameter sweep orchestration, paper drafting), estimated_gpu_cost: $3,900-$5,400 at $3/hr A100 spot pricing, speed_bottleneck: DAG extraction quality validation — premise link accuracy must be audited per-domain (algebra vs. geometry vs. combinatorics) before contrastive pairs are trustworthy; serial human spot-checks required
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "43ea24ac-97d5-4509-8942-44c66f6373ee",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:32:39.276Z_
+
+```json
+{
+  "parentUuid": "43ea24ac-97d5-4509-8942-44c66f6373ee",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "1c58cc54-2581-4c55-b8b2-e6a06a849117",
+  "timestamp": "2026-05-27T08:32:39.276Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:32:39.276Z_
+
+```json
+{
+  "parentUuid": "1c58cc54-2581-4c55-b8b2-e6a06a849117",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cfd2abb0-1c19-4a9e-93a0-de70c8d9b493",
+  "timestamp": "2026-05-27T08:32:39.276Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T08:32:47.159Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to act as the "发掘 agent" (Discovery Agent) to analyze this research proposal about "Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models" (PGCT). 
+
+Let me first carefully read and understand the proposal, then conduct web searches to understand the current landscape, and finally provide my analysis.
+
+The proposal's core idea:
+1. Current PRMs detect consistency, not causality
+2. Premise dependency DAGs can be extracted from reasoning chains
+3. Use these DAGs to construct contrastive training pairs (graph-preserving positives, graph-breaking negatives)
+
+
+4. Train PRMs with a combined objective using standard BCE loss alongside a graph-contrastive InfoNCE loss to make them sensitive to logical structure rather than just surface-level fluency
+
+Let me do my research first before making any judgments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfd2abb0-1c19-4a9e-93a0-de70c8d9b493",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFFG6XGxd1wCvzJthw",
+  "type": "assistant",
+  "uuid": "d924529f-1e0f-445a-803e-c65c480a9168",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4We6uvjnmZv8eNTeSfmof",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4971,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:32:47.284Z_
+
+I'll start by reading the proposal carefully and then conducting thorough web searches to understand the current research landscape before making any assessments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d924529f-1e0f-445a-803e-c65c480a9168",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFFG6XGxd1wCvzJthw",
+  "type": "assistant",
+  "uuid": "0ac116aa-c92b-42cf-b3be-2a6597a9beb1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4We6uvjnmZv8eNTeSfmof",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4971,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T08:32:47.439Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BjszDbZRG2wxKQgzSwAvAJ`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ac116aa-c92b-42cf-b3be-2a6597a9beb1",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFFG6XGxd1wCvzJthw",
+  "type": "assistant",
+  "uuid": "05484695-c72d-49c7-a4f8-ea0c51b17778",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4We6uvjnmZv8eNTeSfmof",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4971,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T08:32:47.445Z_
+
+<details><summary>↩ Tool result · `toolu_01BjszDbZRG2wxKQgzSwAvAJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05484695-c72d-49c7-a4f8-ea0c51b17778",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "da2761ef-067e-448c-9408-2dc46defd5dd",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "05484695-c72d-49c7-a4f8-ea0c51b17778",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "da2761ef-067e-448c-9408-2dc46defd5dd",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-27T08:32:50.331Z_
+
+Now let me conduct my front-loaded research. I'll run multiple searches in parallel to understand the current landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da2761ef-067e-448c-9408-2dc46defd5dd",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFrB4WnRvuhK5HNRpC",
+  "type": "assistant",
+  "uuid": "6783040d-7801-4ed1-bfcc-d3d6bfd01544",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VP4vc4Dvuu5PsUM2GTi11j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 839,
+      "cache_read_input_tokens": 19155,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 19155,
+          "cache_creation_input_tokens": 839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 839
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T08:32:50.812Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KaNTqBdnuQtfVckxdyKMpe`</summary>
+
+```json
+{
+  "query": "process reward model robustness reward hacking contrastive training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6783040d-7801-4ed1-bfcc-d3d6bfd01544",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFrB4WnRvuhK5HNRpC",
+  "type": "assistant",
+  "uuid": "32eeb622-413c-4257-8261-ded306e0f0c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VP4vc4Dvuu5PsUM2GTi11j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 839,
+      "cache_read_input_tokens": 19155,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 19155,
+          "cache_creation_input_tokens": 839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 839
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T08:32:51.306Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NU8UcM3GkCqMZcnkW35dUe`</summary>
+
+```json
+{
+  "query": "\"premise dependency\" OR \"reasoning DAG\" process reward model training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32eeb622-413c-4257-8261-ded306e0f0c4",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFrB4WnRvuhK5HNRpC",
+  "type": "assistant",
+  "uuid": "1b2229e6-9ae4-4d5d-ac19-eaabb70aceba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VP4vc4Dvuu5PsUM2GTi11j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 839,
+      "cache_read_input_tokens": 19155,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 19155,
+          "cache_creation_input_tokens": 839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 839
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T08:32:52.236Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N79k6mQ9oKuB7nsUZuSPhX`</summary>
+
+```json
+{
+  "query": "arXiv 2502.14619 \"reward models identify consistency not causality\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b2229e6-9ae4-4d5d-ac19-eaabb70aceba",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFrB4WnRvuhK5HNRpC",
+  "type": "assistant",
+  "uuid": "2cbd1373-59fd-42e0-9768-2e08842469ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VP4vc4Dvuu5PsUM2GTi11j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 839,
+      "cache_read_input_tokens": 19155,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 19155,
+          "cache_creation_input_tokens": 839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 839
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T08:32:52.242Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UmmuE7xgvBvXasRrMX4P4Q`</summary>
+
+```json
+{
+  "query": "arXiv 2603.06621 \"reward under attack\" process reward model hackability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cbd1373-59fd-42e0-9768-2e08842469ed",
+  "isSidechain": false,
+  "requestId": "req_011CbSmFrB4WnRvuhK5HNRpC",
+  "type": "assistant",
+  "uuid": "130e4d69-9ee5-457b-9f3c-5e362a616df1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VP4vc4Dvuu5PsUM2GTi11j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 839,
+      "cache_read_input_tokens": 19155,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 19155,
+          "cache_creation_input_tokens": 839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 839
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T08:32:58.505Z_
+
+<details><summary>↩ Tool result · `toolu_01NU8UcM3GkCqMZcnkW35dUe`</summary>
+
+```text
+Web search results for query: ""premise dependency" OR "reasoning DAG" process reward model training 2025 2026"
+
+Links: [{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026","url":"https://dl.acm.org/doi/10.1145/3774904.3792551"},{"title":"Process Reward Models That Think | OpenReview","url":"https://openreview.net/forum?id=V727xqBYIW"},{"title":"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub","url":"https://github.com/RyanLiu112/Awesome-Process-Reward-Models"},{"title":"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis","url":"https://arxiv.org/html/2604.24198v1"},{"title":"Learning Reasoning Reward Models from Expert ...","url":"https://arxiv.org/pdf/2510.01857"},{"title":"VRPRM: Process Reward Modeling via Visual Reasoning | OpenReview","url":"https://openreview.net/forum?id=sj9jmrBjMf"},{"title":"rePIRL: Learn PRM with Inverse RL for LLM Reasoning","url":"https://arxiv.org/pdf/2602.07832"},{"title":"Adversarial Training for Process Reward Models","url":"https://arxiv.org/pdf/2511.22888"}]
+
+Based on the search results, I found several relevant papers and resources about process reward models (PRMs) in 2025-2026, though the specific terms "premise dependency" and "reasoning DAG" didn't appear prominently. Here's what the search revealed:
+
+## Recent Process Reward Model Research (2025-2026)
+
+Recent work explores constructing process reward models (PRMs) to evaluate each decision and guide decision-making processes, particularly in domains like LLM reasoning and agent tasks.
+
+Process reward models are a key ingredient for test-time scaling, and recent approaches like ThinkPRM use generative verification chains-of-thought to build data-efficient PRMs with fewer process labels.
+
+Multiple PRM approaches have been released in early 2025, including ActPRM (Efficient Process Reward Model Training via Active Learning), GenPRM (Scaling Test-Time Compute via Generative Reasoning), R-PRM (Reasoning-Driven Process Reward Modeling), and RetrievalPRM.
+
+Some recent work formulates process-level reasoning as an inverse reinforcement learning problem, learning dense reasoning reward models from expert demonstrations rather than relying on behavior cloning.
+
+Process Reward Models are needed to identify subtle errors in LLM reasoning, though current PRM training techniques predominantly rely on static datasets.
+
+The search results show active research in PRM training methodologies but don't contain specific information about "premise dependency" or "reasoning DAG" formulations. If you're looking for papers with those specific technical concepts, a more targeted search might be helpful.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b2229e6-9ae4-4d5d-ac19-eaabb70aceba",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "34032794-a6b6-4daa-ab06-3e56cc639432",
+  "toolUseResult": {
+    "query": "\"premise dependency\" OR \"reasoning DAG\" process reward model training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PquzE8EjMdnrNvzc8G843A",
+        "content": [
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026",
+            "url": "https://dl.acm.org/doi/10.1145/3774904.3792551"
+          },
+          {
+            "title": "Process Reward Models That Think | OpenReview",
+            "url": "https://openreview.net/forum?id=V727xqBYIW"
+          },
+          {
+            "title": "GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub",
+            "url": "https://github.com/RyanLiu112/Awesome-Process-Reward-Models"
+          },
+          {
+            "title": "Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis",
+            "url": "https://arxiv.org/html/2604.24198v1"
+          },
+          {
+            "title": "Learning Reasoning Reward Models from Expert ...",
+            "url": "https://arxiv.org/pdf/2510.01857"
+          },
+          {
+            "title": "VRPRM: Process Reward Modeling via Visual Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=sj9jmrBjMf"
+          },
+          {
+            "title": "rePIRL: Learn PRM with Inverse RL for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.07832"
+          },
+          {
+            "title": "Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/pdf/2511.22888"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources about process reward models (PRMs) in 2025-2026, though the specific terms \"premise dependency\" and \"reasoning DAG\" didn't appear prominently. Here's what the search revealed:\n\n## Recent Process Reward Model Research (2025-2026)\n\nRecent work explores constructing process reward models (PRMs) to evaluate each decision and guide decision-making processes, particularly in domains like LLM reasoning and agent tasks.\n\nProcess reward models are a key ingredient for test-time scaling, and recent approaches like ThinkPRM use generative verification chains-of-thought to build data-efficient PRMs with fewer process labels.\n\nMultiple PRM approaches have been released in early 2025, including ActPRM (Efficient Process Reward Model Training via Active Learning), GenPRM (Scaling Test-Time Compute via Generative Reasoning), R-PRM (Reasoning-Driven Process Reward Modeling), and RetrievalPRM.\n\nSome recent work formulates process-level reasoning as an inverse reinforcement learning problem, learning dense reasoning reward models from expert demonstrations rather than relying on behavior cloning.\n\nProcess Reward Models are needed to identify subtle errors in LLM reasoning, though current PRM training techniques predominantly rely on static datasets.\n\nThe search results show active research in PRM training methodologies but don't contain specific information about \"premise dependency\" or \"reasoning DAG\" formulations. If you're looking for papers with those specific technical concepts, a more targeted search might be helpful."
+    ],
+    "durationSeconds": 7.195431738000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1b2229e6-9ae4-4d5d-ac19-eaabb70aceba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T08:32:58.772Z_
+
+<details><summary>↩ Tool result · `toolu_01UmmuE7xgvBvXasRrMX4P4Q`</summary>
+
+```text
+Web search results for query: "arXiv 2603.06621 "reward under attack" process reward model hackability"
+
+Links: [{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Beyond Semantic Manipulation: Token-Space Attacks on Reward Models","url":"https://arxiv.org/pdf/2604.02686"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.06621"},{"title":"Is It Thinking or Cheating? Detecting Implicit Reward Hacking by Measuring Reasoning Effort","url":"https://arxiv.org/pdf/2510.01367"},{"title":"Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking","url":"https://arxiv.org/pdf/2312.09244"},{"title":"When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals","url":"https://arxiv.org/pdf/2604.01476"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating   Misaligned Models","url":"https://arxiv.org/pdf/2201.03544"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Summary
+
+The paper "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models" (arXiv:2603.06621) demonstrates that state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.
+
+The authors introduce a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify these vulnerabilities. The framework includes three tiers: static perturbations (model-agnostic), adversarial tokens (requiring gradients), and RL policies (requiring reward queries), with the first and third tiers producing natural text while the second tier establishes worst-case bounds.
+
+Static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes with reward changes less than 0.1, yet inconsistent detection of logically-corrupted reasoning.
+
+The paper was submitted on February 20, 2026, and is authored by Rishabh Tiwari, Aditya Tomar, Udbhav Bamba, and colleagues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "130e4d69-9ee5-457b-9f3c-5e362a616df1",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "efcec9a2-a2c1-43d3-afdf-b4ffcde9ce26",
+  "toolUseResult": {
+    "query": "arXiv 2603.06621 \"reward under attack\" process reward model hackability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015z38xPAKCUmKVLonqiFdMA",
+        "content": [
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Beyond Semantic Manipulation: Token-Space Attacks on Reward Models",
+            "url": "https://arxiv.org/pdf/2604.02686"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2603.06621"
+          },
+          {
+            "title": "Is It Thinking or Cheating? Detecting Implicit Reward Hacking by Measuring Reasoning Effort",
+            "url": "https://arxiv.org/pdf/2510.01367"
+          },
+          {
+            "title": "Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking",
+            "url": "https://arxiv.org/pdf/2312.09244"
+          },
+          {
+            "title": "When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals",
+            "url": "https://arxiv.org/pdf/2604.01476"
+          },
+          {
+            "title": "The Effects of Reward Misspecification: Mapping and Mitigating   Misaligned Models",
+            "url": "https://arxiv.org/pdf/2201.03544"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## Summary\n\nThe paper \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\" (arXiv:2603.06621) demonstrates that state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\nThe authors introduce a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify these vulnerabilities. The framework includes three tiers: static perturbations (model-agnostic), adversarial tokens (requiring gradients), and RL policies (requiring reward queries), with the first and third tiers producing natural text while the second tier establishes worst-case bounds.\n\nStatic perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes with reward changes less than 0.1, yet inconsistent detection of logically-corrupted reasoning.\n\nThe paper was submitted on February 20, 2026, and is authored by Rishabh Tiwari, Aditya Tomar, Udbhav Bamba, and colleagues."
+    ],
+    "durationSeconds": 6.528883225000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "130e4d69-9ee5-457b-9f3c-5e362a616df1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T08:32:58.851Z_
+
+<details><summary>↩ Tool result · `toolu_01N79k6mQ9oKuB7nsUZuSPhX`</summary>
+
+```text
+Web search results for query: "arXiv 2502.14619 "reward models identify consistency not causality""
+
+Links: [{"title":"[2502.14619] Reward Models Identify Consistency, Not Causality","url":"https://arxiv.org/abs/2502.14619"},{"title":"Reward Models Identify Consistency, Not Causality Yuhui Xu∗ Hanze Dong Lei Wang","url":"https://arxiv.org/pdf/2502.14619"},{"title":"Computer Science Feb 2025","url":"https://arxiv.org/list/cs/2025-02?skip=7400"},{"title":"Machine Learning Feb 2025","url":"https://www.arxiv.org/list/cs.LG/2025-02?skip=1750&show=50"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=2575&show=50"},{"title":"Reward Models Identify Consistency, Not Causality","url":"https://arxiv.org/html/2502.14619"},{"title":"Computation and Language Feb 2025","url":"https://www.arxiv.org/list/cs.CL/2025-02?skip=2050&show=500"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=17825&show=25"},{"title":"EQA-RM: A Generative Embodied Reward Model with Test-time Scaling","url":"https://arxiv.org/html/2506.10389v1"}]
+
+Based on the search results, here's what I found about arXiv paper 2502.14619:
+
+## Paper Overview
+
+The paper is titled "Reward Models Identify Consistency, Not Causality" by Yuhui Xu, Hanze Dong, Lei Wang, Caiming Xiong, and Junnan Li.
+
+## Key Findings
+
+The analysis reveals that state-of-the-art reward models prioritize structural consistency over causal correctness. More specifically:
+
+1. Removing the problem statement has minimal impact on reward scores, whereas altering numerical values or disrupting the reasoning flow significantly affects RM outputs.
+
+2. RMs exhibit a strong dependence on complete reasoning trajectories—truncated or incomplete steps lead to significant variations in reward assignments, indicating that RMs primarily rely on learned reasoning patterns rather than explicit problem comprehension.
+
+## Main Implications
+
+These findings highlight a fundamental limitation of current reward models: they evaluate logical structure rather than verifying causal correctness, raising important questions about their ability to generalize and assess novel problem-solving scenarios effectively.
+
+The paper was submitted on February 20, 2025, and is 16 pages long. It covers topics in Machine Learning (cs.LG), Artificial Intelligence (cs.AI), and Computation and Language (cs.CL).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2cbd1373-59fd-42e0-9768-2e08842469ed",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "e85e3193-48d4-43cc-b192-c0da439ec649",
+  "toolUseResult": {
+    "query": "arXiv 2502.14619 \"reward models identify consistency not causality\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TxnH8Vg5RmA353NGKeYsXK",
+        "content": [
+          {
+            "title": "[2502.14619] Reward Models Identify Consistency, Not Causality",
+            "url": "https://arxiv.org/abs/2502.14619"
+          },
+          {
+            "title": "Reward Models Identify Consistency, Not Causality Yuhui Xu∗ Hanze Dong Lei Wang",
+            "url": "https://arxiv.org/pdf/2502.14619"
+          },
+          {
+            "title": "Computer Science Feb 2025",
+            "url": "https://arxiv.org/list/cs/2025-02?skip=7400"
+          },
+          {
+            "title": "Machine Learning Feb 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-02?skip=1750&show=50"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=2575&show=50"
+          },
+          {
+            "title": "Reward Models Identify Consistency, Not Causality",
+            "url": "https://arxiv.org/html/2502.14619"
+          },
+          {
+            "title": "Computation and Language Feb 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-02?skip=2050&show=500"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=17825&show=25"
+          },
+          {
+            "title": "EQA-RM: A Generative Embodied Reward Model with Test-time Scaling",
+            "url": "https://arxiv.org/html/2506.10389v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2502.14619:\n\n## Paper Overview\n\nThe paper is titled \"Reward Models Identify Consistency, Not Causality\" by Yuhui Xu, Hanze Dong, Lei Wang, Caiming Xiong, and Junnan Li.\n\n## Key Findings\n\nThe analysis reveals that state-of-the-art reward models prioritize structural consistency over causal correctness. More specifically:\n\n1. Removing the problem statement has minimal impact on reward scores, whereas altering numerical values or disrupting the reasoning flow significantly affects RM outputs.\n\n2. RMs exhibit a strong dependence on complete reasoning trajectories—truncated or incomplete steps lead to significant variations in reward assignments, indicating that RMs primarily rely on learned reasoning patterns rather than explicit problem comprehension.\n\n## Main Implications\n\nThese findings highlight a fundamental limitation of current reward models: they evaluate logical structure rather than verifying causal correctness, raising important questions about their ability to generalize and assess novel problem-solving scenarios effectively.\n\nThe paper was submitted on February 20, 2025, and is 16 pages long. It covers topics in Machine Learning (cs.LG), Artificial Intelligence (cs.AI), and Computation and Language (cs.CL)."
+    ],
+    "durationSeconds": 6.612234750000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2cbd1373-59fd-42e0-9768-2e08842469ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T08:32:59.041Z_
+
+<details><summary>↩ Tool result · `toolu_01KaNTqBdnuQtfVckxdyKMpe`</summary>
+
+```text
+Web search results for query: "process reward model robustness reward hacking contrastive training 2025 2026"
+
+Links: [{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/pdf/2502.18770"},{"title":"Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis","url":"https://arxiv.org/html/2601.20103v1"},{"title":"Robust Reward Modeling via Causal Rubrics","url":"https://arxiv.org/pdf/2506.16507"},{"title":"[2409.13156] RRM: Robust Reward Model Training Mitigates Reward Hacking","url":"https://arxiv.org/abs/2409.13156"},{"title":"IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking","url":"https://arxiv.org/pdf/2602.19416"},{"title":"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling","url":"https://arxiv.org/pdf/2602.10623"},{"title":"[2504.06141] Adversarial Training of Reward Models","url":"https://arxiv.org/abs/2504.06141"},{"title":"Adversarial Training of Reward Models","url":"https://arxiv.org/pdf/2504.06141"}]
+
+The search returned several highly relevant papers from 2025-2026 on process reward models, robustness, reward hacking, and contrastive training approaches:
+
+## Key Findings:
+
+**Process Reward Models and Reward Hacking:**
+A February 2026 paper found that policies trained on AIME problems achieved high process reward model scores (>0.9) while ground-truth accuracy remained low (below 4%), with PRMs functioning as fluency detectors rather than reasoning verifiers.
+
+**Contrastive Training Approaches:**
+TRACE proposes a contrastive evaluation setup for reward hack detection in code environments, creating a synthetically generated and human-verified dataset of reward hacks.
+
+**Robustness Techniques:**
+
+1. Reward hacking occurs when policies exploit spurious cues like verbosity, agreement with user opinions, or gaming behaviors.
+
+2. Adv-RM is an adversarial training framework that identifies adversarial examples—low-quality responses that receive high rewards—and incorporates them into reward model training to improve robustness.
+
+3. Reward models often learn superficial attributes like response length or formatting patterns because standard training objectives don't explicitly require disentangling true causal drivers of response quality from spurious correlates.
+
+4. A Bayesian Non-negative Reward Modeling approach uses disentanglement-then-debiasing structure to enable robust uncertainty-aware reward learning and mitigate reward over-optimization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32eeb622-413c-4257-8261-ded306e0f0c4",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "f0d44881-ede6-46d4-8d16-9409d31b5ced",
+  "toolUseResult": {
+    "query": "process reward model robustness reward hacking contrastive training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TVf5AdnMjVHL22XrrpDeQV",
+        "content": [
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+            "url": "https://arxiv.org/pdf/2502.18770"
+          },
+          {
+            "title": "Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis",
+            "url": "https://arxiv.org/html/2601.20103v1"
+          },
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics",
+            "url": "https://arxiv.org/pdf/2506.16507"
+          },
+          {
+            "title": "[2409.13156] RRM: Robust Reward Model Training Mitigates Reward Hacking",
+            "url": "https://arxiv.org/abs/2409.13156"
+          },
+          {
+            "title": "IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking",
+            "url": "https://arxiv.org/pdf/2602.19416"
+          },
+          {
+            "title": "Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling",
+            "url": "https://arxiv.org/pdf/2602.10623"
+          },
+          {
+            "title": "[2504.06141] Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/abs/2504.06141"
+          },
+          {
+            "title": "Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/pdf/2504.06141"
+          }
+        ]
+      },
+      "The search returned several highly relevant papers from 2025-2026 on process reward models, robustness, reward hacking, and contrastive training approaches:\n\n## Key Findings:\n\n**Process Reward Models and Reward Hacking:**\nA February 2026 paper found that policies trained on AIME problems achieved high process reward model scores (>0.9) while ground-truth accuracy remained low (below 4%), with PRMs functioning as fluency detectors rather than reasoning verifiers.\n\n**Contrastive Training Approaches:**\nTRACE proposes a contrastive evaluation setup for reward hack detection in code environments, creating a synthetically generated and human-verified dataset of reward hacks.\n\n**Robustness Techniques:**\n\n1. Reward hacking occurs when policies exploit spurious cues like verbosity, agreement with user opinions, or gaming behaviors.\n\n2. Adv-RM is an adversarial training framework that identifies adversarial examples—low-quality responses that receive high rewards—and incorporates them into reward model training to improve robustness.\n\n3. Reward models often learn superficial attributes like response length or formatting patterns because standard training objectives don't explicitly require disentangling true causal drivers of response quality from spurious correlates.\n\n4. A Bayesian Non-negative Reward Modeling approach uses disentanglement-then-debiasing structure to enable robust uncertainty-aware reward learning and mitigate reward over-optimization."
+    ],
+    "durationSeconds": 8.225680668999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "32eeb622-413c-4257-8261-ded306e0f0c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T08:33:02.860Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011GGofcm9gB8nXx6QWxbmzL`</summary>
+
+```json
+{
+  "query": "PARC PERL premise-augmented reasoning chains ICML 2025 arXiv 2502.02362"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0d44881-ede6-46d4-8d16-9409d31b5ced",
+  "isSidechain": false,
+  "requestId": "req_011CbSmGhUTPJu3FcjjsVq8e",
+  "type": "assistant",
+  "uuid": "0a2046ed-8d56-4eea-937e-8933d6393b8c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XchS8HWXwS1rNQ5jhVshfG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2170,
+      "cache_creation_input_tokens": 1044,
+      "cache_read_input_tokens": 19994,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2170,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 19994,
+          "cache_creation_input_tokens": 1044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T08:33:03.339Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MrXJT1Nueyk9UbQrPy8frr`</summary>
+
+```json
+{
+  "query": "contrastive learning reward model logical structure graph-aware training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a2046ed-8d56-4eea-937e-8933d6393b8c",
+  "isSidechain": false,
+  "requestId": "req_011CbSmGhUTPJu3FcjjsVq8e",
+  "type": "assistant",
+  "uuid": "e85f78dc-17bd-41ef-9ac1-307d63beaf6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XchS8HWXwS1rNQ5jhVshfG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2170,
+      "cache_creation_input_tokens": 1044,
+      "cache_read_input_tokens": 19994,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2170,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 19994,
+          "cache_creation_input_tokens": 1044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T08:33:04.034Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VuJsUfeUqhrMnUSGGqaiTB`</summary>
+
+```json
+{
+  "query": "CRM conditional reward model ICLR 2026 arXiv 2509.26578 sequential conditioning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e85f78dc-17bd-41ef-9ac1-307d63beaf6b",
+  "isSidechain": false,
+  "requestId": "req_011CbSmGhUTPJu3FcjjsVq8e",
+  "type": "assistant",
+  "uuid": "c5209d9a-3ccd-4835-9499-4eab3f1b6f0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XchS8HWXwS1rNQ5jhVshfG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2170,
+      "cache_creation_input_tokens": 1044,
+      "cache_read_input_tokens": 19994,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2170,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 19994,
+          "cache_creation_input_tokens": 1044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "c5209d9a-3ccd-4835-9499-4eab3f1b6f0c",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T08:33:10.971Z_
+
+<details><summary>↩ Tool result · `toolu_01MrXJT1Nueyk9UbQrPy8frr`</summary>
+
+```text
+Web search results for query: "contrastive learning reward model logical structure graph-aware training 2025 2026"
+
+Links: [{"title":"Subgraph-Aware Training of Language Models for Knowledge Graph Completion Using Structure-Aware Contrastive Learning | Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3696410.3714946"},{"title":"Contrastive Learning in 2025: How AI Models Learn by Comparing | by Anirudh Sekar | Medium","url":"https://medium.com/@anirudhsekar2008/contrastive-learning-in-2025-how-ai-models-learn-by-comparing-bf4b9b906e5b"},{"title":"Information-aware graph contrastive learning","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12518163"},{"title":"Information-aware graph contrastive learning","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12511540"},{"title":"Information-aware graph contrastive learning","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12488238"},{"title":"Information-aware graph contrastive learning","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12518162"},{"title":"LSRIF: Logic-Structured Reinforcement Learning for Instruction Following","url":"https://arxiv.org/pdf/2601.06431"},{"title":"Contrastive Language-knowledge Graph Pre-training | ACM Transactions on Asian and Low-Resource Language Information Processing","url":"https://dl.acm.org/doi/10.1145/3644820"},{"title":"MERIt: Meta-Path Guided Contrastive Learning for Logical Reasoning","url":"https://arxiv.org/pdf/2203.00357"}]
+
+Based on the search results, here are the key findings related to your query about contrastive learning, reward models, logical structures, and graph-aware training in 2025-2026:
+
+## Recent Research in Graph-Aware Contrastive Learning
+
+A Subgraph-Aware Training framework for Knowledge Graph Completion (SATKGC) incorporates subgraph-aware mini-batching and contrastive learning focused on harder in-batch negative triples and harder positive triples in terms of structural properties of knowledge graphs. This is claimed to be the first comprehensive study to incorporate the structural inductive bias of knowledge graphs into fine-tuning pre-trained language models.
+
+## 2025 Advances in Contrastive Learning
+
+In 2025, researchers are applying contrastive learning to graphs — networks of relationships like social graphs or molecular structures, with approaches like Self-Reinforced Graph Contrastive Learning (SRGCL) improving graph representation. VarCon is a supervised contrastive learning framework that treats class labels as latent variables and relies on variational inference to minimize a contrastive-style Evidence Lower Bound (ELBO).
+
+## Logic-Structured Reward Modeling
+
+A Logic-Structured Reinforcement Learning framework (LSRIF) explicitly models instruction logic and includes a structure-aware rewarding method (LSRM) with average aggregation for parallel structures, failure-penalty propagation for sequential structures, and selective rewards for conditional branches.
+
+These developments show significant progress in integrating logical structures with graph-aware training approaches and contrastive learning methods for improved model performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e85f78dc-17bd-41ef-9ac1-307d63beaf6b",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "93ee5f75-fca1-4497-8c07-a8ca43e41601",
+  "toolUseResult": {
+    "query": "contrastive learning reward model logical structure graph-aware training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JZEJTWvuNKpRbfZLU1LqgT",
+        "content": [
+          {
+            "title": "Subgraph-Aware Training of Language Models for Knowledge Graph Completion Using Structure-Aware Contrastive Learning | Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3696410.3714946"
+          },
+          {
+            "title": "Contrastive Learning in 2025: How AI Models Learn by Comparing | by Anirudh Sekar | Medium",
+            "url": "https://medium.com/@anirudhsekar2008/contrastive-learning-in-2025-how-ai-models-learn-by-comparing-bf4b9b906e5b"
+          },
+          {
+            "title": "Information-aware graph contrastive learning",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12518163"
+          },
+          {
+            "title": "Information-aware graph contrastive learning",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12511540"
+          },
+          {
+            "title": "Information-aware graph contrastive learning",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12488238"
+          },
+          {
+            "title": "Information-aware graph contrastive learning",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12518162"
+          },
+          {
+            "title": "LSRIF: Logic-Structured Reinforcement Learning for Instruction Following",
+            "url": "https://arxiv.org/pdf/2601.06431"
+          },
+          {
+            "title": "Contrastive Language-knowledge Graph Pre-training | ACM Transactions on Asian and Low-Resource Language Information Processing",
+            "url": "https://dl.acm.org/doi/10.1145/3644820"
+          },
+          {
+            "title": "MERIt: Meta-Path Guided Contrastive Learning for Logical Reasoning",
+            "url": "https://arxiv.org/pdf/2203.00357"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about contrastive learning, reward models, logical structures, and graph-aware training in 2025-2026:\n\n## Recent Research in Graph-Aware Contrastive Learning\n\nA Subgraph-Aware Training framework for Knowledge Graph Completion (SATKGC) incorporates subgraph-aware mini-batching and contrastive learning focused on harder in-batch negative triples and harder positive triples in terms of structural properties of knowledge graphs. This is claimed to be the first comprehensive study to incorporate the structural inductive bias of knowledge graphs into fine-tuning pre-trained language models.\n\n## 2025 Advances in Contrastive Learning\n\nIn 2025, researchers are applying contrastive learning to graphs — networks of relationships like social graphs or molecular structures, with approaches like Self-Reinforced Graph Contrastive Learning (SRGCL) improving graph representation. VarCon is a supervised contrastive learning framework that treats class labels as latent variables and relies on variational inference to minimize a contrastive-style Evidence Lower Bound (ELBO).\n\n## Logic-Structured Reward Modeling\n\nA Logic-Structured Reinforcement Learning framework (LSRIF) explicitly models instruction logic and includes a structure-aware rewarding method (LSRM) with average aggregation for parallel structures, failure-penalty propagation for sequential structures, and selective rewards for conditional branches.\n\nThese developments show significant progress in integrating logical structures with graph-aware training approaches and contrastive learning methods for improved model performance."
+    ],
+    "durationSeconds": 7.628854195999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e85f78dc-17bd-41ef-9ac1-307d63beaf6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T08:33:11.218Z_
+
+<details><summary>↩ Tool result · `toolu_011GGofcm9gB8nXx6QWxbmzL`</summary>
+
+```text
+Web search results for query: "PARC PERL premise-augmented reasoning chains ICML 2025 arXiv 2502.02362"
+
+Links: [{"title":"[2502.02362] Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs","url":"https://arxiv.org/abs/2502.02362"},{"title":"ICML Poster Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs","url":"https://icml.cc/virtual/2025/poster/46462"},{"title":"Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs | OpenReview","url":"https://openreview.net/forum?id=4tYckHNVXV&noteId=BZC0Gus8JP"},{"title":"Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs | alphaXiv","url":"https://www.alphaxiv.org/abs/2502.02362"},{"title":"Premise-Augmented Reasoning Chains Improve Error Identification","url":"https://arxiv.org/pdf/2502.02362"},{"title":"(PDF) Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs","url":"https://www.researchgate.net/publication/388685824_Premise-Augmented_Reasoning_Chains_Improve_Error_Identification_in_Math_reasoning_with_LLMs"},{"title":"GitHub - SagnikMukherjee/PARC: Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs · GitHub","url":"https://github.com/SagnikMukherjee/PARC"},{"title":"Premise-Augmented Reasoning Chains Improve Error Identification in Math Reasoning with LLMs","url":"https://abhinavchinta.com/parc/"},{"title":"Premise-Augmented Reasoning Chains Improve Error Identification in Math Reasoning with LLMs","url":"https://arxiv.org/html/2502.02362v5"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"}]
+
+Based on the search results, I found comprehensive information about this paper:
+
+## Overview
+
+The paper introduces PERL (Premises and ERrors identification in LLMs), a PARC-based dataset that demonstrates LLMs can reliably identify premises within complex reasoning chains.
+
+## Main Contribution
+
+The key innovation is restructuring conventional linear reasoning chains into Premise Augmented Reasoning Chains (PARC) by introducing premise links, resulting in a directed acyclic graph where the nodes are the steps and the edges are the premise links.
+
+## Motivation
+
+Chain-of-Thought (CoT) prompting enhances mathematical reasoning in LLMs by enabling detailed step-by-step solutions. However, due to the verbosity of LLMs, the resulting reasoning chains can be long, making it harder to verify the reasoning steps and trace issues resulting from dependencies between steps that may be farther away in the sequence. Mathematical reasoning allows each step to be derived from a small set of premises, which are a subset of the preceding steps in the reasoning chain.
+
+## Results
+
+Even open-source LLMs achieve 90% recall in premise identification. PARC helps identify errors in reasoning chains more reliably, with accuracy of error identification improving by 6% to 16% absolute when step-by-step verification is carried out in PARC under the premises.
+
+The paper was presented at ICML 2025 and is available on arXiv as 2502.02362.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a2046ed-8d56-4eea-937e-8933d6393b8c",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "639da19f-aa59-44dd-b8be-c05fcb385c7b",
+  "toolUseResult": {
+    "query": "PARC PERL premise-augmented reasoning chains ICML 2025 arXiv 2502.02362",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012kqAxyvz1XhCr5gYE2wbBY",
+        "content": [
+          {
+            "title": "[2502.02362] Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs",
+            "url": "https://arxiv.org/abs/2502.02362"
+          },
+          {
+            "title": "ICML Poster Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs",
+            "url": "https://icml.cc/virtual/2025/poster/46462"
+          },
+          {
+            "title": "Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=4tYckHNVXV&noteId=BZC0Gus8JP"
+          },
+          {
+            "title": "Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2502.02362"
+          },
+          {
+            "title": "Premise-Augmented Reasoning Chains Improve Error Identification",
+            "url": "https://arxiv.org/pdf/2502.02362"
+          },
+          {
+            "title": "(PDF) Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs",
+            "url": "https://www.researchgate.net/publication/388685824_Premise-Augmented_Reasoning_Chains_Improve_Error_Identification_in_Math_reasoning_with_LLMs"
+          },
+          {
+            "title": "GitHub - SagnikMukherjee/PARC: Premise-Augmented Reasoning Chains Improve Error Identification in Math reasoning with LLMs · GitHub",
+            "url": "https://github.com/SagnikMukherjee/PARC"
+          },
+          {
+            "title": "Premise-Augmented Reasoning Chains Improve Error Identification in Math Reasoning with LLMs",
+            "url": "https://abhinavchinta.com/parc/"
+          },
+          {
+            "title": "Premise-Augmented Reasoning Chains Improve Error Identification in Math Reasoning with LLMs",
+            "url": "https://arxiv.org/html/2502.02362v5"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about this paper:\n\n## Overview\n\nThe paper introduces PERL (Premises and ERrors identification in LLMs), a PARC-based dataset that demonstrates LLMs can reliably identify premises within complex reasoning chains.\n\n## Main Contribution\n\nThe key innovation is restructuring conventional linear reasoning chains into Premise Augmented Reasoning Chains (PARC) by introducing premise links, resulting in a directed acyclic graph where the nodes are the steps and the edges are the premise links.\n\n## Motivation\n\nChain-of-Thought (CoT) prompting enhances mathematical reasoning in LLMs by enabling detailed step-by-step solutions. However, due to the verbosity of LLMs, the resulting reasoning chains can be long, making it harder to verify the reasoning steps and trace issues resulting from dependencies between steps that may be farther away in the sequence. Mathematical reasoning allows each step to be derived from a small set of premises, which are a subset of the preceding steps in the reasoning chain.\n\n## Results\n\nEven open-source LLMs achieve 90% recall in premise identification. PARC helps identify errors in reasoning chains more reliably, with accuracy of error identification improving by 6% to 16% absolute when step-by-step verification is carried out in PARC under the premises.\n\nThe paper was presented at ICML 2025 and is available on arXiv as 2502.02362."
+    ],
+    "durationSeconds": 8.352742932999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0a2046ed-8d56-4eea-937e-8933d6393b8c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T08:33:16.526Z_
+
+<details><summary>↩ Tool result · `toolu_01VuJsUfeUqhrMnUSGGqaiTB`</summary>
+
+```text
+Web search results for query: "CRM conditional reward model ICLR 2026 arXiv 2509.26578 sequential conditioning"
+
+Links: [{"title":"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning","url":"https://arxiv.org/html/2509.26578"},{"title":"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning","url":"https://arxiv.org/pdf/2509.26578"},{"title":"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=4DJoBOQNd0"},{"title":"Under review as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.01857"},{"title":"Published as a conference paper at ICLR 2023","url":"https://arxiv.org/pdf/2211.15657"}]
+
+I found the paper! Here are the search results for your query:
+
+## Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning
+
+The arXiv paper 2509.26578 titled "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning" has been published and is under review for ICLR 2026.
+
+**Key Findings:**
+
+Process Reward Models (PRMs) have emerged to enhance LLM reasoning capabilities, but existing PRMs either treat each reasoning step in isolation, failing to capture inter-step dependencies, or struggle to align process rewards with the final outcome.
+
+The paper proposes Conditional Reward Modeling (CRM) that frames LLM reasoning as a temporal process leading to a correct answer, where the reward of each reasoning step is conditioned on the preceding steps but also explicitly linked to the final outcome of the reasoning trajectory.
+
+At each step, the process reward is treated as a conditional probability dependent on all preceding steps, capturing causal structure in sequential reasoning, and enabling precise attribution of the final result to individual reasoning steps through the conditional probability chain rule.
+
+**Performance:**
+
+Experiments across Best-of-N sampling, beam search and reinforcement learning demonstrate that CRM consistently outperforms existing reward models.
+
+The paper is authored by researchers from ShanghaiTech University and was posted on arXiv in February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5209d9a-3ccd-4835-9499-4eab3f1b6f0c",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "9ea220cd-9fd2-40fc-8410-50f89518eee9",
+  "toolUseResult": {
+    "query": "CRM conditional reward model ICLR 2026 arXiv 2509.26578 sequential conditioning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019nwVUbWhSLXpDPWrev2Z5Q",
+        "content": [
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+            "url": "https://arxiv.org/html/2509.26578"
+          },
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2509.26578"
+          },
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=4DJoBOQNd0"
+          },
+          {
+            "title": "Under review as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.01857"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2023",
+            "url": "https://arxiv.org/pdf/2211.15657"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for your query:\n\n## Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning\n\nThe arXiv paper 2509.26578 titled \"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning\" has been published and is under review for ICLR 2026.\n\n**Key Findings:**\n\nProcess Reward Models (PRMs) have emerged to enhance LLM reasoning capabilities, but existing PRMs either treat each reasoning step in isolation, failing to capture inter-step dependencies, or struggle to align process rewards with the final outcome.\n\nThe paper proposes Conditional Reward Modeling (CRM) that frames LLM reasoning as a temporal process leading to a correct answer, where the reward of each reasoning step is conditioned on the preceding steps but also explicitly linked to the final outcome of the reasoning trajectory.\n\nAt each step, the process reward is treated as a conditional probability dependent on all preceding steps, capturing causal structure in sequential reasoning, and enabling precise attribution of the final result to individual reasoning steps through the conditional probability chain rule.\n\n**Performance:**\n\nExperiments across Best-of-N sampling, beam search and reinforcement learning demonstrate that CRM consistently outperforms existing reward models.\n\nThe paper is authored by researchers from ShanghaiTech University and was posted on arXiv in February 2026."
+    ],
+    "durationSeconds": 12.489157900999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c5209d9a-3ccd-4835-9499-4eab3f1b6f0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T08:33:16.536Z_
+
+```json
+{
+  "parentUuid": "9ea220cd-9fd2-40fc-8410-50f89518eee9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "21c50d5b-963a-4cc4-971e-a1c9915801a3",
+  "timestamp": "2026-05-27T08:33:16.536Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-27T08:33:21.156Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting a solid picture. Let me do a few more targeted searches to understand the landscape better, particularly around:
+1. ThinkPRM and other generative PRM approaches
+2. Whether anyone has done DAG-structured contrastive training for PRMs specifically
+3. The "From Chains to DAGs" paper about probing graph structure
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21c50d5b-963a-4cc4-971e-a1c9915801a3",
+  "isSidechain": false,
+  "requestId": "req_011CbSmHzPUXLQ8eNDNSwBtn",
+  "type": "assistant",
+  "uuid": "83742222-b666-464a-b484-0de4be2afb8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vj3uBhmyUxd8aTrVSdaGtG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 21038,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 21038,
+          "cache_creation_input_tokens": 4859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T08:33:21.650Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017yeFJrdMPefGREHncVEAPA`</summary>
+
+```json
+{
+  "query": "\"From Chains to DAGs\" probing graph structure reasoning LLMs arXiv 2601.17593"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83742222-b666-464a-b484-0de4be2afb8e",
+  "isSidechain": false,
+  "requestId": "req_011CbSmHzPUXLQ8eNDNSwBtn",
+  "type": "assistant",
+  "uuid": "dcf6921c-33c9-4b97-8f47-6d36f96918df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vj3uBhmyUxd8aTrVSdaGtG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 21038,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 21038,
+          "cache_creation_input_tokens": 4859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T08:33:22.590Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dfg37N4jZrj4TDdDRpZp1h`</summary>
+
+```json
+{
+  "query": "ThinkPRM \"process reward models that think\" generative verification 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcf6921c-33c9-4b97-8f47-6d36f96918df",
+  "isSidechain": false,
+  "requestId": "req_011CbSmHzPUXLQ8eNDNSwBtn",
+  "type": "assistant",
+  "uuid": "d05916b0-ecdc-458f-aba4-ad2c941e607d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vj3uBhmyUxd8aTrVSdaGtG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 21038,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 21038,
+          "cache_creation_input_tokens": 4859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-27T08:33:23.208Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MtCiKnt9qWcdWRAjRxCaHW`</summary>
+
+```json
+{
+  "query": "CPMI contrastive mutual information process reward model arXiv 2604.10660"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d05916b0-ecdc-458f-aba4-ad2c941e607d",
+  "isSidechain": false,
+  "requestId": "req_011CbSmHzPUXLQ8eNDNSwBtn",
+  "type": "assistant",
+  "uuid": "b0ac7ac1-1e2f-4e79-b903-28dcbea0d120",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vj3uBhmyUxd8aTrVSdaGtG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4859,
+      "cache_read_input_tokens": 21038,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 21038,
+          "cache_creation_input_tokens": 4859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-27T08:33:27.259Z_
+
+<details><summary>↩ Tool result · `toolu_017yeFJrdMPefGREHncVEAPA`</summary>
+
+```text
+Web search results for query: ""From Chains to DAGs" probing graph structure reasoning LLMs arXiv 2601.17593"
+
+Links: [{"title":"[2601.17593] From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs","url":"https://arxiv.org/abs/2601.17593"},{"title":"From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs","url":"https://arxiv.org/pdf/2601.17593"},{"title":"From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260117593Z/abstract"},{"title":"From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs","url":"https://arxiv.org/html/2601.17593"},{"title":"From Chains to Graphs: Self-Structured Reasoning for General-Domain LLMs","url":"https://arxiv.org/pdf/2601.03597"}]
+
+I found the paper! Here's what I found about "From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs" (arXiv 2601.17593):
+
+The paper introduces Reasoning DAG Probing, a framework for testing whether LLM hidden states linearly encode properties of an underlying reasoning DAG and where this structure emerges across layers.
+
+While prior work often treats reasoning as a linear chain, many reasoning problems are more naturally modeled as directed acyclic graphs (DAGs), where intermediate conclusions branch, merge, and are reused.
+
+**Methodology:** The researchers associate each reasoning node with a textual realization and train lightweight probes to predict node depth, pairwise distance, and adjacency from hidden states.
+
+**Key Findings:** Across reasoning benchmarks, the researchers find that DAG structure is meaningfully encoded in LLM representations, with recoverability peaking in intermediate layers, varying systematically by node depth, edge span, and model scale, and enabling nontrivial recovery of dependency graphs. These findings suggest that LLM reasoning is not purely sequential, but exhibits measurable internal graph structure.
+
+The paper was published on April 5, 2026, and was authored by Tianjun Zhong, Linyang He, and Nima Mesgarani from Columbia University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dcf6921c-33c9-4b97-8f47-6d36f96918df",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "1dcc531d-d11e-44ef-9cfb-f64629969e47",
+  "toolUseResult": {
+    "query": "\"From Chains to DAGs\" probing graph structure reasoning LLMs arXiv 2601.17593",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0119dmgjVZXH14PqN7CpbgHH",
+        "content": [
+          {
+            "title": "[2601.17593] From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs",
+            "url": "https://arxiv.org/abs/2601.17593"
+          },
+          {
+            "title": "From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2601.17593"
+          },
+          {
+            "title": "From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260117593Z/abstract"
+          },
+          {
+            "title": "From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2601.17593"
+          },
+          {
+            "title": "From Chains to Graphs: Self-Structured Reasoning for General-Domain LLMs",
+            "url": "https://arxiv.org/pdf/2601.03597"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about \"From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs\" (arXiv 2601.17593):\n\nThe paper introduces Reasoning DAG Probing, a framework for testing whether LLM hidden states linearly encode properties of an underlying reasoning DAG and where this structure emerges across layers.\n\nWhile prior work often treats reasoning as a linear chain, many reasoning problems are more naturally modeled as directed acyclic graphs (DAGs), where intermediate conclusions branch, merge, and are reused.\n\n**Methodology:** The researchers associate each reasoning node with a textual realization and train lightweight probes to predict node depth, pairwise distance, and adjacency from hidden states.\n\n**Key Findings:** Across reasoning benchmarks, the researchers find that DAG structure is meaningfully encoded in LLM representations, with recoverability peaking in intermediate layers, varying systematically by node depth, edge span, and model scale, and enabling nontrivial recovery of dependency graphs. These findings suggest that LLM reasoning is not purely sequential, but exhibits measurable internal graph structure.\n\nThe paper was published on April 5, 2026, and was authored by Tianjun Zhong, Linyang He, and Nima Mesgarani from Columbia University."
+    ],
+    "durationSeconds": 5.604008017,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dcf6921c-33c9-4b97-8f47-6d36f96918df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T08:33:29.833Z_
+
+<details><summary>↩ Tool result · `toolu_01Dfg37N4jZrj4TDdDRpZp1h`</summary>
+
+```text
+Web search results for query: "ThinkPRM "process reward models that think" generative verification 2025 2026"
+
+Links: [{"title":"Process Reward Models That Think | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.16828v4"},{"title":"Process Reward Models That Think | OpenReview","url":"https://openreview.net/forum?id=V727xqBYIW"},{"title":"GitHub - mukhal/ThinkPRM: Process Reward Models That Think","url":"https://github.com/mukhal/thinkprm"},{"title":"ThinkPRM: Data-Efficient Process Reward Models","url":"https://www.emergentmind.com/papers/2504.16828"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/html/2504.16828v5"},{"title":"Paper page - Process Reward Models That Think","url":"https://huggingface.co/papers/2504.16828"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"},{"title":"ThinkPRM: A Generative Process Reward Models for Scalable Reasoning Verification - MarkTechPost","url":"https://www.marktechpost.com/2025/04/29/thinkprm-a-generative-process-reward-models-for-scalable-reasoning-verification/"},{"title":"ThinkPRM: Process Reward Models That Think","url":"https://mukhal.github.io/projects/thinkprm/"}]
+
+Based on the search results, here's what I found about ThinkPRM:
+
+## Overview
+
+ThinkPRM is a generative, verbalized step-wise reward model designed to verify solutions by producing extended Chain-of-Thoughts, leveraging data-efficient training approaches. It was submitted as an ICLR 2026 Conference submission in September 2025.
+
+## Key Innovation
+
+ThinkPRM verifies every step in the solution by generating a verification chain-of-thought (CoT), and is a long CoT verifier fine-tuned on orders of magnitude fewer process labels than those required by discriminative PRMs. The verifiers are obtained by finetuning reasoning models over 1K synthetic verification CoTs—filtered based on only 8K process labels from PRM800K.
+
+## Performance
+
+ThinkPRM outperforms LLM-as-a-Judge and discriminative verifiers—using only 1% of the process labels in PRM800K—across several challenging benchmarks. ThinkPRM outperforms strong PRM baselines in best-of-N and guided-search setups on two math reasoning benchmarks: MATH-500 and AIME 2024. Additionally, it outperforms baselines on out-of-domain tasks such as scientific reasoning and code generation.
+
+## Implementation
+
+A 7B variant (ThinkPRM-7B) was released based on Deepseek-R1-Distill-Qwen-7B, with available models in different sizes (1.5B, 7B, and 14B parameters).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d05916b0-ecdc-458f-aba4-ad2c941e607d",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "9f10cde1-44bb-4103-afda-d62b40b05bcb",
+  "toolUseResult": {
+    "query": "ThinkPRM \"process reward models that think\" generative verification 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VEciVVH7TWFqCs5HfYJQQj",
+        "content": [
+          {
+            "title": "Process Reward Models That Think | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2504.16828v4"
+          },
+          {
+            "title": "Process Reward Models That Think | OpenReview",
+            "url": "https://openreview.net/forum?id=V727xqBYIW"
+          },
+          {
+            "title": "GitHub - mukhal/ThinkPRM: Process Reward Models That Think",
+            "url": "https://github.com/mukhal/thinkprm"
+          },
+          {
+            "title": "ThinkPRM: Data-Efficient Process Reward Models",
+            "url": "https://www.emergentmind.com/papers/2504.16828"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/html/2504.16828v5"
+          },
+          {
+            "title": "Paper page - Process Reward Models That Think",
+            "url": "https://huggingface.co/papers/2504.16828"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          },
+          {
+            "title": "ThinkPRM: A Generative Process Reward Models for Scalable Reasoning Verification - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/04/29/thinkprm-a-generative-process-reward-models-for-scalable-reasoning-verification/"
+          },
+          {
+            "title": "ThinkPRM: Process Reward Models That Think",
+            "url": "https://mukhal.github.io/projects/thinkprm/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ThinkPRM:\n\n## Overview\n\nThinkPRM is a generative, verbalized step-wise reward model designed to verify solutions by producing extended Chain-of-Thoughts, leveraging data-efficient training approaches. It was submitted as an ICLR 2026 Conference submission in September 2025.\n\n## Key Innovation\n\nThinkPRM verifies every step in the solution by generating a verification chain-of-thought (CoT), and is a long CoT verifier fine-tuned on orders of magnitude fewer process labels than those required by discriminative PRMs. The verifiers are obtained by finetuning reasoning models over 1K synthetic verification CoTs—filtered based on only 8K process labels from PRM800K.\n\n## Performance\n\nThinkPRM outperforms LLM-as-a-Judge and discriminative verifiers—using only 1% of the process labels in PRM800K—across several challenging benchmarks. ThinkPRM outperforms strong PRM baselines in best-of-N and guided-search setups on two math reasoning benchmarks: MATH-500 and AIME 2024. Additionally, it outperforms baselines on out-of-domain tasks such as scientific reasoning and code generation.\n\n## Implementation\n\nA 7B variant (ThinkPRM-7B) was released based on Deepseek-R1-Distill-Qwen-7B, with available models in different sizes (1.5B, 7B, and 14B parameters)."
+    ],
+    "durationSeconds": 7.2391155199999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d05916b0-ecdc-458f-aba4-ad2c941e607d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "9f10cde1-44bb-4103-afda-d62b40b05bcb",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T08:33:34.907Z_
+
+<details><summary>↩ Tool result · `toolu_01MtCiKnt9qWcdWRAjRxCaHW`</summary>
+
+```text
+Web search results for query: "CPMI contrastive mutual information process reward model arXiv 2604.10660"
+
+Links: [{"title":"[2604.10660] Efficient Process Reward Modeling via Contrastive Mutual Information","url":"https://arxiv.org/abs/2604.10660"},{"title":"Efficient Process Reward Modeling via Contrastive Mutual Information","url":"https://arxiv.org/html/2604.10660"},{"title":"Process Reward Model with Q-Value Rankings","url":"https://arxiv.org/pdf/2410.11287"},{"title":"Self-Supervised Contrastive Learning of Protein Representations By Mutual Information Maximization","url":"https://www.biorxiv.org/content/10.1101/2020.09.04.283929.full.pdf"},{"title":"Improving Reinforcement Learning from Human Feedback Using Contrastive   Rewards","url":"https://arxiv.org/pdf/2403.07708"}]
+
+Based on the search results, here's what I found about the arXiv paper 2604.10660:
+
+**Paper Title:** Efficient Process Reward Modeling via Contrastive Mutual Information
+
+**Main Contribution:** The paper proposes contrastive pointwise mutual information (CPMI), a novel automatic reward labeling method that leverages the model's internal probability to infer step-level supervision while significantly reducing the computational burden of annotating dataset.
+
+**How CPMI Works:** CPMI quantifies how much a reasoning step increases the mutual information between the step and the correct target answer relative to hard-negative alternatives.
+
+**Problem it Addresses:** Training a process reward model typically requires human annotators to assign reward scores to each reasoning step, which is both costly and time-consuming. Existing automated approaches, such as Monte Carlo estimation, also demand substantial computational resources due to repeated LLM rollouts.
+
+**Results:** CPMI-based labeling reduces dataset construction time by 84% and token generation by 98% compared to MC estimation, while achieving higher accuracy on process-level evaluations and mathematical reasoning benchmarks.
+
+The paper was submitted to arXiv on April 12, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0ac7ac1-1e2f-4e79-b903-28dcbea0d120",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "8b0d7696-4d8b-4315-93c2-039d609635d2",
+  "toolUseResult": {
+    "query": "CPMI contrastive mutual information process reward model arXiv 2604.10660",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CGCFJZv4qNi7aEEheR5ZZV",
+        "content": [
+          {
+            "title": "[2604.10660] Efficient Process Reward Modeling via Contrastive Mutual Information",
+            "url": "https://arxiv.org/abs/2604.10660"
+          },
+          {
+            "title": "Efficient Process Reward Modeling via Contrastive Mutual Information",
+            "url": "https://arxiv.org/html/2604.10660"
+          },
+          {
+            "title": "Process Reward Model with Q-Value Rankings",
+            "url": "https://arxiv.org/pdf/2410.11287"
+          },
+          {
+            "title": "Self-Supervised Contrastive Learning of Protein Representations By Mutual Information Maximization",
+            "url": "https://www.biorxiv.org/content/10.1101/2020.09.04.283929.full.pdf"
+          },
+          {
+            "title": "Improving Reinforcement Learning from Human Feedback Using Contrastive   Rewards",
+            "url": "https://arxiv.org/pdf/2403.07708"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the arXiv paper 2604.10660:\n\n**Paper Title:** Efficient Process Reward Modeling via Contrastive Mutual Information\n\n**Main Contribution:** The paper proposes contrastive pointwise mutual information (CPMI), a novel automatic reward labeling method that leverages the model's internal probability to infer step-level supervision while significantly reducing the computational burden of annotating dataset.\n\n**How CPMI Works:** CPMI quantifies how much a reasoning step increases the mutual information between the step and the correct target answer relative to hard-negative alternatives.\n\n**Problem it Addresses:** Training a process reward model typically requires human annotators to assign reward scores to each reasoning step, which is both costly and time-consuming. Existing automated approaches, such as Monte Carlo estimation, also demand substantial computational resources due to repeated LLM rollouts.\n\n**Results:** CPMI-based labeling reduces dataset construction time by 84% and token generation by 98% compared to MC estimation, while achieving higher accuracy on process-level evaluations and mathematical reasoning benchmarks.\n\nThe paper was submitted to arXiv on April 12, 2026."
+    ],
+    "durationSeconds": 11.696693188000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b0ac7ac1-1e2f-4e79-b903-28dcbea0d120",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-27T08:33:37.801Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do one more round of searches to understand potential gaps and threats to this proposal's novelty.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b0d7696-4d8b-4315-93c2-039d609635d2",
+  "isSidechain": false,
+  "requestId": "req_011CbSmKLsJLfbf8yxpCrjS5",
+  "type": "assistant",
+  "uuid": "1739ee29-3ae6-442d-badb-2874365403d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PguS7y57PM9BQmzrFHo3Fz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2215,
+      "cache_read_input_tokens": 25897,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 25897,
+          "cache_creation_input_tokens": 2215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T08:33:38.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GSbYpHxgxaxZ9aVGvLM2xi`</summary>
+
+```json
+{
+  "query": "graph-structured contrastive training reasoning verification dependency-aware PRM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1739ee29-3ae6-442d-badb-2874365403d6",
+  "isSidechain": false,
+  "requestId": "req_011CbSmKLsJLfbf8yxpCrjS5",
+  "type": "assistant",
+  "uuid": "5b6f388e-879e-4678-9cbf-8d8e17df0c21",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PguS7y57PM9BQmzrFHo3Fz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2215,
+      "cache_read_input_tokens": 25897,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 25897,
+          "cache_creation_input_tokens": 2215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-27T08:33:39.254Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C5GjC8BMwQcn3HJXQntU7v`</summary>
+
+```json
+{
+  "query": "PRMBench PathFinder-PRM step-level error detection benchmark 2025 scores"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b6f388e-879e-4678-9cbf-8d8e17df0c21",
+  "isSidechain": false,
+  "requestId": "req_011CbSmKLsJLfbf8yxpCrjS5",
+  "type": "assistant",
+  "uuid": "0ff3cb0f-c945-485a-bb6b-c652bcbf14ee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PguS7y57PM9BQmzrFHo3Fz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2215,
+      "cache_read_input_tokens": 25897,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 25897,
+          "cache_creation_input_tokens": 2215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T08:33:45.451Z_
+
+<details><summary>↩ Tool result · `toolu_01C5GjC8BMwQcn3HJXQntU7v`</summary>
+
+```text
+Web search results for query: "PRMBench PathFinder-PRM step-level error detection benchmark 2025 scores"
+
+Links: [{"title":"PRMBench: Benchmark for Process-level Math Reasoning","url":"https://www.emergentmind.com/topics/prmbench"},{"title":"PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models | Request PDF","url":"https://www.researchgate.net/publication/394270805_PRMBench_A_Fine-grained_and_Challenging_Benchmark_for_Process-Level_Reward_Models"},{"title":"PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.1230/"},{"title":"GitHub - declare-lab/PathFinder-PRM: This repository contains the official implementation of Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision.","url":"https://github.com/declare-lab/PathFinder-PRM"},{"title":"[2501.03124] PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models","url":"https://arxiv.org/abs/2501.03124"},{"title":"[2501.03124v2] PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models","url":"https://arxiv.org/abs/2501.03124v2"},{"title":"PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models","url":"https://arxiv.org/pdf/2501.03124"},{"title":"Improving Process Reward Models with Error-Aware ...","url":"https://arxiv.org/pdf/2505.19706"}]
+
+Based on the search results, here's what I found about PRMBench and PathFinder-PRM 2025 scores:
+
+## PRMBench Overview
+
+PRMBench comprises 6,216 carefully designed problems and 83,456 step-level labels, evaluating models across multiple dimensions, including simplicity, soundness, and sensitivity.
+
+## PathFinder-PRM Scores
+
+PathFinder-PRM achieves a PRMScore of 67.7 with three times less data than previous bests. This represents a significant advancement in the step-level error detection capability.
+
+## State-of-the-Art Performance
+
+Top open-source PRMs (e.g., ReasonEval-34B, Qwen2.5-Math-PRM-7B) score 60–65; GPT-4o, Gemini-2, and o1-mini attain up to 68.8.
+
+## Performance Challenges
+
+Simplicity detection lags, with sub-50 scores widely observed. Soundness and Sensitivity are better, but domain, confidence, and "trap" errors remain challenging.
+
+The benchmark establishes a rigorous standard for evaluating Process Reward Models' ability to detect various types of errors in reasoning steps, with PathFinder-PRM demonstrating strong performance in this task.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ff3cb0f-c945-485a-bb6b-c652bcbf14ee",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "db337682-ab12-4c89-bc7b-6a49efcb9337",
+  "toolUseResult": {
+    "query": "PRMBench PathFinder-PRM step-level error detection benchmark 2025 scores",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018RyiUrE76JXXx7Qy9J5gjx",
+        "content": [
+          {
+            "title": "PRMBench: Benchmark for Process-level Math Reasoning",
+            "url": "https://www.emergentmind.com/topics/prmbench"
+          },
+          {
+            "title": "PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/394270805_PRMBench_A_Fine-grained_and_Challenging_Benchmark_for_Process-Level_Reward_Models"
+          },
+          {
+            "title": "PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.1230/"
+          },
+          {
+            "title": "GitHub - declare-lab/PathFinder-PRM: This repository contains the official implementation of Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision.",
+            "url": "https://github.com/declare-lab/PathFinder-PRM"
+          },
+          {
+            "title": "[2501.03124] PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models",
+            "url": "https://arxiv.org/abs/2501.03124"
+          },
+          {
+            "title": "[2501.03124v2] PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models",
+            "url": "https://arxiv.org/abs/2501.03124v2"
+          },
+          {
+            "title": "PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models",
+            "url": "https://arxiv.org/pdf/2501.03124"
+          },
+          {
+            "title": "Improving Process Reward Models with Error-Aware ...",
+            "url": "https://arxiv.org/pdf/2505.19706"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PRMBench and PathFinder-PRM 2025 scores:\n\n## PRMBench Overview\n\nPRMBench comprises 6,216 carefully designed problems and 83,456 step-level labels, evaluating models across multiple dimensions, including simplicity, soundness, and sensitivity.\n\n## PathFinder-PRM Scores\n\nPathFinder-PRM achieves a PRMScore of 67.7 with three times less data than previous bests. This represents a significant advancement in the step-level error detection capability.\n\n## State-of-the-Art Performance\n\nTop open-source PRMs (e.g., ReasonEval-34B, Qwen2.5-Math-PRM-7B) score 60–65; GPT-4o, Gemini-2, and o1-mini attain up to 68.8.\n\n## Performance Challenges\n\nSimplicity detection lags, with sub-50 scores widely observed. Soundness and Sensitivity are better, but domain, confidence, and \"trap\" errors remain challenging.\n\nThe benchmark establishes a rigorous standard for evaluating Process Reward Models' ability to detect various types of errors in reasoning steps, with PathFinder-PRM demonstrating strong performance in this task."
+    ],
+    "durationSeconds": 6.193400674999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0ff3cb0f-c945-485a-bb6b-c652bcbf14ee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-27T08:33:45.947Z_
+
+<details><summary>↩ Tool result · `toolu_01GSbYpHxgxaxZ9aVGvLM2xi`</summary>
+
+```text
+Web search results for query: "graph-structured contrastive training reasoning verification dependency-aware PRM 2025 2026"
+
+Links: [{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/pdf/2506.12509"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/pdf/2505.15960"},{"title":"TIM-PRM: Verifying multimodal reasoning with Tool-Integrated PRM","url":"https://arxiv.org/pdf/2511.22998"},{"title":"GraphReason: Enhancing Reasoning Capabilities of Large Language Models   through A Graph-Based Verification Approach","url":"https://arxiv.org/pdf/2308.09267"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/pdf/2510.09312"},{"title":"Graph Contrastive Pre-training for Effective Theorem Reasoning","url":"https://arxiv.org/pdf/2108.10821"}]
+
+I found several relevant research papers related to your search query. Here are the key findings:
+
+## Recent Research on Graph-Structured Reasoning Verification
+
+A method called "Graph of Verification" (GoV) adaptively adjusts verification granularity from atomic steps for formal tasks to entire paragraphs for natural language, allowing it to resolve the trade-off between verification precision and robustness.
+
+## PRM Training and Verification
+
+Process Reward Models (PRMs) are typically created by fine-tuning LLMs to classify the correctness of individual reasoning steps, though creating PRM training data remains costly and noisy.
+
+Recent approaches like FoVER-PRMs use Best-of-K evaluation methods and outperform baseline PRMs based on LLMs without additional fine-tuning.
+
+## Multimodal and Tool-Integrated Approaches
+
+Process supervision has recently shifted focus toward evaluating reasoning trajectories step-by-step, showing significant promise in text-based math reasoning and being adapted for multimodal contexts.
+
+## Graph-Based Theorem Reasoning
+
+Graph contrastive pre-training approaches use proof tactics and proof trees with semantic and structural information, where each node shares the same environment, has a goal to decompose, and a unique local context.
+
+These papers appear to address different aspects of your search terms, from structured graph-based verification approaches to contrastive training methods for reasoning tasks and dependency-aware process reward models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b6f388e-879e-4678-9cbf-8d8e17df0c21",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "786cc2a4-7559-4227-b3ce-cd3f2374d503",
+  "toolUseResult": {
+    "query": "graph-structured contrastive training reasoning verification dependency-aware PRM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013BE5pFACmxGxTdGSEt3hzt",
+        "content": [
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/pdf/2506.12509"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "TIM-PRM: Verifying multimodal reasoning with Tool-Integrated PRM",
+            "url": "https://arxiv.org/pdf/2511.22998"
+          },
+          {
+            "title": "GraphReason: Enhancing Reasoning Capabilities of Large Language Models   through A Graph-Based Verification Approach",
+            "url": "https://arxiv.org/pdf/2308.09267"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/pdf/2510.09312"
+          },
+          {
+            "title": "Graph Contrastive Pre-training for Effective Theorem Reasoning",
+            "url": "https://arxiv.org/pdf/2108.10821"
+          }
+        ]
+      },
+      "I found several relevant research papers related to your search query. Here are the key findings:\n\n## Recent Research on Graph-Structured Reasoning Verification\n\nA method called \"Graph of Verification\" (GoV) adaptively adjusts verification granularity from atomic steps for formal tasks to entire paragraphs for natural language, allowing it to resolve the trade-off between verification precision and robustness.\n\n## PRM Training and Verification\n\nProcess Reward Models (PRMs) are typically created by fine-tuning LLMs to classify the correctness of individual reasoning steps, though creating PRM training data remains costly and noisy.\n\nRecent approaches like FoVER-PRMs use Best-of-K evaluation methods and outperform baseline PRMs based on LLMs without additional fine-tuning.\n\n## Multimodal and Tool-Integrated Approaches\n\nProcess supervision has recently shifted focus toward evaluating reasoning trajectories step-by-step, showing significant promise in text-based math reasoning and being adapted for multimodal contexts.\n\n## Graph-Based Theorem Reasoning\n\nGraph contrastive pre-training approaches use proof tactics and proof trees with semantic and structural information, where each node shares the same environment, has a goal to decompose, and a unique local context.\n\nThese papers appear to address different aspects of your search terms, from structured graph-based verification approaches to contrastive training methods for reasoning tasks and dependency-aware process reward models."
+    ],
+    "durationSeconds": 7.209232937999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5b6f388e-879e-4678-9cbf-8d8e17df0c21",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-27T08:33:49.033Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NuVs3tUh8ysGaz9k5ZUjeP`</summary>
+
+```json
+{
+  "query": "\"Graph of Verification\" GoV DAG reasoning verification training-free arXiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "786cc2a4-7559-4227-b3ce-cd3f2374d503",
+  "isSidechain": false,
+  "requestId": "req_011CbSmLA5SSbqvSpVHFgqVg",
+  "type": "assistant",
+  "uuid": "f7c7ab59-086c-49c9-b007-5301fe62bab7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLqfEgCSUqfv7QznDqX12f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 801,
+      "cache_creation_input_tokens": 797,
+      "cache_read_input_tokens": 28112,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 801,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 28112,
+          "cache_creation_input_tokens": 797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T08:33:49.753Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D6ByniTjHcjVzs27C2gVTo`</summary>
+
+```json
+{
+  "query": "APRM adversarial process reward model arXiv 2511.22888 OOD generalization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7c7ab59-086c-49c9-b007-5301fe62bab7",
+  "isSidechain": false,
+  "requestId": "req_011CbSmLA5SSbqvSpVHFgqVg",
+  "type": "assistant",
+  "uuid": "dcccfb62-d084-45e1-8c55-13496df0de11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLqfEgCSUqfv7QznDqX12f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 801,
+      "cache_creation_input_tokens": 797,
+      "cache_read_input_tokens": 28112,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 801,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 28112,
+          "cache_creation_input_tokens": 797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T08:33:56.440Z_
+
+<details><summary>↩ Tool result · `toolu_01NuVs3tUh8ysGaz9k5ZUjeP`</summary>
+
+```text
+Web search results for query: ""Graph of Verification" GoV DAG reasoning verification training-free arXiv 2025 2026"
+
+Links: [{"title":"[2506.12509] Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/abs/2506.12509"},{"title":"Paper page - Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://huggingface.co/papers/2506.12509"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/html/2506.12509v3"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://www.researchgate.net/publication/392735078_Graph_of_Verification_Structured_Verification_of_LLM_Reasoning_with_Directed_Acyclic_Graphs"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning","url":"https://arxiv.org/pdf/2506.12509"},{"title":"GraphReason: Enhancing Reasoning Capabilities of Large Language Models   through A Graph-Based Verification Approach","url":"https://arxiv.org/pdf/2308.09267"},{"title":"DAG-Math: Graph-of-Thought Guided Mathematical Reasoning in LLMs","url":"https://arxiv.org/html/2510.19842"}]
+
+I found the paper you're looking for! Here are the key details about "Graph of Verification":
+
+## Overview
+Graph of Verification (GoV) is a novel framework for adaptable and multi-granular verification of LLM reasoning. The paper is available on arXiv as 2506.12509.
+
+## Key Contributions
+GoV explicitly models the underlying deductive process as a directed acyclic graph (DAG), enforces a topological order over the DAG to guide stepwise verification, and introduces customizable node blocks that flexibly define the verification granularity, from atomic propositions to full paragraphs.
+
+## Core Innovation
+GoV's core innovation is its flexible "node block" architecture, which allows GoV to adaptively adjust its verification granularity—from atomic steps for formal tasks to entire paragraphs for natural language—to match the native structure of the reasoning process.
+
+## Performance & Results
+GoV's adaptive approach significantly outperforms both holistic baselines and other state-of-the-art decomposition-based methods, establishing a new standard for training-free reasoning verification. The paper evaluates GoV on the Number Triangle Summation task and the ProcessBench benchmark, and experimental results show that GoV substantially improves verification accuracy, faithfulness, and error localization compared to conventional end-to-end verification approaches.
+
+The code and data are available at GitHub (https://github.com/Frevor/Graph-of-Verification).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7c7ab59-086c-49c9-b007-5301fe62bab7",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "75933735-a820-46a4-a11e-939f5724f3c3",
+  "toolUseResult": {
+    "query": "\"Graph of Verification\" GoV DAG reasoning verification training-free arXiv 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ASHHJ7acu6KCexZi9Wf3uS",
+        "content": [
+          {
+            "title": "[2506.12509] Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/abs/2506.12509"
+          },
+          {
+            "title": "Paper page - Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://huggingface.co/papers/2506.12509"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/html/2506.12509v3"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://www.researchgate.net/publication/392735078_Graph_of_Verification_Structured_Verification_of_LLM_Reasoning_with_Directed_Acyclic_Graphs"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2506.12509"
+          },
+          {
+            "title": "GraphReason: Enhancing Reasoning Capabilities of Large Language Models   through A Graph-Based Verification Approach",
+            "url": "https://arxiv.org/pdf/2308.09267"
+          },
+          {
+            "title": "DAG-Math: Graph-of-Thought Guided Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2510.19842"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about \"Graph of Verification\":\n\n## Overview\nGraph of Verification (GoV) is a novel framework for adaptable and multi-granular verification of LLM reasoning. The paper is available on arXiv as 2506.12509.\n\n## Key Contributions\nGoV explicitly models the underlying deductive process as a directed acyclic graph (DAG), enforces a topological order over the DAG to guide stepwise verification, and introduces customizable node blocks that flexibly define the verification granularity, from atomic propositions to full paragraphs.\n\n## Core Innovation\nGoV's core innovation is its flexible \"node block\" architecture, which allows GoV to adaptively adjust its verification granularity—from atomic steps for formal tasks to entire paragraphs for natural language—to match the native structure of the reasoning process.\n\n## Performance & Results\nGoV's adaptive approach significantly outperforms both holistic baselines and other state-of-the-art decomposition-based methods, establishing a new standard for training-free reasoning verification. The paper evaluates GoV on the Number Triangle Summation task and the ProcessBench benchmark, and experimental results show that GoV substantially improves verification accuracy, faithfulness, and error localization compared to conventional end-to-end verification approaches.\n\nThe code and data are available at GitHub (https://github.com/Frevor/Graph-of-Verification)."
+    ],
+    "durationSeconds": 7.403076237999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f7c7ab59-086c-49c9-b007-5301fe62bab7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-27T08:33:56.777Z_
+
+<details><summary>↩ Tool result · `toolu_01D6ByniTjHcjVzs27C2gVTo`</summary>
+
+```text
+Web search results for query: "APRM adversarial process reward model arXiv 2511.22888 OOD generalization"
+
+Links: [{"title":"[2511.22888] Adversarial Training for Process Reward Models","url":"https://arxiv.org/abs/2511.22888"},{"title":"Adversarial Training for Process Reward Models","url":"https://arxiv.org/pdf/2511.22888"},{"title":"Adversarially Trained Reward Models","url":"https://www.emergentmind.com/topics/adversarially-trained-reward-models"},{"title":"Adversarial Training for Process Reward Models","url":"https://arxiv.org/html/2511.22888"},{"title":"Adversarial Training of Reward Models","url":"https://arxiv.org/html/2504.06141v2"},{"title":"Preprint. Under review. Adversarial Training of Reward Models","url":"https://arxiv.org/pdf/2504.06141"},{"title":"[2504.06141] Adversarial Training of Reward Models","url":"https://arxiv.org/abs/2504.06141"}]
+
+Based on the search results, I found relevant information about APRM (Adversarially Trained Process Reward Models) from arXiv paper 2511.22888:
+
+## Overview
+
+APRM is a method where a Generator learns to produce reasoning errors to deceive a PRM (Process Reward Model), while the PRM concurrently learns to detect them. Process Reward Models enhance reasoning ability of LLMs by providing step-level supervision, but their widespread adoption is limited due to expensive manual step-level annotation and poor generalization of static training data to novel errors.
+
+## How It Works
+
+This interaction yields progressively harder negatives for the PRM, improving its robustness and generalization to novel errors without requiring manual step-level labels. The approach formalizes a repeated game between a generator and reward model, where the generator perturbs ground-truth reasoning steps to produce plausible but incorrect step candidates designed to fool the PRM into predicting correctness, and the PRM must learn to detect increasingly sophisticated reasoning errors.
+
+## Performance Results
+
+Averaged across diverse mathematical reasoning benchmarks, APRM improves solver accuracy by +3.4 percentage points over the strongest PRM baseline. Notably for out-of-distribution generalization, APRM achieves gains of +5.3 pp on out-of-distribution tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dcccfb62-d084-45e1-8c55-13496df0de11",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "f55a29ea-5be8-4942-94fb-cc7bcdf73ca7",
+  "toolUseResult": {
+    "query": "APRM adversarial process reward model arXiv 2511.22888 OOD generalization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K7dVMZdZLPc9JNYf9jdXR1",
+        "content": [
+          {
+            "title": "[2511.22888] Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/abs/2511.22888"
+          },
+          {
+            "title": "Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/pdf/2511.22888"
+          },
+          {
+            "title": "Adversarially Trained Reward Models",
+            "url": "https://www.emergentmind.com/topics/adversarially-trained-reward-models"
+          },
+          {
+            "title": "Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/html/2511.22888"
+          },
+          {
+            "title": "Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/html/2504.06141v2"
+          },
+          {
+            "title": "Preprint. Under review. Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/pdf/2504.06141"
+          },
+          {
+            "title": "[2504.06141] Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/abs/2504.06141"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about APRM (Adversarially Trained Process Reward Models) from arXiv paper 2511.22888:\n\n## Overview\n\nAPRM is a method where a Generator learns to produce reasoning errors to deceive a PRM (Process Reward Model), while the PRM concurrently learns to detect them. Process Reward Models enhance reasoning ability of LLMs by providing step-level supervision, but their widespread adoption is limited due to expensive manual step-level annotation and poor generalization of static training data to novel errors.\n\n## How It Works\n\nThis interaction yields progressively harder negatives for the PRM, improving its robustness and generalization to novel errors without requiring manual step-level labels. The approach formalizes a repeated game between a generator and reward model, where the generator perturbs ground-truth reasoning steps to produce plausible but incorrect step candidates designed to fool the PRM into predicting correctness, and the PRM must learn to detect increasingly sophisticated reasoning errors.\n\n## Performance Results\n\nAveraged across diverse mathematical reasoning benchmarks, APRM improves solver accuracy by +3.4 percentage points over the strongest PRM baseline. Notably for out-of-distribution generalization, APRM achieves gains of +5.3 pp on out-of-distribution tasks."
+    ],
+    "durationSeconds": 7.020697089999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dcccfb62-d084-45e1-8c55-13496df0de11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "f55a29ea-5be8-4942-94fb-cc7bcdf73ca7",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-27T08:35:04.095Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me synthesize everything I've learned and produce my analysis. Let me think carefully about this proposal.
+
+## What the proposal claims:
+1. Current PRMs detect consistency, not causality (well-established by prior work)
+2. Premise dependency DAGs can be extracted from reasoning chains (established by PARC/PERL)
+3. LLM hidden states already encode DAG structure (established by "From Chains to DAGs")
+4. No prior work combines premise dependency DAGs with contrastive PRM training
+5. PGCT: Extract DAGs → construct DAG-aware contrastive pairs → train PRM with dual BCE + InfoNCE loss
+
+
+6. The core novelty is combining premise dependency DAGs with contrastive PRM training to shift from detecting consistency to detecting causality. The problem diagnosis is well-grounded in recent work, and this specific combination appears genuinely untried. The theoretical foundation is compelling: if PRMs fail because they optimize for consistency rather than causality, and if DAG structure is both extractable and already encoded in LLM hidden states, then training against DAG-anchored perturbations should address the root issue.
+
+7. The differentiation from related approaches is clear — DAG-anchored structural negatives versus domain-agnostic adversarial ones, relational embeddings versus sequential conditioning, and training-time signal versus inference-time verification.
+
+The main concern is whether this is fundamentally an engineering combination of existing pieces (DAG extraction, contrastive training, InfoNCE loss) or if the integration itself constitutes a meaningful methodological advance.
+
+There's also a potential tension: if LLMs already encode DAG structure internally, does explicit DAG-anchored training actually improve performance, or is the bottleneck elsewhere in how the model applies this structure? And pragmatically, could harder negative mining targeting premise links alone achieve similar results without the full DAG extraction overhead?
+
+The empirical motivation is solid—the 16-point gap on PRMBench and the 43% reward hacking problem are real and consequential—and the approach targets the training signal rather than post-hoc fixes, which is strategically sound. The related work positioning is thorough across robustness, architecture, and training-free baselines, though ThinkPRM's generative verification paradigm seems like a notable omission given its strong few-shot performance.
+
+There's a conceptual tension worth making explicit: if DAG structure is already encoded in LLM representations (as "From Chains to DAGs" suggests), why doesn't standard PRM training capture it? The proposal should argue that contrastive training is what activates this latent structure for reward prediction. On the transferability claim, the real insight is that DAG-anchored negatives force the model to learn a structural invariant tied to premise-conclusion relationships, which is fundamentally different from APRM's surface-level cat-and-mouse dynamic.
+
+ThinkPRM is a notable concurrent work that deserves discussion—it's generative verification versus PGCT's discriminative approach, but more interestingly, it could be a combination partner where DAG-aware representations improve its chain-of-thought verification. Finally, the "causality" framing needs tightening; what's really being captured is logical dependency, not causality in the causal inference sense, so reframing this as "logical dependency learning" would be more precise and defensible. dependency sensitivity" rather than "causality detection." This also avoids potential confusion with the CRA paper which uses actual causal analysis (sparse autoencoder correction).
+
+Wait, let me reconsider. The proposal specifically says "sensitivity to logical dependency structure" in several places, which is more precise. The title uses "Logic-Grounded" which is good. But the abstract/intro uses "causality" which could create confusion. Let me flag this.
+
+Actually, re-reading more carefully, the proposal does use the term from the original paper "Reward Models Identify Consistency, Not Causality" — so it's building on an existing framing. But it should be careful to distinguish between "causal" in the sense of logical entailment (which is what this proposal targets) and "causal" in the sense of causal inference (which is what CRA targets). This distinction matters for positioning.
+
+The broader contribution here is that structural supervision—training against violations of known structural properties—appears more robust than pattern supervision, which could extend beyond PRMs to any verification task with known underlying structure. Looking at the proposal overall, it's quite mature with a clear problem statement, well-motivated approach, comprehensive evaluation plan, and detailed ablations. The real question is whether there are genuine discovery points that could raise the ceiling, and I think there are a few: the "already encoded" paradox could be reframed as a strength, and ThinkPRM represents an important gap in the related work. to fill)
+3. The transferability/structural invariance framing (high value — this could be the paper's most distinctive theoretical contribution)
+
+And one potential concern:
+4. The trivial alternative: just better negative mining without full DAG extraction
+
+Let me think about #4 more carefully. APRM already does adversarial negative mining. PGCT adds DAG structure. The key question is: does the DAG structure buy you something that more sophisticated negative mining without DAG doesn't? The ablation A3 (random perturbation vs. DAG-aware) is designed to test this, which is good. But conceptually, what's the argument?
+
+The argument is: DAG-aware negatives target the specific failure mode (premise-conclusion dependency violation) rather than general error patterns. This means:
+- The negatives are more targeted (they break specific logical links)
+- The model learns to verify specific structural properties
+- This should transfer better to novel attack types
+
+This is reasonable, but the paper needs to articulate the theoretical case more clearly. There's also a subtle distinction worth examining: when the model trains against DAG-anchored perturbations, is it actually learning to verify logical causality between steps, or is it just learning to detect structural inconsistencies at a finer granularity? The difference matters — true causal verification would mean checking that conclusions actually follow from premises logically, whereas DAG consistency is a weaker form of structural checking that might not capture the full reasoning requirement. DAG structure is essential for catching structural errors like severed premise links or dangling references, but for logically invalid inferences, the DAG mainly helps identify which premises to corrupt—the actual semantic flaw requires different detection. I think I have enough to write this up, though I should do one final check for any very recent work that might already address what this proposal claims as novel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f55a29ea-5be8-4942-94fb-cc7bcdf73ca7",
+  "isSidechain": false,
+  "requestId": "req_011CbSmLxMGnruZBxpxUL6KK",
+  "type": "assistant",
+  "uuid": "f4bd8849-8765-4860-bc93-c2a46b74bd2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MjMcrP3Sh1ZMAqQ4U7oxs5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2317,
+      "cache_read_input_tokens": 28909,
+      "output_tokens": 2653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2653,
+          "cache_read_input_tokens": 28909,
+          "cache_creation_input_tokens": 2317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T08:35:04.167Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RtAJNKrngxgCcV9ET6KhSA`</summary>
+
+```json
+{
+  "query": "DAG-aware contrastive training process reward model premise dependency 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4bd8849-8765-4860-bc93-c2a46b74bd2d",
+  "isSidechain": false,
+  "requestId": "req_011CbSmLxMGnruZBxpxUL6KK",
+  "type": "assistant",
+  "uuid": "2fbd3714-583d-460b-af69-45a43772e6ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MjMcrP3Sh1ZMAqQ4U7oxs5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2317,
+      "cache_read_input_tokens": 28909,
+      "output_tokens": 2653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2653,
+          "cache_read_input_tokens": 28909,
+          "cache_creation_input_tokens": 2317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-27T08:35:04.176Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qgupzrge62inXxQK1Rmv6p`</summary>
+
+```json
+{
+  "query": "\"structural invariance\" reward model training logical dependency graph contrastive 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fbd3714-583d-460b-af69-45a43772e6ce",
+  "isSidechain": false,
+  "requestId": "req_011CbSmLxMGnruZBxpxUL6KK",
+  "type": "assistant",
+  "uuid": "f5f86264-2976-4dd7-9874-40ce21f47852",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MjMcrP3Sh1ZMAqQ4U7oxs5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2317,
+      "cache_read_input_tokens": 28909,
+      "output_tokens": 2653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2653,
+          "cache_read_input_tokens": 28909,
+          "cache_creation_input_tokens": 2317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T08:35:11.010Z_
+
+<details><summary>↩ Tool result · `toolu_01RtAJNKrngxgCcV9ET6KhSA`</summary>
+
+```text
+Web search results for query: "DAG-aware contrastive training process reward model premise dependency 2026"
+
+Links: [{"title":"Free Process Rewards without Process Labels","url":"https://arxiv.org/pdf/2412.01981"},{"title":"DC-W2S: Dual-Consensus Weak-to-Strong Training for Reliable Process Reward Modeling in Biological Reasoning","url":"https://arxiv.org/pdf/2603.08095"},{"title":"Towards Robust Process Reward Modeling via Noise-aware Learning","url":"https://arxiv.org/pdf/2601.12748"},{"title":"CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models","url":"https://arxiv.org/pdf/2603.04406"},{"title":"Adversarial Training for Process Reward Models","url":"https://arxiv.org/pdf/2511.22888"},{"title":"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning","url":"https://arxiv.org/pdf/2509.26578"},{"title":"DPRM: A Dual Implicit Process Reward Model in Multi-Hop Question Answering","url":"https://arxiv.org/pdf/2511.08364"}]
+
+I found several recent papers related to process reward models and training techniques, but I didn't find a result that specifically matches all the exact terms "DAG-aware contrastive training process reward model premise dependency." 
+
+Here are the most relevant findings from my search:
+
+**Process Reward Models in 2026:**
+
+Process reward models (PRMs) address credit assignment issues by providing step-by-step feedback, a technique that has been proven to be highly effective for complex reasoning tasks.
+
+**Recent Training Approaches:**
+
+Current PRM training techniques predominantly rely on static datasets, and these methods are inherently limited as they provide a fixed error distribution that cannot adapt to more nuanced errors.
+
+**Dependency and Step Relationships:**
+
+The lack of step dependency modeling leads to ambiguous credit assignment, which is a recognized challenge in the field.
+
+**Contrastive Learning in Reward Models:**
+
+One approach proposes a Contrastive Likelihood Reward (CLR) that directly optimizes the log-likelihood gap between responses conditioned on prompts with and without supporting evidence.
+
+The search results show active research into improving process reward models in 2026, with particular focus on handling step dependencies and using contrastive learning approaches, though I didn't locate a paper with that exact terminology. If you're looking for a specific paper or research, you might want to try searching on arxiv.org directly or refine the search terms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fbd3714-583d-460b-af69-45a43772e6ce",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "88b19d92-d5ba-41b9-92ba-efa863c385e0",
+  "toolUseResult": {
+    "query": "DAG-aware contrastive training process reward model premise dependency 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KMU33N2j6G15To6j7XMpKW",
+        "content": [
+          {
+            "title": "Free Process Rewards without Process Labels",
+            "url": "https://arxiv.org/pdf/2412.01981"
+          },
+          {
+            "title": "DC-W2S: Dual-Consensus Weak-to-Strong Training for Reliable Process Reward Modeling in Biological Reasoning",
+            "url": "https://arxiv.org/pdf/2603.08095"
+          },
+          {
+            "title": "Towards Robust Process Reward Modeling via Noise-aware Learning",
+            "url": "https://arxiv.org/pdf/2601.12748"
+          },
+          {
+            "title": "CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models",
+            "url": "https://arxiv.org/pdf/2603.04406"
+          },
+          {
+            "title": "Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/pdf/2511.22888"
+          },
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2509.26578"
+          },
+          {
+            "title": "DPRM: A Dual Implicit Process Reward Model in Multi-Hop Question Answering",
+            "url": "https://arxiv.org/pdf/2511.08364"
+          }
+        ]
+      },
+      "I found several recent papers related to process reward models and training techniques, but I didn't find a result that specifically matches all the exact terms \"DAG-aware contrastive training process reward model premise dependency.\" \n\nHere are the most relevant findings from my search:\n\n**Process Reward Models in 2026:**\n\nProcess reward models (PRMs) address credit assignment issues by providing step-by-step feedback, a technique that has been proven to be highly effective for complex reasoning tasks.\n\n**Recent Training Approaches:**\n\nCurrent PRM training techniques predominantly rely on static datasets, and these methods are inherently limited as they provide a fixed error distribution that cannot adapt to more nuanced errors.\n\n**Dependency and Step Relationships:**\n\nThe lack of step dependency modeling leads to ambiguous credit assignment, which is a recognized challenge in the field.\n\n**Contrastive Learning in Reward Models:**\n\nOne approach proposes a Contrastive Likelihood Reward (CLR) that directly optimizes the log-likelihood gap between responses conditioned on prompts with and without supporting evidence.\n\nThe search results show active research into improving process reward models in 2026, with particular focus on handling step dependencies and using contrastive learning approaches, though I didn't locate a paper with that exact terminology. If you're looking for a specific paper or research, you might want to try searching on arxiv.org directly or refine the search terms."
+    ],
+    "durationSeconds": 6.836025576999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2fbd3714-583d-460b-af69-45a43772e6ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T08:35:12.048Z_
+
+<details><summary>↩ Tool result · `toolu_01Qgupzrge62inXxQK1Rmv6p`</summary>
+
+```text
+Web search results for query: ""structural invariance" reward model training logical dependency graph contrastive 2026"
+
+Links: [{"title":"CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR","url":"https://arxiv.org/pdf/2603.10101"},{"title":"Community-Invariant Graph Contrastive Learning","url":"https://arxiv.org/pdf/2405.1350"},{"title":"LSRIF: Logic-Structured Reinforcement Learning for Instruction Following","url":"https://arxiv.org/pdf/2601.06431"},{"title":"Reward Models Identify Consistency, Not Causality","url":"https://arxiv.org/pdf/2502.14619"},{"title":"Contrastive Weak-to-strong Generalization","url":"https://arxiv.org/pdf/2510.07884"},{"title":"MERIt: Meta-Path Guided Contrastive Learning for Logical Reasoning","url":"https://arxiv.org/pdf/2203.00357"},{"title":"Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/pdf/2602.11792"}]
+
+Based on the web search results, here's what I found related to your query:
+
+The search returned several recent papers from 2026 and 2025 related to reward model training, logical structures, and contrastive learning in large language models:
+
+1. **CLIPO: Contrastive Learning in Policy Optimization** - This work addresses reinforcement learning with verifiable rewards (RLVR) as a paradigm for improving reasoning capabilities of Large Language Models. The research notes that binary rewarding schemes fail to distinguish between logically sound and spurious reasoning.
+
+2. **LSRIF: Logic-Structured Reinforcement Learning** - This proposes a logic-structured training framework that explicitly models instruction logic through constraint structures like parallel, sequential, and conditional types, with a structure-aware rewarding method.
+
+3. **Reward Models Identify Consistency, Not Causality** - This work suggests that reward models primarily assess coherence rather than true reasoning quality, emphasizing the need for causality-aware reward models that go beyond consistency-driven evaluation.
+
+4. **Contrastive Weak-to-Strong Generalization** - This approach uses contrastive decoding between pre-alignment and post-alignment models to generate training samples, with samples that preserve target preference signals and approximately maximize implicit reward.
+
+5. **Detecting RLVR Training Data via Structural Convergence** - This research shows that RLVR induces distinctive behavioral signatures where prompts encountered during training result in more rigid and similar generations.
+
+These papers collectively explore the intersection of reward modeling, logical structures, and contrastive learning methods for improving LLM reasoning and training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5f86264-2976-4dd7-9874-40ce21f47852",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "d7b17802-a354-4432-a851-447738017e04",
+  "toolUseResult": {
+    "query": "\"structural invariance\" reward model training logical dependency graph contrastive 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012jAd1H5Fd9VkeXgy1Zb8xd",
+        "content": [
+          {
+            "title": "CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR",
+            "url": "https://arxiv.org/pdf/2603.10101"
+          },
+          {
+            "title": "Community-Invariant Graph Contrastive Learning",
+            "url": "https://arxiv.org/pdf/2405.1350"
+          },
+          {
+            "title": "LSRIF: Logic-Structured Reinforcement Learning for Instruction Following",
+            "url": "https://arxiv.org/pdf/2601.06431"
+          },
+          {
+            "title": "Reward Models Identify Consistency, Not Causality",
+            "url": "https://arxiv.org/pdf/2502.14619"
+          },
+          {
+            "title": "Contrastive Weak-to-strong Generalization",
+            "url": "https://arxiv.org/pdf/2510.07884"
+          },
+          {
+            "title": "MERIt: Meta-Path Guided Contrastive Learning for Logical Reasoning",
+            "url": "https://arxiv.org/pdf/2203.00357"
+          },
+          {
+            "title": "Detecting RLVR Training Data via Structural Convergence of Reasoning",
+            "url": "https://arxiv.org/pdf/2602.11792"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query:\n\nThe search returned several recent papers from 2026 and 2025 related to reward model training, logical structures, and contrastive learning in large language models:\n\n1. **CLIPO: Contrastive Learning in Policy Optimization** - This work addresses reinforcement learning with verifiable rewards (RLVR) as a paradigm for improving reasoning capabilities of Large Language Models. The research notes that binary rewarding schemes fail to distinguish between logically sound and spurious reasoning.\n\n2. **LSRIF: Logic-Structured Reinforcement Learning** - This proposes a logic-structured training framework that explicitly models instruction logic through constraint structures like parallel, sequential, and conditional types, with a structure-aware rewarding method.\n\n3. **Reward Models Identify Consistency, Not Causality** - This work suggests that reward models primarily assess coherence rather than true reasoning quality, emphasizing the need for causality-aware reward models that go beyond consistency-driven evaluation.\n\n4. **Contrastive Weak-to-Strong Generalization** - This approach uses contrastive decoding between pre-alignment and post-alignment models to generate training samples, with samples that preserve target preference signals and approximately maximize implicit reward.\n\n5. **Detecting RLVR Training Data via Structural Convergence** - This research shows that RLVR induces distinctive behavioral signatures where prompts encountered during training result in more rigid and similar generations.\n\nThese papers collectively explore the intersection of reward modeling, logical structures, and contrastive learning methods for improving LLM reasoning and training."
+    ],
+    "durationSeconds": 7.839971863999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f5f86264-2976-4dd7-9874-40ce21f47852",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "d7b17802-a354-4432-a851-447738017e04",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-27T08:35:18.291Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. My searches confirm that no existing work combines premise dependency DAGs with contrastive PRM training. The novelty claim appears intact.
+
+Let me also search for one more thing: the "Verifying Chain-of-Thought Reasoning via Its Computational Graph" paper that appeared in my earlier results, as it might be a closer related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7b17802-a354-4432-a851-447738017e04",
+  "isSidechain": false,
+  "requestId": "req_011CbSmSWRDbyWfJo9EQyAf9",
+  "type": "assistant",
+  "uuid": "face5f3d-fe2a-4713-8565-5aa6de4ce8ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQZrUv9ntvQ8Hd9RFef8Th",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4018,
+      "cache_read_input_tokens": 31226,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 31226,
+          "cache_creation_input_tokens": 4018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-27T08:35:18.661Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QLVhzcd5RtnSfFMQAYTV3j`</summary>
+
+```json
+{
+  "query": "\"Verifying Chain-of-Thought Reasoning\" computational graph arXiv 2510.09312 step verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "face5f3d-fe2a-4713-8565-5aa6de4ce8ab",
+  "isSidechain": false,
+  "requestId": "req_011CbSmSWRDbyWfJo9EQyAf9",
+  "type": "assistant",
+  "uuid": "e35dbd83-908b-46a1-9723-eaf26f8b265a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQZrUv9ntvQ8Hd9RFef8Th",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4018,
+      "cache_read_input_tokens": 31226,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 31226,
+          "cache_creation_input_tokens": 4018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-27T08:35:26.634Z_
+
+<details><summary>↩ Tool result · `toolu_01QLVhzcd5RtnSfFMQAYTV3j`</summary>
+
+```text
+Web search results for query: ""Verifying Chain-of-Thought Reasoning" computational graph arXiv 2510.09312 step verification"
+
+Links: [{"title":"[2510.09312] Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/abs/2510.09312"},{"title":"facebook/crv · Datasets at Hugging Face","url":"https://huggingface.co/datasets/facebook/crv"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/pdf/2510.09312"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph | OpenReview","url":"https://openreview.net/forum?id=CxiNICq0Rr"},{"title":"GitHub - facebookresearch/CRV: Code for the paper \"Verifying Chain-of-Thought Reasoning via its Computational Graph\". · GitHub","url":"https://github.com/facebookresearch/CRV"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/html/2510.09312v1"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph | Request PDF","url":"https://www.researchgate.net/publication/396459021_Verifying_Chain-of-Thought_Reasoning_via_Its_Computational_Graph"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph |…","url":"https://www.opentrain.ai/papers/verifying-chain-of-thought-reasoning-via-its-computational-graph--arxiv-2510.09312/"},{"title":"Computation and Language Oct 2025","url":"https://arxiv.org/list/cs.CL/2025-10?skip=700&show=1000"},{"title":"fly51fly on X: \"[CL] Verifying Chain-of-Thought Reasoning via Its Computational Graph Z Zhao, Y Koishekenov, X Yang, N Murray... [FAIR at Meta] (2025) https://t.co/aVGcVhVXuE https://t.co/MLerSpICzh\" / X","url":"https://x.com/fly51fly/status/1977870607917133896"}]
+
+I found comprehensive information about the paper arXiv 2510.09312. Here's what I found:
+
+## Paper Overview
+
+Current Chain-of-Thought (CoT) verification methods predict reasoning correctness based on outputs (black-box) or activations (gray-box), but offer limited insight into why a computation fails.
+
+## The CRV Method
+
+The paper introduces a white-box method called Circuit-based Reasoning Verification (CRV), hypothesizing that attribution graphs of correct CoT steps, viewed as execution traces of the model's latent reasoning circuits, possess distinct structural fingerprints from those of incorrect steps. By training a classifier on structural features of these graphs, the method shows that these traces contain a powerful signal of reasoning errors.
+
+## Scope and Approach
+
+CRV requires a controlled experimental setting. While advanced reasoning models employ complex mechanisms like search and backtracking, their convoluted reasoning paths can obscure the fundamental computations of a single reasoning step, so the work focuses on standard, instruction-tuned models generating autoregressive CoT.
+
+## Performance Results
+
+The method achieved 98.4% accuracy on Synthetic Boolean tasks, 98.8% correctness on Synthetic Arithmetic tasks, and 93.4% correctness on GSM8K.
+
+## Publication Status
+
+The paper was accepted to ICLR 2026 as an oral presentation.
+
+The paper and its code are available on arXiv and GitHub, with associated datasets hosted on Hugging Face.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e35dbd83-908b-46a1-9723-eaf26f8b265a",
+  "isSidechain": false,
+  "promptId": "9810c196-7974-42ce-853b-e102d0868888",
+  "type": "user",
+  "uuid": "a9b019ee-b2cb-4860-8c40-44d6b703846a",
+  "toolUseResult": {
+    "query": "\"Verifying Chain-of-Thought Reasoning\" computational graph arXiv 2510.09312 step verification",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Gy3YtpDv6gnu97y4hS6R9",
+        "content": [
+          {
+            "title": "[2510.09312] Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/abs/2510.09312"
+          },
+          {
+            "title": "facebook/crv · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/facebook/crv"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/pdf/2510.09312"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph | OpenReview",
+            "url": "https://openreview.net/forum?id=CxiNICq0Rr"
+          },
+          {
+            "title": "GitHub - facebookresearch/CRV: Code for the paper \"Verifying Chain-of-Thought Reasoning via its Computational Graph\". · GitHub",
+            "url": "https://github.com/facebookresearch/CRV"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/html/2510.09312v1"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph | Request PDF",
+            "url": "https://www.researchgate.net/publication/396459021_Verifying_Chain-of-Thought_Reasoning_via_Its_Computational_Graph"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph |…",
+            "url": "https://www.opentrain.ai/papers/verifying-chain-of-thought-reasoning-via-its-computational-graph--arxiv-2510.09312/"
+          },
+          {
+            "title": "Computation and Language Oct 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025-10?skip=700&show=1000"
+          },
+          {
+            "title": "fly51fly on X: \"[CL] Verifying Chain-of-Thought Reasoning via Its Computational Graph Z Zhao, Y Koishekenov, X Yang, N Murray... [FAIR at Meta] (2025) https://t.co/aVGcVhVXuE https://t.co/MLerSpICzh\" / X",
+            "url": "https://x.com/fly51fly/status/1977870607917133896"
+          }
+        ]
+      },
+      "I found comprehensive information about the paper arXiv 2510.09312. Here's what I found:\n\n## Paper Overview\n\nCurrent Chain-of-Thought (CoT) verification methods predict reasoning correctness based on outputs (black-box) or activations (gray-box), but offer limited insight into why a computation fails.\n\n## The CRV Method\n\nThe paper introduces a white-box method called Circuit-based Reasoning Verification (CRV), hypothesizing that attribution graphs of correct CoT steps, viewed as execution traces of the model's latent reasoning circuits, possess distinct structural fingerprints from those of incorrect steps. By training a classifier on structural features of these graphs, the method shows that these traces contain a powerful signal of reasoning errors.\n\n## Scope and Approach\n\nCRV requires a controlled experimental setting. While advanced reasoning models employ complex mechanisms like search and backtracking, their convoluted reasoning paths can obscure the fundamental computations of a single reasoning step, so the work focuses on standard, instruction-tuned models generating autoregressive CoT.\n\n## Performance Results\n\nThe method achieved 98.4% accuracy on Synthetic Boolean tasks, 98.8% correctness on Synthetic Arithmetic tasks, and 93.4% correctness on GSM8K.\n\n## Publication Status\n\nThe paper was accepted to ICLR 2026 as an oral presentation.\n\nThe paper and its code are available on arXiv and GitHub, with associated datasets hosted on Hugging Face."
+    ],
+    "durationSeconds": 7.969175166000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e35dbd83-908b-46a1-9723-eaf26f8b265a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-27T08:35:26.642Z_
+
+```json
+{
+  "parentUuid": "a9b019ee-b2cb-4860-8c40-44d6b703846a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "74350c47-a51e-4eb7-a86f-20e90e788d35",
+  "timestamp": "2026-05-27T08:35:26.642Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-27T08:35:54.270Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very relevant! CRV (Circuit-based Reasoning Verification) from Meta/FAIR, accepted as ICLR 2026 oral, uses computational graph structure (attribution graphs) to verify reasoning steps. This is a significant related work that the proposal doesn't mention.
+
+However, CRV is quite different from PGCT:
+- CRV uses attribution graphs (internal model circuits) — white-box analysis of HOW the model computes
+- PGCT uses premise dependency DAGs (external logical structure) — what the logical relationships ARE
+- CRV is a verification method (classifier on graph features)
+
+
+- PGCT is a training method (contrastive training with DAG-anchored pairs)
+- CRV requires access to model internals (activations, attribution)
+- PGCT is model-agnostic in terms of the training approach
+
+So they're complementary but the proposal should definitely mention CRV as it's an ICLR 2026 oral that also uses graph structure for reasoning verification. Now I'm thinking through the actual discovery points and whether there are legitimate concerns here. The main issue is that CRV is a high-profile missing reference that directly relates to using graphs for reasoning verification.
+
+CRV operates at inference time with white-box access while PGCT works during training, so they're fundamentally different approaches, but CRV's success actually validates that graph structure is useful for verification. Beyond that, I think the strongest angle for PGCT is reframing it around "structural invariance"—the idea that a model's reward signal should remain stable across surface-form changes that preserve logical structure while being sensitive to changes that break it. This is a more principled way to position the contribution and connects to the broader invariance learning literature rather than just being a specific training trick. The observation that reasoning structure is already encoded in the model could serve as a stronger motivational hook for why this approach works. The concern about whether simpler negative mining strategies could achieve similar results is legitimate, and while ablation A3 addresses it, I need to sharpen the theoretical argument for why DAG structure specifically matters beyond just providing harder negatives. There's real discovery space here in refining the framing around structural invariance, incorporating missing related work like CRV and ThinkPRM, and using the "already encoded" paradox as a stronger narrative device to explain why standard PRM training fails to activate this capacity. The proposal is well-developed overall, but these refinements could meaningfully strengthen the theoretical contribution and how reviewers perceive it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74350c47-a51e-4eb7-a86f-20e90e788d35",
+  "isSidechain": false,
+  "requestId": "req_011CbSmTaa2pC8kXEPa5FjEZ",
+  "type": "assistant",
+  "uuid": "de56bbf3-356e-4c54-a7de-c1f79c1d76c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTzV9E4srf7u9mfuZ55c1k",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1210,
+      "cache_read_input_tokens": 35244,
+      "output_tokens": 5727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5727,
+          "cache_read_input_tokens": 35244,
+          "cache_creation_input_tokens": 1210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-27T08:37:29.173Z_
+
+Now I have sufficient research to provide a thorough assessment. Let me synthesize my findings.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [Reward Models Identify Consistency, Not Causality](https://arxiv.org/abs/2502.14619) (arXiv 2025): 确认了 PRM 依赖结构一致性而非逻辑正确性——移除问题描述对奖励分数影响很小，但改变数值或破坏推理流显著影响输出。这是 PGCT 的核心动机论文，proposal 对其引用准确。
+- [Reward Under Attack](https://arxiv.org/abs/2603.06621) (arXiv 2026): 三级诊断框架揭示 PRM 的 fluency-logic 分离——对表面风格变化高度不变（reward 变化 <0.1），但对逻辑损坏的推理检测不一致。43% reward hacking 的数字得到验证。
+- [PARC/PERL](https://arxiv.org/abs/2502.02362) (ICML 2025): 开源 LLM 在 70B+ 模型上实现 >90% premise recall，PARC 将线性链重构为 DAG，error detection 提升 6-16%。Proposal 的 DAG extraction 方法直接依赖此工作。
+- [CRM — Conditional Reward Modeling](https://arxiv.org/abs/2509.26578) (ICLR 2026): 将过程奖励建模为以所有前置步骤为条件的条件概率，通过条件概率链式法则实现 credit attribution。**关键区别**：CRM 仍是 pointwise 预测范式（每步输出一个标量），没有在 embedding space 中编码步骤间的关系结构。
+- [APRM — Adversarial Training for PRMs](https://arxiv.org/abs/2511.22888) (arXiv 2025): Generator-PRM 对抗博弈产生渐进更难的 negatives，OOD +5.3pp。**关键局限**：negatives 是 domain-agnostic 的，没有利用逻辑依赖结构。
+- [ThinkPRM — Process Reward Models That Think](https://openreview.net/forum?id=V727xqBYIW) (ICLR 2026 submission): 生成式验证范式，通过生成验证 CoT 来评估每步，仅用 PRM800K 1% 的标签就超越判别式 PRM。**Proposal 未讨论此工作。**
+- [CRV — Verifying CoT Reasoning via Computational Graph](https://arxiv.org/abs/2510.09312) (ICLR 2026 Oral): 白盒方法，利用 attribution graph 的结构指纹区分正确/错误推理步骤，GSM8K 上 93.4% 准确率。**Proposal 未讨论此工作。**
+- [From Chains to DAGs](https://arxiv.org/abs/2601.17593) (arXiv 2026): 在 LLM 隐状态中通过线性 probe 可恢复 DAG 结构（node depth, pairwise distance, adjacency），峰值出现在中间层。Proposal 引用准确。
+- [GoV — Graph of Verification](https://arxiv.org/abs/2506.12509) (arXiv 2025): Training-free 的 DAG 验证框架，自适应调整验证粒度。Proposal 已提及。
+- [PRMBench](https://arxiv.org/abs/2501.03124) (ACL 2025) / [PathFinder-PRM](https://arxiv.org/abs/2505.19706): 当前 open-source PRM SOTA 67.7 vs. 人类 83.8，16 分 gap 确认。Simplicity detection 子任务 <50 分，是结构化方法的潜在优势区。
+
+- **调研总结**: 当前 PRM 研究分化为两条主线——(1) 判别式 PRM 的鲁棒性增强（APRM 对抗训练、CRM 条件建模、CRA 因果校正），均未利用显式逻辑依赖结构；(2) 生成式验证范式转换（ThinkPRM），完全绕开判别式 PRM 的局限。PGCT 在第一条主线上提出了一个独特的 angle：用逻辑依赖 DAG 作为 contrastive training 的锚点。该组合确实尚无先例。
+
+---
+
+【发掘点 1】
+- 维度: 核心 claim 强化
+- 内容: Proposal 的理论叙事链存在一个未被利用的关键环节——"From Chains to DAGs" 证明 LLM 隐状态**已经**编码了 DAG 结构，但标准 PRM 训练没有激活这个能力用于奖励预测。Proposal 应将此构建为一个显式的"表征-利用鸿沟"（representation-utilization gap）论证：(a) 模型拥有编码逻辑结构的表征能力（已被 probe 证实），(b) 标准 BCE pointwise 训练信号不足以将这种表征引导到奖励判断上（Xu et al. 2025 证实 PRM 依赖一致性而非结构），(c) PGCT 的 DAG-contrastive InfoNCE loss 恰好提供了缺失的训练信号——它在 embedding space 中显式要求"结构相同→表征相近，结构不同→表征远离"，从而桥接了 representation 和 utilization 之间的鸿沟。这把 PGCT 从"一个新的训练技巧"提升为"一种理论上有依据的表征激活方法"，显著增强审稿人对 approach motivation 的认可度。
+- 价值: 直接强化 Novelty 和 Significance。将 PGCT 的贡献从工程层面的方法组合提升为有理论根基的表征学习方法，回答审稿人最可能提的"why this specific approach"问题。
+- 调研依据: 直接参考 [From Chains to DAGs](https://arxiv.org/abs/2601.17593) 的 probe 发现（DAG 结构可从中间层恢复）与 [Xu et al. 2025](https://arxiv.org/abs/2502.14619) 的发现（PRM 不利用逻辑结构）之间的张力。
+
+【发掘点 2】
+- 维度: related work 差异化
+- 内容: Proposal 遗漏了两篇重要的相关工作：(1) **ThinkPRM** (ICLR 2026 submission)——生成式验证范式，仅用 1% 过程标签超越判别式 PRM。这不是 novelty 威胁，但代表了一个审稿人必然知道的重量级 concurrent work。Proposal 应明确定位：ThinkPRM 通过生成式推理绕开了判别式 PRM 的表征局限，而 PGCT 直接增强判别式 PRM 的表征能力。两者正交互补——PGCT 训练出的 DAG-aware representations 理论上可以作为 ThinkPRM 式生成验证的更好 backbone。(2) **CRV** (ICLR 2026 Oral)——利用 attribution graph 的结构指纹做推理验证。CRV 证明了"图结构对验证有信息量"这个更广泛的命题，但它是白盒 inference-time 方法（需要访问模型内部 attribution），而 PGCT 是 training-time 方法。将 CRV 纳入讨论可以构建一个更完整的叙事：图结构对验证的价值已被 CRV（内部 circuit 图）和 GoV（外部推理图）从不同角度证实，PGCT 首次将其引入 PRM 训练目标。
+- 价值: 直接命中 Related Work 差异化维度。遗漏 ICLR 2026 Oral 和高影响力 submission 是审稿人几乎一定会 flag 的问题。同时，纳入讨论反而能强化 PGCT 的叙事——多个独立工作都表明图结构对验证有价值，但只有 PGCT 将其作为训练信号。
+- 调研依据: [ThinkPRM](https://openreview.net/forum?id=V727xqBYIW) 的生成式验证范式对比，[CRV](https://arxiv.org/abs/2510.09312) 的 attribution graph 结构指纹验证方法（ICLR 2026 Oral）。
+
+【发掘点 3】
+- 维度: trivial alternative 威胁
+- 内容: 一个精明的审稿人会问：**"如果我只是在 APRM 的对抗训练框架中，让 Generator 专门生成逻辑损坏类的 negatives（如破坏前提引用、制造无效推理），不需要显式提取 DAG，能不能达到类似效果？"** 这是一个真实的 trivial alternative 威胁。Proposal 的 ablation A3（random perturbation vs. DAG-aware perturbation）部分回答了这个问题，但它只测试了"随机扰动 vs. DAG 感知扰动"，没有测试"没有 DAG 但 targeted 逻辑扰动 vs. 有 DAG 的结构化扰动"。建议在理论层面预先构建防线：DAG 的价值不仅在于生成更好的 negatives（这确实可以被更聪明的 Generator 部分替代），更在于 InfoNCE loss 在 embedding space 中编码的**结构关系约束**——它要求模型的表征空间显式反映步骤间的逻辑依赖拓扑，而这是任何 pointwise 对抗训练无法提供的（无论 negatives 多 hard）。换言之：APRM 改进的是单步分类的决策边界，PGCT 改变的是整个表征空间的组织方式。Proposal 当前对此区分的论述不够尖锐。
+- 价值: 命中 Novelty 维度。如果审稿人认为 PGCT 相比 APRM 的增量仅是"更好的 negatives"，novelty 评分会大幅缩水。将论述重心从"更好的 negatives"转向"表征空间的结构化组织"是保卫 novelty claim 的关键。
+- 调研依据: [APRM](https://arxiv.org/abs/2511.22888) 的对抗训练框架 vs. PGCT 的 contrastive embedding 学习之间的本质区别。
+
+【发掘点 4】
+- 维度: significance 提升
+- 内容: Proposal 当前将贡献定位为"PRM 鲁棒性的改进方法"，这个 framing 太窄了。如果 PGCT 有效，它实际上验证了一个更一般的原则：**"结构监督"（structural supervision）——利用已知的推理结构作为对比学习锚点——比"模式监督"（pattern supervision）——对抗特定错误模式——具有更好的泛化性和鲁棒性。** 这个原则的适用范围远超 PRM：任何需要验证结构化推理的任务（代码验证、定理证明、规划验证）都可能受益。Proposal 应在 Introduction 或 Conclusion 中明确提出这个更广泛的原则性贡献，而不仅仅将 PGCT 描述为"一种新的 PRM 训练方法"。这不需要额外实验——只需在 framing 上提升抽象层次。具体来说，可以将 PGCT 定位为 "structural supervision" 范式的首个实例化（in the context of PRM training），类似于 invariant risk minimization 提出了"不变性原则"后各领域的跟进工作。
+- 价值: 直接命中 Significance 维度。将贡献从"method-level"提升到"principle-level"显著提高审稿人对论文影响力的评价。
+- 调研依据: 基于领域整体趋势判断——[CRV](https://arxiv.org/abs/2510.09312) (内部 circuit 图结构) 、[GoV](https://arxiv.org/abs/2506.12509) (外部推理 DAG)、[From Chains to DAGs](https://arxiv.org/abs/2601.17593) (隐状态中的 DAG 编码) 三篇独立工作从不同角度证实了结构信息对验证的价值，暗示了一个更一般的 "structural supervision" 研究方向。
+
+【发掘点 5】
+- 维度: 前提假设质疑
+- 内容: Proposal 的隐含假设之一是：**DAG-anchored contrastive training 教会模型的是"逻辑因果敏感性"（logical causality sensitivity）**。但需要仔细区分两种不同层次的能力：(1) **结构依赖敏感性**（structural dependency sensitivity）——模型能检测到前提链接是否被正确建立/保持（步骤 j 是否真的使用了步骤 i 的结果）；(2) **语义推理有效性**（semantic inference validity）——模型能判断从给定前提到结论的推理是否逻辑上有效。DAG 结构对第 (1) 种能力的训练是充分且必要的，但对第 (2) 种能力只提供了部分帮助（DAG 告诉你哪些前提被使用，但不验证推理本身的逻辑有效性）。Proposal 当前在用"causality"这个词时没有区分这两个层次，这可能让审稿人质疑 PGCT 是否真的在训练"因果性"还是只是更精细的"结构一致性"。建议：(a) 明确区分这两个层次；(b) 论证 PGCT 对两者都有贡献——对 (1) 通过 DAG topology 的对比学习，对 (2) 通过"逻辑无效但表面流畅"的 hard negatives（这些 negatives 保持正确的前提引用但推理步骤本身无效）；(c) 适当调整用语，避免 over-claim "causality" 而实际只证明了 "structural dependency sensitivity"。
+- 价值: 命中 Novelty 维度（防止 over-claim 导致审稿人反弹）和核心 claim 的严谨性。精确的术语使用和层次区分是 AAAI 审稿中区分"solid contribution"和"overclaimed contribution"的关键。
+- 调研依据: [Xu et al. 2025](https://arxiv.org/abs/2502.14619) 使用 "causality" 指代逻辑正确性（vs. consistency），但 PGCT 的实际训练目标更精确地对应 "structural dependency sensitivity" + "部分 semantic validity"。[CRM](https://arxiv.org/abs/2509.26578) 的条件概率链式法则建模也面临类似的 "conditioning ≠ causal understanding" 的质疑。
+
+Sources:
+- [Reward Models Identify Consistency, Not Causality](https://arxiv.org/abs/2502.14619)
+- [Reward Under Attack](https://arxiv.org/abs/2603.06621)
+- [PARC/PERL](https://arxiv.org/abs/2502.02362)
+- [From Chains to DAGs](https://arxiv.org/abs/2601.17593)
+- [CRM — Conditional Reward Modeling](https://arxiv.org/abs/2509.26578)
+- [APRM — Adversarial Training for PRMs](https://arxiv.org/abs/2511.22888)
+- [ThinkPRM — Process Reward Models That Think](https://openreview.net/forum?id=V727xqBYIW)
+- [CRV — Verifying CoT via Computational Graph](https://arxiv.org/abs/2510.09312)
+- [GoV — Graph of Verification](https://arxiv.org/abs/2506.12509)
+- [PRMBench](https://arxiv.org/abs/2501.03124)
+- [PathFinder-PRM](https://arxiv.org/abs/2505.19706)
+- [CPMI](https://arxiv.org/abs/2604.10660)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de56bbf3-356e-4c54-a7de-c1f79c1d76c3",
+  "isSidechain": false,
+  "requestId": "req_011CbSmTaa2pC8kXEPa5FjEZ",
+  "type": "assistant",
+  "uuid": "0ba8602f-56e2-40a0-9905-c2432b1d1dee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTzV9E4srf7u9mfuZ55c1k",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1210,
+      "cache_read_input_tokens": 35244,
+      "output_tokens": 5727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5727,
+          "cache_read_input_tokens": 35244,
+          "cache_creation_input_tokens": 1210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "0ba8602f-56e2-40a0-9905-c2432b1d1dee",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Premise-Graph Contrastive Training for Logic-Grounded Process Reward Models  ## Core Problem  Current process reward models detect consistency rather than causality — \"Reward Models Identify Consist…",
+  "leafUuid": "0ba8602f-56e2-40a0-9905-c2432b1d1dee",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Premise-graph contrastive training for logic-grounded reward models",
+  "sessionId": "49b1c0dc-8774-4509-bb1b-76c2cae52288"
+}
+```
+
+---

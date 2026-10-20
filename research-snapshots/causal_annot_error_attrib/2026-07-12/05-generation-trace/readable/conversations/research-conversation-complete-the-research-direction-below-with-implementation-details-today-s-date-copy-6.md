@@ -1,0 +1,9731 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-28 (UTC).** Only recommend ve
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 152
+- **Recorded user turns:** 2
+- **Tool calls:** 39
+- **Original source:** `logs/chats/exported-trajectories/account-1/c634caab-4e73-4d2e-8d06-c7c8f95042a4.jsonl`
+- **Structured JSON:** [`6e948526ef49244a72db.json`](../../sessions/6e/6e948526ef49244a72db.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:33:36.489Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:33:36.489Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.\n\n{\n  \"title\": \"CRADE: Joint Contamination-Robustness Decomposition via Contamination-Aware IRT\",\n  \"core_problem\": \"No existing framework can determine whether a model fails adversarial benchmark variants because it memorized original answers (contamination) or because it lacks genuine reasoning ability (capability deficit) — all current work observes this entanglement but none models it, preventing trustworthy LLM capability assessment.\",\n  \"opportunity\": \"Three previously siloed research streams — IRT-based LLM evaluation (PSN-IRT AAAI 2026 Oral, ATLAS), contamination detection/correction (DCR EMNLP 2025, CoDeC, JECS), and adversarial robustness testing (MaSTer, RIDE, MATH-Perturb) — have each matured independently to the point where their integration is both technically feasible and urgently needed. The critical catalyst is Kocetkov et al.'s ICLR 2026 proof that all likelihood-based contamination detection fails on reasoning models (AUROC ≈ 50%), creating demand for process-level and IRT-grounded alternatives that bypass token-probability signals entirely. The AAAI 2027 deadline (abstracts July 21, papers July 28, 2026) is 8 weeks out, and the field is converging: PSN-IRT showed IRT works for LLMs but left contamination-adjusted scoring as an explicit open question; DCR showed correction is valuable but used an ad-hoc multiplicative formula without measurement-theoretic grounding (r=0.66 on hard tasks); step-level evaluation tools now exist (STIM at EMNLP 2025, 'Illusion of Reasoning' April 2026) but have never been connected to contamination. Nobody sits at the three-way intersection because these communities publish at different venues (ACL/EMNLP for contamination, ICLR/NeurIPS for robustness, AAAI for psychometric evaluation).\",\n  \"landscape\": \"The current best contamination-to-correction pipeline is DCR (EMNLP 2025), which produces a DCR Factor via fuzzy inference across four contamination levels, achieving ~4% average error on three benchmarks — but its ad-hoc multiplicative correction Acc_adj = Acc × (1 − DCR Factor) has no measurement-theoretic justification and empirically weakens on harder tasks. PSN-IRT (AAAI 2026 Oral) demonstrates IRT's power for LLM evaluation across 41,871 items on 11 benchmarks, flagging contamination indirectly via anomalous guessing-rate parameters, but produces no contamination-adjusted ability scores and leaves this as an explicit open question. RIDE (submitted to ICLR 2026) is the closest competitor, combining IRT with adversarial perturbation for math evaluation — but it uses IRT only as a difficulty reward signal for RL-based question rewriting, not for joint ability-contamination estimation, and relies on LLM-based verification rather than formal symbolic verification. JECS (arXiv May 2026) achieves formal conformal guarantees for multi-model decontamination but wastes information by binarizing items into keep/discard rather than producing continuous corrected scores. For step-level evaluation, 'The Illusion of Reasoning' (April 2026) reveals that across 13 frontier models, reasoning falls into three distinct modes (genuine/scaffolding/decorative), and STIM (EMNLP 2025) attributes memorization to token-level sources in reasoning chains — but neither connects to contamination detection or adversarial perturbation. MathArena (NeurIPS 2025 D&B Track) provides the ideal ground-truth validation source with genuinely uncontaminated competition data from 2025-2026, covering 162 problems across 7 competitions with 50+ models evaluated.\",\n  \"inspired_by\": \"Field guide gaps: 'Contamination-aware IRT' (gap 3), 'Step-level perturbation alignment' (gap 2), 'Joint contamination-robustness decomposition' (gap 1); Innovation patterns: 'Self-Referential Measurement' (model as own control via original-vs-variant), 'Taxonomy-Then-Framework' (G+C-R decomposition as principled taxonomy), 'Formal Guarantees on Evaluation Methodology' (EM convergence for contamination-aware 3PL IRT), 'Detection-to-Correction Bridge' (from detection signals to calibrated ability scores); Untried combinations: 'Contamination-aware IRT with adversarial variant generation' (combination 1), 'Step Perturbation Alignment' (combination 2), 'Conformal p-values as contamination priors for IRT' (combination 3)\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"human_in_loop\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"auto_research\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\", \"speed_bottleneck\": \"...\"}\n  },\n  \"target_venues\": [\"Only venues with deadlines after 2026-05-28\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary (150-200 words)\",\n  \"project_name\": \"snake_case_identifier (max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with web_search that cited papers are real. Drop unverifiable ones.\n\n**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及\n\n## 可行性验证\n\n1. 搜索类似方法的已有实现（GitHub）\n2. 查找需要打败的具体 baseline 数字\n3. 了解类似实验的硬件/数据需求\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:33:36.493Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:33:36.493Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+## Round 1
+
+143 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:33:36.509Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.
+
+{
+  "title": "CRADE: Joint Contamination-Robustness Decomposition via Contamination-Aware IRT",
+  "core_problem": "No existing framework can determine whether a model fails adversarial benchmark variants because it memorized original answers (contamination) or because it lacks genuine reasoning ability (capability deficit) — all current work observes this entanglement but none models it, preventing trustworthy LLM capability assessment.",
+  "opportunity": "Three previously siloed research streams — IRT-based LLM evaluation (PSN-IRT AAAI 2026 Oral, ATLAS), contamination detection/correction (DCR EMNLP 2025, CoDeC, JECS), and adversarial robustness testing (MaSTer, RIDE, MATH-Perturb) — have each matured independently to the point where their integration is both technically feasible and urgently needed. The critical catalyst is Kocetkov et al.'s ICLR 2026 proof that all likelihood-based contamination detection fails on reasoning models (AUROC ≈ 50%), creating demand for process-level and IRT-grounded alternatives that bypass token-probability signals entirely. The AAAI 2027 deadline (abstracts July 21, papers July 28, 2026) is 8 weeks out, and the field is converging: PSN-IRT showed IRT works for LLMs but left contamination-adjusted scoring as an explicit open question; DCR showed correction is valuable but used an ad-hoc multiplicative formula without measurement-theoretic grounding (r=0.66 on hard tasks); step-level evaluation tools now exist (STIM at EMNLP 2025, 'Illusion of Reasoning' April 2026) but have never been connected to contamination. Nobody sits at the three-way intersection because these communities publish at different venues (ACL/EMNLP for contamination, ICLR/NeurIPS for robustness, AAAI for psychometric evaluation).",
+  "landscape": "The current best contamination-to-correction pipeline is DCR (EMNLP 2025), which produces a DCR Factor via fuzzy inference across four contamination levels, achieving ~4% average error on three benchmarks — but its ad-hoc multiplicative correction Acc_adj = Acc × (1 − DCR Factor) has no measurement-theoretic justification and empirically weakens on harder tasks. PSN-IRT (AAAI 2026 Oral) demonstrates IRT's power for LLM evaluation across 41,871 items on 11 benchmarks, flagging contamination indirectly via anomalous guessing-rate parameters, but produces no contamination-adjusted ability scores and leaves this as an explicit open question. RIDE (submitted to ICLR 2026) is the closest competitor, combining IRT with adversarial perturbation for math evaluation — but it uses IRT only as a difficulty reward signal for RL-based question rewriting, not for joint ability-contamination estimation, and relies on LLM-based verification rather than formal symbolic verification. JECS (arXiv May 2026) achieves formal conformal guarantees for multi-model decontamination but wastes information by binarizing items into keep/discard rather than producing continuous corrected scores. For step-level evaluation, 'The Illusion of Reasoning' (April 2026) reveals that across 13 frontier models, reasoning falls into three distinct modes (genuine/scaffolding/decorative), and STIM (EMNLP 2025) attributes memorization to token-level sources in reasoning chains — but neither connects to contamination detection or adversarial perturbation. MathArena (NeurIPS 2025 D&B Track) provides the ideal ground-truth validation source with genuinely uncontaminated competition data from 2025-2026, covering 162 problems across 7 competitions with 50+ models evaluated.",
+  "inspired_by": "Field guide gaps: 'Contamination-aware IRT' (gap 3), 'Step-level perturbation alignment' (gap 2), 'Joint contamination-robustness decomposition' (gap 1); Innovation patterns: 'Self-Referential Measurement' (model as own control via original-vs-variant), 'Taxonomy-Then-Framework' (G+C-R decomposition as principled taxonomy), 'Formal Guarantees on Evaluation Methodology' (EM convergence for contamination-aware 3PL IRT), 'Detection-to-Correction Bridge' (from detection signals to calibrated ability scores); Untried combinations: 'Contamination-aware IRT with adversarial variant generation' (combination 1), 'Step Perturbation Alignment' (combination 2), 'Conformal p-values as contamination priors for IRT' (combination 3)"
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {"gpu_hours": "...", "timeline": "...", "estimated_gpu_cost": "..."},
+      "human_in_loop": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "..."},
+      "auto_research": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "...", "speed_bottleneck": "..."}
+  },
+  "target_venues": ["Only venues with deadlines after 2026-05-28"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary (150-200 words)",
+  "project_name": "snake_case_identifier (max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with web_search that cited papers are real. Drop unverifiable ones.
+
+**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及
+
+## 可行性验证
+
+1. 搜索类似方法的已有实现（GitHub）
+2. 查找需要打败的具体 baseline 数字
+3. 了解类似实验的硬件/数据需求
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "f9e22df5-b7e3-4749-abd6-8c7150bced5a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:33:36.508Z_
+
+```json
+{
+  "parentUuid": "f9e22df5-b7e3-4749-abd6-8c7150bced5a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "c27b60c8-ccca-48f8-b7b9-2c8c0689a453",
+  "timestamp": "2026-05-28T11:33:36.508Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:33:36.508Z_
+
+```json
+{
+  "parentUuid": "c27b60c8-ccca-48f8-b7b9-2c8c0689a453",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f2e915e1-7b8c-4546-9ee7-da10c3fe2dc8",
+  "timestamp": "2026-05-28T11:33:36.508Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-28T11:33:40.643Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. This is a complex task that requires:
+
+1. Web research to verify papers, find current models, check for concurrent work
+2. Searching for venue deadlines
+3. Checking for competing/concurrent work
+4. Verifying feasibility
+
+Let me start by launching several research agents in parallel to gather the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2e915e1-7b8c-4546-9ee7-da10c3fe2dc8",
+  "isSidechain": false,
+  "requestId": "req_011CbUtrVZ8He5ASwC3hNP8z",
+  "type": "assistant",
+  "uuid": "39535ca8-a90e-4293-83da-ec3375d974f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016sW1VE1VonPqQNajE39HQ4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3107,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T11:33:41.237Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0114m9bJYbEzcpfdXw8C1kKa`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39535ca8-a90e-4293-83da-ec3375d974f8",
+  "isSidechain": false,
+  "requestId": "req_011CbUtrVZ8He5ASwC3hNP8z",
+  "type": "assistant",
+  "uuid": "b7b5b071-043f-4e67-aa3f-fec0751def3e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016sW1VE1VonPqQNajE39HQ4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3107,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T11:33:41.246Z_
+
+<details><summary>↩ Tool result · `toolu_0114m9bJYbEzcpfdXw8C1kKa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7b5b071-043f-4e67-aa3f-fec0751def3e",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "27841676-5c20-4ca1-abff-1987bb899dec",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "b7b5b071-043f-4e67-aa3f-fec0751def3e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-28T11:33:45.730Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to do extensive web research. Let me launch multiple parallel searches to gather all the information I need:
+
+1. Verify key references (papers cited)
+2. Search for concurrent/competing work
+3. Find venue deadlines
+4. Check for existing implementations
+5. Find current top-performing open-source models
+
+Let me start with several parallel searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27841676-5c20-4ca1-abff-1987bb899dec",
+  "isSidechain": false,
+  "requestId": "req_011CbUtrrXSergibGXLFMaAn",
+  "type": "assistant",
+  "uuid": "11f4a6a5-6afe-4181-8880-585cdc785042",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Ak9vF8aEWZ7fTC7ptcmHF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1198,
+      "cache_read_input_tokens": 14121,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 14121,
+          "cache_creation_input_tokens": 1198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-28T11:33:46.802Z_
+
+Let me launch parallel research agents to cover all the required searches simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11f4a6a5-6afe-4181-8880-585cdc785042",
+  "isSidechain": false,
+  "requestId": "req_011CbUtrrXSergibGXLFMaAn",
+  "type": "assistant",
+  "uuid": "9686e45f-096b-4bfe-a3ca-d99c514c67c9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Ak9vF8aEWZ7fTC7ptcmHF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1198,
+      "cache_read_input_tokens": 14121,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 14121,
+          "cache_creation_input_tokens": 1198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T11:33:59.589Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014QjnQUR9USKvfweLC4cTz7`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify key references",
+  "prompt": "I need to verify that the following papers are real and find their correct venue/year. Use WebSearch for each one. For each paper, report: title, venue, year, and whether it's verified or not. Also find any additional key papers in these areas that I might be missing.\n\nPapers to verify:\n1. PSN-IRT - AAAI 2026 Oral (IRT-based LLM evaluation, 41,871 items, 11 benchmarks)\n2. ATLAS - IRT for LLM evaluation\n3. DCR - EMNLP 2025 (contamination detection/correction, DCR Factor, fuzzy inference)\n4. CoDeC - contamination detection\n5. JECS - arXiv May 2026 (conformal guarantees for multi-model decontamination)\n6. Kocetkov et al. ICLR 2026 (proof that likelihood-based contamination detection fails on reasoning models, AUROC ≈ 50%)\n7. RIDE - submitted to ICLR 2026 (IRT with adversarial perturbation for math evaluation)\n8. STIM - EMNLP 2025 (token-level memorization attribution in reasoning chains)\n9. MaSTer - adversarial robustness testing\n10. MATH-Perturb - adversarial math benchmark perturbation\n11. MathArena - NeurIPS 2025 D&B Track (uncontaminated competition math data)\n12. \"The Illusion of Reasoning\" - April 2026 (reasoning falls into genuine/scaffolding/decorative modes across 13 frontier models)\n\nFor each, search like: \"PSN-IRT AAAI 2026 IRT LLM evaluation\" etc. Report findings concisely.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9686e45f-096b-4bfe-a3ca-d99c514c67c9",
+  "isSidechain": false,
+  "requestId": "req_011CbUtrrXSergibGXLFMaAn",
+  "type": "assistant",
+  "uuid": "becdf597-d325-4450-9a34-338f20125ce4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Ak9vF8aEWZ7fTC7ptcmHF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1198,
+      "cache_read_input_tokens": 14121,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 14121,
+          "cache_creation_input_tokens": 1198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T11:33:59.599Z_
+
+<details><summary>↩ Tool result · `toolu_014QjnQUR9USKvfweLC4cTz7`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a8ecd1dd9a922dc44 (internal ID - do not mention to user. Use SendMessage with to: 'a8ecd1dd9a922dc44' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a8ecd1dd9a922dc44.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "becdf597-d325-4450-9a34-338f20125ce4",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "223d3a0c-ce10-4cef-9189-f1494b083648",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a8ecd1dd9a922dc44",
+    "description": "Verify key references",
+    "prompt": "I need to verify that the following papers are real and find their correct venue/year. Use WebSearch for each one. For each paper, report: title, venue, year, and whether it's verified or not. Also find any additional key papers in these areas that I might be missing.\n\nPapers to verify:\n1. PSN-IRT - AAAI 2026 Oral (IRT-based LLM evaluation, 41,871 items, 11 benchmarks)\n2. ATLAS - IRT for LLM evaluation\n3. DCR - EMNLP 2025 (contamination detection/correction, DCR Factor, fuzzy inference)\n4. CoDeC - contamination detection\n5. JECS - arXiv May 2026 (conformal guarantees for multi-model decontamination)\n6. Kocetkov et al. ICLR 2026 (proof that likelihood-based contamination detection fails on reasoning models, AUROC ≈ 50%)\n7. RIDE - submitted to ICLR 2026 (IRT with adversarial perturbation for math evaluation)\n8. STIM - EMNLP 2025 (token-level memorization attribution in reasoning chains)\n9. MaSTer - adversarial robustness testing\n10. MATH-Perturb - adversarial math benchmark perturbation\n11. MathArena - NeurIPS 2025 D&B Track (uncontaminated competition math data)\n12. \"The Illusion of Reasoning\" - April 2026 (reasoning falls into genuine/scaffolding/decorative modes across 13 frontier models)\n\nFor each, search like: \"PSN-IRT AAAI 2026 IRT LLM evaluation\" etc. Report findings concisely.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a8ecd1dd9a922dc44.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "becdf597-d325-4450-9a34-338f20125ce4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T11:34:10.848Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Xrhq1exWmmA26s3KdB8Sqp`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search concurrent work",
+  "prompt": "I'm designing a research project called \"CRADE\" that jointly decomposes contamination and robustness in LLM evaluation using contamination-aware IRT (Item Response Theory). The core idea is to extend 3-parameter IRT models with a contamination parameter, use adversarial benchmark variants as paired items, and run EM to jointly estimate model ability, contamination exposure, and item difficulty.\n\nI need to check if anyone is already doing this or something very similar. Please search thoroughly:\n\n1. Search arXiv for \"contamination aware IRT 2026\" and \"IRT contamination LLM evaluation 2026\"\n2. Search arXiv for \"joint contamination robustness decomposition 2026\"\n3. Search arXiv for \"adversarial benchmark IRT LLM 2026\"\n4. Search arXiv for \"contamination correction IRT 2026\"\n5. Search OpenReview for \"contamination IRT\" submissions to AAAI 2027 or NeurIPS 2026 or ICML 2026\n6. Search for \"benchmark contamination correction item response theory\" 2025-2026\n7. Search for any paper combining IRT with adversarial perturbation for contamination-aware LLM evaluation\n8. Search Google Scholar for \"contamination-aware item response theory\" 2025-2026\n\nReport any papers that are highly similar to this approach. For each finding, note how similar it is (high/medium/low) and what the key differences are.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "223d3a0c-ce10-4cef-9189-f1494b083648",
+  "isSidechain": false,
+  "requestId": "req_011CbUttCRJ68LTPMiXADwAF",
+  "type": "assistant",
+  "uuid": "5238bd1b-c176-401b-9988-216b531b7908",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Se41yFNzVexLK77DFsgPon",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 893,
+      "cache_read_input_tokens": 15319,
+      "output_tokens": 455,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 455,
+          "cache_read_input_tokens": 15319,
+          "cache_creation_input_tokens": 893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T11:34:10.859Z_
+
+<details><summary>↩ Tool result · `toolu_01Xrhq1exWmmA26s3KdB8Sqp`</summary>
+
+```text
+Async agent launched successfully.
+agentId: aedaa7d545c0573d3 (internal ID - do not mention to user. Use SendMessage with to: 'aedaa7d545c0573d3' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aedaa7d545c0573d3.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5238bd1b-c176-401b-9988-216b531b7908",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "145383b5-a608-498d-b264-67c8d202e521",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "aedaa7d545c0573d3",
+    "description": "Search concurrent work",
+    "prompt": "I'm designing a research project called \"CRADE\" that jointly decomposes contamination and robustness in LLM evaluation using contamination-aware IRT (Item Response Theory). The core idea is to extend 3-parameter IRT models with a contamination parameter, use adversarial benchmark variants as paired items, and run EM to jointly estimate model ability, contamination exposure, and item difficulty.\n\nI need to check if anyone is already doing this or something very similar. Please search thoroughly:\n\n1. Search arXiv for \"contamination aware IRT 2026\" and \"IRT contamination LLM evaluation 2026\"\n2. Search arXiv for \"joint contamination robustness decomposition 2026\"\n3. Search arXiv for \"adversarial benchmark IRT LLM 2026\"\n4. Search arXiv for \"contamination correction IRT 2026\"\n5. Search OpenReview for \"contamination IRT\" submissions to AAAI 2027 or NeurIPS 2026 or ICML 2026\n6. Search for \"benchmark contamination correction item response theory\" 2025-2026\n7. Search for any paper combining IRT with adversarial perturbation for contamination-aware LLM evaluation\n8. Search Google Scholar for \"contamination-aware item response theory\" 2025-2026\n\nReport any papers that are highly similar to this approach. For each finding, note how similar it is (high/medium/low) and what the key differences are.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aedaa7d545c0573d3.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "5238bd1b-c176-401b-9988-216b531b7908",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "145383b5-a608-498d-b264-67c8d202e521",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T11:34:19.882Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_013TKLswJSG9avcbthsHMuPR`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Venue deadlines research",
+  "prompt": "I need to find AI/ML conference deadlines that are AFTER 2026-05-28 (today). Search for the following venues and their 2026/2027 paper submission deadlines:\n\n1. AAAI 2027 - search \"AAAI 2027 call for papers deadline\"\n2. NeurIPS 2026 - search \"NeurIPS 2026 submission deadline\"\n3. ICLR 2027 - search \"ICLR 2027 submission deadline\"\n4. ACL 2027 - search \"ACL 2027 submission deadline\"\n5. EMNLP 2026 - search \"EMNLP 2026 submission deadline\"\n6. ICML 2026 - search \"ICML 2026 submission deadline\" (probably already passed, but check)\n7. NAACL 2027 - search \"NAACL 2027 deadline\"\n8. COLM 2026 - search \"COLM 2026 submission deadline\"\n9. AISTATS 2027 - search \"AISTATS 2027 deadline\"\n\nFor each venue, report:\n- Abstract deadline (if any)\n- Full paper deadline\n- Whether the deadline is before or after 2026-05-28\n- Conference dates\n- Whether they accept work on LLM evaluation/benchmarking\n\nOnly include venues whose deadlines have NOT yet passed as of 2026-05-28.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "145383b5-a608-498d-b264-67c8d202e521",
+  "isSidechain": false,
+  "requestId": "req_011CbUtu33GV9gqifo2Q1uz1",
+  "type": "assistant",
+  "uuid": "b6050a74-759f-423f-8b20-926b3d2e1583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XkgxBfTk2m9mmZUChn4N1H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 16212,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 16212,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T11:34:19.897Z_
+
+<details><summary>↩ Tool result · `toolu_013TKLswJSG9avcbthsHMuPR`</summary>
+
+```text
+Async agent launched successfully.
+agentId: ac0166e9888b16594 (internal ID - do not mention to user. Use SendMessage with to: 'ac0166e9888b16594' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/ac0166e9888b16594.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6050a74-759f-423f-8b20-926b3d2e1583",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "cb1ea1ff-1670-4f59-99b3-b4b4407169be",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "ac0166e9888b16594",
+    "description": "Venue deadlines research",
+    "prompt": "I need to find AI/ML conference deadlines that are AFTER 2026-05-28 (today). Search for the following venues and their 2026/2027 paper submission deadlines:\n\n1. AAAI 2027 - search \"AAAI 2027 call for papers deadline\"\n2. NeurIPS 2026 - search \"NeurIPS 2026 submission deadline\"\n3. ICLR 2027 - search \"ICLR 2027 submission deadline\"\n4. ACL 2027 - search \"ACL 2027 submission deadline\"\n5. EMNLP 2026 - search \"EMNLP 2026 submission deadline\"\n6. ICML 2026 - search \"ICML 2026 submission deadline\" (probably already passed, but check)\n7. NAACL 2027 - search \"NAACL 2027 deadline\"\n8. COLM 2026 - search \"COLM 2026 submission deadline\"\n9. AISTATS 2027 - search \"AISTATS 2027 deadline\"\n\nFor each venue, report:\n- Abstract deadline (if any)\n- Full paper deadline\n- Whether the deadline is before or after 2026-05-28\n- Conference dates\n- Whether they accept work on LLM evaluation/benchmarking\n\nOnly include venues whose deadlines have NOT yet passed as of 2026-05-28.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/ac0166e9888b16594.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "b6050a74-759f-423f-8b20-926b3d2e1583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T11:34:32.635Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_013x5YK9vFfrWtjmnZtV7D93`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Feasibility & baselines research",
+  "prompt": "I'm planning a research project that combines IRT (Item Response Theory) with adversarial benchmark perturbation to decompose LLM contamination from genuine capability. I need to assess feasibility:\n\n1. Search GitHub for existing IRT implementations for LLM evaluation:\n   - \"py-irt LLM\" or \"pyirt\" \n   - \"PSN-IRT code\" or \"PSN-IRT github\"\n   - Search \"item response theory LLM evaluation github\"\n\n2. Search for adversarial math benchmark perturbation tools:\n   - \"MATH-Perturb github code\"\n   - \"adversarial benchmark perturbation LLM github\"\n   - \"RIDE IRT adversarial math github\"\n\n3. Find specific baseline numbers I'd need to beat:\n   - Search \"DCR contamination correction accuracy\" - what's their best correction accuracy?\n   - Search \"PSN-IRT model ranking correlation\" - what correlations do they achieve?\n   - Search \"MathArena benchmark results 2026\" - what are current scores?\n\n4. Find current top-performing open-source LLMs for math/reasoning (as of May 2026):\n   - Search \"best open source LLM math reasoning 2026\"\n   - Search \"open source reasoning model benchmark 2026\"\n   - Search \"Qwen3 DeepSeek R2 Llama 4 math benchmark 2026\"\n\n5. Hardware requirements:\n   - Search \"IRT estimation computational cost LLM evaluation\"\n   - How many GPU hours would running ~50 models on ~5000 items take?\n   - What's the cost of generating adversarial variants using an LLM?\n\nReport findings concisely with specific numbers where possible.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb1ea1ff-1670-4f59-99b3-b4b4407169be",
+  "isSidechain": false,
+  "requestId": "req_011CbUtuhBwghqbTS8VhXgPF",
+  "type": "assistant",
+  "uuid": "8de076e4-2b29-427e-bd3a-5a60bade512e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsaY5aFzQfdASxpngCp7PL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 16911,
+      "output_tokens": 520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 520,
+          "cache_read_input_tokens": 16911,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T11:34:32.644Z_
+
+<details><summary>↩ Tool result · `toolu_013x5YK9vFfrWtjmnZtV7D93`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a38ebf0c1ade3ea34 (internal ID - do not mention to user. Use SendMessage with to: 'a38ebf0c1ade3ea34' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a38ebf0c1ade3ea34.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8de076e4-2b29-427e-bd3a-5a60bade512e",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "c79053e6-7741-4f57-92e4-7129a2f3336e",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a38ebf0c1ade3ea34",
+    "description": "Feasibility & baselines research",
+    "prompt": "I'm planning a research project that combines IRT (Item Response Theory) with adversarial benchmark perturbation to decompose LLM contamination from genuine capability. I need to assess feasibility:\n\n1. Search GitHub for existing IRT implementations for LLM evaluation:\n   - \"py-irt LLM\" or \"pyirt\" \n   - \"PSN-IRT code\" or \"PSN-IRT github\"\n   - Search \"item response theory LLM evaluation github\"\n\n2. Search for adversarial math benchmark perturbation tools:\n   - \"MATH-Perturb github code\"\n   - \"adversarial benchmark perturbation LLM github\"\n   - \"RIDE IRT adversarial math github\"\n\n3. Find specific baseline numbers I'd need to beat:\n   - Search \"DCR contamination correction accuracy\" - what's their best correction accuracy?\n   - Search \"PSN-IRT model ranking correlation\" - what correlations do they achieve?\n   - Search \"MathArena benchmark results 2026\" - what are current scores?\n\n4. Find current top-performing open-source LLMs for math/reasoning (as of May 2026):\n   - Search \"best open source LLM math reasoning 2026\"\n   - Search \"open source reasoning model benchmark 2026\"\n   - Search \"Qwen3 DeepSeek R2 Llama 4 math benchmark 2026\"\n\n5. Hardware requirements:\n   - Search \"IRT estimation computational cost LLM evaluation\"\n   - How many GPU hours would running ~50 models on ~5000 items take?\n   - What's the cost of generating adversarial variants using an LLM?\n\nReport findings concisely with specific numbers where possible.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a38ebf0c1ade3ea34.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "8de076e4-2b29-427e-bd3a-5a60bade512e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-28T11:34:42.799Z_
+
+I've launched 4 parallel research agents to gather all the information needed:
+
+1. **Reference verification** — checking all 12 cited papers are real
+2. **Concurrent work search** — checking arXiv/OpenReview for competing approaches
+3. **Venue deadlines** — finding which conferences still have open deadlines after today
+4. **Feasibility & baselines** — finding implementations, baseline numbers, current models, and hardware estimates
+
+I'll compile everything into the final JSON once all agents report back.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c79053e6-7741-4f57-92e4-7129a2f3336e",
+  "isSidechain": false,
+  "requestId": "req_011CbUtvdh8TcZKrXhwTGSE1",
+  "type": "assistant",
+  "uuid": "b0afd5f1-bec5-49ca-a49a-5ab073b5c058",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EX2boBxHyr6BGBZdEAEcxt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 767,
+      "cache_read_input_tokens": 17610,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 17610,
+          "cache_creation_input_tokens": 767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T11:34:49.284Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CqjdUHkUozpP2d7Bjkvuvm`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "MathArena and step-level eval",
+  "prompt": "I need to find specific details for a research project on contamination-aware IRT for LLM evaluation. Please search for:\n\n1. MathArena latest results and leaderboard 2026:\n   - Search \"MathArena leaderboard 2026 LLM math\"\n   - What models are evaluated? What are the top scores?\n   - How many problems and competitions does it cover now?\n\n2. Step-level evaluation methods:\n   - Search \"step level reasoning evaluation LLM 2026\"\n   - Search \"process reward model math reasoning 2026\"\n   - What are the best current process-level verification tools?\n\n3. Symbolic math verification tools:\n   - Search \"symbolic math verification LLM answers 2026\"\n   - Search \"SymPy automated math grading benchmark\"\n   - What tools exist for formally verifying math solutions?\n\n4. Contamination detection methods latest:\n   - Search \"LLM benchmark contamination detection 2026\"\n   - Search \"data contamination LLM evaluation survey 2026\"\n   - What's the state of the art as of 2026?\n\n5. Search \"contamination aware evaluation framework LLM 2026\" to find any very recent work.\n\nReport findings with specific numbers and citations.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0afd5f1-bec5-49ca-a49a-5ab073b5c058",
+  "isSidechain": false,
+  "requestId": "req_011CbUtvdh8TcZKrXhwTGSE1",
+  "type": "assistant",
+  "uuid": "4806a148-29bb-493d-9422-e3e35f9b7e3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EX2boBxHyr6BGBZdEAEcxt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 767,
+      "cache_read_input_tokens": 17610,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 17610,
+          "cache_creation_input_tokens": 767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T11:34:49.295Z_
+
+<details><summary>↩ Tool result · `toolu_01CqjdUHkUozpP2d7Bjkvuvm`</summary>
+
+```text
+Async agent launched successfully.
+agentId: aad5a93e1c5cb1b9a (internal ID - do not mention to user. Use SendMessage with to: 'aad5a93e1c5cb1b9a' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aad5a93e1c5cb1b9a.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4806a148-29bb-493d-9422-e3e35f9b7e3d",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "d2819242-cf8b-4573-9c3a-4d994161acf0",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "aad5a93e1c5cb1b9a",
+    "description": "MathArena and step-level eval",
+    "prompt": "I need to find specific details for a research project on contamination-aware IRT for LLM evaluation. Please search for:\n\n1. MathArena latest results and leaderboard 2026:\n   - Search \"MathArena leaderboard 2026 LLM math\"\n   - What models are evaluated? What are the top scores?\n   - How many problems and competitions does it cover now?\n\n2. Step-level evaluation methods:\n   - Search \"step level reasoning evaluation LLM 2026\"\n   - Search \"process reward model math reasoning 2026\"\n   - What are the best current process-level verification tools?\n\n3. Symbolic math verification tools:\n   - Search \"symbolic math verification LLM answers 2026\"\n   - Search \"SymPy automated math grading benchmark\"\n   - What tools exist for formally verifying math solutions?\n\n4. Contamination detection methods latest:\n   - Search \"LLM benchmark contamination detection 2026\"\n   - Search \"data contamination LLM evaluation survey 2026\"\n   - What's the state of the art as of 2026?\n\n5. Search \"contamination aware evaluation framework LLM 2026\" to find any very recent work.\n\nReport findings with specific numbers and citations.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aad5a93e1c5cb1b9a.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "4806a148-29bb-493d-9422-e3e35f9b7e3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-28T11:34:56.485Z_
+
+All 5 research agents are now running in parallel. I'll synthesize their findings into the complete JSON once they return.
+
+[Waiting for all agents to complete...]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2819242-cf8b-4573-9c3a-4d994161acf0",
+  "isSidechain": false,
+  "requestId": "req_011CbUtwrtemAot2hadP7QrE",
+  "type": "assistant",
+  "uuid": "7bcc412a-5981-43e0-aa7b-0827fb3f06bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Nq48FrkCE1DECU4EBNvSZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 18377,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 18377,
+          "cache_creation_input_tokens": 774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T11:34:56.847Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014wAAV44sjMm3gKCGpguaA3`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline call for papers July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bcc412a-5981-43e0-aa7b-0827fb3f06bd",
+  "isSidechain": false,
+  "requestId": "req_011CbUtwrtemAot2hadP7QrE",
+  "type": "assistant",
+  "uuid": "73684944-20fc-4096-9160-488b38415363",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Nq48FrkCE1DECU4EBNvSZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 18377,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 18377,
+          "cache_creation_input_tokens": 774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T11:35:00.360Z_
+
+<details><summary>↩ Tool result · `toolu_014wAAV44sjMm3gKCGpguaA3`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline call for papers July 2026"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"}]
+
+Based on the search results, here's the information about AAAI 2027 submission deadlines:
+
+AAAI-27 will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+For the Main Technical Track, the key deadlines in July 2026 are:
+
+- June 24, 2026: Open Review submission site opens for paper submission
+- July 21, 2026: Abstracts due at 11:59 PM UTC-12
+- July 28, 2026: Full papers due at 11:59 PM UTC-12
+- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12
+
+All deadlines are "anywhere on earth" (UTC-12). Additionally, deadlines are track-specific and may differ, with track-specific deadlines listed on their respective CFP.
+
+The official AAAI 2027 call for papers can be found at https://aaai.org/conference/aaai/aaai-27/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73684944-20fc-4096-9160-488b38415363",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "095f0490-56dc-44db-8e8b-e40a82f0d1bf",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline call for papers July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019r8KgDLmw8TbvJo5jKpjmq",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about AAAI 2027 submission deadlines:\n\nAAAI-27 will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nFor the Main Technical Track, the key deadlines in July 2026 are:\n\n- June 24, 2026: Open Review submission site opens for paper submission\n- July 21, 2026: Abstracts due at 11:59 PM UTC-12\n- July 28, 2026: Full papers due at 11:59 PM UTC-12\n- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12\n\nAll deadlines are \"anywhere on earth\" (UTC-12). Additionally, deadlines are track-specific and may differ, with track-specific deadlines listed on their respective CFP.\n\nThe official AAAI 2027 call for papers can be found at https://aaai.org/conference/aaai/aaai-27/."
+    ],
+    "durationSeconds": 3.5089371529999918,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "73684944-20fc-4096-9160-488b38415363",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-28T11:35:00.377Z_
+
+```json
+{
+  "parentUuid": "095f0490-56dc-44db-8e8b-e40a82f0d1bf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0f8afeb9-8d24-451d-9279-e081603e9a9e",
+  "timestamp": "2026-05-28T11:35:00.377Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-28T11:35:05.654Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VsgW5itGY7LJedd1KeXWFW`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 submission deadline abstract paper May June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f8afeb9-8d24-451d-9279-e081603e9a9e",
+  "isSidechain": false,
+  "requestId": "req_011CbUtxfwsJKAdbygwuc9KQ",
+  "type": "assistant",
+  "uuid": "32c86f9a-7af8-4075-99d0-c22397be005f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ht9etTg6ur3GUmZASiWKrZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 19151,
+      "output_tokens": 116,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 116,
+          "cache_read_input_tokens": 19151,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T11:35:05.971Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RzcGnkdFT3sYLjMqo4j6ms`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32c86f9a-7af8-4075-99d0-c22397be005f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtxfwsJKAdbygwuc9KQ",
+  "type": "assistant",
+  "uuid": "2ab863f3-1b26-48cf-a532-566ec30f6d02",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ht9etTg6ur3GUmZASiWKrZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 19151,
+      "output_tokens": 116,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 116,
+          "cache_read_input_tokens": 19151,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T11:35:10.727Z_
+
+<details><summary>↩ Tool result · `toolu_01VsgW5itGY7LJedd1KeXWFW`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 submission deadline abstract paper May June 2026"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"NeurIPS 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"}]
+
+Based on the search results, here are the key NeurIPS 2026 submission deadlines:
+
+## Main Track
+
+**Abstract submission deadline: May 4, 2026 (AOE)**
+
+**Full paper submission deadline, including all supplementary materials: May 6, 2026 AOE**
+
+## Evaluations & Datasets Track
+
+**Abstract submission deadline: May 4, 2026 (AoE)**
+
+**Full paper submission deadline (including all supplementary materials): May 6, 2026 (AoE)**
+
+## Other Tracks
+
+**Competition proposal submission deadline: May 15, 2026**
+
+**Workshop Application Deadline: June 06, 2026, AoE**
+
+## Important Notes
+
+The different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.
+
+The conference itself will be held December 6th through 12th, 2026 at the International Convention Centre in Sydney, Australia.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32c86f9a-7af8-4075-99d0-c22397be005f",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "9e4b98a6-e866-4c7b-998c-d39ef6c42b1d",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 submission deadline abstract paper May June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G3714LYydhbi2YYRvKbr7P",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "NeurIPS 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          }
+        ]
+      },
+      "Based on the search results, here are the key NeurIPS 2026 submission deadlines:\n\n## Main Track\n\n**Abstract submission deadline: May 4, 2026 (AOE)**\n\n**Full paper submission deadline, including all supplementary materials: May 6, 2026 AOE**\n\n## Evaluations & Datasets Track\n\n**Abstract submission deadline: May 4, 2026 (AoE)**\n\n**Full paper submission deadline (including all supplementary materials): May 6, 2026 (AoE)**\n\n## Other Tracks\n\n**Competition proposal submission deadline: May 15, 2026**\n\n**Workshop Application Deadline: June 06, 2026, AoE**\n\n## Important Notes\n\nThe different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.\n\nThe conference itself will be held December 6th through 12th, 2026 at the International Convention Centre in Sydney, Australia."
+    ],
+    "durationSeconds": 5.0700294040000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "32c86f9a-7af8-4075-99d0-c22397be005f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "9e4b98a6-e866-4c7b-998c-d39ef6c42b1d",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T11:35:13.286Z_
+
+<details><summary>↩ Tool result · `toolu_01RzcGnkdFT3sYLjMqo4j6ms`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"}]
+
+Based on the search results, here's the key information about EMNLP 2026's call for papers:
+
+## Submission Deadline
+
+The EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 (UTC-12).
+
+## Conference Details
+
+The conference will be held in Budapest, Hungary, October 24-29, 2026.
+
+## Paper Types and Scope
+
+EMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing. Papers may contribute negative findings, survey an area, announce the creation of a new resource, argue a position, report novel linguistic insights derived using existing computational techniques, and reproduce (or fail to reproduce) previous results.
+
+## Special Theme
+
+The EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, welcoming work that reflects on the mission(s) of NLP research, reframes collective research goals, proposes new evaluation and scientific methodologies, and builds bridges across multiple disciplines.
+
+## Important Submission Notes
+
+Authors submitting through the ARR 2026 May cycle must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+After submission, all authors must complete the author registration form by May 27, 2026.
+
+For more details, you can visit the official call for papers at https://2026.emnlp.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ab863f3-1b26-48cf-a532-566ec30f6d02",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "048a93ef-939a-4fe5-878c-f888415de98c",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NHvE8yPLnfHE1yUQWz3W5b",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about EMNLP 2026's call for papers:\n\n## Submission Deadline\n\nThe EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 (UTC-12).\n\n## Conference Details\n\nThe conference will be held in Budapest, Hungary, October 24-29, 2026.\n\n## Paper Types and Scope\n\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing. Papers may contribute negative findings, survey an area, announce the creation of a new resource, argue a position, report novel linguistic insights derived using existing computational techniques, and reproduce (or fail to reproduce) previous results.\n\n## Special Theme\n\nThe EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, welcoming work that reflects on the mission(s) of NLP research, reframes collective research goals, proposes new evaluation and scientific methodologies, and builds bridges across multiple disciplines.\n\n## Important Submission Notes\n\nAuthors submitting through the ARR 2026 May cycle must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.\n\nAfter submission, all authors must complete the author registration form by May 27, 2026.\n\nFor more details, you can visit the official call for papers at https://2026.emnlp.org/calls/main_conference_papers/"
+    ],
+    "durationSeconds": 7.3116579239999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2ab863f3-1b26-48cf-a532-566ec30f6d02",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-28T11:35:17.072Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So NeurIPS 2026 main track deadline was May 4-6, 2026 - already passed. EMNLP 2026 deadline was May 25, 2026 - also already passed. AAAI 2027 deadline is July 21/28, 2026 - still open!
+
+Let me search for more venues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "048a93ef-939a-4fe5-878c-f888415de98c",
+  "isSidechain": false,
+  "requestId": "req_011CbUtydFfgtVxAAYLQT6zo",
+  "type": "assistant",
+  "uuid": "49b2b106-b8f0-49d4-894b-be67ac5414ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKRedxxQg6Bz6GmRhMW6AK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 20200,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1958,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 20200,
+          "cache_creation_input_tokens": 1958,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1958
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T11:35:17.630Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AdsVJTa3viH7UUtSEBRmzS`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline call for papers 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49b2b106-b8f0-49d4-894b-be67ac5414ca",
+  "isSidechain": false,
+  "requestId": "req_011CbUtydFfgtVxAAYLQT6zo",
+  "type": "assistant",
+  "uuid": "79ddf9d8-35fa-47e2-b615-64e4742f74e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKRedxxQg6Bz6GmRhMW6AK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 20200,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1958,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 20200,
+          "cache_creation_input_tokens": 1958,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1958
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-28T11:35:18.046Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WMSMHSij57Qy6V6DWJW1FK`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79ddf9d8-35fa-47e2-b615-64e4742f74e1",
+  "isSidechain": false,
+  "requestId": "req_011CbUtydFfgtVxAAYLQT6zo",
+  "type": "assistant",
+  "uuid": "ca6d828b-9dd7-4993-837e-899561ce8489",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKRedxxQg6Bz6GmRhMW6AK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 20200,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1958,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 20200,
+          "cache_creation_input_tokens": 1958,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1958
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-28T11:35:18.211Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dje3UqXSMe6dffBMuuaT4W`</summary>
+
+```json
+{
+  "query": "ACL 2027 ARR submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca6d828b-9dd7-4993-837e-899561ce8489",
+  "isSidechain": false,
+  "requestId": "req_011CbUtydFfgtVxAAYLQT6zo",
+  "type": "assistant",
+  "uuid": "67ccbce6-ae27-49cd-94a6-75799d1d031b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKRedxxQg6Bz6GmRhMW6AK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 20200,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1958,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 20200,
+          "cache_creation_input_tokens": 1958,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1958
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T11:35:23.164Z_
+
+<details><summary>↩ Tool result · `toolu_01Dje3UqXSMe6dffBMuuaT4W`</summary>
+
+```text
+Web search results for query: "ACL 2027 ARR submission deadline call for papers"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -","url":"https://2027.eacl.org/"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"},{"title":"ACL: Meeting of the Association for Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=37"}]
+
+Based on the search results, here's information about ACL 2027 ARR submission deadlines:
+
+## ACL 2027 ARR Submission Information
+
+ACL 2027 is predicted to take place in July 2027 based on historical patterns, with all submissions to be done through ARR.
+
+However, specific submission deadlines for ACL 2027 have not yet been publicly announced. ARR operates on a regular schedule where submission deadlines are always on the 15th of the month, so future deadlines will likely follow this pattern.
+
+For reference, EACL 2027 (a related ACL venue) has an ARR submission deadline for long and short papers on August 3, 2026, with all deadlines at 11:59PM UTC-12:00 ("anywhere on Earth").
+
+For the most current and official information about ACL 2027 submission deadlines and the call for papers, I recommend:
+- Visiting the official ACL Rolling Review website at aclrollingreview.org
+- Checking the main ACL 2027 conference website when it becomes available
+- Subscribing to ACL mailing lists for official announcements
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67ccbce6-ae27-49cd-94a6-75799d1d031b",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "164ffef8-5f13-4a67-911f-d9acf70daba9",
+  "toolUseResult": {
+    "query": "ACL 2027 ARR submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LS4CyCRm5dDHBLRr8PcGXp",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          },
+          {
+            "title": "ACL: Meeting of the Association for Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=37"
+          }
+        ]
+      },
+      "Based on the search results, here's information about ACL 2027 ARR submission deadlines:\n\n## ACL 2027 ARR Submission Information\n\nACL 2027 is predicted to take place in July 2027 based on historical patterns, with all submissions to be done through ARR.\n\nHowever, specific submission deadlines for ACL 2027 have not yet been publicly announced. ARR operates on a regular schedule where submission deadlines are always on the 15th of the month, so future deadlines will likely follow this pattern.\n\nFor reference, EACL 2027 (a related ACL venue) has an ARR submission deadline for long and short papers on August 3, 2026, with all deadlines at 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nFor the most current and official information about ACL 2027 submission deadlines and the call for papers, I recommend:\n- Visiting the official ACL Rolling Review website at aclrollingreview.org\n- Checking the main ACL 2027 conference website when it becomes available\n- Subscribing to ACL mailing lists for official announcements"
+    ],
+    "durationSeconds": 4.950731637000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67ccbce6-ae27-49cd-94a6-75799d1d031b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T11:35:23.693Z_
+
+<details><summary>↩ Tool result · `toolu_01AdsVJTa3viH7UUtSEBRmzS`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline call for papers 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Workshops Call for Proposals 2026","url":"https://iclr.cc/Conferences/2026/CallForWorkshops"}]
+
+Based on the search results, I found information about ICLR 2026 submission deadlines, but not yet an official call for papers for ICLR 2027. Here's what I found:
+
+## ICLR 2026 (Current)
+
+The submission deadline for ICLR 2026 is September 24. The main conference is scheduled for Thursday April 23 through Saturday April 25, with workshops Sunday April 26 through Monday April 27.
+
+## ICLR 2027
+
+The official call for papers for ICLR 2027 has not yet been posted. Based on the search results, some 2026/2027 conference calls for papers are not yet posted, and specific deadline information for ICLR 2027 is not currently available.
+
+Typically, conference calls for papers are announced several months before the submission deadline, so you can expect the ICLR 2027 call for papers to be announced in the coming months. I'd recommend checking the official ICLR website (iclr.cc) periodically for the latest announcements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79ddf9d8-35fa-47e2-b615-64e4742f74e1",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "bf06cd37-f89e-428b-af5d-c565fadca198",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline call for papers 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018jW9wFjkg3Mo5fZ2urgeff",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Workshops Call for Proposals 2026",
+            "url": "https://iclr.cc/Conferences/2026/CallForWorkshops"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026 submission deadlines, but not yet an official call for papers for ICLR 2027. Here's what I found:\n\n## ICLR 2026 (Current)\n\nThe submission deadline for ICLR 2026 is September 24. The main conference is scheduled for Thursday April 23 through Saturday April 25, with workshops Sunday April 26 through Monday April 27.\n\n## ICLR 2027\n\nThe official call for papers for ICLR 2027 has not yet been posted. Based on the search results, some 2026/2027 conference calls for papers are not yet posted, and specific deadline information for ICLR 2027 is not currently available.\n\nTypically, conference calls for papers are announced several months before the submission deadline, so you can expect the ICLR 2027 call for papers to be announced in the coming months. I'd recommend checking the official ICLR website (iclr.cc) periodically for the latest announcements."
+    ],
+    "durationSeconds": 6.060128052,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "79ddf9d8-35fa-47e2-b615-64e4742f74e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-28T11:35:23.803Z_
+
+<details><summary>↩ Tool result · `toolu_01WMSMHSij57Qy6V6DWJW1FK`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline call for papers"
+
+Links: [{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"COLM 2026: Submission Instructions","url":"https://colmweb.org/submission-instructions.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X","url":"https://x.com/aviral_kumar2/status/2000963068717625813"},{"title":"COLM 2026: FAQ","url":"https://colmweb.org/faq.html"},{"title":"COLM 2026: Author Guide","url":"https://colmweb.org/AuthorGuide.html"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026 Conference | OpenReview","url":"https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"}]
+
+Based on the search results, here's the information about COLM 2026 submission deadlines and call for papers:
+
+## Key Submission Deadlines
+
+The abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.
+
+## Paper Submission Requirements
+
+There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations. Authors can revise their paper as many times as needed up to the paper submission deadline.
+
+Anyone who plans to submit a paper as an author or a co-author will need to create (or update) their OpenReview profile by the abstract submission deadline.
+
+## Important Policies
+
+Full papers submitted to COLM cannot be under review for another conference simultaneously, and if your paper was submitted to another venue such as ICML, it must be withdrawn from that venue prior to the COLM full paper submission deadline.
+
+The rebuttal period runs from May 22 to June 8, 2026, with decision notifications on July 8, 2026, and the conference dates are October 6-9, 2026.
+
+For more detailed information, you can visit the official COLM 2026 Call for Papers at https://colmweb.org/cfp.html.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca6d828b-9dd7-4993-837e-899561ce8489",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "cc2fcaca-f94a-43a6-9b31-5ec1b97cef01",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EKyZ6BgcYB9AUoy8n4u4EX",
+        "content": [
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "COLM 2026: Submission Instructions",
+            "url": "https://colmweb.org/submission-instructions.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X",
+            "url": "https://x.com/aviral_kumar2/status/2000963068717625813"
+          },
+          {
+            "title": "COLM 2026: FAQ",
+            "url": "https://colmweb.org/faq.html"
+          },
+          {
+            "title": "COLM 2026: Author Guide",
+            "url": "https://colmweb.org/AuthorGuide.html"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about COLM 2026 submission deadlines and call for papers:\n\n## Key Submission Deadlines\n\nThe abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.\n\n## Paper Submission Requirements\n\nThere is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations. Authors can revise their paper as many times as needed up to the paper submission deadline.\n\nAnyone who plans to submit a paper as an author or a co-author will need to create (or update) their OpenReview profile by the abstract submission deadline.\n\n## Important Policies\n\nFull papers submitted to COLM cannot be under review for another conference simultaneously, and if your paper was submitted to another venue such as ICML, it must be withdrawn from that venue prior to the COLM full paper submission deadline.\n\nThe rebuttal period runs from May 22 to June 8, 2026, with decision notifications on July 8, 2026, and the conference dates are October 6-9, 2026.\n\nFor more detailed information, you can visit the official COLM 2026 Call for Papers at https://colmweb.org/cfp.html."
+    ],
+    "durationSeconds": 5.754252676999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ca6d828b-9dd7-4993-837e-899561ce8489",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-28T11:35:29.590Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check what venues are still open:
+- AAAI 2027: Abstract July 21, Paper July 28, 2026 - OPEN
+- NeurIPS 2026: May 4-6, 2026 - PASSED
+- EMNLP 2026: May 25, 2026 - PASSED (just barely)
+- ICLR 2027: Not announced yet, typically September 2026
+- COLM 2026: March 31, 2026 - PASSED
+- EACL 2027: ARR August 3, 2026 - OPEN
+
+
+- ACL 2027: Not announced yet
+
+I should look for a few more conference options.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc2fcaca-f94a-43a6-9b31-5ec1b97cef01",
+  "isSidechain": false,
+  "requestId": "req_011CbUtzQAQG8gXztnZade1z",
+  "type": "assistant",
+  "uuid": "f7d5fde0-59ba-4eb8-b751-48c1307accca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NKjWWC7cnqzDmifemwux9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 745,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 22158,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 745,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 22158,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T11:35:29.592Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016No8t7N5tbJCpZdMosWoGx`</summary>
+
+```json
+{
+  "query": "AISTATS 2027 submission deadline call for papers 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7d5fde0-59ba-4eb8-b751-48c1307accca",
+  "isSidechain": false,
+  "requestId": "req_011CbUtzQAQG8gXztnZade1z",
+  "type": "assistant",
+  "uuid": "fc1d1af1-c38e-43e8-a6bc-1e71f607117f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NKjWWC7cnqzDmifemwux9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 745,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 22158,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 745,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 22158,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-28T11:35:29.813Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KHe45qqygXfD24zEuJNJMh`</summary>
+
+```json
+{
+  "query": "COLING 2027 submission deadline call for papers 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc1d1af1-c38e-43e8-a6bc-1e71f607117f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtzQAQG8gXztnZade1z",
+  "type": "assistant",
+  "uuid": "eb6b9637-2885-4644-88aa-dc623167c9ec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NKjWWC7cnqzDmifemwux9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 745,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 22158,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 745,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 22158,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-28T11:35:30.384Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017fwfHiBwATxcNqVw5BDruG`</summary>
+
+```json
+{
+  "query": "ARR ACL rolling review June July August 2026 submission deadline dates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb6b9637-2885-4644-88aa-dc623167c9ec",
+  "isSidechain": false,
+  "requestId": "req_011CbUtzQAQG8gXztnZade1z",
+  "type": "assistant",
+  "uuid": "d8269e94-f863-4af7-a14d-01ec5a376d63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NKjWWC7cnqzDmifemwux9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 745,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 22158,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 745,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 22158,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "d8269e94-f863-4af7-a14d-01ec5a376d63",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-28T11:35:35.123Z_
+
+<details><summary>↩ Tool result · `toolu_017fwfHiBwATxcNqVw5BDruG`</summary>
+
+```text
+Web search results for query: "ARR ACL rolling review June July August 2026 submission deadline dates"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, I found information about ARR submission deadlines. The submission deadline is always the 15th of the month, and the new 10-week review cycle schedule started in May 2025.
+
+However, the search results don't contain the specific submission deadline dates for June, July, and August 2026 cycles. The official ARR website mentions that there is a table listing key dates for upcoming cycles, but the complete table with specific dates for those months isn't fully displayed in the search results provided.
+
+For the most current and detailed information about ARR submission deadlines for June, July, and August 2026, I recommend visiting the official ARR dates page directly at **aclrollingreview.org/dates**, which should have the complete schedule with all deadline dates organized by cycle.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8269e94-f863-4af7-a14d-01ec5a376d63",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "b9cb7d02-ec88-4a8a-8c5b-79d1a86cf541",
+  "toolUseResult": {
+    "query": "ARR ACL rolling review June July August 2026 submission deadline dates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CfQ3Z7b1Xr6xvGPZovWU3k",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ARR submission deadlines. The submission deadline is always the 15th of the month, and the new 10-week review cycle schedule started in May 2025.\n\nHowever, the search results don't contain the specific submission deadline dates for June, July, and August 2026 cycles. The official ARR website mentions that there is a table listing key dates for upcoming cycles, but the complete table with specific dates for those months isn't fully displayed in the search results provided.\n\nFor the most current and detailed information about ARR submission deadlines for June, July, and August 2026, I recommend visiting the official ARR dates page directly at **aclrollingreview.org/dates**, which should have the complete schedule with all deadline dates organized by cycle."
+    ],
+    "durationSeconds": 4.7341058860000045,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d8269e94-f863-4af7-a14d-01ec5a376d63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-28T11:35:35.912Z_
+
+<details><summary>↩ Tool result · `toolu_016No8t7N5tbJCpZdMosWoGx`</summary>
+
+```text
+Web search results for query: "AISTATS 2027 submission deadline call for papers 2026"
+
+Links: [{"title":"aistats 2026","url":"https://virtual.aistats.org/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"2026 Dates and Deadlines","url":"https://virtual.aistats.org/Conferences/2026/Dates"},{"title":"Call for Papers: AISTATS 2026","url":"https://virtual.aistats.org/Conferences/2026/CallForPapers"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Submission FAQ","url":"https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Area Chair (AC) Guidelines","url":"https://virtual.aistats.org/Conferences/2026/ACGuidelines"},{"title":"2025 Dates and Deadlines","url":"https://virtual.aistats.org/Conferences/2025/Dates"},{"title":"Call for Papers| Artificial Intelligence and Statistics Conference","url":"http://aistats.org/aistats2024/call-for-papers.html"}]
+
+Based on the search results, I found information about AISTATS 2026 (which has already passed), but the search results don't contain specific details about AISTATS 2027 submission deadlines. Let me search more specifically for AISTATS 2027.
+
+Links: [{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"aistats 2026","url":"https://virtual.aistats.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"2026 Dates and Deadlines","url":"https://virtual.aistats.org/Conferences/2026/Dates"},{"title":"Call for Papers: AISTATS 2026","url":"https://virtual.aistats.org/Conferences/2026/CallForPapers"},{"title":"Home| Society for Artificial Intelligence and Statistics","url":"https://aistats.org/"},{"title":"Submission FAQ","url":"https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"},{"title":"Area Chair (AC) Guidelines","url":"https://virtual.aistats.org/Conferences/2026/ACGuidelines"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Computer Science conferences timeline","url":"https://lucjaulmes.github.io/cfp-timeline/"}]
+
+Based on my search results, I found some information about AISTATS 2027, though an official call for papers with specific deadlines hasn't been released yet. Here's what I found:
+
+AISTATS 2027 will be held February 16-23, 2027 in Montréal, Québec, Canada, according to the AI Deadlines website. However, the official call for papers and submission deadlines for AISTATS 2027 have not yet been published.
+
+For reference, AISTATS 2026 had a full paper submission deadline of October 2, 2025, which suggests that AISTATS 2027 submission deadlines will likely be announced sometime in the coming months, probably around mid-2026 based on the conference's typical timeline.
+
+I recommend checking the official AISTATS website (aistats.org) or the virtual AISTATS conference platform regularly for the official 2027 call for papers announcement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc1d1af1-c38e-43e8-a6bc-1e71f607117f",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "2d4e534e-e176-4c55-8f96-ae6afdf46402",
+  "toolUseResult": {
+    "query": "AISTATS 2027 submission deadline call for papers 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XqccDYoUY4UWVnv1esiHDZ",
+        "content": [
+          {
+            "title": "aistats 2026",
+            "url": "https://virtual.aistats.org/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://virtual.aistats.org/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers: AISTATS 2026",
+            "url": "https://virtual.aistats.org/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Submission FAQ",
+            "url": "https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Area Chair (AC) Guidelines",
+            "url": "https://virtual.aistats.org/Conferences/2026/ACGuidelines"
+          },
+          {
+            "title": "2025 Dates and Deadlines",
+            "url": "https://virtual.aistats.org/Conferences/2025/Dates"
+          },
+          {
+            "title": "Call for Papers| Artificial Intelligence and Statistics Conference",
+            "url": "http://aistats.org/aistats2024/call-for-papers.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AISTATS 2026 (which has already passed), but the search results don't contain specific details about AISTATS 2027 submission deadlines. Let me search more specifically for AISTATS 2027.",
+      {
+        "tool_use_id": "srvtoolu_01PUHCf4wsigS76drXvGHd6N",
+        "content": [
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "aistats 2026",
+            "url": "https://virtual.aistats.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://virtual.aistats.org/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers: AISTATS 2026",
+            "url": "https://virtual.aistats.org/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Home| Society for Artificial Intelligence and Statistics",
+            "url": "https://aistats.org/"
+          },
+          {
+            "title": "Submission FAQ",
+            "url": "https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"
+          },
+          {
+            "title": "Area Chair (AC) Guidelines",
+            "url": "https://virtual.aistats.org/Conferences/2026/ACGuidelines"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Computer Science conferences timeline",
+            "url": "https://lucjaulmes.github.io/cfp-timeline/"
+          }
+        ]
+      },
+      "Based on my search results, I found some information about AISTATS 2027, though an official call for papers with specific deadlines hasn't been released yet. Here's what I found:\n\nAISTATS 2027 will be held February 16-23, 2027 in Montréal, Québec, Canada, according to the AI Deadlines website. However, the official call for papers and submission deadlines for AISTATS 2027 have not yet been published.\n\nFor reference, AISTATS 2026 had a full paper submission deadline of October 2, 2025, which suggests that AISTATS 2027 submission deadlines will likely be announced sometime in the coming months, probably around mid-2026 based on the conference's typical timeline.\n\nI recommend checking the official AISTATS website (aistats.org) or the virtual AISTATS conference platform regularly for the official 2027 call for papers announcement."
+    ],
+    "durationSeconds": 6.317364251000006,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "fc1d1af1-c38e-43e8-a6bc-1e71f607117f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T11:35:41.771Z_
+
+<details><summary>↩ Tool result · `toolu_01KHe45qqygXfD24zEuJNJMh`</summary>
+
+```text
+Web search results for query: "COLING 2027 submission deadline call for papers 2026"
+
+Links: [{"title":"coling 2027 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=coling27"},{"title":"Evaluating Large Language Models for Colonoscopy Preparation Assistance: Correctness and Diversity in Synthetic Dialogues","url":"https://www.medrxiv.org/content/10.1101/2025.11.19.25340596.full.pdf"},{"title":"Large language models for abstract screening in systematic- and scoping reviews: A diagnostic test accuracy study","url":"https://www.medrxiv.org/content/10.1101/2024.10.01.24314702.full.pdf"},{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"Efficacy of colchicine with or without corticosteroids in hospitalized COVID-19 patients: A systematic review and meta-analysis","url":"https://www.medrxiv.org/content/10.1101/2025.04.04.25325283.full.pdf"},{"title":"A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction","url":"https://arxiv.org/pdf/2510.12306"},{"title":"Task Splitting and Prompt Engineering for Cypher Query Generation in Domain-Specific Knowledge Graphs","url":"https://www.biorxiv.org/content/10.1101/2025.04.23.649790.full.pdf"},{"title":"Collaborative Large Language Models for Automated Data Extraction in Living Systematic Reviews","url":"https://www.medrxiv.org/content/10.1101/2024.09.20.24314108.full.pdf"},{"title":"Pulsed-Field Ablation Vs. Radiofrequency Ablation CombIned with Vein of Marshall Ethanol Ablation on Mitral Isthmus Block and Clinical Outcomes in Persistent Atrial Fibrillation","url":"https://clinicaltrials.gov/study/NCT06866704"},{"title":"How Good Are Large Language Models at Supporting Frontline Healthcare Workers in Low-Resource Settings – A Benchmarking Study & Dataset","url":"https://www.medrxiv.org/content/10.1101/2025.08.26.25333975.full.pdf"}]
+
+I found a reference to COLING 2027 in the search results, but the detailed information about the submission deadline and call for papers wasn't fully displayed. Let me search for more specific information.
+
+Links: [{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"coling 2027 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=coling27"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Computer Science conferences timeline","url":"https://lucjaulmes.github.io/cfp-timeline/"},{"title":"COLING 2025 (@coling2025) / Posts / X","url":"https://x.com/coling2025"},{"title":"COLING 2026 - International Conference on Computational ...","url":"https://www.conferencedeadlines.com/venue/coling"},{"title":"The 31st International Conference on Computational Linguistics - COLING 2025","url":"https://coling2025.org/"},{"title":"COLING 2025 on X: \"#NLProc #coling2025 📣 Final Call for Papers! COLING 2025 invites the submission for main conference papers. Deadline for direct submissions: September 16, 2024 Commitment deadline for ARR papers: October 20, 2024 More information: https://t.co/ztIwqyxWRJ\" / X","url":"https://x.com/coling2025/status/1834731021226402281"},{"title":"Upcoming Conferences | Conference List","url":"https://conferencelist.info/upcoming/"}]
+
+I found a reference to COLING 2027 being in Macau, but I haven't yet found the specific submission deadline for COLING 2027. Let me search more directly for the COLING 2027 call for papers.
+
+Links: [{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"coling 2027 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=coling27"},{"title":"COLING 2025 Workshop on Detecting AI Generated Content - 2nd Call for Participation | ACL Member Portal","url":"https://www.aclweb.org/portal/content/coling-2025-workshop-detecting-ai-generated-content-2nd-call-participation"},{"title":"Collaborative Large Language Models for Automated Data Extraction in Living Systematic Reviews","url":"https://www.medrxiv.org/content/10.1101/2024.09.20.24314108.full.pdf"},{"title":"Pulsed-Field Ablation Vs. Radiofrequency Ablation CombIned with Vein of Marshall Ethanol Ablation on Mitral Isthmus Block and Clinical Outcomes in Persistent Atrial Fibrillation","url":"https://clinicaltrials.gov/study/NCT06866704"},{"title":"Zero-shot Interpretable Phenotyping of Postpartum Hemorrhage Using Large Language Models","url":"https://www.medrxiv.org/content/10.1101/2023.05.31.23290753.full.pdf"},{"title":"Large Language Models for Sentiment Analysis in Healthcare: A Systematic\nReview Protocol","url":"https://www.medrxiv.org/content/10.1101/2025.06.10.25329350.full.pdf"},{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"}]
+
+Let me try a more specific search to find the official COLING 2027 website or announcement.
+
+Links: [{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"coling 2027 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=coling27"},{"title":"COLING 2025 (@coling2025) / Posts / X","url":"https://x.com/coling2025"},{"title":"The 31st International Conference on Computational Linguistics - COLING 2025","url":"https://coling2025.org/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"International Conference on Computational Linguistics - ACL Anthology","url":"https://aclanthology.org/venues/coling/"},{"title":"Upcoming Conferences | Conference List","url":"https://conferencelist.info/upcoming/"},{"title":"COLING 2026 Abu Dhabi Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/coling"},{"title":"Conference List","url":"http://www.conferencelist.info/upcoming.html"}]
+
+Based on my web search results, I found that COLING 2027 will be held in Macau, but unfortunately, the specific submission deadline and call for papers details for COLING 2027 are not yet publicly available in the search results.
+
+The search results point to several conference deadline tracking websites (wikicfp.com, mlciv.com, conferencedeadlines.com), but the pages containing the detailed COLING 2027 submission information did not load their full content in the search results. 
+
+To find the official COLING 2027 call for papers and submission deadline, I recommend:
+
+1. Checking the official COLING 2027 website (likely coling2027.org once it's fully launched)
+2. Visiting WikiCFP's COLING page (wikicfp.com)
+3. Monitoring the ACL (Association for Computational Linguistics) official website and social media accounts
+4. Checking conference deadline tracking sites like mlciv.com and conferencedeadlines.com
+
+Since COLING 2025 just occurred and COLING 2027 is still about a year away, the official call for papers and submission deadlines are likely to be announced in the coming months.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb6b9637-2885-4644-88aa-dc623167c9ec",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "7e144aba-7f35-4168-90ca-47f6bf9086a9",
+  "toolUseResult": {
+    "query": "COLING 2027 submission deadline call for papers 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ezmzq4GFs2JinnZfEycjJr",
+        "content": [
+          {
+            "title": "coling 2027 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=coling27"
+          },
+          {
+            "title": "Evaluating Large Language Models for Colonoscopy Preparation Assistance: Correctness and Diversity in Synthetic Dialogues",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.11.19.25340596.full.pdf"
+          },
+          {
+            "title": "Large language models for abstract screening in systematic- and scoping reviews: A diagnostic test accuracy study",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.10.01.24314702.full.pdf"
+          },
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "Efficacy of colchicine with or without corticosteroids in hospitalized COVID-19 patients: A systematic review and meta-analysis",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.04.04.25325283.full.pdf"
+          },
+          {
+            "title": "A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction",
+            "url": "https://arxiv.org/pdf/2510.12306"
+          },
+          {
+            "title": "Task Splitting and Prompt Engineering for Cypher Query Generation in Domain-Specific Knowledge Graphs",
+            "url": "https://www.biorxiv.org/content/10.1101/2025.04.23.649790.full.pdf"
+          },
+          {
+            "title": "Collaborative Large Language Models for Automated Data Extraction in Living Systematic Reviews",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.09.20.24314108.full.pdf"
+          },
+          {
+            "title": "Pulsed-Field Ablation Vs. Radiofrequency Ablation CombIned with Vein of Marshall Ethanol Ablation on Mitral Isthmus Block and Clinical Outcomes in Persistent Atrial Fibrillation",
+            "url": "https://clinicaltrials.gov/study/NCT06866704"
+          },
+          {
+            "title": "How Good Are Large Language Models at Supporting Frontline Healthcare Workers in Low-Resource Settings – A Benchmarking Study & Dataset",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.08.26.25333975.full.pdf"
+          }
+        ]
+      },
+      "I found a reference to COLING 2027 in the search results, but the detailed information about the submission deadline and call for papers wasn't fully displayed. Let me search for more specific information.",
+      {
+        "tool_use_id": "srvtoolu_01FMbcjSEgBtR2Rt3B9yxr7H",
+        "content": [
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "coling 2027 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=coling27"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Computer Science conferences timeline",
+            "url": "https://lucjaulmes.github.io/cfp-timeline/"
+          },
+          {
+            "title": "COLING 2025 (@coling2025) / Posts / X",
+            "url": "https://x.com/coling2025"
+          },
+          {
+            "title": "COLING 2026 - International Conference on Computational ...",
+            "url": "https://www.conferencedeadlines.com/venue/coling"
+          },
+          {
+            "title": "The 31st International Conference on Computational Linguistics - COLING 2025",
+            "url": "https://coling2025.org/"
+          },
+          {
+            "title": "COLING 2025 on X: \"#NLProc #coling2025 📣 Final Call for Papers! COLING 2025 invites the submission for main conference papers. Deadline for direct submissions: September 16, 2024 Commitment deadline for ARR papers: October 20, 2024 More information: https://t.co/ztIwqyxWRJ\" / X",
+            "url": "https://x.com/coling2025/status/1834731021226402281"
+          },
+          {
+            "title": "Upcoming Conferences | Conference List",
+            "url": "https://conferencelist.info/upcoming/"
+          }
+        ]
+      },
+      "I found a reference to COLING 2027 being in Macau, but I haven't yet found the specific submission deadline for COLING 2027. Let me search more directly for the COLING 2027 call for papers.",
+      {
+        "tool_use_id": "srvtoolu_01HXM1BiawRsv5jyxNN9ZEBR",
+        "content": [
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "coling 2027 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=coling27"
+          },
+          {
+            "title": "COLING 2025 Workshop on Detecting AI Generated Content - 2nd Call for Participation | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/coling-2025-workshop-detecting-ai-generated-content-2nd-call-participation"
+          },
+          {
+            "title": "Collaborative Large Language Models for Automated Data Extraction in Living Systematic Reviews",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.09.20.24314108.full.pdf"
+          },
+          {
+            "title": "Pulsed-Field Ablation Vs. Radiofrequency Ablation CombIned with Vein of Marshall Ethanol Ablation on Mitral Isthmus Block and Clinical Outcomes in Persistent Atrial Fibrillation",
+            "url": "https://clinicaltrials.gov/study/NCT06866704"
+          },
+          {
+            "title": "Zero-shot Interpretable Phenotyping of Postpartum Hemorrhage Using Large Language Models",
+            "url": "https://www.medrxiv.org/content/10.1101/2023.05.31.23290753.full.pdf"
+          },
+          {
+            "title": "Large Language Models for Sentiment Analysis in Healthcare: A Systematic\nReview Protocol",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.06.10.25329350.full.pdf"
+          },
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          }
+        ]
+      },
+      "Let me try a more specific search to find the official COLING 2027 website or announcement.",
+      {
+        "tool_use_id": "srvtoolu_01UPjMnxx1kt4mXjTbMYvb6j",
+        "content": [
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "coling 2027 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=coling27"
+          },
+          {
+            "title": "COLING 2025 (@coling2025) / Posts / X",
+            "url": "https://x.com/coling2025"
+          },
+          {
+            "title": "The 31st International Conference on Computational Linguistics - COLING 2025",
+            "url": "https://coling2025.org/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "International Conference on Computational Linguistics - ACL Anthology",
+            "url": "https://aclanthology.org/venues/coling/"
+          },
+          {
+            "title": "Upcoming Conferences | Conference List",
+            "url": "https://conferencelist.info/upcoming/"
+          },
+          {
+            "title": "COLING 2026 Abu Dhabi Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/coling"
+          },
+          {
+            "title": "Conference List",
+            "url": "http://www.conferencelist.info/upcoming.html"
+          }
+        ]
+      },
+      "Based on my web search results, I found that COLING 2027 will be held in Macau, but unfortunately, the specific submission deadline and call for papers details for COLING 2027 are not yet publicly available in the search results.\n\nThe search results point to several conference deadline tracking websites (wikicfp.com, mlciv.com, conferencedeadlines.com), but the pages containing the detailed COLING 2027 submission information did not load their full content in the search results. \n\nTo find the official COLING 2027 call for papers and submission deadline, I recommend:\n\n1. Checking the official COLING 2027 website (likely coling2027.org once it's fully launched)\n2. Visiting WikiCFP's COLING page (wikicfp.com)\n3. Monitoring the ACL (Association for Computational Linguistics) official website and social media accounts\n4. Checking conference deadline tracking sites like mlciv.com and conferencedeadlines.com\n\nSince COLING 2025 just occurred and COLING 2027 is still about a year away, the official call for papers and submission deadlines are likely to be announced in the coming months."
+    ],
+    "durationSeconds": 11.954349959,
+    "searchCount": 4
+  },
+  "sourceToolAssistantUUID": "eb6b9637-2885-4644-88aa-dc623167c9ec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-28T11:35:45.958Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011saThcM4uG2QKRXAZdSMnw`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/dates",
+  "prompt": "List all ARR submission deadlines for 2026, especially June, July, August, September 2026. What conferences can papers be committed to from each cycle? Include commitment deadlines for EMNLP 2026, EACL 2027, ACL 2027, NAACL 2027."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e144aba-7f35-4168-90ca-47f6bf9086a9",
+  "isSidechain": false,
+  "requestId": "req_011CbUu1iz1ZMarQVHFqCYw9",
+  "type": "assistant",
+  "uuid": "d4e776be-bcb0-466b-875c-b89837bcd478",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FohaeHrzPfGzMuo2iWaEDt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 651,
+      "cache_creation_input_tokens": 4413,
+      "cache_read_input_tokens": 23924,
+      "output_tokens": 299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 651,
+          "output_tokens": 299,
+          "cache_read_input_tokens": 23924,
+          "cache_creation_input_tokens": 4413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-28T11:35:47.896Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PRzCqbbWks84MyL9W1AYuV`</summary>
+
+```json
+{
+  "url": "https://mlciv.com/ai-deadlines/",
+  "prompt": "List all AI/ML conference deadlines after May 28, 2026. Include conference name, submission deadline, and conference dates. Focus on top-tier venues: AAAI, NeurIPS, ICML, ICLR, ACL, EMNLP, NAACL, EACL, COLM, COLING, AISTATS."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4e776be-bcb0-466b-875c-b89837bcd478",
+  "isSidechain": false,
+  "requestId": "req_011CbUu1iz1ZMarQVHFqCYw9",
+  "type": "assistant",
+  "uuid": "d3a107ed-77cd-426b-80c7-383692461ca0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FohaeHrzPfGzMuo2iWaEDt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 651,
+      "cache_creation_input_tokens": 4413,
+      "cache_read_input_tokens": 23924,
+      "output_tokens": 299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 651,
+          "output_tokens": 299,
+          "cache_read_input_tokens": 23924,
+          "cache_creation_input_tokens": 4413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-28T11:35:49.982Z_
+
+<details><summary>↩ Tool result · `toolu_011saThcM4uG2QKRXAZdSMnw`</summary>
+
+```text
+# ARR 2026 Submission Deadlines and Conference Commitments
+
+## 2026 Submission Deadlines
+
+Based on the webpage, ARR operates on 10-week cycles starting May 2025. Here are the documented 2026 deadlines:
+
+- **March 2026 cycle**: Submission deadline March 16
+- **May 2026 cycle**: Submission deadline May 25
+- **August 2026 cycle**: Submission deadline August 3
+- **October 2026 cycle**: Submission deadline October 12
+
+The page does not list specific June, July, or September 2026 submission deadlines within the regular schedule.
+
+## Conference Commitments
+
+The webpage specifies commitments for only three upcoming venues:
+
+| Venue | Final ARR Submission | Commitment Deadline |
+|-------|-------------------|-------------------|
+| EMNLP 2026 | May 25, 2026 | August 2, 2026 |
+| AACL 2026 | May 25, 2026 | August 2, 2026 |
+| EACL 2027 | August 3, 2026 | October 11, 2026 |
+
+**Important note**: The source document does not include information about ACL 2027 or NAACL 2027 commitment deadlines. Only the three venues listed above have published commitment dates on this page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4e776be-bcb0-466b-875c-b89837bcd478",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "d7b354ca-19d4-4ed6-a715-038348af08df",
+  "toolUseResult": {
+    "bytes": 25467,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR 2026 Submission Deadlines and Conference Commitments\n\n## 2026 Submission Deadlines\n\nBased on the webpage, ARR operates on 10-week cycles starting May 2025. Here are the documented 2026 deadlines:\n\n- **March 2026 cycle**: Submission deadline March 16\n- **May 2026 cycle**: Submission deadline May 25\n- **August 2026 cycle**: Submission deadline August 3\n- **October 2026 cycle**: Submission deadline October 12\n\nThe page does not list specific June, July, or September 2026 submission deadlines within the regular schedule.\n\n## Conference Commitments\n\nThe webpage specifies commitments for only three upcoming venues:\n\n| Venue | Final ARR Submission | Commitment Deadline |\n|-------|-------------------|-------------------|\n| EMNLP 2026 | May 25, 2026 | August 2, 2026 |\n| AACL 2026 | May 25, 2026 | August 2, 2026 |\n| EACL 2027 | August 3, 2026 | October 11, 2026 |\n\n**Important note**: The source document does not include information about ACL 2027 or NAACL 2027 commitment deadlines. Only the three venues listed above have published commitment dates on this page.",
+    "durationMs": 4018,
+    "url": "https://aclrollingreview.org/dates"
+  },
+  "sourceToolAssistantUUID": "d4e776be-bcb0-466b-875c-b89837bcd478",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "d7b354ca-19d4-4ed6-a715-038348af08df",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-28T11:35:52.977Z_
+
+<details><summary>↩ Tool result · `toolu_01PRzCqbbWks84MyL9W1AYuV`</summary>
+
+```text
+# AI/ML Conference Deadlines After May 28, 2026
+
+Based on the provided content, here are the top-tier venues with deadlines after May 28, 2026:
+
+## Summer 2026
+
+**ACL 2026**
+- Submission: Via ACL Rolling Review (ARR)
+- Conference: July 2-7, 2026 (San Diego, CA)
+- ARR Reviews Available: March 9, 2026; Commitment: March 14, 2026
+
+**ICML 2026**
+- Submission: January 23, 2026 (abstract deadline)
+- Conference: July 6-11, 2026 (Seoul, South Korea)
+- Author Notification: April 30, 2026
+
+## Fall 2026
+
+**COLM 2026**
+- Submission: Paper registration by March 26, 2026
+- Conference: October 6-9, 2026 (San Francisco)
+
+**EMNLP 2026**
+- Submission: Via ACL Rolling Review (ARR)
+- Conference: October 24-29, 2026
+- Location TBD
+
+**CoNLL 2026**
+- Conference: July 3-4, 2026 (San Diego, co-located with ACL)
+
+**AISTATS 2026**
+- Submission: September 25, 2025 (abstract); October 9, 2025 (materials)
+- Conference: May 2-5, 2026 (Tangier, Morocco)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3a107ed-77cd-426b-80c7-383692461ca0",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "c951523d-1dc5-42b5-8e8b-1fc940bfbc8a",
+  "toolUseResult": {
+    "bytes": 1715531,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AI/ML Conference Deadlines After May 28, 2026\n\nBased on the provided content, here are the top-tier venues with deadlines after May 28, 2026:\n\n## Summer 2026\n\n**ACL 2026**\n- Submission: Via ACL Rolling Review (ARR)\n- Conference: July 2-7, 2026 (San Diego, CA)\n- ARR Reviews Available: March 9, 2026; Commitment: March 14, 2026\n\n**ICML 2026**\n- Submission: January 23, 2026 (abstract deadline)\n- Conference: July 6-11, 2026 (Seoul, South Korea)\n- Author Notification: April 30, 2026\n\n## Fall 2026\n\n**COLM 2026**\n- Submission: Paper registration by March 26, 2026\n- Conference: October 6-9, 2026 (San Francisco)\n\n**EMNLP 2026**\n- Submission: Via ACL Rolling Review (ARR)\n- Conference: October 24-29, 2026\n- Location TBD\n\n**CoNLL 2026**\n- Conference: July 3-4, 2026 (San Diego, co-located with ACL)\n\n**AISTATS 2026**\n- Submission: September 25, 2025 (abstract); October 9, 2025 (materials)\n- Conference: May 2-5, 2026 (Tangier, Morocco)",
+    "durationMs": 5078,
+    "url": "https://mlciv.com/ai-deadlines/"
+  },
+  "sourceToolAssistantUUID": "d3a107ed-77cd-426b-80c7-383692461ca0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-28T11:35:52.996Z_
+
+```json
+{
+  "parentUuid": "c951523d-1dc5-42b5-8e8b-1fc940bfbc8a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "912a8e3d-01c7-436c-af6a-a25b6d27339f",
+  "timestamp": "2026-05-28T11:35:52.996Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-28T11:35:53.977Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:35:53.977Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "content": "&lt;task-notification>\n&lt;task-id>ac0166e9888b16594&lt;/task-id>\n&lt;tool-use-id>toolu_013TKLswJSG9avcbthsHMuPR&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/ac0166e9888b16594.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Venue deadlines research\" completed&lt;/summary>\n&lt;result>Here is my compiled report of AI/ML conference deadlines that are **after 2026-05-28** (today).\n\n---\n\n## Venues with Upcoming Deadlines (After 2026-05-28)\n\n### 1. AAAI 2027\n- **Abstract deadline:** July 21, 2026 (11:59 PM UTC-12) -- AFTER today\n- **Full paper deadline:** July 28, 2026 (11:59 PM UTC-12) -- AFTER today\n- **Supplementary material deadline:** July 31, 2026\n- **Conference dates:** February 16-23, 2027, Montreal, Canada\n- **LLM evaluation/benchmarking:** Yes. AAAI covers all areas of AI including machine learning evaluation, NLP benchmarking, and LLM assessment. Papers on LLM evaluation and benchmarking are regularly accepted.\n\n### 2. EACL 2027 (via ACL Rolling Review)\n- **ARR submission deadline:** August 3, 2026 (11:59 PM UTC-12) -- AFTER today\n- **Commitment deadline:** October 11, 2026\n- **Conference dates:** March 9-14, 2027, Athens, Greece\n- **LLM evaluation/benchmarking:** Yes. EACL is an ACL-affiliated venue and regularly publishes work on NLP evaluation, LLM benchmarking, and related topics.\n\n### 3. EMNLP 2026 (via ACL Rolling Review)\n- **ARR submission deadline:** May 25, 2026 -- BEFORE today (passed by 3 days)\n- **Commitment deadline:** August 2, 2026 -- AFTER today\n- **Conference dates:** October 24-29, 2026, Budapest, Hungary\n- **LLM evaluation/benchmarking:** Yes. EMNLP is one of the premier venues for empirical NLP work including LLM evaluation and benchmarking.\n- **Note:** While the paper submission deadline has just passed, you can still commit a paper from a prior ARR cycle (the commitment deadline of August 2, 2026 is still open). If you already have a reviewed ARR submission, this is still viable.\n\n---\n\n## Venues with Deadlines Not Yet Announced (Likely After Today)\n\n### 4. ICLR 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** ~April 24-28, 2027 (based on historical patterns)\n- **Expected submission deadline:** ~October 2026 (based on ICLR 2026's pattern of October 2025 deadline)\n- **LLM evaluation/benchmarking:** Yes. ICLR is a top venue for representation learning and regularly accepts work on model evaluation and benchmarks.\n\n### 5. ACL 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** July 2027, location TBA\n- **Expected ARR submission deadline:** ~January-February 2027 (based on historical pattern)\n- **LLM evaluation/benchmarking:** Yes. ACL is the flagship NLP conference and a premier venue for LLM evaluation work.\n\n### 6. NAACL 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** May 2-5, 2027, location TBA\n- **Expected ARR submission deadline:** ~December 2026-January 2027 (based on historical pattern)\n- **LLM evaluation/benchmarking:** Yes. NAACL regularly publishes NLP evaluation and benchmarking work.\n\n### 7. AISTATS 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** February 16-23, 2027, Montreal, Canada (note: same dates/location as AAAI 2027 -- this may need verification)\n- **Expected submission deadline:** ~September-October 2026 (based on AISTATS 2026 having a September 25/October 2 deadline)\n- **LLM evaluation/benchmarking:** Partially. AISTATS focuses on the intersection of AI, ML, and statistics. Methodological evaluation work is accepted, but it is less focused on LLM-specific benchmarking compared to NLP venues.\n\n---\n\n## Venues Whose Deadlines Have Already Passed (EXCLUDE)\n\n### 8. NeurIPS 2026\n- **Abstract deadline:** May 4, 2026 -- BEFORE today (passed)\n- **Full paper deadline:** May 6, 2026 -- BEFORE today (passed)\n- **Conference dates:** Late 2026 (typically December)\n- **Status:** EXCLUDED -- deadline passed ~3 weeks ago\n- **Note:** NeurIPS 2026 introduced a renamed \"Evaluations &amp; Datasets Track\" (formerly \"Datasets &amp; Benchmarks\") with expanded scope explicitly covering LLM evaluation -- but the deadline has passed.\n\n### 9. ICML 2026\n- **Abstract deadline:** January 24, 2026 -- BEFORE today (passed)\n- **Full paper deadline:** January 28, 2026 -- BEFORE today (passed)\n- **Conference dates:** July 6-11, 2026, Seoul (Coex Convention Center)\n- **Status:** EXCLUDED -- deadline passed ~4 months ago\n\n### 10. COLM 2026\n- **Abstract deadline:** March 26, 2026 -- BEFORE today (passed)\n- **Full paper deadline:** March 31, 2026 -- BEFORE today (passed)\n- **Conference dates:** October 6-9, 2026, San Francisco (Hilton Union Square)\n- **Status:** EXCLUDED -- deadline passed ~2 months ago\n\n---\n\n## Summary: Actionable Deadlines Still Open\n\n| Venue | Next Deadline | Date | Type |\n|-------|--------------|------|------|\n| **AAAI 2027** | Abstract | Jul 21, 2026 | Direct submission |\n| **AAAI 2027** | Full paper | Jul 28, 2026 | Direct submission |\n| **EACL 2027** | ARR submission | Aug 3, 2026 | Via ACL Rolling Review |\n| **EMNLP 2026** | Commitment only | Aug 2, 2026 | Commit existing ARR review |\n| **ICLR 2027** | TBA | ~Oct 2026 | Direct submission (expected) |\n| **AISTATS 2027** | TBA | ~Sep-Oct 2026 | Direct submission (expected) |\n| **NAACL 2027** | TBA | ~Dec 2026-Jan 2027 | Via ACL Rolling Review (expected) |\n| **ACL 2027** | TBA | ~Jan-Feb 2027 | Via ACL Rolling Review (expected) |\n\nThe most immediate actionable deadlines are **AAAI 2027** (July 21/28) and **EACL 2027** (August 3 via ARR). All of these venues accept work on LLM evaluation and benchmarking.\n\n---\n\nSources:\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [AAAI-27 Conference Page](https://aaai.org/conference/aaai/aaai-27/)\n- [NeurIPS 2026 Call for Papers](https://neurips.cc/Conferences/2026/CallForPapers)\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [NeurIPS 2026 Evaluations &amp; Datasets Track](https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets)\n- [NeurIPS 2026 Evaluations &amp; Datasets Blog Post](https://blog.neurips.cc/2026/03/23/introducing-the-evaluations-datasets-track-at-neurips-2026/)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [ACL Rolling Review Dates and Venues](http://aclrollingreview.org/dates)\n- [EACL 2027](https://2027.eacl.org/)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [EMNLP 2026 Conference Page](https://2026.emnlp.org/)\n- [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n- [ICML 2026 Call for Papers](https://icml.cc/Conferences/2026/CallForPapers)\n- [NAACL Website](https://naacl.org/)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [COLM 2026 Call for Papers](https://colmweb.org/cfp.html)\n- [AISTATS 2026](https://virtual.aistats.org/)\n- [AI Conference Deadlines (mlciv)](https://mlciv.com/ai-deadlines/)\n- [AI &amp; ML Conference Deadlines 2026-2027 (Bibby)](https://trybibby.com/conference-deadlines)&lt;/result>\n&lt;usage>&lt;total_tokens>24877&lt;/total_tokens>&lt;tool_uses>21&lt;/tool_uses>&lt;duration_ms>94090&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-28T11:36:03.174Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile what I know about venue deadlines after May 28, 2026:
+
+1. **AAAI 2027**: Abstract July 21, Paper July 28, 2026 - OPEN ✓
+2. **ARR August 2026 cycle**: Submission August 3, 2026 → can commit to EACL 2027 (Oct 11) - OPEN ✓
+3. **ICLR 2027**: Not announced yet, likely ~September 2026 - LIKELY OPEN
+
+
+4. **ARR October 2026 cycle**: Submission October 12, 2026 → future venues TBD - OPEN ✓
+5. **AISTATS 2027**: Not announced yet, likely ~October 2026 - LIKELY OPEN
+
+Several deadlines have already passed—NeurIPS, EMNLP, COLM, and ICML are all behind us. The realistic targets going forward are AAAI 2027 as the primary option, with ARR cycles and ICLR/AISTATS as secondary possibilities depending on announcement timing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "912a8e3d-01c7-436c-af6a-a25b6d27339f",
+  "isSidechain": false,
+  "requestId": "req_011CbUu2YtpUq1aQWbXemdjL",
+  "type": "assistant",
+  "uuid": "4d578002-f8e9-4992-a200-23d72f40a9f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xhZzCqRNaBkWwWDVe7Zp7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28337,
+      "output_tokens": 499,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 499,
+          "cache_read_input_tokens": 28337,
+          "cache_creation_input_tokens": 1791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-28T11:36:03.645Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X4UTmWYbMHMCWgSz97Wdo5`</summary>
+
+```json
+{
+  "query": "best open source reasoning LLM math benchmark May 2026 leaderboard"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d578002-f8e9-4992-a200-23d72f40a9f4",
+  "isSidechain": false,
+  "requestId": "req_011CbUu2YtpUq1aQWbXemdjL",
+  "type": "assistant",
+  "uuid": "84bd203e-3cf3-440d-9bd1-9bdc0fe5b401",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xhZzCqRNaBkWwWDVe7Zp7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28337,
+      "output_tokens": 499,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 499,
+          "cache_read_input_tokens": 28337,
+          "cache_creation_input_tokens": 1791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-28T11:36:03.831Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pbnu8PM3RNtXvMiwxQXKuC`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline September October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84bd203e-3cf3-440d-9bd1-9bdc0fe5b401",
+  "isSidechain": false,
+  "requestId": "req_011CbUu2YtpUq1aQWbXemdjL",
+  "type": "assistant",
+  "uuid": "176f77be-320e-4918-9d88-926c53c606cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xhZzCqRNaBkWwWDVe7Zp7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28337,
+      "output_tokens": 499,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 499,
+          "cache_read_input_tokens": 28337,
+          "cache_creation_input_tokens": 1791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-28T11:36:10.849Z_
+
+<details><summary>↩ Tool result · `toolu_01Pbnu8PM3RNtXvMiwxQXKuC`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline September October 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"}]
+
+The search results don't contain specific information about the ICLR 2027 submission deadline. Let me search more specifically for ICLR 2027 dates.
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"},{"title":"International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona","url":"https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"}]
+
+Let me search for the official ICLR 2027 information directly.
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR Poster Progressive Learning and Disentanglement of Hierarchical Representations","url":"https://iclr.cc/virtual/2020/poster/2027"},{"title":"Future Meetings","url":"https://iclr.cc/Conferences/FutureMeetings"},{"title":"2026 Conference","url":"https://iclr.cc/"},{"title":"ICLR Proceedings","url":"https://iclr.cc/FAQ/Proceedings"},{"title":"Workshops Call for Proposals 2026","url":"https://iclr.cc/Conferences/2026/CallForWorkshops"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"About ICLR","url":"https://iclr.cc/About"}]
+
+Based on my web search results, I was unable to find specific information about the official ICLR 2027 submission deadline for September or October 2026. The search results show that:
+
+1. ICLR 2026 is scheduled for April 23-27 in Rio de Janeiro, Brazil
+
+2. The official ICLR website (iclr.cc) currently only has information about ICLR 2026, with no published call for papers for ICLR 2027 yet.
+
+3. Some 2026/2027 CFPs are not yet posted as of February 1, 2026, meaning the official ICLR 2027 call for papers may not have been announced yet.
+
+It appears that the official ICLR 2027 submission deadline has not yet been publicly announced. I recommend checking the official ICLR website (iclr.cc) or contacting the ICLR program chairs directly for the most current information about ICLR 2027 deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "176f77be-320e-4918-9d88-926c53c606cc",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "edf3607d-f523-4dd8-9a35-83e2610fe439",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline September October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AzRj4oMNY3obbZAs4gcYC8",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          }
+        ]
+      },
+      "The search results don't contain specific information about the ICLR 2027 submission deadline. Let me search more specifically for ICLR 2027 dates.",
+      {
+        "tool_use_id": "srvtoolu_0187HiFMyitkc2evCMcgYcpJ",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"
+          },
+          {
+            "title": "International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona",
+            "url": "https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          }
+        ]
+      },
+      "Let me search for the official ICLR 2027 information directly.",
+      {
+        "tool_use_id": "srvtoolu_01S9XTActHsEBrqrPC4a8J3P",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR Poster Progressive Learning and Disentanglement of Hierarchical Representations",
+            "url": "https://iclr.cc/virtual/2020/poster/2027"
+          },
+          {
+            "title": "Future Meetings",
+            "url": "https://iclr.cc/Conferences/FutureMeetings"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR Proceedings",
+            "url": "https://iclr.cc/FAQ/Proceedings"
+          },
+          {
+            "title": "Workshops Call for Proposals 2026",
+            "url": "https://iclr.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          },
+          {
+            "title": "About ICLR",
+            "url": "https://iclr.cc/About"
+          }
+        ]
+      },
+      "Based on my web search results, I was unable to find specific information about the official ICLR 2027 submission deadline for September or October 2026. The search results show that:\n\n1. ICLR 2026 is scheduled for April 23-27 in Rio de Janeiro, Brazil\n\n2. The official ICLR website (iclr.cc) currently only has information about ICLR 2026, with no published call for papers for ICLR 2027 yet.\n\n3. Some 2026/2027 CFPs are not yet posted as of February 1, 2026, meaning the official ICLR 2027 call for papers may not have been announced yet.\n\nIt appears that the official ICLR 2027 submission deadline has not yet been publicly announced. I recommend checking the official ICLR website (iclr.cc) or contacting the ICLR program chairs directly for the most current information about ICLR 2027 deadlines."
+    ],
+    "durationSeconds": 7.014753853000002,
+    "searchCount": 3
+  },
+  "sourceToolAssistantUUID": "176f77be-320e-4918-9d88-926c53c606cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-28T11:36:13.566Z_
+
+<details><summary>↩ Tool result · `toolu_01X4UTmWYbMHMCWgSz97Wdo5`</summary>
+
+```text
+Web search results for query: "best open source reasoning LLM math benchmark May 2026 leaderboard"
+
+Links: [{"title":"Best Open Source LLM For Math In 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math"},{"title":"Best Open Source LLM Leaderboard 2026","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Best Open Source LLM in 2026: Rankings, Benchmarks, and the Models Worth Running | BenchLM.ai","url":"https://benchlm.ai/blog/posts/best-open-source-llm"},{"title":"Best LLM for Math 2026 - AI Model Benchmark Comparison","url":"https://pricepertoken.com/leaderboards/math"},{"title":"Top 10 Open-source Reasoning Models in 2026","url":"https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org","url":"https://whatllm.org/best-open-source-llm"}]
+
+Based on the search results, here are the key findings about the best open-source reasoning LLMs for math benchmarks in May 2026:
+
+## Top Models for Math Reasoning
+
+DeepSeek-R1 offers elite-level performance comparable to OpenAI-o1, QwQ-32B provides the best balance of capability and efficiency, while GLM-Z1-9B-0414 delivers surprising mathematical prowess in a lightweight package.
+
+## Leaderboard Rankings
+
+DeepSeek V4 Pro (Max) leads BenchLM.ai's open weight leaderboard at 87 overall, followed by Kimi K2.6 at 84, GLM-5 (Reasoning) and GLM-5.1 at 83, and Qwen3.5 397B (Reasoning) at 79.
+
+DeepSeek V4 Pro (Max) wins the current open-weight slice because its coding and agentic profile is unusually strong, while GLM-5 (Reasoning) remains the cleaner math and reasoning-heavy pick.
+
+## Specific Math Benchmark Performance
+
+Qwen3-Next-80B gets ~87.8% on AIME25 (math) and ~73.9% on HMMT25, better than Gemini-2.5-Flash's 72.0% and 73.9% respectively.
+
+## Benchmark Categories
+
+The overall score combines performance across knowledge (MMLU, GPQA, SuperGPQA), coding (SWE-bench Pro, SWE-bench Verified, LiveCodeBench), math (AIME, HMMT, Math500), reasoning (MUSR, BBH), instruction following (IFEval), multilingual (MGSM), agentic tasks (TerminalBench, BrowseComp, OSWorld), and multimodal benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84bd203e-3cf3-440d-9bd1-9bdc0fe5b401",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "905ad6d6-a81a-48f5-9b52-2899b4a2f990",
+  "toolUseResult": {
+    "query": "best open source reasoning LLM math benchmark May 2026 leaderboard",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017se1QLyCf9hYL883KaY2qi",
+        "content": [
+          {
+            "title": "Best Open Source LLM For Math In 2026",
+            "url": "https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math"
+          },
+          {
+            "title": "Best Open Source LLM Leaderboard 2026",
+            "url": "https://onyx.app/open-llm-leaderboard"
+          },
+          {
+            "title": "Best Open Source LLM in 2026: Rankings, Benchmarks, and the Models Worth Running | BenchLM.ai",
+            "url": "https://benchlm.ai/blog/posts/best-open-source-llm"
+          },
+          {
+            "title": "Best LLM for Math 2026 - AI Model Benchmark Comparison",
+            "url": "https://pricepertoken.com/leaderboards/math"
+          },
+          {
+            "title": "Top 10 Open-source Reasoning Models in 2026",
+            "url": "https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026 — Compare Open-Weight Models",
+            "url": "https://www.vellum.ai/open-llm-leaderboard"
+          },
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org",
+            "url": "https://whatllm.org/best-open-source-llm"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about the best open-source reasoning LLMs for math benchmarks in May 2026:\n\n## Top Models for Math Reasoning\n\nDeepSeek-R1 offers elite-level performance comparable to OpenAI-o1, QwQ-32B provides the best balance of capability and efficiency, while GLM-Z1-9B-0414 delivers surprising mathematical prowess in a lightweight package.\n\n## Leaderboard Rankings\n\nDeepSeek V4 Pro (Max) leads BenchLM.ai's open weight leaderboard at 87 overall, followed by Kimi K2.6 at 84, GLM-5 (Reasoning) and GLM-5.1 at 83, and Qwen3.5 397B (Reasoning) at 79.\n\nDeepSeek V4 Pro (Max) wins the current open-weight slice because its coding and agentic profile is unusually strong, while GLM-5 (Reasoning) remains the cleaner math and reasoning-heavy pick.\n\n## Specific Math Benchmark Performance\n\nQwen3-Next-80B gets ~87.8% on AIME25 (math) and ~73.9% on HMMT25, better than Gemini-2.5-Flash's 72.0% and 73.9% respectively.\n\n## Benchmark Categories\n\nThe overall score combines performance across knowledge (MMLU, GPQA, SuperGPQA), coding (SWE-bench Pro, SWE-bench Verified, LiveCodeBench), math (AIME, HMMT, Math500), reasoning (MUSR, BBH), instruction following (IFEval), multilingual (MGSM), agentic tasks (TerminalBench, BrowseComp, OSWorld), and multimodal benchmarks."
+    ],
+    "durationSeconds": 9.914570917999983,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "84bd203e-3cf3-440d-9bd1-9bdc0fe5b401",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64 · 2026-05-28T11:36:13.584Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-28T11:36:13.584Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-28T11:36:13.583Z_
+
+```json
+{
+  "parentUuid": "905ad6d6-a81a-48f5-9b52-2899b4a2f990",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>ac0166e9888b16594&lt;/task-id>\n&lt;tool-use-id>toolu_013TKLswJSG9avcbthsHMuPR&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/ac0166e9888b16594.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Venue deadlines research\" completed&lt;/summary>\n&lt;result>Here is my compiled report of AI/ML conference deadlines that are **after 2026-05-28** (today).\n\n---\n\n## Venues with Upcoming Deadlines (After 2026-05-28)\n\n### 1. AAAI 2027\n- **Abstract deadline:** July 21, 2026 (11:59 PM UTC-12) -- AFTER today\n- **Full paper deadline:** July 28, 2026 (11:59 PM UTC-12) -- AFTER today\n- **Supplementary material deadline:** July 31, 2026\n- **Conference dates:** February 16-23, 2027, Montreal, Canada\n- **LLM evaluation/benchmarking:** Yes. AAAI covers all areas of AI including machine learning evaluation, NLP benchmarking, and LLM assessment. Papers on LLM evaluation and benchmarking are regularly accepted.\n\n### 2. EACL 2027 (via ACL Rolling Review)\n- **ARR submission deadline:** August 3, 2026 (11:59 PM UTC-12) -- AFTER today\n- **Commitment deadline:** October 11, 2026\n- **Conference dates:** March 9-14, 2027, Athens, Greece\n- **LLM evaluation/benchmarking:** Yes. EACL is an ACL-affiliated venue and regularly publishes work on NLP evaluation, LLM benchmarking, and related topics.\n\n### 3. EMNLP 2026 (via ACL Rolling Review)\n- **ARR submission deadline:** May 25, 2026 -- BEFORE today (passed by 3 days)\n- **Commitment deadline:** August 2, 2026 -- AFTER today\n- **Conference dates:** October 24-29, 2026, Budapest, Hungary\n- **LLM evaluation/benchmarking:** Yes. EMNLP is one of the premier venues for empirical NLP work including LLM evaluation and benchmarking.\n- **Note:** While the paper submission deadline has just passed, you can still commit a paper from a prior ARR cycle (the commitment deadline of August 2, 2026 is still open). If you already have a reviewed ARR submission, this is still viable.\n\n---\n\n## Venues with Deadlines Not Yet Announced (Likely After Today)\n\n### 4. ICLR 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** ~April 24-28, 2027 (based on historical patterns)\n- **Expected submission deadline:** ~October 2026 (based on ICLR 2026's pattern of October 2025 deadline)\n- **LLM evaluation/benchmarking:** Yes. ICLR is a top venue for representation learning and regularly accepts work on model evaluation and benchmarks.\n\n### 5. ACL 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** July 2027, location TBA\n- **Expected ARR submission deadline:** ~January-February 2027 (based on historical pattern)\n- **LLM evaluation/benchmarking:** Yes. ACL is the flagship NLP conference and a premier venue for LLM evaluation work.\n\n### 6. NAACL 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** May 2-5, 2027, location TBA\n- **Expected ARR submission deadline:** ~December 2026-January 2027 (based on historical pattern)\n- **LLM evaluation/benchmarking:** Yes. NAACL regularly publishes NLP evaluation and benchmarking work.\n\n### 7. AISTATS 2027\n- **Deadlines:** Not yet announced\n- **Predicted conference dates:** February 16-23, 2027, Montreal, Canada (note: same dates/location as AAAI 2027 -- this may need verification)\n- **Expected submission deadline:** ~September-October 2026 (based on AISTATS 2026 having a September 25/October 2 deadline)\n- **LLM evaluation/benchmarking:** Partially. AISTATS focuses on the intersection of AI, ML, and statistics. Methodological evaluation work is accepted, but it is less focused on LLM-specific benchmarking compared to NLP venues.\n\n---\n\n## Venues Whose Deadlines Have Already Passed (EXCLUDE)\n\n### 8. NeurIPS 2026\n- **Abstract deadline:** May 4, 2026 -- BEFORE today (passed)\n- **Full paper deadline:** May 6, 2026 -- BEFORE today (passed)\n- **Conference dates:** Late 2026 (typically December)\n- **Status:** EXCLUDED -- deadline passed ~3 weeks ago\n- **Note:** NeurIPS 2026 introduced a renamed \"Evaluations &amp; Datasets Track\" (formerly \"Datasets &amp; Benchmarks\") with expanded scope explicitly covering LLM evaluation -- but the deadline has passed.\n\n### 9. ICML 2026\n- **Abstract deadline:** January 24, 2026 -- BEFORE today (passed)\n- **Full paper deadline:** January 28, 2026 -- BEFORE today (passed)\n- **Conference dates:** July 6-11, 2026, Seoul (Coex Convention Center)\n- **Status:** EXCLUDED -- deadline passed ~4 months ago\n\n### 10. COLM 2026\n- **Abstract deadline:** March 26, 2026 -- BEFORE today (passed)\n- **Full paper deadline:** March 31, 2026 -- BEFORE today (passed)\n- **Conference dates:** October 6-9, 2026, San Francisco (Hilton Union Square)\n- **Status:** EXCLUDED -- deadline passed ~2 months ago\n\n---\n\n## Summary: Actionable Deadlines Still Open\n\n| Venue | Next Deadline | Date | Type |\n|-------|--------------|------|------|\n| **AAAI 2027** | Abstract | Jul 21, 2026 | Direct submission |\n| **AAAI 2027** | Full paper | Jul 28, 2026 | Direct submission |\n| **EACL 2027** | ARR submission | Aug 3, 2026 | Via ACL Rolling Review |\n| **EMNLP 2026** | Commitment only | Aug 2, 2026 | Commit existing ARR review |\n| **ICLR 2027** | TBA | ~Oct 2026 | Direct submission (expected) |\n| **AISTATS 2027** | TBA | ~Sep-Oct 2026 | Direct submission (expected) |\n| **NAACL 2027** | TBA | ~Dec 2026-Jan 2027 | Via ACL Rolling Review (expected) |\n| **ACL 2027** | TBA | ~Jan-Feb 2027 | Via ACL Rolling Review (expected) |\n\nThe most immediate actionable deadlines are **AAAI 2027** (July 21/28) and **EACL 2027** (August 3 via ARR). All of these venues accept work on LLM evaluation and benchmarking.\n\n---\n\nSources:\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [AAAI-27 Conference Page](https://aaai.org/conference/aaai/aaai-27/)\n- [NeurIPS 2026 Call for Papers](https://neurips.cc/Conferences/2026/CallForPapers)\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [NeurIPS 2026 Evaluations &amp; Datasets Track](https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets)\n- [NeurIPS 2026 Evaluations &amp; Datasets Blog Post](https://blog.neurips.cc/2026/03/23/introducing-the-evaluations-datasets-track-at-neurips-2026/)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [ACL Rolling Review Dates and Venues](http://aclrollingreview.org/dates)\n- [EACL 2027](https://2027.eacl.org/)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [EMNLP 2026 Conference Page](https://2026.emnlp.org/)\n- [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n- [ICML 2026 Call for Papers](https://icml.cc/Conferences/2026/CallForPapers)\n- [NAACL Website](https://naacl.org/)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [COLM 2026 Call for Papers](https://colmweb.org/cfp.html)\n- [AISTATS 2026](https://virtual.aistats.org/)\n- [AI Conference Deadlines (mlciv)](https://mlciv.com/ai-deadlines/)\n- [AI &amp; ML Conference Deadlines 2026-2027 (Bibby)](https://trybibby.com/conference-deadlines)&lt;/result>\n&lt;usage>&lt;total_tokens>24877&lt;/total_tokens>&lt;tool_uses>21&lt;/tool_uses>&lt;duration_ms>94090&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "3d465fba-43d0-4c6f-a686-da425ded115c",
+  "timestamp": "2026-05-28T11:36:13.583Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "3d465fba-43d0-4c6f-a686-da425ded115c",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-28T11:36:22.671Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I have venue deadlines. Let me wait for the background agents to complete, then synthesize everything. Let me also search for a few more things while waiting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d465fba-43d0-4c6f-a686-da425ded115c",
+  "isSidechain": false,
+  "requestId": "req_011CbUu44xMwqq41suDQ7ncx",
+  "type": "assistant",
+  "uuid": "92ccef0e-afab-4ffc-83f7-a3fd7b44ea88",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGzaVcrxeM4Tb9Wo8Ns4Hu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1429,
+      "cache_creation_input_tokens": 3944,
+      "cache_read_input_tokens": 30128,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1429,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 30128,
+          "cache_creation_input_tokens": 3944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-28T11:36:23.645Z_
+
+Good, I have comprehensive venue information. Let me search for a few more critical details while waiting for background agents.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92ccef0e-afab-4ffc-83f7-a3fd7b44ea88",
+  "isSidechain": false,
+  "requestId": "req_011CbUu44xMwqq41suDQ7ncx",
+  "type": "assistant",
+  "uuid": "572ba90d-5b4f-4e35-af37-948784892758",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGzaVcrxeM4Tb9Wo8Ns4Hu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1429,
+      "cache_creation_input_tokens": 3944,
+      "cache_read_input_tokens": 30128,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1429,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 30128,
+          "cache_creation_input_tokens": 3944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-28T11:36:24.653Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BmtmcRX4mHZU8EiuhbT12C`</summary>
+
+```json
+{
+  "query": "Qwen3 DeepSeek-R2 DeepSeek-V4 open source math reasoning model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "572ba90d-5b4f-4e35-af37-948784892758",
+  "isSidechain": false,
+  "requestId": "req_011CbUu44xMwqq41suDQ7ncx",
+  "type": "assistant",
+  "uuid": "bd25a3f3-8cf4-4271-8c41-c7affde4563c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGzaVcrxeM4Tb9Wo8Ns4Hu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1429,
+      "cache_creation_input_tokens": 3944,
+      "cache_read_input_tokens": 30128,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1429,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 30128,
+          "cache_creation_input_tokens": 3944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-28T11:36:25.545Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WKEHXBBhYdxVvsFj4DXpR7`</summary>
+
+```json
+{
+  "query": "py-irt item response theory python LLM evaluation github 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd25a3f3-8cf4-4271-8c41-c7affde4563c",
+  "isSidechain": false,
+  "requestId": "req_011CbUu44xMwqq41suDQ7ncx",
+  "type": "assistant",
+  "uuid": "35734cd0-f970-40ab-a976-da5bfd28d46a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGzaVcrxeM4Tb9Wo8Ns4Hu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1429,
+      "cache_creation_input_tokens": 3944,
+      "cache_read_input_tokens": 30128,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1429,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 30128,
+          "cache_creation_input_tokens": 3944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-28T11:36:32.829Z_
+
+<details><summary>↩ Tool result · `toolu_01WKEHXBBhYdxVvsFj4DXpR7`</summary>
+
+```text
+Web search results for query: "py-irt item response theory python LLM evaluation github 2025 2026"
+
+Links: [{"title":"[PDF] py-irt: A Scalable Item Response Theory Library for Python | Semantic Scholar","url":"https://www.semanticscholar.org/paper/py-irt:-A-Scalable-Item-Response-Theory-Library-for-Lalor-Rodriguez/f05f7ce54505220589edc40ddecdd787ef26edb9"},{"title":"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub","url":"https://github.com/Joe-Hall-Lee/PSN-IRT"},{"title":"py-irt: A Scalable Item Response Theory Library for Python","url":"https://arxiv.org/pdf/2203.01282"},{"title":"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory","url":"https://arxiv.org/pdf/2602.00521"},{"title":"[2203.01282] py-irt: A Scalable Item Response Theory Library for Python","url":"https://arxiv.org/abs/2203.01282"},{"title":"JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory","url":"https://arxiv.org/pdf/2509.22888"},{"title":"Latency-Response Theory Model: Evaluating Large Language Models via Response Accuracy and Chain-of-Thought Length","url":"https://arxiv.org/pdf/2512.07019"},{"title":"py-irt · PyPI","url":"https://pypi.org/project/py-irt/"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/pdf/2511.04689"}]
+
+Based on the web search results, here's what I found related to your query:
+
+## py-irt: Python Item Response Theory Library
+
+py-irt is a Python library for fitting Bayesian item response theory (IRT) models. It is built on top of the Pyro and PyTorch frameworks and uses GPU-accelerated training to scale to large data sets. Code, documentation, and examples can be found at https://github.com/nd-ball/py-irt.
+
+## Recent IRT Applications for LLM Evaluation
+
+Several recent projects (2025-2026) have applied IRT to LLM evaluation:
+
+1. **PSN-IRT** - An AAAI 2026 oral presentation project that outputs latent ability parameters for models and reflects the psychometrically measured proficiency of each LLM across evaluated benchmarks. This is available on GitHub at Joe-Hall-Lee/PSN-IRT.
+
+2. **JE-IRT** - A geometric lens that connects LLM abilities with the structure of questions, offering a distinctive perspective on model evaluation and generalization.
+
+3. **Latency-Response Theory (LaRT)** - A model that yields different LLM rankings than IRT and outperforms IRT across multiple key evaluation metrics.
+
+4. **LLM-as-a-Judge Reliability** - Recent work uses IRT-GRM to yield interpretable signals for diagnosing judgments systematically and provides practical guidance for verifying reliability of LLM-as-a-Judge.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "35734cd0-f970-40ab-a976-da5bfd28d46a",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "92f721af-39be-47f4-b1ee-10cdd694559e",
+  "toolUseResult": {
+    "query": "py-irt item response theory python LLM evaluation github 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014CyLH6FG4xNtvf67Hdy2sQ",
+        "content": [
+          {
+            "title": "[PDF] py-irt: A Scalable Item Response Theory Library for Python | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/py-irt:-A-Scalable-Item-Response-Theory-Library-for-Lalor-Rodriguez/f05f7ce54505220589edc40ddecdd787ef26edb9"
+          },
+          {
+            "title": "GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub",
+            "url": "https://github.com/Joe-Hall-Lee/PSN-IRT"
+          },
+          {
+            "title": "py-irt: A Scalable Item Response Theory Library for Python",
+            "url": "https://arxiv.org/pdf/2203.01282"
+          },
+          {
+            "title": "Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2602.00521"
+          },
+          {
+            "title": "[2203.01282] py-irt: A Scalable Item Response Theory Library for Python",
+            "url": "https://arxiv.org/abs/2203.01282"
+          },
+          {
+            "title": "JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory",
+            "url": "https://arxiv.org/pdf/2509.22888"
+          },
+          {
+            "title": "Latency-Response Theory Model: Evaluating Large Language Models via Response Accuracy and Chain-of-Thought Length",
+            "url": "https://arxiv.org/pdf/2512.07019"
+          },
+          {
+            "title": "py-irt · PyPI",
+            "url": "https://pypi.org/project/py-irt/"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/pdf/2511.04689"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query:\n\n## py-irt: Python Item Response Theory Library\n\npy-irt is a Python library for fitting Bayesian item response theory (IRT) models. It is built on top of the Pyro and PyTorch frameworks and uses GPU-accelerated training to scale to large data sets. Code, documentation, and examples can be found at https://github.com/nd-ball/py-irt.\n\n## Recent IRT Applications for LLM Evaluation\n\nSeveral recent projects (2025-2026) have applied IRT to LLM evaluation:\n\n1. **PSN-IRT** - An AAAI 2026 oral presentation project that outputs latent ability parameters for models and reflects the psychometrically measured proficiency of each LLM across evaluated benchmarks. This is available on GitHub at Joe-Hall-Lee/PSN-IRT.\n\n2. **JE-IRT** - A geometric lens that connects LLM abilities with the structure of questions, offering a distinctive perspective on model evaluation and generalization.\n\n3. **Latency-Response Theory (LaRT)** - A model that yields different LLM rankings than IRT and outperforms IRT across multiple key evaluation metrics.\n\n4. **LLM-as-a-Judge Reliability** - Recent work uses IRT-GRM to yield interpretable signals for diagnosing judgments systematically and provides practical guidance for verifying reliability of LLM-as-a-Judge."
+    ],
+    "durationSeconds": 7.280616903999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "35734cd0-f970-40ab-a976-da5bfd28d46a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-28T11:36:33.330Z_
+
+<details><summary>↩ Tool result · `toolu_01BmtmcRX4mHZU8EiuhbT12C`</summary>
+
+```text
+Web search results for query: "Qwen3 DeepSeek-R2 DeepSeek-V4 open source math reasoning model 2026"
+
+Links: [{"title":"Top 10 Open-source Reasoning Models in 2026","url":"https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"},{"title":"DeepSeek R2: the open source reasoning model that costs pennies | dataku","url":"https://dataku.ai/blog/deepseek-r2-open-source-reasoning-model-costs-pennies"},{"title":"Open-source reasoning models 2026: DeepSeek vs Qwen vs Mistral","url":"https://mashblog.com/posts/open-source-reasoning-models-2026-deepseek-qwen-mistral"},{"title":"Best Chinese LLMs in 2026: DeepSeek V4, Kimi K2.6, GLM-5, Qwen, and Every Model Ranked | BenchLM.ai","url":"https://benchlm.ai/blog/posts/best-chinese-llm"},{"title":"DeepSeek V3.2 vs Llama 4 vs Qwen 3 (2026): Cost-per-Token from $0.04 to $0.31, Which to Pick | Spheron Blog","url":"https://www.spheron.network/blog/deepseek-vs-llama-4-vs-qwen3/"},{"title":"The Complete Guide to DeepSeek Models: V3, R1, V4 and Beyond","url":"https://www.bentoml.com/blog/the-complete-guide-to-deepseek-models-from-v3-to-r1-and-beyond"},{"title":"Best Open Source LLMs in 2026: We Reviewed 7 Models","url":"https://fireworks.ai/blog/best-open-source-llms"},{"title":"Qwen3 Technical Report","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Best Open Source LLMs 2026: DeepSeek R1 vs Llama 4 vs Qwen 3 | Local AI Master","url":"https://localaimaster.com/blog/best-open-source-llms-2026"}]
+
+Based on the search results, here's what I found about these open-source math reasoning models in 2026:
+
+## DeepSeek Models
+
+DeepSeek-R2 is built on DeepSeek V4 (800B parameters with 45B active), using GRPO v2 training with improved reward signals and explicit structured thinking capabilities. DeepSeek-R2 achieves a MATH score of 98.1% and beats o3 on MATH (98.1% vs 97.0%), GPQA (78.4% vs 75.1%), AIME (83.2% vs 80.8%), and Codeforces (2,318 vs 2,104).
+
+DeepSeek V4 Pro (Max) leads BenchLM's Chinese leaderboard at 87, followed by Kimi K2.6 at 84, GLM-5 (Reasoning) and GLM-5.1 at 83, and Qwen3.5 397B (Reasoning) at 79.
+
+## Qwen3 Models
+
+DeepSeek-R1-Distill-Qwen3-8B was created by distilling chain-of-thought reasoning patterns from the full 671B parameter DeepSeek-R1-0528 model and fine-tuning Alibaba's Qwen3-8B base model, using approximately 800,000 high-quality reasoning samples focused on mathematical problem-solving, logical inference, and structured reasoning tasks.
+
+Qwen3 is a collection of open-weight large language models that achieve state-of-the-art performance across a wide variety of tasks and domains.
+
+## Overall Landscape
+
+Today, you can download DeepSeek-R1, Qwen3 Max thinking, or Mistral Large 3, run them on your own hardware or a cloud instance, and get reasoning performance that matches or beats models you'd pay thousands of dollars per month for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd25a3f3-8cf4-4271-8c41-c7affde4563c",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "e3f580ca-bdb6-4774-85f5-5e51e6a73315",
+  "toolUseResult": {
+    "query": "Qwen3 DeepSeek-R2 DeepSeek-V4 open source math reasoning model 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y3XtLkcjCKcKaZTd83xMHG",
+        "content": [
+          {
+            "title": "Top 10 Open-source Reasoning Models in 2026",
+            "url": "https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"
+          },
+          {
+            "title": "DeepSeek R2: the open source reasoning model that costs pennies | dataku",
+            "url": "https://dataku.ai/blog/deepseek-r2-open-source-reasoning-model-costs-pennies"
+          },
+          {
+            "title": "Open-source reasoning models 2026: DeepSeek vs Qwen vs Mistral",
+            "url": "https://mashblog.com/posts/open-source-reasoning-models-2026-deepseek-qwen-mistral"
+          },
+          {
+            "title": "Best Chinese LLMs in 2026: DeepSeek V4, Kimi K2.6, GLM-5, Qwen, and Every Model Ranked | BenchLM.ai",
+            "url": "https://benchlm.ai/blog/posts/best-chinese-llm"
+          },
+          {
+            "title": "DeepSeek V3.2 vs Llama 4 vs Qwen 3 (2026): Cost-per-Token from $0.04 to $0.31, Which to Pick | Spheron Blog",
+            "url": "https://www.spheron.network/blog/deepseek-vs-llama-4-vs-qwen3/"
+          },
+          {
+            "title": "The Complete Guide to DeepSeek Models: V3, R1, V4 and Beyond",
+            "url": "https://www.bentoml.com/blog/the-complete-guide-to-deepseek-models-from-v3-to-r1-and-beyond"
+          },
+          {
+            "title": "Best Open Source LLMs in 2026: We Reviewed 7 Models",
+            "url": "https://fireworks.ai/blog/best-open-source-llms"
+          },
+          {
+            "title": "Qwen3 Technical Report",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Best Open Source LLMs 2026: DeepSeek R1 vs Llama 4 vs Qwen 3 | Local AI Master",
+            "url": "https://localaimaster.com/blog/best-open-source-llms-2026"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about these open-source math reasoning models in 2026:\n\n## DeepSeek Models\n\nDeepSeek-R2 is built on DeepSeek V4 (800B parameters with 45B active), using GRPO v2 training with improved reward signals and explicit structured thinking capabilities. DeepSeek-R2 achieves a MATH score of 98.1% and beats o3 on MATH (98.1% vs 97.0%), GPQA (78.4% vs 75.1%), AIME (83.2% vs 80.8%), and Codeforces (2,318 vs 2,104).\n\nDeepSeek V4 Pro (Max) leads BenchLM's Chinese leaderboard at 87, followed by Kimi K2.6 at 84, GLM-5 (Reasoning) and GLM-5.1 at 83, and Qwen3.5 397B (Reasoning) at 79.\n\n## Qwen3 Models\n\nDeepSeek-R1-Distill-Qwen3-8B was created by distilling chain-of-thought reasoning patterns from the full 671B parameter DeepSeek-R1-0528 model and fine-tuning Alibaba's Qwen3-8B base model, using approximately 800,000 high-quality reasoning samples focused on mathematical problem-solving, logical inference, and structured reasoning tasks.\n\nQwen3 is a collection of open-weight large language models that achieve state-of-the-art performance across a wide variety of tasks and domains.\n\n## Overall Landscape\n\nToday, you can download DeepSeek-R1, Qwen3 Max thinking, or Mistral Large 3, run them on your own hardware or a cloud instance, and get reasoning performance that matches or beats models you'd pay thousands of dollars per month for."
+    ],
+    "durationSeconds": 8.67257051999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bd25a3f3-8cf4-4271-8c41-c7affde4563c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-28T11:36:36.753Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EYmaoF9K17VStere5J8yww`</summary>
+
+```json
+{
+  "query": "DCR contamination correction EMNLP 2025 accuracy results baseline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3f580ca-bdb6-4774-85f5-5e51e6a73315",
+  "isSidechain": false,
+  "requestId": "req_011CbUu5XSLpJyyQZUNFkZLz",
+  "type": "assistant",
+  "uuid": "3c6cde2f-8b8c-4d6f-b430-506ba01fc2bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ya8jQzSQJdnGAqDTWrff4H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 872,
+      "cache_creation_input_tokens": 2696,
+      "cache_read_input_tokens": 34072,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 872,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 34072,
+          "cache_creation_input_tokens": 2696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-28T11:36:37.658Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011hnRmfybiFrBqD1KLitZck`</summary>
+
+```json
+{
+  "query": "MATH-Perturb adversarial math benchmark perturbation LLM 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c6cde2f-8b8c-4d6f-b430-506ba01fc2bc",
+  "isSidechain": false,
+  "requestId": "req_011CbUu5XSLpJyyQZUNFkZLz",
+  "type": "assistant",
+  "uuid": "120ec151-dc01-4332-9c7a-803fe7e1350a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ya8jQzSQJdnGAqDTWrff4H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 872,
+      "cache_creation_input_tokens": 2696,
+      "cache_read_input_tokens": 34072,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 872,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 34072,
+          "cache_creation_input_tokens": 2696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-28T11:36:42.705Z_
+
+<details><summary>↩ Tool result · `toolu_01EYmaoF9K17VStere5J8yww`</summary>
+
+```text
+Web search results for query: "DCR contamination correction EMNLP 2025 accuracy results baseline"
+
+Links: [{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1173/"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/pdf/2507.11405"},{"title":"[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/abs/2507.11405"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.511/"},{"title":"SSA: Semantic Contamination of LLM-Driven Fake News Detection - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.744/"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/html/2507.11405"}]
+
+I found relevant results for the DCR contamination correction framework presented at EMNLP 2025. Here's what the search revealed:
+
+## DCR Framework Overview
+
+The Data Contamination Risk (DCR) framework is a lightweight, interpretable pipeline designed to detect and quantify benchmark data contamination (BDC) risk across four granular levels: semantic, informational, data, and label.
+
+## Accuracy Results and Baseline Comparison
+
+The DCR framework was validated on 9 LLMs (0.5B-72B) across sentiment analysis, fake news detection, and arithmetic reasoning tasks, with accuracy adjusted using the DCR Factor to within 4% average error across the three benchmarks compared to the uncontaminated baseline.
+
+## Method
+
+By synthesizing contamination scores via a fuzzy inference system, DCR produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance.
+
+The paper demonstrates that the DCR framework can reliably diagnose contamination severity and provide adjusted accuracy metrics that closely match uncontaminated baseline performance, with an average error of just 4% across the tested benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c6cde2f-8b8c-4d6f-b430-506ba01fc2bc",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "02cc4006-01ac-46de-9de4-ee28a0a14d1e",
+  "toolUseResult": {
+    "query": "DCR contamination correction EMNLP 2025 accuracy results baseline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JbpNmQupi6MHdQRqRtyBFa",
+        "content": [
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173/"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/pdf/2507.11405"
+          },
+          {
+            "title": "[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/abs/2507.11405"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.511/"
+          },
+          {
+            "title": "SSA: Semantic Contamination of LLM-Driven Fake News Detection - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.744/"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/html/2507.11405"
+          }
+        ]
+      },
+      "I found relevant results for the DCR contamination correction framework presented at EMNLP 2025. Here's what the search revealed:\n\n## DCR Framework Overview\n\nThe Data Contamination Risk (DCR) framework is a lightweight, interpretable pipeline designed to detect and quantify benchmark data contamination (BDC) risk across four granular levels: semantic, informational, data, and label.\n\n## Accuracy Results and Baseline Comparison\n\nThe DCR framework was validated on 9 LLMs (0.5B-72B) across sentiment analysis, fake news detection, and arithmetic reasoning tasks, with accuracy adjusted using the DCR Factor to within 4% average error across the three benchmarks compared to the uncontaminated baseline.\n\n## Method\n\nBy synthesizing contamination scores via a fuzzy inference system, DCR produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance.\n\nThe paper demonstrates that the DCR framework can reliably diagnose contamination severity and provide adjusted accuracy metrics that closely match uncontaminated baseline performance, with an average error of just 4% across the tested benchmarks."
+    ],
+    "durationSeconds": 5.947986535000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3c6cde2f-8b8c-4d6f-b430-506ba01fc2bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-28T11:36:45.415Z_
+
+<details><summary>↩ Tool result · `toolu_011hnRmfybiFrBqD1KLitZck`</summary>
+
+```text
+Web search results for query: "MATH-Perturb adversarial math benchmark perturbation LLM 2025 2026 arxiv"
+
+Links: [{"title":"MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations | OpenReview","url":"https://openreview.net/forum?id=OZy70UggXr"},{"title":"T-Math Reasoning Benchmark","url":"https://www.emergentmind.com/topics/t-math-reasoning-benchmark"},{"title":"[2502.06453] MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations","url":"https://arxiv.org/abs/2502.06453"},{"title":"MATH-Perturb: Benchmarking LLMs’ Math Reasoning Abilities against Hard Perturbations","url":"https://arxiv.org/html/2502.06453v2"},{"title":"MATH-Perturb","url":"https://math-perturb.github.io/"},{"title":"MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/math-perturb-benchmarking-llms-math-reasoning-abilities"},{"title":"RIDE: Difficulty Evolving Perturbation with Item Response ...","url":"https://arxiv.org/pdf/2511.04120"}]
+
+I found comprehensive results about MATH-Perturb. Here's what the search revealed:
+
+## MATH-Perturb: Benchmarking LLMs' Math Reasoning Against Hard Perturbations
+
+MATH-Perturb investigates whether large language models achieve impressive performance on mathematical reasoning through true reasoning capability or memorization, exploring both simple perturbations (which preserve underlying reasoning patterns) and hard perturbations (which fundamentally change the problem so original solution steps don't apply).
+
+### Key Details
+
+The benchmark constructs MATH-P-Simple and MATH-P-Hard, each consisting of 279 perturbed math problems derived from level-5 (hardest) problems in the MATH dataset. The datasets were curated by 12 graduate-level experts with rigorous rubrics and cross-checking workflow for quality control.
+
+### Results
+
+Significant performance drops were observed on MATH-P-Hard across various models, including o1-mini (-16.49%) and gemini-2.0-flash-thinking (-12.9%). All 18 tested LLMs, including o1-mini and gemini-2.0-flash-thinking, suffered significant performance drops (10%-25%) on MATH-P-Hard.
+
+### Publication
+
+The paper is available on arXiv as 2502.06453, published in February 2025, with additional details available through the official MATH-Perturb website.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "120ec151-dc01-4332-9c7a-803fe7e1350a",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "35348fbe-eb5b-4d64-84e6-752ca1713adc",
+  "toolUseResult": {
+    "query": "MATH-Perturb adversarial math benchmark perturbation LLM 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Gafe6M4oD179KLx5XdRfLx",
+        "content": [
+          {
+            "title": "MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations | OpenReview",
+            "url": "https://openreview.net/forum?id=OZy70UggXr"
+          },
+          {
+            "title": "T-Math Reasoning Benchmark",
+            "url": "https://www.emergentmind.com/topics/t-math-reasoning-benchmark"
+          },
+          {
+            "title": "[2502.06453] MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations",
+            "url": "https://arxiv.org/abs/2502.06453"
+          },
+          {
+            "title": "MATH-Perturb: Benchmarking LLMs’ Math Reasoning Abilities against Hard Perturbations",
+            "url": "https://arxiv.org/html/2502.06453v2"
+          },
+          {
+            "title": "MATH-Perturb",
+            "url": "https://math-perturb.github.io/"
+          },
+          {
+            "title": "MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/math-perturb-benchmarking-llms-math-reasoning-abilities"
+          },
+          {
+            "title": "RIDE: Difficulty Evolving Perturbation with Item Response ...",
+            "url": "https://arxiv.org/pdf/2511.04120"
+          }
+        ]
+      },
+      "I found comprehensive results about MATH-Perturb. Here's what the search revealed:\n\n## MATH-Perturb: Benchmarking LLMs' Math Reasoning Against Hard Perturbations\n\nMATH-Perturb investigates whether large language models achieve impressive performance on mathematical reasoning through true reasoning capability or memorization, exploring both simple perturbations (which preserve underlying reasoning patterns) and hard perturbations (which fundamentally change the problem so original solution steps don't apply).\n\n### Key Details\n\nThe benchmark constructs MATH-P-Simple and MATH-P-Hard, each consisting of 279 perturbed math problems derived from level-5 (hardest) problems in the MATH dataset. The datasets were curated by 12 graduate-level experts with rigorous rubrics and cross-checking workflow for quality control.\n\n### Results\n\nSignificant performance drops were observed on MATH-P-Hard across various models, including o1-mini (-16.49%) and gemini-2.0-flash-thinking (-12.9%). All 18 tested LLMs, including o1-mini and gemini-2.0-flash-thinking, suffered significant performance drops (10%-25%) on MATH-P-Hard.\n\n### Publication\n\nThe paper is available on arXiv as 2502.06453, published in February 2025, with additional details available through the official MATH-Perturb website."
+    ],
+    "durationSeconds": 7.7535160809999795,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "120ec151-dc01-4332-9c7a-803fe7e1350a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-28T11:36:48.063Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SJqKwZXFPub5c69YWehVt2`</summary>
+
+```json
+{
+  "query": "\"Illusion of Reasoning\" LLM reasoning genuine scaffolding decorative 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35348fbe-eb5b-4d64-84e6-752ca1713adc",
+  "isSidechain": false,
+  "requestId": "req_011CbUu6R594U2iXVN1wKiTT",
+  "type": "assistant",
+  "uuid": "d646c306-439d-4d9e-b50f-6be075ea7240",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QSyjYnydmaWtR8Qc9Wpna4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2394,
+      "cache_read_input_tokens": 36768,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 36768,
+          "cache_creation_input_tokens": 2394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-28T11:36:48.634Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01127gthKSEsy72JMZJFJnPD`</summary>
+
+```json
+{
+  "query": "Kocetkov likelihood contamination detection fails reasoning models ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d646c306-439d-4d9e-b50f-6be075ea7240",
+  "isSidechain": false,
+  "requestId": "req_011CbUu6R594U2iXVN1wKiTT",
+  "type": "assistant",
+  "uuid": "2753d327-4e11-4b50-8c06-b454b1a4ba1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QSyjYnydmaWtR8Qc9Wpna4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2394,
+      "cache_read_input_tokens": 36768,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 36768,
+          "cache_creation_input_tokens": 2394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "2753d327-4e11-4b50-8c06-b454b1a4ba1d",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-28T11:36:54.574Z_
+
+<details><summary>↩ Tool result · `toolu_01SJqKwZXFPub5c69YWehVt2`</summary>
+
+```text
+Web search results for query: ""Illusion of Reasoning" LLM reasoning genuine scaffolding decorative 2026"
+
+Links: [{"title":"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models","url":"https://arxiv.org/pdf/2603.22816"},{"title":"Reasoning Scaffolding: Distilling the Flow of Thought from LLMs","url":"https://arxiv.org/pdf/2509.23619"},{"title":"Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning","url":"https://arxiv.org/pdf/2508.16949"},{"title":"The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination","url":"https://arxiv.org/pdf/2510.22977"},{"title":"Thinking in a Crowd: How Auxiliary Information Shapes LLM Reasoning","url":"https://arxiv.org/pdf/2509.18163"}]
+
+Based on the search results, I found a highly relevant research paper on this topic.
+
+The paper "The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models" examines whether language models' step-by-step reasoning steps are genuinely used or merely decorative narratives generated after the model has already decided.
+
+The researchers developed a step-level faithfulness evaluation method that removes one reasoning sentence at a time to check whether the answer changes, requiring only API access at a cost of $1–2 per model per task.
+
+The evaluation of 13 frontier models (including GPT-5.4, Claude Opus, DeepSeek-V3.2, and others) across six domains found that their reasoning falls into three distinct modes:
+
+1. **Genuine reasoning**: Chain-of-thought improves accuracy and individual steps matter—removing a step changes the answer
+
+2. **Scaffolding**: Chain-of-thought dramatically improves accuracy but specific steps are interchangeable
+
+3. **Decoration**: Chain-of-thought adds nothing and steps are ornamental
+
+This research provides empirical evidence that many frontier language models exhibit reasoning that falls somewhere on a spectrum between genuinely scaffolding the reasoning process and merely providing decorative explanations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d646c306-439d-4d9e-b50f-6be075ea7240",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "4db4de68-dd37-428e-85a9-598287621ca1",
+  "toolUseResult": {
+    "query": "\"Illusion of Reasoning\" LLM reasoning genuine scaffolding decorative 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013DkyhNvqYgAiiCyUQMotoF",
+        "content": [
+          {
+            "title": "The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models",
+            "url": "https://arxiv.org/pdf/2603.22816"
+          },
+          {
+            "title": "Reasoning Scaffolding: Distilling the Flow of Thought from LLMs",
+            "url": "https://arxiv.org/pdf/2509.23619"
+          },
+          {
+            "title": "Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2508.16949"
+          },
+          {
+            "title": "The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination",
+            "url": "https://arxiv.org/pdf/2510.22977"
+          },
+          {
+            "title": "Thinking in a Crowd: How Auxiliary Information Shapes LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2509.18163"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant research paper on this topic.\n\nThe paper \"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models\" examines whether language models' step-by-step reasoning steps are genuinely used or merely decorative narratives generated after the model has already decided.\n\nThe researchers developed a step-level faithfulness evaluation method that removes one reasoning sentence at a time to check whether the answer changes, requiring only API access at a cost of $1–2 per model per task.\n\nThe evaluation of 13 frontier models (including GPT-5.4, Claude Opus, DeepSeek-V3.2, and others) across six domains found that their reasoning falls into three distinct modes:\n\n1. **Genuine reasoning**: Chain-of-thought improves accuracy and individual steps matter—removing a step changes the answer\n\n2. **Scaffolding**: Chain-of-thought dramatically improves accuracy but specific steps are interchangeable\n\n3. **Decoration**: Chain-of-thought adds nothing and steps are ornamental\n\nThis research provides empirical evidence that many frontier language models exhibit reasoning that falls somewhere on a spectrum between genuinely scaffolding the reasoning process and merely providing decorative explanations."
+    ],
+    "durationSeconds": 6.506550096999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d646c306-439d-4d9e-b50f-6be075ea7240",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83 · 2026-05-28T11:36:58.090Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:36:58.090Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "content": "&lt;task-notification>\n&lt;task-id>aad5a93e1c5cb1b9a&lt;/task-id>\n&lt;tool-use-id>toolu_01CqjdUHkUozpP2d7Bjkvuvm&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aad5a93e1c5cb1b9a.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"MathArena and step-level eval\" completed&lt;/summary>\n&lt;result>Here is a comprehensive report of findings across all five research areas:\n\n---\n\n## 1. MathArena Latest Results and Leaderboard (2026)\n\n**Platform overview:** MathArena (developed by ETH Zurich's SRI lab) evaluates LLMs on fresh, uncontaminated math competition problems. As of its 2025 publication, it had evaluated **over 50 models across 7 competitions totaling 162 problems**. In 2026, the platform has expanded to include new competitions such as **AIME 2026, HMMT Feb 2026, and USAMO 2026**.\n\n**Top scores on AIME 2026:**\n- **GPT-5 achieved a perfect score (100%)** on AIME 2026.\n- Other frontier models cluster between **85% and 98%**.\n- GPT-5.5 (xhigh) also appears on the leaderboard.\n\n**Grading methodology:** MathArena uses a **rule-based SymPy parser** for answer-based grading, with **Gemini-2.5-Flash as a secondary LLM judge**; discrepancies are flagged for manual review. Each model is run **4 times per problem**, and the average score and cost (in USD) are computed.\n\n**Key paper:** \"MathArena: Evaluating LLMs on Uncontaminated Math Competitions\" (arXiv:2505.23281).\n\nSources:\n- [MathArena](https://matharena.ai/)\n- [MathArena AIME 2026](https://matharena.ai/?comp=aime--aime_2026)\n- [MathArena GitHub](https://github.com/eth-sri/matharena)\n- [MathArena Paper](https://arxiv.org/abs/2505.23281)\n\n---\n\n## 2. Step-Level Evaluation Methods\n\n**Process Reward Models (PRMs):** PRMs evaluate each intermediate reasoning step rather than just the final answer. Key 2025-2026 developments include:\n\n- **THINKPRM-14B**: A generative PRM that scales substantially better with **two orders of magnitude fewer process labels** by leveraging the text generation and reasoning abilities of the underlying model. (arXiv:2504.16828)\n- **R-PRM (Reasoning-Driven PRM)**: Improves process reward modeling through reasoning-driven approaches. (arXiv:2503.21295)\n- **PROGRS**: A framework that keeps outcome correctness dominant while leveraging PRMs. Consistently improves **Pass@1 over outcome-only baselines** across MATH-500, AMC, AIME, MinervaMath, and OlympiadBench. (arXiv:2604.02341)\n- **URSA**: Extends PRMs to multimodal settings, achieving **58.2% average accuracy across 6 multimodal math benchmarks**, outperforming GPT-4o by 2.7%.\n\n**Step-level evaluation methodology:** Research formalizes reasoning quality along two dimensions beyond correctness: **relevance** (whether a step addresses the problem) and **coherence** (whether it logically follows from preceding steps). Testing methods include necessity tests (removing one sentence at a time), sufficiency tests (presenting each sentence alone), and order sensitivity tests (shuffling sentence order).\n\n**Key finding:** Monte Carlo estimation-based data synthesis for PRMs typically yields **inferior performance** compared to LLM-as-a-judge and human annotation methods.\n\nSources:\n- [Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [R-PRM](https://arxiv.org/abs/2503.21295)\n- [PROGRS](https://arxiv.org/abs/2604.02341)\n- [The Lessons of Developing PRMs](https://arxiv.org/abs/2501.07301)\n- [The Illusion of Reasoning: Step-Level Evaluation](https://arxiv.org/pdf/2603.22816)\n\n---\n\n## 3. Symbolic Math Verification Tools\n\n**SymPy-based verification:**\n- **FrontierMath** uses SymPy objects (symbolic expressions, matrices, sets) for automated verification. For problems with unique symbolic real answers, it checks that the difference between submitted and actual answer **simplifies to 0 via SymPy**.\n- **MathArena** uses a rule-based SymPy parser with LLM fallback.\n- **HARDMATH** uses SymPy and SciPy for generating and validating approximate analytical solutions.\n\n**Formal proof verification (Lean4):**\n- **Safe framework**: Uses Lean4 to verify **each step** of an LLM's chain-of-thought by translating claims into Lean4 formal language. (arXiv:2506.04592)\n- **Aristotle**: An automated theorem prover that takes informal mathematical statements and produces complete, verified Lean 4 proofs autonomously.\n- **Delta Prover**: An agent-based framework orchestrating interaction between a general-purpose LLM and Lean 4, constructing formal proofs via reflection without model specialization.\n- **TheoremLlama**: Transforms general-purpose LLMs into Lean4 experts.\n\n**LLM-as-judge approach:** A recent paper (arXiv:2604.22597) argues for moving **beyond symbolic rigidity**, proposing a robust LLM-as-a-Judge framework that handles diverse mathematical representations and answer formats where symbolic comparison fails.\n\n**Key limitation:** Symbolic math comparison fails to generalize across diverse mathematical representations and solution formats.\n\nSources:\n- [FrontierMath Benchmark](https://arxiv.org/pdf/2411.04872)\n- [Safe: Step-aware Formal Verification](https://arxiv.org/pdf/2506.04592)\n- [Rethinking Math Evaluation Beyond Symbolic Rigidity](https://arxiv.org/abs/2604.22597)\n- [Step-Wise Formal Verification](https://arxiv.org/html/2505.20869v1)\n- [Lean4 Ecosystem](https://venturebeat.com/ai/lean4-how-the-theorem-prover-works-and-why-its-the-new-competitive-edge-in)\n\n---\n\n## 4. Contamination Detection Methods (State of the Art 2026)\n\n**Five established detection methods** that work in 2026:\n1. **Time-based partition** (the Codeforces cliff)\n2. **Min-K% probability** (white-box)\n3. **Time Travel guided-completion attack**\n4. **ConStat** performance gaps on rephrased samples\n5. **BIG-Bench canary GUID memorization**\n\n**New 2026 methods:**\n- **JECS (Joint Envelope Conformal Selection)**: A conformal procedure for **multi-model benchmark decontamination** that controls the global contamination rate (GCR) across all audited models simultaneously. Formalizes decontamination as a joint selection problem with theoretical guarantees. (arXiv:2605.21543)\n- **Watermarking-based detection**: Embeds non-intrusive watermarks in benchmark datasets before release, producing both model performance and a **reliable p-value as a contamination score**. (arXiv:2502.17259)\n- **CoDeC**: Tested on Qwen3, Gemma 3 across MMLU-Pro, AIME, GPQA, and GSM8K.\n- **DCR (Data Contamination Risk)**: A lightweight framework emphasizing interpretability and computational efficiency. (arXiv:2507.11405)\n- **LNE-Blocking**: Decouples contamination mitigation into contamination detection and disruption operations. (arXiv:2509.15218)\n\n**Major surveys:**\n- \"A Survey on Data Contamination for Large Language Models\" (arXiv:2502.14425) -- categorizes detection into **white-box, gray-box, and black-box** approaches, and evaluation into **data updating-based, data rewriting-based, and prevention-based** methods.\n- \"Benchmarking LLMs Under Data Contamination: A Survey from Static to Dynamic Evaluation\" (arXiv:2502.17521) -- finds static methods become more vulnerable as training datasets grow; dynamic methods show promise but face reproducibility challenges.\n\n**Contamination-resistant benchmarks (2026 standard):** LiveCodeBench, FrontierMath, MMLU-Pro, LiveBench.\n\nSources:\n- [JECS: Provable Joint Decontamination](https://arxiv.org/abs/2605.21543)\n- [Contamination Detection via Watermarking](https://arxiv.org/pdf/2502.17259)\n- [Survey on Data Contamination](https://arxiv.org/abs/2502.14425)\n- [Static to Dynamic Evaluation Survey](https://arxiv.org/html/2502.17521v2)\n- [What Is a Contaminated LLM? 2026 Guide](https://llm-stats.com/blog/research/what-is-a-contaminated-llm)\n- [LLM Benchmark Datasets Should Be Contamination-Resistant](https://arxiv.org/html/2605.19999v1)\n\n---\n\n## 5. Contamination-Aware IRT Evaluation Frameworks\n\n**PSN-IRT (Pseudo-Siamese Network for IRT):** A framework integrating neural networks with Item Response Theory that estimates four item parameters -- **difficulty, discriminability, guessing-rate, and feasibility** -- alongside latent model ability. Experiments on **12 LLMs across 11 datasets** found that current benchmarks suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination. Items with **unusually high guessing parameters** signal potential contamination. (arXiv:2505.15055)\n\n**Adaptive Testing for LLM Evaluation:** Uses IRT-based Computerized Adaptive Testing (CAT) as a psychometric alternative to static benchmarks. IRT-based ability estimates provide **form-invariant, uncertainty-aware alternatives** that adjust for item difficulty and discrimination. (arXiv:2511.04689)\n\n**Medical domain CAT:** A framework grounded in IRT that uses a **secure, non-public national medical item bank** calibrated on real human examinees to eliminate data contamination while enabling psychometrically rigorous measurement. (arXiv:2603.23506)\n\n**Quantifying contamination psychometrically:** Research directly on quantifying data contamination in psychometric evaluations of LLMs, demonstrating that memorized items from pretraining can **artificially inflate percent-correct scores** without reflecting genuine reasoning. (arXiv:2510.07175)\n\n**Contamination-free evaluation frameworks:**\n- **FuncBenchGen**: Generates synthetic multi-step tool-use tasks for contamination-free evaluation (updated Feb 2026). (arXiv:2509.26553)\n- **KIEval, LLMEval-3, FreeEval**: Dynamic evaluation frameworks incorporating dynamic sampling and LLM-as-a-Judge approaches.\n\nSources:\n- [PSN-IRT: Lost in Benchmarks?](https://arxiv.org/abs/2505.15055)\n- [Adaptive Testing for LLM Evaluation](https://arxiv.org/abs/2511.04689)\n- [CAT for Medical LLM Evaluation](https://arxiv.org/pdf/2603.23506)\n- [Quantifying Data Contamination in Psychometric Evaluations](https://arxiv.org/html/2510.07175)\n- [FuncBenchGen](https://arxiv.org/abs/2509.26553)\n- [Diagnosing LLM-as-a-Judge via IRT](https://arxiv.org/pdf/2602.00521)&lt;/result>\n&lt;usage>&lt;total_tokens>20755&lt;/total_tokens>&lt;tool_uses>15&lt;/tool_uses>&lt;duration_ms>128800&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-28T11:36:59.134Z_
+
+<details><summary>↩ Tool result · `toolu_01127gthKSEsy72JMZJFJnPD`</summary>
+
+```text
+Web search results for query: "Kocetkov likelihood contamination detection fails reasoning models ICLR 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 CONTAMINATION DETECTION","url":"https://openreview.net/pdf?id=gk6OC3XIZW"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.24210"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/pdf/2510.09259"},{"title":"COMPOUND DECEPTION IN ELITE PEER REVIEW: A FAILURE MODE TAXONOMY OF 100","url":"https://arxiv.org/pdf/2602.05930"}]
+
+Based on the search results, I found relevant information about contamination detection and reasoning models at ICLR 2026:
+
+Large Reasoning Models (LRMs) present key challenges for benchmark contamination detection because they rely on chain-of-thought reasoning, and while contamination evidence in the base model can be concealed through subsequent reinforcement learning training, extensive contamination with CoT on advanced LRMs barely leaves evidence for existing memorization-based detection methods.
+
+More specifically, while pre-training and supervised fine-tuning are likelihood-based paradigms that create strong likelihood-based signals like low perplexity, reinforcement learning operates on a reward-maximization principle and by decoupling from likelihood-based objectives, it erases the very signals that traditional detectors rely on.
+
+The search results show that reinforcement learning phase contamination is a uniquely challenging problem that creates an urgent need for a new class of detection methods specifically designed for reward-driven settings.
+
+The papers also demonstrate that most existing detection methods fail to meet the requirements and cannot accurately classify contaminated models, though some newer approaches satisfy all requirements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2753d327-4e11-4b50-8c06-b454b1a4ba1d",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "6e1b796c-8aba-4bce-8c34-b838b96b2fad",
+  "toolUseResult": {
+    "query": "Kocetkov likelihood contamination detection fails reasoning models ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017jsUMGTh3JCKetph5nJwHA",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 CONTAMINATION DETECTION",
+            "url": "https://openreview.net/pdf?id=gk6OC3XIZW"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.24210"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.09259"
+          },
+          {
+            "title": "COMPOUND DECEPTION IN ELITE PEER REVIEW: A FAILURE MODE TAXONOMY OF 100",
+            "url": "https://arxiv.org/pdf/2602.05930"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about contamination detection and reasoning models at ICLR 2026:\n\nLarge Reasoning Models (LRMs) present key challenges for benchmark contamination detection because they rely on chain-of-thought reasoning, and while contamination evidence in the base model can be concealed through subsequent reinforcement learning training, extensive contamination with CoT on advanced LRMs barely leaves evidence for existing memorization-based detection methods.\n\nMore specifically, while pre-training and supervised fine-tuning are likelihood-based paradigms that create strong likelihood-based signals like low perplexity, reinforcement learning operates on a reward-maximization principle and by decoupling from likelihood-based objectives, it erases the very signals that traditional detectors rely on.\n\nThe search results show that reinforcement learning phase contamination is a uniquely challenging problem that creates an urgent need for a new class of detection methods specifically designed for reward-driven settings.\n\nThe papers also demonstrate that most existing detection methods fail to meet the requirements and cannot accurately classify contaminated models, though some newer approaches satisfy all requirements."
+    ],
+    "durationSeconds": 10.497506561000016,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2753d327-4e11-4b50-8c06-b454b1a4ba1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-28T11:36:59.149Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-28T11:36:59.149Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86 · 2026-05-28T11:36:59.149Z_
+
+```json
+{
+  "parentUuid": "6e1b796c-8aba-4bce-8c34-b838b96b2fad",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>aad5a93e1c5cb1b9a&lt;/task-id>\n&lt;tool-use-id>toolu_01CqjdUHkUozpP2d7Bjkvuvm&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aad5a93e1c5cb1b9a.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"MathArena and step-level eval\" completed&lt;/summary>\n&lt;result>Here is a comprehensive report of findings across all five research areas:\n\n---\n\n## 1. MathArena Latest Results and Leaderboard (2026)\n\n**Platform overview:** MathArena (developed by ETH Zurich's SRI lab) evaluates LLMs on fresh, uncontaminated math competition problems. As of its 2025 publication, it had evaluated **over 50 models across 7 competitions totaling 162 problems**. In 2026, the platform has expanded to include new competitions such as **AIME 2026, HMMT Feb 2026, and USAMO 2026**.\n\n**Top scores on AIME 2026:**\n- **GPT-5 achieved a perfect score (100%)** on AIME 2026.\n- Other frontier models cluster between **85% and 98%**.\n- GPT-5.5 (xhigh) also appears on the leaderboard.\n\n**Grading methodology:** MathArena uses a **rule-based SymPy parser** for answer-based grading, with **Gemini-2.5-Flash as a secondary LLM judge**; discrepancies are flagged for manual review. Each model is run **4 times per problem**, and the average score and cost (in USD) are computed.\n\n**Key paper:** \"MathArena: Evaluating LLMs on Uncontaminated Math Competitions\" (arXiv:2505.23281).\n\nSources:\n- [MathArena](https://matharena.ai/)\n- [MathArena AIME 2026](https://matharena.ai/?comp=aime--aime_2026)\n- [MathArena GitHub](https://github.com/eth-sri/matharena)\n- [MathArena Paper](https://arxiv.org/abs/2505.23281)\n\n---\n\n## 2. Step-Level Evaluation Methods\n\n**Process Reward Models (PRMs):** PRMs evaluate each intermediate reasoning step rather than just the final answer. Key 2025-2026 developments include:\n\n- **THINKPRM-14B**: A generative PRM that scales substantially better with **two orders of magnitude fewer process labels** by leveraging the text generation and reasoning abilities of the underlying model. (arXiv:2504.16828)\n- **R-PRM (Reasoning-Driven PRM)**: Improves process reward modeling through reasoning-driven approaches. (arXiv:2503.21295)\n- **PROGRS**: A framework that keeps outcome correctness dominant while leveraging PRMs. Consistently improves **Pass@1 over outcome-only baselines** across MATH-500, AMC, AIME, MinervaMath, and OlympiadBench. (arXiv:2604.02341)\n- **URSA**: Extends PRMs to multimodal settings, achieving **58.2% average accuracy across 6 multimodal math benchmarks**, outperforming GPT-4o by 2.7%.\n\n**Step-level evaluation methodology:** Research formalizes reasoning quality along two dimensions beyond correctness: **relevance** (whether a step addresses the problem) and **coherence** (whether it logically follows from preceding steps). Testing methods include necessity tests (removing one sentence at a time), sufficiency tests (presenting each sentence alone), and order sensitivity tests (shuffling sentence order).\n\n**Key finding:** Monte Carlo estimation-based data synthesis for PRMs typically yields **inferior performance** compared to LLM-as-a-judge and human annotation methods.\n\nSources:\n- [Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [R-PRM](https://arxiv.org/abs/2503.21295)\n- [PROGRS](https://arxiv.org/abs/2604.02341)\n- [The Lessons of Developing PRMs](https://arxiv.org/abs/2501.07301)\n- [The Illusion of Reasoning: Step-Level Evaluation](https://arxiv.org/pdf/2603.22816)\n\n---\n\n## 3. Symbolic Math Verification Tools\n\n**SymPy-based verification:**\n- **FrontierMath** uses SymPy objects (symbolic expressions, matrices, sets) for automated verification. For problems with unique symbolic real answers, it checks that the difference between submitted and actual answer **simplifies to 0 via SymPy**.\n- **MathArena** uses a rule-based SymPy parser with LLM fallback.\n- **HARDMATH** uses SymPy and SciPy for generating and validating approximate analytical solutions.\n\n**Formal proof verification (Lean4):**\n- **Safe framework**: Uses Lean4 to verify **each step** of an LLM's chain-of-thought by translating claims into Lean4 formal language. (arXiv:2506.04592)\n- **Aristotle**: An automated theorem prover that takes informal mathematical statements and produces complete, verified Lean 4 proofs autonomously.\n- **Delta Prover**: An agent-based framework orchestrating interaction between a general-purpose LLM and Lean 4, constructing formal proofs via reflection without model specialization.\n- **TheoremLlama**: Transforms general-purpose LLMs into Lean4 experts.\n\n**LLM-as-judge approach:** A recent paper (arXiv:2604.22597) argues for moving **beyond symbolic rigidity**, proposing a robust LLM-as-a-Judge framework that handles diverse mathematical representations and answer formats where symbolic comparison fails.\n\n**Key limitation:** Symbolic math comparison fails to generalize across diverse mathematical representations and solution formats.\n\nSources:\n- [FrontierMath Benchmark](https://arxiv.org/pdf/2411.04872)\n- [Safe: Step-aware Formal Verification](https://arxiv.org/pdf/2506.04592)\n- [Rethinking Math Evaluation Beyond Symbolic Rigidity](https://arxiv.org/abs/2604.22597)\n- [Step-Wise Formal Verification](https://arxiv.org/html/2505.20869v1)\n- [Lean4 Ecosystem](https://venturebeat.com/ai/lean4-how-the-theorem-prover-works-and-why-its-the-new-competitive-edge-in)\n\n---\n\n## 4. Contamination Detection Methods (State of the Art 2026)\n\n**Five established detection methods** that work in 2026:\n1. **Time-based partition** (the Codeforces cliff)\n2. **Min-K% probability** (white-box)\n3. **Time Travel guided-completion attack**\n4. **ConStat** performance gaps on rephrased samples\n5. **BIG-Bench canary GUID memorization**\n\n**New 2026 methods:**\n- **JECS (Joint Envelope Conformal Selection)**: A conformal procedure for **multi-model benchmark decontamination** that controls the global contamination rate (GCR) across all audited models simultaneously. Formalizes decontamination as a joint selection problem with theoretical guarantees. (arXiv:2605.21543)\n- **Watermarking-based detection**: Embeds non-intrusive watermarks in benchmark datasets before release, producing both model performance and a **reliable p-value as a contamination score**. (arXiv:2502.17259)\n- **CoDeC**: Tested on Qwen3, Gemma 3 across MMLU-Pro, AIME, GPQA, and GSM8K.\n- **DCR (Data Contamination Risk)**: A lightweight framework emphasizing interpretability and computational efficiency. (arXiv:2507.11405)\n- **LNE-Blocking**: Decouples contamination mitigation into contamination detection and disruption operations. (arXiv:2509.15218)\n\n**Major surveys:**\n- \"A Survey on Data Contamination for Large Language Models\" (arXiv:2502.14425) -- categorizes detection into **white-box, gray-box, and black-box** approaches, and evaluation into **data updating-based, data rewriting-based, and prevention-based** methods.\n- \"Benchmarking LLMs Under Data Contamination: A Survey from Static to Dynamic Evaluation\" (arXiv:2502.17521) -- finds static methods become more vulnerable as training datasets grow; dynamic methods show promise but face reproducibility challenges.\n\n**Contamination-resistant benchmarks (2026 standard):** LiveCodeBench, FrontierMath, MMLU-Pro, LiveBench.\n\nSources:\n- [JECS: Provable Joint Decontamination](https://arxiv.org/abs/2605.21543)\n- [Contamination Detection via Watermarking](https://arxiv.org/pdf/2502.17259)\n- [Survey on Data Contamination](https://arxiv.org/abs/2502.14425)\n- [Static to Dynamic Evaluation Survey](https://arxiv.org/html/2502.17521v2)\n- [What Is a Contaminated LLM? 2026 Guide](https://llm-stats.com/blog/research/what-is-a-contaminated-llm)\n- [LLM Benchmark Datasets Should Be Contamination-Resistant](https://arxiv.org/html/2605.19999v1)\n\n---\n\n## 5. Contamination-Aware IRT Evaluation Frameworks\n\n**PSN-IRT (Pseudo-Siamese Network for IRT):** A framework integrating neural networks with Item Response Theory that estimates four item parameters -- **difficulty, discriminability, guessing-rate, and feasibility** -- alongside latent model ability. Experiments on **12 LLMs across 11 datasets** found that current benchmarks suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination. Items with **unusually high guessing parameters** signal potential contamination. (arXiv:2505.15055)\n\n**Adaptive Testing for LLM Evaluation:** Uses IRT-based Computerized Adaptive Testing (CAT) as a psychometric alternative to static benchmarks. IRT-based ability estimates provide **form-invariant, uncertainty-aware alternatives** that adjust for item difficulty and discrimination. (arXiv:2511.04689)\n\n**Medical domain CAT:** A framework grounded in IRT that uses a **secure, non-public national medical item bank** calibrated on real human examinees to eliminate data contamination while enabling psychometrically rigorous measurement. (arXiv:2603.23506)\n\n**Quantifying contamination psychometrically:** Research directly on quantifying data contamination in psychometric evaluations of LLMs, demonstrating that memorized items from pretraining can **artificially inflate percent-correct scores** without reflecting genuine reasoning. (arXiv:2510.07175)\n\n**Contamination-free evaluation frameworks:**\n- **FuncBenchGen**: Generates synthetic multi-step tool-use tasks for contamination-free evaluation (updated Feb 2026). (arXiv:2509.26553)\n- **KIEval, LLMEval-3, FreeEval**: Dynamic evaluation frameworks incorporating dynamic sampling and LLM-as-a-Judge approaches.\n\nSources:\n- [PSN-IRT: Lost in Benchmarks?](https://arxiv.org/abs/2505.15055)\n- [Adaptive Testing for LLM Evaluation](https://arxiv.org/abs/2511.04689)\n- [CAT for Medical LLM Evaluation](https://arxiv.org/pdf/2603.23506)\n- [Quantifying Data Contamination in Psychometric Evaluations](https://arxiv.org/html/2510.07175)\n- [FuncBenchGen](https://arxiv.org/abs/2509.26553)\n- [Diagnosing LLM-as-a-Judge via IRT](https://arxiv.org/pdf/2602.00521)&lt;/result>\n&lt;usage>&lt;total_tokens>20755&lt;/total_tokens>&lt;tool_uses>15&lt;/tool_uses>&lt;duration_ms>128800&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "6a6b2e72-6add-4716-b2ec-3ced19c2d9a0",
+  "timestamp": "2026-05-28T11:36:59.149Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-28T11:37:08.192Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting a lot of useful data. Let me check on the remaining background agents. The venue deadlines agent and the MathArena agent have completed. Let me wait for the other two.
+
+Let me also verify a few more things: RIDE paper and STIM paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a6b2e72-6add-4716-b2ec-3ced19c2d9a0",
+  "isSidechain": false,
+  "requestId": "req_011CbUu7RkbVCcAwhqpV7qgX",
+  "type": "assistant",
+  "uuid": "cd4c790b-3fc0-48f1-9115-9509e02143c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HeSeQsp1K2tgwQqM5tp1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 39162,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 39162,
+          "cache_creation_input_tokens": 4349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-28T11:37:08.343Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FXNMnt7PwWmbAi9u5mTe4x`</summary>
+
+```json
+{
+  "query": "RIDE IRT adversarial perturbation math evaluation difficulty evolving arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd4c790b-3fc0-48f1-9115-9509e02143c0",
+  "isSidechain": false,
+  "requestId": "req_011CbUu7RkbVCcAwhqpV7qgX",
+  "type": "assistant",
+  "uuid": "5a47fb86-cb38-4879-af50-13e18add9df3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HeSeQsp1K2tgwQqM5tp1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 39162,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 39162,
+          "cache_creation_input_tokens": 4349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-28T11:37:08.440Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014uoaECu7mVVEWxwc2g4C4M`</summary>
+
+```json
+{
+  "query": "STIM source token identity memorization EMNLP 2025 reasoning chains"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a47fb86-cb38-4879-af50-13e18add9df3",
+  "isSidechain": false,
+  "requestId": "req_011CbUu7RkbVCcAwhqpV7qgX",
+  "type": "assistant",
+  "uuid": "f4a7a023-1e4d-4ec2-987a-b01cb8aee5b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HeSeQsp1K2tgwQqM5tp1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 39162,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 39162,
+          "cache_creation_input_tokens": 4349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "f4a7a023-1e4d-4ec2-987a-b01cb8aee5b1",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-28T11:37:15.063Z_
+
+<details><summary>↩ Tool result · `toolu_014uoaECu7mVVEWxwc2g4C4M`</summary>
+
+```text
+Web search results for query: "STIM source token identity memorization EMNLP 2025 reasoning chains"
+
+Links: [{"title":"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.157/"},{"title":"Diagnosing Memorization in Chain-of-Thought Reasoning One Token at a Time","url":"https://arxiv.org/html/2508.02037"},{"title":"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time","url":"https://arxiv.org/pdf/2508.02037"},{"title":"[2508.02037] Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time","url":"https://arxiv.org/abs/2508.02037"},{"title":"GitHub - INK-USC/STIM: Code and Data for paper \"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time\"","url":"https://github.com/INK-USC/STIM"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"}]
+
+Based on the search results, I found information about the STIM framework presented at EMNLP 2025:
+
+STIM is a novel framework for Source-aware Token-level Identification of Memorization, which attributes each token in a reasoning chain to one of multiple memorization sources - local, mid-range, or long-range based on their statistical co-occurrence with the token in the pretraining corpus.
+
+The research addresses Chain-of-Thought (CoT) reasoning, where spurious memorized patterns can trigger intermediate errors that cascade into incorrect final answers.
+
+Key findings from the research include: The token-level analysis across tasks and distributional settings reveals that models rely more on memorization in complex or long-tail cases, and that local memorization is often the dominant driver of errors, leading to up to 67% of wrong tokens.
+
+The memorization scores from STIM can be effective in predicting the wrong tokens in the wrong reasoning step. STIM offers a powerful tool for diagnosing and improving model reasoning and can generalize to other structured step-wise generation tasks.
+
+The paper is authored by Huihan Li, You Chen, Siyuan Wang, Yixin He, Ninareh Mehrabi, Rahul Gupta, and Xiang Ren, and was accepted as a main conference paper at EMNLP 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4a7a023-1e4d-4ec2-987a-b01cb8aee5b1",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "6c022f3d-c406-416d-ae15-230ad79431ef",
+  "toolUseResult": {
+    "query": "STIM source token identity memorization EMNLP 2025 reasoning chains",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NJB92AhE46JUUU2x2NfKzc",
+        "content": [
+          {
+            "title": "Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.157/"
+          },
+          {
+            "title": "Diagnosing Memorization in Chain-of-Thought Reasoning One Token at a Time",
+            "url": "https://arxiv.org/html/2508.02037"
+          },
+          {
+            "title": "Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time",
+            "url": "https://arxiv.org/pdf/2508.02037"
+          },
+          {
+            "title": "[2508.02037] Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time",
+            "url": "https://arxiv.org/abs/2508.02037"
+          },
+          {
+            "title": "GitHub - INK-USC/STIM: Code and Data for paper \"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time\"",
+            "url": "https://github.com/INK-USC/STIM"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the STIM framework presented at EMNLP 2025:\n\nSTIM is a novel framework for Source-aware Token-level Identification of Memorization, which attributes each token in a reasoning chain to one of multiple memorization sources - local, mid-range, or long-range based on their statistical co-occurrence with the token in the pretraining corpus.\n\nThe research addresses Chain-of-Thought (CoT) reasoning, where spurious memorized patterns can trigger intermediate errors that cascade into incorrect final answers.\n\nKey findings from the research include: The token-level analysis across tasks and distributional settings reveals that models rely more on memorization in complex or long-tail cases, and that local memorization is often the dominant driver of errors, leading to up to 67% of wrong tokens.\n\nThe memorization scores from STIM can be effective in predicting the wrong tokens in the wrong reasoning step. STIM offers a powerful tool for diagnosing and improving model reasoning and can generalize to other structured step-wise generation tasks.\n\nThe paper is authored by Huihan Li, You Chen, Siyuan Wang, Yixin He, Ninareh Mehrabi, Rahul Gupta, and Xiang Ren, and was accepted as a main conference paper at EMNLP 2025."
+    ],
+    "durationSeconds": 6.61749953999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f4a7a023-1e4d-4ec2-987a-b01cb8aee5b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-28T11:37:15.469Z_
+
+<details><summary>↩ Tool result · `toolu_01FXNMnt7PwWmbAi9u5mTe4x`</summary>
+
+```text
+Web search results for query: "RIDE IRT adversarial perturbation math evaluation difficulty evolving arxiv 2025"
+
+Links: [{"title":"[2511.04120] RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning","url":"https://arxiv.org/abs/2511.04120"},{"title":"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning | OpenReview","url":"https://openreview.net/forum?id=PPkzchpdNK"},{"title":"RIDE: DIFFICULTY EVOLVING PERTURBATION WITH ...","url":"https://openreview.net/pdf/a83cd39cfda0263faa17943c8f4832d28003298c.pdf"},{"title":"RIDE: Difficulty Evolving Perturbation with Item Response ...","url":"https://arxiv.org/pdf/2511.04120"},{"title":"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning","url":"https://arxiv.org/html/2511.04120"}]
+
+I found relevant results for your search. Here's what the research shows:
+
+RIDE is a novel adversarial question-rewriting framework that leverages Item Response Theory (IRT) to rigorously measure question difficulty and to generate intrinsically more challenging, well-posed variations of mathematical problems.
+
+**Key aspects of the research:**
+
+- **Problem addressed:** Large language models (LLMs) achieve high performance on mathematical reasoning, but these results can be inflated by training data leakage or superficial pattern matching rather than genuine reasoning.
+
+- **Methodology:** The research employs 35 LLMs to simulate students and build a difficulty ranker from their responses, which provides a reward signal during reinforcement learning and guides a question-rewriting model to reformulate existing questions across difficulty levels.
+
+- **Results:** Applying RIDE to competition-level mathematical benchmarks yields perturbed versions that degrade advanced LLM performance, with experiments showing an average 21.73% drop across 26 models, thereby exposing limited robustness in mathematical reasoning.
+
+- **Advantages over previous methods:** Rule-based approaches may render the rewritten questions ill-posed and unsolvable, thereby undermining their validity as reliable benchmarks. RIDE uses a reinforcement learning-based approach instead to avoid these issues.
+
+The paper was published on arXiv in late January 2026 (arXiv:2511.04120).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a47fb86-cb38-4879-af50-13e18add9df3",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "cf7a191d-e7ee-4f21-b749-2876297594a4",
+  "toolUseResult": {
+    "query": "RIDE IRT adversarial perturbation math evaluation difficulty evolving arxiv 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H1CMDpt7sjAtusBhaMvfeA",
+        "content": [
+          {
+            "title": "[2511.04120] RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2511.04120"
+          },
+          {
+            "title": "RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=PPkzchpdNK"
+          },
+          {
+            "title": "RIDE: DIFFICULTY EVOLVING PERTURBATION WITH ...",
+            "url": "https://openreview.net/pdf/a83cd39cfda0263faa17943c8f4832d28003298c.pdf"
+          },
+          {
+            "title": "RIDE: Difficulty Evolving Perturbation with Item Response ...",
+            "url": "https://arxiv.org/pdf/2511.04120"
+          },
+          {
+            "title": "RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2511.04120"
+          }
+        ]
+      },
+      "I found relevant results for your search. Here's what the research shows:\n\nRIDE is a novel adversarial question-rewriting framework that leverages Item Response Theory (IRT) to rigorously measure question difficulty and to generate intrinsically more challenging, well-posed variations of mathematical problems.\n\n**Key aspects of the research:**\n\n- **Problem addressed:** Large language models (LLMs) achieve high performance on mathematical reasoning, but these results can be inflated by training data leakage or superficial pattern matching rather than genuine reasoning.\n\n- **Methodology:** The research employs 35 LLMs to simulate students and build a difficulty ranker from their responses, which provides a reward signal during reinforcement learning and guides a question-rewriting model to reformulate existing questions across difficulty levels.\n\n- **Results:** Applying RIDE to competition-level mathematical benchmarks yields perturbed versions that degrade advanced LLM performance, with experiments showing an average 21.73% drop across 26 models, thereby exposing limited robustness in mathematical reasoning.\n\n- **Advantages over previous methods:** Rule-based approaches may render the rewritten questions ill-posed and unsolvable, thereby undermining their validity as reliable benchmarks. RIDE uses a reinforcement learning-based approach instead to avoid these issues.\n\nThe paper was published on arXiv in late January 2026 (arXiv:2511.04120)."
+    ],
+    "durationSeconds": 7.121183042999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5a47fb86-cb38-4879-af50-13e18add9df3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94 · 2026-05-28T11:37:15.487Z_
+
+```json
+{
+  "parentUuid": "cf7a191d-e7ee-4f21-b749-2876297594a4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2e403e4f-ef10-4c5e-80a5-74bb2b34fd11",
+  "timestamp": "2026-05-28T11:37:15.487Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-28T11:37:18.944Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016jizxMgdC8QE5iTTGKkzNF`</summary>
+
+```json
+{
+  "query": "CoDeC contamination detection LLM benchmark 2025 2026 paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e403e4f-ef10-4c5e-80a5-74bb2b34fd11",
+  "isSidechain": false,
+  "requestId": "req_011CbUu8diD1ktx7kz6DzPmy",
+  "type": "assistant",
+  "uuid": "90ccfccf-c044-4664-8332-7eaad7cbcfe6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eaJFxNMXmwWapGPTd2QKW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 676,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 43511,
+      "output_tokens": 124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 676,
+          "output_tokens": 124,
+          "cache_read_input_tokens": 43511,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-28T11:37:19.208Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Giughg68bHb9baVxk8pNCL`</summary>
+
+```json
+{
+  "query": "MaSTer adversarial robustness testing LLM benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90ccfccf-c044-4664-8332-7eaad7cbcfe6",
+  "isSidechain": false,
+  "requestId": "req_011CbUu8diD1ktx7kz6DzPmy",
+  "type": "assistant",
+  "uuid": "c15ce96c-0788-4c78-a5a7-c9ce7e81c71d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eaJFxNMXmwWapGPTd2QKW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 676,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 43511,
+      "output_tokens": 124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 676,
+          "output_tokens": 124,
+          "cache_read_input_tokens": 43511,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-28T11:37:25.501Z_
+
+<details><summary>↩ Tool result · `toolu_016jizxMgdC8QE5iTTGKkzNF`</summary>
+
+```text
+Web search results for query: "CoDeC contamination detection LLM benchmark 2025 2026 paper"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=YlpaaYxx4t"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/pdf/2510.27055"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning Michał Zawalski†","url":"https://openreview.net/pdf/753f569951799d9078f4db2d0e9debd74ad5b692.pdf"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/html/2510.27055v1"},{"title":"Did the Model See the Benchmark During Training? Detecting LLM Contamination","url":"https://kaitchup.substack.com/p/did-the-model-see-the-benchmark-during"},{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"Detecting Benchmark Contamination Through Watermarking","url":"https://arxiv.org/pdf/2502.17259"}]
+
+Based on the search results, I found detailed information about the CoDeC contamination detection paper:
+
+## CoDeC: Contamination Detection via Context
+
+CoDeC produces interpretable contamination scores that clearly separate seen and unseen datasets, and reveals strong evidence of memorization in open-weight models with undisclosed training corpora.
+
+**Method Overview:**
+CoDeC augments the context with a few other samples from the same dataset for each dataset element. By comparing confidence levels with and without in-context learning across sample sequences, the method can leverage these shifts to detect contamination.
+
+**Key Results:**
+CoDeC cleanly separates seen from unseen data, achieving dataset-level AUC of 99.9% across all evaluated models, whereas baselines fail to provide a reliable separation.
+
+**Publication Status:**
+The paper was published as a conference paper at ICLR 2026. It was published in October 2025 and has been accepted by ICLR 2026.
+
+**Practical Advantages:**
+The method is simple, automated, and both model- and dataset-agnostic, making it easy to integrate with benchmark evaluations.
+
+The full paper is available on arxiv.org/pdf/2510.27055 and through OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90ccfccf-c044-4664-8332-7eaad7cbcfe6",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "9274b650-45c4-415f-bd88-0bcbdcb31fd8",
+  "toolUseResult": {
+    "query": "CoDeC contamination detection LLM benchmark 2025 2026 paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DHySK7XJy8H1xU1a6f4GMB",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=YlpaaYxx4t"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/pdf/2510.27055"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning Michał Zawalski†",
+            "url": "https://openreview.net/pdf/753f569951799d9078f4db2d0e9debd74ad5b692.pdf"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/html/2510.27055v1"
+          },
+          {
+            "title": "Did the Model See the Benchmark During Training? Detecting LLM Contamination",
+            "url": "https://kaitchup.substack.com/p/did-the-model-see-the-benchmark-during"
+          },
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "Detecting Benchmark Contamination Through Watermarking",
+            "url": "https://arxiv.org/pdf/2502.17259"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the CoDeC contamination detection paper:\n\n## CoDeC: Contamination Detection via Context\n\nCoDeC produces interpretable contamination scores that clearly separate seen and unseen datasets, and reveals strong evidence of memorization in open-weight models with undisclosed training corpora.\n\n**Method Overview:**\nCoDeC augments the context with a few other samples from the same dataset for each dataset element. By comparing confidence levels with and without in-context learning across sample sequences, the method can leverage these shifts to detect contamination.\n\n**Key Results:**\nCoDeC cleanly separates seen from unseen data, achieving dataset-level AUC of 99.9% across all evaluated models, whereas baselines fail to provide a reliable separation.\n\n**Publication Status:**\nThe paper was published as a conference paper at ICLR 2026. It was published in October 2025 and has been accepted by ICLR 2026.\n\n**Practical Advantages:**\nThe method is simple, automated, and both model- and dataset-agnostic, making it easy to integrate with benchmark evaluations.\n\nThe full paper is available on arxiv.org/pdf/2510.27055 and through OpenReview."
+    ],
+    "durationSeconds": 6.552620540000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "90ccfccf-c044-4664-8332-7eaad7cbcfe6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-28T11:37:26.143Z_
+
+<details><summary>↩ Tool result · `toolu_01Giughg68bHb9baVxk8pNCL`</summary>
+
+```text
+Web search results for query: "MaSTer adversarial robustness testing LLM benchmark 2025 2026"
+
+Links: [{"title":"Automatic Robustness Stress Testing of LLMs as ...","url":"https://arxiv.org/abs/2506.05038"},{"title":"Toward Automated Robustness Evaluation of Mathematical Reasoning","url":"https://arxiv.org/html/2506.05038"},{"title":"GitHub - IntelLabs/LLMart: LLM Adversarial Robustness Toolkit, a toolkit for evaluating LLM robustness through adversarial testing. · GitHub","url":"https://github.com/IntelLabs/LLMart"},{"title":"Benchmarking adversarial robustness to bias elicitation in large language models: scalable automated assessment with LLM-as-a-judge | Machine Learning | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10994-025-06862-6"},{"title":"Learning-Based Automated Adversarial Red-Teaming for Robustness Evaluation of Large Language Models","url":"https://arxiv.org/pdf/2512.20677"},{"title":"Large Language Model Evaluation in 2025: Smarter Metrics That ...","url":"https://www.techrxiv.org/users/927947/articles/1304989/master/file/data/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust.pdf"}]
+
+Based on the search results, here's what I found about MaSTer:
+
+## MaSTer: Math Stress Tester
+
+MaSTer is an automated framework for robustness evaluation of mathematical reasoning in LLMs, inspired by software stress testing. 
+
+### How It Works
+
+MaSTer generates adversarial variants via a multi-round rewrite-verify loop, ensuring semantic consistency while successfully inducing model failure. The framework generates benchmark variants dynamically for each LLM, thus minimizing the risk of data contamination.
+
+### Evaluation Results
+
+Experiments on GSM8K and MATH-500 demonstrate the effectiveness of MaSTer on mathematical tasks. Four LLMs obtained 48.04% and 31.35% less averaged accuracy on GSM8K and MATH-500 evaluation variants, respectively.
+
+### Broader Applications
+
+The framework's extensibility to non-mathematical tasks highlights its broad applicability. The approach extends MaSTer beyond mathematics to general reasoning tasks, covering diverse benchmarks including MMLU, MMLU-Pro, and CommonsenseQA.
+
+### Robustness Enhancement
+
+The synthesized variants generated by MaSTer can be utilized as a fine-tuning dataset to significantly enhance the model's robustness.
+
+The research paper was recently updated in April 2026 and the code is available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c15ce96c-0788-4c78-a5a7-c9ce7e81c71d",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "7fcf871b-70f8-405b-81e0-c0434891854a",
+  "toolUseResult": {
+    "query": "MaSTer adversarial robustness testing LLM benchmark 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FgaPAnn6NoB1ZcMqk2k1Tb",
+        "content": [
+          {
+            "title": "Automatic Robustness Stress Testing of LLMs as ...",
+            "url": "https://arxiv.org/abs/2506.05038"
+          },
+          {
+            "title": "Toward Automated Robustness Evaluation of Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2506.05038"
+          },
+          {
+            "title": "GitHub - IntelLabs/LLMart: LLM Adversarial Robustness Toolkit, a toolkit for evaluating LLM robustness through adversarial testing. · GitHub",
+            "url": "https://github.com/IntelLabs/LLMart"
+          },
+          {
+            "title": "Benchmarking adversarial robustness to bias elicitation in large language models: scalable automated assessment with LLM-as-a-judge | Machine Learning | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10994-025-06862-6"
+          },
+          {
+            "title": "Learning-Based Automated Adversarial Red-Teaming for Robustness Evaluation of Large Language Models",
+            "url": "https://arxiv.org/pdf/2512.20677"
+          },
+          {
+            "title": "Large Language Model Evaluation in 2025: Smarter Metrics That ...",
+            "url": "https://www.techrxiv.org/users/927947/articles/1304989/master/file/data/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about MaSTer:\n\n## MaSTer: Math Stress Tester\n\nMaSTer is an automated framework for robustness evaluation of mathematical reasoning in LLMs, inspired by software stress testing. \n\n### How It Works\n\nMaSTer generates adversarial variants via a multi-round rewrite-verify loop, ensuring semantic consistency while successfully inducing model failure. The framework generates benchmark variants dynamically for each LLM, thus minimizing the risk of data contamination.\n\n### Evaluation Results\n\nExperiments on GSM8K and MATH-500 demonstrate the effectiveness of MaSTer on mathematical tasks. Four LLMs obtained 48.04% and 31.35% less averaged accuracy on GSM8K and MATH-500 evaluation variants, respectively.\n\n### Broader Applications\n\nThe framework's extensibility to non-mathematical tasks highlights its broad applicability. The approach extends MaSTer beyond mathematics to general reasoning tasks, covering diverse benchmarks including MMLU, MMLU-Pro, and CommonsenseQA.\n\n### Robustness Enhancement\n\nThe synthesized variants generated by MaSTer can be utilized as a fine-tuning dataset to significantly enhance the model's robustness.\n\nThe research paper was recently updated in April 2026 and the code is available on GitHub."
+    ],
+    "durationSeconds": 6.931406711999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c15ce96c-0788-4c78-a5a7-c9ce7e81c71d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-28T11:37:28.550Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check on the ATLAS paper and JECS paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fcf871b-70f8-405b-81e0-c0434891854a",
+  "isSidechain": false,
+  "requestId": "req_011CbUu9RFtFAQaWbspPQdfT",
+  "type": "assistant",
+  "uuid": "37e7c67a-1e17-48fc-82f2-67e38701dfff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfY1L8NQWyassCPgFxsqv3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2262,
+      "cache_read_input_tokens": 44436,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2262,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 44436,
+          "cache_creation_input_tokens": 2262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2262
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-28T11:37:29.497Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012PPRkRRPdZwmv1Ah5Czgqg`</summary>
+
+```json
+{
+  "query": "ATLAS IRT LLM evaluation item response theory benchmark paper 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37e7c67a-1e17-48fc-82f2-67e38701dfff",
+  "isSidechain": false,
+  "requestId": "req_011CbUu9RFtFAQaWbspPQdfT",
+  "type": "assistant",
+  "uuid": "9469ad79-ebca-4324-b30f-fe6a3a50ac87",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfY1L8NQWyassCPgFxsqv3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2262,
+      "cache_read_input_tokens": 44436,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2262,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 44436,
+          "cache_creation_input_tokens": 2262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2262
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-28T11:37:29.835Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CDStS8yU9VPcNemK4RtKzm`</summary>
+
+```json
+{
+  "query": "JECS joint envelope conformal selection decontamination arXiv May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9469ad79-ebca-4324-b30f-fe6a3a50ac87",
+  "isSidechain": false,
+  "requestId": "req_011CbUu9RFtFAQaWbspPQdfT",
+  "type": "assistant",
+  "uuid": "3c210a26-1695-4821-a1a9-fc7bf3fc9f5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfY1L8NQWyassCPgFxsqv3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2262,
+      "cache_read_input_tokens": 44436,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2262,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 44436,
+          "cache_creation_input_tokens": 2262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2262
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-28T11:37:35.230Z_
+
+<details><summary>↩ Tool result · `toolu_01CDStS8yU9VPcNemK4RtKzm`</summary>
+
+```text
+Web search results for query: "JECS joint envelope conformal selection decontamination arXiv May 2026"
+
+Links: [{"title":"[2605.21543] Provable Joint Decontamination for Benchmarking Multiple Large Language Models","url":"https://arxiv.org/abs/2605.21543"},{"title":"Provable Joint Decontamination for Benchmarking Multiple Large Language Models","url":"https://arxiv.org/html/2605.21543"},{"title":"Conformational flexibility of HIV-1 envelope glycoproteins modulates transmitted / founder sensitivity to broadly neutralizing antibodies","url":"https://www.biorxiv.org/content/10.1101/2023.09.13.557082.full.pdf"},{"title":"Revamping Conformal Selection With Optimal Power: A Neyman--Pearson   Perspective","url":"https://arxiv.org/pdf/2502.16513"},{"title":"[2605.26429] Structure-Adaptive Conformal Inference for Large-Scale Out-of-Distribution Testing","url":"https://arxiv.org/abs/2605.26429"},{"title":"Optimized Conformal Selection: Powerful Selective Inference After   Conformity Score Optimization","url":"https://arxiv.org/pdf/2411.17983"}]
+
+Based on the search results, I found the paper you're looking for:
+
+Joint Envelope Conformal Selection (JECS) is a conformal procedure that formalizes multi-model benchmark decontamination as a joint selection problem and enables global contamination rate (GCR) control under stated assumptions.
+
+Specifically, JECS computes per-model conformal p-values, aggregates them by the per-item maximum, and reconstructs a conservative envelope of the max-p null distribution from right-tail observations above a data-driven threshold. By applying the adaptive Benjamini-Hochberg procedure to the envelope-rescaled values, it selects a benchmark with provable GCR control.
+
+The paper is available on arXiv as [2605.21543] under the title "Provable Joint Decontamination for Benchmarking Multiple Large Language Models" and was posted about a week ago (May 2026).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c210a26-1695-4821-a1a9-fc7bf3fc9f5b",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "253dce08-2b32-44ef-a527-d89fe58596e8",
+  "toolUseResult": {
+    "query": "JECS joint envelope conformal selection decontamination arXiv May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MZD7SBDVvVYzVf4sfi3gKS",
+        "content": [
+          {
+            "title": "[2605.21543] Provable Joint Decontamination for Benchmarking Multiple Large Language Models",
+            "url": "https://arxiv.org/abs/2605.21543"
+          },
+          {
+            "title": "Provable Joint Decontamination for Benchmarking Multiple Large Language Models",
+            "url": "https://arxiv.org/html/2605.21543"
+          },
+          {
+            "title": "Conformational flexibility of HIV-1 envelope glycoproteins modulates transmitted / founder sensitivity to broadly neutralizing antibodies",
+            "url": "https://www.biorxiv.org/content/10.1101/2023.09.13.557082.full.pdf"
+          },
+          {
+            "title": "Revamping Conformal Selection With Optimal Power: A Neyman--Pearson   Perspective",
+            "url": "https://arxiv.org/pdf/2502.16513"
+          },
+          {
+            "title": "[2605.26429] Structure-Adaptive Conformal Inference for Large-Scale Out-of-Distribution Testing",
+            "url": "https://arxiv.org/abs/2605.26429"
+          },
+          {
+            "title": "Optimized Conformal Selection: Powerful Selective Inference After   Conformity Score Optimization",
+            "url": "https://arxiv.org/pdf/2411.17983"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nJoint Envelope Conformal Selection (JECS) is a conformal procedure that formalizes multi-model benchmark decontamination as a joint selection problem and enables global contamination rate (GCR) control under stated assumptions.\n\nSpecifically, JECS computes per-model conformal p-values, aggregates them by the per-item maximum, and reconstructs a conservative envelope of the max-p null distribution from right-tail observations above a data-driven threshold. By applying the adaptive Benjamini-Hochberg procedure to the envelope-rescaled values, it selects a benchmark with provable GCR control.\n\nThe paper is available on arXiv as [2605.21543] under the title \"Provable Joint Decontamination for Benchmarking Multiple Large Language Models\" and was posted about a week ago (May 2026)."
+    ],
+    "durationSeconds": 5.393166345999983,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3c210a26-1695-4821-a1a9-fc7bf3fc9f5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "253dce08-2b32-44ef-a527-d89fe58596e8",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-28T11:37:36.555Z_
+
+<details><summary>↩ Tool result · `toolu_012PPRkRRPdZwmv1Ah5Czgqg`</summary>
+
+```text
+Web search results for query: "ATLAS IRT LLM evaluation item response theory benchmark paper 2025 2026"
+
+Links: [{"title":"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/abs/2511.04689"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689v1"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview","url":"https://openreview.net/forum?id=iX39LhePyd"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/pdf/2505.15055"},{"title":"ADAPTIVE TESTING FOR LLM EVALUATION: A","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory","url":"https://arxiv.org/html/2605.00238"},{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"}]
+
+Based on the search results, I found the ATLAS paper you're looking for:
+
+## ATLAS: Adaptive Testing for LLM Evaluation
+
+ATLAS is an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection. The paper was published in 2025-2026 on arXiv (arxiv.org/abs/2511.04689).
+
+**Key Features:**
+
+- ATLAS reduces the number of required items by up to 90% while maintaining measurement precision.
+- For instance, it matches whole-bank ability estimates using only 41 items (0.157 MAE) on HellaSwag (5,600 items).
+- ATLAS first calibrates benchmark items using three-parameter logistic (3PL) IRT models to estimate item difficulty, discrimination, and guessing parameters.
+
+**Findings:**
+
+- Among more than 3,000 evaluated models, 23-31% shift by more than 10 rank positions, and models with identical accuracies receive meaningfully different ability estimates.
+- Across benchmarks, ATLAS requires 30-78 items on average compared to thousands in full evaluation.
+
+The framework analyzes large-scale benchmarks such as WinoGrande, TruthfulQA, HellaSwag, GSM8K and ARC.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9469ad79-ebca-4324-b30f-fe6a3a50ac87",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "d3b1bbc3-5db1-42a8-9908-173e1b5bc5ed",
+  "toolUseResult": {
+    "query": "ATLAS IRT LLM evaluation item response theory benchmark paper 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HNoKNrY5FmhsGVEGLZDYLn",
+        "content": [
+          {
+            "title": "[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/abs/2511.04689"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/html/2511.04689v1"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview",
+            "url": "https://openreview.net/forum?id=iX39LhePyd"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/pdf/2505.15055"
+          },
+          {
+            "title": "ADAPTIVE TESTING FOR LLM EVALUATION: A",
+            "url": "https://arxiv.org/pdf/2511.04689"
+          },
+          {
+            "title": "Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory",
+            "url": "https://arxiv.org/html/2605.00238"
+          },
+          {
+            "title": "[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/abs/2505.15055"
+          }
+        ]
+      },
+      "Based on the search results, I found the ATLAS paper you're looking for:\n\n## ATLAS: Adaptive Testing for LLM Evaluation\n\nATLAS is an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection. The paper was published in 2025-2026 on arXiv (arxiv.org/abs/2511.04689).\n\n**Key Features:**\n\n- ATLAS reduces the number of required items by up to 90% while maintaining measurement precision.\n- For instance, it matches whole-bank ability estimates using only 41 items (0.157 MAE) on HellaSwag (5,600 items).\n- ATLAS first calibrates benchmark items using three-parameter logistic (3PL) IRT models to estimate item difficulty, discrimination, and guessing parameters.\n\n**Findings:**\n\n- Among more than 3,000 evaluated models, 23-31% shift by more than 10 rank positions, and models with identical accuracies receive meaningfully different ability estimates.\n- Across benchmarks, ATLAS requires 30-78 items on average compared to thousands in full evaluation.\n\nThe framework analyzes large-scale benchmarks such as WinoGrande, TruthfulQA, HellaSwag, GSM8K and ARC."
+    ],
+    "durationSeconds": 7.054252896999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9469ad79-ebca-4324-b30f-fe6a3a50ac87",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106 · 2026-05-28T11:37:40.330Z_
+
+Good, ATLAS and JECS are both verified. Now let me check on the remaining background agents and search for the MathArena NeurIPS paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3b1bbc3-5db1-42a8-9908-173e1b5bc5ed",
+  "isSidechain": false,
+  "requestId": "req_011CbUuABiL1TH9KaNoka6UP",
+  "type": "assistant",
+  "uuid": "75c5edb9-7467-47a6-bd61-39e5c5674260",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ApkgkDCMxTP8n1Vs4ow8Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 575,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 46698,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 575,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 46698,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-28T11:37:40.750Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GAb33hKZ7B5F3fCHAoR9PE`</summary>
+
+```json
+{
+  "query": "MathArena NeurIPS 2025 datasets benchmarks track paper ETH Zurich"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75c5edb9-7467-47a6-bd61-39e5c5674260",
+  "isSidechain": false,
+  "requestId": "req_011CbUuABiL1TH9KaNoka6UP",
+  "type": "assistant",
+  "uuid": "e12b6a68-a6b2-4308-94a2-d92b1defb7cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ApkgkDCMxTP8n1Vs4ow8Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 575,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 46698,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 575,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 46698,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-28T11:37:47.012Z_
+
+<details><summary>↩ Tool result · `toolu_01GAb33hKZ7B5F3fCHAoR9PE`</summary>
+
+```text
+Web search results for query: "MathArena NeurIPS 2025 datasets benchmarks track paper ETH Zurich"
+
+Links: [{"title":"Two papers accepted to NeurIPS 2025! – Medical AI Lab | ETH Zurich","url":"https://bsse.ethz.ch/mail/news/medical-ai-lab-news/2025/09/two-papers-accepted-to-neurips-2025.html"},{"title":"MathArena: Evaluating LLMs on Uncontaminated Math Competitions | OpenReview","url":"https://openreview.net/forum?id=y0zL9IZxZ7"},{"title":"NeurIPS 2025 Datasets & Benchmarks Track Call for Papers","url":"https://neurips.cc/Conferences/2025/CallForDatasetsBenchmarks"},{"title":"NeurIPS 2025 Datasets and Benchmarks Track | OpenReview","url":"https://openreview.net/group?id=NeurIPS.cc%2F2025%2FDatasets_and_Benchmarks_Track"},{"title":"NeurIPS 2025 Datasets and Benchmarks FAQ","url":"https://neurips.cc/Conferences/2025/DatasetsBenchmarks-FAQ"},{"title":"NeurIPS Datasets & Benchmarks Track: From Art to Science in AI Evaluations – NeurIPS Blog","url":"https://blog.neurips.cc/2025/12/05/neurips-datasets-benchmarks-track-from-art-to-science-in-ai-evaluations/"},{"title":"GitHub - eth-sri/matharena: Evaluation of LLMs on latest math competitions · GitHub","url":"https://github.com/eth-sri/matharena"},{"title":"Reflecting on the 2025 Review Process from the Datasets and Benchmarks Chairs – NeurIPS Blog","url":"https://blog.neurips.cc/2025/09/30/reflecting-on-the-2025-review-process-from-the-datasets-and-benchmarks-chairs/"},{"title":"MathArena: Evaluating LLMs on Uncontaminated Math Competitions","url":"https://arxiv.org/pdf/2505.23281"},{"title":"MathArena | alphaXiv","url":"https://www.alphaxiv.org/benchmarks/eth-zurich/matharena"}]
+
+Based on the search results, here's what I found about MathArena at NeurIPS 2025:
+
+## MathArena Overview
+
+MathArena (NeurIPS D&B '25) is a platform for evaluation of LLMs on latest math competitions and olympiads. It is hosted on matharena.ai.
+
+## The Paper and Track
+
+The paper was published in the NeurIPS 2025 Datasets and Benchmarks Track, and introduces MathArena, a new benchmark based on the insight that recurring math competitions provide a stream of high-quality, challenging problems that can be used for real-time evaluation of LLMs, and by evaluating models as soon as new problems are released, it effectively eliminates the risk of contamination.
+
+## Key Features
+
+The benchmark addresses critical issues in existing math evaluations: data contamination, lack of transparency, and limited focus on proof-writing capabilities. MathArena is also the first benchmark for proof-writing capabilities.
+
+## Evaluation
+
+So far, they have evaluated 30 models across five competitions, totaling 149 problems. Putnam, IMC, IMO 2025, USAMO 2025, Miklos Schweitzer 2025 were graded using human verification.
+
+The project is hosted on GitHub at `eth-sri/matharena`, representing work from ETH Zurich's Security and Reasoning in AI lab.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e12b6a68-a6b2-4308-94a2-d92b1defb7cf",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "94849471-1227-49fd-b724-0ed2752f36ab",
+  "toolUseResult": {
+    "query": "MathArena NeurIPS 2025 datasets benchmarks track paper ETH Zurich",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016utLJMDjqjY68poxAGYDgQ",
+        "content": [
+          {
+            "title": "Two papers accepted to NeurIPS 2025! – Medical AI Lab | ETH Zurich",
+            "url": "https://bsse.ethz.ch/mail/news/medical-ai-lab-news/2025/09/two-papers-accepted-to-neurips-2025.html"
+          },
+          {
+            "title": "MathArena: Evaluating LLMs on Uncontaminated Math Competitions | OpenReview",
+            "url": "https://openreview.net/forum?id=y0zL9IZxZ7"
+          },
+          {
+            "title": "NeurIPS 2025 Datasets & Benchmarks Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2025/CallForDatasetsBenchmarks"
+          },
+          {
+            "title": "NeurIPS 2025 Datasets and Benchmarks Track | OpenReview",
+            "url": "https://openreview.net/group?id=NeurIPS.cc%2F2025%2FDatasets_and_Benchmarks_Track"
+          },
+          {
+            "title": "NeurIPS 2025 Datasets and Benchmarks FAQ",
+            "url": "https://neurips.cc/Conferences/2025/DatasetsBenchmarks-FAQ"
+          },
+          {
+            "title": "NeurIPS Datasets & Benchmarks Track: From Art to Science in AI Evaluations – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2025/12/05/neurips-datasets-benchmarks-track-from-art-to-science-in-ai-evaluations/"
+          },
+          {
+            "title": "GitHub - eth-sri/matharena: Evaluation of LLMs on latest math competitions · GitHub",
+            "url": "https://github.com/eth-sri/matharena"
+          },
+          {
+            "title": "Reflecting on the 2025 Review Process from the Datasets and Benchmarks Chairs – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2025/09/30/reflecting-on-the-2025-review-process-from-the-datasets-and-benchmarks-chairs/"
+          },
+          {
+            "title": "MathArena: Evaluating LLMs on Uncontaminated Math Competitions",
+            "url": "https://arxiv.org/pdf/2505.23281"
+          },
+          {
+            "title": "MathArena | alphaXiv",
+            "url": "https://www.alphaxiv.org/benchmarks/eth-zurich/matharena"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about MathArena at NeurIPS 2025:\n\n## MathArena Overview\n\nMathArena (NeurIPS D&B '25) is a platform for evaluation of LLMs on latest math competitions and olympiads. It is hosted on matharena.ai.\n\n## The Paper and Track\n\nThe paper was published in the NeurIPS 2025 Datasets and Benchmarks Track, and introduces MathArena, a new benchmark based on the insight that recurring math competitions provide a stream of high-quality, challenging problems that can be used for real-time evaluation of LLMs, and by evaluating models as soon as new problems are released, it effectively eliminates the risk of contamination.\n\n## Key Features\n\nThe benchmark addresses critical issues in existing math evaluations: data contamination, lack of transparency, and limited focus on proof-writing capabilities. MathArena is also the first benchmark for proof-writing capabilities.\n\n## Evaluation\n\nSo far, they have evaluated 30 models across five competitions, totaling 149 problems. Putnam, IMC, IMO 2025, USAMO 2025, Miklos Schweitzer 2025 were graded using human verification.\n\nThe project is hosted on GitHub at `eth-sri/matharena`, representing work from ETH Zurich's Security and Reasoning in AI lab."
+    ],
+    "durationSeconds": 6.257607008999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e12b6a68-a6b2-4308-94a2-d92b1defb7cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-28T11:37:50.832Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check on the remaining background agents. I need the concurrent work agent and the feasibility agent results. Let me also verify the "On The Fragility of Benchmark Contamination Detection in Reasoning Models" paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94849471-1227-49fd-b724-0ed2752f36ab",
+  "isSidechain": false,
+  "requestId": "req_011CbUuAxWbvRmdzZCYb5dvF",
+  "type": "assistant",
+  "uuid": "43b8b949-9d23-4587-8f5a-53f5c6d9e5b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6sNrTWmJr3R7Hzi56uygw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1610,
+      "cache_read_input_tokens": 47550,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1610,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 47550,
+          "cache_creation_input_tokens": 1610,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1610
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-28T11:37:51.466Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A2Q1FjWf1YHf9DkKwGdDft`</summary>
+
+```json
+{
+  "query": "\"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" Kocetkov ICLR 2026 AUROC"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43b8b949-9d23-4587-8f5a-53f5c6d9e5b3",
+  "isSidechain": false,
+  "requestId": "req_011CbUuAxWbvRmdzZCYb5dvF",
+  "type": "assistant",
+  "uuid": "1f0cd753-0dd5-4e7c-af36-43c57285e55f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6sNrTWmJr3R7Hzi56uygw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1610,
+      "cache_read_input_tokens": 47550,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1610,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 47550,
+          "cache_creation_input_tokens": 1610,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1610
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-28T11:37:57.098Z_
+
+<details><summary>↩ Tool result · `toolu_01A2Q1FjWf1YHf9DkKwGdDft`</summary>
+
+```text
+Web search results for query: ""On The Fragility of Benchmark Contamination Detection in Reasoning Models" Kocetkov ICLR 2026 AUROC"
+
+Links: [{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/abs/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=bhR00j6Mku"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/html/2510.02386v1"}]
+
+I found the paper! Here's what the search revealed:
+
+The paper is titled "On The Fragility of Benchmark Contamination Detection in Reasoning Models" and is authored by Han Wang, Haoyu Li, Brian Ko, and Huan Zhang from the University of Illinois Urbana-Champaign and University of Washington.
+
+The study finds that evading contamination detections for Large Reasoning Models (LRMs) is alarmingly easy. The research focuses on scenarios where the base model evolves into an LRM via supervised fine-tuning (SFT) and reinforcement learning (RL), finding that contamination during SFT can be identified by contamination detection methods, but even brief Group Relative Policy Optimization (GRPO) training can markedly conceal contamination signals that most detection methods rely on.
+
+Regarding AUROC specifically, the paper reports Area Under the Receiver Operating Characteristic (AUROC) by comparing detection scores between member and non-member sets within the same benchmark, with higher AUROC values indicating better detection. The results demonstrate that after GRPO, AUROC decreases across all the benchmarks and detection approaches.
+
+The paper appears to be available on arXiv (2510.02386) and was also submitted to OpenReview, likely for consideration at a 2026 venue.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f0cd753-0dd5-4e7c-af36-43c57285e55f",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "735388fc-29ef-4b72-b4d0-7954931a0979",
+  "toolUseResult": {
+    "query": "\"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" Kocetkov ICLR 2026 AUROC",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BEf3k3jobThA8D2tXKZjhQ",
+        "content": [
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/abs/2510.02386"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=bhR00j6Mku"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/html/2510.02386v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\nThe paper is titled \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" and is authored by Han Wang, Haoyu Li, Brian Ko, and Huan Zhang from the University of Illinois Urbana-Champaign and University of Washington.\n\nThe study finds that evading contamination detections for Large Reasoning Models (LRMs) is alarmingly easy. The research focuses on scenarios where the base model evolves into an LRM via supervised fine-tuning (SFT) and reinforcement learning (RL), finding that contamination during SFT can be identified by contamination detection methods, but even brief Group Relative Policy Optimization (GRPO) training can markedly conceal contamination signals that most detection methods rely on.\n\nRegarding AUROC specifically, the paper reports Area Under the Receiver Operating Characteristic (AUROC) by comparing detection scores between member and non-member sets within the same benchmark, with higher AUROC values indicating better detection. The results demonstrate that after GRPO, AUROC decreases across all the benchmarks and detection approaches.\n\nThe paper appears to be available on arXiv (2510.02386) and was also submitted to OpenReview, likely for consideration at a 2026 venue."
+    ],
+    "durationSeconds": 5.626532531000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1f0cd753-0dd5-4e7c-af36-43c57285e55f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112 · 2026-05-28T11:38:01.047Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Wait, the user says this is by Kocetkov et al. at ICLR 2026, but the search shows it's by Han Wang, Haoyu Li, Brian Ko, and Huan Zhang. Let me check if there's a different paper by Kocetkov. Let me search more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "735388fc-29ef-4b72-b4d0-7954931a0979",
+  "isSidechain": false,
+  "requestId": "req_011CbUuBhffY31wqsgYNPY6D",
+  "type": "assistant",
+  "uuid": "aa228dd9-c91d-4bd2-8e9b-f64bf8748c51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YNSdWA7iYEUs3dXRdxsPaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 49160,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 49160,
+          "cache_creation_input_tokens": 752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-28T11:38:01.171Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MuLUMMW5cMQjcLxdyopk2v`</summary>
+
+```json
+{
+  "query": "Kocetkov ICLR 2026 contamination detection reasoning benchmark paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa228dd9-c91d-4bd2-8e9b-f64bf8748c51",
+  "isSidechain": false,
+  "requestId": "req_011CbUuBhffY31wqsgYNPY6D",
+  "type": "assistant",
+  "uuid": "576d2e52-aba3-4fa4-a56a-1c4c6ea93758",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YNSdWA7iYEUs3dXRdxsPaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 49160,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 49160,
+          "cache_creation_input_tokens": 752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-28T11:38:07.028Z_
+
+<details><summary>↩ Tool result · `toolu_01MuLUMMW5cMQjcLxdyopk2v`</summary>
+
+```text
+Web search results for query: "Kocetkov ICLR 2026 contamination detection reasoning benchmark paper"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 CONTAMINATION DETECTION","url":"https://openreview.net/pdf?id=gk6OC3XIZW"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/4db36cca8c9480a96e81aa59b1290a2aa91beebe.pdf"},{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"Beyond Memorization: Reasoning-Driven Synthesis as a Mitigation Strategy Against Benchmark Contamination","url":"https://arxiv.org/pdf/2509.00072"},{"title":"Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis","url":"https://arxiv.org/pdf/2603.21454"}]
+
+Based on the search results, I found a paper published at ICLR 2026 related to contamination detection. The paper discusses how a captioning model reasons about which parts of an image need to change to make the new answer correct, and produces a detailed caption emphasizing those changes.
+
+The search results also revealed references to work by Kocetkov et al. (2022) related to The-Stack-v1 for code datasets, though the specific ICLR 2026 contamination detection paper with Kocetkov as the primary author doesn't appear prominently in these results.
+
+The search returned several papers on benchmark contamination detection at ICLR 2026 and related venues, but if you're looking for a specific paper with Kocetkov as the lead author on contamination detection and reasoning benchmarks, you may want to check OpenReview directly or provide additional details about the paper's focus to help narrow down the search.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "576d2e52-aba3-4fa4-a56a-1c4c6ea93758",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "06a70c10-a228-4634-860b-5f03469e60b4",
+  "toolUseResult": {
+    "query": "Kocetkov ICLR 2026 contamination detection reasoning benchmark paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DZBmCE3iLB7t5FFkEsi2tR",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 CONTAMINATION DETECTION",
+            "url": "https://openreview.net/pdf?id=gk6OC3XIZW"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/4db36cca8c9480a96e81aa59b1290a2aa91beebe.pdf"
+          },
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "Beyond Memorization: Reasoning-Driven Synthesis as a Mitigation Strategy Against Benchmark Contamination",
+            "url": "https://arxiv.org/pdf/2509.00072"
+          },
+          {
+            "title": "Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+            "url": "https://arxiv.org/pdf/2603.21454"
+          }
+        ]
+      },
+      "Based on the search results, I found a paper published at ICLR 2026 related to contamination detection. The paper discusses how a captioning model reasons about which parts of an image need to change to make the new answer correct, and produces a detailed caption emphasizing those changes.\n\nThe search results also revealed references to work by Kocetkov et al. (2022) related to The-Stack-v1 for code datasets, though the specific ICLR 2026 contamination detection paper with Kocetkov as the primary author doesn't appear prominently in these results.\n\nThe search returned several papers on benchmark contamination detection at ICLR 2026 and related venues, but if you're looking for a specific paper with Kocetkov as the lead author on contamination detection and reasoning benchmarks, you may want to check OpenReview directly or provide additional details about the paper's focus to help narrow down the search."
+    ],
+    "durationSeconds": 5.85443205199996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "576d2e52-aba3-4fa4-a56a-1c4c6ea93758",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-28T11:38:10.617Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017WdkGCQgfmTGmGXSuLcUBv`</summary>
+
+```json
+{
+  "url": "https://openreview.net/pdf?id=gk6OC3XIZW",
+  "prompt": "What is the title of this paper? Who are the authors? What is the main finding? Does it show that likelihood-based contamination detection fails on reasoning models? What AUROC values does it report?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06a70c10-a228-4634-860b-5f03469e60b4",
+  "isSidechain": false,
+  "requestId": "req_011CbUuCS4qDxsT9zigxNijy",
+  "type": "assistant",
+  "uuid": "2d4a397f-5246-4d17-8501-01c4c6fe8dcd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019REZKnvzRndWgVQBaGwZyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 49912,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 49912,
+          "cache_creation_input_tokens": 710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116 · 2026-05-28T11:38:13.773Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:38:13.773Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "content": "&lt;task-notification>\n&lt;task-id>a8ecd1dd9a922dc44&lt;/task-id>\n&lt;tool-use-id>toolu_014QjnQUR9USKvfweLC4cTz7&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a8ecd1dd9a922dc44.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify key references\" completed&lt;/summary>\n&lt;result>Here is my consolidated verification report for all 12 papers:\n\n---\n\n## Paper Verification Results\n\n### 1. PSN-IRT -- VERIFIED\n- **Title:** \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n- **Venue/Year:** AAAI 2026 Oral\n- **Details:** Confirmed -- uses a Pseudo-Siamese Network IRT framework, analyzes 41,871 items across 11 benchmarks with 12 LLMs. GitHub repo and proceedings entry both exist.\n- Sources: [AAAI Proceedings](https://ojs.aaai.org/index.php/AAAI/article/view/40814), [GitHub](https://github.com/Joe-Hall-Lee/PSN-IRT), [arXiv](https://arxiv.org/abs/2505.15055)\n\n### 2. ATLAS -- PARTIALLY VERIFIED (venue correction needed)\n- **Title:** \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n- **Venue/Year:** arXiv preprint (November 2025). Was submitted to ICLR 2026 but **withdrawn** per OpenReview. No confirmed conference venue.\n- **Details:** Uses 3PL IRT models and Fisher information-guided item selection to reduce items by up to 90%.\n- Sources: [arXiv](https://arxiv.org/abs/2511.04689), [OpenReview](https://openreview.net/forum?id=iX39LhePyd)\n\n### 3. DCR -- VERIFIED\n- **Title:** \"DCR: Quantifying Data Contamination in LLMs Evaluation\"\n- **Venue/Year:** EMNLP 2025 (Main conference, pages 23002-23020, Suzhou, China)\n- **Details:** Confirmed -- uses fuzzy inference system to produce a unified DCR Factor, detects contamination at four granular levels, validated on 9 LLMs (0.5B-72B).\n- Sources: [ACL Anthology](https://aclanthology.org/2025.emnlp-main.1173/), [arXiv](https://arxiv.org/abs/2507.11405)\n\n### 4. CoDeC -- VERIFIED (venue correction needed)\n- **Title:** \"Detecting Data Contamination in LLMs via In-Context Learning\"\n- **Venue/Year:** Accepted at **ICLR 2026** (not just arXiv -- confirmed on OpenReview). Originally posted October 2025.\n- **Details:** NVIDIA paper. Measures how in-context learning affects model performance to distinguish memorized vs. unseen data.\n- Sources: [arXiv](https://arxiv.org/abs/2510.27055), [OpenReview](https://openreview.net/forum?id=YlpaaYxx4t)\n\n### 5. JECS -- VERIFIED\n- **Title:** \"Provable Joint Decontamination for Benchmarking Multiple Large Language Models\"\n- **Venue/Year:** arXiv, May 2026 (arXiv:2605.21543)\n- **Details:** Confirmed -- Joint Envelope Conformal Selection (JECS) with conformal p-values, adaptive Benjamini-Hochberg procedure for provable Global Contamination Rate (GCR) control.\n- Sources: [arXiv](https://arxiv.org/abs/2605.21543)\n\n### 6. Kocetkov et al. -- PARTIALLY VERIFIED (venue uncertain)\n- **Title:** \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n- **Venue/Year:** arXiv October 2025 (arXiv:2510.02386). Submitted to ICLR 2026 via OpenReview, but acceptance status could not be confirmed from search results. The claim of \"ICLR 2026\" is plausible but unconfirmed.\n- **Details:** Confirmed that it shows RL training (GRPO) conceals SFT contamination signals, making detection methods fragile. The AUROC ~50% claim aligns with findings that detection methods become near-random.\n- Sources: [arXiv](https://arxiv.org/abs/2510.02386), [OpenReview](https://openreview.net/forum?id=bhR00j6Mku)\n\n### 7. RIDE -- PARTIALLY VERIFIED (venue uncertain)\n- **Title:** \"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning\"\n- **Venue/Year:** Submitted to ICLR 2026 (found on OpenReview), but acceptance status could not be confirmed. The description says \"submitted to\" which is consistent.\n- **Details:** Confirmed -- uses IRT-based difficulty ranking + RL-guided question rewriting; shows average 21.73% performance drop across 26 models on perturbed competition math.\n- Sources: [arXiv](https://arxiv.org/abs/2511.04120), [OpenReview PDF](https://openreview.net/pdf?id=PPkzchpdNK)\n\n### 8. STIM -- VERIFIED\n- **Title:** \"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time\"\n- **Venue/Year:** EMNLP 2025 (Main conference)\n- **Details:** Confirmed -- Source-aware Token-level Identification of Memorization (STIM). Attributes each token to local/mid-range/long-range memorization sources. Local memorization causes up to 67% of wrong tokens. From USC INK Lab.\n- Sources: [ACL Anthology](https://aclanthology.org/2025.emnlp-main.157/), [GitHub](https://github.com/INK-USC/STIM), [arXiv](https://arxiv.org/abs/2508.02037)\n\n### 9. MaSTer -- VERIFIED (venue correction needed)\n- **Title:** \"Toward Automated Robustness Evaluation of Mathematical Reasoning\" (full name: Math Stress Tester)\n- **Venue/Year:** arXiv, April 2026 (not a named conference). No confirmed venue beyond preprint.\n- **Details:** Automated adversarial robustness framework using multi-round rewrite-verify loop. Tested on GSM8K, MATH-500. Not just \"adversarial robustness testing\" -- specifically focused on math reasoning.\n- Sources: [arXiv](https://arxiv.org/abs/2506.05038)\n\n### 10. MATH-Perturb -- VERIFIED (venue correction needed)\n- **Title:** \"MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations\"\n- **Venue/Year:** **ICML 2025** (not just a generic paper -- confirmed via GitHub repo tag \"[ICML 2025]\")\n- **Details:** Confirmed -- creates MATH-P-Simple and MATH-P-Hard (279 problems each) from MATH level-5 problems. Shows o1-mini drops -16.49%, gemini-2.0-flash-thinking drops -12.9%.\n- Sources: [arXiv](https://arxiv.org/abs/2502.06453), [GitHub](https://github.com/Kaffaljidhmah2/MATH-Perturb), [OpenReview](https://openreview.net/forum?id=OZy70UggXr)\n\n### 11. MathArena -- VERIFIED\n- **Title:** \"MathArena: Evaluating LLMs on Uncontaminated Math Competitions\"\n- **Venue/Year:** NeurIPS 2025, Datasets &amp; Benchmarks Track\n- **Details:** Confirmed -- evaluates 50+ LLMs on 162 problems from 7 math competitions (IMO, USAMO, CMIMC, etc.) held in 2025. Found strong contamination signs in AIME 2024. First benchmark for proof-writing. From ETH Zurich SRI Lab.\n- Sources: [NeurIPS 2025 Poster](https://neurips.cc/virtual/2025/loc/san-diego/poster/121385), [arXiv](https://arxiv.org/abs/2505.23281), [matharena.ai](https://matharena.ai)\n\n### 12. \"The Illusion of Reasoning\" -- VERIFIED (date/venue correction)\n- **Title:** \"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models\"\n- **Venue/Year:** arXiv preprint, **March 2026** (arXiv:2603.22816, submitted March 24, revised April 6, 2026) -- not \"April 2026\" as claimed\n- **Authors:** Abhinaba Basu and Pavan Chakraborty\n- **Details:** Confirmed -- introduces three modes (genuine, scaffolding, decorative) across 13 frontier models (GPT-5.4, Claude Opus, DeepSeek-V3.2, DeepSeek-R1, Gemini 2.5 Pro, etc.) using step-removal faithfulness evaluation.\n- Sources: [arXiv](https://arxiv.org/abs/2603.22816)\n\n---\n\n## Summary Table\n\n| # | Paper | Claimed Venue | Verified Venue | Status |\n|---|-------|--------------|----------------|--------|\n| 1 | PSN-IRT | AAAI 2026 Oral | AAAI 2026 Oral | VERIFIED |\n| 2 | ATLAS | IRT for LLM eval | arXiv preprint (withdrawn from ICLR 2026) | VERIFIED (no venue) |\n| 3 | DCR | EMNLP 2025 | EMNLP 2025 Main | VERIFIED |\n| 4 | CoDeC | contamination detection | ICLR 2026 | VERIFIED |\n| 5 | JECS | arXiv May 2026 | arXiv May 2026 | VERIFIED |\n| 6 | Kocetkov et al. | ICLR 2026 | Submitted to ICLR 2026, acceptance unconfirmed | PARTIALLY VERIFIED |\n| 7 | RIDE | submitted to ICLR 2026 | On OpenReview for ICLR 2026, acceptance unconfirmed | PARTIALLY VERIFIED |\n| 8 | STIM | EMNLP 2025 | EMNLP 2025 Main | VERIFIED |\n| 9 | MaSTer | adversarial robustness | arXiv April 2026 preprint | VERIFIED (no venue) |\n| 10 | MATH-Perturb | adversarial math benchmark | ICML 2025 | VERIFIED |\n| 11 | MathArena | NeurIPS 2025 D&amp;B Track | NeurIPS 2025 D&amp;B Track | VERIFIED |\n| 12 | Illusion of Reasoning | April 2026 | arXiv March 2026 (revised April 2026) | VERIFIED (minor date correction) |\n\n---\n\n## Additional Key Papers You Might Be Missing\n\nBased on my searches, here are notable related papers in these areas:\n\n1. **\"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation\"** -- EMNLP 2025 Main. Comprehensive survey of contamination detection methods. [ACL Anthology](https://aclanthology.org/2025.emnlp-main.511/)\n\n2. **LiveBench** -- Continuously updated, contamination-free LLM benchmark with objective ground-truth answers, releasing new questions monthly. [livebench.ai](https://livebench.ai/livebench.pdf)\n\n3. **LiveCodeBench** -- Dynamic contamination-free code evaluation benchmark collecting problems from LeetCode, AtCoder, CodeForces. [arXiv](https://arxiv.org/abs/2403.07974)\n\n4. **\"Detecting Benchmark Contamination Through Watermarking\"** (2025) -- Watermarking-based approach to contamination detection. [arXiv](https://arxiv.org/abs/2502.17259)\n\n5. **\"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores\"** -- Related IRT-based adaptive evaluation work. [arXiv PDF](https://arxiv.org/pdf/2601.13885)\n\n6. **\"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"** -- Addresses the specific challenge of RL-phase contamination detection where traditional methods fail. [arXiv](https://arxiv.org/abs/2510.09259)&lt;/result>\n&lt;usage>&lt;total_tokens>25397&lt;/total_tokens>&lt;tool_uses>21&lt;/tool_uses>&lt;duration_ms>254180&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "2d4a397f-5246-4d17-8501-01c4c6fe8dcd",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-28T11:38:14.815Z_
+
+<details><summary>↩ Tool result · `toolu_017WdkGCQgfmTGmGXSuLcUBv`</summary>
+
+```text
+I apologize, but the content provided appears to be a PDF file in binary format (raw PDF object stream data) rather than readable text. The material contains encoded image data, compression filters, and PDF structural elements that cannot be meaningfully parsed to extract the paper's title, authors, findings, or AUROC values.
+
+To help you, I would need:
+- The actual text content of the paper (extracted text or HTML version)
+- Or a clearer source document format
+
+If you have access to the PDF, you could copy the text directly or provide a link to the paper's source material, and I'd be happy to answer your questions about the title, authors, main findings, and reported metrics.
+
+[Binary content (application/pdf, 1.3MB) also saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tool-results/webfetch-1779968291214-67qjc3.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d4a397f-5246-4d17-8501-01c4c6fe8dcd",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "cb546f5e-07de-435e-8df3-4f590dc52851",
+  "toolUseResult": {
+    "bytes": 1384904,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I apologize, but the content provided appears to be a PDF file in binary format (raw PDF object stream data) rather than readable text. The material contains encoded image data, compression filters, and PDF structural elements that cannot be meaningfully parsed to extract the paper's title, authors, findings, or AUROC values.\n\nTo help you, I would need:\n- The actual text content of the paper (extracted text or HTML version)\n- Or a clearer source document format\n\nIf you have access to the PDF, you could copy the text directly or provide a link to the paper's source material, and I'd be happy to answer your questions about the title, authors, main findings, and reported metrics.\n\n[Binary content (application/pdf, 1.3MB) also saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tool-results/webfetch-1779968291214-67qjc3.pdf]",
+    "durationMs": 4190,
+    "url": "https://openreview.net/pdf?id=gk6OC3XIZW"
+  },
+  "sourceToolAssistantUUID": "2d4a397f-5246-4d17-8501-01c4c6fe8dcd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 120 · 2026-05-28T11:38:14.832Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-28T11:38:14.832Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 121 · 2026-05-28T11:38:14.832Z_
+
+```json
+{
+  "parentUuid": "cb546f5e-07de-435e-8df3-4f590dc52851",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a8ecd1dd9a922dc44&lt;/task-id>\n&lt;tool-use-id>toolu_014QjnQUR9USKvfweLC4cTz7&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a8ecd1dd9a922dc44.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify key references\" completed&lt;/summary>\n&lt;result>Here is my consolidated verification report for all 12 papers:\n\n---\n\n## Paper Verification Results\n\n### 1. PSN-IRT -- VERIFIED\n- **Title:** \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n- **Venue/Year:** AAAI 2026 Oral\n- **Details:** Confirmed -- uses a Pseudo-Siamese Network IRT framework, analyzes 41,871 items across 11 benchmarks with 12 LLMs. GitHub repo and proceedings entry both exist.\n- Sources: [AAAI Proceedings](https://ojs.aaai.org/index.php/AAAI/article/view/40814), [GitHub](https://github.com/Joe-Hall-Lee/PSN-IRT), [arXiv](https://arxiv.org/abs/2505.15055)\n\n### 2. ATLAS -- PARTIALLY VERIFIED (venue correction needed)\n- **Title:** \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n- **Venue/Year:** arXiv preprint (November 2025). Was submitted to ICLR 2026 but **withdrawn** per OpenReview. No confirmed conference venue.\n- **Details:** Uses 3PL IRT models and Fisher information-guided item selection to reduce items by up to 90%.\n- Sources: [arXiv](https://arxiv.org/abs/2511.04689), [OpenReview](https://openreview.net/forum?id=iX39LhePyd)\n\n### 3. DCR -- VERIFIED\n- **Title:** \"DCR: Quantifying Data Contamination in LLMs Evaluation\"\n- **Venue/Year:** EMNLP 2025 (Main conference, pages 23002-23020, Suzhou, China)\n- **Details:** Confirmed -- uses fuzzy inference system to produce a unified DCR Factor, detects contamination at four granular levels, validated on 9 LLMs (0.5B-72B).\n- Sources: [ACL Anthology](https://aclanthology.org/2025.emnlp-main.1173/), [arXiv](https://arxiv.org/abs/2507.11405)\n\n### 4. CoDeC -- VERIFIED (venue correction needed)\n- **Title:** \"Detecting Data Contamination in LLMs via In-Context Learning\"\n- **Venue/Year:** Accepted at **ICLR 2026** (not just arXiv -- confirmed on OpenReview). Originally posted October 2025.\n- **Details:** NVIDIA paper. Measures how in-context learning affects model performance to distinguish memorized vs. unseen data.\n- Sources: [arXiv](https://arxiv.org/abs/2510.27055), [OpenReview](https://openreview.net/forum?id=YlpaaYxx4t)\n\n### 5. JECS -- VERIFIED\n- **Title:** \"Provable Joint Decontamination for Benchmarking Multiple Large Language Models\"\n- **Venue/Year:** arXiv, May 2026 (arXiv:2605.21543)\n- **Details:** Confirmed -- Joint Envelope Conformal Selection (JECS) with conformal p-values, adaptive Benjamini-Hochberg procedure for provable Global Contamination Rate (GCR) control.\n- Sources: [arXiv](https://arxiv.org/abs/2605.21543)\n\n### 6. Kocetkov et al. -- PARTIALLY VERIFIED (venue uncertain)\n- **Title:** \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n- **Venue/Year:** arXiv October 2025 (arXiv:2510.02386). Submitted to ICLR 2026 via OpenReview, but acceptance status could not be confirmed from search results. The claim of \"ICLR 2026\" is plausible but unconfirmed.\n- **Details:** Confirmed that it shows RL training (GRPO) conceals SFT contamination signals, making detection methods fragile. The AUROC ~50% claim aligns with findings that detection methods become near-random.\n- Sources: [arXiv](https://arxiv.org/abs/2510.02386), [OpenReview](https://openreview.net/forum?id=bhR00j6Mku)\n\n### 7. RIDE -- PARTIALLY VERIFIED (venue uncertain)\n- **Title:** \"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning\"\n- **Venue/Year:** Submitted to ICLR 2026 (found on OpenReview), but acceptance status could not be confirmed. The description says \"submitted to\" which is consistent.\n- **Details:** Confirmed -- uses IRT-based difficulty ranking + RL-guided question rewriting; shows average 21.73% performance drop across 26 models on perturbed competition math.\n- Sources: [arXiv](https://arxiv.org/abs/2511.04120), [OpenReview PDF](https://openreview.net/pdf?id=PPkzchpdNK)\n\n### 8. STIM -- VERIFIED\n- **Title:** \"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time\"\n- **Venue/Year:** EMNLP 2025 (Main conference)\n- **Details:** Confirmed -- Source-aware Token-level Identification of Memorization (STIM). Attributes each token to local/mid-range/long-range memorization sources. Local memorization causes up to 67% of wrong tokens. From USC INK Lab.\n- Sources: [ACL Anthology](https://aclanthology.org/2025.emnlp-main.157/), [GitHub](https://github.com/INK-USC/STIM), [arXiv](https://arxiv.org/abs/2508.02037)\n\n### 9. MaSTer -- VERIFIED (venue correction needed)\n- **Title:** \"Toward Automated Robustness Evaluation of Mathematical Reasoning\" (full name: Math Stress Tester)\n- **Venue/Year:** arXiv, April 2026 (not a named conference). No confirmed venue beyond preprint.\n- **Details:** Automated adversarial robustness framework using multi-round rewrite-verify loop. Tested on GSM8K, MATH-500. Not just \"adversarial robustness testing\" -- specifically focused on math reasoning.\n- Sources: [arXiv](https://arxiv.org/abs/2506.05038)\n\n### 10. MATH-Perturb -- VERIFIED (venue correction needed)\n- **Title:** \"MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations\"\n- **Venue/Year:** **ICML 2025** (not just a generic paper -- confirmed via GitHub repo tag \"[ICML 2025]\")\n- **Details:** Confirmed -- creates MATH-P-Simple and MATH-P-Hard (279 problems each) from MATH level-5 problems. Shows o1-mini drops -16.49%, gemini-2.0-flash-thinking drops -12.9%.\n- Sources: [arXiv](https://arxiv.org/abs/2502.06453), [GitHub](https://github.com/Kaffaljidhmah2/MATH-Perturb), [OpenReview](https://openreview.net/forum?id=OZy70UggXr)\n\n### 11. MathArena -- VERIFIED\n- **Title:** \"MathArena: Evaluating LLMs on Uncontaminated Math Competitions\"\n- **Venue/Year:** NeurIPS 2025, Datasets &amp; Benchmarks Track\n- **Details:** Confirmed -- evaluates 50+ LLMs on 162 problems from 7 math competitions (IMO, USAMO, CMIMC, etc.) held in 2025. Found strong contamination signs in AIME 2024. First benchmark for proof-writing. From ETH Zurich SRI Lab.\n- Sources: [NeurIPS 2025 Poster](https://neurips.cc/virtual/2025/loc/san-diego/poster/121385), [arXiv](https://arxiv.org/abs/2505.23281), [matharena.ai](https://matharena.ai)\n\n### 12. \"The Illusion of Reasoning\" -- VERIFIED (date/venue correction)\n- **Title:** \"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models\"\n- **Venue/Year:** arXiv preprint, **March 2026** (arXiv:2603.22816, submitted March 24, revised April 6, 2026) -- not \"April 2026\" as claimed\n- **Authors:** Abhinaba Basu and Pavan Chakraborty\n- **Details:** Confirmed -- introduces three modes (genuine, scaffolding, decorative) across 13 frontier models (GPT-5.4, Claude Opus, DeepSeek-V3.2, DeepSeek-R1, Gemini 2.5 Pro, etc.) using step-removal faithfulness evaluation.\n- Sources: [arXiv](https://arxiv.org/abs/2603.22816)\n\n---\n\n## Summary Table\n\n| # | Paper | Claimed Venue | Verified Venue | Status |\n|---|-------|--------------|----------------|--------|\n| 1 | PSN-IRT | AAAI 2026 Oral | AAAI 2026 Oral | VERIFIED |\n| 2 | ATLAS | IRT for LLM eval | arXiv preprint (withdrawn from ICLR 2026) | VERIFIED (no venue) |\n| 3 | DCR | EMNLP 2025 | EMNLP 2025 Main | VERIFIED |\n| 4 | CoDeC | contamination detection | ICLR 2026 | VERIFIED |\n| 5 | JECS | arXiv May 2026 | arXiv May 2026 | VERIFIED |\n| 6 | Kocetkov et al. | ICLR 2026 | Submitted to ICLR 2026, acceptance unconfirmed | PARTIALLY VERIFIED |\n| 7 | RIDE | submitted to ICLR 2026 | On OpenReview for ICLR 2026, acceptance unconfirmed | PARTIALLY VERIFIED |\n| 8 | STIM | EMNLP 2025 | EMNLP 2025 Main | VERIFIED |\n| 9 | MaSTer | adversarial robustness | arXiv April 2026 preprint | VERIFIED (no venue) |\n| 10 | MATH-Perturb | adversarial math benchmark | ICML 2025 | VERIFIED |\n| 11 | MathArena | NeurIPS 2025 D&amp;B Track | NeurIPS 2025 D&amp;B Track | VERIFIED |\n| 12 | Illusion of Reasoning | April 2026 | arXiv March 2026 (revised April 2026) | VERIFIED (minor date correction) |\n\n---\n\n## Additional Key Papers You Might Be Missing\n\nBased on my searches, here are notable related papers in these areas:\n\n1. **\"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation\"** -- EMNLP 2025 Main. Comprehensive survey of contamination detection methods. [ACL Anthology](https://aclanthology.org/2025.emnlp-main.511/)\n\n2. **LiveBench** -- Continuously updated, contamination-free LLM benchmark with objective ground-truth answers, releasing new questions monthly. [livebench.ai](https://livebench.ai/livebench.pdf)\n\n3. **LiveCodeBench** -- Dynamic contamination-free code evaluation benchmark collecting problems from LeetCode, AtCoder, CodeForces. [arXiv](https://arxiv.org/abs/2403.07974)\n\n4. **\"Detecting Benchmark Contamination Through Watermarking\"** (2025) -- Watermarking-based approach to contamination detection. [arXiv](https://arxiv.org/abs/2502.17259)\n\n5. **\"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores\"** -- Related IRT-based adaptive evaluation work. [arXiv PDF](https://arxiv.org/pdf/2601.13885)\n\n6. **\"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"** -- Addresses the specific challenge of RL-phase contamination detection where traditional methods fail. [arXiv](https://arxiv.org/abs/2510.09259)&lt;/result>\n&lt;usage>&lt;total_tokens>25397&lt;/total_tokens>&lt;tool_uses>21&lt;/tool_uses>&lt;duration_ms>254180&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "a1aaf181-9e6c-47a0-89e8-330b5eabec3b",
+  "timestamp": "2026-05-28T11:38:14.832Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-28T11:38:18.104Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The reference verification agent has completed. Let me also check the OpenReview page for this ICLR 2026 paper and see what it is about.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1aaf181-9e6c-47a0-89e8-330b5eabec3b",
+  "isSidechain": false,
+  "requestId": "req_011CbUuD1MKBEgnSu4nSkUgk",
+  "type": "assistant",
+  "uuid": "b340098a-ed12-4526-a49a-f6fc64140c78",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsGGMUayBPWPxj4v1HfwEo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3784,
+      "cache_read_input_tokens": 50622,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 50622,
+          "cache_creation_input_tokens": 3784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-28T11:38:19.929Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CQC2FhNf8MJGabYda4uiX6`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=bhR00j6Mku",
+  "prompt": "What is the title of this paper? Who are the authors? Was it accepted at ICLR 2026? What is the decision status? Report the paper details including any AUROC results mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b340098a-ed12-4526-a49a-f6fc64140c78",
+  "isSidechain": false,
+  "requestId": "req_011CbUuD1MKBEgnSu4nSkUgk",
+  "type": "assistant",
+  "uuid": "a25e2e12-7092-46e6-816e-8dff0af8e45d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsGGMUayBPWPxj4v1HfwEo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3784,
+      "cache_read_input_tokens": 50622,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 50622,
+          "cache_creation_input_tokens": 3784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-28T11:38:23.448Z_
+
+<details><summary>↩ Tool result · `toolu_01CQC2FhNf8MJGabYda4uiX6`</summary>
+
+```text
+# Paper Details
+
+**Title:** "On The Fragility of Benchmark Contamination Detection in Reasoning Models"
+
+**Authors:** Han Wang, Haoyu Li, Brian Ko, and Huan Zhang
+
+**Venue & Status:** This paper was submitted to ICLR 2026 as a poster contribution. The page indicates it was "Published: 26 Jan 2026" and "Last Modified: 11 Apr 2026," suggesting acceptance, though no explicit acceptance decision statement appears in the provided content.
+
+**AUROC Results:** The web page content does not mention any AUROC (Area Under the Receiver Operating Characteristic Curve) results. The abstract focuses on conceptual findings about contamination detection vulnerabilities in large reasoning models rather than specific performance metrics.
+
+**Key Finding:** The research demonstrates that contamination in large reasoning models can be easily concealed. Specifically, even brief reinforcement learning training using GRPO can "markedly conceal contamination signals" that detection methods typically rely upon, while contamination applied as a final stage "perform[s] near random guesses" when detected.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a25e2e12-7092-46e6-816e-8dff0af8e45d",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "9faae2c6-88d7-4bd9-9d11-9589bb62f41c",
+  "toolUseResult": {
+    "bytes": 90170,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Details\n\n**Title:** \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n\n**Authors:** Han Wang, Haoyu Li, Brian Ko, and Huan Zhang\n\n**Venue & Status:** This paper was submitted to ICLR 2026 as a poster contribution. The page indicates it was \"Published: 26 Jan 2026\" and \"Last Modified: 11 Apr 2026,\" suggesting acceptance, though no explicit acceptance decision statement appears in the provided content.\n\n**AUROC Results:** The web page content does not mention any AUROC (Area Under the Receiver Operating Characteristic Curve) results. The abstract focuses on conceptual findings about contamination detection vulnerabilities in large reasoning models rather than specific performance metrics.\n\n**Key Finding:** The research demonstrates that contamination in large reasoning models can be easily concealed. Specifically, even brief reinforcement learning training using GRPO can \"markedly conceal contamination signals\" that detection methods typically rely upon, while contamination applied as a final stage \"perform[s] near random guesses\" when detected.",
+    "durationMs": 3514,
+    "url": "https://openreview.net/forum?id=bhR00j6Mku"
+  },
+  "sourceToolAssistantUUID": "a25e2e12-7092-46e6-816e-8dff0af8e45d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 125 · 2026-05-28T11:38:23.466Z_
+
+```json
+{
+  "parentUuid": "9faae2c6-88d7-4bd9-9d11-9589bb62f41c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "39e50711-a0be-4134-8f05-4abd84e7c7b7",
+  "timestamp": "2026-05-28T11:38:23.466Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 126 · 2026-05-28T11:38:33.241Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so the "Kocetkov et al." paper is actually by Han Wang et al., not Kocetkov. But the user originally referenced it as "Kocetkov et al.'s ICLR 2026 proof." Let me check if there's a different paper by Kocetkov.
+
+Actually, I see the issue -- the user's original reference says "Kocetkov et al." but the actual paper appears to be by Han Wang et al. The paper was indeed published/posted at ICLR 2026. Let me note this author discrepancy but still use the paper since the content matches.
+
+
+There's another paper I should look at -- the OpenReview link gk6OC3XIZW which is published at ICLR 2026 and focuses on contamination detection.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39e50711-a0be-4134-8f05-4abd84e7c7b7",
+  "isSidechain": false,
+  "requestId": "req_011CbUuDeJZjFyeYjBEf5rX5",
+  "type": "assistant",
+  "uuid": "09b48737-3654-4e20-bc76-503c10a21d31",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLycWKSQCedTxXEjajz7Un",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 530,
+      "cache_read_input_tokens": 54406,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 54406,
+          "cache_creation_input_tokens": 530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-28T11:38:33.249Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019nn4HCSSKhbUd63ussTrVQ`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=gk6OC3XIZW",
+  "prompt": "What is the title of this paper? Who are the authors? Is Kocetkov one of the authors? What are the main findings? Was it accepted at ICLR 2026?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09b48737-3654-4e20-bc76-503c10a21d31",
+  "isSidechain": false,
+  "requestId": "req_011CbUuDeJZjFyeYjBEf5rX5",
+  "type": "assistant",
+  "uuid": "63ee1d04-e99a-4ace-98df-891cb562ee82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLycWKSQCedTxXEjajz7Un",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 530,
+      "cache_read_input_tokens": 54406,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 54406,
+          "cache_creation_input_tokens": 530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-28T11:38:36.451Z_
+
+<details><summary>↩ Tool result · `toolu_019nn4HCSSKhbUd63ussTrVQ`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Contamination Detection for VLMs Using Multi‑Modal Semantic Perturbations"
+
+**Authors:** Jaden Park, Mu Cai, Feng Yao, Jingbo Shang, Soochahn Lee, and Yong Jae Lee
+
+**Is Kocetkov an author?** No, Kocetkov is not listed among the authors.
+
+**Main Findings:** The researchers developed a detection method for Vision-Language Models that may have been exposed to test data during training. They "deliberately contaminate open-source VLMs on popular benchmarks" and demonstrate that their approach based on multi-modal semantic perturbation can identify when models have been contaminated, as these models "fail to generalize under controlled perturbations." The method proved effective across multiple contamination scenarios.
+
+**ICLR 2026 Acceptance:** Yes, the paper was accepted. It is listed as an "ICLR 2026 Poster" with a publication date of January 26, 2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63ee1d04-e99a-4ace-98df-891cb562ee82",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "9b1fcc54-cb7e-4f1f-bb8a-3db46eb5ca58",
+  "toolUseResult": {
+    "bytes": 86142,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Title:** \"Contamination Detection for VLMs Using Multi‑Modal Semantic Perturbations\"\n\n**Authors:** Jaden Park, Mu Cai, Feng Yao, Jingbo Shang, Soochahn Lee, and Yong Jae Lee\n\n**Is Kocetkov an author?** No, Kocetkov is not listed among the authors.\n\n**Main Findings:** The researchers developed a detection method for Vision-Language Models that may have been exposed to test data during training. They \"deliberately contaminate open-source VLMs on popular benchmarks\" and demonstrate that their approach based on multi-modal semantic perturbation can identify when models have been contaminated, as these models \"fail to generalize under controlled perturbations.\" The method proved effective across multiple contamination scenarios.\n\n**ICLR 2026 Acceptance:** Yes, the paper was accepted. It is listed as an \"ICLR 2026 Poster\" with a publication date of January 26, 2026.",
+    "durationMs": 3199,
+    "url": "https://openreview.net/forum?id=gk6OC3XIZW"
+  },
+  "sourceToolAssistantUUID": "63ee1d04-e99a-4ace-98df-891cb562ee82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 129 · 2026-05-28T11:39:31.624Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:39:31.624Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "content": "&lt;task-notification>\n&lt;task-id>a38ebf0c1ade3ea34&lt;/task-id>\n&lt;tool-use-id>toolu_013x5YK9vFfrWtjmnZtV7D93&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a38ebf0c1ade3ea34.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Feasibility &amp; baselines research\" completed&lt;/summary>\n&lt;result>Here is my consolidated feasibility assessment:\n\n---\n\n## Feasibility Assessment: IRT + Adversarial Perturbation for LLM Contamination Decomposition\n\n### 1. Existing IRT Implementations for LLM Evaluation\n\n**py-irt** (most mature option)\n- Repo: [github.com/nd-ball/py-irt](https://github.com/nd-ball/py-irt)\n- Supports 1PL (Rasch), 2PL, and 4PL models via variational inference on PyTorch/Pyro\n- GPU-accelerated; designed for large-scale fitting\n- For your scale (50 models x 5,000 items = 250K response matrix), IRT fitting itself is trivial -- runs on CPU in seconds to minutes. The bottleneck is generating the response matrix (running LLMs on problems), not IRT estimation.\n\n**PSN-IRT** (AAAI 2026 Oral -- state of the art)\n- Repo: [github.com/Joe-Hall-Lee/PSN-IRT](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- Paper: [\"Lost in Benchmarks?\"](https://arxiv.org/pdf/2505.15055)\n- Uses a Pseudo-Siamese Network architecture for richer item parameter estimation\n- Analyzed 11 benchmarks with 41,871 items\n- Key baseline to beat: A subset of 1,000 items selected via Fisher information criterion achieves **Kendall's tau up to 0.9048** against human preference (Chatbot Arena) rankings -- surpassing both full-item and random-subset rankings\n\n**Other relevant IRT-for-LLM tools:**\n- [IRT-Router](https://github.com/Mercidaiha/IRT-Router) (ACL 2025) -- uses IRT for multi-LLM routing\n- JE-IRT (joint embedding IRT) -- geometric lens on LLM abilities\n- Adaptive CAT frameworks achieve near-perfect correlation with full benchmarks using only **1.3% of items**\n\n### 2. Adversarial Math Benchmark Perturbation Tools\n\n**MATH-Perturb** (ICML 2025) -- ready to use\n- Repo: [github.com/Kaffaljidhmah2/MATH-Perturb](https://github.com/Kaffaljidhmah2/MATH-Perturb)\n- 279 problems each in MATH-P-Simple and MATH-P-Hard (derived from MATH level-5)\n- Key result: **o1-mini drops 16.49%**, gemini-2.0-flash-thinking drops 12.9% on hard perturbations\n- Code and dataset are publicly available as JSONL files\n\n**RIDE** (arXiv 2511.04120) -- closest to your proposed approach\n- Combines IRT with adversarial perturbation explicitly\n- Uses 35 LLMs to build an IRT-based difficulty ranker, then uses RL to guide a question rewriter\n- Tested on 2,000 problems from DeepMath\n- Key result: **average 21.73% performance drop across 26 models**\n- No public GitHub repo found yet -- code availability uncertain\n\n**llm-decontaminator** (LMSYS)\n- Repo: [github.com/lm-sys/llm-decontaminator](https://github.com/lm-sys/llm-decontaminator)\n- Rephrased samples for contamination detection\n\n### 3. Baseline Numbers to Beat\n\n| Metric | Value | Source |\n|--------|-------|--------|\n| DCR contamination correction accuracy | **Within 4% average error** of uncontaminated baseline | DCR (EMNLP 2025), tested on 9 LLMs (0.5B-72B) across SST-2, LIAR2, GSM8K |\n| PSN-IRT ranking alignment (Kendall tau) | **0.9048** with 1,000 selected items | PSN-IRT (AAAI 2026) |\n| MATH-Perturb performance drop (hard) | **12.9%-16.5%** for top models | MATH-Perturb (ICML 2025) |\n| RIDE performance degradation | **21.73% average** across 26 models | RIDE (2025) |\n\n### 4. Current Top Open-Source Math/Reasoning LLMs (May 2026)\n\n| Model | MATH-500 | AIME 2026 | Notes |\n|-------|----------|-----------|-------|\n| DeepSeek V4 Pro (Max) | ~96.1 | ~96.4 | Overall #1 open-weight model (BenchLM score: 87) |\n| GLM-5 (Reasoning) | 95.7 (AIME 2025) | -- | Best pure math/reasoning pick (score: 83) |\n| Kimi K2.6 | -- | -- | Score: 84, strong general performance |\n| Qwen3.5 397B (Reasoning) | -- | -- | Score: 79 |\n| DeepSeek-R1 | 97.3 | -- | MATH-500 near-perfect |\n\nMathArena competition results (harder, uncontaminated):\n- USAMO 2025: Only Gemini-2.5-Pro achieves non-trivial score (**24.4%**); all others below 5%\n- Top models score comparably to top 1% humans on AIME but collapse on proof-based problems\n\n### 5. Hardware &amp; Cost Estimation\n\n**IRT fitting:** Negligible. CPU-only, seconds to minutes for a 50x5000 matrix.\n\n**Generating the response matrix (the real bottleneck):**\n- 50 models x 5,000 items = 250,000 inference calls\n- Assuming ~500 tokens/problem (input) + ~1,000 tokens/response (math reasoning chains are long)\n- Total: ~375M tokens across all models\n- Per model (5,000 items): ~7.5M tokens\n\nCost estimates for self-hosted inference:\n- H100 GPU: **$1.50-$3.50/hr** (2026 cloud rates)\n- A 70B model processes roughly 30-50 tokens/sec on one H100\n- Per 70B model on 5,000 items: ~40-60 GPU-hours\n- For 50 models of varying sizes (7B to 400B+): estimated **500-2,000 GPU-hours total**\n- At $2.50/hr average: **$1,250-$5,000** for self-hosted\n\nVia API (faster, no setup):\n- Cheapest APIs (GPT-4.1 Nano, Gemini Flash, Mistral Small): $0.10/M input tokens\n- Mid-tier reasoning models: $1-5/M tokens\n- Premium reasoning (o4-mini, etc.): $10-15/M tokens\n- Blended API cost for 50 diverse models: roughly **$2,000-$10,000**\n\n**Generating adversarial variants:**\n- If using an LLM to perturb 5,000 problems (following RIDE/MATH-Perturb approach)\n- ~2,000 tokens per perturbation generation, possibly multiple rounds\n- For 5,000 problems: ~10-50M tokens\n- Cost: **$50-$500** using a capable model API\n- Human verification of variants adds labor cost\n\n### Feasibility Summary\n\n**Highly feasible** with existing tools. The key building blocks all exist:\n\n1. **IRT estimation**: py-irt and PSN-IRT are both open-source and ready. PSN-IRT is the stronger baseline.\n2. **Adversarial perturbation**: MATH-Perturb provides a ready-made dataset and methodology. RIDE provides the theoretical framework combining IRT + perturbation but may lack public code.\n3. **Baselines are well-defined**: DCR's 4% correction error and PSN-IRT's 0.9048 Kendall tau give you clear targets.\n4. **Compute is manageable**: IRT fitting is cheap; the main cost is LLM inference at $2K-$10K for 50 models on 5K items.\n\n**Key gap your project would fill**: No existing work fully combines IRT parameter shifts (before/after perturbation) as a contamination signal. RIDE uses IRT to control difficulty but doesn't explicitly decompose contamination vs. capability. DCR detects contamination but doesn't use IRT. Your approach of comparing IRT ability/difficulty parameters between original and adversarially perturbed benchmarks to isolate the contamination component would be novel.\n\n**Recommended approach**: Use PSN-IRT for the IRT backbone, MATH-Perturb's methodology (or RIDE if code becomes available) for adversarial generation, and target surpassing both DCR's 4% correction accuracy and PSN-IRT's 0.9048 ranking correlation on a contamination-aware evaluation.\n\n---\n\nSources:\n- [py-irt GitHub](https://github.com/nd-ball/py-irt)\n- [PSN-IRT GitHub (AAAI 2026)](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- [PSN-IRT Paper](https://arxiv.org/pdf/2505.15055)\n- [IRT-Router (ACL 2025)](https://github.com/Mercidaiha/IRT-Router)\n- [MATH-Perturb GitHub (ICML 2025)](https://github.com/Kaffaljidhmah2/MATH-Perturb)\n- [MATH-Perturb Paper](https://arxiv.org/abs/2502.06453)\n- [RIDE Paper](https://arxiv.org/abs/2511.04120)\n- [DCR Paper (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1173/)\n- [MathArena Leaderboard](https://matharena.ai/)\n- [USAMO 2025 LLM Evaluation](https://arxiv.org/abs/2503.21934)\n- [llm-decontaminator (LMSYS)](https://github.com/lm-sys/llm-decontaminator)\n- [Best Chinese LLMs 2026 - BenchLM](https://benchlm.ai/blog/posts/best-chinese-llm)\n- [GPU Cost Per Token 2026 - Spheron](https://www.spheron.network/blog/gpu-cost-per-token-benchmark-llm-inference-2026/)\n- [LLM Inference Cost Guide 2026](https://aisuperior.com/llm-token-cost/)\n- [Adaptive Testing for LLM Evaluation](https://arxiv.org/pdf/2511.04689)&lt;/result>\n&lt;usage>&lt;total_tokens>28109&lt;/total_tokens>&lt;tool_uses>23&lt;/tool_uses>&lt;duration_ms>298984&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 130_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "9b1fcc54-cb7e-4f1f-bb8a-3db46eb5ca58",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 132 · 2026-05-28T11:40:59.740Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so this is a different paper about VLMs, not about text-based reasoning models. The "Kocetkov et al." reference in the user's input seems to be incorrect in terms of author attribution. The paper they're referring to is actually "On The Fragility of Benchmark Contamination Detection in Reasoning Models" by Han Wang et al., which was indeed at ICLR 2026. Let me note this discrepancy in the final output.
+
+Now let me wait for the remaining two background agents (concurrent work search and feasibility/baselines). Let me check if they've completed.
+
+
+I'm checking the status of my background agents. Three have finished—venue deadlines, MathArena evaluation details, and reference verification—but the concurrent work search and feasibility assessment are still running. Let me start synthesizing what I have so far while those complete.
+
+I'm catching some corrections to the paper details: the fragility paper is actually by Wang et al., not Kocetkov; RIDE's submission status to ICLR 2026 checks out; MATH-Perturb is confirmed for ICML 2025; "Illusion of Reasoning" is March 2026 on arXiv; ATLAS was withdrawn from ICLR 2026 but has an arXiv version; CoDeC is ICLR 2026; and MaSTer is an arXiv preprint. Now I need to compile the complete reference list and design an approach that extends...
+
+For the method, I'm building CRADE as a contamination-aware variant of 3PL IRT that introduces a per-model contamination exposure parameter and pairs each benchmark item with an adversarial variant created through symbolic perturbation. The core idea is that contaminated models show a distinctive pattern—strong performance on original memorized items but weaker results on unseen variants—and this "contamination gap" can be mathematically separated from genuine ability differences using the paired structure. I'll use EM to jointly estimate model ability, contamination exposure, and item difficulty while connecting step-level evaluation to contamination detection and providing formal convergence guarantees.
+
+For fitting, I'm alternating between E-steps that estimate latent ability and contamination exposure per model, and M-steps that update item parameters across both original and variant items. I'll incorporate conformal p-values as informative priors on per-item contamination likelihood and use token-level memorization scores from reasoning chains as auxiliary evidence to anchor the decomposition. The validation uses MathArena's uncontaminated competition data as ground truth to show that CRADE produces ability rankings with stronger correlation to genuinely clean benchmarks than raw accuracy or DCR-corrected approaches.
+
+For resources, I need to run roughly 30-50 models on both original and adversarial variants across about 5000 benchmark items each, with the main bottleneck being adversarial variant generation. I realize we can leverage existing benchmark datasets like PSN-IRT's response matrices from published papers rather than generating everything from scratch, which significantly reduces the workload. The approach would be to generate adversarial variants for a subset of items, run inference on those variants across models, then fit the contamination-aware IRT model. For variant generation, I'd use automated perturbation tools and verify them with symbolic math, while keeping API costs down by using open models on GPU for inference and APIs only for closed models. The cost estimate breaks down to roughly $50-250 for variant generation, variable inference costs depending on model access, and minimal expense for the IRT fitting itself. For the timeline, manual execution would take about 8 weeks, but with Claude's help I can cut that down to 5-6 weeks, and if I mostly automate the process it drops to 3-4 weeks though GPU inference queues become the limiting factor. Now I'm verifying the key references I've collected—PSN-IRT, ATLAS, DCR, CoDeC, JECS, and the Wang et al. paper on fragility—to make sure they're all properly documented before finalizing the JSON output. Looking at the upcoming conference deadlines and the current landscape of open-source models for math reasoning, I'm noting that ICLR 2027 is expected around September or October 2026, with ARR October as another option for future venue submissions. The leading models right now are dominated by DeepSeek variants and Qwen's latest releases, with DeepSeek-R2 showing particularly strong performance on the MATH benchmark. I'm about to consolidate all this information into a structured format.
+
+For the technical approach to detecting contamination, I'm extending the IRT model with a per-model parameter that captures exposure to memorized items while keeping variant items unaffected, then generating adversarial variants through structural rewriting and symbolic verification to ensure they're mathematically sound. The paired structure lets me isolate genuine ability from contamination effects, and I'll fit the model using EM with priors informed by conformal p-values and token memorization scores, validating against MathArena rankings as ground truth.
+
+The framework decomposes benchmark performance into three latent factors—reasoning ability, contamination exposure, and item difficulty—using a measurement-theoretic approach grounded in psychometric theory rather than ad-hoc corrections. The key insight is that contamination selectively inflates performance on original items while leaving variants unaffected, whereas genuine ability affects both equally, providing the identifiability needed for joint parameter estimation. This addresses the fundamental limitation of prior work like DCR, which achieved only modest correlation on hard tasks by not properly accounting for how contamination operates asymmetrically across item types. I'm settling on "crade_contam_aware_irt" as the project name and now working through resource estimates — manual implementation would take 8 weeks and roughly $5,400 in compute costs, while bringing in Claude for coding could trim that to 5-6 weeks with an additional $500 in API expenses.
+
+For the fully automated pipeline, I'd need about 1000 H100-hours across 3-4 weeks, though the real bottleneck becomes GPU queue time for larger models like DeepSeek-R2. Looking at where the actual costs concentrate: inference on open models dominates the budget, followed by adversarial variant generation and closed model API calls, so I should focus optimization there rather than on the relatively cheap IRT fitting step itself. Now I'm factoring in that generating reasoning chains roughly doubles the token count, pushing the estimate to around 1,300 GPU-hours, but I can significantly reduce this by leveraging existing benchmark results and only running new models on the variant items—cutting it roughly in half. So my final estimates are around 800 GPU-hours for manual evaluation, 600 for human-in-the-loop with some Claude API costs, and 1,000 for a fully automated research approach.
+
+At $3 per H100-hour, these feel reasonable. I should format the cost estimates with dollar signs properly. For venues, I'm targeting AAAI 2027 as the primary option since it aligns with the timeline and the PSN-IRT focus, with EACL 2027 and ICLR 2027 as backups depending on prestige and deadline fit. I have enough data from my searches to move forward without waiting for additional agent results. I should verify those two agents will notify me if they complete, so I'll move forward with compiling the final answer. I'm also noticing the user attributed the proof to Kocetkov et al., but the actual authors are Wang, Li, Ko, and Zhang—I need to correct that in my references. Now I'm assembling the JSON with the verified papers I've confirmed so far. I'm finishing out the reference list with the remaining papers on decontamination and robustness evaluation, then I'll need to format everything properly. I notice ATLAS was mentioned in the original context as part of the IRT-based evaluation work, so I should keep it in the compilation even though it's a preprint.
+
+Now I'm thinking through how to describe the core approach more concisely. The key insight is extending the standard IRT model with a contamination parameter that captures how much each model benefits from seeing original benchmark items versus adversarial variants, then pairing each benchmark item with a symbolically-verified adversarial version to detect this contamination effect. Now I'm working through the resource estimates for each implementation approach, comparing GPU costs and timelines across manual, human-in-loop, and fully automated variants to determine the most efficient path forward.
+
+For the conference venues, I'm targeting AAAI 2027, EACL 2027, and ICLR 2027 with their respective submission deadlines. Before finalizing the JSON output, I should verify that no existing work covers the joint contamination-ability estimation via IRT approach—my search found RIDE uses similar techniques but only for difficulty ranking, and PSN-IRT explicitly leaves contamination-adjusted scoring as an open question, so this appears to be novel territory. The RIDE paper confirms it uses IRT strictly as a difficulty measurement tool for reinforcement learning rewards during question rewriting, not for joint estimation of ability and contamination. So the three-way combination remains genuinely novel. This framework sits at an intersection no one's explored yet—IRT for ability-contamination modeling, contamination correction grounded in psychometrics, and adversarial perturbation all working together. It directly addresses an open question from the AAAI 2026 oral, comes with formal EM convergence guarantees, and builds on the ICLR 2026 finding that likelihood-based detection fails. With MathArena providing ground truth validation, this shapes up as a top-tier contribution if I can execute it cleanly within the timeline constraints.
+
+Now I'm assembling the final JSON output...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b1fcc54-cb7e-4f1f-bb8a-3db46eb5ca58",
+  "isSidechain": false,
+  "requestId": "req_011CbUuEbp2JudtH3fo4tXBp",
+  "type": "assistant",
+  "uuid": "6d2254a0-5ee9-4c1d-b744-ab8077c0e805",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K29K8daE4k16GCcq7z2da1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 54936,
+      "output_tokens": 6227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6227,
+          "cache_read_input_tokens": 54936,
+          "cache_creation_input_tokens": 587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133 · 2026-05-28T11:40:59.744Z_
+
+Now let me check on the two remaining agents while compiling results:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d2254a0-5ee9-4c1d-b744-ab8077c0e805",
+  "isSidechain": false,
+  "requestId": "req_011CbUuEbp2JudtH3fo4tXBp",
+  "type": "assistant",
+  "uuid": "f0942012-e58d-4757-bf53-7ecfba2472e6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K29K8daE4k16GCcq7z2da1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 54936,
+      "output_tokens": 6227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6227,
+          "cache_read_input_tokens": 54936,
+          "cache_creation_input_tokens": 587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-28T11:40:59.745Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mha8ovm9BY7nmjwoo7BqA8`</summary>
+
+```json
+{
+  "query": "contamination aware item response theory joint estimation LLM 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0942012-e58d-4757-bf53-7ecfba2472e6",
+  "isSidechain": false,
+  "requestId": "req_011CbUuEbp2JudtH3fo4tXBp",
+  "type": "assistant",
+  "uuid": "693896c4-4111-4608-87f1-a93741ca2d5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K29K8daE4k16GCcq7z2da1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 54936,
+      "output_tokens": 6227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6227,
+          "cache_read_input_tokens": 54936,
+          "cache_creation_input_tokens": 587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-28T11:40:59.748Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K9pL1zsQ8q7nSXCWUEjJ24`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 workshop submission deadline LLM evaluation benchmarking"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "693896c4-4111-4608-87f1-a93741ca2d5b",
+  "isSidechain": false,
+  "requestId": "req_011CbUuEbp2JudtH3fo4tXBp",
+  "type": "assistant",
+  "uuid": "f47a2466-956d-403b-8eef-ac54645324c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K29K8daE4k16GCcq7z2da1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 54936,
+      "output_tokens": 6227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6227,
+          "cache_read_input_tokens": 54936,
+          "cache_creation_input_tokens": 587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "f47a2466-956d-403b-8eef-ac54645324c2",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 137_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-28T11:41:06.263Z_
+
+<details><summary>↩ Tool result · `toolu_01K9pL1zsQ8q7nSXCWUEjJ24`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 workshop submission deadline LLM evaluation benchmarking"
+
+Links: [{"title":"NeurIPS 2026 Calls for Competition Track Proposals Focused on LLM Evaluation and Social Impact | KuCoin","url":"https://www.kucoin.com/news/flash/neurips-2026-calls-for-competition-track-proposals-focused-on-llm-evaluation-and-social-impact"},{"title":"NeurIPS 2026 Evaluations & Datasets FAQ","url":"https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"Can AI Validate Science? Benchmarking LLMs for Accurate Scientific Claim $\\rightarrow$ Evidence Reasoning","url":"https://arxiv.org/pdf/2506.08235"},{"title":"Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of LLMs","url":"https://arxiv.org/pdf/2602.11674"}]
+
+Based on the search results, here's what I found regarding NeurIPS 2026 deadlines related to LLM evaluation and benchmarking:
+
+**Competition Track Proposals:**
+NeurIPS 2026 has issued a call for competition track proposals focusing on large language model evaluation, with a submission deadline of May 15, 2026. Results will be announced on June 15, and workshops will take place December 11–12, 2026.
+
+The organizers particularly encourage proposals that focus on the evaluation of large language models and agent systems. Proposals must be submitted via the OpenReview system using the updated LaTeX template, with the main text limited to no more than 8 pages.
+
+**Evaluations & Datasets Track:**
+For the Evaluations & Datasets Track (which also encompasses benchmarking work), the full paper submission deadline is May 6, 2026 (AOE), and all datasets and code must be submitted in their final form by May 6, 2026 (AOE), together with the full paper.
+
+Note that these are different submission deadlines depending on whether your work targets the competition track (May 15) or the main Evaluations & Datasets track (May 6).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f47a2466-956d-403b-8eef-ac54645324c2",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "52e7b4a7-686b-49e4-8567-29692eb0e83b",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 workshop submission deadline LLM evaluation benchmarking",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N1QmrfvrFzeSEZaSPG7LKp",
+        "content": [
+          {
+            "title": "NeurIPS 2026 Calls for Competition Track Proposals Focused on LLM Evaluation and Social Impact | KuCoin",
+            "url": "https://www.kucoin.com/news/flash/neurips-2026-calls-for-competition-track-proposals-focused-on-llm-evaluation-and-social-impact"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets FAQ",
+            "url": "https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "Can AI Validate Science? Benchmarking LLMs for Accurate Scientific Claim $\\rightarrow$ Evidence Reasoning",
+            "url": "https://arxiv.org/pdf/2506.08235"
+          },
+          {
+            "title": "Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of LLMs",
+            "url": "https://arxiv.org/pdf/2602.11674"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding NeurIPS 2026 deadlines related to LLM evaluation and benchmarking:\n\n**Competition Track Proposals:**\nNeurIPS 2026 has issued a call for competition track proposals focusing on large language model evaluation, with a submission deadline of May 15, 2026. Results will be announced on June 15, and workshops will take place December 11–12, 2026.\n\nThe organizers particularly encourage proposals that focus on the evaluation of large language models and agent systems. Proposals must be submitted via the OpenReview system using the updated LaTeX template, with the main text limited to no more than 8 pages.\n\n**Evaluations & Datasets Track:**\nFor the Evaluations & Datasets Track (which also encompasses benchmarking work), the full paper submission deadline is May 6, 2026 (AOE), and all datasets and code must be submitted in their final form by May 6, 2026 (AOE), together with the full paper.\n\nNote that these are different submission deadlines depending on whether your work targets the competition track (May 15) or the main Evaluations & Datasets track (May 6)."
+    ],
+    "durationSeconds": 6.5123885310000045,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f47a2466-956d-403b-8eef-ac54645324c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-28T11:41:07.984Z_
+
+<details><summary>↩ Tool result · `toolu_01Mha8ovm9BY7nmjwoo7BqA8`</summary>
+
+```text
+Web search results for query: "contamination aware item response theory joint estimation LLM 2026 arXiv"
+
+Links: [{"title":"[2510.00844] Learning Compact Representations of LLM Abilities via Item Response Theory","url":"https://arxiv.org/abs/2510.00844"},{"title":"JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory","url":"https://arxiv.org/pdf/2509.22888"},{"title":"[2605.21543] Provable Joint Decontamination for Benchmarking Multiple Large Language Models","url":"https://arxiv.org/abs/2605.21543"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"},{"title":"Learning Compact Representations of LLM Abilities via Item Response Theory","url":"https://arxiv.org/pdf/2510.00844"},{"title":"A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory","url":"https://arxiv.org/html/2509.22888"},{"title":"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory","url":"https://arxiv.org/pdf/2602.00521"},{"title":"Joint Maximum Likelihood Estimation for High-dimensional Exploratory   Item Response Analysis","url":"https://arxiv.org/pdf/1712.06748"}]
+
+Based on the search results, I found several relevant papers on arXiv related to your query:
+
+1. **"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"** (August 2025): This paper addresses how LLM benchmarks exhibit data contamination in numerous items, compromising their reliability. The authors propose PSN-IRT, a framework that combines psychometrics with neural networks. The framework demonstrates that current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination.
+
+2. **"Provable Joint Decontamination for Benchmarking Multiple Large Language Models"** (arXiv 2605.21543, posted 1 week ago): This paper formalizes multi-model benchmark decontamination as a joint selection problem and proposes Joint Envelope Conformal Selection (JECS), a conformal procedure that enables global contamination rate (GCR) control under stated assumptions.
+
+3. **"Learning Compact Representations of LLM Abilities via Item Response Theory"** (October 2025, arXiv 2510.00844): This paper introduces a Mixture-of-Experts (MoE) network that couples model- and query-level embeddings to learn parameters jointly.
+
+4. **"A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory"** (September 2025, arXiv 2509.22888): This work establishes a unified and interpretable geometric lens that connects LLM abilities with the structure of questions, offering a distinctive perspective on model evaluation and generalization.
+
+These papers appear to directly address contamination-aware approaches and joint estimation methods for LLMs using Item Response Theory frameworks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "693896c4-4111-4608-87f1-a93741ca2d5b",
+  "isSidechain": false,
+  "promptId": "298c40b0-b1f7-4a5c-afc3-3dc8b1de86bd",
+  "type": "user",
+  "uuid": "04cf2776-bfd6-43af-890c-dd80f3276b61",
+  "toolUseResult": {
+    "query": "contamination aware item response theory joint estimation LLM 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013b8yeRVY78C5SQ4yix65dH",
+        "content": [
+          {
+            "title": "[2510.00844] Learning Compact Representations of LLM Abilities via Item Response Theory",
+            "url": "https://arxiv.org/abs/2510.00844"
+          },
+          {
+            "title": "JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory",
+            "url": "https://arxiv.org/pdf/2509.22888"
+          },
+          {
+            "title": "[2605.21543] Provable Joint Decontamination for Benchmarking Multiple Large Language Models",
+            "url": "https://arxiv.org/abs/2605.21543"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v2"
+          },
+          {
+            "title": "Learning Compact Representations of LLM Abilities via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2510.00844"
+          },
+          {
+            "title": "A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory",
+            "url": "https://arxiv.org/html/2509.22888"
+          },
+          {
+            "title": "Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2602.00521"
+          },
+          {
+            "title": "Joint Maximum Likelihood Estimation for High-dimensional Exploratory   Item Response Analysis",
+            "url": "https://arxiv.org/pdf/1712.06748"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on arXiv related to your query:\n\n1. **\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"** (August 2025): This paper addresses how LLM benchmarks exhibit data contamination in numerous items, compromising their reliability. The authors propose PSN-IRT, a framework that combines psychometrics with neural networks. The framework demonstrates that current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination.\n\n2. **\"Provable Joint Decontamination for Benchmarking Multiple Large Language Models\"** (arXiv 2605.21543, posted 1 week ago): This paper formalizes multi-model benchmark decontamination as a joint selection problem and proposes Joint Envelope Conformal Selection (JECS), a conformal procedure that enables global contamination rate (GCR) control under stated assumptions.\n\n3. **\"Learning Compact Representations of LLM Abilities via Item Response Theory\"** (October 2025, arXiv 2510.00844): This paper introduces a Mixture-of-Experts (MoE) network that couples model- and query-level embeddings to learn parameters jointly.\n\n4. **\"A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory\"** (September 2025, arXiv 2509.22888): This work establishes a unified and interpretable geometric lens that connects LLM abilities with the structure of questions, offering a distinctive perspective on model evaluation and generalization.\n\nThese papers appear to directly address contamination-aware approaches and joint estimation methods for LLMs using Item Response Theory frameworks."
+    ],
+    "durationSeconds": 8.23684722200001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "693896c4-4111-4608-87f1-a93741ca2d5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 140 · 2026-05-28T11:41:07.990Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-28T11:41:07.990Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 141 · 2026-05-28T11:41:07.989Z_
+
+```json
+{
+  "parentUuid": "04cf2776-bfd6-43af-890c-dd80f3276b61",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a38ebf0c1ade3ea34&lt;/task-id>\n&lt;tool-use-id>toolu_013x5YK9vFfrWtjmnZtV7D93&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/a38ebf0c1ade3ea34.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Feasibility &amp; baselines research\" completed&lt;/summary>\n&lt;result>Here is my consolidated feasibility assessment:\n\n---\n\n## Feasibility Assessment: IRT + Adversarial Perturbation for LLM Contamination Decomposition\n\n### 1. Existing IRT Implementations for LLM Evaluation\n\n**py-irt** (most mature option)\n- Repo: [github.com/nd-ball/py-irt](https://github.com/nd-ball/py-irt)\n- Supports 1PL (Rasch), 2PL, and 4PL models via variational inference on PyTorch/Pyro\n- GPU-accelerated; designed for large-scale fitting\n- For your scale (50 models x 5,000 items = 250K response matrix), IRT fitting itself is trivial -- runs on CPU in seconds to minutes. The bottleneck is generating the response matrix (running LLMs on problems), not IRT estimation.\n\n**PSN-IRT** (AAAI 2026 Oral -- state of the art)\n- Repo: [github.com/Joe-Hall-Lee/PSN-IRT](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- Paper: [\"Lost in Benchmarks?\"](https://arxiv.org/pdf/2505.15055)\n- Uses a Pseudo-Siamese Network architecture for richer item parameter estimation\n- Analyzed 11 benchmarks with 41,871 items\n- Key baseline to beat: A subset of 1,000 items selected via Fisher information criterion achieves **Kendall's tau up to 0.9048** against human preference (Chatbot Arena) rankings -- surpassing both full-item and random-subset rankings\n\n**Other relevant IRT-for-LLM tools:**\n- [IRT-Router](https://github.com/Mercidaiha/IRT-Router) (ACL 2025) -- uses IRT for multi-LLM routing\n- JE-IRT (joint embedding IRT) -- geometric lens on LLM abilities\n- Adaptive CAT frameworks achieve near-perfect correlation with full benchmarks using only **1.3% of items**\n\n### 2. Adversarial Math Benchmark Perturbation Tools\n\n**MATH-Perturb** (ICML 2025) -- ready to use\n- Repo: [github.com/Kaffaljidhmah2/MATH-Perturb](https://github.com/Kaffaljidhmah2/MATH-Perturb)\n- 279 problems each in MATH-P-Simple and MATH-P-Hard (derived from MATH level-5)\n- Key result: **o1-mini drops 16.49%**, gemini-2.0-flash-thinking drops 12.9% on hard perturbations\n- Code and dataset are publicly available as JSONL files\n\n**RIDE** (arXiv 2511.04120) -- closest to your proposed approach\n- Combines IRT with adversarial perturbation explicitly\n- Uses 35 LLMs to build an IRT-based difficulty ranker, then uses RL to guide a question rewriter\n- Tested on 2,000 problems from DeepMath\n- Key result: **average 21.73% performance drop across 26 models**\n- No public GitHub repo found yet -- code availability uncertain\n\n**llm-decontaminator** (LMSYS)\n- Repo: [github.com/lm-sys/llm-decontaminator](https://github.com/lm-sys/llm-decontaminator)\n- Rephrased samples for contamination detection\n\n### 3. Baseline Numbers to Beat\n\n| Metric | Value | Source |\n|--------|-------|--------|\n| DCR contamination correction accuracy | **Within 4% average error** of uncontaminated baseline | DCR (EMNLP 2025), tested on 9 LLMs (0.5B-72B) across SST-2, LIAR2, GSM8K |\n| PSN-IRT ranking alignment (Kendall tau) | **0.9048** with 1,000 selected items | PSN-IRT (AAAI 2026) |\n| MATH-Perturb performance drop (hard) | **12.9%-16.5%** for top models | MATH-Perturb (ICML 2025) |\n| RIDE performance degradation | **21.73% average** across 26 models | RIDE (2025) |\n\n### 4. Current Top Open-Source Math/Reasoning LLMs (May 2026)\n\n| Model | MATH-500 | AIME 2026 | Notes |\n|-------|----------|-----------|-------|\n| DeepSeek V4 Pro (Max) | ~96.1 | ~96.4 | Overall #1 open-weight model (BenchLM score: 87) |\n| GLM-5 (Reasoning) | 95.7 (AIME 2025) | -- | Best pure math/reasoning pick (score: 83) |\n| Kimi K2.6 | -- | -- | Score: 84, strong general performance |\n| Qwen3.5 397B (Reasoning) | -- | -- | Score: 79 |\n| DeepSeek-R1 | 97.3 | -- | MATH-500 near-perfect |\n\nMathArena competition results (harder, uncontaminated):\n- USAMO 2025: Only Gemini-2.5-Pro achieves non-trivial score (**24.4%**); all others below 5%\n- Top models score comparably to top 1% humans on AIME but collapse on proof-based problems\n\n### 5. Hardware &amp; Cost Estimation\n\n**IRT fitting:** Negligible. CPU-only, seconds to minutes for a 50x5000 matrix.\n\n**Generating the response matrix (the real bottleneck):**\n- 50 models x 5,000 items = 250,000 inference calls\n- Assuming ~500 tokens/problem (input) + ~1,000 tokens/response (math reasoning chains are long)\n- Total: ~375M tokens across all models\n- Per model (5,000 items): ~7.5M tokens\n\nCost estimates for self-hosted inference:\n- H100 GPU: **$1.50-$3.50/hr** (2026 cloud rates)\n- A 70B model processes roughly 30-50 tokens/sec on one H100\n- Per 70B model on 5,000 items: ~40-60 GPU-hours\n- For 50 models of varying sizes (7B to 400B+): estimated **500-2,000 GPU-hours total**\n- At $2.50/hr average: **$1,250-$5,000** for self-hosted\n\nVia API (faster, no setup):\n- Cheapest APIs (GPT-4.1 Nano, Gemini Flash, Mistral Small): $0.10/M input tokens\n- Mid-tier reasoning models: $1-5/M tokens\n- Premium reasoning (o4-mini, etc.): $10-15/M tokens\n- Blended API cost for 50 diverse models: roughly **$2,000-$10,000**\n\n**Generating adversarial variants:**\n- If using an LLM to perturb 5,000 problems (following RIDE/MATH-Perturb approach)\n- ~2,000 tokens per perturbation generation, possibly multiple rounds\n- For 5,000 problems: ~10-50M tokens\n- Cost: **$50-$500** using a capable model API\n- Human verification of variants adds labor cost\n\n### Feasibility Summary\n\n**Highly feasible** with existing tools. The key building blocks all exist:\n\n1. **IRT estimation**: py-irt and PSN-IRT are both open-source and ready. PSN-IRT is the stronger baseline.\n2. **Adversarial perturbation**: MATH-Perturb provides a ready-made dataset and methodology. RIDE provides the theoretical framework combining IRT + perturbation but may lack public code.\n3. **Baselines are well-defined**: DCR's 4% correction error and PSN-IRT's 0.9048 Kendall tau give you clear targets.\n4. **Compute is manageable**: IRT fitting is cheap; the main cost is LLM inference at $2K-$10K for 50 models on 5K items.\n\n**Key gap your project would fill**: No existing work fully combines IRT parameter shifts (before/after perturbation) as a contamination signal. RIDE uses IRT to control difficulty but doesn't explicitly decompose contamination vs. capability. DCR detects contamination but doesn't use IRT. Your approach of comparing IRT ability/difficulty parameters between original and adversarially perturbed benchmarks to isolate the contamination component would be novel.\n\n**Recommended approach**: Use PSN-IRT for the IRT backbone, MATH-Perturb's methodology (or RIDE if code becomes available) for adversarial generation, and target surpassing both DCR's 4% correction accuracy and PSN-IRT's 0.9048 ranking correlation on a contamination-aware evaluation.\n\n---\n\nSources:\n- [py-irt GitHub](https://github.com/nd-ball/py-irt)\n- [PSN-IRT GitHub (AAAI 2026)](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- [PSN-IRT Paper](https://arxiv.org/pdf/2505.15055)\n- [IRT-Router (ACL 2025)](https://github.com/Mercidaiha/IRT-Router)\n- [MATH-Perturb GitHub (ICML 2025)](https://github.com/Kaffaljidhmah2/MATH-Perturb)\n- [MATH-Perturb Paper](https://arxiv.org/abs/2502.06453)\n- [RIDE Paper](https://arxiv.org/abs/2511.04120)\n- [DCR Paper (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1173/)\n- [MathArena Leaderboard](https://matharena.ai/)\n- [USAMO 2025 LLM Evaluation](https://arxiv.org/abs/2503.21934)\n- [llm-decontaminator (LMSYS)](https://github.com/lm-sys/llm-decontaminator)\n- [Best Chinese LLMs 2026 - BenchLM](https://benchlm.ai/blog/posts/best-chinese-llm)\n- [GPU Cost Per Token 2026 - Spheron](https://www.spheron.network/blog/gpu-cost-per-token-benchmark-llm-inference-2026/)\n- [LLM Inference Cost Guide 2026](https://aisuperior.com/llm-token-cost/)\n- [Adaptive Testing for LLM Evaluation](https://arxiv.org/pdf/2511.04689)&lt;/result>\n&lt;usage>&lt;total_tokens>28109&lt;/total_tokens>&lt;tool_uses>23&lt;/tool_uses>&lt;duration_ms>298984&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "1ff37f6a-7a52-4695-a3a6-2744e5301821",
+  "timestamp": "2026-05-28T11:41:07.989Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 142 · 2026-05-28T11:43:19.857Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:43:19.857Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "content": "&lt;task-notification>\n&lt;task-id>aedaa7d545c0573d3&lt;/task-id>\n&lt;tool-use-id>toolu_01Xrhq1exWmmA26s3KdB8Sqp&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aedaa7d545c0573d3.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search concurrent work\" completed&lt;/summary>\n&lt;result>I now have a comprehensive picture of the landscape. Here is my full report.\n\n---\n\n## Prior Art Search Results for CRADE\n\nAfter conducting 20+ searches across arXiv, OpenReview, Google Scholar, and Semantic Scholar, here is my assessment. **No existing paper implements the exact CRADE approach** -- jointly extending a 3PL/4PL IRT model with an explicit contamination parameter, using adversarial benchmark variants as paired items, and running EM to jointly estimate model ability, contamination exposure, and item difficulty. However, several papers occupy nearby regions of the idea space and should be cited and differentiated.\n\n---\n\n### HIGH SIMILARITY (must differentiate clearly)\n\n**1. \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\" (PSN-IRT)**\n- arXiv: [2505.15055](https://arxiv.org/abs/2505.15055) -- AAAI 2026 Oral\n- Authors: Hongli Zhou et al.\n- **What it does:** Uses a 4PL IRT model (via a Pseudo-Siamese Network) to estimate item difficulty, discrimination, guessing, and feasibility parameters across 11 LLM benchmarks (41,871 items). Identifies items with anomalously high guessing rates as likely contaminated.\n- **Key differences from CRADE:** PSN-IRT is *diagnostic*, not *corrective*. It flags suspected contamination post-hoc via outlier guessing parameters but does NOT: (a) add an explicit contamination parameter to the IRT model, (b) use adversarial/paired items, (c) jointly estimate a contamination exposure variable per model, or (d) use EM for joint contamination-ability decomposition. The contamination finding is an observational byproduct, not a modeled latent variable.\n- **Similarity: HIGH** -- This is your closest competitor in the IRT-for-LLM-evaluation space. You must clearly differentiate CRADE's explicit contamination modeling from PSN-IRT's post-hoc diagnostic approach.\n\n**2. \"Provable Joint Decontamination for Benchmarking Multiple Large Language Models\" (JECS)**\n- arXiv: [2605.21543](https://arxiv.org/abs/2605.21543) -- May 2026\n- Authors: Zhenlong Liu, Hao Zeng, Hongxin Wei\n- **What it does:** Formalizes multi-model benchmark decontamination as a joint item selection problem. Uses conformal p-values per model, aggregates via per-item maximum, applies adaptive Benjamini-Hochberg for provable global contamination rate control.\n- **Key differences from CRADE:** Uses conformal inference, NOT IRT. Does not estimate latent ability or contamination as model parameters. Does not use adversarial paired items. Focuses on *filtering* contaminated items rather than *decomposing* performance into ability vs. contamination components.\n- **Similarity: HIGH** on the \"joint contamination + multiple models\" axis, but LOW on the IRT/latent variable modeling axis.\n\n---\n\n### MEDIUM SIMILARITY (related approaches, different mechanisms)\n\n**3. \"DCR: Quantifying Data Contamination in LLMs Evaluation\"**\n- arXiv: [2507.11405](https://arxiv.org/abs/2507.11405)\n- Authors: Cheng Xu et al.\n- **What it does:** Detects contamination at four granular levels (semantic, informational, data, label) and produces a unified \"DCR Factor\" via fuzzy inference to adjust raw accuracy for contamination-aware performance scores.\n- **Key differences from CRADE:** No IRT model. No latent variable estimation. Uses fuzzy inference rather than probabilistic/EM estimation. Does not use paired adversarial items. Adjusts scores post-hoc rather than jointly estimating during model fitting.\n- **Similarity: MEDIUM** -- Shares the goal of contamination-aware score correction but uses an entirely different framework.\n\n**4. \"PaCoST: Paired Confidence Significance Testing for Benchmark Contamination Detection in Large Language Models\"**\n- arXiv: [2406.18326](https://arxiv.org/abs/2406.18326)\n- Authors: Huixuan Zhang, Yun Lin, Xiaojun Wan\n- **What it does:** Constructs paired items (original + perturbed counterpart with same distribution) and uses statistical significance testing on model confidence differences to detect contamination.\n- **Key differences from CRADE:** Uses paired items (like CRADE) but does NOT use IRT models, does NOT estimate latent ability, and does NOT jointly decompose contamination vs. robustness. It is purely a binary detection method, not a parametric decomposition.\n- **Similarity: MEDIUM** -- The paired-item design is conceptually close to CRADE's adversarial variant pairing, but the statistical methodology is completely different.\n\n**5. \"ConStat: Performance-Based Contamination Detection in Large Language Models\"**\n- NeurIPS 2024\n- **What it does:** Detects and quantifies contamination by comparing performance between original and rephrased (reference) benchmark samples relative to reference models.\n- **Key differences from CRADE:** Uses performance gap analysis, not IRT. Does not estimate latent ability. Rephrased items are used for detection only, not as paired items in a latent variable model.\n- **Similarity: MEDIUM** -- Performance gap between original and perturbed items is conceptually related to CRADE's adversarial pairing signal.\n\n**6. \"When Benchmarks Leak: Inference-Time Decontamination for LLMs\" (DeconIEP)**\n- arXiv: [2601.19334](https://arxiv.org/abs/2601.19334) -- January 2026\n- Authors: Jianzhe Chai, Yu Zhe, Jun Sakuma\n- **What it does:** Applies bounded perturbations in input embedding space at inference time, guided by a less-contaminated reference model, to steer evaluated models away from memorization shortcuts.\n- **Key differences from CRADE:** Engineering approach (embedding perturbation), not psychometric. No IRT. No latent variable estimation. Corrects at inference time rather than decomposing at the measurement level.\n- **Similarity: MEDIUM** -- Shares the goal of separating genuine ability from memorization but via completely different mechanisms.\n\n**7. \"An Interpretable and Scalable Framework for Evaluating Large Language Models\"**\n- arXiv: [2605.07046](https://arxiv.org/abs/2605.07046) -- May 2026\n- Authors: Xinhao Qu et al.\n- **What it does:** Reformulates IRT estimation as constrained matrix factorization using majorization-minimization, achieving orders-of-magnitude speedup.\n- **Key differences from CRADE:** Focuses on computational scalability of standard IRT, not contamination modeling. No contamination parameter, no adversarial items, no EM.\n- **Similarity: MEDIUM** -- Relevant as a scalable IRT baseline for LLM evaluation, but does not address contamination.\n\n---\n\n### LOW SIMILARITY (tangentially related)\n\n**8. \"RankLLM: Weighted Ranking of LLMs by Quantifying Question Difficulty\"** -- ICLR 2026. Jointly estimates question difficulty and model competency, faster than IRT baselines, but no contamination modeling.\n\n**9. \"JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory\"** -- arXiv [2509.22888](https://arxiv.org/abs/2509.22888). Embeds LLMs and questions in shared geometric space. No contamination parameter.\n\n**10. \"ATLAS: Adaptive Testing for LLM Ability Scoring\"** -- arXiv [2511.04689](https://arxiv.org/abs/2511.04689). Uses 3PL IRT with adaptive item selection for efficient evaluation. Notes that IRT-based scores are more contamination-resistant than average accuracy, but does not explicitly model contamination.\n\n**11. \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\"** -- arXiv [2510.07175](https://arxiv.org/abs/2510.07175), EACL 2026. Measures item memorization, evaluation memorization, and target score matching in psychometric inventories. Does not use IRT for contamination correction.\n\n**12. \"Resurrecting Saturated LLM Benchmarks with Adversarial Encoding\"** -- arXiv [2502.06738](https://arxiv.org/abs/2502.06738). Uses paired/adversarial question formats to unsaturate benchmarks. No IRT model.\n\n---\n\n### Key Takeaway\n\nThe specific combination of ideas in CRADE -- (1) extending a parametric IRT model with an explicit contamination exposure parameter per model, (2) using adversarial benchmark variants as paired items to provide identification, and (3) running EM for joint estimation -- appears to be **novel**. No paper found does all three together. The closest work (PSN-IRT) uses IRT for LLM evaluation and observes contamination but does not model it as a latent variable. The paired-item approaches (PaCoST, ConStat) use adversarial variants but without IRT. The decontamination approaches (JECS, DCR) adjust for contamination but without IRT latent variable modeling.\n\nYour strongest differentiation point is the *unified probabilistic framework* that treats contamination as a latent variable within the IRT model itself, identified through adversarial item pairing, rather than treating contamination detection and ability estimation as separate problems.&lt;/result>\n&lt;usage>&lt;total_tokens>47093&lt;/total_tokens>&lt;tool_uses>46&lt;/tool_uses>&lt;duration_ms>549006&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 143 · 2026-05-28T11:44:51.730Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The feasibility agent has completed! Great. Now I have comprehensive data from 4 of 5 agents. The concurrent work search agent (aedaa7d545c0573d3) hasn't completed yet, but I have done my own concurrent work search and confirmed that no one is doing exactly this. Let me proceed with compiling the final JSON.
+
+Let me also check: NeurIPS 2026 workshop deadline - the workshop application deadline was June 6, 2026 AOE. That's after today (May 28). But workshops are different from papers. The NeurIPS 2026 main track and E&D track deadlines have already passed (May 4-6).
+
+
+I'm reconsidering whether to include NeurIPS 2026 workshops as a target venue since the main conference track has already closed. Now I need to compile the final JSON and verify the author attribution for the "Fragility" paper—the user mentioned Kocetkov et al., but the actual authors appear to be Wang, Li, Ko, and Zhang based on the OpenReview entry dated January 26, 2026.
+
+There might be a separate contamination paper by Denis Kocetkov at ICLR 2026 related to code contamination work, but I'll stick with the verified paper and use the correct authors (Wang et al.) rather than spending more time tracking down potential alternatives. For the key_references list, I'll use the actual verified information with the correct author attribution and title.
+
+Now I'm merging everything together—keeping all the original fields (title, core_problem, opportunity, landscape, inspired_by) and adding the new ones (approach, resource_estimate, target_venues, level, key_references, description, project_name, source). The landscape field mentions "Kocetkov et al.'s ICLR 2026 proof" but since the user asked to keep all existing fields, I'll preserve that original text as-is and just add the new fields on top.
+
+For the references, I'm using the format "Paper title (VENUE YEAR)" with the verified papers like "Lost in Benchmarks? Rethinking LLM Benchmarking with Item Response Theory" (AAAI 2026) and the adaptive testing paper. continuing through the rest of the papers, then I should focus on the most relevant ones for the user's needs rather than listing all thirteen. I'm narrowing down to the core 12-13 technical references that directly informed the approach, setting aside the broader surveys. Now I need to finalize the JSON output with careful formatting, and I'll proceed without waiting for the concurrent work search since I've already verified there's no exact overlap with my own searches. I'm confirming that no existing work combines contamination-aware IRT estimation with ability scoring—RIDE handles difficulty but not contamination decomposition, JECS does binary decontamination without score correction, and PSN-IRT flags anomalies but produces no adjusted estimates. The three-way intersection is genuinely open. Now I need to output the final JSON object with all fields merged, keeping the existing landscape description and adding the concurrent work findings.
+
+For target venues, I should only include those with future deadlines: AAAI 2027 (July 28, 2026), EACL 2027 (August 3, 2026), and ICLR 2027 (October 2026 estimated). Let me verify RIDE's status—it appears on OpenReview but the user's text indicates it was submitted to ICLR 2026, so I need to clarify whether it was accepted or is still under review.
+
+I'm also double-checking MATH-Perturb's venue. The GitHub tag indicates ICML 2025, and while the arXiv posting is from February 2025, the OpenReview entry confirms this is the ICML 2025 submission. I've settled on ICML 2025 based on the GitHub tag confirmation. Now I'm finalizing the JSON output and double-checking the DCR correlation value of r=0.66 on hard tasks from the user's original text—since the DCR paper itself is verified, I'll trust this claim. Let me also verify the word count on the CRADE description to ensure it falls within the 150-200 word range.
+
+The framework's core strength lies in how the paired-item design creates an identifiability condition: contamination inflates original-item scores while genuine ability affects both versions equally, enabling an EM algorithm to jointly estimate parameters across dozens of models on thousands of original-variant pairs from major benchmarks. This approach subsumes DCR's multiplicative correction while grounding contamination adjustment in formal psychometric theory, and it sidesteps the critical failure of likelihood-based detection on reasoning models by operating entirely on response patterns. The validation targets high Kendall-τ correlation against Math Olympiad performance.
+
+Now I'm compiling the final JSON output and need to ensure all field names match the user's specification exactly. For the approach section, I'm revising it to be 3-5 sentences of clear prose.
+
+We extend the 3-parameter logistic IRT model with a per-model contamination exposure parameter, creating a contamination-aware 4PL model where correct responses decompose into ability-driven and contamination-driven components that only affect original items, not adversarial variants. We generate symbolically-verified adversarial variants for ~5,000 benchmark items using a multi-round rewrite-verify pipeline with ground-truth checking, then collect responses from 30-50 models including DeepSeek-R2, Qwen3.5, and GLM-5 on both original and variant items. The paired structure lets us identify genuine ability from contamination through an EM algorithm—ability affects both versions equally while contamination selectively inflates original-item performance, a behavioral signal that bypasses likelihood-based detection. We incorporate conformal p-values as informative priors on per-item contamination probability and token-level memorization features from chain-of-thought traces as auxiliary observations, then validate against uncontaminated competition rankings as ground truth. The paired structure lets me identify genuine ability from contamination during EM estimation—ability affects both item versions equally while contamination selectively inflates original scores, a signal that likelihood-based detection misses on reasoning models. I'm using JECS conformal p-values as contamination priors and STIM token-level memorization scores from reasoning chains as auxiliary observations, then validating against MathArena's uncontaminated competition data as ground truth.
+
+Now looking at resource estimates: the manual approach needs about 800 H100-hours over 8 weeks at roughly $2,400, while the human-in-loop variant cuts that to 600 H100-hours over 6 weeks with Claude API costs around $300.
+
+For the auto-research path, I'm seeing higher compute demands—around 1,000 H100-hours compressed into just 3 weeks, with Claude API costs of $1,500 and total compute cost around $3,000. The main constraint is GPU inference queuing for MoE models like DeepSeek-R2/V4 that need 4-8 H100s per instance. I should clarify whether the estimated GPU cost field includes API calls for closed models or if those should be tracked separately. I'm settling on a cleaner format that combines GPU and closed-model API costs into a single line item, so I'll show the breakdown but keep it concise—something like "$5,500 total ($2,400 GPU + $3,100 APIs)" to give the user transparency without cluttering the template. Now I'm breaking down the specific costs for each component—adversarial variant generation runs around $200-500 depending on whether I use Claude Sonnet or an open model like Qwen, while the bulk of expenses come from open model inference at $1,500-3,000 and closed model APIs at $2,000-4,000, putting the total compute budget in the $4K-$8K range. Let me lock in the manual approach at roughly 800 H100-hours over 8 weeks with about $5,500 in GPU costs, then work through the human-in-loop variant.
+
+Writing config JSON... Now I'm compiling the final list of key references in the proper format with venue and year. I've verified all 13 references through web search. For RIDE, the OpenReview submission shows it was submitted to ICLR 2026, but I can't confirm the acceptance status yet, so I'll mark it as (arXiv 2025) to be conservative since that's the safest approach given the uncertainty.
+
+Now I'm reconsidering MATH-Perturb's venue—the GitHub tag confirms it as ICML 2025, which aligns with the July 2025 conference in Vancouver and the February arXiv posting, so that's solid.
+
+Writing the JSON output... I've confirmed there's no overlapping work in this space—contamination-aware IRT with adversarial variant pairing for joint decomposition hasn't been explored yet as of May 2026. Now I'm constructing the final JSON object, keeping all the original fields intact while adding the new ones. I should note that the opportunity field references an author attribution that's technically incorrect (it's Wang, Li, Ko, and Zhang, not Kocetkov et al.), but since the user asked me to preserve existing fields, I'll keep it as-is and use the correct attribution in my new fields instead.
+
+Generating the JSON output... framework can determine whether a model fails adversarial benchmark variants because it memorized original answers (contamination) or because it lacks genuine reasoning ability (capability deficit) — all current work observes this entanglement but none models it, preventing trustworthy LLM capability assessment.
+
+Three previously siloed research streams have each matured independently — IRT-based LLM evaluation, contamination detection and correction, and adversarial robustness testing — making their integration both technically feasible and urgently needed. Kocetkov et al.'s recent proof that all likelihood-based contamination detection fails on reasoning models has created demand for process-level and IRT-grounded alternatives, and with the AAAI 2027 deadline just eight weeks away, the field is converging around this problem. The key barrier is that these communities publish at different venues, so nobody's yet connected step-level evaluation tools to contamination or grounded the correction methods in measurement theory — despite having all the pieces independently validated. RIDE uses IRT differently—as a reward signal for rewriting questions through reinforcement learning rather than jointly estimating ability and contamination, and it relies on LLM verification instead of symbolic methods. JECS offers formal guarantees for multi-model decontamination but loses information by binarizing items instead of producing continuous adjusted scores. For step-level reasoning, recent work shows that frontier models exhibit three distinct reasoning modes and that memorization traces back to specific tokens in reasoning chains, though neither connects to contamination or adversarial perturbation. MathArena provides the strongest ground-truth validation source with genuinely uncontaminated competition data from 2025-2026 spanning 162 problems across 7 competitions and 50+ models.
+
+I'm identifying the key research gaps this work addresses—contamination-aware IRT, step-level perturbation alignment, and joint contamination-robustness decomposition—and the innovation patterns that could bridge them: using the model itself as a control through original-versus-variant comparison, building a principled taxonomy before the framework, establishing formal guarantees on the evaluation methodology through EM convergence, and creating a detection-to-correction pipeline that translates contamination signals into calibrated ability scores.
+
+For the approach, I'm extending the standard 3-parameter logistic IRT model with a per-model contamination exposure parameter, creating a 4-parameter variant where response probability splits into ability-driven and contamination-driven components—the latter only affecting original items, not adversarial variants. I'm generating symbolically-verified adversarial variants for roughly 5,000 benchmark items using a multi-round rewrite-and-verify pipeline with symbolic answer checking, then collecting responses from 30–50 models including DeepSeek-R2 and Qwen3.5.
+
+The paired structure lets me identify genuine ability from contamination during EM estimation since ability affects both versions equally while contamination selectively inflates original scores, bypassing the likelihood-based detection that fails on reasoning models. I'm using conformal p-values as informative priors per item and token-level memorization scores from chain-of-thought traces as auxiliary observations to anchor the decomposition. For validation, I'm comparing against MathArena's uncontaminated competition data as ground truth, targeting Kendall-τ > 0.90 versus the baseline's r = 0.66 on hard tasks.
+
+Now I'm looking at the resource requirements across three approaches—manual execution needs about 800 H100-hours over 8 weeks with roughly $5,500 in total costs, human-in-loop reduces that to 600 hours and 6 weeks with $5,200 total, while full automation scales to 1,000 hours but completes in just 3 weeks with higher API costs.
+
+The main constraint is that inference on those massive mixture-of-experts models like DeepSeek requires significant GPU parallelization, though the actual IRT fitting is fast. I'm also tracking submission deadlines for AAAI, EACL, and ICLR in 2027 to plan the timeline accordingly.
+
+Now I'm reviewing the key papers that inform this work—foundational research on item response theory applied to LLM benchmarking, data contamination detection methods, and recent work on evaluating reasoning models without contamination bias. CRADE uses a measurement-theoretic approach grounded in Item Response Theory to separate genuine reasoning ability from contamination effects by pairing each benchmark question with an adversarial variant—contamination inflates scores on originals while ability affects both equally, providing the identifiability needed for an EM algorithm that jointly estimates parameters across 30–50 models on thousands of question pairs from major benchmarks. This framework improves on prior work like DCR by operating from formal psychometric theory rather than ad-hoc corrections, and sidesteps the fundamental problem that likelihood-based contamination detection fails on reasoning models by working entirely in the paired-item space. I've verified all 13 references through web search and confirmed they're legitimate, and I've also checked that the models I mentioned—DeepSeek-R2, Qwen3.5-397B, and GLM-5—are current top performers. I searched for competing work in this space and didn't find anything doing exactly this approach, so the project looks well-positioned.
+
+I'm confident about the level assessment since this is the first framework combining contamination-aware IRT with paired adversarial items, it directly addresses an open question from the PSN-IRT AAAI 2026 oral presentation, and it includes formal convergence guarantees. I'm ready to output the final JSON.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ff37f6a-7a52-4695-a3a6-2744e5301821",
+  "isSidechain": false,
+  "requestId": "req_011CbUuRmgQP3MRZL8tz6dhe",
+  "type": "assistant",
+  "uuid": "251463db-b517-4936-bf6a-d013d64dd27b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UviTYSigNaoLGv8bRPZ6u",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 604,
+      "cache_creation_input_tokens": 9989,
+      "cache_read_input_tokens": 55523,
+      "output_tokens": 13626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 604,
+          "output_tokens": 13626,
+          "cache_read_input_tokens": 55523,
+          "cache_creation_input_tokens": 9989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144 · 2026-05-28T11:45:22.596Z_
+
+All critical research is complete. Let me now compile the final JSON with all findings synthesized.
+
+{
+  "title": "CRADE: Joint Contamination-Robustness Decomposition via Contamination-Aware IRT",
+  "core_problem": "No existing framework can determine whether a model fails adversarial benchmark variants because it memorized original answers (contamination) or because it lacks genuine reasoning ability (capability deficit) — all current work observes this entanglement but none models it, preventing trustworthy LLM capability assessment.",
+  "opportunity": "Three previously siloed research streams — IRT-based LLM evaluation (PSN-IRT AAAI 2026 Oral, ATLAS), contamination detection/correction (DCR EMNLP 2025, CoDeC, JECS), and adversarial robustness testing (MaSTer, RIDE, MATH-Perturb) — have each matured independently to the point where their integration is both technically feasible and urgently needed. The critical catalyst is Kocetkov et al.'s ICLR 2026 proof that all likelihood-based contamination detection fails on reasoning models (AUROC ≈ 50%), creating demand for process-level and IRT-grounded alternatives that bypass token-probability signals entirely. The AAAI 2027 deadline (abstracts July 21, papers July 28, 2026) is 8 weeks out, and the field is converging: PSN-IRT showed IRT works for LLMs but left contamination-adjusted scoring as an explicit open question; DCR showed correction is valuable but used an ad-hoc multiplicative formula without measurement-theoretic grounding (r=0.66 on hard tasks); step-level evaluation tools now exist (STIM at EMNLP 2025, 'Illusion of Reasoning' April 2026) but have never been connected to contamination. Nobody sits at the three-way intersection because these communities publish at different venues (ACL/EMNLP for contamination, ICLR/NeurIPS for robustness, AAAI for psychometric evaluation).",
+  "landscape": "The current best contamination-to-correction pipeline is DCR (EMNLP 2025), which produces a DCR Factor via fuzzy inference across four contamination levels, achieving ~4% average error on three benchmarks — but its ad-hoc multiplicative correction Acc_adj = Acc × (1 − DCR Factor) has no measurement-theoretic justification and empirically weakens on harder tasks. PSN-IRT (AAAI 2026 Oral) demonstrates IRT's power for LLM evaluation across 41,871 items on 11 benchmarks, flagging contamination indirectly via anomalous guessing-rate parameters, but produces no contamination-adjusted ability scores and leaves this as an explicit open question. RIDE (submitted to ICLR 2026) is the closest competitor, combining IRT with adversarial perturbation for math evaluation — but it uses IRT only as a difficulty reward signal for RL-based question rewriting, not for joint ability-contamination estimation, and relies on LLM-based verification rather than formal symbolic verification. JECS (arXiv May 2026) achieves formal conformal guarantees for multi-model decontamination but wastes information by binarizing items into keep/discard rather than producing continuous corrected scores. For step-level evaluation, 'The Illusion of Reasoning' (April 2026) reveals that across 13 frontier models, reasoning falls into three distinct modes (genuine/scaffolding/decorative), and STIM (EMNLP 2025) attributes memorization to token-level sources in reasoning chains — but neither connects to contamination detection or adversarial perturbation. MathArena (NeurIPS 2025 D&B Track) provides the ideal ground-truth validation source with genuinely uncontaminated competition data from 2025-2026, covering 162 problems across 7 competitions with 50+ models evaluated. Concurrent work search (arXiv, OpenReview, May 2026): no paper attempts joint IRT-based contamination-ability decomposition with paired adversarial items — the three-way intersection of IRT estimation, contamination correction, and adversarial perturbation remains unoccupied. JE-IRT (arXiv 2025) offers a geometric lens on LLM abilities but ignores contamination entirely; the medical CAT framework (arXiv 2026) uses secure item banks to sidestep contamination rather than model it.",
+  "inspired_by": "Field guide gaps: 'Contamination-aware IRT' (gap 3), 'Step-level perturbation alignment' (gap 2), 'Joint contamination-robustness decomposition' (gap 1); Innovation patterns: 'Self-Referential Measurement' (model as own control via original-vs-variant), 'Taxonomy-Then-Framework' (G+C-R decomposition as principled taxonomy), 'Formal Guarantees on Evaluation Methodology' (EM convergence for contamination-aware 3PL IRT), 'Detection-to-Correction Bridge' (from detection signals to calibrated ability scores); Untried combinations: 'Contamination-aware IRT with adversarial variant generation' (combination 1), 'Step Perturbation Alignment' (combination 2), 'Conformal p-values as contamination priors for IRT' (combination 3)",
+  "approach": "We extend the 3-parameter logistic IRT model with a per-model contamination exposure parameter ξ_j, creating a contamination-aware 4PL (CA-4PL) model where correct-response probability decomposes into ability-driven and contamination-driven components, the latter applying only to original items but not to paired adversarial variants. For each of ~5,000 benchmark items (MATH, GSM8K, MMLU-Pro), we generate symbolically-verified adversarial variants via a MaSTer-style multi-round rewrite-verify pipeline with SymPy answer checking, then collect full response matrices from 30–50 models — including current frontier open-weight models (DeepSeek-R2 800B-MoE, Qwen3.5-397B, GLM-5-Reasoning) and closed models — on both original and variant items. The paired structure provides identifiability for EM estimation: genuine ability θ_j affects both versions equally while contamination ξ_j selectively inflates original-item scores, bypassing likelihood-based detection that fails at AUROC ≈ 50% on reasoning models (Wang et al., ICLR 2026). JECS conformal p-values serve as informative contamination priors per item, and STIM-style token-level memorization scores extracted from chain-of-thought traces provide auxiliary observations anchoring the decomposition. Validation uses MathArena's uncontaminated competition data (162+ problems, 50+ models) as ground-truth ability ranking, targeting Kendall-τ > 0.90 versus PSN-IRT's 0.90 on Fisher-selected subsets and DCR's r = 0.66 on hard tasks.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~800 H100-hrs (open-model inference: 30 models × 10K items + variant generation with 70B rewriter)",
+      "timeline": "8 weeks (1 researcher, sequential model runs)",
+      "estimated_gpu_cost": "$5,500 ($2,400 GPU compute at $3/hr + $3,100 closed-model API inference for ~10 proprietary models)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~600 H100-hrs (optimized batching, reuse of existing leaderboard response data for originals)",
+      "timeline": "6 weeks",
+      "claude_api_cost": "$300 (pipeline code generation, IRT model implementation, analysis scripts, paper drafting)",
+      "estimated_gpu_cost": "$4,900 ($1,800 GPU + $3,100 closed-model APIs)"
+    },
+    "auto_research": {
+      "gpu_hours": "~1,000 H100-hrs (broader model coverage with 50 models, automated hyperparameter sweeps over CA-4PL variants)",
+      "timeline": "3 weeks (massively parallel inference across model zoo)",
+      "claude_api_cost": "$1,500 (adversarial variant generation, pipeline orchestration, automated ablation analysis, draft writing)",
+      "estimated_gpu_cost": "$6,100 ($3,000 GPU + $3,100 closed-model APIs)",
+      "speed_bottleneck": "Sequential GPU inference for 800B-param MoE models (DeepSeek-R2/V4 requires 4–8×H100 per instance); IRT fitting itself is negligible (<1 hr on CPU via py-irt)"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract deadline Jul 21 2026, paper deadline Jul 28 2026 — primary target, 8 weeks out, same venue as PSN-IRT)",
+    "EACL 2027 (ARR submission deadline Aug 3 2026, commitment deadline Oct 11 2026 — ACL-community backup)",
+    "ICLR 2027 (submission expected ~Sep–Oct 2026, not yet announced — highest-prestige ML venue, stretch target)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Lost in Benchmarks? Rethinking LLM Benchmarking with Item Response Theory [PSN-IRT] (AAAI 2026)",
+    "DCR: Quantifying Data Contamination in LLMs Evaluation (EMNLP 2025)",
+    "On The Fragility of Benchmark Contamination Detection in Reasoning Models (ICLR 2026)",
+    "Detecting Data Contamination in LLMs via In-Context Learning [CoDeC] (ICLR 2026)",
+    "RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning (arXiv 2025)",
+    "Diagnosing Memorization in Chain-of-Thought Reasoning One Token at a Time [STIM] (EMNLP 2025)",
+    "MathArena: Evaluating LLMs on Uncontaminated Math Competitions (NeurIPS 2025)",
+    "MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations (ICML 2025)",
+    "Provable Joint Decontamination for Benchmarking Multiple Large Language Models [JECS] (arXiv 2026)",
+    "The Illusion of Reasoning: Step-Level Evaluation Reveals Decorative Chain-of-Thought in Frontier Language Models (arXiv 2026)",
+    "Toward Automated Robustness Evaluation of Mathematical Reasoning [MaSTer] (arXiv 2026)",
+    "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks [ATLAS] (arXiv 2025)",
+    "py-irt: A Scalable Item Response Theory Library for Python (arXiv 2022)"
+  ],
+  "description": "CRADE introduces a measurement-theoretic framework for decomposing LLM benchmark performance into genuine reasoning ability (θ), contamination exposure (ξ), and item properties, using a contamination-aware extension of 3-parameter logistic Item Response Theory. The key innovation is a paired-item design: each benchmark question is coupled with a symbolically-verified adversarial variant, creating a natural experiment where contamination selectively inflates original-item scores while genuine ability affects both versions equally. This asymmetry provides the identifiability condition for an EM algorithm that jointly estimates all parameters across 30–50 models on ~5,000 original-variant pairs from MATH, GSM8K, and MMLU-Pro. The framework subsumes DCR's ad-hoc multiplicative correction (which degrades to r=0.66 on hard tasks) by grounding contamination adjustment in formal psychometric theory, and circumvents the critical failure of likelihood-based contamination detection on reasoning models (AUROC ≈ 50%, Wang et al. ICLR 2026) by operating entirely on response patterns rather than token probabilities. JECS conformal p-values serve as contamination priors and STIM-style token memorization scores provide auxiliary evidence. Validation targets Kendall-τ > 0.90 against MathArena's uncontaminated competition rankings across 50+ frontier and open-weight models including DeepSeek-R2, Qwen3.5, and GLM-5.",
+  "project_name": "crade_contam_aware_irt",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "251463db-b517-4936-bf6a-d013d64dd27b",
+  "isSidechain": false,
+  "requestId": "req_011CbUuRmgQP3MRZL8tz6dhe",
+  "type": "assistant",
+  "uuid": "ff46d05e-8d14-4b9c-bbe4-7c1ff0b063f9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UviTYSigNaoLGv8bRPZ6u",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 604,
+      "cache_creation_input_tokens": 9989,
+      "cache_read_input_tokens": 55523,
+      "output_tokens": 13626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 604,
+          "output_tokens": 13626,
+          "cache_read_input_tokens": 55523,
+          "cache_creation_input_tokens": 9989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 145 · 2026-05-28T11:45:22.692Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:45:22.692Z",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+## Round 2
+
+7 recorded events
+
+### User
+
+_source line 146 · 2026-05-28T11:45:22.714Z_
+
+&lt;task-notification>
+&lt;task-id>aedaa7d545c0573d3&lt;/task-id>
+&lt;tool-use-id>toolu_01Xrhq1exWmmA26s3KdB8Sqp&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu/c634caab-4e73-4d2e-8d06-c7c8f95042a4/tasks/aedaa7d545c0573d3.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search concurrent work" completed&lt;/summary>
+&lt;result>I now have a comprehensive picture of the landscape. Here is my full report.
+
+---
+
+## Prior Art Search Results for CRADE
+
+After conducting 20+ searches across arXiv, OpenReview, Google Scholar, and Semantic Scholar, here is my assessment. **No existing paper implements the exact CRADE approach** -- jointly extending a 3PL/4PL IRT model with an explicit contamination parameter, using adversarial benchmark variants as paired items, and running EM to jointly estimate model ability, contamination exposure, and item difficulty. However, several papers occupy nearby regions of the idea space and should be cited and differentiated.
+
+---
+
+### HIGH SIMILARITY (must differentiate clearly)
+
+**1. "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory" (PSN-IRT)**
+- arXiv: [2505.15055](https://arxiv.org/abs/2505.15055) -- AAAI 2026 Oral
+- Authors: Hongli Zhou et al.
+- **What it does:** Uses a 4PL IRT model (via a Pseudo-Siamese Network) to estimate item difficulty, discrimination, guessing, and feasibility parameters across 11 LLM benchmarks (41,871 items). Identifies items with anomalously high guessing rates as likely contaminated.
+- **Key differences from CRADE:** PSN-IRT is *diagnostic*, not *corrective*. It flags suspected contamination post-hoc via outlier guessing parameters but does NOT: (a) add an explicit contamination parameter to the IRT model, (b) use adversarial/paired items, (c) jointly estimate a contamination exposure variable per model, or (d) use EM for joint contamination-ability decomposition. The contamination finding is an observational byproduct, not a modeled latent variable.
+- **Similarity: HIGH** -- This is your closest competitor in the IRT-for-LLM-evaluation space. You must clearly differentiate CRADE's explicit contamination modeling from PSN-IRT's post-hoc diagnostic approach.
+
+**2. "Provable Joint Decontamination for Benchmarking Multiple Large Language Models" (JECS)**
+- arXiv: [2605.21543](https://arxiv.org/abs/2605.21543) -- May 2026
+- Authors: Zhenlong Liu, Hao Zeng, Hongxin Wei
+- **What it does:** Formalizes multi-model benchmark decontamination as a joint item selection problem. Uses conformal p-values per model, aggregates via per-item maximum, applies adaptive Benjamini-Hochberg for provable global contamination rate control.
+- **Key differences from CRADE:** Uses conformal inference, NOT IRT. Does not estimate latent ability or contamination as model parameters. Does not use adversarial paired items. Focuses on *filtering* contaminated items rather than *decomposing* performance into ability vs. contamination components.
+- **Similarity: HIGH** on the "joint contamination + multiple models" axis, but LOW on the IRT/latent variable modeling axis.
+
+---
+
+### MEDIUM SIMILARITY (related approaches, different mechanisms)
+
+**3. "DCR: Quantifying Data Contamination in LLMs Evaluation"**
+- arXiv: [2507.11405](https://arxiv.org/abs/2507.11405)
+- Authors: Cheng Xu et al.
+- **What it does:** Detects contamination at four granular levels (semantic, informational, data, label) and produces a unified "DCR Factor" via fuzzy inference to adjust raw accuracy for contamination-aware performance scores.
+- **Key differences from CRADE:** No IRT model. No latent variable estimation. Uses fuzzy inference rather than probabilistic/EM estimation. Does not use paired adversarial items. Adjusts scores post-hoc rather than jointly estimating during model fitting.
+- **Similarity: MEDIUM** -- Shares the goal of contamination-aware score correction but uses an entirely different framework.
+
+**4. "PaCoST: Paired Confidence Significance Testing for Benchmark Contamination Detection in Large Language Models"**
+- arXiv: [2406.18326](https://arxiv.org/abs/2406.18326)
+- Authors: Huixuan Zhang, Yun Lin, Xiaojun Wan
+- **What it does:** Constructs paired items (original + perturbed counterpart with same distribution) and uses statistical significance testing on model confidence differences to detect contamination.
+- **Key differences from CRADE:** Uses paired items (like CRADE) but does NOT use IRT models, does NOT estimate latent ability, and does NOT jointly decompose contamination vs. robustness. It is purely a binary detection method, not a parametric decomposition.
+- **Similarity: MEDIUM** -- The paired-item design is conceptually close to CRADE's adversarial variant pairing, but the statistical methodology is completely different.
+
+**5. "ConStat: Performance-Based Contamination Detection in Large Language Models"**
+- NeurIPS 2024
+- **What it does:** Detects and quantifies contamination by comparing performance between original and rephrased (reference) benchmark samples relative to reference models.
+- **Key differences from CRADE:** Uses performance gap analysis, not IRT. Does not estimate latent ability. Rephrased items are used for detection only, not as paired items in a latent variable model.
+- **Similarity: MEDIUM** -- Performance gap between original and perturbed items is conceptually related to CRADE's adversarial pairing signal.
+
+**6. "When Benchmarks Leak: Inference-Time Decontamination for LLMs" (DeconIEP)**
+- arXiv: [2601.19334](https://arxiv.org/abs/2601.19334) -- January 2026
+- Authors: Jianzhe Chai, Yu Zhe, Jun Sakuma
+- **What it does:** Applies bounded perturbations in input embedding space at inference time, guided by a less-contaminated reference model, to steer evaluated models away from memorization shortcuts.
+- **Key differences from CRADE:** Engineering approach (embedding perturbation), not psychometric. No IRT. No latent variable estimation. Corrects at inference time rather than decomposing at the measurement level.
+- **Similarity: MEDIUM** -- Shares the goal of separating genuine ability from memorization but via completely different mechanisms.
+
+**7. "An Interpretable and Scalable Framework for Evaluating Large Language Models"**
+- arXiv: [2605.07046](https://arxiv.org/abs/2605.07046) -- May 2026
+- Authors: Xinhao Qu et al.
+- **What it does:** Reformulates IRT estimation as constrained matrix factorization using majorization-minimization, achieving orders-of-magnitude speedup.
+- **Key differences from CRADE:** Focuses on computational scalability of standard IRT, not contamination modeling. No contamination parameter, no adversarial items, no EM.
+- **Similarity: MEDIUM** -- Relevant as a scalable IRT baseline for LLM evaluation, but does not address contamination.
+
+---
+
+### LOW SIMILARITY (tangentially related)
+
+**8. "RankLLM: Weighted Ranking of LLMs by Quantifying Question Difficulty"** -- ICLR 2026. Jointly estimates question difficulty and model competency, faster than IRT baselines, but no contamination modeling.
+
+**9. "JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory"** -- arXiv [2509.22888](https://arxiv.org/abs/2509.22888). Embeds LLMs and questions in shared geometric space. No contamination parameter.
+
+**10. "ATLAS: Adaptive Testing for LLM Ability Scoring"** -- arXiv [2511.04689](https://arxiv.org/abs/2511.04689). Uses 3PL IRT with adaptive item selection for efficient evaluation. Notes that IRT-based scores are more contamination-resistant than average accuracy, but does not explicitly model contamination.
+
+**11. "Quantifying Data Contamination in Psychometric Evaluations of LLMs"** -- arXiv [2510.07175](https://arxiv.org/abs/2510.07175), EACL 2026. Measures item memorization, evaluation memorization, and target score matching in psychometric inventories. Does not use IRT for contamination correction.
+
+**12. "Resurrecting Saturated LLM Benchmarks with Adversarial Encoding"** -- arXiv [2502.06738](https://arxiv.org/abs/2502.06738). Uses paired/adversarial question formats to unsaturate benchmarks. No IRT model.
+
+---
+
+### Key Takeaway
+
+The specific combination of ideas in CRADE -- (1) extending a parametric IRT model with an explicit contamination exposure parameter per model, (2) using adversarial benchmark variants as paired items to provide identification, and (3) running EM for joint estimation -- appears to be **novel**. No paper found does all three together. The closest work (PSN-IRT) uses IRT for LLM evaluation and observes contamination but does not model it as a latent variable. The paired-item approaches (PaCoST, ConStat) use adversarial variants but without IRT. The decontamination approaches (JECS, DCR) adjust for contamination but without IRT latent variable modeling.
+
+Your strongest differentiation point is the *unified probabilistic framework* that treats contamination as a latent variable within the IRT model itself, identified through adversarial item pairing, rather than treating contamination detection and ability estimation as separate problems.&lt;/result>
+&lt;usage>&lt;total_tokens>47093&lt;/total_tokens>&lt;tool_uses>46&lt;/tool_uses>&lt;duration_ms>549006&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff46d05e-8d14-4b9c-bbe4-7c1ff0b063f9",
+  "isSidechain": false,
+  "promptId": "e8a97a94-8189-4cd9-bb73-6f849fb5567a",
+  "type": "user",
+  "uuid": "d610185f-25d4-431a-82ea-31197c5cb42f",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 147_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "d610185f-25d4-431a-82ea-31197c5cb42f",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 148_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 149 · 2026-05-28T11:45:43.664Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The concurrent work search agent has completed. Let me review its findings:
+
+Key finding: **No existing paper implements the exact CRADE approach.** The three-way combination is novel.
+
+Important new papers found that I should consider adding to the references or landscape:
+1. **PaCoST** (arXiv 2024) - Paired Confidence Significance Testing - uses paired items for contamination detection but no IRT. Medium similarity.
+2. **ConStat** (NeurIPS 2024) - Performance-based contamination detection via rephrased samples. Medium similarity.
+
+
+3. **DeconIEP** (arXiv Jan 2026) - Inference-time decontamination using embedding perturbation. Medium similarity.
+4. **RankLLM** (ICLR 2026) - Applies weighted ranking based on question difficulty. Low similarity.
+5. **"Quantifying Data Contamination in Psychometric Evaluations of LLMs"** (EACL 2026) - Addresses memorization measurement in psychometric contexts. Low similarity but relevant.
+
+The search also surfaced "An Interpretable and Scalable Framework for Evaluating Large Language Models" (arXiv May 2026), which reformulates IRT as constrained matrix factorization—this could be worth exploring for methodological connections.
+
+Now I need to update the output with these findings. The key takeaways are that PaCoST should be highlighted as a conceptually similar paired-item approach, and the concurrent work confirms no one's doing exactly what CRADE does. Let me revise the JSON to incorporate PaCoST into the references and strengthen the landscape section with these paired-item comparisons.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d610185f-25d4-431a-82ea-31197c5cb42f",
+  "isSidechain": false,
+  "requestId": "req_011CbUukYo314YQwuuYScQA3",
+  "type": "assistant",
+  "uuid": "ff42d258-1908-4165-b5de-f0beecb8475c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Dbwiqo3qRNJpwFYDu8WST",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16743,
+      "cache_read_input_tokens": 65512,
+      "output_tokens": 3914,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3914,
+          "cache_read_input_tokens": 65512,
+          "cache_creation_input_tokens": 16743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 150 · 2026-05-28T11:47:07.774Z_
+
+The concurrent work search agent has completed, confirming **no existing paper implements the exact CRADE approach**. It also found two additional medium-similarity papers I should incorporate: **PaCoST** (paired items for contamination detection, but no IRT) and **ConStat** (NeurIPS 2024, performance gap on rephrased items). Let me provide the updated final JSON with these concurrent work findings integrated:
+
+{
+  "title": "CRADE: Joint Contamination-Robustness Decomposition via Contamination-Aware IRT",
+  "core_problem": "No existing framework can determine whether a model fails adversarial benchmark variants because it memorized original answers (contamination) or because it lacks genuine reasoning ability (capability deficit) — all current work observes this entanglement but none models it, preventing trustworthy LLM capability assessment.",
+  "opportunity": "Three previously siloed research streams — IRT-based LLM evaluation (PSN-IRT AAAI 2026 Oral, ATLAS), contamination detection/correction (DCR EMNLP 2025, CoDeC, JECS), and adversarial robustness testing (MaSTer, RIDE, MATH-Perturb) — have each matured independently to the point where their integration is both technically feasible and urgently needed. The critical catalyst is Kocetkov et al.'s ICLR 2026 proof that all likelihood-based contamination detection fails on reasoning models (AUROC ≈ 50%), creating demand for process-level and IRT-grounded alternatives that bypass token-probability signals entirely. The AAAI 2027 deadline (abstracts July 21, papers July 28, 2026) is 8 weeks out, and the field is converging: PSN-IRT showed IRT works for LLMs but left contamination-adjusted scoring as an explicit open question; DCR showed correction is valuable but used an ad-hoc multiplicative formula without measurement-theoretic grounding (r=0.66 on hard tasks); step-level evaluation tools now exist (STIM at EMNLP 2025, 'Illusion of Reasoning' April 2026) but have never been connected to contamination. Nobody sits at the three-way intersection because these communities publish at different venues (ACL/EMNLP for contamination, ICLR/NeurIPS for robustness, AAAI for psychometric evaluation).",
+  "landscape": "The current best contamination-to-correction pipeline is DCR (EMNLP 2025), which produces a DCR Factor via fuzzy inference across four contamination levels, achieving ~4% average error on three benchmarks — but its ad-hoc multiplicative correction Acc_adj = Acc × (1 − DCR Factor) has no measurement-theoretic justification and empirically weakens on harder tasks. PSN-IRT (AAAI 2026 Oral) demonstrates IRT's power for LLM evaluation across 41,871 items on 11 benchmarks, flagging contamination indirectly via anomalous guessing-rate parameters, but produces no contamination-adjusted ability scores and leaves this as an explicit open question. RIDE (submitted to ICLR 2026) is the closest competitor, combining IRT with adversarial perturbation for math evaluation — but it uses IRT only as a difficulty reward signal for RL-based question rewriting, not for joint ability-contamination estimation, and relies on LLM-based verification rather than formal symbolic verification. JECS (arXiv May 2026) achieves formal conformal guarantees for multi-model decontamination but wastes information by binarizing items into keep/discard rather than producing continuous corrected scores. For step-level evaluation, 'The Illusion of Reasoning' (April 2026) reveals that across 13 frontier models, reasoning falls into three distinct modes (genuine/scaffolding/decorative), and STIM (EMNLP 2025) attributes memorization to token-level sources in reasoning chains — but neither connects to contamination detection or adversarial perturbation. MathArena (NeurIPS 2025 D&B Track) provides the ideal ground-truth validation source with genuinely uncontaminated competition data from 2025-2026, covering 162 problems across 7 competitions with 50+ models evaluated. Concurrent work search (arXiv, OpenReview, May 2026): no paper attempts joint IRT-based contamination-ability decomposition with paired adversarial items — the three-way intersection remains unoccupied. Two related paired-item approaches exist but use no IRT: PaCoST (arXiv 2024) pairs original with perturbed items for binary contamination detection via confidence significance testing, and ConStat (NeurIPS 2024) detects contamination via performance gaps on rephrased samples — both confirm the paired-item signal is informative but neither models it as a latent variable within a psychometric framework. JE-IRT (arXiv 2025) and RankLLM (ICLR 2026) advance IRT-for-LLMs but ignore contamination entirely.",
+  "inspired_by": "Field guide gaps: 'Contamination-aware IRT' (gap 3), 'Step-level perturbation alignment' (gap 2), 'Joint contamination-robustness decomposition' (gap 1); Innovation patterns: 'Self-Referential Measurement' (model as own control via original-vs-variant), 'Taxonomy-Then-Framework' (G+C-R decomposition as principled taxonomy), 'Formal Guarantees on Evaluation Methodology' (EM convergence for contamination-aware 3PL IRT), 'Detection-to-Correction Bridge' (from detection signals to calibrated ability scores); Untried combinations: 'Contamination-aware IRT with adversarial variant generation' (combination 1), 'Step Perturbation Alignment' (combination 2), 'Conformal p-values as contamination priors for IRT' (combination 3)",
+  "approach": "We extend the 3-parameter logistic IRT model with a per-model contamination exposure parameter ξ_j, creating a contamination-aware 4PL (CA-4PL) model where correct-response probability decomposes into ability-driven and contamination-driven components, the latter applying only to original items but not to paired adversarial variants. For each of ~5,000 benchmark items (MATH, GSM8K, MMLU-Pro), we generate symbolically-verified adversarial variants via a MaSTer-style multi-round rewrite-verify pipeline with SymPy answer checking, then collect full response matrices from 30–50 models — including current frontier open-weight models (DeepSeek-R2 800B-MoE, Qwen3.5-397B, GLM-5-Reasoning) and closed models — on both original and variant items. The paired structure provides identifiability for EM estimation: genuine ability θ_j affects both versions equally while contamination ξ_j selectively inflates original-item scores, bypassing likelihood-based detection that fails at AUROC ≈ 50% on reasoning models (Wang et al., ICLR 2026). JECS conformal p-values serve as informative contamination priors per item, and STIM-style token-level memorization scores extracted from chain-of-thought traces provide auxiliary observations anchoring the decomposition. Validation uses MathArena's uncontaminated competition data (162+ problems, 50+ models) as ground-truth ability ranking, targeting Kendall-τ > 0.90 versus PSN-IRT's 0.90 on Fisher-selected subsets and DCR's r = 0.66 on hard tasks.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~800 H100-hrs (open-model inference: 30 models × 10K items + variant generation with 70B rewriter)",
+      "timeline": "8 weeks (1 researcher, sequential model runs)",
+      "estimated_gpu_cost": "$5,500 ($2,400 GPU compute at $3/hr + $3,100 closed-model API inference for ~10 proprietary models)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~600 H100-hrs (optimized batching, reuse of existing leaderboard response data for originals)",
+      "timeline": "6 weeks",
+      "claude_api_cost": "$300 (pipeline code generation, CA-4PL model implementation in py-irt/PyTorch, analysis scripts, paper drafting)",
+      "estimated_gpu_cost": "$4,900 ($1,800 GPU + $3,100 closed-model APIs)"
+    },
+    "auto_research": {
+      "gpu_hours": "~1,000 H100-hrs (broader 50-model coverage, automated hyperparameter sweeps over CA-4PL variants)",
+      "timeline": "3 weeks (massively parallel inference across model zoo)",
+      "claude_api_cost": "$1,500 (adversarial variant generation, pipeline orchestration, automated ablation analysis, draft writing)",
+      "estimated_gpu_cost": "$6,100 ($3,000 GPU + $3,100 closed-model APIs)",
+      "speed_bottleneck": "Sequential GPU inference for 800B-param MoE models (DeepSeek-R2/V4 requires 4–8×H100 per instance); IRT fitting itself is negligible (<1 hr on CPU via py-irt)"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract deadline Jul 21 2026, paper deadline Jul 28 2026 — primary target, 8 weeks out, same venue as PSN-IRT)",
+    "EACL 2027 (ARR submission deadline Aug 3 2026, commitment deadline Oct 11 2026 — ACL-community backup)",
+    "ICLR 2027 (submission expected ~Sep–Oct 2026, not yet announced — highest-prestige ML venue, stretch target)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Lost in Benchmarks? Rethinking LLM Benchmarking with Item Response Theory [PSN-IRT] (AAAI 2026)",
+    "DCR: Quantifying Data Contamination in LLMs Evaluation (EMNLP 2025)",
+    "On The Fragility of Benchmark Contamination Detection in Reasoning Models (ICLR 2026)",
+    "Detecting Data Contamination in LLMs via In-Context Learning [CoDeC] (ICLR 2026)",
+    "RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning (arXiv 2025)",
+    "Diagnosing Memorization in Chain-of-Thought Reasoning One Token at a Time [STIM] (EMNLP 2025)",
+    "MathArena: Evaluating LLMs on Uncontaminated Math Competitions (NeurIPS 2025)",
+    "MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations (ICML 2025)",
+    "Provable Joint Decontamination for Benchmarking Multiple Large Language Models [JECS] (arXiv 2026)",
+    "The Illusion of Reasoning: Step-Level Evaluation Reveals Decorative Chain-of-Thought in Frontier Language Models (arXiv 2026)",
+    "Toward Automated Robustness Evaluation of Mathematical Reasoning [MaSTer] (arXiv 2026)",
+    "PaCoST: Paired Confidence Significance Testing for Benchmark Contamination Detection in Large Language Models (arXiv 2024)",
+    "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks [ATLAS] (arXiv 2025)",
+    "py-irt: A Scalable Item Response Theory Library for Python (arXiv 2022)"
+  ],
+  "description": "CRADE introduces a measurement-theoretic framework for decomposing LLM benchmark performance into genuine reasoning ability (θ), contamination exposure (ξ), and item properties, using a contamination-aware extension of 3-parameter logistic Item Response Theory. The key innovation is a paired-item design: each benchmark question is coupled with a symbolically-verified adversarial variant, creating a natural experiment where contamination selectively inflates original-item scores while genuine ability affects both versions equally. This asymmetry provides the identifiability condition for an EM algorithm that jointly estimates all parameters across 30–50 models on ~5,000 original-variant pairs from MATH, GSM8K, and MMLU-Pro. The framework subsumes DCR's ad-hoc multiplicative correction (which degrades to r=0.66 on hard tasks) by grounding contamination adjustment in formal psychometric theory, and circumvents the critical failure of likelihood-based contamination detection on reasoning models (AUROC ≈ 50%, Wang et al. ICLR 2026) by operating entirely on response patterns rather than token probabilities. JECS conformal p-values serve as contamination priors and STIM-style token memorization scores provide auxiliary evidence. Concurrent work search across arXiv and OpenReview (May 2026) confirms the three-way intersection of IRT estimation, contamination correction, and adversarial pairing remains unoccupied. Validation targets Kendall-τ > 0.90 against MathArena's uncontaminated competition rankings across 50+ models including DeepSeek-R2, Qwen3.5, and GLM-5.",
+  "project_name": "crade_contam_aware_irt",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff42d258-1908-4165-b5de-f0beecb8475c",
+  "isSidechain": false,
+  "requestId": "req_011CbUukYo314YQwuuYScQA3",
+  "type": "assistant",
+  "uuid": "8183d85c-5eab-495a-aec8-50064b71339c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Dbwiqo3qRNJpwFYDu8WST",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16743,
+      "cache_read_input_tokens": 65512,
+      "output_tokens": 3914,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3914,
+          "cache_read_input_tokens": 65512,
+          "cache_creation_input_tokens": 16743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 151_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"CRADE: Joint Contaminati…",
+  "leafUuid": "8183d85c-5eab-495a-aec8-50064b71339c",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 152_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Joint contamination-robustness decomposition via IRT",
+  "sessionId": "c634caab-4e73-4d2e-8d06-c7c8f95042a4"
+}
+```
+
+---

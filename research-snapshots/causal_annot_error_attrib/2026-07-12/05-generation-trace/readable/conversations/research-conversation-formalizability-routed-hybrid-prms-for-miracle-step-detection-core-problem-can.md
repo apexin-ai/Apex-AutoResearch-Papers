@@ -1,0 +1,3913 @@
+# Research conversation: Formalizability-Routed Hybrid PRMs for Miracle Step Detection ## Core Problem Can a PRM that routes each step to formal 
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-3/bf7e7281-bdad-4f63-920a-15686285cf20.jsonl`
+- **Structured JSON:** [`b8727bc506e888014270.json`](../../sessions/b8/b8727bc506e888014270.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T09:12:47.050Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T09:12:47.050Z",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "content": "# Formalizability-Routed Hybrid PRMs for Miracle Step Detection\n\n## Core Problem\n\nCan a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect miracle steps -- unjustified leaps where the conclusion is correct but not derivable from predecessors?\n\n## Research Opportunity\n\nThree gaps: (1) No system routes formal/neural verifiers per step; (2) Formal derivability never applied to miracle detection; (3) Formalization success (~81% Safe) makes routing viable. Reward Under Attack showed neural PRMs exploitable (43% reward from style, >0.9 on invalid) -- Z3 is immune.\n\n## Research Landscape\n\nFoVer (ACL26F) uses Z3 for PRM data, not inference routing. Safe (ACL25) has 4-state taxonomy but no routing. PRoSFI (Mar26) is Lean-only. GenPRM (AAAI26)/ThinkPRM are neural-only SOTA. RRM (ACL26) cuts miracles 71% via Gemini rubrics but needs external model. ARES (EMNLP25) gives Hoeffding bounds with neural entailment. TRIM (Jan26) routes LLM sizes not verifier types. No concurrent formal-neural routing work found (arxiv/OpenReview search May 2026).\n\n## Proposed Approach\n\nTrain formalizability classifier on Safe 4-state labels. Route high-score steps to Z3 CNF-negation derivability (neg(premises->step) UNSAT=valid); route rest to fine-tuned Qwen3-32B generative verifier (GenPRM arch). Aggregate via ARES premise-config sampling with Hoeffding bounds. Joint-optimize router+verifier on FoVer+ProcessBench data.\n\n## Detailed Description\n\nFRH-PRM routes each reasoning step to formal or neural verification via a learned formalizability score. A classifier trained on Safe 4-state taxonomy (proved/unprovable/failed/no-verify) predicts formalizability. High-score steps undergo Z3 CNF-negation derivability: predecessors conjoined with negated step tested for UNSAT, yielding deterministic proofs. Low-score steps go to fine-tuned Qwen3-32B generative verifier (GenPRM-style CoT+code). Verdicts aggregate via ARES premise-config sampling with Hoeffding chain-level bounds. This targets miracle steps that neural PRMs miss -- Reward Under Attack showed >0.9 rewards on invalid trajectories. Formal derivability is immune to stylistic exploitation; the neural leg handles ~20% of steps resisting formalization. Evaluated on ProcessBench, PRMBench, and new MiracleStepBench from RRM annotations, reporting step-level F1, chain accuracy, and adversarial robustness.\n\n## Key References\n\n- Curing Miracle Steps in LLM Math Reasoning with Rubric Rewards (ACL 2026)\n- Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)\n- GenPRM: Scaling Test-Time Compute of PRMs via Generative Reasoning (AAAI 2026)\n- Safe: Mathematical Reasoning via Step-aware Formal Verification (ACL 2025)\n- Process Reward Models That Think (arXiv 2025)\n- Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)\n- TRIM: Hybrid Inference via Targeted Stepwise Routing (arXiv 2026)\n- Reward Under Attack: Robustness of Process Reward Models (arXiv 2026)\n- PRoSFI: Formally Verifiable Reasoning via Structured Intermediaries (arXiv 2026)\n- VeriCoT: Neuro-symbolic CoT Validation via Logical Consistency (arXiv 2025)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T09:12:47.057Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T09:12:47.057Z",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+## Round 1
+
+56 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T09:12:47.089Z_
+
+# Formalizability-Routed Hybrid PRMs for Miracle Step Detection
+
+## Core Problem
+
+Can a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect miracle steps -- unjustified leaps where the conclusion is correct but not derivable from predecessors?
+
+## Research Opportunity
+
+Three gaps: (1) No system routes formal/neural verifiers per step; (2) Formal derivability never applied to miracle detection; (3) Formalization success (~81% Safe) makes routing viable. Reward Under Attack showed neural PRMs exploitable (43% reward from style, >0.9 on invalid) -- Z3 is immune.
+
+## Research Landscape
+
+FoVer (ACL26F) uses Z3 for PRM data, not inference routing. Safe (ACL25) has 4-state taxonomy but no routing. PRoSFI (Mar26) is Lean-only. GenPRM (AAAI26)/ThinkPRM are neural-only SOTA. RRM (ACL26) cuts miracles 71% via Gemini rubrics but needs external model. ARES (EMNLP25) gives Hoeffding bounds with neural entailment. TRIM (Jan26) routes LLM sizes not verifier types. No concurrent formal-neural routing work found (arxiv/OpenReview search May 2026).
+
+## Proposed Approach
+
+Train formalizability classifier on Safe 4-state labels. Route high-score steps to Z3 CNF-negation derivability (neg(premises->step) UNSAT=valid); route rest to fine-tuned Qwen3-32B generative verifier (GenPRM arch). Aggregate via ARES premise-config sampling with Hoeffding bounds. Joint-optimize router+verifier on FoVer+ProcessBench data.
+
+## Detailed Description
+
+FRH-PRM routes each reasoning step to formal or neural verification via a learned formalizability score. A classifier trained on Safe 4-state taxonomy (proved/unprovable/failed/no-verify) predicts formalizability. High-score steps undergo Z3 CNF-negation derivability: predecessors conjoined with negated step tested for UNSAT, yielding deterministic proofs. Low-score steps go to fine-tuned Qwen3-32B generative verifier (GenPRM-style CoT+code). Verdicts aggregate via ARES premise-config sampling with Hoeffding chain-level bounds. This targets miracle steps that neural PRMs miss -- Reward Under Attack showed >0.9 rewards on invalid trajectories. Formal derivability is immune to stylistic exploitation; the neural leg handles ~20% of steps resisting formalization. Evaluated on ProcessBench, PRMBench, and new MiracleStepBench from RRM annotations, reporting step-level F1, chain accuracy, and adversarial robustness.
+
+## Key References
+
+- Curing Miracle Steps in LLM Math Reasoning with Rubric Rewards (ACL 2026)
+- Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)
+- GenPRM: Scaling Test-Time Compute of PRMs via Generative Reasoning (AAAI 2026)
+- Safe: Mathematical Reasoning via Step-aware Formal Verification (ACL 2025)
+- Process Reward Models That Think (arXiv 2025)
+- Probabilistic Soundness Guarantees in LLM Reasoning Chains (EMNLP 2025)
+- TRIM: Hybrid Inference via Targeted Stepwise Routing (arXiv 2026)
+- Reward Under Attack: Robustness of Process Reward Models (arXiv 2026)
+- PRoSFI: Formally Verifiable Reasoning via Structured Intermediaries (arXiv 2026)
+- VeriCoT: Neuro-symbolic CoT Validation via Logical Consistency (arXiv 2025)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "cb794703-ebc2-45c8-9e2d-bad5af5ee234",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T09:12:47.088Z_
+
+```json
+{
+  "parentUuid": "cb794703-ebc2-45c8-9e2d-bad5af5ee234",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "233fa5af-5171-4549-99f0-55e4015df2c5",
+  "timestamp": "2026-05-29T09:12:47.088Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T09:12:47.088Z_
+
+```json
+{
+  "parentUuid": "233fa5af-5171-4549-99f0-55e4015df2c5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3ec75151-15b3-4389-85c9-f0052ca39682",
+  "timestamp": "2026-05-29T09:12:47.088Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formalizability-routed hybrid PRMs for miracle step detection",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-29T09:12:50.581Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully. It's about a hybrid Process Reward Model (PRM) that routes reasoning steps to either formal (Z3/Lean) or neural verifiers based on a learned "formalizability" score, specifically targeting "miracle steps" — unjustified leaps in mathematical reasoning.
+
+Let me first do thorough web searches to understand the current landscape before making any judgments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ec75151-15b3-4389-85c9-f0052ca39682",
+  "isSidechain": false,
+  "requestId": "req_011CbWbvZpjopWeZHeJMFNhh",
+  "type": "assistant",
+  "uuid": "daaf1fa3-44df-4bdf-be71-f2720f5759fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eTsNqMcmQ3mQ5JHb33o68",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5471,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T09:12:51.593Z_
+
+I need to do thorough literature research before evaluating this proposal. Let me search for the key related works and the current state of this research area.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "daaf1fa3-44df-4bdf-be71-f2720f5759fd",
+  "isSidechain": false,
+  "requestId": "req_011CbWbvZpjopWeZHeJMFNhh",
+  "type": "assistant",
+  "uuid": "2e45f92d-a039-44b5-9892-5692bfcf6ac5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eTsNqMcmQ3mQ5JHb33o68",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5471,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-29T09:12:51.941Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QM8ukixs3HmJtjLQgoBgP1`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e45f92d-a039-44b5-9892-5692bfcf6ac5",
+  "isSidechain": false,
+  "requestId": "req_011CbWbvZpjopWeZHeJMFNhh",
+  "type": "assistant",
+  "uuid": "774ddf3a-84fd-44b1-a6ce-b29949311d1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eTsNqMcmQ3mQ5JHb33o68",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5471,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-29T09:12:51.952Z_
+
+<details><summary>↩ Tool result · `toolu_01QM8ukixs3HmJtjLQgoBgP1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "774ddf3a-84fd-44b1-a6ce-b29949311d1a",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "dbea8068-17e7-4e4a-960d-b44fa34cfe80",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "774ddf3a-84fd-44b1-a6ce-b29949311d1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-29T09:12:55.205Z_
+
+Now let me conduct my pre-research searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbea8068-17e7-4e4a-960d-b44fa34cfe80",
+  "isSidechain": false,
+  "requestId": "req_011CbWbvvtm6etJ8EcESY13T",
+  "type": "assistant",
+  "uuid": "8bd436ee-c930-4de7-905f-0438559b8b86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01De4nKoDPaXYrzyfKEx3HQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 16485,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 16485,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-29T09:12:55.261Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Z25cDfjooQPe3GUEQDfUm`</summary>
+
+```json
+{
+  "query": "GenPRM process reward model generative reasoning AAAI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8bd436ee-c930-4de7-905f-0438559b8b86",
+  "isSidechain": false,
+  "requestId": "req_011CbWbvvtm6etJ8EcESY13T",
+  "type": "assistant",
+  "uuid": "8a252dff-e472-4e20-8c42-74a3c785ff76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01De4nKoDPaXYrzyfKEx3HQc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 16485,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 16485,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-29T09:13:02.028Z_
+
+<details><summary>↩ Tool result · `toolu_019Z25cDfjooQPe3GUEQDfUm`</summary>
+
+```text
+Web search results for query: "GenPRM process reward model generative reasoning AAAI 2026"
+
+Links: [{"title":"GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".","url":"https://github.com/RyanLiu112/GenPRM"},{"title":"[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://arxiv.org/abs/2504.00891"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Arxiv - DeepPaper","url":"https://arxiv.deeppaper.ai/papers/2504.00891v2"},{"title":"[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward ...","url":"https://arxiv.org/pdf/2504.00891"},{"title":"GM-PRM: A Generative Multimodal Process Reward Model for Multimodal Mathematical Reasoning","url":"https://arxiv.org/pdf/2508.04088"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://ryanliu112.github.io/GenPRM/"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"}]
+
+Based on the search results, here's what I found about GenPRM:
+
+## Overview
+
+GenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step.
+
+## Problem It Addresses
+
+Current Process Reward Models (PRMs) face three key challenges: (1) limited process supervision and generalization capabilities, (2) dependence on scalar value prediction without leveraging the generative abilities of LLMs, and (3) inability to scale the test-time compute of PRMs.
+
+## Key Innovations
+
+To obtain high-quality process supervision labels and rationale data, the approach proposes Relative Progress Estimation (RPE) and a rationale synthesis framework that incorporates code verification.
+
+The method includes performing explicit CoT reasoning and code verification before providing the process judgment, improving Monte Carlo estimation and hard label with Relative Progress Estimation (RPE), and supporting GenPRM test-time scaling in a parallel manner with majority voting.
+
+## Status and Release
+
+GenPRM was accepted by AAAI 2026. The team is releasing GenPRM models with parameters of 1.5B, 7B, 14B, 32B, and 70B, along with 23K training data from the MATH dataset and all implementation details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a252dff-e472-4e20-8c42-74a3c785ff76",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "5433c3d7-899c-4aaa-8894-87b852aaffed",
+  "toolUseResult": {
+    "query": "GenPRM process reward model generative reasoning AAAI 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WueoBDXcU6EL1EPAoUszNa",
+        "content": [
+          {
+            "title": "GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".",
+            "url": "https://github.com/RyanLiu112/GenPRM"
+          },
+          {
+            "title": "[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://arxiv.org/abs/2504.00891"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Arxiv - DeepPaper",
+            "url": "https://arxiv.deeppaper.ai/papers/2504.00891v2"
+          },
+          {
+            "title": "[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward ...",
+            "url": "https://arxiv.org/pdf/2504.00891"
+          },
+          {
+            "title": "GM-PRM: A Generative Multimodal Process Reward Model for Multimodal Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2508.04088"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://ryanliu112.github.io/GenPRM/"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GenPRM:\n\n## Overview\n\nGenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step.\n\n## Problem It Addresses\n\nCurrent Process Reward Models (PRMs) face three key challenges: (1) limited process supervision and generalization capabilities, (2) dependence on scalar value prediction without leveraging the generative abilities of LLMs, and (3) inability to scale the test-time compute of PRMs.\n\n## Key Innovations\n\nTo obtain high-quality process supervision labels and rationale data, the approach proposes Relative Progress Estimation (RPE) and a rationale synthesis framework that incorporates code verification.\n\nThe method includes performing explicit CoT reasoning and code verification before providing the process judgment, improving Monte Carlo estimation and hard label with Relative Progress Estimation (RPE), and supporting GenPRM test-time scaling in a parallel manner with majority voting.\n\n## Status and Release\n\nGenPRM was accepted by AAAI 2026. The team is releasing GenPRM models with parameters of 1.5B, 7B, 14B, 32B, and 70B, along with 23K training data from the MATH dataset and all implementation details."
+    ],
+    "durationSeconds": 6.757558155999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8a252dff-e472-4e20-8c42-74a3c785ff76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-29T09:13:04.642Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E3SXjCCk1xUEc7yjUNAjnc`</summary>
+
+```json
+{
+  "query": "FoVer formal verification PRM training data synthesis ACL 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5433c3d7-899c-4aaa-8894-87b852aaffed",
+  "isSidechain": false,
+  "requestId": "req_011CbWbwfW5d59kAPEpLbQQv",
+  "type": "assistant",
+  "uuid": "434447c7-8747-48fe-8167-3512e259fa4b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0159JzJaHW3qraKjiAit72sK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 17221,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 17221,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-29T09:13:11.301Z_
+
+<details><summary>↩ Tool result · `toolu_01E3SXjCCk1xUEc7yjUNAjnc`</summary>
+
+```text
+Web search results for query: "FoVer formal verification PRM training data synthesis ACL 2026"
+
+Links: [{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/html/2505.15960v3"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data | OpenReview","url":"https://openreview.net/forum?id=LAejsDitr3"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"}]
+
+Based on the search results, here's what I found about FoVer:
+
+## Overview
+
+FoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. The paper "Efficient PRM Training Data Synthesis via Formal Verification" was published at ACL 2026 Findings.
+
+## Motivation
+
+Existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls. By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.
+
+## Approach and Results
+
+Using FoVer, the researchers create PRM training data from formal logic and theorem proving tasks. Experiments on 12 reasoning benchmarks show that fine-tuning on the training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data.
+
+## Availability
+
+Code and materials are available in a repository associated with the paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "434447c7-8747-48fe-8167-3512e259fa4b",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "db172634-d17f-4984-8b0b-97aebdc3dc54",
+  "toolUseResult": {
+    "query": "FoVer formal verification PRM training data synthesis ACL 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017feZ9dJpVT75u2qMwWL62w",
+        "content": [
+          {
+            "title": "FoVer: Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://fover-prm.github.io/"
+          },
+          {
+            "title": "GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub",
+            "url": "https://github.com/psunlpgroup/FoVer"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/html/2505.15960v3"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data | OpenReview",
+            "url": "https://openreview.net/forum?id=LAejsDitr3"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FoVer:\n\n## Overview\n\nFoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. The paper \"Efficient PRM Training Data Synthesis via Formal Verification\" was published at ACL 2026 Findings.\n\n## Motivation\n\nExisting approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls. By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.\n\n## Approach and Results\n\nUsing FoVer, the researchers create PRM training data from formal logic and theorem proving tasks. Experiments on 12 reasoning benchmarks show that fine-tuning on the training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data.\n\n## Availability\n\nCode and materials are available in a repository associated with the paper."
+    ],
+    "durationSeconds": 6.649699444999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "434447c7-8747-48fe-8167-3512e259fa4b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formalizability-Routed Hybrid PRMs for Miracle Step Detection  ## Core Problem  Can a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect m…",
+  "leafUuid": "db172634-d17f-4984-8b0b-97aebdc3dc54",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formalizability-routed hybrid PRMs for miracle step detection",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-29T09:13:13.928Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uc4Nse6ThX5vGaTBkwpHZu`</summary>
+
+```json
+{
+  "query": "\"Reward Under Attack\" process reward model robustness adversarial 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db172634-d17f-4984-8b0b-97aebdc3dc54",
+  "isSidechain": false,
+  "requestId": "req_011CbWbxMEFw6n1kreZHkmy7",
+  "type": "assistant",
+  "uuid": "bd713d86-ce92-4a63-a1fa-e6d2b0fb933e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LTPs61L1R8iUQpkfmsGSR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 668,
+      "cache_read_input_tokens": 18127,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 668,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 18127,
+          "cache_creation_input_tokens": 668,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 668
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-29T09:13:21.747Z_
+
+<details><summary>↩ Tool result · `toolu_01Uc4Nse6ThX5vGaTBkwpHZu`</summary>
+
+```text
+Web search results for query: ""Reward Under Attack" process reward model robustness adversarial 2025 2026"
+
+Links: [{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Adversarially Trained Reward Models","url":"https://www.emergentmind.com/topics/adversarially-trained-reward-models"},{"title":"Reward Models Can Improve Themselves: Reward-Guided Adversarial Failure Mode Discovery for Robust Reward Modeling","url":"https://arxiv.org/pdf/2507.06419"},{"title":"Adversarial Training of Reward Models","url":"https://arxiv.org/html/2504.06141v2"},{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Adversarial Training for Process Reward Models","url":"https://arxiv.org/pdf/2511.22888"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.06621"},{"title":"Preprint. Under review. Adversarial Training of Reward Models","url":"https://arxiv.org/pdf/2504.06141"},{"title":"Robust Deep Reinforcement Learning against Adversarial ...","url":"https://proceedings.neurips.cc/paper/2020/file/f0eb6568ea114ba6e293f903c34d7488-Paper.pdf"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## "Reward Under Attack" Paper
+
+Process Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure. 
+
+The research introduces a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify vulnerabilities, with static perturbation analysis uncovering a fluency-logic dissociation: high invariance to surface-level style changes (reward changes <0.1), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. These findings reveal that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.
+
+The paper was published on February 20, 2026, and the authors release PRM-BiasBench and a diagnostic toolkit to enable robustness evaluation before deployment.
+
+## Related Work on Improving PRM Robustness
+
+Recent research has proposed several approaches to enhance PRM robustness:
+
+- APRM (Adversarial Process Reward Models) outperforms state-of-the-art PRM training methods by up to 5.3 pp, with the largest gains on out-of-distribution problems.
+
+- REFORM cuts the reward robustness drop under perturbation by over 50%—with accuracy losses on unperturbed data remaining ≤1.8pp.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd713d86-ce92-4a63-a1fa-e6d2b0fb933e",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "b618e6b5-1046-4c28-a7a5-75fdafbad978",
+  "toolUseResult": {
+    "query": "\"Reward Under Attack\" process reward model robustness adversarial 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E5FoVrf8dLkTJqpaSWndwN",
+        "content": [
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Adversarially Trained Reward Models",
+            "url": "https://www.emergentmind.com/topics/adversarially-trained-reward-models"
+          },
+          {
+            "title": "Reward Models Can Improve Themselves: Reward-Guided Adversarial Failure Mode Discovery for Robust Reward Modeling",
+            "url": "https://arxiv.org/pdf/2507.06419"
+          },
+          {
+            "title": "Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/html/2504.06141v2"
+          },
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/pdf/2511.22888"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2603.06621"
+          },
+          {
+            "title": "Preprint. Under review. Adversarial Training of Reward Models",
+            "url": "https://arxiv.org/pdf/2504.06141"
+          },
+          {
+            "title": "Robust Deep Reinforcement Learning against Adversarial ...",
+            "url": "https://proceedings.neurips.cc/paper/2020/file/f0eb6568ea114ba6e293f903c34d7488-Paper.pdf"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here are the key findings:\n\n## \"Reward Under Attack\" Paper\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure. \n\nThe research introduces a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify vulnerabilities, with static perturbation analysis uncovering a fluency-logic dissociation: high invariance to surface-level style changes (reward changes <0.1), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. These findings reveal that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\nThe paper was published on February 20, 2026, and the authors release PRM-BiasBench and a diagnostic toolkit to enable robustness evaluation before deployment.\n\n## Related Work on Improving PRM Robustness\n\nRecent research has proposed several approaches to enhance PRM robustness:\n\n- APRM (Adversarial Process Reward Models) outperforms state-of-the-art PRM training methods by up to 5.3 pp, with the largest gains on out-of-distribution problems.\n\n- REFORM cuts the reward robustness drop under perturbation by over 50%—with accuracy losses on unperturbed data remaining ≤1.8pp."
+    ],
+    "durationSeconds": 7.805858000999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bd713d86-ce92-4a63-a1fa-e6d2b0fb933e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-29T09:13:24.149Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CzxnfR8UEpbpRBgpLAEngH`</summary>
+
+```json
+{
+  "query": "miracle step detection math reasoning rubric reward model RRM ACL 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b618e6b5-1046-4c28-a7a5-75fdafbad978",
+  "isSidechain": false,
+  "requestId": "req_011CbWby814HCNUs1xhcVazd",
+  "type": "assistant",
+  "uuid": "727d9dd2-9cd1-4f24-85e3-c6d0feda3db8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GWDe1GDsue62iPn1r5zHB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 18795,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 18795,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-29T09:13:34.285Z_
+
+<details><summary>↩ Tool result · `toolu_01CzxnfR8UEpbpRBgpLAEngH`</summary>
+
+```text
+Web search results for query: "miracle step detection math reasoning rubric reward model RRM ACL 2026"
+
+Links: [{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/abs/2510.07774"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.07774v1"},{"title":"[Literature Review] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://www.themoonlight.io/en/review/curing-miracle-steps-in-llm-mathematical-reasoning-with-rubric-rewards"},{"title":"[PDF] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Curing-Miracle-Steps-in-LLM-Mathematical-Reasoning-Yuan-Mang/b46e76e1d1a71619a4d2d388f63b80da893575b9"},{"title":"(PDF) Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://www.researchgate.net/publication/396372877_Curing_Miracle_Steps_in_LLM_Mathematical_Reasoning_with_Rubric_Rewards"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774v3"},{"title":"CURING “MIRACLE STEPS” IN LLM MATHEMATICAL ...","url":"https://openreview.net/pdf/365c5050a2ce26e04b0f1c843f16e9a72f9c704f.pdf"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with ...","url":"https://arxiv.org/pdf/2510.07774"}]
+
+Based on the search results, here's what I found about this research:
+
+## Summary
+
+The research identifies "Miracle Steps"—abrupt jumps to a correct output without a valid preceding derivation as a critical problem in LLM mathematical reasoning training.
+
+### The Problem
+
+Large language models for mathematical reasoning are typically trained with outcome-based rewards, which credit only the final answer. This paradigm is highly susceptible to reward hacking, leading to a substantial overestimation of a model's reasoning ability. This is evidenced by a high incidence of "false positives"—solutions that reach the correct final answer through an unsound reasoning process. Probing experiments suggest a strong association between these Miracle Steps and memorization, where the model appears to recall the answer directly rather than deriving it.
+
+### The Solution
+
+To mitigate this systemic issue, the researchers introduce the Rubric Reward Model (RRM), a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics. The generative RRM provides fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction.
+
+### Results
+
+RRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71%.
+
+The paper was submitted to arXiv in October 2025, with the most recent version dated April 17, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "727d9dd2-9cd1-4f24-85e3-c6d0feda3db8",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "0126a1f3-692f-42d7-81ab-8871b8fcd1e0",
+  "toolUseResult": {
+    "query": "miracle step detection math reasoning rubric reward model RRM ACL 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QSby9rVqJMFgWuSq2ahG6Q",
+        "content": [
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/abs/2510.07774"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.07774v1"
+          },
+          {
+            "title": "[Literature Review] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://www.themoonlight.io/en/review/curing-miracle-steps-in-llm-mathematical-reasoning-with-rubric-rewards"
+          },
+          {
+            "title": "[PDF] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Curing-Miracle-Steps-in-LLM-Mathematical-Reasoning-Yuan-Mang/b46e76e1d1a71619a4d2d388f63b80da893575b9"
+          },
+          {
+            "title": "(PDF) Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://www.researchgate.net/publication/396372877_Curing_Miracle_Steps_in_LLM_Mathematical_Reasoning_with_Rubric_Rewards"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774v3"
+          },
+          {
+            "title": "CURING “MIRACLE STEPS” IN LLM MATHEMATICAL ...",
+            "url": "https://openreview.net/pdf/365c5050a2ce26e04b0f1c843f16e9a72f9c704f.pdf"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with ...",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about this research:\n\n## Summary\n\nThe research identifies \"Miracle Steps\"—abrupt jumps to a correct output without a valid preceding derivation as a critical problem in LLM mathematical reasoning training.\n\n### The Problem\n\nLarge language models for mathematical reasoning are typically trained with outcome-based rewards, which credit only the final answer. This paradigm is highly susceptible to reward hacking, leading to a substantial overestimation of a model's reasoning ability. This is evidenced by a high incidence of \"false positives\"—solutions that reach the correct final answer through an unsound reasoning process. Probing experiments suggest a strong association between these Miracle Steps and memorization, where the model appears to recall the answer directly rather than deriving it.\n\n### The Solution\n\nTo mitigate this systemic issue, the researchers introduce the Rubric Reward Model (RRM), a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics. The generative RRM provides fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction.\n\n### Results\n\nRRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71%.\n\nThe paper was submitted to arXiv in October 2025, with the most recent version dated April 17, 2026."
+    ],
+    "durationSeconds": 10.129677241999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "727d9dd2-9cd1-4f24-85e3-c6d0feda3db8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-29T09:13:36.789Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M41Vasa3Trxh8SrMEQPz5i`</summary>
+
+```json
+{
+  "query": "Safe step-aware formal verification mathematical reasoning ACL 2025 Z3 formalizability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0126a1f3-692f-42d7-81ab-8871b8fcd1e0",
+  "isSidechain": false,
+  "requestId": "req_011CbWbz3QWV4cTeyWhQFJ3Q",
+  "type": "assistant",
+  "uuid": "3d432712-cebf-4ea7-8d16-3b9d1a5d3669",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0129BZoLA2D2ANKrJbTg7Jad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 19632,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 19632,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-29T09:13:44.473Z_
+
+<details><summary>↩ Tool result · `toolu_01M41Vasa3Trxh8SrMEQPz5i`</summary>
+
+```text
+Web search results for query: "Safe step-aware formal verification mathematical reasoning ACL 2025 Z3 formalizability"
+
+Links: [{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.594/"},{"title":"[Literature Review] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://www.themoonlight.io/en/review/safe-enhancing-mathematical-reasoning-in-large-language-models-via-retrospective-step-aware-formal-verification"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/html/2506.04592v1"},{"title":"[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/abs/2506.04592"},{"title":"GitHub - liuchengwucn/Safe: (ACL 2025 Main) Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - Official Implementation & Dataset","url":"https://github.com/liuchengwucn/Safe"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification | Request PDF","url":"https://www.researchgate.net/publication/394301322_Safe_Enhancing_Mathematical_Reasoning_in_Large_Language_Models_via_Retrospective_Step-aware_Formal_Verification"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/pdf/2505.20869"}]
+
+Based on the search results, I found relevant information about the SAFE framework for mathematical reasoning:
+
+## Summary
+
+SAFE: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification is a paper published at ACL 2025. 
+
+**Key Features:**
+
+The framework articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations. The step-level formal verifier outputs one of four distinct states, depending on whether a given step can be auto-formalized by an LLM and resolved by an automated theorem prover.
+
+**Contributions:**
+
+The authors propose FormalStep as a benchmark for step correctness theorem proving with 30,809 formal statements. This work represents the first endeavor to utilize formal mathematical language Lean 4 for verifying content generated by LLMs.
+
+**Performance:**
+
+Experiments on GSM8K, MATH-500, and CollegeMath datasets demonstrate that SAFE consistently outperforms baselines, with particularly significant performance gains on the more challenging MATH-500 and CollegeMath datasets.
+
+Note: While your query mentioned Z3, the SAFE framework actually uses Lean 4 as its formal verification language, not Z3. The search results do mention Z3 in relation to other formal verification approaches for mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d432712-cebf-4ea7-8d16-3b9d1a5d3669",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "ca48c90f-5ce3-4e3f-9cb0-f6a48f41664a",
+  "toolUseResult": {
+    "query": "Safe step-aware formal verification mathematical reasoning ACL 2025 Z3 formalizability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LcdBDE5wADbk7tta1QkRdo",
+        "content": [
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.594/"
+          },
+          {
+            "title": "[Literature Review] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://www.themoonlight.io/en/review/safe-enhancing-mathematical-reasoning-in-large-language-models-via-retrospective-step-aware-formal-verification"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/html/2506.04592v1"
+          },
+          {
+            "title": "[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/abs/2506.04592"
+          },
+          {
+            "title": "GitHub - liuchengwucn/Safe: (ACL 2025 Main) Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - Official Implementation & Dataset",
+            "url": "https://github.com/liuchengwucn/Safe"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification | Request PDF",
+            "url": "https://www.researchgate.net/publication/394301322_Safe_Enhancing_Mathematical_Reasoning_in_Large_Language_Models_via_Retrospective_Step-aware_Formal_Verification"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/pdf/2505.20869"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the SAFE framework for mathematical reasoning:\n\n## Summary\n\nSAFE: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification is a paper published at ACL 2025. \n\n**Key Features:**\n\nThe framework articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations. The step-level formal verifier outputs one of four distinct states, depending on whether a given step can be auto-formalized by an LLM and resolved by an automated theorem prover.\n\n**Contributions:**\n\nThe authors propose FormalStep as a benchmark for step correctness theorem proving with 30,809 formal statements. This work represents the first endeavor to utilize formal mathematical language Lean 4 for verifying content generated by LLMs.\n\n**Performance:**\n\nExperiments on GSM8K, MATH-500, and CollegeMath datasets demonstrate that SAFE consistently outperforms baselines, with particularly significant performance gains on the more challenging MATH-500 and CollegeMath datasets.\n\nNote: While your query mentioned Z3, the SAFE framework actually uses Lean 4 as its formal verification language, not Z3. The search results do mention Z3 in relation to other formal verification approaches for mathematical reasoning."
+    ],
+    "durationSeconds": 7.677479549999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3d432712-cebf-4ea7-8d16-3b9d1a5d3669",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-29T09:13:47.093Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014TgtBDH1TZmBR3AEYk4u3j`</summary>
+
+```json
+{
+  "query": "ARES probabilistic soundness guarantees LLM reasoning chains EMNLP 2025 Hoeffding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca48c90f-5ce3-4e3f-9cb0-f6a48f41664a",
+  "isSidechain": false,
+  "requestId": "req_011CbWbznzrhizoVRZnXbvvC",
+  "type": "assistant",
+  "uuid": "3c412902-d422-4422-b567-f19d59256784",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hUbpAgWhf5UoayauU8xnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 20619,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 20619,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-29T09:13:52.871Z_
+
+<details><summary>↩ Tool result · `toolu_014TgtBDH1TZmBR3AEYk4u3j`</summary>
+
+```text
+Web search results for query: "ARES probabilistic soundness guarantees LLM reasoning chains EMNLP 2025 Hoeffding"
+
+Links: [{"title":"Probabilistic Soundness Guarantees in LLM Reasoning Chains | OpenReview","url":"https://openreview.net/forum?id=rlNn397KA2"},{"title":"[2507.12948] Probabilistic Soundness Guarantees in LLM Reasoning Chains","url":"https://arxiv.org/abs/2507.12948"},{"title":"Probabilistic Soundness Guarantees in LLM Reasoning Chains - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.382/"},{"title":"Probabilistic Soundness Guarantees in LLM Reasoning Chains - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250712948Y/abstract"},{"title":"Probabilistic Soundness Guarantees in LLM Reasoning Chains","url":"https://arxiv.org/html/2507.12948v1"},{"title":"Probabilistic Soundness Guarantees in LLM Reasoning Chains Weiqiu You Anton Xue","url":"https://openreview.net/pdf?id=rlNn397KA2"},{"title":"(PDF) Probabilistic Soundness Guarantees in LLM Reasoning Chains","url":"https://www.researchgate.net/publication/393784065_Probabilistic_Soundness_Guarantees_in_LLM_Reasoning_Chains"}]
+
+I found the paper! Here's what the search results show:
+
+ARES (Autoregressive Reasoning Entailment Stability) is a probabilistic framework that evaluates each reasoning step based solely on previously-verified premises, yielding a nuanced score for each step and providing certified statistical guarantees of its soundness, rather than a brittle binary label.
+
+In reasoning chains generated by LLMs, initial errors often propagate and undermine the reliability of the final conclusion, and current LLM-based error detection methods often fail to detect propagated errors because earlier errors can corrupt judgments of downstream reasoning.
+
+ARES achieves state-of-the-art performance across four benchmarks (72.1% Macro-F1, +8.2 points) and demonstrates superior robustness on very long synthetic reasoning chains, where it excels at detecting propagated errors (90.3% F1, +27.6 points).
+
+The paper was published at EMNLP 2025, as indicated by the ACL Anthology listing showing it as part of the 2025 Conference on Empirical Methods in Natural Language Processing proceedings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c412902-d422-4422-b567-f19d59256784",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "5384ea4f-6b93-40fe-a464-a28d9818f657",
+  "toolUseResult": {
+    "query": "ARES probabilistic soundness guarantees LLM reasoning chains EMNLP 2025 Hoeffding",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DfSMMESKnyg8Dgyar1MhMN",
+        "content": [
+          {
+            "title": "Probabilistic Soundness Guarantees in LLM Reasoning Chains | OpenReview",
+            "url": "https://openreview.net/forum?id=rlNn397KA2"
+          },
+          {
+            "title": "[2507.12948] Probabilistic Soundness Guarantees in LLM Reasoning Chains",
+            "url": "https://arxiv.org/abs/2507.12948"
+          },
+          {
+            "title": "Probabilistic Soundness Guarantees in LLM Reasoning Chains - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.382/"
+          },
+          {
+            "title": "Probabilistic Soundness Guarantees in LLM Reasoning Chains - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250712948Y/abstract"
+          },
+          {
+            "title": "Probabilistic Soundness Guarantees in LLM Reasoning Chains",
+            "url": "https://arxiv.org/html/2507.12948v1"
+          },
+          {
+            "title": "Probabilistic Soundness Guarantees in LLM Reasoning Chains Weiqiu You Anton Xue",
+            "url": "https://openreview.net/pdf?id=rlNn397KA2"
+          },
+          {
+            "title": "(PDF) Probabilistic Soundness Guarantees in LLM Reasoning Chains",
+            "url": "https://www.researchgate.net/publication/393784065_Probabilistic_Soundness_Guarantees_in_LLM_Reasoning_Chains"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search results show:\n\nARES (Autoregressive Reasoning Entailment Stability) is a probabilistic framework that evaluates each reasoning step based solely on previously-verified premises, yielding a nuanced score for each step and providing certified statistical guarantees of its soundness, rather than a brittle binary label.\n\nIn reasoning chains generated by LLMs, initial errors often propagate and undermine the reliability of the final conclusion, and current LLM-based error detection methods often fail to detect propagated errors because earlier errors can corrupt judgments of downstream reasoning.\n\nARES achieves state-of-the-art performance across four benchmarks (72.1% Macro-F1, +8.2 points) and demonstrates superior robustness on very long synthetic reasoning chains, where it excels at detecting propagated errors (90.3% F1, +27.6 points).\n\nThe paper was published at EMNLP 2025, as indicated by the ACL Anthology listing showing it as part of the 2025 Conference on Empirical Methods in Natural Language Processing proceedings."
+    ],
+    "durationSeconds": 5.771107096000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3c412902-d422-4422-b567-f19d59256784",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-29T09:13:56.656Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CBjeQwJSQKc2zjzM3QnF86`</summary>
+
+```json
+{
+  "query": "TRIM hybrid inference targeted stepwise routing LLM verifier 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5384ea4f-6b93-40fe-a464-a28d9818f657",
+  "isSidechain": false,
+  "requestId": "req_011CbWc1QurBsXwkm9rnsrSJ",
+  "type": "assistant",
+  "uuid": "2bf9084a-b9d4-4558-9473-97ccc0aa4980",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018inSPLjnV3AqTx48QYgfJ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 21474,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 21474,
+          "cache_creation_input_tokens": 756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-29T09:14:03.530Z_
+
+<details><summary>↩ Tool result · `toolu_01CBjeQwJSQKc2zjzM3QnF86`</summary>
+
+```text
+Web search results for query: "TRIM hybrid inference targeted stepwise routing LLM verifier 2026"
+
+Links: [{"title":"TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks | OpenReview","url":"https://openreview.net/forum?id=MoKrugWUfC"},{"title":"[2601.10245] TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks","url":"https://arxiv.org/abs/2601.10245"},{"title":"TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks","url":"https://arxiv.org/pdf/2601.10245"},{"title":"TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks","url":"https://arxiv.org/html/2601.10245v1"},{"title":"HYBRID INFERENCE VIA TARGETED STEPWISE ROUTING IN ...","url":"https://openreview.net/pdf/65c95157d568a50548fd3904d40a7677ed77dc06.pdf"}]
+
+Based on the search results, I found detailed information about TRIM:
+
+TRIM is a routing approach for multi-step reasoning that selectively routes only critical steps to larger LLMs based on uncertainty and budget. More specifically, TRIM (Targeted routing in multi-step reasoning tasks) routes only critical steps—those likely to derail the solution—to larger models while letting smaller models handle routine continuations.
+
+TRIM operates at the step-level: it uses process reward models to identify erroneous steps and makes routing decisions based on step-level uncertainty and budget constraints. The key insight is that targeted step-level interventions can fundamentally transform inference efficiency by confining expensive calls to precisely those steps where stronger models prevent cascading errors.
+
+The research addresses a fundamental problem: multi-step reasoning tasks like mathematical problem solving are vulnerable to cascading failures, where a single incorrect step leads to complete solution breakdown. Current LLM routing methods assign entire queries to one model, treating all reasoning steps as equal.
+
+The paper was submitted to arXiv in January 2026 with revisions through April 2026, making it a very recent contribution to the field of efficient LLM inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bf9084a-b9d4-4558-9473-97ccc0aa4980",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "822ec60e-f82c-4d5b-9b6b-2e11bedc5e5c",
+  "toolUseResult": {
+    "query": "TRIM hybrid inference targeted stepwise routing LLM verifier 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JfqjwbRCFyW6qKbvThzMgT",
+        "content": [
+          {
+            "title": "TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks | OpenReview",
+            "url": "https://openreview.net/forum?id=MoKrugWUfC"
+          },
+          {
+            "title": "[2601.10245] TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks",
+            "url": "https://arxiv.org/abs/2601.10245"
+          },
+          {
+            "title": "TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks",
+            "url": "https://arxiv.org/pdf/2601.10245"
+          },
+          {
+            "title": "TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks",
+            "url": "https://arxiv.org/html/2601.10245v1"
+          },
+          {
+            "title": "HYBRID INFERENCE VIA TARGETED STEPWISE ROUTING IN ...",
+            "url": "https://openreview.net/pdf/65c95157d568a50548fd3904d40a7677ed77dc06.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about TRIM:\n\nTRIM is a routing approach for multi-step reasoning that selectively routes only critical steps to larger LLMs based on uncertainty and budget. More specifically, TRIM (Targeted routing in multi-step reasoning tasks) routes only critical steps—those likely to derail the solution—to larger models while letting smaller models handle routine continuations.\n\nTRIM operates at the step-level: it uses process reward models to identify erroneous steps and makes routing decisions based on step-level uncertainty and budget constraints. The key insight is that targeted step-level interventions can fundamentally transform inference efficiency by confining expensive calls to precisely those steps where stronger models prevent cascading errors.\n\nThe research addresses a fundamental problem: multi-step reasoning tasks like mathematical problem solving are vulnerable to cascading failures, where a single incorrect step leads to complete solution breakdown. Current LLM routing methods assign entire queries to one model, treating all reasoning steps as equal.\n\nThe paper was submitted to arXiv in January 2026 with revisions through April 2026, making it a very recent contribution to the field of efficient LLM inference."
+    ],
+    "durationSeconds": 6.868745653000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2bf9084a-b9d4-4558-9473-97ccc0aa4980",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-29T09:14:03.537Z_
+
+```json
+{
+  "parentUuid": "822ec60e-f82c-4d5b-9b6b-2e11bedc5e5c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2d545e57-af4c-479c-9aee-d2fd86042de1",
+  "timestamp": "2026-05-29T09:14:03.537Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formalizability-Routed Hybrid PRMs for Miracle Step Detection  ## Core Problem  Can a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect m…",
+  "leafUuid": "2d545e57-af4c-479c-9aee-d2fd86042de1",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formalizability-routed hybrid PRMs for miracle step detection",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-29T09:14:06.440Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011Mfo5gdVjwCAtQecYvFCAE`</summary>
+
+```json
+{
+  "query": "PRoSFI formally verifiable reasoning structured intermediaries Lean 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d545e57-af4c-479c-9aee-d2fd86042de1",
+  "isSidechain": false,
+  "requestId": "req_011CbWc2CTHFo3omfpCboso5",
+  "type": "assistant",
+  "uuid": "57167511-77ee-421c-843f-c6e2403c2fb8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013AeMC4gbFqy4HFU8gzZpJM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 22230,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 22230,
+          "cache_creation_input_tokens": 725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-29T09:14:18.609Z_
+
+<details><summary>↩ Tool result · `toolu_011Mfo5gdVjwCAtQecYvFCAE`</summary>
+
+```text
+Web search results for query: "PRoSFI formally verifiable reasoning structured intermediaries Lean 2026"
+
+Links: [{"title":"[2603.29500] Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/abs/2603.29500"},{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/html/2603.29500"},{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning","url":"https://arxiv.org/pdf/2603.29500"},{"title":"LEARNING TO GENERATE FORMALLY VERIFIABLE STEP-BY-STEP LOGIC REASONING VIA STRUCTURED FORMAL INTERMEDIARIES | OpenReview","url":"https://openreview.net/forum?id=Tsag0RrOW7"},{"title":"Lean Proof Assistant Ecosystem","url":"https://www.emergentmind.com/topics/lean-proof-assistant-ecosystem"},{"title":"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/pdf/2511.18760"},{"title":"[2604.23002] FormalScience: Scalable Human-in-the-Loop Autoformalisation of Science with Agentic Code Generation in Lean","url":"https://arxiv.org/abs/2604.23002"}]
+
+Based on the search results, here's what I found about PRoSFI:
+
+## Overview
+
+PRoSFI (Process Reward over Structured Formal Intermediates) is a novel reward method that enhances reasoning reliability without compromising accuracy.
+
+## How It Works
+
+Instead of generating formal proofs directly, which is rarely accomplishable for a modest-sized (7B) model, the model outputs structured intermediate steps aligned with its natural language reasoning, and each step is then verified by a formal prover. Only fully validated reasoning chains receive high rewards, and the integration of formal verification guides the model towards generating step-by-step machine-checkable proofs, thereby yielding more credible final answers.
+
+## Technical Implementation
+
+The prompt instructs the model to behave as a mathematical reasoner that operates on premises expressed in Lean4 syntax. Each inference step must be as fine-grained as possible (fewer than 5 dependencies), and the JSON must be valid and parsable.
+
+For first-order logic tasks, each proposition can be verified using lightweight tactics in Lean or through external automated solvers, and for more complex settings, verification can be delegated to powerful formal models.
+
+## Key Contribution
+
+PRoSFI offers a simple and effective approach to training trustworthy reasoning models. The paper was published in March 2026 on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57167511-77ee-421c-843f-c6e2403c2fb8",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "1c19149f-02f3-498d-9ac4-65198c3133ae",
+  "toolUseResult": {
+    "query": "PRoSFI formally verifiable reasoning structured intermediaries Lean 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TRhVzG73LNwLgU1JCKyp61",
+        "content": [
+          {
+            "title": "[2603.29500] Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/abs/2603.29500"
+          },
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/html/2603.29500"
+          },
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning",
+            "url": "https://arxiv.org/pdf/2603.29500"
+          },
+          {
+            "title": "LEARNING TO GENERATE FORMALLY VERIFIABLE STEP-BY-STEP LOGIC REASONING VIA STRUCTURED FORMAL INTERMEDIARIES | OpenReview",
+            "url": "https://openreview.net/forum?id=Tsag0RrOW7"
+          },
+          {
+            "title": "Lean Proof Assistant Ecosystem",
+            "url": "https://www.emergentmind.com/topics/lean-proof-assistant-ecosystem"
+          },
+          {
+            "title": "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2511.18760"
+          },
+          {
+            "title": "[2604.23002] FormalScience: Scalable Human-in-the-Loop Autoformalisation of Science with Agentic Code Generation in Lean",
+            "url": "https://arxiv.org/abs/2604.23002"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PRoSFI:\n\n## Overview\n\nPRoSFI (Process Reward over Structured Formal Intermediates) is a novel reward method that enhances reasoning reliability without compromising accuracy.\n\n## How It Works\n\nInstead of generating formal proofs directly, which is rarely accomplishable for a modest-sized (7B) model, the model outputs structured intermediate steps aligned with its natural language reasoning, and each step is then verified by a formal prover. Only fully validated reasoning chains receive high rewards, and the integration of formal verification guides the model towards generating step-by-step machine-checkable proofs, thereby yielding more credible final answers.\n\n## Technical Implementation\n\nThe prompt instructs the model to behave as a mathematical reasoner that operates on premises expressed in Lean4 syntax. Each inference step must be as fine-grained as possible (fewer than 5 dependencies), and the JSON must be valid and parsable.\n\nFor first-order logic tasks, each proposition can be verified using lightweight tactics in Lean or through external automated solvers, and for more complex settings, verification can be delegated to powerful formal models.\n\n## Key Contribution\n\nPRoSFI offers a simple and effective approach to training trustworthy reasoning models. The paper was published in March 2026 on arXiv."
+    ],
+    "durationSeconds": 12.160997158999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "57167511-77ee-421c-843f-c6e2403c2fb8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-29T09:14:20.931Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TZMsb9UKL5jCPbHofp9Hcj`</summary>
+
+```json
+{
+  "query": "hybrid formal neural verification mathematical reasoning routing 2025 2026 neuro-symbolic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c19149f-02f3-498d-9ac4-65198c3133ae",
+  "isSidechain": false,
+  "requestId": "req_011CbWc3JxUfCc42BAdKM9tH",
+  "type": "assistant",
+  "uuid": "89406ad5-7738-4014-94d8-1446be9fa0b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FL2Cz2Nbkfs1aeRpAU8NwA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 22955,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 22955,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-29T09:14:28.242Z_
+
+<details><summary>↩ Tool result · `toolu_01TZMsb9UKL5jCPbHofp9Hcj`</summary>
+
+```text
+Web search results for query: "hybrid formal neural verification mathematical reasoning routing 2025 2026 neuro-symbolic"
+
+Links: [{"title":"Hybrid Neuro-Symbolic Models Overview","url":"https://www.emergentmind.com/topics/hybrid-neuro-symbolic-models"},{"title":"Neuro-Symbolic AI Architecture","url":"https://www.emergentmind.com/topics/neuro-symbolic-ai-architecture"},{"title":"SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation","url":"https://arxiv.org/html/2510.25975v1"},{"title":"A Comparative Study of Neurosymbolic AI Approaches to Interpretable Logical Reasoning | OpenReview","url":"https://openreview.net/forum?id=uO0oaNY9fC"},{"title":"Hybrid neuro-symbolic learning and reasoning for resilient load restoration in smart microgrids - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0960148125020658"},{"title":"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification","url":"https://arxiv.org/pdf/2601.22642"}]
+
+Based on the search results, here's what I found regarding hybrid formal neural verification, mathematical reasoning routing, and neuro-symbolic approaches for 2025-2026:
+
+## Hybrid Neuro-Symbolic Models
+
+Hybrid neuro-symbolic models are computational architectures that integrate neural (connectionist, statistical) and symbolic (logic-based, knowledge-driven) sub-systems to yield AI systems with enhanced reasoning, data efficiency, compositional generalization, and interpretability. These hybrids combine the pattern-recognition and high-capacity learning abilities of neural networks with the structured, explicit, and often verifiable reasoning provided by symbolic knowledge representations and logic engines.
+
+## Mathematical Reasoning Applications
+
+SymCode instructs the LLM to translate a problem into a formal, symbolic representation, which is then manipulated by a Computer Algebra System (CAS), elevating the task from executing a sequence of arithmetic steps to solving a system of symbolic equations.
+
+## Formal Verification Integration
+
+Recent work has integrated formal verification tools, including theorem provers, code interpreters, and symbolic solvers, to provide machine-checkable validation beyond the biases of LLM-as-a-judge approaches.
+
+## Current Research Directions (2025-2026)
+
+Architectures delivering explicit reasoning traces, human-auditable outputs, or formal safety guarantees (e.g., through TLA+, deontic logic, or explicit constraint engines) set benchmarks for robust and controllable AI, but require advances in both symbolic modeling and efficient system design.
+
+Integrating hardware accelerators and progressively pruning or factorizing reasoning instances is a key area of research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89406ad5-7738-4014-94d8-1446be9fa0b5",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "2a667d59-0c61-4e44-bc1b-d22a6f77556b",
+  "toolUseResult": {
+    "query": "hybrid formal neural verification mathematical reasoning routing 2025 2026 neuro-symbolic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CUQsyFbGFfooREhunGdBRQ",
+        "content": [
+          {
+            "title": "Hybrid Neuro-Symbolic Models Overview",
+            "url": "https://www.emergentmind.com/topics/hybrid-neuro-symbolic-models"
+          },
+          {
+            "title": "Neuro-Symbolic AI Architecture",
+            "url": "https://www.emergentmind.com/topics/neuro-symbolic-ai-architecture"
+          },
+          {
+            "title": "SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation",
+            "url": "https://arxiv.org/html/2510.25975v1"
+          },
+          {
+            "title": "A Comparative Study of Neurosymbolic AI Approaches to Interpretable Logical Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=uO0oaNY9fC"
+          },
+          {
+            "title": "Hybrid neuro-symbolic learning and reasoning for resilient load restoration in smart microgrids - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0960148125020658"
+          },
+          {
+            "title": "Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification",
+            "url": "https://arxiv.org/pdf/2601.22642"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding hybrid formal neural verification, mathematical reasoning routing, and neuro-symbolic approaches for 2025-2026:\n\n## Hybrid Neuro-Symbolic Models\n\nHybrid neuro-symbolic models are computational architectures that integrate neural (connectionist, statistical) and symbolic (logic-based, knowledge-driven) sub-systems to yield AI systems with enhanced reasoning, data efficiency, compositional generalization, and interpretability. These hybrids combine the pattern-recognition and high-capacity learning abilities of neural networks with the structured, explicit, and often verifiable reasoning provided by symbolic knowledge representations and logic engines.\n\n## Mathematical Reasoning Applications\n\nSymCode instructs the LLM to translate a problem into a formal, symbolic representation, which is then manipulated by a Computer Algebra System (CAS), elevating the task from executing a sequence of arithmetic steps to solving a system of symbolic equations.\n\n## Formal Verification Integration\n\nRecent work has integrated formal verification tools, including theorem provers, code interpreters, and symbolic solvers, to provide machine-checkable validation beyond the biases of LLM-as-a-judge approaches.\n\n## Current Research Directions (2025-2026)\n\nArchitectures delivering explicit reasoning traces, human-auditable outputs, or formal safety guarantees (e.g., through TLA+, deontic logic, or explicit constraint engines) set benchmarks for robust and controllable AI, but require advances in both symbolic modeling and efficient system design.\n\nIntegrating hardware accelerators and progressively pruning or factorizing reasoning instances is a key area of research."
+    ],
+    "durationSeconds": 7.303567725000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "89406ad5-7738-4014-94d8-1446be9fa0b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-29T09:14:30.961Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YBCbE5fnGMDSCUgHQfn56L`</summary>
+
+```json
+{
+  "query": "ThinkPRM \"process reward models that think\" arXiv 2025 inference scaling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a667d59-0c61-4e44-bc1b-d22a6f77556b",
+  "isSidechain": false,
+  "requestId": "req_011CbWc426jhUcekPvro1CQW",
+  "type": "assistant",
+  "uuid": "ed57d8a1-8e3e-4403-acca-1f9f089504e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hDvqpWtRQQsr3mMYYeLmg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 23712,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 762,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 23712,
+          "cache_creation_input_tokens": 762,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 762
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-29T09:14:39.581Z_
+
+<details><summary>↩ Tool result · `toolu_01YBCbE5fnGMDSCUgHQfn56L`</summary>
+
+```text
+Web search results for query: "ThinkPRM "process reward models that think" arXiv 2025 inference scaling"
+
+Links: [{"title":"Process Reward Models That Think | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.16828v4"},{"title":"[2504.16828v1] Process Reward Models That Think","url":"https://arxiv.org/abs/2504.16828v1"},{"title":"[2504.16828v3] Process Reward Models That Think","url":"http://arxiv.org/abs/2504.16828v3"},{"title":"[2504.16828] Process Reward Models That Think","url":"https://arxiv.org/abs/2504.16828"},{"title":"GitHub - mukhal/ThinkPRM: Process Reward Models That Think","url":"https://github.com/mukhal/thinkprm"},{"title":"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub","url":"https://github.com/RyanLiu112/Awesome-Process-Reward-Models"},{"title":"Paper page - Process Reward Models That Think","url":"https://huggingface.co/papers/2504.16828"},{"title":"[2504.16828] Process Reward Models That Think - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2504.16828"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/html/2504.16828v5"}]
+
+Based on the search results, here's what I found about ThinkPRM:
+
+## Overview
+
+ThinkPRM is a generative, verbalized step-wise reward model designed to verify solutions by producing extended Chain-of-Thoughts. It is a generative PRM fine-tuned with only 8K process labels, enabling it to verify reasoning using long chains-of-thought.
+
+## Key Features and Performance
+
+Generative PRMs uniquely support simultaneous scaling of both generator and verifier compute. LLM-as-a-judge verification can greatly benefit from scaling up the verifier's inference compute—specifically, by enabling it to think through a verification chain of thought (CoT).
+
+ThinkPRM beats baselines on ProcessBench, MATH-500, and AIME '24 under best-of-N selection and reward-guided search. Under the same token budget, ThinkPRM scales up verification compute more effectively compared to LLM-as-a-Judge, outperforming it by 7.2% on a subset of ProcessBench.
+
+## Training and Models
+
+A ThinkPRM-7B version based on Deepseek-R1-Distill-Qwen-7B was released in May 2025. ThinkPRM was trained on four reasoning models: R1-Distill-Qwen{1.5B,7B,14B} and QwQ-32B-Preview.
+
+The arXiv paper is identified as **2504.16828**, published in April 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed57d8a1-8e3e-4403-acca-1f9f089504e8",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "33a440b9-a11c-4bac-b84d-c9f6677aabab",
+  "toolUseResult": {
+    "query": "ThinkPRM \"process reward models that think\" arXiv 2025 inference scaling",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KBGoDVCSryfmy2Pyp3vuxS",
+        "content": [
+          {
+            "title": "Process Reward Models That Think | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2504.16828v4"
+          },
+          {
+            "title": "[2504.16828v1] Process Reward Models That Think",
+            "url": "https://arxiv.org/abs/2504.16828v1"
+          },
+          {
+            "title": "[2504.16828v3] Process Reward Models That Think",
+            "url": "http://arxiv.org/abs/2504.16828v3"
+          },
+          {
+            "title": "[2504.16828] Process Reward Models That Think",
+            "url": "https://arxiv.org/abs/2504.16828"
+          },
+          {
+            "title": "GitHub - mukhal/ThinkPRM: Process Reward Models That Think",
+            "url": "https://github.com/mukhal/thinkprm"
+          },
+          {
+            "title": "GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub",
+            "url": "https://github.com/RyanLiu112/Awesome-Process-Reward-Models"
+          },
+          {
+            "title": "Paper page - Process Reward Models That Think",
+            "url": "https://huggingface.co/papers/2504.16828"
+          },
+          {
+            "title": "[2504.16828] Process Reward Models That Think - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2504.16828"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/html/2504.16828v5"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ThinkPRM:\n\n## Overview\n\nThinkPRM is a generative, verbalized step-wise reward model designed to verify solutions by producing extended Chain-of-Thoughts. It is a generative PRM fine-tuned with only 8K process labels, enabling it to verify reasoning using long chains-of-thought.\n\n## Key Features and Performance\n\nGenerative PRMs uniquely support simultaneous scaling of both generator and verifier compute. LLM-as-a-judge verification can greatly benefit from scaling up the verifier's inference compute—specifically, by enabling it to think through a verification chain of thought (CoT).\n\nThinkPRM beats baselines on ProcessBench, MATH-500, and AIME '24 under best-of-N selection and reward-guided search. Under the same token budget, ThinkPRM scales up verification compute more effectively compared to LLM-as-a-Judge, outperforming it by 7.2% on a subset of ProcessBench.\n\n## Training and Models\n\nA ThinkPRM-7B version based on Deepseek-R1-Distill-Qwen-7B was released in May 2025. ThinkPRM was trained on four reasoning models: R1-Distill-Qwen{1.5B,7B,14B} and QwQ-32B-Preview.\n\nThe arXiv paper is identified as **2504.16828**, published in April 2025."
+    ],
+    "durationSeconds": 8.614750839000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ed57d8a1-8e3e-4403-acca-1f9f089504e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-29T09:14:42.800Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hk8X98aJuhYEo8vDSUBuBr`</summary>
+
+```json
+{
+  "query": "VeriCoT neuro-symbolic chain of thought validation logical consistency 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33a440b9-a11c-4bac-b84d-c9f6677aabab",
+  "isSidechain": false,
+  "requestId": "req_011CbWc4rXZ1yPmNHvxWNmCZ",
+  "type": "assistant",
+  "uuid": "2c3eab9e-e011-428e-9b93-32fcd0bc00cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xi76pJMJg6LqhuhRDSDZHD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 24474,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 829,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 24474,
+          "cache_creation_input_tokens": 829,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 829
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-29T09:14:54.619Z_
+
+<details><summary>↩ Tool result · `toolu_01Hk8X98aJuhYEo8vDSUBuBr`</summary>
+
+```text
+Web search results for query: "VeriCoT neuro-symbolic chain of thought validation logical consistency 2025"
+
+Links: [{"title":"[2511.04662v1] VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks","url":"https://arxiv.org/abs/2511.04662v1"},{"title":"[2511.04662] VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks","url":"https://arxiv.org/abs/2511.04662"},{"title":"[Quick Review] VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical\\n Consistency Checks","url":"https://liner.com/review/vericot-neurosymbolic-chainofthought-validation-via-logical-consistency-checks"},{"title":"Paper page - VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks","url":"https://huggingface.co/papers/2511.04662"},{"title":"VeriCoT: Neuro-Symbolic Chain-of-Thought Validation via Logical Consistency Checks","url":"https://arxiv.org/html/2511.04662v1"},{"title":"VeriCoT: Neuro-symbolic Chain-of-Thought Validation via ...","url":"https://arxiv.org/pdf/2511.04662"},{"title":"VERICOT: NEURO-SYMBOLIC CHAIN-OF-THOUGHT ...","url":"https://openreview.net/pdf?id=zHuV3Vatov"}]
+
+Based on the search results, here's what I found about VeriCoT:
+
+## Overview
+
+VeriCoT is a neuro-symbolic method that extracts and verifies formal logical arguments from Chain-of-Thought reasoning. While LLMs can perform multi-step reasoning through Chain-of-Thought, they cannot reliably verify their own logic, and even when reaching correct answers, the underlying reasoning may be flawed, undermining trust in high-stakes scenarios.
+
+## How It Works
+
+VeriCoT formalizes each CoT reasoning step into first-order logic and identifies premises that ground the argument in source context, commonsense knowledge, or prior reasoning steps. The symbolic representation enables automated solvers to verify logical validity while the natural language premises allow humans and systems to identify ungrounded or fallacious reasoning steps.
+
+## Results and Applications
+
+Experiments on the ProofWriter, LegalBench, and BioASQ datasets show VeriCoT effectively identifies flawed reasoning and serves as a strong predictor of final answer correctness. 
+
+VeriCoT's verification signal is leveraged for inference-time self-reflection, supervised fine-tuning on VeriCoT-distilled datasets, and preference fine-tuning with direct preference optimization using verification-based pairwise rewards, further improving reasoning validity and accuracy.
+
+The paper was published on arXiv on November 6, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c3eab9e-e011-428e-9b93-32fcd0bc00cc",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "30f02fae-a971-43f5-81e2-eaf79ec83094",
+  "toolUseResult": {
+    "query": "VeriCoT neuro-symbolic chain of thought validation logical consistency 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XmBKC7WNTfbNxtXpXBBp6H",
+        "content": [
+          {
+            "title": "[2511.04662v1] VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks",
+            "url": "https://arxiv.org/abs/2511.04662v1"
+          },
+          {
+            "title": "[2511.04662] VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks",
+            "url": "https://arxiv.org/abs/2511.04662"
+          },
+          {
+            "title": "[Quick Review] VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical\\n Consistency Checks",
+            "url": "https://liner.com/review/vericot-neurosymbolic-chainofthought-validation-via-logical-consistency-checks"
+          },
+          {
+            "title": "Paper page - VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks",
+            "url": "https://huggingface.co/papers/2511.04662"
+          },
+          {
+            "title": "VeriCoT: Neuro-Symbolic Chain-of-Thought Validation via Logical Consistency Checks",
+            "url": "https://arxiv.org/html/2511.04662v1"
+          },
+          {
+            "title": "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via ...",
+            "url": "https://arxiv.org/pdf/2511.04662"
+          },
+          {
+            "title": "VERICOT: NEURO-SYMBOLIC CHAIN-OF-THOUGHT ...",
+            "url": "https://openreview.net/pdf?id=zHuV3Vatov"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VeriCoT:\n\n## Overview\n\nVeriCoT is a neuro-symbolic method that extracts and verifies formal logical arguments from Chain-of-Thought reasoning. While LLMs can perform multi-step reasoning through Chain-of-Thought, they cannot reliably verify their own logic, and even when reaching correct answers, the underlying reasoning may be flawed, undermining trust in high-stakes scenarios.\n\n## How It Works\n\nVeriCoT formalizes each CoT reasoning step into first-order logic and identifies premises that ground the argument in source context, commonsense knowledge, or prior reasoning steps. The symbolic representation enables automated solvers to verify logical validity while the natural language premises allow humans and systems to identify ungrounded or fallacious reasoning steps.\n\n## Results and Applications\n\nExperiments on the ProofWriter, LegalBench, and BioASQ datasets show VeriCoT effectively identifies flawed reasoning and serves as a strong predictor of final answer correctness. \n\nVeriCoT's verification signal is leveraged for inference-time self-reflection, supervised fine-tuning on VeriCoT-distilled datasets, and preference fine-tuning with direct preference optimization using verification-based pairwise rewards, further improving reasoning validity and accuracy.\n\nThe paper was published on arXiv on November 6, 2025."
+    ],
+    "durationSeconds": 11.814391879000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2c3eab9e-e011-428e-9b93-32fcd0bc00cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-29T09:14:57.264Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UZteXAnTTCoyNsjND8QS7A`</summary>
+
+```json
+{
+  "query": "Z3 SMT solver step-level mathematical reasoning verification derivability check 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30f02fae-a971-43f5-81e2-eaf79ec83094",
+  "isSidechain": false,
+  "requestId": "req_011CbWc5xtZjFDmZnPctXLPJ",
+  "type": "assistant",
+  "uuid": "e731aba5-ee17-4944-b7bb-10111d3fbec5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcRyKgoPbjTEU2Rppy6AS5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 803,
+      "cache_read_input_tokens": 25303,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 25303,
+          "cache_creation_input_tokens": 803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-29T09:15:05.819Z_
+
+<details><summary>↩ Tool result · `toolu_01UZteXAnTTCoyNsjND8QS7A`</summary>
+
+```text
+Web search results for query: "Z3 SMT solver step-level mathematical reasoning verification derivability check 2025 2026"
+
+Links: [{"title":"Z3: Your Ultimate Guide To An Amazing SMT Solver","url":"https://ccgit.crown.edu/cyber-reels/z3-your-ultimate-guide-to-an-amazing-smt-solver-1764798603"},{"title":"smt-solver · GitHub Topics · GitHub","url":"https://github.com/topics/smt-solver"},{"title":"Z3 - Microsoft Research","url":"https://www.microsoft.com/en-us/research/project/z3-3/"},{"title":"Z3 SMT Solver: Advanced Automated Reasoning","url":"https://www.emergentmind.com/topics/z3-smt-solver"},{"title":"Emergent Formal Verification: How an Autonomous AI Ecosystem Independently Discovered SMT-Based Safety Across Six Domains","url":"https://arxiv.org/pdf/2603.21149"},{"title":"(PDF) Z3: an efficient SMT solver","url":"https://www.researchgate.net/publication/225142568_Z3_an_efficient_SMT_solver"},{"title":"Z3 Theorem Prover - Wikipedia","url":"https://en.wikipedia.org/wiki/Z3_Theorem_Prover"},{"title":"Programming Z3","url":"https://theory.stanford.edu/~nikolaj/programmingz3.html"}]
+
+Based on the search results, here's what I found about Z3 SMT solver and related research:
+
+## Z3 SMT Solver Overview
+
+Z3 is an efficient Satisfiability Modulo Theories (SMT) solver from Microsoft Research. Z3 handles a lot of different theories like linear and non-linear arithmetic, bit vectors, arrays, datatypes, and strings, among others.
+
+## Recent Research (2025-2026)
+
+Several recent developments involve Z3 in mathematical reasoning and verification contexts:
+
+1. **Function Synthesis**: Synthesis with uncomputable symbols (Hozzová et al., 23 Apr 2025) uses Z3's quantifier elimination and model-based projection features to automate witness extraction for existential quantifiers, enabling synthesis of recursion-free functions even when specifications involve uncomputable symbols.
+
+2. **AI Safety Verification**: Recent work has applied Z3 SMT solving to verify LLM reasoning (VERGE, 2025), LLM-generated infrastructure code (Astrogator, 2025), and safety certificates for autonomous systems (BARRIERBENCH, 2025).
+
+3. **LLM-Based Reasoning**: Recent work treats LLM-based reasoning as an SMT theory, extending neurosymbolic methods beyond fully formalizable domains.
+
+These recent developments demonstrate Z3's application in formal verification, reasoning verification, and synthesis tasks in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e731aba5-ee17-4944-b7bb-10111d3fbec5",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "6eb3df1d-e952-4ab1-8748-d640b0321de7",
+  "toolUseResult": {
+    "query": "Z3 SMT solver step-level mathematical reasoning verification derivability check 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EpjMyrsKtBsXUUGRCg1qhh",
+        "content": [
+          {
+            "title": "Z3: Your Ultimate Guide To An Amazing SMT Solver",
+            "url": "https://ccgit.crown.edu/cyber-reels/z3-your-ultimate-guide-to-an-amazing-smt-solver-1764798603"
+          },
+          {
+            "title": "smt-solver · GitHub Topics · GitHub",
+            "url": "https://github.com/topics/smt-solver"
+          },
+          {
+            "title": "Z3 - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/project/z3-3/"
+          },
+          {
+            "title": "Z3 SMT Solver: Advanced Automated Reasoning",
+            "url": "https://www.emergentmind.com/topics/z3-smt-solver"
+          },
+          {
+            "title": "Emergent Formal Verification: How an Autonomous AI Ecosystem Independently Discovered SMT-Based Safety Across Six Domains",
+            "url": "https://arxiv.org/pdf/2603.21149"
+          },
+          {
+            "title": "(PDF) Z3: an efficient SMT solver",
+            "url": "https://www.researchgate.net/publication/225142568_Z3_an_efficient_SMT_solver"
+          },
+          {
+            "title": "Z3 Theorem Prover - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Z3_Theorem_Prover"
+          },
+          {
+            "title": "Programming Z3",
+            "url": "https://theory.stanford.edu/~nikolaj/programmingz3.html"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Z3 SMT solver and related research:\n\n## Z3 SMT Solver Overview\n\nZ3 is an efficient Satisfiability Modulo Theories (SMT) solver from Microsoft Research. Z3 handles a lot of different theories like linear and non-linear arithmetic, bit vectors, arrays, datatypes, and strings, among others.\n\n## Recent Research (2025-2026)\n\nSeveral recent developments involve Z3 in mathematical reasoning and verification contexts:\n\n1. **Function Synthesis**: Synthesis with uncomputable symbols (Hozzová et al., 23 Apr 2025) uses Z3's quantifier elimination and model-based projection features to automate witness extraction for existential quantifiers, enabling synthesis of recursion-free functions even when specifications involve uncomputable symbols.\n\n2. **AI Safety Verification**: Recent work has applied Z3 SMT solving to verify LLM reasoning (VERGE, 2025), LLM-generated infrastructure code (Astrogator, 2025), and safety certificates for autonomous systems (BARRIERBENCH, 2025).\n\n3. **LLM-Based Reasoning**: Recent work treats LLM-based reasoning as an SMT theory, extending neurosymbolic methods beyond fully formalizable domains.\n\nThese recent developments demonstrate Z3's application in formal verification, reasoning verification, and synthesis tasks in 2025-2026."
+    ],
+    "durationSeconds": 8.549136895000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e731aba5-ee17-4944-b7bb-10111d3fbec5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formalizability-Routed Hybrid PRMs for Miracle Step Detection  ## Core Problem  Can a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect m…",
+  "leafUuid": "6eb3df1d-e952-4ab1-8748-d640b0321de7",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formalizability-routed hybrid PRMs for miracle step detection",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-29T09:15:08.190Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UNXHeX3B3ACq4Z9kRd3CMj`</summary>
+
+```json
+{
+  "query": "formalizability prediction autoformalization success rate mathematical reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6eb3df1d-e952-4ab1-8748-d640b0321de7",
+  "isSidechain": false,
+  "requestId": "req_011CbWc6nmdhYgn1ZQk6SA2U",
+  "type": "assistant",
+  "uuid": "375d0b6f-8b30-4d16-8951-8d1e5a439845",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013H9ZgdY5Hv7srwLudX76gp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 26106,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 26106,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-29T09:15:15.722Z_
+
+<details><summary>↩ Tool result · `toolu_01UNXHeX3B3ACq4Z9kRd3CMj`</summary>
+
+```text
+Web search results for query: "formalizability prediction autoformalization success rate mathematical reasoning 2025 2026"
+
+Links: [{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://arxiv.org/pdf/2508.04440"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch","url":"https://arxiv.org/pdf/2512.00997"},{"title":"Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency","url":"https://arxiv.org/pdf/2410.20936"},{"title":"Autoformalization with Large Language Models","url":"https://arxiv.org/pdf/2205.12615"},{"title":"RLMEval: Evaluating Autoformalization on Research-Level Mathematics","url":"http://aitp-conference.org/2025/abstract/AITP_2025_paper_8.pdf"}]
+
+Based on the search results, here's what I found regarding autoformalization success rates and mathematical reasoning in 2025-2026:
+
+## Recent Autoformalization Performance Achievements
+
+Recent work by Li et al. (2025) achieves 68.4% pass rate on benchmarks such as MiniF2F, which represents significant progress in autoformalization. Additionally, the StepFun-Formalizer model establishes new state-of-the-art results on both FormalMATH-Lite (in-domain) and ProverBench (out-of-distribution).
+
+## Current Limitations
+
+However, autoformalization remains challenging. Evaluation across multiple frontier models demonstrates that autoformalization remains challenging, with substantial gaps between syntactic validity and semantic correctness, while theorem proving success rates remain low even with iterative refinement. 
+
+On research-level mathematics specifically, models still struggle to generate well-typed and semantically accurate statements, achieving at best a 59.37% type-check rate and 30.33% BEq+ score.
+
+## Measurement Approaches
+
+Recent work has focused on developing better evaluation metrics. A neural-symbolic equivalence metric called BEq (Bidirectional Extended Definitional Equivalence) has been introduced, extending Definition Equality in dependent type theory more aligned with human intuition.
+
+These results suggest that while progress has been made in 2025, autoformalization success varies significantly depending on the problem domain and complexity level, with higher success rates on olympiad-level problems but more modest performance on research-level mathematics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "375d0b6f-8b30-4d16-8951-8d1e5a439845",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "9bd6a8c1-fe11-48f4-9903-1f12931a3326",
+  "toolUseResult": {
+    "query": "formalizability prediction autoformalization success rate mathematical reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ELF5yQ9zQ8aRn7tAnBx1Tu",
+        "content": [
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency",
+            "url": "https://arxiv.org/pdf/2410.20936"
+          },
+          {
+            "title": "Autoformalization with Large Language Models",
+            "url": "https://arxiv.org/pdf/2205.12615"
+          },
+          {
+            "title": "RLMEval: Evaluating Autoformalization on Research-Level Mathematics",
+            "url": "http://aitp-conference.org/2025/abstract/AITP_2025_paper_8.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding autoformalization success rates and mathematical reasoning in 2025-2026:\n\n## Recent Autoformalization Performance Achievements\n\nRecent work by Li et al. (2025) achieves 68.4% pass rate on benchmarks such as MiniF2F, which represents significant progress in autoformalization. Additionally, the StepFun-Formalizer model establishes new state-of-the-art results on both FormalMATH-Lite (in-domain) and ProverBench (out-of-distribution).\n\n## Current Limitations\n\nHowever, autoformalization remains challenging. Evaluation across multiple frontier models demonstrates that autoformalization remains challenging, with substantial gaps between syntactic validity and semantic correctness, while theorem proving success rates remain low even with iterative refinement. \n\nOn research-level mathematics specifically, models still struggle to generate well-typed and semantically accurate statements, achieving at best a 59.37% type-check rate and 30.33% BEq+ score.\n\n## Measurement Approaches\n\nRecent work has focused on developing better evaluation metrics. A neural-symbolic equivalence metric called BEq (Bidirectional Extended Definitional Equivalence) has been introduced, extending Definition Equality in dependent type theory more aligned with human intuition.\n\nThese results suggest that while progress has been made in 2025, autoformalization success varies significantly depending on the problem domain and complexity level, with higher success rates on olympiad-level problems but more modest performance on research-level mathematics."
+    ],
+    "durationSeconds": 7.527778745000018,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "375d0b6f-8b30-4d16-8951-8d1e5a439845",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-29T09:15:18.585Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HygCjH1hKqw6BjgvQi49pp`</summary>
+
+```json
+{
+  "query": "process reward model formal verification hybrid routing step verification 2026 survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bd6a8c1-fe11-48f4-9903-1f12931a3326",
+  "isSidechain": false,
+  "requestId": "req_011CbWc7X8KhMyckf3u1MHZi",
+  "type": "assistant",
+  "uuid": "aaea051c-d9b4-4b89-94be-261108ce204c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xxm6bqFuGUFXrEGsgB6Esz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 26888,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 26888,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-29T09:15:25.882Z_
+
+<details><summary>↩ Tool result · `toolu_01HygCjH1hKqw6BjgvQi49pp`</summary>
+
+```text
+Web search results for query: "process reward model formal verification hybrid routing step verification 2026 survey"
+
+Links: [{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process","url":"https://arxiv.org/pdf/2510.08049"},{"title":"Process Reward Models That Think | OpenReview","url":"https://openreview.net/forum?id=V727xqBYIW"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026","url":"https://dl.acm.org/doi/10.1145/3774904.3792551"},{"title":"[2510.08049] A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/abs/2510.08049"},{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/pdf/2603.29500"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"}]
+
+Based on the search results, I found several relevant sources about process reward models, formal verification, and related topics from 2025-2026:
+
+## Key Survey Document
+
+A comprehensive survey provides a systematic overview of process reward models (PRMs) through the full loop: how to generate process data, build PRMs, and use PRMs for test-time scaling and reinforcement learning.
+
+## Data Generation Methods
+
+Process reward model data generation approaches can be categorized into three main paradigms: (1) human annotation, (2) automated supervision, and (3) hybrid methods that combine both.
+
+## Formal Verification Approaches
+
+There are recent developments integrating formal verification with process reward models. One approach involves verifying each step with a formal prover, where only fully validated reasoning chains receive high rewards, and the integration of formal verification guides models towards generating step-by-step machine-checkable proofs.
+
+## Generative Process Reward Models
+
+ThinkPRM is a long chain-of-thought verifier fine-tuned on orders of magnitude fewer process labels than those required by discriminative PRMs. It uses synthetic data with as few as 8K step labels and outperforms discriminative PRMs trained on two orders of magnitude more data.
+
+## Agent Applications
+
+Work has explored constructing process reward models to evaluate each decision and guide agent decision-making processes for LLM agents.
+
+The search results show active research in 2025-2026 combining process reward models with formal verification and hybrid training approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aaea051c-d9b4-4b89-94be-261108ce204c",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "40ab9871-64aa-470d-8e4b-1671b9980b99",
+  "toolUseResult": {
+    "query": "process reward model formal verification hybrid routing step verification 2026 survey",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EzxdJpxbMohCPUyAfQ9G49",
+        "content": [
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/html/2510.08049v3"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process",
+            "url": "https://arxiv.org/pdf/2510.08049"
+          },
+          {
+            "title": "Process Reward Models That Think | OpenReview",
+            "url": "https://openreview.net/forum?id=V727xqBYIW"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026",
+            "url": "https://dl.acm.org/doi/10.1145/3774904.3792551"
+          },
+          {
+            "title": "[2510.08049] A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/abs/2510.08049"
+          },
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/pdf/2603.29500"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant sources about process reward models, formal verification, and related topics from 2025-2026:\n\n## Key Survey Document\n\nA comprehensive survey provides a systematic overview of process reward models (PRMs) through the full loop: how to generate process data, build PRMs, and use PRMs for test-time scaling and reinforcement learning.\n\n## Data Generation Methods\n\nProcess reward model data generation approaches can be categorized into three main paradigms: (1) human annotation, (2) automated supervision, and (3) hybrid methods that combine both.\n\n## Formal Verification Approaches\n\nThere are recent developments integrating formal verification with process reward models. One approach involves verifying each step with a formal prover, where only fully validated reasoning chains receive high rewards, and the integration of formal verification guides models towards generating step-by-step machine-checkable proofs.\n\n## Generative Process Reward Models\n\nThinkPRM is a long chain-of-thought verifier fine-tuned on orders of magnitude fewer process labels than those required by discriminative PRMs. It uses synthetic data with as few as 8K step labels and outperforms discriminative PRMs trained on two orders of magnitude more data.\n\n## Agent Applications\n\nWork has explored constructing process reward models to evaluate each decision and guide agent decision-making processes for LLM agents.\n\nThe search results show active research in 2025-2026 combining process reward models with formal verification and hybrid training approaches."
+    ],
+    "durationSeconds": 7.289307698000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "aaea051c-d9b4-4b89-94be-261108ce204c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-29T09:16:11.767Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the landscape. Let me synthesize my findings and evaluate this proposal.
+
+Key observations from my research:
+
+1. **FoVer** (ACL 2026 Findings): Uses Z3/Isabelle for *training data synthesis* for PRMs, not for inference-time routing. Shows that formal verification can improve PRM generalization across domains.
+
+2. **Safe** (ACL 2025): Uses Lean 4 (not Z3) for step-level verification with a 4-state taxonomy (proved/unprovable/failed/no-verify). The proposal references ~81% success rate.
+
+
+3. **GenPRM** and **ThinkPRM** are neural-only approaches—one combines CoT with code verification for SOTA results, while the other scales verifier compute through extended reasoning chains. **RRM** tackles the miracle steps problem directly through rubric rewards, cutting them by 71% using an external Gemini model. **ARES** provides probabilistic soundness guarantees via Hoeffding bounds and premise-config sampling. **TRIM** routes across different LLM sizes...
+
+Writing comparison analysis... as formalizability signal, but doesn't do routing.
+- TRIM routes model sizes, not verifier types.
+- VeriCoT formalizes to FOL + uses solvers, but doesn't have an explicit routing mechanism.
+- PRoSFI uses Lean for verification but is Lean-only, no routing.
+
+So the specific combination of formalizability-based routing between formal and neural verifiers is indeed novel. This is a genuine contribution.
+
+**Critical questions:**
+
+1. **Trivial alternative concern**: Could you just run Z3 on everything and fall back to neural when Z3 fails? This would be a simple "try formal first, fall back to neural" approach that doesn't need a learned router. The proposal needs to justify why a learned formalizability classifier is better than this simple fallback strategy.
+
+2. **Formalizability assumption**: There's a fundamental mismatch here—the proposal cites Safe's ~81% formalization rate, but Safe uses Lean 4 while the approach proposes Z3. These are very different tools: Z3 excels at propositional and first-order logic with arithmetic constraints, whereas Lean is a full theorem prover capable of handling algebraic manipulation, calculus, and number theory. The formalization success rate from a Lean-based system likely won't transfer to Z3 at all, so using that figure to justify routing viability is questionable.
+
+3. **Z3's limited scope**: Z3 can verify steps by checking if the negation of an implication is unsatisfiable, but this only works for statements within Z3's supported theories (linear/nonlinear arithmetic, bit vectors, arrays, etc.). Many mathematical reasoning steps involve concepts beyond Z3's reach—combinatorics proofs, geometric reasoning, abstract algebra—so Z3's actual coverage for typical math steps could be far lower than the proposal implies.
+
+4. **Miracle detection framing**: The proposal frames this around detecting miracle steps, but the mechanism is really a general step verification approach. Formal derivability is conceptually well-suited for catching miracles since miracles are exactly steps that don't follow from predecessors, but this needs clearer differentiation from regular error detection.
+
+5. **ARES integration complexity**: Layering formal verification on top of ARES's existing premise-config sampling and Hoeffding bounds creates an interesting but intricate system that needs clearer explanation of how these components interact.
+
+The problem itself is significant—PRM robustness against adversarial manipulation is a real concern given recent findings—and the research community is actively pursuing similar solutions. A hybrid formal/neural approach could be genuinely impactful if the novelty is sharpened around how formal derivability provides a theoretically grounded definition of what constitutes a miracle step.
+
+The main threat is that a simple "try formal first, fall back to neural" baseline might be hard to beat—the proposal needs to justify why learned routing outperforms this, whether through computational efficiency on non-formalizable steps, avoiding misleading signals from failed formalization attempts, or learning when formal verification would timeout. There's also a critical mismatch between citing Safe's Lean-based results (~81%) while proposing Z3, which handles arithmetic constraints rather than theorem proving and likely has a very different formalizability landscape.
+
+The strongest angle here is positioning formal derivability as a rigorous mathematical definition of miracle steps—something the field currently lacks. Instead of RRM's rubric-based heuristics, formal derivability gives you a clean criterion: a step is a miracle if the premises don't entail it. This is both theoretically sound and operationally verifiable.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40ab9871-64aa-470d-8e4b-1671b9980b99",
+  "isSidechain": false,
+  "requestId": "req_011CbWc8Gaz79jArVEx61xWB",
+  "type": "assistant",
+  "uuid": "31fecc85-f6d8-4fc8-ba60-1b6c6925c4d8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzjZp49vx9PYJBfyrx7gJD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 27666,
+      "output_tokens": 1777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1777,
+          "cache_read_input_tokens": 27666,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-29T09:16:11.781Z_
+
+Now let me do one more search to verify a critical assumption in the proposal — the Z3 vs. Lean distinction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31fecc85-f6d8-4fc8-ba60-1b6c6925c4d8",
+  "isSidechain": false,
+  "requestId": "req_011CbWc8Gaz79jArVEx61xWB",
+  "type": "assistant",
+  "uuid": "fd06812c-ab5b-4253-82f9-a1277f5c0a9c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzjZp49vx9PYJBfyrx7gJD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 27666,
+      "output_tokens": 1777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1777,
+          "cache_read_input_tokens": 27666,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-29T09:16:11.923Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FksVNSjg8zW1dE6ry21DCR`</summary>
+
+```json
+{
+  "query": "Z3 SMT solver vs Lean theorem prover coverage mathematical reasoning autoformalization limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd06812c-ab5b-4253-82f9-a1277f5c0a9c",
+  "isSidechain": false,
+  "requestId": "req_011CbWc8Gaz79jArVEx61xWB",
+  "type": "assistant",
+  "uuid": "ebc93c1b-91cb-4926-85ed-89eb833768d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzjZp49vx9PYJBfyrx7gJD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 27666,
+      "output_tokens": 1777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1777,
+          "cache_read_input_tokens": 27666,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formalizability-Routed Hybrid PRMs for Miracle Step Detection  ## Core Problem  Can a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect m…",
+  "leafUuid": "ebc93c1b-91cb-4926-85ed-89eb833768d3",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formalizability-routed hybrid PRMs for miracle step detection",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-29T09:16:19.151Z_
+
+<details><summary>↩ Tool result · `toolu_01FksVNSjg8zW1dE6ry21DCR`</summary>
+
+```text
+Web search results for query: "Z3 SMT solver vs Lean theorem prover coverage mathematical reasoning autoformalization limitations"
+
+Links: [{"title":"Proofs in Satisﬁability Modulo Theories","url":"https://leodemoura.github.io/files/SMTProofs.pdf"},{"title":"Z3: An Eﬃcient SMT Solver Leonardo de Moura and Nikolaj Bjørner","url":"https://link.springer.com/content/pdf/10.1007/978-3-540-78800-3_24.pdf"},{"title":"(PDF) Z3: an efficient SMT solver","url":"https://www.researchgate.net/publication/225142568_Z3_an_efficient_SMT_solver"},{"title":"12 Solving SAT and SMT Problems Using Z3","url":"https://www.cs.umd.edu/class/fall2025/cmsc433/Solving_SAT_and_SMT_Problems_Using_Z3.html"},{"title":"Z3 Theorem Prover - Wikipedia","url":"https://en.wikipedia.org/wiki/Z3_Theorem_Prover"},{"title":"SITA: A Framework for Structure-to-Instance Theorem Autoformalization","url":"https://arxiv.org/pdf/2511.10356"},{"title":"Hint-Based SMT Proof Reconstruction","url":"https://arxiv.org/pdf/2601.14495"}]
+
+Based on the search results, here's what I found about Z3 SMT solver and Lean theorem prover in the context of mathematical reasoning and autoformalization:
+
+## Z3 SMT Solver Overview
+
+Z3 is a satisfiability modulo theories (SMT) solver developed by Microsoft's Research in Software Engineering group and is targeted at solving problems in software verification and program analysis. Z3 supports arithmetic, fixed-size bit-vectors, extensional arrays, datatypes, uninterpreted functions, and quantifiers.
+
+## Key Limitations for Mathematical Reasoning
+
+SMT solvers are first-order — they cannot directly reason about higher-order functions, recursion, or induction without encoding tricks. Additionally, some mathematical theories or their combinations are undecidable, such as nonlinear integer arithmetic with variable multiplication, and solvers use heuristics or incomplete methods for such cases.
+
+## Lean and Complementary Approaches
+
+Lean attempts to bridge the gap between SMT reasoning and proof assistants more directly by building a proof assistant with efficient and sophisticated built-in SMT capabilities. Proof assistants like Lean offer powerful languages for expressing arbitrary mathematical statements and verification down to domain-specific axioms, but often require considerable effort, whereas automatic provers offer push-button verification but often fail to scale to complex verification tasks.
+
+## Integration Efforts
+
+Researchers have implemented tactics in Lean that leverage hints from SMT solvers like cvc5 to improve automation in Lean, showing clear improvements in existing automation's performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebc93c1b-91cb-4926-85ed-89eb833768d3",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "49d48bae-3987-469b-9a0b-fe87d68d3408",
+  "toolUseResult": {
+    "query": "Z3 SMT solver vs Lean theorem prover coverage mathematical reasoning autoformalization limitations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UxpGrKAxRCiZDp2CJAa68s",
+        "content": [
+          {
+            "title": "Proofs in Satisﬁability Modulo Theories",
+            "url": "https://leodemoura.github.io/files/SMTProofs.pdf"
+          },
+          {
+            "title": "Z3: An Eﬃcient SMT Solver Leonardo de Moura and Nikolaj Bjørner",
+            "url": "https://link.springer.com/content/pdf/10.1007/978-3-540-78800-3_24.pdf"
+          },
+          {
+            "title": "(PDF) Z3: an efficient SMT solver",
+            "url": "https://www.researchgate.net/publication/225142568_Z3_an_efficient_SMT_solver"
+          },
+          {
+            "title": "12 Solving SAT and SMT Problems Using Z3",
+            "url": "https://www.cs.umd.edu/class/fall2025/cmsc433/Solving_SAT_and_SMT_Problems_Using_Z3.html"
+          },
+          {
+            "title": "Z3 Theorem Prover - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Z3_Theorem_Prover"
+          },
+          {
+            "title": "SITA: A Framework for Structure-to-Instance Theorem Autoformalization",
+            "url": "https://arxiv.org/pdf/2511.10356"
+          },
+          {
+            "title": "Hint-Based SMT Proof Reconstruction",
+            "url": "https://arxiv.org/pdf/2601.14495"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Z3 SMT solver and Lean theorem prover in the context of mathematical reasoning and autoformalization:\n\n## Z3 SMT Solver Overview\n\nZ3 is a satisfiability modulo theories (SMT) solver developed by Microsoft's Research in Software Engineering group and is targeted at solving problems in software verification and program analysis. Z3 supports arithmetic, fixed-size bit-vectors, extensional arrays, datatypes, uninterpreted functions, and quantifiers.\n\n## Key Limitations for Mathematical Reasoning\n\nSMT solvers are first-order — they cannot directly reason about higher-order functions, recursion, or induction without encoding tricks. Additionally, some mathematical theories or their combinations are undecidable, such as nonlinear integer arithmetic with variable multiplication, and solvers use heuristics or incomplete methods for such cases.\n\n## Lean and Complementary Approaches\n\nLean attempts to bridge the gap between SMT reasoning and proof assistants more directly by building a proof assistant with efficient and sophisticated built-in SMT capabilities. Proof assistants like Lean offer powerful languages for expressing arbitrary mathematical statements and verification down to domain-specific axioms, but often require considerable effort, whereas automatic provers offer push-button verification but often fail to scale to complex verification tasks.\n\n## Integration Efforts\n\nResearchers have implemented tactics in Lean that leverage hints from SMT solvers like cvc5 to improve automation in Lean, showing clear improvements in existing automation's performance."
+    ],
+    "durationSeconds": 7.22202446299998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ebc93c1b-91cb-4926-85ed-89eb833768d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-29T09:16:22.212Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TozwVjWf1KAzABAQmQofhJ`</summary>
+
+```json
+{
+  "query": "\"formal derivability\" \"miracle step\" OR \"unjustified leap\" OR \"logical gap\" mathematical proof verification 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49d48bae-3987-469b-9a0b-fe87d68d3408",
+  "isSidechain": false,
+  "requestId": "req_011CbWcCCKs9D21M1g8C9wbb",
+  "type": "assistant",
+  "uuid": "e475e0a5-7d9c-4701-9756-fa8495533f51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y39ybqtLDTQeLbAe2Fo1kV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2491,
+      "cache_read_input_tokens": 28454,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 28454,
+          "cache_creation_input_tokens": 2491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-29T09:16:29.022Z_
+
+<details><summary>↩ Tool result · `toolu_01TozwVjWf1KAzABAQmQofhJ`</summary>
+
+```text
+Web search results for query: ""formal derivability" "miracle step" OR "unjustified leap" OR "logical gap" mathematical proof verification 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.13888"},{"title":"Neural Theorem Proving: Generating and Structuring Proofs for Formal Verification","url":"https://arxiv.org/html/2504.17017v1"},{"title":"Conjecturing: An Overlooked Step in Formal Mathematical Reasoning","url":"https://arxiv.org/pdf/2510.11986"},{"title":"stepproof: step-by-step verification of","url":"https://arxiv.org/pdf/2506.10558"},{"title":"Position: Formal Mathematical Reasoning—A New Frontier in AI | OpenReview","url":"https://openreview.net/forum?id=HuvAM5x2xG"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"},{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"}]
+
+The search has returned several relevant results about formal verification and proof evaluation in mathematical reasoning from 2025-2026. Here's what I found:
+
+## Key Findings
+
+**Proof Verification and Unjustified Steps:**
+Recent work on mathematical competition problem evaluation includes marking schemes that give zero credit for "unjustified WLOG" (without loss of generality) and other forms of insufficient justification. This evaluation comes from analysis of 145 problems from prestigious mathematics competitions spanning 2022–2025.
+
+**Step-Level Verification Benchmarks:**
+Recent LLM-based reasoning systems have achieved gold medal-level performance in mathematical competitions, but to train such systems, verifiers capable of catching step-level mistakes are necessary prerequisites. A step-level verification benchmark called Hard2Verify was created with over 500 hours of human labor annotation.
+
+**Formal Verification Approaches:**
+Recent formal verification pipelines deploy LLM-based proof assistants and verifiers to translate natural language outputs into formal sequences to check correctness, though none of these methods directly type the natural language reasoning itself at decode time or produce per-step typed certificates auditable independently of downstream provers.
+
+**Autoformalisation Challenges:**
+Autoformalisation—the task of automatically expressing informal mathematics into a precise formal language—remains a central bottleneck in formal mathematical reasoning.
+
+These recent works address the problem of detecting logical gaps and unjustified leaps in mathematical proofs through systematic verification approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e475e0a5-7d9c-4701-9756-fa8495533f51",
+  "isSidechain": false,
+  "promptId": "4900feb9-efe3-4831-af85-191b24d8b61c",
+  "type": "user",
+  "uuid": "2efddbbb-822e-4606-9bea-0597a0e2c4bc",
+  "toolUseResult": {
+    "query": "\"formal derivability\" \"miracle step\" OR \"unjustified leap\" OR \"logical gap\" mathematical proof verification 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LEHst846MUTucukTe4UZ1E",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.13888"
+          },
+          {
+            "title": "Neural Theorem Proving: Generating and Structuring Proofs for Formal Verification",
+            "url": "https://arxiv.org/html/2504.17017v1"
+          },
+          {
+            "title": "Conjecturing: An Overlooked Step in Formal Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2510.11986"
+          },
+          {
+            "title": "stepproof: step-by-step verification of",
+            "url": "https://arxiv.org/pdf/2506.10558"
+          },
+          {
+            "title": "Position: Formal Mathematical Reasoning—A New Frontier in AI | OpenReview",
+            "url": "https://openreview.net/forum?id=HuvAM5x2xG"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          }
+        ]
+      },
+      "The search has returned several relevant results about formal verification and proof evaluation in mathematical reasoning from 2025-2026. Here's what I found:\n\n## Key Findings\n\n**Proof Verification and Unjustified Steps:**\nRecent work on mathematical competition problem evaluation includes marking schemes that give zero credit for \"unjustified WLOG\" (without loss of generality) and other forms of insufficient justification. This evaluation comes from analysis of 145 problems from prestigious mathematics competitions spanning 2022–2025.\n\n**Step-Level Verification Benchmarks:**\nRecent LLM-based reasoning systems have achieved gold medal-level performance in mathematical competitions, but to train such systems, verifiers capable of catching step-level mistakes are necessary prerequisites. A step-level verification benchmark called Hard2Verify was created with over 500 hours of human labor annotation.\n\n**Formal Verification Approaches:**\nRecent formal verification pipelines deploy LLM-based proof assistants and verifiers to translate natural language outputs into formal sequences to check correctness, though none of these methods directly type the natural language reasoning itself at decode time or produce per-step typed certificates auditable independently of downstream provers.\n\n**Autoformalisation Challenges:**\nAutoformalisation—the task of automatically expressing informal mathematics into a precise formal language—remains a central bottleneck in formal mathematical reasoning.\n\nThese recent works address the problem of detecting logical gaps and unjustified leaps in mathematical proofs through systematic verification approaches."
+    ],
+    "durationSeconds": 6.804113113,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e475e0a5-7d9c-4701-9756-fa8495533f51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-29T09:16:29.027Z_
+
+```json
+{
+  "parentUuid": "2efddbbb-822e-4606-9bea-0597a0e2c4bc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5b8f3599-83da-4ad8-a991-19b7154d52c3",
+  "timestamp": "2026-05-29T09:16:29.027Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-29T09:17:52.887Z_
+
+Now I have enough context to provide a thorough evaluation. Here is my analysis:
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **GenPRM (AAAI 2026)** [arXiv:2504.00891]: 当前 generative PRM SOTA，用 CoT + code verification 做 step-level 判断，支持 test-time scaling via majority voting。纯 neural 方法，没有 formal verification 组件。
+- **FoVer (ACL 2026 Findings)** [arXiv:2505.15960]: 用 Z3/Isabelle 做 PRM **训练数据合成**（非 inference-time verification），证明 formal verification 生成的 step-level labels 能跨域泛化（math → NLI/BBH）。关键区分：FoVer 是 data pipeline，不是 inference routing。
+- **Safe (ACL 2025)** [arXiv:2506.04592]: 用 **Lean 4**（非 Z3）做 step-level formal verification，4-state taxonomy（proved/unprovable/failed/no-verify）。这是 proposal 引用的 ~81% formalization rate 的来源，但 Safe 用的是 Lean 4，不是 Z3。
+- **RRM (ACL 2026)** [arXiv:2510.07774]: 直接解决 miracle step 问题，通过 Gemini-based rubric rewards 将 miracle steps 减少 71%。依赖外部大模型生成 rubrics，定义 miracle step 是启发式的（非形式化定义）。
+- **Reward Under Attack (arXiv 2026)** [arXiv:2603.06621]: 揭示 PRM 的根本脆弱性——43% reward 来自 stylistic shortcuts，对 invalid trajectories 给出 >0.9 reward。确认了 formal verification 对 style-immune verification 的需求。
+- **TRIM (arXiv 2026)** [arXiv:2601.10245]: 按 step uncertainty 路由到不同大小的 LLM，但路由的是 **模型规模**而非**验证器类型**。
+- **ThinkPRM (arXiv 2025)** [arXiv:2504.16828]: 用 long-CoT 做 generative verification，8K labels 训练即可超过 discriminative PRMs。纯 neural。
+- **PRoSFI (arXiv 2026)** [arXiv:2603.29500]: 用 Lean formal verification 做 process reward，但是 Lean-only（无 routing）。
+- **VeriCoT (arXiv 2025)** [arXiv:2511.04662]: 将 CoT 形式化为 FOL 并用 automated solvers 验证逻辑有效性。与 proposal 最相似，但没有显式的 formalizability-based routing，也没有 hybrid 架构。
+- **Autoformalization survey (2025-2026)**: MiniF2F 上 pass rate ~68%；research-level 问题 type-check rate ~59%，BEq+ ~30%。说明 autoformalization 成功率高度依赖问题复杂度。
+- **Z3 vs Lean**: Z3 是 SMT solver，擅长 propositional/first-order logic 和 arithmetic constraints；Lean 是 full theorem prover，支持 higher-order reasoning、induction、recursion。两者能处理的数学推理类型有根本性差异。
+
+- **调研总结**: 当前该领域的研究者在两条线上突破：(1) 提升 neural PRM 的 generative reasoning 能力（GenPRM, ThinkPRM）；(2) 引入 formal verification 来提供可靠的 step-level labels（FoVer, Safe, PRoSFI）。但**没有**工作在 inference time 做 formal/neural verifier 的动态路由——这确实是一个开放的 gap。核心 tension 是 autoformalization 的覆盖率限制了 formal verification 的适用范围，而领域内的主流做法是在 training time 利用 formal verification（FoVer），或者做 Lean-only verification（PRoSFI），而非 inference-time routing。
+
+---
+
+【发掘点 1】
+- **维度**: 前提假设质疑 / trivial alternative 威胁
+- **内容**: Proposal 引用 Safe 的 ~81% formalization 成功率来论证 routing 的可行性，但 **Safe 使用的是 Lean 4，而 proposal 提议的是 Z3**。Z3 是 SMT solver，只能处理其支持的理论（线性/非线性算术、bit vectors、arrays、uninterpreted functions 等），而数学推理中大量涉及的代数化简、组合论证、几何推理、归纳论证等不在 Z3 的原生能力范围内。用 Lean 4 的 formalization rate 来估算 Z3 的可行性是一个**前提假设错误**。更关键的是：如果 Z3 能处理的步骤比例远低于 81%（比如只有 30-40%），那么 routing 的价值会大幅缩水——大部分步骤仍然走 neural leg，系统退化为"带少量 Z3 增强的 neural PRM"。建议：要么(a) 明确使用 Lean 4 而非 Z3 作为 formal verifier（但需要面对 PRoSFI 的竞争），要么(b) 如果坚持用 Z3，需要在 proposal 中诚实估算 Z3 对典型 math reasoning benchmarks 的覆盖率，并论证即使覆盖率较低，routing 仍有价值。
+- **价值**: 这直接影响 idea 的核心 feasibility。如果 formal leg 的覆盖率被严重高估，整个 routing 架构的增量价值就站不住脚。审稿人几乎必然会质疑这一点。（命中 Novelty + Significance）
+- **调研依据**: Safe (ACL 2025) 使用 Lean 4 而非 Z3；autoformalization 领域调研显示 Z3/SMT 和 Lean/ITP 的覆盖范围有根本差异；Z3 Wikipedia 和技术文档确认其理论覆盖限于特定 fragments。
+
+【发掘点 2】
+- **维度**: trivial alternative 威胁
+- **内容**: 存在一个明显的 trivial baseline：**"try formal first, fall back to neural"**——对每个步骤先尝试 Z3 formalization + verification，如果失败（timeout / formalization error）就 fall back 到 neural verifier。这个 baseline 不需要训练 formalizability classifier，实现简单，且天然避免了 router 预测错误导致的 misrouting。Proposal 必须论证 learned routing 相比这个 naive fallback 的增量价值。可能的论证方向：(a) 尝试 formalize 不可形式化的步骤会产生巨大的 latency cost（Z3 timeout 可能 10-30 秒/步），learned router 可以避免这些无谓的 formalization attempts；(b) 部分 formalization failures 可能产生 misleading signals（如 Z3 返回 SAT 不一定意味着步骤错误，可能只是 formalization 不完整）；(c) router 可以学到 formalization 会 timeout 的 boundary cases。如果不能说清楚为什么 learned routing 比 naive fallback 好，审稿人会直接问 "why not just try Z3 first?"
+- **价值**: 消除这个 trivial alternative 是 novelty claim 的必要条件。如果 naive fallback 效果接近，整个 formalizability classifier 的设计就是 over-engineering。（命中 Novelty）
+- **调研依据**: TRIM (arXiv 2026) 的核心贡献之一就是论证了 learned step-level routing 比 naive routing 更优（在 LLM size routing 场景下）。FRH-PRM 需要类似的论证，但场景不同（verifier type routing），对应的 trade-offs 也不同。
+
+【发掘点 3】
+- **维度**: 核心 claim 强化 / novelty 锐化
+- **内容**: Proposal 当前最有力但**未被充分挖掘**的 novelty angle 是：**formal derivability 为 miracle step 提供了一个 mathematically precise 的形式化定义**。当前 RRM (ACL 2026) 对 miracle step 的定义是启发式的——依赖 Gemini 生成的 rubrics 来判断步骤是否 "unjustified"，这本质上是 neural heuristic。而 FRH-PRM 可以 claim：一个步骤 s 是 miracle step 当且仅当 ¬(predecessors ⊧ s)——即 predecessors 不蕴含 s。这是一个可以被 formal verification 精确判定的定义（在形式化成功的前提下）。这个角度如果被推到前台，会大幅强化 significance：**从"又一个 hybrid PRM"变成"第一个为 miracle step 提供形式化定义和可判定检测机制的系统"**。建议将这一点作为 paper 的 **central framing**，而非仅仅作为一个 engineering 优势来陈述。
+- **价值**: 将 idea 从 systems contribution 提升为 conceptual contribution。"miracle step 的形式化定义"比"formal/neural 混合路由"更有 lasting impact，更不容易被 incremental improvements 超越。（命中 Significance + Novelty）
+- **调研依据**: RRM (ACL 2026) 的 miracle step 定义基于 rubric heuristics (Gemini-generated)；ARES (EMNLP 2025) 用 neural entailment 做 premise-based verification 但没有 formal 定义；当前领域内无工作将 miracle step 与 formal derivability 显式关联。
+
+【发掘点 4】
+- **维度**: related work 差异化
+- **内容**: Proposal 需要更清晰地与 **VeriCoT (arXiv 2025)** 建立差异化。VeriCoT 同样将 CoT 步骤形式化为 first-order logic 并用 automated solvers 验证逻辑有效性。表面上看，VeriCoT 做的事情与 FRH-PRM 的 formal leg 高度相似。差异化必须明确：(a) VeriCoT 是 all-or-nothing 的形式化（每步都尝试 FOL formalization），没有 formalizability-based routing；(b) VeriCoT 关注的是 "logical validity"（论证结构正确），FRH-PRM 关注的是 "derivability from predecessors"（步骤是否从前提可推出）——这两者在技术上有区别（validity 是关于论证形式，derivability 是关于语义蕴含）；(c) VeriCoT 没有 PRM scoring / reward model 的组件。如果这些差异化没有在 related work 中清晰建立，审稿人很可能会问 "how is this different from VeriCoT + a neural fallback?"
+- **价值**: VeriCoT 是最容易被审稿人用来质疑 novelty 的 prior work。如果差异化不清晰，novelty claim 会被显著削弱。（命中 Related Work 差异化）
+- **调研依据**: VeriCoT [arXiv:2511.04662] 的核心方法——FOL formalization + solver verification——与 FRH-PRM 的 formal leg 在技术路线上高度重合。
+
+【发掘点 5】
+- **维度**: significance 提升
+- **内容**: Proposal 当前的 framing 将 Reward Under Attack 的发现作为 motivation（neural PRMs 可被 style 欺骗），但可以进一步强化：**formal derivability checking 不仅对 style 免疫，而且对所有不改变逻辑内容的 adversarial perturbation 都免疫**。这是一个比 "style-immune" 更强的 claim——formal verification 的鲁棒性来源于其只关注语义内容而非表面形式。这意味着 FRH-PRM 对 Reward Under Attack 揭示的所有三种 attack tier（static perturbation, optimization-based, learned）都有原理性的防御，而不仅仅是经验性的鲁棒性提升。如果能将这个 claim 形式化（e.g., "for any step that is successfully formalized, the formal verification verdict is invariant to any perturbation that preserves logical content"），这会是一个非常有力的 theoretical contribution。
+- **价值**: 将 adversarial robustness 从经验观察提升为原理性保证（至少对 formal leg 覆盖的步骤），大幅提升 paper 的 theoretical depth。（命中 Significance）
+- **调研依据**: Reward Under Attack [arXiv:2603.06621] 的三层 attack framework；形式验证的语义不变性是其固有属性（基于领域整体趋势判断）。
+
+---
+
+Sources:
+- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning](https://arxiv.org/abs/2504.00891)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)
+- [Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification](https://aclanthology.org/2025.acl-long.594/)
+- [Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards](https://arxiv.org/abs/2510.07774)
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)
+- [TRIM: Hybrid Inference via Targeted Stepwise Routing in Multi-Step Reasoning Tasks](https://arxiv.org/abs/2601.10245)
+- [Process Reward Models That Think (ThinkPRM)](https://arxiv.org/abs/2504.16828)
+- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries](https://arxiv.org/abs/2603.29500)
+- [VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks](https://arxiv.org/abs/2511.04662)
+- [ARES: Probabilistic Soundness Guarantees in LLM Reasoning Chains](https://arxiv.org/abs/2507.12948)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b8f3599-83da-4ad8-a991-19b7154d52c3",
+  "isSidechain": false,
+  "requestId": "req_011CbWcCvXPAnpd6paJZSHbG",
+  "type": "assistant",
+  "uuid": "7568dc61-77b2-4736-bcb5-6c8ad46b6a07",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjMCNSKncT2cWkTdBm2F5J",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 30945,
+      "output_tokens": 4143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4143,
+          "cache_read_input_tokens": 30945,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formalizability-Routed Hybrid PRMs for Miracle Step Detection  ## Core Problem  Can a PRM that routes each step to formal (Z3/Lean) or neural verifier based on learned formalizability score detect m…",
+  "leafUuid": "7568dc61-77b2-4736-bcb5-6c8ad46b6a07",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formalizability-routed hybrid PRMs for miracle step detection",
+  "sessionId": "bf7e7281-bdad-4f63-920a-15686285cf20"
+}
+```
+
+---

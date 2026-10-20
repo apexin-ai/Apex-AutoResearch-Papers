@@ -1,0 +1,2326 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Closing the Loop: From Behavioral
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-1/ba5ccbc8-15b5-44da-afc5-7b1148872c34.jsonl`
+- **Structured JSON:** [`b072f647d8af9e11c6fa.json`](../../sessions/b0/b072f647d8af9e11c6fa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T20:56:47.396Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T20:56:47.396Z",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Closing the Loop: From Behavioral Overreliance Detection to Adaptive Intervention in LLM Conversations\n\n## Description\nWe propose OverrelianceGuard, the first closed-loop system that bridges unobtrusively collected behavioral interaction signals to real-time adaptive interventions in free-form conversational LLM interactions—without requiring self-report interruptions or physiological sensors. A browser extension captures non-invasive interaction events in 30-second sliding windows and transforms them into a temporal grid representation: each window is discretized into 30 one-second bins, with 28 aggregated features per bin capturing action type distribution (over 12 categories), mouse dynamics (distance, velocity), scroll behavior (distance, direction), keypress statistics, copy-paste behavior (including post-paste edit indicators), idle duration, dwell context relative to LLM responses, and page focus. This (30 × 28) temporal grid—derived from but explicitly distinct from Liu et al.'s (CHI 2026) per-event 37-dimensional encoding (15-dim action type one-hot + 1-dim timestamp + 2-dim page type + 19-dim type-specific attributes)—feeds a lightweight multi-resolution 1D-CNN (~40K parameters, <5ms browser inference via ONNX Runtime Web) with three parallel temporal branches capturing short-burst (2s), medium-term (10s), and full-window (30s) behavioral dynamics. We cite PRISM's 97.3% accuracy on UCI-HAR as evidence of architectural efficiency at this parameter scale, not as a performance projection—UCI-HAR involves 6-axis accelerometer data with well-separated activity classes, whereas overreliance classification operates on noisier interaction features with subtler boundaries. The architecture choice is motivated by converging evidence that simple models on behavioral signals are insufficient—Adjust for Trust's Appendix D found F1 ≤ 0.5 with surface-level heuristics, 'Sensing What Surveys Miss' (CHI 2026) achieves only ~61% with linear regression on mouse+EDA—while richer models on multi-dimensional behavioral features show substantially better results: Campagna et al. (RA-L 2025) achieve 84% trust classification (AUC=0.90) from behavioral indicators in HRI, and Kaneko & Yamada (2025) reach 90% in cooperative tasks. A methodological contribution is the hybrid labeling strategy addressing temporal misalignment between Liu et al.'s outcome-based labels and streaming prediction: outcome propagation via Multiple Instance Learning, weak supervision from programmatic heuristics encoding the five identified behavioral patterns, sparse event-triggered metacognitive probes (2–3 per task vs. Adjust for Trust's 30 per-decision self-reports), and self-supervised next-action prediction. Critically, we address the weak supervision circularity risk—where labeling functions encode behavioral patterns from the same feature space the CNN processes—through a four-condition ablation: (i) weak-supervision-only, (ii) MIL+probes-only (circularity-free, as labels derive from task outcomes and self-report), (iii) MIL+probes+self-supervised, and (iv) full multi-signal training. Comparing conditions (iv) vs. (ii) isolates whether the weak supervision provides complementary signal or merely teaches the CNN its own hand-coded rules, with Integrated Gradients feature attribution analysis revealing whether the model discovers temporal patterns beyond those encoded in labeling functions. We frame streaming behavioral overreliance detection as the core hypothesis being tested: if classifier accuracy proves disappointing (e.g., 65–70%), the within-subjects intervention comparison, the labeling methodology, and the characterization of what behavioral signals can and cannot predict all constitute independently publishable contributions. We analyze training data sufficiency: Liu et al.'s 77-participant dataset yields ~26K–40K behavioral windows with our proposed windowing, supplemented by augmentation and a phased training strategy. When overreliance risk exceeds personalized thresholds, the system selects from tiered interventions: metacognitive prompts (Assumption-style CFFs), counter-explanations (per Adjust for Trust), and comprehension checkpoints. Following Raees & Papangelis's (2026) measurement framework distinguishing trust from appropriate reliance, we assess overreliance via both Traditional (acceptance rates) and Appropriateness-view (RAIR/RSR) metrics. A within-subjects study (N≈120) across four LLM-assisted tasks compares four conditions: no intervention, static cognitive forcing, self-report-adaptive (replicating Adjust for Trust), and behaviorally-triggered adaptive (OverrelianceGuard). This work fills the gap between behavioral characterization (Liu et al., CHI 2026), trust-adaptive intervention via self-report (Adjust for Trust, IUI 2026), adaptive explanation selection in structured tasks (Li et al., CHI 2025), and sensor-dependent adaptive support (Sensing What Surveys Miss, CHI 2026)—contributing (1) the first streaming behavioral overreliance classifier for conversational LLM settings with a principled hybrid labeling methodology and explicit circularity analysis, (2) a deployable browser-based closed-loop intervention system requiring neither self-report interruptions nor physiological sensors, (3) head-to-head empirical evidence comparing self-report-based vs. behavior-based adaptive intervention, and (4) a rigorous characterization of what behavioral signals can and cannot predict about overreliance, advancing the field regardless of detection accuracy.\n\n## Core Problem\nCan unobtrusively collected behavioral interaction signals (copy-paste patterns, scroll depth, verification dwell time, tab-switch frequency) drive a real-time streaming classifier that triggers adaptive interventions to reduce overreliance on LLM outputs—without requiring self-report interruptions or invasive physiological sensors?\n\n## Opportunity\nLiu et al. (CHI 2026, arXiv 2602.11567) identify five behavioral patterns distinguishing high- vs. low-overreliance users in LLM interactions but explicitly leave real-time detection and intervention as future work. Srinivasan & Thomason's 'Adjust for Trust' system (IUI 2026, arXiv 2502.13321) achieves up to 38% reduction in inappropriate reliance through trust-adaptive interventions, but requires self-reported trust ratings on an 11-point scale after every decision—an intrusive approach whose inadequacy the authors themselves confirm in Appendix D, where their attempts at behavioral trust estimation yielded only 0.25–0.51 correlation and F1 ≤ 0.5 using surface-level interaction heuristics. Li et al.'s 'From Text to Trust' (CHI 2025, arXiv 2502.11919) adaptively selects explanations via POMDP-based hidden state estimation, but operates only in structured tabular decision tasks using coarse binary (agree/disagree) feedback—not rich behavioral signals in free-form LLM conversations. Ailin Liu et al.'s 'Sensing What Surveys Miss' (CHI 2026, arXiv 2602.00880) build the closest architectural parallel—a closed-loop system using mouse dynamics and electrodermal activity (EDA) to trigger adaptive LLM-based interventions—but target cognitive load during online surveys (not overreliance in LLM conversations), require physiological sensors (EDA wristbands), and achieve only ~61% detection accuracy with simple linear regression classifiers and max-fusion of two unimodal models; crucially, the paper provides no ablation separating mouse-only from EDA contributions, leaving open the question of whether interaction signals alone—processed with richer temporal modeling than linear regression—can achieve adequate detection without physiological sensing. The evidence for behavioral trust prediction is mixed but increasingly positive: while Dechant et al. (2023) find mouse trajectories alone insufficient and Adjust for Trust's Appendix D reports F1 ≤ 0.5 with surface-level heuristics, Campagna et al. (RA-L 2025, arXiv 2601.19856) achieve 84% accuracy classifying trust from behavioral indicators in human-robot collaboration using ensemble classifiers, and Kaneko & Yamada (IEEE Access, 2025; arXiv 2407.01752) demonstrate 90% accuracy predicting trust dynamics via dynamic structural equation modeling in physical cooperative tasks—both suggesting that behavioral features CAN support useful trust prediction with appropriate modeling depth, even if the domain gap to conversational LLM settings makes these figures proof-of-principle rather than direct benchmarks. Raees & Papangelis ('From Trust to Appropriate Reliance,' arXiv 2604.23896, April 2026) further argue that trust measurements are conceptually distinct from appropriate reliance—the construct we actually target—and advocate for behavioral process metrics over subjective trust ratings, providing measurement-theoretic grounding for our approach. The bridge remains unbuilt: no system uses fine-grained, continuously captured interaction signals alone to detect overreliance and trigger personalized interventions in conversational LLM settings. This is now technically feasible because (1) Liu et al.'s behavioral characterization provides the validated signal vocabulary via per-event interaction encodings, (2) lightweight time series classifiers like PRISM achieve high efficiency with only ~40K parameters and sub-millisecond inference, enabling browser-embedded real-time classification without physiological hardware, and (3) the converging positive evidence from Campagna et al. and Kaneko & Yamada establishes that behavioral trust prediction is achievable with appropriate modeling depth—though whether this generalizes to conversational LLM interactions remains the core empirical hypothesis we test.\n\n## Related Work / Landscape\nLiu et al. (CHI 2026) provide the most comprehensive behavioral characterization of LLM overreliance, identifying five patterns—frequent copy-paste without editing, skipped initial task comprehension, rapid LLM-task alternation, coarse block-pasting vs. fine-grained editing, and hesitation-then-acceptance—via autoencoder clustering of per-event interaction encodings (each event represented as a 37-dimensional vector: 15-dim action type one-hot + 1-dim normalized timestamp + 2-dim page type + 19-dim type-specific attributes) from 77 participants across three tasks with injected misinformation. The 'Adjust for Trust' system (Srinivasan & Thomason, IUI 2026) demonstrates that adapting explanations based on trust level (supporting explanations when trust is low, counter-explanations when high, with enforced reading delays) yields up to 38% reduction in inappropriate reliance and 20% accuracy improvement; however, it relies on self-reported trust on an 11-point scale after every one of 30 decisions per session. Critically, Appendix D documents the authors' failed attempt at replacing self-report with behavioral estimation: simple heuristics (AIAcc5, CapabilityDiff, SmoothOutcomes, SmoothConfs) achieved only 0.25–0.51 correlation and F1 ≤ 0.5, concluding that 'surface-level interaction features' are inadequate for trust modeling. Li et al. ('From Text to Trust,' CHI 2025) use a POMDP framework to adaptively select LLM-generated analyses based on inferred user hidden states, significantly improving accuracy on tabular classification tasks—but their interaction paradigm is structured (sequential agree/disagree on feature-level explanations), their state estimation uses only binary response feedback, and they neither capture behavioral signals nor address free-form conversational LLM use. Ailin Liu et al.'s 'Sensing What Surveys Miss' (CHI 2026, arXiv 2602.00880) is the most architecturally analogous prior work: it builds a closed-loop system where mouse dynamics (vertical direction changes, hover time, hover count) and electrodermal activity (tonic EDA level, EDA peaks) feed personalized linear regression classifiers with rule-based threshold adaptation, triggering LLM-generated clarifications during online surveys. In a within-subjects study (N=32), their aligned-adaptive timing improved survey response accuracy by 21% and reduced false negatives from 50.9% to 22.9%. However, three key differences separate their work from ours: (a) they target cognitive load in knowledge-based survey items, not overreliance on LLM outputs in conversational interaction—fundamentally different constructs requiring different signal vocabularies; (b) they require physiological sensors (EDA wristbands), limiting scalability to any-browser deployment; and (c) their simple linear regression classifiers with max-fusion of two unimodal models achieve only ~61% detection accuracy, and they provide no ablation isolating the contribution of mouse dynamics alone vs. EDA alone—leaving open whether their mouse features would function without the physiological channel. Their finding that even combined mouse+EDA with simple models reaches only 61% accuracy actually reinforces our hypothesis that richer temporal signal processing (multi-resolution CNNs operating on the full behavioral feature space) is needed to compensate for the absence of physiological signals. The evidence landscape for behavioral trust/reliance prediction includes both negative and positive results. On the negative side: Dechant et al. (arXiv 2310.16632, 2023) find that mouse trajectory features alone 'might not explain sufficiently the variance to be used on their own'; Adjust for Trust's Appendix D shows F1 ≤ 0.5 with heuristic behavioral features. On the positive side: Campagna et al. (RA-L 2025, arXiv 2601.19856) achieve 84% trust classification accuracy (Voting Classifier, AUC=0.90, F1=0.84) from seven behavioral indicators—gaze direction, spatial displacement, speed synchronization, reaction time, predictability, and legibility—in a human-robot chemical mixing task (N=14), demonstrating that ensemble classifiers on multi-dimensional behavioral features substantially outperform single-signal approaches, albeit in a physical HRI domain with a small sample; Kaneko & Yamada (IEEE Access, 2025) achieve 90% accuracy predicting over/under-trust using dynamic structural equation modeling on interaction data in drone and driving simulators; and Gurney et al. (Persuasive Technologies, 2023; arXiv 2302.01854) show that behavioral predictors outperform self-report psychometric inventories for predicting AI compliance. This pattern—negative results with simple models on narrow feature sets, positive results with richer models on multi-dimensional behavioral features—is central to our technical hypothesis. Raees & Papangelis ('From Trust to Appropriate Reliance,' arXiv 2604.23896, April 2026) provide important measurement-theoretic context, arguing that trust and appropriate reliance are conceptually distinct constructs: trust reflects subjective perception while reliance concerns observable behavioral decisions. They identify three measurement views (Traditional: over/under-reliance rates; Appropriateness: RAIR/RSR; Dominance: AI influence direction) and recommend behavioral process metrics over subjective ratings—directly supporting our approach of measuring reliance behavior rather than trust attitudes. Sun et al. ('Eyes Can't Always Tell,' arXiv 2604.01741, 2026) demonstrate that eye-tracking-to-cognitive-state mappings shift across AI conditions, arguing for multi-signal, context-dependent approaches. Cognitive forcing functions have been studied extensively: Buçinca et al. (CSCW 2021) showed CFFs reduce overreliance but increase frustration; Ghosh et al. (arXiv 2601.18033, 2026) found Assumption-style CFFs most effective at reducing overreliance without increasing cognitive load. Ibrahim et al. (arXiv 2509.08010, 2025) consolidate measurement gaps and call for process-oriented mitigation. The 'From Calibration to Collaboration' position paper (arXiv 2506.07461, June 2025) argues that current UQ methods are misaligned with real user needs. Key limitation across all works: no system closes the loop from non-invasive behavioral detection to adaptive intervention in free-form conversational LLM interactions. Liu et al. characterize signals but build no real-time system; Adjust for Trust intervenes adaptively but requires intrusive every-decision self-report that their own behavioral estimation attempt failed to replace; From Text to Trust adapts but only in structured tasks with coarse feedback; Sensing What Surveys Miss closes the loop but requires physiological sensors and targets cognitive load in surveys with simple classifiers achieving only 61% accuracy; Campagna et al. predict trust behaviorally in HRI but build no intervention system for conversational AI; and Kaneko & Yamada predict trust in physical cooperative tasks but do not address conversational LLM settings.\n\n## Approach\nBuild OverrelianceGuard, a browser-extension-based closed-loop system with three components:\n\n(1) INSTRUMENTATION LAYER: A JavaScript layer that unobtrusively captures interaction events in 30-second sliding windows (5-second stride). FEATURE REPRESENTATION CLARIFICATION: Liu et al.'s original 37-dimensional encoding is a per-event representation—each discrete interaction event (click, scroll, keypress, etc.) is encoded as a 37-dimensional vector comprising a 15-dim action type one-hot, 1-dim normalized timestamp, 2-dim page type, and 19-dim type-specific attributes (e.g., mouse movement distance and duration, scroll distance and direction, keypress count). Their transformer autoencoder operates on variable-length sequences of these event vectors per segment. Our CNN requires fixed-size input per window, so we transform Liu et al.'s event sequences into a temporal grid representation: each 30-second window is discretized into T=30 one-second bins, and for each bin we compute K=28 aggregated features from all events occurring within that bin. Specifically, the 28 per-bin features are: (a) action type distribution—proportions over 12 action categories (mouse movement, click, scroll, keypress, copy, paste, highlight, delete, idle, tab switch, prompt input, element switch; 12 features); (b) mouse dynamics—total movement distance and mean velocity (2); (c) scroll dynamics—total distance and direction ratio (up/down; 2); (d) keypress statistics—count and mean inter-key interval (2); (e) copy-paste behavior—copy count, paste count, and post-paste edit indicator (3); (f) idle time—total idle duration within the bin (1); (g) dwell context—time since last LLM response (1); (h) page context—fraction of time on LLM page vs. task page (1); (i) text interaction—highlight text length and delete count (2). This yields a (30 × 28) input tensor per window, where the temporal dimension (30 timesteps) captures within-window behavioral dynamics that the multi-resolution CNN branches process at different scales. Features are z-score normalized per-user via an initial 5-minute calibration phase to account for individual baseline interaction styles.\n\n(2) STREAMING OVERRELIANCE RISK CLASSIFIER: A multi-resolution 1D-CNN inspired by the PRISM architecture (~40K parameters). Three parallel convolutional branches with symmetric FIR filters at different temporal resolutions—2s (kernel size 2, capturing short-burst behaviors like rapid copy-paste), 10s (kernel size 10, capturing medium-term patterns like comprehension scanning), and 30s (kernel size 30, capturing full-window dynamics like engagement trajectory)—operate on the (30 × 28) temporal grid input, feed into per-branch global average pooling, then concatenate into a 2-layer MLP classification head (128→2) outputting an overreliance risk score ∈ [0,1]. This architecture is chosen because: (a) the (30 × 28) input is a moderately-sized temporal grid (not high-dimensional sensor data where ViT/transformers excel), (b) PRISM achieves 97.3% on UCI-HAR with ~40K parameters—we cite this as evidence of architectural efficiency at this parameter scale and sub-millisecond inference capability, not as a performance projection for our task, since UCI-HAR uses 6-axis accelerometer/gyroscope data with 6 well-separated physical activity classes, whereas overreliance classification operates on noisier mouse/keyboard interaction features with subtler class boundaries; (c) 1D-CNNs run in <5ms via ONNX Runtime Web on commodity CPUs; and (d) the Adjust for Trust Appendix D failure with surface-level heuristics and Sensing What Surveys Miss's ~61% accuracy with linear regression on mouse+EDA both suggest that improvement comes from richer temporal feature processing (multi-resolution convolutions capturing dynamics at multiple scales), not larger models or physiological sensors—while Campagna et al.'s 84% accuracy with ensemble classifiers on multi-dimensional behavioral features in HRI confirms that richer modeling on behavioral features can substantially exceed simple-model baselines. We compare against MiniRocket (fixed kernels + linear head, near-zero learnable parameters) and BiLSTM (128 hidden units, ~200K parameters) baselines to isolate the contribution of the multi-resolution architecture.\n\nTRAINING DATA SUFFICIENCY ANALYSIS: Liu et al.'s dataset comprises 77 participants × 3 tasks = 231 sessions. With our proposed 30-second sliding windows at 5-second stride, assuming average task durations of 10–15 minutes (consistent with their protocol), each session yields ~115–175 windows, producing an estimated 26K–40K behavioral windows total. For a 40K-parameter model, this yields a sample-to-parameter ratio of 0.65–1.0:1, which is tight but viable: for comparison, PRISM achieves 97.3% on UCI-HAR with only 7,352 training samples and ~40K parameters (ratio ~0.18:1). Nevertheless, we address overfitting risks through five mitigation strategies: (a) standard time series data augmentation—Gaussian jittering (σ=0.05), window slicing (90% crops), and time warping—which have been shown to substantially improve 1D-CNN accuracy on small behavioral datasets; (b) model regularization via dropout (p=0.3), L2 weight decay (λ=1e-4), and early stopping on a held-out validation set; (c) attention entropy maximization in the MIL pooling layer to prevent attention collapse onto few instances; (d) the weak supervision labeling functions themselves provide soft probabilistic labels that act as implicit label smoothing, reducing overfitting to noisy hard labels; and (e) a phased data strategy leveraging both datasets—train and validate on Liu et al.'s 77-participant data, then fine-tune on a pilot cohort (first ~20 participants of the 120-participant study) and evaluate on the remaining ~100, ensuring the final evaluation is on held-out participants unseen during any training phase. We will report learning curves (accuracy vs. training set fraction) to empirically demonstrate whether ~30K windows are sufficient or whether the model is still data-hungry, and will release the trained model weights and augmentation pipeline for reproducibility.\n\nGROUND TRUTH LABELING STRATEGY: Liu et al.'s overreliance labels are outcome-based—a single per-task label assigned to all behavioral segments regardless of what happened in each specific window. Training a streaming classifier on these temporally misaligned labels would conflate overreliant and non-overreliant moments within the same session. We adopt a hybrid multi-signal labeling approach: (a) OUTCOME PROPAGATION via Multiple Instance Learning: for each accepted misinformation item, trace back to the behavioral window from first exposure through acceptance, treating the session as a 'bag' with the task-level overreliance label, and let an attention-based MIL pooling layer learn which sub-segments are most predictive; (b) WEAK SUPERVISION via programmatic labeling functions encoding Liu et al.'s five behavioral patterns as heuristic rules (e.g., 'copy-paste within 10s of LLM response without scrolling through response → OVERRELIANT'; 'reads task prompt >15s before first LLM query → NOT_OVERRELIANT'; 'pastes LLM content block without subsequent editing → OVERRELIANT'), reconciled via a Snorkel-style generative model into probabilistic training labels; (c) SPARSE METACOGNITIVE PROBES: at 2–3 event-triggered points per task (triggered by detected behavioral state transitions, not fixed intervals), prompt users briefly: 'How carefully are you evaluating the AI's response right now?' (5-point scale)—far less intrusive than Adjust for Trust's 30 every-decision ratings; (d) SELF-SUPERVISED REGULARIZATION: a next-action prediction auxiliary objective captures behavioral dynamics without requiring labels. The classifier is trained with a weighted multi-task loss combining all four signal types, with outcome labels serving as calibration rather than primary supervision.\n\nWEAK SUPERVISION CIRCULARITY ANALYSIS AND ABLATION: We explicitly address the risk that the CNN trained on weak supervision labels may learn to replicate the hand-coded labeling function rules rather than discover deeper temporal patterns—since the labeling functions encode behavioral patterns (e.g., copy-paste frequency, dwell time thresholds) derived from the same interaction features the CNN processes. While the Snorkel literature demonstrates that discriminative end models typically generalize beyond labeling functions (averaging 9.5-point accuracy improvements over the label model alone, as they learn subtle feature combinations and contextual patterns the heuristics miss), this generalization is not guaranteed and must be empirically verified. We design a four-condition ablation to isolate each labeling signal's contribution: (i) WS-ONLY: trained exclusively on weak supervision labels—establishes the upper bound on circularity risk, as the only supervisory signal comes from features the model also takes as input; (ii) MIL+PROBES ONLY: trained on outcome-propagated MIL labels and sparse metacognitive probe labels with NO weak supervision—these labels are derived from task outcomes and self-report respectively, providing supervision entirely independent of the input behavioral features, thereby serving as the circularity-free baseline; (iii) MIL+PROBES+SELF-SUPERVISED: adds the self-supervised next-action prediction objective to condition (ii)—tests whether temporal dynamics learning further improves outcome-based detection; (iv) FULL MULTI-SIGNAL: all four label sources combined. The critical diagnostic comparison is (iv) vs. (ii): if full training substantially outperforms MIL+probes-only training, the weak supervision provides complementary signal beyond what outcome labels alone capture; if (iv) ≈ (i) >> (ii), the model is primarily learning the hand-coded rules (confirming the circularity concern). Additionally, we conduct feature importance analysis using Integrated Gradients attribution on models from each condition, comparing the learned feature importance profiles against the features explicitly encoded in labeling functions. If the full model assigns substantial attribution to features NOT encoded in any labeling function (e.g., temporal velocity patterns, micro-hesitation dynamics, action transition probabilities), this provides positive evidence of generalization beyond the heuristic rules. We will report these ablation results as a primary finding, following the XPASC framework's principle that measuring generalization beyond labeling functions is essential for validating weakly-supervised classifiers.\n\nCONTRIBUTION ROBUSTNESS: WHAT IF DETECTION ACCURACY IS LOW? We explicitly frame streaming behavioral overreliance detection as the core empirical hypothesis being tested, not an assumed capability. The prior evidence is sobering: Adjust for Trust's Appendix D achieves F1 ≤ 0.5 with surface-level behavioral heuristics, Sensing What Surveys Miss reaches only ~61% with linear regression on mouse+EDA, and Dechant et al. find mouse features alone insufficient. Our hypothesis is that multi-resolution temporal processing on richer multi-dimensional behavioral features—following the positive trajectory shown by Campagna et al. (84% in HRI) and Kaneko & Yamada (90% in cooperative tasks)—can substantially improve on these baselines in the LLM conversation domain. However, there exists a realistic scenario where our classifier achieves only 65–70% accuracy—better than prior baselines but potentially insufficient for reliable real-time intervention. We explicitly plan for this contingency: (1) The within-subjects comparison of four intervention conditions (no intervention, static CFF, self-report-adaptive, behaviorally-triggered adaptive) constitutes a valuable empirical contribution REGARDLESS of detection accuracy—it provides the first head-to-head comparison of these paradigms in free-form LLM conversations, with the self-report-adaptive condition serving as an upper-bound benchmark for behavior-triggered approaches. Even a moderate-accuracy classifier may outperform static interventions by reducing alert fatigue and targeting interventions to riskier moments. (2) The hybrid labeling methodology (MIL + weak supervision + sparse probes + self-supervised regularization) is an independent methodological contribution applicable to any streaming behavioral classification task with outcome-level labels, publishable as a methods contribution for the temporal action localization community. (3) Characterizing WHAT behavioral signals can and cannot predict about overreliance—via the four-condition ablation, feature importance analysis, and learning curves—is itself an informative contribution that advances the field's understanding of the behavioral-detection frontier, directly addressing the open question left by Adjust for Trust's Appendix D. (4) The instrumentation layer and temporal grid feature engineering for LLM conversation interactions provides reusable infrastructure for future research. We will report detection accuracy honestly and frame negative or moderate results as informative findings about the boundaries of behavioral sensing for reliance calibration, following Raees & Papangelis's (2026) call for rigorous behavioral measurement of appropriate reliance.\n\n(3) TIERED ADAPTIVE INTERVENTION ENGINE: When the streaming risk score exceeds personalized thresholds (calibrated from the 5-minute baseline), the system selects from escalating interventions: (Tier 1, risk 0.5–0.7) a lightweight Assumption-style metacognitive prompt ('What might be wrong with this answer?') shown as a non-blocking tooltip; (Tier 2, risk 0.7–0.9) a counter-explanation surfacing potential errors in the LLM's response, modeled on Adjust for Trust's strategy, with a 10-second reading delay; (Tier 3, risk >0.9) a comprehension checkpoint requiring the user to identify one potential issue before proceeding. A cooldown mechanism (minimum 2 minutes between interventions) prevents alert fatigue.\n\nECOLOGICAL VALIDITY CONSIDERATIONS: We acknowledge that our evaluation paradigm—researcher-injected misinformation in controlled tasks—follows the standard methodology employed by both Liu et al. (CHI 2026) and Adjust for Trust (IUI 2026), but has inherent ecological validity limitations. Injected misinformation is typically more blatant, consistently placed, and fact-checkable compared to natural LLM hallucinations, which are subtler, context-dependent, and may involve plausible-sounding but unverifiable claims. As Ren et al. (arXiv 2510.10539) demonstrate with their AuthenHallu benchmark, hallucinations in authentic LLM-human interactions differ qualitatively from artificially constructed errors, occurring in 31.4% of real query-response pairs with highly variable subtlety. Our controlled design is necessary for establishing internal validity—it enables precise measurement of overreliance rates and intervention effects with known ground truth—but a classifier trained solely on controlled-misinformation tasks may not fully generalize to naturalistic LLM use where the 'correct' level of reliance is ambiguous. We address this in two ways: (1) Liu et al.'s misinformation includes varied subtlety levels (hallucinations, outdated knowledge, prompt injection attacks) that partially approximate natural error diversity, and (2) we plan a follow-up naturalistic deployment study where participants use the system during their regular LLM interactions over 2 weeks, with overreliance assessed via retrospective expert review of interaction logs—a design explicitly motivated by ecological validity concerns.\n\nEVALUATION: A within-subjects study (N≈120) across four LLM-assisted decision tasks with injected misinformation (quiz/ranking, article summarization, trip planning, code review), counterbalanced via Latin square across four conditions: (a) no intervention (control), (b) static cognitive forcing (always-on Assumption-CFF per Ghosh et al.), (c) self-report-adaptive (replicating Adjust for Trust's 11-point scale + counter-explanations), and (d) behaviorally-triggered adaptive (OverrelianceGuard). Each participant completes four tasks (~75 min total), one per condition. Primary metrics: overreliance reduction rate (misinformation acceptance, measured via both Traditional over-reliance rate and Appropriateness-view RAIR/RSR metrics per Raees & Papangelis's framework), task accuracy, detection latency (time from overreliance onset to intervention trigger), intervention precision/recall (validated against outcome and metacognitive probe labels), user satisfaction (NASA-TLX + custom intrusiveness scale), and comparative survey interruption burden between conditions (c) and (d). Secondary analysis: per-user classifier calibration curves, learning curves showing accuracy vs. training data fraction, four-condition weak supervision ablation with feature importance analysis, and qualitative analysis of intervention-triggered behavioral shifts.\n\n## Inspiration\nUntried combination: rich behavioral interaction signals from Liu et al. (CHI 2026) + trust-adaptive intervention strategies from 'Adjust for Trust' (IUI 2026), without the physiological sensor requirement of 'Sensing What Surveys Miss' (CHI 2026). Gap validation: Adjust for Trust's Appendix D documents that surface-level behavioral features fail to predict trust (F1 ≤ 0.5), and Sensing What Surveys Miss achieves only ~61% accuracy even with combined mouse+EDA using linear regression—both motivating richer multi-resolution temporal processing via deep learning. Positive evidence from Campagna et al. (84% trust classification in HRI) and Kaneko & Yamada (90% in cooperative tasks) establishes that the failure is in modeling depth, not in behavioral signals per se—justifying our investment in multi-resolution temporal architectures. Measurement-theoretic insight from Raees & Papangelis (2026): appropriate reliance is behaviorally observable and conceptually distinct from trust, grounding our choice to detect reliance behavior rather than infer trust attitudes. Cross-paradigm transfer: extending Li et al.'s adaptive explanation selection principle from structured tabular tasks with coarse feedback to free-form conversational LLM interactions with continuous behavioral sensing. Architecture insight: lightweight time series classifiers (PRISM, ~40K params) demonstrate that efficient sub-millisecond browser-embedded inference is feasible at this parameter scale, making sensor-free any-browser deployment practical where prior approaches (Sensing What Surveys Miss) assumed physiological hardware. Labeling methodology: adapting the hybrid weak-supervision + outcome-propagation approach from fraud detection and temporal action localization, informed by TimeMIL's time-aware MIL pooling for temporal sequence data, to solve the streaming-vs-outcome temporal misalignment problem that Liu et al.'s post-hoc analysis did not address—with explicit ablation design to verify the classifier generalizes beyond hand-coded labeling function rules, informed by the XPASC framework for measuring weak supervision generalization.\n\n## Key References\n- Liu, Zhou, Shen, Liu, Wu & Chen. Behavioral Indicators of Overreliance During Interaction with Conversational Language Models (CHI 2026, arXiv 2602.11567)\n- Srinivasan & Thomason. Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance (IUI 2026, arXiv 2502.13321)\n- Li, Zhu, Lu, Xiao & Yin. From Text to Trust: Empowering AI-assisted Decision Making with Adaptive LLM-powered Analysis (CHI 2025, arXiv 2502.11919)\n- Ailin Liu, Karoui, Draxler, Kreuter & Chiossi. Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling (CHI 2026, arXiv 2602.00880)\n- Kaneko & Yamada. Predicting Trust Dynamics with Dynamic SEM in Human-AI Cooperation (IEEE Access 2025, arXiv 2407.01752)\n- Campagna, Lagomarsino, Lorenzini, Chrysostomou, Rehm & Ajoudani. Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability (RA-L 2025, arXiv 2601.19856)\n- Raees & Papangelis. From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making (arXiv 2604.23896, April 2026)\n- Gurney, Pynadath & Wang. Comparing Psychometric and Behavioral Predictors of Compliance During Human-AI Interactions (Persuasive Technologies 2023, arXiv 2302.01854)\n- Sun et al. Eyes Can't Always Tell: Fusing Eye Tracking and User Priors for User Modeling under AI Advice Conditions (arXiv 2604.01741, 2026)\n- Ibrahim et al. Measuring and Mitigating Overreliance Is Necessary for Building Human-Compatible AI (arXiv 2509.08010, 2025)\n- Buçinca, Malaya & Gajos. To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted Decision-making (CSCW 2021)\n- Ghosh et al. An Experimental Comparison of Cognitive Forcing Functions for Execution Plans in AI-Assisted Writing (arXiv 2601.18033, 2026)\n- PRISM: Multi-Resolution Time Series Classification via Symmetric Dilated Convolutions (Neurocomputing 2026, arXiv 2508.04503)\n- From Calibration to Collaboration: LLM Uncertainty Quantification Should Be More Human-Centered (arXiv 2506.07461, June 2025)\n- de Jong et al. Cognitive Forcing for Better Decision-Making: Reducing Overreliance on AI Systems Through Partial Explanations (CSCW 2025)\n- Ren, Gruhlke & Lauscher. Detecting Hallucinations in Authentic LLM-Human Interactions (arXiv 2510.10539, 2025)\n- Dechant, Shukla & Bhatt. Mice, Masks, and Monotones: On the Reliability of Mouse Trajectories as Indicators of Trust (arXiv 2310.16632, 2023)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '80', 'timeline': '7-9 months (2 months system dev + labeling pipeline, 1 month IRB + pilot, 2-3 months main study with 120 participants, 2-3 months analysis and writing)', 'estimated_gpu_cost': '$120 (A100 at ~$1.50/hr spot pricing; model is only ~40K params so training is fast; GPU time dominated by hyperparameter search, data augmentation pipeline, Snorkel label model training, and 4-condition ablation)'}\n- **human_in_loop**: {'gpu_hours': '60', 'timeline': '5-7 months (Claude accelerates extension code, labeling function design, ONNX export pipeline, and statistical analysis)', 'claude_api_cost': '$250 (Sonnet 4.6 for code generation, weak supervision labeling function refinement, intervention prompt engineering, and analysis scripts; ~80M tokens)', 'estimated_gpu_cost': '$90 (A100 at ~$1.50/hr spot pricing)'}\n- **auto_research**: {'gpu_hours': '50', 'timeline': '4-6 months (automated architecture search across CNN/MiniRocket/LSTM variants, labeling function optimization, and ablation analysis; human study remains irreducible)', 'claude_api_cost': '$500 (Sonnet 4.6 for automated pipeline: architecture comparison, labeling function generation and evaluation, intervention prompt tuning via batch API, paper drafting; ~160M tokens)', 'estimated_gpu_cost': '$75 (A100 at ~$1.50/hr spot pricing)', 'speed_bottleneck': 'IRB approval (4-8 weeks) and sequential participant recruitment for within-subjects study are irreducible human-in-the-loop requirements that cannot be parallelized by automation'}\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T20:56:47.401Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T20:56:47.401Z",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T20:56:47.414Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Closing the Loop: From Behavioral Overreliance Detection to Adaptive Intervention in LLM Conversations
+
+## Description
+We propose OverrelianceGuard, the first closed-loop system that bridges unobtrusively collected behavioral interaction signals to real-time adaptive interventions in free-form conversational LLM interactions—without requiring self-report interruptions or physiological sensors. A browser extension captures non-invasive interaction events in 30-second sliding windows and transforms them into a temporal grid representation: each window is discretized into 30 one-second bins, with 28 aggregated features per bin capturing action type distribution (over 12 categories), mouse dynamics (distance, velocity), scroll behavior (distance, direction), keypress statistics, copy-paste behavior (including post-paste edit indicators), idle duration, dwell context relative to LLM responses, and page focus. This (30 × 28) temporal grid—derived from but explicitly distinct from Liu et al.'s (CHI 2026) per-event 37-dimensional encoding (15-dim action type one-hot + 1-dim timestamp + 2-dim page type + 19-dim type-specific attributes)—feeds a lightweight multi-resolution 1D-CNN (~40K parameters, <5ms browser inference via ONNX Runtime Web) with three parallel temporal branches capturing short-burst (2s), medium-term (10s), and full-window (30s) behavioral dynamics. We cite PRISM's 97.3% accuracy on UCI-HAR as evidence of architectural efficiency at this parameter scale, not as a performance projection—UCI-HAR involves 6-axis accelerometer data with well-separated activity classes, whereas overreliance classification operates on noisier interaction features with subtler boundaries. The architecture choice is motivated by converging evidence that simple models on behavioral signals are insufficient—Adjust for Trust's Appendix D found F1 ≤ 0.5 with surface-level heuristics, 'Sensing What Surveys Miss' (CHI 2026) achieves only ~61% with linear regression on mouse+EDA—while richer models on multi-dimensional behavioral features show substantially better results: Campagna et al. (RA-L 2025) achieve 84% trust classification (AUC=0.90) from behavioral indicators in HRI, and Kaneko & Yamada (2025) reach 90% in cooperative tasks. A methodological contribution is the hybrid labeling strategy addressing temporal misalignment between Liu et al.'s outcome-based labels and streaming prediction: outcome propagation via Multiple Instance Learning, weak supervision from programmatic heuristics encoding the five identified behavioral patterns, sparse event-triggered metacognitive probes (2–3 per task vs. Adjust for Trust's 30 per-decision self-reports), and self-supervised next-action prediction. Critically, we address the weak supervision circularity risk—where labeling functions encode behavioral patterns from the same feature space the CNN processes—through a four-condition ablation: (i) weak-supervision-only, (ii) MIL+probes-only (circularity-free, as labels derive from task outcomes and self-report), (iii) MIL+probes+self-supervised, and (iv) full multi-signal training. Comparing conditions (iv) vs. (ii) isolates whether the weak supervision provides complementary signal or merely teaches the CNN its own hand-coded rules, with Integrated Gradients feature attribution analysis revealing whether the model discovers temporal patterns beyond those encoded in labeling functions. We frame streaming behavioral overreliance detection as the core hypothesis being tested: if classifier accuracy proves disappointing (e.g., 65–70%), the within-subjects intervention comparison, the labeling methodology, and the characterization of what behavioral signals can and cannot predict all constitute independently publishable contributions. We analyze training data sufficiency: Liu et al.'s 77-participant dataset yields ~26K–40K behavioral windows with our proposed windowing, supplemented by augmentation and a phased training strategy. When overreliance risk exceeds personalized thresholds, the system selects from tiered interventions: metacognitive prompts (Assumption-style CFFs), counter-explanations (per Adjust for Trust), and comprehension checkpoints. Following Raees & Papangelis's (2026) measurement framework distinguishing trust from appropriate reliance, we assess overreliance via both Traditional (acceptance rates) and Appropriateness-view (RAIR/RSR) metrics. A within-subjects study (N≈120) across four LLM-assisted tasks compares four conditions: no intervention, static cognitive forcing, self-report-adaptive (replicating Adjust for Trust), and behaviorally-triggered adaptive (OverrelianceGuard). This work fills the gap between behavioral characterization (Liu et al., CHI 2026), trust-adaptive intervention via self-report (Adjust for Trust, IUI 2026), adaptive explanation selection in structured tasks (Li et al., CHI 2025), and sensor-dependent adaptive support (Sensing What Surveys Miss, CHI 2026)—contributing (1) the first streaming behavioral overreliance classifier for conversational LLM settings with a principled hybrid labeling methodology and explicit circularity analysis, (2) a deployable browser-based closed-loop intervention system requiring neither self-report interruptions nor physiological sensors, (3) head-to-head empirical evidence comparing self-report-based vs. behavior-based adaptive intervention, and (4) a rigorous characterization of what behavioral signals can and cannot predict about overreliance, advancing the field regardless of detection accuracy.
+
+## Core Problem
+Can unobtrusively collected behavioral interaction signals (copy-paste patterns, scroll depth, verification dwell time, tab-switch frequency) drive a real-time streaming classifier that triggers adaptive interventions to reduce overreliance on LLM outputs—without requiring self-report interruptions or invasive physiological sensors?
+
+## Opportunity
+Liu et al. (CHI 2026, arXiv 2602.11567) identify five behavioral patterns distinguishing high- vs. low-overreliance users in LLM interactions but explicitly leave real-time detection and intervention as future work. Srinivasan & Thomason's 'Adjust for Trust' system (IUI 2026, arXiv 2502.13321) achieves up to 38% reduction in inappropriate reliance through trust-adaptive interventions, but requires self-reported trust ratings on an 11-point scale after every decision—an intrusive approach whose inadequacy the authors themselves confirm in Appendix D, where their attempts at behavioral trust estimation yielded only 0.25–0.51 correlation and F1 ≤ 0.5 using surface-level interaction heuristics. Li et al.'s 'From Text to Trust' (CHI 2025, arXiv 2502.11919) adaptively selects explanations via POMDP-based hidden state estimation, but operates only in structured tabular decision tasks using coarse binary (agree/disagree) feedback—not rich behavioral signals in free-form LLM conversations. Ailin Liu et al.'s 'Sensing What Surveys Miss' (CHI 2026, arXiv 2602.00880) build the closest architectural parallel—a closed-loop system using mouse dynamics and electrodermal activity (EDA) to trigger adaptive LLM-based interventions—but target cognitive load during online surveys (not overreliance in LLM conversations), require physiological sensors (EDA wristbands), and achieve only ~61% detection accuracy with simple linear regression classifiers and max-fusion of two unimodal models; crucially, the paper provides no ablation separating mouse-only from EDA contributions, leaving open the question of whether interaction signals alone—processed with richer temporal modeling than linear regression—can achieve adequate detection without physiological sensing. The evidence for behavioral trust prediction is mixed but increasingly positive: while Dechant et al. (2023) find mouse trajectories alone insufficient and Adjust for Trust's Appendix D reports F1 ≤ 0.5 with surface-level heuristics, Campagna et al. (RA-L 2025, arXiv 2601.19856) achieve 84% accuracy classifying trust from behavioral indicators in human-robot collaboration using ensemble classifiers, and Kaneko & Yamada (IEEE Access, 2025; arXiv 2407.01752) demonstrate 90% accuracy predicting trust dynamics via dynamic structural equation modeling in physical cooperative tasks—both suggesting that behavioral features CAN support useful trust prediction with appropriate modeling depth, even if the domain gap to conversational LLM settings makes these figures proof-of-principle rather than direct benchmarks. Raees & Papangelis ('From Trust to Appropriate Reliance,' arXiv 2604.23896, April 2026) further argue that trust measurements are conceptually distinct from appropriate reliance—the construct we actually target—and advocate for behavioral process metrics over subjective trust ratings, providing measurement-theoretic grounding for our approach. The bridge remains unbuilt: no system uses fine-grained, continuously captured interaction signals alone to detect overreliance and trigger personalized interventions in conversational LLM settings. This is now technically feasible because (1) Liu et al.'s behavioral characterization provides the validated signal vocabulary via per-event interaction encodings, (2) lightweight time series classifiers like PRISM achieve high efficiency with only ~40K parameters and sub-millisecond inference, enabling browser-embedded real-time classification without physiological hardware, and (3) the converging positive evidence from Campagna et al. and Kaneko & Yamada establishes that behavioral trust prediction is achievable with appropriate modeling depth—though whether this generalizes to conversational LLM interactions remains the core empirical hypothesis we test.
+
+## Related Work / Landscape
+Liu et al. (CHI 2026) provide the most comprehensive behavioral characterization of LLM overreliance, identifying five patterns—frequent copy-paste without editing, skipped initial task comprehension, rapid LLM-task alternation, coarse block-pasting vs. fine-grained editing, and hesitation-then-acceptance—via autoencoder clustering of per-event interaction encodings (each event represented as a 37-dimensional vector: 15-dim action type one-hot + 1-dim normalized timestamp + 2-dim page type + 19-dim type-specific attributes) from 77 participants across three tasks with injected misinformation. The 'Adjust for Trust' system (Srinivasan & Thomason, IUI 2026) demonstrates that adapting explanations based on trust level (supporting explanations when trust is low, counter-explanations when high, with enforced reading delays) yields up to 38% reduction in inappropriate reliance and 20% accuracy improvement; however, it relies on self-reported trust on an 11-point scale after every one of 30 decisions per session. Critically, Appendix D documents the authors' failed attempt at replacing self-report with behavioral estimation: simple heuristics (AIAcc5, CapabilityDiff, SmoothOutcomes, SmoothConfs) achieved only 0.25–0.51 correlation and F1 ≤ 0.5, concluding that 'surface-level interaction features' are inadequate for trust modeling. Li et al. ('From Text to Trust,' CHI 2025) use a POMDP framework to adaptively select LLM-generated analyses based on inferred user hidden states, significantly improving accuracy on tabular classification tasks—but their interaction paradigm is structured (sequential agree/disagree on feature-level explanations), their state estimation uses only binary response feedback, and they neither capture behavioral signals nor address free-form conversational LLM use. Ailin Liu et al.'s 'Sensing What Surveys Miss' (CHI 2026, arXiv 2602.00880) is the most architecturally analogous prior work: it builds a closed-loop system where mouse dynamics (vertical direction changes, hover time, hover count) and electrodermal activity (tonic EDA level, EDA peaks) feed personalized linear regression classifiers with rule-based threshold adaptation, triggering LLM-generated clarifications during online surveys. In a within-subjects study (N=32), their aligned-adaptive timing improved survey response accuracy by 21% and reduced false negatives from 50.9% to 22.9%. However, three key differences separate their work from ours: (a) they target cognitive load in knowledge-based survey items, not overreliance on LLM outputs in conversational interaction—fundamentally different constructs requiring different signal vocabularies; (b) they require physiological sensors (EDA wristbands), limiting scalability to any-browser deployment; and (c) their simple linear regression classifiers with max-fusion of two unimodal models achieve only ~61% detection accuracy, and they provide no ablation isolating the contribution of mouse dynamics alone vs. EDA alone—leaving open whether their mouse features would function without the physiological channel. Their finding that even combined mouse+EDA with simple models reaches only 61% accuracy actually reinforces our hypothesis that richer temporal signal processing (multi-resolution CNNs operating on the full behavioral feature space) is needed to compensate for the absence of physiological signals. The evidence landscape for behavioral trust/reliance prediction includes both negative and positive results. On the negative side: Dechant et al. (arXiv 2310.16632, 2023) find that mouse trajectory features alone 'might not explain sufficiently the variance to be used on their own'; Adjust for Trust's Appendix D shows F1 ≤ 0.5 with heuristic behavioral features. On the positive side: Campagna et al. (RA-L 2025, arXiv 2601.19856) achieve 84% trust classification accuracy (Voting Classifier, AUC=0.90, F1=0.84) from seven behavioral indicators—gaze direction, spatial displacement, speed synchronization, reaction time, predictability, and legibility—in a human-robot chemical mixing task (N=14), demonstrating that ensemble classifiers on multi-dimensional behavioral features substantially outperform single-signal approaches, albeit in a physical HRI domain with a small sample; Kaneko & Yamada (IEEE Access, 2025) achieve 90% accuracy predicting over/under-trust using dynamic structural equation modeling on interaction data in drone and driving simulators; and Gurney et al. (Persuasive Technologies, 2023; arXiv 2302.01854) show that behavioral predictors outperform self-report psychometric inventories for predicting AI compliance. This pattern—negative results with simple models on narrow feature sets, positive results with richer models on multi-dimensional behavioral features—is central to our technical hypothesis. Raees & Papangelis ('From Trust to Appropriate Reliance,' arXiv 2604.23896, April 2026) provide important measurement-theoretic context, arguing that trust and appropriate reliance are conceptually distinct constructs: trust reflects subjective perception while reliance concerns observable behavioral decisions. They identify three measurement views (Traditional: over/under-reliance rates; Appropriateness: RAIR/RSR; Dominance: AI influence direction) and recommend behavioral process metrics over subjective ratings—directly supporting our approach of measuring reliance behavior rather than trust attitudes. Sun et al. ('Eyes Can't Always Tell,' arXiv 2604.01741, 2026) demonstrate that eye-tracking-to-cognitive-state mappings shift across AI conditions, arguing for multi-signal, context-dependent approaches. Cognitive forcing functions have been studied extensively: Buçinca et al. (CSCW 2021) showed CFFs reduce overreliance but increase frustration; Ghosh et al. (arXiv 2601.18033, 2026) found Assumption-style CFFs most effective at reducing overreliance without increasing cognitive load. Ibrahim et al. (arXiv 2509.08010, 2025) consolidate measurement gaps and call for process-oriented mitigation. The 'From Calibration to Collaboration' position paper (arXiv 2506.07461, June 2025) argues that current UQ methods are misaligned with real user needs. Key limitation across all works: no system closes the loop from non-invasive behavioral detection to adaptive intervention in free-form conversational LLM interactions. Liu et al. characterize signals but build no real-time system; Adjust for Trust intervenes adaptively but requires intrusive every-decision self-report that their own behavioral estimation attempt failed to replace; From Text to Trust adapts but only in structured tasks with coarse feedback; Sensing What Surveys Miss closes the loop but requires physiological sensors and targets cognitive load in surveys with simple classifiers achieving only 61% accuracy; Campagna et al. predict trust behaviorally in HRI but build no intervention system for conversational AI; and Kaneko & Yamada predict trust in physical cooperative tasks but do not address conversational LLM settings.
+
+## Approach
+Build OverrelianceGuard, a browser-extension-based closed-loop system with three components:
+
+(1) INSTRUMENTATION LAYER: A JavaScript layer that unobtrusively captures interaction events in 30-second sliding windows (5-second stride). FEATURE REPRESENTATION CLARIFICATION: Liu et al.'s original 37-dimensional encoding is a per-event representation—each discrete interaction event (click, scroll, keypress, etc.) is encoded as a 37-dimensional vector comprising a 15-dim action type one-hot, 1-dim normalized timestamp, 2-dim page type, and 19-dim type-specific attributes (e.g., mouse movement distance and duration, scroll distance and direction, keypress count). Their transformer autoencoder operates on variable-length sequences of these event vectors per segment. Our CNN requires fixed-size input per window, so we transform Liu et al.'s event sequences into a temporal grid representation: each 30-second window is discretized into T=30 one-second bins, and for each bin we compute K=28 aggregated features from all events occurring within that bin. Specifically, the 28 per-bin features are: (a) action type distribution—proportions over 12 action categories (mouse movement, click, scroll, keypress, copy, paste, highlight, delete, idle, tab switch, prompt input, element switch; 12 features); (b) mouse dynamics—total movement distance and mean velocity (2); (c) scroll dynamics—total distance and direction ratio (up/down; 2); (d) keypress statistics—count and mean inter-key interval (2); (e) copy-paste behavior—copy count, paste count, and post-paste edit indicator (3); (f) idle time—total idle duration within the bin (1); (g) dwell context—time since last LLM response (1); (h) page context—fraction of time on LLM page vs. task page (1); (i) text interaction—highlight text length and delete count (2). This yields a (30 × 28) input tensor per window, where the temporal dimension (30 timesteps) captures within-window behavioral dynamics that the multi-resolution CNN branches process at different scales. Features are z-score normalized per-user via an initial 5-minute calibration phase to account for individual baseline interaction styles.
+
+(2) STREAMING OVERRELIANCE RISK CLASSIFIER: A multi-resolution 1D-CNN inspired by the PRISM architecture (~40K parameters). Three parallel convolutional branches with symmetric FIR filters at different temporal resolutions—2s (kernel size 2, capturing short-burst behaviors like rapid copy-paste), 10s (kernel size 10, capturing medium-term patterns like comprehension scanning), and 30s (kernel size 30, capturing full-window dynamics like engagement trajectory)—operate on the (30 × 28) temporal grid input, feed into per-branch global average pooling, then concatenate into a 2-layer MLP classification head (128→2) outputting an overreliance risk score ∈ [0,1]. This architecture is chosen because: (a) the (30 × 28) input is a moderately-sized temporal grid (not high-dimensional sensor data where ViT/transformers excel), (b) PRISM achieves 97.3% on UCI-HAR with ~40K parameters—we cite this as evidence of architectural efficiency at this parameter scale and sub-millisecond inference capability, not as a performance projection for our task, since UCI-HAR uses 6-axis accelerometer/gyroscope data with 6 well-separated physical activity classes, whereas overreliance classification operates on noisier mouse/keyboard interaction features with subtler class boundaries; (c) 1D-CNNs run in <5ms via ONNX Runtime Web on commodity CPUs; and (d) the Adjust for Trust Appendix D failure with surface-level heuristics and Sensing What Surveys Miss's ~61% accuracy with linear regression on mouse+EDA both suggest that improvement comes from richer temporal feature processing (multi-resolution convolutions capturing dynamics at multiple scales), not larger models or physiological sensors—while Campagna et al.'s 84% accuracy with ensemble classifiers on multi-dimensional behavioral features in HRI confirms that richer modeling on behavioral features can substantially exceed simple-model baselines. We compare against MiniRocket (fixed kernels + linear head, near-zero learnable parameters) and BiLSTM (128 hidden units, ~200K parameters) baselines to isolate the contribution of the multi-resolution architecture.
+
+TRAINING DATA SUFFICIENCY ANALYSIS: Liu et al.'s dataset comprises 77 participants × 3 tasks = 231 sessions. With our proposed 30-second sliding windows at 5-second stride, assuming average task durations of 10–15 minutes (consistent with their protocol), each session yields ~115–175 windows, producing an estimated 26K–40K behavioral windows total. For a 40K-parameter model, this yields a sample-to-parameter ratio of 0.65–1.0:1, which is tight but viable: for comparison, PRISM achieves 97.3% on UCI-HAR with only 7,352 training samples and ~40K parameters (ratio ~0.18:1). Nevertheless, we address overfitting risks through five mitigation strategies: (a) standard time series data augmentation—Gaussian jittering (σ=0.05), window slicing (90% crops), and time warping—which have been shown to substantially improve 1D-CNN accuracy on small behavioral datasets; (b) model regularization via dropout (p=0.3), L2 weight decay (λ=1e-4), and early stopping on a held-out validation set; (c) attention entropy maximization in the MIL pooling layer to prevent attention collapse onto few instances; (d) the weak supervision labeling functions themselves provide soft probabilistic labels that act as implicit label smoothing, reducing overfitting to noisy hard labels; and (e) a phased data strategy leveraging both datasets—train and validate on Liu et al.'s 77-participant data, then fine-tune on a pilot cohort (first ~20 participants of the 120-participant study) and evaluate on the remaining ~100, ensuring the final evaluation is on held-out participants unseen during any training phase. We will report learning curves (accuracy vs. training set fraction) to empirically demonstrate whether ~30K windows are sufficient or whether the model is still data-hungry, and will release the trained model weights and augmentation pipeline for reproducibility.
+
+GROUND TRUTH LABELING STRATEGY: Liu et al.'s overreliance labels are outcome-based—a single per-task label assigned to all behavioral segments regardless of what happened in each specific window. Training a streaming classifier on these temporally misaligned labels would conflate overreliant and non-overreliant moments within the same session. We adopt a hybrid multi-signal labeling approach: (a) OUTCOME PROPAGATION via Multiple Instance Learning: for each accepted misinformation item, trace back to the behavioral window from first exposure through acceptance, treating the session as a 'bag' with the task-level overreliance label, and let an attention-based MIL pooling layer learn which sub-segments are most predictive; (b) WEAK SUPERVISION via programmatic labeling functions encoding Liu et al.'s five behavioral patterns as heuristic rules (e.g., 'copy-paste within 10s of LLM response without scrolling through response → OVERRELIANT'; 'reads task prompt >15s before first LLM query → NOT_OVERRELIANT'; 'pastes LLM content block without subsequent editing → OVERRELIANT'), reconciled via a Snorkel-style generative model into probabilistic training labels; (c) SPARSE METACOGNITIVE PROBES: at 2–3 event-triggered points per task (triggered by detected behavioral state transitions, not fixed intervals), prompt users briefly: 'How carefully are you evaluating the AI's response right now?' (5-point scale)—far less intrusive than Adjust for Trust's 30 every-decision ratings; (d) SELF-SUPERVISED REGULARIZATION: a next-action prediction auxiliary objective captures behavioral dynamics without requiring labels. The classifier is trained with a weighted multi-task loss combining all four signal types, with outcome labels serving as calibration rather than primary supervision.
+
+WEAK SUPERVISION CIRCULARITY ANALYSIS AND ABLATION: We explicitly address the risk that the CNN trained on weak supervision labels may learn to replicate the hand-coded labeling function rules rather than discover deeper temporal patterns—since the labeling functions encode behavioral patterns (e.g., copy-paste frequency, dwell time thresholds) derived from the same interaction features the CNN processes. While the Snorkel literature demonstrates that discriminative end models typically generalize beyond labeling functions (averaging 9.5-point accuracy improvements over the label model alone, as they learn subtle feature combinations and contextual patterns the heuristics miss), this generalization is not guaranteed and must be empirically verified. We design a four-condition ablation to isolate each labeling signal's contribution: (i) WS-ONLY: trained exclusively on weak supervision labels—establishes the upper bound on circularity risk, as the only supervisory signal comes from features the model also takes as input; (ii) MIL+PROBES ONLY: trained on outcome-propagated MIL labels and sparse metacognitive probe labels with NO weak supervision—these labels are derived from task outcomes and self-report respectively, providing supervision entirely independent of the input behavioral features, thereby serving as the circularity-free baseline; (iii) MIL+PROBES+SELF-SUPERVISED: adds the self-supervised next-action prediction objective to condition (ii)—tests whether temporal dynamics learning further improves outcome-based detection; (iv) FULL MULTI-SIGNAL: all four label sources combined. The critical diagnostic comparison is (iv) vs. (ii): if full training substantially outperforms MIL+probes-only training, the weak supervision provides complementary signal beyond what outcome labels alone capture; if (iv) ≈ (i) >> (ii), the model is primarily learning the hand-coded rules (confirming the circularity concern). Additionally, we conduct feature importance analysis using Integrated Gradients attribution on models from each condition, comparing the learned feature importance profiles against the features explicitly encoded in labeling functions. If the full model assigns substantial attribution to features NOT encoded in any labeling function (e.g., temporal velocity patterns, micro-hesitation dynamics, action transition probabilities), this provides positive evidence of generalization beyond the heuristic rules. We will report these ablation results as a primary finding, following the XPASC framework's principle that measuring generalization beyond labeling functions is essential for validating weakly-supervised classifiers.
+
+CONTRIBUTION ROBUSTNESS: WHAT IF DETECTION ACCURACY IS LOW? We explicitly frame streaming behavioral overreliance detection as the core empirical hypothesis being tested, not an assumed capability. The prior evidence is sobering: Adjust for Trust's Appendix D achieves F1 ≤ 0.5 with surface-level behavioral heuristics, Sensing What Surveys Miss reaches only ~61% with linear regression on mouse+EDA, and Dechant et al. find mouse features alone insufficient. Our hypothesis is that multi-resolution temporal processing on richer multi-dimensional behavioral features—following the positive trajectory shown by Campagna et al. (84% in HRI) and Kaneko & Yamada (90% in cooperative tasks)—can substantially improve on these baselines in the LLM conversation domain. However, there exists a realistic scenario where our classifier achieves only 65–70% accuracy—better than prior baselines but potentially insufficient for reliable real-time intervention. We explicitly plan for this contingency: (1) The within-subjects comparison of four intervention conditions (no intervention, static CFF, self-report-adaptive, behaviorally-triggered adaptive) constitutes a valuable empirical contribution REGARDLESS of detection accuracy—it provides the first head-to-head comparison of these paradigms in free-form LLM conversations, with the self-report-adaptive condition serving as an upper-bound benchmark for behavior-triggered approaches. Even a moderate-accuracy classifier may outperform static interventions by reducing alert fatigue and targeting interventions to riskier moments. (2) The hybrid labeling methodology (MIL + weak supervision + sparse probes + self-supervised regularization) is an independent methodological contribution applicable to any streaming behavioral classification task with outcome-level labels, publishable as a methods contribution for the temporal action localization community. (3) Characterizing WHAT behavioral signals can and cannot predict about overreliance—via the four-condition ablation, feature importance analysis, and learning curves—is itself an informative contribution that advances the field's understanding of the behavioral-detection frontier, directly addressing the open question left by Adjust for Trust's Appendix D. (4) The instrumentation layer and temporal grid feature engineering for LLM conversation interactions provides reusable infrastructure for future research. We will report detection accuracy honestly and frame negative or moderate results as informative findings about the boundaries of behavioral sensing for reliance calibration, following Raees & Papangelis's (2026) call for rigorous behavioral measurement of appropriate reliance.
+
+(3) TIERED ADAPTIVE INTERVENTION ENGINE: When the streaming risk score exceeds personalized thresholds (calibrated from the 5-minute baseline), the system selects from escalating interventions: (Tier 1, risk 0.5–0.7) a lightweight Assumption-style metacognitive prompt ('What might be wrong with this answer?') shown as a non-blocking tooltip; (Tier 2, risk 0.7–0.9) a counter-explanation surfacing potential errors in the LLM's response, modeled on Adjust for Trust's strategy, with a 10-second reading delay; (Tier 3, risk >0.9) a comprehension checkpoint requiring the user to identify one potential issue before proceeding. A cooldown mechanism (minimum 2 minutes between interventions) prevents alert fatigue.
+
+ECOLOGICAL VALIDITY CONSIDERATIONS: We acknowledge that our evaluation paradigm—researcher-injected misinformation in controlled tasks—follows the standard methodology employed by both Liu et al. (CHI 2026) and Adjust for Trust (IUI 2026), but has inherent ecological validity limitations. Injected misinformation is typically more blatant, consistently placed, and fact-checkable compared to natural LLM hallucinations, which are subtler, context-dependent, and may involve plausible-sounding but unverifiable claims. As Ren et al. (arXiv 2510.10539) demonstrate with their AuthenHallu benchmark, hallucinations in authentic LLM-human interactions differ qualitatively from artificially constructed errors, occurring in 31.4% of real query-response pairs with highly variable subtlety. Our controlled design is necessary for establishing internal validity—it enables precise measurement of overreliance rates and intervention effects with known ground truth—but a classifier trained solely on controlled-misinformation tasks may not fully generalize to naturalistic LLM use where the 'correct' level of reliance is ambiguous. We address this in two ways: (1) Liu et al.'s misinformation includes varied subtlety levels (hallucinations, outdated knowledge, prompt injection attacks) that partially approximate natural error diversity, and (2) we plan a follow-up naturalistic deployment study where participants use the system during their regular LLM interactions over 2 weeks, with overreliance assessed via retrospective expert review of interaction logs—a design explicitly motivated by ecological validity concerns.
+
+EVALUATION: A within-subjects study (N≈120) across four LLM-assisted decision tasks with injected misinformation (quiz/ranking, article summarization, trip planning, code review), counterbalanced via Latin square across four conditions: (a) no intervention (control), (b) static cognitive forcing (always-on Assumption-CFF per Ghosh et al.), (c) self-report-adaptive (replicating Adjust for Trust's 11-point scale + counter-explanations), and (d) behaviorally-triggered adaptive (OverrelianceGuard). Each participant completes four tasks (~75 min total), one per condition. Primary metrics: overreliance reduction rate (misinformation acceptance, measured via both Traditional over-reliance rate and Appropriateness-view RAIR/RSR metrics per Raees & Papangelis's framework), task accuracy, detection latency (time from overreliance onset to intervention trigger), intervention precision/recall (validated against outcome and metacognitive probe labels), user satisfaction (NASA-TLX + custom intrusiveness scale), and comparative survey interruption burden between conditions (c) and (d). Secondary analysis: per-user classifier calibration curves, learning curves showing accuracy vs. training data fraction, four-condition weak supervision ablation with feature importance analysis, and qualitative analysis of intervention-triggered behavioral shifts.
+
+## Inspiration
+Untried combination: rich behavioral interaction signals from Liu et al. (CHI 2026) + trust-adaptive intervention strategies from 'Adjust for Trust' (IUI 2026), without the physiological sensor requirement of 'Sensing What Surveys Miss' (CHI 2026). Gap validation: Adjust for Trust's Appendix D documents that surface-level behavioral features fail to predict trust (F1 ≤ 0.5), and Sensing What Surveys Miss achieves only ~61% accuracy even with combined mouse+EDA using linear regression—both motivating richer multi-resolution temporal processing via deep learning. Positive evidence from Campagna et al. (84% trust classification in HRI) and Kaneko & Yamada (90% in cooperative tasks) establishes that the failure is in modeling depth, not in behavioral signals per se—justifying our investment in multi-resolution temporal architectures. Measurement-theoretic insight from Raees & Papangelis (2026): appropriate reliance is behaviorally observable and conceptually distinct from trust, grounding our choice to detect reliance behavior rather than infer trust attitudes. Cross-paradigm transfer: extending Li et al.'s adaptive explanation selection principle from structured tabular tasks with coarse feedback to free-form conversational LLM interactions with continuous behavioral sensing. Architecture insight: lightweight time series classifiers (PRISM, ~40K params) demonstrate that efficient sub-millisecond browser-embedded inference is feasible at this parameter scale, making sensor-free any-browser deployment practical where prior approaches (Sensing What Surveys Miss) assumed physiological hardware. Labeling methodology: adapting the hybrid weak-supervision + outcome-propagation approach from fraud detection and temporal action localization, informed by TimeMIL's time-aware MIL pooling for temporal sequence data, to solve the streaming-vs-outcome temporal misalignment problem that Liu et al.'s post-hoc analysis did not address—with explicit ablation design to verify the classifier generalizes beyond hand-coded labeling function rules, informed by the XPASC framework for measuring weak supervision generalization.
+
+## Key References
+- Liu, Zhou, Shen, Liu, Wu & Chen. Behavioral Indicators of Overreliance During Interaction with Conversational Language Models (CHI 2026, arXiv 2602.11567)
+- Srinivasan & Thomason. Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance (IUI 2026, arXiv 2502.13321)
+- Li, Zhu, Lu, Xiao & Yin. From Text to Trust: Empowering AI-assisted Decision Making with Adaptive LLM-powered Analysis (CHI 2025, arXiv 2502.11919)
+- Ailin Liu, Karoui, Draxler, Kreuter & Chiossi. Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling (CHI 2026, arXiv 2602.00880)
+- Kaneko & Yamada. Predicting Trust Dynamics with Dynamic SEM in Human-AI Cooperation (IEEE Access 2025, arXiv 2407.01752)
+- Campagna, Lagomarsino, Lorenzini, Chrysostomou, Rehm & Ajoudani. Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability (RA-L 2025, arXiv 2601.19856)
+- Raees & Papangelis. From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making (arXiv 2604.23896, April 2026)
+- Gurney, Pynadath & Wang. Comparing Psychometric and Behavioral Predictors of Compliance During Human-AI Interactions (Persuasive Technologies 2023, arXiv 2302.01854)
+- Sun et al. Eyes Can't Always Tell: Fusing Eye Tracking and User Priors for User Modeling under AI Advice Conditions (arXiv 2604.01741, 2026)
+- Ibrahim et al. Measuring and Mitigating Overreliance Is Necessary for Building Human-Compatible AI (arXiv 2509.08010, 2025)
+- Buçinca, Malaya & Gajos. To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted Decision-making (CSCW 2021)
+- Ghosh et al. An Experimental Comparison of Cognitive Forcing Functions for Execution Plans in AI-Assisted Writing (arXiv 2601.18033, 2026)
+- PRISM: Multi-Resolution Time Series Classification via Symmetric Dilated Convolutions (Neurocomputing 2026, arXiv 2508.04503)
+- From Calibration to Collaboration: LLM Uncertainty Quantification Should Be More Human-Centered (arXiv 2506.07461, June 2025)
+- de Jong et al. Cognitive Forcing for Better Decision-Making: Reducing Overreliance on AI Systems Through Partial Explanations (CSCW 2025)
+- Ren, Gruhlke & Lauscher. Detecting Hallucinations in Authentic LLM-Human Interactions (arXiv 2510.10539, 2025)
+- Dechant, Shukla & Bhatt. Mice, Masks, and Monotones: On the Reliability of Mouse Trajectories as Indicators of Trust (arXiv 2310.16632, 2023)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '80', 'timeline': '7-9 months (2 months system dev + labeling pipeline, 1 month IRB + pilot, 2-3 months main study with 120 participants, 2-3 months analysis and writing)', 'estimated_gpu_cost': '$120 (A100 at ~$1.50/hr spot pricing; model is only ~40K params so training is fast; GPU time dominated by hyperparameter search, data augmentation pipeline, Snorkel label model training, and 4-condition ablation)'}
+- **human_in_loop**: {'gpu_hours': '60', 'timeline': '5-7 months (Claude accelerates extension code, labeling function design, ONNX export pipeline, and statistical analysis)', 'claude_api_cost': '$250 (Sonnet 4.6 for code generation, weak supervision labeling function refinement, intervention prompt engineering, and analysis scripts; ~80M tokens)', 'estimated_gpu_cost': '$90 (A100 at ~$1.50/hr spot pricing)'}
+- **auto_research**: {'gpu_hours': '50', 'timeline': '4-6 months (automated architecture search across CNN/MiniRocket/LSTM variants, labeling function optimization, and ablation analysis; human study remains irreducible)', 'claude_api_cost': '$500 (Sonnet 4.6 for automated pipeline: architecture comparison, labeling function generation and evaluation, intervention prompt tuning via batch API, paper drafting; ~160M tokens)', 'estimated_gpu_cost': '$75 (A100 at ~$1.50/hr spot pricing)', 'speed_bottleneck': 'IRB approval (4-8 weeks) and sequential participant recruitment for within-subjects study are irreducible human-in-the-loop requirements that cannot be parallelized by automation'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "53732e2e-8aea-413f-a37f-cedc9f732162",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T20:56:47.412Z_
+
+```json
+{
+  "parentUuid": "53732e2e-8aea-413f-a37f-cedc9f732162",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "5d3fd613-2657-4503-86c1-331cc3a0efde",
+  "timestamp": "2026-05-19T20:56:47.412Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T20:56:47.412Z_
+
+```json
+{
+  "parentUuid": "5d3fd613-2657-4503-86c1-331cc3a0efde",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "10696817-1315-4081-b3d1-d74b828a18ee",
+  "timestamp": "2026-05-19T20:56:47.412Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Closing the Loop: From Behavioral Overreliance Detection to Adaptive Intervention in LLM Conversations  ## Descr…",
+  "leafUuid": "10696817-1315-4081-b3d1-d74b828a18ee",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Behavioral overreliance detection and adaptive intervention in LLM conversations",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T20:56:58.699Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate this proposal for CoRL 2026 (Conference on Robot Learning). Let me first note something important: this proposal is about detecting overreliance on LLMs through behavioral signals in browser-based conversational interactions. CoRL is a robotics conference. This seems like a significant venue mismatch - this work is much more suited to CHI, IUI, CSCW, or similar HCI venues.
+
+Wait, let me re-read the system prompt. It says "CoRL 2026 主会" - Conference on Robot Learning. But this proposal is entirely about HCI/human-AI interaction in conversational LLM settings, with browser extensions, behavioral signals, etc. There's no robotics component at all.
+
+
+Actually, this is definitely a major venue mismatch. CoRL is specifically focused on robot learning, and this work has no robotics component whatsoever. Before I dive into the evaluation, I should search for the cited papers and understand the current landscape around behavioral overreliance detection in LLM interactions, plus verify what CoRL's actual scope covers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10696817-1315-4081-b3d1-d74b828a18ee",
+  "isSidechain": false,
+  "requestId": "req_011CbCbX86iaT5evQLAzLMn8",
+  "type": "assistant",
+  "uuid": "79958135-861a-426c-b30c-6211c19db9fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzWutFkkfHMH65jYygdjAx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 24904,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 24904,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T20:56:58.704Z_
+
+I need to conduct thorough field research before evaluating this proposal. Let me start by searching for the key papers and the current landscape. I also need to verify the venue fit since this is targeting CoRL (Conference on Robot Learning).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79958135-861a-426c-b30c-6211c19db9fe",
+  "isSidechain": false,
+  "requestId": "req_011CbCbX86iaT5evQLAzLMn8",
+  "type": "assistant",
+  "uuid": "bc7440b0-4f75-49de-91e9-e6fc3053dca3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzWutFkkfHMH65jYygdjAx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 24904,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 24904,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T20:56:58.709Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01M5hK2qNb85NygY7xiVJm6U`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc7440b0-4f75-49de-91e9-e6fc3053dca3",
+  "isSidechain": false,
+  "requestId": "req_011CbCbX86iaT5evQLAzLMn8",
+  "type": "assistant",
+  "uuid": "6ee6447c-175d-4276-852f-cbbc6d84a092",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzWutFkkfHMH65jYygdjAx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 24904,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 24904,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T20:56:58.718Z_
+
+<details><summary>↩ Tool result · `toolu_01M5hK2qNb85NygY7xiVJm6U`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ee6447c-175d-4276-852f-cbbc6d84a092",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "2143dcac-5f30-4318-b194-28776af98042",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "6ee6447c-175d-4276-852f-cbbc6d84a092",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T20:57:01.806Z_
+
+Now let me conduct multiple searches to understand the field landscape and verify key claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2143dcac-5f30-4318-b194-28776af98042",
+  "isSidechain": false,
+  "requestId": "req_011CbCbXxeUFG6jVN7UjNvwK",
+  "type": "assistant",
+  "uuid": "5e3cb9b9-39bb-4098-b228-8d263aaee07f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9P5pNnESunG8V1CtU1Vef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 24904,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 24904,
+          "cache_creation_input_tokens": 984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T20:57:01.925Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LpJfzd9FkgK8KWcNHLKmCa`</summary>
+
+```json
+{
+  "query": "CoRL 2026 Conference on Robot Learning topics scope call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e3cb9b9-39bb-4098-b228-8d263aaee07f",
+  "isSidechain": false,
+  "requestId": "req_011CbCbXxeUFG6jVN7UjNvwK",
+  "type": "assistant",
+  "uuid": "3eaac440-efc6-4e97-9ba0-e2e52833950e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9P5pNnESunG8V1CtU1Vef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 24904,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 24904,
+          "cache_creation_input_tokens": 984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T20:57:11.783Z_
+
+<details><summary>↩ Tool result · `toolu_01LpJfzd9FkgK8KWcNHLKmCa`</summary>
+
+```text
+Web search results for query: "CoRL 2026 Conference on Robot Learning topics scope call for papers"
+
+Links: [{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models","url":"https://arxiv.org/pdf/2512.11908"},{"title":"Learning from Human Directional Corrections","url":"https://arxiv.org/pdf/2011.15014"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"}]
+
+Based on the search results, here's information about CoRL 2026:
+
+## Conference Overview
+The Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US. The main conference will take place on November 10–12, 2026, with workshops on November 9th, 2026, at the JW Marriott Austin in Austin, Texas, USA.
+
+## Call for Papers - Topics & Scope
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. The conference is particularly interested in areas like "video models and latent world models for robot learning."
+
+Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Submissions without a robotics focus will be returned without review.
+
+## Submission Requirements
+All submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future. Authors are also encouraged to submit video, code and data as supplementary materials.
+
+## Key Deadlines
+Abstract submission deadline: May 26, 2026 11:59 UTC; Paper submission deadline: May 29, 2026 11:59 UTC.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3eaac440-efc6-4e97-9ba0-e2e52833950e",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "c51948d3-778f-46ae-b537-f107af5f4a85",
+  "toolUseResult": {
+    "query": "CoRL 2026 Conference on Robot Learning topics scope call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E3WrHnFC6kkczwLdajwrLz",
+        "content": [
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models",
+            "url": "https://arxiv.org/pdf/2512.11908"
+          },
+          {
+            "title": "Learning from Human Directional Corrections",
+            "url": "https://arxiv.org/pdf/2011.15014"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about CoRL 2026:\n\n## Conference Overview\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US. The main conference will take place on November 10–12, 2026, with workshops on November 9th, 2026, at the JW Marriott Austin in Austin, Texas, USA.\n\n## Call for Papers - Topics & Scope\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. The conference is particularly interested in areas like \"video models and latent world models for robot learning.\"\n\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Submissions without a robotics focus will be returned without review.\n\n## Submission Requirements\nAll submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future. Authors are also encouraged to submit video, code and data as supplementary materials.\n\n## Key Deadlines\nAbstract submission deadline: May 26, 2026 11:59 UTC; Paper submission deadline: May 29, 2026 11:59 UTC."
+    ],
+    "durationSeconds": 9.851995289,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3eaac440-efc6-4e97-9ba0-e2e52833950e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T20:57:15.182Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016uLpDTNv8MD3ceYhm52U9C`</summary>
+
+```json
+{
+  "query": "Liu et al. CHI 2026 \"behavioral indicators overreliance\" conversational language models arXiv 2602.11567"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c51948d3-778f-46ae-b537-f107af5f4a85",
+  "isSidechain": false,
+  "requestId": "req_011CbCbYvGdGXpr3Qq9j417U",
+  "type": "assistant",
+  "uuid": "3356ba45-93a3-48d5-9746-fced2daab58f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmxNWDdQLNnQxu8AKQ5FMa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1735,
+      "cache_read_input_tokens": 24904,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1735,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 24904,
+          "cache_creation_input_tokens": 1735,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1735
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T20:57:23.827Z_
+
+<details><summary>↩ Tool result · `toolu_016uLpDTNv8MD3ceYhm52U9C`</summary>
+
+```text
+Web search results for query: "Liu et al. CHI 2026 "behavioral indicators overreliance" conversational language models arXiv 2602.11567"
+
+Links: [{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models | Request PDF","url":"https://www.researchgate.net/publication/403770483_Behavioral_Indicators_of_Overreliance_During_Interaction_with_Conversational_Language_Models"},{"title":"[2602.11567] Behavioral Indicators of Overreliance During Interaction with Conversational Language Models","url":"https://arxiv.org/abs/2602.11567"},{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems","url":"https://dl.acm.org/doi/10.1145/3772318.3790332"},{"title":"Behavioral Indicators of Overreliance During Interaction with","url":"https://arxiv.org/pdf/2602.11567"},{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models","url":"https://arxiv.org/html/2602.11567v1"},{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models — Chang Liu, Qinyi Zhou, Xinjie Shen, Xingyu Bruce Liu & Tongshuang Wu","url":"https://inigomedina.co/library/work/liu-behavioral-indicators-overreliance"},{"title":"Humans overrely on overconfident language models, across languages","url":"https://arxiv.org/pdf/2507.06306"},{"title":"Predicting Biased Human Decision-Making with Large Language Models in Conversational Settings","url":"https://arxiv.org/html/2601.11049v1"},{"title":"Humans overrely on overconfident language models, across languages","url":"https://arxiv.org/html/2507.06306v1"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** Behavioral Indicators of Overreliance During Interaction with Conversational Language Models
+
+**Authors:** Chang Liu, Qinyi Zhou, Xinjie Shen, Xingyu Bruce Liu, Tongshuang Wu, and Xiang 'Anthony' Chen
+
+**Publication:** Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI '26), April 13–17, 2026, Barcelona, Spain
+
+**arXiv ID:** 2602.11567
+
+**Research Focus:**
+Detecting overreliance is challenging, as it often arises in complex, dynamic contexts and cannot be easily captured by post-hoc task outcomes. The researchers collected interaction logs from 77 participants working with an LLM injected with plausible misinformation across three real-world tasks and assessed overreliance by whether participants detected and corrected these errors.
+
+**Key Findings:**
+By semantically encoding and clustering segments of user interactions, they identified five behavioral patterns linked to overreliance: users with low overreliance show careful task comprehension and fine-grained navigation; users with high overreliance show frequent copy-paste, skipping initial comprehension, and repeated LLM references.
+
+The paper is available on arXiv at https://arxiv.org/abs/2602.11567 and through the ACM Digital Library.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3356ba45-93a3-48d5-9746-fced2daab58f",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "842123b7-a3c3-4197-b0dd-9fbd86605d9d",
+  "toolUseResult": {
+    "query": "Liu et al. CHI 2026 \"behavioral indicators overreliance\" conversational language models arXiv 2602.11567",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DSVpUdoKvtBs7jbF4oMRqL",
+        "content": [
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/403770483_Behavioral_Indicators_of_Overreliance_During_Interaction_with_Conversational_Language_Models"
+          },
+          {
+            "title": "[2602.11567] Behavioral Indicators of Overreliance During Interaction with Conversational Language Models",
+            "url": "https://arxiv.org/abs/2602.11567"
+          },
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3772318.3790332"
+          },
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with",
+            "url": "https://arxiv.org/pdf/2602.11567"
+          },
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models",
+            "url": "https://arxiv.org/html/2602.11567v1"
+          },
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models — Chang Liu, Qinyi Zhou, Xinjie Shen, Xingyu Bruce Liu & Tongshuang Wu",
+            "url": "https://inigomedina.co/library/work/liu-behavioral-indicators-overreliance"
+          },
+          {
+            "title": "Humans overrely on overconfident language models, across languages",
+            "url": "https://arxiv.org/pdf/2507.06306"
+          },
+          {
+            "title": "Predicting Biased Human Decision-Making with Large Language Models in Conversational Settings",
+            "url": "https://arxiv.org/html/2601.11049v1"
+          },
+          {
+            "title": "Humans overrely on overconfident language models, across languages",
+            "url": "https://arxiv.org/html/2507.06306v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Paper Title:** Behavioral Indicators of Overreliance During Interaction with Conversational Language Models\n\n**Authors:** Chang Liu, Qinyi Zhou, Xinjie Shen, Xingyu Bruce Liu, Tongshuang Wu, and Xiang 'Anthony' Chen\n\n**Publication:** Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI '26), April 13–17, 2026, Barcelona, Spain\n\n**arXiv ID:** 2602.11567\n\n**Research Focus:**\nDetecting overreliance is challenging, as it often arises in complex, dynamic contexts and cannot be easily captured by post-hoc task outcomes. The researchers collected interaction logs from 77 participants working with an LLM injected with plausible misinformation across three real-world tasks and assessed overreliance by whether participants detected and corrected these errors.\n\n**Key Findings:**\nBy semantically encoding and clustering segments of user interactions, they identified five behavioral patterns linked to overreliance: users with low overreliance show careful task comprehension and fine-grained navigation; users with high overreliance show frequent copy-paste, skipping initial comprehension, and repeated LLM references.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2602.11567 and through the ACM Digital Library."
+    ],
+    "durationSeconds": 8.641676986000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3356ba45-93a3-48d5-9746-fced2daab58f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T20:57:26.490Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FkcXJiGVzpf3wWMdzfS3mA`</summary>
+
+```json
+{
+  "query": "Srinivasan Thomason \"Adjust for Trust\" IUI 2026 arXiv 2502.13321 trust-adaptive intervention overreliance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "842123b7-a3c3-4197-b0dd-9fbd86605d9d",
+  "isSidechain": false,
+  "requestId": "req_011CbCbZojkAGWdVzptRvnNj",
+  "type": "assistant",
+  "uuid": "50655357-e9ad-47f6-8dad-96d42d40dc97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TkXYBLQ1U41vxATKVxBc7u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 932,
+      "cache_read_input_tokens": 26639,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 26639,
+          "cache_creation_input_tokens": 932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T20:57:34.140Z_
+
+<details><summary>↩ Tool result · `toolu_01FkcXJiGVzpf3wWMdzfS3mA`</summary>
+
+```text
+Web search results for query: "Srinivasan Thomason "Adjust for Trust" IUI 2026 arXiv 2502.13321 trust-adaptive intervention overreliance"
+
+Links: [{"title":"[2502.13321] Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance","url":"https://arxiv.org/abs/2502.13321"},{"title":"Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance","url":"https://arxiv.org/html/2502.13321"},{"title":"Adjust for Trust:","url":"https://arxiv.org/pdf/2502.13321"},{"title":"‪Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance‬","url":"https://scholar.google.com/citations?citation_for_view=1IfeQgoAAAAJ%3A3fE2CSJIrl8C&hl=en&user=1IfeQgoAAAAJ&view_op=view_citation"},{"title":"(PDF) Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance","url":"https://www.researchgate.net/publication/389167262_Adjust_for_Trust_Mitigating_Trust-Induced_Inappropriate_Reliance_on_AI_Assistance"},{"title":"Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250213321S/abstract"},{"title":"Multi-device trust transfer: Can trust be transferred among multiple devices?","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9382300/"},{"title":"Distrust in (X)AI -- Measurement Artifact or Distinct Construct?","url":"https://arxiv.org/pdf/2303.16495"}]
+
+I've found the paper you're looking for. Here's what I discovered:
+
+"Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance" is published at the 31st International Conference on Intelligent User Interfaces (IUI '26), March 23–26, 2026, in Paphos, Cyprus.
+
+The paper is authored by Tejas Srinivasan and Jesse Thomason from the University of Southern California.
+
+**Key Research Problem:**
+User trust biases reliance on AI assistance during decision-making tasks, with overly low and high levels of trust resulting in increased under- and over-reliance, respectively.
+
+**Proposed Solution:**
+The authors propose that AI assistants should adapt their behavior through trust-adaptive interventions to mitigate such inappropriate reliance. When trust is low, the assistant can reduce risk of disuse by providing the user with additional reasoning to support its recommendation. Similarly, when users are too trusting, the assistant can highlight reasons its recommendation may be incorrect, or can simply slow down the interaction.
+
+**Results:**
+In two decision-making scenarios—laypeople answering science questions and medical doctors making diagnoses—they find that providing supporting and counter-explanations during moments of low and high trust, respectively, yields up to 38% reduction in inappropriate reliance and 20% improvement in decision accuracy.
+
+The paper's arXiv ID is 2502.13321, with the latest version submitted on January 26, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50655357-e9ad-47f6-8dad-96d42d40dc97",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "24ea5d7e-e1a8-4476-826e-afd5c4513201",
+  "toolUseResult": {
+    "query": "Srinivasan Thomason \"Adjust for Trust\" IUI 2026 arXiv 2502.13321 trust-adaptive intervention overreliance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CJwLv54Hi2qy7BzpmPc9Jb",
+        "content": [
+          {
+            "title": "[2502.13321] Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance",
+            "url": "https://arxiv.org/abs/2502.13321"
+          },
+          {
+            "title": "Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance",
+            "url": "https://arxiv.org/html/2502.13321"
+          },
+          {
+            "title": "Adjust for Trust:",
+            "url": "https://arxiv.org/pdf/2502.13321"
+          },
+          {
+            "title": "‪Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance‬",
+            "url": "https://scholar.google.com/citations?citation_for_view=1IfeQgoAAAAJ%3A3fE2CSJIrl8C&hl=en&user=1IfeQgoAAAAJ&view_op=view_citation"
+          },
+          {
+            "title": "(PDF) Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance",
+            "url": "https://www.researchgate.net/publication/389167262_Adjust_for_Trust_Mitigating_Trust-Induced_Inappropriate_Reliance_on_AI_Assistance"
+          },
+          {
+            "title": "Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250213321S/abstract"
+          },
+          {
+            "title": "Multi-device trust transfer: Can trust be transferred among multiple devices?",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9382300/"
+          },
+          {
+            "title": "Distrust in (X)AI -- Measurement Artifact or Distinct Construct?",
+            "url": "https://arxiv.org/pdf/2303.16495"
+          }
+        ]
+      },
+      "I've found the paper you're looking for. Here's what I discovered:\n\n\"Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance\" is published at the 31st International Conference on Intelligent User Interfaces (IUI '26), March 23–26, 2026, in Paphos, Cyprus.\n\nThe paper is authored by Tejas Srinivasan and Jesse Thomason from the University of Southern California.\n\n**Key Research Problem:**\nUser trust biases reliance on AI assistance during decision-making tasks, with overly low and high levels of trust resulting in increased under- and over-reliance, respectively.\n\n**Proposed Solution:**\nThe authors propose that AI assistants should adapt their behavior through trust-adaptive interventions to mitigate such inappropriate reliance. When trust is low, the assistant can reduce risk of disuse by providing the user with additional reasoning to support its recommendation. Similarly, when users are too trusting, the assistant can highlight reasons its recommendation may be incorrect, or can simply slow down the interaction.\n\n**Results:**\nIn two decision-making scenarios—laypeople answering science questions and medical doctors making diagnoses—they find that providing supporting and counter-explanations during moments of low and high trust, respectively, yields up to 38% reduction in inappropriate reliance and 20% improvement in decision accuracy.\n\nThe paper's arXiv ID is 2502.13321, with the latest version submitted on January 26, 2026."
+    ],
+    "durationSeconds": 7.645565125000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "50655357-e9ad-47f6-8dad-96d42d40dc97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T20:57:37.143Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017FfFfrnaGs9Y59E84duCdi`</summary>
+
+```json
+{
+  "query": "\"Sensing What Surveys Miss\" CHI 2026 arXiv 2602.00880 mouse dynamics EDA adaptive LLM support closed-loop"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24ea5d7e-e1a8-4476-826e-afd5c4513201",
+  "isSidechain": false,
+  "requestId": "req_011CbCbaZt5qiC9zPKW9U4nS",
+  "type": "assistant",
+  "uuid": "30a7616b-c36f-499d-8ce9-a21e339ce940",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdKLJE9gA7bxiRxGq9JkrS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 27571,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 27571,
+          "cache_creation_input_tokens": 935,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 935
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Closing the Loop: From Behavioral Overreliance Detection to Adaptive Intervention in LLM Conversations  ## Descr…",
+  "leafUuid": "30a7616b-c36f-499d-8ce9-a21e339ce940",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Behavioral overreliance detection and adaptive intervention in LLM conversations",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T20:57:45.924Z_
+
+<details><summary>↩ Tool result · `toolu_017FfFfrnaGs9Y59E84duCdi`</summary>
+
+```text
+Web search results for query: ""Sensing What Surveys Miss" CHI 2026 arXiv 2602.00880 mouse dynamics EDA adaptive LLM support closed-loop"
+
+Links: [{"title":"[2602.00880] Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling","url":"https://arxiv.org/abs/2602.00880"},{"title":"Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems","url":"https://dl.acm.org/doi/full/10.1145/3772318.3791191"},{"title":"Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling","url":"https://arxiv.org/html/2602.00880"},{"title":"Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling","url":"https://arxiv.org/pdf/2602.00880"},{"title":"Survey Fatigue During the COVID-19 Pandemic: An Analysis of Neurosurgery Survey Response Rates","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8388838/"},{"title":"Rethinking survey development in health research with AI-driven methodologies","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12336171/"}]
+
+I found the paper! Here's what the search reveals about this CHI 2026 work:
+
+## Paper Overview
+
+The paper is titled "Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling" with arXiv identifier 2602.00880, and it was published in the Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI '26), April 13–17, 2026, Barcelona, Spain.
+
+## Key Research Problem
+
+In online surveys, tough questions can drain mental energy and hurt performance on later questions, while users often fail to recognize when they need assistance or may satisfy, lacking motivation to seek help.
+
+## Approach
+
+The authors developed a proactive, adaptive system using electrodermal activity and mouse movement to predict when respondents need support, with personalized classifiers using rule-based threshold adaptation to trigger timely LLM-based clarifications and explanations.
+
+## Technical Features
+
+Multimodal data were collected, including mouse dynamics, eye tracking, ECG, and EDA. The top predictive features included three mouse movement-based measures and two EDA measures: the number of vertical direction changes in cursor movement, the duration of time the cursor hovered over, the total number of hovering events, the number of peaks, and the average tonic EDA level.
+
+## Results
+
+Aligned-adaptive assistance improved response accuracy by 21%, reduced false negative rates from 50.9% to 22.9%, and improved perceived efficiency, dependability, and benevolence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30a7616b-c36f-499d-8ce9-a21e339ce940",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "8ccdca3d-3a2a-4fed-827c-5654ee1f9bba",
+  "toolUseResult": {
+    "query": "\"Sensing What Surveys Miss\" CHI 2026 arXiv 2602.00880 mouse dynamics EDA adaptive LLM support closed-loop",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015YazBHpwXF955ji44fPwJG",
+        "content": [
+          {
+            "title": "[2602.00880] Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling",
+            "url": "https://arxiv.org/abs/2602.00880"
+          },
+          {
+            "title": "Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems",
+            "url": "https://dl.acm.org/doi/full/10.1145/3772318.3791191"
+          },
+          {
+            "title": "Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling",
+            "url": "https://arxiv.org/html/2602.00880"
+          },
+          {
+            "title": "Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling",
+            "url": "https://arxiv.org/pdf/2602.00880"
+          },
+          {
+            "title": "Survey Fatigue During the COVID-19 Pandemic: An Analysis of Neurosurgery Survey Response Rates",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8388838/"
+          },
+          {
+            "title": "Rethinking survey development in health research with AI-driven methodologies",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12336171/"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search reveals about this CHI 2026 work:\n\n## Paper Overview\n\nThe paper is titled \"Sensing What Surveys Miss: Understanding and Personalizing Proactive LLM Support by User Modeling\" with arXiv identifier 2602.00880, and it was published in the Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI '26), April 13–17, 2026, Barcelona, Spain.\n\n## Key Research Problem\n\nIn online surveys, tough questions can drain mental energy and hurt performance on later questions, while users often fail to recognize when they need assistance or may satisfy, lacking motivation to seek help.\n\n## Approach\n\nThe authors developed a proactive, adaptive system using electrodermal activity and mouse movement to predict when respondents need support, with personalized classifiers using rule-based threshold adaptation to trigger timely LLM-based clarifications and explanations.\n\n## Technical Features\n\nMultimodal data were collected, including mouse dynamics, eye tracking, ECG, and EDA. The top predictive features included three mouse movement-based measures and two EDA measures: the number of vertical direction changes in cursor movement, the duration of time the cursor hovered over, the total number of hovering events, the number of peaks, and the average tonic EDA level.\n\n## Results\n\nAligned-adaptive assistance improved response accuracy by 21%, reduced false negative rates from 50.9% to 22.9%, and improved perceived efficiency, dependability, and benevolence."
+    ],
+    "durationSeconds": 8.776300928999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "30a7616b-c36f-499d-8ce9-a21e339ce940",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T20:57:48.612Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VejDhixH8xPkU724VjDzmV`</summary>
+
+```json
+{
+  "query": "behavioral overreliance detection LLM real-time intervention browser 2025 2026 recent work"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ccdca3d-3a2a-4fed-827c-5654ee1f9bba",
+  "isSidechain": false,
+  "requestId": "req_011CbCbbSEVKhWi3ZjyZQAAM",
+  "type": "assistant",
+  "uuid": "fcd368c7-673f-4514-848f-1ffa7ba9ad3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gw2zrar2vwQmDyP7wYXFV1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 28506,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 28506,
+          "cache_creation_input_tokens": 830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T20:57:56.110Z_
+
+<details><summary>↩ Tool result · `toolu_01VejDhixH8xPkU724VjDzmV`</summary>
+
+```text
+Web search results for query: "behavioral overreliance detection LLM real-time intervention browser 2025 2026 recent work"
+
+Links: [{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems","url":"https://dl.acm.org/doi/10.1145/3772318.3790332"},{"title":"[2602.11567] Behavioral Indicators of Overreliance During Interaction with Conversational Language Models","url":"https://arxiv.org/abs/2602.11567"},{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models","url":"https://arxiv.org/html/2602.11567"},{"title":"Behavioral Indicators of Overreliance During Interaction with Conversational Language Models","url":"https://arxiv.org/pdf/2602.11567"},{"title":"LLM Security in 2025: Key Risks, Best Practices & Trends","url":"https://www.mend.io/blog/llm-security-risks-mitigations-whats-next/"},{"title":"Can LLMs Handle WebShell Detection? Overcoming Detection Challenges with Behavioral Function-Aware Framework","url":"https://arxiv.org/pdf/2504.13811"}]
+
+Based on the search results, I found recent research work on this topic:
+
+## Key Recent Work (2025-2026)
+
+A significant contribution from 2026 shifts from outcome-based evaluation to process-level behavioral characterization, identifying five interaction patterns correlated with different levels of overreliance on LLMs across three representative conversational LLM tasks.
+
+The research found that users with low overreliance show careful task comprehension and fine-grained navigation, while users with high overreliance show frequent copy-paste, skipping initial comprehension, repeated LLM references, coarse locating, and accepting misinformation despite hesitation.
+
+### Real-Time Detection and Intervention
+
+The observable behavior patterns and an autoencoder-clustering framework can be adapted for real-time detection and intervention. The work establishes a foundation for future research aimed at developing adaptive strategies to detect and mitigate overreliance in real-time, with the goal of implementing timely interventions that foster a healthier balance in human-AI collaboration.
+
+### Methodology
+
+The research collected interaction logs from 77 participants working with an LLM injected plausible misinformation across three real-world tasks and assessed overreliance by whether participants detected and corrected these errors.
+
+This work was presented at the 2026 CHI Conference on Human Factors in Computing Systems (April 2026) and appears to be among the most recent publications directly addressing behavioral detection of overreliance with real-time intervention potential.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcd368c7-673f-4514-848f-1ffa7ba9ad3d",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "2c9a74b7-d0a4-4ca4-9bba-9a31a2bd2861",
+  "toolUseResult": {
+    "query": "behavioral overreliance detection LLM real-time intervention browser 2025 2026 recent work",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RjKDqZh14f22FwugG6m9L7",
+        "content": [
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3772318.3790332"
+          },
+          {
+            "title": "[2602.11567] Behavioral Indicators of Overreliance During Interaction with Conversational Language Models",
+            "url": "https://arxiv.org/abs/2602.11567"
+          },
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models",
+            "url": "https://arxiv.org/html/2602.11567"
+          },
+          {
+            "title": "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models",
+            "url": "https://arxiv.org/pdf/2602.11567"
+          },
+          {
+            "title": "LLM Security in 2025: Key Risks, Best Practices & Trends",
+            "url": "https://www.mend.io/blog/llm-security-risks-mitigations-whats-next/"
+          },
+          {
+            "title": "Can LLMs Handle WebShell Detection? Overcoming Detection Challenges with Behavioral Function-Aware Framework",
+            "url": "https://arxiv.org/pdf/2504.13811"
+          }
+        ]
+      },
+      "Based on the search results, I found recent research work on this topic:\n\n## Key Recent Work (2025-2026)\n\nA significant contribution from 2026 shifts from outcome-based evaluation to process-level behavioral characterization, identifying five interaction patterns correlated with different levels of overreliance on LLMs across three representative conversational LLM tasks.\n\nThe research found that users with low overreliance show careful task comprehension and fine-grained navigation, while users with high overreliance show frequent copy-paste, skipping initial comprehension, repeated LLM references, coarse locating, and accepting misinformation despite hesitation.\n\n### Real-Time Detection and Intervention\n\nThe observable behavior patterns and an autoencoder-clustering framework can be adapted for real-time detection and intervention. The work establishes a foundation for future research aimed at developing adaptive strategies to detect and mitigate overreliance in real-time, with the goal of implementing timely interventions that foster a healthier balance in human-AI collaboration.\n\n### Methodology\n\nThe research collected interaction logs from 77 participants working with an LLM injected plausible misinformation across three real-world tasks and assessed overreliance by whether participants detected and corrected these errors.\n\nThis work was presented at the 2026 CHI Conference on Human Factors in Computing Systems (April 2026) and appears to be among the most recent publications directly addressing behavioral detection of overreliance with real-time intervention potential."
+    ],
+    "durationSeconds": 7.493995468999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fcd368c7-673f-4514-848f-1ffa7ba9ad3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T20:57:59.032Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PwtmAzLAgedXLQkmJzYdmo`</summary>
+
+```json
+{
+  "query": "Raees Papangelis \"From Trust to Appropriate Reliance\" measurement constructs human-AI arXiv 2604.23896"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c9a74b7-d0a4-4ca4-9bba-9a31a2bd2861",
+  "isSidechain": false,
+  "requestId": "req_011CbCbcBmsFTfAASRrxsZXM",
+  "type": "assistant",
+  "uuid": "b7474a25-2b82-45ff-9dbb-beed362b292b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013V3VA621yqruvawug6pAsq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 29336,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 753,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 29336,
+          "cache_creation_input_tokens": 753,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 753
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T20:58:07.558Z_
+
+<details><summary>↩ Tool result · `toolu_01PwtmAzLAgedXLQkmJzYdmo`</summary>
+
+```text
+Web search results for query: "Raees Papangelis "From Trust to Appropriate Reliance" measurement constructs human-AI arXiv 2604.23896"
+
+Links: [{"title":"[2604.23896] From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making","url":"https://arxiv.org/abs/2604.23896"},{"title":"From Trust to Appropriate Reliance: Measurement Constructs in Human-AI","url":"https://arxiv.org/pdf/2604.23896"},{"title":"(PDF) From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making","url":"https://www.researchgate.net/publication/404209597_From_Trust_to_Appropriate_Reliance_Measurement_Constructs_in_Human-AI_Decision-Making"},{"title":"From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making","url":"https://arxiv.org/html/2604.23896"},{"title":"Appropriate Reliance on AI Advice: Conceptualization and the Effect of Explanations | Proceedings of the 28th International Conference on Intelligent User Interfaces","url":"https://dl.acm.org/doi/10.1145/3581641.3584066"}]
+
+Great! I found the paper. Here's what I found about this research:
+
+The paper is titled "From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making" and is authored by Muhammad Raees and Konstantinos Papangelis.
+
+While human-AI decision-making research has primarily used trust measurements to assess the practical usage of AI systems by their end-users, recent empirical evidence suggests that trust measurements do not inform users' appropriate reliance on AI systems.
+
+The work reviews empirical studies that assess people's appropriate reliance on AI advice, differentiating measurements and constructs of appropriate reliance from trust and mere reliance.
+
+The analysis of literature shows that constructs for human-AI appropriate reliance are still fragmented in research, and the authors present three views on appropriate reliance, namely Traditional, Appropriateness, and Dominance, as discussed in research.
+
+The paper is available on arXiv at https://arxiv.org/abs/2604.23896 and was published on April 26, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7474a25-2b82-45ff-9dbb-beed362b292b",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "306e2101-cb37-4d96-beb5-696c3823c5e7",
+  "toolUseResult": {
+    "query": "Raees Papangelis \"From Trust to Appropriate Reliance\" measurement constructs human-AI arXiv 2604.23896",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0145oHqNkEMwxmhFMQiFcEYk",
+        "content": [
+          {
+            "title": "[2604.23896] From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making",
+            "url": "https://arxiv.org/abs/2604.23896"
+          },
+          {
+            "title": "From Trust to Appropriate Reliance: Measurement Constructs in Human-AI",
+            "url": "https://arxiv.org/pdf/2604.23896"
+          },
+          {
+            "title": "(PDF) From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making",
+            "url": "https://www.researchgate.net/publication/404209597_From_Trust_to_Appropriate_Reliance_Measurement_Constructs_in_Human-AI_Decision-Making"
+          },
+          {
+            "title": "From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making",
+            "url": "https://arxiv.org/html/2604.23896"
+          },
+          {
+            "title": "Appropriate Reliance on AI Advice: Conceptualization and the Effect of Explanations | Proceedings of the 28th International Conference on Intelligent User Interfaces",
+            "url": "https://dl.acm.org/doi/10.1145/3581641.3584066"
+          }
+        ]
+      },
+      "Great! I found the paper. Here's what I found about this research:\n\nThe paper is titled \"From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making\" and is authored by Muhammad Raees and Konstantinos Papangelis.\n\nWhile human-AI decision-making research has primarily used trust measurements to assess the practical usage of AI systems by their end-users, recent empirical evidence suggests that trust measurements do not inform users' appropriate reliance on AI systems.\n\nThe work reviews empirical studies that assess people's appropriate reliance on AI advice, differentiating measurements and constructs of appropriate reliance from trust and mere reliance.\n\nThe analysis of literature shows that constructs for human-AI appropriate reliance are still fragmented in research, and the authors present three views on appropriate reliance, namely Traditional, Appropriateness, and Dominance, as discussed in research.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2604.23896 and was published on April 26, 2026."
+    ],
+    "durationSeconds": 8.520410261000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b7474a25-2b82-45ff-9dbb-beed362b292b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T20:58:11.676Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EXM2Ktt7tPaJ4jSVe5r8J4`</summary>
+
+```json
+{
+  "query": "Campagna et al \"Estimating Trust Human-Robot Collaboration behavioral indicators\" RA-L 2025 arXiv 2601.19856"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "306e2101-cb37-4d96-beb5-696c3823c5e7",
+  "isSidechain": false,
+  "requestId": "req_011CbCbd3WZPZoy7sQ5jnPZY",
+  "type": "assistant",
+  "uuid": "68cf5084-ab8e-4ed8-990a-1d2f4b3a9d6c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdfgcCLeZDgbW5ZtsiJKYe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 30089,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 30089,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T20:58:18.076Z_
+
+<details><summary>↩ Tool result · `toolu_01EXM2Ktt7tPaJ4jSVe5r8J4`</summary>
+
+```text
+Web search results for query: "Campagna et al "Estimating Trust Human-Robot Collaboration behavioral indicators" RA-L 2025 arXiv 2601.19856"
+
+Links: [{"title":"[2601.19856] Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability","url":"https://arxiv.org/abs/2601.19856"},{"title":"Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability","url":"https://arxiv.org/html/2601.19856"},{"title":"Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability","url":"https://arxiv.org/pdf/2601.19856"},{"title":"A Systematic Review of Trust Assessments in Human-Robot Interaction | Request PDF","url":"https://www.researchgate.net/publication/386264198_A_Systematic_Review_of_Trust_Assessments_in_Human-Robot_Interaction"},{"title":"Estimating Trust in Human-Robot Collaboration Through Behavioral Indicators and Explainability | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/11129656/"},{"title":"A Systematic Review of Trust Assessments in Human–Robot Interaction | ACM Transactions on Human-Robot Interaction","url":"https://dl.acm.org/doi/full/10.1145/3706123"}]
+
+I found the paper! Here's what I found about the work by Campagna et al.:
+
+**Paper Details:**
+- Title: "Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability"
+- Authors: Giulio Campagna, Marta Lagomarsino, Marta Lorenzini, Dimitrios Chrysostomou, Matthias Rehm, and Arash Ajoudani
+- arXiv ID: 2601.19856
+
+**Overview:**
+The study introduces a data-driven framework to assess trust using behavioral indicators, employing a Preference-Based Optimization algorithm to generate trust-enhancing trajectories based on operator feedback, which serves as ground truth for training machine learning models to predict trust levels from behavioral indicators.
+
+**Experimental Results:**
+The framework was tested in a chemical industry scenario where a robot assisted a human operator in mixing chemicals. Machine learning models classified trust with over 80% accuracy, with the Voting Classifier achieving 84.07% accuracy and an AUC-ROC score of 0.90.
+
+The paper is available on arXiv (https://arxiv.org/abs/2601.19856) and has also been published in IEEE, likely in the RA-L (IEEE Robotics and Automation Letters) journal as you mentioned.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68cf5084-ab8e-4ed8-990a-1d2f4b3a9d6c",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "4eb0d1d2-57de-4b70-a468-de8281c06b6c",
+  "toolUseResult": {
+    "query": "Campagna et al \"Estimating Trust Human-Robot Collaboration behavioral indicators\" RA-L 2025 arXiv 2601.19856",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011aqrinqGnJkJccdSFiqRNJ",
+        "content": [
+          {
+            "title": "[2601.19856] Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability",
+            "url": "https://arxiv.org/abs/2601.19856"
+          },
+          {
+            "title": "Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability",
+            "url": "https://arxiv.org/html/2601.19856"
+          },
+          {
+            "title": "Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability",
+            "url": "https://arxiv.org/pdf/2601.19856"
+          },
+          {
+            "title": "A Systematic Review of Trust Assessments in Human-Robot Interaction | Request PDF",
+            "url": "https://www.researchgate.net/publication/386264198_A_Systematic_Review_of_Trust_Assessments_in_Human-Robot_Interaction"
+          },
+          {
+            "title": "Estimating Trust in Human-Robot Collaboration Through Behavioral Indicators and Explainability | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/11129656/"
+          },
+          {
+            "title": "A Systematic Review of Trust Assessments in Human–Robot Interaction | ACM Transactions on Human-Robot Interaction",
+            "url": "https://dl.acm.org/doi/full/10.1145/3706123"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about the work by Campagna et al.:\n\n**Paper Details:**\n- Title: \"Estimating Trust in Human-Robot Collaboration through Behavioral Indicators and Explainability\"\n- Authors: Giulio Campagna, Marta Lagomarsino, Marta Lorenzini, Dimitrios Chrysostomou, Matthias Rehm, and Arash Ajoudani\n- arXiv ID: 2601.19856\n\n**Overview:**\nThe study introduces a data-driven framework to assess trust using behavioral indicators, employing a Preference-Based Optimization algorithm to generate trust-enhancing trajectories based on operator feedback, which serves as ground truth for training machine learning models to predict trust levels from behavioral indicators.\n\n**Experimental Results:**\nThe framework was tested in a chemical industry scenario where a robot assisted a human operator in mixing chemicals. Machine learning models classified trust with over 80% accuracy, with the Voting Classifier achieving 84.07% accuracy and an AUC-ROC score of 0.90.\n\nThe paper is available on arXiv (https://arxiv.org/abs/2601.19856) and has also been published in IEEE, likely in the RA-L (IEEE Robotics and Automation Letters) journal as you mentioned."
+    ],
+    "durationSeconds": 6.396878826,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "68cf5084-ab8e-4ed8-990a-1d2f4b3a9d6c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-19T20:58:18.079Z_
+
+```json
+{
+  "parentUuid": "4eb0d1d2-57de-4b70-a468-de8281c06b6c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "18b4a2db-b606-442b-a5e3-78542e4fd1aa",
+  "timestamp": "2026-05-19T20:58:18.079Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T20:58:21.327Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CEcb2gVrYcQoduCMgdGE1u`</summary>
+
+```json
+{
+  "query": "PRISM \"multi-resolution time series classification\" symmetric dilated convolutions arXiv 2508.04503 Neurocomputing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18b4a2db-b606-442b-a5e3-78542e4fd1aa",
+  "isSidechain": false,
+  "requestId": "req_011CbCbdokbscptWeAbNhXAS",
+  "type": "assistant",
+  "uuid": "0b7a4faf-0176-4cf8-8574-1866e0336b53",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013p47Rn7qjXwRson4r1fk5Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 30761,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 30761,
+          "cache_creation_input_tokens": 871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T20:58:28.345Z_
+
+<details><summary>↩ Tool result · `toolu_01CEcb2gVrYcQoduCMgdGE1u`</summary>
+
+```text
+Web search results for query: "PRISM "multi-resolution time series classification" symmetric dilated convolutions arXiv 2508.04503 Neurocomputing"
+
+Links: [{"title":"[2508.04503v1] PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers","url":"https://arxiv.org/abs/2508.04503v1"},{"title":"PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers","url":"https://arxiv.org/html/2508.04503v2"},{"title":"[2508.04503] PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers","url":"https://web3.arxiv.org/abs/2508.04503"},{"title":"PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250804503Z/abstract"},{"title":"[2508.04503] PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers","url":"https://arxiv.org/abs/2508.04503"},{"title":"PRISM: Lightweight multivariate time-series classification through symmetric multi-resolution convolutional layers - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0925231226009100"},{"title":"Computer Science Aug 2025","url":"https://www.arxiv.org/list/cs/2025-08?skip=2300&show=100"},{"title":"Artificial Intelligence 2025","url":"https://www.arxiv.org/list/cs.AI/2025?skip=29800&show=500"}]
+
+The web search has successfully found information about the paper you requested. Here are the key findings:
+
+## PRISM: arXiv 2508.04503
+
+PRISM (Per-channel Resolution-Informed Symmetric Module) is a convolutional-based feature extractor that applies symmetric finite-impulse-response (FIR) filters at multiple temporal scales, independently per channel.
+
+**Purpose and Problem Statement:**
+Multivariate time-series classification is important for applications from wearable sensing to biomedical monitoring, but Transformer- and CNN-based models often remain computationally heavy, offer limited frequency diversity, and require extensive parameter budgets.
+
+**Key Technical Features:**
+The multi-resolution, per-channel design yields highly frequency-selective embeddings without any inter-channel convolutions, greatly reducing model size and complexity. Additionally, the symmetry enforces structural constraints inspired by linear-phase FIR filters from classical signal processing, effectively halving the number of learnable parameters within the initial layers while preserving the full receptive field.
+
+**Performance:**
+Across human-activity, sleep-stage and biomedical benchmarks, PRISM, paired with lightweight classification heads, matches or outperforms leading CNN and Transformer baselines, while using roughly an order of magnitude fewer parameters and FLOPs.
+
+**Authors:** Federico Zucchi and Thomas Lampert
+
+**Publication Status:** The paper has been published in Neurocomputing (visible from the ScienceDirect source).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b7a4faf-0176-4cf8-8574-1866e0336b53",
+  "isSidechain": false,
+  "promptId": "a356d10d-17ae-4850-bc65-a24442bca01a",
+  "type": "user",
+  "uuid": "aaa9b83f-634e-432c-bdcb-a6753481fd11",
+  "toolUseResult": {
+    "query": "PRISM \"multi-resolution time series classification\" symmetric dilated convolutions arXiv 2508.04503 Neurocomputing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018GnQmDADtiRT22PQM2xLzp",
+        "content": [
+          {
+            "title": "[2508.04503v1] PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers",
+            "url": "https://arxiv.org/abs/2508.04503v1"
+          },
+          {
+            "title": "PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers",
+            "url": "https://arxiv.org/html/2508.04503v2"
+          },
+          {
+            "title": "[2508.04503] PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers",
+            "url": "https://web3.arxiv.org/abs/2508.04503"
+          },
+          {
+            "title": "PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250804503Z/abstract"
+          },
+          {
+            "title": "[2508.04503] PRISM: Lightweight Multivariate Time-Series Classification through Symmetric Multi-Resolution Convolutional Layers",
+            "url": "https://arxiv.org/abs/2508.04503"
+          },
+          {
+            "title": "PRISM: Lightweight multivariate time-series classification through symmetric multi-resolution convolutional layers - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0925231226009100"
+          },
+          {
+            "title": "Computer Science Aug 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-08?skip=2300&show=100"
+          },
+          {
+            "title": "Artificial Intelligence 2025",
+            "url": "https://www.arxiv.org/list/cs.AI/2025?skip=29800&show=500"
+          }
+        ]
+      },
+      "The web search has successfully found information about the paper you requested. Here are the key findings:\n\n## PRISM: arXiv 2508.04503\n\nPRISM (Per-channel Resolution-Informed Symmetric Module) is a convolutional-based feature extractor that applies symmetric finite-impulse-response (FIR) filters at multiple temporal scales, independently per channel.\n\n**Purpose and Problem Statement:**\nMultivariate time-series classification is important for applications from wearable sensing to biomedical monitoring, but Transformer- and CNN-based models often remain computationally heavy, offer limited frequency diversity, and require extensive parameter budgets.\n\n**Key Technical Features:**\nThe multi-resolution, per-channel design yields highly frequency-selective embeddings without any inter-channel convolutions, greatly reducing model size and complexity. Additionally, the symmetry enforces structural constraints inspired by linear-phase FIR filters from classical signal processing, effectively halving the number of learnable parameters within the initial layers while preserving the full receptive field.\n\n**Performance:**\nAcross human-activity, sleep-stage and biomedical benchmarks, PRISM, paired with lightweight classification heads, matches or outperforms leading CNN and Transformer baselines, while using roughly an order of magnitude fewer parameters and FLOPs.\n\n**Authors:** Federico Zucchi and Thomas Lampert\n\n**Publication Status:** The paper has been published in Neurocomputing (visible from the ScienceDirect source)."
+    ],
+    "durationSeconds": 7.012355301000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0b7a4faf-0176-4cf8-8574-1866e0336b53",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Closing the Loop: From Behavioral Overreliance Detection to Adaptive Intervention in LLM Conversations  ## Descr…",
+  "leafUuid": "aaa9b83f-634e-432c-bdcb-a6753481fd11",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Behavioral overreliance detection and adaptive intervention in LLM conversations",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-19T21:00:05.281Z_
+
+Now I have sufficient information to conduct a thorough evaluation. Let me note the critical finding about CoRL's scope and complete my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Liu et al., "Behavioral Indicators of Overreliance During Interaction with Conversational Language Models" (CHI 2026, arXiv 2602.11567)**:
+   最直接的上游工作。通过77名参与者实验，识别出5种与LLM过度依赖相关的行为模式（频繁复制粘贴、跳过任务理解、反复LLM引用等），使用per-event 37维编码+自编码器聚类。明确将实时检测和干预留作未来工作。Proposal的核心信号来源。论文真实存在，描述准确。
+
+2. **Srinivasan & Thomason, "Adjust for Trust" (IUI 2026, arXiv 2502.13321)**:
+   信任自适应干预系统，通过11分制自报告信任评分触发支持/反驳解释，实现38%不当依赖减少。Appendix D确认表面行为特征预测信任失败（F1 ≤ 0.5）。论文真实存在，描述准确。
+
+3. **Ailin Liu et al., "Sensing What Surveys Miss" (CHI 2026, arXiv 2602.00880)**:
+   架构上最接近的工作——鼠标动力学+EDA的闭环系统，但目标是在线调查中的认知负荷（非LLM过度依赖），需要生理传感器，线性回归分类器仅达~61%准确率。论文真实存在，描述准确。
+
+4. **Campagna et al., "Estimating Trust in HRC through Behavioral Indicators" (RA-L 2025, arXiv 2601.19856)**:
+   在人机协作化学混合任务中用投票分类器从行为指标预测信任，84%准确率（AUC=0.90），但N=14且为物理HRI场景。论文真实存在，描述准确。
+
+5. **Raees & Papangelis, "From Trust to Appropriate Reliance" (arXiv 2604.23896, April 2026)**:
+   测量理论框架，区分信任与适当依赖，提出Traditional/Appropriateness/Dominance三种测量视角。论文真实存在，描述准确。
+
+6. **PRISM (Neurocomputing 2026, arXiv 2508.04503)**:
+   轻量级多分辨率时间序列分类器，对称FIR滤波器，约40K参数在UCI-HAR达97.3%准确率。论文真实存在，proposal对其的引用说明（仅作为架构效率的证据而非性能预测）是合理的。
+
+7. **CoRL 2026 Call for Papers**:
+   ⚠️ **关键发现**: CoRL (Conference on Robot Learning) 明确要求 "Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics." 并且 "Submissions without a robotics focus will be returned without review." 官网鼓励真实机器人实验或可迁移至真实机器人的仿真实验。
+
+- **调研总结**: 该proposal所在领域（行为信号驱动的LLM过度依赖检测与自适应干预）是一个活跃的HCI研究方向，近期有CHI 2026和IUI 2026的高质量工作奠定了基础。Proposal准确定位了Liu et al.（仅分析无实时系统）和Adjust for Trust（需要自报告）之间的空白。然而，**这是一个纯HCI/人机交互研究，与机器人学习没有任何关系**。
+
+【Trivial Alternative 检验】:
+
+存在两个值得审视的trivial alternative威胁：
+
+1. **基于规则的启发式方法 + 固定阈值干预**：Proposal自身引用了Adjust for Trust Appendix D中简单启发式方法的失败（F1 ≤ 0.5），这部分缓解了concern。但这些启发式仅使用了"surface-level"特征——如果将Liu et al.的5种行为模式直接编码为规则（比如"10秒内复制粘贴且无滚动=高风险"），配合简单阈值就触发干预，是否已能达到acceptable效果？Proposal的weak supervision labeling functions恰恰在做这件事，而circularity ablation就是要验证CNN是否能超越这些规则。这个设计是合理的。
+
+2. **"Sensing What Surveys Miss"去掉EDA通道**：该工作没有提供mouse-only的ablation，但仅用线性回归就达到了~61%的组合准确率。如果用更强的模型（如proposal提议的多分辨率CNN）仅在鼠标/键盘信号上训练，能否达到类似效果？这是合理的问题，但proposal确实提出了更丰富的28维特征空间和多尺度时序处理，这不是trivial的。
+
+**增量价值判断**：Proposal的核心增量价值在于(a)更丰富的行为特征空间（28维temporal grid vs. 表面启发式），(b)多分辨率时序建模（vs. 线性回归），(c)无传感器闭环系统的完整实现。这不是trivial的组合，但也不是根本性的方法论创新——更像是"合理的下一步工程+系统集成"。
+
+【前提假设检验】:
+
+核心claim的逻辑链中有以下未经验证的关键假设：
+
+1. **⚠️ 最大假设：行为信号在对话式LLM交互中能够可靠区分过度依赖**。Proposal引用的正面证据全部来自不同域（HRI物理任务84%、无人机/驾驶仿真90%），而同域的证据几乎全是负面的（Adjust for Trust F1 ≤ 0.5，Sensing What Surveys Miss ~61%含EDA）。Proposal意识到了这个问题（frame为"core empirical hypothesis"），并设计了dual-outcome策略，但这确实是整个项目的核心赌注。
+
+2. **30秒滑动窗口的时间粒度假设**：假设过度依赖行为可以在30秒窗口内被捕捉到。Liu et al.的行为模式（如"跳过初始任务理解"、"犹豫后接受"）可能跨越更长的时间跨度。窗口选择的依据不充分。
+
+3. **Liu et al.数据的可迁移性**：假设在77人3任务数据上训练的分类器可以泛化到proposal自己的120人4任务设置。但Liu et al.的任务设计、misinformation注入方式、参与者群体可能与proposal的设置不同。
+
+4. **从"行为模式存在"到"行为模式可实时检测"的飞跃**：Liu et al.用后验聚类发现行为模式，但后验聚类与实时流式预测之间存在根本差距——聚类利用了完整session的全局信息，流式预测只能看到局部窗口。
+
+【3 维度打分】:
+
+1. **Novelty: 中** — Proposal的核心贡献是将已有组件（Liu et al.的行为特征 + Adjust for Trust的干预策略 + PRISM风格的轻量分类器）集成为闭环系统。这是一个有价值的系统集成贡献，且hybrid labeling strategy（MIL+weak supervision+sparse probes+self-supervised）和circularity ablation设计有一定方法论新意。但核心idea本质上是"用更强的模型在更丰富的特征上做前人尝试过但效果不好的事情"——审稿人可能会认为这是Liu et al.和Adjust for Trust的自然延伸。没有根本性的方法论突破或反直觉的洞察。与Sensing What Surveys Miss (CHI 2026)的差异主要在目标构念（过度依赖vs.认知负荷）和传感器需求（无vs.EDA），但系统架构思路（行为信号→分类器→自适应干预）是相同的。
+
+2. **Significance: 中** — 研究问题本身（LLM过度依赖的实时检测与干预）确实重要且具有现实意义。如果系统work，对HCI和人机交互领域有实用价值。但是：(a) 如果核心检测准确率仅达65-70%（proposal自己认为的realistic scenario），系统的实际干预效果会受到严重限制；(b) 对领域理论的推进有限——主要是工程验证性质的贡献（"行为信号能否驱动干预？"），而非建立新的理论框架；(c) 结果的可推广性受限于实验室控制环境（researcher-injected misinformation）。Proposal对此有明确认知并设计了dual-outcome策略，这提升了贡献的鲁棒性。
+
+3. **Related Work: 强** — 这是proposal最出色的部分。对相关工作的覆盖非常全面且精确——经调研验证，引用的论文全部真实存在，描述准确。差异化定位清晰：Liu et al.（仅分析无系统）、Adjust for Trust（需自报告）、Sensing What Surveys Miss（需传感器+不同目标构念）、Li et al.（仅结构化任务）、Campagna et al.（HRI域）。正面和负面证据都有引用，没有cherry-picking。对Raees & Papangelis测量框架的引用为方法选择提供了理论支撑。
+
+【⚠️ 致命问题：venue mismatch】:
+
+**本proposal投稿目标为CoRL 2026（Conference on Robot Learning）。** 经调研确认，CoRL明确要求submissions必须聚焦于核心机器人学问题（"focus on a core robotics problem"），且"Submissions without a robotics focus will be returned without review."
+
+本proposal是一个纯粹的HCI/人机交互研究：
+- 场景：浏览器中的对话式LLM交互
+- 系统：浏览器扩展
+- 方法：行为信号分析+自适应UI干预
+- 评估：人类被试研究
+- **没有任何机器人学习、机器人控制、具身AI、机器人感知的成分**
+
+**这个proposal在CoRL会被desk reject（不送审直接拒绝）。** 这不是idea质量的问题，而是venue选择的根本错误。
+
+**如果投到合适的venue（CHI 2027、IUI 2027、CSCW 2027），评估如下：**
+
+【概率估计】: [20% - 35%] 中位 27%（假设投稿CHI/IUI等合适venue）
+                [0% - 3%] 中位 1%（投稿CoRL 2026）
+
+【估计理由】:
+
+**投CoRL**: Desk reject概率极高。无机器人学习成分，不符合会议scope。
+
+**投合适HCI venue (CHI/IUI)**: 
+- Novelty是中等水平——系统集成型贡献，hybrid labeling有一定方法论新意，但核心idea是已有组件的合理组合（Liu et al.特征 + 更强分类器 + Adjust for Trust干预策略），审稿人可能评价为"incremental"或"natural next step"。这限制了上界。
+- Significance受限于核心检测假设的高风险性——proposal自己也承认可能只达65-70%准确率，且所有同域证据都偏负面。
+- Related Work的强覆盖和dual-outcome设计（即使检测效果差也有贡献）是加分项，提供了一定的下限保障。
+- 形式完善度很高（详尽的ablation设计、circularity分析、ecological validity讨论），但形式完善≠idea强。
+
+上界主要被Novelty限制：即使实验结果很好，审稿人仍可能说"interesting engineering but the idea is to combine existing components"。
+
+【主要风险】:
+
+1. **🚨 Venue Mismatch (致命)**: CoRL要求机器人学习聚焦，本proposal无任何机器人成分，极大概率被desk reject without review。
+2. **核心假设高风险 (idea层面)**: 所有同域（对话式LLM交互）的行为信号检测过度依赖的证据都是负面或中等的（F1 ≤ 0.5, ~61%含EDA），正面证据全部来自不同域（物理HRI、无人机协作）。"更强模型+更丰富特征就能超越"是一个合理但未验证的假设。如果结果为负，虽然dual-outcome设计提供了一定保障，但"我们试了但不work"的贡献说服力有限。
+```
+
+---
+
+**总结建议**：
+
+这个proposal在**idea质量**上属于中等偏上的系统集成型工作——related work覆盖扎实，gap定位准确，方法设计中有一些亮点（hybrid labeling、circularity ablation）。但**最紧迫的问题不是idea质量，而是venue选择**：CoRL是机器人学习会议，本proposal没有任何机器人成分，投过去几乎必然desk reject。
+
+如果作者将目标转向CHI 2027、IUI 2027或CSCW 2027，这个proposal有合理的中稿机会（~27%），但需要进一步提炼核心novelty以区分于"合理的下一步工程组合"。
+
+Sources:
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [Liu et al., CHI 2026 - Behavioral Indicators of Overreliance](https://arxiv.org/abs/2602.11567)
+- [Srinivasan & Thomason, IUI 2026 - Adjust for Trust](https://arxiv.org/abs/2502.13321)
+- [Ailin Liu et al., CHI 2026 - Sensing What Surveys Miss](https://arxiv.org/abs/2602.00880)
+- [Campagna et al., RA-L 2025 - Estimating Trust in HRC](https://arxiv.org/abs/2601.19856)
+- [Raees & Papangelis, 2026 - From Trust to Appropriate Reliance](https://arxiv.org/abs/2604.23896)
+- [PRISM, Neurocomputing 2026](https://arxiv.org/abs/2508.04503)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aaa9b83f-634e-432c-bdcb-a6753481fd11",
+  "isSidechain": false,
+  "requestId": "req_011CbCbeZc5NXZAgJ3pq8mYM",
+  "type": "assistant",
+  "uuid": "8590ecbc-c0b6-417d-b466-6ed1422b1ee1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YPRQQw19j4jUxVeoVG1D2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 31632,
+      "output_tokens": 4248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4248,
+          "cache_read_input_tokens": 31632,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Closing the Loop: From Behavioral Overreliance Detection to Adaptive Intervention in LLM Conversations  ## Descr…",
+  "leafUuid": "8590ecbc-c0b6-417d-b466-6ed1422b1ee1",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Behavioral overreliance detection and adaptive intervention in LLM conversations",
+  "sessionId": "ba5ccbc8-15b5-44da-afc5-7b1148872c34"
+}
+```
+
+---

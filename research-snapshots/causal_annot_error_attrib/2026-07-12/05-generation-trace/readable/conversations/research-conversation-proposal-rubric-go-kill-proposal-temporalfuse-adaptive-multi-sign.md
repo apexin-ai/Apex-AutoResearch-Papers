@@ -1,0 +1,3071 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # TemporalFuse: Adaptive Multi-Sign
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-2/05c89869-2712-49f0-b642-06231b1e4367.jsonl`
+- **Structured JSON:** [`bc2b40f89ec2174503da.json`](../../sessions/bc/bc2b40f89ec2174503da.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T01:48:39.835Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T01:48:39.835Z",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamics\n\n**状态**: 待审阅  \n**级别**: top-tier  \n**创建时间**: 2026-05-15T16:22:26.445444+00:00\n\n## 描述\nTemporalFuse proposes the first adaptive multi-signal temporal fusion method for early hallucination detection during autoregressive LLM generation. Unlike prior detectors that each rely on a single internal signal type — attention sinks (SinkProbe), hidden-state spectral features (EigenTrack), or log-probabilities (HALT) — and unlike prior multi-signal approaches that fuse statically on complete responses (HaDeMiF fuses hidden states + prediction characteristics via D3T/MLP; HaluNet fuses embeddings + log-likelihoods + entropy via parallel branches; CHARM combines attention and activation features via GNN) — TemporalFuse trains three parallel GRU encoders on these signal streams and introduces a cross-signal gating network that learns time-varying weights over the signal streams at each generation step. The gating MLP (192→64→3 with softmax) produces interpretable per-step weights α_t indicating which signal the model relies on at each generation stage, providing the first temporal map of signal importance during hallucination onset. The method also introduces a multi-horizon early-detection loss that optimizes detection at multiple observation fractions simultaneously (L = Σ w_f·BCE at fractions {0.25, 0.5, 0.75, 1.0}), adapting early time series classification methodology to hallucination detection for the first time — explicitly training the model to detect hallucination from partial responses. The SpectralTrack arm extends the eigenvalue-based hallucination detection paradigm established by INSIDE/EigenScore (ICLR 2024) — which showed LLMs' internal states retain hallucination-detection power via eigenvalues of hidden-state covariance matrices — from sentence-level multi-generation analysis to per-step sliding-window tracking within a single generation. The architecture uses identical GRU encoders (~25K recurrent parameters each) with per-arm linear projections (raw dims ~50–120 / ~10–20 / ~25 → common d=32), ensuring the fusion improvement reflects genuine signal complementarity rather than architectural differences. This directly addresses the unresolved conflict between static signal comparisons: HALUPROBE and Proxy Analyzers find attention dominant, krogoldAI finds FFN/hidden states dominant — TemporalFuse shows how optimal reliance varies temporally, explaining why static snapshots disagree. The framework is grounded in mechanistic interpretability: attention heads route information (WHERE), hidden states accumulate computation (WHAT), log-probs reflect confidence (HOW) — since these pipeline stages process information sequentially, they should carry temporally complementary hallucination signatures, making learned fusion the principled default. For the EMNLP 2026 short paper (ARR May 25 — the only deadline eligible for EMNLP 2026 commitment on August 2; if missed, short paper targets August 3 ARR → EACL 2027): 1 model (Llama-3.1-8B), 1 benchmark (TruthfulQA), 1K examples, demonstrating fusion outperforms individual arms especially at partial observation, with interpretable temporal signal importance analysis. Entity-match onset annotation uses objective NER-based curation (spaCy en_core_web_lg, factoid question patterns). For AAAI 2027 full paper (abstract July 21, paper July 28): adds a fourth FFN activation arm (resolving krogoldAI conflict), 3 models, 3 benchmarks, CascadeProbe extension (using learned gate thresholds for compute-adaptive escalation), and DoLa intervention. All claims supported by 5-fold stratified CV with bootstrap 95% CIs and paired permutation tests. Explicit pilot decision rule: if per-step GRU logits across all arm pairs show Pearson r > 0.95 (temporal redundancy), the contribution focuses on why signals are redundant despite carrying different static information. Total compute: ≤230 H100-hours.\n\n## 核心问题\nReal-time hallucination detection during LLM generation requires monitoring internal signals, but practitioners face two unsolved problems. First, existing detectors each rely on a single signal type — attention patterns (SinkProbe, AUROC 0.89 on HaluEval-QA), hidden-state dynamics (EigenTrack, 0.82–0.94 AUROC; HSAD via FFT), or log-probabilities (HALT via GRU) — with no principled way to combine them. Static comparisons disagree on which signal is best: HALUPROBE (arXiv 2502.13490) and Proxy Analyzers (arXiv 2605.07209) both find attention-based features dominant (attention entropy + per-head source-document attention account for 88%+ of Random Forest importance in Proxy Analyzers), while krogoldAI's empirical study finds FFN activations (82.96% accuracy, 91.04% AUC) outperform attention (79.90%, 88.46% AUC), concluding attention 'added no value beyond what FFN activations already provided.' This conflict persists because all comparisons are static — they collapse temporal dynamics into single snapshots, ignoring that different signals may carry complementary information at different generation stages. Second, and more critically, no existing method optimizes for early detection — identifying hallucination from partial responses (e.g., after only 25% of tokens are generated). Current detectors are trained and evaluated on complete responses, yet real-time guardrails must act as early as possible. Early time series classification is well-established in other domains (MultiETSC, RL-based early classifiers) but has never been applied to hallucination detection during LLM generation. These two gaps — no multi-signal temporal fusion, no early-detection optimization — mean practitioners building real-time hallucination guardrails must choose a single signal type with no principled basis, deploy a detector that cannot be trusted until generation is nearly complete, and sacrifice either accuracy (single signal) or latency (waiting for full response).\n\n## 机遇 / Why Now\nFive independent research threads converge to make adaptive temporal fusion both possible and timely. (1) Signal validation: SinkProbe (arXiv 2604.10697) established attention sinks, EigenTrack (arXiv 2509.15735) validated hidden-state spectral features, and HALT (arXiv 2602.02888) proved log-probability time series — each independently effective for hallucination detection via temporal modeling, but never combined. The foundational basis for internal-state hallucination detection was established by INSIDE (ICLR 2024), which showed that LLMs' internal states retain hallucination-detection power via EigenScore, an eigenvalue-based metric on hidden-state covariance matrices. (2) Causal grounding: SinkTrack (ICLR 2026) demonstrated that modifying attention sinks causally affects hallucination; ReDeEP (ICLR 2025) showed Knowledge FFNs and Copying Heads carry mechanistically distinct hallucination information — establishing that different signal types carry independent, non-redundant information. (3) Temporal complementarity evidence: Hallucination as Trajectory Commitment (arXiv 2604.15400) showed residual-stream trajectories bifurcate at the first generated token in 44.3% of prompts, while Shadows in the Attention (arXiv 2505.16894) found attention-locking thresholds emerge gradually — suggesting attention and hidden-state signals have fundamentally different temporal profiles, creating an opportunity for fusion. (4) Cross-modal fusion precedent: Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC) and multi-modal monitoring, but has never been applied to LLM internal signals. (5) Early classification methodology: Prefix-based multi-horizon training for time series is mature (tslearn, MultiETSC), providing the methodological foundation for optimizing detection at partial observation.\n\nThe key insight: if different signals carry complementary information at different generation stages (attention sinks as routing indicators, hidden states as computation indicators, log-probs as confidence indicators), then a learned time-varying fusion should outperform any fixed single-signal detector, and optimizing for early detection should yield faster-acting guardrails. We test this with TemporalFuse — the first adaptive multi-signal temporal fusion method for hallucination detection during autoregressive generation. The fusion architecture is the primary methodological contribution; the analysis of learned signal weights provides the first temporal comparison of signal types as an interpretable byproduct.\n\n## 方法思路\nWe propose TemporalFuse, an adaptive temporal fusion method that learns time-varying weights over three internal signal streams — attention sinks, hidden-state spectral features, and log-probabilities — to detect hallucination during autoregressive generation, optimized for the earliest possible detection. The primary methodological contribution is the fusion architecture and early-detection training objective; the analysis of learned fusion weights provides the first temporal signal comparison as an interpretable byproduct.\n\n**Theoretical Motivation: Why Fusion Should Outperform Single Signals.** The three signal types occupy different positions in the transformer's computational pipeline: attention heads function as information routing (WHERE the model reads — Wu et al., ICLR 2025), hidden states represent accumulated computation (WHAT the model has computed — FFN key-value memories, Geva et al., EMNLP 2021), and log-probabilities reflect output confidence (HOW certain the model is). Because routing decisions causally precede the computation they gate, and both precede the output distribution, these signals should carry complementary information: a routing error may appear in attention features before the residual stream incorporates erroneous information, while confidence collapse in log-probs may be the most direct indicator of hallucination once it manifests. If the signals are temporally complementary (shifting at different times and rates), learned fusion can outperform any individual signal by attending to the most informative signal at each generation stage. If they are temporally redundant, fusion still cannot underperform the best individual signal (it can learn to assign all weight to one arm). This asymmetry makes fusion the principled default.\n\n**Architecture: Three-Arm Temporal Encoder + Cross-Signal Gating + Early-Detection Loss.**\n\nFor each generation, we extract three parallel feature streams at every decoding step t:\n\n*Arm 1 — SinkWatch (Attention Sinks):* Per-step features from top-K informative head-layer combinations (K=5–15) identified via SinkProbe's ℓ₁-regularized analysis: sink scores for top-k sink tokens (k=2–3), sink concentration, sink entropy, context-attention ratio, plus first-order temporal derivatives. Raw dim ~50–120.\n\n*Arm 2 — SpectralTrack (Hidden States):* Per-step spectral features from sliding-window covariance matrices of hidden-state activations: leading eigenvalues, spectral gaps, entropy, RMT statistics. This extends the eigenvalue-based hallucination detection paradigm established by INSIDE/EigenScore (ICLR 2024, Chen et al.) — which showed that eigenvalues of hidden-state covariance matrices capture hallucination-relevant semantic structure — from sentence-level multi-generation analysis to per-step sliding-window tracking within a single generation, matching EigenTrack's temporal design. Raw dim ~10–20.\n\n*Arm 3 — LogProbTrack (Log-Probabilities):* Per-step log-probability features: token log-prob, predictive entropy, top-k probability gap, rank. Matching HALT's design. Raw dim ~25.\n\nEach arm includes a per-arm learned linear projection to common dimension d=32, then feeds into an identical unidirectional GRU (hidden_dim=64, ~25K recurrent parameters). At each step t, the three GRU hidden states h_t^sink, h_t^spec, h_t^logp ∈ ℝ^64 represent modality-specific temporal summaries.\n\n**Cross-Signal Gating Network (Novel Component 1).** A learned gating network dynamically weights the three signal streams at each step:\n- Input: concatenation [h_t^sink; h_t^spec; h_t^logp] ∈ ℝ^192\n- Gating MLP: 192 → 64 (ReLU) → 3 (softmax) → gate weights α_t ∈ ℝ^3\n- Fused representation: z_t = Σ_i α_t^i · h_t^i ∈ ℝ^64\n- Detection score: ŷ_t = σ(w^T z_t + b)\n\nThe gate weights α_t are directly interpretable: α_t^sink = 0.6 at step 5 means the model assigns 60% importance to attention sink features at that generation stage. By plotting mean gate weights across steps for factual vs. hallucinated generations, we obtain the first temporal map of signal importance during hallucination — the comparison result emerges as an interpretable analysis of the method. Total gating parameters: ~12.5K (negligible vs. 75K total GRU parameters).\n\n**Multi-Horizon Early-Detection Loss (Novel Component 2).** Instead of training only on complete responses, we optimize detection at multiple observation fractions simultaneously:\n\nL = Σ_{f ∈ F} w_f · BCE(ŷ_{T·f}, y)\n\nwhere F = {0.25, 0.50, 0.75, 1.0} are observation fractions, ŷ_{T·f} is the detection score at step ⌊T·f⌋, y is the ground-truth label, and w_f = f (linear weighting — more lenient at early fractions, full weight at complete observation). This adapts early time series classification methodology (MultiETSC, RL-based early classifiers) to hallucination detection for the first time, explicitly training the model to produce informative predictions before generation is complete. The loss encourages the gating network to attend to whichever signal carries the earliest discriminative information.\n\n**Primary Analyses (EMNLP Short Paper).** (1) Fusion vs. individual arms: AUROC/AUPRC comparing TemporalFuse against each individual arm, testing whether fusion outperforms the best single signal. (2) Early-detection curves: AUROC at observation fractions {0.10, 0.25, 0.50, 0.75, 1.0} for TemporalFuse vs. individual arms, demonstrating the benefit of multi-horizon training. (3) Temporal signal importance map: mean gate weights α_t across steps for factual vs. hallucinated generations — the first visualization of how optimal signal reliance changes during hallucination onset. This directly answers 'which signal, when?' without framing it as a standalone comparison study. (4) Static-vs-temporal ranking: comparing signal rankings from our learned gate weights against HALUPROBE's and Proxy Analyzers' static findings. (5) Ablation: TemporalFuse with/without multi-horizon loss; TemporalFuse with/without gating (equal-weight fusion baseline); individual arms with temporal GRU vs. static logistic regression.\n\n**Statistical Rigor.** 5-fold stratified cross-validation, reporting mean ± std for all metrics. Bootstrap 95% CIs (1000 resamples) for pairwise comparisons. Paired permutation tests (10,000 permutations, p < 0.05). Cohen's d effect sizes.\n\n**Entity-Match Onset Annotation (for temporal signal importance analysis).** For the subset of TruthfulQA used in temporal gate-weight analysis, we apply objective NER-based curation: include questions where (a) the reference answer contains ≥1 named entity detected by spaCy NER (model en_core_web_lg), AND (b) the question matches factoid patterns (starts with 'Who', 'What is/was', 'Where is/was', 'When did/was', or contains 'name of'). Onset = first generated token matching a hallucinated entity (entity not in reference, detected by NER). We supplement with NLI sliding-window annotation (window size 10 tokens, entailment threshold 0.5 via DeBERTa-v3-large-MNLI). Report agreement rate between entity-match and NLI-window onset.\n\n**Pilot Design (First 48 hours).** 100 TruthfulQA examples on Llama-3.1-8B: extract all three feature streams, train TemporalFuse and individual arms. **Decision rule:** If all three signals are perfectly correlated temporally (Pearson r > 0.95 between per-step GRU logits across all arm pairs), fusion cannot help — pivot to analyzing why temporal dynamics are redundant despite carrying different static information. If signals show distinct temporal profiles (r < 0.85 for at least one pair), proceed with full experiments.\n\n**Dual-Target Venue Strategy:**\n\n*EMNLP 2026 (ARR May 25 — short paper, 4 pages):* 1 model (Llama-3.1-8B-Instruct), 1 benchmark (TruthfulQA), 1K examples. Focus: TemporalFuse method + early-detection curves + temporal signal importance map + ablations. Core claim: adaptive temporal fusion outperforms individual signals, especially at partial observation. May 25 is the only ARR submission deadline eligible for EMNLP 2026 commitment (August 2, 2026). There is no June ARR cycle — the 10-day timeline (May 15–25) is non-negotiable for EMNLP 2026. If May 25 is missed, the short paper targets the August 3 ARR cycle for commitment to EACL 2027 (commitment deadline October 11, 2026), while the full method paper proceeds to AAAI 2027 independently.\n\n*AAAI 2027 (full paper, 8 pages, abstract deadline July 21, paper deadline July 28):* 3 models (Llama-3.1-8B, Mistral-7B-v0.3, Llama-3.1-70B), 3 benchmarks (TruthfulQA, TriviaQA, HaluEval-QA), 2K examples per pair. **Fourth arm: FFN activations** (matching krogoldAI's feature design — mean-pooled FFN outputs from informative mid-layers) to directly resolve the conflicting static evidence. Full temporal characterization, complementarity analysis, CascadeProbe extension (using learned gate thresholds as escalation triggers for compute-adaptive detection), DoLa intervention when the fused probability exceeds threshold.\n\n**Baselines.** Single-signal temporal: individual GRU arms (SinkWatch, SpectralTrack, LogProbTrack). Static: SinkProbe, LapEigvals, TOHA. Prior temporal: EigenTrack, HALT. Online: MIND, DRIFT, PCNet. Multi-signal static: HaDeMiF-style fusion (hidden states + prediction characteristics, static), HaluNet-style parallel fusion (equal-weight concatenation of static features). Ablation: equal-weight temporal fusion (no gating), TemporalFuse without multi-horizon loss.\n\n**Evaluation Metrics.** Primary: AUROC and AUPRC with 95% bootstrap CIs. Secondary: early-detection AUROC at partial observation fractions, F1 at calibrated threshold, latency overhead (ms/token), gate weight entropy (measuring signal specialization), Cohen's d. For AAAI: hallucination rate reduction with DoLa intervention, compute-accuracy Pareto curves for CascadeProbe.\n\n## 研究现状\n**Static signal-type comparison for hallucination detection:** HALUPROBE (arXiv 2502.13490, Feb 2025) compares attention weights, hidden-state activations, and logits with static classifiers on Llama-2-7B and Vicuna-7B, finding attention-based lookback ratio achieves highest accuracy. Proxy Analyzers (arXiv 2605.07209, May 2026) finds per-head source-document attention and attention entropy account for 88%+ of Random Forest importance across 18 features and 7 analyzer architectures. However, krogoldAI (HuggingFace blog, Dec 2025) found FFN activations (91.04% AUC) outperform attention (88.46% AUC) using Ministral-8B on 145K examples — directly contradicting both. LLM-Check (NSF 2025) also finds hidden-state methods (SAPLMA) generally outperform logit-based and attention-based methods. All comparisons are static; none model temporal dynamics during generation. **TemporalFuse resolves this conflict by showing how optimal signal reliance varies across generation stages — a signal dominant statically may not be dominant at partial observation.**\n\n**Foundational internal-state detection:** INSIDE (ICLR 2024, Chen et al.) established the foundational principle that LLMs' internal states retain hallucination-detection power, introducing EigenScore — an eigenvalue-based metric on the covariance matrix of last-token middle-layer embeddings across multiple generations. EigenScore measures semantic consistency in the dense embedding space and achieved 80–84% AUROC across QA benchmarks. This directly informs SpectralTrack's feature design: while INSIDE operates at the sentence level across multiple generations, SpectralTrack extends eigenvalue-based features to per-step sliding-window analysis within a single generation, enabling temporal tracking.\n\n**Multi-signal fusion for hallucination detection:** HaDeMiF (ICLR 2025, Zhou et al.) fuses hidden states (via MLP) and prediction characteristics — confidence, uncertainty, consistency — (via Deep Dynamic Decision Tree) for hallucination detection and calibration, achieving effective detection with <2% parameter overhead. However, HaDeMiF operates on complete responses with static fusion of output-space characteristics and hidden states; it does not model temporal dynamics during generation, does not incorporate attention-based signals, and does not optimize for early detection. HaluNet (arXiv 2512.24562, Dec 2025) fuses semantic embeddings, log-likelihoods, and entropy via a multi-branch architecture — but uses parallel fusion on complete responses, not learned temporal fusion during generation. ReDeEP (ICLR 2025) combines Knowledge FFN scores and Copying Head attention for RAG hallucination detection — mechanistically principled but operates on single forward passes. CHARM (ICLR 2026) applies GNNs on graphs combining attention and activation features — static aggregation, no temporal modeling. UniFact (arXiv 2512.02772) benchmarks hidden-state and logit methods but does not fuse signals. **No prior work — including HaDeMiF, HaluNet, and CHARM — learns time-varying weights over multiple signal types during autoregressive generation or optimizes for early detection at partial observation.**\n\n**Single-signal temporal/trajectory detection:** EigenTrack (arXiv 2509.15735) tracks hidden-state spectral dynamics via GRU (0.82–0.94 AUROC). HALT (arXiv 2602.02888) treats log-probs as time series via bidirectional GRU. HSAD (arXiv 2509.13154) applies FFT to cross-layer hidden-state activations. Step-Level Hidden-State Transport Geometry (arXiv 2605.13772) uses BiLSTM on hidden-state geometric features. ICR Probe (ACL 2025) tracks cross-layer hidden-state evolution. **Each validates temporal modeling for one signal type; none combine multiple signals or optimize for early detection.**\n\n**Streaming and temporal hallucination detection during generation:** Streaming Hallucination Detection (arXiv 2601.02170, Lu et al.) also models hallucination as temporally evolving during generation, treating step-level hallucination judgments as local observations and introducing a cumulative prefix-level signal that tracks the global evolution of the reasoning state. However, it uses external NLI judges on chain-of-thought reasoning steps rather than fusing internal signal streams — a fundamentally different signal source (external model judgments vs. internal activations), different task domain (long CoT reasoning vs. factual QA generation), and different method (cumulative NLI scoring vs. learned multi-signal temporal fusion). TemporalFuse shares the temporal framing but addresses the complementary problem of fusing multiple internal signals for factual QA, without requiring external judges.\n\n**Cascaded/adaptive detection systems:** HaluGate (vLLM blog, Dec 2025) implements a three-stage cascade (Sentinel binary classifier → token-level detector → NLI explainer) achieving 72.2% query skip rate — but cascades at the query-type level using external signals, not across internal signal types. HALL-OPT (Nature Scientific Reports 2026) combines dual-stream attention detection with adaptive token pruning — but streams are parallel, not sequentially gated. Monitoring Decoding (ACL Findings 2025) gates expensive correction based on cheap monitoring — gates mitigation, not detection depth. Energy-efficient speculative decoding (arXiv 2508.12590) filters tokens for expensive verification using attention-weight statistics and uncertainty — the closest paradigm to our approach but applied to speculative decoding, not hallucination detection. **No prior work cascades across internal signal types (attention → hidden states → log-probs) with learned escalation for hallucination detection.**\n\n**Cross-modal temporal fusion in other domains:** Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC), video anomaly detection, and industrial monitoring. These provide architectural precedent for our cross-signal attention mechanism but have never been applied to LLM internal signals.\n\n**The open gaps:** (1) No method fuses multiple internal signal types with learned temporal weighting during generation — existing fusion is static (HaDeMiF, HaluNet, CHARM, ReDeEP) or external (HaluGate). (2) No method optimizes for early detection at partial observation fractions — all detectors are trained on complete responses. (3) No analysis shows how optimal signal reliance changes during generation — static comparisons collapse temporal dynamics. TemporalFuse addresses all three.\n\n## 目标 Venue\n- EMNLP 2026 (primary short-term target — ARR May 25, 2026, the only submission deadline eligible for EMNLP 2026 commitment on August 2, 2026; 4-page short paper focusing on TemporalFuse method, early-detection curves, and temporal signal importance analysis; Findings track acceptable; if missed, short paper targets August 3 ARR → EACL 2027 commitment October 11, 2026)\n- AAAI 2027 (primary long-term target — abstract deadline July 21, paper deadline July 28, 2026; full 8-page method paper with 4 signal arms including FFN, multi-model evaluation, CascadeProbe extension, intervention experiments)\n- ICLR 2027 (fallback — deadline expected ~October 2026; allows additional experiments if AAAI timeline requires descoping)\n\n## 关键参考\n- What are Models Thinking about? Understanding Large Language Model Hallucinations 'Psychology' through Model Inner State Analysis [HALUPROBE] (arXiv 2502.13490, Feb 2025)\n- Hallucination Detection via Activations of Open-Weight Proxy Analyzers [Proxy Analyzers] (arXiv 2605.07209, May 2026)\n- Towards Unification of Hallucination Detection and Fact Verification for Large Language Models [UniFact] (arXiv 2512.02772, Dec 2025)\n- Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models [SinkProbe] (arXiv 2604.10697, April 2026)\n- EigenTrack: Spectral Activation Feature Tracking for Hallucination and Out-of-Distribution Detection in LLMs and VLMs (arXiv 2509.15735, 2025)\n- HALT: Hallucination Assessment via Log-probs as Time series (arXiv 2602.02888, Feb 2026)\n- Unsupervised Real-Time Hallucination Detection based on the Internal States of Large Language Models [MIND] (ACL Findings 2024, arXiv 2403.06448)\n- LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals [HSAD] (arXiv 2509.13154, Sep 2025)\n- HaluNet: Multi-Granular Uncertainty Modeling for Efficient Hallucination Detection in LLM Question Answering (arXiv 2512.24562, Dec 2025)\n- ReDeEP: Detecting Hallucination in Retrieval-Augmented Generation via Mechanistic Interpretability (ICLR 2025, arXiv 2410.11414)\n- HaDeMiF: Hallucination Detection and Mitigation in Large Language Models (ICLR 2025, OpenReview VwOYxPScxB, arXiv 2601.09929)\n- INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection [EigenScore] (ICLR 2024, arXiv 2402.03744)\n- Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arXiv 2604.15400, April 2026)\n- Before the First Token: Scale-Dependent Emergence of Hallucination Signals in Autoregressive Language Models (arXiv 2604.13068, April 2026)\n- Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)\n- Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arXiv 2505.16894, May 2025)\n- HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders (arXiv 2604.16430, April 2026)\n- Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)\n- Uncertainty-Aware Attention Heads: Efficient Unsupervised Uncertainty Quantification for LLMs [RAUQ] (arXiv 2505.20045, May 2025)\n- Hallucination Detection in LLMs with Topological Divergence on Attention Graphs [TOHA] (ACL 2026, arXiv 2504.10063)\n- SinkTrack: Attention Sink based Context Anchoring for Large Language Models (ICLR 2026, arXiv 2604.10027)\n- FACTUM: Mechanistic Detection of Citation Hallucination in Long-Form RAG (arXiv 2601.05866, Jan 2026)\n- First Hallucination Tokens Are Different from Conditional Ones (arXiv 2507.20836, 2025)\n- Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)\n- ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488)\n- Real-Time Detection of Hallucinated Entities in Long-Form Generation (arXiv 2509.03531, 2025)\n- Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation (arXiv 2604.10098, April 2026)\n- Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits [PCNet/PC-LDCD] (arXiv 2605.05953, May 2026)\n- DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)\n- Hallucination Detection in LLMs Using Spectral Features of Attention Maps [LapEigvals] (EMNLP 2025, arXiv 2502.17598)\n- Neural Message-Passing on Attention Graphs for Hallucination Detection [CHARM] (ICLR 2026, arXiv 2509.24770)\n- Spectral Guardrails for Agents in the Wild: Detecting Tool Use Hallucinations via Attention Topology (arXiv 2602.08082, Feb 2026)\n- AggTruth: Contextual Hallucination Detection using Aggregated Attention Scores in LLMs (ICCS 2025, arXiv 2506.18628)\n- Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170, Jan 2026)\n- Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025, arXiv 2503.03106)\n- DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)\n- Detecting Contextual Hallucinations in Large Language Models with Frequency-Aware Attention (arXiv 2602.18145, Feb 2026)\n- Mirage in the Eyes: Hallucination Attack on Multi-modal Large Language Models with Only Attention Sink (USENIX Security 2025, arXiv 2501.15269)\n- Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., ICLR 2025)\n- Transformer Feed-Forward Layers Are Key-Value Memories (Geva et al., EMNLP 2021)\n- HaluGate: Token-Level Truth — Three-Stage Conditional Hallucination Detection Pipeline (vLLM Blog, Dec 2025)\n- HALL-OPT: Hallucination-Aware Learning and Latency Optimization Transformer for Real-Time Edge Intelligence (Nature Scientific Reports, 2026)\n- LLM-Check: Investigating Detection of Hallucinations in Large Language Models (NSF, 2025)\n- krogoldAI: LLM Hallucination Detection via Internal Representations (HuggingFace Blog, Dec 2025)\n- Energy-Efficient Speculative Decoding with Uncertainty-Awareness and Adaptive Token Filtering (arXiv 2508.12590, 2025)\n\n## 资源估算\n### auto_research\n- **claude_api_cost**: $320–530 (~3200–5300 turns).\n- **estimated_gpu_cost**: $575–690.\n- **gpu_hours**: ~230h H100 total.\n- **gpu_utilization**: High (~80%+).\n- **speed_bottleneck**: Bottlenecked by eager-mode attention extraction (~3–4× slower than standard inference). 1K examples × ~100 tokens ≈ 10–15h on single H100, parallelizable. The gating network and multi-horizon loss add negligible training overhead.\n- **team**: 0 (initial setup + final review only)\n- **timeline**: EMNLP: 7–8 days. AAAI: 3 additional weeks.\n\n### human_in_loop\n- **claude_api_cost**: $220–380 (~2200–3800 turns).\n- **estimated_gpu_cost**: $525–630.\n- **gpu_hours**: ~210h H100 total.\n- **gpu_utilization**: Moderate-high (~60–70%).\n- **risk_note**: Primary risk: signals may be temporally redundant (fusion ≈ best individual arm). Mitigation: (1) pilot correlation check in first 48 hours — if r > 0.95 across all pairs, shift focus to understanding why; (2) even if fusion margin is small, the early-detection curves and temporal signal importance maps are novel contributions independent of fusion magnitude; (3) the multi-horizon loss may still improve individual arms. Secondary risk: the 10-day EMNLP timeline is aggressive and non-negotiable — May 25 is the only ARR submission deadline for EMNLP 2026 commitment (August 2). There is no June ARR cycle; the next cycle after May 25 is August 3, which can only commit to EACL 2027 (October 11 commitment deadline). Mitigation: (1) short paper scope (1 model, 1 benchmark) is tractable in 10 days; (2) fusion architecture adds minimal implementation overhead (~200 lines on top of three arms); (3) if EMNLP is missed, the short paper targets August 3 ARR → EACL 2027, while the full method paper proceeds to AAAI 2027 (July 28 paper deadline) independently — both venue paths remain viable. Tertiary risk: entity-match onset annotation unreliable. Mitigation: NER-based curation criteria are objective and reproducible; NLI sliding-window supplement provides independent validation; TriviaQA added as primary onset benchmark in AAAI version.\n- **team**: 1 researcher, ~60min/day for EMNLP sprint, ~45min/day for AAAI\n- **timeline**: EMNLP: 10 days (May 15–25, non-negotiable for EMNLP 2026; fallback: August 3 ARR → EACL 2027). AAAI: 8 additional weeks.\n\n### manual\n- **estimated_gpu_cost**: $475–570\n- **gpu_hours**: ~190h H100 total. EMNLP short paper: ~52h (feature extraction for 3 arms × 1K examples on Llama-8B: ~20h; GRU + fusion training with 5-fold CV: ~10h; baselines including HaDeMiF-style and HALUPROBE-style: ~12h; curated subset annotation + analysis: ~6h; pilot: ~4h). AAAI full paper (incremental): ~138h additional (multi-model extraction: ~60h; 70B experiments: ~20h; 4th FFN arm: ~12h; CascadeProbe extension: ~8h; extended baselines + DoLa intervention: ~20h; additional CV + ablations: ~18h).\n- **gpu_utilization**: Moderate (~50–60%).\n- **team**: 1–2 researchers\n- **timeline**: EMNLP short paper: 10 days (May 15–25). This timeline is non-negotiable — May 25 is the only ARR deadline eligible for EMNLP 2026. If missed, the short paper shifts to the August 3 ARR cycle targeting EACL 2027. AAAI full paper: additional 8 weeks (May 25–July 21).\n\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T01:48:39.850Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T01:48:39.850Z",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T01:48:40.101Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamics
+
+**状态**: 待审阅  
+**级别**: top-tier  
+**创建时间**: 2026-05-15T16:22:26.445444+00:00
+
+## 描述
+TemporalFuse proposes the first adaptive multi-signal temporal fusion method for early hallucination detection during autoregressive LLM generation. Unlike prior detectors that each rely on a single internal signal type — attention sinks (SinkProbe), hidden-state spectral features (EigenTrack), or log-probabilities (HALT) — and unlike prior multi-signal approaches that fuse statically on complete responses (HaDeMiF fuses hidden states + prediction characteristics via D3T/MLP; HaluNet fuses embeddings + log-likelihoods + entropy via parallel branches; CHARM combines attention and activation features via GNN) — TemporalFuse trains three parallel GRU encoders on these signal streams and introduces a cross-signal gating network that learns time-varying weights over the signal streams at each generation step. The gating MLP (192→64→3 with softmax) produces interpretable per-step weights α_t indicating which signal the model relies on at each generation stage, providing the first temporal map of signal importance during hallucination onset. The method also introduces a multi-horizon early-detection loss that optimizes detection at multiple observation fractions simultaneously (L = Σ w_f·BCE at fractions {0.25, 0.5, 0.75, 1.0}), adapting early time series classification methodology to hallucination detection for the first time — explicitly training the model to detect hallucination from partial responses. The SpectralTrack arm extends the eigenvalue-based hallucination detection paradigm established by INSIDE/EigenScore (ICLR 2024) — which showed LLMs' internal states retain hallucination-detection power via eigenvalues of hidden-state covariance matrices — from sentence-level multi-generation analysis to per-step sliding-window tracking within a single generation. The architecture uses identical GRU encoders (~25K recurrent parameters each) with per-arm linear projections (raw dims ~50–120 / ~10–20 / ~25 → common d=32), ensuring the fusion improvement reflects genuine signal complementarity rather than architectural differences. This directly addresses the unresolved conflict between static signal comparisons: HALUPROBE and Proxy Analyzers find attention dominant, krogoldAI finds FFN/hidden states dominant — TemporalFuse shows how optimal reliance varies temporally, explaining why static snapshots disagree. The framework is grounded in mechanistic interpretability: attention heads route information (WHERE), hidden states accumulate computation (WHAT), log-probs reflect confidence (HOW) — since these pipeline stages process information sequentially, they should carry temporally complementary hallucination signatures, making learned fusion the principled default. For the EMNLP 2026 short paper (ARR May 25 — the only deadline eligible for EMNLP 2026 commitment on August 2; if missed, short paper targets August 3 ARR → EACL 2027): 1 model (Llama-3.1-8B), 1 benchmark (TruthfulQA), 1K examples, demonstrating fusion outperforms individual arms especially at partial observation, with interpretable temporal signal importance analysis. Entity-match onset annotation uses objective NER-based curation (spaCy en_core_web_lg, factoid question patterns). For AAAI 2027 full paper (abstract July 21, paper July 28): adds a fourth FFN activation arm (resolving krogoldAI conflict), 3 models, 3 benchmarks, CascadeProbe extension (using learned gate thresholds for compute-adaptive escalation), and DoLa intervention. All claims supported by 5-fold stratified CV with bootstrap 95% CIs and paired permutation tests. Explicit pilot decision rule: if per-step GRU logits across all arm pairs show Pearson r > 0.95 (temporal redundancy), the contribution focuses on why signals are redundant despite carrying different static information. Total compute: ≤230 H100-hours.
+
+## 核心问题
+Real-time hallucination detection during LLM generation requires monitoring internal signals, but practitioners face two unsolved problems. First, existing detectors each rely on a single signal type — attention patterns (SinkProbe, AUROC 0.89 on HaluEval-QA), hidden-state dynamics (EigenTrack, 0.82–0.94 AUROC; HSAD via FFT), or log-probabilities (HALT via GRU) — with no principled way to combine them. Static comparisons disagree on which signal is best: HALUPROBE (arXiv 2502.13490) and Proxy Analyzers (arXiv 2605.07209) both find attention-based features dominant (attention entropy + per-head source-document attention account for 88%+ of Random Forest importance in Proxy Analyzers), while krogoldAI's empirical study finds FFN activations (82.96% accuracy, 91.04% AUC) outperform attention (79.90%, 88.46% AUC), concluding attention 'added no value beyond what FFN activations already provided.' This conflict persists because all comparisons are static — they collapse temporal dynamics into single snapshots, ignoring that different signals may carry complementary information at different generation stages. Second, and more critically, no existing method optimizes for early detection — identifying hallucination from partial responses (e.g., after only 25% of tokens are generated). Current detectors are trained and evaluated on complete responses, yet real-time guardrails must act as early as possible. Early time series classification is well-established in other domains (MultiETSC, RL-based early classifiers) but has never been applied to hallucination detection during LLM generation. These two gaps — no multi-signal temporal fusion, no early-detection optimization — mean practitioners building real-time hallucination guardrails must choose a single signal type with no principled basis, deploy a detector that cannot be trusted until generation is nearly complete, and sacrifice either accuracy (single signal) or latency (waiting for full response).
+
+## 机遇 / Why Now
+Five independent research threads converge to make adaptive temporal fusion both possible and timely. (1) Signal validation: SinkProbe (arXiv 2604.10697) established attention sinks, EigenTrack (arXiv 2509.15735) validated hidden-state spectral features, and HALT (arXiv 2602.02888) proved log-probability time series — each independently effective for hallucination detection via temporal modeling, but never combined. The foundational basis for internal-state hallucination detection was established by INSIDE (ICLR 2024), which showed that LLMs' internal states retain hallucination-detection power via EigenScore, an eigenvalue-based metric on hidden-state covariance matrices. (2) Causal grounding: SinkTrack (ICLR 2026) demonstrated that modifying attention sinks causally affects hallucination; ReDeEP (ICLR 2025) showed Knowledge FFNs and Copying Heads carry mechanistically distinct hallucination information — establishing that different signal types carry independent, non-redundant information. (3) Temporal complementarity evidence: Hallucination as Trajectory Commitment (arXiv 2604.15400) showed residual-stream trajectories bifurcate at the first generated token in 44.3% of prompts, while Shadows in the Attention (arXiv 2505.16894) found attention-locking thresholds emerge gradually — suggesting attention and hidden-state signals have fundamentally different temporal profiles, creating an opportunity for fusion. (4) Cross-modal fusion precedent: Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC) and multi-modal monitoring, but has never been applied to LLM internal signals. (5) Early classification methodology: Prefix-based multi-horizon training for time series is mature (tslearn, MultiETSC), providing the methodological foundation for optimizing detection at partial observation.
+
+The key insight: if different signals carry complementary information at different generation stages (attention sinks as routing indicators, hidden states as computation indicators, log-probs as confidence indicators), then a learned time-varying fusion should outperform any fixed single-signal detector, and optimizing for early detection should yield faster-acting guardrails. We test this with TemporalFuse — the first adaptive multi-signal temporal fusion method for hallucination detection during autoregressive generation. The fusion architecture is the primary methodological contribution; the analysis of learned signal weights provides the first temporal comparison of signal types as an interpretable byproduct.
+
+## 方法思路
+We propose TemporalFuse, an adaptive temporal fusion method that learns time-varying weights over three internal signal streams — attention sinks, hidden-state spectral features, and log-probabilities — to detect hallucination during autoregressive generation, optimized for the earliest possible detection. The primary methodological contribution is the fusion architecture and early-detection training objective; the analysis of learned fusion weights provides the first temporal signal comparison as an interpretable byproduct.
+
+**Theoretical Motivation: Why Fusion Should Outperform Single Signals.** The three signal types occupy different positions in the transformer's computational pipeline: attention heads function as information routing (WHERE the model reads — Wu et al., ICLR 2025), hidden states represent accumulated computation (WHAT the model has computed — FFN key-value memories, Geva et al., EMNLP 2021), and log-probabilities reflect output confidence (HOW certain the model is). Because routing decisions causally precede the computation they gate, and both precede the output distribution, these signals should carry complementary information: a routing error may appear in attention features before the residual stream incorporates erroneous information, while confidence collapse in log-probs may be the most direct indicator of hallucination once it manifests. If the signals are temporally complementary (shifting at different times and rates), learned fusion can outperform any individual signal by attending to the most informative signal at each generation stage. If they are temporally redundant, fusion still cannot underperform the best individual signal (it can learn to assign all weight to one arm). This asymmetry makes fusion the principled default.
+
+**Architecture: Three-Arm Temporal Encoder + Cross-Signal Gating + Early-Detection Loss.**
+
+For each generation, we extract three parallel feature streams at every decoding step t:
+
+*Arm 1 — SinkWatch (Attention Sinks):* Per-step features from top-K informative head-layer combinations (K=5–15) identified via SinkProbe's ℓ₁-regularized analysis: sink scores for top-k sink tokens (k=2–3), sink concentration, sink entropy, context-attention ratio, plus first-order temporal derivatives. Raw dim ~50–120.
+
+*Arm 2 — SpectralTrack (Hidden States):* Per-step spectral features from sliding-window covariance matrices of hidden-state activations: leading eigenvalues, spectral gaps, entropy, RMT statistics. This extends the eigenvalue-based hallucination detection paradigm established by INSIDE/EigenScore (ICLR 2024, Chen et al.) — which showed that eigenvalues of hidden-state covariance matrices capture hallucination-relevant semantic structure — from sentence-level multi-generation analysis to per-step sliding-window tracking within a single generation, matching EigenTrack's temporal design. Raw dim ~10–20.
+
+*Arm 3 — LogProbTrack (Log-Probabilities):* Per-step log-probability features: token log-prob, predictive entropy, top-k probability gap, rank. Matching HALT's design. Raw dim ~25.
+
+Each arm includes a per-arm learned linear projection to common dimension d=32, then feeds into an identical unidirectional GRU (hidden_dim=64, ~25K recurrent parameters). At each step t, the three GRU hidden states h_t^sink, h_t^spec, h_t^logp ∈ ℝ^64 represent modality-specific temporal summaries.
+
+**Cross-Signal Gating Network (Novel Component 1).** A learned gating network dynamically weights the three signal streams at each step:
+- Input: concatenation [h_t^sink; h_t^spec; h_t^logp] ∈ ℝ^192
+- Gating MLP: 192 → 64 (ReLU) → 3 (softmax) → gate weights α_t ∈ ℝ^3
+- Fused representation: z_t = Σ_i α_t^i · h_t^i ∈ ℝ^64
+- Detection score: ŷ_t = σ(w^T z_t + b)
+
+The gate weights α_t are directly interpretable: α_t^sink = 0.6 at step 5 means the model assigns 60% importance to attention sink features at that generation stage. By plotting mean gate weights across steps for factual vs. hallucinated generations, we obtain the first temporal map of signal importance during hallucination — the comparison result emerges as an interpretable analysis of the method. Total gating parameters: ~12.5K (negligible vs. 75K total GRU parameters).
+
+**Multi-Horizon Early-Detection Loss (Novel Component 2).** Instead of training only on complete responses, we optimize detection at multiple observation fractions simultaneously:
+
+L = Σ_{f ∈ F} w_f · BCE(ŷ_{T·f}, y)
+
+where F = {0.25, 0.50, 0.75, 1.0} are observation fractions, ŷ_{T·f} is the detection score at step ⌊T·f⌋, y is the ground-truth label, and w_f = f (linear weighting — more lenient at early fractions, full weight at complete observation). This adapts early time series classification methodology (MultiETSC, RL-based early classifiers) to hallucination detection for the first time, explicitly training the model to produce informative predictions before generation is complete. The loss encourages the gating network to attend to whichever signal carries the earliest discriminative information.
+
+**Primary Analyses (EMNLP Short Paper).** (1) Fusion vs. individual arms: AUROC/AUPRC comparing TemporalFuse against each individual arm, testing whether fusion outperforms the best single signal. (2) Early-detection curves: AUROC at observation fractions {0.10, 0.25, 0.50, 0.75, 1.0} for TemporalFuse vs. individual arms, demonstrating the benefit of multi-horizon training. (3) Temporal signal importance map: mean gate weights α_t across steps for factual vs. hallucinated generations — the first visualization of how optimal signal reliance changes during hallucination onset. This directly answers 'which signal, when?' without framing it as a standalone comparison study. (4) Static-vs-temporal ranking: comparing signal rankings from our learned gate weights against HALUPROBE's and Proxy Analyzers' static findings. (5) Ablation: TemporalFuse with/without multi-horizon loss; TemporalFuse with/without gating (equal-weight fusion baseline); individual arms with temporal GRU vs. static logistic regression.
+
+**Statistical Rigor.** 5-fold stratified cross-validation, reporting mean ± std for all metrics. Bootstrap 95% CIs (1000 resamples) for pairwise comparisons. Paired permutation tests (10,000 permutations, p < 0.05). Cohen's d effect sizes.
+
+**Entity-Match Onset Annotation (for temporal signal importance analysis).** For the subset of TruthfulQA used in temporal gate-weight analysis, we apply objective NER-based curation: include questions where (a) the reference answer contains ≥1 named entity detected by spaCy NER (model en_core_web_lg), AND (b) the question matches factoid patterns (starts with 'Who', 'What is/was', 'Where is/was', 'When did/was', or contains 'name of'). Onset = first generated token matching a hallucinated entity (entity not in reference, detected by NER). We supplement with NLI sliding-window annotation (window size 10 tokens, entailment threshold 0.5 via DeBERTa-v3-large-MNLI). Report agreement rate between entity-match and NLI-window onset.
+
+**Pilot Design (First 48 hours).** 100 TruthfulQA examples on Llama-3.1-8B: extract all three feature streams, train TemporalFuse and individual arms. **Decision rule:** If all three signals are perfectly correlated temporally (Pearson r > 0.95 between per-step GRU logits across all arm pairs), fusion cannot help — pivot to analyzing why temporal dynamics are redundant despite carrying different static information. If signals show distinct temporal profiles (r < 0.85 for at least one pair), proceed with full experiments.
+
+**Dual-Target Venue Strategy:**
+
+*EMNLP 2026 (ARR May 25 — short paper, 4 pages):* 1 model (Llama-3.1-8B-Instruct), 1 benchmark (TruthfulQA), 1K examples. Focus: TemporalFuse method + early-detection curves + temporal signal importance map + ablations. Core claim: adaptive temporal fusion outperforms individual signals, especially at partial observation. May 25 is the only ARR submission deadline eligible for EMNLP 2026 commitment (August 2, 2026). There is no June ARR cycle — the 10-day timeline (May 15–25) is non-negotiable for EMNLP 2026. If May 25 is missed, the short paper targets the August 3 ARR cycle for commitment to EACL 2027 (commitment deadline October 11, 2026), while the full method paper proceeds to AAAI 2027 independently.
+
+*AAAI 2027 (full paper, 8 pages, abstract deadline July 21, paper deadline July 28):* 3 models (Llama-3.1-8B, Mistral-7B-v0.3, Llama-3.1-70B), 3 benchmarks (TruthfulQA, TriviaQA, HaluEval-QA), 2K examples per pair. **Fourth arm: FFN activations** (matching krogoldAI's feature design — mean-pooled FFN outputs from informative mid-layers) to directly resolve the conflicting static evidence. Full temporal characterization, complementarity analysis, CascadeProbe extension (using learned gate thresholds as escalation triggers for compute-adaptive detection), DoLa intervention when the fused probability exceeds threshold.
+
+**Baselines.** Single-signal temporal: individual GRU arms (SinkWatch, SpectralTrack, LogProbTrack). Static: SinkProbe, LapEigvals, TOHA. Prior temporal: EigenTrack, HALT. Online: MIND, DRIFT, PCNet. Multi-signal static: HaDeMiF-style fusion (hidden states + prediction characteristics, static), HaluNet-style parallel fusion (equal-weight concatenation of static features). Ablation: equal-weight temporal fusion (no gating), TemporalFuse without multi-horizon loss.
+
+**Evaluation Metrics.** Primary: AUROC and AUPRC with 95% bootstrap CIs. Secondary: early-detection AUROC at partial observation fractions, F1 at calibrated threshold, latency overhead (ms/token), gate weight entropy (measuring signal specialization), Cohen's d. For AAAI: hallucination rate reduction with DoLa intervention, compute-accuracy Pareto curves for CascadeProbe.
+
+## 研究现状
+**Static signal-type comparison for hallucination detection:** HALUPROBE (arXiv 2502.13490, Feb 2025) compares attention weights, hidden-state activations, and logits with static classifiers on Llama-2-7B and Vicuna-7B, finding attention-based lookback ratio achieves highest accuracy. Proxy Analyzers (arXiv 2605.07209, May 2026) finds per-head source-document attention and attention entropy account for 88%+ of Random Forest importance across 18 features and 7 analyzer architectures. However, krogoldAI (HuggingFace blog, Dec 2025) found FFN activations (91.04% AUC) outperform attention (88.46% AUC) using Ministral-8B on 145K examples — directly contradicting both. LLM-Check (NSF 2025) also finds hidden-state methods (SAPLMA) generally outperform logit-based and attention-based methods. All comparisons are static; none model temporal dynamics during generation. **TemporalFuse resolves this conflict by showing how optimal signal reliance varies across generation stages — a signal dominant statically may not be dominant at partial observation.**
+
+**Foundational internal-state detection:** INSIDE (ICLR 2024, Chen et al.) established the foundational principle that LLMs' internal states retain hallucination-detection power, introducing EigenScore — an eigenvalue-based metric on the covariance matrix of last-token middle-layer embeddings across multiple generations. EigenScore measures semantic consistency in the dense embedding space and achieved 80–84% AUROC across QA benchmarks. This directly informs SpectralTrack's feature design: while INSIDE operates at the sentence level across multiple generations, SpectralTrack extends eigenvalue-based features to per-step sliding-window analysis within a single generation, enabling temporal tracking.
+
+**Multi-signal fusion for hallucination detection:** HaDeMiF (ICLR 2025, Zhou et al.) fuses hidden states (via MLP) and prediction characteristics — confidence, uncertainty, consistency — (via Deep Dynamic Decision Tree) for hallucination detection and calibration, achieving effective detection with <2% parameter overhead. However, HaDeMiF operates on complete responses with static fusion of output-space characteristics and hidden states; it does not model temporal dynamics during generation, does not incorporate attention-based signals, and does not optimize for early detection. HaluNet (arXiv 2512.24562, Dec 2025) fuses semantic embeddings, log-likelihoods, and entropy via a multi-branch architecture — but uses parallel fusion on complete responses, not learned temporal fusion during generation. ReDeEP (ICLR 2025) combines Knowledge FFN scores and Copying Head attention for RAG hallucination detection — mechanistically principled but operates on single forward passes. CHARM (ICLR 2026) applies GNNs on graphs combining attention and activation features — static aggregation, no temporal modeling. UniFact (arXiv 2512.02772) benchmarks hidden-state and logit methods but does not fuse signals. **No prior work — including HaDeMiF, HaluNet, and CHARM — learns time-varying weights over multiple signal types during autoregressive generation or optimizes for early detection at partial observation.**
+
+**Single-signal temporal/trajectory detection:** EigenTrack (arXiv 2509.15735) tracks hidden-state spectral dynamics via GRU (0.82–0.94 AUROC). HALT (arXiv 2602.02888) treats log-probs as time series via bidirectional GRU. HSAD (arXiv 2509.13154) applies FFT to cross-layer hidden-state activations. Step-Level Hidden-State Transport Geometry (arXiv 2605.13772) uses BiLSTM on hidden-state geometric features. ICR Probe (ACL 2025) tracks cross-layer hidden-state evolution. **Each validates temporal modeling for one signal type; none combine multiple signals or optimize for early detection.**
+
+**Streaming and temporal hallucination detection during generation:** Streaming Hallucination Detection (arXiv 2601.02170, Lu et al.) also models hallucination as temporally evolving during generation, treating step-level hallucination judgments as local observations and introducing a cumulative prefix-level signal that tracks the global evolution of the reasoning state. However, it uses external NLI judges on chain-of-thought reasoning steps rather than fusing internal signal streams — a fundamentally different signal source (external model judgments vs. internal activations), different task domain (long CoT reasoning vs. factual QA generation), and different method (cumulative NLI scoring vs. learned multi-signal temporal fusion). TemporalFuse shares the temporal framing but addresses the complementary problem of fusing multiple internal signals for factual QA, without requiring external judges.
+
+**Cascaded/adaptive detection systems:** HaluGate (vLLM blog, Dec 2025) implements a three-stage cascade (Sentinel binary classifier → token-level detector → NLI explainer) achieving 72.2% query skip rate — but cascades at the query-type level using external signals, not across internal signal types. HALL-OPT (Nature Scientific Reports 2026) combines dual-stream attention detection with adaptive token pruning — but streams are parallel, not sequentially gated. Monitoring Decoding (ACL Findings 2025) gates expensive correction based on cheap monitoring — gates mitigation, not detection depth. Energy-efficient speculative decoding (arXiv 2508.12590) filters tokens for expensive verification using attention-weight statistics and uncertainty — the closest paradigm to our approach but applied to speculative decoding, not hallucination detection. **No prior work cascades across internal signal types (attention → hidden states → log-probs) with learned escalation for hallucination detection.**
+
+**Cross-modal temporal fusion in other domains:** Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC), video anomaly detection, and industrial monitoring. These provide architectural precedent for our cross-signal attention mechanism but have never been applied to LLM internal signals.
+
+**The open gaps:** (1) No method fuses multiple internal signal types with learned temporal weighting during generation — existing fusion is static (HaDeMiF, HaluNet, CHARM, ReDeEP) or external (HaluGate). (2) No method optimizes for early detection at partial observation fractions — all detectors are trained on complete responses. (3) No analysis shows how optimal signal reliance changes during generation — static comparisons collapse temporal dynamics. TemporalFuse addresses all three.
+
+## 目标 Venue
+- EMNLP 2026 (primary short-term target — ARR May 25, 2026, the only submission deadline eligible for EMNLP 2026 commitment on August 2, 2026; 4-page short paper focusing on TemporalFuse method, early-detection curves, and temporal signal importance analysis; Findings track acceptable; if missed, short paper targets August 3 ARR → EACL 2027 commitment October 11, 2026)
+- AAAI 2027 (primary long-term target — abstract deadline July 21, paper deadline July 28, 2026; full 8-page method paper with 4 signal arms including FFN, multi-model evaluation, CascadeProbe extension, intervention experiments)
+- ICLR 2027 (fallback — deadline expected ~October 2026; allows additional experiments if AAAI timeline requires descoping)
+
+## 关键参考
+- What are Models Thinking about? Understanding Large Language Model Hallucinations 'Psychology' through Model Inner State Analysis [HALUPROBE] (arXiv 2502.13490, Feb 2025)
+- Hallucination Detection via Activations of Open-Weight Proxy Analyzers [Proxy Analyzers] (arXiv 2605.07209, May 2026)
+- Towards Unification of Hallucination Detection and Fact Verification for Large Language Models [UniFact] (arXiv 2512.02772, Dec 2025)
+- Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models [SinkProbe] (arXiv 2604.10697, April 2026)
+- EigenTrack: Spectral Activation Feature Tracking for Hallucination and Out-of-Distribution Detection in LLMs and VLMs (arXiv 2509.15735, 2025)
+- HALT: Hallucination Assessment via Log-probs as Time series (arXiv 2602.02888, Feb 2026)
+- Unsupervised Real-Time Hallucination Detection based on the Internal States of Large Language Models [MIND] (ACL Findings 2024, arXiv 2403.06448)
+- LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals [HSAD] (arXiv 2509.13154, Sep 2025)
+- HaluNet: Multi-Granular Uncertainty Modeling for Efficient Hallucination Detection in LLM Question Answering (arXiv 2512.24562, Dec 2025)
+- ReDeEP: Detecting Hallucination in Retrieval-Augmented Generation via Mechanistic Interpretability (ICLR 2025, arXiv 2410.11414)
+- HaDeMiF: Hallucination Detection and Mitigation in Large Language Models (ICLR 2025, OpenReview VwOYxPScxB, arXiv 2601.09929)
+- INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection [EigenScore] (ICLR 2024, arXiv 2402.03744)
+- Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arXiv 2604.15400, April 2026)
+- Before the First Token: Scale-Dependent Emergence of Hallucination Signals in Autoregressive Language Models (arXiv 2604.13068, April 2026)
+- Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)
+- Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arXiv 2505.16894, May 2025)
+- HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders (arXiv 2604.16430, April 2026)
+- Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)
+- Uncertainty-Aware Attention Heads: Efficient Unsupervised Uncertainty Quantification for LLMs [RAUQ] (arXiv 2505.20045, May 2025)
+- Hallucination Detection in LLMs with Topological Divergence on Attention Graphs [TOHA] (ACL 2026, arXiv 2504.10063)
+- SinkTrack: Attention Sink based Context Anchoring for Large Language Models (ICLR 2026, arXiv 2604.10027)
+- FACTUM: Mechanistic Detection of Citation Hallucination in Long-Form RAG (arXiv 2601.05866, Jan 2026)
+- First Hallucination Tokens Are Different from Conditional Ones (arXiv 2507.20836, 2025)
+- Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)
+- ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488)
+- Real-Time Detection of Hallucinated Entities in Long-Form Generation (arXiv 2509.03531, 2025)
+- Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation (arXiv 2604.10098, April 2026)
+- Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits [PCNet/PC-LDCD] (arXiv 2605.05953, May 2026)
+- DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)
+- Hallucination Detection in LLMs Using Spectral Features of Attention Maps [LapEigvals] (EMNLP 2025, arXiv 2502.17598)
+- Neural Message-Passing on Attention Graphs for Hallucination Detection [CHARM] (ICLR 2026, arXiv 2509.24770)
+- Spectral Guardrails for Agents in the Wild: Detecting Tool Use Hallucinations via Attention Topology (arXiv 2602.08082, Feb 2026)
+- AggTruth: Contextual Hallucination Detection using Aggregated Attention Scores in LLMs (ICCS 2025, arXiv 2506.18628)
+- Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170, Jan 2026)
+- Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025, arXiv 2503.03106)
+- DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)
+- Detecting Contextual Hallucinations in Large Language Models with Frequency-Aware Attention (arXiv 2602.18145, Feb 2026)
+- Mirage in the Eyes: Hallucination Attack on Multi-modal Large Language Models with Only Attention Sink (USENIX Security 2025, arXiv 2501.15269)
+- Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., ICLR 2025)
+- Transformer Feed-Forward Layers Are Key-Value Memories (Geva et al., EMNLP 2021)
+- HaluGate: Token-Level Truth — Three-Stage Conditional Hallucination Detection Pipeline (vLLM Blog, Dec 2025)
+- HALL-OPT: Hallucination-Aware Learning and Latency Optimization Transformer for Real-Time Edge Intelligence (Nature Scientific Reports, 2026)
+- LLM-Check: Investigating Detection of Hallucinations in Large Language Models (NSF, 2025)
+- krogoldAI: LLM Hallucination Detection via Internal Representations (HuggingFace Blog, Dec 2025)
+- Energy-Efficient Speculative Decoding with Uncertainty-Awareness and Adaptive Token Filtering (arXiv 2508.12590, 2025)
+
+## 资源估算
+### auto_research
+- **claude_api_cost**: $320–530 (~3200–5300 turns).
+- **estimated_gpu_cost**: $575–690.
+- **gpu_hours**: ~230h H100 total.
+- **gpu_utilization**: High (~80%+).
+- **speed_bottleneck**: Bottlenecked by eager-mode attention extraction (~3–4× slower than standard inference). 1K examples × ~100 tokens ≈ 10–15h on single H100, parallelizable. The gating network and multi-horizon loss add negligible training overhead.
+- **team**: 0 (initial setup + final review only)
+- **timeline**: EMNLP: 7–8 days. AAAI: 3 additional weeks.
+
+### human_in_loop
+- **claude_api_cost**: $220–380 (~2200–3800 turns).
+- **estimated_gpu_cost**: $525–630.
+- **gpu_hours**: ~210h H100 total.
+- **gpu_utilization**: Moderate-high (~60–70%).
+- **risk_note**: Primary risk: signals may be temporally redundant (fusion ≈ best individual arm). Mitigation: (1) pilot correlation check in first 48 hours — if r > 0.95 across all pairs, shift focus to understanding why; (2) even if fusion margin is small, the early-detection curves and temporal signal importance maps are novel contributions independent of fusion magnitude; (3) the multi-horizon loss may still improve individual arms. Secondary risk: the 10-day EMNLP timeline is aggressive and non-negotiable — May 25 is the only ARR submission deadline for EMNLP 2026 commitment (August 2). There is no June ARR cycle; the next cycle after May 25 is August 3, which can only commit to EACL 2027 (October 11 commitment deadline). Mitigation: (1) short paper scope (1 model, 1 benchmark) is tractable in 10 days; (2) fusion architecture adds minimal implementation overhead (~200 lines on top of three arms); (3) if EMNLP is missed, the short paper targets August 3 ARR → EACL 2027, while the full method paper proceeds to AAAI 2027 (July 28 paper deadline) independently — both venue paths remain viable. Tertiary risk: entity-match onset annotation unreliable. Mitigation: NER-based curation criteria are objective and reproducible; NLI sliding-window supplement provides independent validation; TriviaQA added as primary onset benchmark in AAAI version.
+- **team**: 1 researcher, ~60min/day for EMNLP sprint, ~45min/day for AAAI
+- **timeline**: EMNLP: 10 days (May 15–25, non-negotiable for EMNLP 2026; fallback: August 3 ARR → EACL 2027). AAAI: 8 additional weeks.
+
+### manual
+- **estimated_gpu_cost**: $475–570
+- **gpu_hours**: ~190h H100 total. EMNLP short paper: ~52h (feature extraction for 3 arms × 1K examples on Llama-8B: ~20h; GRU + fusion training with 5-fold CV: ~10h; baselines including HaDeMiF-style and HALUPROBE-style: ~12h; curated subset annotation + analysis: ~6h; pilot: ~4h). AAAI full paper (incremental): ~138h additional (multi-model extraction: ~60h; 70B experiments: ~20h; 4th FFN arm: ~12h; CascadeProbe extension: ~8h; extended baselines + DoLa intervention: ~20h; additional CV + ablations: ~18h).
+- **gpu_utilization**: Moderate (~50–60%).
+- **team**: 1–2 researchers
+- **timeline**: EMNLP short paper: 10 days (May 15–25). This timeline is non-negotiable — May 25 is the only ARR deadline eligible for EMNLP 2026. If missed, the short paper shifts to the August 3 ARR cycle targeting EACL 2027. AAAI full paper: additional 8 weeks (May 25–July 21).
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "38335501-54ec-477f-9f8d-796e2525ff7c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T01:48:40.094Z_
+
+```json
+{
+  "parentUuid": "38335501-54ec-477f-9f8d-796e2525ff7c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "e3faf138-00ff-4390-9cd7-d1faafdbce90",
+  "timestamp": "2026-05-16T01:48:40.094Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T01:48:40.095Z_
+
+```json
+{
+  "parentUuid": "e3faf138-00ff-4390-9cd7-d1faafdbce90",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f8822725-bb98-4bd2-b625-2cb88945ae18",
+  "timestamp": "2026-05-16T01:48:40.095Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamic…",
+  "leafUuid": "f8822725-bb98-4bd2-b625-2cb88945ae18",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate TemporalFuse hallucination detection proposal",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T01:48:44.513Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully evaluate this proposal for EMNLP 2026 main conference. I need to assess the idea quality across Novelty, Significance, and Related Work dimensions, and answer the Trivial Alternative and Premise Assumption tests.
+
+Let me first search for some recent related work to verify the novelty claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8822725-bb98-4bd2-b625-2cb88945ae18",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYQdc5RJbaCXbNuRS4",
+  "type": "assistant",
+  "uuid": "8ae52e78-c4d9-4356-901b-35dfc5eb63a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SW9FXupsdfjvrNRJTUZuyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 24447,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24447,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 24447,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24447
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T01:48:45.581Z_
+
+Let me first verify the novelty claims by checking recent related work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ae52e78-c4d9-4356-901b-35dfc5eb63a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYQdc5RJbaCXbNuRS4",
+  "type": "assistant",
+  "uuid": "13cf70f7-dcc9-4ac1-8173-5820e1e9e59f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SW9FXupsdfjvrNRJTUZuyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 24447,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24447,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 24447,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24447
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T01:48:45.742Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RG53SP45QjFmniyAvQoakb`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13cf70f7-dcc9-4ac1-8173-5820e1e9e59f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYQdc5RJbaCXbNuRS4",
+  "type": "assistant",
+  "uuid": "ce8c7e81-8b6f-4fb9-a245-d28e8003972c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SW9FXupsdfjvrNRJTUZuyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 24447,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24447,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 24447,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24447
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T01:48:45.753Z_
+
+<details><summary>↩ Tool result · `toolu_01RG53SP45QjFmniyAvQoakb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce8c7e81-8b6f-4fb9-a245-d28e8003972c",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "0199aff6-f77b-4804-8ef1-c0b2a1b4a20b",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ce8c7e81-8b6f-4fb9-a245-d28e8003972c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T01:48:49.481Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for recent work on multi-signal fusion for hallucination detection, early hallucination detection, and the specific papers mentioned in the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0199aff6-f77b-4804-8ef1-c0b2a1b4a20b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYpEvHyQSmPbzAiPWv",
+  "type": "assistant",
+  "uuid": "71492f1b-fab6-4cff-9069-61fed4f5988a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6gJdmnSRnbYBhatzhKdV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 24447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 24447,
+          "cache_creation_input_tokens": 703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T01:48:49.974Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011cacefDjD4TJKgNcPgj4SG`</summary>
+
+```json
+{
+  "query": "multi-signal fusion hallucination detection LLM temporal 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71492f1b-fab6-4cff-9069-61fed4f5988a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYpEvHyQSmPbzAiPWv",
+  "type": "assistant",
+  "uuid": "9f6b7d02-18ce-41b5-ade6-e8dc6ae2722a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6gJdmnSRnbYBhatzhKdV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 24447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 24447,
+          "cache_creation_input_tokens": 703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T01:48:50.965Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BGS9gSeLf4xfwiBzzwrkrk`</summary>
+
+```json
+{
+  "query": "early hallucination detection partial response LLM autoregressive generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f6b7d02-18ce-41b5-ade6-e8dc6ae2722a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYpEvHyQSmPbzAiPWv",
+  "type": "assistant",
+  "uuid": "6d84725b-d186-40f4-81ab-8683d8653009",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6gJdmnSRnbYBhatzhKdV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 24447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 24447,
+          "cache_creation_input_tokens": 703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T01:48:51.217Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PTzrD1R8jaTMmfEecy5qGN`</summary>
+
+```json
+{
+  "query": "HaDeMiF hallucination detection mitigation fusion ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d84725b-d186-40f4-81ab-8683d8653009",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QYpEvHyQSmPbzAiPWv",
+  "type": "assistant",
+  "uuid": "9e840041-74c5-4a37-ac9a-154f6e8f57ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6gJdmnSRnbYBhatzhKdV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 24447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 24447,
+          "cache_creation_input_tokens": 703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T01:48:57.448Z_
+
+<details><summary>↩ Tool result · `toolu_011cacefDjD4TJKgNcPgj4SG`</summary>
+
+```text
+Web search results for query: "multi-signal fusion hallucination detection LLM temporal 2025 2026"
+
+Links: [{"title":"A Survey of Multimodal Hallucination Evaluation and Detection","url":"https://arxiv.org/html/2507.19024v2"},{"title":"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).","url":"https://github.com/showlab/Awesome-MLLM-Hallucination"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"[2509.13154] LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals","url":"https://arxiv.org/abs/2509.13154"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v2/download"},{"title":"Internal Representations as Indicators of Hallucinations in Agent Tool Selection | OpenReview","url":"https://openreview.net/forum?id=QbuBZvwcDZ"},{"title":"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub","url":"https://github.com/NishilBalar/Awesome-LVLM-Hallucination"},{"title":"Distorted or Fabricated? A Survey on Hallucination in ...","url":"https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.177138968.82704736/v1"},{"title":"How to Detect Hallucinations in Your LLM Applications","url":"https://www.getmaxim.ai/articles/how-to-detect-hallucinations-in-your-llm-applications/"},{"title":"Uncertainty-Aware Fusion: An Ensemble Framework for Mitigating Hallucinations in Large Language Models | Companion Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3701716.3715523"}]
+
+I've performed a web search for your query. Here are the key findings related to multi-signal fusion, hallucination detection, and temporal approaches in LLMs from 2025-2026:
+
+## Recent Research on Temporal and Multi-Signal Approaches
+
+A novel framework called HSAD (Hidden Signal Analysis-based Detection) models the temporal dynamics of hidden representations during autoregressive generation for hallucination detection.
+
+TARAC (Temporal Attention Real-time Accumulative Connection) is a method for mitigating hallucination in Large Vision-Language Models, published in April 2025.
+
+MASH-VLM addresses action-scene hallucination in video LLMs through disentangled spatial-temporal representations and was presented at CVPR 2025.
+
+## Fusion-Based Detection Approaches
+
+Recent ensemble-based approaches focus on uncertainty-aware fusion, combining multiple LLMs based on their accuracy and self-assessment abilities, as uncertainty estimation enables LLMs to self-assess the likelihood of generating hallucinations.
+
+## Intrinsic Signal Methods
+
+Intrinsic-pattern-based methods leverage signals generated during inference, including hidden states, prediction logits, and attention scores, with hidden-state-based methods training classifiers on layer-wise hidden states and logit-based methods interpreting output probability distributions as proxies for model confidence.
+
+## Emerging Trends
+
+Future developments in hallucination detection include mechanistic interpretability to understand internal circuits causing hallucinations, multi-modal detection extending to images, audio and video, and real-time correction systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f6b7d02-18ce-41b5-ade6-e8dc6ae2722a",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "296e5fcc-51f3-4892-930b-94f752066cfb",
+  "toolUseResult": {
+    "query": "multi-signal fusion hallucination detection LLM temporal 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016xsfXzJuLp44a3QLhFmdJJ",
+        "content": [
+          {
+            "title": "A Survey of Multimodal Hallucination Evaluation and Detection",
+            "url": "https://arxiv.org/html/2507.19024v2"
+          },
+          {
+            "title": "GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).",
+            "url": "https://github.com/showlab/Awesome-MLLM-Hallucination"
+          },
+          {
+            "title": "Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments",
+            "url": "https://arxiv.org/html/2605.03971v1"
+          },
+          {
+            "title": "[2509.13154] LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals",
+            "url": "https://arxiv.org/abs/2509.13154"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v2/download"
+          },
+          {
+            "title": "Internal Representations as Indicators of Hallucinations in Agent Tool Selection | OpenReview",
+            "url": "https://openreview.net/forum?id=QbuBZvwcDZ"
+          },
+          {
+            "title": "GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub",
+            "url": "https://github.com/NishilBalar/Awesome-LVLM-Hallucination"
+          },
+          {
+            "title": "Distorted or Fabricated? A Survey on Hallucination in ...",
+            "url": "https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.177138968.82704736/v1"
+          },
+          {
+            "title": "How to Detect Hallucinations in Your LLM Applications",
+            "url": "https://www.getmaxim.ai/articles/how-to-detect-hallucinations-in-your-llm-applications/"
+          },
+          {
+            "title": "Uncertainty-Aware Fusion: An Ensemble Framework for Mitigating Hallucinations in Large Language Models | Companion Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3701716.3715523"
+          }
+        ]
+      },
+      "I've performed a web search for your query. Here are the key findings related to multi-signal fusion, hallucination detection, and temporal approaches in LLMs from 2025-2026:\n\n## Recent Research on Temporal and Multi-Signal Approaches\n\nA novel framework called HSAD (Hidden Signal Analysis-based Detection) models the temporal dynamics of hidden representations during autoregressive generation for hallucination detection.\n\nTARAC (Temporal Attention Real-time Accumulative Connection) is a method for mitigating hallucination in Large Vision-Language Models, published in April 2025.\n\nMASH-VLM addresses action-scene hallucination in video LLMs through disentangled spatial-temporal representations and was presented at CVPR 2025.\n\n## Fusion-Based Detection Approaches\n\nRecent ensemble-based approaches focus on uncertainty-aware fusion, combining multiple LLMs based on their accuracy and self-assessment abilities, as uncertainty estimation enables LLMs to self-assess the likelihood of generating hallucinations.\n\n## Intrinsic Signal Methods\n\nIntrinsic-pattern-based methods leverage signals generated during inference, including hidden states, prediction logits, and attention scores, with hidden-state-based methods training classifiers on layer-wise hidden states and logit-based methods interpreting output probability distributions as proxies for model confidence.\n\n## Emerging Trends\n\nFuture developments in hallucination detection include mechanistic interpretability to understand internal circuits causing hallucinations, multi-modal detection extending to images, audio and video, and real-time correction systems."
+    ],
+    "durationSeconds": 7.463533904,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9f6b7d02-18ce-41b5-ade6-e8dc6ae2722a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T01:48:57.691Z_
+
+<details><summary>↩ Tool result · `toolu_01PTzrD1R8jaTMmfEecy5qGN`</summary>
+
+```text
+Web search results for query: "HaDeMiF hallucination detection mitigation fusion ICLR 2025"
+
+Links: [{"title":"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/c98987c5ec4f30920d7190dc699e3daf-Abstract-Conference.html"},{"title":"HADEMIF: HALLUCINATION DETECTION AND MITI","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c98987c5ec4f30920d7190dc699e3daf-Paper-Conference.pdf"},{"title":"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=VwOYxPScxB"},{"title":"Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/README.md at main · mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation","url":"https://github.com/mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/blob/main/README.md"},{"title":"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/HaDeMiF:-Hallucination-Detection-and-Mitigation-in-Zhou-Zhang/f7a47a7de7289d6fd69e3bf226f7cdaffa670a3f"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"Towards Mitigation of Hallucination for LLM-empowered ...","url":"https://arxiv.org/pdf/2507.15903"},{"title":"[2401.08358] Hallucination Detection and Hallucination Mitigation: An Investigation","url":"https://arxiv.org/abs/2401.08358"}]
+
+Based on the search results, here's information about HaDeMiF:
+
+## Overview
+
+HaDeMiF is an advanced framework for detecting and mitigating hallucinations in LLMs. The paper was presented at ICLR 2025.
+
+## Problem Addressed
+
+The phenomenon of knowledge hallucinations has raised substantial concerns about the security and reliability of deployed LLMs. Current methods for detecting hallucinations primarily depend on manually designed individual metrics, such as prediction uncertainty and consistency, and fall short in effectively calibrating model predictions.
+
+## Technical Approach
+
+Hallucinations within the output and semantic spaces of LLMs are comprehensively captured through two compact networks—a novel, interpretable tree model known as the Deep Dynamic Decision Tree (D3T) and a Multilayer Perceptron (MLP). The predictions of LLMs are subsequently calibrated using the outputs from the D3T and MLP networks, aiming to mitigate hallucinations and enhance model calibration.
+
+## Key Features
+
+HaDeMiF can be applied during both the inference and fine-tuning phases of LLMs, introducing less than 2% of the parameters relative to the LLMs through the training of two small-scale networks. Extensive experiments conclusively demonstrate the effectiveness of the framework in hallucination detection and model calibration across text generation tasks with responses of varying lengths.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e840041-74c5-4a37-ac9a-154f6e8f57ea",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "51c99944-68aa-474d-85e6-22636004019a",
+  "toolUseResult": {
+    "query": "HaDeMiF hallucination detection mitigation fusion ICLR 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ug59WzcLHArwTWab81nkGp",
+        "content": [
+          {
+            "title": "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/c98987c5ec4f30920d7190dc699e3daf-Abstract-Conference.html"
+          },
+          {
+            "title": "HADEMIF: HALLUCINATION DETECTION AND MITI",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c98987c5ec4f30920d7190dc699e3daf-Paper-Conference.pdf"
+          },
+          {
+            "title": "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=VwOYxPScxB"
+          },
+          {
+            "title": "Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/README.md at main · mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation",
+            "url": "https://github.com/mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/blob/main/README.md"
+          },
+          {
+            "title": "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/HaDeMiF:-Hallucination-Detection-and-Mitigation-in-Zhou-Zhang/f7a47a7de7289d6fd69e3bf226f7cdaffa670a3f"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language ...",
+            "url": "https://arxiv.org/pdf/2601.09929"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2601.09929v1"
+          },
+          {
+            "title": "Towards Mitigation of Hallucination for LLM-empowered ...",
+            "url": "https://arxiv.org/pdf/2507.15903"
+          },
+          {
+            "title": "[2401.08358] Hallucination Detection and Hallucination Mitigation: An Investigation",
+            "url": "https://arxiv.org/abs/2401.08358"
+          }
+        ]
+      },
+      "Based on the search results, here's information about HaDeMiF:\n\n## Overview\n\nHaDeMiF is an advanced framework for detecting and mitigating hallucinations in LLMs. The paper was presented at ICLR 2025.\n\n## Problem Addressed\n\nThe phenomenon of knowledge hallucinations has raised substantial concerns about the security and reliability of deployed LLMs. Current methods for detecting hallucinations primarily depend on manually designed individual metrics, such as prediction uncertainty and consistency, and fall short in effectively calibrating model predictions.\n\n## Technical Approach\n\nHallucinations within the output and semantic spaces of LLMs are comprehensively captured through two compact networks—a novel, interpretable tree model known as the Deep Dynamic Decision Tree (D3T) and a Multilayer Perceptron (MLP). The predictions of LLMs are subsequently calibrated using the outputs from the D3T and MLP networks, aiming to mitigate hallucinations and enhance model calibration.\n\n## Key Features\n\nHaDeMiF can be applied during both the inference and fine-tuning phases of LLMs, introducing less than 2% of the parameters relative to the LLMs through the training of two small-scale networks. Extensive experiments conclusively demonstrate the effectiveness of the framework in hallucination detection and model calibration across text generation tasks with responses of varying lengths."
+    ],
+    "durationSeconds": 6.469818519999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9e840041-74c5-4a37-ac9a-154f6e8f57ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T01:48:57.941Z_
+
+<details><summary>↩ Tool result · `toolu_01BGS9gSeLf4xfwiBzzwrkrk`</summary>
+
+```text
+Web search results for query: "early hallucination detection partial response LLM autoregressive generation 2026"
+
+Links: [{"title":"Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/html/2510.06265v2"},{"title":"Detecting Hallucinations in Retrieval-Augmented Generation via","url":"https://arxiv.org/pdf/2601.03052"},{"title":"A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation","url":"https://arxiv.org/html/2510.06265v1"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"LLM hallucination rate evaluation for engineering | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"},{"title":"LLM HALLUCINATION DETECTION:AFAST FOURIER ...","url":"https://openreview.net/pdf/a0eb273df4d7eb99b3e5f25f6455845460efe6a8.pdf"},{"title":"HaloScope: Harnessing Unlabeled LLM Generations for Hallucination Detection","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/ba92705991cfbbcedc26e27e833ebbae-Paper-Conference.pdf"},{"title":"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3703155"},{"title":"LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time","url":"https://sqmagazine.co.uk/llm-hallucination-statistics/"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"}]
+
+I found relevant research on early hallucination detection in LLM autoregressive generation. Here's what the search revealed:
+
+## Early Hallucination Detection Methods
+
+HSAD (Hidden Signal Analysis-based Detection) is a novel hallucination detection framework that models the temporal dynamics of hidden representations during autoregressive generation. This approach focuses on internal model signals rather than external verification.
+
+The HSAD method models the hidden layer vectors from different stages of the LLM's reasoning process as a hidden layer temporal signal, analogous to the process of human deception detection, to perform hallucination detection.
+
+## Challenges with Autoregressive Generation
+
+Research highlights that contextual information is processed by LLMs in the first few layers, followed by a tendency towards overconfidence in the final layers due to the autoregressive training objective aimed at vocabulary mapping. This creates challenges for detecting hallucinations early in the generation process.
+
+## Real-Time Detection Approaches (2026)
+
+Techniques such as Cross-Layer Attention Probing (CLAP) train lightweight classifiers on the model's own activations to flag likely hallucinations in real time. Additionally, the MetaQA framework (ACM 2025) uses metamorphic prompt mutations to detect hallucinations even in closed-source models without relying on token probabilities or external tools.
+
+## Detection Limitations
+
+Detection latency remains a challenge, with average delays of 200–500 ms per response. This suggests that while early detection methods exist, practical implementation still faces timing constraints in production systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d84725b-d186-40f4-81ab-8683d8653009",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "1929f88a-2b34-42f4-96d7-15f6409bd169",
+  "toolUseResult": {
+    "query": "early hallucination detection partial response LLM autoregressive generation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QcYtGS7CSgJNWWjDK8M6wL",
+        "content": [
+          {
+            "title": "Large Language Models Hallucination: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2510.06265v2"
+          },
+          {
+            "title": "Detecting Hallucinations in Retrieval-Augmented Generation via",
+            "url": "https://arxiv.org/pdf/2601.03052"
+          },
+          {
+            "title": "A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation",
+            "url": "https://arxiv.org/html/2510.06265v1"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "LLM hallucination rate evaluation for engineering | PatSnap",
+            "url": "https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"
+          },
+          {
+            "title": "LLM HALLUCINATION DETECTION:AFAST FOURIER ...",
+            "url": "https://openreview.net/pdf/a0eb273df4d7eb99b3e5f25f6455845460efe6a8.pdf"
+          },
+          {
+            "title": "HaloScope: Harnessing Unlabeled LLM Generations for Hallucination Detection",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/ba92705991cfbbcedc26e27e833ebbae-Paper-Conference.pdf"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3703155"
+          },
+          {
+            "title": "LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time",
+            "url": "https://sqmagazine.co.uk/llm-hallucination-statistics/"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          }
+        ]
+      },
+      "I found relevant research on early hallucination detection in LLM autoregressive generation. Here's what the search revealed:\n\n## Early Hallucination Detection Methods\n\nHSAD (Hidden Signal Analysis-based Detection) is a novel hallucination detection framework that models the temporal dynamics of hidden representations during autoregressive generation. This approach focuses on internal model signals rather than external verification.\n\nThe HSAD method models the hidden layer vectors from different stages of the LLM's reasoning process as a hidden layer temporal signal, analogous to the process of human deception detection, to perform hallucination detection.\n\n## Challenges with Autoregressive Generation\n\nResearch highlights that contextual information is processed by LLMs in the first few layers, followed by a tendency towards overconfidence in the final layers due to the autoregressive training objective aimed at vocabulary mapping. This creates challenges for detecting hallucinations early in the generation process.\n\n## Real-Time Detection Approaches (2026)\n\nTechniques such as Cross-Layer Attention Probing (CLAP) train lightweight classifiers on the model's own activations to flag likely hallucinations in real time. Additionally, the MetaQA framework (ACM 2025) uses metamorphic prompt mutations to detect hallucinations even in closed-source models without relying on token probabilities or external tools.\n\n## Detection Limitations\n\nDetection latency remains a challenge, with average delays of 200–500 ms per response. This suggests that while early detection methods exist, practical implementation still faces timing constraints in production systems."
+    ],
+    "durationSeconds": 6.963641093999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6d84725b-d186-40f4-81ab-8683d8653009",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamic…",
+  "leafUuid": "1929f88a-2b34-42f4-96d7-15f6409bd169",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate TemporalFuse hallucination detection proposal",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T01:49:01.157Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kb2h5dzxibX2wQtHw3wVQ7`</summary>
+
+```json
+{
+  "query": "CHARM neural message passing attention graphs hallucination detection ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1929f88a-2b34-42f4-96d7-15f6409bd169",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QZiFHsHiC2f8dVsVgW",
+  "type": "assistant",
+  "uuid": "e08b22a7-3673-48de-beb2-d1261687fdd9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHonVvi2cpM48uhpzL6aPc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 965,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 25150,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 965,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 25150,
+          "cache_creation_input_tokens": 2200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T01:49:02.127Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011WV5YNAYVHHtE23sW1yNAG`</summary>
+
+```json
+{
+  "query": "adaptive temporal fusion gating network time series anomaly detection multi-signal LLM internal states 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e08b22a7-3673-48de-beb2-d1261687fdd9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QZiFHsHiC2f8dVsVgW",
+  "type": "assistant",
+  "uuid": "72e930af-5617-4054-8bc5-8d1159ca09a9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHonVvi2cpM48uhpzL6aPc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 965,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 25150,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 965,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 25150,
+          "cache_creation_input_tokens": 2200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T01:49:02.943Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HZkR26VngWzqL4i6LhYctc`</summary>
+
+```json
+{
+  "query": "SinkProbe attention sinks hallucination detection 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72e930af-5617-4054-8bc5-8d1159ca09a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QZiFHsHiC2f8dVsVgW",
+  "type": "assistant",
+  "uuid": "aed4c947-1fbb-44e7-aa31-4546dc3d391f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHonVvi2cpM48uhpzL6aPc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 965,
+      "cache_creation_input_tokens": 2200,
+      "cache_read_input_tokens": 25150,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 965,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 25150,
+          "cache_creation_input_tokens": 2200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T01:49:06.484Z_
+
+<details><summary>↩ Tool result · `toolu_01Kb2h5dzxibX2wQtHw3wVQ7`</summary>
+
+```text
+Web search results for query: "CHARM neural message passing attention graphs hallucination detection ICLR 2026"
+
+Links: [{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection | OpenReview","url":"https://openreview.net/forum?id=4twbqwV4br"},{"title":"[2509.24770] Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/abs/2509.24770"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/html/2509.24770v1"},{"title":"GitHub - Noired/charm: Neural Message-Passing on Attention Graphs for Hallucination Detection · GitHub","url":"https://github.com/Noired/charm"},{"title":"[Literature Review] Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://www.themoonlight.io/en/review/neural-message-passing-on-attention-graphs-for-hallucination-detection"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection | alphaXiv","url":"https://www.alphaxiv.org/resources/2509.24770"},{"title":"[PDF] Neural Message-Passing on Attention Graphs for Hallucination Detection | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Neural-Message-Passing-on-Attention-Graphs-for-Frasca-Bar-Shalom/abb40a4db2c93c8bfffdb0072dc0ca4a040347ab"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection | Request PDF","url":"https://www.researchgate.net/publication/395972306_Neural_Message-Passing_on_Attention_Graphs_for_Hallucination_Detection"},{"title":"Neural Message-Passing on Attention Graphs for ...","url":"https://chatpaper.com/paper/193823"},{"title":"NEURAL MESSAGE-PASSING ON ATTENTION GRAPHS","url":"https://openreview.net/pdf?id=4twbqwV4br"}]
+
+Based on the search results, here's what I found about CHARM:
+
+## Overview
+
+CHARM is a message-passing neural network that models LLM computations as attributed graphs to detect hallucinations; it integrates attention and activation signals, subsumes and outperforms prior methods across benchmarks and granularities.
+
+## Key Methodology
+
+The approach represents attention and activation signals as attributed graphs, where tokens are nodes, edges follow attentional flows, and both carry features from attention scores and activations. CHARM casts hallucination detection as a graph learning task and tackles it by applying GNNs over the above attributed graphs.
+
+## Performance and Results
+
+CHARM provably subsumes prior attention-based heuristics and, experimentally, it consistently outperforms other leading approaches across diverse benchmarks. Additionally, the results show CHARM exhibits promising zero-shot performance on cross-dataset transfer.
+
+## Expanded Details
+
+The paper introduces a unified view of LLM computational traces as attributed graphs, where tokens are nodes connected by attention-induced edges, and both nodes and edges are enriched with features such as activations and attention scores. It introduces CHARM, which casts hallucination detection as graph learning on computational trace graphs.
+
+The paper appears to have been submitted to ICLR 2026 and is currently under review on OpenReview, with the preprint available on arXiv (ID: 2509.24770).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e08b22a7-3673-48de-beb2-d1261687fdd9",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "e681f4f5-ffc2-40c4-aaf8-1393f5639547",
+  "toolUseResult": {
+    "query": "CHARM neural message passing attention graphs hallucination detection ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DWfch6erprGcRDvpUub6js",
+        "content": [
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection | OpenReview",
+            "url": "https://openreview.net/forum?id=4twbqwV4br"
+          },
+          {
+            "title": "[2509.24770] Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/abs/2509.24770"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/html/2509.24770v1"
+          },
+          {
+            "title": "GitHub - Noired/charm: Neural Message-Passing on Attention Graphs for Hallucination Detection · GitHub",
+            "url": "https://github.com/Noired/charm"
+          },
+          {
+            "title": "[Literature Review] Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://www.themoonlight.io/en/review/neural-message-passing-on-attention-graphs-for-hallucination-detection"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2509.24770"
+          },
+          {
+            "title": "[PDF] Neural Message-Passing on Attention Graphs for Hallucination Detection | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Neural-Message-Passing-on-Attention-Graphs-for-Frasca-Bar-Shalom/abb40a4db2c93c8bfffdb0072dc0ca4a040347ab"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection | Request PDF",
+            "url": "https://www.researchgate.net/publication/395972306_Neural_Message-Passing_on_Attention_Graphs_for_Hallucination_Detection"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for ...",
+            "url": "https://chatpaper.com/paper/193823"
+          },
+          {
+            "title": "NEURAL MESSAGE-PASSING ON ATTENTION GRAPHS",
+            "url": "https://openreview.net/pdf?id=4twbqwV4br"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CHARM:\n\n## Overview\n\nCHARM is a message-passing neural network that models LLM computations as attributed graphs to detect hallucinations; it integrates attention and activation signals, subsumes and outperforms prior methods across benchmarks and granularities.\n\n## Key Methodology\n\nThe approach represents attention and activation signals as attributed graphs, where tokens are nodes, edges follow attentional flows, and both carry features from attention scores and activations. CHARM casts hallucination detection as a graph learning task and tackles it by applying GNNs over the above attributed graphs.\n\n## Performance and Results\n\nCHARM provably subsumes prior attention-based heuristics and, experimentally, it consistently outperforms other leading approaches across diverse benchmarks. Additionally, the results show CHARM exhibits promising zero-shot performance on cross-dataset transfer.\n\n## Expanded Details\n\nThe paper introduces a unified view of LLM computational traces as attributed graphs, where tokens are nodes connected by attention-induced edges, and both nodes and edges are enriched with features such as activations and attention scores. It introduces CHARM, which casts hallucination detection as graph learning on computational trace graphs.\n\nThe paper appears to have been submitted to ICLR 2026 and is currently under review on OpenReview, with the preprint available on arXiv (ID: 2509.24770)."
+    ],
+    "durationSeconds": 5.321489843999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e08b22a7-3673-48de-beb2-d1261687fdd9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T01:49:09.361Z_
+
+<details><summary>↩ Tool result · `toolu_01HZkR26VngWzqL4i6LhYctc`</summary>
+
+```text
+Web search results for query: "SinkProbe attention sinks hallucination detection 2026 arXiv"
+
+Links: [{"title":"[2604.10697] Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models","url":"https://arxiv.org/abs/2604.10697"},{"title":"Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models","url":"https://arxiv.org/html/2604.10697"},{"title":"Hallucination Detection in LLMs with Topological Divergence on Attention Graphs","url":"https://arxiv.org/html/2504.10063v2"},{"title":"Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/html/2605.05025"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection","url":"https://arxiv.org/html/2509.09700v1/"},{"title":"[2602.18145] Detecting Contextual Hallucinations in LLMs with Frequency-Aware Attention","url":"https://arxiv.org/abs/2602.18145"},{"title":"[2604.10027] SinkTrack: Attention Sink based Context Anchoring for Large Language Models","url":"https://arxiv.org/abs/2604.10027"},{"title":"[2604.10098] Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation","url":"https://arxiv.org/abs/2604.10098"},{"title":"SinkTrack: Attention Sink based Context Anchoring for Large Language Models","url":"https://arxiv.org/html/2604.10027"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## SinkProbe: Attention Sinks for Hallucination Detection
+
+SinkProbe is a hallucination detection method grounded in the observation that hallucinations are deeply entangled with attention sinks - tokens that accumulate disproportionate attention mass during generation - indicating a transition from distributed, input-grounded attention to compressed, prior-dominated computation.
+
+**Key Features:**
+
+- Although sink scores are computed solely from attention maps, the classifier preferentially relies on sinks whose associated value vectors have large norms.
+
+- Previous methods implicitly depend on attention sinks by establishing their mathematical relationship to sink scores.
+
+- The method produces state-of-the-art results across popular datasets and LLMs.
+
+**Publication Details:**
+
+The paper was submitted to arXiv on April 12, 2026, with the identifier 2604.10697. The first author is Jakub Binkowski.
+
+The research demonstrates that attention sinks serve as internal signals within large language models that can be leveraged to detect when the model is generating hallucinated (factually incorrect) content.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aed4c947-1fbb-44e7-aa31-4546dc3d391f",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "4c603f36-1c84-4008-84c3-045af0432787",
+  "toolUseResult": {
+    "query": "SinkProbe attention sinks hallucination detection 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G4ptdPxuWAg1WNBdPFyQkz",
+        "content": [
+          {
+            "title": "[2604.10697] Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models",
+            "url": "https://arxiv.org/abs/2604.10697"
+          },
+          {
+            "title": "Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models",
+            "url": "https://arxiv.org/html/2604.10697"
+          },
+          {
+            "title": "Hallucination Detection in LLMs with Topological Divergence on Attention Graphs",
+            "url": "https://arxiv.org/html/2504.10063v2"
+          },
+          {
+            "title": "Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/html/2605.05025"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Cross-Layer Attention Probing for Fine-Grained Hallucination Detection",
+            "url": "https://arxiv.org/html/2509.09700v1/"
+          },
+          {
+            "title": "[2602.18145] Detecting Contextual Hallucinations in LLMs with Frequency-Aware Attention",
+            "url": "https://arxiv.org/abs/2602.18145"
+          },
+          {
+            "title": "[2604.10027] SinkTrack: Attention Sink based Context Anchoring for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.10027"
+          },
+          {
+            "title": "[2604.10098] Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation",
+            "url": "https://arxiv.org/abs/2604.10098"
+          },
+          {
+            "title": "SinkTrack: Attention Sink based Context Anchoring for Large Language Models",
+            "url": "https://arxiv.org/html/2604.10027"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## SinkProbe: Attention Sinks for Hallucination Detection\n\nSinkProbe is a hallucination detection method grounded in the observation that hallucinations are deeply entangled with attention sinks - tokens that accumulate disproportionate attention mass during generation - indicating a transition from distributed, input-grounded attention to compressed, prior-dominated computation.\n\n**Key Features:**\n\n- Although sink scores are computed solely from attention maps, the classifier preferentially relies on sinks whose associated value vectors have large norms.\n\n- Previous methods implicitly depend on attention sinks by establishing their mathematical relationship to sink scores.\n\n- The method produces state-of-the-art results across popular datasets and LLMs.\n\n**Publication Details:**\n\nThe paper was submitted to arXiv on April 12, 2026, with the identifier 2604.10697. The first author is Jakub Binkowski.\n\nThe research demonstrates that attention sinks serve as internal signals within large language models that can be leveraged to detect when the model is generating hallucinated (factually incorrect) content."
+    ],
+    "durationSeconds": 6.414118347,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "aed4c947-1fbb-44e7-aa31-4546dc3d391f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T01:49:09.764Z_
+
+<details><summary>↩ Tool result · `toolu_011WV5YNAYVHHtE23sW1yNAG`</summary>
+
+```text
+Web search results for query: "adaptive temporal fusion gating network time series anomaly detection multi-signal LLM internal states 2025 2026"
+
+Links: [{"title":"A dynamic multi-scale spatio-temporal fusion anomaly detection network - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231226006533"},{"title":"Gated Memory-Guided Multi-scale spatio–temporal–spectral feature fusion network for unsupervised Internet of Things time series anomaly detection - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0952197626003854"},{"title":"TSA-Net: Multivariate Time Series Anomaly Detection Based on Two-Stage Temporal Attention - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12900108/"},{"title":"Adaptive Time-Frequency Fusion Mechanism","url":"https://www.emergentmind.com/topics/adaptive-time-frequency-fusion-mechanism"},{"title":"GTCN-G: A Residual Graph-Temporal Fusion Network for Imbalanced Intrusion Detection","url":"https://arxiv.org/html/2510.07285v1"},{"title":"GitHub - qingsongedu/awesome-AI-for-time-series-papers: A professional list of Papers, Tutorials, and Surveys on AI for Time Series in top AI conferences and journals. · GitHub","url":"https://github.com/qingsongedu/awesome-AI-for-time-series-papers"},{"title":"Multivariate Time-Series Anomaly Detection based on Enhancing Graph Attention Networks with Topological Analysis | Proceedings of the 33rd ACM International Conference on Information and Knowledge Management","url":"https://dl.acm.org/doi/10.1145/3627673.3679614"},{"title":"Spatio-temporal fusion flow with dynamic graph learning for unsupervised multivariate time series anomaly detection - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231225029583"},{"title":"LEFT: Learnable Fusion of Tri-view Tokens for Unsupervised Time Series Anomaly Detection","url":"https://arxiv.org/html/2602.08638v1"},{"title":"Design of an integrated model with temporal graph attention and transformer-augmented RNNs for enhanced anomaly detection | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-85822-5"}]
+
+Based on the web search results, I found several relevant papers on adaptive temporal fusion networks for time series anomaly detection published in 2025-2026. Here are the key findings:
+
+## Recent Advances in Adaptive Temporal Fusion for Time Series Anomaly Detection
+
+A notable framework is GMMnet (Gated Memory-guided Multi-scale spatio–temporal–spectral feature fusion network), an unsupervised anomaly detection model proposed for IoT time series. GMMnet leverages Positional Multi-scale Temporal-convolution and Multi-scale Spatio-spectral Self-attention to learn features, with Gated Memory-guided Fusion to accurately fuse normal spatio–temporal–spectral features within the data.
+
+Another significant contribution is TSA-Net, which integrates a structurally reparameterized Temporal Convolutional Network (RepVGG-TCN) with a Graph Attention Network (GAT), featuring an adaptive gated fusion strategy that dynamically balances spatio-temporal dependencies.
+
+A Dynamic Multi-scale Spatio-Temporal Fusion Anomaly Detection Network (DMSTF-ADN) was proposed to address challenges of insufficient dynamic dependency modeling, limited computational efficiency, and weak noise robustness in multivariate time series anomaly detection.
+
+Additionally, the STF2-DGL model is a novel unsupervised anomaly detection framework featuring an Adaptive Dynamic Graph Generating (ADGG) module that incorporates cross-attention and gated integration mechanisms.
+
+However, regarding the specific aspect of **LLM internal states** mentioned in your query, the search results do not contain information connecting these temporal fusion networks to LLM internal state monitoring or analysis.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72e930af-5617-4054-8bc5-8d1159ca09a9",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "42f38dd8-07df-4180-aa2d-dcea20674fad",
+  "toolUseResult": {
+    "query": "adaptive temporal fusion gating network time series anomaly detection multi-signal LLM internal states 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GwTX1jQXRDuuEotaSsG2Mu",
+        "content": [
+          {
+            "title": "A dynamic multi-scale spatio-temporal fusion anomaly detection network - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231226006533"
+          },
+          {
+            "title": "Gated Memory-Guided Multi-scale spatio–temporal–spectral feature fusion network for unsupervised Internet of Things time series anomaly detection - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197626003854"
+          },
+          {
+            "title": "TSA-Net: Multivariate Time Series Anomaly Detection Based on Two-Stage Temporal Attention - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12900108/"
+          },
+          {
+            "title": "Adaptive Time-Frequency Fusion Mechanism",
+            "url": "https://www.emergentmind.com/topics/adaptive-time-frequency-fusion-mechanism"
+          },
+          {
+            "title": "GTCN-G: A Residual Graph-Temporal Fusion Network for Imbalanced Intrusion Detection",
+            "url": "https://arxiv.org/html/2510.07285v1"
+          },
+          {
+            "title": "GitHub - qingsongedu/awesome-AI-for-time-series-papers: A professional list of Papers, Tutorials, and Surveys on AI for Time Series in top AI conferences and journals. · GitHub",
+            "url": "https://github.com/qingsongedu/awesome-AI-for-time-series-papers"
+          },
+          {
+            "title": "Multivariate Time-Series Anomaly Detection based on Enhancing Graph Attention Networks with Topological Analysis | Proceedings of the 33rd ACM International Conference on Information and Knowledge Management",
+            "url": "https://dl.acm.org/doi/10.1145/3627673.3679614"
+          },
+          {
+            "title": "Spatio-temporal fusion flow with dynamic graph learning for unsupervised multivariate time series anomaly detection - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225029583"
+          },
+          {
+            "title": "LEFT: Learnable Fusion of Tri-view Tokens for Unsupervised Time Series Anomaly Detection",
+            "url": "https://arxiv.org/html/2602.08638v1"
+          },
+          {
+            "title": "Design of an integrated model with temporal graph attention and transformer-augmented RNNs for enhanced anomaly detection | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-85822-5"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on adaptive temporal fusion networks for time series anomaly detection published in 2025-2026. Here are the key findings:\n\n## Recent Advances in Adaptive Temporal Fusion for Time Series Anomaly Detection\n\nA notable framework is GMMnet (Gated Memory-guided Multi-scale spatio–temporal–spectral feature fusion network), an unsupervised anomaly detection model proposed for IoT time series. GMMnet leverages Positional Multi-scale Temporal-convolution and Multi-scale Spatio-spectral Self-attention to learn features, with Gated Memory-guided Fusion to accurately fuse normal spatio–temporal–spectral features within the data.\n\nAnother significant contribution is TSA-Net, which integrates a structurally reparameterized Temporal Convolutional Network (RepVGG-TCN) with a Graph Attention Network (GAT), featuring an adaptive gated fusion strategy that dynamically balances spatio-temporal dependencies.\n\nA Dynamic Multi-scale Spatio-Temporal Fusion Anomaly Detection Network (DMSTF-ADN) was proposed to address challenges of insufficient dynamic dependency modeling, limited computational efficiency, and weak noise robustness in multivariate time series anomaly detection.\n\nAdditionally, the STF2-DGL model is a novel unsupervised anomaly detection framework featuring an Adaptive Dynamic Graph Generating (ADGG) module that incorporates cross-attention and gated integration mechanisms.\n\nHowever, regarding the specific aspect of **LLM internal states** mentioned in your query, the search results do not contain information connecting these temporal fusion networks to LLM internal state monitoring or analysis."
+    ],
+    "durationSeconds": 7.633052344000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "72e930af-5617-4054-8bc5-8d1159ca09a9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T01:49:14.318Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011yG1Nj7H5R68cTc5gaMqJR`</summary>
+
+```json
+{
+  "query": "\"multi-horizon\" OR \"early detection\" hallucination LLM partial generation time series classification 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42f38dd8-07df-4180-aa2d-dcea20674fad",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QaaheGG978JW3XwZ47",
+  "type": "assistant",
+  "uuid": "4a2d079c-b91f-4035-9df0-bca4df9e29f0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDNRapSJdaed2GacCi11xV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 775,
+      "cache_creation_input_tokens": 3093,
+      "cache_read_input_tokens": 27350,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 775,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 27350,
+          "cache_creation_input_tokens": 3093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T01:49:14.951Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019L6aoiAiWGLdEbiY7FzvHG`</summary>
+
+```json
+{
+  "query": "gating network fusion attention hidden states log probabilities hallucination detection LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a2d079c-b91f-4035-9df0-bca4df9e29f0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QaaheGG978JW3XwZ47",
+  "type": "assistant",
+  "uuid": "9c68b232-0ecc-426c-a5c3-f0eec6c8c133",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDNRapSJdaed2GacCi11xV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 775,
+      "cache_creation_input_tokens": 3093,
+      "cache_read_input_tokens": 27350,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 775,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 27350,
+          "cache_creation_input_tokens": 3093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T01:49:22.712Z_
+
+<details><summary>↩ Tool result · `toolu_019L6aoiAiWGLdEbiY7FzvHG`</summary>
+
+```text
+Web search results for query: "gating network fusion attention hidden states log probabilities hallucination detection LLM 2026"
+
+Links: [{"title":"LLM-Check: Investigating Detection of Hallucinations in Large Language Models","url":"https://par.nsf.gov/servlets/purl/10574407"},{"title":"Detection of Hallucinations Based on the Internal States of Large Language Models | Automatic Documentation and Mathematical Linguistics | Springer Nature Link","url":"https://link.springer.com/article/10.3103/S0005105525701456"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection | OpenReview","url":"https://openreview.net/forum?id=4twbqwV4br"},{"title":"How to evaluate LLM hallucination rates in engineering | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/how-to-evaluate-llm-hallucination-rates-in-engineering/"},{"title":"Hallucination Detection in LLMs Using Spectral Features of Attention Maps","url":"https://arxiv.org/html/2502.17598v2"},{"title":"AggTruth: Contextual Hallucination Detection using ...","url":"https://arxiv.org/pdf/2506.18628"},{"title":"How to Detect Hallucinations in Your LLM Applications","url":"https://www.getmaxim.ai/articles/how-to-detect-hallucinations-in-your-llm-applications/"},{"title":"Neural Probe–Based Hallucination Detection for Large Language Models","url":"https://arxiv.org/html/2512.20949v1"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/html/2509.24770v1"},{"title":"[2509.24770] Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/abs/2509.24770"}]
+
+Based on the search results, I found relevant recent research on hallucination detection in Large Language Models that combines multiple internal model signals. Here are the key findings:
+
+## Recent Approaches (2025-2026)
+
+**Graph-Based Fusion Methods:**
+Recent work unifies attention scores and activations as attributed graphs where tokens are nodes and edges follow attentional flows, applying GNNs over these computational traces for hallucination detection. These approaches consistently outperform other leading methods across diverse benchmarks.
+
+**Attention-Based Detection:**
+Spectral features of attention maps coincide with hallucinations, with eigenvalues of Laplacian matrices derived from attention maps serving as good predictors. Another approach analyzes hallucinations by examining the distribution of internal attention scores in context, with variants differing in aggregation techniques.
+
+**Hidden State Analysis:**
+Detection methods analyze hallucinations using internal attention kernel maps, hidden activations and output prediction probabilities of LLMs themselves, examining these signals within single LLM responses. Neural network-based frameworks employ lightweight MLP probes to perform nonlinear modeling of high-level hidden states for token-level hallucination detection.
+
+**Industrial Applications (2026):**
+JPMorgan Chase Bank's system perturbs queries multiple times and applies statistical simulation to derive empirical hallucination rates, enabling hard-gating of high-risk queries. Vodafone's approach uses a Variational Autoencoder to map LLM outputs into reduced latent space and compare against distributions of factually grounded responses.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c68b232-0ecc-426c-a5c3-f0eec6c8c133",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "624b73d1-7eac-4ef6-a0e6-00a4df99dfc2",
+  "toolUseResult": {
+    "query": "gating network fusion attention hidden states log probabilities hallucination detection LLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TcMmqdRUNJrkoacHNAoBqg",
+        "content": [
+          {
+            "title": "LLM-Check: Investigating Detection of Hallucinations in Large Language Models",
+            "url": "https://par.nsf.gov/servlets/purl/10574407"
+          },
+          {
+            "title": "Detection of Hallucinations Based on the Internal States of Large Language Models | Automatic Documentation and Mathematical Linguistics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.3103/S0005105525701456"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection | OpenReview",
+            "url": "https://openreview.net/forum?id=4twbqwV4br"
+          },
+          {
+            "title": "How to evaluate LLM hallucination rates in engineering | PatSnap",
+            "url": "https://www.patsnap.com/resources/blog/articles/how-to-evaluate-llm-hallucination-rates-in-engineering/"
+          },
+          {
+            "title": "Hallucination Detection in LLMs Using Spectral Features of Attention Maps",
+            "url": "https://arxiv.org/html/2502.17598v2"
+          },
+          {
+            "title": "AggTruth: Contextual Hallucination Detection using ...",
+            "url": "https://arxiv.org/pdf/2506.18628"
+          },
+          {
+            "title": "How to Detect Hallucinations in Your LLM Applications",
+            "url": "https://www.getmaxim.ai/articles/how-to-detect-hallucinations-in-your-llm-applications/"
+          },
+          {
+            "title": "Neural Probe–Based Hallucination Detection for Large Language Models",
+            "url": "https://arxiv.org/html/2512.20949v1"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/html/2509.24770v1"
+          },
+          {
+            "title": "[2509.24770] Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/abs/2509.24770"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant recent research on hallucination detection in Large Language Models that combines multiple internal model signals. Here are the key findings:\n\n## Recent Approaches (2025-2026)\n\n**Graph-Based Fusion Methods:**\nRecent work unifies attention scores and activations as attributed graphs where tokens are nodes and edges follow attentional flows, applying GNNs over these computational traces for hallucination detection. These approaches consistently outperform other leading methods across diverse benchmarks.\n\n**Attention-Based Detection:**\nSpectral features of attention maps coincide with hallucinations, with eigenvalues of Laplacian matrices derived from attention maps serving as good predictors. Another approach analyzes hallucinations by examining the distribution of internal attention scores in context, with variants differing in aggregation techniques.\n\n**Hidden State Analysis:**\nDetection methods analyze hallucinations using internal attention kernel maps, hidden activations and output prediction probabilities of LLMs themselves, examining these signals within single LLM responses. Neural network-based frameworks employ lightweight MLP probes to perform nonlinear modeling of high-level hidden states for token-level hallucination detection.\n\n**Industrial Applications (2026):**\nJPMorgan Chase Bank's system perturbs queries multiple times and applies statistical simulation to derive empirical hallucination rates, enabling hard-gating of high-risk queries. Vodafone's approach uses a Variational Autoencoder to map LLM outputs into reduced latent space and compare against distributions of factually grounded responses."
+    ],
+    "durationSeconds": 7.757250806000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9c68b232-0ecc-426c-a5c3-f0eec6c8c133",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamic…",
+  "leafUuid": "624b73d1-7eac-4ef6-a0e6-00a4df99dfc2",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate TemporalFuse hallucination detection proposal",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T01:49:23.350Z_
+
+<details><summary>↩ Tool result · `toolu_011yG1Nj7H5R68cTc5gaMqJR`</summary>
+
+```text
+Web search results for query: ""multi-horizon" OR "early detection" hallucination LLM partial generation time series classification 2025 2026"
+
+Links: [{"title":"Detecting LLM Hallucinations at Generation Time with UQLM | by Dylan Bouchard | CVS Health Tech Blog | Medium","url":"https://medium.com/cvs-health-tech-blog/detecting-llm-hallucinations-at-generation-time-with-uqlm-cd749d2338ec"},{"title":"A Survey of Multimodal Hallucination Evaluation and Detection","url":"https://arxiv.org/html/2507.19024v2"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"LLM hallucination rate evaluation for engineering | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"},{"title":"LLM-based Agents Suffer from Hallucinations: A Survey of Taxonomy, Methods, and Directions","url":"https://arxiv.org/html/2509.18970v1"},{"title":"A Geometric Taxonomy of Hallucination in LLMs","url":"https://arxiv.org/html/2602.13224v3"},{"title":"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3703155"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time","url":"https://sqmagazine.co.uk/llm-hallucination-statistics/"}]
+
+I've performed the web search for your query and found several relevant results related to hallucination detection in large language models and recent research from 2025-2026. Here's a summary of key findings:
+
+## Recent Advances in LLM Hallucination Detection (2025-2026)
+
+**Early Detection and Generation-Time Methods:**
+
+Recent work including "Detecting LLM Hallucinations at Generation Time with UQLM" (2025) focuses on detecting hallucinations during the generation process using various scoring approaches like normalized semantic negentropy and BertScore confidence.
+
+JPMorgan Chase's 2025 patent on hallucination probability prediction enables risk assessment before LLM generation by perturbing queries and analyzing output consistency across multiple agents.
+
+**Geometric and Hidden-State Analysis:**
+
+Recent geometric approaches include Korun (2026), which introduces a taxonomy based on token embedding cluster structure, and Mir (2025) (LSD), which tracks hidden-state representation evolution across transformer layers.
+
+**Belief States and Classification:**
+
+Recent work introduces the concept of "belief state"—a measure of model confidence based on answer repetition consistency—to categorize hallucinations into Overconfident (confidently incorrect) and Unaware (guessing due to missing knowledge) types, using a lightweight feedforward classifier on hidden states.
+
+**Temporal and Multi-Step Aspects:**
+
+Multi-step monitoring approaches assess the validity, consistency, and factuality of intermediate decisions immediately after each step, which helps prevent hallucination accumulation in long-horizon tasks.
+
+The search results reveal active research into real-time and partial-generation hallucination detection, though specific papers combining "multi-horizon" time series classification with these methods were not prominently featured in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a2d079c-b91f-4035-9df0-bca4df9e29f0",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "6b4e5f44-e950-40fc-b6ef-d78830c715de",
+  "toolUseResult": {
+    "query": "\"multi-horizon\" OR \"early detection\" hallucination LLM partial generation time series classification 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019vhN7PZAk4Wq1KSqcnpLG1",
+        "content": [
+          {
+            "title": "Detecting LLM Hallucinations at Generation Time with UQLM | by Dylan Bouchard | CVS Health Tech Blog | Medium",
+            "url": "https://medium.com/cvs-health-tech-blog/detecting-llm-hallucinations-at-generation-time-with-uqlm-cd749d2338ec"
+          },
+          {
+            "title": "A Survey of Multimodal Hallucination Evaluation and Detection",
+            "url": "https://arxiv.org/html/2507.19024v2"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          },
+          {
+            "title": "LLM hallucination rate evaluation for engineering | PatSnap",
+            "url": "https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"
+          },
+          {
+            "title": "LLM-based Agents Suffer from Hallucinations: A Survey of Taxonomy, Methods, and Directions",
+            "url": "https://arxiv.org/html/2509.18970v1"
+          },
+          {
+            "title": "A Geometric Taxonomy of Hallucination in LLMs",
+            "url": "https://arxiv.org/html/2602.13224v3"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3703155"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          },
+          {
+            "title": "LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time",
+            "url": "https://sqmagazine.co.uk/llm-hallucination-statistics/"
+          }
+        ]
+      },
+      "I've performed the web search for your query and found several relevant results related to hallucination detection in large language models and recent research from 2025-2026. Here's a summary of key findings:\n\n## Recent Advances in LLM Hallucination Detection (2025-2026)\n\n**Early Detection and Generation-Time Methods:**\n\nRecent work including \"Detecting LLM Hallucinations at Generation Time with UQLM\" (2025) focuses on detecting hallucinations during the generation process using various scoring approaches like normalized semantic negentropy and BertScore confidence.\n\nJPMorgan Chase's 2025 patent on hallucination probability prediction enables risk assessment before LLM generation by perturbing queries and analyzing output consistency across multiple agents.\n\n**Geometric and Hidden-State Analysis:**\n\nRecent geometric approaches include Korun (2026), which introduces a taxonomy based on token embedding cluster structure, and Mir (2025) (LSD), which tracks hidden-state representation evolution across transformer layers.\n\n**Belief States and Classification:**\n\nRecent work introduces the concept of \"belief state\"—a measure of model confidence based on answer repetition consistency—to categorize hallucinations into Overconfident (confidently incorrect) and Unaware (guessing due to missing knowledge) types, using a lightweight feedforward classifier on hidden states.\n\n**Temporal and Multi-Step Aspects:**\n\nMulti-step monitoring approaches assess the validity, consistency, and factuality of intermediate decisions immediately after each step, which helps prevent hallucination accumulation in long-horizon tasks.\n\nThe search results reveal active research into real-time and partial-generation hallucination detection, though specific papers combining \"multi-horizon\" time series classification with these methods were not prominently featured in these results."
+    ],
+    "durationSeconds": 9.026236587,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4a2d079c-b91f-4035-9df0-bca4df9e29f0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-16T01:49:23.357Z_
+
+```json
+{
+  "parentUuid": "6b4e5f44-e950-40fc-b6ef-d78830c715de",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c8911f95-39e7-4a7d-ab20-85cf63087e40",
+  "timestamp": "2026-05-16T01:49:23.357Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-16T01:49:26.353Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now also check for the specific papers that the proposal references to see if the claims about novelty gaps are accurate, and check for any very recent work that might overlap with TemporalFuse.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8911f95-39e7-4a7d-ab20-85cf63087e40",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QbaqMigwf2GhGayoyf",
+  "type": "assistant",
+  "uuid": "dd077c71-9cb4-43d4-b02b-62e228e77634",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STQc25tUv2TC4f1ijtSbpC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2040,
+      "cache_read_input_tokens": 30443,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 880,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 30443,
+          "cache_creation_input_tokens": 2040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T01:49:27.831Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PJmzCBpJWkdaQ5nWoPK3hZ`</summary>
+
+```json
+{
+  "query": "HALT hallucination log-probs time series GRU detection arXiv 2602.02888"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd077c71-9cb4-43d4-b02b-62e228e77634",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QbaqMigwf2GhGayoyf",
+  "type": "assistant",
+  "uuid": "d5dc62ee-9ef2-4f64-9c58-9382db20e2bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STQc25tUv2TC4f1ijtSbpC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2040,
+      "cache_read_input_tokens": 30443,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 880,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 30443,
+          "cache_creation_input_tokens": 2040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T01:49:28.306Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012yydcSa1DUkZKB1eiAXR8Q`</summary>
+
+```json
+{
+  "query": "\"Proxy Analyzers\" hallucination detection attention arXiv 2605.07209 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5dc62ee-9ef2-4f64-9c58-9382db20e2bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QbaqMigwf2GhGayoyf",
+  "type": "assistant",
+  "uuid": "ec35513d-d017-48ae-9f5b-21509faaf183",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STQc25tUv2TC4f1ijtSbpC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2040,
+      "cache_read_input_tokens": 30443,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 880,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 30443,
+          "cache_creation_input_tokens": 2040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T01:49:35.633Z_
+
+<details><summary>↩ Tool result · `toolu_012yydcSa1DUkZKB1eiAXR8Q`</summary>
+
+```text
+Web search results for query: ""Proxy Analyzers" hallucination detection attention arXiv 2605.07209 2026"
+
+Links: [{"title":"[2605.07209] Hallucination Detection via Activations of Open-Weight Proxy Analyzers","url":"https://arxiv.org/abs/2605.07209"},{"title":"Hallucination Detection via Activations of Open-Weight Proxy Analyzers","url":"https://arxiv.org/html/2605.07209"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/html/2509.24770v1"},{"title":"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection","url":"https://arxiv.org/html/2509.09700v1/"},{"title":"Unsupervised Hallucination Detection by Inspecting Reasoning Processes","url":"https://arxiv.org/html/2509.10004"},{"title":"Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/html/2605.05025"},{"title":"Hallucination Detection in Foundation Models for Decision- ...","url":"https://arxiv.org/pdf/2403.16527"},{"title":"The First Token Knows: Single-Decode Confidence for Hallucination Detection","url":"https://arxiv.org/html/2605.05166"},{"title":"[2509.24770] Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/abs/2509.24770"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971"}]
+
+I found the paper you're looking for! Here's what I discovered about arXiv paper 2605.07209:
+
+## "Hallucination Detection via Activations of Open-Weight Proxy Analyzers"
+
+The paper introduces a proxy-analyzer framework for detecting hallucinations in large language models that reads already-generated text through a small locally hosted open-weight model and spots hallucinations using the reader's own internal activations.
+
+### Key Features
+
+The researchers built eighteen features grounded in how transformers process text, covering residual stream norms, per-head source-document attention, entropy, MLP activations, logit-lens trajectories, and three new token-level grounding statistics.
+
+### Methodology
+
+They trained a stacking ensemble on 72,135 samples from five hallucination datasets and tested across seven analyzer architectures from 0.5 billion to 9 billion parameters: Qwen2.5 at 0.5B and 7B, Gemma-2 at 2B and 9B, Pythia at 1.4B, and LLaMA-3 at both 3B and 8B.
+
+### Key Advantage
+
+This works just as well when the generator is a closed API like GPT-4 as when it is any open-weight model.
+
+The paper was submitted on May 8, 2026, and represents recent research in hallucination detection using attention mechanisms and model internals.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec35513d-d017-48ae-9f5b-21509faaf183",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "587d8381-3f51-4a42-8a0a-b259bb809dfa",
+  "toolUseResult": {
+    "query": "\"Proxy Analyzers\" hallucination detection attention arXiv 2605.07209 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NJ5ijdSUjchwbgn3LvGvJX",
+        "content": [
+          {
+            "title": "[2605.07209] Hallucination Detection via Activations of Open-Weight Proxy Analyzers",
+            "url": "https://arxiv.org/abs/2605.07209"
+          },
+          {
+            "title": "Hallucination Detection via Activations of Open-Weight Proxy Analyzers",
+            "url": "https://arxiv.org/html/2605.07209"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/html/2509.24770v1"
+          },
+          {
+            "title": "Cross-Layer Attention Probing for Fine-Grained Hallucination Detection",
+            "url": "https://arxiv.org/html/2509.09700v1/"
+          },
+          {
+            "title": "Unsupervised Hallucination Detection by Inspecting Reasoning Processes",
+            "url": "https://arxiv.org/html/2509.10004"
+          },
+          {
+            "title": "Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/html/2605.05025"
+          },
+          {
+            "title": "Hallucination Detection in Foundation Models for Decision- ...",
+            "url": "https://arxiv.org/pdf/2403.16527"
+          },
+          {
+            "title": "The First Token Knows: Single-Decode Confidence for Hallucination Detection",
+            "url": "https://arxiv.org/html/2605.05166"
+          },
+          {
+            "title": "[2509.24770] Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/abs/2509.24770"
+          },
+          {
+            "title": "Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments",
+            "url": "https://arxiv.org/html/2605.03971"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I discovered about arXiv paper 2605.07209:\n\n## \"Hallucination Detection via Activations of Open-Weight Proxy Analyzers\"\n\nThe paper introduces a proxy-analyzer framework for detecting hallucinations in large language models that reads already-generated text through a small locally hosted open-weight model and spots hallucinations using the reader's own internal activations.\n\n### Key Features\n\nThe researchers built eighteen features grounded in how transformers process text, covering residual stream norms, per-head source-document attention, entropy, MLP activations, logit-lens trajectories, and three new token-level grounding statistics.\n\n### Methodology\n\nThey trained a stacking ensemble on 72,135 samples from five hallucination datasets and tested across seven analyzer architectures from 0.5 billion to 9 billion parameters: Qwen2.5 at 0.5B and 7B, Gemma-2 at 2B and 9B, Pythia at 1.4B, and LLaMA-3 at both 3B and 8B.\n\n### Key Advantage\n\nThis works just as well when the generator is a closed API like GPT-4 as when it is any open-weight model.\n\nThe paper was submitted on May 8, 2026, and represents recent research in hallucination detection using attention mechanisms and model internals."
+    ],
+    "durationSeconds": 7.324011071999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ec35513d-d017-48ae-9f5b-21509faaf183",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T01:49:36.092Z_
+
+<details><summary>↩ Tool result · `toolu_01PJmzCBpJWkdaQ5nWoPK3hZ`</summary>
+
+```text
+Web search results for query: "HALT hallucination log-probs time series GRU detection arXiv 2602.02888"
+
+Links: [{"title":"HALT: Hallucination Assessment via Log-probs as Time series","url":"https://arxiv.org/html/2602.02888"},{"title":"[2602.02888] HALT: Hallucination Assessment via Log-probs as Time series","url":"https://arxiv.org/abs/2602.02888"},{"title":"HALT: Hallucination Assessment via Log-probs as Time series","url":"https://www.arxiv.org/pdf/2602.02888"},{"title":"(PDF) HALT: Hallucination Assessment via Log-probs as Time series","url":"https://www.researchgate.net/publication/400415154_HALT_Hallucination_Assessment_via_Log-probs_as_Time_series"},{"title":"HALT: Hallucination Assessment via Log-probs as Time series | OpenReview","url":"https://openreview.net/forum?id=l4WFDcw3Yy"},{"title":"HALT: Hallucination Assessment via Latent Testing","url":"https://arxiv.org/html/2601.14210v1"},{"title":"HALT-RAG: A Task-Adaptable Framework for Hallucination Detection with Calibrated NLI Ensembles and Abstention","url":"https://arxiv.org/html/2509.07475"},{"title":"TDGNet: Hallucination Detection in Diffusion Language Models via Temporal Dynamic Graphs","url":"https://arxiv.org/html/2602.08048v1"},{"title":"HALT-RAG: A Task-Adaptable Framework for Hallucination Detection","url":"https://arxiv.org/pdf/2509.07475"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"}]
+
+I found the paper! Here's what I found about HALT (arXiv 2602.02888):
+
+## Overview
+
+HALT (Hallucination Assessment via Log-probs as Time series) is a lightweight hallucination detector that leverages only the top-20 token log-probabilities from LLM generations as a time series.
+
+## Key Approach
+
+The framework frames log-probability trajectories as a time-series classification problem using a 5M-parameter GRU (Gated Recurrent Unit) that outperforms a fine-tuned ModernBERT encoder 30× larger. HALT uses a gated recurrent unit model combined with entropy-based features to learn model-specific calibration bias, providing an extremely efficient alternative to large encoders.
+
+## Architecture Details
+
+The model employs a gated recurrent unit encoder followed by a sequence-to-scalar pooling head and a linear classifier, with the projected sequence encoded by a multi-layer, bidirectional GRU with hidden dimension = 256, num layers = 5, bidirectional = true, dropout = 0.4.
+
+## Performance
+
+Experiments show HALT consistently outperforms probability summaries and rivals larger text encoders while being far smaller and faster, validating that calibration bias is model-specific and learnable, generalizes across tasks within a model, but transfers poorly across models. While being 30× smaller, HALT outperforms Lettuce, a fine-tuned modernBERT-base encoder, achieving a 60× speedup gain on HUB.
+
+## Benchmark
+
+The authors released HUB, a benchmark spanning ten clusters across factual and reasoning tasks, with hybrid annotation and dataset splits that ensure reliable generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5dc62ee-9ef2-4f64-9c58-9382db20e2bd",
+  "isSidechain": false,
+  "promptId": "f8ab517a-df3a-4937-8ecb-6f73554f3ca8",
+  "type": "user",
+  "uuid": "a9425ba9-166d-4959-b3ae-cf7dcd851471",
+  "toolUseResult": {
+    "query": "HALT hallucination log-probs time series GRU detection arXiv 2602.02888",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RvLAnb9Bv4eBjTfazZuMYJ",
+        "content": [
+          {
+            "title": "HALT: Hallucination Assessment via Log-probs as Time series",
+            "url": "https://arxiv.org/html/2602.02888"
+          },
+          {
+            "title": "[2602.02888] HALT: Hallucination Assessment via Log-probs as Time series",
+            "url": "https://arxiv.org/abs/2602.02888"
+          },
+          {
+            "title": "HALT: Hallucination Assessment via Log-probs as Time series",
+            "url": "https://www.arxiv.org/pdf/2602.02888"
+          },
+          {
+            "title": "(PDF) HALT: Hallucination Assessment via Log-probs as Time series",
+            "url": "https://www.researchgate.net/publication/400415154_HALT_Hallucination_Assessment_via_Log-probs_as_Time_series"
+          },
+          {
+            "title": "HALT: Hallucination Assessment via Log-probs as Time series | OpenReview",
+            "url": "https://openreview.net/forum?id=l4WFDcw3Yy"
+          },
+          {
+            "title": "HALT: Hallucination Assessment via Latent Testing",
+            "url": "https://arxiv.org/html/2601.14210v1"
+          },
+          {
+            "title": "HALT-RAG: A Task-Adaptable Framework for Hallucination Detection with Calibrated NLI Ensembles and Abstention",
+            "url": "https://arxiv.org/html/2509.07475"
+          },
+          {
+            "title": "TDGNet: Hallucination Detection in Diffusion Language Models via Temporal Dynamic Graphs",
+            "url": "https://arxiv.org/html/2602.08048v1"
+          },
+          {
+            "title": "HALT-RAG: A Task-Adaptable Framework for Hallucination Detection",
+            "url": "https://arxiv.org/pdf/2509.07475"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about HALT (arXiv 2602.02888):\n\n## Overview\n\nHALT (Hallucination Assessment via Log-probs as Time series) is a lightweight hallucination detector that leverages only the top-20 token log-probabilities from LLM generations as a time series.\n\n## Key Approach\n\nThe framework frames log-probability trajectories as a time-series classification problem using a 5M-parameter GRU (Gated Recurrent Unit) that outperforms a fine-tuned ModernBERT encoder 30× larger. HALT uses a gated recurrent unit model combined with entropy-based features to learn model-specific calibration bias, providing an extremely efficient alternative to large encoders.\n\n## Architecture Details\n\nThe model employs a gated recurrent unit encoder followed by a sequence-to-scalar pooling head and a linear classifier, with the projected sequence encoded by a multi-layer, bidirectional GRU with hidden dimension = 256, num layers = 5, bidirectional = true, dropout = 0.4.\n\n## Performance\n\nExperiments show HALT consistently outperforms probability summaries and rivals larger text encoders while being far smaller and faster, validating that calibration bias is model-specific and learnable, generalizes across tasks within a model, but transfers poorly across models. While being 30× smaller, HALT outperforms Lettuce, a fine-tuned modernBERT-base encoder, achieving a 60× speedup gain on HUB.\n\n## Benchmark\n\nThe authors released HUB, a benchmark spanning ten clusters across factual and reasoning tasks, with hybrid annotation and dataset splits that ensure reliable generalization."
+    ],
+    "durationSeconds": 8.256875998999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d5dc62ee-9ef2-4f64-9c58-9382db20e2bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-16T01:50:38.688Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the landscape. Let me synthesize my assessment.
+
+## Key Observations
+
+### Trivial Alternative Check
+The most obvious trivial alternative is: **simple concatenation + static classifier**. Instead of the whole GRU + gating network architecture, could you just:
+1. Extract the same three signal types at each step
+2. Concatenate them
+3. Train a simple classifier (logistic regression, MLP) on the concatenated features?
+
+The proposal acknowledges this partially with the "equal-weight fusion baseline" ablation. But the real question is: does the temporal gating network add meaningful value over simpler approaches?
+
+
+Another angle: what if I just take the best single-signal temporal detector—like HALT's GRU on log-probabilities—and skip the fusion entirely? The paper's core argument is that fusion helps, but if one signal consistently dominates, the added complexity might not be justified.
+
+### Premise Assumption Check
+Several key assumptions are unverified. The entire framework rests on the claim that different signals provide complementary information at different generation stages, motivated by mechanistic interpretability arguments about WHERE/WHAT/HOW distinctions. But this complementarity isn't empirically demonstrated—the paper cites work on hallucination as trajectory commitment showing early bifurcation, yet doesn't directly validate whether the three signals actually capture independent information.
+
+The asymmetry argument also glosses over practical concerns: while it's technically true that fusion can't underperform the best individual signal at the population level, with only 1K examples and 5-fold cross-validation, the fusion model's extra parameters create real overfitting risk. Additionally, the premise that early detection from partial responses is a critical bottleneck seems questionable—LLM generation is already fast enough that waiting for the full response typically adds only hundreds of milliseconds, so the practical value of detecting at 25% versus 100% observation is murky for most real applications.
+
+### Novelty Assessment
+The core contributions center on multi-signal temporal fusion for hallucination detection.
+
+The novelty is genuine but incremental. The architecture itself is standard—GRU encoders with a gating network and softmax attention—and the signal types are all drawn from prior work like SinkProbe, EigenScore/EigenTrack, and HALT. While the fusion approach is novel in this specific domain, it's a well-established pattern in multivariate time series anomaly detection. The real contribution is more about thoughtful combination than conceptual breakthrough. Recent work like CHARM already fuses attention and activation signals via GNNs, and HaDeMiF from the same conference cycle approaches similar problems from different angles.
+
+The significance ultimately hinges on whether temporal complementarity actually exists between these signals. If the pilot study's high correlation scenario (r > 0.95) holds more broadly, the paper becomes a negative result showing why fusion doesn't help. The practical scope is also constrained—only one model tested, one benchmark, and TruthfulQA is becoming dated. The short paper format limits how deeply I can explore whether the "conflicting evidence" angle really drives the results or if it's just a post-hoc narrative. impactful as claimed — the conflicting evidence between HALUPROBE and krogoldAI may simply be due to different models, datasets, and feature engineering, not temporal dynamics.
+
+### Related Work Assessment
+The related work coverage is thorough and impressive. The positioning against HaDeMiF, HaluNet, CHARM, and other fusion methods is clear. However, there's a risk that the field is moving so fast that by the time of publication, another method may have already addressed some of these gaps.
+
+## Overall Assessment
+
+This is a competent engineering proposal that combines known techniques in a new domain configuration. The novelty is real but incremental — it's essentially "let's apply multi-signal temporal fusion (well-known in time series) to hallucination detection (hot topic)." The core insight (temporal complementarity) is plausible but unverified, and the proposal's own pilot design acknowledges this could be the weak link.
+
+Applying the "I would have guessed this" test, a positive result wouldn't surprise most researchers — it would feel like a natural extension rather than a breakthrough. The architecture itself relies on standard, predictable choices. The strengths are clear: well-motivated gap, solid experimental design, interpretable gate weight analysis, and rigorous statistics. But the weaknesses are significant: the novelty is narrow, the temporal complementarity claim remains unproven and might not actually hold, the scope is limited for a short paper, and the practical value of early detection isn't convincingly argued. I'm placing this in the 20-30% range — the direction is sensible, but the novelty gap is too small for reviewers to see this as genuine science rather than engineering work. The temporal signal importance map is genuinely novel and could offer real value to the community. The multi-horizon loss cleanly adapts early time series classification to this new problem. However, the core architecture relies on standard components—just a GRU with gating—and existing work like CHARM and HaDeMiF already combine attention with signal fusion. The main distinction is the temporal framing and early detection angle, but that feels more like an architectural choice than a fundamental breakthrough. Plus, the practical motivation for early detection is questionable since generation is already fast and latency gains would likely be marginal. I'm settling on medium novelty—there's genuine combination value here, but the individual pieces are all borrowed and the architecture is straightforward.
+
+On significance, this addresses a real gap but the practical impact remains unclear, and the scope feels limited for a short paper. The related work section is strong and positions the contribution clearly. Given all this, I'd estimate the acceptance probability at around 25%, with novelty being the main constraint—combination novelty alone probably isn't sufficient for EMNLP's main conference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9425ba9-166d-4959-b3ae-cf7dcd851471",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QcYD8RTKKC9G2CkcjL",
+  "type": "assistant",
+  "uuid": "995e07bf-8253-42ac-9dee-c596cf1ed444",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QnGjgaZEtjdQPAfM2UEuk",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 1990,
+      "cache_read_input_tokens": 32483,
+      "output_tokens": 4613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 4613,
+          "cache_read_input_tokens": 32483,
+          "cache_creation_input_tokens": 1990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-16T01:51:40.551Z_
+
+Now I have sufficient information to make my assessment. Let me synthesize everything.
+
+---
+
+```
+【阶段】: Triage
+
+【Trivial Alternative 检验】:
+存在多个 trivial alternative 威胁：
+
+(1) **简单拼接 + 静态分类器**: 将三种信号在每步提取后直接 concatenate，喂入一个 MLP 或 logistic regression，不需要 GRU 也不需要 gating network。Proposal 确实在 ablation 中提到了 equal-weight fusion baseline 和 static logistic regression，但这些是实验层面的对照——核心问题是：如果简单拼接已经 work，那整个 GRU + gating architecture 的 engineering overhead 换来的增量到底有多大？这一增量价值完全取决于"temporal complementarity"假设是否成立，而这个假设本身未经验证。
+
+(2) **直接用最好的单信号时序检测器**: HALT 的 GRU on log-probs 已经证明 5M 参数的 GRU 即可取得 strong results。如果一个信号就已经 dominant（HALUPROBE 和 Proxy Analyzers 都发现 attention dominant；krogoldAI 发现 FFN dominant），那 fusion 增量可能是 marginal 的。Proposal 自己的 pilot design 也承认 r > 0.95 时 fusion 没有价值。
+
+增量价值在于：如果 temporal complementarity 确实存在（不同信号在不同生成阶段 dominant），fusion 能实现 Pareto improvement 尤其在 early detection。但这正是未验证的前提。
+
+(3) **Early detection 的实际需求质疑**: LLM 生成速度通常在 30-80 tokens/sec，一个 100 token 的回复约 1-3 秒。"在 25% observation 时就检测"相比"等完整回复"在实际部署中可能只节省 1-2 秒延迟。这个 practical motivation 是否足够强，审稿人可能会质疑。
+
+【前提假设检验】:
+核心 claim 的逻辑链有以下未经验证的关键假设：
+
+(1) **Temporal complementarity 假设 [核心]**: "不同信号在不同生成阶段携带互补信息"——这是整篇论文的立论基础。Proposal 用 mechanistic interpretability 论证（WHERE/WHAT/HOW），并引用 Trajectory Commitment（44.3% 的 prompt 在第一个 token 就分叉）和 Shadows in the Attention（attention-locking 渐进出现）。但这两篇论文研究的是不同现象（residual stream trajectories vs. attention patterns），不等于证明"三种信号在同一个 generation 中有不同的 temporal profile"。这个从 mechanistic 论述到 empirical complementarity 的推理跳跃是想当然的。
+
+(2) **"Fusion 不可能比最好单臂差"的 asymmetry 论证**: 理论上成立（gate 可以学到给一个 arm 全部权重），但在 1K examples + 5-fold CV 的小数据量下，多参数模型（~100K total）过拟合的风险是真实的。更多参数 + 更少数据 = validation performance 可能反而下降。
+
+(3) **Static comparison 冲突源于 temporal collapsing**: Proposal 声称 HALUPROBE 和 krogoldAI 的冲突是因为都是"static snapshot"，但更可能的原因是模型差异（Llama-2 vs. Ministral-8B）、数据集差异、特征工程差异。将冲突归因于"temporal vs static"并以此作为 temporal fusion 的动机，逻辑链不够坚实。
+
+【3 维度打分】:
+1. Novelty: 【中】
+   — 核心贡献是将 multivariate time series anomaly detection 中成熟的 multi-signal temporal fusion（GRU encoder + gating network）迁移到 LLM hallucination detection 领域。这是一个真实但增量的 novelty——各组件全部来自已有工作：三种信号分别源自 SinkProbe / EigenScore / HALT；GRU encoder 是标准架构；gating MLP with softmax 是经典的 attention/gating 机制；multi-horizon loss 是 early TSC 的直接适配。
+   — CHARM (ICLR 2026) 已经将 attention + activation 信号融合（通过 GNN）；HaDeMiF (ICLR 2025) 已经融合 hidden states + prediction characteristics。TemporalFuse 的增量 delta 是 (a) temporal 而非 static fusion，(b) early-detection loss。这个 delta 真实存在但较窄。
+   — "First temporal map of signal importance during hallucination onset" 是一个有价值的 interpretability 贡献，但属于 analysis byproduct，不是方法论创新。
+   — 如果核心发现是 positive（fusion helps, especially early），审稿人的反应很可能是 "makes sense, I would have guessed this"，而不是 "surprising"。Temporal complementarity 是一个 intuitive hypothesis。
+
+2. Significance: 【中】
+   — 研究问题本身（如何融合多种内部信号做实时幻觉检测）是重要的，对实际部署 LLM guardrails 有实用价值。
+   — 但 EMNLP short paper 版本的 scope 严重限制了 significance：1 model (Llama-8B)、1 benchmark (TruthfulQA)、1K examples。TruthfulQA 已经是一个相对 "dated" 的 benchmark，且它的分布较窄（factoid questions）。
+   — Early detection 的 practical motivation 论证不充分（如上分析，实际延迟节省可能很小）。
+   — "解决 static comparison 冲突"的 framing 有吸引力，但如前分析，冲突的真实原因可能不是 temporal vs static，而是模型/数据差异。
+   — 如果 temporal complementarity 不成立（pilot 的 r > 0.95 场景），paper 退化为 negative result（"我们试了 fusion 但信号冗余"），这在 short paper format 中是可以发表的，但 impact 会大幅降低。
+
+3. Related Work: 【强】
+   — 覆盖极其全面，包含 40+ 篇近期工作，涵盖 static comparison (HALUPROBE, Proxy Analyzers, krogoldAI, LLM-Check)、foundational methods (INSIDE/EigenScore)、multi-signal fusion (HaDeMiF, HaluNet, CHARM, ReDeEP)、single-signal temporal (EigenTrack, HALT, HSAD)、streaming detection、cascaded systems、cross-modal fusion 等多个子领域。
+   — 差异化定位清晰：对每个已有方法都明确指出 TemporalFuse 的差异（temporal vs static, multi-signal vs single-signal, early detection vs full-response）。
+   — 对 CHARM 和 HaDeMiF 这两个最接近的竞争者的分析准确且公允。
+   — 唯一潜在风险：该领域进展极快（2026 年 4-5 月就有大量新工作），到 ARR review 结束时可能有新的 overlap。
+
+【概率估计】: [18% - 28%] 中位 23%
+
+【估计理由】:
+Novelty 维度是概率上界的主要限制因素。核心架构（GRU + gating network + multi-horizon loss）是已有技术的组合迁移，个体组件均无创新。对于 EMNLP main conference（非 Findings），即使是 short paper，审稿人也会问 "what's the conceptual contribution beyond putting known pieces together?" 
+Significance 维度受限于 (a) early detection 的 practical motivation 论证不充分，(b) short paper 的实验 scope 过窄（1 model / 1 benchmark），(c) 核心发现如果 positive 并不 surprising。
+Related work 是唯一强项，但好的 related work 覆盖只能保底不能拉高。
+
+综合来看，这是一个方向正确、定位清晰、但内核偏 engineering combination 的 proposal。它更接近 "25-35% 区间的下沿"——有真实 novelty delta 但 delta 较窄，核心发现 unsurprising。考虑到 EMNLP main track 的竞争性和 short paper 的实验局限性，中位估计 23%。如果投 Findings track，概率可能提升到 30-35%。
+
+【主要风险】:
+1. **Novelty 不足以支撑 main conference**: 审稿人可能认为这是 "well-executed engineering" 而非 "scientific contribution"——将 time series domain 的 mature techniques 应用于 hallucination detection，各组件都是 off-the-shelf，无 conceptual surprise。CHARM (ICLR 2026) 和 HaDeMiF (ICLR 2025) 已经探索了 multi-signal fusion for hallucination detection，TemporalFuse 的增量 delta（temporal + early detection）可能被视为 marginal extension。
+2. **核心前提假设（temporal complementarity）未经验证且可能不成立**: 如果三种信号 temporally redundant，整个 paper 的核心 narrative 崩塌。即使 proposal 设计了 dual-outcome pivot，一篇说"我们验证了信号冗余"的 short paper 在 EMNLP main track 的吸引力远低于原始 framing。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "995e07bf-8253-42ac-9dee-c596cf1ed444",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QcYD8RTKKC9G2CkcjL",
+  "type": "assistant",
+  "uuid": "3ebefd3f-cdea-48e2-ac7f-995ca9b1cd1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QnGjgaZEtjdQPAfM2UEuk",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 829,
+      "cache_creation_input_tokens": 1990,
+      "cache_read_input_tokens": 32483,
+      "output_tokens": 4613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 829,
+          "output_tokens": 4613,
+          "cache_read_input_tokens": 32483,
+          "cache_creation_input_tokens": 1990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamic…",
+  "leafUuid": "3ebefd3f-cdea-48e2-ac7f-995ca9b1cd1d",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate TemporalFuse hallucination detection proposal",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamic…",
+  "leafUuid": "3ebefd3f-cdea-48e2-ac7f-995ca9b1cd1d",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate TemporalFuse hallucination detection proposal",
+  "sessionId": "05c89869-2712-49f0-b642-06231b1e4367"
+}
+```
+
+---

@@ -1,0 +1,4317 @@
+# Research conversation: Decomposing LLM Ability via Contamination-Aware Step-Level IRT ## Core Problem Current LLM evaluation conflates genuine 
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 1
+- **Tool calls:** 19
+- **Original source:** `logs/chats/exported-trajectories/account-1/90c5392a-3245-4c0d-afc3-94af3e56e2f2.jsonl`
+- **Structured JSON:** [`0c9e73d8eb1a3588b147.json`](../../sessions/0c/0c9e73d8eb1a3588b147.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T06:37:35.713Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T06:37:35.713Z",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "content": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT\n\n## Core Problem\n\nCurrent LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a single accuracy score. We disentangle these via calibrated decomposition (Observed = Genuine + Contamination − Robustness) with psychometric and statistical rigor.\n\n## Core Contributions\n\n1. **Step×Perturbation Alignment (SPA)**: A novel diagnostic signal measuring whether reasoning steps adapt appropriately when problem structure changes across original-variant pairs. Existing work examines either answer-level accuracy drops on variants (MATH-Perturb ICML 2025, VAR-MATH arXiv 2507.12885) or step-level faithfulness on single problems (Illusion of Reasoning arXiv 2603.22816). No prior work measures the step×perturbation interaction—whether a model's reasoning trace changes at the right steps for the right reasons when facing a structural variant. This signal directly separates genuine structural understanding from template memorization at the reasoning level.\n\n2. **CAS-IRT Framework**: A contamination-aware extension of 3PL IRT that jointly estimates genuine ability θ, contamination susceptibility, and robustness deficit via EM. The additive decomposition is a first-order approximation; we additionally fit an interaction-term extension and use BIC/AIC model selection to empirically validate whether the additive model is sufficient or whether contamination×robustness interactions are significant.\n\n3. **Three-Community Unification**: The first framework bridging contamination detection (JECS, CoDeC), adversarial robustness (MATH-Perturb, VAR-MATH), and IRT-based evaluation (PSN-IRT, ATLAS, metabench)—three mature but siloed communities that each explicitly flag the others' concerns as unsolved.\n\n## Research Opportunity\n\nThree siloed communities—contamination detection (JECS conformal p-values, May 2026), adversarial robustness (MATH-Perturb, VAR-MATH), and IRT-based evaluation (PSN-IRT, ATLAS, metabench)—have matured independently. Every IRT-for-LLM paper explicitly flags contamination as unsolved. JECS provides conformal contamination p-values; Illusion of Reasoning (Mar 2026) proves step-level faithfulness varies 4–93% across models; Reasoning or Memorization (arXiv 2507.10532, 2025) shows Qwen2.5's RL gains are contamination artifacts. The combination—JECS p-values fed into a 3PL+ IRT model with step-level reasoning comparison across SymPy-backed variant pairs—is now technically feasible and unattempted.\n\nBeyond evaluation refinement, CAS-IRT enables a training diagnostic use case: if model developers can decompose benchmark improvement into genuine ability gain vs. contamination exploit vs. robustness deficit, they can make informed training decisions—identifying contaminated data, adjusting reward signals, and avoiding the kind of misleading RL gains documented in Reasoning or Memorization (arXiv 2507.10532).\n\n## Research Landscape\n\n**IRT-for-LLM (assumes zero contamination):** PSN-IRT (AAAI 2026 Oral) analyzes 12 LLMs × 41,871 items, finding benchmark saturation and difficulty ceilings. ATLAS achieves 90% item reduction via adaptive testing. metabench captures 79.3% variance with sparse items. arXiv 2605.07046 scales IRT to 2211 models via majorization-minimization. Growing Pains (arXiv 2604.12843) uses multidimensional IRT with anchor items across 400+ models, explicitly noting contamination threatens anchor stability but not modeling it. All assume zero contamination.\n\n**Contamination detection (detects without correcting scores):** CoDeC (ICLR 2026) achieves 99.9% AUC. JECS (arXiv 2605.21543) provides conformal guarantees with global contamination rate control. DVD (arXiv 2601.04895) models memory-adherence vs. perturbation-drift dual states via output distribution variance. RADAR achieves 93% detection accuracy. All detect contamination but none correct ability estimates.\n\n**Score correction (ad-hoc, no IRT grounding):** DCR Factor (EMNLP 2025) adjusts scores via fuzzy inference on 9 models without IRT grounding, achieving ~4% average error but lacking psychometric calibration.\n\n**Perturbation-based robustness (answer-level only):** MATH-Perturb (ICML 2025) finds o1-mini drops 16.49% on hard perturbations. VAR-MATH (arXiv 2507.12885) shows RL-trained models drop 47–73% on parameterized variants. Both operate at answer-level only.\n\n**Step-level reasoning (misses perturbation interaction):** Illusion of Reasoning (arXiv 2603.22816) identifies three CoT patterns (genuine/scaffolding/decoration) with step necessity ranging 4–93%. ProcessBench (ACL 2025) finds 51.8% process errors in math reasoning. Fragile Thoughts documents snowball effects in CoT. Robust Answers Fragile Logic (arXiv 2505.17406) proposes the Decoupling Hypothesis—answer correctness and reasoning quality are only loosely coupled—validated via the MATCHA framework. PEARL (arXiv 2505.03019) validates the Perturbation Sensitivity Hypothesis that memorized content is sensitive to input perturbation, though using bit-flip perturbations rather than structural mathematical variants.\n\n**Key differentiations:**\n- vs. DVD: DVD is binary detection (contaminated or not); CAS-IRT provides continuous quantification of contamination's contribution to scores within a psychometric framework.\n- vs. PEARL: PEARL uses surface-level bit-flip perturbation on inputs; CAS-IRT uses structural algebraic variants that preserve mathematical validity, enabling step-level reasoning analysis.\n- vs. DCR Factor: DCR adjusts accuracy ad-hoc; CAS-IRT jointly estimates item parameters and model parameters within IRT, providing calibrated decomposition.\n\nNo concurrent work on arXiv or OpenReview combines contamination-aware IRT with step-level perturbation alignment.\n\n## Proposed Approach\n\n**Model specification.** Extend 3PL IRT with contamination mixture: P(correct|θ,d,c) = c·p_mem + (1−c)·σ(a(θ−d)), where c is the contamination indicator per model×item, initialized from JECS pre-aggregation per-model×item conformal p-values (extracted before JECS's max-p aggregation step; see JECS arXiv 2605.21543 methodology). p_mem is modeled as a constant in the base specification; we discuss item-dependent p_mem(d) as a model extension and test it empirically.\n\n**Identifiability safeguards.** The 3PL mixture model faces known identifiability challenges (Bayesian EMM for 3PLM, PMC6555200). We address this via: (a) informative Bayesian prior on c centered at JECS p-values, constraining EM drift; (b) synthetic parameter recovery experiments across regime variations (N=20,50,100,200 models × contamination rates 5%,15%,30%); (c) multi-start EM with convergence diagnostics (log-likelihood consistency, bootstrap CIs); (d) augmenting model count beyond 50 by incorporating existing Open LLM Leaderboard response data for original benchmarks, running only variant sets and step-level verification on the ~50 target models.\n\n**Variant generation.** Generate SymPy-backed algebraic variants for MATH-500, AMC, AIME. Conduct a pilot study to assess SymPy coverage rates per benchmark and perturbation type (numerical substitution, structural modification, constraint change). Supplement with GSM8K (high algebraic coverage) to ensure sufficient sample size. For non-algebraic items (geometry, combinatorics), use LLM-assisted perturbation with human verification, following MATH-Perturb's (ICML 2025) expert annotation approach. Report coverage rates as a documented limitation.\n\n**Step×Perturbation Alignment (SPA) metric.** For each original-variant pair, define SPA via:\n- Step-level correctness transition matrix: for each step, record (correct_original, correct_variant) yielding four states; genuine reasoning shows coherent transitions aligned with perturbation locus, while memorization shows either frozen steps (template reproduction) or early collapse.\n- Reasoning divergence point: the first step where original and variant traces substantively diverge, compared against the perturbation's actual mathematical impact point. Memorization signature: divergence too early (cannot adapt) or too late (template copied regardless).\n- Normalization by perturbation scope (number of affected steps) to enable cross-item comparison.\n\n**Step-level verification.** Apply GenPRM (AAAI 2026) for primary step-level verification. To mitigate GenPRM's limited generalization on challenging math (ProcessBench ACL 2025 reports 67.5 F1), we: (a) validate GenPRM on variants via 150+ human-annotated original-variant pairs as gold standard; (b) use a second verifier (e.g., Math-Shepherd or ThinkPRM) for inter-rater agreement, restricting core analysis to agreement subset; (c) supplement with Illusion of Reasoning's step ablation method (remove-one-step, observe answer change) as a PRM-independent signal.\n\n**Tiered evaluation design.** Tier 1 (~15 flagship models including DeepSeek-R1, Qwen3, GLM-4.7, Kimi-K2.5, Llama-4, GPT-4o, Claude, Gemini): full evaluation with step-level SPA on all items. Tier 2 (~35-40 open-weight models): answer-level evaluation on originals+variants, with sampled step-level verification on 20% of items. This controls compute while maintaining IRT calibration breadth.\n\n**Estimation.** Joint EM estimation yields calibrated decomposed scores per model: genuine ability θ, contamination susceptibility, and robustness deficit. We additionally fit the interaction-term extension (contamination×robustness) and compare via BIC/AIC. Grounded in the EM-IRT precedent for rapid-guessing detection in human psychometrics.\n\n## Validation Protocol\n\n**Synthetic validation:** Generate simulated response matrices with known ground-truth θ, c, and robustness parameters. Verify EM recovery accuracy (bias, RMSE) across regime variations. Systematically test identifiability boundaries.\n\n**Known-contamination validation:** For open-source models with partially known training data (e.g., Llama series), check whether CAS-IRT contamination estimates align with known training data overlap.\n\n**Predictive validation:** Fit θ_genuine on original+variant sets, then predict performance on held-out benchmarks (OlympiadBench, LiveCodeBench) not used in fitting. Compare predictive power (Spearman/Kendall) of θ_genuine vs. raw accuracy vs. standard IRT θ. If θ_genuine predicts significantly better, the decomposition captures real signal.\n\n## Baselines\n\n1. **Standard 3PL IRT** (PSN-IRT approach): no contamination modeling.\n2. **Detect-then-filter pipeline**: JECS removes contaminated items → standard 3PL IRT on clean subset.\n3. **DCR Factor post-hoc adjustment** (EMNLP 2025): ad-hoc contamination correction on raw accuracy.\n4. **Raw accuracy + perturbation drop**: accuracy and original-variant gap without IRT.\n5. **Answer-level CAS-IRT**: full CAS-IRT model but without step-level SPA component (isolates step-level contribution).\n\nEvaluation dimensions: (a) ranking correlation with held-out benchmarks; (b) contamination detection precision/recall against known-contaminated items; (c) parameter recovery in synthetic experiments; (d) robustness prediction accuracy.\n\n## Ablation Design\n\n| Configuration | Contamination | Perturbation | Step-level |\n|---|---|---|---|\n| Standard 3PL IRT | ✗ | ✗ | ✗ |\n| + Contamination only | ✓ (JECS init) | ✗ | ✗ |\n| + Perturbation only | ✗ | ✓ | ✗ |\n| + Contamination + Perturbation (answer-level) | ✓ | ✓ | ✗ |\n| Full CAS-IRT | ✓ | ✓ | ✓ |\n\nAdditional ablations: JECS initialization vs. uniform initialization of c; number of variants per item (1, 3, 5); different PRM choices; EM convergence curves; additive vs. interaction model comparison (BIC/AIC).\n\n## Key References\n\n- Lost in Benchmarks? PSN-IRT (AAAI 2026 Oral)\n- metabench: A Sparse Benchmark (ICLR 2025)\n- ATLAS: Adaptive Testing for LLM Evaluation (arXiv 2025)\n- DCR: Quantifying Data Contamination (EMNLP 2025)\n- JECS: Provable Joint Decontamination (arXiv 2605.21543, 2026)\n- CoDeC: Detecting Contamination via In-Context Learning (ICLR 2026)\n- GenPRM: Scaling Test-Time Compute of PRMs (AAAI 2026)\n- The Illusion of Reasoning (arXiv 2603.22816, 2026)\n- Reasoning or Memorization? RL Data Contamination (arXiv 2507.10532, 2025)\n- MATH-Perturb (ICML 2025)\n- Growing Pains: IRT Anchor Calibration (arXiv 2604.12843, 2026)\n- Scalable IRT for 2211 Models (arXiv 2605.07046, 2026)\n- DVD: Detection via Variance of Distribution (arXiv 2601.04895, 2026)\n- PEARL: Perturbation Sensitivity Hypothesis (arXiv 2505.03019, 2025)\n- VAR-MATH: Symbolic Variant Benchmark (arXiv 2507.12885, 2025)\n- ProcessBench: Process Error Identification (ACL 2025)\n- Robust Answers Fragile Logic: Decoupling Hypothesis (arXiv 2505.17406, 2025)\n- Fragile Thoughts: Snowball Effects in CoT (arXiv 2603.03332, 2026)\n- Bayesian EMM for 3PLM (PMC6555200)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T06:37:35.720Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T06:37:35.720Z",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+## Round 1
+
+62 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T06:37:35.738Z_
+
+# Decomposing LLM Ability via Contamination-Aware Step-Level IRT
+
+## Core Problem
+
+Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a single accuracy score. We disentangle these via calibrated decomposition (Observed = Genuine + Contamination − Robustness) with psychometric and statistical rigor.
+
+## Core Contributions
+
+1. **Step×Perturbation Alignment (SPA)**: A novel diagnostic signal measuring whether reasoning steps adapt appropriately when problem structure changes across original-variant pairs. Existing work examines either answer-level accuracy drops on variants (MATH-Perturb ICML 2025, VAR-MATH arXiv 2507.12885) or step-level faithfulness on single problems (Illusion of Reasoning arXiv 2603.22816). No prior work measures the step×perturbation interaction—whether a model's reasoning trace changes at the right steps for the right reasons when facing a structural variant. This signal directly separates genuine structural understanding from template memorization at the reasoning level.
+
+2. **CAS-IRT Framework**: A contamination-aware extension of 3PL IRT that jointly estimates genuine ability θ, contamination susceptibility, and robustness deficit via EM. The additive decomposition is a first-order approximation; we additionally fit an interaction-term extension and use BIC/AIC model selection to empirically validate whether the additive model is sufficient or whether contamination×robustness interactions are significant.
+
+3. **Three-Community Unification**: The first framework bridging contamination detection (JECS, CoDeC), adversarial robustness (MATH-Perturb, VAR-MATH), and IRT-based evaluation (PSN-IRT, ATLAS, metabench)—three mature but siloed communities that each explicitly flag the others' concerns as unsolved.
+
+## Research Opportunity
+
+Three siloed communities—contamination detection (JECS conformal p-values, May 2026), adversarial robustness (MATH-Perturb, VAR-MATH), and IRT-based evaluation (PSN-IRT, ATLAS, metabench)—have matured independently. Every IRT-for-LLM paper explicitly flags contamination as unsolved. JECS provides conformal contamination p-values; Illusion of Reasoning (Mar 2026) proves step-level faithfulness varies 4–93% across models; Reasoning or Memorization (arXiv 2507.10532, 2025) shows Qwen2.5's RL gains are contamination artifacts. The combination—JECS p-values fed into a 3PL+ IRT model with step-level reasoning comparison across SymPy-backed variant pairs—is now technically feasible and unattempted.
+
+Beyond evaluation refinement, CAS-IRT enables a training diagnostic use case: if model developers can decompose benchmark improvement into genuine ability gain vs. contamination exploit vs. robustness deficit, they can make informed training decisions—identifying contaminated data, adjusting reward signals, and avoiding the kind of misleading RL gains documented in Reasoning or Memorization (arXiv 2507.10532).
+
+## Research Landscape
+
+**IRT-for-LLM (assumes zero contamination):** PSN-IRT (AAAI 2026 Oral) analyzes 12 LLMs × 41,871 items, finding benchmark saturation and difficulty ceilings. ATLAS achieves 90% item reduction via adaptive testing. metabench captures 79.3% variance with sparse items. arXiv 2605.07046 scales IRT to 2211 models via majorization-minimization. Growing Pains (arXiv 2604.12843) uses multidimensional IRT with anchor items across 400+ models, explicitly noting contamination threatens anchor stability but not modeling it. All assume zero contamination.
+
+**Contamination detection (detects without correcting scores):** CoDeC (ICLR 2026) achieves 99.9% AUC. JECS (arXiv 2605.21543) provides conformal guarantees with global contamination rate control. DVD (arXiv 2601.04895) models memory-adherence vs. perturbation-drift dual states via output distribution variance. RADAR achieves 93% detection accuracy. All detect contamination but none correct ability estimates.
+
+**Score correction (ad-hoc, no IRT grounding):** DCR Factor (EMNLP 2025) adjusts scores via fuzzy inference on 9 models without IRT grounding, achieving ~4% average error but lacking psychometric calibration.
+
+**Perturbation-based robustness (answer-level only):** MATH-Perturb (ICML 2025) finds o1-mini drops 16.49% on hard perturbations. VAR-MATH (arXiv 2507.12885) shows RL-trained models drop 47–73% on parameterized variants. Both operate at answer-level only.
+
+**Step-level reasoning (misses perturbation interaction):** Illusion of Reasoning (arXiv 2603.22816) identifies three CoT patterns (genuine/scaffolding/decoration) with step necessity ranging 4–93%. ProcessBench (ACL 2025) finds 51.8% process errors in math reasoning. Fragile Thoughts documents snowball effects in CoT. Robust Answers Fragile Logic (arXiv 2505.17406) proposes the Decoupling Hypothesis—answer correctness and reasoning quality are only loosely coupled—validated via the MATCHA framework. PEARL (arXiv 2505.03019) validates the Perturbation Sensitivity Hypothesis that memorized content is sensitive to input perturbation, though using bit-flip perturbations rather than structural mathematical variants.
+
+**Key differentiations:**
+- vs. DVD: DVD is binary detection (contaminated or not); CAS-IRT provides continuous quantification of contamination's contribution to scores within a psychometric framework.
+- vs. PEARL: PEARL uses surface-level bit-flip perturbation on inputs; CAS-IRT uses structural algebraic variants that preserve mathematical validity, enabling step-level reasoning analysis.
+- vs. DCR Factor: DCR adjusts accuracy ad-hoc; CAS-IRT jointly estimates item parameters and model parameters within IRT, providing calibrated decomposition.
+
+No concurrent work on arXiv or OpenReview combines contamination-aware IRT with step-level perturbation alignment.
+
+## Proposed Approach
+
+**Model specification.** Extend 3PL IRT with contamination mixture: P(correct|θ,d,c) = c·p_mem + (1−c)·σ(a(θ−d)), where c is the contamination indicator per model×item, initialized from JECS pre-aggregation per-model×item conformal p-values (extracted before JECS's max-p aggregation step; see JECS arXiv 2605.21543 methodology). p_mem is modeled as a constant in the base specification; we discuss item-dependent p_mem(d) as a model extension and test it empirically.
+
+**Identifiability safeguards.** The 3PL mixture model faces known identifiability challenges (Bayesian EMM for 3PLM, PMC6555200). We address this via: (a) informative Bayesian prior on c centered at JECS p-values, constraining EM drift; (b) synthetic parameter recovery experiments across regime variations (N=20,50,100,200 models × contamination rates 5%,15%,30%); (c) multi-start EM with convergence diagnostics (log-likelihood consistency, bootstrap CIs); (d) augmenting model count beyond 50 by incorporating existing Open LLM Leaderboard response data for original benchmarks, running only variant sets and step-level verification on the ~50 target models.
+
+**Variant generation.** Generate SymPy-backed algebraic variants for MATH-500, AMC, AIME. Conduct a pilot study to assess SymPy coverage rates per benchmark and perturbation type (numerical substitution, structural modification, constraint change). Supplement with GSM8K (high algebraic coverage) to ensure sufficient sample size. For non-algebraic items (geometry, combinatorics), use LLM-assisted perturbation with human verification, following MATH-Perturb's (ICML 2025) expert annotation approach. Report coverage rates as a documented limitation.
+
+**Step×Perturbation Alignment (SPA) metric.** For each original-variant pair, define SPA via:
+- Step-level correctness transition matrix: for each step, record (correct_original, correct_variant) yielding four states; genuine reasoning shows coherent transitions aligned with perturbation locus, while memorization shows either frozen steps (template reproduction) or early collapse.
+- Reasoning divergence point: the first step where original and variant traces substantively diverge, compared against the perturbation's actual mathematical impact point. Memorization signature: divergence too early (cannot adapt) or too late (template copied regardless).
+- Normalization by perturbation scope (number of affected steps) to enable cross-item comparison.
+
+**Step-level verification.** Apply GenPRM (AAAI 2026) for primary step-level verification. To mitigate GenPRM's limited generalization on challenging math (ProcessBench ACL 2025 reports 67.5 F1), we: (a) validate GenPRM on variants via 150+ human-annotated original-variant pairs as gold standard; (b) use a second verifier (e.g., Math-Shepherd or ThinkPRM) for inter-rater agreement, restricting core analysis to agreement subset; (c) supplement with Illusion of Reasoning's step ablation method (remove-one-step, observe answer change) as a PRM-independent signal.
+
+**Tiered evaluation design.** Tier 1 (~15 flagship models including DeepSeek-R1, Qwen3, GLM-4.7, Kimi-K2.5, Llama-4, GPT-4o, Claude, Gemini): full evaluation with step-level SPA on all items. Tier 2 (~35-40 open-weight models): answer-level evaluation on originals+variants, with sampled step-level verification on 20% of items. This controls compute while maintaining IRT calibration breadth.
+
+**Estimation.** Joint EM estimation yields calibrated decomposed scores per model: genuine ability θ, contamination susceptibility, and robustness deficit. We additionally fit the interaction-term extension (contamination×robustness) and compare via BIC/AIC. Grounded in the EM-IRT precedent for rapid-guessing detection in human psychometrics.
+
+## Validation Protocol
+
+**Synthetic validation:** Generate simulated response matrices with known ground-truth θ, c, and robustness parameters. Verify EM recovery accuracy (bias, RMSE) across regime variations. Systematically test identifiability boundaries.
+
+**Known-contamination validation:** For open-source models with partially known training data (e.g., Llama series), check whether CAS-IRT contamination estimates align with known training data overlap.
+
+**Predictive validation:** Fit θ_genuine on original+variant sets, then predict performance on held-out benchmarks (OlympiadBench, LiveCodeBench) not used in fitting. Compare predictive power (Spearman/Kendall) of θ_genuine vs. raw accuracy vs. standard IRT θ. If θ_genuine predicts significantly better, the decomposition captures real signal.
+
+## Baselines
+
+1. **Standard 3PL IRT** (PSN-IRT approach): no contamination modeling.
+2. **Detect-then-filter pipeline**: JECS removes contaminated items → standard 3PL IRT on clean subset.
+3. **DCR Factor post-hoc adjustment** (EMNLP 2025): ad-hoc contamination correction on raw accuracy.
+4. **Raw accuracy + perturbation drop**: accuracy and original-variant gap without IRT.
+5. **Answer-level CAS-IRT**: full CAS-IRT model but without step-level SPA component (isolates step-level contribution).
+
+Evaluation dimensions: (a) ranking correlation with held-out benchmarks; (b) contamination detection precision/recall against known-contaminated items; (c) parameter recovery in synthetic experiments; (d) robustness prediction accuracy.
+
+## Ablation Design
+
+| Configuration | Contamination | Perturbation | Step-level |
+|---|---|---|---|
+| Standard 3PL IRT | ✗ | ✗ | ✗ |
+| + Contamination only | ✓ (JECS init) | ✗ | ✗ |
+| + Perturbation only | ✗ | ✓ | ✗ |
+| + Contamination + Perturbation (answer-level) | ✓ | ✓ | ✗ |
+| Full CAS-IRT | ✓ | ✓ | ✓ |
+
+Additional ablations: JECS initialization vs. uniform initialization of c; number of variants per item (1, 3, 5); different PRM choices; EM convergence curves; additive vs. interaction model comparison (BIC/AIC).
+
+## Key References
+
+- Lost in Benchmarks? PSN-IRT (AAAI 2026 Oral)
+- metabench: A Sparse Benchmark (ICLR 2025)
+- ATLAS: Adaptive Testing for LLM Evaluation (arXiv 2025)
+- DCR: Quantifying Data Contamination (EMNLP 2025)
+- JECS: Provable Joint Decontamination (arXiv 2605.21543, 2026)
+- CoDeC: Detecting Contamination via In-Context Learning (ICLR 2026)
+- GenPRM: Scaling Test-Time Compute of PRMs (AAAI 2026)
+- The Illusion of Reasoning (arXiv 2603.22816, 2026)
+- Reasoning or Memorization? RL Data Contamination (arXiv 2507.10532, 2025)
+- MATH-Perturb (ICML 2025)
+- Growing Pains: IRT Anchor Calibration (arXiv 2604.12843, 2026)
+- Scalable IRT for 2211 Models (arXiv 2605.07046, 2026)
+- DVD: Detection via Variance of Distribution (arXiv 2601.04895, 2026)
+- PEARL: Perturbation Sensitivity Hypothesis (arXiv 2505.03019, 2025)
+- VAR-MATH: Symbolic Variant Benchmark (arXiv 2507.12885, 2025)
+- ProcessBench: Process Error Identification (ACL 2025)
+- Robust Answers Fragile Logic: Decoupling Hypothesis (arXiv 2505.17406, 2025)
+- Fragile Thoughts: Snowball Effects in CoT (arXiv 2603.03332, 2026)
+- Bayesian EMM for 3PLM (PMC6555200)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "743317db-6a71-4a55-ae48-71108b514dd8",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T06:37:35.736Z_
+
+```json
+{
+  "parentUuid": "743317db-6a71-4a55-ae48-71108b514dd8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "34524c32-4a85-4d82-919e-2b0410c6f13c",
+  "timestamp": "2026-05-29T06:37:35.736Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T06:37:35.736Z_
+
+```json
+{
+  "parentUuid": "34524c32-4a85-4d82-919e-2b0410c6f13c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0b0f1691-d6c0-44f7-a78c-b703c935c5c0",
+  "timestamp": "2026-05-29T06:37:35.736Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-29T06:37:44.331Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to act as the "发掘 agent" (Discovery Agent) to analyze this research proposal about "Decomposing LLM Ability via Contamination-Aware Step-Level IRT" for AAAI 2026 submission potential. 
+
+Let me first read and understand the proposal thoroughly, then do web searches to understand the current research landscape before giving my analysis.
+
+The proposal is about:
+1. Decomposing LLM evaluation scores into genuine ability, contamination, and robustness components
+
+
+2. Using a novel CAS-IRT framework that extends 3PL IRT with contamination modeling
+3. A Step×Perturbation Alignment (SPA) metric for step-level reasoning analysis
+4. Bridging three communities: contamination detection, adversarial robustness, and IRT-based evaluation
+
+Now I need to search the current landscape to understand what's already been done in these areas and where this work fits.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b0f1691-d6c0-44f7-a78c-b703c935c5c0",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ6BmZqdQFe2ny9hWLr",
+  "type": "assistant",
+  "uuid": "38393664-46de-41aa-bd5a-a8eb2d7ed0de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NqvqEVxZGDV97Q9HoYzUv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4992,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T06:37:44.568Z_
+
+I'll start by doing thorough web searches to understand the current research landscape before making any assessments. Let me search for the most relevant recent works mentioned in this proposal and any potential competing/overlapping work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38393664-46de-41aa-bd5a-a8eb2d7ed0de",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ6BmZqdQFe2ny9hWLr",
+  "type": "assistant",
+  "uuid": "58580f06-f730-4eaa-b86d-cadde183310f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NqvqEVxZGDV97Q9HoYzUv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4992,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-29T06:37:44.719Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019nyi4wNfrVBei5uqqfXXGz`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58580f06-f730-4eaa-b86d-cadde183310f",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ6BmZqdQFe2ny9hWLr",
+  "type": "assistant",
+  "uuid": "52c00102-7bad-4939-99d0-9386f54fd0c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NqvqEVxZGDV97Q9HoYzUv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4992,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-29T06:37:44.727Z_
+
+<details><summary>↩ Tool result · `toolu_019nyi4wNfrVBei5uqqfXXGz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52c00102-7bad-4939-99d0-9386f54fd0c4",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "4cc854c5-aae9-40e0-acf1-385a3b03f5cc",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "52c00102-7bad-4939-99d0-9386f54fd0c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT  ## Core Problem  Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a…",
+  "leafUuid": "4cc854c5-aae9-40e0-acf1-385a3b03f5cc",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-29T06:37:47.721Z_
+
+Now let me conduct my pre-research searches in parallel to understand the landscape thoroughly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cc854c5-aae9-40e0-acf1-385a3b03f5cc",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ6rLJGXnNGXd1hon79",
+  "type": "assistant",
+  "uuid": "0bccb39f-bec4-49fb-a067-fc40668d8a5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oU14SoPDaiHpKdDrKuoDA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 19176,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 19176,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-29T06:37:48.072Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016uAQHv9oqVRZKiXZtFDCwj`</summary>
+
+```json
+{
+  "query": "JECS provable joint decontamination LLM conformal p-values 2026 arXiv 2605.21543"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bccb39f-bec4-49fb-a067-fc40668d8a5d",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ6rLJGXnNGXd1hon79",
+  "type": "assistant",
+  "uuid": "fec9b59d-9dfa-4c84-a48f-81be521881f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oU14SoPDaiHpKdDrKuoDA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 19176,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 19176,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-29T06:37:54.578Z_
+
+<details><summary>↩ Tool result · `toolu_016uAQHv9oqVRZKiXZtFDCwj`</summary>
+
+```text
+Web search results for query: "JECS provable joint decontamination LLM conformal p-values 2026 arXiv 2605.21543"
+
+Links: [{"title":"[2605.21543] Provable Joint Decontamination for Benchmarking Multiple Large Language Models","url":"https://arxiv.org/abs/2605.21543"},{"title":"Provable Joint Decontamination for Benchmarking Multiple Large Language Models","url":"https://arxiv.org/html/2605.21543"},{"title":"Conformal P-Value in Multiple-Choice Question Answering Tasks with Provable Risk Control","url":"https://arxiv.org/pdf/2508.10022"},{"title":"Conditional Testing based on Localized Conformal p-values","url":"https://arxiv.org/pdf/2409.16829"},{"title":"Analyzing Uncertainty of LLM-as-a-Judge: Interval Evaluations with Conformal Prediction","url":"https://arxiv.org/pdf/2509.18658"}]
+
+I found the paper! Here's what the search returned:
+
+The paper proposes Joint Envelope Conformal Selection (JECS), a conformal procedure that enables global contamination rate (GCR) control for multi-model benchmark decontamination.
+
+The research addresses benchmark data contamination, which has become a central challenge in LLM evaluation when evaluation examples appear in the training data of one or more audited models.
+
+JECS works by computing per-model conformal p-values, aggregating them by the per-item maximum, and reconstructing a conservative envelope of the max-p null distribution from right-tail observations above a data-driven threshold. By applying the adaptive Benjamini-Hochberg (BH) procedure to the envelope-rescaled values, the method selects a benchmark with provable GCR control.
+
+The paper was published on arXiv about a week ago and provides a theoretically grounded solution to the problem of fairly comparing multiple large language models by controlling false-identification of contaminated benchmark items.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fec9b59d-9dfa-4c84-a48f-81be521881f6",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "1af3a083-a304-4f83-8542-c5cd90199601",
+  "toolUseResult": {
+    "query": "JECS provable joint decontamination LLM conformal p-values 2026 arXiv 2605.21543",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NbdpP7XT1D9fJw2E26Phpb",
+        "content": [
+          {
+            "title": "[2605.21543] Provable Joint Decontamination for Benchmarking Multiple Large Language Models",
+            "url": "https://arxiv.org/abs/2605.21543"
+          },
+          {
+            "title": "Provable Joint Decontamination for Benchmarking Multiple Large Language Models",
+            "url": "https://arxiv.org/html/2605.21543"
+          },
+          {
+            "title": "Conformal P-Value in Multiple-Choice Question Answering Tasks with Provable Risk Control",
+            "url": "https://arxiv.org/pdf/2508.10022"
+          },
+          {
+            "title": "Conditional Testing based on Localized Conformal p-values",
+            "url": "https://arxiv.org/pdf/2409.16829"
+          },
+          {
+            "title": "Analyzing Uncertainty of LLM-as-a-Judge: Interval Evaluations with Conformal Prediction",
+            "url": "https://arxiv.org/pdf/2509.18658"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search returned:\n\nThe paper proposes Joint Envelope Conformal Selection (JECS), a conformal procedure that enables global contamination rate (GCR) control for multi-model benchmark decontamination.\n\nThe research addresses benchmark data contamination, which has become a central challenge in LLM evaluation when evaluation examples appear in the training data of one or more audited models.\n\nJECS works by computing per-model conformal p-values, aggregating them by the per-item maximum, and reconstructing a conservative envelope of the max-p null distribution from right-tail observations above a data-driven threshold. By applying the adaptive Benjamini-Hochberg (BH) procedure to the envelope-rescaled values, the method selects a benchmark with provable GCR control.\n\nThe paper was published on arXiv about a week ago and provides a theoretically grounded solution to the problem of fairly comparing multiple large language models by controlling false-identification of contaminated benchmark items."
+    ],
+    "durationSeconds": 6.4963943650000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fec9b59d-9dfa-4c84-a48f-81be521881f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-29T06:37:57.958Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RRGNPz8JXPpKQYvETMEe1k`</summary>
+
+```json
+{
+  "query": "PSN-IRT \"Lost in Benchmarks\" AAAI 2026 IRT LLM evaluation psychometric"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1af3a083-a304-4f83-8542-c5cd90199601",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ7a9zGXRRLtVmt3W1p",
+  "type": "assistant",
+  "uuid": "087fe5f0-573e-4f12-b67a-a2358f4ca541",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUaPq445WNJPjg5ySKjPyL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 20043,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 612,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 20043,
+          "cache_creation_input_tokens": 612,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 612
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-29T06:38:05.340Z_
+
+<details><summary>↩ Tool result · `toolu_01RRGNPz8JXPpKQYvETMEe1k`</summary>
+
+```text
+Web search results for query: "PSN-IRT "Lost in Benchmarks" AAAI 2026 IRT LLM evaluation psychometric"
+
+Links: [{"title":"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub","url":"https://github.com/Joe-Hall-Lee/PSN-IRT"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40814"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/pdf/2505.15055"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40814/44775"},{"title":"Agent psychometrics: Task-level performance prediction in agentic coding benchmarks","url":"https://arxiv.org/pdf/2604.00594"}]
+
+Based on the search results, here's what I found:
+
+## PSN-IRT: "Lost in Benchmarks?" - AAAI 2026
+
+The paper is titled "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory" and was accepted to the Proceedings of the AAAI Conference on Artificial Intelligence in 2026.
+
+### The Framework
+
+The paper proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture. PSN-IRT can be utilized for accurate and reliable estimations of item characteristics and model abilities.
+
+### Scope and Findings
+
+The study conducts extensive analysis on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality. Additionally, leveraging PSN-IRT is able to construct smaller benchmarks while maintaining stronger alignment with human preference.
+
+### Data and Resources
+
+The evaluation includes results of 12 LLMs on 11 benchmarks, totaling 41,871 items. The official repository is available on GitHub at https://github.com/Joe-Hall-Lee/PSN-IRT, containing the code, unified response matrix, and estimated model abilities and item parameters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "087fe5f0-573e-4f12-b67a-a2358f4ca541",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "aa149bfc-cbd1-43a8-b476-44ca12fc29b5",
+  "toolUseResult": {
+    "query": "PSN-IRT \"Lost in Benchmarks\" AAAI 2026 IRT LLM evaluation psychometric",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014PdFwvyBp6c9JvSKFERMGp",
+        "content": [
+          {
+            "title": "GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub",
+            "url": "https://github.com/Joe-Hall-Lee/PSN-IRT"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40814"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/pdf/2505.15055"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40814/44775"
+          },
+          {
+            "title": "Agent psychometrics: Task-level performance prediction in agentic coding benchmarks",
+            "url": "https://arxiv.org/pdf/2604.00594"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\n## PSN-IRT: \"Lost in Benchmarks?\" - AAAI 2026\n\nThe paper is titled \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\" and was accepted to the Proceedings of the AAAI Conference on Artificial Intelligence in 2026.\n\n### The Framework\n\nThe paper proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture. PSN-IRT can be utilized for accurate and reliable estimations of item characteristics and model abilities.\n\n### Scope and Findings\n\nThe study conducts extensive analysis on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality. Additionally, leveraging PSN-IRT is able to construct smaller benchmarks while maintaining stronger alignment with human preference.\n\n### Data and Resources\n\nThe evaluation includes results of 12 LLMs on 11 benchmarks, totaling 41,871 items. The official repository is available on GitHub at https://github.com/Joe-Hall-Lee/PSN-IRT, containing the code, unified response matrix, and estimated model abilities and item parameters."
+    ],
+    "durationSeconds": 7.375307966999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "087fe5f0-573e-4f12-b67a-a2358f4ca541",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-29T06:38:07.949Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0184A9KiErBBdzk5hLJgjyGj`</summary>
+
+```json
+{
+  "query": "contamination-aware IRT item response theory LLM benchmark score correction 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa149bfc-cbd1-43a8-b476-44ca12fc29b5",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ8NFAA9bvhKbMgnkbz",
+  "type": "assistant",
+  "uuid": "8768bff6-ee89-4760-97de-1a99dec67a2f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DeHdrtk9WtW1YnPitJCqvu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 20655,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 20655,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-29T06:38:16.420Z_
+
+<details><summary>↩ Tool result · `toolu_0184A9KiErBBdzk5hLJgjyGj`</summary>
+
+```text
+Web search results for query: "contamination-aware IRT item response theory LLM benchmark score correction 2025 2026"
+
+Links: [{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"},{"title":"Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks","url":"https://arxiv.org/html/2509.24186"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689v1"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory"},{"title":"[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/pdf/2505.15055"}]
+
+I found several highly relevant papers on this topic from 2025-2026. Here are the key research findings:
+
+## PSN-IRT Framework (2025)
+
+PSN-IRT is a framework that combines psychometrics with neural networks to provide comprehensive and reliable analyses of LLM benchmarks. LLM benchmarks exhibit data contamination in numerous items, compromising their reliability. Current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination.
+
+Model rankings derived from high-quality datasets selected by PSN-IRT are more consistent with human preference and offer stronger discriminability among top models.
+
+## Adaptive Testing with IRT (2025)
+
+With benchmark saturation and contamination risks increasing, adaptive testing provides a rigorous alternative, applying measurement science principles instead of static averaging. Average scores tend to mask meaningful model differences and are often affected by form-dependence, nonlinear scaling, equal weighting of uninformative items, and contamination sensitivity, while IRT-based ability estimates provide form-invariant, uncertainty-aware alternatives that adjust for item difficulty and discrimination.
+
+## Medical Benchmarking Applications (2026)
+
+MedIRT is a psychometric evaluation framework grounded in Item Response Theory that jointly models latent competency and item-level difficulty and discrimination, and includes benchmark integrity validation to ensure items within each topic measure a single, coherent underlying ability.
+
+These approaches address key limitations in LLM evaluation by using IRT-based score correction methods that account for contamination and item quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8768bff6-ee89-4760-97de-1a99dec67a2f",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "61188280-d936-4a80-ac6c-edf001c13518",
+  "toolUseResult": {
+    "query": "contamination-aware IRT item response theory LLM benchmark score correction 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DtYv89v6EUnLTsLduiZvhg",
+        "content": [
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v2"
+          },
+          {
+            "title": "Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks",
+            "url": "https://arxiv.org/html/2509.24186"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/html/2511.04689v1"
+          },
+          {
+            "title": "Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking",
+            "url": "https://arxiv.org/pdf/2603.23506"
+          },
+          {
+            "title": "(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory"
+          },
+          {
+            "title": "[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/pdf/2511.04689"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/pdf/2505.15055"
+          }
+        ]
+      },
+      "I found several highly relevant papers on this topic from 2025-2026. Here are the key research findings:\n\n## PSN-IRT Framework (2025)\n\nPSN-IRT is a framework that combines psychometrics with neural networks to provide comprehensive and reliable analyses of LLM benchmarks. LLM benchmarks exhibit data contamination in numerous items, compromising their reliability. Current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination.\n\nModel rankings derived from high-quality datasets selected by PSN-IRT are more consistent with human preference and offer stronger discriminability among top models.\n\n## Adaptive Testing with IRT (2025)\n\nWith benchmark saturation and contamination risks increasing, adaptive testing provides a rigorous alternative, applying measurement science principles instead of static averaging. Average scores tend to mask meaningful model differences and are often affected by form-dependence, nonlinear scaling, equal weighting of uninformative items, and contamination sensitivity, while IRT-based ability estimates provide form-invariant, uncertainty-aware alternatives that adjust for item difficulty and discrimination.\n\n## Medical Benchmarking Applications (2026)\n\nMedIRT is a psychometric evaluation framework grounded in Item Response Theory that jointly models latent competency and item-level difficulty and discrimination, and includes benchmark integrity validation to ensure items within each topic measure a single, coherent underlying ability.\n\nThese approaches address key limitations in LLM evaluation by using IRT-based score correction methods that account for contamination and item quality."
+    ],
+    "durationSeconds": 8.465138469000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8768bff6-ee89-4760-97de-1a99dec67a2f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-29T06:38:19.335Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MMKGLqthCFxGRUXyF7BPT8`</summary>
+
+```json
+{
+  "query": "step-level reasoning verification LLM perturbation alignment memorization detection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61188280-d936-4a80-ac6c-edf001c13518",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ9BcyVaGoK9y6rhqFP",
+  "type": "assistant",
+  "uuid": "fe31d5e8-4638-4b0b-8374-e05f4c5ec098",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012H9ktdggBsybtvmDs38x9X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 886,
+      "cache_read_input_tokens": 21384,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 886,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 21384,
+          "cache_creation_input_tokens": 886,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 886
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-29T06:38:27.358Z_
+
+<details><summary>↩ Tool result · `toolu_01MMKGLqthCFxGRUXyF7BPT8`</summary>
+
+```text
+Web search results for query: "step-level reasoning verification LLM perturbation alignment memorization detection 2025 2026"
+
+Links: [{"title":"Mirage of Mastery: Memorization Tricks LLMs into Artificially Inflated Self-Knowledge","url":"https://arxiv.org/pdf/2506.18998"},{"title":"Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time","url":"https://arxiv.org/pdf/2508.02037"},{"title":"Unveiling Over-Memorization in Finetuning LLMs for Reasoning Tasks","url":"https://arxiv.org/pdf/2508.04117"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/pdf/2506.12509"},{"title":"Improving LLM Reasoning through Scaling Inference Computation with   Collaborative Verification","url":"https://arxiv.org/pdf/2410.05318"},{"title":"Chain-of-Code Collapse: Reasoning Failures in LLMs via Adversarial Prompting in Code Generation","url":"https://arxiv.org/pdf/2506.06971"}]
+
+Based on the search results, here are relevant papers and research on step-level reasoning verification, LLM perturbation, alignment, and memorization detection from 2025-2026:
+
+## Key Papers Found:
+
+### 1. **Memorization Detection via Perturbation**
+A framework proposes to determine whether LLMs genuinely learn reasoning patterns or merely memorize them by evaluating consistency on perturbed problems of similar complexity, finding that if LLMs rely on memorization, their accuracy falters when faced with minor logical perturbations.
+
+### 2. **Token-Level Memorization in Chain-of-Thought Reasoning**
+Large Language Models perform well on reasoning tasks but often fail under slight input changes, with long Chain-of-thought chains being especially vulnerable, as spurious memorization can introduce early errors that derail final answers.
+
+### 3. **Step-Level Verification Benchmark**
+The Hard2Verify benchmark introduces a human-annotated, step-level verification benchmark for open-ended frontier math, noting that strong verifiers capable of catching step-level mistakes are necessary prerequisites for training LLM-based reasoners.
+
+### 4. **Over-Memorization in Finetuning**
+Research uncovers the phenomenon of over-memorization during LLM finetuning and investigates its impact on the model's generalization behavior.
+
+### 5. **Adversarial Perturbation Analysis**
+The Break-the-Chain framework perturbs math word problems using symbolic and semantic transformations while keeping logical structure intact, revealing significant accuracy drops under benign modifications.
+
+These papers address the intersection of reasoning verification, perturbation robustness, and memorization detection in contemporary LLM research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe31d5e8-4638-4b0b-8374-e05f4c5ec098",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "a02a483c-6b7a-40b5-9a24-4db2641bbda8",
+  "toolUseResult": {
+    "query": "step-level reasoning verification LLM perturbation alignment memorization detection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L17PgEysWvZgx8K682fVEZ",
+        "content": [
+          {
+            "title": "Mirage of Mastery: Memorization Tricks LLMs into Artificially Inflated Self-Knowledge",
+            "url": "https://arxiv.org/pdf/2506.18998"
+          },
+          {
+            "title": "Diagnosing Memorization in Chain-of-Thought Reasoning, One Token at a Time",
+            "url": "https://arxiv.org/pdf/2508.02037"
+          },
+          {
+            "title": "Unveiling Over-Memorization in Finetuning LLMs for Reasoning Tasks",
+            "url": "https://arxiv.org/pdf/2508.04117"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/pdf/2506.12509"
+          },
+          {
+            "title": "Improving LLM Reasoning through Scaling Inference Computation with   Collaborative Verification",
+            "url": "https://arxiv.org/pdf/2410.05318"
+          },
+          {
+            "title": "Chain-of-Code Collapse: Reasoning Failures in LLMs via Adversarial Prompting in Code Generation",
+            "url": "https://arxiv.org/pdf/2506.06971"
+          }
+        ]
+      },
+      "Based on the search results, here are relevant papers and research on step-level reasoning verification, LLM perturbation, alignment, and memorization detection from 2025-2026:\n\n## Key Papers Found:\n\n### 1. **Memorization Detection via Perturbation**\nA framework proposes to determine whether LLMs genuinely learn reasoning patterns or merely memorize them by evaluating consistency on perturbed problems of similar complexity, finding that if LLMs rely on memorization, their accuracy falters when faced with minor logical perturbations.\n\n### 2. **Token-Level Memorization in Chain-of-Thought Reasoning**\nLarge Language Models perform well on reasoning tasks but often fail under slight input changes, with long Chain-of-thought chains being especially vulnerable, as spurious memorization can introduce early errors that derail final answers.\n\n### 3. **Step-Level Verification Benchmark**\nThe Hard2Verify benchmark introduces a human-annotated, step-level verification benchmark for open-ended frontier math, noting that strong verifiers capable of catching step-level mistakes are necessary prerequisites for training LLM-based reasoners.\n\n### 4. **Over-Memorization in Finetuning**\nResearch uncovers the phenomenon of over-memorization during LLM finetuning and investigates its impact on the model's generalization behavior.\n\n### 5. **Adversarial Perturbation Analysis**\nThe Break-the-Chain framework perturbs math word problems using symbolic and semantic transformations while keeping logical structure intact, revealing significant accuracy drops under benign modifications.\n\nThese papers address the intersection of reasoning verification, perturbation robustness, and memorization detection in contemporary LLM research."
+    ],
+    "durationSeconds": 8.016965101999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fe31d5e8-4638-4b0b-8374-e05f4c5ec098",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-29T06:38:30.135Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014cNEtaDGCLob7Wz1FEHj5n`</summary>
+
+```json
+{
+  "query": "\"Growing Pains\" IRT anchor calibration 400 models arXiv 2604.12843 contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a02a483c-6b7a-40b5-9a24-4db2641bbda8",
+  "isSidechain": false,
+  "requestId": "req_011CbWQ9zHcwwSiYTSoUWjZa",
+  "type": "assistant",
+  "uuid": "1c3ccb6e-9b25-4c58-8682-6bcb980bb6de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011rsx6hJjM1vUwubA25ctnx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 22270,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 829,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 22270,
+          "cache_creation_input_tokens": 829,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 829
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-29T06:38:35.872Z_
+
+<details><summary>↩ Tool result · `toolu_014cNEtaDGCLob7Wz1FEHj5n`</summary>
+
+```text
+Web search results for query: ""Growing Pains" IRT anchor calibration 400 models arXiv 2604.12843 contamination"
+
+Links: [{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"Calibration of transmission-dynamic infectious disease models: a scoping review and reporting framework","url":"https://www.medrxiv.org/content/10.1101/2025.03.09.25323613.full.pdf"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"Tissue contamination challenges the credibility of machine learning models in real world digital pathology","url":"https://www.medrxiv.org/content/10.1101/2023.04.28.23289287.full.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Growing Pains" proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. 
+
+The approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.
+
+In large-scale experiments on more than 400 models, the framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.
+
+The paper (arXiv 2604.12843) was published on April 15, 2026. However, the search results do not contain specific information about contamination-related findings in this paper, so I cannot provide details on that particular aspect from these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c3ccb6e-9b25-4c58-8682-6bcb980bb6de",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "0c7c8f02-bc44-4cb2-81a4-84367fb18560",
+  "toolUseResult": {
+    "query": "\"Growing Pains\" IRT anchor calibration 400 models arXiv 2604.12843 contamination",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013q9HsmBiHjs5aART6vKDxh",
+        "content": [
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "Calibration of transmission-dynamic infectious disease models: a scoping review and reporting framework",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.03.09.25323613.full.pdf"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "Tissue contamination challenges the credibility of machine learning models in real world digital pathology",
+            "url": "https://www.medrxiv.org/content/10.1101/2023.04.28.23289287.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"Growing Pains\" proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. \n\nThe approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.\n\nIn large-scale experiments on more than 400 models, the framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.\n\nThe paper (arXiv 2604.12843) was published on April 15, 2026. However, the search results do not contain specific information about contamination-related findings in this paper, so I cannot provide details on that particular aspect from these results."
+    ],
+    "durationSeconds": 5.733757153999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1c3ccb6e-9b25-4c58-8682-6bcb980bb6de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT  ## Core Problem  Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a…",
+  "leafUuid": "0c7c8f02-bc44-4cb2-81a4-84367fb18560",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-29T06:38:39.247Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VEuNRvi6CsAsnaNKt715dz`</summary>
+
+```json
+{
+  "query": "VAR-MATH symbolic variant benchmark RL-trained models performance drop arXiv 2507.12885"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c7c8f02-bc44-4cb2-81a4-84367fb18560",
+  "isSidechain": false,
+  "requestId": "req_011CbWQAckMKzUNpCzzjJoxK",
+  "type": "assistant",
+  "uuid": "7fb34fe0-303d-48a6-9d49-e5fb60015291",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDAEQajtT2mcDpY2uDcfFt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 23099,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 23099,
+          "cache_creation_input_tokens": 630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-29T06:38:46.680Z_
+
+<details><summary>↩ Tool result · `toolu_01VEuNRvi6CsAsnaNKt715dz`</summary>
+
+```text
+Web search results for query: "VAR-MATH symbolic variant benchmark RL-trained models performance drop arXiv 2507.12885"
+
+Links: [{"title":"[2507.12885] VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks","url":"https://arxiv.org/abs/2507.12885"},{"title":"VAR-MATH: Probing True Mathematical Reasoning in Large Language Models via Symbolic Multi-Instance Benchmarks","url":"https://arxiv.org/html/2507.12885v1"},{"title":"VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks","url":"https://arxiv.org/html/2507.12885"},{"title":"VAR-MATH: Probing True Mathematical Reasoning in ...","url":"https://arxiv.org/pdf/2507.12885"},{"title":"Artificial Intelligence Jul 2025","url":"https://arxiv.org/list/cs.AI/2025-07?skip=175&show=2000"},{"title":"GitHub - nigelyaoj/VAR-MATH · GitHub","url":"https://github.com/nigelyaoj/VAR-MATH"},{"title":"AceReason-Nemotron: Advancing Math and Code Reasoning through Reinforcement Learning","url":"https://arxiv.org/pdf/2505.16400"}]
+
+Based on the search results, I found detailed information about the VAR-MATH paper (arXiv 2507.12885):
+
+## VAR-MATH: Probing True Mathematical Reasoning
+
+VAR-MATH is a symbolic evaluation framework that converts fixed numerical problems into parameterized templates and requires models to solve multiple instantiations of each. The framework was applied to transform three popular benchmarks—AMC23, AIME24, and AIME25—into their symbolic counterparts: VAR-AMC23, VAR-AIME24, and VAR-AIME25.
+
+## Performance Drop Results
+
+Experimental results show substantial performance drops for RL-trained models on these variabilized benchmarks, especially for smaller models, with average declines of 47.9% on AMC23, 58.8% on AIME24, and 72.9% on AIME25.
+
+## Key Implications
+
+These findings suggest that many existing RL methods rely on superficial heuristics and fail to generalize beyond specific numerical forms. The VAR-MATH design enforces consistency across structurally equivalent variants, mitigates contamination, and enhances robustness through bootstrapped metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7fb34fe0-303d-48a6-9d49-e5fb60015291",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "08484b91-1e9a-4a61-87f5-e8f6a1945bb7",
+  "toolUseResult": {
+    "query": "VAR-MATH symbolic variant benchmark RL-trained models performance drop arXiv 2507.12885",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016onwT9SVjju4VLiTC3Wksx",
+        "content": [
+          {
+            "title": "[2507.12885] VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks",
+            "url": "https://arxiv.org/abs/2507.12885"
+          },
+          {
+            "title": "VAR-MATH: Probing True Mathematical Reasoning in Large Language Models via Symbolic Multi-Instance Benchmarks",
+            "url": "https://arxiv.org/html/2507.12885v1"
+          },
+          {
+            "title": "VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks",
+            "url": "https://arxiv.org/html/2507.12885"
+          },
+          {
+            "title": "VAR-MATH: Probing True Mathematical Reasoning in ...",
+            "url": "https://arxiv.org/pdf/2507.12885"
+          },
+          {
+            "title": "Artificial Intelligence Jul 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-07?skip=175&show=2000"
+          },
+          {
+            "title": "GitHub - nigelyaoj/VAR-MATH · GitHub",
+            "url": "https://github.com/nigelyaoj/VAR-MATH"
+          },
+          {
+            "title": "AceReason-Nemotron: Advancing Math and Code Reasoning through Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2505.16400"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the VAR-MATH paper (arXiv 2507.12885):\n\n## VAR-MATH: Probing True Mathematical Reasoning\n\nVAR-MATH is a symbolic evaluation framework that converts fixed numerical problems into parameterized templates and requires models to solve multiple instantiations of each. The framework was applied to transform three popular benchmarks—AMC23, AIME24, and AIME25—into their symbolic counterparts: VAR-AMC23, VAR-AIME24, and VAR-AIME25.\n\n## Performance Drop Results\n\nExperimental results show substantial performance drops for RL-trained models on these variabilized benchmarks, especially for smaller models, with average declines of 47.9% on AMC23, 58.8% on AIME24, and 72.9% on AIME25.\n\n## Key Implications\n\nThese findings suggest that many existing RL methods rely on superficial heuristics and fail to generalize beyond specific numerical forms. The VAR-MATH design enforces consistency across structurally equivalent variants, mitigates contamination, and enhances robustness through bootstrapped metrics."
+    ],
+    "durationSeconds": 7.427092087000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7fb34fe0-303d-48a6-9d49-e5fb60015291",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-29T06:38:49.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QQ5n5RL2atFUkwyLt9tJzS`</summary>
+
+```json
+{
+  "query": "\"Illusion of Reasoning\" step-level faithfulness CoT patterns arXiv 2603.22816 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08484b91-1e9a-4a61-87f5-e8f6a1945bb7",
+  "isSidechain": false,
+  "requestId": "req_011CbWQBR1gZY5BcDTiogCy3",
+  "type": "assistant",
+  "uuid": "ff2da97f-7817-4cc8-a7b1-22976a334081",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJz9fcys5izq6FeQZvxY1S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 23729,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 23729,
+          "cache_creation_input_tokens": 723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-29T06:38:58.333Z_
+
+<details><summary>↩ Tool result · `toolu_01QQ5n5RL2atFUkwyLt9tJzS`</summary>
+
+```text
+Web search results for query: ""Illusion of Reasoning" step-level faithfulness CoT patterns arXiv 2603.22816 2026"
+
+Links: [{"title":"[2603.22816] The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models","url":"https://arxiv.org/abs/2603.22816"},{"title":"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models","url":"https://arxiv.org/html/2603.22816"},{"title":"[2603.22816v1] When AI Shows Its Work, Is It Actually Working? Step-Level Evaluation Reveals Frontier Language Models Frequently Bypass Their Own Reasoning","url":"https://arxiv.org/abs/2603.22816v1"},{"title":"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2602.11201"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level Reinforcement Learning for Small Reasoning Models","url":"https://arxiv.org/pdf/2602.05897"},{"title":"When AI Shows Its Work, Is It Actually Working? Step-level evaluation reveals that frontier language models frequently bypass their own reasoning","url":"https://arxiv.org/html/2603.22816v1"}]
+
+Based on the search results, here's what I found about this research:
+
+## "The Illusion of Reasoning" (arXiv 2603.22816)
+
+This paper examines whether language models genuinely use step-by-step reasoning or generate decorative narratives after already deciding on an answer.
+
+**Methodology:**
+The authors introduce step-level faithfulness evaluation by removing one reasoning sentence at a time and checking whether the answer changes, requiring only API access at $1-2 per model per task.
+
+**Key Findings:**
+Evaluating 13 frontier models across six domains, the researchers find reasoning falls into three modes rather than a binary faithful/unfaithful distinction. These three patterns are:
+
+1. "Genuine reasoning" where steps matter and CoT is essential (MiniMax: 37% necessity, +69pp from CoT)
+2. "Scaffolding" where CoT helps but steps are interchangeable (Kimi on math: 1% necessity, +94pp from CoT)
+3. "Decoration" where CoT adds nothing (DeepSeek-V3.2: 11% necessity, -1pp from CoT)
+
+The DeepSeek family provides causal evidence: R1 reasoning models show 91-93% necessity on math versus 4% for V3.2, proving training objective determines faithfulness. Additionally, the paper discovers "output rigidity" - models that shortcut internally also refuse to explain externally, a blind spot for explanation-based evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff2da97f-7817-4cc8-a7b1-22976a334081",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "e63f2fee-7cc1-4c51-94dd-a15ea7377a6f",
+  "toolUseResult": {
+    "query": "\"Illusion of Reasoning\" step-level faithfulness CoT patterns arXiv 2603.22816 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VzR8jAa88uUFUBNg8bPVP7",
+        "content": [
+          {
+            "title": "[2603.22816] The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models",
+            "url": "https://arxiv.org/abs/2603.22816"
+          },
+          {
+            "title": "The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models",
+            "url": "https://arxiv.org/html/2603.22816"
+          },
+          {
+            "title": "[2603.22816v1] When AI Shows Its Work, Is It Actually Working? Step-Level Evaluation Reveals Frontier Language Models Frequently Bypass Their Own Reasoning",
+            "url": "https://arxiv.org/abs/2603.22816v1"
+          },
+          {
+            "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2602.11201"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level Reinforcement Learning for Small Reasoning Models",
+            "url": "https://arxiv.org/pdf/2602.05897"
+          },
+          {
+            "title": "When AI Shows Its Work, Is It Actually Working? Step-level evaluation reveals that frontier language models frequently bypass their own reasoning",
+            "url": "https://arxiv.org/html/2603.22816v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about this research:\n\n## \"The Illusion of Reasoning\" (arXiv 2603.22816)\n\nThis paper examines whether language models genuinely use step-by-step reasoning or generate decorative narratives after already deciding on an answer.\n\n**Methodology:**\nThe authors introduce step-level faithfulness evaluation by removing one reasoning sentence at a time and checking whether the answer changes, requiring only API access at $1-2 per model per task.\n\n**Key Findings:**\nEvaluating 13 frontier models across six domains, the researchers find reasoning falls into three modes rather than a binary faithful/unfaithful distinction. These three patterns are:\n\n1. \"Genuine reasoning\" where steps matter and CoT is essential (MiniMax: 37% necessity, +69pp from CoT)\n2. \"Scaffolding\" where CoT helps but steps are interchangeable (Kimi on math: 1% necessity, +94pp from CoT)\n3. \"Decoration\" where CoT adds nothing (DeepSeek-V3.2: 11% necessity, -1pp from CoT)\n\nThe DeepSeek family provides causal evidence: R1 reasoning models show 91-93% necessity on math versus 4% for V3.2, proving training objective determines faithfulness. Additionally, the paper discovers \"output rigidity\" - models that shortcut internally also refuse to explain externally, a blind spot for explanation-based evaluation."
+    ],
+    "durationSeconds": 8.495379302000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ff2da97f-7817-4cc8-a7b1-22976a334081",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-29T06:38:58.337Z_
+
+```json
+{
+  "parentUuid": "e63f2fee-7cc1-4c51-94dd-a15ea7377a6f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "58965820-4905-4597-8af1-bb4fa7835212",
+  "timestamp": "2026-05-29T06:38:58.337Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-29T06:39:01.333Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KdmCYRnncxj6qJ9ELiEbMB`</summary>
+
+```json
+{
+  "query": "DCR factor data contamination score correction EMNLP 2025 fuzzy inference IRT"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58965820-4905-4597-8af1-bb4fa7835212",
+  "isSidechain": false,
+  "requestId": "req_011CbWQCGqq4VCt1MpZDWqfY",
+  "type": "assistant",
+  "uuid": "11a2e6b0-cd54-411f-9452-17b29250da83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRqiUZYCa6WAJVj4mEWwCQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 932,
+      "cache_read_input_tokens": 24452,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24452,
+          "cache_creation_input_tokens": 932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-29T06:39:08.036Z_
+
+<details><summary>↩ Tool result · `toolu_01KdmCYRnncxj6qJ9ELiEbMB`</summary>
+
+```text
+Web search results for query: "DCR factor data contamination score correction EMNLP 2025 fuzzy inference IRT"
+
+Links: [{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1173/"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/html/2507.11405"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/pdf/2507.11405"},{"title":"[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/abs/2507.11405"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"A Systematic Analysis of Data Contamination in Multimodal ...","url":"https://aclanthology.org/2025.findings-emnlp.556.pdf"},{"title":"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/pdf/2502.00678"},{"title":"Generalization or Memorization: Data Contamination and Trustworthy   Evaluation for Large Language Models","url":"https://arxiv.org/pdf/2402.15938"}]
+
+Based on the search results, I found highly relevant information about the DCR framework presented at EMNLP 2025:
+
+## DCR Framework Overview
+
+The Data Contamination Risk (DCR) framework is a lightweight, interpretable pipeline designed to detect and quantify benchmark data contamination (BDC) risk across four granular levels: semantic, informational, data, and label.
+
+## Key Components
+
+By synthesizing contamination scores via a fuzzy inference system, DCR produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance.
+
+## Validation Results
+
+The DCR framework was validated on 9 LLMs (0.5B-72B) across sentiment analysis, fake news detection, and arithmetic reasoning tasks, reliably diagnosing contamination severity with accuracy adjusted using the DCR Factor to within 4% average error across the three benchmarks compared to the uncontaminated baseline.
+
+The paper addresses the critical issue of benchmark data contamination in large language models, where models may inadvertently memorize evaluation data during training, inflating their performance metrics. The DCR framework provides a practical tool for integrating contamination assessment into routine evaluations to foster fairer comparisons and enhance the credibility of LLM benchmarking practices.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11a2e6b0-cd54-411f-9452-17b29250da83",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "2b277b8b-dada-49dd-9cc9-b4c4ea7e7193",
+  "toolUseResult": {
+    "query": "DCR factor data contamination score correction EMNLP 2025 fuzzy inference IRT",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y4WLh6S4HrLEqKjfjN25DF",
+        "content": [
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173/"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/html/2507.11405"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/pdf/2507.11405"
+          },
+          {
+            "title": "[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/abs/2507.11405"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "A Systematic Analysis of Data Contamination in Multimodal ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.556.pdf"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/pdf/2502.00678"
+          },
+          {
+            "title": "Generalization or Memorization: Data Contamination and Trustworthy   Evaluation for Large Language Models",
+            "url": "https://arxiv.org/pdf/2402.15938"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about the DCR framework presented at EMNLP 2025:\n\n## DCR Framework Overview\n\nThe Data Contamination Risk (DCR) framework is a lightweight, interpretable pipeline designed to detect and quantify benchmark data contamination (BDC) risk across four granular levels: semantic, informational, data, and label.\n\n## Key Components\n\nBy synthesizing contamination scores via a fuzzy inference system, DCR produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance.\n\n## Validation Results\n\nThe DCR framework was validated on 9 LLMs (0.5B-72B) across sentiment analysis, fake news detection, and arithmetic reasoning tasks, reliably diagnosing contamination severity with accuracy adjusted using the DCR Factor to within 4% average error across the three benchmarks compared to the uncontaminated baseline.\n\nThe paper addresses the critical issue of benchmark data contamination in large language models, where models may inadvertently memorize evaluation data during training, inflating their performance metrics. The DCR framework provides a practical tool for integrating contamination assessment into routine evaluations to foster fairer comparisons and enhance the credibility of LLM benchmarking practices."
+    ],
+    "durationSeconds": 6.696591904000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "11a2e6b0-cd54-411f-9452-17b29250da83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-29T06:39:10.916Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J7zL2wk35W2nXEn8A5pwkN`</summary>
+
+```json
+{
+  "query": "\"Reasoning or Memorization\" RL data contamination Qwen2.5 arXiv 2507.10532 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b277b8b-dada-49dd-9cc9-b4c4ea7e7193",
+  "isSidechain": false,
+  "requestId": "req_011CbWQCzGxTudmxTA6ty1vr",
+  "type": "assistant",
+  "uuid": "1ced1d4f-5261-4eff-a8d4-52f460fd95b7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ULVhkLTv7v7ALtTYZcG1A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 25384,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 768,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 25384,
+          "cache_creation_input_tokens": 768,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 768
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-29T06:39:18.448Z_
+
+<details><summary>↩ Tool result · `toolu_01J7zL2wk35W2nXEn8A5pwkN`</summary>
+
+```text
+Web search results for query: ""Reasoning or Memorization" RL data contamination Qwen2.5 arXiv 2507.10532 2025"
+
+Links: [{"title":"[2507.10532] Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://arxiv.org/abs/2507.10532"},{"title":"[2507.10532v1] Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://arxiv.org/abs/2507.10532v1"},{"title":"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination | alphaXiv","url":"https://www.alphaxiv.org/overview/2507.10532v1"},{"title":"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://arxiv.org/html/2507.10532v2"},{"title":"Paper page - Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://huggingface.co/papers/2507.10532"},{"title":"[Paper Note] Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination, Mingqi Wu+, arXiv'25 · Issue #2226 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/2226"},{"title":"detecting data contamination from reinforcement learning ...","url":"https://arxiv.org/pdf/2510.09259"}]
+
+I found the paper you were searching for! Here are the key details about arXiv paper 2507.10532:
+
+**Title:** "Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination"
+
+**Main Finding:** Pre-training on massive web-scale corpora leaves Qwen2.5 susceptible to data contamination in widely used benchmarks. Previously reported performance improvements in Qwen2.5 models on mathematical reasoning benchmarks under random reinforcement learning rewards were largely an artifact of data contamination, not enhanced reasoning.
+
+**Key Issue:** Breakthroughs are mostly reported on the Qwen2.5 model family and evaluated on well-known benchmarks such as MATH-500, AMC, and AIME, while failing to achieve similar gains on other models like Llama, which warrants further investigation.
+
+**Solution:** By creating and utilizing a new, clean synthetic dataset, the study confirms that Qwen2.5 models, like others, only achieve stable performance gains with accurate reward signals.
+
+The paper essentially shows that apparent improvements from random or incorrect reward signals in Qwen2.5 are misleading—they're caused by data contamination rather than genuine reasoning improvements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ced1d4f-5261-4eff-a8d4-52f460fd95b7",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "4ca12db9-1ae0-4bbc-b2c7-64b81515996d",
+  "toolUseResult": {
+    "query": "\"Reasoning or Memorization\" RL data contamination Qwen2.5 arXiv 2507.10532 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CVY5vLCG7n6XnCE8aENzJM",
+        "content": [
+          {
+            "title": "[2507.10532] Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination",
+            "url": "https://arxiv.org/abs/2507.10532"
+          },
+          {
+            "title": "[2507.10532v1] Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination",
+            "url": "https://arxiv.org/abs/2507.10532v1"
+          },
+          {
+            "title": "Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2507.10532v1"
+          },
+          {
+            "title": "Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination",
+            "url": "https://arxiv.org/html/2507.10532v2"
+          },
+          {
+            "title": "Paper page - Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination",
+            "url": "https://huggingface.co/papers/2507.10532"
+          },
+          {
+            "title": "[Paper Note] Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination, Mingqi Wu+, arXiv'25 · Issue #2226 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/2226"
+          },
+          {
+            "title": "detecting data contamination from reinforcement learning ...",
+            "url": "https://arxiv.org/pdf/2510.09259"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here are the key details about arXiv paper 2507.10532:\n\n**Title:** \"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination\"\n\n**Main Finding:** Pre-training on massive web-scale corpora leaves Qwen2.5 susceptible to data contamination in widely used benchmarks. Previously reported performance improvements in Qwen2.5 models on mathematical reasoning benchmarks under random reinforcement learning rewards were largely an artifact of data contamination, not enhanced reasoning.\n\n**Key Issue:** Breakthroughs are mostly reported on the Qwen2.5 model family and evaluated on well-known benchmarks such as MATH-500, AMC, and AIME, while failing to achieve similar gains on other models like Llama, which warrants further investigation.\n\n**Solution:** By creating and utilizing a new, clean synthetic dataset, the study confirms that Qwen2.5 models, like others, only achieve stable performance gains with accurate reward signals.\n\nThe paper essentially shows that apparent improvements from random or incorrect reward signals in Qwen2.5 are misleading—they're caused by data contamination rather than genuine reasoning improvements."
+    ],
+    "durationSeconds": 7.526641988000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1ced1d4f-5261-4eff-a8d4-52f460fd95b7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-29T06:39:21.283Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WBgKVbUswZd4ZPt2VhLthP`</summary>
+
+```json
+{
+  "query": "DVD detection variance distribution LLM contamination memory adherence perturbation drift arXiv 2601.04895"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ca12db9-1ae0-4bbc-b2c7-64b81515996d",
+  "isSidechain": false,
+  "requestId": "req_011CbWQDkmPLDhTHUtJLSiBy",
+  "type": "assistant",
+  "uuid": "10d4f3cd-992b-4844-af8e-8b9456e69c11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMB1sESSV2e2ubgHGh7bAt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 811,
+      "cache_read_input_tokens": 26152,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 26152,
+          "cache_creation_input_tokens": 811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-29T06:39:26.665Z_
+
+<details><summary>↩ Tool result · `toolu_01WBgKVbUswZd4ZPt2VhLthP`</summary>
+
+```text
+Web search results for query: "DVD detection variance distribution LLM contamination memory adherence perturbation drift arXiv 2601.04895"
+
+Links: [{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/recent?skip=1399&show=2000"},{"title":"Reliability of citations of medRxiv preprints in articles published on COVID-19 in the world leading medical journals","url":"https://www.medrxiv.org/content/10.1101/2022.02.16.22271068.full.pdf"},{"title":"First joint observation by the underground gravitational-wave detector,   KAGRA, with GEO600","url":"https://arxiv.org/pdf/2203.01270"},{"title":"First joint search for gravitational-wave bursts in LIGO and GEO600 data","url":"https://arxiv.org/pdf/0807.2834"},{"title":"[2601.04895] DVD: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation","url":"https://arxiv.org/abs/2601.04895"}]
+
+Perfect! I found the paper. Here's what I found about arXiv 2601.04895:
+
+The paper addresses the problem of variant contamination in large language model evaluation, where the training corpus contains semantically equivalent yet lexically or syntactically altered versions of test items.
+
+Unlike verbatim leakage, these paraphrased or structurally transformed variants evade existing detectors based on sampling consistency or perplexity, thereby inflating benchmark scores via memorization rather than genuine reasoning.
+
+The paper introduces DVD (Detection via Variance of generation Distribution), a single-sample detector that models the local output distribution induced by temperature sampling. The key insight is that contaminated items trigger alternation between a "memory-adherence" state and a "perturbation-drift" state, yielding abnormally high variance in the synthetic difficulty of low-probability tokens; uncontaminated items remain in drift with comparatively smooth variance.
+
+**Title:** DVD: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation
+
+**Authors:** Renzhao Liang, Jingru Chen, Bo Jia, Bo Deng, Chenggang Xie, Yidong Wang, Ke Jin, Xin Wang, Linfeng Zhang, Cunxiang Wang
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10d4f3cd-992b-4844-af8e-8b9456e69c11",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "a1a9483b-19fe-422d-b2ba-6c5d88af67a7",
+  "toolUseResult": {
+    "query": "DVD detection variance distribution LLM contamination memory adherence perturbation drift arXiv 2601.04895",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P5AZYkk6xJmubiPjPCWsFb",
+        "content": [
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/recent?skip=1399&show=2000"
+          },
+          {
+            "title": "Reliability of citations of medRxiv preprints in articles published on COVID-19 in the world leading medical journals",
+            "url": "https://www.medrxiv.org/content/10.1101/2022.02.16.22271068.full.pdf"
+          },
+          {
+            "title": "First joint observation by the underground gravitational-wave detector,   KAGRA, with GEO600",
+            "url": "https://arxiv.org/pdf/2203.01270"
+          },
+          {
+            "title": "First joint search for gravitational-wave bursts in LIGO and GEO600 data",
+            "url": "https://arxiv.org/pdf/0807.2834"
+          },
+          {
+            "title": "[2601.04895] DVD: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation",
+            "url": "https://arxiv.org/abs/2601.04895"
+          }
+        ]
+      },
+      "Perfect! I found the paper. Here's what I found about arXiv 2601.04895:\n\nThe paper addresses the problem of variant contamination in large language model evaluation, where the training corpus contains semantically equivalent yet lexically or syntactically altered versions of test items.\n\nUnlike verbatim leakage, these paraphrased or structurally transformed variants evade existing detectors based on sampling consistency or perplexity, thereby inflating benchmark scores via memorization rather than genuine reasoning.\n\nThe paper introduces DVD (Detection via Variance of generation Distribution), a single-sample detector that models the local output distribution induced by temperature sampling. The key insight is that contaminated items trigger alternation between a \"memory-adherence\" state and a \"perturbation-drift\" state, yielding abnormally high variance in the synthetic difficulty of low-probability tokens; uncontaminated items remain in drift with comparatively smooth variance.\n\n**Title:** DVD: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation\n\n**Authors:** Renzhao Liang, Jingru Chen, Bo Jia, Bo Deng, Chenggang Xie, Yidong Wang, Ke Jin, Xin Wang, Linfeng Zhang, Cunxiang Wang"
+    ],
+    "durationSeconds": 5.377985348999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "10d4f3cd-992b-4844-af8e-8b9456e69c11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT  ## Core Problem  Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a…",
+  "leafUuid": "a1a9483b-19fe-422d-b2ba-6c5d88af67a7",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-29T06:39:29.823Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018YkLBW9WDJVtuNmQFo29rG`</summary>
+
+```json
+{
+  "query": "PEARL perturbation sensitivity hypothesis memorization LLM bit-flip arXiv 2505.03019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1a9483b-19fe-422d-b2ba-6c5d88af67a7",
+  "isSidechain": false,
+  "requestId": "req_011CbWQEMvykJA4ociHjESVA",
+  "type": "assistant",
+  "uuid": "8690d12c-bb96-45e5-aa4c-585e0eeb7bfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWKLVVMFHryDKmDbctaHCD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 26963,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 26963,
+          "cache_creation_input_tokens": 665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-29T06:39:37.066Z_
+
+<details><summary>↩ Tool result · `toolu_018YkLBW9WDJVtuNmQFo29rG`</summary>
+
+```text
+Web search results for query: "PEARL perturbation sensitivity hypothesis memorization LLM bit-flip arXiv 2505.03019"
+
+Links: [{"title":"[Literature Review] Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis","url":"https://www.themoonlight.io/en/review/memorization-or-interpolation-detecting-llm-memorization-through-input-perturbation-analysis"},{"title":"[2505.03019] Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis","url":"https://arxiv.org/abs/2505.03019"},{"title":"Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis","url":"https://arxiv.org/html/2505.03019v1"},{"title":"Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250503019E/abstract"},{"title":"Beyond Frequency: The Role of Redundancy in Large Language Model Memorization","url":"https://arxiv.org/pdf/2506.12321"},{"title":"Quantifying perturbation impacts for large language models","url":"https://arxiv.org/pdf/2412.00868"},{"title":"Positional Fragility in LLMs: How Offset Effects Reshape Our Understanding of Memorization Risks","url":"https://arxiv.org/pdf/2505.13171"}]
+
+Based on the search results, I found detailed information about the paper you're looking for:
+
+## PEARL: Detecting LLM Memorization through Input Perturbation Analysis
+
+PEARL is a novel approach for detecting memorization in LLMs that assesses how sensitive an LLM's performance is to input perturbations, enabling memorization detection without requiring access to the model's internals.
+
+### The Perturbation Sensitivity Hypothesis (PSH)
+
+The core idea behind PEARL is the Perturbation Sensitivity Hypothesis (PSH), which posits that if an LLM has memorized a specific data point, its performance on a task related to that data point will be highly sensitive to even small input perturbations.
+
+### Methodology
+
+The paper focuses on a bit-flip perturbation, where k bits are flipped in the binary representation of the input text through a process involving tokenizing, encoding the input to binary, flipping k random bits, converting back to integers, and decoding to produce the perturbed text.
+
+### Research Findings
+
+The researchers investigate how input perturbations affect the consistency of outputs, enabling them to distinguish between true generalization and memorization, with findings from extensive experiments on the Pythia open model providing a robust framework for identifying when the model simply regurgitates learned information.
+
+The paper is available on arXiv at **2505.03019** and addresses important concerns about data privacy, intellectual property rights, and the reliability of model evaluations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8690d12c-bb96-45e5-aa4c-585e0eeb7bfe",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "80116c96-9ce1-46c4-9829-9164a2c9ed0a",
+  "toolUseResult": {
+    "query": "PEARL perturbation sensitivity hypothesis memorization LLM bit-flip arXiv 2505.03019",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HKLRBTCQDxcWA3BqQB2Qcx",
+        "content": [
+          {
+            "title": "[Literature Review] Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis",
+            "url": "https://www.themoonlight.io/en/review/memorization-or-interpolation-detecting-llm-memorization-through-input-perturbation-analysis"
+          },
+          {
+            "title": "[2505.03019] Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis",
+            "url": "https://arxiv.org/abs/2505.03019"
+          },
+          {
+            "title": "Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis",
+            "url": "https://arxiv.org/html/2505.03019v1"
+          },
+          {
+            "title": "Memorization or Interpolation ? Detecting LLM Memorization through Input Perturbation Analysis - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250503019E/abstract"
+          },
+          {
+            "title": "Beyond Frequency: The Role of Redundancy in Large Language Model Memorization",
+            "url": "https://arxiv.org/pdf/2506.12321"
+          },
+          {
+            "title": "Quantifying perturbation impacts for large language models",
+            "url": "https://arxiv.org/pdf/2412.00868"
+          },
+          {
+            "title": "Positional Fragility in LLMs: How Offset Effects Reshape Our Understanding of Memorization Risks",
+            "url": "https://arxiv.org/pdf/2505.13171"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're looking for:\n\n## PEARL: Detecting LLM Memorization through Input Perturbation Analysis\n\nPEARL is a novel approach for detecting memorization in LLMs that assesses how sensitive an LLM's performance is to input perturbations, enabling memorization detection without requiring access to the model's internals.\n\n### The Perturbation Sensitivity Hypothesis (PSH)\n\nThe core idea behind PEARL is the Perturbation Sensitivity Hypothesis (PSH), which posits that if an LLM has memorized a specific data point, its performance on a task related to that data point will be highly sensitive to even small input perturbations.\n\n### Methodology\n\nThe paper focuses on a bit-flip perturbation, where k bits are flipped in the binary representation of the input text through a process involving tokenizing, encoding the input to binary, flipping k random bits, converting back to integers, and decoding to produce the perturbed text.\n\n### Research Findings\n\nThe researchers investigate how input perturbations affect the consistency of outputs, enabling them to distinguish between true generalization and memorization, with findings from extensive experiments on the Pythia open model providing a robust framework for identifying when the model simply regurgitates learned information.\n\nThe paper is available on arXiv at **2505.03019** and addresses important concerns about data privacy, intellectual property rights, and the reliability of model evaluations."
+    ],
+    "durationSeconds": 7.238910766000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8690d12c-bb96-45e5-aa4c-585e0eeb7bfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-29T06:39:40.462Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012tZKqMmnFbVfnRQsrBDwgo`</summary>
+
+```json
+{
+  "query": "\"Robust Answers Fragile Logic\" decoupling hypothesis MATCHA reasoning correctness arXiv 2505.17406"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80116c96-9ce1-46c4-9829-9164a2c9ed0a",
+  "isSidechain": false,
+  "requestId": "req_011CbWQF8Lh39MGMWDGa25mR",
+  "type": "assistant",
+  "uuid": "592983c7-1288-4470-a9c2-a48a15a72987",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjZum9MsyE783m2ZdGhjTH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 27628,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 27628,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-29T06:39:50.886Z_
+
+<details><summary>↩ Tool result · `toolu_012tZKqMmnFbVfnRQsrBDwgo`</summary>
+
+```text
+Web search results for query: ""Robust Answers Fragile Logic" decoupling hypothesis MATCHA reasoning correctness arXiv 2505.17406"
+
+Links: [{"title":"[2505.17406] Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning","url":"https://arxiv.org/abs/2505.17406"},{"title":"Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=pMhTFUdM4G"},{"title":"Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning","url":"https://arxiv.org/html/2505.17406v2"},{"title":"GitHub - uiuc-focal-lab/MATCHA: Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning · GitHub","url":"https://github.com/uiuc-focal-lab/MATCHA"},{"title":"Probing the Decoupling Hypothesis in LLM Reasoning","url":"https://arxiv.org/pdf/2505.17406"}]
+
+I found the paper! Here's what the search results show about this research:
+
+## Overview
+
+The paper investigates the Decoupling Hypothesis: that correct answers often mask fragile, post-hoc rationalizations that are not causally tied to the model's prediction.
+
+## The MATCHA Framework
+
+MATCHA is a novel Answer-Conditioned Probing framework that isolates the reasoning phase by conditioning generation on the model's predicted answer, allowing researchers to stress-test the stability of the rationale itself.
+
+## Key Findings
+
+Under imperceptible input perturbations, LLMs frequently maintain the correct answer while generating inconsistent or nonsensical reasoning. Adversarial examples generated by MATCHA transfer non-trivially to black-box models.
+
+## Implications
+
+The findings expose the illusion of CoT robustness and underscore the need for future architectures that enforce genuine answer-reasoning consistency rather than mere surface-level accuracy.
+
+The paper was submitted on arXiv in May 2025 (arXiv:2505.17406) and has since been updated as of February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "592983c7-1288-4470-a9c2-a48a15a72987",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "c30757fb-da94-4aa3-9cc8-7735b05ed385",
+  "toolUseResult": {
+    "query": "\"Robust Answers Fragile Logic\" decoupling hypothesis MATCHA reasoning correctness arXiv 2505.17406",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NuDk1tX11UaDF5mD16hPcn",
+        "content": [
+          {
+            "title": "[2505.17406] Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.17406"
+          },
+          {
+            "title": "Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=pMhTFUdM4G"
+          },
+          {
+            "title": "Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning",
+            "url": "https://arxiv.org/html/2505.17406v2"
+          },
+          {
+            "title": "GitHub - uiuc-focal-lab/MATCHA: Robust Answers, Fragile Logic: Probing the Decoupling Hypothesis in LLM Reasoning · GitHub",
+            "url": "https://github.com/uiuc-focal-lab/MATCHA"
+          },
+          {
+            "title": "Probing the Decoupling Hypothesis in LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2505.17406"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search results show about this research:\n\n## Overview\n\nThe paper investigates the Decoupling Hypothesis: that correct answers often mask fragile, post-hoc rationalizations that are not causally tied to the model's prediction.\n\n## The MATCHA Framework\n\nMATCHA is a novel Answer-Conditioned Probing framework that isolates the reasoning phase by conditioning generation on the model's predicted answer, allowing researchers to stress-test the stability of the rationale itself.\n\n## Key Findings\n\nUnder imperceptible input perturbations, LLMs frequently maintain the correct answer while generating inconsistent or nonsensical reasoning. Adversarial examples generated by MATCHA transfer non-trivially to black-box models.\n\n## Implications\n\nThe findings expose the illusion of CoT robustness and underscore the need for future architectures that enforce genuine answer-reasoning consistency rather than mere surface-level accuracy.\n\nThe paper was submitted on arXiv in May 2025 (arXiv:2505.17406) and has since been updated as of February 2026."
+    ],
+    "durationSeconds": 10.419093588999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "592983c7-1288-4470-a9c2-a48a15a72987",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-29T06:39:54.311Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RmeWdkK9MKBZzCxoYyVPkB`</summary>
+
+```json
+{
+  "query": "IRT 3PL mixture model contamination identifiability EM algorithm psychometrics Bayesian 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c30757fb-da94-4aa3-9cc8-7735b05ed385",
+  "isSidechain": false,
+  "requestId": "req_011CbWQG9VRjb9DmNEGE5jqN",
+  "type": "assistant",
+  "uuid": "f49172db-4096-42f1-91b1-4ca8b3211bfd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TyYtgZ3xkrsJrELRx6vA83",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 28442,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 28442,
+          "cache_creation_input_tokens": 665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-29T06:40:01.732Z_
+
+<details><summary>↩ Tool result · `toolu_01RmeWdkK9MKBZzCxoYyVPkB`</summary>
+
+```text
+Web search results for query: "IRT 3PL mixture model contamination identifiability EM algorithm psychometrics Bayesian 2024 2025 2026"
+
+Links: [{"title":"The Bayesian Expectation-Maximization-Maximization for the 3PLM","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6555200/"},{"title":"Item Response Theory Overview","url":"https://www.emergentmind.com/topics/item-response-theory-irt"},{"title":"[1708.03975] Bayesian Item Response model: a generalised approach for the abilities’ distribution using mixtures","url":"https://ar5iv.labs.arxiv.org/html/1708.03975"},{"title":"Bayesian Item Response model: a generalised approach for the abilities'   distribution using mixtures","url":"https://arxiv.org/pdf/1708.03975"},{"title":"Precision education: A Bayesian nonparametric approach for handling item   and examinee heterogeneity in assessment data","url":"https://arxiv.org/pdf/2211.11888"},{"title":"Expectation-Maximization-Maximization: A Feasible MLE Algorithm for the Three-Parameter Logistic Model Based on a Mixture Modeling Reformulation","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5760556/"}]
+
+Based on the web search results, I found relevant research on IRT 3PL mixture models with connections to your query topics:
+
+## Key Findings:
+
+**Mixture Modeling and EM Algorithms in 3PLM:**
+A mixture-modeling approach to the 3PLM has been developed based on which a feasible Expectation-Maximization-Maximization (EMM) MLE algorithm is proposed. The EMM is a more powerful MLE algorithm based on a mixture modeling reformation of 3PLM, which expands the complete data to include a latent indicator for whether examinees use guessing strategies for items.
+
+**Identifiability Issues:**
+The 3PLM is not identifiable if a fixed-effects approach is adopted, and the question of identifiability of the random-effects 3PLM is still open. Solutions have been proposed to deal with model identifiability issues without compromising the flexibility and practical interpretation of the model.
+
+**Bayesian Approaches:**
+A generalized approach for the distribution of abilities in dichotomous 3-parameter Item Response models using a mixture of normal distributions has been developed, with inference carried out under the Bayesian Paradigm through MCMC algorithms.
+
+**Model Identification:**
+Identifiability can be ensured by putting a dynamic upper bound on the number of mixing components in each question cluster.
+
+The search results contain recent research (including 2024-2025) on Bayesian approaches, mixture models, identifiability, and EM algorithms in psychometric IRT contexts, though specific literature on contamination modeling appears limited in these particular results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f49172db-4096-42f1-91b1-4ca8b3211bfd",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "8ed631d9-200c-406f-84d3-01a1622a883e",
+  "toolUseResult": {
+    "query": "IRT 3PL mixture model contamination identifiability EM algorithm psychometrics Bayesian 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JWDsP3JijZ4ozfc8fTH2mW",
+        "content": [
+          {
+            "title": "The Bayesian Expectation-Maximization-Maximization for the 3PLM",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6555200/"
+          },
+          {
+            "title": "Item Response Theory Overview",
+            "url": "https://www.emergentmind.com/topics/item-response-theory-irt"
+          },
+          {
+            "title": "[1708.03975] Bayesian Item Response model: a generalised approach for the abilities’ distribution using mixtures",
+            "url": "https://ar5iv.labs.arxiv.org/html/1708.03975"
+          },
+          {
+            "title": "Bayesian Item Response model: a generalised approach for the abilities'   distribution using mixtures",
+            "url": "https://arxiv.org/pdf/1708.03975"
+          },
+          {
+            "title": "Precision education: A Bayesian nonparametric approach for handling item   and examinee heterogeneity in assessment data",
+            "url": "https://arxiv.org/pdf/2211.11888"
+          },
+          {
+            "title": "Expectation-Maximization-Maximization: A Feasible MLE Algorithm for the Three-Parameter Logistic Model Based on a Mixture Modeling Reformulation",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5760556/"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant research on IRT 3PL mixture models with connections to your query topics:\n\n## Key Findings:\n\n**Mixture Modeling and EM Algorithms in 3PLM:**\nA mixture-modeling approach to the 3PLM has been developed based on which a feasible Expectation-Maximization-Maximization (EMM) MLE algorithm is proposed. The EMM is a more powerful MLE algorithm based on a mixture modeling reformation of 3PLM, which expands the complete data to include a latent indicator for whether examinees use guessing strategies for items.\n\n**Identifiability Issues:**\nThe 3PLM is not identifiable if a fixed-effects approach is adopted, and the question of identifiability of the random-effects 3PLM is still open. Solutions have been proposed to deal with model identifiability issues without compromising the flexibility and practical interpretation of the model.\n\n**Bayesian Approaches:**\nA generalized approach for the distribution of abilities in dichotomous 3-parameter Item Response models using a mixture of normal distributions has been developed, with inference carried out under the Bayesian Paradigm through MCMC algorithms.\n\n**Model Identification:**\nIdentifiability can be ensured by putting a dynamic upper bound on the number of mixing components in each question cluster.\n\nThe search results contain recent research (including 2024-2025) on Bayesian approaches, mixture models, identifiability, and EM algorithms in psychometric IRT contexts, though specific literature on contamination modeling appears limited in these particular results."
+    ],
+    "durationSeconds": 7.414010803000012,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f49172db-4096-42f1-91b1-4ca8b3211bfd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-29T06:40:04.601Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A9F91s7ik9nKWu5gvMch8V`</summary>
+
+```json
+{
+  "query": "GenPRM process reward model AAAI 2026 step verification math reasoning scalable"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ed631d9-200c-406f-84d3-01a1622a883e",
+  "isSidechain": false,
+  "requestId": "req_011CbWQGwqE3wY3jyQQ5czsA",
+  "type": "assistant",
+  "uuid": "599f1c78-23ce-4597-98e1-1576458f41e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GgqTQqXQ2ytHy9NgkWcuEH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 29107,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 29107,
+          "cache_creation_input_tokens": 812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-29T06:40:15.499Z_
+
+<details><summary>↩ Tool result · `toolu_01A9F91s7ik9nKWu5gvMch8V`</summary>
+
+```text
+Web search results for query: "GenPRM process reward model AAAI 2026 step verification math reasoning scalable"
+
+Links: [{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Request PDF","url":"https://www.researchgate.net/publication/390404512_GenPRM_Scaling_Test-Time_Compute_of_Process_Reward_Models_via_Generative_Reasoning"},{"title":"GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".","url":"https://github.com/RyanLiu112/GenPRM"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Arxiv - DeepPaper","url":"https://arxiv.deeppaper.ai/papers/2504.00891v2"},{"title":"Paper page - GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://huggingface.co/papers/2504.00891"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"},{"title":"[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"},{"title":"[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://arxiv.org/abs/2504.00891"},{"title":"GM-PRM: A Generative Multimodal Process Reward Model for Multimodal Mathematical Reasoning","url":"https://arxiv.org/pdf/2508.04088"},{"title":"Tsinghua and Shanghai AI Lab Jointly Develop Novel Process Reward Model, Enabling Smaller Models to Surpass GPT-4","url":"https://www.aibase.com/news/17115"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward ...","url":"https://arxiv.org/pdf/2504.00891"}]
+
+Based on the search results, here's what I found about GenPRM:
+
+## Overview
+GenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step. GenPRM has been accepted by AAAI 2026.
+
+## Key Innovation
+Current PRMs face three key challenges: (1) limited process supervision and generalization capabilities, (2) dependence on scalar value prediction without leveraging the generative abilities of LLMs, and (3) inability to scale the test-time compute of PRMs. GenPRM addresses these by transforming the approach to process reward modeling.
+
+## Methodology
+To obtain high-quality process supervision labels and rationale data, the method proposes Relative Progress Estimation (RPE) and a rationale synthesis framework that incorporates code verification. The training process focuses on first conducting Chain-of-Thought reasoning about the step's quality, then generating verification code when applicable, and finally making an explicit judgment, with GenPRM generating reasoning to analyze the step's validity and producing verification code to check mathematical claims.
+
+## Performance Results
+Experimental results on ProcessBench and several mathematical reasoning tasks show that GenPRM significantly outperforms prior PRMs with only 23K training data from MATH dataset, with a 1.5B GenPRM outperforming GPT-4o, and a 7B GenPRM surpassing Qwen2.5-Math-PRM-72B on ProcessBench.
+
+The official codebase is available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "599f1c78-23ce-4597-98e1-1576458f41e1",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "5322cdb9-fb32-48db-9295-9b1b6baa15fc",
+  "toolUseResult": {
+    "query": "GenPRM process reward model AAAI 2026 step verification math reasoning scalable",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TkxKEap4tcDqmEcG9miPcp",
+        "content": [
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Request PDF",
+            "url": "https://www.researchgate.net/publication/390404512_GenPRM_Scaling_Test-Time_Compute_of_Process_Reward_Models_via_Generative_Reasoning"
+          },
+          {
+            "title": "GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".",
+            "url": "https://github.com/RyanLiu112/GenPRM"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Arxiv - DeepPaper",
+            "url": "https://arxiv.deeppaper.ai/papers/2504.00891v2"
+          },
+          {
+            "title": "Paper page - GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://huggingface.co/papers/2504.00891"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"
+          },
+          {
+            "title": "[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"
+          },
+          {
+            "title": "[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://arxiv.org/abs/2504.00891"
+          },
+          {
+            "title": "GM-PRM: A Generative Multimodal Process Reward Model for Multimodal Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2508.04088"
+          },
+          {
+            "title": "Tsinghua and Shanghai AI Lab Jointly Develop Novel Process Reward Model, Enabling Smaller Models to Surpass GPT-4",
+            "url": "https://www.aibase.com/news/17115"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward ...",
+            "url": "https://arxiv.org/pdf/2504.00891"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GenPRM:\n\n## Overview\nGenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step. GenPRM has been accepted by AAAI 2026.\n\n## Key Innovation\nCurrent PRMs face three key challenges: (1) limited process supervision and generalization capabilities, (2) dependence on scalar value prediction without leveraging the generative abilities of LLMs, and (3) inability to scale the test-time compute of PRMs. GenPRM addresses these by transforming the approach to process reward modeling.\n\n## Methodology\nTo obtain high-quality process supervision labels and rationale data, the method proposes Relative Progress Estimation (RPE) and a rationale synthesis framework that incorporates code verification. The training process focuses on first conducting Chain-of-Thought reasoning about the step's quality, then generating verification code when applicable, and finally making an explicit judgment, with GenPRM generating reasoning to analyze the step's validity and producing verification code to check mathematical claims.\n\n## Performance Results\nExperimental results on ProcessBench and several mathematical reasoning tasks show that GenPRM significantly outperforms prior PRMs with only 23K training data from MATH dataset, with a 1.5B GenPRM outperforming GPT-4o, and a 7B GenPRM surpassing Qwen2.5-Math-PRM-72B on ProcessBench.\n\nThe official codebase is available on GitHub."
+    ],
+    "durationSeconds": 10.893393083000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "599f1c78-23ce-4597-98e1-1576458f41e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-29T06:40:19.479Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018U5y2Rd2eqDt9dBXiP2sJi`</summary>
+
+```json
+{
+  "query": "scalable IRT 2211 models majorization minimization arXiv 2605.07046 LLM evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5322cdb9-fb32-48db-9295-9b1b6baa15fc",
+  "isSidechain": false,
+  "requestId": "req_011CbWQJ1SnuZVWSh32WcC6v",
+  "type": "assistant",
+  "uuid": "cdd432c0-76b5-4146-b5b7-497c2f51d762",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ST7kteisbrFfNHAScBHmr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1088,
+      "cache_read_input_tokens": 29919,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1088,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 29919,
+          "cache_creation_input_tokens": 1088,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1088
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-29T06:40:26.875Z_
+
+<details><summary>↩ Tool result · `toolu_018U5y2Rd2eqDt9dBXiP2sJi`</summary>
+
+```text
+Web search results for query: "scalable IRT 2211 models majorization minimization arXiv 2605.07046 LLM evaluation"
+
+Links: [{"title":"[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/abs/2605.07046"},{"title":"An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/html/2605.07046"},{"title":"LLM-as-a-Judge: automated evaluation of search query parsing using large language models","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12319771/"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"Scalable Parameter and Memory Efficient Pretraining for LLM","url":"https://arxiv.org/pdf/2505.22922"},{"title":"Psychometric Evaluation of Large Language Model Embeddings for Personality Trait Prediction","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12262148/"},{"title":"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores","url":"https://arxiv.org/pdf/2601.13885"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research is about:
+
+The paper proposes an interpretable and scalable framework for LLM evaluation based on the majorization-minimization principle. Item Response Theory (IRT) offers a principled framework for modeling latent model abilities and item characteristics, but conventional methods are computationally expensive and numerically unstable, limiting large-scale implementations.
+
+The approach reformulates the problem as a sequence of constrained matrix factorization subproblems, enabling stable and efficient parameter estimation with theoretical guarantees for identifiability and convergence. 
+
+The research evaluated N=2211 LLMs between June and December 2024 under the Leaderboard v2 schema. Experiments on synthetic and real-world datasets, including MATH-500 and six Open LLM Leaderboard benchmarks, demonstrate that the method achieves superior results.
+
+The full paper is available at arxiv.org/abs/2605.07046 with the title "An Interpretable and Scalable Framework for Evaluating Large Language Models."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdd432c0-76b5-4146-b5b7-497c2f51d762",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "f964d62f-b49a-420a-bab4-3d9f110ac86c",
+  "toolUseResult": {
+    "query": "scalable IRT 2211 models majorization minimization arXiv 2605.07046 LLM evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DXvc2xDjZiGSdwriCYcKwW",
+        "content": [
+          {
+            "title": "[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/abs/2605.07046"
+          },
+          {
+            "title": "An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/html/2605.07046"
+          },
+          {
+            "title": "LLM-as-a-Judge: automated evaluation of search query parsing using large language models",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12319771/"
+          },
+          {
+            "title": "Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking",
+            "url": "https://arxiv.org/pdf/2603.23506"
+          },
+          {
+            "title": "Scalable Parameter and Memory Efficient Pretraining for LLM",
+            "url": "https://arxiv.org/pdf/2505.22922"
+          },
+          {
+            "title": "Psychometric Evaluation of Large Language Model Embeddings for Personality Trait Prediction",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12262148/"
+          },
+          {
+            "title": "Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores",
+            "url": "https://arxiv.org/pdf/2601.13885"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research is about:\n\nThe paper proposes an interpretable and scalable framework for LLM evaluation based on the majorization-minimization principle. Item Response Theory (IRT) offers a principled framework for modeling latent model abilities and item characteristics, but conventional methods are computationally expensive and numerically unstable, limiting large-scale implementations.\n\nThe approach reformulates the problem as a sequence of constrained matrix factorization subproblems, enabling stable and efficient parameter estimation with theoretical guarantees for identifiability and convergence. \n\nThe research evaluated N=2211 LLMs between June and December 2024 under the Leaderboard v2 schema. Experiments on synthetic and real-world datasets, including MATH-500 and six Open LLM Leaderboard benchmarks, demonstrate that the method achieves superior results.\n\nThe full paper is available at arxiv.org/abs/2605.07046 with the title \"An Interpretable and Scalable Framework for Evaluating Large Language Models.\""
+    ],
+    "durationSeconds": 7.391685224999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cdd432c0-76b5-4146-b5b7-497c2f51d762",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT  ## Core Problem  Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a…",
+  "leafUuid": "f964d62f-b49a-420a-bab4-3d9f110ac86c",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-29T06:40:29.810Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01477yzLoNSSgubkSSY6UMRS`</summary>
+
+```json
+{
+  "query": "CoDeC contamination detection in-context learning ICLR 2026 AUC benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f964d62f-b49a-420a-bab4-3d9f110ac86c",
+  "isSidechain": false,
+  "requestId": "req_011CbWQJoKZjcvaKYjXJ1zgK",
+  "type": "assistant",
+  "uuid": "8f8ccd80-6108-45b0-9aa7-6f1b65587698",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QiDgx5wTgBrxYrSjPwb9Hp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 31007,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 31007,
+          "cache_creation_input_tokens": 705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-29T06:40:36.846Z_
+
+<details><summary>↩ Tool result · `toolu_01477yzLoNSSgubkSSY6UMRS`</summary>
+
+```text
+Web search results for query: "CoDeC contamination detection in-context learning ICLR 2026 AUC benchmark"
+
+Links: [{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/html/2510.27055v1"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning Michał Zawalski†","url":"https://openreview.net/pdf/753f569951799d9078f4db2d0e9debd74ad5b692.pdf"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/pdf/2510.27055"},{"title":"Detecting Data Contamination in LLMs via In-Context ...","url":"https://openreview.net/pdf?id=YlpaaYxx4t"},{"title":"[2510.27055] Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/abs/2510.27055"}]
+
+Based on the search results, I found information about CoDeC, a contamination detection method for large language models:
+
+## Overview
+
+CoDeC is a practical and accurate method to detect and quantify training data contamination in large language models. It is a simple dataset-level method that detects data contamination via in-context learning.
+
+## How It Works
+
+CoDeC builds on the observation that context sampled from a dataset seen during training provides no new information to the model, while unseen data can improve predictions, and the percentage of samples in a dataset for which added context reduces confidence quantifies contamination.
+
+## AUC Benchmark Results
+
+CoDeC cleanly separates seen from unseen data, achieving dataset-level AUC of 99.9% across all evaluated models. In contrast, baselines fail to provide a reliable separation.
+
+## Key Features
+
+CoDeC requires only gray-box access to token probabilities, works with any dataset, and needs no prior knowledge of the model's training corpus. The method was applied to recent open-source models, evaluating on widely used benchmarks and finding multiple instances of potential contamination.
+
+The research appears to be published on arXiv and OpenReview, with a date of October 30, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f8ccd80-6108-45b0-9aa7-6f1b65587698",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "e463db9a-1ce9-4cf7-a1c5-7d26db570bf3",
+  "toolUseResult": {
+    "query": "CoDeC contamination detection in-context learning ICLR 2026 AUC benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BE8FwS3eoMj6mz5QFoLHNR",
+        "content": [
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/html/2510.27055v1"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning Michał Zawalski†",
+            "url": "https://openreview.net/pdf/753f569951799d9078f4db2d0e9debd74ad5b692.pdf"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/pdf/2510.27055"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context ...",
+            "url": "https://openreview.net/pdf?id=YlpaaYxx4t"
+          },
+          {
+            "title": "[2510.27055] Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/abs/2510.27055"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CoDeC, a contamination detection method for large language models:\n\n## Overview\n\nCoDeC is a practical and accurate method to detect and quantify training data contamination in large language models. It is a simple dataset-level method that detects data contamination via in-context learning.\n\n## How It Works\n\nCoDeC builds on the observation that context sampled from a dataset seen during training provides no new information to the model, while unseen data can improve predictions, and the percentage of samples in a dataset for which added context reduces confidence quantifies contamination.\n\n## AUC Benchmark Results\n\nCoDeC cleanly separates seen from unseen data, achieving dataset-level AUC of 99.9% across all evaluated models. In contrast, baselines fail to provide a reliable separation.\n\n## Key Features\n\nCoDeC requires only gray-box access to token probabilities, works with any dataset, and needs no prior knowledge of the model's training corpus. The method was applied to recent open-source models, evaluating on widely used benchmarks and finding multiple instances of potential contamination.\n\nThe research appears to be published on arXiv and OpenReview, with a date of October 30, 2025."
+    ],
+    "durationSeconds": 7.029510746000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8f8ccd80-6108-45b0-9aa7-6f1b65587698",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-29T06:40:39.763Z_
+
+Now let me do one final search to check if there's any concurrent work that combines IRT with contamination modeling:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e463db9a-1ce9-4cf7-a1c5-7d26db570bf3",
+  "isSidechain": false,
+  "requestId": "req_011CbWQKXw8QK8ZJQAigZ82J",
+  "type": "assistant",
+  "uuid": "a7b70b8a-0652-422d-905d-fc0e3e30b636",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184rdbqneTMvxePUgtpjE1d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 638,
+      "cache_read_input_tokens": 31712,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 31712,
+          "cache_creation_input_tokens": 638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-29T06:40:40.695Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BRHx6vb6T4nVUC4dY7VEqT`</summary>
+
+```json
+{
+  "query": "\"contamination aware\" OR \"contamination-aware\" IRT \"item response theory\" LLM decomposition ability 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7b70b8a-0652-422d-905d-fc0e3e30b636",
+  "isSidechain": false,
+  "requestId": "req_011CbWQKXw8QK8ZJQAigZ82J",
+  "type": "assistant",
+  "uuid": "d8940c7a-367d-4e09-b218-4b863a3f5383",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184rdbqneTMvxePUgtpjE1d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 638,
+      "cache_read_input_tokens": 31712,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 31712,
+          "cache_creation_input_tokens": 638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-29T06:40:49.194Z_
+
+<details><summary>↩ Tool result · `toolu_01BRHx6vb6T4nVUC4dY7VEqT`</summary>
+
+```text
+Web search results for query: ""contamination aware" OR "contamination-aware" IRT "item response theory" LLM decomposition ability 2025 2026 arXiv"
+
+Links: [{"title":"Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks","url":"https://arxiv.org/html/2604.00594"},{"title":"[2506.01048] IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory","url":"https://arxiv.org/abs/2506.01048"},{"title":"Learning Compact Representations of LLM Abilities via Item Response Theory","url":"https://arxiv.org/pdf/2510.00844"},{"title":"[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/abs/2510.07175"},{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v1"},{"title":"Time Travel in LLMs: Tracing Data Contamination in Large Language Models","url":"https://arxiv.org/pdf/2308.08493"},{"title":"When Benchmarks Leak: Inference-Time Decontamination for LLMs","url":"https://arxiv.org/pdf/2601.19334"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/pdf/2510.27055"},{"title":"JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory","url":"https://arxiv.org/pdf/2509.22888"}]
+
+Based on the search results, I found several relevant papers from 2025-2026 on arXiv that combine Item Response Theory (IRT) with Large Language Models (LLMs):
+
+## Key Findings:
+
+**Most Relevant to Your Query:**
+
+One approach augments Item Response Theory (IRT) with rich features extracted from tasks and introduces a novel decomposition of agent ability into LLM and scaffold ability components. This paper titled "Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks" was published in April 2026.
+
+**Other Notable IRT + LLM Papers (2025-2026):**
+
+1. A paper titled "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory" proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture (January 2026).
+
+2. Another work proposes a novel approach to construct compact representations of model abilities drawing inspiration from item response theory (IRT), which is a well-established statistical framework used in education and psychology to measure latent abilities through standardized tests (titled "Learning Compact Representations of LLM Abilities via Item Response Theory").
+
+3. A paper on "IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory" was submitted in June 2025.
+
+**Regarding Data Contamination:**
+
+While several papers address data contamination in LLM benchmarks, one recent paper discusses creating a "contamination-limited LLM benchmark" (LiveBench, 2025), though this appears distinct from the contamination-aware IRT approaches you're searching for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8940c7a-367d-4e09-b218-4b863a3f5383",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "643ca51e-cd8b-4b06-8078-f33b1901120c",
+  "toolUseResult": {
+    "query": "\"contamination aware\" OR \"contamination-aware\" IRT \"item response theory\" LLM decomposition ability 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ETZqq3zC3U8x7TapSUN2gu",
+        "content": [
+          {
+            "title": "Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks",
+            "url": "https://arxiv.org/html/2604.00594"
+          },
+          {
+            "title": "[2506.01048] IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory",
+            "url": "https://arxiv.org/abs/2506.01048"
+          },
+          {
+            "title": "Learning Compact Representations of LLM Abilities via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2510.00844"
+          },
+          {
+            "title": "[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/abs/2510.07175"
+          },
+          {
+            "title": "[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/abs/2505.15055"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v1"
+          },
+          {
+            "title": "Time Travel in LLMs: Tracing Data Contamination in Large Language Models",
+            "url": "https://arxiv.org/pdf/2308.08493"
+          },
+          {
+            "title": "When Benchmarks Leak: Inference-Time Decontamination for LLMs",
+            "url": "https://arxiv.org/pdf/2601.19334"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/pdf/2510.27055"
+          },
+          {
+            "title": "JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory",
+            "url": "https://arxiv.org/pdf/2509.22888"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2025-2026 on arXiv that combine Item Response Theory (IRT) with Large Language Models (LLMs):\n\n## Key Findings:\n\n**Most Relevant to Your Query:**\n\nOne approach augments Item Response Theory (IRT) with rich features extracted from tasks and introduces a novel decomposition of agent ability into LLM and scaffold ability components. This paper titled \"Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks\" was published in April 2026.\n\n**Other Notable IRT + LLM Papers (2025-2026):**\n\n1. A paper titled \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\" proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture (January 2026).\n\n2. Another work proposes a novel approach to construct compact representations of model abilities drawing inspiration from item response theory (IRT), which is a well-established statistical framework used in education and psychology to measure latent abilities through standardized tests (titled \"Learning Compact Representations of LLM Abilities via Item Response Theory\").\n\n3. A paper on \"IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory\" was submitted in June 2025.\n\n**Regarding Data Contamination:**\n\nWhile several papers address data contamination in LLM benchmarks, one recent paper discusses creating a \"contamination-limited LLM benchmark\" (LiveBench, 2025), though this appears distinct from the contamination-aware IRT approaches you're searching for."
+    ],
+    "durationSeconds": 8.49490651,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d8940c7a-367d-4e09-b218-4b863a3f5383",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-29T06:40:49.198Z_
+
+```json
+{
+  "parentUuid": "643ca51e-cd8b-4b06-8078-f33b1901120c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fe972846-c23f-4a66-bf17-a48106b26cbc",
+  "timestamp": "2026-05-29T06:40:49.198Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-29T06:40:52.929Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WTRC2Mibcd7MfwCasxoWZs`</summary>
+
+```json
+{
+  "query": "\"Quantifying Data Contamination in Psychometric Evaluations\" arXiv 2510.07175 IRT LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe972846-c23f-4a66-bf17-a48106b26cbc",
+  "isSidechain": false,
+  "requestId": "req_011CbWQLSyFj7ZmqeQeJe5Tm",
+  "type": "assistant",
+  "uuid": "732ffaa1-2465-4879-acd0-c7e15072c399",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CDECCmDAwrozYcTpxzqi34",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1117,
+      "cache_read_input_tokens": 32350,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 32350,
+          "cache_creation_input_tokens": 1117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-29T06:41:00.120Z_
+
+<details><summary>↩ Tool result · `toolu_01WTRC2Mibcd7MfwCasxoWZs`</summary>
+
+```text
+Web search results for query: ""Quantifying Data Contamination in Psychometric Evaluations" arXiv 2510.07175 IRT LLM"
+
+Links: [{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/pdf/2510.07175"},{"title":"[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/abs/2510.07175"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=13625&show=50"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=3475&show=50"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs - ACL Anthology","url":"https://aclanthology.org/2026.findings-eacl.319/"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of ...","url":"https://www.semanticscholar.org/paper/Quantifying-Data-Contamination-in-Psychometric-of-Han-Song/3a15c8835265c221a247df847edc4d0d78617470"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/pdf/2507.11405"},{"title":"Estimating Contamination via Perplexity: Quantifying Memorisation in   Language Model Evaluation","url":"https://arxiv.org/pdf/2309.10677"}]
+
+I found the paper you're looking for! Here's what the search results reveal:
+
+## Paper Overview
+
+The paper "Quantifying Data Contamination in Psychometric Evaluations of LLMs" applies psychometric questionnaires to Large Language Models to assess high-level psychological constructs such as values, personality, moral foundations, and dark traits.
+
+## Research Framework
+
+The researchers propose a framework to systematically measure data contamination in psychometric evaluations of LLMs, evaluating three aspects: (1) item memorization, (2) evaluation memorization, and (3) target score matching. More specifically, the framework covers item memorization (direct exposure to inventory items), evaluation memorization (familiarity with scoring protocols), and target score matching (the ability to steer toward a desired score).
+
+## Testing Scope
+
+The framework was applied to multiple model families and widely used inventories, including the Big Five Inventory (BFI-44), PVQ, Moral Foundations Questionnaire (MFQ), and the Short Dark Triad (SD-3).
+
+## Publication
+
+The paper was written by Jongwook Han, Woojung Song, Jonggeun Lee, and Yohan Jo, and is accepted as an EACL 2026 Findings paper.
+
+You can access the paper directly at https://arxiv.org/abs/2510.07175 or https://arxiv.org/pdf/2510.07175.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "732ffaa1-2465-4879-acd0-c7e15072c399",
+  "isSidechain": false,
+  "promptId": "887495a9-cc76-4bc3-9131-453a05344bf6",
+  "type": "user",
+  "uuid": "a03a4145-c1bf-4766-898d-f1fb8215f0d2",
+  "toolUseResult": {
+    "query": "\"Quantifying Data Contamination in Psychometric Evaluations\" arXiv 2510.07175 IRT LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011b7npXqhET2ujvynh4GTB8",
+        "content": [
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/pdf/2510.07175"
+          },
+          {
+            "title": "[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/abs/2510.07175"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=13625&show=50"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=3475&show=50"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2026.findings-eacl.319/"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of ...",
+            "url": "https://www.semanticscholar.org/paper/Quantifying-Data-Contamination-in-Psychometric-of-Han-Song/3a15c8835265c221a247df847edc4d0d78617470"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/pdf/2507.11405"
+          },
+          {
+            "title": "Estimating Contamination via Perplexity: Quantifying Memorisation in   Language Model Evaluation",
+            "url": "https://arxiv.org/pdf/2309.10677"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search results reveal:\n\n## Paper Overview\n\nThe paper \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" applies psychometric questionnaires to Large Language Models to assess high-level psychological constructs such as values, personality, moral foundations, and dark traits.\n\n## Research Framework\n\nThe researchers propose a framework to systematically measure data contamination in psychometric evaluations of LLMs, evaluating three aspects: (1) item memorization, (2) evaluation memorization, and (3) target score matching. More specifically, the framework covers item memorization (direct exposure to inventory items), evaluation memorization (familiarity with scoring protocols), and target score matching (the ability to steer toward a desired score).\n\n## Testing Scope\n\nThe framework was applied to multiple model families and widely used inventories, including the Big Five Inventory (BFI-44), PVQ, Moral Foundations Questionnaire (MFQ), and the Short Dark Triad (SD-3).\n\n## Publication\n\nThe paper was written by Jongwook Han, Woojung Song, Jonggeun Lee, and Yohan Jo, and is accepted as an EACL 2026 Findings paper.\n\nYou can access the paper directly at https://arxiv.org/abs/2510.07175 or https://arxiv.org/pdf/2510.07175."
+    ],
+    "durationSeconds": 7.186425037999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "732ffaa1-2465-4879-acd0-c7e15072c399",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-29T06:41:59.624Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive view of the research landscape. Let me analyze this proposal thoroughly.
+
+Key findings from my research:
+
+1. **PSN-IRT (AAAI 2026 Oral)**: Uses IRT for LLM benchmarking but explicitly does NOT model contamination. Focuses on benchmark quality assessment.
+
+2. **JECS (arXiv 2605.21543, May 2026)**: Provides conformal p-values for contamination detection with global contamination rate control. Very recent.
+
+3. **Growing Pains (arXiv 2604.12843)**: Uses multidimensional IRT with anchor items for 400+ models, notes contamination threatens anchor stability but doesn't model it.
+
+
+4. **Scalable IRT (arXiv 2605.07046)**: Extends IRT to thousands of models through optimization techniques, though still lacks contamination modeling.
+
+5. **DCR Factor (EMNLP 2025)**: Attempts ad-hoc contamination correction using fuzzy inference with modest accuracy but no theoretical grounding in IRT.
+
+6. **CoDeC (ICLR 2026)**: Achieves very high detection accuracy for contamination but only identifies it without correction.
+
+7. **DVD (arXiv 2601.04895)**: Detects variant contamination through output distribution analysis, also detection-only.
+
+8. **MATH-Per** (thinking appears to continue...)
+
+Looking at the next chunk, I'm seeing various approaches to measuring contamination through perturbations and reasoning analysis. MATH-Perturb shows significant performance drops when answers are modified, while VAR-MATH demonstrates that reinforcement learning models are particularly vulnerable to symbolic variants. There's also work examining whether reasoning improvements are genuine or artifacts of contamination, with studies showing that step necessity varies dramatically and that some gains from training are actually contamination-driven. The more recent papers propose perturbation-based hypotheses and explore how answer correctness can be decoupled from the underlying reasoning logic.
+
+Now I'm evaluating the novelty of combining contamination detection with adversarial robustness and item response theory—this intersection hasn't been explored before. The closest existing work does score correction but lacks the theoretical grounding. The proposed SPA metric measuring step-perturbation interactions appears genuinely novel as well.
+
+The significance is clear given that multiple recent papers flag contamination as a real threat to IRT-based evaluation frameworks, with concrete examples like Qwen2.5's RL gains being artifacts of data leakage. I'm identifying some potential weaknesses in how the three-community unification is framed, though the core idea remains strong.
+
+The SPA metric itself is well-designed—it's not just measuring step-by-perturbation interactions but actually detecting whether models grasp the causal structure of mathematical reasoning or are just pattern-matching. The training diagnostic angle deserves more prominence as a contribution.
+
+On the trivial alternative front, I'm checking whether a simple detect-then-filter approach (removing contaminated items and running standard IRT on the remainder) would suffice. The proposal handles this well by noting that detection is binary while contamination effects are continuous, filtering reduces precision, and it misses the robustness deficit as a separate dimension. Now I'm verifying the additive decomposition premise that splits observed performance into genuine ability, contamination effects, and robustness deficits.
+
+I'm noticing some related work that should be acknowledged: the Agent Psychometrics paper does a parallel decomposition of agent ability into LLM and scaffold components, and IRT-Router shows IRT expanding into operational routing decisions beyond pure evaluation. These contextualize where this work sits in the broader landscape.
+
+The SPA metric deserves sharper framing—it's really measuring causal understanding of mathematical structure, not just diagnostic signal, which connects directly to the insight from "Robust Answers Fragile Logic" that reasoning and answers are decoupled. And the training diagnostic use case for helping model developers decompose benchmark improvements could be positioned as the most impactful contribution for the ML community overall, not just evaluation researchers.
+
+The proposal feels quite mature with solid related work coverage and genuine novelty, though the framing around SPA's causal reasoning angle and the broader impact of the training diagnostic application could be sharpened. I see SPA could be reframed as a probe for causal structure rather than just surface-level adaptation—this connects to the fundamental question of whether LLMs learn causal relationships or statistical patterns, which would significantly strengthen the contribution's broader significance. There's also an underexploited connection to the decoupling hypothesis: CAS-IRT could be positioned as the first framework to quantify the gap between models that produce correct answers through genuine reasoning versus those that succeed despite fragile logic, which is a much more compelling story than standard IRT's answer-focused approach.
+
+Beyond the specific technical contributions, I should frame this as establishing evaluation infrastructure that the field has been asking for—a methodological standard for how benchmarks should handle contamination. There's a potential naming confusion with another paper on contamination in psychometric evaluation that I should briefly address to preempt reviewer concerns. The training diagnostic use case needs stronger grounding, particularly by connecting it to the RL contamination problem documented in existing work on reasoning versus memorization.
+
+The real power here is that CAS-IRT could have caught Qwen2.5's contamination-driven gains before the community spent months validating them as genuine improvements. That retroactive validation angle is compelling. Overall, the fundamentals are solid with 3-4 genuine discovery points that could strengthen the proposal—these are refinements rather than fundamental overhauls.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a03a4145-c1bf-4766-898d-f1fb8215f0d2",
+  "isSidechain": false,
+  "requestId": "req_011CbWQMFTjptEK778kDqahE",
+  "type": "assistant",
+  "uuid": "396c8ba8-6017-4c21-be79-52fd134aaf80",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T3rPhWDYX5cqDxVBquKSi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 33467,
+      "output_tokens": 6702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6702,
+          "cache_read_input_tokens": 33467,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-29T06:43:15.315Z_
+
+Now I have a comprehensive picture of the research landscape. Let me compile my analysis.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [PSN-IRT / Lost in Benchmarks](https://ojs.aaai.org/index.php/AAAI/article/view/40814) (AAAI 2026 Oral): 12 LLMs × 41,871 items 的 IRT 框架，明确发现 benchmark saturation 和 difficulty ceiling，**但显式声明 contamination 为 unsolved limitation**，是本 proposal 最直接的上游工作。
+- [Growing Pains / arXiv 2604.12843](https://arxiv.org/abs/2604.12843) (Apr 2026): 400+ 模型的多维 IRT anchor calibration，**显式指出 contamination threatens anchor stability but not modeling it**——这恰好留出了本 proposal 的生态位。
+- [Scalable IRT / arXiv 2605.07046](https://arxiv.org/abs/2605.07046) (May 2026): 将 IRT 扩展到 2211 个模型，majorization-minimization 算法，依然零 contamination 建模。
+- [JECS / arXiv 2605.21543](https://arxiv.org/abs/2605.21543) (May 2026): 基于 conformal p-value 的 joint decontamination，提供 GCR 控制，是本 proposal contamination prior 的技术基础。极新（~1周前）。
+- [Reasoning or Memorization / arXiv 2507.10532](https://arxiv.org/abs/2507.10532) (2025): 证明 Qwen2.5 的 RL 增益是 contamination artifact，为本 proposal 的 motivation 提供了实证基础。
+- [VAR-MATH / arXiv 2507.12885](https://arxiv.org/abs/2507.12885) (2025): RL 模型在参数化变体上 drop 47-73%，但只看 answer-level。
+- [Illusion of Reasoning / arXiv 2603.22816](https://arxiv.org/abs/2603.22816) (Mar 2026): 步骤级忠实性三模式（genuine/scaffolding/decoration），step necessity 4-93%，但没有跨变体比较。
+- [Robust Answers Fragile Logic / arXiv 2505.17406](https://arxiv.org/abs/2505.17406) (2025): Decoupling Hypothesis——答案正确性和推理质量仅松散耦合，MATCHA 框架验证。
+- [Agent Psychometrics / arXiv 2604.00594](https://arxiv.org/abs/2604.00594) (Apr 2026): 将 agent 能力分解为 LLM ability + scaffold ability，概念上与本 proposal 的能力分解平行。
+- [Quantifying Data Contamination in Psychometric Evaluations / arXiv 2510.07175](https://arxiv.org/abs/2510.07175) (EACL 2026 Findings): 量化心理量表（人格/价值观）中的 LLM contamination，和本 proposal 名称相似但领域完全不同。
+- [DCR Factor](https://aclanthology.org/2025.emnlp-main.1173/) (EMNLP 2025): fuzzy inference 的 ad-hoc 分数校正，无 IRT 框架。
+- [CoDeC](https://arxiv.org/abs/2510.27055) (ICLR 2026): 99.9% AUC 的 dataset-level contamination 检测，但只检测不校正。
+- [DVD / arXiv 2601.04895](https://arxiv.org/abs/2601.04895) (Jan 2026): 基于输出分布方差的变体 contamination 检测，memory-adherence vs. perturbation-drift 双态模型。
+- [PEARL / arXiv 2505.03019](https://arxiv.org/abs/2505.03019) (2025): Perturbation Sensitivity Hypothesis, bit-flip perturbation, 检测记忆。
+- [GenPRM](https://github.com/RyanLiu112/GenPRM) (AAAI 2026): 生成式 PRM，1.5B 超 GPT-4o on ProcessBench。
+
+- **调研总结**: IRT-for-LLM 领域在 2025-2026 经历爆发式增长（PSN-IRT → Growing Pains → Scalable IRT），但所有工作都在 contamination 建模处留白，且多篇明确呼吁解决。同时，contamination 检测（JECS, CoDeC, DVD）和 perturbation robustness（MATH-Perturb, VAR-MATH）各自成熟但未互联。本 proposal 定位在这个三角空白的交汇处，是一个真实且被文献反复确认的 gap。**截至调研时点，无任何 concurrent work 尝试 contamination-aware IRT + step-level perturbation alignment 的组合。**
+
+---
+
+【发掘点 1】
+- 维度: 核心 claim 强化 / significance 提升
+- 内容: **SPA 应被提升为"因果推理结构探针"（causal reasoning structure probe），而非仅仅是一个诊断信号。** 当前 proposal 将 SPA 定位为"measuring whether reasoning steps adapt appropriately when problem structure changes"，这是一个正确但保守的表述。更有力的 framing 是：SPA 实质上在检测模型是否编码了数学推理的**因果依赖结构**（哪些步骤因果性地依赖于哪些问题参数），而非仅仅统计性地复现表面模式。当一个变体改变了某个约束条件时，genuine reasoner 会在且仅在因果路径上的步骤发生变化，而 memorizer 的变化模式要么过早（不知道哪里该变）要么过晚（模板复制到崩溃点才偏离）。这个 framing 将 SPA 从一个 LLM evaluation 社区的技术贡献提升为对 AI 理解因果推理 vs. 统计关联这一更大问题的贡献，显著拓宽了 audience。
+- 价值: 命中 Significance（从 evaluation niche 拓展到 AI fundamentals 的 scope）和 Novelty（"因果结构探针"在 IRT 和 perturbation robustness 文献中都是全新角度）。Illusion of Reasoning 测量单题内步骤的 necessity，MATCHA/Decoupling Hypothesis 测量答案-推理的一致性，但都没有通过**跨变体的步骤行为差异**来推断模型是否编码了因果结构——SPA 的独特价值恰在于此。
+- 调研依据: "Robust Answers Fragile Logic" (arXiv 2505.17406) 提出 Decoupling Hypothesis（答案正确但推理脆弱），"Illusion of Reasoning" (arXiv 2603.22816) 发现步骤级忠实性差异巨大。SPA 实质上是将 Decoupling Hypothesis 从"同一题内答案与推理是否一致"推进到"跨结构变体时推理步骤是否遵循因果依赖"——后者是更强的能力测试。
+
+【发掘点 2】
+- 维度: significance 提升 / novelty 锐化
+- 内容: **Training diagnostic use case 应从 "additionally" 提升为与 evaluation 平行的核心贡献，并通过 retroactive validation 论证其现实影响力。** 当前 proposal 将 training diagnostic 放在 Research Opportunity 的第二段作为附加价值，但调研发现这可能是对 ML 社区影响力更大的贡献。具体来说：proposal 应明确论证——如果 CAS-IRT 在 "Reasoning or Memorization"（arXiv 2507.10532）发表之前就已可用，它能否在不需要创建全新 clean dataset 的前提下，**直接从 benchmark 表现中检测出 Qwen2.5 的 contamination-driven RL gains**？如果能，这就是一个 "retroactive case study"，证明 CAS-IRT 作为 training diagnostic 的现实价值——避免社区花数月时间把 contamination artifact 当作真实能力增长。这将 CAS-IRT 的 significance 从 "better evaluation scores" 提升到 "preventing wasted research effort at community scale"。
+- 价值: 命中 Significance（从 evaluation 方法论升级到 ML training pipeline 的实际决策工具）。对于 AAAI 审稿人来说，"这个工具能帮我判断我的模型训练是否在真正提升能力" 比 "这个工具能产出更准确的 benchmark ranking" 有大得多的吸引力。
+- 调研依据: "Reasoning or Memorization" (arXiv 2507.10532) 证明 Qwen2.5 RL 增益是 contamination artifact，但发现这一点需要构建全新 clean dataset——成本极高。CAS-IRT 的价值在于不需要 clean dataset 就能做出类似判断。
+
+【发掘点 3】
+- 维度: related work 差异化
+- 内容: **需补充两篇概念平行的工作以加强差异化定位。** (1) "Agent Psychometrics" (arXiv 2604.00594, Apr 2026) 同样做了 IRT 框架下的能力分解（LLM ability + scaffold ability），虽然领域不同（agentic coding vs. math reasoning），但 "decompose performance into components via IRT" 的高层方法论是共享的。审稿人可能会问："和 Agent Psychometrics 的 decomposition 比，你的额外 novelty 在哪？" 答案应该是：Agent Psychometrics 分解的是 observable 的架构组件（LLM vs. scaffold），而 CAS-IRT 分解的是 latent confounders（contamination, robustness），后者在数据中是不可直接观测的，需要 JECS prior + perturbation design 来做 identification——方法论复杂度和挑战完全不同。(2) "Quantifying Data Contamination in Psychometric Evaluations" (arXiv 2510.07175, EACL 2026 Findings) 名称与本 proposal 高度相似（contamination + psychometric + LLM），但关注的是心理量表（Big Five, MFQ）而非 benchmark IRT。审稿人快速文献搜索时可能混淆，应主动一句话区分以避免"overlapping work"的误判。
+- 价值: 命中 Related Work 差异化。主动堵住审稿人可能提出的 "how is this different from X" 问题，增强论文的防御性。
+- 调研依据: 直接来自调研中发现的 arXiv 2604.00594 和 arXiv 2510.07175 两篇论文。
+
+【发掘点 4】
+- 维度: 核心 claim 强化
+- 内容: **"Three-Community Unification" 的 claim 可以更有力地论证为什么此前三个社区未能自然融合，以及为什么现在时机成熟。** 当前 proposal 陈述了三个社区各自独立发展的事实，但没有解释**为什么**它们一直是 siloed 的——这个 "why now" 的论证对审稿人很关键，否则会引发 "如果这个组合这么自然，为什么没人做过？是不是实际上有技术障碍你没看到？" 的疑虑。建议明确论证：(a) JECS（2026年5月）提供了第一个具有统计保证的 per-item contamination signal，此前的检测方法是 dataset-level（CoDeC）或 binary（DVD），无法作为 IRT 的 item-level prior；(b) SymPy-backed variant generation（VAR-MATH 2025）证明了大规模自动化变体生成的可行性，此前的手工变体（MATH-Perturb 专家标注）无法支撑 IRT 所需的 item 数量；(c) GenPRM（AAAI 2026）和 Illusion of Reasoning（2026年3月）同时提供了 step-level verification 的工具和 step-level faithfulness 的理论框架。三者在 2025-2026 同时成熟，才使得 CAS-IRT 变得 technically feasible。
+- 价值: 命中 Novelty（回答 "why hasn't this been done before" 增强 novelty 的可信度）。审稿人对 "unification" 类工作的典型质疑是 "这是不是只是简单拼接？" 论证 "为什么此前拼不起来" 等价于论证 "这不是 trivial combination"。
+- 调研依据: 基于调研中对 JECS（May 2026）、VAR-MATH（2025）、GenPRM（AAAI 2026）、Illusion of Reasoning（Mar 2026）发表时间线的观察——这些关键 building blocks 都是 2025-2026 才出现的。
+
+Sources:
+- [PSN-IRT: Lost in Benchmarks (AAAI 2026 Oral)](https://ojs.aaai.org/index.php/AAAI/article/view/40814)
+- [Growing Pains: IRT Anchor Calibration (arXiv 2604.12843)](https://arxiv.org/abs/2604.12843)
+- [Scalable IRT for 2211 Models (arXiv 2605.07046)](https://arxiv.org/abs/2605.07046)
+- [JECS: Provable Joint Decontamination (arXiv 2605.21543)](https://arxiv.org/abs/2605.21543)
+- [Reasoning or Memorization (arXiv 2507.10532)](https://arxiv.org/abs/2507.10532)
+- [VAR-MATH (arXiv 2507.12885)](https://arxiv.org/abs/2507.12885)
+- [The Illusion of Reasoning (arXiv 2603.22816)](https://arxiv.org/abs/2603.22816)
+- [Robust Answers Fragile Logic (arXiv 2505.17406)](https://arxiv.org/abs/2505.17406)
+- [Agent Psychometrics (arXiv 2604.00594)](https://arxiv.org/html/2604.00594)
+- [Quantifying Data Contamination in Psychometric Evaluations (arXiv 2510.07175)](https://arxiv.org/abs/2510.07175)
+- [DCR Factor (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1173/)
+- [CoDeC: Contamination Detection via ICL (ICLR 2026)](https://arxiv.org/abs/2510.27055)
+- [DVD: Detection via Variance of Distribution (arXiv 2601.04895)](https://arxiv.org/abs/2601.04895)
+- [PEARL: Perturbation Sensitivity Hypothesis (arXiv 2505.03019)](https://arxiv.org/abs/2505.03019)
+- [GenPRM (AAAI 2026)](https://github.com/RyanLiu112/GenPRM)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "396c8ba8-6017-4c21-be79-52fd134aaf80",
+  "isSidechain": false,
+  "requestId": "req_011CbWQMFTjptEK778kDqahE",
+  "type": "assistant",
+  "uuid": "4095ba9d-9dcb-454f-b36c-ae686e3290d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T3rPhWDYX5cqDxVBquKSi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 33467,
+      "output_tokens": 6702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6702,
+          "cache_read_input_tokens": 33467,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT  ## Core Problem  Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a…",
+  "leafUuid": "4095ba9d-9dcb-454f-b36c-ae686e3290d4",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Decomposing LLM Ability via Contamination-Aware Step-Level IRT  ## Core Problem  Current LLM evaluation conflates genuine reasoning, contamination-driven memorization, and robustness deficits into a…",
+  "leafUuid": "4095ba9d-9dcb-454f-b36c-ae686e3290d4",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing LLM ability via contamination-aware IRT",
+  "sessionId": "90c5392a-3245-4c0d-afc3-94af3e56e2f2"
+}
+```
+
+---

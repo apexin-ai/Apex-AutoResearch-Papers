@@ -1,0 +1,23 @@
+# Research conversation: [Director 指令] [Director 指令] **情况更新 + 两项任务** 旧队列已清空（4.4小时未处理，可能 session 过期）。以下是当前状态和需要做的事： **已完成（Director 直接做了）：** - 论文所有
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11,321
+- **Recorded user turns:** 419
+- **Tool calls:** 3,081
+- **Original source:** `logs/chats/exported-trajectories/account-1/4bc24e8b-1078-439c-82f4-1b77043197af.jsonl`
+- **Structured JSON:** [`287340a063ce662d30c2.json`](../../sessions/28/287340a063ce662d30c2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](research-conversation-director-director-4-4-session-director/part-001.md) · [Part 2](research-conversation-director-director-4-4-session-director/part-002.md) · [Part 3](research-conversation-director-director-4-4-session-director/part-003.md) · [Part 4](research-conversation-director-director-4-4-session-director/part-004.md) · [Part 5](research-conversation-director-director-4-4-session-director/part-005.md) · [Part 6](research-conversation-director-director-4-4-session-director/part-006.md) · [Part 7](research-conversation-director-director-4-4-session-director/part-007.md) · [Part 8](research-conversation-director-director-4-4-session-director/part-008.md) · [Part 9](research-conversation-director-director-4-4-session-director/part-009.md) · [Part 10](research-conversation-director-director-4-4-session-director/part-010.md) · [Part 11](research-conversation-director-director-4-4-session-director/part-011.md) · [Part 12](research-conversation-director-director-4-4-session-director/part-012.md) · [Part 13](research-conversation-director-director-4-4-session-director/part-013.md) · [Part 14](research-conversation-director-director-4-4-session-director/part-014.md) · [Part 15](research-conversation-director-director-4-4-session-director/part-015.md) · [Part 16](research-conversation-director-director-4-4-session-director/part-016.md) · [Part 17](research-conversation-director-director-4-4-session-director/part-017.md) · [Part 18](research-conversation-director-director-4-4-session-director/part-018.md) · [Part 19](research-conversation-director-director-4-4-session-director/part-019.md) · [Part 20](research-conversation-director-director-4-4-session-director/part-020.md) · [Part 21](research-conversation-director-director-4-4-session-director/part-021.md) · [Part 22](research-conversation-director-director-4-4-session-director/part-022.md) · [Part 23](research-conversation-director-director-4-4-session-director/part-023.md) · [Part 24](research-conversation-director-director-4-4-session-director/part-024.md) · [Part 25](research-conversation-director-director-4-4-session-director/part-025.md) · [Part 26](research-conversation-director-director-4-4-session-director/part-026.md) · [Part 27](research-conversation-director-director-4-4-session-director/part-027.md) · [Part 28](research-conversation-director-director-4-4-session-director/part-028.md) · [Part 29](research-conversation-director-director-4-4-session-director/part-029.md) · [Part 30](research-conversation-director-director-4-4-session-director/part-030.md) · [Part 31](research-conversation-director-director-4-4-session-director/part-031.md) · [Part 32](research-conversation-director-director-4-4-session-director/part-032.md) · [Part 33](research-conversation-director-director-4-4-session-director/part-033.md) · [Part 34](research-conversation-director-director-4-4-session-director/part-034.md) · [Part 35](research-conversation-director-director-4-4-session-director/part-035.md) · [Part 36](research-conversation-director-director-4-4-session-director/part-036.md) · [Part 37](research-conversation-director-director-4-4-session-director/part-037.md) · [Part 38](research-conversation-director-director-4-4-session-director/part-038.md) · [Part 39](research-conversation-director-director-4-4-session-director/part-039.md) · [Part 40](research-conversation-director-director-4-4-session-director/part-040.md)

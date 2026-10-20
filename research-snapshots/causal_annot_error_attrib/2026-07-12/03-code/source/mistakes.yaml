@@ -1,0 +1,130 @@
+_next_id: 10
+mistakes:
+- id: M001
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: MVP criterion 2 混淆了 confounder misclassification 与 exposure misclassification
+    的 "bias toward null" 保证
+  root_cause: '"Bias toward null" 经典结论（Bross 1954）特指 exposure 误分类，不适用于 confounder
+    误分类。MVP 测试的 confounding DAG 中 A 是 confounder，即使二分类非差异性误分类也产生远离零偏差（residual confounding）。因此
+    criterion 2（"≥1 种非差异性 C 产生远离零偏差"）在 confounding DAG 下对二分类也成立——不具区分力。'
+  prevention: 设计 pass criteria 时必须明确测试场景与被验证理论的对应关系。"Bias toward null" 的正确测试场景是 exposure
+    misclassification DAG（A→Y，用 A* 估计 A 的因果效应），而非 confounder misclassification DAG（A→T,
+    A→Y）。
+  status: active
+  context: Reviewer 在 MVP 验证报告中指出。MVP 仍通过 criterion 1（框架正确性）和 criterion 3（折叠不等价），但
+    criterion 2 需在 exposure DAG 中补充验证。
+  fix: 立即在 exposure misclassification DAG 上运行 K=3 验证，作为 research 阶段第一个实验。
+  related_decisions:
+  - D001
+- id: M002
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: MVP 两个验证实验未注册到 registry（Reviewer 第三次提醒）
+  root_cause: Agent 执行 MVP 时未将 confounding DAG 和 exposure DAG 实验注册到 registry，仅生成了
+    artifacts。Director 在审批指令中也未明确要求 registry 注册。
+  prevention: 1. Director 下发实验指令时明确包含"完成后注册到 registry"要求。2. Agent 完成任何实验后必须自动注册（spec
+    + status + conclusion + metrics）。
+  status: active
+  context: Reviewer 在 MVP 设计审查、MVP 结果验证、ROADMAP 更新审查中三次提到 registry 为空。
+  fix: 指令 Agent 立即补录两个 MVP 实验到 registry。
+- id: M003
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: plan_003 标注管线两次未成功执行：第一次 Worker 只修复代码未运行；第二次用前台 SSH 运行导致进程被 SIGHUP 杀死
+  root_cause: Worker 对长时间运行任务（5-6h）使用前台 ssh_execute，SSH 会话结束时进程被杀。且 Worker 名为 "fix-and-run"
+    但第一次只做了 fix。
+  prevention: 运行时间 > 5 分钟的任务必须使用 nohup/tmux/submit_training_job 后台执行。启动后必须验证 PID 存活
+    + 日志有输出再汇报"已启动"。Director 审批后应明确要求 Worker 汇报 PID 和初始进度。
+  status: active
+  context: plan003_empirical_confusion_matrices 审批通过后，两次派发 Worker 均未成功执行标注管线。第一次 Worker
+    只完成了代码修复；第二次进程在 35 秒后因 SSH 断开被杀，日志仅 8 行 296 字节。
+  fix: 发送 urgent_agent_message 要求用 nohup 后台运行 + 轮询验证 PID 存活
+- id: M004
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: plan_003 进程死亡 + 1000条标注数据全丢：annotate.py 无 streaming write，组合内中断不可恢复
+  root_cause: annotate.py 将结果积累在内存 list，整个组合完成后才写文件。进程中途死亡导致内存中全部数据丢失。这是 M003（SIGHUP
+    杀进程）的延续——即使 nohup 解决了 SSH 断连问题，缺乏 streaming write 意味着任何进程中断都会丢数据。
+  prevention: 长时间运行的数据采集脚本必须实现 streaming write（逐条或小批量 append 到文件），配合 resume 逻辑。审批前检查写入模式：批量写入
+    + 长运行时间 = 必须改为 streaming。
+  status: active
+  context: plan_003 第二次失败。第一次（M003）因 SIGHUP 被杀，改 nohup 后重跑。这次进程再次死亡（原因未知），1000/1500
+    samples 全丢。annotate.py 的 annotate_batch() 在内存中积累结果，run_single() 全部完成才调 save_results()。
+  fix: 在 annotate_batch 中加 streaming write：每个 sample 完成后立即 append 到 JSONL。配合已有 resume
+    逻辑实现中断恢复。同时考虑多进程并行（按模型分）加速。
+- id: M005
+  date: '2026-05-20'
+  category: communication
+  severity: medium
+  summary: Director 将 collider 的 tau_sign_flip=0 错误引用为 IV 的数据，导致虚假的 plan_001 vs plan_002
+    矛盾
+  root_cause: plan_001 registry metrics 中不含 IV 条目（只有 collider/mbias/mediation/frontdoor），Director
+    在引用时将 collider 的 {violation:1, sign_flip:0, amplification:1} 误认为 IV 的数据。
+  prevention: 引用 registry 数据时必须核对 metrics 中的具体 key name，不凭记忆引用。跨实验对比指标时先用 read_experiment_plan_with_status
+    确认两边的 metrics 结构。
+  status: active
+  fix: Reviewer 确认 plan_002 52% 是首次测量，无矛盾。plan_001 registry 补注 IV 指标缺失说明。
+- id: M006
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: plan_007 全量运行连续两次失败（参数名错误 + 进程被误杀）
+  root_cause: 第一次：argparse 参数名 --N_sim 与脚本定义 --n-sim 不匹配。第二次：进程在 1/42 组合后终止，可能被 plan009
+    重复进程的 kill 操作误杀。submit_training_job 的 cron on_complete 在错误退出时仍触发误报。
+  prevention: 1. 提交前用 --help 确认参数名。2. 长时间 CPU 任务用 nohup 独立启动，不依赖 tmux 或 submit_training_job。3.
+    不同实验的 kill 操作需检查 PID 避免误杀。4. cron on_complete 需检查 exit code 和输出完整性。
+  status: active
+  context: plan_007 correction guidance 全量运行 210k 组合（7 topo × 6 C × 5 method × 1000
+    sims）。两次尝试均未产出有效结果。
+- id: M007
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: fig5/fig6 使用 mock 数据而非真实实验数据，包含虚构的 K=2/K=3 数据点和 F1>0.85 disconnect cases
+  root_cause: Paper Agent worker pool 满无法下载远程原图，从 plan006_empirical_data.txt 重新生成时误用了
+    §8 mock calibration data 而非 §3-§6 真实 HumAID 数据
+  prevention: 论文图表必须显式标注数据来源文件+行号。生成图表的脚本必须 assert 数据源不含 mock/synthetic 标记。Director
+    应对新增图表做数据溯源检查。
+  status: active
+  fix: fig5/fig6 完全重写为仅 HumAID (K=10) 56 个真实数据点，移除所有 mock 数据引用
+- id: M008
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: PPI++ empirical validation used flawed metric and mixed methods, inflating
+    96.2% to hide true 39.0%
+  root_cause: 'Three independent issues: (1) IV topology used theoretical C^{-1} (100%
+    by tautology) instead of actual PPI++; (2) |mean(bias)| metric makes any unbiased
+    estimator show ~100% reduction regardless of variance; (3) 10/18 configs used
+    approximate confusion matrices labeled as "real LLM matrices"'
+  prevention: 'Correction experiments must: (a) use same method for ALL topologies
+    — no silent method substitution; (b) use MAE (mean |error|) not |mean error| as
+    the reduction metric — the latter ignores variance; (c) clearly label approximate
+    vs real confusion matrices. Director must verify metric definitions before writing
+    numbers into paper.'
+  status: active
+  context: Original ppi_empirical_validation.json metadata clearly noted "theoretical_Cinv
+    (IV only)" and "VAST/CC use approximate confusion matrices" but these caveats
+    were lost when numbers were written into experiments.tex L150-151. Reviewer caught
+    the discrepancy when Agent independently recomputed with correct methodology.
+  fix: Rewrote paragraph with MAE-based numbers from fresh computation (8 real HumAID
+    configs only). PPI++ grand mean 39.0%, IV -79.2%. Commit ee77830.
+  commit_id: ee77830
+- id: M009
+  date: '2026-05-23'
+  category: communication
+  severity: high
+  summary: 连续多轮提交审稿前不通读全文，导致叙事矛盾和不连贯问题反复被审稿人发现，分数停滞在 3.5
+  root_cause: 三个根因：(1) 流程倒置——Agent 改完直接提交，跳过 Director 通读验证环节；(2) 把审稿当 checklist 逐条修补，不做整体叙事审视；(3)
+    过度委托不验证 Agent 输出质量（如 F1-bias 只用 56 scenarios 未发现、Q3/Q5 完成 45min 未写入论文未发现）
+  prevention: 提交审稿前必须执行：(1) Director 亲自通读全文，逐节检查叙事流畅性和逻辑自洽；(2) 检查关键数字在 Abstract/Introduction/Method/Experiments
+    间的一致性；(3) 验证 Agent 输出——新增内容是否已整合、引用是否真实、数据范围是否正确；(4) 只有"整体读起来像一篇完整论文"才能提交，不以"逐条修完"为标准
+  status: active
+  context: Round 12 提交后才通读发现 5 个问题：Abstract vs Introduction IV sign reversal 矛盾、Section
+    4.5 段落过载、Introduction Spearman ρ 嵌入过密、Method L14 过渡断裂、56 vs 161 scenarios 范围不明。用户批评"每次审稿都是3.5没有进步，提交审稿的时候不检查的吗"
+  fix: Round 12 已提交但 Agent 正在修复 5 个叙事问题。修复完成后 Director 将再次通读全文验证后提交 Round 13。

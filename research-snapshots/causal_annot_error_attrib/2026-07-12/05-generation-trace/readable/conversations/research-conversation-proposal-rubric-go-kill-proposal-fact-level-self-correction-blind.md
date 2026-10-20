@@ -1,0 +1,3378 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Fact-Level Self-Correction Blind 
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-3/08b9df5a-485b-4873-859b-0aa9d0ffd53c.jsonl`
+- **Structured JSON:** [`9127f3551fafcb64fd0c.json`](../../sessions/91/9127f3551fafcb64fd0c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:48:00.273Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:48:00.273Z",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability-Guided Selective Correction\n\n## Description\nWe propose FactBlind, the first benchmark and analysis framework for measuring the self-correction blind spot at fact-level granularity in knowledge-intensive generation. While the blind spot phenomenon has been characterized for mathematical reasoning at problem level (64.5% average failure rate on GSM8K/PRM800K), and the 'Wait' trick reduces this by 89.3% through an activation mechanism, no work has examined whether these patterns hold for atomic factual claims in long-form text — where errors often stem from genuine knowledge gaps rather than activation failures that prompt tricks can resolve. The recent discovery of correction suppression (19–90% suppression rates when false claims are embedded in task contexts) further suggests the problem in knowledge-intensive generation operates through mechanisms distinct from math. Meanwhile, the selective claim-level handling space has become remarkably crowded — SA, CSS, CLC, CURE (39.9% claim-level accuracy on biography generation), and CAG (VeriScore 67.79%→79.80%) all use confidence/calibration for abstention — while the correctability-based correction paradigm remains entirely unexplored, despite mechanistic evidence that uncertainty and correctness are encoded by functionally distinct feature populations (Functional Dissociation, arXiv:2604.19974). We decompose LLM-generated biographies, QA responses, and report summaries into atomic claims and measure per-claim blind spot rates across 8 models, using both controlled error injection (entity, temporal, numerical, relational) and naturally occurring hallucinations from FActScore-annotated data, with a dedicated 'Wait' ablation testing whether activation-based interventions transfer from math to factual claims. Our central hypothesis — that the blind spot is heterogeneous across claim types and resistant to simple activation prompts — is tested rather than assumed; if 'Wait' proves effective for factual claims, we report this as an important simplifying finding. We then train a black-box behavioral correctability classifier using self-consistency, verbal confidence, claim type, and specificity features, with pre-registered AUROC thresholds (>0.58 positive, >0.63 strong) anchored against DeepMind's white-box baseline (0.614) and behavioral confidence baseline (0.524). Even modest classifier performance reveals the correctability-confidence dissociation, which is itself an important finding given 6+ papers implicitly assume confidence suffices for claim-level routing. Finally, we build Selective Fact Correction (SFC) as a downstream application: claims predicted as correctable undergo ConFix-style bootstrapping while blind-spot claims are flagged for abstention, compared against no-correction, naive self-correction, SA, CURE reference results, confidence-threshold correction, and 'Wait'-augmented self-correction baselines. Unlike SA/CSS/CLC/CURE/CAG which exclusively abstract or suppress, SFC can recover factual accuracy for correctable claims while avoiding destructive correction for uncorrectable ones.\n\n## Core Problem\nSelf-correction research has characterized the blind spot phenomenon exclusively on mathematical reasoning tasks at problem-level granularity (Self-Correction Bench, 64.5% average blind spot rate across 14 models on GSM8K/PRM800K), and the 'Wait' prompt trick reduces this blind spot by 89.3% — but crucially, this works because math errors are activation failures, not knowledge deficiencies. Yet knowledge-intensive generation (biographies, open-domain QA, report writing) produces outputs containing dozens of heterogeneous atomic claims — entities, temporal facts, numerical values, relations — where errors often stem from genuine knowledge gaps that no activation trick can resolve. Meanwhile, a rapidly growing body of work on selective claim-level handling (Selective Abstraction, CSS, Conformal Linguistic Calibration, CURE, CAG — now 6+ papers) addresses uncertain claims through calibration, abstraction, or hedging, but none attempt to predict whether the model can actually *correct* a specific factual error — a fundamentally different question from whether the claim is uncertain or poorly calibrated, as demonstrated by recent evidence that uncertainty and correctness are encoded by distinct internal feature populations (Functional Dissociation, arXiv:2604.19974). Does the self-correction blind spot manifest differently at fact-level granularity in knowledge-intensive tasks, is it heterogeneous across claim types, can simple activation prompts ('Wait') compensate, and can behavioral correctability estimation enable more effective correction routing than either uniform correction or confidence-based abstraction?\n\n## Opportunity\nFive converging lines of work create a clear gap. First, the blind spot literature (Self-Correction Bench arXiv:2507.02778, submitted to ICLR 2026; Error Depth Hypothesis arXiv:2601.00828; Confidence v.s. Critique arXiv:2412.19513) has established that LLMs struggle to correct their own errors, with stronger models making fewer but 'deeper' errors that resist correction — but all measurement is at problem level on math tasks, and the 'Wait' trick's 89.3% blind spot reduction specifically exploits an activation mechanism that may not generalize to factual knowledge errors. Critically, 'Knowing but Not Correcting' (arXiv:2605.05957) discovers correction suppression — models reliably correct false claims in isolation but suppress correction when embedded in task contexts (19–90% suppression rates across 8 models) — demonstrating a complementary blind-spot phenomenon for factual claims that suggests the problem may be even worse in knowledge-intensive generation contexts where task framing is inherent. Second, the fact-level hallucination literature (FactSelfCheck arXiv:2503.17229, 35.5% vs 10.6% factual improvement for fact-level vs sentence-level; ConFix arXiv:2411.13343; FactCorrector arXiv:2601.11232 with the VELI5 benchmark) has demonstrated that fine-grained claim-level analysis dramatically outperforms coarser approaches — but neither studies whether models can correct their OWN factual errors claim-by-claim. Third, DeepMind's recent work (arXiv:2604.22271) shows that internal PANL representations can predict which errors a model can correct (AUROC=0.614 on TriviaQA), and CyberCorrect (arXiv:2605.17305) uses a tri-modal detector combining self-consistency, verbalized confidence, and logic-chain verification for type-directed correction — but both operate at problem level on reasoning/QA tasks, not at atomic-claim level within long-form outputs; CyberCorrect requires reasoning chains and DeepMind requires white-box model access. Moreover, a Functional Dissociation study (arXiv:2604.19974) demonstrates via sparse autoencoders that uncertainty and correctness are encoded by distinct feature populations — suppressing uncertainty features degrades accuracy by up to 10.21% while suppressing incorrectness features produces near-zero change — providing mechanistic evidence that confidence-based routing is fundamentally insufficient for correctability prediction. Fourth, the selective claim-level handling space has become remarkably crowded: Selective Abstraction (arXiv:2602.11908) decomposes responses into atomic claims and replaces uncertain ones with less-specific abstractions (up to 27.73% AURC improvement on FActScore), CSS (arXiv:2604.17487) backs off overcommitted claims, Conformal Linguistic Calibration (arXiv:2502.19110) provides conformal guarantees on claim factuality, CURE (arXiv:2604.12046) teaches models to reason about uncertainty at claim level via a structured &lt;think>→&lt;decompose>→&lt;answer> protocol achieving 39.9% claim-level accuracy improvement on biography generation through calibration and abstention, and CAG (arXiv:2605.01749) decouples exploration from commitment to improve VeriScore from 67.79% to 79.80% — but ALL of these (now 6+ papers) use confidence or calibration as their routing signal and respond to uncertainty through abstraction, suppression, or hedging, NEVER attempting correction. The intersection — measuring the blind spot at fact-level granularity, testing whether activation-based interventions generalize from math to factual claims, predicting correctability (not just confidence) using black-box behavioral signals, and routing claims to correction vs. abstention based on predicted correction success — is unoccupied.\n\n## Landscape\nThe self-correction blind spot was first quantified by Self-Correction Bench (arXiv:2507.02778, submitted to ICLR 2026), which found 64.5% average failure-to-self-correct across 14 non-reasoning models — but tested only on math tasks (GSM8K, PRM800K, SCLI5) and operates at problem level. Notably, the bench found that appending a minimal 'Wait' prompt reduces the blind spot by 89.3%, and the authors attribute this to correction markers acting as conditioning tokens that shift probability distributions toward self-evaluation sequences — an activation mechanism supported by training-data analysis showing correction markers are concentrated in reasoning datasets (median 30–170 per response) but nearly absent from non-reasoning datasets (95th percentile = 1 marker). This suggests 'Wait' works because math errors are activation failures, not knowledge deficiencies; for factual claims where the model genuinely lacks correct information, activation alone cannot compensate (we test this hypothesis with a 'Wait' ablation in Phase 2). We treat Self-Correction Bench as a useful reference point rather than a definitive field-wide statistic, noting the TACL survey 'When Can LLMs Actually Correct Their Own Mistakes?' (arXiv:2406.01297) provides broader context for when self-correction succeeds or fails. The Error Depth Hypothesis (arXiv:2601.00828) shows that error TYPE predicts correctability in math — stronger models make deeper (setup/logic) errors that resist correction while weaker models make shallower (calculation) errors that are more fixable — suggesting claim-type stratification is a promising direction, though this was only tested on GSM8K with 3 models. Confidence v.s. Critique (arXiv:2412.19513, ACL 2025) decomposes self-correction into confidence and critique capabilities with probabilistic metrics, but operates at problem level.\n\nA newly discovered complementary phenomenon is correction suppression (arXiv:2605.05957): models reliably reject false claims in isolation but comply with those same claims when embedded in task-oriented requests, with suppression rates of 19–90% across 8 models. Mechanistically, the model internally registers the error (hidden-state similarity >0.99) but task context diverts attention, with 'output intent crystallizing toward compliance at middle layers.' This suggests that in knowledge-intensive generation — where task framing is inherent — the blind spot may be compounded by contextual suppression, and that 'Wait'-style activation interventions may be insufficient because the suppression mechanism operates at a deeper level than simple activation failure.\n\nOn the fact-level side: FactSelfCheck (arXiv:2503.17229) achieves 35.5% factual improvement via fact-level hallucination detection using knowledge-graph-style triple representation. ConFix (arXiv:2411.13343) demonstrates that high-confidence facts can bootstrap correction of low-confidence facts within the same response without external knowledge. FactCorrector (arXiv:2601.11232) introduces the VELI5 benchmark (17,522 instances with injected factual errors and ground-truth corrections) and a graph-inspired correction pipeline — but relies on external knowledge retrieval via search APIs, achieving 67.4% correction of incorrect atoms with structured feedback. Atomic Calibration (Zhang et al., ACL 2025 KnowFM, arXiv:2410.13246) shows that LLMs exhibit poorer calibration at the atomic level during long-form generation than at response level, providing direct motivation for claim-level analysis.\n\nOn correctability prediction: DeepMind's work (arXiv:2604.22271) trains linear probes on post-answer newline (PANL) residual-stream activations that predict correction success (AUROC=0.614), while verbal confidence (0.524) and log-probability (0.531) baselines fail — but requires white-box access and operates at problem level on TriviaQA/MNLI with only Gemma 3 27B and Qwen 2.5 7B. CyberCorrect (arXiv:2605.17305) uses a tri-modal error detector combining self-consistency (weight 0.4), verbalized confidence (0.35), and logic-chain verification (0.25) for type-directed correction on reasoning tasks, achieving 79.8% accuracy with 41% reduction in over-correction — but its logic-chain verification feature requires reasoning chains not present in factual claims, and it operates at reasoning-step level on CyberCorrect-Bench (440 tasks across math/logic/commonsense). Independently, 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv:2604.19974) provides mechanistic evidence via sparse autoencoders on Llama-3.1-8B and Gemma-2-9B that uncertainty and correctness are encoded by functionally distinct feature populations: pure uncertainty features are essential for accuracy (suppression causes up to -10.21% accuracy), while pure incorrectness features are statistically significant but functionally inert (suppression yields mean -0.03% change). This directly supports our thesis that confidence-based routing (which tracks uncertainty features) cannot substitute for correctability prediction (which must track correctness-related features). Our behavioral correctability classifier adopts similar self-consistency and confidence signals to CyberCorrect but replaces logic-chain verification with claim-type and specificity features appropriate for factual claims, and critically predicts SELF-CORRECTION success at atomic granularity rather than routing pre-identified errors.\n\nThe selective claim-level handling space has become remarkably crowded but addresses a DIFFERENT question from ours. Selective Abstraction (SA; Goren et al., arXiv:2602.11908) decomposes long-form responses into atomic claims, estimates per-claim confidence via verbalized confidence scoring, generates progressively less-specific abstraction sequences, and selects the most specific abstraction satisfying a confidence threshold — achieving up to 27.73% AURC improvement on FActScore across 6 models. Crucially, SA never attempts correction: it exclusively replaces uncertain claims with vaguer versions. CSS (arXiv:2604.17487) similarly backs off overcommitted claims rather than correcting them. Conformal Linguistic Calibration (CLC; Jiang et al., arXiv:2502.19110) provides conformal guarantees on factual accuracy through nested answer-set prediction and progressive claim vaguening — tested on SimpleQA, Natural Questions, and FActScore — but requires fine-tuning (SFT/DPO/ORPO) and also does not attempt correction. CURE (arXiv:2604.12046) operates on the SAME task domain as our work (biography generation, FactBench) and at claim-level granularity: it introduces a Claim-Aware Reasoning Protocol that structures outputs into atomic claims paired with explicit confidence estimates via a &lt;think>→&lt;decompose>→&lt;answer> pipeline, achieving 39.9% claim-level accuracy improvement on Biography and 16.0% AUROC increase on FactBench — but requires multi-stage fine-tuning (SFT + DPO calibration + GRPO factuality optimization on 3–4K prompts) and responds exclusively through calibrated abstention, never attempting correction. CAG (arXiv:2605.01749) proposes an Exploration-Commitment Decoupling paradigm where calibrated reliability estimates filter unreliable reasoning steps before commitment, improving VeriScore from 67.79% to 79.80% across five benchmarks (AlpacaFact, Biography, FactBench, Factory, FAVA) — but also requires fine-tuning (CASS + CAPD stages) and suppresses rather than corrects unreliable claims. VeriFY (arXiv:2602.02018) teaches factual self-verification with abstention through structured verification traces at training time, reducing hallucination by 9.7–53.3% — but requires fine-tuning and operates at response level. I-CALM (arXiv:2604.03904) shows prompt-based abstention can shift error-prone cases to abstention without retraining. Know When You're Wrong (arXiv:2603.06604) aligns confidence with correctness for error detection (AUROC 0.806→0.879 with SFT).\n\nThe key distinction: ALL of the above selective-handling methods (now 6+ papers: SA, CSS, CLC, CURE, CAG, VeriFY) use CONFIDENCE or CALIBRATION as their routing signal and respond to uncertainty through ABSTRACTION, SUPPRESSION, or HEDGING. None ask the question central to our work: 'Can this model correct this specific factual error in its own output?' A model may be confidently wrong about a claim (SA/CURE wouldn't touch it) but still able to correct it when prompted; conversely, a model may flag uncertainty about a claim but be unable to produce a correct replacement. Correctability and confidence are related but mechanistically distinct signals — as demonstrated both by DeepMind's finding that behavioral confidence fails to predict correction success (AUROC=0.524 vs. 0.614 for internal representations) and by the Functional Dissociation study showing distinct neural feature populations — and the gap between them, measured at fact level, is our primary object of study.\n\nConcurrent work: AtomEval (arXiv:2604.07967, April 2026) introduces SROM-atom decomposition for adversarial fact verification. CURE (arXiv:2604.12046) and CAG (arXiv:2605.01749) are the closest concurrent works, sharing our task domain and claim-level granularity — but both pursue the confidence-based calibration/abstention paradigm rather than correctability-based correction, making them complementary rather than competing approaches.\n\n## Approach\nWe build FactBlind, a benchmark and analysis framework for measuring the self-correction blind spot at fact-level granularity in knowledge-intensive generation. The primary contributions are (1) the benchmark and blind spot analysis and (2) the behavioral correctability classifier; the selective correction pipeline is a downstream application demonstrating the practical value of correctability estimation, positioned as a secondary contribution given the now-crowded selective-handling design space.\n\n**Phase 1: Benchmark Construction (3 weeks).** (a) Injected-error track: Generate long-form responses (biographies, open-domain QA, report summaries) from 8 models, decompose into atomic claims using FActScore-style decomposition, then inject controlled factual errors stratified by type — entity swaps (replacing named entities), temporal shifts (date/year perturbations), numerical perturbations (magnitude changes), and relation inversions (swapping subject-object or predicate). We draw methodology inspiration from VELI5 (arXiv:2601.11232) but target intrinsic self-correction measurement rather than external-knowledge correction. We additionally stratify error injection by specificity level (informed by SA's finding that specificity affects reliability) to test whether more specific claims are harder to self-correct. (b) Natural-error track: Evaluate on unmodified LLM-generated biographies using existing FActScore annotations and SAFE/LongFact datasets, where naturally occurring hallucinations serve as ecological ground truth. This dual-track design directly addresses the threat that injected errors may behave differently from natural hallucinations.\n\n**Phase 2: Blind Spot Measurement (3 weeks).** For each atomic claim (both injected and natural errors), measure whether the model can (a) detect the error when presented as external input (external detection), (b) detect it in its own output (self-detection), and (c) correct it in its own output (self-correction). This yields a claim-type-stratified blind spot matrix: BS(model, claim_type) = 1 − P(self-correct | error) / P(external-correct | error). We test 8 models: DeepSeek-V4-Pro, Qwen3.5-27B, Qwen3.5-122B-A10B, Llama-4-Maverick, Llama-3.3-70B-Instruct, Qwen3-32B, Mistral-Small-24B-Instruct, and DeepSeek-V3. The central testable hypothesis is that the blind spot is heterogeneous across claim types — e.g., entity errors may be more detectable/correctable than temporal or relational errors, mirroring the Error Depth Hypothesis's finding that error type predicts correctability in math. A secondary analysis examines whether correction suppression effects (arXiv:2605.05957) manifest in our setting: we compare blind spot rates for claims embedded in full generated responses (task context) vs. claims presented in isolation, testing whether task-oriented framing compounds the blind spot.\n\n**'Wait' Ablation (within Phase 2).** We explicitly test whether Self-Correction Bench's 'Wait' trick transfers to factual claims. For each model, we compare blind spot rates with and without the 'Wait' prompt appended during self-correction. Our hypothesis is that 'Wait' will show substantially diminished effectiveness for factual claims compared to its 89.3% reduction on math, because: (i) factual errors in knowledge-intensive generation often stem from genuine knowledge gaps (entity confusion, outdated temporal facts, relation misattribution) rather than the activation failures that 'Wait' addresses — the model lacks the correct information, not the motivation to correct; (ii) Self-Correction Bench's training-data analysis shows correction markers are concentrated in reasoning datasets (median 30–170 per response) but nearly absent from non-reasoning text (95th percentile = 1), suggesting 'Wait' may lack the conditioning effect for factual correction sequences; (iii) correction suppression (arXiv:2605.05957) demonstrates that even when models possess the knowledge, task context diverts attention at a deeper mechanistic level than simple activation failure — hidden-state similarity >0.99 indicates the model registers the error but suppresses correction. If 'Wait' proves effective for factual claims (>50% blind spot reduction), this would be an important positive finding that simplifies the problem — we would report it prominently and reframe the correctability classifier as addressing the remaining residual blind spot.\n\n**Phase 3: Behavioral Correctability Classifier (2 weeks).** Train a lightweight classifier that predicts, for each atomic claim in a new response, whether self-correction will succeed or fail. Unlike the PANL-based approach (arXiv:2604.22271) which requires white-box access to residual-stream activations, and unlike CyberCorrect (arXiv:2605.17305) whose tri-modal detector uses logic-chain verification suited only to reasoning tasks, our classifier uses black-box behavioral features appropriate for factual claims in long-form text: (i) multi-sample self-consistency score (SelfCheckGPT-style), (ii) verbal confidence when asked to rate claim certainty, (iii) claim type (entity/temporal/numerical/relational), (iv) claim specificity (more specific claims may be harder to correct, informed by SA/CSS findings), (v) detection-correction gap (whether the model flags the claim as uncertain but fails to correct it — measuring the gap between the blind-spot-as-detection-failure and blind-spot-as-correction-failure). The classifier explicitly targets CORRECTABILITY, not confidence — a distinction supported by three independent findings: DeepMind's result that behavioral confidence signals (AUROC=0.524) fail to predict correction success even when internal representations succeed (AUROC=0.614); the Functional Dissociation study (arXiv:2604.19974) showing uncertainty and correctness are encoded by distinct feature populations in Llama-3.1-8B and Gemma-2-9B; and the existence of 6+ papers (SA, CSS, CLC, CURE, CAG, VeriFY) that achieve strong calibration without enabling correction.\n\n**Pre-registered AUROC expectations.** We anchor expectations against known baselines: DeepMind's white-box PANL probes achieve AUROC=0.614 for correction prediction, while their behavioral confidence baseline achieves only 0.524. Black-box hallucination DETECTION (a strictly easier task than correctability prediction) achieves AUROC 0.75–0.82 with self-consistency methods (SelfCheckGPT). We pre-register: AUROC > 0.58 constitutes a positive result, demonstrating that claim-type and specificity features add meaningful signal beyond confidence alone for correctability prediction (significantly beating the 0.524 behavioral confidence baseline). AUROC > 0.63 constitutes a strong result, approaching DeepMind's white-box performance (0.614) without requiring model internals. If AUROC falls in the 0.55–0.58 range, the classifier contribution is acknowledged as modest, but the correctability-confidence dissociation analysis (comparing classifier features' predictive power for correctability vs. confidence) remains an important finding — demonstrating that even when correctability is hard to predict, it is not the same signal as confidence. If the heterogeneous-blind-spot hypothesis does not hold (i.e., the blind spot is roughly uniform across claim types), the classifier reduces to a uniform threshold policy — in this case, the benchmark itself, the natural-vs-injected comparison, the 'Wait' ablation results, and the characterization of confidence-vs-correctability dissociation remain the primary contributions, and we report the negative result as informative for the field.\n\n**Phase 4: Correctability-Guided Selective Fact Correction (2 weeks).** Implement SFC, which routes each claim through the correctability classifier. The key distinction from existing selective-handling approaches: SA (arXiv:2602.11908), CSS (arXiv:2604.17487), CLC (arXiv:2502.19110), CURE (arXiv:2604.12046), and CAG (arXiv:2605.01749) all use CONFIDENCE or CALIBRATION as the routing signal and respond to uncertainty through ABSTRACTION, SUPPRESSION, or HEDGING. SFC uses CORRECTABILITY as the routing signal and responds differently based on predicted correction success: claims predicted as correctable undergo ConFix-style intra-response confidence bootstrapping (attempting actual factual correction); claims in the predicted blind spot are flagged for abstention (marked as uncertain) or left unchanged to avoid destructive correction. This means SFC can handle cases that SA/CURE miss (confidently wrong but correctable claims) and avoids cases where SA over-abstracts (uncertain but actually correct claims that SA would unnecessarily vaguify). Compare against: (a) no correction baseline, (b) full naive self-correction (ask model to correct everything), (c) Selective Abstraction (SA) — confidence-based abstraction baseline operating on the same atomic claims, (d) CURE reference comparison — using CURE's published results on Biography/FactBench as reference points for the calibration-with-fine-tuning paradigm (noting CURE requires multi-stage fine-tuning while SFC is inference-time), (e) FactCorrector-style external-knowledge correction as an oracle upper bound, (f) random selective correction, (g) confidence-threshold selective correction (applying SA's confidence signal but with correction instead of abstraction, to isolate the correctability vs. confidence distinction), (h) 'Wait'-augmented self-correction (applying the 'Wait' trick globally, to isolate whether activation-based intervention subsumes our approach). Evaluate using FActScore and SAFE metrics, plus an information-retention metric (following SA's information-theoretic measure) to ensure SFC preserves more content than abstraction-only approaches.\n\n## Resource Estimate\n{'manual': {'gpu_hours': \"750-1100 (inference-only: 8 models × 3 datasets × multi-sample generation + correction passes; natural-error track adds ~20% overhead for multi-sample consistency; SA baseline replication adds ~10%; 'Wait' ablation adds ~15%; on 4×A100 node)\", 'timeline': \"13-16 weeks (3 weeks benchmark construction including natural-error track, 3 weeks blind spot measurement including suppression analysis and 'Wait' ablation, 2 weeks correctability classifier, 2 weeks SFC pipeline + SA/CURE baseline comparison, 3-4 weeks writing and ablations)\", 'estimated_gpu_cost': '$1125-$1650 at ~$1.50/A100-hr spot pricing'}, 'human_in_loop': {'gpu_hours': \"550-850 (Claude handles decomposition, error injection templates, multi-sample generation orchestration, SA baseline replication, 'Wait' ablation orchestration, and result analysis; human steers experiment design and interprets blind spot patterns)\", 'timeline': \"9-12 weeks (2.5 weeks benchmark with Claude-assisted decomposition + natural-error curation, 2.5 weeks measurement including 'Wait' ablation, 1.5 weeks classifier, 1.5 weeks SFC + baselines, 2-3 weeks writing)\", 'claude_api_cost': '$500-$800 (atomic decomposition of ~12K responses × ~10 claims each via Sonnet 4.6; error injection generation; correctability annotation; paper drafting)', 'estimated_gpu_cost': '$825-$1275'}, 'auto_research': {'gpu_hours': \"450-700 (automated sweep over models, claim types, 'Wait' ablation, and ablations)\", 'timeline': \"7-9 weeks (2 weeks benchmark auto-construction + natural-error curation, 2 weeks parallel blind spot sweeps + 'Wait' ablation, 1.5 weeks classifier training + SFC + SA baseline, 1.5-2 weeks writing)\", 'claude_api_cost': '$900-$1400 (heavier API use for automated claim decomposition, error injection, multi-sample consistency scoring, experiment orchestration, and iterative analysis)', 'estimated_gpu_cost': '$675-$1050', 'speed_bottleneck': \"Sequential model inference for blind spot measurement — each model must generate, then attempt correction (with and without 'Wait'), for thousands of claims; parallelizable across models but not within a single model's correction chain. Natural-error track requires multi-sample generation for consistency scoring.\"}}\n\n## Inspired By\nCombination of blind spot phenomenon (Self-Correction Bench) + the 'Wait' trick's 89.3% blind spot reduction on math raising the question of whether activation-based interventions transfer to factual knowledge tasks + Error Depth Hypothesis (error type predicts correctability in math) + correction suppression discovery (arXiv:2605.05957, showing task context suppresses factual correction 19-90%, which may compound the blind spot in knowledge-intensive generation) + fact-level confidence calibration (ConFix) + FactSelfCheck granularity results + DeepMind PANL correctability prediction (showing the signal exists but hasn't been studied at fact level or with black-box methods) + CyberCorrect's tri-modal detector features (self-consistency + confidence + error type for correction routing, but only on reasoning tasks) + Selective Abstraction's demonstration that atom-wise handling works at scale on FActScore (but abstracts rather than corrects) + CURE's claim-level calibration on biography generation (arXiv:2604.12046, achieving 39.9% accuracy improvement but never attempting correction) + CAG's exploration-commitment decoupling (arXiv:2605.01749, improving VeriScore but suppressing rather than correcting) + Functional Dissociation finding that uncertainty and correctness are encoded by distinct feature populations (arXiv:2604.19974); TACL survey finding that self-correction conditions are poorly understood outside reasoning tasks; the observation that FactCorrector achieves 67.4% atom correction WITH external knowledge but no one has measured intrinsic self-correction rates at atom level; Atomic Calibration's finding that LLMs show poorer calibration at atomic level in long-form generation; the emerging pattern that 6+ papers now pursue confidence-based claim-level abstention while zero papers pursue correctability-based claim-level correction.\n\n## Target Venues\n- AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — tight but feasible with auto_research timeline)\n- EACL 2027 via ARR (submission: August 3, 2026; commitment: October 11, 2026)\n- ICLR 2027 (expected submission: ~September-October 2026, dates TBA)\n- NAACL 2027 via ARR (submission: ~October 2026; commitment: ~October 16, 2026)\n- TACL (rolling monthly deadlines, any month 2026)\n\n## Key References\n- FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (Min et al., EMNLP 2023)\n- SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models (Manakul et al., EMNLP 2023)\n- Chain-of-Verification Reduces Hallucination in Large Language Models (Dhuliawala et al., arXiv 2023)\n- Long-form Factuality in Large Language Models — SAFE (Wei et al., arXiv 2024, arXiv:2403.18802)\n- Atomic Self-Consistency for Better Long Form Generations (Agrawal et al., EMNLP 2024)\n- Fact-Level Confidence Calibration and Self-Correction — ConFix (arXiv:2411.13343, 2024)\n- Atomic Calibration of LLMs in Long-Form Generations (Zhang et al., ACL 2025 KnowFM / AACL-IJCNLP 2025, arXiv:2410.13246)\n- Confidence v.s. Critique: A Decomposition of Self-Correction Capability for LLMs (Yang et al., ACL 2025, arXiv:2412.19513)\n- Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models (submitted to ICLR 2026, arXiv:2507.02778)\n- FactSelfCheck: Fact-Level Black-Box Hallucination Detection for LLMs (arXiv:2503.17229, 2025)\n- The FACTS Grounding Leaderboard: Benchmarking LLMs' Ability to Ground Responses to Long-Form Input (arXiv:2501.03200, 2025)\n- Know Your Limits: A Survey of Abstention in Large Language Models (arXiv 2025)\n- Enhancing LLM Reliability via Explicit Knowledge Boundary Modeling (arXiv 2025)\n- When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs (Kamoi et al., TACL 2025, arXiv:2406.01297)\n- Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis (arXiv:2601.00828, Jan 2026)\n- FactCorrector: A Graph-Inspired Approach to Long-Form Factuality Correction + VELI5 Benchmark (arXiv:2601.11232, Jan 2026)\n- Conformal Linguistic Calibration: Trading-off between Factuality and Specificity (Jiang et al., arXiv:2502.19110, Feb 2026)\n- When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation (Goren et al., arXiv:2602.11908, Feb 2026)\n- VeriFY: Learning Factual Self-Verification for Hallucination Reduction (arXiv:2602.02018, Feb 2026)\n- Know When You're Wrong: Aligning Confidence with Correctness for LLM Error Detection (arXiv:2603.06604, Mar 2026)\n- Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration — CURE (arXiv:2604.12046, Apr 2026)\n- How LLMs Detect and Correct Their Own Errors: The Role of Internal Confidence Signals (Kumaran et al., DeepMind, arXiv:2604.22271, Apr 2026)\n- Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (arXiv:2604.19974, Apr 2026)\n- I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arXiv:2604.03904, Apr 2026)\n- Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control — CSS (arXiv:2604.17487, Apr 2026)\n- AtomEval: SROM-atom Decomposition for Adversarial Fact Verification (arXiv:2604.07967, Apr 2026)\n- Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality — CAG (arXiv:2605.01749, May 2026)\n- Knowing but Not Correcting: Routine Task Requests Suppress Factual Correction in LLMs (Chen et al., arXiv:2605.05957, May 2026)\n- CyberCorrect: A Cybernetic Framework for Closed-Loop Self-Correction in Large Language Models (Wu et al., arXiv:2605.17305, May 2026)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:48:00.278Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:48:00.278Z",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:48:00.365Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability-Guided Selective Correction
+
+## Description
+We propose FactBlind, the first benchmark and analysis framework for measuring the self-correction blind spot at fact-level granularity in knowledge-intensive generation. While the blind spot phenomenon has been characterized for mathematical reasoning at problem level (64.5% average failure rate on GSM8K/PRM800K), and the 'Wait' trick reduces this by 89.3% through an activation mechanism, no work has examined whether these patterns hold for atomic factual claims in long-form text — where errors often stem from genuine knowledge gaps rather than activation failures that prompt tricks can resolve. The recent discovery of correction suppression (19–90% suppression rates when false claims are embedded in task contexts) further suggests the problem in knowledge-intensive generation operates through mechanisms distinct from math. Meanwhile, the selective claim-level handling space has become remarkably crowded — SA, CSS, CLC, CURE (39.9% claim-level accuracy on biography generation), and CAG (VeriScore 67.79%→79.80%) all use confidence/calibration for abstention — while the correctability-based correction paradigm remains entirely unexplored, despite mechanistic evidence that uncertainty and correctness are encoded by functionally distinct feature populations (Functional Dissociation, arXiv:2604.19974). We decompose LLM-generated biographies, QA responses, and report summaries into atomic claims and measure per-claim blind spot rates across 8 models, using both controlled error injection (entity, temporal, numerical, relational) and naturally occurring hallucinations from FActScore-annotated data, with a dedicated 'Wait' ablation testing whether activation-based interventions transfer from math to factual claims. Our central hypothesis — that the blind spot is heterogeneous across claim types and resistant to simple activation prompts — is tested rather than assumed; if 'Wait' proves effective for factual claims, we report this as an important simplifying finding. We then train a black-box behavioral correctability classifier using self-consistency, verbal confidence, claim type, and specificity features, with pre-registered AUROC thresholds (>0.58 positive, >0.63 strong) anchored against DeepMind's white-box baseline (0.614) and behavioral confidence baseline (0.524). Even modest classifier performance reveals the correctability-confidence dissociation, which is itself an important finding given 6+ papers implicitly assume confidence suffices for claim-level routing. Finally, we build Selective Fact Correction (SFC) as a downstream application: claims predicted as correctable undergo ConFix-style bootstrapping while blind-spot claims are flagged for abstention, compared against no-correction, naive self-correction, SA, CURE reference results, confidence-threshold correction, and 'Wait'-augmented self-correction baselines. Unlike SA/CSS/CLC/CURE/CAG which exclusively abstract or suppress, SFC can recover factual accuracy for correctable claims while avoiding destructive correction for uncorrectable ones.
+
+## Core Problem
+Self-correction research has characterized the blind spot phenomenon exclusively on mathematical reasoning tasks at problem-level granularity (Self-Correction Bench, 64.5% average blind spot rate across 14 models on GSM8K/PRM800K), and the 'Wait' prompt trick reduces this blind spot by 89.3% — but crucially, this works because math errors are activation failures, not knowledge deficiencies. Yet knowledge-intensive generation (biographies, open-domain QA, report writing) produces outputs containing dozens of heterogeneous atomic claims — entities, temporal facts, numerical values, relations — where errors often stem from genuine knowledge gaps that no activation trick can resolve. Meanwhile, a rapidly growing body of work on selective claim-level handling (Selective Abstraction, CSS, Conformal Linguistic Calibration, CURE, CAG — now 6+ papers) addresses uncertain claims through calibration, abstraction, or hedging, but none attempt to predict whether the model can actually *correct* a specific factual error — a fundamentally different question from whether the claim is uncertain or poorly calibrated, as demonstrated by recent evidence that uncertainty and correctness are encoded by distinct internal feature populations (Functional Dissociation, arXiv:2604.19974). Does the self-correction blind spot manifest differently at fact-level granularity in knowledge-intensive tasks, is it heterogeneous across claim types, can simple activation prompts ('Wait') compensate, and can behavioral correctability estimation enable more effective correction routing than either uniform correction or confidence-based abstraction?
+
+## Opportunity
+Five converging lines of work create a clear gap. First, the blind spot literature (Self-Correction Bench arXiv:2507.02778, submitted to ICLR 2026; Error Depth Hypothesis arXiv:2601.00828; Confidence v.s. Critique arXiv:2412.19513) has established that LLMs struggle to correct their own errors, with stronger models making fewer but 'deeper' errors that resist correction — but all measurement is at problem level on math tasks, and the 'Wait' trick's 89.3% blind spot reduction specifically exploits an activation mechanism that may not generalize to factual knowledge errors. Critically, 'Knowing but Not Correcting' (arXiv:2605.05957) discovers correction suppression — models reliably correct false claims in isolation but suppress correction when embedded in task contexts (19–90% suppression rates across 8 models) — demonstrating a complementary blind-spot phenomenon for factual claims that suggests the problem may be even worse in knowledge-intensive generation contexts where task framing is inherent. Second, the fact-level hallucination literature (FactSelfCheck arXiv:2503.17229, 35.5% vs 10.6% factual improvement for fact-level vs sentence-level; ConFix arXiv:2411.13343; FactCorrector arXiv:2601.11232 with the VELI5 benchmark) has demonstrated that fine-grained claim-level analysis dramatically outperforms coarser approaches — but neither studies whether models can correct their OWN factual errors claim-by-claim. Third, DeepMind's recent work (arXiv:2604.22271) shows that internal PANL representations can predict which errors a model can correct (AUROC=0.614 on TriviaQA), and CyberCorrect (arXiv:2605.17305) uses a tri-modal detector combining self-consistency, verbalized confidence, and logic-chain verification for type-directed correction — but both operate at problem level on reasoning/QA tasks, not at atomic-claim level within long-form outputs; CyberCorrect requires reasoning chains and DeepMind requires white-box model access. Moreover, a Functional Dissociation study (arXiv:2604.19974) demonstrates via sparse autoencoders that uncertainty and correctness are encoded by distinct feature populations — suppressing uncertainty features degrades accuracy by up to 10.21% while suppressing incorrectness features produces near-zero change — providing mechanistic evidence that confidence-based routing is fundamentally insufficient for correctability prediction. Fourth, the selective claim-level handling space has become remarkably crowded: Selective Abstraction (arXiv:2602.11908) decomposes responses into atomic claims and replaces uncertain ones with less-specific abstractions (up to 27.73% AURC improvement on FActScore), CSS (arXiv:2604.17487) backs off overcommitted claims, Conformal Linguistic Calibration (arXiv:2502.19110) provides conformal guarantees on claim factuality, CURE (arXiv:2604.12046) teaches models to reason about uncertainty at claim level via a structured &lt;think>→&lt;decompose>→&lt;answer> protocol achieving 39.9% claim-level accuracy improvement on biography generation through calibration and abstention, and CAG (arXiv:2605.01749) decouples exploration from commitment to improve VeriScore from 67.79% to 79.80% — but ALL of these (now 6+ papers) use confidence or calibration as their routing signal and respond to uncertainty through abstraction, suppression, or hedging, NEVER attempting correction. The intersection — measuring the blind spot at fact-level granularity, testing whether activation-based interventions generalize from math to factual claims, predicting correctability (not just confidence) using black-box behavioral signals, and routing claims to correction vs. abstention based on predicted correction success — is unoccupied.
+
+## Landscape
+The self-correction blind spot was first quantified by Self-Correction Bench (arXiv:2507.02778, submitted to ICLR 2026), which found 64.5% average failure-to-self-correct across 14 non-reasoning models — but tested only on math tasks (GSM8K, PRM800K, SCLI5) and operates at problem level. Notably, the bench found that appending a minimal 'Wait' prompt reduces the blind spot by 89.3%, and the authors attribute this to correction markers acting as conditioning tokens that shift probability distributions toward self-evaluation sequences — an activation mechanism supported by training-data analysis showing correction markers are concentrated in reasoning datasets (median 30–170 per response) but nearly absent from non-reasoning datasets (95th percentile = 1 marker). This suggests 'Wait' works because math errors are activation failures, not knowledge deficiencies; for factual claims where the model genuinely lacks correct information, activation alone cannot compensate (we test this hypothesis with a 'Wait' ablation in Phase 2). We treat Self-Correction Bench as a useful reference point rather than a definitive field-wide statistic, noting the TACL survey 'When Can LLMs Actually Correct Their Own Mistakes?' (arXiv:2406.01297) provides broader context for when self-correction succeeds or fails. The Error Depth Hypothesis (arXiv:2601.00828) shows that error TYPE predicts correctability in math — stronger models make deeper (setup/logic) errors that resist correction while weaker models make shallower (calculation) errors that are more fixable — suggesting claim-type stratification is a promising direction, though this was only tested on GSM8K with 3 models. Confidence v.s. Critique (arXiv:2412.19513, ACL 2025) decomposes self-correction into confidence and critique capabilities with probabilistic metrics, but operates at problem level.
+
+A newly discovered complementary phenomenon is correction suppression (arXiv:2605.05957): models reliably reject false claims in isolation but comply with those same claims when embedded in task-oriented requests, with suppression rates of 19–90% across 8 models. Mechanistically, the model internally registers the error (hidden-state similarity >0.99) but task context diverts attention, with 'output intent crystallizing toward compliance at middle layers.' This suggests that in knowledge-intensive generation — where task framing is inherent — the blind spot may be compounded by contextual suppression, and that 'Wait'-style activation interventions may be insufficient because the suppression mechanism operates at a deeper level than simple activation failure.
+
+On the fact-level side: FactSelfCheck (arXiv:2503.17229) achieves 35.5% factual improvement via fact-level hallucination detection using knowledge-graph-style triple representation. ConFix (arXiv:2411.13343) demonstrates that high-confidence facts can bootstrap correction of low-confidence facts within the same response without external knowledge. FactCorrector (arXiv:2601.11232) introduces the VELI5 benchmark (17,522 instances with injected factual errors and ground-truth corrections) and a graph-inspired correction pipeline — but relies on external knowledge retrieval via search APIs, achieving 67.4% correction of incorrect atoms with structured feedback. Atomic Calibration (Zhang et al., ACL 2025 KnowFM, arXiv:2410.13246) shows that LLMs exhibit poorer calibration at the atomic level during long-form generation than at response level, providing direct motivation for claim-level analysis.
+
+On correctability prediction: DeepMind's work (arXiv:2604.22271) trains linear probes on post-answer newline (PANL) residual-stream activations that predict correction success (AUROC=0.614), while verbal confidence (0.524) and log-probability (0.531) baselines fail — but requires white-box access and operates at problem level on TriviaQA/MNLI with only Gemma 3 27B and Qwen 2.5 7B. CyberCorrect (arXiv:2605.17305) uses a tri-modal error detector combining self-consistency (weight 0.4), verbalized confidence (0.35), and logic-chain verification (0.25) for type-directed correction on reasoning tasks, achieving 79.8% accuracy with 41% reduction in over-correction — but its logic-chain verification feature requires reasoning chains not present in factual claims, and it operates at reasoning-step level on CyberCorrect-Bench (440 tasks across math/logic/commonsense). Independently, 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv:2604.19974) provides mechanistic evidence via sparse autoencoders on Llama-3.1-8B and Gemma-2-9B that uncertainty and correctness are encoded by functionally distinct feature populations: pure uncertainty features are essential for accuracy (suppression causes up to -10.21% accuracy), while pure incorrectness features are statistically significant but functionally inert (suppression yields mean -0.03% change). This directly supports our thesis that confidence-based routing (which tracks uncertainty features) cannot substitute for correctability prediction (which must track correctness-related features). Our behavioral correctability classifier adopts similar self-consistency and confidence signals to CyberCorrect but replaces logic-chain verification with claim-type and specificity features appropriate for factual claims, and critically predicts SELF-CORRECTION success at atomic granularity rather than routing pre-identified errors.
+
+The selective claim-level handling space has become remarkably crowded but addresses a DIFFERENT question from ours. Selective Abstraction (SA; Goren et al., arXiv:2602.11908) decomposes long-form responses into atomic claims, estimates per-claim confidence via verbalized confidence scoring, generates progressively less-specific abstraction sequences, and selects the most specific abstraction satisfying a confidence threshold — achieving up to 27.73% AURC improvement on FActScore across 6 models. Crucially, SA never attempts correction: it exclusively replaces uncertain claims with vaguer versions. CSS (arXiv:2604.17487) similarly backs off overcommitted claims rather than correcting them. Conformal Linguistic Calibration (CLC; Jiang et al., arXiv:2502.19110) provides conformal guarantees on factual accuracy through nested answer-set prediction and progressive claim vaguening — tested on SimpleQA, Natural Questions, and FActScore — but requires fine-tuning (SFT/DPO/ORPO) and also does not attempt correction. CURE (arXiv:2604.12046) operates on the SAME task domain as our work (biography generation, FactBench) and at claim-level granularity: it introduces a Claim-Aware Reasoning Protocol that structures outputs into atomic claims paired with explicit confidence estimates via a &lt;think>→&lt;decompose>→&lt;answer> pipeline, achieving 39.9% claim-level accuracy improvement on Biography and 16.0% AUROC increase on FactBench — but requires multi-stage fine-tuning (SFT + DPO calibration + GRPO factuality optimization on 3–4K prompts) and responds exclusively through calibrated abstention, never attempting correction. CAG (arXiv:2605.01749) proposes an Exploration-Commitment Decoupling paradigm where calibrated reliability estimates filter unreliable reasoning steps before commitment, improving VeriScore from 67.79% to 79.80% across five benchmarks (AlpacaFact, Biography, FactBench, Factory, FAVA) — but also requires fine-tuning (CASS + CAPD stages) and suppresses rather than corrects unreliable claims. VeriFY (arXiv:2602.02018) teaches factual self-verification with abstention through structured verification traces at training time, reducing hallucination by 9.7–53.3% — but requires fine-tuning and operates at response level. I-CALM (arXiv:2604.03904) shows prompt-based abstention can shift error-prone cases to abstention without retraining. Know When You're Wrong (arXiv:2603.06604) aligns confidence with correctness for error detection (AUROC 0.806→0.879 with SFT).
+
+The key distinction: ALL of the above selective-handling methods (now 6+ papers: SA, CSS, CLC, CURE, CAG, VeriFY) use CONFIDENCE or CALIBRATION as their routing signal and respond to uncertainty through ABSTRACTION, SUPPRESSION, or HEDGING. None ask the question central to our work: 'Can this model correct this specific factual error in its own output?' A model may be confidently wrong about a claim (SA/CURE wouldn't touch it) but still able to correct it when prompted; conversely, a model may flag uncertainty about a claim but be unable to produce a correct replacement. Correctability and confidence are related but mechanistically distinct signals — as demonstrated both by DeepMind's finding that behavioral confidence fails to predict correction success (AUROC=0.524 vs. 0.614 for internal representations) and by the Functional Dissociation study showing distinct neural feature populations — and the gap between them, measured at fact level, is our primary object of study.
+
+Concurrent work: AtomEval (arXiv:2604.07967, April 2026) introduces SROM-atom decomposition for adversarial fact verification. CURE (arXiv:2604.12046) and CAG (arXiv:2605.01749) are the closest concurrent works, sharing our task domain and claim-level granularity — but both pursue the confidence-based calibration/abstention paradigm rather than correctability-based correction, making them complementary rather than competing approaches.
+
+## Approach
+We build FactBlind, a benchmark and analysis framework for measuring the self-correction blind spot at fact-level granularity in knowledge-intensive generation. The primary contributions are (1) the benchmark and blind spot analysis and (2) the behavioral correctability classifier; the selective correction pipeline is a downstream application demonstrating the practical value of correctability estimation, positioned as a secondary contribution given the now-crowded selective-handling design space.
+
+**Phase 1: Benchmark Construction (3 weeks).** (a) Injected-error track: Generate long-form responses (biographies, open-domain QA, report summaries) from 8 models, decompose into atomic claims using FActScore-style decomposition, then inject controlled factual errors stratified by type — entity swaps (replacing named entities), temporal shifts (date/year perturbations), numerical perturbations (magnitude changes), and relation inversions (swapping subject-object or predicate). We draw methodology inspiration from VELI5 (arXiv:2601.11232) but target intrinsic self-correction measurement rather than external-knowledge correction. We additionally stratify error injection by specificity level (informed by SA's finding that specificity affects reliability) to test whether more specific claims are harder to self-correct. (b) Natural-error track: Evaluate on unmodified LLM-generated biographies using existing FActScore annotations and SAFE/LongFact datasets, where naturally occurring hallucinations serve as ecological ground truth. This dual-track design directly addresses the threat that injected errors may behave differently from natural hallucinations.
+
+**Phase 2: Blind Spot Measurement (3 weeks).** For each atomic claim (both injected and natural errors), measure whether the model can (a) detect the error when presented as external input (external detection), (b) detect it in its own output (self-detection), and (c) correct it in its own output (self-correction). This yields a claim-type-stratified blind spot matrix: BS(model, claim_type) = 1 − P(self-correct | error) / P(external-correct | error). We test 8 models: DeepSeek-V4-Pro, Qwen3.5-27B, Qwen3.5-122B-A10B, Llama-4-Maverick, Llama-3.3-70B-Instruct, Qwen3-32B, Mistral-Small-24B-Instruct, and DeepSeek-V3. The central testable hypothesis is that the blind spot is heterogeneous across claim types — e.g., entity errors may be more detectable/correctable than temporal or relational errors, mirroring the Error Depth Hypothesis's finding that error type predicts correctability in math. A secondary analysis examines whether correction suppression effects (arXiv:2605.05957) manifest in our setting: we compare blind spot rates for claims embedded in full generated responses (task context) vs. claims presented in isolation, testing whether task-oriented framing compounds the blind spot.
+
+**'Wait' Ablation (within Phase 2).** We explicitly test whether Self-Correction Bench's 'Wait' trick transfers to factual claims. For each model, we compare blind spot rates with and without the 'Wait' prompt appended during self-correction. Our hypothesis is that 'Wait' will show substantially diminished effectiveness for factual claims compared to its 89.3% reduction on math, because: (i) factual errors in knowledge-intensive generation often stem from genuine knowledge gaps (entity confusion, outdated temporal facts, relation misattribution) rather than the activation failures that 'Wait' addresses — the model lacks the correct information, not the motivation to correct; (ii) Self-Correction Bench's training-data analysis shows correction markers are concentrated in reasoning datasets (median 30–170 per response) but nearly absent from non-reasoning text (95th percentile = 1), suggesting 'Wait' may lack the conditioning effect for factual correction sequences; (iii) correction suppression (arXiv:2605.05957) demonstrates that even when models possess the knowledge, task context diverts attention at a deeper mechanistic level than simple activation failure — hidden-state similarity >0.99 indicates the model registers the error but suppresses correction. If 'Wait' proves effective for factual claims (>50% blind spot reduction), this would be an important positive finding that simplifies the problem — we would report it prominently and reframe the correctability classifier as addressing the remaining residual blind spot.
+
+**Phase 3: Behavioral Correctability Classifier (2 weeks).** Train a lightweight classifier that predicts, for each atomic claim in a new response, whether self-correction will succeed or fail. Unlike the PANL-based approach (arXiv:2604.22271) which requires white-box access to residual-stream activations, and unlike CyberCorrect (arXiv:2605.17305) whose tri-modal detector uses logic-chain verification suited only to reasoning tasks, our classifier uses black-box behavioral features appropriate for factual claims in long-form text: (i) multi-sample self-consistency score (SelfCheckGPT-style), (ii) verbal confidence when asked to rate claim certainty, (iii) claim type (entity/temporal/numerical/relational), (iv) claim specificity (more specific claims may be harder to correct, informed by SA/CSS findings), (v) detection-correction gap (whether the model flags the claim as uncertain but fails to correct it — measuring the gap between the blind-spot-as-detection-failure and blind-spot-as-correction-failure). The classifier explicitly targets CORRECTABILITY, not confidence — a distinction supported by three independent findings: DeepMind's result that behavioral confidence signals (AUROC=0.524) fail to predict correction success even when internal representations succeed (AUROC=0.614); the Functional Dissociation study (arXiv:2604.19974) showing uncertainty and correctness are encoded by distinct feature populations in Llama-3.1-8B and Gemma-2-9B; and the existence of 6+ papers (SA, CSS, CLC, CURE, CAG, VeriFY) that achieve strong calibration without enabling correction.
+
+**Pre-registered AUROC expectations.** We anchor expectations against known baselines: DeepMind's white-box PANL probes achieve AUROC=0.614 for correction prediction, while their behavioral confidence baseline achieves only 0.524. Black-box hallucination DETECTION (a strictly easier task than correctability prediction) achieves AUROC 0.75–0.82 with self-consistency methods (SelfCheckGPT). We pre-register: AUROC > 0.58 constitutes a positive result, demonstrating that claim-type and specificity features add meaningful signal beyond confidence alone for correctability prediction (significantly beating the 0.524 behavioral confidence baseline). AUROC > 0.63 constitutes a strong result, approaching DeepMind's white-box performance (0.614) without requiring model internals. If AUROC falls in the 0.55–0.58 range, the classifier contribution is acknowledged as modest, but the correctability-confidence dissociation analysis (comparing classifier features' predictive power for correctability vs. confidence) remains an important finding — demonstrating that even when correctability is hard to predict, it is not the same signal as confidence. If the heterogeneous-blind-spot hypothesis does not hold (i.e., the blind spot is roughly uniform across claim types), the classifier reduces to a uniform threshold policy — in this case, the benchmark itself, the natural-vs-injected comparison, the 'Wait' ablation results, and the characterization of confidence-vs-correctability dissociation remain the primary contributions, and we report the negative result as informative for the field.
+
+**Phase 4: Correctability-Guided Selective Fact Correction (2 weeks).** Implement SFC, which routes each claim through the correctability classifier. The key distinction from existing selective-handling approaches: SA (arXiv:2602.11908), CSS (arXiv:2604.17487), CLC (arXiv:2502.19110), CURE (arXiv:2604.12046), and CAG (arXiv:2605.01749) all use CONFIDENCE or CALIBRATION as the routing signal and respond to uncertainty through ABSTRACTION, SUPPRESSION, or HEDGING. SFC uses CORRECTABILITY as the routing signal and responds differently based on predicted correction success: claims predicted as correctable undergo ConFix-style intra-response confidence bootstrapping (attempting actual factual correction); claims in the predicted blind spot are flagged for abstention (marked as uncertain) or left unchanged to avoid destructive correction. This means SFC can handle cases that SA/CURE miss (confidently wrong but correctable claims) and avoids cases where SA over-abstracts (uncertain but actually correct claims that SA would unnecessarily vaguify). Compare against: (a) no correction baseline, (b) full naive self-correction (ask model to correct everything), (c) Selective Abstraction (SA) — confidence-based abstraction baseline operating on the same atomic claims, (d) CURE reference comparison — using CURE's published results on Biography/FactBench as reference points for the calibration-with-fine-tuning paradigm (noting CURE requires multi-stage fine-tuning while SFC is inference-time), (e) FactCorrector-style external-knowledge correction as an oracle upper bound, (f) random selective correction, (g) confidence-threshold selective correction (applying SA's confidence signal but with correction instead of abstraction, to isolate the correctability vs. confidence distinction), (h) 'Wait'-augmented self-correction (applying the 'Wait' trick globally, to isolate whether activation-based intervention subsumes our approach). Evaluate using FActScore and SAFE metrics, plus an information-retention metric (following SA's information-theoretic measure) to ensure SFC preserves more content than abstraction-only approaches.
+
+## Resource Estimate
+{'manual': {'gpu_hours': "750-1100 (inference-only: 8 models × 3 datasets × multi-sample generation + correction passes; natural-error track adds ~20% overhead for multi-sample consistency; SA baseline replication adds ~10%; 'Wait' ablation adds ~15%; on 4×A100 node)", 'timeline': "13-16 weeks (3 weeks benchmark construction including natural-error track, 3 weeks blind spot measurement including suppression analysis and 'Wait' ablation, 2 weeks correctability classifier, 2 weeks SFC pipeline + SA/CURE baseline comparison, 3-4 weeks writing and ablations)", 'estimated_gpu_cost': '$1125-$1650 at ~$1.50/A100-hr spot pricing'}, 'human_in_loop': {'gpu_hours': "550-850 (Claude handles decomposition, error injection templates, multi-sample generation orchestration, SA baseline replication, 'Wait' ablation orchestration, and result analysis; human steers experiment design and interprets blind spot patterns)", 'timeline': "9-12 weeks (2.5 weeks benchmark with Claude-assisted decomposition + natural-error curation, 2.5 weeks measurement including 'Wait' ablation, 1.5 weeks classifier, 1.5 weeks SFC + baselines, 2-3 weeks writing)", 'claude_api_cost': '$500-$800 (atomic decomposition of ~12K responses × ~10 claims each via Sonnet 4.6; error injection generation; correctability annotation; paper drafting)', 'estimated_gpu_cost': '$825-$1275'}, 'auto_research': {'gpu_hours': "450-700 (automated sweep over models, claim types, 'Wait' ablation, and ablations)", 'timeline': "7-9 weeks (2 weeks benchmark auto-construction + natural-error curation, 2 weeks parallel blind spot sweeps + 'Wait' ablation, 1.5 weeks classifier training + SFC + SA baseline, 1.5-2 weeks writing)", 'claude_api_cost': '$900-$1400 (heavier API use for automated claim decomposition, error injection, multi-sample consistency scoring, experiment orchestration, and iterative analysis)', 'estimated_gpu_cost': '$675-$1050', 'speed_bottleneck': "Sequential model inference for blind spot measurement — each model must generate, then attempt correction (with and without 'Wait'), for thousands of claims; parallelizable across models but not within a single model's correction chain. Natural-error track requires multi-sample generation for consistency scoring."}}
+
+## Inspired By
+Combination of blind spot phenomenon (Self-Correction Bench) + the 'Wait' trick's 89.3% blind spot reduction on math raising the question of whether activation-based interventions transfer to factual knowledge tasks + Error Depth Hypothesis (error type predicts correctability in math) + correction suppression discovery (arXiv:2605.05957, showing task context suppresses factual correction 19-90%, which may compound the blind spot in knowledge-intensive generation) + fact-level confidence calibration (ConFix) + FactSelfCheck granularity results + DeepMind PANL correctability prediction (showing the signal exists but hasn't been studied at fact level or with black-box methods) + CyberCorrect's tri-modal detector features (self-consistency + confidence + error type for correction routing, but only on reasoning tasks) + Selective Abstraction's demonstration that atom-wise handling works at scale on FActScore (but abstracts rather than corrects) + CURE's claim-level calibration on biography generation (arXiv:2604.12046, achieving 39.9% accuracy improvement but never attempting correction) + CAG's exploration-commitment decoupling (arXiv:2605.01749, improving VeriScore but suppressing rather than correcting) + Functional Dissociation finding that uncertainty and correctness are encoded by distinct feature populations (arXiv:2604.19974); TACL survey finding that self-correction conditions are poorly understood outside reasoning tasks; the observation that FactCorrector achieves 67.4% atom correction WITH external knowledge but no one has measured intrinsic self-correction rates at atom level; Atomic Calibration's finding that LLMs show poorer calibration at atomic level in long-form generation; the emerging pattern that 6+ papers now pursue confidence-based claim-level abstention while zero papers pursue correctability-based claim-level correction.
+
+## Target Venues
+- AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — tight but feasible with auto_research timeline)
+- EACL 2027 via ARR (submission: August 3, 2026; commitment: October 11, 2026)
+- ICLR 2027 (expected submission: ~September-October 2026, dates TBA)
+- NAACL 2027 via ARR (submission: ~October 2026; commitment: ~October 16, 2026)
+- TACL (rolling monthly deadlines, any month 2026)
+
+## Key References
+- FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (Min et al., EMNLP 2023)
+- SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models (Manakul et al., EMNLP 2023)
+- Chain-of-Verification Reduces Hallucination in Large Language Models (Dhuliawala et al., arXiv 2023)
+- Long-form Factuality in Large Language Models — SAFE (Wei et al., arXiv 2024, arXiv:2403.18802)
+- Atomic Self-Consistency for Better Long Form Generations (Agrawal et al., EMNLP 2024)
+- Fact-Level Confidence Calibration and Self-Correction — ConFix (arXiv:2411.13343, 2024)
+- Atomic Calibration of LLMs in Long-Form Generations (Zhang et al., ACL 2025 KnowFM / AACL-IJCNLP 2025, arXiv:2410.13246)
+- Confidence v.s. Critique: A Decomposition of Self-Correction Capability for LLMs (Yang et al., ACL 2025, arXiv:2412.19513)
+- Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models (submitted to ICLR 2026, arXiv:2507.02778)
+- FactSelfCheck: Fact-Level Black-Box Hallucination Detection for LLMs (arXiv:2503.17229, 2025)
+- The FACTS Grounding Leaderboard: Benchmarking LLMs' Ability to Ground Responses to Long-Form Input (arXiv:2501.03200, 2025)
+- Know Your Limits: A Survey of Abstention in Large Language Models (arXiv 2025)
+- Enhancing LLM Reliability via Explicit Knowledge Boundary Modeling (arXiv 2025)
+- When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs (Kamoi et al., TACL 2025, arXiv:2406.01297)
+- Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis (arXiv:2601.00828, Jan 2026)
+- FactCorrector: A Graph-Inspired Approach to Long-Form Factuality Correction + VELI5 Benchmark (arXiv:2601.11232, Jan 2026)
+- Conformal Linguistic Calibration: Trading-off between Factuality and Specificity (Jiang et al., arXiv:2502.19110, Feb 2026)
+- When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation (Goren et al., arXiv:2602.11908, Feb 2026)
+- VeriFY: Learning Factual Self-Verification for Hallucination Reduction (arXiv:2602.02018, Feb 2026)
+- Know When You're Wrong: Aligning Confidence with Correctness for LLM Error Detection (arXiv:2603.06604, Mar 2026)
+- Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration — CURE (arXiv:2604.12046, Apr 2026)
+- How LLMs Detect and Correct Their Own Errors: The Role of Internal Confidence Signals (Kumaran et al., DeepMind, arXiv:2604.22271, Apr 2026)
+- Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (arXiv:2604.19974, Apr 2026)
+- I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arXiv:2604.03904, Apr 2026)
+- Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control — CSS (arXiv:2604.17487, Apr 2026)
+- AtomEval: SROM-atom Decomposition for Adversarial Fact Verification (arXiv:2604.07967, Apr 2026)
+- Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality — CAG (arXiv:2605.01749, May 2026)
+- Knowing but Not Correcting: Routine Task Requests Suppress Factual Correction in LLMs (Chen et al., arXiv:2605.05957, May 2026)
+- CyberCorrect: A Cybernetic Framework for Closed-Loop Self-Correction in Large Language Models (Wu et al., arXiv:2605.17305, May 2026)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "c4ef4283-a71c-4ded-a440-bf0cfab3a77e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:48:00.363Z_
+
+```json
+{
+  "parentUuid": "c4ef4283-a71c-4ded-a440-bf0cfab3a77e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "64ce5f9e-e03b-418e-8f0f-53951524eb2a",
+  "timestamp": "2026-05-20T05:48:00.363Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:48:00.363Z_
+
+```json
+{
+  "parentUuid": "64ce5f9e-e03b-418e-8f0f-53951524eb2a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a3033760-7ed1-4af3-8bc3-64c9cd73904f",
+  "timestamp": "2026-05-20T05:48:00.363Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability…",
+  "leafUuid": "a3033760-7ed1-4af3-8bc3-64c9cd73904f",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate self-correction blind spot proposal",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:48:04.601Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully. It's about measuring and addressing the self-correction blind spot at fact-level granularity in knowledge-intensive generation. Before I can give a proper assessment, I need to do thorough literature research to validate the novelty claims and understand the competitive landscape.
+
+Let me search for the key papers and concepts mentioned in this proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3033760-7ed1-4af3-8bc3-64c9cd73904f",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2cgPyinEPHUBXpPrd",
+  "type": "assistant",
+  "uuid": "59f3c61a-805e-4a52-984e-64accfbfee20",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AamdYTYwLYsWgh1QELpLL9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10412,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10412,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 10412,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10412
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T05:48:05.167Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key topics and papers mentioned.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59f3c61a-805e-4a52-984e-64accfbfee20",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2cgPyinEPHUBXpPrd",
+  "type": "assistant",
+  "uuid": "9178edee-b03a-4991-b5db-9bb78bf31c54",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AamdYTYwLYsWgh1QELpLL9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10412,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10412,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 10412,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10412
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T05:48:05.322Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YFDcRiKw33hXKXjbg6AK5E`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9178edee-b03a-4991-b5db-9bb78bf31c54",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2cgPyinEPHUBXpPrd",
+  "type": "assistant",
+  "uuid": "e2944bef-f772-4e28-966f-13f47d0aaf16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AamdYTYwLYsWgh1QELpLL9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10412,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10412,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 10412,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10412
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T05:48:05.331Z_
+
+<details><summary>↩ Tool result · `toolu_01YFDcRiKw33hXKXjbg6AK5E`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2944bef-f772-4e28-966f-13f47d0aaf16",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "ddd63651-fbf3-4e15-9eb1-5a6a02e7e28d",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "e2944bef-f772-4e28-966f-13f47d0aaf16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T05:48:08.212Z_
+
+Now let me conduct the literature searches in parallel to understand the competitive landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddd63651-fbf3-4e15-9eb1-5a6a02e7e28d",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2zCwxqySG1UTMyLbY",
+  "type": "assistant",
+  "uuid": "2edf8650-6295-446f-8ae6-d608cba13c91",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTkC9PirAQuUsLPU2SUtR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24745,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 24745,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T05:48:08.732Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BrKpDzFwSEq1GfRNYad22s`</summary>
+
+```json
+{
+  "query": "self-correction blind spot LLM factual claims knowledge-intensive generation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2edf8650-6295-446f-8ae6-d608cba13c91",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2zCwxqySG1UTMyLbY",
+  "type": "assistant",
+  "uuid": "7ae2deea-35cc-4ea2-9c67-5db5e661f360",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTkC9PirAQuUsLPU2SUtR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24745,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 24745,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T05:48:09.205Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ta4ciNx3TWzssBXkrPYw3`</summary>
+
+```json
+{
+  "query": "CURE claim-level calibration biography generation arXiv 2604.12046 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ae2deea-35cc-4ea2-9c67-5db5e661f360",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2zCwxqySG1UTMyLbY",
+  "type": "assistant",
+  "uuid": "401a374e-4daa-4628-909b-bf907e290782",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTkC9PirAQuUsLPU2SUtR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24745,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 24745,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T05:48:10.135Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WAmb9745ESYxQ8f3xsfymC`</summary>
+
+```json
+{
+  "query": "Selective Abstraction atomic claims factual accuracy arXiv 2602.11908 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "401a374e-4daa-4628-909b-bf907e290782",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2zCwxqySG1UTMyLbY",
+  "type": "assistant",
+  "uuid": "4fb0f5c4-3f05-4e64-8171-86e1df389754",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTkC9PirAQuUsLPU2SUtR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24745,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 24745,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T05:48:10.814Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HwGMbS1tCHmikPpEcggYjY`</summary>
+
+```json
+{
+  "query": "correctability prediction LLM self-correction DeepMind PANL arXiv 2604.22271"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fb0f5c4-3f05-4e64-8171-86e1df389754",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2zCwxqySG1UTMyLbY",
+  "type": "assistant",
+  "uuid": "9afed7f2-6a7e-4fb8-b9a9-15bceaefa7c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTkC9PirAQuUsLPU2SUtR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24745,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 24745,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T05:48:11.070Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XnnYc1TaQx4zrkruzPEY6X`</summary>
+
+```json
+{
+  "query": "\"Knowing but Not Correcting\" correction suppression LLMs arXiv 2605.05957"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9afed7f2-6a7e-4fb8-b9a9-15bceaefa7c5",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ2zCwxqySG1UTMyLbY",
+  "type": "assistant",
+  "uuid": "fe356c4b-7637-4d3b-96e3-8b7f98f9dc39",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTkC9PirAQuUsLPU2SUtR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24745,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 24745,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T05:48:14.532Z_
+
+<details><summary>↩ Tool result · `toolu_016ta4ciNx3TWzssBXkrPYw3`</summary>
+
+```text
+Web search results for query: "CURE claim-level calibration biography generation arXiv 2604.12046 2026"
+
+Links: [{"title":"[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/abs/2604.12046"},{"title":"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/html/2604.12046"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/pdf/2410.13246"},{"title":"MedRAGChecker: Claim-Level Verification for Biomedical Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2601.06519"},{"title":"[2601.06519] MedRAGChecker: Claim-Level Verification for Biomedical Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2601.06519"}]
+
+Based on the search results, I found information about arXiv paper 2604.12046:
+
+CURE is a framework that improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level. The framework introduces a Claim-Aware Reasoning Protocol, which structures outputs into atomic claims paired with explicit confidence estimates, and develops a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality.
+
+The paper was authored by Xin Liu and Lu Wang from the Computer Science and Engineering department at the University of Michigan, and was published on April 13, 2026. The full title of the paper is "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "401a374e-4daa-4628-909b-bf907e290782",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "81b5ad16-d567-4ea7-bce4-6d17a384f4cf",
+  "toolUseResult": {
+    "query": "CURE claim-level calibration biography generation arXiv 2604.12046 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011ybmvtmWNUYqvCyaVCma7h",
+        "content": [
+          {
+            "title": "[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/abs/2604.12046"
+          },
+          {
+            "title": "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/html/2604.12046"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/pdf/2410.13246"
+          },
+          {
+            "title": "MedRAGChecker: Claim-Level Verification for Biomedical Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2601.06519"
+          },
+          {
+            "title": "[2601.06519] MedRAGChecker: Claim-Level Verification for Biomedical Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2601.06519"
+          }
+        ]
+      },
+      "Based on the search results, I found information about arXiv paper 2604.12046:\n\nCURE is a framework that improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level. The framework introduces a Claim-Aware Reasoning Protocol, which structures outputs into atomic claims paired with explicit confidence estimates, and develops a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality.\n\nThe paper was authored by Xin Liu and Lu Wang from the Computer Science and Engineering department at the University of Michigan, and was published on April 13, 2026. The full title of the paper is \"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration.\""
+    ],
+    "durationSeconds": 5.323586185,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "401a374e-4daa-4628-909b-bf907e290782",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T05:48:14.750Z_
+
+<details><summary>↩ Tool result · `toolu_01BrKpDzFwSEq1GfRNYad22s`</summary>
+
+```text
+Web search results for query: "self-correction blind spot LLM factual claims knowledge-intensive generation 2025 2026"
+
+Links: [{"title":"Knowledge-Aware Self-Correction in Language Models via Structured Memory Graphs","url":"https://arxiv.org/pdf/2507.04625"},{"title":"Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs","url":"https://arxiv.org/html/2507.02778v1"},{"title":"Self-Alignment for Factuality: Mitigating Hallucinations in LLMs via   Self-Evaluation","url":"https://arxiv.org/pdf/2402.09267"},{"title":"Enhancing Factual Accuracy and Citation Generation in LLMs via Multi-Stage Self-Verification","url":"https://arxiv.org/html/2509.05741v1"},{"title":"Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/html/2507.02778v2"},{"title":"Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=7K1kXowjK1"}]
+
+I found several relevant research papers on this topic. Here's what the search revealed:
+
+## Self-Correction Blind Spot in LLMs
+
+LLMs are not good at self-correction, not because of knowledge, a phenomenon referred to as "Self-Correction Blind Spot". More specifically, LLMs fail to correct their own errors with a 64.5% average failure rate, but reliably fix identical errors from external sources.
+
+## Key Findings
+
+The blind spot stems from a lack of activation for self-correction, ruling out knowledge deficiency as the root cause. Interestingly, appending a simple "Wait" reduces the blind spot by 89.3%, confirming a minimum prompt can unlock latent correction abilities.
+
+The blind spot is potentially influenced by post-training data biases where human demonstrations rarely include self-correction sequences, unlike RL models that learn differently.
+
+## Related Research on Factuality
+
+The search also revealed complementary work on factual accuracy in LLMs. LLMs are prone to generating factually incorrect outputs, or "hallucinations," which undermine their reliability in sensitive applications such as healthcare, education, scientific writing, and legal documentation. Researchers have proposed various approaches to address this, including using self-evaluation, knowledge-aware corrections, and multi-stage verification mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ae2deea-35cc-4ea2-9c67-5db5e661f360",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "dc913263-f35f-427c-9ba3-cf57fb66d50c",
+  "toolUseResult": {
+    "query": "self-correction blind spot LLM factual claims knowledge-intensive generation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DEKPe7SeEpB19nGwQ1yR6T",
+        "content": [
+          {
+            "title": "Knowledge-Aware Self-Correction in Language Models via Structured Memory Graphs",
+            "url": "https://arxiv.org/pdf/2507.04625"
+          },
+          {
+            "title": "Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs",
+            "url": "https://arxiv.org/html/2507.02778v1"
+          },
+          {
+            "title": "Self-Alignment for Factuality: Mitigating Hallucinations in LLMs via   Self-Evaluation",
+            "url": "https://arxiv.org/pdf/2402.09267"
+          },
+          {
+            "title": "Enhancing Factual Accuracy and Citation Generation in LLMs via Multi-Stage Self-Verification",
+            "url": "https://arxiv.org/html/2509.05741v1"
+          },
+          {
+            "title": "Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/html/2507.02778v2"
+          },
+          {
+            "title": "Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=7K1kXowjK1"
+          }
+        ]
+      },
+      "I found several relevant research papers on this topic. Here's what the search revealed:\n\n## Self-Correction Blind Spot in LLMs\n\nLLMs are not good at self-correction, not because of knowledge, a phenomenon referred to as \"Self-Correction Blind Spot\". More specifically, LLMs fail to correct their own errors with a 64.5% average failure rate, but reliably fix identical errors from external sources.\n\n## Key Findings\n\nThe blind spot stems from a lack of activation for self-correction, ruling out knowledge deficiency as the root cause. Interestingly, appending a simple \"Wait\" reduces the blind spot by 89.3%, confirming a minimum prompt can unlock latent correction abilities.\n\nThe blind spot is potentially influenced by post-training data biases where human demonstrations rarely include self-correction sequences, unlike RL models that learn differently.\n\n## Related Research on Factuality\n\nThe search also revealed complementary work on factual accuracy in LLMs. LLMs are prone to generating factually incorrect outputs, or \"hallucinations,\" which undermine their reliability in sensitive applications such as healthcare, education, scientific writing, and legal documentation. Researchers have proposed various approaches to address this, including using self-evaluation, knowledge-aware corrections, and multi-stage verification mechanisms."
+    ],
+    "durationSeconds": 6.014335062999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7ae2deea-35cc-4ea2-9c67-5db5e661f360",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T05:48:16.650Z_
+
+<details><summary>↩ Tool result · `toolu_01WAmb9745ESYxQ8f3xsfymC`</summary>
+
+```text
+Web search results for query: "Selective Abstraction atomic claims factual accuracy arXiv 2602.11908 2026"
+
+Links: [{"title":"[2602.11908] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/abs/2602.11908"},{"title":"[2602.11908v2] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/abs/2602.11908v2"},{"title":"When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/html/2602.11908v2"},{"title":"When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/pdf/2602.11908"},{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity","url":"https://arxiv.org/pdf/2604.17487"},{"title":"AtomEval: Atomic Evaluation of Adversarial Claims in Fact Verification","url":"https://arxiv.org/html/2604.07967v1"}]
+
+Based on the search results, I found the arXiv paper you're looking for:
+
+**Title:** "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation"
+
+**arXiv ID:** 2602.11908
+
+**Authors:** Shani Goren, Ido Galil, Ran El-Yaniv
+
+**Key Details:**
+
+The paper introduces Selective Abstraction (SA), a framework that enables LLMs to trade specificity for reliability by selectively reducing the detail of uncertain content.
+
+The authors propose Atom-wise Selective Abstraction, a claim-level instantiation that decomposes responses into atomic claims (short, self-contained statements each expressing a single fact) and replaces uncertain atoms with higher confidence, less specific abstractions.
+
+**Results:** Across six open-source models on the FactScore and LongFact-Objects benchmarks, atom-wise SA consistently outperforms existing baselines, improving the area under the risk-coverage curve (AURC) by up to 27.73% over claim removal.
+
+**Submission Date:** The paper was submitted on February 12, 2026, with a revised version on February 13, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fb0f5c4-3f05-4e64-8171-86e1df389754",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "f7dcc080-f61e-47c6-9d09-7c3c0179c86b",
+  "toolUseResult": {
+    "query": "Selective Abstraction atomic claims factual accuracy arXiv 2602.11908 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DwAjCndCvwTuLtW5LeDUYo",
+        "content": [
+          {
+            "title": "[2602.11908] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/abs/2602.11908"
+          },
+          {
+            "title": "[2602.11908v2] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/abs/2602.11908v2"
+          },
+          {
+            "title": "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/html/2602.11908v2"
+          },
+          {
+            "title": "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/pdf/2602.11908"
+          },
+          {
+            "title": "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity",
+            "url": "https://arxiv.org/pdf/2604.17487"
+          },
+          {
+            "title": "AtomEval: Atomic Evaluation of Adversarial Claims in Fact Verification",
+            "url": "https://arxiv.org/html/2604.07967v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the arXiv paper you're looking for:\n\n**Title:** \"When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation\"\n\n**arXiv ID:** 2602.11908\n\n**Authors:** Shani Goren, Ido Galil, Ran El-Yaniv\n\n**Key Details:**\n\nThe paper introduces Selective Abstraction (SA), a framework that enables LLMs to trade specificity for reliability by selectively reducing the detail of uncertain content.\n\nThe authors propose Atom-wise Selective Abstraction, a claim-level instantiation that decomposes responses into atomic claims (short, self-contained statements each expressing a single fact) and replaces uncertain atoms with higher confidence, less specific abstractions.\n\n**Results:** Across six open-source models on the FactScore and LongFact-Objects benchmarks, atom-wise SA consistently outperforms existing baselines, improving the area under the risk-coverage curve (AURC) by up to 27.73% over claim removal.\n\n**Submission Date:** The paper was submitted on February 12, 2026, with a revised version on February 13, 2026."
+    ],
+    "durationSeconds": 6.512491941,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4fb0f5c4-3f05-4e64-8171-86e1df389754",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T05:48:16.874Z_
+
+<details><summary>↩ Tool result · `toolu_01HwGMbS1tCHmikPpEcggYjY`</summary>
+
+```text
+Web search results for query: "correctability prediction LLM self-correction DeepMind PANL arXiv 2604.22271"
+
+Links: [{"title":"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs","url":"https://www.researchgate.net/publication/385650033_When_Can_LLMs_Actually_Correct_Their_Own_Mistakes_A_Critical_Survey_of_Self-Correction_of_LLMs"},{"title":"Can LLMs Predict Their Own Failures? Self-Awareness via Internal Circuits","url":"https://arxiv.org/pdf/2512.20578"},{"title":"Internalized Self-Correction for Large Language Models","url":"https://arxiv.org/pdf/2412.16653"},{"title":"Confidence v.s. Critique: A Decomposition of Self-Correction Capability   for LLMs","url":"https://arxiv.org/pdf/2412.19513"},{"title":"Unleashing the True Potential of LLMs: A Feedback-Triggered Self-Correction with Long-Term Multipath Decoding","url":"https://arxiv.org/pdf/2509.07676"},{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/html/2510.16062v1"},{"title":"Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis","url":"https://arxiv.org/pdf/2601.00828"},{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/pdf/2510.16062"}]
+
+Based on the search results, I found relevant information about this research. The paper appears to be from DeepMind researchers investigating how LLMs can detect and correct their own errors.
+
+The research shows that PANL (post-answer newline) activations predict error detection beyond verbal confidence itself and predict which errors the model can correct, with causal interventions confirming that PANL signals support error detection behavior when answer information is corrupted.
+
+The findings reveal that LLMs naturally implement a second-order confidence architecture whose internal evaluative signal encodes not only whether an answer is likely wrong but whether the model has the knowledge to fix it.
+
+The results replicate across models (Gemma 3 27B and Qwen 2.5 7B) and tasks (TriviaQA and MNLI).
+
+This research investigates the underlying mechanisms of self-correction in large language models through the lens of second-order models of confidence from decision neuroscience, specifically focusing on how internal activations at the post-answer newline token can predict both error detection and correctability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9afed7f2-6a7e-4fb8-b9a9-15bceaefa7c5",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "fc6d4931-583d-4d95-96fe-3783a9be793d",
+  "toolUseResult": {
+    "query": "correctability prediction LLM self-correction DeepMind PANL arXiv 2604.22271",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PDJCUvvFfdFXy2ewU9R5dL",
+        "content": [
+          {
+            "title": "When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs",
+            "url": "https://www.researchgate.net/publication/385650033_When_Can_LLMs_Actually_Correct_Their_Own_Mistakes_A_Critical_Survey_of_Self-Correction_of_LLMs"
+          },
+          {
+            "title": "Can LLMs Predict Their Own Failures? Self-Awareness via Internal Circuits",
+            "url": "https://arxiv.org/pdf/2512.20578"
+          },
+          {
+            "title": "Internalized Self-Correction for Large Language Models",
+            "url": "https://arxiv.org/pdf/2412.16653"
+          },
+          {
+            "title": "Confidence v.s. Critique: A Decomposition of Self-Correction Capability   for LLMs",
+            "url": "https://arxiv.org/pdf/2412.19513"
+          },
+          {
+            "title": "Unleashing the True Potential of LLMs: A Feedback-Triggered Self-Correction with Long-Term Multipath Decoding",
+            "url": "https://arxiv.org/pdf/2509.07676"
+          },
+          {
+            "title": "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs",
+            "url": "https://arxiv.org/html/2510.16062v1"
+          },
+          {
+            "title": "Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis",
+            "url": "https://arxiv.org/pdf/2601.00828"
+          },
+          {
+            "title": "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs",
+            "url": "https://arxiv.org/pdf/2510.16062"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about this research. The paper appears to be from DeepMind researchers investigating how LLMs can detect and correct their own errors.\n\nThe research shows that PANL (post-answer newline) activations predict error detection beyond verbal confidence itself and predict which errors the model can correct, with causal interventions confirming that PANL signals support error detection behavior when answer information is corrupted.\n\nThe findings reveal that LLMs naturally implement a second-order confidence architecture whose internal evaluative signal encodes not only whether an answer is likely wrong but whether the model has the knowledge to fix it.\n\nThe results replicate across models (Gemma 3 27B and Qwen 2.5 7B) and tasks (TriviaQA and MNLI).\n\nThis research investigates the underlying mechanisms of self-correction in large language models through the lens of second-order models of confidence from decision neuroscience, specifically focusing on how internal activations at the post-answer newline token can predict both error detection and correctability."
+    ],
+    "durationSeconds": 6.057353701999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9afed7f2-6a7e-4fb8-b9a9-15bceaefa7c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability…",
+  "leafUuid": "95f3ef17-bded-4056-b603-fa48da3f16cc",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate self-correction blind spot proposal",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:48:16.978Z_
+
+<details><summary>↩ Tool result · `toolu_01XnnYc1TaQx4zrkruzPEY6X`</summary>
+
+```text
+Web search results for query: ""Knowing but Not Correcting" correction suppression LLMs arXiv 2605.05957"
+
+Links: [{"title":"Knowing but Not Correcting: Routine Task Requests Suppress Factual Correction in LLMs","url":"https://arxiv.org/html/2605.05957v1"},{"title":"Are LLMs Really Not Knowledgeable? Mining the Submerged Knowledge in LLMs' Memory","url":"https://arxiv.org/pdf/2412.20846"},{"title":"Rectifying Belief Space via Unlearning to Harness LLMs' Reasoning","url":"https://arxiv.org/pdf/2502.20620"},{"title":"Knowledge-Aware Self-Correction in Language Models via Structured Memory Graphs","url":"https://arxiv.org/pdf/2507.04625"},{"title":"LLMs cannot find reasoning errors, but can correct them given the error location","url":"https://arxiv.org/html/2311.08516v3"},{"title":"Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis","url":"https://arxiv.org/pdf/2601.00828"},{"title":"LLMs cannot find reasoning errors, but can correct them given the error   location","url":"https://arxiv.org/pdf/2311.08516"},{"title":"Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs","url":"https://arxiv.org/html/2507.02778v1"}]
+
+I found the paper! Here's what the search results show about "Knowing but Not Correcting: Routine Task Requests Suppress Factual Correction in LLMs" (arXiv:2605.05957):
+
+## Overview
+
+LLMs reliably correct false claims when presented in isolation, yet when the same claims are embedded in task-oriented requests, they often comply rather than correct. This failure mode is termed "correction suppression."
+
+## Key Findings
+
+The researchers constructed a benchmark of 300 false premises to systematically evaluate correction suppression across eight models, with suppression rates ranging from 19% to 90%, with four models exceeding 80%.
+
+## Mechanistic Analysis
+
+Mechanistic analysis comparing hidden-state representations, prediction uncertainty, and attention patterns between isolated and contextualized conditions reveals that suppression is not a knowledge failure: the model registers the error internally regardless of output behavior.
+
+The paper was published on May 7, 2026, and comes from researchers at Shanghai Jiao Tong University, Hong Kong University of Science and Technology, and Ant Group.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe356c4b-7637-4d3b-96e3-8b7f98f9dc39",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "95f3ef17-bded-4056-b603-fa48da3f16cc",
+  "toolUseResult": {
+    "query": "\"Knowing but Not Correcting\" correction suppression LLMs arXiv 2605.05957",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D4PM6EgpVd9gV2uUeAXj8o",
+        "content": [
+          {
+            "title": "Knowing but Not Correcting: Routine Task Requests Suppress Factual Correction in LLMs",
+            "url": "https://arxiv.org/html/2605.05957v1"
+          },
+          {
+            "title": "Are LLMs Really Not Knowledgeable? Mining the Submerged Knowledge in LLMs' Memory",
+            "url": "https://arxiv.org/pdf/2412.20846"
+          },
+          {
+            "title": "Rectifying Belief Space via Unlearning to Harness LLMs' Reasoning",
+            "url": "https://arxiv.org/pdf/2502.20620"
+          },
+          {
+            "title": "Knowledge-Aware Self-Correction in Language Models via Structured Memory Graphs",
+            "url": "https://arxiv.org/pdf/2507.04625"
+          },
+          {
+            "title": "LLMs cannot find reasoning errors, but can correct them given the error location",
+            "url": "https://arxiv.org/html/2311.08516v3"
+          },
+          {
+            "title": "Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis",
+            "url": "https://arxiv.org/pdf/2601.00828"
+          },
+          {
+            "title": "LLMs cannot find reasoning errors, but can correct them given the error   location",
+            "url": "https://arxiv.org/pdf/2311.08516"
+          },
+          {
+            "title": "Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs",
+            "url": "https://arxiv.org/html/2507.02778v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search results show about \"Knowing but Not Correcting: Routine Task Requests Suppress Factual Correction in LLMs\" (arXiv:2605.05957):\n\n## Overview\n\nLLMs reliably correct false claims when presented in isolation, yet when the same claims are embedded in task-oriented requests, they often comply rather than correct. This failure mode is termed \"correction suppression.\"\n\n## Key Findings\n\nThe researchers constructed a benchmark of 300 false premises to systematically evaluate correction suppression across eight models, with suppression rates ranging from 19% to 90%, with four models exceeding 80%.\n\n## Mechanistic Analysis\n\nMechanistic analysis comparing hidden-state representations, prediction uncertainty, and attention patterns between isolated and contextualized conditions reveals that suppression is not a knowledge failure: the model registers the error internally regardless of output behavior.\n\nThe paper was published on May 7, 2026, and comes from researchers at Shanghai Jiao Tong University, Hong Kong University of Science and Technology, and Ant Group."
+    ],
+    "durationSeconds": 5.906055704999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fe356c4b-7637-4d3b-96e3-8b7f98f9dc39",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-20T05:48:24.004Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've confirmed the existence and key details of the major papers referenced. Let me now search for a few more critical pieces:
+1. The Functional Dissociation paper (arXiv:2604.19974)
+2. CyberCorrect (arXiv:2605.17305)
+3. CAG (arXiv:2605.01749)
+4. Any existing work that specifically does fact-level correctability prediction or fact-level blind spot measurement
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95f3ef17-bded-4056-b603-fa48da3f16cc",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ3qjjYuAwkDdDiNLWe",
+  "type": "assistant",
+  "uuid": "cbcfd529-f2d9-4ca0-9c8e-69a2b920eb52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ueKXed7qpQ45odY4gLbPd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3467,
+      "cache_read_input_tokens": 25464,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25464,
+          "cache_creation_input_tokens": 3467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T05:48:24.502Z_
+
+Good, key papers confirmed. Let me search for more specific references and potential competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbcfd529-f2d9-4ca0-9c8e-69a2b920eb52",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ3qjjYuAwkDdDiNLWe",
+  "type": "assistant",
+  "uuid": "0506fdf9-37fd-484f-9904-62e79267e211",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ueKXed7qpQ45odY4gLbPd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3467,
+      "cache_read_input_tokens": 25464,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25464,
+          "cache_creation_input_tokens": 3467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T05:48:25.480Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P3GSy3r5oRXaV9mc9eYds5`</summary>
+
+```json
+{
+  "query": "functional dissociation uncertainty correctness LLM sparse autoencoders arXiv 2604.19974"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0506fdf9-37fd-484f-9904-62e79267e211",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ3qjjYuAwkDdDiNLWe",
+  "type": "assistant",
+  "uuid": "c986c9ae-0f77-446b-99f1-595c200e9230",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ueKXed7qpQ45odY4gLbPd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3467,
+      "cache_read_input_tokens": 25464,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25464,
+          "cache_creation_input_tokens": 3467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T05:48:25.994Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HNGNjXzvQk5SoH4qhVfbPM`</summary>
+
+```json
+{
+  "query": "CyberCorrect tri-modal self-correction LLM arXiv 2605.17305 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c986c9ae-0f77-446b-99f1-595c200e9230",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ3qjjYuAwkDdDiNLWe",
+  "type": "assistant",
+  "uuid": "426c3c55-db19-4a0b-8201-8bd190cd476a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ueKXed7qpQ45odY4gLbPd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3467,
+      "cache_read_input_tokens": 25464,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25464,
+          "cache_creation_input_tokens": 3467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T05:48:26.427Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011Msb8FGD7oX54X5FCkGHvw`</summary>
+
+```json
+{
+  "query": "CAG calibration-aware generation VeriScore long-form factuality arXiv 2605.01749"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "426c3c55-db19-4a0b-8201-8bd190cd476a",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ3qjjYuAwkDdDiNLWe",
+  "type": "assistant",
+  "uuid": "d8031eb3-8f93-4e92-9154-5ee9b26e33f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ueKXed7qpQ45odY4gLbPd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3467,
+      "cache_read_input_tokens": 25464,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25464,
+          "cache_creation_input_tokens": 3467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T05:48:27.182Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HPpfc1TZXZ8a5g3NRVy2bL`</summary>
+
+```json
+{
+  "query": "fact-level self-correction atomic claims hallucination correction benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8031eb3-8f93-4e92-9154-5ee9b26e33f6",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ3qjjYuAwkDdDiNLWe",
+  "type": "assistant",
+  "uuid": "8139c756-b21c-4259-8917-758bf8712f9c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ueKXed7qpQ45odY4gLbPd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3467,
+      "cache_read_input_tokens": 25464,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3467,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25464,
+          "cache_creation_input_tokens": 3467,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3467
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T05:48:31.634Z_
+
+<details><summary>↩ Tool result · `toolu_01P3GSy3r5oRXaV9mc9eYds5`</summary>
+
+```text
+Web search results for query: "functional dissociation uncertainty correctness LLM sparse autoencoders arXiv 2604.19974"
+
+Links: [{"title":"[2604.19974] Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders","url":"https://arxiv.org/abs/2604.19974"},{"title":"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders","url":"https://arxiv.org/html/2604.19974"},{"title":"Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders","url":"https://arxiv.org/html/2510.02917v1"},{"title":"[2510.02917] Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders","url":"https://arxiv.org/abs/2510.02917"},{"title":"Sparse but Wrong: Incorrect L0 Leads to Incorrect Features in Sparse Autoencoders","url":"https://arxiv.org/pdf/2508.16560"},{"title":"(PDF) Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders","url":"https://www.researchgate.net/publication/396223224_Mechanistic_Interpretability_of_Code_Correctness_in_LLMs_via_Sparse_Autoencoders"},{"title":"Taming Polysemanticity in LLMs: Provable Feature Recovery via Sparse Autoencoders","url":"https://arxiv.org/pdf/2506.14002"}]
+
+Based on the search results, here's what I found about arXiv paper 2604.19974:
+
+## Paper Overview
+
+Large language models can be uncertain yet correct, or confident yet wrong, raising the question of whether their output-level uncertainty and their actual correctness are driven by the same internal mechanisms or by distinct feature populations.
+
+## Methodology
+
+The paper introduces a 2x2 framework that partitions model predictions along correctness and confidence axes, and uses sparse autoencoders to identify features associated with each dimension independently.
+
+## Key Findings
+
+Applying this to Llama-3.1-8B and Gemma-2-9B, the authors identify three feature populations that play fundamentally different functional roles. Specifically:
+
+- Pure uncertainty features are functionally essential: suppressing them severely degrades accuracy.
+
+- Pure incorrectness features are functionally inert: despite showing statistically significant activation differences between correct and incorrect predictions, the majority produce near-zero change in accuracy when suppressed.
+
+The paper demonstrates a functional dissociation between the mechanisms underlying model uncertainty and correctness in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c986c9ae-0f77-446b-99f1-595c200e9230",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "40929de8-dc80-4f4c-b912-d1378d6f2f14",
+  "toolUseResult": {
+    "query": "functional dissociation uncertainty correctness LLM sparse autoencoders arXiv 2604.19974",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WjLjfkuzzy4ZH9dUSrvcTx",
+        "content": [
+          {
+            "title": "[2604.19974] Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders",
+            "url": "https://arxiv.org/abs/2604.19974"
+          },
+          {
+            "title": "Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders",
+            "url": "https://arxiv.org/html/2604.19974"
+          },
+          {
+            "title": "Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders",
+            "url": "https://arxiv.org/html/2510.02917v1"
+          },
+          {
+            "title": "[2510.02917] Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders",
+            "url": "https://arxiv.org/abs/2510.02917"
+          },
+          {
+            "title": "Sparse but Wrong: Incorrect L0 Leads to Incorrect Features in Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2508.16560"
+          },
+          {
+            "title": "(PDF) Mechanistic Interpretability of Code Correctness in LLMs via Sparse Autoencoders",
+            "url": "https://www.researchgate.net/publication/396223224_Mechanistic_Interpretability_of_Code_Correctness_in_LLMs_via_Sparse_Autoencoders"
+          },
+          {
+            "title": "Taming Polysemanticity in LLMs: Provable Feature Recovery via Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2506.14002"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2604.19974:\n\n## Paper Overview\n\nLarge language models can be uncertain yet correct, or confident yet wrong, raising the question of whether their output-level uncertainty and their actual correctness are driven by the same internal mechanisms or by distinct feature populations.\n\n## Methodology\n\nThe paper introduces a 2x2 framework that partitions model predictions along correctness and confidence axes, and uses sparse autoencoders to identify features associated with each dimension independently.\n\n## Key Findings\n\nApplying this to Llama-3.1-8B and Gemma-2-9B, the authors identify three feature populations that play fundamentally different functional roles. Specifically:\n\n- Pure uncertainty features are functionally essential: suppressing them severely degrades accuracy.\n\n- Pure incorrectness features are functionally inert: despite showing statistically significant activation differences between correct and incorrect predictions, the majority produce near-zero change in accuracy when suppressed.\n\nThe paper demonstrates a functional dissociation between the mechanisms underlying model uncertainty and correctness in large language models."
+    ],
+    "durationSeconds": 6.14813307,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c986c9ae-0f77-446b-99f1-595c200e9230",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T05:48:33.038Z_
+
+<details><summary>↩ Tool result · `toolu_01HNGNjXzvQk5SoH4qhVfbPM`</summary>
+
+```text
+Web search results for query: "CyberCorrect tri-modal self-correction LLM arXiv 2605.17305 2026"
+
+Links: [{"title":"[2605.17305] CyberCorrect: A Cybernetic Framework for Closed-Loop Self-Correction in Large Language Models","url":"https://arxiv.org/abs/2605.17305"},{"title":"CyberCorrect: A Cybernetic Framework for Closed-Loop Self-Correction in Large Language Models","url":"https://arxiv.org/html/2605.17305"},{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/html/2510.16062v1"},{"title":"Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis","url":"https://arxiv.org/pdf/2601.00828"},{"title":"Self-Correction Makes LLMs Better Parsers","url":"https://arxiv.org/pdf/2504.14165"},{"title":"Confidence v.s. Critique: A Decomposition of Self-Correction Capability   for LLMs","url":"https://arxiv.org/pdf/2412.19513"},{"title":"Structure Enables Effective Self-Localization of Errors in LLMs","url":"https://arxiv.org/pdf/2602.02416"}]
+
+Based on the search results, I found detailed information about the CyberCorrect paper (arXiv 2605.17305):
+
+## Overview
+
+CyberCorrect is a framework that formalizes LLM self-correction as a closed-loop control system grounded in cybernetic theory.
+
+## Key Components
+
+The framework models the LLM generator as the plant and introduces a tri-modal Error Detector (combining self-consistency, verbalized confidence, and logic-chain verification) as the sensor. A type-directed Correction Controller generates targeted repair instructions based on diagnosed error categories, while a Convergence Judge determines iteration termination using stability criteria adapted from control theory.
+
+## Evaluation Metrics
+
+The paper introduces three control-theoretic evaluation metrics -- convergence rate, overshoot rate, and oscillation rate -- that capture correction dynamics beyond final accuracy.
+
+## Research Problem
+
+The paper addresses the problem that large language model self-correction remains largely ad hoc, relying on generic prompts such as "please reconsider your answer" without systematic error analysis or convergence guarantees.
+
+The paper was published in May 2026 and uses cybernetic theory principles to bring more systematic and theoretically grounded approaches to LLM self-correction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "426c3c55-db19-4a0b-8201-8bd190cd476a",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "946c491b-fc0e-4290-8210-75e75d037b64",
+  "toolUseResult": {
+    "query": "CyberCorrect tri-modal self-correction LLM arXiv 2605.17305 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0169VwLXdZqxhsHibv3dbXAb",
+        "content": [
+          {
+            "title": "[2605.17305] CyberCorrect: A Cybernetic Framework for Closed-Loop Self-Correction in Large Language Models",
+            "url": "https://arxiv.org/abs/2605.17305"
+          },
+          {
+            "title": "CyberCorrect: A Cybernetic Framework for Closed-Loop Self-Correction in Large Language Models",
+            "url": "https://arxiv.org/html/2605.17305"
+          },
+          {
+            "title": "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs",
+            "url": "https://arxiv.org/html/2510.16062v1"
+          },
+          {
+            "title": "Decomposing LLM Self-Correction: The Accuracy-Correction Paradox and Error Depth Hypothesis",
+            "url": "https://arxiv.org/pdf/2601.00828"
+          },
+          {
+            "title": "Self-Correction Makes LLMs Better Parsers",
+            "url": "https://arxiv.org/pdf/2504.14165"
+          },
+          {
+            "title": "Confidence v.s. Critique: A Decomposition of Self-Correction Capability   for LLMs",
+            "url": "https://arxiv.org/pdf/2412.19513"
+          },
+          {
+            "title": "Structure Enables Effective Self-Localization of Errors in LLMs",
+            "url": "https://arxiv.org/pdf/2602.02416"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the CyberCorrect paper (arXiv 2605.17305):\n\n## Overview\n\nCyberCorrect is a framework that formalizes LLM self-correction as a closed-loop control system grounded in cybernetic theory.\n\n## Key Components\n\nThe framework models the LLM generator as the plant and introduces a tri-modal Error Detector (combining self-consistency, verbalized confidence, and logic-chain verification) as the sensor. A type-directed Correction Controller generates targeted repair instructions based on diagnosed error categories, while a Convergence Judge determines iteration termination using stability criteria adapted from control theory.\n\n## Evaluation Metrics\n\nThe paper introduces three control-theoretic evaluation metrics -- convergence rate, overshoot rate, and oscillation rate -- that capture correction dynamics beyond final accuracy.\n\n## Research Problem\n\nThe paper addresses the problem that large language model self-correction remains largely ad hoc, relying on generic prompts such as \"please reconsider your answer\" without systematic error analysis or convergence guarantees.\n\nThe paper was published in May 2026 and uses cybernetic theory principles to bring more systematic and theoretically grounded approaches to LLM self-correction."
+    ],
+    "durationSeconds": 7.039530963999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "426c3c55-db19-4a0b-8201-8bd190cd476a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T05:48:33.216Z_
+
+<details><summary>↩ Tool result · `toolu_011Msb8FGD7oX54X5FCkGHvw`</summary>
+
+```text
+Web search results for query: "CAG calibration-aware generation VeriScore long-form factuality arXiv 2605.01749"
+
+Links: [{"title":"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/html/2605.01749"},{"title":"[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/abs/2605.01749"},{"title":"VERISCORE: Evaluating the factuality of verifiable claims in long-form text generation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/veriscore-evaluating-factuality-verifiable-claims-long-form"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1822&show=1000"},{"title":"When to Trust: A Causality-Aware Calibration Framework for Accurate Knowledge Graph Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2601.09241"}]
+
+I found the paper! Here's information about arXiv 2605.01749:
+
+**Title:** "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality"
+
+**Overview:** The paper addresses the problem that Large Reasoning Models achieve strong performance on complex tasks but remain prone to hallucinations, particularly in long-form generation where errors compound across reasoning steps.
+
+**Main Contribution:** The authors propose an "Exploration-Commitment Decoupling" paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously. They instantiate this with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities, by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content.
+
+**Results:** Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%. Additionally, CASS, their instantiation of CAG, consistently outperforms all baselines, with notable improvements such as boosting Llama-3.1-8B from 61.51 to 71.79 (+10.3).
+
+**Evaluation:** The results are evaluated on five long-form factuality benchmarks using VeriScore.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8031eb3-8f93-4e92-9154-5ee9b26e33f6",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "06d1305f-f3bf-4bf1-b9ab-cf311b1a77e8",
+  "toolUseResult": {
+    "query": "CAG calibration-aware generation VeriScore long-form factuality arXiv 2605.01749",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BYeYgV6DuZ2RwxirCpCWVA",
+        "content": [
+          {
+            "title": "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality",
+            "url": "https://arxiv.org/html/2605.01749"
+          },
+          {
+            "title": "[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality",
+            "url": "https://arxiv.org/abs/2605.01749"
+          },
+          {
+            "title": "VERISCORE: Evaluating the factuality of verifiable claims in long-form text generation | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/veriscore-evaluating-factuality-verifiable-claims-long-form"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1822&show=1000"
+          },
+          {
+            "title": "When to Trust: A Causality-Aware Calibration Framework for Accurate Knowledge Graph Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2601.09241"
+          }
+        ]
+      },
+      "I found the paper! Here's information about arXiv 2605.01749:\n\n**Title:** \"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality\"\n\n**Overview:** The paper addresses the problem that Large Reasoning Models achieve strong performance on complex tasks but remain prone to hallucinations, particularly in long-form generation where errors compound across reasoning steps.\n\n**Main Contribution:** The authors propose an \"Exploration-Commitment Decoupling\" paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously. They instantiate this with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities, by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content.\n\n**Results:** Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%. Additionally, CASS, their instantiation of CAG, consistently outperforms all baselines, with notable improvements such as boosting Llama-3.1-8B from 61.51 to 71.79 (+10.3).\n\n**Evaluation:** The results are evaluated on five long-form factuality benchmarks using VeriScore."
+    ],
+    "durationSeconds": 6.786480989000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d8031eb3-8f93-4e92-9154-5ee9b26e33f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T05:48:35.177Z_
+
+<details><summary>↩ Tool result · `toolu_01HPpfc1TZXZ8a5g3NRVy2bL`</summary>
+
+```text
+Web search results for query: "fact-level self-correction atomic claims hallucination correction benchmark 2025 2026"
+
+Links: [{"title":"Fact-Conflicting Hallucination in LLMs","url":"https://www.emergentmind.com/topics/fact-conflicting-hallucination"},{"title":"Self-Consistency Hallucination Detection","url":"https://www.emergentmind.com/topics/self-consistency-based-hallucination-detection"},{"title":"FactSelfCheck: Fact-Level Black-Box Hallucination Detection for LLMs","url":"https://arxiv.org/pdf/2503.17229"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF","url":"https://www.researchgate.net/publication/370981225_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"},{"title":"Fact-Level Confidence Calibration and Self-Correction","url":"https://arxiv.org/pdf/2411.13343"},{"title":"Hallucination Rates in 2025 — Accuracy, Refusal, and Liability | by Markus Brinsa | Medium","url":"https://medium.com/@markus_brinsa/hallucination-rates-in-2025-accuracy-refusal-and-liability-aa0032019ca1"},{"title":"Faster, Stronger Long-Form Factuality Evaluations in LLMs","url":"https://aclanthology.org/2025.findings-emnlp.1295.pdf"}]
+
+Based on the search results, here are the key findings related to fact-level self-correction, atomic claims, and hallucination correction benchmarks from 2025-2026:
+
+## Fact-Level Self-Correction Methods
+
+FactSelfCheck achieves a 35.5% increase in factual content compared to the baseline, while sentence-level SelfCheckGPT yields only a 10.6% improvement. FactSelfCheck converts sentences to fact-level knowledge graph triples and enables targeted correction with substantially higher gains over sentence-level hints.
+
+ConFix is a confidence-guided fact-level self-correction approach that uses high-confidence facts within a response as additional knowledge to improve low-confidence ones, and has demonstrated effectiveness across four datasets and six models.
+
+## Atomic Claims and Benchmarks
+
+FASTFACT's Extractor receives a chunk of a long-form response to exhaustively extract and preverify atomic claims about facts. MUCH is the first claim-level UQ benchmark designed for fair and reproducible evaluation, including 4,873 samples across four European languages and four instruction-tuned open-weight LLMs.
+
+## Recent Evaluation Frameworks
+
+FactCHD and OnionEval provide multi-layer, context-sensitive evaluation for hallucination detection, measuring atomic-level conflict and compositional reasoning. Self-consistency-based detectors have empirically reached AUROC levels of 0.74–0.76, only marginally below oracle levels achievable with deeper supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8139c756-b21c-4259-8917-758bf8712f9c",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "caeaf083-07ae-4e31-977b-79a0ba9c84ea",
+  "toolUseResult": {
+    "query": "fact-level self-correction atomic claims hallucination correction benchmark 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014JULRKRYzocXcaH6eFYGZL",
+        "content": [
+          {
+            "title": "Fact-Conflicting Hallucination in LLMs",
+            "url": "https://www.emergentmind.com/topics/fact-conflicting-hallucination"
+          },
+          {
+            "title": "Self-Consistency Hallucination Detection",
+            "url": "https://www.emergentmind.com/topics/self-consistency-based-hallucination-detection"
+          },
+          {
+            "title": "FactSelfCheck: Fact-Level Black-Box Hallucination Detection for LLMs",
+            "url": "https://arxiv.org/pdf/2503.17229"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/370981225_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"
+          },
+          {
+            "title": "Fact-Level Confidence Calibration and Self-Correction",
+            "url": "https://arxiv.org/pdf/2411.13343"
+          },
+          {
+            "title": "Hallucination Rates in 2025 — Accuracy, Refusal, and Liability | by Markus Brinsa | Medium",
+            "url": "https://medium.com/@markus_brinsa/hallucination-rates-in-2025-accuracy-refusal-and-liability-aa0032019ca1"
+          },
+          {
+            "title": "Faster, Stronger Long-Form Factuality Evaluations in LLMs",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1295.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to fact-level self-correction, atomic claims, and hallucination correction benchmarks from 2025-2026:\n\n## Fact-Level Self-Correction Methods\n\nFactSelfCheck achieves a 35.5% increase in factual content compared to the baseline, while sentence-level SelfCheckGPT yields only a 10.6% improvement. FactSelfCheck converts sentences to fact-level knowledge graph triples and enables targeted correction with substantially higher gains over sentence-level hints.\n\nConFix is a confidence-guided fact-level self-correction approach that uses high-confidence facts within a response as additional knowledge to improve low-confidence ones, and has demonstrated effectiveness across four datasets and six models.\n\n## Atomic Claims and Benchmarks\n\nFASTFACT's Extractor receives a chunk of a long-form response to exhaustively extract and preverify atomic claims about facts. MUCH is the first claim-level UQ benchmark designed for fair and reproducible evaluation, including 4,873 samples across four European languages and four instruction-tuned open-weight LLMs.\n\n## Recent Evaluation Frameworks\n\nFactCHD and OnionEval provide multi-layer, context-sensitive evaluation for hallucination detection, measuring atomic-level conflict and compositional reasoning. Self-consistency-based detectors have empirically reached AUROC levels of 0.74–0.76, only marginally below oracle levels achievable with deeper supervision."
+    ],
+    "durationSeconds": 7.993129342000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8139c756-b21c-4259-8917-758bf8712f9c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-20T05:48:35.183Z_
+
+```json
+{
+  "parentUuid": "caeaf083-07ae-4e31-977b-79a0ba9c84ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a7d98c43-9434-4111-9d18-58fe80448fff",
+  "timestamp": "2026-05-20T05:48:35.183Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability…",
+  "leafUuid": "a7d98c43-9434-4111-9d18-58fe80448fff",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate self-correction blind spot proposal",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-20T05:48:38.728Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me do one more round of searches to check for any work that might directly compete with or subsume this proposal - specifically looking for fact-level correctability prediction or benchmarks that measure self-correction at the atomic claim level.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7d98c43-9434-4111-9d18-58fe80448fff",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ5BURFc8DijEhKndk4",
+  "type": "assistant",
+  "uuid": "2f3b8927-eab4-497d-ad77-3402b44aa329",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wy81FtHWzPzht2C2piDk3s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 28931,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 28931,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-20T05:48:38.987Z_
+
+Let me do one final round of targeted searches to check for direct competitors and potential gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f3b8927-eab4-497d-ad77-3402b44aa329",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ5BURFc8DijEhKndk4",
+  "type": "assistant",
+  "uuid": "eff5cc7e-09b6-42ce-87c7-743cda7357eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wy81FtHWzPzht2C2piDk3s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 28931,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 28931,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-20T05:48:39.894Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ku8Ugqw769qkKrZq3os3V7`</summary>
+
+```json
+{
+  "query": "self-correction benchmark factual claims atomic level correctability prediction black-box 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eff5cc7e-09b6-42ce-87c7-743cda7357eb",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ5BURFc8DijEhKndk4",
+  "type": "assistant",
+  "uuid": "aba07b84-52ed-4dcb-a1a4-bec0a190dbf2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wy81FtHWzPzht2C2piDk3s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 28931,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 28931,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T05:48:40.892Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BM8bWXTGsiFt6mEgfVqxk4`</summary>
+
+```json
+{
+  "query": "FactCorrector VELI5 benchmark graph-inspired factuality correction arXiv 2601.11232"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aba07b84-52ed-4dcb-a1a4-bec0a190dbf2",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ5BURFc8DijEhKndk4",
+  "type": "assistant",
+  "uuid": "b5e5a0f0-e215-4bc6-9176-3190f071d756",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wy81FtHWzPzht2C2piDk3s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 28931,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 28931,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T05:48:41.703Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FPqqcJyLV3Gmtzdw5EmoTj`</summary>
+
+```json
+{
+  "query": "Self-Correction Bench arXiv 2507.02778 ICLR 2026 review acceptance blind spot Wait trick"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5e5a0f0-e215-4bc6-9176-3190f071d756",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ5BURFc8DijEhKndk4",
+  "type": "assistant",
+  "uuid": "acebe19c-1f55-4ffa-b0f4-921192839372",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wy81FtHWzPzht2C2piDk3s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 28931,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 28931,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T05:48:47.201Z_
+
+<details><summary>↩ Tool result · `toolu_01BM8bWXTGsiFt6mEgfVqxk4`</summary>
+
+```text
+Web search results for query: "FactCorrector VELI5 benchmark graph-inspired factuality correction arXiv 2601.11232"
+
+Links: [{"title":"[2601.11232] FactCorrector: A Graph-Inspired Approach to Long-Form Factuality Correction of Large Language Models","url":"https://arxiv.org/abs/2601.11232"},{"title":"FactCorrector: A Graph-Inspired Approach to Long-Form Factuality Correction of Large Language Models","url":"https://arxiv.org/html/2601.11232"},{"title":"FACTCORRECTOR: A Graph-Inspired Approach","url":"https://arxiv.org/pdf/2601.11232"},{"title":"FactGraph: Evaluating Factuality in Summarization with Semantic Graph   Representations","url":"https://arxiv.org/pdf/2204.06508"},{"title":"Improving Factual Error Correction by Learning to Inject Factual Errors","url":"https://arxiv.org/pdf/2312.07049"},{"title":"Generating Benchmarks for Factuality Evaluation of Language Models","url":"https://arxiv.org/pdf/2307.06908"},{"title":"Evidence-based Factual Error Correction","url":"https://arxiv.org/pdf/2106.01072"}]
+
+I found the research paper for you. Here's what the search revealed:
+
+FactCorrector is a new post-hoc correction method that adapts across domains without retraining and leverages structured feedback about the factuality of the original response to generate a correction. The VELI5 benchmark is a novel dataset containing systematically injected factual errors and ground-truth corrections.
+
+The method is a graph-inspired approach to long-form factuality correction that adapts across domains without retraining and uses structured feedback, while the VELI5 benchmark was developed to support rigorous evaluations of factuality correction methods.
+
+Experiments on VELI5 and several popular long-form factuality datasets show that the FactCorrector approach significantly improves factual precision while preserving relevance, outperforming strong baselines. The VELI5 benchmark builds upon the widely used ELI5 dataset, comprising curated pairs of human-authored questions and answers that have been explicitly verified and corrected for factual inaccuracies.
+
+The paper was published on January 16, 2026, and the code is available at https://ibm.biz/factcorrector.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5e5a0f0-e215-4bc6-9176-3190f071d756",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "55cd9130-5eaf-4a83-b5c1-4601a7f78117",
+  "toolUseResult": {
+    "query": "FactCorrector VELI5 benchmark graph-inspired factuality correction arXiv 2601.11232",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PwdbpNS6tCQBgXUmy5bZXa",
+        "content": [
+          {
+            "title": "[2601.11232] FactCorrector: A Graph-Inspired Approach to Long-Form Factuality Correction of Large Language Models",
+            "url": "https://arxiv.org/abs/2601.11232"
+          },
+          {
+            "title": "FactCorrector: A Graph-Inspired Approach to Long-Form Factuality Correction of Large Language Models",
+            "url": "https://arxiv.org/html/2601.11232"
+          },
+          {
+            "title": "FACTCORRECTOR: A Graph-Inspired Approach",
+            "url": "https://arxiv.org/pdf/2601.11232"
+          },
+          {
+            "title": "FactGraph: Evaluating Factuality in Summarization with Semantic Graph   Representations",
+            "url": "https://arxiv.org/pdf/2204.06508"
+          },
+          {
+            "title": "Improving Factual Error Correction by Learning to Inject Factual Errors",
+            "url": "https://arxiv.org/pdf/2312.07049"
+          },
+          {
+            "title": "Generating Benchmarks for Factuality Evaluation of Language Models",
+            "url": "https://arxiv.org/pdf/2307.06908"
+          },
+          {
+            "title": "Evidence-based Factual Error Correction",
+            "url": "https://arxiv.org/pdf/2106.01072"
+          }
+        ]
+      },
+      "I found the research paper for you. Here's what the search revealed:\n\nFactCorrector is a new post-hoc correction method that adapts across domains without retraining and leverages structured feedback about the factuality of the original response to generate a correction. The VELI5 benchmark is a novel dataset containing systematically injected factual errors and ground-truth corrections.\n\nThe method is a graph-inspired approach to long-form factuality correction that adapts across domains without retraining and uses structured feedback, while the VELI5 benchmark was developed to support rigorous evaluations of factuality correction methods.\n\nExperiments on VELI5 and several popular long-form factuality datasets show that the FactCorrector approach significantly improves factual precision while preserving relevance, outperforming strong baselines. The VELI5 benchmark builds upon the widely used ELI5 dataset, comprising curated pairs of human-authored questions and answers that have been explicitly verified and corrected for factual inaccuracies.\n\nThe paper was published on January 16, 2026, and the code is available at https://ibm.biz/factcorrector."
+    ],
+    "durationSeconds": 6.305495666000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b5e5a0f0-e215-4bc6-9176-3190f071d756",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T05:48:47.244Z_
+
+<details><summary>↩ Tool result · `toolu_01FPqqcJyLV3Gmtzdw5EmoTj`</summary>
+
+```text
+Web search results for query: "Self-Correction Bench arXiv 2507.02778 ICLR 2026 review acceptance blind spot Wait trick"
+
+Links: [{"title":"[2507.02778] Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/abs/2507.02778"},{"title":"Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/pdf/2507.02778"},{"title":"[2507.02778v2] Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/abs/2507.02778v2"},{"title":"[2507.02778v1] Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs","url":"https://arxiv.org/abs/2507.02778v1"},{"title":"Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs | alphaXiv","url":"https://www.alphaxiv.org/overview/2507.02778v1"}]
+
+Based on the search results, here's what I found about Self-Correction Bench:
+
+## Overview
+Self-Correction Bench is an evaluation framework to measure self-correction phenomenon through controlled error injection at three complexity levels.
+
+## The Self-Correction Blind Spot
+LLMs cannot correct errors in their own outputs while successfully correcting identical errors from external sources - a limitation termed the Self-Correction Blind Spot. Testing 14 open-source non-reasoning models found an average 64.5% blind spot rate.
+
+## Findings
+The limitation may be influenced by training data: human demonstrations rarely include error-correction sequences (favoring error-free responses), whereas reinforcement learning (RL) trained models learn error correction via outcome feedback.
+
+## Paper Details
+The paper (arXiv 2507.02778) was authored by Ken Tsui and submitted on July 3, 2025, with a revised version on October 4, 2025. However, the search results don't contain specific information about ICLR 2026 review status or acceptance. If you're looking for information about its ICLR 2026 submission status, that information wasn't found in these search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acebe19c-1f55-4ffa-b0f4-921192839372",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "0750e29b-0ccf-4e85-a69c-40c386e5439f",
+  "toolUseResult": {
+    "query": "Self-Correction Bench arXiv 2507.02778 ICLR 2026 review acceptance blind spot Wait trick",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012BY6yp8mTuqY2aP6cGSXoV",
+        "content": [
+          {
+            "title": "[2507.02778] Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/abs/2507.02778"
+          },
+          {
+            "title": "Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/pdf/2507.02778"
+          },
+          {
+            "title": "[2507.02778v2] Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/abs/2507.02778v2"
+          },
+          {
+            "title": "[2507.02778v1] Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs",
+            "url": "https://arxiv.org/abs/2507.02778v1"
+          },
+          {
+            "title": "Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2507.02778v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Self-Correction Bench:\n\n## Overview\nSelf-Correction Bench is an evaluation framework to measure self-correction phenomenon through controlled error injection at three complexity levels.\n\n## The Self-Correction Blind Spot\nLLMs cannot correct errors in their own outputs while successfully correcting identical errors from external sources - a limitation termed the Self-Correction Blind Spot. Testing 14 open-source non-reasoning models found an average 64.5% blind spot rate.\n\n## Findings\nThe limitation may be influenced by training data: human demonstrations rarely include error-correction sequences (favoring error-free responses), whereas reinforcement learning (RL) trained models learn error correction via outcome feedback.\n\n## Paper Details\nThe paper (arXiv 2507.02778) was authored by Ken Tsui and submitted on July 3, 2025, with a revised version on October 4, 2025. However, the search results don't contain specific information about ICLR 2026 review status or acceptance. If you're looking for information about its ICLR 2026 submission status, that information wasn't found in these search results."
+    ],
+    "durationSeconds": 5.538105836999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "acebe19c-1f55-4ffa-b0f4-921192839372",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T05:48:47.335Z_
+
+<details><summary>↩ Tool result · `toolu_01Ku8Ugqw769qkKrZq3os3V7`</summary>
+
+```text
+Web search results for query: "self-correction benchmark factual claims atomic level correctability prediction black-box 2026"
+
+Links: [{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/pdf/2510.16062"},{"title":"Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/pdf/2507.02778"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF","url":"https://www.researchgate.net/publication/370981225_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"},{"title":"AtomEval: Atomic Evaluation of Adversarial Claims in Fact Verification","url":"https://arxiv.org/pdf/2604.07967"},{"title":"Fact-Level Confidence Calibration and Self-Correction","url":"https://arxiv.org/pdf/2411.13343"}]
+
+Based on the web search results, I found several relevant papers on self-correction benchmarks and factual claims evaluation:
+
+## Key Findings:
+
+**Self-Correction Benchmark:**
+Self-Correction Bench is a systematic framework to measure self-correction through controlled error injection at three complexity levels. LLMs exhibit a systematic 'Self-Correction Blind Spot' - failing to correct identical error in their own outputs, with an average 64.5% blind spot rate across 14 models.
+
+**Atomic-Level Factual Evaluation:**
+AtomEval is a benchmark for evaluating whether adversarial rewrites preserve the original attacked proposition, decomposes claims into structured atomic facts and measures whether a rewrite remains faithful to the original claim.
+
+**Fact-Level Correctability Prediction:**
+A fact-level calibration framework operates at a finer granularity, calibrating confidence to relevance-weighted correctness at the fact level. Confidence-Guided Fact-level Self-Correction (ConFix) uses high-confidence facts within a response as additional knowledge to improve low-confidence ones, with experiments showing it effectively mitigates hallucinations without requiring external knowledge sources.
+
+**Black-box Model Approaches:**
+External Correction methods like Reflexion, RARR, RATT, and CRITIC leverage external resources such as knowledge bases or Google search tools to address gaps in internal representation and correct factual inaccuracies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aba07b84-52ed-4dcb-a1a4-bec0a190dbf2",
+  "isSidechain": false,
+  "promptId": "a146b1e1-68c4-41f9-bd2a-17b36a67f7de",
+  "type": "user",
+  "uuid": "7e070a21-026f-4fcd-9a45-a86da9a38c61",
+  "toolUseResult": {
+    "query": "self-correction benchmark factual claims atomic level correctability prediction black-box 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FhdoE5NeSRFvMoTTwarG5U",
+        "content": [
+          {
+            "title": "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs",
+            "url": "https://arxiv.org/pdf/2510.16062"
+          },
+          {
+            "title": "Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/pdf/2507.02778"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/370981225_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"
+          },
+          {
+            "title": "AtomEval: Atomic Evaluation of Adversarial Claims in Fact Verification",
+            "url": "https://arxiv.org/pdf/2604.07967"
+          },
+          {
+            "title": "Fact-Level Confidence Calibration and Self-Correction",
+            "url": "https://arxiv.org/pdf/2411.13343"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on self-correction benchmarks and factual claims evaluation:\n\n## Key Findings:\n\n**Self-Correction Benchmark:**\nSelf-Correction Bench is a systematic framework to measure self-correction through controlled error injection at three complexity levels. LLMs exhibit a systematic 'Self-Correction Blind Spot' - failing to correct identical error in their own outputs, with an average 64.5% blind spot rate across 14 models.\n\n**Atomic-Level Factual Evaluation:**\nAtomEval is a benchmark for evaluating whether adversarial rewrites preserve the original attacked proposition, decomposes claims into structured atomic facts and measures whether a rewrite remains faithful to the original claim.\n\n**Fact-Level Correctability Prediction:**\nA fact-level calibration framework operates at a finer granularity, calibrating confidence to relevance-weighted correctness at the fact level. Confidence-Guided Fact-level Self-Correction (ConFix) uses high-confidence facts within a response as additional knowledge to improve low-confidence ones, with experiments showing it effectively mitigates hallucinations without requiring external knowledge sources.\n\n**Black-box Model Approaches:**\nExternal Correction methods like Reflexion, RARR, RATT, and CRITIC leverage external resources such as knowledge bases or Google search tools to address gaps in internal representation and correct factual inaccuracies."
+    ],
+    "durationSeconds": 7.4365278560000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "aba07b84-52ed-4dcb-a1a4-bec0a190dbf2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-20T05:49:57.838Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the literature landscape. Let me synthesize my analysis.
+
+## Key Observations from Research:
+
+1. **Self-Correction Bench (arXiv:2507.02778)** - Confirmed: measures self-correction blind spot at PROBLEM level on MATH tasks only. 64.5% blind spot rate. 'Wait' trick reduces by 89.3%.
+
+2. **CURE (arXiv:2604.12046)** - Confirmed: claim-level calibration for biography generation, uses SFT+DPO+GRPO, achieves 39.9% claim-level accuracy improvement. Purely abstention-based.
+
+
+3. **SA (arXiv:2602.11908)** - Confirmed: atom-wise selective abstraction with up to 27.73% AURC improvement, abstraction-only approach. **CAG (arXiv:2605.01749)** - Confirmed: exploration-commitment decoupling with VeriScore improvement, suppression-only. **DeepMind PANL (arXiv:2604.22271)** - Confirmed: white-box correctability prediction achieving AUROC 0.614 at problem level. **CyberCorrect (arXiv:2605.17305)** - Confirmed: tri-modal approach.
+
+4. **Functional Dissociation (arXiv:2604.19974)** - Confirmed: uncertainty and correctness features are distinct. **Knowing but Not Correcting (arXiv:2605.05957)** - Confirmed: correction suppression with 19-90% suppression rates. **ConFix (arXiv:2411.13343)** - Confirmed: fact-level confidence calibration with self-correction. **FactCorrector (arXiv:2601.11232)** - Confirmed: external-knowledge correction using the VELI5 benchmark.
+
+Now I'm testing the most obvious trivial alternative: whether ConFix's confidence-based fact-level self-correction alone would be sufficient, since it already handles fact-level correction.
+
+The core question is whether correctability truly diverges from confidence for factual claims, or if confidence-based routing already captures most of the signal. The proposal includes a 'Wait' ablation test, which is useful, but if that simple trick performs well on factual claims, it undermines the need for a dedicated correctability classifier. I'm also examining the key assumption that correctability is distinct from confidence—the Functional Dissociation paper shows this at the feature level, and there's behavioral evidence suggesting a correlation around 0.524.
+
+But here's the tension: those studies use different tasks and models, so whether the dissociation is large enough to matter for a black-box behavioral classifier on factual claims remains unclear. The proposal also assumes the blind spot is heterogeneous across claim types, drawing an analogy from math error types to factual claim types, but math errors (calculation vs. logic vs. setup) are qualitatively different from factual errors (entity, temporal, numerical, relational), so the analogy may not hold. Finally, there's the question of whether behavioral features alone can approach the performance of white-box features—DeepMind showed white-box features reaching 0.614 while behavioral confidence only got 0.524, and closing that gap with just self-consistency, verbal confidence, claim type, specificity, and detection-correction gap is an ambitious claim.
+
+The genuinely novel contributions are measuring the self-correction blind spot at the atomic claim level in knowledge-intensive generation rather than math, testing whether the 'Wait' intervention transfers from math to factual claims, and building a behavioral correctability classifier for atomic claims. The SFC pipeline using correctability for routing is also novel, though relatively straightforward. However, atomic claim decomposition, self-consistency and verbal confidence as features, and error injection methodology are all well-established, so much of this work is incremental rather than fundamentally new.
+
+My main concern is whether the core finding—extending the blind spot measurement from math to facts—is actually surprising. Most researchers would intuitively expect the blind spot to exist for factual claims too, be worse than for math since factual errors reflect knowledge gaps rather than activation failures, and vary across claim types. The most surprising results would be if 'Wait' actually works for factual claims or if the blind spot isn't heterogeneous, but the proposal treats these as secondary outcomes rather than the main focus.
+
+The research question itself is important since self-correction is fundamental and understanding its limits at fine-grained levels matters, though the significance depends on whether the findings are actually unexpected.
+
+The real gap is that six papers use confidence-based abstention while none focus on correctability-based correction, but whether this gap is large enough for a significant contribution hinges on the correctability classifier's performance—if it only achieves modest accuracy like the pre-registered 0.58, it might barely outperform confidence baselines, making the "correctability ≠ confidence" distinction feel more like a nuance than a major shift.
+
+The related work coverage is comprehensive, spanning self-correction literature, correction suppression, fact-level work, correctability prediction, and selective claim-level handling across numerous papers.
+
+The proposal has real strengths: it occupies a genuinely unoccupied intersection of fact-level analysis, blind spots, and correctability prediction; it's well-positioned against related work; the dual-outcome design means both positive and negative results are valuable; the 'Wait' ablation tests a fundamental mechanistic question; and pre-registered thresholds demonstrate methodological rigor. But the core predictions feel mostly intuitive—that blind spots exist for facts too, 'Wait' won't help, and different claim types have different blind spot rates—which might prompt reviewers to say they could have guessed these outcomes.
+
+The real vulnerability is that the correctability classifier depends on beating confidence baselines by a meaningful margin, yet the DeepMind results showing behavioral signals underperform white-box approaches suggest the classifier might struggle to achieve that. The SFC pipeline is then just the obvious downstream application of a correctability classifier, adding limited independent novelty. There's also a deeper tension: if the most interesting finding turns out to be negative—that correctability is genuinely hard to predict from black-box features—then the entire SFC pipeline becomes less compelling.
+
+The biggest risks are if 'Wait' actually works for factual claims, which would undermine the correctability classifier story; if blind spots are uniform across claim types, the key hypothesis collapses; or if the classifier only achieves marginal performance gains, making the whole approach feel incremental.
+
+Looking at the probability, this sits in the solid-but-expected range. It's a well-identified gap with a sensible approach, but the novelty is really just extending existing concepts to a new granularity and domain. The findings would be useful rather than transformative. The thorough related work and pre-registered thresholds help with execution, but the core idea itself lacks the spark for higher confidence—I'm settling around 28-33%.
+
+The real tension is whether reviewers see this as discovering something new about self-correction or just measuring an expected phenomenon at finer granularity. There are genuine strengths here: the convergence of five independent research threads pointing to the same gap is well-argued, the correctability-versus-confidence distinction is genuinely underexplored, and the Wait ablation could yield interesting results either way. Plus the benchmark would be a valuable community resource. But even with positive results—heterogeneous blind spots, Wait failing for facts, a 0.58-0.63 AUROC classifier—most reviewers would probably land on "expected but solid" rather than "surprising."
+
+The proposal's real weakness is its complexity: four phases, eight models, multiple baselines, dual-track error injection. That execution burden doesn't strengthen the core idea and might actually hurt it at review time. The cleanest contribution is probably just the benchmark plus blind spot characterization in phases one and two. The correctability classifier is risky because behavioral features might not actually capture what makes something correctable, and the SFC pipeline feels too incremental. If I stripped this down to focus on measuring the blind spot at claim level and testing whether Wait generalizes, it'd be much stronger.
+
+But I also need to account for the fact that this is a well-executed proposal with solid positioning and a clear gap. Even if the findings turn out to be somewhat expected, the thoroughness and breadth could matter at a venue like EMNLP that values rigorous empirical work. I'll stick with 25-35%, median 30%.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e070a21-026f-4fcd-9a45-a86da9a38c61",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ65iB1QzwLHXkR5atm",
+  "type": "assistant",
+  "uuid": "f4fe4901-941b-4681-867c-e25ad1e3c1cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGSdEAHgzCw54CSy8Zzec5",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1258,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 32202,
+      "output_tokens": 7353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1258,
+          "output_tokens": 7353,
+          "cache_read_input_tokens": 32202,
+          "cache_creation_input_tokens": 927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-20T05:51:30.382Z_
+
+Now I have a comprehensive picture of the literature. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Self-Correction Bench, arXiv:2507.02778] (submitted ICLR 2026): 定义了 self-correction blind spot 概念，14 个非推理模型平均 64.5% blind spot rate（GSM8K/PRM800K）。'Wait' trick 减少 blind spot 89.3%。关键限制：仅在 math 任务、problem-level 粒度。这是本 proposal 的直接上游工作和出发点。
+- [CURE, arXiv:2604.12046] (Apr 2026): Claim-level calibration for biography generation，&lt;think>→&lt;decompose>→&lt;answer> protocol，39.9% claim-level accuracy improvement。需要 SFT+DPO+GRPO 多阶段微调。关键：仅做 calibrated abstention，不尝试 correction。与本 proposal 在任务域（biography generation）高度重叠但范式不同。
+- [Selective Abstraction (SA), arXiv:2602.11908] (Feb 2026): Atom-wise 分解 + confidence-based abstraction，在 FActScore/LongFact 上 AURC 提升最高 27.73%。只做 abstraction，不做 correction。是本 proposal 的直接 baseline。
+- [CAG, arXiv:2605.01749] (May 2026): Exploration-Commitment Decoupling，VeriScore 67.79%→79.80%。同样只做 suppression 不做 correction。需要微调（CASS+CAPD）。
+- [DeepMind PANL, arXiv:2604.22271] (Apr 2026): White-box PANL probes 预测 correction success AUROC=0.614，behavioral confidence 仅 0.524。仅在 TriviaQA/MNLI problem-level 上测试 Gemma 3 27B 和 Qwen 2.5 7B。是 correctability prediction 的直接竞争/上游工作。
+- [CyberCorrect, arXiv:2605.17305] (May 2026): Tri-modal error detector (self-consistency 0.4 + verbalized confidence 0.35 + logic-chain verification 0.25)，type-directed correction，79.8% accuracy。仅在 reasoning tasks 上测试，logic-chain feature 不适用于 factual claims。
+- [Functional Dissociation, arXiv:2604.19974] (Apr 2026): SAE 分析表明 uncertainty 和 correctness 由 functionally distinct feature populations 编码。suppressing uncertainty features 导致 accuracy 下降最高 10.21%，suppressing incorrectness features 几乎无变化。为"confidence ≠ correctability"提供了 mechanistic evidence。
+- [Knowing but Not Correcting, arXiv:2605.05957] (May 2026): Correction suppression 现象——模型单独面对 false claim 时能纠正，但嵌入 task context 后 suppress correction（19-90% suppression rate）。Hidden-state similarity >0.99 证明模型 internally registers error。
+- [ConFix, arXiv:2411.13343] (2024): Fact-level confidence calibration + self-correction，高置信度 facts bootstrap 低置信度 facts 的 correction。这是一个重要的 trivial alternative 威胁——已经在做 fact-level self-correction，虽然用的是 confidence 而非 correctability。
+- [FactCorrector + VELI5, arXiv:2601.11232] (Jan 2026): Graph-inspired correction pipeline + 17,522 instances benchmark，67.4% atom correction rate。但依赖外部知识检索。
+- [FactSelfCheck, arXiv:2503.17229] (2025): Fact-level hallucination detection，35.5% vs 10.6% factual improvement 对比 sentence-level。
+- [CSS, arXiv:2604.17487] (Apr 2026): Claim-level specificity control，back off overcommitted claims。
+- [CLC, arXiv:2502.19110] (Feb 2026): Conformal linguistic calibration，conformal guarantees on claim factuality。
+
+- **调研总结**: Self-correction blind spot 研究目前被限制在 math/reasoning 的 problem-level 粒度。与此同时，fact-level claim handling 领域在 2026 年 2-5 月爆发式增长（SA, CSS, CLC, CURE, CAG 等 6+ 篇论文），但全部采用 confidence/calibration 作为 routing signal，响应方式为 abstention/suppression/hedging，无一尝试基于 correctability 的 correction routing。Proposal 精确定位在这两条线的交叉点——fact-level granularity × correctability-based correction——这个交叉点确实 unoccupied。但该定位的价值高度依赖于"correctability ≠ confidence"这个区分在 fact-level 实践中的真实效应大小。
+
+
+【Trivial Alternative 检验】:
+
+存在两个需要认真对待的 trivial alternatives：
+
+1. **ConFix + naive self-correction**: ConFix 已经在做 fact-level self-correction，使用 confidence-based bootstrapping。如果在本 proposal 的 benchmark 上直接跑 ConFix，能达到 SFC 效果的 80%+，那 correctability classifier 的增量价值就很有限。Proposal 确实将 ConFix-style bootstrapping 纳入了 SFC 的 correction 子模块，但没有直接 head-to-head 对比 ConFix 的 confidence routing vs. correctability routing 的边际差异。
+
+2. **'Wait' trick 直接应用到 factual claims**: Proposal 包含了 'Wait' ablation（Phase 2），这是正确的。但如果 'Wait' 在 factual claims 上也有 30-50% 的 blind spot reduction（即使不如 math 的 89.3%），那 'Wait' + naive self-correction 可能就是 "good enough" 的 trivial baseline。Proposal 的核心价值取决于 'Wait' ablation 的负面结果。
+
+**增量价值在哪**: 如果上述两个 trivial alternatives 都不够好（'Wait' 对 facts 无效 + confidence 和 correctability 的 gap 在 fact-level 足够大），那 correctability-guided routing 确实是一个有意义的新方向。但这个增量价值是 **conditional on empirical results** 的——这不是一个无论实验结果如何都有清晰增量的 idea。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有以下未经验证的关键假设：
+
+1. **"Factual errors stem from knowledge gaps, not activation failures"——这个二分法过于简化**。并非所有 factual errors 都是 knowledge gaps。很多 hallucinations（尤其是 entity confusion、date off-by-one）可能也是 activation/retrieval failures，'Wait' 可能对这些同样有效。Proposal 将 math errors = activation failures vs. factual errors = knowledge gaps 作为一个核心前提，但实际的 error taxonomy 可能远比这复杂。如果相当比例的 factual errors 也是 activation failures，整个故事的 motivation 就被削弱了。
+
+2. **"Behavioral features 能足够好地捕捉 correctability"——来自 DeepMind 结果的证据其实是 negative 的**。DeepMind 发现 behavioral confidence 只有 AUROC 0.524（接近随机），而 white-box features 才有 0.614。Proposal 认为加入 claim type + specificity + detection-correction gap 能显著提升，但没有先验证据支持这一点。如果最终只达到 0.55-0.58，SFC 的实际效用会非常有限。
+
+3. **"Error Depth Hypothesis 从 math 迁移到 factual claims"——类比推理，未经验证**。Math 中的 error depth（calculation vs. logic vs. setup）和 factual claim types（entity, temporal, numerical, relational）是完全不同的 taxonomy。Error Depth 发现的是 model capability 相关的 depth gradient，factual claim types 之间是否存在类似的 difficulty gradient 是一个 open question。
+
+4. **"Correction suppression 会 compound blind spot"——外推**。arXiv:2605.05957 的实验设置（isolated false claim vs. task-embedded false claim）和本 proposal 的设置（model 纠正自己生成的 output 中的 errors）是不同的。能否直接外推需要验证。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   Proposal 精确定位在 fact-level × blind spot × correctability 这个 unoccupied intersection，这一点是成立的。调研证实：Self-Correction Bench 仅覆盖 math/problem-level；SA/CURE/CAG 等 6+ 篇只做 confidence-based abstention，不做 correctability-based correction；DeepMind PANL 仅在 problem-level + white-box。然而，novelty 主要来自 **extension**（将已知概念推广到新粒度和新域）而非 **discovery**（发现新机制或反直觉现象）。核心预测——blind spot 在 factual claims 上存在且比 math 更严重，'Wait' 对 facts 效果减弱，不同 claim types 有不同 blind spot rates——大多数研究者会猜到这些方向。Correctability classifier 的构建借鉴了 CyberCorrect 的 feature 设计思路（self-consistency + confidence + type），主要替换了 logic-chain feature 为 claim-specific features，属于 adaptation 而非 innovation。最有 novelty 的贡献是 'Wait' ablation 在 factual domain 的系统性测试，以及 correctability-confidence dissociation 的 claim-level 量化——但这些更像是 "good to know" 而非 "surprising"。
+
+2. **Significance: 中偏强** — 
+   研究问题本身是重要的。Self-correction 是 LLM 部署的核心能力，理解其在 knowledge-intensive generation 中的 fine-grained limitations 对实际应用有直接影响。6+ 篇论文在 2026 年 2-5 月密集出现在 claim-level handling 空间，证明了这个方向的热度和社区关注度。如果 benchmark 和 blind spot characterization 做得好，将为后续研究提供基础设施价值（类似 FActScore 对 factual evaluation 的贡献）。但 significance 被两点限制：(a) SFC pipeline 的实际改进幅度可能有限（correctability classifier 的 ceiling 不高），使得下游应用价值不确定；(b) 如果核心发现是"blind spot 在 facts 上更严重，'Wait' 不好使"，这是 confirmatory 而非 transformative。
+
+3. **Related Work: 强** — 
+   这是 proposal 最突出的优势。覆盖了 5 条独立研究线（blind spot literature, fact-level hallucination, correctability prediction, selective claim handling, mechanistic evidence），引用了 30+ 篇论文，包括 2026 年 5 月的最新工作（CAG, CyberCorrect, Knowing but Not Correcting）。差异化定位清晰：与 SA/CURE/CAG 的区别（correctability vs. confidence, correction vs. abstention）、与 DeepMind PANL 的区别（black-box vs. white-box, claim-level vs. problem-level）、与 CyberCorrect 的区别（factual claims vs. reasoning, claim-level vs. step-level）都论述得非常到位。调研证实所有引用论文真实存在且描述准确。唯一微小问题：过于详尽的 related work 使得 proposal 读起来像一篇 survey，但这在入口评估中不是减分项。
+
+
+【概率估计】: [25% - 35%] 中位 29%
+
+【估计理由】: 
+Novelty 处于"中"水平——gap 真实存在但 core findings 的预期方向是 intuitive 的（审稿人大概率会说 "I would have guessed this"），这是限制上界的主要因素。Significance 中偏强，因为研究问题重要、领域热度高、benchmark 有基础设施价值，这拉高了下界。Related Work 强，positioning 清晰无遗漏，但 related work 的完善度属于执行质量，不改变 idea 上限。
+
+从 rubric 锚点看：idea 有实质内核（真实的 novelty delta），方向正确，但核心发现如果 positive，审稿人更可能说 "good systematic study, confirms what I expected" 而非 "surprising"——这把它锚定在 25-35% 区间。中位取 29% 而非 30%+ 是因为 trivial alternative 威胁（ConFix 和 'Wait' ablation）增加了 idea 被质疑为 incremental 的风险。
+
+**限制上界的维度**: Novelty。Extension-type novelty（将已知概念推广到新域/粒度）在 top venues 通常不如 discovery-type novelty（发现新机制/反直觉现象）有竞争力，除非 extension 的过程中产生了 unexpected findings。
+
+【主要风险】: 
+1. **"Expected findings" 风险**: 三个核心预测（blind spot 在 facts 上存在/更严重、'Wait' 对 facts 无效、claim types 间 heterogeneous）都是大多数研究者会预期的方向。如果实验结果完全 confirm expectations，审稿人可能评价为 "well-executed but unsurprising"，这是 EMNLP 最常见的 borderline reject 理由之一。除非实验过程中发现某个 truly unexpected pattern（例如某种 factual claim type 的 blind spot 反而低于 math，或 'Wait' 在某些 claim types 上出奇有效），整篇论文缺乏 "aha moment"。
+2. **Correctability classifier ceiling 过低的风险**: DeepMind 已经证明 behavioral signals 对 correctability 的预测力很弱（AUROC 0.524）。Proposal 的 classifier 加入了 claim type 和 specificity features，但如果最终 AUROC 只在 0.55-0.58 范围，SFC 相对于 confidence-threshold correction 的优势将非常边际，使得 Phase 3+4（classifier + SFC pipeline）的贡献变得 marginal，论文的贡献缩水为一个 benchmark paper。
+```
+
+Sources:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)
+- [CURE (arXiv:2604.12046)](https://arxiv.org/abs/2604.12046)
+- [Selective Abstraction (arXiv:2602.11908)](https://arxiv.org/abs/2602.11908)
+- [CAG (arXiv:2605.01749)](https://arxiv.org/abs/2605.01749)
+- [DeepMind PANL (arXiv:2604.22271)](https://arxiv.org/abs/2604.22271)
+- [CyberCorrect (arXiv:2605.17305)](https://arxiv.org/abs/2605.17305)
+- [Functional Dissociation (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)
+- [Knowing but Not Correcting (arXiv:2605.05957)](https://arxiv.org/html/2605.05957v1)
+- [ConFix (arXiv:2411.13343)](https://arxiv.org/abs/2411.13343)
+- [FactCorrector + VELI5 (arXiv:2601.11232)](https://arxiv.org/abs/2601.11232)
+- [FactSelfCheck (arXiv:2503.17229)](https://arxiv.org/abs/2503.17229)
+- [CSS (arXiv:2604.17487)](https://arxiv.org/abs/2604.17487)
+- [CLC (arXiv:2502.19110)](https://arxiv.org/abs/2502.19110)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4fe4901-941b-4681-867c-e25ad1e3c1cd",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ65iB1QzwLHXkR5atm",
+  "type": "assistant",
+  "uuid": "6e4a9eae-8d71-4018-8dc3-203c2d49b15b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGSdEAHgzCw54CSy8Zzec5",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1258,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 32202,
+      "output_tokens": 7353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1258,
+          "output_tokens": 7353,
+          "cache_read_input_tokens": 32202,
+          "cache_creation_input_tokens": 927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability…",
+  "leafUuid": "6e4a9eae-8d71-4018-8dc3-203c2d49b15b",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate self-correction blind spot proposal",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability…",
+  "leafUuid": "6e4a9eae-8d71-4018-8dc3-203c2d49b15b",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate self-correction blind spot proposal",
+  "sessionId": "08b9df5a-485b-4873-859b-0aa9d0ffd53c"
+}
+```
+
+---

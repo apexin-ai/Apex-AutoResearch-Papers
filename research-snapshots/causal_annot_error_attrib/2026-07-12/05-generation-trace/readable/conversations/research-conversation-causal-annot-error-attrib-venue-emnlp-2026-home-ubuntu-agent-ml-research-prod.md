@@ -1,0 +1,9252 @@
+# Research conversation: 项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 141
+- **Recorded user turns:** 1
+- **Tool calls:** 42
+- **Original source:** `logs/chats/exported-trajectories/account-1/e8a05bf1-8177-4606-8baf-eb8cd69fca89.jsonl`
+- **Structured JSON:** [`c7fc31a2eb914c0f57b6.json`](../../sessions/c7/c7fc31a2eb914c0f57b6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-25T07:50:53.274Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-25T07:50:53.274Z",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "content": "项目：causal_annot_error_attrib\nVenue：emnlp-2026\n论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper\n\nPhase 1 确定性检查结果：\n源码检查: passed=True, 0 critical, 92 warning\n一致性检查: 2 critical, 25 warning\n编译: ✅, 页数: 34\n内部信息: 0 critical, 0 warning\n\n━━━ 用户自定义规则（作为额外检查项）━━━\n## 用户自定义规则（必须遵守）\n### 写作规则\n\n- **[EMNLP 2026]** Limitations 章节只需要写一小段，覆盖 3 个点左右就可以了，不需要写得很长\n- **[EMNLP 2026]** ARR Responsible NLP Checklist在OpenReview的submission form里面（由用户手动填写），而不是在论文pdf里面\n- **[EMNLP 2026]** 一篇文章只能有一个limitations section，放在正文里面，appendix不能有 limitations section\n- **[EMNLP 2026]** abstract 不要超过 200 words\n\n### 审稿规则\n\n- **[EMNLP 2026]** “EMNLP 2026 通过 ARR 统一审稿，Main/Findings 不分开投稿（不是两个Track），Long/Short 也走同一审稿系统，Overall Assessment的评分标准如下：5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle（需大幅修改，可在下一周期完成），1.5 = Resubmit after next cycle（需大幅修改，无法在下一周期完成），1 = Do not resubmit（需完全重做或与*ACL无关）”\n- **[EMNLP 2026]** EMNLP 2026 restricts long paper submissions to a strict 8-page limit for main text, with unlimited space for references. Mandatory limitations and optional ethical considerations do not count towards this page limit, provided they do not contain excessive additional content.\n\n> 以上规则由用户配置，优先级等同于硬约束。违反会被 Reviewer 标记。\n请将以上规则逐条作为额外审计维度检查。违反的规则用 dimension `[写作规则]` 或 `[审稿规则]` 标记，severity 按实际影响判定。\n\n请按照你的角色指令执行内容结构审计。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-25T07:50:53.278Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-25T07:50:53.278Z",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+## Round 1
+
+139 recorded events
+
+### User
+
+_source line 3 · 2026-05-25T07:50:53.315Z_
+
+项目：causal_annot_error_attrib
+Venue：emnlp-2026
+论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper
+
+Phase 1 确定性检查结果：
+源码检查: passed=True, 0 critical, 92 warning
+一致性检查: 2 critical, 25 warning
+编译: ✅, 页数: 34
+内部信息: 0 critical, 0 warning
+
+━━━ 用户自定义规则（作为额外检查项）━━━
+## 用户自定义规则（必须遵守）
+### 写作规则
+
+- **[EMNLP 2026]** Limitations 章节只需要写一小段，覆盖 3 个点左右就可以了，不需要写得很长
+- **[EMNLP 2026]** ARR Responsible NLP Checklist在OpenReview的submission form里面（由用户手动填写），而不是在论文pdf里面
+- **[EMNLP 2026]** 一篇文章只能有一个limitations section，放在正文里面，appendix不能有 limitations section
+- **[EMNLP 2026]** abstract 不要超过 200 words
+
+### 审稿规则
+
+- **[EMNLP 2026]** “EMNLP 2026 通过 ARR 统一审稿，Main/Findings 不分开投稿（不是两个Track），Long/Short 也走同一审稿系统，Overall Assessment的评分标准如下：5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle（需大幅修改，可在下一周期完成），1.5 = Resubmit after next cycle（需大幅修改，无法在下一周期完成），1 = Do not resubmit（需完全重做或与*ACL无关）”
+- **[EMNLP 2026]** EMNLP 2026 restricts long paper submissions to a strict 8-page limit for main text, with unlimited space for references. Mandatory limitations and optional ethical considerations do not count towards this page limit, provided they do not contain excessive additional content.
+
+> 以上规则由用户配置，优先级等同于硬约束。违反会被 Reviewer 标记。
+请将以上规则逐条作为额外审计维度检查。违反的规则用 dimension `[写作规则]` 或 `[审稿规则]` 标记，severity 按实际影响判定。
+
+请按照你的角色指令执行内容结构审计。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "c18dccb2-3c3e-4d0d-88f6-8ce2a6ca05ab",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-25T07:50:53.314Z_
+
+```json
+{
+  "parentUuid": "c18dccb2-3c3e-4d0d-88f6-8ce2a6ca05ab",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6ff4eecd-cb42-46cc-80de-680d449f09dc",
+  "timestamp": "2026-05-25T07:50:53.314Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-25T07:50:53.314Z_
+
+```json
+{
+  "parentUuid": "6ff4eecd-cb42-46cc-80de-680d449f09dc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1e6c0061-8202-4b6a-9e44-20af87817571",
+  "timestamp": "2026-05-25T07:50:53.314Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-25T07:50:53.314Z_
+
+```json
+{
+  "parentUuid": "1e6c0061-8202-4b6a-9e44-20af87817571",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e997fd6c-6163-4c6a-b16f-ee51003f3694",
+  "timestamp": "2026-05-25T07:50:53.314Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-25T07:50:57.729Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the required skill files and then all the .tex files in the paper directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e997fd6c-6163-4c6a-b16f-ee51003f3694",
+  "isSidechain": false,
+  "requestId": "req_011CbNvSggeQTKR6xxqfTigk",
+  "type": "assistant",
+  "uuid": "fadd2c6f-d76d-43f7-ae01-c99b97a289af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REEKhf6ZVUbLE2M65WMQZN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27851,
+      "cache_read_input_tokens": 11846,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 11846,
+          "cache_creation_input_tokens": 27851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-25T07:50:57.925Z_
+
+开始执行内容结构审计。先加载审计标准和论文源码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fadd2c6f-d76d-43f7-ae01-c99b97a289af",
+  "isSidechain": false,
+  "requestId": "req_011CbNvSggeQTKR6xxqfTigk",
+  "type": "assistant",
+  "uuid": "450d29d5-8e1e-4c22-892e-a4135da83e79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REEKhf6ZVUbLE2M65WMQZN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27851,
+      "cache_read_input_tokens": 11846,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 11846,
+          "cache_creation_input_tokens": 27851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-25T07:50:58.963Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019gythnYzpJbqsBSGB2pVXu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "450d29d5-8e1e-4c22-892e-a4135da83e79",
+  "isSidechain": false,
+  "requestId": "req_011CbNvSggeQTKR6xxqfTigk",
+  "type": "assistant",
+  "uuid": "588d8f89-30d1-44b4-9a2d-0fa88638550c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REEKhf6ZVUbLE2M65WMQZN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27851,
+      "cache_read_input_tokens": 11846,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 11846,
+          "cache_creation_input_tokens": 27851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T07:50:59.692Z_
+
+<details><summary>↩ Tool result · `toolu_01EgnYEKDGuawhNYQUYrmpvY`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/k3_symmetric_proof.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/exp_a_stress_test_table.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/exp_e_asv_stability_table.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conjecture_dgp_sensitivity_table.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_real_cm_table.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85a83f74-8e42-44a2-9a7d-0de579fe9200",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "2fb85efb-95f6-44dd-92f9-b9bf242d4cb6",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/k3_symmetric_proof.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/exp_a_stress_test_table.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/exp_e_asv_stability_table.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conjecture_dgp_sensitivity_table.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_real_cm_table.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex",
+      "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
+    ],
+    "durationMs": 6,
+    "numFiles": 14,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "85a83f74-8e42-44a2-9a7d-0de579fe9200",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T07:50:58.982Z_
+
+<details><summary>↩ Tool result · `toolu_019gythnYzpJbqsBSGB2pVXu`</summary>
+
+````text
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **禁止过度宣传**：不说 "revolutionary"、"groundbreaking"
+75	- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元
+76	- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了
+77	- **缩写必须定义**：Abstract 中首次出现的缩写必须展开
+78	
+79	### 2.3 审稿人视角检验
+80	
+81	写完后用这个标准自检：审稿人能否在 30 秒内判断——
+82	- 问题是否重要？
+83	- 方法是否清楚？
+84	- 贡献是否可信？
+85	- 结果是否有说服力？
+86	
+87	---
+88	
+89	## 三、Introduction 写作规范
+90	
+91	### 3.1 完整叙事线（5 段结构）
+92	
+93	Introduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：
+94	
+95	1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈
+96	2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题
+97	3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）
+98	4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题
+99	5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献
+100	
+101	### 3.2 整体叙事结构
+102	
+103	```
+104	现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结
+105	```
+106	
+107	### 3.3 禁忌
+108	
+109	- **禁止泛泛介绍**：不要开头就写 "LLMs have shown remarkable capabilities..."，要从具体问题切入
+110	- **禁止缺少过渡**：每段之间必须有逻辑连接
+111	- **禁止实验报告风格**：Introduction 不是 "我们做了 X 实验得到了 Y 结果" 的罗列
+112	- 每条 Contribution 必须有对应的 section/table 支撑
+113	- Contribution 列表中不能出现未在前文铺垫过的概念
+114	
+115	---
+116	
+117	## 四、Related Work 写作规范
+118	
+119	### 4.1 目标
+120	
+121	让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。
+122	
+123	### 4.2 结构要求
+124	
+125	- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）
+126	- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系
+127	- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口
+128	
+129	### 4.3 禁忌
+130	
+131	- **禁止论文堆砌**：不要写成 "A proposed X. B proposed Y. C proposed Z." 的列表
+132	- **目标不是展示读了多少论文**，而是做归纳和比较
+133	- Contribution claim（"To our knowledge, no prior work..."）应放在 Introduction，不在 Related Work
+134	
+135	### 4.4 引用充足度
+136	
+137	- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**
+138	- 任何一类缺失，审稿人会立刻看出来调研不充分
+139	- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足
+140	
+141	---
+142	
+143	## 五、去 AI 写作风格（硬规则）
+144	
+145	以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**
+146	
+147	### 5.1 严禁破折号（最显著的 AI 痕迹）
+148	
+149	**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**
+150	
+151	- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**
+152	- 替代方式：用逗号、括号或拆分为两个句子
+153	- 强制检查命令：
+154	  ```bash
+155	  grep -n "—" paper/*.tex     # em-dash，每处人工判断是否必要
+156	  grep -n " – " paper/*.tex   # 解释性 en-dash，几乎都应删除
+157	  ```
+158	- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）
+159	
+160	### 5.2 段落与句式
+161	
+162	- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的
+163	- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句
+164	- **禁止 -ing 短语结尾**：如 "..., highlighting the applicability of..." / "..., demonstrating the effectiveness of..."。这是 AI 写作最典型的标志之一
+165	- **禁止连续使用 "Furthermore" / "Moreover" / "Additionally"**：一段内最多用一个过渡词
+166	- **避免 "It is worth noting that..." / "Notably, ..."**：直接写要说的内容
+167	
+168	### 5.3 用词黑名单
+169	
+170	- 避免 "delve into" / "leverage" / "utilize" / "facilitate" — 用 "explore" / "use" / "enable"
+171	- 避免 "a myriad of" / "a plethora of" — 用 "many" / "various"
+172	- 避免 "in the realm of" / "in the context of" — 直接说
+173	- 避免 "paradigm shift" / "novel" 过度使用
+174	
+175	### 5.4 校对清单（4 步）
+176	
+177	1. 全文 proofread 语法和拼写
+178	2. 检查所有代词/指示词（this, that, it）是否指代明确
+179	3. **`grep "—"` + `grep " – "` 全文清零**（删除所有解释性 dash，§5.1）
+180	4. `grep "ing,"` 模式——大部分 -ing 分词短语需要改写
+181	
+182	---
+183	
+184	## 六、图表与视觉规范
+185	
+186	### 6.1 知识密度原则
+187	
+188	- **图表的信息必须紧凑**——不能为了美观而留大量白空间
+189	- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中
+190	- 能用 inline text 说清的不要占一整个 Figure
+191	
+192	### 6.2 表格规范
+193	
+194	- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）
+195	- 小数精度全表统一
+196	- 最优加粗、次优下划线
+197	- Caption 必须自包含
+198	
+199	### 6.3 图片规范
+200	
+201	- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签
+202	- 图中字体 >= 7pt（打印后仍可读）
+203	- 栏宽约束需匹配目标 venue 模板要求
+204	- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页
+205	
+206	### 6.4 空间效率
+207	
+208	- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源
+209	- 优先使用 `\subfigure` 合并相关图
+210	- Table 能 inline 就不要单独浮动
+211	- 图表占比与其对叙事的贡献成正比
+212	
+213	### 6.5 页面节奏
+214	
+215	好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：
+216	
+217	- **text-equation-figure 三重奏**：重要概念用"文字解释 → 公式定义 → 图表直觉"三步展开
+218	- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏
+219	- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float
+220	- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）
+221	- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）
+222	
+223	### 6.6 表格 LaTeX 规范
+224	
+225	**Booktabs 标准（硬规则）**：
+226	- 用 `\toprule` / `\midrule` / `\bottomrule`，禁止 `\hline`，禁止竖线 `|`
+227	- 用 `\centering` 不用 `\begin{center}`（后者多加垂直空白）
+228	- 最优结果加粗（`\textbf{}`），次优下划线（`\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向
+229	- 小数精度全表统一（如全部保留 1 位或 2 位）
+230	- Caption 在表格上方（`\caption` 在 `\begin{tabular}` 之前）
+231	
+232	**宽度决策树**：
+233	- ≤5 列 → 单栏宽度（`\columnwidth`）
+234	- 6–8 列 → 全文宽度（`\textwidth`，双栏模板用 `table*`）
+235	- >8 列 → 拆成两张表或移入 appendix
+236	
+237	---
+238	
+239	## 七、投稿前通用准备
+240	
+241	### 7.1 模板必须官方（硬规则）
+242	
+243	- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）
+244	- **不要用**：
+245	  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）
+246	  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）
+247	  - 组里学长留的旧版本（来源不明、无法追溯）
+248	- 风险：
+249	  - 样式不符合 → desk reject
+250	  - margin 不对 → 被审稿人质疑诚信
+251	  - reference 格式错 → 被认为不规范
+252	- 流程：先查会议官网 templates → 找不到再 `WebSearch "{venue} {year} latex template official"` → 仍找不到汇报 Director（不要用就近年版本顶替）
+253	- `\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致
+254	
+255	### 7.2 投稿要求逐项核对
+256	
+257	- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A
+258	- 页数限制：查目标会议官网
+259	- 匿名化要求：review 版 vs camera-ready 版本设置不同
+260	- 行号开启（review 版常需）
+261	- 字体大小、margin 不得修改 sty 文件
+262	
+263	### 7.3 最终修改 10 项检查流程
+264	
+265	提交前必须逐一检查：
+266	1. 所有最新实验结果已全部录入
+267	2. 根据实验结果将叙事调至最优状态
+268	3. 附录所有内容在正文中被引用且融入叙事
+269	4. 无数据堆砌（每个数字服务于叙事推进）
+270	5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）
+271	6. 全文主线统一（idea 变化后各章节逻辑一致）
+272	7. 所有专有名词有定义
+273	8. 无 AI 风格标志（dash、-ing phrases、过度分段）
+274	9. 图表知识密度高、无视觉遮挡
+275	10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础
+276	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "588d8f89-30d1-44b4-9a2d-0fa88638550c",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "4c47dadd-9463-4ad7-861c-c599fc27ecc8",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+      "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+      "numLines": 276,
+      "startLine": 1,
+      "totalLines": 276
+    }
+  },
+  "sourceToolAssistantUUID": "588d8f89-30d1-44b4-9a2d-0fa88638550c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T07:50:59.457Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JVaPo3THL5DjbFRmPNvBJ5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-quality-lessons.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c47dadd-9463-4ad7-861c-c599fc27ecc8",
+  "isSidechain": false,
+  "requestId": "req_011CbNvSggeQTKR6xxqfTigk",
+  "type": "assistant",
+  "uuid": "f0a084e0-89f7-4d3a-b998-241e9618ba77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REEKhf6ZVUbLE2M65WMQZN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27851,
+      "cache_read_input_tokens": 11846,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 11846,
+          "cache_creation_input_tokens": 27851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T07:50:59.463Z_
+
+<details><summary>↩ Tool result · `toolu_01JVaPo3THL5DjbFRmPNvBJ5`</summary>
+
+````text
+1	---
+2	name: paper-quality-lessons
+3	description: NeurIPS 投稿实战经验总结——人工审查中提炼的写作规范、审查清单、常见反模式。Paper Agent / Reviewer / Director 写论文或审查论文时加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 1
+7	tags:
+8	  - writing
+9	  - paper
+10	  - quality
+11	  - checklist
+12	  - review
+13	roles:
+14	  - agent
+15	  - reviewer
+16	  - director
+17	  - paper_agent
+18	---
+19	
+20	# 论文写作质量指南（NeurIPS 实战经验）
+21	
+22	> 来源：2026 年 NeurIPS 投稿期间，从 20+ 项目的人工审查反馈中提炼。
+23	> 每条规则都源自真实的 bug / 退回 / 审稿质疑。
+24	
+25	---
+26	
+27	## 一、数据诚信与溯源（最高优先级）
+28	
+29	### 1.1 数字必须有源头
+30	
+31	- 论文中**每一个数字**必须可追溯到 registry 实验 ID 或原始结果文件
+32	- 禁止凭记忆写数字——必须 `cat result.json | head` + `ls -la` 附上文件证据
+33	- 计算值（均值、标准差、DID、delta）必须独立重算，不信 Agent 第一手汇报
+34	- `paper_provenance.yaml` 覆盖率必须 100%，改数字必须同步更新 provenance
+35	
+36	> **教训（D149 事件）**：Agent 曾伪造完整的 metrics 数据包括 p-value，事后被 Reviewer 独立 parse JSON 抓出。从此所有关键数据必须 Reviewer 独立验证到字段级别。
+37	
+38	### 1.2 不同来源数据不能混用
+39	
+40	- 配对数据必须同 seed、同 c 值、同 N、同 evaluation protocol
+41	- 两张表如果 protocol 不同（如 0-shot vs 8-shot），论文必须明确说明
+42	- 跨 config 比较 delta 会引入系统误差——必须补跑同 config baseline 后才能比较
+43	- 非等量对比必须显式标注（如 "at unmatched volumes"）
+44	
+45	> **教训（D027 事件）**：不同 config 文件的 baseline 不同，跨 config 比较 delta 值引入了 artifact。
+46	
+47	### 1.3 结论撤回后不可复活
+48	
+49	- 被 Director shelved 的数据（如因截断混淆），禁止重新引入论文
+50	- `paper_provenance.yaml` 中 `verified: false` 的 claim，不得恢复
+51	- 术语修正后不可回退（如 "same norm" → "same per-layer standard deviation"）
+52	
+53	---
+54	
+55	## 二、Claim 强度与数据匹配
+56	
+57	### 2.1 Claim 强度规则
+58	
+59	| 数据支撑 | 允许的最强表述 |
+60	|----------|--------------|
+61	| 单 seed, 单数据集 | "preliminary observation", "initial evidence" |
+62	| 单 seed, 多数据集 | "suggestive pattern", "indicative trend" |
+63	| 多 seed, 单数据集 | 报告均值±标准差，可写 "we find" |
+64	| 多 seed, 多数据集 | 可用 "robust", "consistent" |
+65	| 统计检验显著 | 可用 "significant", 附 p-value |
+66	| 单 seed + 外推到其他条件 | 必须加限定，不能声称 "scale-invariant" 等 |
+67	
+68	### 2.2 禁止的过强表述
+69	
+70	- "remarkably stable" → 改为 "relatively stable" 或给出量化波动范围
+71	- "confirmed" → 仅 "suggestive" 级别数据不能用
+72	- "scale-invariant" → single-seed 验证不够
+73	- "We attribute X to Y" → 如果是假说，必须改为 "We hypothesize" + "requiring causal verification"
+74	- "roughly twice" → 实际比值必须在 1.8x-2.2x 才能用，否则改为更准确的近似
+75	- "domain-agnostic" → 改为 "robust across N domains tested"
+76	
+77	### 2.3 Claim 降级机制
+78	
+79	当证据不足以支撑独立 claim 时，应降级为 discussion 中的定性讨论，而非删除。具体做法：
+80	- 独立 contribution → Discussion 段落
+81	- 硬 claim → 加 caveat 的软 claim
+82	- 正文数字 → 移入 Appendix
+83	
+84	---
+85	
+86	## 三、叙事与 Storytelling
+87	
+88	### 3.1 结构原则
+89	
+90	- 核心 paradox/发现之间必须有**过渡句**桥接，不能让读者在关键处断线
+91	- Introduction 每条 Contribution 必须有对应的 section/table 支撑
+92	- Discussion 不应重复 Results 的具体数字——引用表格编号
+93	- 同一解释不要在多处重复推导——主文写一次 + 指向 Appendix
+94	- Limitations 段不要写成一个 17 行大段——拆分为 2-3 个子段按主题分组
+95	
+96	### 3.2 冷引用（Cold Reference）
+97	
+98	- 任何首次出现的概念必须有上文铺垫
+99	- Introduction 贡献列表中不能突然出现未被提及的模型/方法名
+100	
+101	### 3.3 不要用旧叙事套新数字
+102	
+103	新 baseline 出来后若 delta 大幅变化，Section 的叙事逻辑必须重写，不是简单替换数字。
+104	
+105	### 3.4 Contingency Plan
+106	
+107	关键实验结果不确定时需预写两套叙事（如 "若结果 A → 叙事 A"、"若结果 B → 叙事 B"），实验完成后选择正确版本。提交前必须确认只留了一套。
+108	
+109	### 3.5 不要基于中间值做叙事决策
+110	
+111	70% 进度时的估计往往不够稳定（尤其 GSM8K 等难度分布不均匀的 benchmark），必须等完整数据再定稿叙事。
+112	
+113	---
+114	
+115	## 四、术语与一致性
+116	
+117	### 4.1 术语一致性
+118	
+119	- 全文必须统一使用正式定义的术语，不得出现同义词漂移
+120	- 术语定义后，每次使用必须完全一致（不要有时 "perturbation sensitivity" 有时 "perturbation impact"）
+121	
+122	### 4.2 统计量一致性
+123	
+124	- 两个不同的 kappa/p-value 每次出现时必须标注是哪个
+125	- 同一个 metric 在不同位置的数字必须完全一致
+126	- 修改任何数字后必须全文 grep 确认所有引用处同步
+127	
+128	### 4.3 p-value 格式
+129	
+130	- 无前导零、3 位小数：`p = .003`（不是 `p = 0.003`）
+131	- 当非劣效性 p<0.001 实际由正向效应驱动时，必须加括注说明
+132	
+133	### 4.4 例子与定义必须一致
+134	
+135	Taxonomy 中的定义和对应示例不能自相矛盾。如果定义说 "no new content"，示例中就不能包含新信息。
+136	
+137	---
+138	
+139	## 五、投稿前检查清单（Pre-Submission Checklist）
+140	
+141	### 5.1 占位符扫描（硬门禁）
+142	
+143	提交前必须 grep 扫描，以下模式要求**零匹配**：
+144	```
+145	XX.XX, PLACEHOLDER, [If , TODO, TBD, \placeholder{
+146	```
+147	所有条件占位段落（`[If ...]`）必须替换为最终文本。
+148	
+149	### 5.2 编译检查
+150	
+151	- [ ] 编译零 error
+152	- [ ] 无 `??` 未解析引用
+153	- [ ] 无 > 1pt 的 overfull hbox
+154	- [ ] 正文 ≤ 9 页（NeurIPS desk reject 风险）
+155	- [ ] 使用当年 style file（`neurips_2026.sty`）
+156	- [ ] Review 版启用行号
+157	- [ ] 匿名审稿版无作者姓名、无致谢
+158	
+159	### 5.3 数据完整性
+160	
+161	- [ ] 论文所有数字与 registry/provenance 交叉验证通过
+162	- [ ] 计算值（均值、标准差、DID、delta）独立重算确认
+163	- [ ] 所有 evaluation protocol 差异已在论文中说明
+164	- [ ] 多 seed 结果报告均值和标准差
+165	- [ ] 单 seed 数据在 Limitations 中声明
+166	
+167	### 5.4 图表检查
+168	
+169	- [ ] 所有 figure PDF 存在且路径匹配
+170	- [ ] 图表不超栏宽（单栏 5.5in / 全宽 6.5in）
+171	- [ ] 图中字体 ≥ 7pt
+172	- [ ] 小数精度全表统一
+173	- [ ] 最优结果加粗、次优下划线
+174	- [ ] 表格标题（caption）自包含
+175	- [ ] Forest plot 等可视化无 dummy 值（CI_LO=-99 等）
+176	
+177	### 5.5 引用检查
+178	
+179	- [ ] 引用覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**（任一缺失说明调研不充分）
+180	- [ ] 引用密度与目标会议近年录用论文同量级
+181	- [ ] 引用键与 bib 条目 1:1 匹配
+182	- [ ] 无孤儿 bib 条目
+183	- [ ] 无幻觉引用（所有被引论文实际存在）
+184	- [ ] 近年论文的年份/会议准确
+185	- [ ] 审稿人要求的引用全部补齐
+186	
+187	### 5.6 匿名化检查
+188	
+189	- [ ] 源代码无硬编码绝对路径（`/Users/...`, `/root/...`）
+190	- [ ] 配置文件无服务器路径
+191	- [ ] Git history 已清理 author 信息（用 fresh repo）
+192	- [ ] 项目管理文件不得提交（AGENTS.md, memory.md, registry.yaml, task_context/ 等）
+193	- [ ] API Keys 通过环境变量，无泄露
+194	
+195	### 5.7 会议 Checklist 填写（如目标会议要求）
+196	
+197	- [ ] Claims: 摘要/Introduction 准确反映实验范围
+198	- [ ] Limitations: 正文 Limitations 段 + Appendix 补充
+199	- [ ] Experiments: 实验设置完整（exp_id, seed, 超参, 评估 protocol）
+200	- [ ] Reproducibility: 数据集公开、代码可用
+201	- [ ] Statistical Significance: 多 seed 均值+标准差、置信区间
+202	- [ ] Compute: GPU 型号、训练时间、总 GPU-hours
+203	- [ ] Licenses: 数据集/模型引用完整
+204	- [ ] AI Assistants: 如实声明使用情况
+205	- [ ] 每项认真回答（不要全写 N/A）
+206	
+207	### 5.8 叙事完整性
+208	
+209	- [ ] Conclusion 包含所有关键限定符（如 "under greedy decoding"）
+210	- [ ] Abstract 与正文一致（不能一个写 "single seed" 另一个已是 "10 seeds"）
+211	- [ ] 无 Appendix Version A/B 两套叙事残留
+212	- [ ] 无 LaTeX 注释与正文混淆
+213	- [ ] Contribution claim 在 Introduction 中（不在 Related Work 中）
+214	- [ ] 所有专有名词/缩写首次出现时有定义（Abstract 内缩写也必须展开）
+215	- [ ] Introduction 与 Method/Results 讲同一条主线（idea 变化后全文逻辑一致）
+216	
+217	### 5.9 去 AI 风格检查
+218	
+219	- [ ] **`grep "—" paper/*.tex` 全文清零**（解释性 em-dash 必须全删，最显著的 AI 痕迹）
+220	- [ ] **`grep " – " paper/*.tex` 全文清零**（解释性 en-dash 必须全删）
+221	- [ ] 无 "-ing," 分词短语结尾（如 "..., demonstrating the effectiveness of..."）
+222	- [ ] 无连续 "Furthermore" / "Moreover" / "Additionally"（同段最多 1 个）
+223	- [ ] 无 "It is worth noting that..." / "Notably, ..."
+224	- [ ] 无 "delve into" / "leverage" / "utilize" / "a myriad of" / "a plethora of"
+225	- [ ] 自然段 5-8 句是正常的，不要每 2-3 句就换段
+226	
+227	### 5.10 模板与同类论文核对
+228	
+229	- [ ] LaTeX 模板从目标会议官网下载（不是他人转载、不是上一年）
+230	- [ ] `\documentclass[]{}` 选项匹配 review / camera-ready 阶段
+231	- [ ] 写作前已参考 2-3 篇同领域近 1-2 年优秀论文，叙事节奏对齐
+232	
+233	---
+234	
+235	## 六、Reviewer 审查标准
+236	
+237	### 6.1 CRITICAL 级别（必须修复才能提交）
+238	
+239	- 论文数字与实验数据不一致
+240	- Abstract 与正文矛盾
+241	- Evaluation protocol 混淆（如 0-shot 写成 8-shot）
+242	- 未经验证的数据写入论文
+243	- 占位符残留
+244	
+245	### 6.2 WARNING 级别（应当修复）
+246	
+247	- Stale claims（更新了某处数字但忘了同步其他位置）
+248	- 过强措辞不匹配数据支撑
+249	- 隐式全因子设计误导（如写 "3×3×3=27" 但实际只有 15 格）
+250	- 评估指标只描述了部分 domain
+251	- 旧版数据引用
+252	
+253	### 6.3 数据一致性审查流程
+254	
+255	1. 从 registry 提取所有实验 metrics
+256	2. 对照论文中每一个内联数字（到行号级别）
+257	3. 独立重算所有衍生值
+258	4. 不一致处标注为 CRITICAL
+259	5. 近似表述检查实际比值是否在允许范围内
+260	
+261	---
+262	
+263	## 七、常见反模式速查表
+264	
+265	| 反模式 | 症状 | 修复方式 |
+266	|--------|------|----------|
+267	| Stale claim | 论文某处还引用旧数字 | 改数字后全文 grep 同步 |
+268	| Protocol 混淆 | 不同表格用了不同 evaluation 但没说明 | 每张表注明 protocol |
+269	| Agent 误报 | 实验结果缺乏文件证据 | 要求 `cat result.json` 截图 |
+270	| 混用数据算比值 | 跨 seed/条件/N 的数据混合比较 | 只用严格配对的数据 |
+271	| 叙事超越数据 | "confirmed" 但实际只是 suggestive | 匹配 claim 强度到 §2.1 |
+272	| 冷引用 | 首次出现的概念无铺垫 | 先建立框架再引入 |
+273	| 定义-例子矛盾 | Taxonomy 定义和示例冲突 | 审查所有定义与其示例 |
+274	| Placeholder 残留 | XX.XX, TODO, [If...] 未清理 | 提交前 grep 硬门禁 |
+275	| Path 泄露 | 代码/config 含服务器绝对路径 | 改为相对路径 |
+276	| 重复推导 | 同一解释在 3 处各自推导一遍 | 主文一次 + 引用 Appendix |
+277	| Discussion 重复 Results | Discussion 大量复制 Results 数字 | 改为引用表格编号 |
+278	| 单 seed overclaim | 单 seed 数据声称 scale-invariant | 加 preliminary/hedging 限定 |
+279	| Registry 不同步 | Registry 面值与实际状态不一致 | 以 SSH 实测为准 |
+280	| vLLM 静默失败 | max_model_len 太小导致 100% 400 错误 | 预检必须发真实 prompt 验证 |
+281	
+282	---
+283	
+284	## 八、写论文前加载的 Skills
+285	
+286	写论文或做最终审查时，Director/Agent 应按需加载以下 skills：
+287	- `latex-paper` — LaTeX 编译与格式
+288	- `reference-audit` — 引用真实性审计
+289	- `academic-writer` — ML 学术写作规范
+290	- `paper-quality-lessons`（本 skill）— 实战经验教训
+291	
+292	---
+293	
+294	## 九、附录：投稿经验时间线教训
+295	
+296	1. **论文数字锁定时机**：最终编译前 24h 锁定所有数字，之后只允许格式修改
+297	2. **GPU 不要空闲**：审稿期间如果 Agent 空闲，应该跑 ablation/扩展实验作为 rebuttal 储备
+298	3. **匿名化提前做**：不要等到最后一天才检查路径泄露，fresh repo 需要时间清理
+299	4. **9 页零余量策略**：NeurIPS 正文 9 页是硬限，每次新增内容必须等量压缩并编译验证
+300	5. **Contingency 叙事提前写**：关键实验完成前就写好两版叙事，避免最后一刻仓促改稿
+301	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0a084e0-89f7-4d3a-b998-241e9618ba77",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "bfb57fb3-030e-42a2-9bab-09a55676c560",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-quality-lessons.skill.md",
+      "content": "---\nname: paper-quality-lessons\ndescription: NeurIPS 投稿实战经验总结——人工审查中提炼的写作规范、审查清单、常见反模式。Paper Agent / Reviewer / Director 写论文或审查论文时加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 1\ntags:\n  - writing\n  - paper\n  - quality\n  - checklist\n  - review\nroles:\n  - agent\n  - reviewer\n  - director\n  - paper_agent\n---\n\n# 论文写作质量指南（NeurIPS 实战经验）\n\n> 来源：2026 年 NeurIPS 投稿期间，从 20+ 项目的人工审查反馈中提炼。\n> 每条规则都源自真实的 bug / 退回 / 审稿质疑。\n\n---\n\n## 一、数据诚信与溯源（最高优先级）\n\n### 1.1 数字必须有源头\n\n- 论文中**每一个数字**必须可追溯到 registry 实验 ID 或原始结果文件\n- 禁止凭记忆写数字——必须 `cat result.json | head` + `ls -la` 附上文件证据\n- 计算值（均值、标准差、DID、delta）必须独立重算，不信 Agent 第一手汇报\n- `paper_provenance.yaml` 覆盖率必须 100%，改数字必须同步更新 provenance\n\n> **教训（D149 事件）**：Agent 曾伪造完整的 metrics 数据包括 p-value，事后被 Reviewer 独立 parse JSON 抓出。从此所有关键数据必须 Reviewer 独立验证到字段级别。\n\n### 1.2 不同来源数据不能混用\n\n- 配对数据必须同 seed、同 c 值、同 N、同 evaluation protocol\n- 两张表如果 protocol 不同（如 0-shot vs 8-shot），论文必须明确说明\n- 跨 config 比较 delta 会引入系统误差——必须补跑同 config baseline 后才能比较\n- 非等量对比必须显式标注（如 \"at unmatched volumes\"）\n\n> **教训（D027 事件）**：不同 config 文件的 baseline 不同，跨 config 比较 delta 值引入了 artifact。\n\n### 1.3 结论撤回后不可复活\n\n- 被 Director shelved 的数据（如因截断混淆），禁止重新引入论文\n- `paper_provenance.yaml` 中 `verified: false` 的 claim，不得恢复\n- 术语修正后不可回退（如 \"same norm\" → \"same per-layer standard deviation\"）\n\n---\n\n## 二、Claim 强度与数据匹配\n\n### 2.1 Claim 强度规则\n\n| 数据支撑 | 允许的最强表述 |\n|----------|--------------|\n| 单 seed, 单数据集 | \"preliminary observation\", \"initial evidence\" |\n| 单 seed, 多数据集 | \"suggestive pattern\", \"indicative trend\" |\n| 多 seed, 单数据集 | 报告均值±标准差，可写 \"we find\" |\n| 多 seed, 多数据集 | 可用 \"robust\", \"consistent\" |\n| 统计检验显著 | 可用 \"significant\", 附 p-value |\n| 单 seed + 外推到其他条件 | 必须加限定，不能声称 \"scale-invariant\" 等 |\n\n### 2.2 禁止的过强表述\n\n- \"remarkably stable\" → 改为 \"relatively stable\" 或给出量化波动范围\n- \"confirmed\" → 仅 \"suggestive\" 级别数据不能用\n- \"scale-invariant\" → single-seed 验证不够\n- \"We attribute X to Y\" → 如果是假说，必须改为 \"We hypothesize\" + \"requiring causal verification\"\n- \"roughly twice\" → 实际比值必须在 1.8x-2.2x 才能用，否则改为更准确的近似\n- \"domain-agnostic\" → 改为 \"robust across N domains tested\"\n\n### 2.3 Claim 降级机制\n\n当证据不足以支撑独立 claim 时，应降级为 discussion 中的定性讨论，而非删除。具体做法：\n- 独立 contribution → Discussion 段落\n- 硬 claim → 加 caveat 的软 claim\n- 正文数字 → 移入 Appendix\n\n---\n\n## 三、叙事与 Storytelling\n\n### 3.1 结构原则\n\n- 核心 paradox/发现之间必须有**过渡句**桥接，不能让读者在关键处断线\n- Introduction 每条 Contribution 必须有对应的 section/table 支撑\n- Discussion 不应重复 Results 的具体数字——引用表格编号\n- 同一解释不要在多处重复推导——主文写一次 + 指向 Appendix\n- Limitations 段不要写成一个 17 行大段——拆分为 2-3 个子段按主题分组\n\n### 3.2 冷引用（Cold Reference）\n\n- 任何首次出现的概念必须有上文铺垫\n- Introduction 贡献列表中不能突然出现未被提及的模型/方法名\n\n### 3.3 不要用旧叙事套新数字\n\n新 baseline 出来后若 delta 大幅变化，Section 的叙事逻辑必须重写，不是简单替换数字。\n\n### 3.4 Contingency Plan\n\n关键实验结果不确定时需预写两套叙事（如 \"若结果 A → 叙事 A\"、\"若结果 B → 叙事 B\"），实验完成后选择正确版本。提交前必须确认只留了一套。\n\n### 3.5 不要基于中间值做叙事决策\n\n70% 进度时的估计往往不够稳定（尤其 GSM8K 等难度分布不均匀的 benchmark），必须等完整数据再定稿叙事。\n\n---\n\n## 四、术语与一致性\n\n### 4.1 术语一致性\n\n- 全文必须统一使用正式定义的术语，不得出现同义词漂移\n- 术语定义后，每次使用必须完全一致（不要有时 \"perturbation sensitivity\" 有时 \"perturbation impact\"）\n\n### 4.2 统计量一致性\n\n- 两个不同的 kappa/p-value 每次出现时必须标注是哪个\n- 同一个 metric 在不同位置的数字必须完全一致\n- 修改任何数字后必须全文 grep 确认所有引用处同步\n\n### 4.3 p-value 格式\n\n- 无前导零、3 位小数：`p = .003`（不是 `p = 0.003`）\n- 当非劣效性 p<0.001 实际由正向效应驱动时，必须加括注说明\n\n### 4.4 例子与定义必须一致\n\nTaxonomy 中的定义和对应示例不能自相矛盾。如果定义说 \"no new content\"，示例中就不能包含新信息。\n\n---\n\n## 五、投稿前检查清单（Pre-Submission Checklist）\n\n### 5.1 占位符扫描（硬门禁）\n\n提交前必须 grep 扫描，以下模式要求**零匹配**：\n```\nXX.XX, PLACEHOLDER, [If , TODO, TBD, \\placeholder{\n```\n所有条件占位段落（`[If ...]`）必须替换为最终文本。\n\n### 5.2 编译检查\n\n- [ ] 编译零 error\n- [ ] 无 `??` 未解析引用\n- [ ] 无 > 1pt 的 overfull hbox\n- [ ] 正文 ≤ 9 页（NeurIPS desk reject 风险）\n- [ ] 使用当年 style file（`neurips_2026.sty`）\n- [ ] Review 版启用行号\n- [ ] 匿名审稿版无作者姓名、无致谢\n\n### 5.3 数据完整性\n\n- [ ] 论文所有数字与 registry/provenance 交叉验证通过\n- [ ] 计算值（均值、标准差、DID、delta）独立重算确认\n- [ ] 所有 evaluation protocol 差异已在论文中说明\n- [ ] 多 seed 结果报告均值和标准差\n- [ ] 单 seed 数据在 Limitations 中声明\n\n### 5.4 图表检查\n\n- [ ] 所有 figure PDF 存在且路径匹配\n- [ ] 图表不超栏宽（单栏 5.5in / 全宽 6.5in）\n- [ ] 图中字体 ≥ 7pt\n- [ ] 小数精度全表统一\n- [ ] 最优结果加粗、次优下划线\n- [ ] 表格标题（caption）自包含\n- [ ] Forest plot 等可视化无 dummy 值（CI_LO=-99 等）\n\n### 5.5 引用检查\n\n- [ ] 引用覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**（任一缺失说明调研不充分）\n- [ ] 引用密度与目标会议近年录用论文同量级\n- [ ] 引用键与 bib 条目 1:1 匹配\n- [ ] 无孤儿 bib 条目\n- [ ] 无幻觉引用（所有被引论文实际存在）\n- [ ] 近年论文的年份/会议准确\n- [ ] 审稿人要求的引用全部补齐\n\n### 5.6 匿名化检查\n\n- [ ] 源代码无硬编码绝对路径（`/Users/...`, `/root/...`）\n- [ ] 配置文件无服务器路径\n- [ ] Git history 已清理 author 信息（用 fresh repo）\n- [ ] 项目管理文件不得提交（AGENTS.md, memory.md, registry.yaml, task_context/ 等）\n- [ ] API Keys 通过环境变量，无泄露\n\n### 5.7 会议 Checklist 填写（如目标会议要求）\n\n- [ ] Claims: 摘要/Introduction 准确反映实验范围\n- [ ] Limitations: 正文 Limitations 段 + Appendix 补充\n- [ ] Experiments: 实验设置完整（exp_id, seed, 超参, 评估 protocol）\n- [ ] Reproducibility: 数据集公开、代码可用\n- [ ] Statistical Significance: 多 seed 均值+标准差、置信区间\n- [ ] Compute: GPU 型号、训练时间、总 GPU-hours\n- [ ] Licenses: 数据集/模型引用完整\n- [ ] AI Assistants: 如实声明使用情况\n- [ ] 每项认真回答（不要全写 N/A）\n\n### 5.8 叙事完整性\n\n- [ ] Conclusion 包含所有关键限定符（如 \"under greedy decoding\"）\n- [ ] Abstract 与正文一致（不能一个写 \"single seed\" 另一个已是 \"10 seeds\"）\n- [ ] 无 Appendix Version A/B 两套叙事残留\n- [ ] 无 LaTeX 注释与正文混淆\n- [ ] Contribution claim 在 Introduction 中（不在 Related Work 中）\n- [ ] 所有专有名词/缩写首次出现时有定义（Abstract 内缩写也必须展开）\n- [ ] Introduction 与 Method/Results 讲同一条主线（idea 变化后全文逻辑一致）\n\n### 5.9 去 AI 风格检查\n\n- [ ] **`grep \"—\" paper/*.tex` 全文清零**（解释性 em-dash 必须全删，最显著的 AI 痕迹）\n- [ ] **`grep \" – \" paper/*.tex` 全文清零**（解释性 en-dash 必须全删）\n- [ ] 无 \"-ing,\" 分词短语结尾（如 \"..., demonstrating the effectiveness of...\"）\n- [ ] 无连续 \"Furthermore\" / \"Moreover\" / \"Additionally\"（同段最多 1 个）\n- [ ] 无 \"It is worth noting that...\" / \"Notably, ...\"\n- [ ] 无 \"delve into\" / \"leverage\" / \"utilize\" / \"a myriad of\" / \"a plethora of\"\n- [ ] 自然段 5-8 句是正常的，不要每 2-3 句就换段\n\n### 5.10 模板与同类论文核对\n\n- [ ] LaTeX 模板从目标会议官网下载（不是他人转载、不是上一年）\n- [ ] `\\documentclass[]{}` 选项匹配 review / camera-ready 阶段\n- [ ] 写作前已参考 2-3 篇同领域近 1-2 年优秀论文，叙事节奏对齐\n\n---\n\n## 六、Reviewer 审查标准\n\n### 6.1 CRITICAL 级别（必须修复才能提交）\n\n- 论文数字与实验数据不一致\n- Abstract 与正文矛盾\n- Evaluation protocol 混淆（如 0-shot 写成 8-shot）\n- 未经验证的数据写入论文\n- 占位符残留\n\n### 6.2 WARNING 级别（应当修复）\n\n- Stale claims（更新了某处数字但忘了同步其他位置）\n- 过强措辞不匹配数据支撑\n- 隐式全因子设计误导（如写 \"3×3×3=27\" 但实际只有 15 格）\n- 评估指标只描述了部分 domain\n- 旧版数据引用\n\n### 6.3 数据一致性审查流程\n\n1. 从 registry 提取所有实验 metrics\n2. 对照论文中每一个内联数字（到行号级别）\n3. 独立重算所有衍生值\n4. 不一致处标注为 CRITICAL\n5. 近似表述检查实际比值是否在允许范围内\n\n---\n\n## 七、常见反模式速查表\n\n| 反模式 | 症状 | 修复方式 |\n|--------|------|----------|\n| Stale claim | 论文某处还引用旧数字 | 改数字后全文 grep 同步 |\n| Protocol 混淆 | 不同表格用了不同 evaluation 但没说明 | 每张表注明 protocol |\n| Agent 误报 | 实验结果缺乏文件证据 | 要求 `cat result.json` 截图 |\n| 混用数据算比值 | 跨 seed/条件/N 的数据混合比较 | 只用严格配对的数据 |\n| 叙事超越数据 | \"confirmed\" 但实际只是 suggestive | 匹配 claim 强度到 §2.1 |\n| 冷引用 | 首次出现的概念无铺垫 | 先建立框架再引入 |\n| 定义-例子矛盾 | Taxonomy 定义和示例冲突 | 审查所有定义与其示例 |\n| Placeholder 残留 | XX.XX, TODO, [If...] 未清理 | 提交前 grep 硬门禁 |\n| Path 泄露 | 代码/config 含服务器绝对路径 | 改为相对路径 |\n| 重复推导 | 同一解释在 3 处各自推导一遍 | 主文一次 + 引用 Appendix |\n| Discussion 重复 Results | Discussion 大量复制 Results 数字 | 改为引用表格编号 |\n| 单 seed overclaim | 单 seed 数据声称 scale-invariant | 加 preliminary/hedging 限定 |\n| Registry 不同步 | Registry 面值与实际状态不一致 | 以 SSH 实测为准 |\n| vLLM 静默失败 | max_model_len 太小导致 100% 400 错误 | 预检必须发真实 prompt 验证 |\n\n---\n\n## 八、写论文前加载的 Skills\n\n写论文或做最终审查时，Director/Agent 应按需加载以下 skills：\n- `latex-paper` — LaTeX 编译与格式\n- `reference-audit` — 引用真实性审计\n- `academic-writer` — ML 学术写作规范\n- `paper-quality-lessons`（本 skill）— 实战经验教训\n\n---\n\n## 九、附录：投稿经验时间线教训\n\n1. **论文数字锁定时机**：最终编译前 24h 锁定所有数字，之后只允许格式修改\n2. **GPU 不要空闲**：审稿期间如果 Agent 空闲，应该跑 ablation/扩展实验作为 rebuttal 储备\n3. **匿名化提前做**：不要等到最后一天才检查路径泄露，fresh repo 需要时间清理\n4. **9 页零余量策略**：NeurIPS 正文 9 页是硬限，每次新增内容必须等量压缩并编译验证\n5. **Contingency 叙事提前写**：关键实验完成前就写好两版叙事，避免最后一刻仓促改稿\n",
+      "numLines": 301,
+      "startLine": 1,
+      "totalLines": 301
+    }
+  },
+  "sourceToolAssistantUUID": "f0a084e0-89f7-4d3a-b998-241e9618ba77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-25T07:50:59.681Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01EgnYEKDGuawhNYQUYrmpvY`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfb57fb3-030e-42a2-9bab-09a55676c560",
+  "isSidechain": false,
+  "requestId": "req_011CbNvSggeQTKR6xxqfTigk",
+  "type": "assistant",
+  "uuid": "85a83f74-8e42-44a2-9a7d-0de579fe9200",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REEKhf6ZVUbLE2M65WMQZN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27851,
+      "cache_read_input_tokens": 11846,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 11846,
+          "cache_creation_input_tokens": 27851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "2fb85efb-95f6-44dd-92f9-b9bf242d4cb6",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-25T07:51:02.873Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read all the .tex files. Let me read the main ones first - abstract, introduction, method, experiments, conclusion, related_work, and main.tex to understand the structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fb85efb-95f6-44dd-92f9-b9bf242d4cb6",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "5ab22d0f-07ac-4fdb-b5aa-9b3be6d73edb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-25T07:51:02.874Z_
+
+读取所有论文 .tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ab22d0f-07ac-4fdb-b5aa-9b3be6d73edb",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "5b92a536-a6d7-4274-a07a-0af583c15d74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-25T07:51:03.482Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VMjMnsAPKGTzX59eX22rv1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b92a536-a6d7-4274-a07a-0af583c15d74",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "e7ba718a-db61-4805-b650-06ce67e25e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-25T07:51:03.487Z_
+
+<details><summary>↩ Tool result · `toolu_01VMjMnsAPKGTzX59eX22rv1`</summary>
+
+```text
+1	\begin{abstract}
+2	When large language model (LLM)-generated annotations feed into causal inference, annotation quality alone is insufficient to assess causal validity; the causal directed acyclic graph (DAG) topology determines whether errors attenuate, amplify, or reverse the treatment effect estimate. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification in linear structural equation models and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. Under proportional effects, five topologies preserve the treatment effect sign under regularity conditions; exposure and instrumental variable (IV) can reverse it. Under empirical LLM confusion matrices, sign reversal is confined to exposure topology. We introduce Annotation Sensitivity Values (ASVs), with proved ($K{=}2$, $K{=}3$ symmetric) and extensively validated (general $K{\geq}3$) monotonicity that yields a vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective under linear regression for four topologies due to Frisch--Waugh--Lovell invariance. A case study with 10 real LLM confusion matrices confirms: topology-aware correction reduces exposure bias from 61\% to $<$1\%, while topology-blind corrections are provably futile under linear regression for four topologies.
+3	\end{abstract}
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7ba718a-db61-4805-b650-06ce67e25e1d",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "ce4da3ae-dc75-4e51-8c12-9d2134040b61",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nWhen large language model (LLM)-generated annotations feed into causal inference, annotation quality alone is insufficient to assess causal validity; the causal directed acyclic graph (DAG) topology determines whether errors attenuate, amplify, or reverse the treatment effect estimate. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification in linear structural equation models and show that $K {\\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. Under proportional effects, five topologies preserve the treatment effect sign under regularity conditions; exposure and instrumental variable (IV) can reverse it. Under empirical LLM confusion matrices, sign reversal is confined to exposure topology. We introduce Annotation Sensitivity Values (ASVs), with proved ($K{=}2$, $K{=}3$ symmetric) and extensively validated (general $K{\\geq}3$) monotonicity that yields a vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective under linear regression for four topologies due to Frisch--Waugh--Lovell invariance. A case study with 10 real LLM confusion matrices confirms: topology-aware correction reduces exposure bias from 61\\% to $<$1\\%, while topology-blind corrections are provably futile under linear regression for four topologies.\n\\end{abstract}\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  },
+  "sourceToolAssistantUUID": "e7ba718a-db61-4805-b650-06ce67e25e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-25T07:51:04.566Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DXpLQvQgU9DzoAqSM93div`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce4da3ae-dc75-4e51-8c12-9d2134040b61",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "c2ff71c6-5a8e-4a4c-a3cc-d9422399a9eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-25T07:51:04.576Z_
+
+<details><summary>↩ Tool result · `toolu_01DXpLQvQgU9DzoAqSM93div`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Large language models (LLMs) are rapidly replacing human annotators in computational social science~\cite{gilardi2023chatgpt, ziems2024can, egami_hinck_stewart_wei2023, baumann2025}. Most tasks are inherently multi-class (stance detection: 3--4 categories, sentiment: 5, disaster response: 10+), and annotation errors propagate into downstream causal estimates in ways that depend on both error structure and causal design. \citet{baumann2025} show that 31\% of hypotheses yield incorrect conclusions with state-of-the-art LLMs, with 60\% error correlation across models~\cite{kim_garg2025}. Standard metrics do not capture this risk: within $F_1$ 0.61--0.69, causal bias varies by an order of magnitude across topologies.
+5	
+6	The transition at $K{\geq}3$ is not gradual but structural. For $K{=}2$, the stochastic constraint forces any confusion matrix with positive diagonal to preserve coefficient signs, an algebraic property of the $2{\times}2$ matrix dimension~\cite{brenner1993}. This guarantee vanishes at $K{\geq}3$: the higher-dimensional confusion matrix admits negative effective weights on categories with opposite-sign coefficients; sign reversal can occur even under high accuracy~\cite{veirod_laake2001}. Under a uniform Dirichlet prior, 83.4\% of $K{=}3$ exposure confusion matrices produce sign reversal of at least one secondary coefficient; under realistic accuracy (diagonal $\geq 0.7$), 2.1\% still do. The primary treatment coefficient is never reversed under the tested $\beta$ configurations where a single category dominates ($\beta_1 \gg \beta_2$), an empirical regularity we discuss in Section~\ref{sec:method}.
+7	
+8	$F_1$ does not exhibit significant rank correlation with causal bias ($\rho = -0.10$, $p = 0.45$ across 56 HumAID scenarios; bias varies $>$10${\times}$ (from $<$6\% to 42.1\%) within $F_1$ 0.614--0.690). Prior work noted polytomous sign reversal~\cite{dosemeci1990, veirod_laake2001} and confounder amplification~\cite{brenner1993}, but covered at most one topology~\cite{lee_wood_doughty2024}. We present the first systematic analysis jointly addressing multi-class ($K{\geq}3$) misclassification across seven directed acyclic graph (DAG) topologies, with analytical predictions matching Monte Carlo within 1.6\% MAPE across 161 scenarios.
+9	
+10	We address these gaps with three contributions:
+11	
+12	\begin{enumerate}
+13	\item \textbf{Multi-class bias taxonomy.} We derive bias expressions for seven canonical DAG topologies\footnote{These span the four structural roles of the annotated variable: treatment (exposure), outcome-side covariate (confounding, mediation, M-bias, front-door), selection variable (collider), and instrumental variable (IV).} (Figure~\ref{fig:dag_taxonomy}) under $K$-class non-differential misclassification and establish a sign-preservation/reversal dichotomy: five topologies preserve the treatment effect sign under topology-specific regularity conditions (Proposition~\ref{prop:signflip}), while exposure and IV can reverse it.
+14	
+15	\item \textbf{Annotation Sensitivity Values.} We define three ASV diagnostics (magnitude, significance, and sign-flip) with proved envelope monotonicity (Theorems~\ref{thm:monotone},~\ref{thm:k3_symmetric}) and $\varepsilon$-approximate monotonicity for general $K{\geq}3$ (Conjecture~\ref{conj:monotone}). This reveals a vulnerability spectrum from IV (maximally fragile) to M-bias (immune).
+16	
+17	\item \textbf{Topology-aware correction routing.} Frisch--Waugh--Lovell (FWL) invariance renders matrix-based corrections provably ineffective for four covariate topologies. We evaluate five correction methods and provide a topology-aware decision procedure (Algorithm~\ref{alg:correction}, Appendix), validated with real LLM confusion matrices.
+18	\end{enumerate}
+19	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2ff71c6-5a8e-4a4c-a3cc-d9422399a9eb",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "6ced8fd6-4a79-4761-9c25-ee3f1ba9f452",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nLarge language models (LLMs) are rapidly replacing human annotators in computational social science~\\cite{gilardi2023chatgpt, ziems2024can, egami_hinck_stewart_wei2023, baumann2025}. Most tasks are inherently multi-class (stance detection: 3--4 categories, sentiment: 5, disaster response: 10+), and annotation errors propagate into downstream causal estimates in ways that depend on both error structure and causal design. \\citet{baumann2025} show that 31\\% of hypotheses yield incorrect conclusions with state-of-the-art LLMs, with 60\\% error correlation across models~\\cite{kim_garg2025}. Standard metrics do not capture this risk: within $F_1$ 0.61--0.69, causal bias varies by an order of magnitude across topologies.\n\nThe transition at $K{\\geq}3$ is not gradual but structural. For $K{=}2$, the stochastic constraint forces any confusion matrix with positive diagonal to preserve coefficient signs, an algebraic property of the $2{\\times}2$ matrix dimension~\\cite{brenner1993}. This guarantee vanishes at $K{\\geq}3$: the higher-dimensional confusion matrix admits negative effective weights on categories with opposite-sign coefficients; sign reversal can occur even under high accuracy~\\cite{veirod_laake2001}. Under a uniform Dirichlet prior, 83.4\\% of $K{=}3$ exposure confusion matrices produce sign reversal of at least one secondary coefficient; under realistic accuracy (diagonal $\\geq 0.7$), 2.1\\% still do. The primary treatment coefficient is never reversed under the tested $\\beta$ configurations where a single category dominates ($\\beta_1 \\gg \\beta_2$), an empirical regularity we discuss in Section~\\ref{sec:method}.\n\n$F_1$ does not exhibit significant rank correlation with causal bias ($\\rho = -0.10$, $p = 0.45$ across 56 HumAID scenarios; bias varies $>$10${\\times}$ (from $<$6\\% to 42.1\\%) within $F_1$ 0.614--0.690). Prior work noted polytomous sign reversal~\\cite{dosemeci1990, veirod_laake2001} and confounder amplification~\\cite{brenner1993}, but covered at most one topology~\\cite{lee_wood_doughty2024}. We present the first systematic analysis jointly addressing multi-class ($K{\\geq}3$) misclassification across seven directed acyclic graph (DAG) topologies, with analytical predictions matching Monte Carlo within 1.6\\% MAPE across 161 scenarios.\n\nWe address these gaps with three contributions:\n\n\\begin{enumerate}\n\\item \\textbf{Multi-class bias taxonomy.} We derive bias expressions for seven canonical DAG topologies\\footnote{These span the four structural roles of the annotated variable: treatment (exposure), outcome-side covariate (confounding, mediation, M-bias, front-door), selection variable (collider), and instrumental variable (IV).} (Figure~\\ref{fig:dag_taxonomy}) under $K$-class non-differential misclassification and establish a sign-preservation/reversal dichotomy: five topologies preserve the treatment effect sign under topology-specific regularity conditions (Proposition~\\ref{prop:signflip}), while exposure and IV can reverse it.\n\n\\item \\textbf{Annotation Sensitivity Values.} We define three ASV diagnostics (magnitude, significance, and sign-flip) with proved envelope monotonicity (Theorems~\\ref{thm:monotone},~\\ref{thm:k3_symmetric}) and $\\varepsilon$-approximate monotonicity for general $K{\\geq}3$ (Conjecture~\\ref{conj:monotone}). This reveals a vulnerability spectrum from IV (maximally fragile) to M-bias (immune).\n\n\\item \\textbf{Topology-aware correction routing.} Frisch--Waugh--Lovell (FWL) invariance renders matrix-based corrections provably ineffective for four covariate topologies. We evaluate five correction methods and provide a topology-aware decision procedure (Algorithm~\\ref{alg:correction}, Appendix), validated with real LLM confusion matrices.\n\\end{enumerate}\n",
+      "numLines": 19,
+      "startLine": 1,
+      "totalLines": 19
+    }
+  },
+  "sourceToolAssistantUUID": "c2ff71c6-5a8e-4a4c-a3cc-d9422399a9eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-25T07:51:04.782Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NtmEG3xjQAST2cGSiC4zFu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ced8fd6-4a79-4761-9c25-ee3f1ba9f452",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "3a764d79-c814-40a5-a5b6-4dd7da2e6041",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-25T07:51:04.789Z_
+
+<details><summary>↩ Tool result · `toolu_01NtmEG3xjQAST2cGSiC4zFu`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Setup and Notation}
+5	\label{sec:notation}
+6	
+7	Let $A$ denote a true $K$-class categorical variable (e.g., sentiment with $K{=}3$ levels) and $A^*$ its observed, potentially misclassified version produced by an LLM annotator. The misclassification process is characterized by a $K{\times}K$ confusion matrix $C$ with entries $C_{jk} = P(A^*{=}j \mid A{=}k)$, where each column sums to one (column-stochastic: each column gives the distribution of predicted labels for a given true label). Following \citet{hernan_cole2009}, we represent this measurement process using \emph{starred-node} DAGs: the true variable $A$ is latent, and the observed $A^*$ is connected to $A$ via a dashed measurement edge.
+8	
+9	\paragraph{Notation conventions.}
+10	Our analysis characterizes probability limits ($N \to \infty$) under the FWL theorem~\cite{frisch1933partial}, which explains why matrix-based corrections fail for covariate topologies (Section~\ref{sec:correction}). Notation is collected in Table~\ref{tab:notation} (Appendix~\ref{app:notation_table}).
+11	
+12	\begin{definition}[Non-differential misclassification]
+13	\label{def:nondiff}
+14	Misclassification of $A$ is non-differential with respect to outcome $Y$ and covariates $\mathbf{Z}$ if $P(A^*{=}j \mid A{=}k, Y, \mathbf{Z}) = P(A^*{=}j \mid A{=}k) = C_{jk}$ for all $j,k$.
+15	\end{definition}
+16	
+17	In batch annotation pipelines, the LLM processes each text independently without access to $Y$, making non-differentiality an architectural invariant~\cite{ziems2024can}; Y-stratified permutation tests confirm this (1/12 rejection at $\alpha{=}0.05$; Appendix~\ref{sec:y_stratified_test}). Non-differentiality may be violated when $Y$ correlates with text content, in which case our Y-stratified test provides empirical verification. Under stress testing, sign reversal occurs in 14/16 $K{\geq}3$ exposure configurations at $\eta{=}0.01$ structured departure (Appendix~\ref{sec:nondiff_stress}).
+18	
+19	Throughout, $\tau$ denotes the causal estimand of interest, whose definition varies by topology: the confounder's coefficient, the treatment effect, the indirect effect, or the Wald ratio (Appendix~\ref{app:confounding}ff.).
+20	
+21	We study seven canonical DAG topologies (Figure~\ref{fig:dag_taxonomy})~\cite{pearl2009, hernan2020causal}, deriving probability limits under linear structural equation models (SEMs)~\cite{carroll2006}; logistic regression robustness is verified in Appendix~\ref{sec:logistic_dgp} and~\ref{sec:fwl_nonlinear}.
+22	
+23	\subsection{Multi-Class Bias Expressions}
+24	\label{sec:bias_expressions}
+25	
+26	For each topology, we derive the $\operatorname{plim}$\footnote{The probability limit (plim) is the value to which an estimator converges as sample size $N \to \infty$; it characterizes systematic bias separately from sampling variability.} of the naive estimator that substitutes $A^*$ for $A$. Let $\tau$ denote the target causal parameter, whose precise definition is topology-specific (e.g., the coefficient on $X$ for confounding, the category-specific $\beta_j$ for exposure, or the direct effect $\tau_{\text{direct}}$ for mediation), and $\hat{\tau}(A^*)$ the estimator using misclassified annotations.
+27	
+28	\paragraph{Confounding ($A$ = confounder).}
+29	When $A$ confounds the $X{\to}Y$ relationship, the ordinary least squares (OLS) estimator controlling for $A^*$ has probability limit
+30	\begin{equation}
+31	\label{eq:confounding}
+32	\operatorname{plim}\;\hat{\tau}(A^*) = \bigl(\mathbb{E}[Z^{\prime}Z]\bigr)^{-1}\mathbb{E}[Z^{\prime}X]\,\boldsymbol{\beta},
+33	\end{equation}
+34	where $Z = [X, \text{dummies}(A^*)]$, $\boldsymbol{\beta}$ contains the true coefficients, and the target parameter $\tau$ is the coefficient on $X$. Misclassification produces residual confounding that monotonically approaches the omitted variable bias, but the sign of $\hat{\tau}$ is preserved: $\tau_{\text{sign\_flip}} = 0$ structurally.\footnote{Consistent with \citet{brenner1993}: misclassification degrades confounding control, producing amplification ($|\hat{\tau}| > |\tau|$, universal in this topology) but never sign reversal ($\operatorname{sign}(\hat{\tau}) \neq \operatorname{sign}(\tau)$).}
+35	
+36	\paragraph{Exposure ($A$ = treatment variable).}
+37	When $A$ is the exposure of interest, the biased coefficient for category $j$ becomes a weighted combination of true coefficients:
+38	\begin{equation}
+39	\label{eq:exposure}
+40	\operatorname{plim}\;\hat{\beta}_j(A^*) = \sum_{k=1}^{K} w_{jk}\,\beta_k,
+41	\end{equation}
+42	where $w_{jk}$ depends on the confusion matrix $C$ and the population marginal $\pi_k = P(A{=}k)$. Unlike binary misclassification~\cite{brenner1993}, $K{\geq}3$ permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \emph{sign reversal} (83.4\% under uniform Dirichlet prior); this is structurally impossible at $K{=}2$.
+43	
+44	\begin{figure*}[t]
+45	\centering
+46	\includegraphics[width=\textwidth]{fig2_bias_distribution.pdf}
+47	\caption{Bias distributions under 100{,}000 random $K{=}3$ confusion matrices (uniform Dirichlet; realistic-accuracy results in Section~\ref{sec:taxonomy_results}). Red = sign reversal. Exposure: 83.4\% sign reversal; IV: 52.6\%.}
+48	\label{fig:bias_distribution}
+49	\end{figure*}
+50	
+51	\paragraph{Primary coefficient preservation.}
+52	Across 23 empirical LLM configurations, the primary coefficient (the category with the largest true effect $|\beta_k|$) never reverses sign, while 61\% reverse a secondary (non-dominant) coefficient, confirmed under 100{,}000 Dirichlet matrices with diagonal ${\geq}\,0.7$ across six beta-ratio conditions (1.0 to 50.0) with 0\% primary sign-flip (Appendix~\ref{app:exposure}).
+53	
+54	\paragraph{Mediation ($A$ = mediator).}
+55	When $A$ mediates the $X{\to}Y$ relationship~\cite{vanderweele2015explanation}, the direct effect estimator controlling for $A^*$ has probability limit
+56	\begin{equation}
+57	\label{eq:mediation}
+58	\operatorname{plim}\;\hat{\tau}_{\text{direct}}(A^*) = \tau_{\text{direct}} + \bigl(1 - \lambda(C)\bigr)\,\tau_{\text{indirect}},
+59	\end{equation}
+60	where $\lambda(C) \in [0,1]$ under proportional effects (Appendix~\ref{app:proof}, Proposition~\ref{prop:lambda_bound}), with $\lambda(I) = 1$ under perfect classification. Misclassification ($\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserving the sign ($\tau_{\text{sign\_flip}} = 0$).
+61	
+62	\paragraph{Collider, M-bias, and front-door.}
+63	Three topologies exhibit protective or immune behavior. \textbf{Collider:} conditioning on $A^*$ instead of $A$ attenuates Berkson bias by weakening the spurious path, so annotation error is protective ($\tau_{\text{sign\_flip}} = 0$). \textbf{M-bias:} in the M-shaped DAG~\cite{greenland2003}, misclassifying $A$ attenuates the non-causal path, making this topology immune ($\text{ASV} = \infty$). \textbf{Front-door:} the front-door estimator~\cite{bellemare_bloem2024} requires two stages ($X \to A$ and $A \to Y$), each attenuated by $C$; the compound effect produces moderate bias with $\tau_{\text{sign\_flip}} = 0$.
+64	
+65	\paragraph{Instrumental variable ($A$ = instrument).}
+66	The Wald estimator~\cite{angrist_imbens1995} $\hat{\tau}_{\text{IV}} = \hat{\text{cov}}(A^*, Y) / \hat{\text{cov}}(A^*, X)$ has $C$ in the denominator. Misclassification can drive first-stage coefficients toward zero or reverse their sign; under random Dirichlet matrices, 52.6\% produce sign reversal; IV is the most fragile topology (Appendix~\ref{sec:iv_dirichlet_subspace}).
+67	
+68	\paragraph{Structural sign-flip guarantee.}
+69	\begin{proposition}[Sign preservation: analytic results]
+70	\label{prop:signflip}
+71	Under non-differential misclassification with $C_{kk} > 0$ for all $k$:
+72	\emph{(a)}~Confounding preserves sign when $\operatorname{sign}(\tau) = \operatorname{sign}(\tau {+} B_{\mathrm{OV}})$, where $B_{\mathrm{OV}} {=} \operatorname{Cov}(g(A),f(A))/\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\ref{app:confounding}).
+73	\emph{(b)}~Collider preserves sign when $|\tau| > \sqrt{\operatorname{Var}(g)\operatorname{Var}(h)}/\mathbb{E}[\operatorname{Var}(T{\mid}A)]$ (Berkson attenuation; Appendix~\ref{app:collider}); empirically verified across 100{,}000 matrices with zero violations.
+74	\emph{(c)}~Exposure can produce sign reversal for $K {\geq} 3$, even with $C_{kk} {>} 0.5$ (counterexample in Appendix~\ref{app:exposure}).
+75	\end{proposition}
+76	
+77	Sign preservation for non-exposure topologies holds under topology-specific conditions (Table~\ref{tab:sign_conditions}, Appendix~\ref{app:conditions}), verified across 100{,}000 random matrices with zero violations; analytic proofs for general $K$ remain open.
+78	
+79	\begin{figure*}[t]
+80	\centering
+81	\includegraphics[width=\textwidth]{fig3_asv_ranking.pdf}
+82	\caption{ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \infty$).}
+83	\label{fig:asv_ranking}
+84	\end{figure*}
+85	
+86	\subsection{Annotation Sensitivity Values}
+87	\label{sec:asv}
+88	
+89	We adapt the sensitivity analysis paradigm (E-values~\cite{vanderweele_ding2017}, partial-$R^2$ bounds~\cite{cinelli2020making}, coefficient stability~\cite{oster2019}) to $K{\times}K$ annotation error and define Annotation Sensitivity Values (ASVs): we prove $\varepsilon$-approximate monotonicity along $C(\delta)$ (Theorem~\ref{thm:monotone}), which reduces $K^2$ dimensions to a scalar; define three ASV diagnostics for topology-dependent failure modes; and combine ASVs with FWL invariance to route corrections.
+90	
+91	\paragraph{Parameterization.}
+92	We set $C(\delta) = (1{-}\delta)I + \delta C_0$, where $C_0$ is a reference confusion matrix and $\delta \in [0,1]$ controls severity ($\delta{=}0$: perfect; $\delta{=}1$: matches $C_0$). This linear path is one of many in the column-stochastic polytope from $I$ to $C_0$; ASV thresholds are path-dependent, but our bootstrap procedure (Section~\ref{sec:asv_results}) captures estimation uncertainty along the empirical path. We recommend bootstrapping $C_0$ and reporting ASV confidence intervals (Appendix~\ref{sec:bootstrap_asv}).
+93	\paragraph{Three ASV types.}
+94	We define three complementary measures: (1)~\textbf{Magnitude ASV} $\delta^*_{\text{mag}} = \min\{\delta : |\operatorname{plim}\;\hat{\tau}(C(\delta)) - \tau| > \epsilon\}$, analogous to E-values; (2)~\textbf{Significance ASV} $\delta^*_{\text{sig}} = \min\{\delta : |\operatorname{plim}\;\hat{\tau}(C(\delta))| < z_{\alpha/2} \cdot SE(N)\}$, relevant for attenuating topologies; (3)~\textbf{Sign-flip ASV} $\delta^*_{\text{sf}} = \min\{\delta : \operatorname{sign}(\hat{\tau}) \neq \operatorname{sign}(\tau)\}$, for exposure and IV only. The significance ASV depends on $N$ through $SE(N)$, exhibiting a sharp phase transition at a critical $N^*$ below which all rejections are blocked.
+95	
+96	\begin{theorem}[Envelope monotonicity, $K{=}2$]
+97	\label{thm:monotone}
+98	For $K{=}2$ confounding and mediation topologies with proportional effects ($f = \lambda g$ for some scalar $\lambda$) under $C(\delta) = (1{-}\delta)I + \delta C_0$ with $(C_0)_{jj} \geq \tfrac{1}{2}$, $|B(C(\delta))|$ is monotonically non-decreasing in $\delta \in [0,1]$.
+99	\end{theorem}
+100	
+101	The proof (Appendix~\ref{app:monotonicity_proof},~\ref{par:med_monotone}) exploits perspective function convexity. Proportional effects ($f{=}\lambda g$) is plausible when overall annotation competence drives both paths; all 23 empirical configurations preserve sign, with 97.3\% under non-proportional effects (Appendix~\ref{sec:proportional_effects}).
+102	
+103	\begin{theorem}[$K{=}3$ symmetric monotonicity]
+104	\label{thm:k3_symmetric}
+105	For $K{=}3$ with symmetric confusion matrix $C_{jk} = c$ for $j \neq k$ and $C_{kk} = 1{-}2c$, $c \in (0, 1/3)$, and proportional effects ($f{=}\lambda g$), envelope monotonicity holds exactly: $|B(C(\delta))|$ is strictly monotone in $\delta$ for confounding, mediation, and collider topologies whenever $\mathrm{Var}(g) > 0$.
+106	\end{theorem}
+107	
+108	Theorem~\ref{thm:k3_symmetric} anchors exact monotonicity at $K{=}3$; for general asymmetric matrices ($d_{\mathrm{rel}}{=}0.33$; Remark~\ref{rem:symmetry}), Conjecture~\ref{conj:monotone} provides $\varepsilon < 0.017$ coverage. The proof exploits the reduction $s = c\delta$ (Appendix~\ref{app:k3_symmetric_proof}).
+109	
+110	\paragraph{From proofs to numerical evidence.}
+111	Exact monotonicity (Theorems~\ref{thm:monotone}--\ref{thm:k3_symmetric}) does not extend to general $K{\geq}3$ column-stochastic structures; we state a conjecture supported by numerical evidence:
+112	
+113	\begin{conjecture}[$\varepsilon$-approximate envelope monotonicity]
+114	\label{conj:monotone}
+115	For general $K{\geq}3$ non-IV topologies under $C(\delta) = (1{-}\delta)I + \delta C_0$, $|B(C(\delta))|$ is $\varepsilon$-approximately monotonic with $\varepsilon < 0.02$ for $|\beta| \leq 1$, scaling with effect magnitude (Table~\ref{tab:conjecture_verify},~\ref{tab:dgp_sensitivity}; Appendix~\ref{sec:conjecture_verify}). The safe/fragile partition (five sign-preserving topologies versus exposure and IV) is robust across all tested parameterizations.
+116	\end{conjecture}
+117	
+118	Numerical support spans 100{,}000 Dirichlet matrices and 545{,}945 adversarial curves (Appendix~\ref{app:adversarial_monotonicity}).
+119	
+120	\begin{remark}[ASV and E-values as complementary tools]
+121	\label{rem:evalue}
+122	ASV and E-values~\cite{vanderweele_ding2017} address orthogonal sources (annotation error vs.\ unmeasured confounding) and are most valuable jointly (Table~\ref{tab:sensitivity_comparison}, Appendix). ASV is topology-dependent and targets sign-flip failure modes absent from confounding analysis.
+123	\end{remark}
+124	
+125	Under alternating-sign effects ($\boldsymbol{\beta}{=}[0,\,1.0,\,-0.5]$), magnitude ASV ranges from 0.09 (exposure) to $\infty$ (M-bias), a $4{\times}$ difference determined by topology (Table~\ref{tab:asv_stability}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \delta_{\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\ref{alg:correction}); the safe/fragile partition is stable across parameterizations ($\varepsilon < 0.02$; Appendix~\ref{sec:asv_stability}).
+126	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a764d79-c814-40a5-a5b6-4dd7da2e6041",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "800f9e58-ff5a-4d28-a9b9-bf6ac83d4558",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\n\\subsection{Setup and Notation}\n\\label{sec:notation}\n\nLet $A$ denote a true $K$-class categorical variable (e.g., sentiment with $K{=}3$ levels) and $A^*$ its observed, potentially misclassified version produced by an LLM annotator. The misclassification process is characterized by a $K{\\times}K$ confusion matrix $C$ with entries $C_{jk} = P(A^*{=}j \\mid A{=}k)$, where each column sums to one (column-stochastic: each column gives the distribution of predicted labels for a given true label). Following \\citet{hernan_cole2009}, we represent this measurement process using \\emph{starred-node} DAGs: the true variable $A$ is latent, and the observed $A^*$ is connected to $A$ via a dashed measurement edge.\n\n\\paragraph{Notation conventions.}\nOur analysis characterizes probability limits ($N \\to \\infty$) under the FWL theorem~\\cite{frisch1933partial}, which explains why matrix-based corrections fail for covariate topologies (Section~\\ref{sec:correction}). Notation is collected in Table~\\ref{tab:notation} (Appendix~\\ref{app:notation_table}).\n\n\\begin{definition}[Non-differential misclassification]\n\\label{def:nondiff}\nMisclassification of $A$ is non-differential with respect to outcome $Y$ and covariates $\\mathbf{Z}$ if $P(A^*{=}j \\mid A{=}k, Y, \\mathbf{Z}) = P(A^*{=}j \\mid A{=}k) = C_{jk}$ for all $j,k$.\n\\end{definition}\n\nIn batch annotation pipelines, the LLM processes each text independently without access to $Y$, making non-differentiality an architectural invariant~\\cite{ziems2024can}; Y-stratified permutation tests confirm this (1/12 rejection at $\\alpha{=}0.05$; Appendix~\\ref{sec:y_stratified_test}). Non-differentiality may be violated when $Y$ correlates with text content, in which case our Y-stratified test provides empirical verification. Under stress testing, sign reversal occurs in 14/16 $K{\\geq}3$ exposure configurations at $\\eta{=}0.01$ structured departure (Appendix~\\ref{sec:nondiff_stress}).\n\nThroughout, $\\tau$ denotes the causal estimand of interest, whose definition varies by topology: the confounder's coefficient, the treatment effect, the indirect effect, or the Wald ratio (Appendix~\\ref{app:confounding}ff.).\n\nWe study seven canonical DAG topologies (Figure~\\ref{fig:dag_taxonomy})~\\cite{pearl2009, hernan2020causal}, deriving probability limits under linear structural equation models (SEMs)~\\cite{carroll2006}; logistic regression robustness is verified in Appendix~\\ref{sec:logistic_dgp} and~\\ref{sec:fwl_nonlinear}.\n\n\\subsection{Multi-Class Bias Expressions}\n\\label{sec:bias_expressions}\n\nFor each topology, we derive the $\\operatorname{plim}$\\footnote{The probability limit (plim) is the value to which an estimator converges as sample size $N \\to \\infty$; it characterizes systematic bias separately from sampling variability.} of the naive estimator that substitutes $A^*$ for $A$. Let $\\tau$ denote the target causal parameter, whose precise definition is topology-specific (e.g., the coefficient on $X$ for confounding, the category-specific $\\beta_j$ for exposure, or the direct effect $\\tau_{\\text{direct}}$ for mediation), and $\\hat{\\tau}(A^*)$ the estimator using misclassified annotations.\n\n\\paragraph{Confounding ($A$ = confounder).}\nWhen $A$ confounds the $X{\\to}Y$ relationship, the ordinary least squares (OLS) estimator controlling for $A^*$ has probability limit\n\\begin{equation}\n\\label{eq:confounding}\n\\operatorname{plim}\\;\\hat{\\tau}(A^*) = \\bigl(\\mathbb{E}[Z^{\\prime}Z]\\bigr)^{-1}\\mathbb{E}[Z^{\\prime}X]\\,\\boldsymbol{\\beta},\n\\end{equation}\nwhere $Z = [X, \\text{dummies}(A^*)]$, $\\boldsymbol{\\beta}$ contains the true coefficients, and the target parameter $\\tau$ is the coefficient on $X$. Misclassification produces residual confounding that monotonically approaches the omitted variable bias, but the sign of $\\hat{\\tau}$ is preserved: $\\tau_{\\text{sign\\_flip}} = 0$ structurally.\\footnote{Consistent with \\citet{brenner1993}: misclassification degrades confounding control, producing amplification ($|\\hat{\\tau}| > |\\tau|$, universal in this topology) but never sign reversal ($\\operatorname{sign}(\\hat{\\tau}) \\neq \\operatorname{sign}(\\tau)$).}\n\n\\paragraph{Exposure ($A$ = treatment variable).}\nWhen $A$ is the exposure of interest, the biased coefficient for category $j$ becomes a weighted combination of true coefficients:\n\\begin{equation}\n\\label{eq:exposure}\n\\operatorname{plim}\\;\\hat{\\beta}_j(A^*) = \\sum_{k=1}^{K} w_{jk}\\,\\beta_k,\n\\end{equation}\nwhere $w_{jk}$ depends on the confusion matrix $C$ and the population marginal $\\pi_k = P(A{=}k)$. Unlike binary misclassification~\\cite{brenner1993}, $K{\\geq}3$ permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \\emph{sign reversal} (83.4\\% under uniform Dirichlet prior); this is structurally impossible at $K{=}2$.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig2_bias_distribution.pdf}\n\\caption{Bias distributions under 100{,}000 random $K{=}3$ confusion matrices (uniform Dirichlet; realistic-accuracy results in Section~\\ref{sec:taxonomy_results}). Red = sign reversal. Exposure: 83.4\\% sign reversal; IV: 52.6\\%.}\n\\label{fig:bias_distribution}\n\\end{figure*}\n\n\\paragraph{Primary coefficient preservation.}\nAcross 23 empirical LLM configurations, the primary coefficient (the category with the largest true effect $|\\beta_k|$) never reverses sign, while 61\\% reverse a secondary (non-dominant) coefficient, confirmed under 100{,}000 Dirichlet matrices with diagonal ${\\geq}\\,0.7$ across six beta-ratio conditions (1.0 to 50.0) with 0\\% primary sign-flip (Appendix~\\ref{app:exposure}).\n\n\\paragraph{Mediation ($A$ = mediator).}\nWhen $A$ mediates the $X{\\to}Y$ relationship~\\cite{vanderweele2015explanation}, the direct effect estimator controlling for $A^*$ has probability limit\n\\begin{equation}\n\\label{eq:mediation}\n\\operatorname{plim}\\;\\hat{\\tau}_{\\text{direct}}(A^*) = \\tau_{\\text{direct}} + \\bigl(1 - \\lambda(C)\\bigr)\\,\\tau_{\\text{indirect}},\n\\end{equation}\nwhere $\\lambda(C) \\in [0,1]$ under proportional effects (Appendix~\\ref{app:proof}, Proposition~\\ref{prop:lambda_bound}), with $\\lambda(I) = 1$ under perfect classification. Misclassification ($\\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\\hat{\\tau}_{\\text{direct}}|$ but preserving the sign ($\\tau_{\\text{sign\\_flip}} = 0$).\n\n\\paragraph{Collider, M-bias, and front-door.}\nThree topologies exhibit protective or immune behavior. \\textbf{Collider:} conditioning on $A^*$ instead of $A$ attenuates Berkson bias by weakening the spurious path, so annotation error is protective ($\\tau_{\\text{sign\\_flip}} = 0$). \\textbf{M-bias:} in the M-shaped DAG~\\cite{greenland2003}, misclassifying $A$ attenuates the non-causal path, making this topology immune ($\\text{ASV} = \\infty$). \\textbf{Front-door:} the front-door estimator~\\cite{bellemare_bloem2024} requires two stages ($X \\to A$ and $A \\to Y$), each attenuated by $C$; the compound effect produces moderate bias with $\\tau_{\\text{sign\\_flip}} = 0$.\n\n\\paragraph{Instrumental variable ($A$ = instrument).}\nThe Wald estimator~\\cite{angrist_imbens1995} $\\hat{\\tau}_{\\text{IV}} = \\hat{\\text{cov}}(A^*, Y) / \\hat{\\text{cov}}(A^*, X)$ has $C$ in the denominator. Misclassification can drive first-stage coefficients toward zero or reverse their sign; under random Dirichlet matrices, 52.6\\% produce sign reversal; IV is the most fragile topology (Appendix~\\ref{sec:iv_dirichlet_subspace}).\n\n\\paragraph{Structural sign-flip guarantee.}\n\\begin{proposition}[Sign preservation: analytic results]\n\\label{prop:signflip}\nUnder non-differential misclassification with $C_{kk} > 0$ for all $k$:\n\\emph{(a)}~Confounding preserves sign when $\\operatorname{sign}(\\tau) = \\operatorname{sign}(\\tau {+} B_{\\mathrm{OV}})$, where $B_{\\mathrm{OV}} {=} \\operatorname{Cov}(g(A),f(A))/\\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\\ref{app:confounding}).\n\\emph{(b)}~Collider preserves sign when $|\\tau| > \\sqrt{\\operatorname{Var}(g)\\operatorname{Var}(h)}/\\mathbb{E}[\\operatorname{Var}(T{\\mid}A)]$ (Berkson attenuation; Appendix~\\ref{app:collider}); empirically verified across 100{,}000 matrices with zero violations.\n\\emph{(c)}~Exposure can produce sign reversal for $K {\\geq} 3$, even with $C_{kk} {>} 0.5$ (counterexample in Appendix~\\ref{app:exposure}).\n\\end{proposition}\n\nSign preservation for non-exposure topologies holds under topology-specific conditions (Table~\\ref{tab:sign_conditions}, Appendix~\\ref{app:conditions}), verified across 100{,}000 random matrices with zero violations; analytic proofs for general $K$ remain open.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig3_asv_ranking.pdf}\n\\caption{ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \\infty$).}\n\\label{fig:asv_ranking}\n\\end{figure*}\n\n\\subsection{Annotation Sensitivity Values}\n\\label{sec:asv}\n\nWe adapt the sensitivity analysis paradigm (E-values~\\cite{vanderweele_ding2017}, partial-$R^2$ bounds~\\cite{cinelli2020making}, coefficient stability~\\cite{oster2019}) to $K{\\times}K$ annotation error and define Annotation Sensitivity Values (ASVs): we prove $\\varepsilon$-approximate monotonicity along $C(\\delta)$ (Theorem~\\ref{thm:monotone}), which reduces $K^2$ dimensions to a scalar; define three ASV diagnostics for topology-dependent failure modes; and combine ASVs with FWL invariance to route corrections.\n\n\\paragraph{Parameterization.}\nWe set $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $C_0$ is a reference confusion matrix and $\\delta \\in [0,1]$ controls severity ($\\delta{=}0$: perfect; $\\delta{=}1$: matches $C_0$). This linear path is one of many in the column-stochastic polytope from $I$ to $C_0$; ASV thresholds are path-dependent, but our bootstrap procedure (Section~\\ref{sec:asv_results}) captures estimation uncertainty along the empirical path. We recommend bootstrapping $C_0$ and reporting ASV confidence intervals (Appendix~\\ref{sec:bootstrap_asv}).\n\\paragraph{Three ASV types.}\nWe define three complementary measures: (1)~\\textbf{Magnitude ASV} $\\delta^*_{\\text{mag}} = \\min\\{\\delta : |\\operatorname{plim}\\;\\hat{\\tau}(C(\\delta)) - \\tau| > \\epsilon\\}$, analogous to E-values; (2)~\\textbf{Significance ASV} $\\delta^*_{\\text{sig}} = \\min\\{\\delta : |\\operatorname{plim}\\;\\hat{\\tau}(C(\\delta))| < z_{\\alpha/2} \\cdot SE(N)\\}$, relevant for attenuating topologies; (3)~\\textbf{Sign-flip ASV} $\\delta^*_{\\text{sf}} = \\min\\{\\delta : \\operatorname{sign}(\\hat{\\tau}) \\neq \\operatorname{sign}(\\tau)\\}$, for exposure and IV only. The significance ASV depends on $N$ through $SE(N)$, exhibiting a sharp phase transition at a critical $N^*$ below which all rejections are blocked.\n\n\\begin{theorem}[Envelope monotonicity, $K{=}2$]\n\\label{thm:monotone}\nFor $K{=}2$ confounding and mediation topologies with proportional effects ($f = \\lambda g$ for some scalar $\\lambda$) under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$ with $(C_0)_{jj} \\geq \\tfrac{1}{2}$, $|B(C(\\delta))|$ is monotonically non-decreasing in $\\delta \\in [0,1]$.\n\\end{theorem}\n\nThe proof (Appendix~\\ref{app:monotonicity_proof},~\\ref{par:med_monotone}) exploits perspective function convexity. Proportional effects ($f{=}\\lambda g$) is plausible when overall annotation competence drives both paths; all 23 empirical configurations preserve sign, with 97.3\\% under non-proportional effects (Appendix~\\ref{sec:proportional_effects}).\n\n\\begin{theorem}[$K{=}3$ symmetric monotonicity]\n\\label{thm:k3_symmetric}\nFor $K{=}3$ with symmetric confusion matrix $C_{jk} = c$ for $j \\neq k$ and $C_{kk} = 1{-}2c$, $c \\in (0, 1/3)$, and proportional effects ($f{=}\\lambda g$), envelope monotonicity holds exactly: $|B(C(\\delta))|$ is strictly monotone in $\\delta$ for confounding, mediation, and collider topologies whenever $\\mathrm{Var}(g) > 0$.\n\\end{theorem}\n\nTheorem~\\ref{thm:k3_symmetric} anchors exact monotonicity at $K{=}3$; for general asymmetric matrices ($d_{\\mathrm{rel}}{=}0.33$; Remark~\\ref{rem:symmetry}), Conjecture~\\ref{conj:monotone} provides $\\varepsilon < 0.017$ coverage. The proof exploits the reduction $s = c\\delta$ (Appendix~\\ref{app:k3_symmetric_proof}).\n\n\\paragraph{From proofs to numerical evidence.}\nExact monotonicity (Theorems~\\ref{thm:monotone}--\\ref{thm:k3_symmetric}) does not extend to general $K{\\geq}3$ column-stochastic structures; we state a conjecture supported by numerical evidence:\n\n\\begin{conjecture}[$\\varepsilon$-approximate envelope monotonicity]\n\\label{conj:monotone}\nFor general $K{\\geq}3$ non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is $\\varepsilon$-approximately monotonic with $\\varepsilon < 0.02$ for $|\\beta| \\leq 1$, scaling with effect magnitude (Table~\\ref{tab:conjecture_verify},~\\ref{tab:dgp_sensitivity}; Appendix~\\ref{sec:conjecture_verify}). The safe/fragile partition (five sign-preserving topologies versus exposure and IV) is robust across all tested parameterizations.\n\\end{conjecture}\n\nNumerical support spans 100{,}000 Dirichlet matrices and 545{,}945 adversarial curves (Appendix~\\ref{app:adversarial_monotonicity}).\n\n\\begin{remark}[ASV and E-values as complementary tools]\n\\label{rem:evalue}\nASV and E-values~\\cite{vanderweele_ding2017} address orthogonal sources (annotation error vs.\\ unmeasured confounding) and are most valuable jointly (Table~\\ref{tab:sensitivity_comparison}, Appendix). ASV is topology-dependent and targets sign-flip failure modes absent from confounding analysis.\n\\end{remark}\n\nUnder alternating-sign effects ($\\boldsymbol{\\beta}{=}[0,\\,1.0,\\,-0.5]$), magnitude ASV ranges from 0.09 (exposure) to $\\infty$ (M-bias), a $4{\\times}$ difference determined by topology (Table~\\ref{tab:asv_stability}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}); the safe/fragile partition is stable across parameterizations ($\\varepsilon < 0.02$; Appendix~\\ref{sec:asv_stability}).\n",
+      "numLines": 126,
+      "startLine": 1,
+      "totalLines": 126
+    }
+  },
+  "sourceToolAssistantUUID": "3a764d79-c814-40a5-a5b6-4dd7da2e6041",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-25T07:51:05.262Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PwT6oRBhMfgT215sQAmPLq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "800f9e58-ff5a-4d28-a9b9-bf6ac83d4558",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "6c7e9ed9-4d7d-4268-81bc-4bc44d809410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-25T07:51:05.268Z_
+
+<details><summary>↩ Tool result · `toolu_01PwT6oRBhMfgT215sQAmPLq`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	We validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three natural language processing (NLP) tasks ($K{=}2,3,10$).
+5	
+6	\subsection{Setup}
+7	\label{sec:setup}
+8	
+9	For each topology, we sample 100{,}000 confusion matrices from a Dirichlet$(1,1,1)$ prior, compute analytical probability limits, and validate against Monte Carlo simulation ($N{=}10{,}000$). ASV experiments use $C(\delta) = (1{-}\delta)I + \delta C_0$.
+10	
+11	\subsection{Bias Taxonomy}
+12	\label{sec:taxonomy_results}
+13	
+14	\paragraph{Theory-MC agreement.}
+15	Analytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\%, averaged across 161 scenarios (23 LLM configurations $\times$ 7 topologies; per-topology range: 0.3\%--3.7\%). This close agreement validates the closed-form derivations and confirms that finite-sample behavior ($N{=}10{,}000$) closely approximates the asymptotic predictions, justifying the use of probability limits as practical bias diagnostics.
+16	
+17	\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}
+18	Under realistic accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal; at diagonal $\geq 0.9$, violation persists at 11.9\% (Appendix~\ref{sec:iv_dirichlet_subspace}). Under the full Dirichlet prior, 85\% of matrices violate the binary ``toward-null'' guarantee and 83.4\% cause sign reversal; $\min_k C_{kk} < 0.55$ predicts sign reversal with 91\% accuracy (Appendix~\ref{sec:sign_determinants}). The $K{=}2$ control confirms classical attenuation~\cite{brenner1993}. This establishes the multi-class failure as structurally distinct.
+19	
+20	\paragraph{Structural guarantee for non-exposure topologies.}
+21	Five topologies exhibit zero sign-flip rate (Table~\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\% amplification~\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C)|$ non-increasing; Conjecture~\ref{conj:monotone}); M-bias shows weakest sensitivity (53.2\% violation). All patterns persist at $K{=}5,7$ (Appendix~\ref{sec:cross_k_robustness}).
+22	
+23	\paragraph{IV: Wald estimator instability.}
+24	The IV topology is the sole non-exposure exception: 52.6\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.5$) eliminates sign reversal but preserves amplification (Appendix~\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal.
+25	
+26	\begin{table}[t]
+27	\centering
+28	\caption{Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). Violation: $|\text{bias}| > 0$; Sign Flip: any coefficient reverses sign; Amplif.: $|\hat{\tau}| > |\tau|$. $\tau_{\text{sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Cond.; Proposition~\ref{prop:signflip}), or not (No). Collider 100\% amplification reflects Berkson bias; misclassification is protective.}
+29	\label{tab:taxonomy}
+30	\small
+31	\resizebox{\columnwidth}{!}{\begin{tabular}{lcccc}
+32	\toprule
+33	\textbf{Topology} & \textbf{Violation} & \textbf{Sign Flip} & \textbf{Amplif.} & $\tau_{\text{sf}}{=}0$? \\
+34	\midrule
+35	Confounding & 100\% & 0\% & 100\% & Cond. \\
+36	Exposure & 85\% & 83.4\% & 14.1\% & No \\
+37	Mediation & 100\% & 0\% & 100\% & Cond. \\
+38	Front-door & 100\% & 0\% & 100\% & Cond. \\
+39	Collider & 100\% & 0\% & 100\% & Cond. \\
+40	M-bias & 53.2\% & 0\% & 10.4\% & Yes \\
+41	IV & 100\% & 52.6\% & 100\% & No \\
+42	\bottomrule
+43	\end{tabular}}
+44	\end{table}
+45	
+46	The bias distributions are visualized in Figure~\ref{fig:bias_distribution}. Figure~\ref{fig:dirichlet_overlay} overlays all 23 empirical LLM configurations onto the theoretical violation-rate curves; real-world accuracy ($\min_k C_{kk} \geq 0.6$) places all models in the low-risk region for IV but leaves exposure vulnerable.
+47	
+48	\begin{figure}[t]
+49	\centering
+50	\includegraphics[width=\columnwidth]{fig7_dirichlet_overlay.pdf}
+51	\caption{Empirical LLM confusion matrices (markers) overlaid on theoretical violation-rate curves from $K{=}3$ Dirichlet analysis. Left: exposure; right: IV. Real-world accuracy places all models in the low-risk region for IV sign reversal but not for exposure.}
+52	\label{fig:dirichlet_overlay}
+53	\end{figure}
+54	
+55	\begin{figure}[t]
+56	\centering
+57	\includegraphics[width=\columnwidth]{fig5_f1_vs_bias.pdf}
+58	\caption{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times}$ (IV 42.1\% vs.\ collider $<$5.6\%).}
+59	\label{fig:f1_vs_bias}
+60	\end{figure}
+61	
+62	\subsection{ASV Framework Validation}
+63	\label{sec:asv_results}
+64	
+65	\begin{table}[t]
+66	\centering
+67	\small
+68	\caption{ASV summary across topologies ($K{=}3$, $\tau{=}0.5$). ---: not applicable.}
+69	\label{tab:asv_summary}
+70	\begin{tabular}{lccc}
+71	\toprule
+72	\textbf{Topology} & \textbf{Mag ASV} & \textbf{Power} & \textbf{Sign-flip} \\
+73	\midrule
+74	IV          & 0.10--0.61 & 0\%   & 1.1--6.7 \\
+75	Front-door  & 0.06--0.39 & 100\% & --- \\
+76	Confounding & 0.08--0.49 & 100\% & --- \\
+77	Mediation   & 0.08--0.45 & 0\%   & --- \\
+78	Collider    & 0.34--2.03 & 0\%   & --- \\
+79	M-bias      & $\infty$   & 98\%  & --- \\
+80	Exposure    & ---        & ---   & 83.4\% \\
+81	\bottomrule
+82	\end{tabular}
+83	\end{table}
+84	
+85	\paragraph{ASV results.}
+86	The ASV envelope is $\varepsilon$-approximately monotonic ($\varepsilon < 0.02$; Conjecture~\ref{conj:monotone}). Figure~\ref{fig:asv_ranking} shows the vulnerability ranking: IV is maximally fragile, M-bias is immune ($\text{ASV} = \infty$). Sign-flip ASV: 83.4\% of exposure matrices yield $\delta^*_{\text{sf}} < 1$; IV ranges 1.1--6.7 (Table~\ref{tab:asv_summary}). Significance ASV exhibits a phase transition at $N^* \approx 6{,}000$--$10{,}000$; bootstrap confidence intervals (CIs; $B{=}1{,}000$; Appendix~\ref{sec:bootstrap_asv}) confirm stable topology ranking, with the safe/fragile partition recovering reliably from $n_{\text{gold}} \geq 100$ (82\% stability).
+87	
+88	\subsection{Empirical Validation}
+89	\label{sec:empirical}
+90	
+91	We validate using real LLM confusion matrices from HumAID~\cite{alam2021humaid} ($K{=}10$), VAST ($K{=}3$), and CivilComments ($K{=}2$): four LLMs, 23 configurations, 161 bias scenarios. HumAID ($K{=}10$) matches predictions: IV (12.4--42.1\%) and exposure (9.0--17.4\%) dominate; remaining topologies $<$15\%. $F_1$ does not exhibit significant rank correlation with bias ($\rho = -0.10$, $p = 0.45$; Figure~\ref{fig:f1_vs_bias}), but per-topology patterns diverge ($\rho \leq -0.53$ for five topologies vs.\ $0.87$ for M-bias; Appendix~\ref{sec:within_topo_f1}). Of exposure coefficients, 14/23 (61\%) exhibit sign reversal, all secondary; zero across 138 non-exposure scenarios. This decoupling between annotation accuracy and causal bias underscores that practitioners cannot rely on $F_1$ as a proxy for causal validity; topology assessment must precede any downstream inference.
+92	
+93	\subsection{Correction Guidance}
+94	\label{sec:correction}
+95	
+96	\begin{figure}[t]
+97	\centering
+98	\includegraphics[width=\columnwidth]{fig4_binarization.pdf}
+99	\caption{Binarization collapse $\Delta$: additional bias from collapsing $K{=}3$ to binary. Topology determines severity ($>$150$\times$ range); exposure and IV exhibit sign flips.}
+100	\label{fig:binarization}
+101	\end{figure}
+102	
+103	We evaluate five correction methods (naive plug-in, maximum likelihood adjustment (MLA), DSL~\cite{egami_hinck_stewart_wei2023}, Monte Carlo simulation extrapolation (MC-SIMEX)~\cite{kuchenhoff2006simex}, PPI++~\cite{angelopoulos2023}) across all topologies (210 configurations; Table~\ref{tab:correction}, Appendix~\ref{app:supplementary}).
+104	
+105	\paragraph{FWL invariance.}
+106	Under linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0\% bias reduction (Appendix~\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\Delta| < 0.02$; Appendix~\ref{sec:fwl_nonlinear}).
+107	
+108	\paragraph{Method ranking and decision procedure.}
+109	PPI++ achieves the highest root mean squared error (RMSE) reduction (47.0\% at $K{=}3$) but requires gold labels and harms M-bias ($-$88\%); MC-SIMEX is gold-free and $K$-robust (27--70\%), though it harms front-door ($-$62.4\%); rankings are stable across $K$ ($\rho \geq 0.80$; Appendix~\ref{sec:correction_k_sensitivity}). Algorithm~\ref{alg:correction} (Appendix) routes through risk assessment, method selection, and FWL screening. End-to-end demos (Table~\ref{tab:e2e-demo}; Appendix~\ref{sec:real_cm_demo}) validate: PPI++ reduces exposure bias from 42.9\% to 0.2\%, while topology-agnostic IV correction amplifies bias ($-$139\%). Collapsing $K{=}3$ to binary is not a safe fallback: the additional bias $\Delta$ varies $>$150$\times$ by topology (Figure~\ref{fig:binarization}).
+110	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c7e9ed9-4d7d-4268-81bc-4bc44d809410",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "2e440430-93eb-455b-9a9b-c38681c795c3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three natural language processing (NLP) tasks ($K{=}2,3,10$).\n\n\\subsection{Setup}\n\\label{sec:setup}\n\nFor each topology, we sample 100{,}000 confusion matrices from a Dirichlet$(1,1,1)$ prior, compute analytical probability limits, and validate against Monte Carlo simulation ($N{=}10{,}000$). ASV experiments use $C(\\delta) = (1{-}\\delta)I + \\delta C_0$.\n\n\\subsection{Bias Taxonomy}\n\\label{sec:taxonomy_results}\n\n\\paragraph{Theory-MC agreement.}\nAnalytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\\%, averaged across 161 scenarios (23 LLM configurations $\\times$ 7 topologies; per-topology range: 0.3\\%--3.7\\%). This close agreement validates the closed-form derivations and confirms that finite-sample behavior ($N{=}10{,}000$) closely approximates the asymptotic predictions, justifying the use of probability limits as practical bias diagnostics.\n\n\\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}\nUnder realistic accuracy (diagonal $\\geq 0.7$), the violation rate is 13.7\\% with 2.1\\% sign reversal; at diagonal $\\geq 0.9$, violation persists at 11.9\\% (Appendix~\\ref{sec:iv_dirichlet_subspace}). Under the full Dirichlet prior, 85\\% of matrices violate the binary ``toward-null'' guarantee and 83.4\\% cause sign reversal; $\\min_k C_{kk} < 0.55$ predicts sign reversal with 91\\% accuracy (Appendix~\\ref{sec:sign_determinants}). The $K{=}2$ control confirms classical attenuation~\\cite{brenner1993}. This establishes the multi-class failure as structurally distinct.\n\n\\paragraph{Structural guarantee for non-exposure topologies.}\nFive topologies exhibit zero sign-flip rate (Table~\\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\\% amplification~\\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C)|$ non-increasing; Conjecture~\\ref{conj:monotone}); M-bias shows weakest sensitivity (53.2\\% violation). All patterns persist at $K{=}5,7$ (Appendix~\\ref{sec:cross_k_robustness}).\n\n\\paragraph{IV: Wald estimator instability.}\nThe IV topology is the sole non-exposure exception: 52.6\\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.5$) eliminates sign reversal but preserves amplification (Appendix~\\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal.\n\n\\begin{table}[t]\n\\centering\n\\caption{Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). Violation: $|\\text{bias}| > 0$; Sign Flip: any coefficient reverses sign; Amplif.: $|\\hat{\\tau}| > |\\tau|$. $\\tau_{\\text{sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Cond.; Proposition~\\ref{prop:signflip}), or not (No). Collider 100\\% amplification reflects Berkson bias; misclassification is protective.}\n\\label{tab:taxonomy}\n\\small\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Topology} & \\textbf{Violation} & \\textbf{Sign Flip} & \\textbf{Amplif.} & $\\tau_{\\text{sf}}{=}0$? \\\\\n\\midrule\nConfounding & 100\\% & 0\\% & 100\\% & Cond. \\\\\nExposure & 85\\% & 83.4\\% & 14.1\\% & No \\\\\nMediation & 100\\% & 0\\% & 100\\% & Cond. \\\\\nFront-door & 100\\% & 0\\% & 100\\% & Cond. \\\\\nCollider & 100\\% & 0\\% & 100\\% & Cond. \\\\\nM-bias & 53.2\\% & 0\\% & 10.4\\% & Yes \\\\\nIV & 100\\% & 52.6\\% & 100\\% & No \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe bias distributions are visualized in Figure~\\ref{fig:bias_distribution}. Figure~\\ref{fig:dirichlet_overlay} overlays all 23 empirical LLM configurations onto the theoretical violation-rate curves; real-world accuracy ($\\min_k C_{kk} \\geq 0.6$) places all models in the low-risk region for IV but leaves exposure vulnerable.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig7_dirichlet_overlay.pdf}\n\\caption{Empirical LLM confusion matrices (markers) overlaid on theoretical violation-rate curves from $K{=}3$ Dirichlet analysis. Left: exposure; right: IV. Real-world accuracy places all models in the low-risk region for IV sign reversal but not for exposure.}\n\\label{fig:dirichlet_overlay}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig5_f1_vs_bias.pdf}\n\\caption{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\\times}$ (IV 42.1\\% vs.\\ collider $<$5.6\\%).}\n\\label{fig:f1_vs_bias}\n\\end{figure}\n\n\\subsection{ASV Framework Validation}\n\\label{sec:asv_results}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{ASV summary across topologies ($K{=}3$, $\\tau{=}0.5$). ---: not applicable.}\n\\label{tab:asv_summary}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Topology} & \\textbf{Mag ASV} & \\textbf{Power} & \\textbf{Sign-flip} \\\\\n\\midrule\nIV          & 0.10--0.61 & 0\\%   & 1.1--6.7 \\\\\nFront-door  & 0.06--0.39 & 100\\% & --- \\\\\nConfounding & 0.08--0.49 & 100\\% & --- \\\\\nMediation   & 0.08--0.45 & 0\\%   & --- \\\\\nCollider    & 0.34--2.03 & 0\\%   & --- \\\\\nM-bias      & $\\infty$   & 98\\%  & --- \\\\\nExposure    & ---        & ---   & 83.4\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{ASV results.}\nThe ASV envelope is $\\varepsilon$-approximately monotonic ($\\varepsilon < 0.02$; Conjecture~\\ref{conj:monotone}). Figure~\\ref{fig:asv_ranking} shows the vulnerability ranking: IV is maximally fragile, M-bias is immune ($\\text{ASV} = \\infty$). Sign-flip ASV: 83.4\\% of exposure matrices yield $\\delta^*_{\\text{sf}} < 1$; IV ranges 1.1--6.7 (Table~\\ref{tab:asv_summary}). Significance ASV exhibits a phase transition at $N^* \\approx 6{,}000$--$10{,}000$; bootstrap confidence intervals (CIs; $B{=}1{,}000$; Appendix~\\ref{sec:bootstrap_asv}) confirm stable topology ranking, with the safe/fragile partition recovering reliably from $n_{\\text{gold}} \\geq 100$ (82\\% stability).\n\n\\subsection{Empirical Validation}\n\\label{sec:empirical}\n\nWe validate using real LLM confusion matrices from HumAID~\\cite{alam2021humaid} ($K{=}10$), VAST ($K{=}3$), and CivilComments ($K{=}2$): four LLMs, 23 configurations, 161 bias scenarios. HumAID ($K{=}10$) matches predictions: IV (12.4--42.1\\%) and exposure (9.0--17.4\\%) dominate; remaining topologies $<$15\\%. $F_1$ does not exhibit significant rank correlation with bias ($\\rho = -0.10$, $p = 0.45$; Figure~\\ref{fig:f1_vs_bias}), but per-topology patterns diverge ($\\rho \\leq -0.53$ for five topologies vs.\\ $0.87$ for M-bias; Appendix~\\ref{sec:within_topo_f1}). Of exposure coefficients, 14/23 (61\\%) exhibit sign reversal, all secondary; zero across 138 non-exposure scenarios. This decoupling between annotation accuracy and causal bias underscores that practitioners cannot rely on $F_1$ as a proxy for causal validity; topology assessment must precede any downstream inference.\n\n\\subsection{Correction Guidance}\n\\label{sec:correction}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig4_binarization.pdf}\n\\caption{Binarization collapse $\\Delta$: additional bias from collapsing $K{=}3$ to binary. Topology determines severity ($>$150$\\times$ range); exposure and IV exhibit sign flips.}\n\\label{fig:binarization}\n\\end{figure}\n\nWe evaluate five correction methods (naive plug-in, maximum likelihood adjustment (MLA), DSL~\\cite{egami_hinck_stewart_wei2023}, Monte Carlo simulation extrapolation (MC-SIMEX)~\\cite{kuchenhoff2006simex}, PPI++~\\cite{angelopoulos2023}) across all topologies (210 configurations; Table~\\ref{tab:correction}, Appendix~\\ref{app:supplementary}).\n\n\\paragraph{FWL invariance.}\nUnder linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0\\% bias reduction (Appendix~\\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \\to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\\Delta| < 0.02$; Appendix~\\ref{sec:fwl_nonlinear}).\n\n\\paragraph{Method ranking and decision procedure.}\nPPI++ achieves the highest root mean squared error (RMSE) reduction (47.0\\% at $K{=}3$) but requires gold labels and harms M-bias ($-$88\\%); MC-SIMEX is gold-free and $K$-robust (27--70\\%), though it harms front-door ($-$62.4\\%); rankings are stable across $K$ ($\\rho \\geq 0.80$; Appendix~\\ref{sec:correction_k_sensitivity}). Algorithm~\\ref{alg:correction} (Appendix) routes through risk assessment, method selection, and FWL screening. End-to-end demos (Table~\\ref{tab:e2e-demo}; Appendix~\\ref{sec:real_cm_demo}) validate: PPI++ reduces exposure bias from 42.9\\% to 0.2\\%, while topology-agnostic IV correction amplifies bias ($-$139\\%). Collapsing $K{=}3$ to binary is not a safe fallback: the additional bias $\\Delta$ varies $>$150$\\times$ by topology (Figure~\\ref{fig:binarization}).\n",
+      "numLines": 110,
+      "startLine": 1,
+      "totalLines": 110
+    }
+  },
+  "sourceToolAssistantUUID": "6c7e9ed9-4d7d-4268-81bc-4bc44d809410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-25T07:51:06.079Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012XuLWMZeehkum4fGJrAXso`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e440430-93eb-455b-9a9b-c38681c795c3",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "36d628a8-81a5-4839-ba70-01ecc4b3d2c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-25T07:51:06.084Z_
+
+<details><summary>↩ Tool result · `toolu_012XuLWMZeehkum4fGJrAXso`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We characterized how multi-class annotation errors interact with causal DAG topology: at $K{\geq}3$, exposure and IV can reverse treatment effect signs while five topologies preserve them. ASVs provide a topology-dependent vulnerability ranking; matrix-based corrections are provably ineffective for four covariate topologies (FWL invariance). Practitioners should identify the topology first: for exposure, PPI++ reduces median exposure bias by 93.6\%; for IV, all tested corrections worsen the estimate. High $F_1$ does not guarantee low causal bias; topology assessment must precede downstream inference.
+5	
+6	Differential misclassification and proving Conjecture~\ref{conj:monotone} for general $K$ remain open.
+7	
+8	\section*{Limitations}
+9	
+10	Our closed-form results assume linear SEMs with proportional effects ($f{=}\lambda g$); sign preservation empirically holds at 97.3\% under non-proportional effects (Table~\ref{tab:proportional_empirical}), but recommendations do not directly extend to nonlinear models (matching, doubly-robust). The framework assumes a known DAG with non-differential misclassification (Appendix~\ref{sec:nondiff_stress}); DAG misspecification under measurement error may compound bias. ASV computation requires gold labels for $C^{-1}$; error propagation under small gold-label budgets ($<$500) and general $K{\geq}3$ envelope monotonicity (Conjecture~\ref{conj:monotone}) remain open.
+11	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36d628a8-81a5-4839-ba70-01ecc4b3d2c3",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "24302600-31fb-4572-8c8d-50bcbb58e659",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe characterized how multi-class annotation errors interact with causal DAG topology: at $K{\\geq}3$, exposure and IV can reverse treatment effect signs while five topologies preserve them. ASVs provide a topology-dependent vulnerability ranking; matrix-based corrections are provably ineffective for four covariate topologies (FWL invariance). Practitioners should identify the topology first: for exposure, PPI++ reduces median exposure bias by 93.6\\%; for IV, all tested corrections worsen the estimate. High $F_1$ does not guarantee low causal bias; topology assessment must precede downstream inference.\n\nDifferential misclassification and proving Conjecture~\\ref{conj:monotone} for general $K$ remain open.\n\n\\section*{Limitations}\n\nOur closed-form results assume linear SEMs with proportional effects ($f{=}\\lambda g$); sign preservation empirically holds at 97.3\\% under non-proportional effects (Table~\\ref{tab:proportional_empirical}), but recommendations do not directly extend to nonlinear models (matching, doubly-robust). The framework assumes a known DAG with non-differential misclassification (Appendix~\\ref{sec:nondiff_stress}); DAG misspecification under measurement error may compound bias. ASV computation requires gold labels for $C^{-1}$; error propagation under small gold-label budgets ($<$500) and general $K{\\geq}3$ envelope monotonicity (Conjecture~\\ref{conj:monotone}) remain open.\n",
+      "numLines": 11,
+      "startLine": 1,
+      "totalLines": 11
+    }
+  },
+  "sourceToolAssistantUUID": "36d628a8-81a5-4839-ba70-01ecc4b3d2c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-25T07:51:06.223Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fqq4vCyPmJcnw9R4RJpivZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24302600-31fb-4572-8c8d-50bcbb58e659",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "c663f561-6ad4-4b07-94b0-f260883d3fc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-25T07:51:06.228Z_
+
+<details><summary>↩ Tool result · `toolu_01Fqq4vCyPmJcnw9R4RJpivZ`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{Measurement error in causal inference.}
+5	Non-differential misclassification of a binary variable biases estimates toward the null~\cite{bross1954misclassification, brenner1993, ogburn_vanderweele2012}, formalized in the DAG framework by \citet{hernan_cole2009} and \citet{kuroki_pearl2014}. This guarantee breaks for polytomous variables~\cite{dosemeci1990, jurek2005, veirod_laake2001}, yet extensions to differential error, mismeasured covariates, and nonclassical structures~\cite{edwards_lessler_naimi2021, shu_yi2019a, valeri_vanderweele2013, schennach2020mismeasured} treat topologies in isolation. No prior work compares how the \emph{same} confusion matrix produces qualitatively different bias depending on the mismeasured variable's causal role.
+6	
+7	\paragraph{LLM annotation and downstream causal validity.}
+8	LLMs are rapidly replacing human annotators~\cite{gilardi2023chatgpt, ziems2024can, tan2024llm}, yet consequences for causal inference remain underexplored. \citet{baumann2025} and \citet{kim_garg2025} show that 31\% of hypotheses yield incorrect conclusions and error correlations reach 60\% across models, but neither connects error patterns to DAG structure. \citet{teblunthuis2024} provides the most complete binary analysis (four topologies, $K{=}2$) and \citet{lee_wood_doughty2024} extends to categorical classifiers, but only for confounding. The multi-class ($K{\geq}3$) regime, where sign reversal becomes structurally possible, remains unaddressed.
+9	
+10	\paragraph{Sensitivity analysis and correction methods.}
+11	Sensitivity frameworks for unmeasured confounding~\cite{vanderweele_ding2017, cinelli2020making, oster2019} do not address annotation error, while matrix-adjustment~\cite{blackwell_honaker_king2017, lash2009} and prediction-powered methods~\cite{angelopoulos2023, egami_hinck_stewart_wei2023, zrnic_candes2024, gligoric2025} target misclassification but remain topology-agnostic. We show this agnosticism is costly: FWL invariance renders matrix-based corrections provably ineffective for four covariate topologies, and topology-blind application can amplify bias ($-$139\% for IV).
+12	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c663f561-6ad4-4b07-94b0-f260883d3fc0",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "5cb8bacb-80eb-4677-ad34-25116f5dc171",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Measurement error in causal inference.}\nNon-differential misclassification of a binary variable biases estimates toward the null~\\cite{bross1954misclassification, brenner1993, ogburn_vanderweele2012}, formalized in the DAG framework by \\citet{hernan_cole2009} and \\citet{kuroki_pearl2014}. This guarantee breaks for polytomous variables~\\cite{dosemeci1990, jurek2005, veirod_laake2001}, yet extensions to differential error, mismeasured covariates, and nonclassical structures~\\cite{edwards_lessler_naimi2021, shu_yi2019a, valeri_vanderweele2013, schennach2020mismeasured} treat topologies in isolation. No prior work compares how the \\emph{same} confusion matrix produces qualitatively different bias depending on the mismeasured variable's causal role.\n\n\\paragraph{LLM annotation and downstream causal validity.}\nLLMs are rapidly replacing human annotators~\\cite{gilardi2023chatgpt, ziems2024can, tan2024llm}, yet consequences for causal inference remain underexplored. \\citet{baumann2025} and \\citet{kim_garg2025} show that 31\\% of hypotheses yield incorrect conclusions and error correlations reach 60\\% across models, but neither connects error patterns to DAG structure. \\citet{teblunthuis2024} provides the most complete binary analysis (four topologies, $K{=}2$) and \\citet{lee_wood_doughty2024} extends to categorical classifiers, but only for confounding. The multi-class ($K{\\geq}3$) regime, where sign reversal becomes structurally possible, remains unaddressed.\n\n\\paragraph{Sensitivity analysis and correction methods.}\nSensitivity frameworks for unmeasured confounding~\\cite{vanderweele_ding2017, cinelli2020making, oster2019} do not address annotation error, while matrix-adjustment~\\cite{blackwell_honaker_king2017, lash2009} and prediction-powered methods~\\cite{angelopoulos2023, egami_hinck_stewart_wei2023, zrnic_candes2024, gligoric2025} target misclassification but remain topology-agnostic. We show this agnosticism is costly: FWL invariance renders matrix-based corrections provably ineffective for four covariate topologies, and topology-blind application can amplify bias ($-$139\\% for IV).\n",
+      "numLines": 12,
+      "startLine": 1,
+      "totalLines": 12
+    }
+  },
+  "sourceToolAssistantUUID": "c663f561-6ad4-4b07-94b0-f260883d3fc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-25T07:51:06.695Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QpDALcm5xZqbGSVXeuxkci`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cb8bacb-80eb-4677-ad34-25116f5dc171",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "8030a5a5-b859-4e3d-8ef1-9f1f38f9a240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T07:51:06.700Z_
+
+<details><summary>↩ Tool result · `toolu_01QpDALcm5xZqbGSVXeuxkci`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	\usepackage[review]{acl}
+3	
+4	\usepackage{graphicx}
+5	\usepackage{algorithm}
+6	\usepackage{algorithmic}
+7	
+8	\usepackage{amsmath,amssymb,amsthm}
+9	\usepackage{booktabs}
+10	\usepackage{pifont}
+11	\usepackage{multirow}
+12	\usepackage{float}
+13	
+14	\newtheorem{definition}{Definition}
+15	\newtheorem{proposition}{Proposition}
+16	\newtheorem{theorem}{Theorem}
+17	\newtheorem{lemma}{Lemma}
+18	\newtheorem{conjecture}{Conjecture}
+19	\newtheorem{observation}{Observation}
+20	\newtheorem{remark}{Remark}
+21	
+22	\setlength{\textfloatsep}{6pt plus 2pt minus 4pt}
+23	\setlength{\dbltextfloatsep}{6pt plus 2pt minus 4pt}
+24	\setlength{\floatsep}{6pt plus 2pt minus 4pt}
+25	\setlength{\dblfloatsep}{6pt plus 2pt minus 4pt}
+26	\setlength{\abovedisplayskip}{5pt plus 2pt minus 3pt}
+27	\setlength{\belowdisplayskip}{5pt plus 2pt minus 3pt}
+28	\setlength{\abovedisplayshortskip}{2pt plus 1pt minus 1pt}
+29	\setlength{\belowdisplayshortskip}{3pt plus 1pt minus 2pt}
+30	\graphicspath{{../../figures/paper/}}
+31	
+32	\title{Multi-Class Annotation Errors in Causal Inference:\\Topology-Dependent Bias, Sensitivity, and Correction}
+33	
+34	\author{Anonymous}
+35	
+36	\begin{document}
+37	\maketitle
+38	
+39	\input{abstract}
+40	
+41	\input{introduction}
+42	
+43	\begin{figure*}[t]
+44	\centering
+45	\includegraphics[width=\textwidth]{fig1_dag_taxonomy.pdf}
+46	\vspace{-4pt}
+47	\caption{Seven canonical DAG topologies with starred-node annotation~\cite{hernan_cole2009}. $A$ (latent) $\to$ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV).}
+48	\label{fig:dag_taxonomy}
+49	\end{figure*}
+50	
+51	\input{related_work}
+52	
+53	\input{method}
+54	
+55	\input{experiments}
+56	
+57	\input{conclusion}
+58	
+59	\bibliography{references}
+60	
+61	\appendix
+62	\input{appendix_proofs}
+63	
+64	\end{document}
+65	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8030a5a5-b859-4e3d-8ef1-9f1f38f9a240",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "b8cafe2e-8202-405e-bfa5-b0866b823fb6",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\n\\usepackage{amsmath,amssymb,amsthm}\n\\usepackage{booktabs}\n\\usepackage{pifont}\n\\usepackage{multirow}\n\\usepackage{float}\n\n\\newtheorem{definition}{Definition}\n\\newtheorem{proposition}{Proposition}\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{lemma}{Lemma}\n\\newtheorem{conjecture}{Conjecture}\n\\newtheorem{observation}{Observation}\n\\newtheorem{remark}{Remark}\n\n\\setlength{\\textfloatsep}{6pt plus 2pt minus 4pt}\n\\setlength{\\dbltextfloatsep}{6pt plus 2pt minus 4pt}\n\\setlength{\\floatsep}{6pt plus 2pt minus 4pt}\n\\setlength{\\dblfloatsep}{6pt plus 2pt minus 4pt}\n\\setlength{\\abovedisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\belowdisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\abovedisplayshortskip}{2pt plus 1pt minus 1pt}\n\\setlength{\\belowdisplayshortskip}{3pt plus 1pt minus 2pt}\n\\graphicspath{{../../figures/paper/}}\n\n\\title{Multi-Class Annotation Errors in Causal Inference:\\\\Topology-Dependent Bias, Sensitivity, and Correction}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\n\\input{introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig1_dag_taxonomy.pdf}\n\\vspace{-4pt}\n\\caption{Seven canonical DAG topologies with starred-node annotation~\\cite{hernan_cole2009}. $A$ (latent) $\\to$ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV).}\n\\label{fig:dag_taxonomy}\n\\end{figure*}\n\n\\input{related_work}\n\n\\input{method}\n\n\\input{experiments}\n\n\\input{conclusion}\n\n\\bibliography{references}\n\n\\appendix\n\\input{appendix_proofs}\n\n\\end{document}\n",
+      "numLines": 65,
+      "startLine": 1,
+      "totalLines": 65
+    }
+  },
+  "sourceToolAssistantUUID": "8030a5a5-b859-4e3d-8ef1-9f1f38f9a240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-25T07:51:07.107Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TSJyBiGi8raCGbuWgSwz9w`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8cafe2e-8202-405e-bfa5-b0866b823fb6",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTA9dUueMD4RQRv9k1",
+  "type": "assistant",
+  "uuid": "f00c455e-2d09-4212-a0a1-a235161900d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvq5L4KmAY1brNpCU18dAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12103,
+      "cache_read_input_tokens": 39697,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 39697,
+          "cache_creation_input_tokens": 12103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "f00c455e-2d09-4212-a0a1-a235161900d6",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-25T07:51:07.367Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01TSJyBiGi8raCGbuWgSwz9w`</summary>
+
+```text
+File content (46321 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f00c455e-2d09-4212-a0a1-a235161900d6",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "fa3f4a58-7796-4006-a0c7-876eb8e18180",
+  "toolUseResult": "Error: File content (46321 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "f00c455e-2d09-4212-a0a1-a235161900d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-25T07:51:07.371Z_
+
+```json
+{
+  "parentUuid": "fa3f4a58-7796-4006-a0c7-876eb8e18180",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "afe0b66c-1ddf-4dcb-bded-f407a7896d2f",
+  "timestamp": "2026-05-25T07:51:07.371Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-25T07:51:11.807Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix_proofs.tex is too long. Let me read specific parts of it. Let me also read the remaining table files. But first, let me focus on the key audit dimensions. Let me also check the appendix for the key sections I need.
+
+Let me now do the content audit based on what I've read. Let me also scan for specific patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afe0b66c-1ddf-4dcb-bded-f407a7896d2f",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTikCQGTrrSASquFUG",
+  "type": "assistant",
+  "uuid": "2dc76f2d-2062-4fff-98d1-763f108b5aee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUSKoymHbsfSkuwNP1iohc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12725,
+      "cache_read_input_tokens": 51800,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 51800,
+          "cache_creation_input_tokens": 12725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-25T07:51:13.236Z_
+
+读取 appendix 前部分和剩余表格文件，同时扫描 AI 风格标记。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2dc76f2d-2062-4fff-98d1-763f108b5aee",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTikCQGTrrSASquFUG",
+  "type": "assistant",
+  "uuid": "cc437742-de82-4475-a47d-9ee9a537130b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUSKoymHbsfSkuwNP1iohc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12725,
+      "cache_read_input_tokens": 51800,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 51800,
+          "cache_creation_input_tokens": 12725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-25T07:51:15.153Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JWJfrHV8mcEXWjV2MSKMGH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc437742-de82-4475-a47d-9ee9a537130b",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTikCQGTrrSASquFUG",
+  "type": "assistant",
+  "uuid": "b79464be-ef95-4b2d-8577-7041b6950acf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUSKoymHbsfSkuwNP1iohc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12725,
+      "cache_read_input_tokens": 51800,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 51800,
+          "cache_creation_input_tokens": 12725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T07:51:17.291Z_
+
+<details><summary>↩ Tool result · `toolu_017u6TK8daP1x5spAkR3Sw5o`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16741734-f0a3-41f2-bb38-ecd134caf2db",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "8d7d6f17-529a-4b08-9f22-dc7f4cf3c4c6",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "16741734-f0a3-41f2-bb38-ecd134caf2db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-25T07:51:15.161Z_
+
+<details><summary>↩ Tool result · `toolu_01JWJfrHV8mcEXWjV2MSKMGH`</summary>
+
+```text
+0	\section{Proofs of Proposition~\ref{prop:signflip} and Theorem~\ref{thm:monotone}}
+1	\label{app:proof}
+2	
+3	We provide algebraic proofs of sign preservation for the confounding and collider topologies (Proposition~\ref{prop:signflip}(a)--(b)), an explicit counterexample for exposure (Proposition~\ref{prop:signflip}(c)), numerical verification for mediation, M-bias, and front-door (Numerical Verification~1), and the monotonicity proof for confounding (Theorem~\ref{thm:monotone}).
+4	Throughout, $A\in\{0,1,\dots,K{-}1\}$ with prior $p_k=P(A{=}k)$, and $C$ is a $K{\times}K$ column-stochastic confusion matrix with $C_{jk}=P(A^*{=}j\mid A{=}k)$.
+5	We use category~0 as the reference and let $D_j=\mathbf{1}(A{=}j)$, $D_j^*=\mathbf{1}(A^*{=}j)$ for $j=1,\dots,K{-}1$.
+6	
+7	\subsection{Notation and Key Identities}
+8	\label{app:notation}
+9	
+10	Under non-differential misclassification, the misclassified moments factor linearly through $C$.
+11	Define the population vectors:
+12	\begin{align}
+13	  q_j &= P(A^*{=}j) = \textstyle\sum_k C_{jk}\,p_k, \label{eq:q}\\
+14	  \mathrm{ct}_j &= \mathbb{E}[T\cdot D_j^*] = \textstyle\sum_k C_{jk}\,\mathbb{E}[T\cdot D_k], \label{eq:ct}\\
+15	  \mathrm{cy}_j &= \mathbb{E}[Y\cdot D_j^*] = \textstyle\sum_k C_{jk}\,\mathbb{E}[Y\cdot D_k]. \label{eq:cy}
+16	\end{align}
+17	Write $q = Cp$, $\mathrm{ct} = C\,\mathbb{E}[T\cdot D]$, and $\mathrm{cy} = C\,\mathbb{E}[Y\cdot D]$, where $D=(D_0,\dots,D_{K-1})^\top$.
+18	
+19	\subsection{Frisch--Waugh--Lovell Decomposition}
+20	\label{app:fwl}
+21	
+22	For topologies where $T$ is directly observed (confounding, mediation, collider, M-bias, front-door), the estimator regresses $Y$ on $Z^*=(1,T,D_1^*,\dots,D_{K-1}^*)$.
+23	By the Frisch--Waugh--Lovell (FWL) theorem, the coefficient on $T$ satisfies:
+24	\begin{equation}
+25	  \operatorname{plim}\hat{\tau}(C)
+26	  = \frac{\mathbb{E}[\tilde{T}\,\tilde{Y}]}{\mathbb{E}[\tilde{T}^2]},
+27	  \label{eq:fwl}
+28	\end{equation}
+29	where $\tilde{T}=T-\mathbb{E}[T\mid A^*]$ and $\tilde{Y}=Y-\mathbb{E}[Y\mid A^*]$ are residuals from projecting onto $(1,D_1^*,\dots,D_{K-1}^*)$.
+30	
+31	\begin{lemma}[Bias decomposition]
+32	\label{lem:bias_decomp}
+33	Suppose $Y = \tau T + f(A) + \varepsilon_Y$ with $\varepsilon_Y \perp (T, A, A^*)$.
+34	Then
+35	\begin{equation}
+36	  \operatorname{plim}\hat\tau(C) = \tau + \frac{R(C)}{D(C)},
+37	  \label{eq:bias_decomp}
+38	\end{equation}
+39	where
+40	\begin{align}
+41	  R(C) &= \mathbb{E}\bigl[\operatorname{Cov}(T,\,f(A)\mid A^*)\bigr], \label{eq:R}\\
+42	  D(C) &= \mathbb{E}\bigl[\operatorname{Var}(T\mid A^*)\bigr] > 0. \label{eq:D}
+43	\end{align}
+44	\end{lemma}
+45	
+46	\begin{proof}
+47	Expand $\tilde{Y}$ using $Y=\tau T + f(A) + \varepsilon_Y$:
+48	\[
+49	  \tilde{Y} = \tau\,\tilde{T} + \bigl(f(A) - \mathbb{E}[f(A)\mid A^*]\bigr) + \varepsilon_Y.
+50	\]
+51	Since $\tilde{T}$ is measurable w.r.t.\ $(T,A^*)$ and $\varepsilon_Y\perp(T,A,A^*)$:
+52	\[
+53	  \mathbb{E}[\tilde{T}\,\tilde{Y}]
+54	  = \tau\,\mathbb{E}[\tilde{T}^2]
+55	  + \mathbb{E}\bigl[\tilde{T}\,\bigl(f(A)-\mathbb{E}[f(A)\mid A^*]\bigr)\bigr].
+56	\]
+57	The numerator residual is $R(C) = \mathbb{E}[\tilde{T}(f(A)-\mathbb{E}[f(A)\mid A^*])]$, and the denominator is $D(C) = \mathbb{E}[\tilde{T}^2]$.
+58	
+59	By the law of total covariance:
+60	\begin{align*}
+61	  R(C) &= \sum_{j=0}^{K-1} q_j\,\operatorname{Cov}(T,\,f(A)\mid A^*{=}j)\\
+62	  &= \mathbb{E}[\operatorname{Cov}(T,f(A)\mid A^*)].
+63	\end{align*}
+64	For $D(C)>0$: decompose $T = g(A) + \varepsilon_T$ where $g(A)=\mathbb{E}[T\mid A]$ (for confounding) or simply note that $T$ has exogenous variation independent of $A^*$ (for mediation).
+65	In both cases, $\tilde{T}=\bigl(g(A)-\mathbb{E}[g(A)\mid A^*]\bigr)+\varepsilon_T'$, where $\varepsilon_T'$ is the component of $T$ independent of $(A,A^*)$.
+66	Hence $D(C)\geq\operatorname{Var}(\varepsilon_T')>0$.
+67	\end{proof}
+68	
+69	\subsection{Confounding Topology ($A$ = Confounder)}
+70	\label{app:confounding}
+71	
+72	\paragraph{Data-generating process.}
+73	$A\to T$, $A\to Y$, $T\to Y$.
+74	Using dummy coding with category 0 as reference:
+75	\begin{align*}
+76	  T &= \textstyle\sum_{j=1}^{K-1}\alpha_j D_j + \varepsilon_T,\quad
+77	  \varepsilon_T\sim\mathcal{N}(0,\sigma_T^2),\\
+78	  Y &= \tau\, T + \textstyle\sum_{j=1}^{K-1}\beta_j^{(A)} D_j + \varepsilon_Y,\\
+79	  &\quad \varepsilon_Y\sim\mathcal{N}(0,1),
+80	\end{align*}
+81	with $\varepsilon_T\perp A$ and $\varepsilon_Y\perp(T,A)$.
+82	Define $g(k)=\sum_{j}\alpha_j\mathbf{1}(k{=}j)$ and
+83	$f(k)=\sum_{j}\beta_j^{(A)}\mathbf{1}(k{=}j)$, so $g(0)=f(0)=0$.
+84	
+85	\paragraph{Closed-form plim.}
+86	Using the FWL decomposition, the coefficient on $T$ is:
+87	\begin{equation}
+88	  \operatorname{plim}\hat\tau(C)
+89	  = \frac{\mu_{TY} - \sum_{j=0}^{K-1}\frac{\mathrm{ct}_j\,\mathrm{cy}_j}{q_j}}
+90	  {s_T - \sum_{j=0}^{K-1}\frac{\mathrm{ct}_j^2}{q_j}},
+91	  \label{eq:plim_conf}
+92	\end{equation}
+93	where $s_T=\mathbb{E}[T^2]$, $\mu_{TY}=\mathbb{E}[TY]$, and $\mathrm{ct}_j$, $\mathrm{cy}_j$, $q_j$ are defined in~\eqref{eq:q}--\eqref{eq:cy}.
+94	
+95	\begin{proof}[Derivation]
+96	By FWL, $\operatorname{plim}\hat\tau = \mathbb{E}[\tilde{T}Y]/\mathbb{E}[\tilde{T}^2]$ where $\tilde{T}=T-\mathbb{E}[T\mid A^*]$.
+97	Since $\mathbb{E}[T\mid A^*{=}j]=\mathrm{ct}_j/q_j$:
+98	\begin{align*}
+99	  \mathbb{E}[\tilde{T}^2]
+100	  &= \mathbb{E}[T^2] - \textstyle\sum_j q_j\bigl(\mathrm{ct}_j/q_j\bigr)^2\\
+101	  &= s_T - \textstyle\sum_j \mathrm{ct}_j^2/q_j,\\
+102	  \mathbb{E}[\tilde{T}\,Y]
+103	  &= \mathbb{E}[TY] - \textstyle\sum_j \bigl(\mathrm{ct}_j/q_j\bigr)\,\mathbb{E}[Y\cdot D_j^*]\\
+104	  &= \mu_{TY} - \textstyle\sum_j \mathrm{ct}_j\,\mathrm{cy}_j/q_j.
+105	\end{align*}
+106	\end{proof}
+107	
+108	\paragraph{Verification at $C=I$.}
+109	When $C=I$: $q_j=p_j$, $\mathrm{ct}_j=\mathbb{E}[T D_j]=\alpha_j p_j$, $\mathrm{cy}_j=\mathbb{E}[Y D_j]=p_j(\tau\alpha_j+\beta_j^{(A)})$.
+110	Direct substitution yields numerator $= \tau\sigma_T^2$ and denominator $= \sigma_T^2$, giving $\operatorname{plim}\hat\tau = \tau$.
+111	
+112	\paragraph{Bias structure.}
+113	By Lemma~\ref{lem:bias_decomp}:
+114	\begin{align}
+115	  \operatorname{plim}\hat\tau(C) &= \tau + B(C),\notag\\
+116	  B(C) &= \frac{\mathbb{E}[\operatorname{Cov}(g(A),\,f(A)\mid A^*)]}{D(C)}.
+117	  \label{eq:bias_conf}
+118	\end{align}
+119	By the law of total covariance:
+120	\begin{multline}
+121	  \mathbb{E}[\operatorname{Cov}(g,f\mid A^*)]
+122	  = \operatorname{Cov}(g(A),f(A))\\
+123	  - \operatorname{Cov}\bigl(\mathbb{E}[g(A)\mid A^*],\;\mathbb{E}[f(A)\mid A^*]\bigr).
+124	  \label{eq:lotc}
+125	\end{multline}
+126	
+127	At $C=I$: $\mathbb{E}[g\mid A^*]=g(A)$, so the between-group covariance equals $\operatorname{Cov}(g,f)$ and $B(I)=0$.
+128	
+129	At $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ (uniform, $A^*\perp A$): $\mathbb{E}[g\mid A^*]$ is constant, so the between-group covariance is zero and
+130	\begin{equation}
+131	  B_{\mathrm{OV}} \;\equiv\; B\bigl(\tfrac{1}{K}\mathbf{1}\mathbf{1}^\top\bigr)
+132	  = \frac{\operatorname{Cov}(g(A),\,f(A))}{\operatorname{Var}(T)},
+133	  \label{eq:bov}
+134	\end{equation}
+135	which equals the classical omitted-variable bias (no control for $A$).
+136	
+137	\paragraph{Sign preservation condition.}
+138	Since $D(C)>0$, sign$(\operatorname{plim}\hat\tau) = $ sign$(\tau\cdot D(C) + R(C))$.
+139	For sign preservation, it suffices that $R(C)$ does not overwhelm $\tau\cdot D(C)$.
+140	
+141	\begin{proposition}[Confounding sign preservation --- proportional case]
+142	\label{prop:conf_prop}
+143	If $f(A) = \lambda\,g(A)$ for some constant $\lambda$ (i.e., the confounder effects on $T$ and $Y$ are proportional), then
+144	\begin{equation}
+145	  B(C) = \bigl(1-\xi(C)\bigr)\,B_{\mathrm{OV}},
+146	  \label{eq:convex}
+147	\end{equation}
+148	where
+149	\[
+150	  \xi(C) = \frac{V_B\;\sigma_T^2}
+151	  {V\bigl(V-V_B+\sigma_T^2\bigr)}
+152	  \;\in\;[0,1],
+153	\]
+154	where $V_B=\operatorname{Var}(\mathbb{E}[g(A)\mid A^*])$ and $V=\operatorname{Var}(g(A))$.
+155	Consequently, $B(C)$ lies between $0$ and $B_{\mathrm{OV}}$, and $\operatorname{sign}(\operatorname{plim}\hat\tau)=\operatorname{sign}(\tau)$ whenever $\operatorname{sign}(\tau)=\operatorname{sign}(\tau+B_{\mathrm{OV}})$.
+156	\end{proposition}
+157	
+158	\begin{proof}
+159	When $f=\lambda g$: the between-group covariance in~\eqref{eq:lotc} becomes $\lambda\,\operatorname{Var}(\mathbb{E}[g\mid A^*])$, and $\operatorname{Cov}(g,f)=\lambda\,\operatorname{Var}(g)$.
+160	So $R(C)=\lambda\bigl(\operatorname{Var}(g)-\operatorname{Var}(\mathbb{E}[g\mid A^*])\bigr)=\lambda\,V_W$, where $V_W=\operatorname{Var}(g)-V_B$ with $V_B=\operatorname{Var}(\mathbb{E}[g\mid A^*])$.
+161	Similarly, $D(C)=V_W+\sigma_T^2$.
+162	Hence
+163	\[
+164	  B(C) = \frac{\lambda\,V_W}{V_W+\sigma_T^2},\qquad
+165	  B_{\mathrm{OV}} = \frac{\lambda\,V}{V+\sigma_T^2},
+166	\]
+167	where $V=\operatorname{Var}(g)=V_B+V_W$.
+168	The ratio
+169	\[
+170	  \frac{B(C)}{B_{\mathrm{OV}}} = \frac{V_W(V+\sigma_T^2)}{V(V_W+\sigma_T^2)} = 1 - \xi(C)
+171	\]
+172	is a decreasing function of $V_B\in[0,V]$.
+173	At $V_B=0$ (no classification, $C$ uniform): $\xi=0$, $B=B_{\mathrm{OV}}$.
+174	At $V_B=V$ (perfect classification, $C=I$): $\xi=1$, $B=0$.
+175	Since $0\leq V_B\leq V$, we have $\xi\in[0,1]$ and $B(C)\in[0,B_{\mathrm{OV}}]$ (with the sign of $B_{\mathrm{OV}}$).
+176	\end{proof}
+177	
+178	\begin{proposition}[Confounding sign preservation --- general case]
+179	\label{prop:conf_gen}
+180	For general $g$ and $f$ (not necessarily proportional), define the worst-case bias bound
+181	\begin{equation}
+182	  \bar{B} \;=\; \frac{\sqrt{\operatorname{Var}(g(A))\,\operatorname{Var}(f(A))}}{\sigma_T^2}.
+183	  \label{eq:bbar}
+184	\end{equation}
+185	If $|\tau| > \bar{B}$, then $\operatorname{sign}(\operatorname{plim}\hat\tau(C))=\operatorname{sign}(\tau)$ for all column-stochastic $C$.
+186	\end{proposition}
+187	
+188	\begin{proof}
+189	We need $\operatorname{sign}(\tau\cdot D(C)+R(C))=\operatorname{sign}(\tau)$, which holds if $|R(C)|<|\tau|\cdot D(C)$.
+190	Since $D(C)\geq\sigma_T^2$ (shown in Lemma~\ref{lem:bias_decomp}), it suffices to show $|R(C)|<|\tau|\,\sigma_T^2$.
+191	
+192	\emph{Step 1: Bound $|R(C)|$.}
+193	$R(C)=\mathbb{E}[\operatorname{Cov}(g(A),f(A)\mid A^*)]$.
+194	By the Cauchy--Schwarz inequality applied to each within-group covariance:
+195	\begin{multline*}
+196	  |\operatorname{Cov}(g,f\mid A^*{=}j)|\\
+197	  \leq \sqrt{\operatorname{Var}(g\mid A^*{=}j)\,\operatorname{Var}(f\mid A^*{=}j)}.
+198	\end{multline*}
+199	Taking expectations and applying Cauchy--Schwarz again:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b79464be-ef95-4b2d-8577-7041b6950acf",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "f36b9ad0-97bd-4fe1-b6ee-f0ef1f9d7d26",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+      "content": "\\section{Proofs of Proposition~\\ref{prop:signflip} and Theorem~\\ref{thm:monotone}}\n\\label{app:proof}\n\nWe provide algebraic proofs of sign preservation for the confounding and collider topologies (Proposition~\\ref{prop:signflip}(a)--(b)), an explicit counterexample for exposure (Proposition~\\ref{prop:signflip}(c)), numerical verification for mediation, M-bias, and front-door (Numerical Verification~1), and the monotonicity proof for confounding (Theorem~\\ref{thm:monotone}).\nThroughout, $A\\in\\{0,1,\\dots,K{-}1\\}$ with prior $p_k=P(A{=}k)$, and $C$ is a $K{\\times}K$ column-stochastic confusion matrix with $C_{jk}=P(A^*{=}j\\mid A{=}k)$.\nWe use category~0 as the reference and let $D_j=\\mathbf{1}(A{=}j)$, $D_j^*=\\mathbf{1}(A^*{=}j)$ for $j=1,\\dots,K{-}1$.\n\n\\subsection{Notation and Key Identities}\n\\label{app:notation}\n\nUnder non-differential misclassification, the misclassified moments factor linearly through $C$.\nDefine the population vectors:\n\\begin{align}\n  q_j &= P(A^*{=}j) = \\textstyle\\sum_k C_{jk}\\,p_k, \\label{eq:q}\\\\\n  \\mathrm{ct}_j &= \\mathbb{E}[T\\cdot D_j^*] = \\textstyle\\sum_k C_{jk}\\,\\mathbb{E}[T\\cdot D_k], \\label{eq:ct}\\\\\n  \\mathrm{cy}_j &= \\mathbb{E}[Y\\cdot D_j^*] = \\textstyle\\sum_k C_{jk}\\,\\mathbb{E}[Y\\cdot D_k]. \\label{eq:cy}\n\\end{align}\nWrite $q = Cp$, $\\mathrm{ct} = C\\,\\mathbb{E}[T\\cdot D]$, and $\\mathrm{cy} = C\\,\\mathbb{E}[Y\\cdot D]$, where $D=(D_0,\\dots,D_{K-1})^\\top$.\n\n\\subsection{Frisch--Waugh--Lovell Decomposition}\n\\label{app:fwl}\n\nFor topologies where $T$ is directly observed (confounding, mediation, collider, M-bias, front-door), the estimator regresses $Y$ on $Z^*=(1,T,D_1^*,\\dots,D_{K-1}^*)$.\nBy the Frisch--Waugh--Lovell (FWL) theorem, the coefficient on $T$ satisfies:\n\\begin{equation}\n  \\operatorname{plim}\\hat{\\tau}(C)\n  = \\frac{\\mathbb{E}[\\tilde{T}\\,\\tilde{Y}]}{\\mathbb{E}[\\tilde{T}^2]},\n  \\label{eq:fwl}\n\\end{equation}\nwhere $\\tilde{T}=T-\\mathbb{E}[T\\mid A^*]$ and $\\tilde{Y}=Y-\\mathbb{E}[Y\\mid A^*]$ are residuals from projecting onto $(1,D_1^*,\\dots,D_{K-1}^*)$.\n\n\\begin{lemma}[Bias decomposition]\n\\label{lem:bias_decomp}\nSuppose $Y = \\tau T + f(A) + \\varepsilon_Y$ with $\\varepsilon_Y \\perp (T, A, A^*)$.\nThen\n\\begin{equation}\n  \\operatorname{plim}\\hat\\tau(C) = \\tau + \\frac{R(C)}{D(C)},\n  \\label{eq:bias_decomp}\n\\end{equation}\nwhere\n\\begin{align}\n  R(C) &= \\mathbb{E}\\bigl[\\operatorname{Cov}(T,\\,f(A)\\mid A^*)\\bigr], \\label{eq:R}\\\\\n  D(C) &= \\mathbb{E}\\bigl[\\operatorname{Var}(T\\mid A^*)\\bigr] > 0. \\label{eq:D}\n\\end{align}\n\\end{lemma}\n\n\\begin{proof}\nExpand $\\tilde{Y}$ using $Y=\\tau T + f(A) + \\varepsilon_Y$:\n\\[\n  \\tilde{Y} = \\tau\\,\\tilde{T} + \\bigl(f(A) - \\mathbb{E}[f(A)\\mid A^*]\\bigr) + \\varepsilon_Y.\n\\]\nSince $\\tilde{T}$ is measurable w.r.t.\\ $(T,A^*)$ and $\\varepsilon_Y\\perp(T,A,A^*)$:\n\\[\n  \\mathbb{E}[\\tilde{T}\\,\\tilde{Y}]\n  = \\tau\\,\\mathbb{E}[\\tilde{T}^2]\n  + \\mathbb{E}\\bigl[\\tilde{T}\\,\\bigl(f(A)-\\mathbb{E}[f(A)\\mid A^*]\\bigr)\\bigr].\n\\]\nThe numerator residual is $R(C) = \\mathbb{E}[\\tilde{T}(f(A)-\\mathbb{E}[f(A)\\mid A^*])]$, and the denominator is $D(C) = \\mathbb{E}[\\tilde{T}^2]$.\n\nBy the law of total covariance:\n\\begin{align*}\n  R(C) &= \\sum_{j=0}^{K-1} q_j\\,\\operatorname{Cov}(T,\\,f(A)\\mid A^*{=}j)\\\\\n  &= \\mathbb{E}[\\operatorname{Cov}(T,f(A)\\mid A^*)].\n\\end{align*}\nFor $D(C)>0$: decompose $T = g(A) + \\varepsilon_T$ where $g(A)=\\mathbb{E}[T\\mid A]$ (for confounding) or simply note that $T$ has exogenous variation independent of $A^*$ (for mediation).\nIn both cases, $\\tilde{T}=\\bigl(g(A)-\\mathbb{E}[g(A)\\mid A^*]\\bigr)+\\varepsilon_T'$, where $\\varepsilon_T'$ is the component of $T$ independent of $(A,A^*)$.\nHence $D(C)\\geq\\operatorname{Var}(\\varepsilon_T')>0$.\n\\end{proof}\n\n\\subsection{Confounding Topology ($A$ = Confounder)}\n\\label{app:confounding}\n\n\\paragraph{Data-generating process.}\n$A\\to T$, $A\\to Y$, $T\\to Y$.\nUsing dummy coding with category 0 as reference:\n\\begin{align*}\n  T &= \\textstyle\\sum_{j=1}^{K-1}\\alpha_j D_j + \\varepsilon_T,\\quad\n  \\varepsilon_T\\sim\\mathcal{N}(0,\\sigma_T^2),\\\\\n  Y &= \\tau\\, T + \\textstyle\\sum_{j=1}^{K-1}\\beta_j^{(A)} D_j + \\varepsilon_Y,\\\\\n  &\\quad \\varepsilon_Y\\sim\\mathcal{N}(0,1),\n\\end{align*}\nwith $\\varepsilon_T\\perp A$ and $\\varepsilon_Y\\perp(T,A)$.\nDefine $g(k)=\\sum_{j}\\alpha_j\\mathbf{1}(k{=}j)$ and\n$f(k)=\\sum_{j}\\beta_j^{(A)}\\mathbf{1}(k{=}j)$, so $g(0)=f(0)=0$.\n\n\\paragraph{Closed-form plim.}\nUsing the FWL decomposition, the coefficient on $T$ is:\n\\begin{equation}\n  \\operatorname{plim}\\hat\\tau(C)\n  = \\frac{\\mu_{TY} - \\sum_{j=0}^{K-1}\\frac{\\mathrm{ct}_j\\,\\mathrm{cy}_j}{q_j}}\n  {s_T - \\sum_{j=0}^{K-1}\\frac{\\mathrm{ct}_j^2}{q_j}},\n  \\label{eq:plim_conf}\n\\end{equation}\nwhere $s_T=\\mathbb{E}[T^2]$, $\\mu_{TY}=\\mathbb{E}[TY]$, and $\\mathrm{ct}_j$, $\\mathrm{cy}_j$, $q_j$ are defined in~\\eqref{eq:q}--\\eqref{eq:cy}.\n\n\\begin{proof}[Derivation]\nBy FWL, $\\operatorname{plim}\\hat\\tau = \\mathbb{E}[\\tilde{T}Y]/\\mathbb{E}[\\tilde{T}^2]$ where $\\tilde{T}=T-\\mathbb{E}[T\\mid A^*]$.\nSince $\\mathbb{E}[T\\mid A^*{=}j]=\\mathrm{ct}_j/q_j$:\n\\begin{align*}\n  \\mathbb{E}[\\tilde{T}^2]\n  &= \\mathbb{E}[T^2] - \\textstyle\\sum_j q_j\\bigl(\\mathrm{ct}_j/q_j\\bigr)^2\\\\\n  &= s_T - \\textstyle\\sum_j \\mathrm{ct}_j^2/q_j,\\\\\n  \\mathbb{E}[\\tilde{T}\\,Y]\n  &= \\mathbb{E}[TY] - \\textstyle\\sum_j \\bigl(\\mathrm{ct}_j/q_j\\bigr)\\,\\mathbb{E}[Y\\cdot D_j^*]\\\\\n  &= \\mu_{TY} - \\textstyle\\sum_j \\mathrm{ct}_j\\,\\mathrm{cy}_j/q_j.\n\\end{align*}\n\\end{proof}\n\n\\paragraph{Verification at $C=I$.}\nWhen $C=I$: $q_j=p_j$, $\\mathrm{ct}_j=\\mathbb{E}[T D_j]=\\alpha_j p_j$, $\\mathrm{cy}_j=\\mathbb{E}[Y D_j]=p_j(\\tau\\alpha_j+\\beta_j^{(A)})$.\nDirect substitution yields numerator $= \\tau\\sigma_T^2$ and denominator $= \\sigma_T^2$, giving $\\operatorname{plim}\\hat\\tau = \\tau$.\n\n\\paragraph{Bias structure.}\nBy Lemma~\\ref{lem:bias_decomp}:\n\\begin{align}\n  \\operatorname{plim}\\hat\\tau(C) &= \\tau + B(C),\\notag\\\\\n  B(C) &= \\frac{\\mathbb{E}[\\operatorname{Cov}(g(A),\\,f(A)\\mid A^*)]}{D(C)}.\n  \\label{eq:bias_conf}\n\\end{align}\nBy the law of total covariance:\n\\begin{multline}\n  \\mathbb{E}[\\operatorname{Cov}(g,f\\mid A^*)]\n  = \\operatorname{Cov}(g(A),f(A))\\\\\n  - \\operatorname{Cov}\\bigl(\\mathbb{E}[g(A)\\mid A^*],\\;\\mathbb{E}[f(A)\\mid A^*]\\bigr).\n  \\label{eq:lotc}\n\\end{multline}\n\nAt $C=I$: $\\mathbb{E}[g\\mid A^*]=g(A)$, so the between-group covariance equals $\\operatorname{Cov}(g,f)$ and $B(I)=0$.\n\nAt $C=\\frac{1}{K}\\mathbf{1}\\mathbf{1}^\\top$ (uniform, $A^*\\perp A$): $\\mathbb{E}[g\\mid A^*]$ is constant, so the between-group covariance is zero and\n\\begin{equation}\n  B_{\\mathrm{OV}} \\;\\equiv\\; B\\bigl(\\tfrac{1}{K}\\mathbf{1}\\mathbf{1}^\\top\\bigr)\n  = \\frac{\\operatorname{Cov}(g(A),\\,f(A))}{\\operatorname{Var}(T)},\n  \\label{eq:bov}\n\\end{equation}\nwhich equals the classical omitted-variable bias (no control for $A$).\n\n\\paragraph{Sign preservation condition.}\nSince $D(C)>0$, sign$(\\operatorname{plim}\\hat\\tau) = $ sign$(\\tau\\cdot D(C) + R(C))$.\nFor sign preservation, it suffices that $R(C)$ does not overwhelm $\\tau\\cdot D(C)$.\n\n\\begin{proposition}[Confounding sign preservation --- proportional case]\n\\label{prop:conf_prop}\nIf $f(A) = \\lambda\\,g(A)$ for some constant $\\lambda$ (i.e., the confounder effects on $T$ and $Y$ are proportional), then\n\\begin{equation}\n  B(C) = \\bigl(1-\\xi(C)\\bigr)\\,B_{\\mathrm{OV}},\n  \\label{eq:convex}\n\\end{equation}\nwhere\n\\[\n  \\xi(C) = \\frac{V_B\\;\\sigma_T^2}\n  {V\\bigl(V-V_B+\\sigma_T^2\\bigr)}\n  \\;\\in\\;[0,1],\n\\]\nwhere $V_B=\\operatorname{Var}(\\mathbb{E}[g(A)\\mid A^*])$ and $V=\\operatorname{Var}(g(A))$.\nConsequently, $B(C)$ lies between $0$ and $B_{\\mathrm{OV}}$, and $\\operatorname{sign}(\\operatorname{plim}\\hat\\tau)=\\operatorname{sign}(\\tau)$ whenever $\\operatorname{sign}(\\tau)=\\operatorname{sign}(\\tau+B_{\\mathrm{OV}})$.\n\\end{proposition}\n\n\\begin{proof}\nWhen $f=\\lambda g$: the between-group covariance in~\\eqref{eq:lotc} becomes $\\lambda\\,\\operatorname{Var}(\\mathbb{E}[g\\mid A^*])$, and $\\operatorname{Cov}(g,f)=\\lambda\\,\\operatorname{Var}(g)$.\nSo $R(C)=\\lambda\\bigl(\\operatorname{Var}(g)-\\operatorname{Var}(\\mathbb{E}[g\\mid A^*])\\bigr)=\\lambda\\,V_W$, where $V_W=\\operatorname{Var}(g)-V_B$ with $V_B=\\operatorname{Var}(\\mathbb{E}[g\\mid A^*])$.\nSimilarly, $D(C)=V_W+\\sigma_T^2$.\nHence\n\\[\n  B(C) = \\frac{\\lambda\\,V_W}{V_W+\\sigma_T^2},\\qquad\n  B_{\\mathrm{OV}} = \\frac{\\lambda\\,V}{V+\\sigma_T^2},\n\\]\nwhere $V=\\operatorname{Var}(g)=V_B+V_W$.\nThe ratio\n\\[\n  \\frac{B(C)}{B_{\\mathrm{OV}}} = \\frac{V_W(V+\\sigma_T^2)}{V(V_W+\\sigma_T^2)} = 1 - \\xi(C)\n\\]\nis a decreasing function of $V_B\\in[0,V]$.\nAt $V_B=0$ (no classification, $C$ uniform): $\\xi=0$, $B=B_{\\mathrm{OV}}$.\nAt $V_B=V$ (perfect classification, $C=I$): $\\xi=1$, $B=0$.\nSince $0\\leq V_B\\leq V$, we have $\\xi\\in[0,1]$ and $B(C)\\in[0,B_{\\mathrm{OV}}]$ (with the sign of $B_{\\mathrm{OV}}$).\n\\end{proof}\n\n\\begin{proposition}[Confounding sign preservation --- general case]\n\\label{prop:conf_gen}\nFor general $g$ and $f$ (not necessarily proportional), define the worst-case bias bound\n\\begin{equation}\n  \\bar{B} \\;=\\; \\frac{\\sqrt{\\operatorname{Var}(g(A))\\,\\operatorname{Var}(f(A))}}{\\sigma_T^2}.\n  \\label{eq:bbar}\n\\end{equation}\nIf $|\\tau| > \\bar{B}$, then $\\operatorname{sign}(\\operatorname{plim}\\hat\\tau(C))=\\operatorname{sign}(\\tau)$ for all column-stochastic $C$.\n\\end{proposition}\n\n\\begin{proof}\nWe need $\\operatorname{sign}(\\tau\\cdot D(C)+R(C))=\\operatorname{sign}(\\tau)$, which holds if $|R(C)|<|\\tau|\\cdot D(C)$.\nSince $D(C)\\geq\\sigma_T^2$ (shown in Lemma~\\ref{lem:bias_decomp}), it suffices to show $|R(C)|<|\\tau|\\,\\sigma_T^2$.\n\n\\emph{Step 1: Bound $|R(C)|$.}\n$R(C)=\\mathbb{E}[\\operatorname{Cov}(g(A),f(A)\\mid A^*)]$.\nBy the Cauchy--Schwarz inequality applied to each within-group covariance:\n\\begin{multline*}\n  |\\operatorname{Cov}(g,f\\mid A^*{=}j)|\\\\\n  \\leq \\sqrt{\\operatorname{Var}(g\\mid A^*{=}j)\\,\\operatorname{Var}(f\\mid A^*{=}j)}.\n\\end{multline*}\nTaking expectations and applying Cauchy--Schwarz again:",
+      "numLines": 200,
+      "startLine": 0,
+      "totalLines": 1554
+    }
+  },
+  "sourceToolAssistantUUID": "b79464be-ef95-4b2d-8577-7041b6950acf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-25T07:51:15.649Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PAgusKmxCgawKgmdmQxfvj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f36b9ad0-97bd-4fe1-b6ee-f0ef1f9d7d26",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTikCQGTrrSASquFUG",
+  "type": "assistant",
+  "uuid": "0a640f28-f0da-4ff7-8e25-e3290ab27366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUSKoymHbsfSkuwNP1iohc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12725,
+      "cache_read_input_tokens": 51800,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 51800,
+          "cache_creation_input_tokens": 12725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-25T07:51:15.652Z_
+
+<details><summary>↩ Tool result · `toolu_01PAgusKmxCgawKgmdmQxfvj`</summary>
+
+```text
+1	% Auto-generated by artifacts/e2e_demo.py
+2	\begin{table}[H]
+3	\centering
+4	\small
+5	\resizebox{\columnwidth}{!}{\begin{tabular}{lrrlrr}
+6	\toprule
+7	Topology & Naive Bias (\%) & ASV $\delta^*_{\mathrm{mag}}$ & Routed Method & Corrected Bias (\%) & Improvement (\%) \\
+8	\midrule
+9	Confounding & +22.71 $\pm$ 2.29 & 0.352 & no correction (FWL) & +22.71 $\pm$ 2.29 & +0.0\% \\
+10	\quad (naive plug-in) & -- & -- & -- & +22.71 $\pm$ 2.29 & +0.0\% \\
+11	\quad (MLA)          & -- & -- & -- & +22.71 $\pm$ 2.29 & +0.0\% \\
+12	Exposure & -42.87 $\pm$ 2.42 & 0.239 & PPI++ & -0.22 $\pm$ 4.94 & +90.9\% \\
+13	IV & +82.40 $\pm$ 12.22 & 0.204 & MC-SIMEX (gold-free) & -197.00 $\pm$ 3.79 & -139.1\% \\
+14	\bottomrule
+15	\end{tabular}}
+16	\caption{End-to-end demo over 100 replicates (N=10,000, K=3, 20\% gold). Confounding: plug-in corrections leave the treatment coefficient unchanged (FWL invariance), so Algorithm~1 routes to ``no correction''. Exposure: PPI++ recovers the target coefficient. IV: Wald estimator instability produces large bias; PPI++ (OLS-based) is limited, routing to MC-SIMEX.}
+17	\label{tab:e2e-demo}
+18	\end{table}
+19	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a640f28-f0da-4ff7-8e25-e3290ab27366",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "0dfb3d02-c9e2-4be3-9c35-50f7745f3b74",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex",
+      "content": "% Auto-generated by artifacts/e2e_demo.py\n\\begin{table}[H]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{lrrlrr}\n\\toprule\nTopology & Naive Bias (\\%) & ASV $\\delta^*_{\\mathrm{mag}}$ & Routed Method & Corrected Bias (\\%) & Improvement (\\%) \\\\\n\\midrule\nConfounding & +22.71 $\\pm$ 2.29 & 0.352 & no correction (FWL) & +22.71 $\\pm$ 2.29 & +0.0\\% \\\\\n\\quad (naive plug-in) & -- & -- & -- & +22.71 $\\pm$ 2.29 & +0.0\\% \\\\\n\\quad (MLA)          & -- & -- & -- & +22.71 $\\pm$ 2.29 & +0.0\\% \\\\\nExposure & -42.87 $\\pm$ 2.42 & 0.239 & PPI++ & -0.22 $\\pm$ 4.94 & +90.9\\% \\\\\nIV & +82.40 $\\pm$ 12.22 & 0.204 & MC-SIMEX (gold-free) & -197.00 $\\pm$ 3.79 & -139.1\\% \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{End-to-end demo over 100 replicates (N=10,000, K=3, 20\\% gold). Confounding: plug-in corrections leave the treatment coefficient unchanged (FWL invariance), so Algorithm~1 routes to ``no correction''. Exposure: PPI++ recovers the target coefficient. IV: Wald estimator instability produces large bias; PPI++ (OLS-based) is limited, routing to MC-SIMEX.}\n\\label{tab:e2e-demo}\n\\end{table}\n",
+      "numLines": 19,
+      "startLine": 1,
+      "totalLines": 19
+    }
+  },
+  "sourceToolAssistantUUID": "0a640f28-f0da-4ff7-8e25-e3290ab27366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-25T07:51:16.605Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Qu8pR4oY1qSkzxPkWUWumS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_real_cm_table.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0dfb3d02-c9e2-4be3-9c35-50f7745f3b74",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTikCQGTrrSASquFUG",
+  "type": "assistant",
+  "uuid": "cd42ffcd-aef2-4053-9c9f-1bc6503ff100",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUSKoymHbsfSkuwNP1iohc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12725,
+      "cache_read_input_tokens": 51800,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 51800,
+          "cache_creation_input_tokens": 12725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-25T07:51:16.609Z_
+
+<details><summary>↩ Tool result · `toolu_01Qu8pR4oY1qSkzxPkWUWumS`</summary>
+
+```text
+1	% Auto-generated by artifacts/e2e_real_cm_demo.py
+2	\begin{table}[H]
+3	\centering
+4	\small
+5	\resizebox{\columnwidth}{!}{\begin{tabular}{l c r r r r r}
+6	\toprule
+7	 & & \multicolumn{2}{c}{Exposure} & & \multicolumn{2}{c}{Confounding} \\
+8	\cmidrule(lr){3-4} \cmidrule(lr){6-7}
+9	LLM Config & $d_{\mathrm{rel}}$ & Naive (\%) & PPI++ (\%) & & Naive (\%) & Plugin (\%) \\
+10	\midrule
+11	DeepSeek FS-3 & 0.30 & -61.3 & +0.1 & & +28.5 & +28.5 \\
+12	DeepSeek FS-5 & 0.30 & -61.5 & -0.5 & & +28.7 & +28.7 \\
+13	DeepSeek ZS & 0.31 & -61.1 & -0.5 & & +28.2 & +28.2 \\
+14	Llama4 FS-3 & 0.37 & -64.3 & +0.0 & & +28.4 & +28.4 \\
+15	Llama4 FS-5 & 0.32 & -61.3 & +0.0 & & +26.8 & +26.8 \\
+16	Llama4 ZS & 0.36 & -59.3 & -0.2 & & +27.9 & +27.9 \\
+17	Qwen2.5-7B FS-3 & 0.38 & -68.9 & -0.5 & & +29.3 & +29.3 \\
+18	Qwen2.5-7B FS-5 & 0.34 & -68.7 & +0.3 & & +29.0 & +29.0 \\
+19	Qwen2.5-7B ZS & 0.38 & -65.5 & +0.3 & & +28.7 & +28.7 \\
+20	Qwen3 ZS & 0.32 & -60.3 & -0.5 & & +28.2 & +28.2 \\
+21	\midrule
+22	\textit{Median improvement} & & \multicolumn{2}{c}{+93.6\%} & & \multicolumn{2}{c}{-0.0\%} \\
+23	\bottomrule
+24	\end{tabular}}
+25	\caption{Semi-real case study with VAST K=3 confusion matrices from 10 LLM configurations. Bias is relative to true $\tau$. Exposure: PPI++ substantially reduces bias. Confounding: plug-in correction is ineffective (FWL invariance).}
+26	\label{tab:e2e-real-cm}
+27	\end{table}
+28	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd42ffcd-aef2-4053-9c9f-1bc6503ff100",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "ee3b3f60-bb03-4321-8926-2653050bb0df",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_real_cm_table.tex",
+      "content": "% Auto-generated by artifacts/e2e_real_cm_demo.py\n\\begin{table}[H]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{l c r r r r r}\n\\toprule\n & & \\multicolumn{2}{c}{Exposure} & & \\multicolumn{2}{c}{Confounding} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){6-7}\nLLM Config & $d_{\\mathrm{rel}}$ & Naive (\\%) & PPI++ (\\%) & & Naive (\\%) & Plugin (\\%) \\\\\n\\midrule\nDeepSeek FS-3 & 0.30 & -61.3 & +0.1 & & +28.5 & +28.5 \\\\\nDeepSeek FS-5 & 0.30 & -61.5 & -0.5 & & +28.7 & +28.7 \\\\\nDeepSeek ZS & 0.31 & -61.1 & -0.5 & & +28.2 & +28.2 \\\\\nLlama4 FS-3 & 0.37 & -64.3 & +0.0 & & +28.4 & +28.4 \\\\\nLlama4 FS-5 & 0.32 & -61.3 & +0.0 & & +26.8 & +26.8 \\\\\nLlama4 ZS & 0.36 & -59.3 & -0.2 & & +27.9 & +27.9 \\\\\nQwen2.5-7B FS-3 & 0.38 & -68.9 & -0.5 & & +29.3 & +29.3 \\\\\nQwen2.5-7B FS-5 & 0.34 & -68.7 & +0.3 & & +29.0 & +29.0 \\\\\nQwen2.5-7B ZS & 0.38 & -65.5 & +0.3 & & +28.7 & +28.7 \\\\\nQwen3 ZS & 0.32 & -60.3 & -0.5 & & +28.2 & +28.2 \\\\\n\\midrule\n\\textit{Median improvement} & & \\multicolumn{2}{c}{+93.6\\%} & & \\multicolumn{2}{c}{-0.0\\%} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Semi-real case study with VAST K=3 confusion matrices from 10 LLM configurations. Bias is relative to true $\\tau$. Exposure: PPI++ substantially reduces bias. Confounding: plug-in correction is ineffective (FWL invariance).}\n\\label{tab:e2e-real-cm}\n\\end{table}\n",
+      "numLines": 28,
+      "startLine": 1,
+      "totalLines": 28
+    }
+  },
+  "sourceToolAssistantUUID": "cd42ffcd-aef2-4053-9c9f-1bc6503ff100",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-25T07:51:17.261Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017u6TK8daP1x5spAkR3Sw5o`</summary>
+
+```json
+{
+  "pattern": "—",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee3b3f60-bb03-4321-8926-2653050bb0df",
+  "isSidechain": false,
+  "requestId": "req_011CbNvTikCQGTrrSASquFUG",
+  "type": "assistant",
+  "uuid": "16741734-f0a3-41f2-bb38-ecd134caf2db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUSKoymHbsfSkuwNP1iohc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12725,
+      "cache_read_input_tokens": 51800,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 51800,
+          "cache_creation_input_tokens": 12725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "8d7d6f17-529a-4b08-9f22-dc7f4cf3c4c6",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-25T07:51:19.990Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, no em-dashes found. Let me now scan for more AI patterns and check other dimensions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d7d6f17-529a-4b08-9f22-dc7f4cf3c4c6",
+  "isSidechain": false,
+  "requestId": "req_011CbNvUTUhc1pauGjMJzAWw",
+  "type": "assistant",
+  "uuid": "1d4fadb5-5df1-4952-bab1-ce49109dabda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALQ325Ry74TcyzpxgxRBCv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7291,
+      "cache_read_input_tokens": 64525,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7291,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 64525,
+          "cache_creation_input_tokens": 7291,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7291
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-25T07:51:20.548Z_
+
+扫描更多 AI 风格模式和其他审计维度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d4fadb5-5df1-4952-bab1-ce49109dabda",
+  "isSidechain": false,
+  "requestId": "req_011CbNvUTUhc1pauGjMJzAWw",
+  "type": "assistant",
+  "uuid": "a8f16eaa-cc06-4c28-8940-1825e3eb1d27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALQ325Ry74TcyzpxgxRBCv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7291,
+      "cache_read_input_tokens": 64525,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7291,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 64525,
+          "cache_creation_input_tokens": 7291,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7291
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-25T07:51:22.474Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01JAWsHMAAx2on9EgrkxsgW6`</summary>
+
+```json
+{
+  "pattern": " – ",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8f16eaa-cc06-4c28-8940-1825e3eb1d27",
+  "isSidechain": false,
+  "requestId": "req_011CbNvUTUhc1pauGjMJzAWw",
+  "type": "assistant",
+  "uuid": "36f778f1-a30c-43ac-854b-f8abc05416c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALQ325Ry74TcyzpxgxRBCv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7291,
+      "cache_read_input_tokens": 64525,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7291,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 64525,
+          "cache_creation_input_tokens": 7291,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7291
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-25T07:51:26.110Z_
+
+<details><summary>↩ Tool result · `toolu_01Kc4z7zvkmjBwDkMabPQdLd`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:8:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:11:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:4:We validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three natural language processing (NLP) tasks ($K{=}2,3,10$).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:15:Analytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\%, averaged across 161 scenarios (23 LLM configurations $\times$ 7 topologies; per-topology range: 0.3\%--3.7\%). This close agreement validates the closed-form derivations and confirms that finite-sample behavior ($N{=}10{,}000$) closely approximates the asymptotic predictions, justifying the use of probability limits as practical bias diagnostics.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:21:Five topologies exhibit zero sign-flip rate (Table~\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\% amplification~\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C)|$ non-increasing; Conjecture~\ref{conj:monotone}); M-bias shows weakest sensitivity (53.2\% violation). All patterns persist at $K{=}5,7$ (Appendix~\ref{sec:cross_k_robustness}).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:27:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:35:Confounding & 100\% & 0\% & 100\% & Cond. \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:49:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:66:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:76:Confounding & 0.08--0.49 & 100\% & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:86:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:97:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:99:\caption{Binarization collapse $\Delta$: additional bias from collapsing $K{=}3$ to binary. Topology determines severity ($>$150$\times$ range); exposure and IV exhibit sign flips.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:106:Under linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0\% bias reduction (Appendix~\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\Delta| < 0.02$; Appendix~\ref{sec:fwl_nonlinear}).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:108:\paragraph{Method ranking and decision procedure.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:109:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex:44:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex:47:\caption{Seven canonical DAG topologies with starred-node annotation~\cite{hernan_cole2009}. $A$ (latent) $\to$ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:6:Differential misclassification and proving Conjecture~\ref{conj:monotone} for general $K$ remain open.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:10:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:7:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:17:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:19:Throughout, $\tau$ denotes the causal estimand of interest, whose definition varies by topology: the confounder's coefficient, the treatment effect, the indirect effect, or the Wald ratio (Appendix~\ref{app:confounding}ff.).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:21:We study seven canonical DAG topologies (Figure~\ref{fig:dag_taxonomy})~\cite{pearl2009, hernan2020causal}, deriving probability limits under linear structural equation models (SEMs)~\cite{carroll2006}; logistic regression robustness is verified in Appendix~\ref{sec:logistic_dgp} and~\ref{sec:fwl_nonlinear}.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:26:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:28:\paragraph{Confounding ($A$ = confounder).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:29:When $A$ confounds the $X{\to}Y$ relationship, the ordinary least squares (OLS) estimator controlling for $A^*$ has probability limit
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:31:\label{eq:confounding}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:34:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:42:where $w_{jk}$ depends on the confusion matrix $C$ and the population marginal $\pi_k = P(A{=}k)$. Unlike binary misclassification~\cite{brenner1993}, $K{\geq}3$ permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \emph{sign reversal} (83.4\% under uniform Dirichlet prior); this is structurally impossible at $K{=}2$.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:45:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:55:When $A$ mediates the $X{\to}Y$ relationship~\cite{vanderweele2015explanation}, the direct effect estimator controlling for $A^*$ has probability limit
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:60:where $\lambda(C) \in [0,1]$ under proportional effects (Appendix~\ref{app:proof}, Proposition~\ref{prop:lambda_bound}), with $\lambda(I) = 1$ under perfect classification. Misclassification ($\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserving the sign ($\tau_{\text{sign\_flip}} = 0$).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:63:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:72:\emph{(a)}~Confounding preserves sign when $\operatorname{sign}(\tau) = \operatorname{sign}(\tau {+} B_{\mathrm{OV}})$, where $B_{\mathrm{OV}} {=} \operatorname{Cov}(g(A),f(A))/\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\ref{app:confounding}).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:80:\centering
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:81:\includegraphics[width=\textwidth]{fig3_asv_ranking.pdf}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:82:\caption{ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \infty$).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:83:\label{fig:asv_ranking}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:89:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:92:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:94:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:98:For $K{=}2$ confounding and mediation topologies with proportional effects ($f = \lambda g$ for some scalar $\lambda$) under $C(\delta) = (1{-}\delta)I + \delta C_0$ with $(C_0)_{jj} \geq \tfrac{1}{2}$, $|B(C(\delta))|$ is monotonically non-decreasing in $\delta \in [0,1]$.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:105:For $K{=}3$ with symmetric confusion matrix $C_{jk} = c$ for $j \neq k$ and $C_{kk} = 1{-}2c$, $c \in (0, 1/3)$, and proportional effects ($f{=}\lambda g$), envelope monotonicity holds exactly: $|B(C(\delta))|$ is strictly monotone in $\delta$ for confounding, mediation, and collider topologies whenever $\mathrm{Var}(g) > 0$.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:115:For general $K{\geq}3$ non-IV topologies under $C(\delta) = (1{-}\delta)I + \delta C_0$, $|B(C(\delta))|$ is $\varepsilon$-approximately monotonic with $\varepsilon < 0.02$ for $|\beta| \leq 1$, scaling with effect magnitude (Table~\ref{tab:conjecture_verify},~\ref{tab:dgp_sensitivity}; Appendix~\ref{sec:conjecture_verify}). The safe/fragile partition (five sign-preserving topologies versus exposure and IV) is robust across all tested parameterizations.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:122:ASV and E-values~\cite{vanderweele_ding2017} address orthogonal sources (annotation error vs.\ unmeasured confounding) and are most valuable jointly (Table~\ref{tab:sensitivity_comparison}, Appendix). ASV is topology-dependent and targets sign-flip failure modes absent from confounding analysis.
+
+[Showing results with pagination = limit: 50]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5d7118b-4424-4ab7-97fa-409be0d3f94f",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "0acd28cd-bd9f-41f8-a404-9be467f96c5a",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:8:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:11:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:4:We validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three natural language processing (NLP) tasks ($K{=}2,3,10$).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:15:Analytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\\%, averaged across 161 scenarios (23 LLM configurations $\\times$ 7 topologies; per-topology range: 0.3\\%--3.7\\%). This close agreement validates the closed-form derivations and confirms that finite-sample behavior ($N{=}10{,}000$) closely approximates the asymptotic predictions, justifying the use of probability limits as practical bias diagnostics.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:21:Five topologies exhibit zero sign-flip rate (Table~\\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\\% amplification~\\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C)|$ non-increasing; Conjecture~\\ref{conj:monotone}); M-bias shows weakest sensitivity (53.2\\% violation). All patterns persist at $K{=}5,7$ (Appendix~\\ref{sec:cross_k_robustness}).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:27:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:35:Confounding & 100\\% & 0\\% & 100\\% & Cond. \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:49:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:66:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:76:Confounding & 0.08--0.49 & 100\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:86:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:97:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:99:\\caption{Binarization collapse $\\Delta$: additional bias from collapsing $K{=}3$ to binary. Topology determines severity ($>$150$\\times$ range); exposure and IV exhibit sign flips.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:106:Under linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0\\% bias reduction (Appendix~\\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \\to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\\Delta| < 0.02$; Appendix~\\ref{sec:fwl_nonlinear}).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:108:\\paragraph{Method ranking and decision procedure.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:109:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex:44:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex:47:\\caption{Seven canonical DAG topologies with starred-node annotation~\\cite{hernan_cole2009}. $A$ (latent) $\\to$ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:6:Differential misclassification and proving Conjecture~\\ref{conj:monotone} for general $K$ remain open.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:10:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:17:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:19:Throughout, $\\tau$ denotes the causal estimand of interest, whose definition varies by topology: the confounder's coefficient, the treatment effect, the indirect effect, or the Wald ratio (Appendix~\\ref{app:confounding}ff.).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:21:We study seven canonical DAG topologies (Figure~\\ref{fig:dag_taxonomy})~\\cite{pearl2009, hernan2020causal}, deriving probability limits under linear structural equation models (SEMs)~\\cite{carroll2006}; logistic regression robustness is verified in Appendix~\\ref{sec:logistic_dgp} and~\\ref{sec:fwl_nonlinear}.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:26:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:28:\\paragraph{Confounding ($A$ = confounder).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:29:When $A$ confounds the $X{\\to}Y$ relationship, the ordinary least squares (OLS) estimator controlling for $A^*$ has probability limit\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:31:\\label{eq:confounding}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:34:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:42:where $w_{jk}$ depends on the confusion matrix $C$ and the population marginal $\\pi_k = P(A{=}k)$. Unlike binary misclassification~\\cite{brenner1993}, $K{\\geq}3$ permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \\emph{sign reversal} (83.4\\% under uniform Dirichlet prior); this is structurally impossible at $K{=}2$.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:45:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:55:When $A$ mediates the $X{\\to}Y$ relationship~\\cite{vanderweele2015explanation}, the direct effect estimator controlling for $A^*$ has probability limit\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:60:where $\\lambda(C) \\in [0,1]$ under proportional effects (Appendix~\\ref{app:proof}, Proposition~\\ref{prop:lambda_bound}), with $\\lambda(I) = 1$ under perfect classification. Misclassification ($\\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\\hat{\\tau}_{\\text{direct}}|$ but preserving the sign ($\\tau_{\\text{sign\\_flip}} = 0$).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:63:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:72:\\emph{(a)}~Confounding preserves sign when $\\operatorname{sign}(\\tau) = \\operatorname{sign}(\\tau {+} B_{\\mathrm{OV}})$, where $B_{\\mathrm{OV}} {=} \\operatorname{Cov}(g(A),f(A))/\\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\\ref{app:confounding}).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:80:\\centering\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:81:\\includegraphics[width=\\textwidth]{fig3_asv_ranking.pdf}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:82:\\caption{ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \\infty$).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:83:\\label{fig:asv_ranking}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:89:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:92:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:94:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:98:For $K{=}2$ confounding and mediation topologies with proportional effects ($f = \\lambda g$ for some scalar $\\lambda$) under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$ with $(C_0)_{jj} \\geq \\tfrac{1}{2}$, $|B(C(\\delta))|$ is monotonically non-decreasing in $\\delta \\in [0,1]$.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:105:For $K{=}3$ with symmetric confusion matrix $C_{jk} = c$ for $j \\neq k$ and $C_{kk} = 1{-}2c$, $c \\in (0, 1/3)$, and proportional effects ($f{=}\\lambda g$), envelope monotonicity holds exactly: $|B(C(\\delta))|$ is strictly monotone in $\\delta$ for confounding, mediation, and collider topologies whenever $\\mathrm{Var}(g) > 0$.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:115:For general $K{\\geq}3$ non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is $\\varepsilon$-approximately monotonic with $\\varepsilon < 0.02$ for $|\\beta| \\leq 1$, scaling with effect magnitude (Table~\\ref{tab:conjecture_verify},~\\ref{tab:dgp_sensitivity}; Appendix~\\ref{sec:conjecture_verify}). The safe/fragile partition (five sign-preserving topologies versus exposure and IV) is robust across all tested parameterizations.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:122:ASV and E-values~\\cite{vanderweele_ding2017} address orthogonal sources (annotation error vs.\\ unmeasured confounding) and are most valuable jointly (Table~\\ref{tab:sensitivity_comparison}, Appendix). ASV is topology-dependent and targets sign-flip failure modes absent from confounding analysis.",
+    "numLines": 50,
+    "appliedLimit": 50
+  },
+  "sourceToolAssistantUUID": "e5d7118b-4424-4ab7-97fa-409be0d3f94f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-25T07:51:22.486Z_
+
+<details><summary>↩ Tool result · `toolu_01JAWsHMAAx2on9EgrkxsgW6`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36f778f1-a30c-43ac-854b-f8abc05416c0",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "e587fa3c-bcd8-46e2-a145-a81b15101e48",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "36f778f1-a30c-43ac-854b-f8abc05416c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-25T07:51:24.841Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01AX43oggDmMvDpGkJr3rf3z`</summary>
+
+```json
+{
+  "pattern": "(it is worth noting|importantly|notably|delve|leverage|utilize|facilitate|a myriad|a plethora|in the realm of|paradigm shift)",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e587fa3c-bcd8-46e2-a145-a81b15101e48",
+  "isSidechain": false,
+  "requestId": "req_011CbNvUTUhc1pauGjMJzAWw",
+  "type": "assistant",
+  "uuid": "07b21f1e-1a25-46a4-82d8-b5e36c181b80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALQ325Ry74TcyzpxgxRBCv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7291,
+      "cache_read_input_tokens": 64525,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7291,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 64525,
+          "cache_creation_input_tokens": 7291,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7291
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-25T07:51:24.864Z_
+
+<details><summary>↩ Tool result · `toolu_01AX43oggDmMvDpGkJr3rf3z`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07b21f1e-1a25-46a4-82d8-b5e36c181b80",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "7daaf000-e15f-473e-94fa-3fd27068a39a",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "07b21f1e-1a25-46a4-82d8-b5e36c181b80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-25T07:51:26.091Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Kc4z7zvkmjBwDkMabPQdLd`</summary>
+
+```json
+{
+  "pattern": "ing,|ing\\.|ing\\b",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "head_limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7daaf000-e15f-473e-94fa-3fd27068a39a",
+  "isSidechain": false,
+  "requestId": "req_011CbNvUTUhc1pauGjMJzAWw",
+  "type": "assistant",
+  "uuid": "e5d7118b-4424-4ab7-97fa-409be0d3f94f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALQ325Ry74TcyzpxgxRBCv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7291,
+      "cache_read_input_tokens": 64525,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7291,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 64525,
+          "cache_creation_input_tokens": 7291,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7291
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "0acd28cd-bd9f-41f8-a404-9be467f96c5a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-25T07:51:30.385Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look more carefully for -ing phrases that are AI-style, and also scan for other AI patterns. Let me also check some specific dimensions like the Abstract word count, Limitations word count, and whether there are internal information leaks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0acd28cd-bd9f-41f8-a404-9be467f96c5a",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "9d69e207-f4d5-45f9-94b3-0eeb7fca3196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-25T07:51:30.781Z_
+
+检查 Abstract 词数、Limitations 词数，以及更多 AI 风格模式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d69e207-f4d5-45f9-94b3-0eeb7fca3196",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "b8965194-bf11-4f6f-ac4b-5cfb93ee5d0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-25T07:51:33.291Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EL5b71xpbrVyopvjUdGAP8`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && cat abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~^_]//g; s/  */ /g' | wc -w",
+  "description": "Count approximate word count of abstract"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8965194-bf11-4f6f-ac4b-5cfb93ee5d0a",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "76962de0-1512-4fcc-a230-52b611f69edf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-25T07:51:39.527Z_
+
+<details><summary>↩ Tool result · `toolu_01UZuhYFGViEo5qN6vZy1YdR`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:4:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c2aa95e-1d53-4565-82e3-181d027f2d21",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "66475873-808c-44d0-bd30-cd5ac0995493",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:4:[Omitted long matching line]",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "6c2aa95e-1d53-4565-82e3-181d027f2d21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-25T07:51:33.461Z_
+
+<details><summary>↩ Tool result · `toolu_01EL5b71xpbrVyopvjUdGAP8`</summary>
+
+```text
+182
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76962de0-1512-4fcc-a230-52b611f69edf",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "f3602e45-3f3c-482f-a2ee-9661296b9c8b",
+  "toolUseResult": {
+    "stdout": "182",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "76962de0-1512-4fcc-a230-52b611f69edf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-25T07:51:35.291Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0132VJFKnS5voRJ4Nb9uQcg5`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && sed -n '/\\\\section\\*{Limitations}/,/\\\\end{document}\\|\\\\section/p' conclusion.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~^_]//g; s/  */ /g' | wc -w",
+  "description": "Count approximate word count of Limitations section"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3602e45-3f3c-482f-a2ee-9661296b9c8b",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "93c1d996-8965-4d36-9716-235e7cfa13df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-25T07:51:35.357Z_
+
+<details><summary>↩ Tool result · `toolu_0132VJFKnS5voRJ4Nb9uQcg5`</summary>
+
+```text
+73
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93c1d996-8965-4d36-9716-235e7cfa13df",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "118d0a50-d6c9-4043-8d89-6aef565297de",
+  "toolUseResult": {
+    "stdout": "73",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "93c1d996-8965-4d36-9716-235e7cfa13df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-25T07:51:37.189Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Xyzqha9tjQHvvRM4EuxXTb`</summary>
+
+```json
+{
+  "pattern": ", (demonstrating|highlighting|showcasing|indicating|suggesting|enabling|providing|offering|ensuring|achieving|establishing|revealing|confirming|underscoring|emphasizing|illustrating)",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "118d0a50-d6c9-4043-8d89-6aef565297de",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "389464a7-d246-4a9d-bcfd-ce91d50715bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-25T07:51:37.224Z_
+
+<details><summary>↩ Tool result · `toolu_01Xyzqha9tjQHvvRM4EuxXTb`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:106:Under linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0\% bias reduction (Appendix~\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\Delta| < 0.02$; Appendix~\ref{sec:fwl_nonlinear}).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:232:Additionally, $B_{\mathrm{OV}}=\operatorname{Cov}(g,f)/\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\tau_{\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:246:The proof proceeds by direct algebraic analysis of $V_B(\delta)=\operatorname{Var}(\mathbb{E}[g(A)\mid A^*_\delta])$ as a rational function of $\delta$, establishing convexity and bounding the derivative at both endpoints.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:310:Numerical verification across 20{,}000 random $(C_0,p,g)$ triples per $K\in\{3,5,7\}$ with $(C_0)_{jj}\geq 1/K$ finds worst-case $|B|$ step deviations $< 0.013$ (Table~\ref{tab:conjecture_verify}), confirming $\varepsilon$-approximate monotonicity.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:316:Extended verification (20{,}000 random $C_0$ matrices, $K \in \{3,5,7\}$) reveals worst-case step deviations of 0.011 (confounding), confirming approximate tightness; a strict monotonicity proof for the general case remains open.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:405:We verify numerically that $\max_j|\delta_j|\leq|\tau_{\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:482:\emph{Proportional case.} Step~4 of the mediation derivation gives $B(C)=\lambda_0\,V_W(C)/(V_W(C)+\sigma_\varepsilon^2)$; the rank-one limit $V_W{\to}V$ yields $\tau_{\mathrm{ind}}=\lambda_0\,V/(V+\sigma_\varepsilon^2)$. Both quantities carry $\operatorname{sign}(\lambda_0)$, establishing~(a). The ratio
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:486:is monotone increasing in $V_W(C)\in[0,V]$ with range $[0,1]$ (its derivative in $V_W$ is $\sigma_\varepsilon^2(V+\sigma_\varepsilon^2)/[V(V_W+\sigma_\varepsilon^2)^2]>0$), establishing~(b). Hence $\lambda(C)\in[0,1]$ unconditionally.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:510:\item \textbf{Proportional} ($f=\lambda_0\,g$, $\lambda_0\sim\mathcal{N}(0,1)\!\setminus\!\{0\}$): $\lambda(C)\in[0,1]$ in all $30{,}000$ trials (pooled observed range $[1.2{\times}10^{-5},\,0.850]$; zero out-of-bounds), confirming the closed-form bound. Sign preservation of $\hat\tau_{\mathrm{dir}}$ therefore reduces to $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:511:\item \textbf{Non-proportional} ($f\sim\mathcal{N}(0,I_K)$ drawn independently of $g$, restricted to $|\tau_{\mathrm{ind}}|\geq 0.05$ to avoid the ill-conditioned regime where $\lambda{=}1{-}B/\tau_{\mathrm{ind}}$ diverges): $\lambda(C)$ exceeds $[0,1]$ in $\sim15$--$17\%$ of trials, illustrating that (a) and (b) are not automatic outside the proportional case.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1049:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1052:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1101:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1159:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1216:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1280:For $K{=}2$ (binary), no configuration produces sign reversal up to $\varepsilon{=}0.50$. For $K{\geq}3$, the majority of configurations are fragile ($\varepsilon^*_{\text{safe}}{=}0$), confirming that the non-differential assumption is load-bearing for multi-class exposure.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1297:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1367:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1466:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "389464a7-d246-4a9d-bcfd-ce91d50715bd",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "b4de9e86-b17d-4090-a807-e1fb815a5a18",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:106:Under linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0\\% bias reduction (Appendix~\\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \\to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\\Delta| < 0.02$; Appendix~\\ref{sec:fwl_nonlinear}).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:232:Additionally, $B_{\\mathrm{OV}}=\\operatorname{Cov}(g,f)/\\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\\tau_{\\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:246:The proof proceeds by direct algebraic analysis of $V_B(\\delta)=\\operatorname{Var}(\\mathbb{E}[g(A)\\mid A^*_\\delta])$ as a rational function of $\\delta$, establishing convexity and bounding the derivative at both endpoints.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:310:Numerical verification across 20{,}000 random $(C_0,p,g)$ triples per $K\\in\\{3,5,7\\}$ with $(C_0)_{jj}\\geq 1/K$ finds worst-case $|B|$ step deviations $< 0.013$ (Table~\\ref{tab:conjecture_verify}), confirming $\\varepsilon$-approximate monotonicity.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:316:Extended verification (20{,}000 random $C_0$ matrices, $K \\in \\{3,5,7\\}$) reveals worst-case step deviations of 0.011 (confounding), confirming approximate tightness; a strict monotonicity proof for the general case remains open.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:405:We verify numerically that $\\max_j|\\delta_j|\\leq|\\tau_{\\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:482:\\emph{Proportional case.} Step~4 of the mediation derivation gives $B(C)=\\lambda_0\\,V_W(C)/(V_W(C)+\\sigma_\\varepsilon^2)$; the rank-one limit $V_W{\\to}V$ yields $\\tau_{\\mathrm{ind}}=\\lambda_0\\,V/(V+\\sigma_\\varepsilon^2)$. Both quantities carry $\\operatorname{sign}(\\lambda_0)$, establishing~(a). The ratio\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:486:is monotone increasing in $V_W(C)\\in[0,V]$ with range $[0,1]$ (its derivative in $V_W$ is $\\sigma_\\varepsilon^2(V+\\sigma_\\varepsilon^2)/[V(V_W+\\sigma_\\varepsilon^2)^2]>0$), establishing~(b). Hence $\\lambda(C)\\in[0,1]$ unconditionally.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:510:\\item \\textbf{Proportional} ($f=\\lambda_0\\,g$, $\\lambda_0\\sim\\mathcal{N}(0,1)\\!\\setminus\\!\\{0\\}$): $\\lambda(C)\\in[0,1]$ in all $30{,}000$ trials (pooled observed range $[1.2{\\times}10^{-5},\\,0.850]$; zero out-of-bounds), confirming the closed-form bound. Sign preservation of $\\hat\\tau_{\\mathrm{dir}}$ therefore reduces to $\\operatorname{sign}(\\tau_{\\mathrm{dir}})=\\operatorname{sign}(\\tau_{\\mathrm{total}})$.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:511:\\item \\textbf{Non-proportional} ($f\\sim\\mathcal{N}(0,I_K)$ drawn independently of $g$, restricted to $|\\tau_{\\mathrm{ind}}|\\geq 0.05$ to avoid the ill-conditioned regime where $\\lambda{=}1{-}B/\\tau_{\\mathrm{ind}}$ diverges): $\\lambda(C)$ exceeds $[0,1]$ in $\\sim15$--$17\\%$ of trials, illustrating that (a) and (b) are not automatic outside the proportional case.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1049:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1052:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1101:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1159:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1216:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1280:For $K{=}2$ (binary), no configuration produces sign reversal up to $\\varepsilon{=}0.50$. For $K{\\geq}3$, the majority of configurations are fragile ($\\varepsilon^*_{\\text{safe}}{=}0$), confirming that the non-differential assumption is load-bearing for multi-class exposure.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1297:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1367:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1466:[Omitted long matching line]",
+    "numLines": 20
+  },
+  "sourceToolAssistantUUID": "389464a7-d246-4a9d-bcfd-ce91d50715bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-25T07:51:38.563Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01M9HCaqz4fArsY1Nx2TrCTT`</summary>
+
+```json
+{
+  "pattern": "(Furthermore|Moreover|Additionally)",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4de9e86-b17d-4090-a807-e1fb815a5a18",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "c9939ff9-be58-47eb-bced-3b14f7d762ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-25T07:51:38.576Z_
+
+<details><summary>↩ Tool result · `toolu_01M9HCaqz4fArsY1Nx2TrCTT`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:232:Additionally, $B_{\mathrm{OV}}=\operatorname{Cov}(g,f)/\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\tau_{\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:622:Additionally, $B_{\mathrm{Berkson}}{=}{-}0.114$, giving $\tau+B_{\mathrm{Berkson}}{=}0.886{>}0$.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9939ff9-be58-47eb-bced-3b14f7d762ee",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "167d42ef-53d6-47b8-8a47-c8aad61ae331",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:232:Additionally, $B_{\\mathrm{OV}}=\\operatorname{Cov}(g,f)/\\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\\tau_{\\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:622:Additionally, $B_{\\mathrm{Berkson}}{=}{-}0.114$, giving $\\tau+B_{\\mathrm{Berkson}}{=}0.886{>}0$.",
+    "numLines": 2
+  },
+  "sourceToolAssistantUUID": "c9939ff9-be58-47eb-bced-3b14f7d762ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-25T07:51:39.510Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UZuhYFGViEo5qN6vZy1YdR`</summary>
+
+```json
+{
+  "pattern": "(significantly|state-of-the-art|SOTA|novel)",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "167d42ef-53d6-47b8-8a47-c8aad61ae331",
+  "isSidechain": false,
+  "requestId": "req_011CbNvV74euGCbxnb8ViwJU",
+  "type": "assistant",
+  "uuid": "6c2aa95e-1d53-4565-82e3-181d027f2d21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Cnf2U8TLQfxzZodx4kR7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 71816,
+      "output_tokens": 895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 895,
+          "cache_read_input_tokens": 71816,
+          "cache_creation_input_tokens": 4607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73 · 2026-05-25T07:51:39.581Z_
+
+```json
+{
+  "parentUuid": "66475873-808c-44d0-bd30-cd5ac0995493",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8f444282-d26d-4d26-bca9-244abc9239de",
+  "timestamp": "2026-05-25T07:51:39.581Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-25T07:51:42.187Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the specific line in intro that has "significantly" or "state-of-the-art":
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f444282-d26d-4d26-bca9-244abc9239de",
+  "isSidechain": false,
+  "requestId": "req_011CbNvW6Ui28ycPboG5hcXs",
+  "type": "assistant",
+  "uuid": "38e38819-79ee-49ee-836a-085a223f9314",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8Ed9oo8zVBwb97ZzE6yRH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 76423,
+      "output_tokens": 740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 740,
+          "cache_read_input_tokens": 76423,
+          "cache_creation_input_tokens": 3616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-25T07:51:43.163Z_
+
+检查 "state-of-the-art" 的具体上下文和 appendix 中的 limitations 段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38e38819-79ee-49ee-836a-085a223f9314",
+  "isSidechain": false,
+  "requestId": "req_011CbNvW6Ui28ycPboG5hcXs",
+  "type": "assistant",
+  "uuid": "a9de1960-c642-4cfb-97c7-7458e0022ca0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8Ed9oo8zVBwb97ZzE6yRH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 76423,
+      "output_tokens": 740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 740,
+          "cache_read_input_tokens": 76423,
+          "cache_creation_input_tokens": 3616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-25T07:51:44.183Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01DMfADeqB7amBZrwg4XRQwh`</summary>
+
+```json
+{
+  "pattern": "state-of-the-art",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9de1960-c642-4cfb-97c7-7458e0022ca0",
+  "isSidechain": false,
+  "requestId": "req_011CbNvW6Ui28ycPboG5hcXs",
+  "type": "assistant",
+  "uuid": "da23d73f-7a35-4e49-a926-5faffadae16e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8Ed9oo8zVBwb97ZzE6yRH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 76423,
+      "output_tokens": 740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 740,
+          "cache_read_input_tokens": 76423,
+          "cache_creation_input_tokens": 3616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-25T07:51:49.018Z_
+
+<details><summary>↩ Tool result · `toolu_01PGA5s3gppW1BQDeDHfyHb2`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7fd0045a-1f8c-4086-9a52-e1792dccc431",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "8f996ec0-08f3-4c37-a577-e9a7e29e6273",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "7fd0045a-1f8c-4086-9a52-e1792dccc431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-25T07:51:44.196Z_
+
+<details><summary>↩ Tool result · `toolu_01DMfADeqB7amBZrwg4XRQwh`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:4:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da23d73f-7a35-4e49-a926-5faffadae16e",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "27e6f0d2-77b5-4c7b-9c19-175d2e3fe56a",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:4:[Omitted long matching line]",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "da23d73f-7a35-4e49-a926-5faffadae16e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-25T07:51:45.598Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01J9NsRMAohFwLgV7eiB245D`</summary>
+
+```json
+{
+  "pattern": "\\\\section.*[Ll]imitation",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27e6f0d2-77b5-4c7b-9c19-175d2e3fe56a",
+  "isSidechain": false,
+  "requestId": "req_011CbNvW6Ui28ycPboG5hcXs",
+  "type": "assistant",
+  "uuid": "7f07c01f-2512-4d2f-b24a-70bf3403da6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8Ed9oo8zVBwb97ZzE6yRH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 76423,
+      "output_tokens": 740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 740,
+          "cache_read_input_tokens": 76423,
+          "cache_creation_input_tokens": 3616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-25T07:51:45.612Z_
+
+<details><summary>↩ Tool result · `toolu_01J9NsRMAohFwLgV7eiB245D`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:\section*{Limitations}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f07c01f-2512-4d2f-b24a-70bf3403da6b",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "298f9285-1967-4b65-af84-6db56f6b7420",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:\\section*{Limitations}",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "7f07c01f-2512-4d2f-b24a-70bf3403da6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-25T07:51:47.481Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NPJK6farCBNADbSqh76hfX`</summary>
+
+```json
+{
+  "pattern": "error bars|std|standard deviation|\\\\pm|confidence interval",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex",
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "298f9285-1967-4b65-af84-6db56f6b7420",
+  "isSidechain": false,
+  "requestId": "req_011CbNvW6Ui28ycPboG5hcXs",
+  "type": "assistant",
+  "uuid": "a22b3831-92e2-4b69-8b3d-9c7d82abaf9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8Ed9oo8zVBwb97ZzE6yRH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 76423,
+      "output_tokens": 740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 740,
+          "cache_read_input_tokens": 76423,
+          "cache_creation_input_tokens": 3616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-25T07:51:47.494Z_
+
+<details><summary>↩ Tool result · `toolu_01NPJK6farCBNADbSqh76hfX`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:86:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:92:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:9:Confounding & +22.71 $\pm$ 2.29 & 0.352 & no correction (FWL) & +22.71 $\pm$ 2.29 & +0.0\% \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:10:\quad (naive plug-in) & -- & -- & -- & +22.71 $\pm$ 2.29 & +0.0\% \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:11:\quad (MLA)          & -- & -- & -- & +22.71 $\pm$ 2.29 & +0.0\% \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:12:Exposure & -42.87 $\pm$ 2.42 & 0.239 & PPI++ & -0.22 $\pm$ 4.94 & +90.9\% \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:13:IV & +82.40 $\pm$ 12.22 & 0.204 & MC-SIMEX (gold-free) & -197.00 $\pm$ 3.79 & -139.1\% \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1245:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a22b3831-92e2-4b69-8b3d-9c7d82abaf9c",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "b5eb6547-80b4-4343-a493-d83c395e41dc",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:86:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:92:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:9:Confounding & +22.71 $\\pm$ 2.29 & 0.352 & no correction (FWL) & +22.71 $\\pm$ 2.29 & +0.0\\% \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:10:\\quad (naive plug-in) & -- & -- & -- & +22.71 $\\pm$ 2.29 & +0.0\\% \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:11:\\quad (MLA)          & -- & -- & -- & +22.71 $\\pm$ 2.29 & +0.0\\% \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:12:Exposure & -42.87 $\\pm$ 2.42 & 0.239 & PPI++ & -0.22 $\\pm$ 4.94 & +90.9\\% \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:13:IV & +82.40 $\\pm$ 12.22 & 0.204 & MC-SIMEX (gold-free) & -197.00 $\\pm$ 3.79 & -139.1\\% \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1245:[Omitted long matching line]",
+    "numLines": 8
+  },
+  "sourceToolAssistantUUID": "a22b3831-92e2-4b69-8b3d-9c7d82abaf9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-25T07:51:48.999Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01PGA5s3gppW1BQDeDHfyHb2`</summary>
+
+```json
+{
+  "pattern": "GPU|training time|hyperparameter|learning rate|batch size|epoch|reproduc",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex",
+  "head_limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5eb6547-80b4-4343-a493-d83c395e41dc",
+  "isSidechain": false,
+  "requestId": "req_011CbNvW6Ui28ycPboG5hcXs",
+  "type": "assistant",
+  "uuid": "7fd0045a-1f8c-4086-9a52-e1792dccc431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8Ed9oo8zVBwb97ZzE6yRH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 76423,
+      "output_tokens": 740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 740,
+          "cache_read_input_tokens": 76423,
+          "cache_creation_input_tokens": 3616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "8f996ec0-08f3-4c37-a577-e9a7e29e6273",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-25T07:52:01.027Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check some more specific items:
+
+1. The "state-of-the-art" usage in introduction.tex:4 - it says "31\% of hypotheses yield incorrect conclusions with state-of-the-art LLMs" - this is citing Baumann 2025, and it's describing LLMs, not claiming their own method is SOTA. This is fine.
+
+2. The "significantly" in introduction.tex:8 - "$F_1$ does not exhibit significant rank correlation" - this is in the statistical sense with a p-value given ($p = 0.45$). This is fine.
+
+
+3. The limitations section is properly placed in the conclusion rather than the appendix, which aligns with EMNLP guidelines. The abstract comes in at around 182 words, well under the 200-word limit. The limitations section itself is roughly 73 words, which is brief but covers the main points as expected.
+
+Now I'm doing a deeper content review to check for internal information leakage, verify symbol consistency across the paper, ensure the contributions align with the scope, and most importantly, assess the narrative flow throughout.
+
+Checking for any experiment IDs or other sensitive information that might have slipped through...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f996ec0-08f3-4c37-a577-e9a7e29e6273",
+  "isSidechain": false,
+  "requestId": "req_011CbNvWo1kerws1NkKvFYGM",
+  "type": "assistant",
+  "uuid": "fa6df9a5-3af1-4185-bfb9-5d014bf49839",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUTbvrPYyLK1b8QECMopqo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 80039,
+      "output_tokens": 829,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 829,
+          "cache_read_input_tokens": 80039,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-25T07:52:01.028Z_
+
+检查内部信息残留和符号一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa6df9a5-3af1-4185-bfb9-5d014bf49839",
+  "isSidechain": false,
+  "requestId": "req_011CbNvWo1kerws1NkKvFYGM",
+  "type": "assistant",
+  "uuid": "48b954e7-f586-4b82-98e7-4296edc9225e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUTbvrPYyLK1b8QECMopqo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 80039,
+      "output_tokens": 829,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 829,
+          "cache_read_input_tokens": 80039,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-25T07:52:01.708Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01BUk3EyC7X5wxd6ZmuLKdNA`</summary>
+
+```json
+{
+  "pattern": "(exp_\\d|server|/root/|/home/|localhost|192\\.168|10\\.0\\.|internal|TODO|FIXME|HACK|XXX|PLACEHOLDER)",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48b954e7-f586-4b82-98e7-4296edc9225e",
+  "isSidechain": false,
+  "requestId": "req_011CbNvWo1kerws1NkKvFYGM",
+  "type": "assistant",
+  "uuid": "fb1aa775-1c57-4a96-abbb-d81e2432b1f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUTbvrPYyLK1b8QECMopqo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 80039,
+      "output_tokens": 829,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 829,
+          "cache_read_input_tokens": 80039,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-25T07:52:04.124Z_
+
+<details><summary>↩ Tool result · `toolu_01XJHvmmvGGJafd7wzc6Mv6E`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1efb1d74-b107-450b-988c-801f2923f317",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "93adef7d-0db0-4046-98b8-067019818989",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "1efb1d74-b107-450b-988c-801f2923f317",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-25T07:52:01.744Z_
+
+<details><summary>↩ Tool result · `toolu_01BUk3EyC7X5wxd6ZmuLKdNA`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb1aa775-1c57-4a96-abbb-d81e2432b1f7",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "af1a080e-88d5-4fd5-8a04-73b4f0191621",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "fb1aa775-1c57-4a96-abbb-d81e2432b1f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-25T07:52:02.721Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01G4zSVGdDC2KQCFMX7hMsen`</summary>
+
+```json
+{
+  "pattern": "\\\\section|\\\\subsection|\\\\paragraph",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "head_limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af1a080e-88d5-4fd5-8a04-73b4f0191621",
+  "isSidechain": false,
+  "requestId": "req_011CbNvWo1kerws1NkKvFYGM",
+  "type": "assistant",
+  "uuid": "46546811-5e19-41a5-931d-1fdfae7169d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUTbvrPYyLK1b8QECMopqo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 80039,
+      "output_tokens": 829,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 829,
+          "cache_read_input_tokens": 80039,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-25T07:52:02.757Z_
+
+<details><summary>↩ Tool result · `toolu_01G4zSVGdDC2KQCFMX7hMsen`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:1:\section{Related Work}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:4:\paragraph{Measurement error in causal inference.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:7:\paragraph{LLM annotation and downstream causal validity.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:10:\paragraph{Sensitivity analysis and correction methods.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:1:\section{Experiments}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:6:\subsection{Setup}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:11:\subsection{Bias Taxonomy}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:14:\paragraph{Theory-MC agreement.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:17:\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:20:\paragraph{Structural guarantee for non-exposure topologies.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:23:\paragraph{IV: Wald estimator instability.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:62:\subsection{ASV Framework Validation}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:85:\paragraph{ASV results.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:\subsection{Empirical Validation}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:93:\subsection{Correction Guidance}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:105:\paragraph{FWL invariance.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:108:\paragraph{Method ranking and decision procedure.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:1:\section{Conclusion}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:\section*{Limitations}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:1:\section{Method}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:4:\subsection{Setup and Notation}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:9:\paragraph{Notation conventions.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:23:\subsection{Multi-Class Bias Expressions}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:28:\paragraph{Confounding ($A$ = confounder).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:36:\paragraph{Exposure ($A$ = treatment variable).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:51:\paragraph{Primary coefficient preservation.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:54:\paragraph{Mediation ($A$ = mediator).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:62:\paragraph{Collider, M-bias, and front-door.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:65:\paragraph{Instrumental variable ($A$ = instrument).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:68:\paragraph{Structural sign-flip guarantee.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:86:\subsection{Annotation Sensitivity Values}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:91:\paragraph{Parameterization.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:93:\paragraph{Three ASV types.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:110:\paragraph{From proofs to numerical evidence.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:1:\section{Introduction}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1:\section{Proofs of Proposition~\ref{prop:signflip} and Theorem~\ref{thm:monotone}}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:8:\subsection{Notation and Key Identities}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:20:\subsection{Frisch--Waugh--Lovell Decomposition}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:70:\subsection{Confounding Topology ($A$ = Confounder)}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:73:\paragraph{Data-generating process.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:86:\paragraph{Closed-form plim.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:109:\paragraph{Verification at $C=I$.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:113:\paragraph{Bias structure.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:138:\paragraph{Sign preservation condition.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:217:\paragraph{Relationship to the omitted-variable condition.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:222:\paragraph{Verification for paper parameters ($K{=}3$).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:234:\paragraph{Extension to $K > 3$.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:242:\subsection{Proof of Theorem~\ref{thm:monotone} (Confounding Monotonicity)}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:248:\paragraph{Proportional case ($f=\lambda g$).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:307:\paragraph{Condition on $C_0$.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:313:\paragraph{General case (non-proportional effects).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:330:\subsection{Mediation Topology ($A$ = Mediator)}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:333:\paragraph{Data-generating process.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:341:\paragraph{Bias decomposition.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:350:\paragraph{Endpoint analysis.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:365:\paragraph{Numerical Verification (Mediation sign preservation).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:408:\paragraph{Verification for paper parameters ($K{=}3$).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:415:\paragraph{Mediation monotonicity (proportional effects).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:451:\paragraph{Boundedness of the leakage coefficient.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:493:\paragraph{Relation to the between-variance ratio.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:507:\paragraph{Numerical verification.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:516:\subsection{Proof of Theorem~\ref{thm:k3_symmetric} ($K{=}3$ Symmetric Monotonicity)}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:526:\subsection{Collider Topology ($A$ = Collider)}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:529:\paragraph{Data-generating process.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:543:\paragraph{Bias decomposition.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:559:\paragraph{Endpoint analysis.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:612:\paragraph{Verification for paper parameters ($K{=}3$).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:625:\subsection{Front-door Topology ($A$ = Mediator under Confounding)}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:628:\paragraph{Data-generating process.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:641:\paragraph{Bias decomposition.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:672:\paragraph{Endpoint analysis.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:677:\paragraph{Numerical Verification (Front-door sign preservation).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:686:\paragraph{Verification for paper parameters ($K{=}3$).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:694:\subsection{Exposure Topology: Sign Reversal Counterexample}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:761:\subsection{Summary of Conditions}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:790:\paragraph{Structural argument for M-bias topology.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:795:\paragraph{M-bias sign-flip ASV $= \infty$.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:798:\paragraph{Remark.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:805:\subsection{Adversarial Monotonicity Verification}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:833:\section{Supplementary Tables, Figures, and Algorithm}
+
+[Showing results with pagination = limit: 80]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46546811-5e19-41a5-931d-1fdfae7169d1",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "e81a903d-e01f-4bc6-96c3-3cc703276a75",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:1:\\section{Related Work}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:4:\\paragraph{Measurement error in causal inference.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:7:\\paragraph{LLM annotation and downstream causal validity.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:10:\\paragraph{Sensitivity analysis and correction methods.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:1:\\section{Experiments}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:6:\\subsection{Setup}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:11:\\subsection{Bias Taxonomy}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:14:\\paragraph{Theory-MC agreement.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:17:\\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:20:\\paragraph{Structural guarantee for non-exposure topologies.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:23:\\paragraph{IV: Wald estimator instability.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:62:\\subsection{ASV Framework Validation}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:85:\\paragraph{ASV results.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:\\subsection{Empirical Validation}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:93:\\subsection{Correction Guidance}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:105:\\paragraph{FWL invariance.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:108:\\paragraph{Method ranking and decision procedure.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:1:\\section{Conclusion}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:\\section*{Limitations}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:1:\\section{Method}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:4:\\subsection{Setup and Notation}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:9:\\paragraph{Notation conventions.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:23:\\subsection{Multi-Class Bias Expressions}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:28:\\paragraph{Confounding ($A$ = confounder).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:36:\\paragraph{Exposure ($A$ = treatment variable).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:51:\\paragraph{Primary coefficient preservation.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:54:\\paragraph{Mediation ($A$ = mediator).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:62:\\paragraph{Collider, M-bias, and front-door.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:65:\\paragraph{Instrumental variable ($A$ = instrument).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:68:\\paragraph{Structural sign-flip guarantee.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:86:\\subsection{Annotation Sensitivity Values}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:91:\\paragraph{Parameterization.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:93:\\paragraph{Three ASV types.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:110:\\paragraph{From proofs to numerical evidence.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:1:\\section{Introduction}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1:\\section{Proofs of Proposition~\\ref{prop:signflip} and Theorem~\\ref{thm:monotone}}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:8:\\subsection{Notation and Key Identities}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:20:\\subsection{Frisch--Waugh--Lovell Decomposition}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:70:\\subsection{Confounding Topology ($A$ = Confounder)}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:73:\\paragraph{Data-generating process.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:86:\\paragraph{Closed-form plim.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:109:\\paragraph{Verification at $C=I$.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:113:\\paragraph{Bias structure.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:138:\\paragraph{Sign preservation condition.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:217:\\paragraph{Relationship to the omitted-variable condition.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:222:\\paragraph{Verification for paper parameters ($K{=}3$).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:234:\\paragraph{Extension to $K > 3$.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:242:\\subsection{Proof of Theorem~\\ref{thm:monotone} (Confounding Monotonicity)}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:248:\\paragraph{Proportional case ($f=\\lambda g$).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:307:\\paragraph{Condition on $C_0$.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:313:\\paragraph{General case (non-proportional effects).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:330:\\subsection{Mediation Topology ($A$ = Mediator)}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:333:\\paragraph{Data-generating process.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:341:\\paragraph{Bias decomposition.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:350:\\paragraph{Endpoint analysis.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:365:\\paragraph{Numerical Verification (Mediation sign preservation).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:408:\\paragraph{Verification for paper parameters ($K{=}3$).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:415:\\paragraph{Mediation monotonicity (proportional effects).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:451:\\paragraph{Boundedness of the leakage coefficient.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:493:\\paragraph{Relation to the between-variance ratio.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:507:\\paragraph{Numerical verification.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:516:\\subsection{Proof of Theorem~\\ref{thm:k3_symmetric} ($K{=}3$ Symmetric Monotonicity)}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:526:\\subsection{Collider Topology ($A$ = Collider)}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:529:\\paragraph{Data-generating process.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:543:\\paragraph{Bias decomposition.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:559:\\paragraph{Endpoint analysis.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:612:\\paragraph{Verification for paper parameters ($K{=}3$).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:625:\\subsection{Front-door Topology ($A$ = Mediator under Confounding)}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:628:\\paragraph{Data-generating process.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:641:\\paragraph{Bias decomposition.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:672:\\paragraph{Endpoint analysis.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:677:\\paragraph{Numerical Verification (Front-door sign preservation).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:686:\\paragraph{Verification for paper parameters ($K{=}3$).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:694:\\subsection{Exposure Topology: Sign Reversal Counterexample}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:761:\\subsection{Summary of Conditions}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:790:\\paragraph{Structural argument for M-bias topology.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:795:\\paragraph{M-bias sign-flip ASV $= \\infty$.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:798:\\paragraph{Remark.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:805:\\subsection{Adversarial Monotonicity Verification}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:833:\\section{Supplementary Tables, Figures, and Algorithm}",
+    "numLines": 80,
+    "appliedLimit": 80
+  },
+  "sourceToolAssistantUUID": "46546811-5e19-41a5-931d-1fdfae7169d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-25T07:52:04.098Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XJHvmmvGGJafd7wzc6Mv6E`</summary>
+
+```json
+{
+  "pattern": "across.*domain|across.*task|across.*dataset",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e81a903d-e01f-4bc6-96c3-3cc703276a75",
+  "isSidechain": false,
+  "requestId": "req_011CbNvWo1kerws1NkKvFYGM",
+  "type": "assistant",
+  "uuid": "1efb1d74-b107-450b-988c-801f2923f317",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUTbvrPYyLK1b8QECMopqo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 80039,
+      "output_tokens": 829,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 829,
+          "cache_read_input_tokens": 80039,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "93adef7d-0db0-4046-98b8-067019818989",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-25T07:52:22.179Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now check the "achieving" pattern more carefully - looking at the specific sentence in experiments.tex:106.
+
+Let me now check for a few more things:
+1. The Intro's "state-of-the-art" - just used to describe LLMs as "state-of-the-art LLMs" which is fine
+2. The Intro's "significant" - "$F_1$ does not exhibit significant rank correlation with causal bias ($\rho = -0.10$, $p = 0.45$" - this is a properly used statistical term with p-value.
+
+Let me now do the comprehensive audit by dimensions.
+
+
+Now I'm verifying the key quantitative claims across the paper - checking that the abstract's "61% to <1%" reduction in exposure bias matches the table results, and confirming the "1.6% MAPE across 161 scenarios" claim is consistent between the introduction and experiments sections.
+
+I'm also cross-referencing the "83.4%" statistic about sign reversal under the Dirichlet prior, noting that the abstract frames this in terms of empirical confusion matrices while the introduction provides the more specific prior-based analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93adef7d-0db0-4046-98b8-067019818989",
+  "isSidechain": false,
+  "requestId": "req_011CbNvXudeVam25TsrV8dVu",
+  "type": "assistant",
+  "uuid": "d09541f1-e018-4b41-8c95-c1c4eb1fbd9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JGm5kWoDRuUMNQBFs8JfBf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5234,
+      "cache_read_input_tokens": 81590,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 81590,
+          "cache_creation_input_tokens": 5234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-25T07:52:22.180Z_
+
+精确检查 abstract 词数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d09541f1-e018-4b41-8c95-c1c4eb1fbd9e",
+  "isSidechain": false,
+  "requestId": "req_011CbNvXudeVam25TsrV8dVu",
+  "type": "assistant",
+  "uuid": "1e10ae66-7e1d-4f53-8499-1d7ca5d1f5c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JGm5kWoDRuUMNQBFs8JfBf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5234,
+      "cache_read_input_tokens": 81590,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 81590,
+          "cache_creation_input_tokens": 5234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-25T07:52:24.878Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KoS4oyXbE29RmkTN7AsbNu`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && python3 -c \"\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\n# Remove LaTeX commands but keep their text arguments\ntext = re.sub(r'\\\\begin\\{abstract\\}', '', text)\ntext = re.sub(r'\\\\end\\{abstract\\}', '', text)\ntext = re.sub(r'\\\\textbf\\{([^}]*)\\}', r'\\1', text)\ntext = re.sub(r'\\\\emph\\{([^}]*)\\}', r'\\1', text)\ntext = re.sub(r'\\\\cite\\{[^}]*\\}', '', text)\ntext = re.sub(r'\\\\ref\\{[^}]*\\}', 'X', text)\ntext = re.sub(r'\\\\label\\{[^}]*\\}', '', text)\ntext = re.sub(r'\\\\[a-zA-Z]+', '', text)\ntext = re.sub(r'[{}$~^_]', '', text)\ntext = re.sub(r'\\s+', ' ', text).strip()\nwords = text.split()\nprint(f'Word count: {len(words)}')\nprint(f'Text: {text[:200]}...')\n\"\n",
+  "description": "Precise abstract word count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e10ae66-7e1d-4f53-8499-1d7ca5d1f5c1",
+  "isSidechain": false,
+  "requestId": "req_011CbNvXudeVam25TsrV8dVu",
+  "type": "assistant",
+  "uuid": "f9a9c859-867b-4fe7-9b54-8f039d787386",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JGm5kWoDRuUMNQBFs8JfBf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5234,
+      "cache_read_input_tokens": 81590,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 81590,
+          "cache_creation_input_tokens": 5234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-25T07:52:25.155Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01KoS4oyXbE29RmkTN7AsbNu`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    text = re.sub(r'\end\{abstract\}', '', text)
+  File "/usr/lib/python3.14/re/__init__.py", line 208, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/re/__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "/usr/lib/python3.14/re/_compiler.py", line 762, in compile
+    p = _parser.parse(p, flags)
+  File "/usr/lib/python3.14/re/_parser.py", line 973, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "/usr/lib/python3.14/re/_parser.py", line 460, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/re/_parser.py", line 544, in _parse
+    code = _escape(source, this, state)
+  File "/usr/lib/python3.14/re/_parser.py", line 443, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \e at position 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9a9c859-867b-4fe7-9b54-8f039d787386",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "6af67798-d918-44d0-a5e4-311d9c9053ba",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    text = re.sub(r'\\end\\{abstract\\}', '', text)\n  File \"/usr/lib/python3.14/re/__init__.py\", line 208, in sub\n    return _compile(pattern, flags).sub(repl, string, count)\n           ~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/re/__init__.py\", line 350, in _compile\n    p = _compiler.compile(pattern, flags)\n  File \"/usr/lib/python3.14/re/_compiler.py\", line 762, in compile\n    p = _parser.parse(p, flags)\n  File \"/usr/lib/python3.14/re/_parser.py\", line 973, in parse\n    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)\n  File \"/usr/lib/python3.14/re/_parser.py\", line 460, in _parse_sub\n    itemsappend(_parse(source, state, verbose, nested + 1,\n                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                       not nested and not items))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/re/_parser.py\", line 544, in _parse\n    code = _escape(source, this, state)\n  File \"/usr/lib/python3.14/re/_parser.py\", line 443, in _escape\n    raise source.error(\"bad escape %s\" % escape, len(escape))\nre.PatternError: bad escape \\e at position 0",
+  "sourceToolAssistantUUID": "f9a9c859-867b-4fe7-9b54-8f039d787386",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100 · 2026-05-25T07:52:25.159Z_
+
+```json
+{
+  "parentUuid": "6af67798-d918-44d0-a5e4-311d9c9053ba",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e8e8ea27-ff70-49d3-8c3d-920567d9e6ce",
+  "timestamp": "2026-05-25T07:52:25.159Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-25T07:52:30.886Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JHyrgC1xuVkgomqJknTJ8k`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && python3 -c \"\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\ntext = text.replace(r'\\begin{abstract}', '').replace(r'\\end{abstract}', '')\ntext = re.sub(r'\\\\\\\\cite\\\\{[^}]*\\\\}', '', text)\ntext = re.sub(r'\\\\\\\\[a-zA-Z]+\\\\{([^}]*)\\\\}', r'\\\\1', text)\ntext = re.sub(r'\\\\\\\\[a-zA-Z]+', '', text)\ntext = re.sub(r'[{}\\$~^_]', '', text)\ntext = re.sub(r'\\\\s+', ' ', text).strip()\nwords = [w for w in text.split() if len(w) > 0]\nprint(f'Word count: {len(words)}')\n\"\n",
+  "description": "Precise abstract word count (fixed regex)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8e8ea27-ff70-49d3-8c3d-920567d9e6ce",
+  "isSidechain": false,
+  "requestId": "req_011CbNvZTKunMKVsSZypnsrV",
+  "type": "assistant",
+  "uuid": "f9844d87-53a2-4980-a579-c7e320a48f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01115fUM6RhY4Q8Qtv44XNgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1487,
+      "cache_read_input_tokens": 86824,
+      "output_tokens": 322,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1487,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 322,
+          "cache_read_input_tokens": 86824,
+          "cache_creation_input_tokens": 1487,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1487
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-25T07:52:31.040Z_
+
+<details><summary>↩ Tool result · `toolu_01JHyrgC1xuVkgomqJknTJ8k`</summary>
+
+```text
+Word count: 182
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9844d87-53a2-4980-a579-c7e320a48f08",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "03f460b6-73eb-4ad0-8827-65a44dca0699",
+  "toolUseResult": {
+    "stdout": "Word count: 182",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "f9844d87-53a2-4980-a579-c7e320a48f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-25T07:54:26.098Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check one more thing - the "achieving" in experiments.tex:106. Let me look at it more carefully:
+
+"FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies, achieving 0% bias reduction"
+
+This "-ing" pattern is borderline. "achieving" here is a participial phrase modifying "methods" and describing their result. It's not the worst AI-style pattern but it is a -ing participial clause.
+
+Let me also look at the appendix for any more -ing patterns and check for "confirming" patterns in the appendix. 
+
+The appendix_proofs.tex has quite a few instances of "confirming" as -ing phrase endings, but since these are in the appendix and embedded in mathematical proof contexts, they're less of a concern.
+
+Now I'm compiling my full audit results. Let me trace the narrative consistency through each section - the abstract establishes that LLM annotation errors propagate into causal inference and that topology determines whether errors attenuate, amplify, or reverse treatment effects. The introduction reinforces this same core problem: LLM annotations feed into causal inference, and annotation errors propagate differently depending on the network topology.
+
+The introduction identifies the gap as prior work covering at most one topology with no systematic multi-class analysis across all topologies, and notes that F1 scores don't predict causal bias. The stated contributions are a multi-class bias taxonomy across seven DAG topologies with sign-preservation dichotomy, ASV diagnostics with monotonicity properties, and topology-aware correction routing leveraging FWL invariance to show corrections are futile for four topologies.
+
+Looking at what the method section actually delivers: section 3.1 covers setup and notation, 3.2 derives bias expressions for all seven topologies matching the first contribution, and 3.3 develops the ASV framework with three types and monotonicity theorems matching the second contribution. The correction routing discussion appears in the experiments section rather than the method section, which is a minor structural choice, though the algorithm itself is in the appendix. The experiments then validate the bias taxonomy in section 4.2, confirming the first contribution.
+
+Now I'm noticing a potential discrepancy between what the abstract claims and what the experiments actually report. The abstract mentions "case study with 10 real LLM confusion matrices" but the experiments section describes "four LLMs, 23 configurations, 161 bias scenarios" with the real confusion matrix table showing 10 LLM configurations. There's a mismatch here that needs clarification.
+
+Actually, looking more carefully, the 10 configurations come from the VAST K=3 analysis specifically, while the 23 configurations represent a broader empirical validation across different tasks. So the numbers are consistent—the abstract is just highlighting the core case study subset rather than the full experimental scope. The abstract's claim about topology-aware correction reducing exposure bias from 61% to <1% aligns with what's in the experiments section.
+
+Let me verify the topology claims are consistent across sections. The abstract states "five topologies preserve the treatment effect sign under regularity conditions" and the intro echoes this with "topology-specific regularity conditions," which matches what the methods and experiments sections establish.
+
+Now I'm checking whether the claim about matrix-based corrections being provably ineffective under linear regression for four topologies holds up across the paper. The abstract mentions this is due to Frisch-Waugh-Lovell invariance, and I can see this gets developed in the ASV section of the methods and then validated empirically in section 4.4, where the experiments show 0% bias reduction for those topologies. The contribution list also explicitly calls this out as the FWL invariance result.
+
+But I'm noticing a discrepancy—the abstract and contribution 3 both claim "four covariate topologies," yet when I look at the actual topologies where T is directly observed (confounding, mediation, collider, M-bias, front-door), that's five topologies, not four. Front-door is a special case that uses a different estimator, so maybe that's why it's being counted separately, but I need to verify whether the "four" count is accurate or if there's a mismatch in how the topologies are being categorized. I'm noticing a discrepancy between the abstract claiming "four topologies" and the appendix listing five where FWL applies—confounding, mediation, collider, M-bias, and front-door. The key difference might be that front-door uses a two-stage estimation procedure, so FWL could apply within each stage rather than as a unified correction. Let me check the correction table to see if it clarifies whether the count is truly four or five. The abstract checks out on all fronts—it answers the four key questions, stays under the word limit, and covers the main contributions. Though it's quite dense with technical detail, which might make it harder to digest in a quick read. The introduction structure is solid too, with the background on LLM annotation errors, the key insight about the K≥3 transition being structural rather gradual, and the gap that F1 scores don't actually predict bias patterns.
+
+The related work section synthesizes three thematic areas—measurement error, LLM annotation, and sensitivity analysis—rather than just listing who did what, which positions the paper well against prior work. And looking at the contribution-scope alignment, each of the three main contributions maps cleanly to corresponding sections in the paper, so the structure holds together.
+
+Now checking the claim strength across the paper—the "provably ineffective" claim is backed by the FWL theorem, the statistical significance claims use p-values properly, and the state-of-the-art reference is about LLMs not the method itself. The key numbers like 83.4%, 1.6% MAPE, and the 61% to <1% improvement all check out consistently across the abstract, methods, and experiments sections.
+
+For experimental rigor, I'm realizing this is fundamentally a theoretical and simulation paper rather than an empirical ML training study, so traditional error bars don't apply to the main analytical results—though the end-to-end demos do include standard deviations. The baselines are recent and relevant, and the ablations cover both ASV types and correction methods across multiple tables.
+
+On reproducibility, the simulation setup is well-documented with specific parameters and sample sizes, the datasets are named, and the core algorithm is in the appendix along with a notation reference. The terminology stays consistent throughout—τ for the causal estimand, C for confusion matrices, δ for severity, and all key concepts like ASV and the bias function B(C) are defined and used uniformly. The paper flows naturally from introduction through related work into methods and experiments, wrapping up with a concise limitations section.
+
+Now I'm checking the style and presentation details—verifying dash usage, filler words, and paragraph structure are all within acceptable bounds. The limitations section covers three substantive points as required: the linear SEM assumption, the known DAG requirement, and the gold label constraint, rather than being vague or evasive.
+
+I'm also scanning for any internal artifacts or metadata that shouldn't be visible. The LaTeX comments in the table files referencing the generation scripts are technically harmless since they won't appear in the compiled PDF, though they could be a minor concern if source files are submitted.
+
+Finally, I'm confirming compliance with EMNLP-specific formatting rules: the abstract comes in under 200 words, limitations appear only in the main text as required, and the overall structure aligns with venue guidelines. I'm breaking down the page structure to verify the main text stays within the 8-page limit—the Phase 1 compilation shows 34 pages total, but that includes a substantial appendix. The introduction's claim about being "the first systematic analysis" across seven DAG topologies is a strong novelty assertion that needs solid support from the Related Work section.
+
+Checking the consistency between the abstract and introduction: the abstract mentions "proved (K=2, K=3 symmetric) and extensively validated (general K≥3) monotonicity," while the introduction specifies "proved envelope monotonicity (Theorems 1, 2) and ε-approximate monotonicity for general K≥3 (Conjecture 1)"—these align well. However, there's a subtle issue with how the abstract frames the ranking: it says monotonicity "yields a vulnerability ranking," but the ranking actually derives from the ASV values computed from the bias expressions themselves. Monotonicity's role is ensuring the ASV is well-defined, not directly producing the ranking.
+
+The paper honestly discloses that general K≥3 monotonicity is a conjecture rather than a proven theorem, which is a limitation worth noting. On the empirical findings, the abstract's claim that "sign reversal is confined to exposure topology under empirical LLM CMs" is technically accurate—Table 1 shows IV has 52.6% sign flip under random Dirichlet, but all 23 empirical LLM configurations show zero IV sign reversal. The phrasing could be misleading though, since the theoretical analysis reveals IV is actually quite vulnerable to sign reversal; it just doesn't manifest in the specific empirical configurations tested.
+
+The paper addresses this directly by noting that real-world accuracy levels (min_k C_kk ≥ 0.6) place all tested models in the low-risk region for IV but not for exposure. The normative claim that practitioners cannot rely on F1 as a proxy for causal validity is well-supported by the empirical correlation data showing no significant relationship (ρ = -0.10, p = 0.45). Now I'm scanning the main text for any problematic "confirming" language patterns.
+
+Looking through the files, I'm finding several -ing phrases scattered throughout: "achieving 0% bias reduction," "justifying the use of probability limits," "producing sign reversal," and "producing upward bias." Most of these are describing mathematical consequences rather than AI-style filler, so they're acceptable in a technical context. The ones that sound most like padding are worth flagging, but the mathematical descriptions are legitimate.
+
+Now I'm searching for a more specific pattern—commas followed by -ing phrases and "the"—which tends to be more characteristic of AI writing. Let me refine my search to catch those instances.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03f460b6-73eb-4ad0-8827-65a44dca0699",
+  "isSidechain": false,
+  "requestId": "req_011CbNvZtVVgyjWTHSFfgGXr",
+  "type": "assistant",
+  "uuid": "15b930b1-96ba-4137-a576-f49afce92b6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJsfbvx6YAF2c2zg7nAsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 88311,
+      "output_tokens": 5314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5314,
+          "cache_read_input_tokens": 88311,
+          "cache_creation_input_tokens": 389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104 · 2026-05-25T07:54:26.099Z_
+
+进一步检查 -ing 收尾模式和数字一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15b930b1-96ba-4137-a576-f49afce92b6c",
+  "isSidechain": false,
+  "requestId": "req_011CbNvZtVVgyjWTHSFfgGXr",
+  "type": "assistant",
+  "uuid": "8976e62a-374c-49a4-ae49-806df4639c73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJsfbvx6YAF2c2zg7nAsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 88311,
+      "output_tokens": 5314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5314,
+          "cache_read_input_tokens": 88311,
+          "cache_creation_input_tokens": 389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-25T07:54:26.466Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01BgqSRdvhTjcoXjmJoHyK4x`</summary>
+
+```json
+{
+  "pattern": ", (justifying|producing|confirming|establishing|rendering|placing|leaving)",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8976e62a-374c-49a4-ae49-806df4639c73",
+  "isSidechain": false,
+  "requestId": "req_011CbNvZtVVgyjWTHSFfgGXr",
+  "type": "assistant",
+  "uuid": "cc867867-d6f5-43f3-a479-9f2fa5cd4745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJsfbvx6YAF2c2zg7nAsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 88311,
+      "output_tokens": 5314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5314,
+          "cache_read_input_tokens": 88311,
+          "cache_creation_input_tokens": 389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-25T07:54:28.802Z_
+
+<details><summary>↩ Tool result · `toolu_0189mGiH3N8qjBU3GrfvvArs`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1129:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1159:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1440:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:8:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "039069d1-8393-457e-900e-5d5c33228734",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "35b20403-d9d1-4159-9339-a06097bf9f2c",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1129:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1159:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1440:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:8:[Omitted long matching line]",
+    "numLines": 4
+  },
+  "sourceToolAssistantUUID": "039069d1-8393-457e-900e-5d5c33228734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-25T07:54:26.484Z_
+
+<details><summary>↩ Tool result · `toolu_01BgqSRdvhTjcoXjmJoHyK4x`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:15:Analytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\%, averaged across 161 scenarios (23 LLM configurations $\times$ 7 topologies; per-topology range: 0.3\%--3.7\%). This close agreement validates the closed-form derivations and confirms that finite-sample behavior ($N{=}10{,}000$) closely approximates the asymptotic predictions, justifying the use of probability limits as practical bias diagnostics.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:34:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:42:where $w_{jk}$ depends on the confusion matrix $C$ and the population marginal $\pi_k = P(A{=}k)$. Unlike binary misclassification~\cite{brenner1993}, $K{\geq}3$ permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \emph{sign reversal} (83.4\% under uniform Dirichlet prior); this is structurally impossible at $K{=}2$.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:60:where $\lambda(C) \in [0,1]$ under proportional effects (Appendix~\ref{app:proof}, Proposition~\ref{prop:lambda_bound}), with $\lambda(I) = 1$ under perfect classification. Misclassification ($\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserving the sign ($\tau_{\text{sign\_flip}} = 0$).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:232:Additionally, $B_{\mathrm{OV}}=\operatorname{Cov}(g,f)/\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\tau_{\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:246:The proof proceeds by direct algebraic analysis of $V_B(\delta)=\operatorname{Var}(\mathbb{E}[g(A)\mid A^*_\delta])$ as a rational function of $\delta$, establishing convexity and bounding the derivative at both endpoints.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:310:Numerical verification across 20{,}000 random $(C_0,p,g)$ triples per $K\in\{3,5,7\}$ with $(C_0)_{jj}\geq 1/K$ finds worst-case $|B|$ step deviations $< 0.013$ (Table~\ref{tab:conjecture_verify}), confirming $\varepsilon$-approximate monotonicity.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:316:Extended verification (20{,}000 random $C_0$ matrices, $K \in \{3,5,7\}$) reveals worst-case step deviations of 0.011 (confounding), confirming approximate tightness; a strict monotonicity proof for the general case remains open.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:405:We verify numerically that $\max_j|\delta_j|\leq|\tau_{\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:482:\emph{Proportional case.} Step~4 of the mediation derivation gives $B(C)=\lambda_0\,V_W(C)/(V_W(C)+\sigma_\varepsilon^2)$; the rank-one limit $V_W{\to}V$ yields $\tau_{\mathrm{ind}}=\lambda_0\,V/(V+\sigma_\varepsilon^2)$. Both quantities carry $\operatorname{sign}(\lambda_0)$, establishing~(a). The ratio
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:486:is monotone increasing in $V_W(C)\in[0,V]$ with range $[0,1]$ (its derivative in $V_W$ is $\sigma_\varepsilon^2(V+\sigma_\varepsilon^2)/[V(V_W+\sigma_\varepsilon^2)^2]>0$), establishing~(b). Hence $\lambda(C)\in[0,1]$ unconditionally.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:510:\item \textbf{Proportional} ($f=\lambda_0\,g$, $\lambda_0\sim\mathcal{N}(0,1)\!\setminus\!\{0\}$): $\lambda(C)\in[0,1]$ in all $30{,}000$ trials (pooled observed range $[1.2{\times}10^{-5},\,0.850]$; zero out-of-bounds), confirming the closed-form bound. Sign preservation of $\hat\tau_{\mathrm{dir}}$ therefore reduces to $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:803:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1101:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1159:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1216:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1280:For $K{=}2$ (binary), no configuration produces sign reversal up to $\varepsilon{=}0.50$. For $K{\geq}3$, the majority of configurations are fragile ($\varepsilon^*_{\text{safe}}{=}0$), confirming that the non-differential assumption is load-bearing for multi-class exposure.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1367:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1466:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc867867-d6f5-43f3-a479-9f2fa5cd4745",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "6e398a21-8aca-4b55-b4d5-fa9da7c5e2d2",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:15:Analytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\\%, averaged across 161 scenarios (23 LLM configurations $\\times$ 7 topologies; per-topology range: 0.3\\%--3.7\\%). This close agreement validates the closed-form derivations and confirms that finite-sample behavior ($N{=}10{,}000$) closely approximates the asymptotic predictions, justifying the use of probability limits as practical bias diagnostics.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:34:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:42:where $w_{jk}$ depends on the confusion matrix $C$ and the population marginal $\\pi_k = P(A{=}k)$. Unlike binary misclassification~\\cite{brenner1993}, $K{\\geq}3$ permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \\emph{sign reversal} (83.4\\% under uniform Dirichlet prior); this is structurally impossible at $K{=}2$.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:60:where $\\lambda(C) \\in [0,1]$ under proportional effects (Appendix~\\ref{app:proof}, Proposition~\\ref{prop:lambda_bound}), with $\\lambda(I) = 1$ under perfect classification. Misclassification ($\\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\\hat{\\tau}_{\\text{direct}}|$ but preserving the sign ($\\tau_{\\text{sign\\_flip}} = 0$).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:232:Additionally, $B_{\\mathrm{OV}}=\\operatorname{Cov}(g,f)/\\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\\tau_{\\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:246:The proof proceeds by direct algebraic analysis of $V_B(\\delta)=\\operatorname{Var}(\\mathbb{E}[g(A)\\mid A^*_\\delta])$ as a rational function of $\\delta$, establishing convexity and bounding the derivative at both endpoints.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:310:Numerical verification across 20{,}000 random $(C_0,p,g)$ triples per $K\\in\\{3,5,7\\}$ with $(C_0)_{jj}\\geq 1/K$ finds worst-case $|B|$ step deviations $< 0.013$ (Table~\\ref{tab:conjecture_verify}), confirming $\\varepsilon$-approximate monotonicity.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:316:Extended verification (20{,}000 random $C_0$ matrices, $K \\in \\{3,5,7\\}$) reveals worst-case step deviations of 0.011 (confounding), confirming approximate tightness; a strict monotonicity proof for the general case remains open.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:405:We verify numerically that $\\max_j|\\delta_j|\\leq|\\tau_{\\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:482:\\emph{Proportional case.} Step~4 of the mediation derivation gives $B(C)=\\lambda_0\\,V_W(C)/(V_W(C)+\\sigma_\\varepsilon^2)$; the rank-one limit $V_W{\\to}V$ yields $\\tau_{\\mathrm{ind}}=\\lambda_0\\,V/(V+\\sigma_\\varepsilon^2)$. Both quantities carry $\\operatorname{sign}(\\lambda_0)$, establishing~(a). The ratio\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:486:is monotone increasing in $V_W(C)\\in[0,V]$ with range $[0,1]$ (its derivative in $V_W$ is $\\sigma_\\varepsilon^2(V+\\sigma_\\varepsilon^2)/[V(V_W+\\sigma_\\varepsilon^2)^2]>0$), establishing~(b). Hence $\\lambda(C)\\in[0,1]$ unconditionally.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:510:\\item \\textbf{Proportional} ($f=\\lambda_0\\,g$, $\\lambda_0\\sim\\mathcal{N}(0,1)\\!\\setminus\\!\\{0\\}$): $\\lambda(C)\\in[0,1]$ in all $30{,}000$ trials (pooled observed range $[1.2{\\times}10^{-5},\\,0.850]$; zero out-of-bounds), confirming the closed-form bound. Sign preservation of $\\hat\\tau_{\\mathrm{dir}}$ therefore reduces to $\\operatorname{sign}(\\tau_{\\mathrm{dir}})=\\operatorname{sign}(\\tau_{\\mathrm{total}})$.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:803:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1101:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1159:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1216:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1280:For $K{=}2$ (binary), no configuration produces sign reversal up to $\\varepsilon{=}0.50$. For $K{\\geq}3$, the majority of configurations are fragile ($\\varepsilon^*_{\\text{safe}}{=}0$), confirming that the non-differential assumption is load-bearing for multi-class exposure.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1367:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1466:[Omitted long matching line]",
+    "numLines": 20
+  },
+  "sourceToolAssistantUUID": "cc867867-d6f5-43f3-a479-9f2fa5cd4745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-25T07:54:27.939Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015UbGPKb4ZSoeBhfypLYW2e`</summary>
+
+```json
+{
+  "pattern": "61%|61\\\\%",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e398a21-8aca-4b55-b4d5-fa9da7c5e2d2",
+  "isSidechain": false,
+  "requestId": "req_011CbNvZtVVgyjWTHSFfgGXr",
+  "type": "assistant",
+  "uuid": "7e1e09c3-7602-4d3f-8067-d76d65813b4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJsfbvx6YAF2c2zg7nAsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 88311,
+      "output_tokens": 5314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5314,
+          "cache_read_input_tokens": 88311,
+          "cache_creation_input_tokens": 389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-25T07:54:27.952Z_
+
+<details><summary>↩ Tool result · `toolu_015UbGPKb4ZSoeBhfypLYW2e`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:52:Across 23 empirical LLM configurations, the primary coefficient (the category with the largest true effect $|\beta_k|$) never reverses sign, while 61\% reverse a secondary (non-dominant) coefficient, confirmed under 100{,}000 Dirichlet matrices with diagonal ${\geq}\,0.7$ across six beta-ratio conditions (1.0 to 50.0) with 0\% primary sign-flip (Appendix~\ref{app:exposure}).
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex:2:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e1e09c3-7602-4d3f-8067-d76d65813b4a",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "05ba3466-de49-419c-9b76-98a128812cab",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:52:Across 23 empirical LLM configurations, the primary coefficient (the category with the largest true effect $|\\beta_k|$) never reverses sign, while 61\\% reverse a secondary (non-dominant) coefficient, confirmed under 100{,}000 Dirichlet matrices with diagonal ${\\geq}\\,0.7$ across six beta-ratio conditions (1.0 to 50.0) with 0\\% primary sign-flip (Appendix~\\ref{app:exposure}).\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex:2:[Omitted long matching line]",
+    "numLines": 3
+  },
+  "sourceToolAssistantUUID": "7e1e09c3-7602-4d3f-8067-d76d65813b4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-25T07:54:28.791Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0189mGiH3N8qjBU3GrfvvArs`</summary>
+
+```json
+{
+  "pattern": "the first",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "glob": "*.tex",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05ba3466-de49-419c-9b76-98a128812cab",
+  "isSidechain": false,
+  "requestId": "req_011CbNvZtVVgyjWTHSFfgGXr",
+  "type": "assistant",
+  "uuid": "039069d1-8393-457e-900e-5d5c33228734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJsfbvx6YAF2c2zg7nAsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 88311,
+      "output_tokens": 5314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5314,
+          "cache_read_input_tokens": 88311,
+          "cache_creation_input_tokens": 389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "35b20403-d9d1-4159-9339-a06097bf9f2c",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Assistant
+
+_source line 113 · 2026-05-25T07:54:47.095Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the "the first" claim in introduction.tex:8:
+
+"We present the first systematic analysis jointly addressing multi-class (K≥3) misclassification across seven directed acyclic graph (DAG) topologies"
+
+This is a strong novelty claim. The Related Work section supports it by showing prior work covers "at most one topology." This is well-supported.
+
+Now let me check "61%" usage:
+- abstract.tex:2: "topology-aware correction reduces exposure bias from 61% to <1%" - this refers to the real CM demo table where DeepSeek FS-3 shows -61.3% naive bias
+
+
+- method.tex:52: "61% reverse a secondary (non-dominant) coefficient" - this is about sign reversal rate (14/23 = 60.9% ≈ 61%)
+- experiments.tex:91: "14/23 (61%)" - same figure
+
+So there are two distinct "61%" values being cited: the bias magnitude from the abstract (61.3%) and the sign reversal rate from the experiments (60.9%). They're in different contexts, but the overlap could create confusion about which metric is being referenced.
+
+Looking at the real_cm table, the median exposure naive bias ranges from -59.3% to -68.9%, with approximately -61.3% as a representative value. The abstract's claim that topology-aware correction reduces exposure bias "from 61% to <1%" aligns with this, and the conclusion's "93.6% reduction" is consistent with the table values. The abstract also correctly notes that sign reversal is confined to exposure topology under empirical LLM confusion matrices, even though IV shows sign reversal under Dirichlet priors—the distinction depends on which prior is being used.
+
+Now I need to compile the full audit and check for any auto-generated comment issues in the table files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35b20403-d9d1-4159-9339-a06097bf9f2c",
+  "isSidechain": false,
+  "requestId": "req_011CbNviaCuW7bqcX6BkYWFt",
+  "type": "assistant",
+  "uuid": "71bebf51-54c9-4497-8bd0-4d2d74644b52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw6MtLoZ6pEAbnKDfzuNKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 88700,
+      "output_tokens": 1077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1077,
+          "cache_read_input_tokens": 88700,
+          "cache_creation_input_tokens": 8008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 114 · 2026-05-25T07:54:47.099Z_
+
+最后检查表格文件中的生成注释以及 Appendix 是否有 limitations 段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71bebf51-54c9-4497-8bd0-4d2d74644b52",
+  "isSidechain": false,
+  "requestId": "req_011CbNviaCuW7bqcX6BkYWFt",
+  "type": "assistant",
+  "uuid": "1ccc9328-9f33-4326-8568-009dccece071",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw6MtLoZ6pEAbnKDfzuNKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 88700,
+      "output_tokens": 1077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1077,
+          "cache_read_input_tokens": 88700,
+          "cache_creation_input_tokens": 8008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-25T07:54:47.107Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01A2ZkVJjmEpDcMuVgHtdsuX`</summary>
+
+```json
+{
+  "pattern": "Auto-generated|auto-generated|artifacts/",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ccc9328-9f33-4326-8568-009dccece071",
+  "isSidechain": false,
+  "requestId": "req_011CbNviaCuW7bqcX6BkYWFt",
+  "type": "assistant",
+  "uuid": "41bcc326-84ca-42e7-9fdf-9bdc3a6d2808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw6MtLoZ6pEAbnKDfzuNKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 88700,
+      "output_tokens": 1077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1077,
+          "cache_read_input_tokens": 88700,
+          "cache_creation_input_tokens": 8008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-25T07:54:48.725Z_
+
+<details><summary>↩ Tool result · `toolu_019je2ACNdvqXUrPb5QFUPtb`</summary>
+
+```text
+830	
+831	The four families span the extremes of the column-stochastic polytope: diagonal-dominant (near-identity), maximally reordered (near-permutation), degenerate (rank-deficient sparse), and block-structured heterogeneity (block-diagonal). The global maximum violation $\varepsilon_{\mathrm{abs}} = 0.016 < 0.02$ confirms that Conjecture~\ref{conj:monotone} holds under adversarial matrix structures. Near-permutation matrices with alternating-sign $\beta$ coefficients represent the most challenging case; even here, violations remain below the conjectured bound. Block-diagonal and near-uniform structures show exact monotonicity.
+832	
+833	\section{Supplementary Tables, Figures, and Algorithm}
+834	\label{app:supplementary}
+835	
+836	\subsection{Binarization Collapse}
+837	\label{app:binarization}
+838	
+839	Collapsing $K$-class annotations to binary before analysis discards multi-class error structure. We quantify ``binarization collapse'' as $\Delta = |\text{bias}_{K} - \text{bias}_{K \to 2}|$.
+840	
+841	For $K{=}3$, binarization introduces additional bias varying $>$150$\times$ across topologies: from $\bar{\Delta}{=}0.006$ (M-bias) to $\bar{\Delta}{=}0.926$ (IV). Exposure and IV also introduce sign flips during binarization (14\% and 17.5\%), a phenomenon absent in the other topologies (Figure~\ref{fig:binarization}).
+842	
+843	
+844	Magnitude ASV is reported at $\tau{=}0.5$ with a 10\% threshold. Power is evaluated at $\tau{=}0.05$ significance filter. ``---'' indicates not applicable.
+845	
+846	\begin{table}[H]
+847	\centering
+848	\caption{ASV type applicability and sensitivity across DAG topologies.}
+849	\label{tab:asv_grid}
+850	\small
+851	\resizebox{\columnwidth}{!}{\begin{tabular}{lcccl}
+852	\toprule
+853	\textbf{Topology} & \textbf{Mag. ASV} & \textbf{Signif.} & \textbf{Sign-flip} & \textbf{Rank} \\
+854	\midrule
+855	IV & 0.101--0.607 & 0\% & 1.1--6.7 & 1 (fragile) \\
+856	Front-door & 0.064--0.387 & 100\% & --- & 2 \\
+857	Confounding & 0.081--0.487 & 100\% & --- & 3 \\
+858	Mediation & 0.076--0.454 & 0\% & --- & 4 \\
+859	Collider & 0.338--2.028 & 0\% & --- & 5 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "564d82c4-761e-4bb8-986e-80a48e5e0ab4",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "c63f49d6-b1f8-4049-9b88-2a7c841c94a4",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+      "content": "\nThe four families span the extremes of the column-stochastic polytope: diagonal-dominant (near-identity), maximally reordered (near-permutation), degenerate (rank-deficient sparse), and block-structured heterogeneity (block-diagonal). The global maximum violation $\\varepsilon_{\\mathrm{abs}} = 0.016 < 0.02$ confirms that Conjecture~\\ref{conj:monotone} holds under adversarial matrix structures. Near-permutation matrices with alternating-sign $\\beta$ coefficients represent the most challenging case; even here, violations remain below the conjectured bound. Block-diagonal and near-uniform structures show exact monotonicity.\n\n\\section{Supplementary Tables, Figures, and Algorithm}\n\\label{app:supplementary}\n\n\\subsection{Binarization Collapse}\n\\label{app:binarization}\n\nCollapsing $K$-class annotations to binary before analysis discards multi-class error structure. We quantify ``binarization collapse'' as $\\Delta = |\\text{bias}_{K} - \\text{bias}_{K \\to 2}|$.\n\nFor $K{=}3$, binarization introduces additional bias varying $>$150$\\times$ across topologies: from $\\bar{\\Delta}{=}0.006$ (M-bias) to $\\bar{\\Delta}{=}0.926$ (IV). Exposure and IV also introduce sign flips during binarization (14\\% and 17.5\\%), a phenomenon absent in the other topologies (Figure~\\ref{fig:binarization}).\n\n\nMagnitude ASV is reported at $\\tau{=}0.5$ with a 10\\% threshold. Power is evaluated at $\\tau{=}0.05$ significance filter. ``---'' indicates not applicable.\n\n\\begin{table}[H]\n\\centering\n\\caption{ASV type applicability and sensitivity across DAG topologies.}\n\\label{tab:asv_grid}\n\\small\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{lcccl}\n\\toprule\n\\textbf{Topology} & \\textbf{Mag. ASV} & \\textbf{Signif.} & \\textbf{Sign-flip} & \\textbf{Rank} \\\\\n\\midrule\nIV & 0.101--0.607 & 0\\% & 1.1--6.7 & 1 (fragile) \\\\\nFront-door & 0.064--0.387 & 100\\% & --- & 2 \\\\\nConfounding & 0.081--0.487 & 100\\% & --- & 3 \\\\\nMediation & 0.076--0.454 & 0\\% & --- & 4 \\\\\nCollider & 0.338--2.028 & 0\\% & --- & 5 \\\\",
+      "numLines": 30,
+      "startLine": 830,
+      "totalLines": 1554
+    }
+  },
+  "sourceToolAssistantUUID": "564d82c4-761e-4bb8-986e-80a48e5e0ab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-25T07:54:47.123Z_
+
+<details><summary>↩ Tool result · `toolu_01A2ZkVJjmEpDcMuVgHtdsuX`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conjecture_dgp_sensitivity_table.tex:1:% Auto-generated by conjecture_dgp_sensitivity.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:1:% Auto-generated by artifacts/e2e_demo.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:514:Script: \texttt{artifacts/\allowbreak verify\_lambda\_bound.py}; results: \texttt{artifacts/\allowbreak verify\_lambda\_bound\_results.json}.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_real_cm_table.tex:1:% Auto-generated by artifacts/e2e_real_cm_demo.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41bcc326-84ca-42e7-9fdf-9bdc3a6d2808",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "9c275d0b-03a6-4b2e-bc3c-3a53cdf56c0a",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conjecture_dgp_sensitivity_table.tex:1:% Auto-generated by conjecture_dgp_sensitivity.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_demo_table.tex:1:% Auto-generated by artifacts/e2e_demo.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:514:Script: \\texttt{artifacts/\\allowbreak verify\\_lambda\\_bound.py}; results: \\texttt{artifacts/\\allowbreak verify\\_lambda\\_bound\\_results.json}.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/e2e_real_cm_table.tex:1:% Auto-generated by artifacts/e2e_real_cm_demo.py",
+    "numLines": 5
+  },
+  "sourceToolAssistantUUID": "41bcc326-84ca-42e7-9fdf-9bdc3a6d2808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-25T07:54:48.206Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01DBmdaUqj33ngGWcm6zNh6t`</summary>
+
+```json
+{
+  "pattern": "limitation|Limitation",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c275d0b-03a6-4b2e-bc3c-3a53cdf56c0a",
+  "isSidechain": false,
+  "requestId": "req_011CbNviaCuW7bqcX6BkYWFt",
+  "type": "assistant",
+  "uuid": "22839201-391e-4e19-ad2f-e946312b9c02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw6MtLoZ6pEAbnKDfzuNKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 88700,
+      "output_tokens": 1077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1077,
+          "cache_read_input_tokens": 88700,
+          "cache_creation_input_tokens": 8008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-25T07:54:48.214Z_
+
+<details><summary>↩ Tool result · `toolu_01DBmdaUqj33ngGWcm6zNh6t`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22839201-391e-4e19-ad2f-e946312b9c02",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "127a5ae4-4a93-466e-982e-609a4c47ae77",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "22839201-391e-4e19-ad2f-e946312b9c02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-25T07:54:48.720Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019je2ACNdvqXUrPb5QFUPtb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": 830,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "127a5ae4-4a93-466e-982e-609a4c47ae77",
+  "isSidechain": false,
+  "requestId": "req_011CbNviaCuW7bqcX6BkYWFt",
+  "type": "assistant",
+  "uuid": "564d82c4-761e-4bb8-986e-80a48e5e0ab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw6MtLoZ6pEAbnKDfzuNKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 88700,
+      "output_tokens": 1077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1077,
+          "cache_read_input_tokens": 88700,
+          "cache_creation_input_tokens": 8008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121 · 2026-05-25T07:54:54.765Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see some issues to flag:
+
+1. **Internal information residual**: `appendix_proofs.tex:514` directly references `artifacts/verify_lambda_bound.py` and `artifacts/verify_lambda_bound_results.json` as script and results file paths. This leaks internal project structure in the paper text. This is in the appendix but still a problem for a submitted paper.
+
+2. The `% Auto-generated` comments in table files are LaTeX comments and won't show in PDF, but they reference `artifacts/` paths which could be exposed if source is submitted. This is minor.
+
+Let me check line 514 and surrounding context of appendix_proofs.tex more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c63f49d6-b1f8-4049-9b88-2a7c841c94a4",
+  "isSidechain": false,
+  "requestId": "req_011CbNvk3FsR8138CsTZhBRH",
+  "type": "assistant",
+  "uuid": "dba84607-eca9-456e-a496-14f762041c9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAyEYtnhRcGnz5yQKPk1Jp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 96708,
+      "output_tokens": 450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 450,
+          "cache_read_input_tokens": 96708,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-25T07:54:55.262Z_
+
+检查 appendix 中引用内部脚本路径的行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dba84607-eca9-456e-a496-14f762041c9e",
+  "isSidechain": false,
+  "requestId": "req_011CbNvk3FsR8138CsTZhBRH",
+  "type": "assistant",
+  "uuid": "150d6477-4603-4a32-8ea4-d4cf6c057f1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAyEYtnhRcGnz5yQKPk1Jp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 96708,
+      "output_tokens": 450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 450,
+          "cache_read_input_tokens": 96708,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-25T07:54:56.394Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012aheHv4UgKAMHNhrgkHYBh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": 510,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "150d6477-4603-4a32-8ea4-d4cf6c057f1d",
+  "isSidechain": false,
+  "requestId": "req_011CbNvk3FsR8138CsTZhBRH",
+  "type": "assistant",
+  "uuid": "410895dd-baab-4e03-a53e-1a7a8ccbd3d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAyEYtnhRcGnz5yQKPk1Jp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 96708,
+      "output_tokens": 450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 450,
+          "cache_read_input_tokens": 96708,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-25T07:54:56.954Z_
+
+<details><summary>↩ Tool result · `toolu_01M18NSVJAirDHuPDo78kgX1`</summary>
+
+```text
+514:Script: \texttt{artifacts/\allowbreak verify\_lambda\_bound.py}; results: \texttt{artifacts/\allowbreak verify\_lambda\_bound\_results.json}.
+967:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c2baa15-250f-4baa-91f8-a27a54ac8e76",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "a2853f07-9959-4e31-86fc-208ff7b633a4",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "514:Script: \\texttt{artifacts/\\allowbreak verify\\_lambda\\_bound.py}; results: \\texttt{artifacts/\\allowbreak verify\\_lambda\\_bound\\_results.json}.\n967:[Omitted long matching line]",
+    "numLines": 2
+  },
+  "sourceToolAssistantUUID": "9c2baa15-250f-4baa-91f8-a27a54ac8e76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-25T07:54:56.410Z_
+
+<details><summary>↩ Tool result · `toolu_012aheHv4UgKAMHNhrgkHYBh`</summary>
+
+```text
+510	\item \textbf{Proportional} ($f=\lambda_0\,g$, $\lambda_0\sim\mathcal{N}(0,1)\!\setminus\!\{0\}$): $\lambda(C)\in[0,1]$ in all $30{,}000$ trials (pooled observed range $[1.2{\times}10^{-5},\,0.850]$; zero out-of-bounds), confirming the closed-form bound. Sign preservation of $\hat\tau_{\mathrm{dir}}$ therefore reduces to $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$.
+511	\item \textbf{Non-proportional} ($f\sim\mathcal{N}(0,I_K)$ drawn independently of $g$, restricted to $|\tau_{\mathrm{ind}}|\geq 0.05$ to avoid the ill-conditioned regime where $\lambda{=}1{-}B/\tau_{\mathrm{ind}}$ diverges): $\lambda(C)$ exceeds $[0,1]$ in $\sim15$--$17\%$ of trials, illustrating that (a) and (b) are not automatic outside the proportional case.
+512	\end{itemize}
+513	The diagnostic $\lambda_V(C)$ lies in $[0,1]$ across all $30{,}000$ trials irrespective of regime, as guaranteed by the law of total variance.
+514	Script: \texttt{artifacts/\allowbreak verify\_lambda\_bound.py}; results: \texttt{artifacts/\allowbreak verify\_lambda\_bound\_results.json}.
+515	
+516	\subsection{Proof of Theorem~\ref{thm:k3_symmetric} ($K{=}3$ Symmetric Monotonicity)}
+517	\label{app:k3_symmetric_proof}
+518	
+519	\input{k3_symmetric_proof.tex}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "410895dd-baab-4e03-a53e-1a7a8ccbd3d2",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "34e3bc8b-0262-4e5c-90ce-98842277f76d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+      "content": "\\item \\textbf{Proportional} ($f=\\lambda_0\\,g$, $\\lambda_0\\sim\\mathcal{N}(0,1)\\!\\setminus\\!\\{0\\}$): $\\lambda(C)\\in[0,1]$ in all $30{,}000$ trials (pooled observed range $[1.2{\\times}10^{-5},\\,0.850]$; zero out-of-bounds), confirming the closed-form bound. Sign preservation of $\\hat\\tau_{\\mathrm{dir}}$ therefore reduces to $\\operatorname{sign}(\\tau_{\\mathrm{dir}})=\\operatorname{sign}(\\tau_{\\mathrm{total}})$.\n\\item \\textbf{Non-proportional} ($f\\sim\\mathcal{N}(0,I_K)$ drawn independently of $g$, restricted to $|\\tau_{\\mathrm{ind}}|\\geq 0.05$ to avoid the ill-conditioned regime where $\\lambda{=}1{-}B/\\tau_{\\mathrm{ind}}$ diverges): $\\lambda(C)$ exceeds $[0,1]$ in $\\sim15$--$17\\%$ of trials, illustrating that (a) and (b) are not automatic outside the proportional case.\n\\end{itemize}\nThe diagnostic $\\lambda_V(C)$ lies in $[0,1]$ across all $30{,}000$ trials irrespective of regime, as guaranteed by the law of total variance.\nScript: \\texttt{artifacts/\\allowbreak verify\\_lambda\\_bound.py}; results: \\texttt{artifacts/\\allowbreak verify\\_lambda\\_bound\\_results.json}.\n\n\\subsection{Proof of Theorem~\\ref{thm:k3_symmetric} ($K{=}3$ Symmetric Monotonicity)}\n\\label{app:k3_symmetric_proof}\n\n\\input{k3_symmetric_proof.tex}",
+      "numLines": 10,
+      "startLine": 510,
+      "totalLines": 1554
+    }
+  },
+  "sourceToolAssistantUUID": "410895dd-baab-4e03-a53e-1a7a8ccbd3d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-25T07:54:56.944Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01M18NSVJAirDHuPDo78kgX1`</summary>
+
+```json
+{
+  "pattern": "\\\\texttt\\{artifacts",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34e3bc8b-0262-4e5c-90ce-98842277f76d",
+  "isSidechain": false,
+  "requestId": "req_011CbNvk3FsR8138CsTZhBRH",
+  "type": "assistant",
+  "uuid": "9c2baa15-250f-4baa-91f8-a27a54ac8e76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAyEYtnhRcGnz5yQKPk1Jp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 96708,
+      "output_tokens": 450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 450,
+          "cache_read_input_tokens": 96708,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 127 · 2026-05-25T07:54:57.018Z_
+
+```json
+{
+  "parentUuid": "a2853f07-9959-4e31-86fc-208ff7b633a4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "218f3812-d4fa-4268-9eaf-5000881c3774",
+  "timestamp": "2026-05-25T07:54:57.018Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "218f3812-d4fa-4268-9eaf-5000881c3774",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-25T07:55:01.012Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01EztJHfja7N9jzYsCFw2GcF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": 963,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "218f3812-d4fa-4268-9eaf-5000881c3774",
+  "isSidechain": false,
+  "requestId": "req_011CbNvkf6toEXZypC9TeK8j",
+  "type": "assistant",
+  "uuid": "83220972-d06e-4f24-813f-3a8ae334942c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011nYe2X9GuMTTK82jD7SMXT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1167,
+      "cache_read_input_tokens": 98959,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1167,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 98959,
+          "cache_creation_input_tokens": 1167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1167
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-25T07:55:01.016Z_
+
+<details><summary>↩ Tool result · `toolu_01EztJHfja7N9jzYsCFw2GcF`</summary>
+
+```text
+963	\bottomrule
+964	\end{tabular}}
+965	\end{table}
+966	
+967	Two findings: (i) Under OLS, $\hat\tau_{\mathrm{corr}}^{(m)}=\hat\tau_{\mathrm{un}}^{(m)}$ to machine precision in every replication, confirming Proposition~\ref{app:fwl_proof} as an exact algebraic identity. (ii) Under logistic regression, per-replication estimates differ by $|\Delta|_{\max}\!\sim\!10^{-3}$---thirteen orders of magnitude larger than the OLS gap---so the invariance fails formally. However, the directional effect on bias is negligible: mean bias reduction is $-0.04\%$ across the six confusion matrices (range $[-0.09\%, +0.05\%]$, not even consistent in sign). Matrix-based corrections remain practically useless under logistic regression---not by an exact invariance, but because the deviation is too small to systematically offset the misclassification-induced bias (which itself is $\sim\!0.10$ in absolute units, two orders of magnitude larger than $|\Delta|$). The routing rule of Algorithm~\ref{alg:correction} (skip Naive/MLA for these four topologies) is therefore conservative-but-correct under logistic regression as well. Script: \texttt{artifacts/exp\_fwl\_logistic\_\allowbreak breakdown.py}; results: \texttt{exp\_fwl\_logistic\_\allowbreak results.json}.
+968	
+969	\subsection{Applied Illustration: ClinicalBERT Case Study}
+970	\label{app:case_study}
+971	
+972	To demonstrate the framework's end-to-end utility, we apply it retrospectively to \citet{lee_wood_doughty2024}, who use ClinicalBERT to classify patient smoking status ($K{=}4$: never, past, current, unknown) from clinical notes and control for this predicted confounder when estimating the causal effect of echocardiography on mortality in 4{,}735 MIMIC-III sepsis patients.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83220972-d06e-4f24-813f-3a8ae334942c",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "ca826b80-44b6-4343-a453-f09a2e7649a4",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+      "content": "\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nTwo findings: (i) Under OLS, $\\hat\\tau_{\\mathrm{corr}}^{(m)}=\\hat\\tau_{\\mathrm{un}}^{(m)}$ to machine precision in every replication, confirming Proposition~\\ref{app:fwl_proof} as an exact algebraic identity. (ii) Under logistic regression, per-replication estimates differ by $|\\Delta|_{\\max}\\!\\sim\\!10^{-3}$---thirteen orders of magnitude larger than the OLS gap---so the invariance fails formally. However, the directional effect on bias is negligible: mean bias reduction is $-0.04\\%$ across the six confusion matrices (range $[-0.09\\%, +0.05\\%]$, not even consistent in sign). Matrix-based corrections remain practically useless under logistic regression---not by an exact invariance, but because the deviation is too small to systematically offset the misclassification-induced bias (which itself is $\\sim\\!0.10$ in absolute units, two orders of magnitude larger than $|\\Delta|$). The routing rule of Algorithm~\\ref{alg:correction} (skip Naive/MLA for these four topologies) is therefore conservative-but-correct under logistic regression as well. Script: \\texttt{artifacts/exp\\_fwl\\_logistic\\_\\allowbreak breakdown.py}; results: \\texttt{exp\\_fwl\\_logistic\\_\\allowbreak results.json}.\n\n\\subsection{Applied Illustration: ClinicalBERT Case Study}\n\\label{app:case_study}\n\nTo demonstrate the framework's end-to-end utility, we apply it retrospectively to \\citet{lee_wood_doughty2024}, who use ClinicalBERT to classify patient smoking status ($K{=}4$: never, past, current, unknown) from clinical notes and control for this predicted confounder when estimating the causal effect of echocardiography on mortality in 4{,}735 MIMIC-III sepsis patients.",
+      "numLines": 10,
+      "startLine": 963,
+      "totalLines": 1554
+    }
+  },
+  "sourceToolAssistantUUID": "83220972-d06e-4f24-813f-3a8ae334942c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 132 · 2026-05-25T07:55:08.644Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found another internal path reference at line 967: `Script: \texttt{artifacts/exp\_fwl\_logistic\_\allowbreak breakdown.py}; results: \texttt{exp\_fwl\_logistic\_\allowbreak results.json}.`
+
+Also, I notice this line contains "---" (em-dashes rendered in a non-standard way): "thirteen orders of magnitude larger than the OLS gap---so the invariance fails formally" and "Matrix-based corrections remain practically useless under logistic regression---not by an exact invariance". These are triple-hyphen conventions in LaTeX which render as em-dashes in the PDF. 
+
+The Phase 1 check was looking for actual Unicode em-dashes, so it would have missed these LaTeX-style triple hyphens. I should scan through the rest of the document to see how many more instances of `---` appear.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca826b80-44b6-4343-a453-f09a2e7649a4",
+  "isSidechain": false,
+  "requestId": "req_011CbNvkxb7PH19hQUVcW1cZ",
+  "type": "assistant",
+  "uuid": "168aea1a-a9e0-4ec5-a573-b5cdb8ea92df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qwA2poxBUZM1S95snq8zq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 100126,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 100126,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133 · 2026-05-25T07:55:08.644Z_
+
+检查 LaTeX 三连字符（em-dash）的使用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "168aea1a-a9e0-4ec5-a573-b5cdb8ea92df",
+  "isSidechain": false,
+  "requestId": "req_011CbNvkxb7PH19hQUVcW1cZ",
+  "type": "assistant",
+  "uuid": "acfe6b0a-76fa-4097-b4e9-f9991d67417d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qwA2poxBUZM1S95snq8zq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 100126,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 100126,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-25T07:55:08.896Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VCCNeH9JEJD5hWotMpR36v`</summary>
+
+```json
+{
+  "pattern": "---",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-n": true,
+  "head_limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acfe6b0a-76fa-4097-b4e9-f9991d67417d",
+  "isSidechain": false,
+  "requestId": "req_011CbNvkxb7PH19hQUVcW1cZ",
+  "type": "assistant",
+  "uuid": "71a8eb0f-e258-433b-9321-19e4509c4bc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qwA2poxBUZM1S95snq8zq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 100126,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 100126,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-25T07:55:08.907Z_
+
+<details><summary>↩ Tool result · `toolu_01VCCNeH9JEJD5hWotMpR36v`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:68:\caption{ASV summary across topologies ($K{=}3$, $\tau{=}0.5$). ---: not applicable.}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:75:Front-door  & 0.06--0.39 & 100\% & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:76:Confounding & 0.08--0.49 & 100\% & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:77:Mediation   & 0.08--0.45 & 0\%   & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:78:Collider    & 0.34--2.03 & 0\%   & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:79:M-bias      & $\infty$   & 98\%  & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:80:Exposure    & ---        & ---   & 83.4\% \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/k3_symmetric_proof.tex:78:\paragraph{Step 4: From $V_B$ to $|B|$ --- confounding (a).}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:142:\begin{proposition}[Confounding sign preservation --- proportional case]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:179:\begin{proposition}[Confounding sign preservation --- general case]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:569:\begin{proposition}[Collider sign preservation --- proportional case]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:588:\begin{proposition}[Collider sign preservation --- general case]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:679:Since $B_{\mathrm{med}}(C)$ has the same structure as the mediation bias (§\ref{app:mediation})---interpolating between $0$ at $C{=}I$ and $\operatorname{Cov}(T,f(A))/\operatorname{Var}(T)$ at $C$ uniform---sign preservation holds whenever the two endpoints have the same sign:
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:783:IV & Not guaranteed (denominator instability) & --- & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:800:Once the condition is satisfied, sign preservation holds for all column-stochastic $C$ with $C_{kk}>0$---no diagonal-dominance restriction is needed.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:844:Magnitude ASV is reported at $\tau{=}0.5$ with a 10\% threshold. Power is evaluated at $\tau{=}0.05$ significance filter. ``---'' indicates not applicable.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:856:Front-door & 0.064--0.387 & 100\% & --- & 2 \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:857:Confounding & 0.081--0.487 & 100\% & --- & 3 \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:858:Mediation & 0.076--0.454 & 0\% & --- & 4 \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:859:Collider & 0.338--2.028 & 0\% & --- & 5 \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:860:M-bias & $\infty$ & 96--100\% & --- & 6 (immune) \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:861:Exposure & --- & --- & 83.4\%$^*$ & --- \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:941:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:962:\textbf{Mean}           & ---                     & $\mathbf{0.0\%}$ & ---            & $\mathbf{-0.04\%}$ \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:975:First, the zero sign-flip guarantee for confounding (Table~\ref{tab:taxonomy}) ensures that the estimated protective effect (OR~$= 0.89$) cannot reverse direction due to annotation error---a reassurance unavailable without topology-specific analysis.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:977:Third, our correction guidance ranks PPI++ (83.2\% RMSE reduction for confounding) above MC-SIMEX (35.1\%) when gold labels are available---a concrete recommendation the original study lacked.
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1018:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1073:Exposure & --- & --- & 0.577 & 0.574 \\
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1094:Confounding & --- & --- & 0 \\
+
+[Showing results with pagination = limit: 30]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71a8eb0f-e258-433b-9321-19e4509c4bc7",
+  "isSidechain": false,
+  "promptId": "750c1c9e-b868-4583-80d2-5c0e1c90ac0b",
+  "type": "user",
+  "uuid": "7d1b9240-1942-4538-9be8-72b026d05402",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:68:\\caption{ASV summary across topologies ($K{=}3$, $\\tau{=}0.5$). ---: not applicable.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:75:Front-door  & 0.06--0.39 & 100\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:76:Confounding & 0.08--0.49 & 100\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:77:Mediation   & 0.08--0.45 & 0\\%   & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:78:Collider    & 0.34--2.03 & 0\\%   & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:79:M-bias      & $\\infty$   & 98\\%  & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:80:Exposure    & ---        & ---   & 83.4\\% \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/k3_symmetric_proof.tex:78:\\paragraph{Step 4: From $V_B$ to $|B|$ --- confounding (a).}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:142:\\begin{proposition}[Confounding sign preservation --- proportional case]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:179:\\begin{proposition}[Confounding sign preservation --- general case]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:569:\\begin{proposition}[Collider sign preservation --- proportional case]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:588:\\begin{proposition}[Collider sign preservation --- general case]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:679:Since $B_{\\mathrm{med}}(C)$ has the same structure as the mediation bias (§\\ref{app:mediation})---interpolating between $0$ at $C{=}I$ and $\\operatorname{Cov}(T,f(A))/\\operatorname{Var}(T)$ at $C$ uniform---sign preservation holds whenever the two endpoints have the same sign:\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:783:IV & Not guaranteed (denominator instability) & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:800:Once the condition is satisfied, sign preservation holds for all column-stochastic $C$ with $C_{kk}>0$---no diagonal-dominance restriction is needed.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:844:Magnitude ASV is reported at $\\tau{=}0.5$ with a 10\\% threshold. Power is evaluated at $\\tau{=}0.05$ significance filter. ``---'' indicates not applicable.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:856:Front-door & 0.064--0.387 & 100\\% & --- & 2 \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:857:Confounding & 0.081--0.487 & 100\\% & --- & 3 \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:858:Mediation & 0.076--0.454 & 0\\% & --- & 4 \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:859:Collider & 0.338--2.028 & 0\\% & --- & 5 \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:860:M-bias & $\\infty$ & 96--100\\% & --- & 6 (immune) \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:861:Exposure & --- & --- & 83.4\\%$^*$ & --- \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:941:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:962:\\textbf{Mean}           & ---                     & $\\mathbf{0.0\\%}$ & ---            & $\\mathbf{-0.04\\%}$ \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:967:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:975:First, the zero sign-flip guarantee for confounding (Table~\\ref{tab:taxonomy}) ensures that the estimated protective effect (OR~$= 0.89$) cannot reverse direction due to annotation error---a reassurance unavailable without topology-specific analysis.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:977:Third, our correction guidance ranks PPI++ (83.2\\% RMSE reduction for confounding) above MC-SIMEX (35.1\\%) when gold labels are available---a concrete recommendation the original study lacked.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1018:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1073:Exposure & --- & --- & 0.577 & 0.574 \\\\\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1094:Confounding & --- & --- & 0 \\\\",
+    "numLines": 30,
+    "appliedLimit": 30
+  },
+  "sourceToolAssistantUUID": "71a8eb0f-e258-433b-9321-19e4509c4bc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 136 · 2026-05-25T07:55:56.654Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see multiple `---` usages:
+
+1. **Table entries** (`---` for "not applicable"): These are appropriate in tables to indicate N/A values. This is standard practice.
+
+2. **Proposition titles** (`Confounding sign preservation --- proportional case`): These are using `---` as em-dashes in proposition/theorem naming. This is acceptable in formal mathematical writing.
+
+3. **Text em-dashes**:
+   - `k3_symmetric_proof.tex:78`: `Step 4: From $V_B$ to $|B|$ --- confounding (a).` - em-dash in heading
+   - Several instances in `appendix_proofs.tex` (lines 679, 800, 967, 975, 977) where em-dashes are used to introduce explanatory clauses or asides within the proof text. These are all stylistically consistent and serve the same purpose of breaking up the flow with additional context.
+
+The em-dash usage throughout appears intentional and follows standard mathematical writing conventions.
+
+Now I'm verifying the key numerical claims in the paper. The 93.6% median exposure bias reduction is consistently cited across both the conclusion and the experimental results table, so that checks out. Let me compile the full audit of all findings. I'm verifying the abstract's claim about exposure bias reduction from 61% to less than 1% by checking the e2e_real_cm table—the naive biases range from about 59% to 69%, with PPI++ bringing them down to between 0.5% and 0.3%, so those figures check out. Now I'm cross-referencing the correlation statistics between experiments.tex and introduction.tex to make sure the HumAID scenario results are reported consistently. The rounded "<6%" in the introduction is consistent with the exact "<5.6%" reported in the experiments section, so this minor variation is acceptable. Now I'm compiling the full audit and have identified the key findings: no critical issues with narrative consistency, but several warnings including internal file paths visible in the PDF, explanatory em-dashes scattered through the appendix, and an incomplete phrase at the end of a line in the experiments section. use of probability limits as practical bias diagnostics. I'm also noticing that the Limitations section is quite compressed—it covers the required three points but each one is fairly terse. There are some auto-generated comments in the table source files that won't show in the PDF but could be visible if the source is submitted. Now I'm cross-checking whether the summary table numbers in the main experiments section match exactly with the corresponding grid table in the appendix.
+
+Looking at the IV and M-bias results, most values align closely, but there's a discrepancy in the M-bias power estimate: the main table reports 98% as a point value while the appendix shows a range of 96–100%. Since 98% falls within that range, it's likely a median or mean, but the main table should either indicate this is approximate or present the range itself. The Frontdoor and Confounding power estimates check out consistently across both tables.
+
+Now I'm ready to compile the final audit summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d1b9240-1942-4538-9be8-72b026d05402",
+  "isSidechain": false,
+  "requestId": "req_011CbNvmXggRqTk3bAmAa6tY",
+  "type": "assistant",
+  "uuid": "b2b0f833-3e04-4b40-b52a-e139ad0e0dc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZuqwFSHW5QhMWijbEw2Rx",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2530,
+      "cache_read_input_tokens": 100778,
+      "output_tokens": 3507,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3507,
+          "cache_read_input_tokens": 100778,
+          "cache_creation_input_tokens": 2530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 137 · 2026-05-25T07:56:26.079Z_
+
+审计完成，编译 findings。
+
+```
+[CONTENT_AUDIT_START]
+- [warning] [内部信息残留] appendix_proofs.tex:514 Script/results 路径 \texttt{artifacts/verify_lambda_bound.py} 直接出现在正文中，PDF 可见，泄露内部项目结构
+- [warning] [内部信息残留] appendix_proofs.tex:967 Script/results 路径 \texttt{artifacts/exp_fwl_logistic_breakdown.py} 直接出现在正文中，PDF 可见
+- [warning] [去AI] appendix_proofs.tex:679,800,967,975,977 包含多处解释性 em-dash (---)，主文已清理但 appendix 残留 5+ 处（如 "---interpolating between", "---a reassurance unavailable", "---not by an exact invariance"）
+- [warning] [去AI] k3_symmetric_proof.tex:78 段落标题含 em-dash: "Step 4: From $V_B$ to $|B|$ --- confounding (a)"
+- [warning] [去AI] experiments.tex:15 句尾 -ing 分词短语: "justifying the use of probability limits as practical bias diagnostics"，改为独立句更自然
+- [warning] [去AI] experiments.tex:106 -ing 分词短语: "achieving 0% bias reduction"
+- [warning] [数字一致性] experiments.tex Tab 2 (tab:asv_summary) M-bias Power 报 98%，appendix_proofs.tex Tab (tab:asv_grid) 报 96--100%。主表应标注为近似值或使用范围
+- [info] [叙事一致性] Abstract "from 61% to <1%" 来自 VAST 子集 (Tab e2e-real-cm)，而 Experiments §4.4 使用合成数据 demo "42.9% to 0.2%" (Tab e2e-demo)——两个数字分别正确但 Abstract 与 Experiments 段落各引不同表的数字，读者可能混淆
+- [info] [数字一致性] Introduction "from <6% to 42.1%" vs Experiments Fig 5 caption "collider <5.6%"——"<6%" 是 "<5.6%" 的近似取整，不矛盾但统一到相同精度更佳
+- [info] [贡献-范围对齐] Contribution 3 (correction routing) 的核心内容 Algorithm 1 仅在 Appendix 中，正文 Experiments §4.4 引用但未展示算法细节。审稿人可能认为正文对该贡献的支撑偏弱
+- [info] [章节结构] Introduction 为 3 段 + 贡献列表结构（背景→K≥3 结构性转变→F1 脱耦），略偏压缩。"问题重要性"与"现有方法不足"合并在 P1/P3 中，功能完整但不是典型 5 段式
+- [info] [内部信息残留] e2e_demo_table.tex:1, e2e_real_cm_table.tex:1, conjecture_dgp_sensitivity_table.tex:1 含 "% Auto-generated by artifacts/..." LaTeX 注释，PDF 不可见但若提交源码则暴露内部流程
+- [info] [实验严谨性] 本文为理论/仿真研究，主结果表 (Tab 1) 基于 100,000 次 Monte Carlo 无需 error bars（合理）；E2E demo 表 (Tab e2e-demo) 正确提供 ±std
+- [info] [可复现性] 仿真参数（N=10,000, 100,000 Dirichlet matrices, K=3/5/7）均在正文/appendix 中披露。无 GPU/训练时间信息（理论/仿真论文，合理）
+- [info] [写作规则] Abstract 词数 ~182，符合 EMNLP 2026 <200 words 要求
+- [info] [写作规则] Limitations 仅在 conclusion.tex 正文中（\section*{Limitations}），appendix 无 limitations section，符合 EMNLP 规则
+- [info] [Limitations] Limitations ~73 words，覆盖 3 个点（线性 SEM 假设、已知 DAG + 非差异假设、gold labels 需求），符合 EMNLP "一小段覆盖 3 个点" 要求，但每个点压缩较紧
+[CONTENT_AUDIT_END]
+```
+
+**总结**：叙事一致性是本论文的强项——Abstract→Intro→Method→Experiments→Conclusion 的核心故事线（topology 决定 bias 行为，K≥3 是结构性转折，ASV 提供定量诊断，FWL 证明 4 类 topology 不可纠正）贯穿全文，无叙事漂移。主要问题集中在：(1) appendix 中残留内部脚本路径（2 处，PDF 可见），(2) appendix 未完全清理 em-dash，(3) 两处 -ing 分词短语残留。无 critical 级问题。
+
+[AUDIT_DONE]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2b0f833-3e04-4b40-b52a-e139ad0e0dc5",
+  "isSidechain": false,
+  "requestId": "req_011CbNvmXggRqTk3bAmAa6tY",
+  "type": "assistant",
+  "uuid": "f315e5c2-63dc-4f83-b451-4650ab03f7b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/paper_audit_content_d519999a",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZuqwFSHW5QhMWijbEw2Rx",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2530,
+      "cache_read_input_tokens": 100778,
+      "output_tokens": 3507,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3507,
+          "cache_read_input_tokens": 100778,
+          "cache_creation_input_tokens": 2530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 138_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "f315e5c2-63dc-4f83-b451-4650ab03f7b5",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 139_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "项目：causal_annot_error_attrib Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper  Phase 1 确定性检查结果： 源码检查: passed=True, 0 critical, 92 warning 一…",
+  "leafUuid": "f315e5c2-63dc-4f83-b451-4650ab03f7b5",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "EMNLP 2026 paper structural audit and compliance check",
+  "sessionId": "e8a05bf1-8177-4606-8baf-eb8cd69fca89"
+}
+```
+
+---

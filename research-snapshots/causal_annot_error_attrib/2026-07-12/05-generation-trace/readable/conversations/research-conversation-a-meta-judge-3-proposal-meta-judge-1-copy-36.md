@@ -1,0 +1,859 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/2fd96a12-e8e8-4a99-8334-ee14e745392f.jsonl`
+- **Structured JSON:** [`9c49161efec69cb7dcfd.json`](../../sessions/9c/9c49161efec69cb7dcfd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:30:56.161Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:30:56.161Z",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to provide my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. Wan et al., \"Mitigating Conversational Inertia in Multi-Turn Agents\" (ICML 2026, arXiv:2602.03664):\n   - 确认存在。提出 CPL (Context Preference Learning)，用 DPO 训练减少对角注意力（diagonal attention），在 8 个 agent 环境上验证。\n   - 关键细节确认：论文明确说\"All attention heads are averaged to create a unified attention matrix\"——即 per-head 分解确实没做过。\n   - 未评估 safety 效果。这是 proposal 的出发点。\n\n2. DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562):\n   - 确认存在，发表在 ACL 2025 Findings。推理时修改注意力掩码，将注意力重新分配到用户意图 token。\n   - 核心数据确认：LLaMA-2-7b-chat ASR 46%→1.2%，Vicuna-13b 81.8%→4.0%。\n   - 确实只在 single-turn 上测试。\n\n3. ASGuard (Park et al., ICLR 2026, arXiv:2509.25843):\n   - 确认存在，ICLR 2026 正式发表。用 EAP-IG 识别脆弱 attention heads，训练时通过 channel-wise scaling 干预。\n   - 确认针对 tense jailbreaking 等特定攻击类型，limitations 中提到依赖 localizable circuits。\n\n4. Deng et al., \"The Struggle Between Continuation and Refusal\" (arXiv:2603.08234, Mar 2026):\n   - 确认存在。发现 continuation heads（中间层，~Layer 13）与 safety heads（高层，~L25-27）之间的拮抗竞争。\n\n5. Johnson & Huo, \"Competition for attention predicts good-to-bad tipping in AI\" (arXiv:2602.14370, Feb 2026):\n   - 确认存在。数学形式化了 dot-product 注意力竞争的 tipping point 理论。\n   - 注意：这是一篇偏理论/物理学风格的论文，并非主流 NLP/ML 社区工作。\n\n6. AISA (Song et al., arXiv:2602.13547, Feb 2026):\n   - 确认存在。通过时空分析定位安全关键 attention heads，K=16 heads 达到 0.92 检测准确率。\n\n7. 多轮安全防御方法（均确认存在）：\n   - XGuard-Train (COLM 2025): SFT，最高 48.3% vulnerability reduction\n   - MUSE-D (EMNLP 2025): turn-level DPO，24% ASR reduction\n   - X-Boundary (EMNLP 2025): 表示层边界，ASR 58.5%→16-25%\n   - MTSA (ACL 2025): RL，ASR 74.5%→23.5%\n\n8. 竞争性检查——是否有人已做过 CPL→safety 的连接：\n   - **未发现任何论文**将 CPL 或 discourse-level inertia intervention 与 safety 效果直接关联。该连接确实是 novel 的。\n\n- 调研总结: 多轮 LLM safety 是一个活跃领域，防御方法（XGuard、MUSE-D、X-Boundary、MTSA）和机制分析（attention heads、continuation vs. refusal）都已有成熟工作。Proposal 的独特定位是将一个 *非安全目标的* discourse intervention（CPL）与安全效果进行因果联系测试，这个交叉连接确实没人做过。但该领域的防御方法已经比较成熟，实际增量价值存疑。\n\n\n【Trivial Alternative 检验】:\n\n存在明确的 trivial alternatives，增量价值有限：\n\n1. **直接用多轮安全训练数据做 DPO/SFT/RL**：MUSE-D（turn-level DPO, 24% ASR reduction）、MTSA（RL, ASR 74.5%→23.5%）、XGuard-Train（SFT, 48.3% vulnerability reduction）已经用 *直接针对安全的训练数据* 取得了显著效果。如果目标是提高多轮安全性，最直接的方法就是用安全标注数据训练。Proposal 的论证是 CPL 解决\"根因\"（注意力惯性）而非\"症状\"——但这一\"根因论\"本身是未经验证的假设。\n\n2. **直接对 DETAM 做多轮扩展**：Proposal 论证 DETAM 不适用于多轮（因为 intent tokens 分散），但这并未被实证否定。可以将 DETAM 的注意力掩码修改扩展到跨轮的 intent token 定位（如在每轮使用滑动窗口识别 intent tokens），成本可能远低于 CPL reproduction + 5 phase study。\n\n3. **CPL 本身就是一个 trivial \"apply existing method to new domain\" 的操作**：CPL 已经存在，把它应用到 safety 评估上本质上是\"测试方法 X 在场景 Y 上的效果\"——这类工作的增量价值取决于结果是否 surprising。如果 CPL 确实改善了安全性，审稿人的反应更可能是 \"reducing attention inertia frees up capacity for safety tokens — makes sense\" 而非 \"this is surprising\"。\n\n增量价值：Proposal 的真正增量在于 **mechanistic insight**（per-head 分解 + head overlap 分析）而非实际安全改善。但如果实际安全改善不显著（被 trivial alternatives 碾压），mechanistic insight 的价值就降格为 workshop paper 级别。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中有 **至少 3 个关键环节** 是未经验证的假设：\n\n1. **\"对角注意力与安全注意力共享 heads/layers，因此存在 softmax 零和竞争\"**——这是整个 hypothesis 的核心前提，但 Proposal 自己承认这是未知的（Phase 0.5 的目的就是测试它）。如果 Phase 0.5 结果是 Level 3（<10% overlap），整个 softmax zero-sum competition 的因果机制就不成立，剩余的 \"representation-level competition\" 说法实质上是一个远弱于原始 claim 的 fallback，且与 X-Boundary 已有工作重叠。\n\n2. **\"CPL 减少的惯性就是导致多轮安全退化的惯性\"**——CPL 减少的是\"第 i 个输出 token 关注前一轮第 i 个位置\"的对角模式。但多轮安全退化可能由完全不同的机制驱动：context window 中 safety instructions 被稀释、user-assistant role alignment 渐变、或纯粹的 representation drift（如 STAR 论文的发现）。对角注意力可能只是多轮退化的一个伴随现象（epiphenomenon），而非原因。\n\n3. **\"Johnson & Huo 的 tipping point 理论适用于 attention head 层面的惯性积累\"**——Johnson & Huo 的论文是一篇物理学/复杂系统风格的理论工作，其 tipping point 是关于 dot-product 注意力在抽象 \"good/bad\" 输出之间的竞争。将其具体化到\"对角注意力惯性在每轮累积最终越过安全阈值\"是一个相当大的推理跳跃，缺乏任何实证支撑。\n\n4. **\"三级框架是可证伪的\"**——三级框架（head-level / layer-level / representation-level）覆盖了所有可能的overlap程度。无论 Phase 0.5 结果如何，都可以声称\"属于某一级\"。这使得框架本身难以被证伪，降低了其作为科学假设的信息量。\n\n\n【3 维度打分】:\n\n1. **Novelty: 中** — \n   将 CPL（discourse intervention）与 safety 效果进行因果测试确实没有先例（调研未发现任何此类工作）。Per-head diagonal attention decomposition 确实是 Wan et al. 未做的新贡献。但核心操作本质上是 \"apply existing method (CPL) to new evaluation dimension (safety)\" + \"use existing analysis tools (Ships, DETAM sensitivity, AISA) for head overlap analysis\"。每一个组件都已存在，novelty 主要在于 **连接**（connection）而非 **创造**（creation）。与 ASGuard（提出了新的 EAP-IG + channel-wise scaling pipeline）、DETAM（提出了新的 targeted attention mask 方法）相比，方法论 novelty 偏弱。三级竞争框架（Level 1/2/3）形式上看起来有理论贡献，但实际覆盖了所有可能性，信息量有限。\n\n2. **Significance: 中偏弱** — \n   多轮 agent 安全是重要问题，但该 proposal 的 practical significance 受限于两个因素：(a) 如果 CPL 改善安全性，效果大概率不如直接的安全训练方法（XGuard-Train 48.3% reduction, MTSA 74.5%→23.5%），那么 contribution 退化为\"有趣的 side observation\"而非实用防御；(b) 如果 CPL 不改善安全性，null result 的贡献（per-head decomposition, triple-method comparison）虽有价值但属于 incremental analysis contribution，对领域影响有限。核心问题是：**即使结果是 positive，审稿人更可能说 \"makes sense that freeing attention capacity helps safety — but how much better is this than just training for safety directly?\" 而非 \"this is a surprising finding\"**。对 CoRL（机器人学习）的 significance 几乎为零——该工作完全关于 LLM 内部注意力机制，无任何 embodied/robotics 成分。\n\n3. **Related Work: 强** — \n   Related work 覆盖极其全面。涵盖了 attention reallocation defenses（DETAM）、training-time head intervention（ASGuard）、safety head localization（Zhou et al., AISA, Depth Charge）、multi-turn safety defenses（XGuard-Train, MUSE-D, X-Boundary, MTSA）、attention competition theory（Johnson & Huo）、discourse dynamics（Wan et al.）。差异化定位清晰：明确说明 DETAM 的 single-turn limitation、ASGuard 的 localizable-circuit 依赖、现有多轮防御的\"直接训练安全数据\"范式。唯一遗漏：没有讨论是否有其他 discourse-level interventions（如 retrieval augmentation、context compression）可能达到类似效果。\n\n\n【概率估计】: \n\n**⚠️ 关键预警：严重的 venue mismatch**\nProposal 自述 target venues 为 ICLR 2027 / AAAI 2027，但用户要求评估 **CoRL 2026** 中稿概率。CoRL (Conference on Robot Learning) 的核心 scope 是机器学习与机器人学的交叉领域。本 proposal 完全关于 LLM attention head 层面的安全机制分析，**无任何 robotics/embodiment 成分**。benchmarks（MT-AgentRisk, OpenAgentSafety）是 tool-using LLM agents，非物理机器人。该 proposal 极大概率被 CoRL desk reject 为 out-of-scope。\n\n**CoRL 2026 概率估计**: [3% - 8%] 中位 5%\n**若投 ICLR 2027（proposal 自述目标，idea 质量估计）**: [18% - 28%] 中位 23%\n\n【估计理由】:\n\n**CoRL 维度**：无论 idea 质量如何，venue mismatch 是 near-fatal 的。CoRL 2026 的 scope 明确面向 robot learning，本工作无任何 robotics 组件。即使 area chair 宽容地理解\"agent safety\"，benchmarks 和方法论完全在 NLP/LLM interpretability 范畴内。3-8% 反映的是极小概率的 scope 宽松解读。\n\n**Idea 质量维度（适用于 ICLR/NeurIPS）**：\n- Novelty 是\"中\"——连接型 novelty（将 CPL 用于 safety）而非创造型 novelty，限制了上界。\n- Significance 是\"中偏弱\"——核心发现无论正反，impact 都受限：positive 结果不够 surprising（\"reducing inertia helps safety\" 是 directionally predictable），negative 结果的 standalone contributions 偏 incremental。\n- Trivial Alternative 威胁实质存在——直接多轮安全训练（MUSE-D, MTSA, XGuard）是更简单的路径，CPL 的增量价值需要靠 mechanistic insight 支撑，但 insight 的深度取决于 Phase 0.5 的 overlap 结果。\n- Related Work 是\"强\"，提供了项目的合理下限保障。\n\n上界受限于 **Significance**（核心发现的\"惊讶度\"不足）和 **Trivial Alternative 威胁**（直接安全训练方法已成熟）。\n\n【主要风险】:\n1. **核心假设可能是 epiphenomenal**：对角注意力惯性可能只是多轮退化的伴随现象（epiphenomenon），而非因果驱动因素。如果 Phase 0.5 发现 overlap 极低（Level 3），整个 softmax competition 的因果叙事崩塌，剩余的 \"representation-level competition\" 故事与 X-Boundary 高度重叠且无新增 insight。\n2. **\"Apply X to Y\" 结构的 novelty 天花板**：即使结果 positive，审稿人可能评价为 \"interesting empirical observation, but the contribution is applying an existing method (CPL) and observing a side effect (safety improvement) — the mechanistic story, while well-executed, is confirmatory rather than revelatory\"。在顶会中，这类工作容易落入 \"borderline, lean reject\" 区间。\n```\n\n**Sources:**\n- [Mitigating Conversational Inertia in Multi-Turn Agents (Wan et al.)](https://arxiv.org/abs/2602.03664)\n- [DETAM: Defending LLMs Against Jailbreak Attacks via Targeted Attention Modification](https://arxiv.org/abs/2504.13562)\n- [ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack](https://arxiv.org/abs/2509.25843)\n- [The Struggle Between Continuation and Refusal (Deng et al.)](https://arxiv.org/abs/2603.08234)\n- [Competition for attention predicts good-to-bad tipping in AI (Johnson & Huo)](https://arxiv.org/abs/2602.14370)\n- [AISA: Awakening Intrinsic Safety Awareness in LLMs](https://arxiv.org/abs/2602.13547)\n- [X-Boundary (Lu et al.)](https://arxiv.org/abs/2502.09990)\n- [MTSA (Guo et al.)](https://arxiv.org/abs/2505.17147)\n- [DeTAM - ACL Anthology](https://aclanthology.org/2025.findings-acl.613/)\n- [ASGuard - OpenReview](https://openreview.net/forum?id=wmiEXNEXPs)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have comprehensive field research. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562): 推理时注意力重分配防御，将 ASR 从 46% 降至 1.2%，仅限单轮。Proposal 对其描述准确，且正确识别了其在多轮场景中\"intent token 不可定位\"的局限。\n\n2. ASGuard (Park et al., ICLR 2026, arXiv:2509.25843): 训练时电路级注意力头修改（channel-wise scaling），针对特定可定位漏洞（tense jailbreaking）。在 Llama-3.1-8B 上 ASR 42%→8%。Proposal 描述准确，正确指出其依赖\"可定位因果电路\"的局限。\n\n3. Wan et al. Conversational Inertia / CPL (ICML 2026, arXiv:2602.03664): 确认存在，识别对角注意力模式（conversational inertia），提出 Context Preference Learning (CPL)，在 8 个 agentic 环境上验证，从未评估安全性。确认原论文仅做聚合层面分析（平均所有 head），无 per-head 分解。\n\n4. Johnson & Huo (arXiv:2602.14370, Feb 2026): 数学化 attention competition tipping point (n*)，验证于多个手机级 AI 模型。Proposal 对其理论框架的引用准确。\n\n5. Zhou et al. Ships (ICLR 2025 Oral, arXiv:2410.13708): 安全注意力头归因，单个最关键 head 的 ablation 使 ASR 从 0.04 升至 0.64（16x）。Proposal 描述准确。\n\n6. Deng et al. (arXiv:2603.08234, Mar 2026): 确认存在，分析 continuation vs. refusal 的注意力头竞争机制。描述准确。\n\n7. AISA (Song et al., arXiv:2602.13547, Feb 2026): 通过时空分析定位安全注意力头，top-K=16 heads 达 0.92 检测精度。Proposal 描述准确。\n\n8. Depth Charge (Wu et al., arXiv:2603.05772, Mar 2026): SAHA 框架，揭示深层安全注意力头脆弱性，ASR 82-91%。Proposal 描述准确。\n\n9. XGuard-Train / X-Teaming (arXiv:2504.13203, COLM 2025): 30K 多轮安全训练数据集，SFT 训练减少高达 48.3% 漏洞。HuggingFace 数据集已公开。描述准确。\n\n10. 多轮安全防御近期工作: Attention-Aware GNN (Jul 2025), STREAM (May 2025), TurnGate (May 2026), DeepContext (Feb 2026), Latent Adversarial Detection (Apr 2026) — 多轮安全防御领域非常活跃，但尚无工作将 discourse-level training（非 safety-labeled）与安全效果因果关联。\n\n⚠️ 11. CoRL 2026 Call for Papers (corl.org): CoRL 是 Conference on Robot Learning，要求论文\"focus on a core robotics problem\"并\"demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics\"。鼓励 real-robot experiments 或 simulation-to-real transfer 的证据。主题包括机器人感知、控制、模仿学习、强化学习等。论文截稿 2026-05-29。\n\n- **调研总结**: 多轮 LLM 安全与注意力机制是一个快速发展的领域（2025-2026 年密集产出），已有多条独立研究线程（attention reallocation, circuit intervention, safety head identification, tipping point theory），但\"非安全标注的 discourse-level 训练是否因果性地改善安全\"这一具体问题确实未被回答。然而，**CoRL 是一个机器人学习会议，本 proposal 完全不涉及任何机器人问题**——这是一个根本性的 venue mismatch。\n\n\n【⚠️ 关键前置问题：Venue Mismatch】\n\n本 proposal 投稿目标为 **CoRL 2026（Conference on Robot Learning）**，但其内容 100% 关于 LLM 多轮对话安全、注意力机制分析和 jailbreak 防御。Proposal 中**没有任何机器人相关内容**——无机器人任务、无物理交互、无 sim-to-real、无控制问题。CoRL 的 Call for Papers 明确要求 \"Submissions should focus on a core robotics problem\"。\n\nProposal 自身的 Target Venues 列的是 ICLR 2027 和 AAAI 2027，而非 CoRL。\n\n**这意味着此 proposal 在 CoRL 2026 几乎必然被 desk-reject，与 idea 质量无关。** 以下评估仍然按照 idea 本身的质量进行，但概率估计必须反映 venue mismatch 这一致命因素。\n\n\n【Trivial Alternative 检验】:\n\n存在多个更低成本的替代方案需要考虑：\n\n1. **直接用 XGuard-Train SFT**: XGuard-Train 已有 30K 多轮安全数据，SFT 直接在安全数据上训练，已证明减少 48.3% 漏洞。如果目标是改善多轮安全，这是最直接、成本最低的路径。Proposal 的增量价值在于测试\"非安全标注的 discourse training 是否也能改善安全\"——这是一个*机制理解*问题，不是一个*工程效用*问题。如果 CPL 的安全效果不如 XGuard-Train SFT，那核心 claim 就变成\"discourse training 不足以替代 safety training\"，这是一个有信息量但 unsurprising 的负面结论。\n\n2. **简单上下文截断/管理**: 如果 conversational inertia 来自于对 previous output 的对角注意力，一种 trivial approach 是简单截断或摘要化历史上下文。Wan et al. 的论文本身就提出了推理时 context management strategies。是否需要训练时干预（CPL）来解决一个推理时策略可能就能解决的问题？\n\n3. **直接将 DETAM 拓展到多轮**: Proposal 论证 DETAM 在多轮中\"intent token 不可定位\"，但这一论证并不绝对——可以将每个 turn 的完整 user input 作为 \"intent region\" 进行 attention amplification，成本远低于完整的 CPL 训练 + 5 阶段实验。\n\n**增量价值判断**: Proposal 的真正价值不在于实用防御方案，而在于*机制理解*——测试 attention capacity competition hypothesis。这限制了其 significance 上界：它是一个 mechanistic insight 论文，而非一个 defense method 论文。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链中存在多个未经验证的关键环节：\n\n1. **\"对角注意力 = conversational inertia = 与安全注意力竞争\"**: 这是整个 hypothesis 的基础，但存在逻辑跳跃。Wan et al. 的对角注意力描述的是\"模型倾向于重复/延续之前的输出模式\"，这是一个*任务表现*层面的现象。将其等同于\"挤占安全注意力\"需要证明二者确实在同一 attention budget 内竞争。softmax 的零和性质在数学上成立，但在 multi-head attention 中（32-64 个 heads），不同 head 可以专注不同功能——对角注意力 head 和安全 head 可能完全不重叠，使得 Level 1 假设落空。Proposal 通过 Phase 0.5 来测试这一点是正确的，但这也说明**核心假设在实验前是完全未验证的**。\n\n2. **\"CPL 减少 inertia → 释放 attention capacity → 安全注意力增强\"**: 即使 Level 1 或 Level 2 成立，CPL 减少对角注意力后，释放的 capacity 不一定流向安全功能——它可能流向其他任务功能（如更好的指令遵循、更准确的工具使用等）。没有机制保证释放的 attention 会被安全 head 捕获。\n\n3. **\"Johnson & Huo 的 tipping point 模型适用于多轮 LLM 交互\"**: Johnson & Huo 的模型是在手机级 AI 上验证的一个简化数学框架。将其直接映射到 transformer 的 multi-head attention 在多轮对话中的行为是一个很大的 analogy leap。\n\n4. **\"多轮安全退化的主要驱动力是 attention inertia 而非其他因素\"**: 多轮安全退化可能由多种因素驱动（context flooding, role confusion, goal drift, representation drift 等），attention inertia 只是其中之一。STAR (arXiv:2603.15684) 显示 monotonic drift from refusal representations——这更像是 representation-level 的问题而非 attention-level。\n\n\n【3 维度打分】:\n\n1. **Novelty: 中** — \n   核心研究问题（\"非安全标注的 discourse training 是否因果性地改善安全\"）确实未被直接回答，具有真实的 novelty delta。per-head diagonal attention decomposition 是 Wan et al. 明确未做的（\"All attention heads are averaged\"），这是一个有价值的贡献。triple-method safety head triangulation (Ships + DETAM sensitivity + AISA) 也是新的组合。\n   \n   但是：(a) 核心方法论是\"将方法 A (CPL) 应用到领域 B (安全评估)\"——这是一种 application-level novelty，而非 method-level 或 theory-level novelty；(b) three-level competition hypothesis 的逻辑结构（head → layer → representation）虽然组织清晰，但每一层的机制都已被独立工作暗示（Zhou et al. for head-level, Deng et al. for layer-level, X-Boundary for representation-level），proposal 的贡献是将它们组织为一个框架，而非发现新机制；(c) 与最近的 Attention-Aware GNN (Jul 2025)、DeepContext (Feb 2026)、Latent Adversarial Detection (Apr 2026) 等工作相比，mechanistic analysis of multi-turn safety attention 已经不再是完全空白的领域。\n\n2. **Significance: 中偏弱** — \n   (a) **Venue mismatch 是致命的**：对于 CoRL 而言，这篇论文的 significance 为零——它不解决任何机器人问题；\n   (b) 即使忽略 venue 问题，significance 受限于几个因素：\n   - 如果结果是 positive（CPL 改善安全），审稿人反应更可能是 \"interesting but incremental\" 而非 \"surprising\"——因为 attention reallocation 改善安全已被 DETAM 证明，CPL 通过训练实现类似效果并不违反直觉；\n   - 如果结果是 negative（CPL 不改善安全），这是一个 unsurprising 的负面结果——毕竟 CPL 没有在安全数据上训练，不改善安全是默认预期；\n   - 研究影响范围局限于 mechanistic understanding 而非实用方法：即使 hypothesis 被验证，实际防御中直接用 safety-labeled training（XGuard-Train）或 inference-time intervention（DETAM）仍更有效；\n   - Wan et al. 的 CPL 代码未公开（\"Code not released\"），reproduction 风险增加了不确定性。\n\n3. **Related Work: 强** — \n   Related work 覆盖异常全面：涵盖了 attention reallocation defense (DETAM)、circuit intervention (ASGuard)、safety head identification (Zhou et al., AISA, Depth Charge)、attention competition theory (Johnson & Huo, Deng et al.)、multi-turn safety benchmarks (MT-AgentRisk, OpenAgentSafety)、multi-turn safety defenses (XGuard-Train, MUSE-D, X-Boundary, MTSA)、discourse dynamics (Wan et al.)、DPO length bias (Park et al., Meng et al.)。差异化定位清晰——明确说明 DETAM 的单轮限制、ASGuard 的电路特异性限制、现有工作均未测试 discourse → safety 因果链。每篇引用论文经调研确认真实存在且描述准确。\n\n\n【概率估计】: [0% - 3%] 中位 1%\n\n【估计理由】: \n**概率估计主要由 venue mismatch 决定，而非 idea 质量。** CoRL 2026 是 Conference on Robot Learning，明确要求论文 \"focus on a core robotics problem\"。本 proposal 100% 关于 LLM 多轮对话安全与注意力机制，不涉及任何机器人内容。这将导致几乎确定的 desk-reject。\n\n若忽略 venue 因素，仅评估 idea 本身在合适 venue（如 ICLR/NeurIPS/ACL）的质量，我的估计为 **[22% - 32%] 中位 27%**：\n- Related Work 覆盖强（下限保障）\n- Novelty 中等（application-level novelty, per-head decomposition 有价值但 contribution 有限）\n- Significance 受限（positive result 不够 surprising, negative result 是默认预期, 实用影响有限）\n- 前提假设链条中 2-3 个环节未经验证\n- Trivial alternative（直接 safety training）威胁 significance claim\n\n**限制上界的维度**: Significance。核心发现无论 positive 还是 negative，审稿人都不太会说 \"surprising\"。正面结果（CPL 改善安全）是 DETAM 已证明的方向的延伸；负面结果（CPL 不改善安全）是默认预期。加上 venue mismatch，实际概率极低。\n\n【主要风险】:\n1. **Venue Mismatch（致命）**: CoRL 是机器人学习会议，本 proposal 无任何机器人内容，几乎必然 desk-reject。Proposal 自身列出的 Target Venues 是 ICLR 2027 和 AAAI 2027。\n2. **Significance Ceiling**: 核心 hypothesis 的 positive/negative 结果均不够 surprising——positive 是已知方向的延伸，negative 是默认预期。这使得即使在合适 venue，论文也面临 \"interesting but incremental\" 的评价风险。\n```\n\n---\n\n**总结**：这是一个在 related work 覆盖和实验设计形式上非常成熟的 proposal，核心研究问题（discourse training → safety）有真实的 novelty gap。但存在两个根本问题：\n\n1. **CoRL 2026 是完全错误的投稿 venue**——这不是一个可以通过修改弥补的问题，而是 proposal 主题与会议 scope 的根本不匹配。建议考虑 proposal 自身提出的 ICLR 2027 或其他 NLP/AI safety venue。\n\n2. **即使在合适 venue，idea 的 significance ceiling 有限**——核心是一个 mechanistic insight 研究，无论结果如何都不会产生足够 surprising 的发现来支撑顶会中稿的上限。\n\nSources:\n- [DETAM - arXiv:2504.13562](https://arxiv.org/abs/2504.13562)\n- [DETAM - ACL Anthology](https://aclanthology.org/2025.findings-acl.613/)\n- [ASGuard - arXiv:2509.25843](https://arxiv.org/abs/2509.25843)\n- [ASGuard - ICLR 2026 OpenReview](https://openreview.net/forum?id=wmiEXNEXPs)\n- [Wan et al. Conversational Inertia - arXiv:2602.03664](https://arxiv.org/abs/2602.03664)\n- [Johnson & Huo Tipping Points - arXiv:2602.14370](https://arxiv.org/abs/2602.14370)\n- [Zhou et al. Ships - arXiv:2410.13708 (ICLR 2025 Oral)](https://arxiv.org/abs/2410.13708)\n- [Deng et al. Continuation vs Refusal - arXiv:2603.08234](https://arxiv.org/abs/2603.08234)\n- [AISA - arXiv:2602.13547](https://arxiv.org/abs/2602.13547)\n- [Depth Charge - arXiv:2603.05772](https://arxiv.org/abs/2603.05772)\n- [X-Teaming / XGuard-Train - arXiv:2504.13203](https://arxiv.org/abs/2504.13203)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [Attention-Aware GNN Defense - arXiv:2507.07146](https://arxiv.org/abs/2507.07146)\n- [MTSA - arXiv:2505.17147](https://arxiv.org/abs/2505.17147)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nBased on my research, I now have sufficient information to evaluate this proposal. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562): 直接相关的推理时防御。通过修改注意力掩码放大intent token的注意力，单轮ASR从46%降至1.2%。证实注意力重分配可因果性地改善安全性。但限于单轮设置且需运行时识别intent tokens。\n- ASGuard (Park et al., ICLR 2026, arXiv:2509.25843): 训练时注意力头干预。通过EAP-IG定位漏洞相关的注意力头，训练channel-wise scaling vector。在tense jailbreaking上ASR从42%降至8%。但明确局限于\"可定位的因果电路\"，无法处理渐进式多轮侵蚀。\n- Wan et al. Conversational Inertia (ICML 2026, arXiv:2602.03664): 识别对角注意力作为\"会话惯性\"的机制，提出CPL（LoRA rank-16 DPO，beta=0.01）。在8个agentic环境中验证改善性能。关键点：该工作完全不涉及安全评估；对角注意力仅在聚合层面（所有头平均）表征。\n- Zhou et al. (ICLR 2025, arXiv:2410.13708): Ships score识别安全关键注意力头，发现Llama-2-7B-Chat中Head(2,26)最关键。消融单个safety head可使有害响应增加16倍。\n- AISA (Song et al., arXiv:2602.13547): 通过时空分析定位安全关键注意力头，K=16头在中间层达到0.92检测精度。提供了第三种互补的head定位方法。\n- Johnson & Huo (arXiv:2602.14370, Feb 2026): 数学形式化注意力竞争的tipping point机制。理论框架，但来自物理系，在NLP社区的接受度待验证。\n- Deng et al. (arXiv:2603.08234, Mar 2026): 机制分析continuation vs. refusal heads的对抗关系。Safety heads在layers 25-27，continuation heads在Layer 13。\n- X-Boundary (EMNLP 2025, arXiv:2502.09990): 表示层面防御，多轮ASR从58.5-76%降至16-25%，同时减少over-refusal ~20%。\n- XGuard-Train (COLM 2025, arXiv:2504.13203): 直接在多轮安全数据上SFT，达到48.3%漏洞减少。\n- MTSA (ACL 2025, arXiv:2505.17147): RL-based对齐，ASR从74.5%降至23.5%。\n- 调研总结: 多轮LLM安全防御是2025-2026活跃领域，已有多种有效防御（XGuard-Train, X-Boundary, MTSA），且注意力头在安全中的作用已被充分研究。Wan et al.的CPL是性能导向的工作，从未涉及安全。本proposal处于\"连接两个已有方向（会话惯性 + 注意力安全机制）\"的位置，核心是一个empirical bridge。\n\n【Trivial Alternative 检验】:\n存在明显的trivial alternative威胁：\n1. **直接在安全数据上训练**：XGuard-Train SFT已达48.3%漏洞减少，X-Boundary将ASR降至16%，MTSA从74.5%降至23.5%。这些方法直接针对安全目标训练，成本更低，效果已验证。如果目标是改善多轮安全，为什么要用一个间接的discourse干预（CPL）而不是直接的安全训练？\n2. **简单地运行CPL + 安全评估**：不需要5个phase、3个level、Phase 0.5的复杂框架就能回答\"CPL是否改善安全\"这个核心问题。per-head分解和triple triangulation增加了方法论完备性，但核心实验就是\"训练CPL，跑安全benchmark\"。\n3. **增量价值论证**：proposal的增量在于\"理解机制\"而非\"达到最优防御\"。如果CPL确实改善安全，其价值在于证明一个非安全导向的训练可以间接改善安全——这是一个关于机制理解的贡献，而非实用防御贡献。这使得significance受限于mechanistic insight社区。\n\n【前提假设检验】:\n核心逻辑链中有3个未验证假设：\n1. **对角注意力与安全注意力共享容量（head/layer overlap）**：这是整个competition hypothesis的前提。Wan et al.从未测量过per-head对角注意力分布，Zhou et al./AISA的safety heads定位是在不同模型/不同条件下做的。两者是否overlap是完全未知的——proposal自己承认这需要Phase 0.5来验证。但如果Phase 0.5结果是Level 3（<10% overlap），整个competition hypothesis的强形式就坍塌了。\n2. **CPL的注意力重分配效果可持续到安全场景**：CPL在agentic performance任务上验证过，但安全场景的token分布、上下文结构完全不同。CPL训练数据来自AgentGym环境（ALFWorld, WebShop等），没有理由假设这种训练能泛化到safety-relevant的注意力分配。\n3. **多轮安全侵蚀的根本原因是注意力惯性累积**：这假设crescendo attacks之所以成功是因为对角注意力progressively dilutes safety attention。但Du et al.(ASJA)只是展示了相关性（successful attacks correlate with attention dispersion），而非因果性。多轮攻击的成功可能更多是因为in-context learning of harmful frames，而非简单的注意力重分配问题。\n\n【3 维度打分】:\n  1. Novelty: 中 — 核心贡献是连接两个已有方向（CPL/会话惯性 + 注意力安全机制），per-head diagonal attention分解是modest but real的新贡献。但\"把方法A用在领域B看效果如何\"本质上是一个application/bridge study，理论框架（三级competition hypothesis）更多是taxonomy而非deep insight。与最相关工作对比：DETAM已证明注意力重分配→安全改善的因果链；ASGuard已证明训练时头修改可行；Wan et al.已提出CPL。本proposal的真正novel delta是\"测试非安全导向训练能否间接改善安全\"——有价值但非paradigm-shifting。\n  2. Significance: 中偏弱 — 如果结果positive（CPL改善安全）：不够surprising，因为DETAM已证明注意力重分配改善安全，CPL也是一种注意力重分配，逻辑上已经expected。如果结果negative（CPL不改善安全）：更不surprising，因为CPL不是为安全设计的。真正surprising的发现场景很窄：只有\"CPL的效果comparable to直接安全训练（如XGuard-Train）\"这一特定结果才会让审稿人说\"I didn't expect that\"。此外，对实际多轮安全防御的实用影响有限——已有更直接有效的方法。\n  3. Related Work: 强 — proposal对相关工作的覆盖极为全面详尽，引用的论文经验证均为真实存在，描述准确。差异化定位清晰（DETAM单轮+推理时；ASGuard circuit-specific；CPL untargeted discourse-level training）。对gap的论证逻辑严密。这是proposal最强的维度。\n\n【概率估计】: [22% - 32%] 中位 26%\n\n【估计理由】: \nRelated Work覆盖是强项，表明作者对领域理解深入。但Novelty止于\"中\"——本质上是一个well-motivated的empirical bridge study，连接了两个已有方向，不是一个新的insight或paradigm。Significance是主要限制维度：无论结果正反，审稿人大概率反应是\"I would have guessed this\"——positive结果因DETAM的先例而expected，negative结果因CPL非安全导向而expected。只有极窄的outcome space（CPL匹敌直接安全训练的效果）才会产生surprise。上界受限于significance维度——即便实验执行完美，核心发现的exciting程度不够high-impact venue的门槛。此外，venue mismatch需注意：用户询问CoRL 2026（机器人学习会议），但本proposal完全是NLP/AI safety工作，与CoRL完全不匹配。若投ICLR 2027（proposal自述目标），上述概率适用。若投CoRL，概率接近0%。\n\n【主要风险】: \n1. **\"Expected outcome\"陷阱**：核心发现无论正反都不够surprising——审稿人会质疑\"so what?\"。正面结果→\"注意力重分配改善安全已知（DETAM），你只是用了另一种方式做\"；负面结果→\"一个非安全导向的训练不改善安全，不意外\"。\n2. **Trivial alternative质疑**：审稿人会问\"为什么不直接用安全训练数据？XGuard-Train/X-Boundary已经很有效了，你的间接方法的practical value在哪里？\"——这使得contribution定位被压缩到纯mechanistic insight，而mechanistic insight的novelty又被DETAM/ASGuard部分覆盖。\n```\n\nSources:\n- [DETAM: Defending LLMs Against Jailbreak Attacks via Targeted Attention Modification](https://arxiv.org/abs/2504.13562)\n- [ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack](https://arxiv.org/abs/2509.25843)\n- [Mitigating Conversational Inertia in Multi-Turn Agents](https://arxiv.org/abs/2602.03664)\n- [On the Role of Attention Heads in Large Language Model Safety (Zhou et al., ICLR 2025)](https://arxiv.org/abs/2410.13708)\n- [AISA: Awakening Intrinsic Safety Awareness in Large Language Models](https://arxiv.org/abs/2602.13547)\n- [Competition for attention predicts good-to-bad tipping in AI](https://arxiv.org/pdf/2602.14370)\n- [X-Boundary: Establishing Exact Safety Boundary](https://arxiv.org/abs/2502.09990)\n- [MTSA: Multi-turn Safety Alignment](https://arxiv.org/html/2505.17147)\n- [X-Teaming: Multi-Turn Jailbreaks and Defenses](https://arxiv.org/pdf/2504.13203)\n- [The Struggle Between Continuation and Refusal](https://arxiv.org/pdf/2603.08234)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Does Reducing Conversational Inertia Improve Multi-Turn Safety? Testing the Attention Capacity Competition Hypothesis\n\n## Description\nThis project conducts the first controlled interventional study testing whether mitigating conversational inertia — diagonal attention to previous outputs (Wan et al., ICML 2026) — causally reduces multi-turn safety erosion, organized around a refined three-level 'attention capacity competition hypothesis.' We build on DETAM's proof that inference-time attention reallocation improves safety (ASR 46%→1.2%) and ASGuard's demonstration that training-time head modification is feasible for specific vulnerabilities, testing whether CPL achieves broad attention reallocation through untargeted discourse training — addressing the progressive multi-turn erosion that DETAM (single-turn, requires runtime intent localization) and ASGuard (targets specific localizable circuits) structurally cannot. In multi-turn crescendo attacks, malicious intent is distributed across turns, making DETAM's intent-token identification ill-defined; CPL instead reduces the cumulative inertia that pushes systems past Johnson & Huo's tipping point. A novel Phase 0.5 provides the first per-head decomposition of diagonal attention (Wan et al. explicitly averages all heads) and measures overlap with safety-critical heads using triple triangulation (Ships score, DETAM sensitivity, AISA spatiotemporal analysis), cross-validated against published head sets (Zhou et al., Depth Charge, ASGuard — whose 4 Layer-13 vulnerable heads independently corroborate the continuation-safety nexus). Our five-phase causal design tests CPL against five confound controls including XGuard-Train SFT at both published and CPL-matched ranks. Mechanistic verification tests whether CPL achieves 'implicit DETAM' (same heads, same direction) and 'implicit circuit modification' (affecting ASGuard's identified vulnerable heads without targeting them). The study is designed for informative outcomes at all three competition levels, with the per-head diagonal attention decomposition, triple-method head identification comparison, and DETAM/ASGuard mechanistic comparison constituting standalone contributions.\n\n## Core Problem\nMulti-turn agent interactions exhibit systematic safety degradation (16% higher attack success rates), and while recent work has identified attention-level mechanisms — attention dispersion on safety keywords (ASJA, AAAI 2025), competition between safety and continuation heads (Deng et al., 2026), and attention reallocation as a defense (DETAM, ACL 2025 Findings) — and developed multi-turn safety defenses (MUSE-D turn-level DPO, EMNLP 2025; XGuard-Train SFT, COLM 2025; X-Boundary representation boundaries, EMNLP 2025; MTSA RL-based alignment, ACL 2025), and even training-time attention head interventions for specific vulnerability types (ASGuard circuit-targeted scaling, ICLR 2026), these studies are either attack-oriented, single-turn, operate at inference time, target specific localizable vulnerabilities, or train directly on safety-labeled data without testing whether discourse-level mechanisms causally drive safety erosion. Critically, DETAM (Li et al., ACL 2025 Findings) demonstrates that simply reallocating attention from attack tokens toward safety-relevant tokens at inference time — without any weight changes — reduces ASR from 46% to 1.2% on LLaMA-2, providing the strongest existing evidence that attention redistribution causally improves safety. Yet DETAM requires explicit identification of 'intent tokens' at runtime and operates only in single-turn settings — in multi-turn crescendo attacks where malicious intent is progressively distributed across turns, the notion of localizable 'intent tokens' breaks down fundamentally. ASGuard (Park et al., ICLR 2026) demonstrates that training-time modification of safety-relevant heads is feasible via circuit-targeted scaling vectors, but its efficacy 'hinges on localizable causal circuits' for specific attack types (tense jailbreaking) — multi-turn safety erosion through cumulative discourse dynamics may not produce such localizable circuits. No work has tested whether a training-time discourse intervention (reducing conversational inertia) achieves broad attention reallocation indirectly, nor whether the specific attention heads carrying diagonal inertia patterns overlap with safety-critical heads — a prerequisite for the softmax zero-sum competition mechanism to operate at the head level. Notably, the only characterization of diagonal attention (Wan et al., ICML 2026) reports aggregate-level patterns averaged across all heads; no per-head decomposition exists, leaving the head-level competition question empirically open. Additionally, the response-length confound in DPO-based interventions has never been explicitly controlled for in safety evaluations of discourse-level interventions.\n\n## Opportunity\nSix independent research threads have converged to make a controlled causal study newly feasible: (1) Conversational Inertia (Wan et al., ICML 2026) identifies diagonal attention where the i-th token attends to the i-th previous output position and provides Context Preference Learning (CPL) as a parameter-efficient intervention (0.4% params, LoRA rank-16 DPO with beta=0.01), validated on Qwen3-8B and Llama 3.1-8B-Instruct across eight agentic environments but never evaluated for safety — crucially, the diagonal attention pattern is characterized only at the aggregate level (averaged across all heads), so the per-head distribution remains unknown; (2) DETAM (Li et al., ACL 2025 Findings) provides direct causal evidence that attention reallocation toward safety-relevant tokens improves safety — reducing ASR by 97%+ without weight modification — but requires runtime intent token identification and is single-turn only, creating a fundamental limitation for multi-turn settings where intent is distributed across turns; (3) ASGuard (Park et al., ICLR 2026) demonstrates that training-time modification of safety-relevant attention heads is feasible via circuit-targeted channel-wise scaling vectors and preventative fine-tuning — crucially, ASGuard identifies 4 vulnerable heads at Layer 13 in Llama-3.1-8B (L13H8, L13H18, L13H25, L13H30), exactly where Deng et al. find continuation heads, providing independent corroboration that Layer 13 is a nexus of safety-relevant competition — but ASGuard targets specific localizable vulnerability circuits (tense jailbreaking) rather than discourse-level dynamics; (4) Multi-turn safety erosion is now well-benchmarked via MT-AgentRisk (365 tasks, 5 tools, avg 3.19 turns) with ToolShield as a defense baseline, and supplemented by OpenAgentSafety (ICLR 2026, 356 real-tool tasks with multi-turn multi-user dynamics); (5) Multi-turn safety training has mature baselines spanning multiple paradigms: XGuard-Train SFT (COLM 2025, up to 48.3% vulnerability reduction), MUSE-D turn-level DPO (EMNLP 2025, 24% ASR reduction), X-Boundary representation-level boundaries (EMNLP 2025, ASR reduction to 16-25%), and MTSA RL with future rewards (ACL 2025, ASR 74.5% to 23.5%) — but all train directly on safety-labeled data; (6) AISA (Song et al., arXiv:2602.13547) provides a third complementary method for localizing safety-critical attention heads via spatiotemporal analysis — identifying that safety-discriminative signals concentrate in middle-layer head outputs with K=16 heads achieving 0.92 detection accuracy — enabling methodological triangulation in our head overlap analysis. This six-thread convergence, combined with Johnson & Huo's (2026) formalization of attention competition tipping points and the layered distribution of safety mechanisms across layers 2-27, motivates a three-level attention capacity competition hypothesis testable through a novel Phase 0.5 head overlap analysis.\n\n## Landscape\n**Attention reallocation defenses:** DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562) is the most directly relevant inference-time prior work. It identifies attention heads sensitive to jailbreaks by computing attention score differences between successful and unsuccessful defenses (threshold alpha: 0.1 for LLaMA-2, 0.03 for Vicuna). During inference, it modifies the causal mask matrix by multiplying mask values at intent token positions by beta=5.0, amplifying attention to the user's core intention. DETAM reduces average ASR from 46.0% to 1.2% on LLaMA-2-7b-chat and from 81.8% to 4.0% on Vicuna-13b-v1.5. Cross-model transferability: sensitive heads from LLaMA-2 transferred to Meta-LLaMA-3 achieve 4% ASR vs. 96% vanilla. However, DETAM has three fundamental limitations for multi-turn agent settings: (a) it requires runtime identification of 'intent tokens' — in multi-turn crescendo attacks (Russinovich et al., USENIX Security 2025) where harmful intent is progressively distributed across turns, no single set of tokens constitutes 'the intent,' making DETAM's token-level localization fundamentally ill-defined; (b) it is tested only in single-turn settings and cannot address the cumulative attention shift across turns that Johnson & Huo's tipping point theory predicts; (c) it imposes per-turn computational overhead for mask modification in each forward pass across all turns of agent interaction. Our study tests whether CPL achieves DETAM-like attention redistribution persistently through training, addressing a failure mode DETAM structurally cannot: the gradual accumulation of continuation pressure across turns that progressively dilutes safety attention below the tipping point. **Training-time attention head intervention:** ASGuard (Park et al., ICLR 2026, arXiv:2509.25843) is the closest existing work to training-time attention head modification for safety. It uses Edge Attribution Patching with Integrated Gradients (EAP-IG) to identify attention heads causally linked to specific jailbreaking vulnerabilities, trains channel-wise activation scaling vectors (s_j ∈ R^{d_head}, applied via Hadamard product H'_{l,j} = H_{l,j} ⊙ s_j) on identified heads, and applies preventative fine-tuning with scaling vectors frozen. On tense jailbreaking, ASGuard reduces ASR from 42% to 8% on Llama-3.1-8B and 51% to 8% on Qwen2.5-7B, achieving Pareto-optimal safety-utility balance. Critically, ASGuard identifies 11 vulnerable heads in Llama-3.1-8B, of which 4 are at Layer 13 (L13H8, L13H18, L13H25, L13H30) — exactly where Deng et al. find continuation heads — providing independent corroboration that Layer 13 is a nexus of safety-relevant attention competition. However, ASGuard differs from our approach in three key ways: (a) it targets specific, localizable vulnerability circuits ('efficacy hinges on localizable causal circuits' — their Limitations, Section 7) — multi-turn safety erosion through cumulative discourse dynamics may not produce such localizable circuits, as the failure is progressive rather than circuit-specific; (b) it surgically fixes known attack types (tense jailbreaking, GCG, LogiBreak) one at a time, whereas CPL is an untargeted discourse intervention testing whether reducing general inertia achieves broad safety benefits; (c) it is single-turn only. ASGuard's success actually supports a key premise of our hypothesis: training-time modification of attention heads CAN improve safety. Our study tests whether indirect, untargeted discourse training achieves what targeted head intervention achieves — and whether it generalizes to the multi-turn progressive erosion that targeted approaches cannot address. **Safety head localization methods:** AISA (Song et al., arXiv:2602.13547) provides a third complementary approach to localizing safety-critical heads via spatiotemporal analysis — large-scale linear probing across 15 positions per layer identifies that attention head outputs demonstrate superior safety separability, with top-K=16 heads (concentrated in middle layers) achieving 0.92 detection accuracy and O(1) runtime overhead. AISA's finding that safety heads cluster in middle layers in standard models but shift toward higher layers in strongly safety-aligned models adds nuance to the competition hypothesis — the relevant layers may differ by alignment strength. **Attack-side mechanisms:** Du et al. (ASJA, AAAI 2025) show that successful multi-turn jailbreaks correlate with attention dispersion away from safety keywords (p=4.38e-07), achieving 44.9% higher ASR. Deng et al. (arXiv:2603.08234) identify competing safety and continuation attention heads — safety heads concentrated in layers 25-27, continuation heads in middle layers (~Layer 13) — whose antagonistic interaction determines jailbreak success. Notably, continuation heads at Layer 13 occupy the same layer range as both induction/copying mechanisms AND ASGuard's identified vulnerable heads, suggesting this layer is a critical nexus where diagonal attention patterns, continuation signals, and safety vulnerability converge. Depth Charge (Wu et al., arXiv:2603.05772, March 2026) introduces SAHA using Ablation-Impact Ranking and Layer-Wise Perturbation, achieving 82-91% ASR, revealing layer-specific safety head concentrations (layer 7 for Llama 3.1-8B, layer 5 for Qwen 1.5-7B, head 31 universally important) and sharp threshold behavior. Attention Eclipse (Zaree et al., arXiv:2502.15334) achieves 91.2% ASR by manipulating attention to strengthen harmful content focus and weaken safety focus. **Attention competition theory:** Johnson & Huo (arXiv:2602.14370, Feb 2026) formalize the competition-for-attention mechanism mathematically, showing that dot-product competition creates dynamical tipping points (n*) where behavior transitions from safe to unsafe — providing the theoretical framework for why cumulative inertia across turns can push the system past a tipping point that single-turn defenses like DETAM cannot prevent. **Multi-turn safety benchmarking:** Yang et al. (arXiv 2026) document 16% average ASR increase on MT-AgentRisk and propose ToolShield (~30% ASR reduction). OpenAgentSafety (ICLR 2026) provides 356 multi-turn, multi-user tasks with real tools. Li et al. (STAR, arXiv:2603.15684) show monotonic drift from refusal representations. MultiBreak (arXiv:2605.01687) provides 10,389 multi-turn adversarial prompts. **Multi-turn safety defenses:** X-Teaming (COLM 2025, arXiv:2504.13203) introduces XGuard-Train, a 30K multi-turn safety training dataset. Models SFT-trained on a 14K subset with LoRA rank-8, lr=1e-4, 3 epochs achieve up to 48.3% vulnerability reduction on Llama-3.1-8B and Qwen-2.5-7B. MUSE-D (EMNLP 2025, arXiv:2509.14651) applies turn-level DPO achieving 24% ASR reduction. X-Boundary (Lu et al., EMNLP 2025, arXiv:2502.09990) operates at the representation level, reducing multi-turn ASR from 58.5-76.0% to 16.0-25.0% while reducing over-refusal by ~20%. MTSA (Guo et al., ACL 2025, arXiv:2505.17147) performs RL with future rewards, reducing ASR from 74.5% to 23.5%, with the finding that maximum attack effectiveness peaks at round 5 — confirming multi-turn pressure accumulates through discourse dynamics. Agent Safety Alignment (Sha et al., arXiv:2507.08270) proposes unified sandboxed RL with benign/malicious/sensitive taxonomy. STREAM (arXiv:2506.00668) proposes safety reasoning moderator reducing ASR by 51.2%. TurnGate (arXiv:2605.05630) introduces turn-level harm detection. **Discourse dynamics:** Wan et al. (ICML 2026, arXiv:2602.03664; note: also submitted to ICLR 2026 as OpenReview #UubLs3lUfk, subsequently published in PMLR 306 at ICML 2026, Seoul, July 6-11) identify conversational inertia and propose CPL. The paper characterizes diagonal attention only at the aggregate level — explicitly stating 'All attention heads are averaged to create a unified attention matrix' and 'the trend of diagonal attention in the final layer is similar to other layers' — with no per-head decomposition. Code not released. **Safety attention head mechanisms:** Zhou et al. (ICLR 2025, arXiv:2410.13708) show the single most critical head in Llama-2-7B-Chat is Head (2, 26) at Layer 2. Wei et al. identify safety layers at layers 9-14. The refusal direction (Arditi et al.) is strongest around layer 15. Safety Alignment Should Be Made More Than Just A Few Attention Heads (arXiv:2508.19697) proposes distributed safety head training. **Safety persistence:** Plaut (arXiv:2603.02229) shows LoRA safety DPO persists with 90-94% retention, Pareto frontier R-squared=0.77, slope=-0.83. **DPO length bias:** Park et al. (2024) and Meng et al. (2024) document hidden length dependence. **Gap:** Despite convergent progress on inference-time attention reallocation (DETAM), training-time targeted head intervention (ASGuard), training-time safety defenses (XGuard-Train, MUSE-D, X-Boundary, MTSA), safety head localization (Zhou et al., AISA, Depth Charge), attention competition theory (Johnson & Huo), and discourse dynamics (conversational inertia), no work has: (a) tested whether a training-time discourse intervention achieves broad DETAM-like attention reallocation and causally reduces safety erosion in multi-turn settings — addressing the progressive accumulation that both DETAM (single-turn only) and ASGuard (circuit-specific only) cannot; (b) provided a per-head decomposition of diagonal attention to determine whether inertia heads overlap with safety heads; (c) compared discourse-targeted vs. safety-targeted training under matched parameter budgets; or (d) controlled for DPO response-length confounds in discourse-safety evaluations.\n\n## Approach\nWe run a five-phase causal study on MT-AgentRisk (primary) and OpenAgentSafety (secondary) benchmarks using Qwen3-8B and Llama 3.1-8B-Instruct, organized around the 'attention capacity competition hypothesis' and motivated by a specific gap that neither DETAM nor ASGuard can address: progressive multi-turn safety erosion through cumulative discourse dynamics.\n\n**Why Training-Time Discourse Intervention? The Multi-Turn Intent Distribution Problem.** DETAM achieves 97%+ ASR reduction in single-turn settings at zero training cost — but it requires identifying 'intent tokens' at runtime. In multi-turn crescendo attacks where harmful intent is progressively distributed across 3-10 turns (MTSA finds peak attack at round 5), no single set of tokens constitutes 'the intent.' The malicious instruction at turn 7 is only harmful in the context of the innocuous-seeming turns 1-6 that established the frame. DETAM cannot solve this because its mechanism — amplifying attention to intent tokens in sensitive heads — presupposes that intent is localizable within a single turn. ASGuard demonstrates training-time head modification is feasible but targets specific localizable circuits (tense jailbreaking), and its own Limitations section notes 'efficacy hinges on localizable causal circuits.' Multi-turn safety erosion through cumulative inertia is NOT a localizable circuit — it's a progressive process where each turn incrementally shifts the attention distribution. CPL's advantage is that it operates at the discourse dynamics level: reducing the cumulative inertia that progressively dilutes safety attention across turns, without needing to identify which tokens are 'intent' tokens or which circuits carry a specific vulnerability. It addresses the ROOT CAUSE (attention inertia accumulation across turns) rather than the SYMPTOM (misallocated attention at any single turn). This is the failure mode that Johnson & Huo's tipping point theory predicts: gradual accumulation of continuation pressure pushes the system past n* — and the only way to prevent reaching the tipping point is to reduce the per-turn accumulation rate, which is exactly what CPL does.\n\n**The Attention Capacity Competition Hypothesis (Three-Level Framework):** We theorize that diagonal attention (the inertia mechanism) competes with safety-keyword attention at three distinct levels: **Level 1 (Head-level, strong form):** If diagonal attention and safety attention share the same heads, softmax's zero-sum constraint directly displaces safety-keyword attention. Given that safety heads span layers 2-27 and induction/copying mechanisms typically concentrate in middle layers, partial overlap is plausible. **Level 2 (Layer-level, medium form):** If diagonal and safety attention occupy different heads within the same or adjacent layers, competition occurs through the residual stream. This is supported by Deng et al.'s finding that continuation heads (Layer 13) antagonize safety heads (Layers 25-27), and strikingly corroborated by ASGuard's identification of 4 vulnerable heads at Layer 13 in Llama-3.1-8B (L13H8, L13H18, L13H25, L13H30) — the same layer where continuation heads reside, independently confirming Layer 13 as a nexus of safety-relevant competition. **Level 3 (Representation-level, weak form):** Competition mediated through accumulated representation drift, validated by X-Boundary's success (ASR 58.5% to 16.5%). Phase 0.5 empirically determines which level(s) apply.\n\n**Phase 0 — CPL Acquisition/Reproduction + Baseline Preparation (weeks 1-3):** Contact Wan et al. for CPL checkpoints (ICML 2026 July 6-11). Simultaneously reproduce CPL using TRL DPOTrainer + PEFT: LoRA rank-16, alpha-16, 0.4% params, DPO with beta=0.01, sigmoid loss, 2 epochs, lr=5e-7, AdamW, 1000 preference pairs per environment. The training recipe maps directly to TRL v1.0+ (sigmoid loss is the default DPOConfig, all hyperparameters natively supported); the main reproduction risk is the preference pair construction pipeline (dual-rollout with long-context vs. short-context on AgentGym environments) rather than the training loop itself. Estimated: ~40 A100-hours per model. In parallel, prepare XGuard-Train SFT baselines: (a) LoRA rank-8 with lr=1e-4, 3 epochs (matching published configuration from X-Teaming, validated on Llama-3.1-8B and Qwen-2.5-7B); (b) LoRA rank-16 with CPL-matched hyperparameters for parameter-matched comparison. Construct extended-turn variants: prepend 4-6 benign tool-use turns to 50 representative MT-AgentRisk tasks.\n\n**Hard Go/No-Go Checkpoint at Week 3:** The project proceeds to Phase 0.5 only if ALL criteria are met: (1) AgentGym environment setup working for >=3 of 8 environments (prioritizing ALFWorld, WebShop, HotpotQA); (2) dual-rollout preference pair generation produces pairs where long-context trajectories show measurably higher diagonal attention scores than short-context trajectories (statistically significant at p<0.05 on at least 2 environments); (3) DPO training pipeline converges (decreasing loss, increasing reward margins over 2 epochs); (4) base model evaluation on >=2 environments matches Wan et al.'s published baselines within 1 SEM. **Fallback paths:** (a) environment failure: proceed with 2-3 most reliable environments; (b) inertia differential failure: pivot to correlational-only study (Phases 1 and 4 only); (c) training failure: debug 1 additional week — if still failing by week 4, pivot to 'DETAM in multi-turn settings' (extending DETAM's mechanism to MT-AgentRisk, testing whether Focus Loss intensifies across turns).\n\n**Phase 0.5 — Head Overlap Test and Per-Head Diagonal Attention Decomposition (weeks 3-4, ~20 A100-hours):** This phase provides the first per-head decomposition of diagonal attention patterns and tests the prerequisite assumption of the competition hypothesis. Using both base models on 50 MT-AgentRisk tasks: (a) **Novel per-head diagonal attention decomposition:** Compute diagonal attention scores per head (not just aggregate) using Wan et al.'s metric (attention between current output position i and previous assistant output position i +/- 5 tokens) — this is the first such decomposition, given that Wan et al. explicitly average all heads ('All attention heads are averaged to create a unified attention matrix'). Identify which heads carry the strongest diagonal patterns and their layer distribution. (b) **Safety head identification via triple triangulation:** Apply three complementary methods: (i) Ships score (Zhou et al., ICLR 2025) via KL divergence after head ablation; (ii) DETAM's sensitivity metric (attention score differences between successful/unsuccessful safety responses); (iii) AISA's spatiotemporal analysis — linear probing on head outputs at final structural tokens to identify safety-discriminative heads (K=16). Cross-validate against published localizations: Zhou et al.'s Head (2,26) for Llama-2-family; Depth Charge's layer-specific data (layer 7 for Llama 3.1-8B); ASGuard's EAP-IG identified heads (11 heads for Llama-3.1-8B including 4 at Layer 13). Using three independent methods plus cross-validation against three published head sets provides robust head identification. (c) **Overlap analysis:** Compute Jaccard index between top-k diagonal attention heads and top-k safety heads (k = 5, 10, 20, 50) with permutation tests. Also measure layer-level co-occurrence (same layer, different heads). Cross-reference against ASGuard's Layer 13 vulnerable heads — if diagonal attention heads concentrate at Layer 13, this would connect conversational inertia to the continuation-safety competition nexus identified by both Deng et al. and ASGuard independently. (d) **Level determination:** Level 1 (>30% head overlap) — proceed with strong per-head softmax hypothesis; Level 2 (same layers, <30% head overlap) — reformulate around residual stream competition, particularly the Layer 13 continuation-inertia-safety nexus; Level 3 (<10% overlap in both heads and layers) — reformulate around representation-level competition. Each determination shapes subsequent analysis. This phase costs ~20 A100-hours but de-risks the project and provides standalone novel contributions (first per-head diagonal attention map; first triple-method safety head identification comparison).\n\n**Phase 1 — Correlational with Attention Capacity Analysis (weeks 4-7):** Measure diagonal attention (per-head, informed by Phase 0.5) AND safety-keyword attention concentration at each turn on 365 MT-AgentRisk tasks and 50 extended-turn variants. Calibrate analysis to competition level from Phase 0.5. Fit mixed-effects regressions testing P1 (diagonal attention negatively correlates with safety attention at the operative level), controlling for turn position, task category, model, and response token count. Test Granger causality for temporal dynamics.\n\n**Phase 2 — Interventional with Confound Controls (weeks 7-11):** Apply CPL and re-evaluate on MT-AgentRisk. Five control conditions: (a) **Random-Preference LoRA** — shuffled preference labels, same architecture; (b) **Reversed-CPL** — prefer long-context over short-context; (c) **XGuard-Train SFT (rank-8)** — published configuration for validation against published results; (d) **XGuard-Train SFT (rank-16)** — CPL-matched parameters for direct paradigm comparison (discourse-targeted vs. safety-targeted training); (e) **Response-Length Analysis** — ASR stratified by length quartiles, per-100-token normalization, regression with length covariate (testing P3: CPL's safety effect, if any, is not explained by response-length changes). Frame CPL's effect relative to both DETAM and ASGuard: test whether CPL affects the same heads DETAM identifies as sensitive and shifts attention in the same direction (implicit DETAM test), and whether it affects ASGuard's identified vulnerable heads at Layer 13 (implicit untargeted circuit modification test). Compare against ToolShield baseline and MUSE-D's published results.\n\n**Phase 3 — Autonomy Tax Audit (weeks 9-11, parallel):** Step-1 completion rate, cascade failure rate, end-to-end success, over-refusal. Report safety-competence Pareto frontier extending Plaut's analysis. Compare CPL's frontier position with X-Boundary's ~20% over-refusal reduction, ASGuard's Pareto-optimal balance, and XGuard-SFT's published results.\n\n**Phase 4 — Mechanistic Verification (weeks 10-14):** (a) SRI signal framework for step-wise refusal dynamics; (b) Head-level analysis extending Deng et al.'s safety-continuation head identification to multi-turn, calibrated by Phase 0.5 overlap findings — test whether CPL modulates the Layer 13 continuation vs. Layer 25-27 safety head balance across conversation turns; (c) **DETAM-informed analysis:** Apply DETAM's sensitivity metric to CPL-treated models — does CPL training shift attention in the same heads and direction that DETAM targets at inference time? If so, CPL achieves 'implicit DETAM' through discourse training, but persistently and without runtime intent localization; (d) **ASGuard-informed analysis:** Test whether CPL affects ASGuard's identified vulnerable heads (particularly the 4 at Layer 13) despite not targeting them — this would demonstrate that untargeted discourse training can modify the same heads that targeted circuit analysis identifies, but as a side effect of reducing general inertia rather than through explicit circuit surgery; (e) Level-appropriate analysis: Level 2 — residual stream composition analysis at shared layers; Level 3 — representation trajectory analysis following X-Boundary's framework.\n\n**Secondary Evaluation — OpenAgentSafety (weeks 12-14):** Best-performing config and XGuard-SFT on a subset for ecological validity.\n\n**Null-Result Framing Strategy:** (1) First per-head decomposition of diagonal attention patterns and their overlap (or non-overlap) with safety heads — novel regardless of CPL results; (2) First triple-method safety head identification comparison (Ships + DETAM sensitivity + AISA spatiotemporal), cross-validated against three published head sets (Zhou et al., Depth Charge, ASGuard); (3) Empirical evidence for or against the three-level competition hierarchy; (4) First confound-controlled causal framework for discourse-safety evaluation; (5) First discourse-targeted vs. safety-targeted training comparison under matched parameters; (6) First multi-turn extension of DETAM's Focus Loss analysis; (7) Empirical test of whether CPL-like untargeted training affects the same heads as ASGuard's targeted circuit intervention.\n\n**Extended-Turn Variant Validity (Limitation):** Acknowledged with mitigations: OpenAgentSafety for ecological validity, attention pattern validation, conservative amplification framing.\n\nAll primary experiments use MT-AgentRisk (365 tasks), ToolShield codebase (GitHub: CHATS-lab/ToolShield), XGuard-Train (HuggingFace: marslabucla/XGuard-Train), and the CPL training recipe from Wan et al. (ICML 2026).\n\n## Resource Estimate\n{'manual': {'gpu_hours': '720-900 A100-hours (CPL reproduction 2 models ~80h, XGuard-SFT rank-8 + rank-16 training 2 models ~60h, 2 control LoRAs for 2 models ~80h, Phase 0.5 head overlap test with AISA probing ~25h, MT-AgentRisk evaluation across 6 conditions x 2 models ~240h, extended-turn evaluation ~40h, OpenAgentSafety subset ~60h, SRI signal analysis ~30h, attention analysis including per-head diagonal decomposition + DETAM-informed + ASGuard-informed metrics ~85h, head-level safety-continuation analysis ~40h, response-length analysis ~10h)', 'timeline': '15-17 weeks (3 weeks Phase 0 + go/no-go, 1 week Phase 0.5, 3 weeks Phase 1, 4 weeks Phase 2 + Phase 3 parallel, 4 weeks Phase 4 + OpenAgentSafety, 3 weeks writing; comfortable for ICLR 2027)', 'estimated_gpu_cost': '$1080-1350 at $1.50/A100-hr spot pricing'}, 'human_in_loop': {'gpu_hours': '720-900 A100-hours', 'timeline': '13-15 weeks (Claude accelerates CPL reproduction, Phase 0.5 triple-method pipeline, DETAM/ASGuard comparison metrics, statistical analysis)', 'claude_api_cost': '$300-450 (CPL reproduction, per-head diagonal decomposition, triple-method head overlap analysis, DETAM/ASGuard-informed metrics, experiment orchestration, statistical modeling)', 'estimated_gpu_cost': '$1080-1350 at $1.50/A100-hr spot pricing'}, 'auto_research': {'gpu_hours': '920-1140 A100-hours (additional automated sweeps, full OpenAgentSafety evaluation, extended ablation across competition levels, comprehensive per-head analysis with triple methods)', 'timeline': '9-11 weeks (parallelized execution, automated Phase 0.5 -> Phase 1 pipeline)', 'claude_api_cost': '$600-850 (end-to-end orchestration including CPL reproduction, triple-method head analysis, DETAM/ASGuard comparison, control sweeps, result interpretation, draft generation)', 'estimated_gpu_cost': '$1380-1710 at $1.50/A100-hr spot pricing', 'speed_bottleneck': 'Sequential multi-turn interaction generation; 12 model configurations (2 models x 6 conditions); Phase 0.5 is a serial dependency before Phase 1; triple-method safety head analysis computationally intensive'}}\n\n## Inspired By\nField guide Section 4 (cascading failures, production gap) + Section 5.2 (error propagation as primary bottleneck). Key insight: DETAM's demonstration that inference-time attention reallocation dramatically improves safety (ASR 46% to 1.2%) establishes the empirical foundation for our hypothesis — if explicitly redirecting attention works, does implicit redirection via discourse training also work? ASGuard's demonstration that training-time head modification is feasible for specific vulnerabilities raises the natural question: can untargeted discourse training achieve what targeted circuit intervention achieves, but for the progressive multi-turn erosion that circuit-based approaches cannot address? The three-level competition hierarchy was motivated by the finding that Wan et al. only characterizes diagonal attention at the aggregate level (explicitly averaging all heads into a unified matrix) and that safety heads span multiple layer ranges (L2, L9-14, L25-27), while continuation heads at Layer 13 overlap with both induction/copying head territory and ASGuard's identified vulnerable heads (4 of 11 Llama-3.1-8B vulnerable heads are at L13). Johnson & Huo's (2026) formalization of attention competition tipping points provides the theoretical framework for why cumulative discourse inertia can push multi-turn interactions past a safety threshold that per-turn defenses cannot prevent. The reviewer's observation about per-head specificity led to Phase 0.5, which provides the first per-head decomposition of diagonal attention — a novel contribution regardless of results. AISA's spatiotemporal analysis provides methodological triangulation for safety head identification, strengthening Phase 0.5's robustness.\n\n## Target Venues\n- ICLR 2027 (abstract September 19 2026, full paper September 24 2026 [estimated] — primary target, ~18 weeks from project start, comfortable timeline with 3+ weeks buffer including Phase 0.5)\n- AAAI 2027 (abstract July 21 2026, full paper July 28 2026 — stretch target, ~10 weeks; feasible only if CPL checkpoints obtained by week 2, Phase 0.5 shows Level 1 or 2 overlap, and Phase 1 results are clean)\n\n## Key References\n- DETAM: Defending LLMs Against Jailbreak Attacks via Targeted Attention Modification (Li et al., ACL 2025 Findings, arXiv:2504.13562)\n- ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack (Park et al., ICLR 2026, arXiv:2509.25843)\n- AISA: Awakening Intrinsic Safety Awareness in Large Language Models against Jailbreak Attacks (Song et al., arXiv:2602.13547, Feb 2026)\n- Multi-Turn Jailbreaking Large Language Models via Attention Shifting (ASJA, AAAI 2025)\n- Mitigating Conversational Inertia in Multi-Turn Agents (Wan et al., ICML 2026, arXiv:2602.03664)\n- Unsafer in Many Turns: Benchmarking and Defending Multi-Turn Safety Risks in Tool-Using Agents (Yang et al., arXiv 2026)\n- X-Teaming: Multi-Turn Jailbreaks and Defenses with Adaptive Multi-Agents (COLM 2025, arXiv:2504.13203)\n- MUSE: MCTS-Driven Red Teaming Framework for Enhanced Multi-Turn Dialogue Safety (EMNLP 2025, arXiv:2509.14651)\n- X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability (Lu et al., EMNLP 2025, arXiv:2502.09990)\n- MTSA: Multi-turn Safety Alignment for LLMs through Multi-round Red-teaming (Guo et al., ACL 2025, arXiv:2505.17147)\n- Agent Safety Alignment via Reinforcement Learning (Sha et al., arXiv:2507.08270)\n- Safety Training Persists Through Helpfulness Optimization in LLM Agents (Plaut, arXiv:2603.02229, March 2026)\n- The Struggle Between Continuation and Refusal (Deng et al., arXiv:2603.08234, Mar 2026)\n- The Autonomy Tax: Defense Training Breaks LLM Agents (Li & Zhao, arXiv:2603.19423, Mar 2026)\n- On the Role of Attention Heads in Large Language Model Safety (Zhou et al., ICLR 2025, arXiv:2410.13708)\n- Depth Charge: Jailbreak Large Language Models from Deep Safety Attention Heads (Wu et al., arXiv:2603.05772, Mar 2026)\n- Safety Alignment Should Be Made More Than Just A Few Attention Heads (Huang et al., arXiv:2508.19697, 2025)\n- Competition for attention predicts good-to-bad tipping in AI (Johnson & Huo, arXiv:2602.14370, Feb 2026)\n- Attention Eclipse: Manipulating Attention to Bypass LLM Safety-Alignment (Zaree et al., arXiv:2502.15334, Feb 2025)\n- Safety Layers in Aligned Large Language Models (Wei et al., arXiv:2408.17003, 2024)\n- Refusal in Language Models Is Mediated by a Single Direction (Arditi et al., arXiv:2406.11717, 2024)\n- State-Dependent Safety Failures in Multi-Turn Language Model Interaction (STAR, arXiv:2603.15684, Mar 2026)\n- OpenAgentSafety: A Comprehensive Framework for Evaluating Real-World AI Agent Safety (ICLR 2026, arXiv:2507.06134)\n- One Turn Too Late: Response-Aware Defense Against Hidden Malicious Intent in Multi-Turn Dialogue (TurnGate, arXiv:2605.05630, May 2026)\n- MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark (arXiv:2605.01687, May 2026)\n- STREAM: SafeTy Reasoning Elicitation Alignment for Multi-Turn Dialogues (arXiv:2506.00668, May 2025)\n- Agent Drift: Quantifying Behavioral Degradation in Multi-Agent LLM Systems Over Extended Interactions (arXiv 2026)\n- Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks (arXiv 2026)\n- TRUTH DECAY: Quantifying Multi-Turn Sycophancy in Language Models (arXiv 2025)\n- Breaking Contextual Inertia: Reinforcement Learning with Single-Turn Anchors for Stable Multi-Turn Interaction (arXiv 2026)\n- SafetyDrift: Predicting When AI Agents Cross the Line Before They Actually Do (arXiv 2026)\n- Token Statistics Reveal Conversational Drift in Multi-turn LLM Interaction (arXiv 2026)\n- Asking Forever: Universal Activations Behind Turn Amplification (arXiv:2602.17778, Feb 2026)\n- Step-Wise Refusal Dynamics in Autoregressive and Diffusion Language Models (arXiv:2602.02600, Feb 2026)\n- Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv:2604.28129, Apr 2026)\n- Many-Turn Jailbreaking (arXiv:2508.06755, Aug 2025)\n- Disentangling Length from Quality in Direct Preference Optimization (Park et al., arXiv:2403.19159, 2024)\n- Length Desensitization in Direct Preference Optimization (Meng et al., arXiv:2409.06411, 2024)\n- Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack (Russinovich et al., USENIX Security 2025, arXiv:2404.01833)\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:30:56.164Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:30:56.164Z",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:30:56.179Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to provide my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. Wan et al., "Mitigating Conversational Inertia in Multi-Turn Agents" (ICML 2026, arXiv:2602.03664):
+   - 确认存在。提出 CPL (Context Preference Learning)，用 DPO 训练减少对角注意力（diagonal attention），在 8 个 agent 环境上验证。
+   - 关键细节确认：论文明确说"All attention heads are averaged to create a unified attention matrix"——即 per-head 分解确实没做过。
+   - 未评估 safety 效果。这是 proposal 的出发点。
+
+2. DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562):
+   - 确认存在，发表在 ACL 2025 Findings。推理时修改注意力掩码，将注意力重新分配到用户意图 token。
+   - 核心数据确认：LLaMA-2-7b-chat ASR 46%→1.2%，Vicuna-13b 81.8%→4.0%。
+   - 确实只在 single-turn 上测试。
+
+3. ASGuard (Park et al., ICLR 2026, arXiv:2509.25843):
+   - 确认存在，ICLR 2026 正式发表。用 EAP-IG 识别脆弱 attention heads，训练时通过 channel-wise scaling 干预。
+   - 确认针对 tense jailbreaking 等特定攻击类型，limitations 中提到依赖 localizable circuits。
+
+4. Deng et al., "The Struggle Between Continuation and Refusal" (arXiv:2603.08234, Mar 2026):
+   - 确认存在。发现 continuation heads（中间层，~Layer 13）与 safety heads（高层，~L25-27）之间的拮抗竞争。
+
+5. Johnson & Huo, "Competition for attention predicts good-to-bad tipping in AI" (arXiv:2602.14370, Feb 2026):
+   - 确认存在。数学形式化了 dot-product 注意力竞争的 tipping point 理论。
+   - 注意：这是一篇偏理论/物理学风格的论文，并非主流 NLP/ML 社区工作。
+
+6. AISA (Song et al., arXiv:2602.13547, Feb 2026):
+   - 确认存在。通过时空分析定位安全关键 attention heads，K=16 heads 达到 0.92 检测准确率。
+
+7. 多轮安全防御方法（均确认存在）：
+   - XGuard-Train (COLM 2025): SFT，最高 48.3% vulnerability reduction
+   - MUSE-D (EMNLP 2025): turn-level DPO，24% ASR reduction
+   - X-Boundary (EMNLP 2025): 表示层边界，ASR 58.5%→16-25%
+   - MTSA (ACL 2025): RL，ASR 74.5%→23.5%
+
+8. 竞争性检查——是否有人已做过 CPL→safety 的连接：
+   - **未发现任何论文**将 CPL 或 discourse-level inertia intervention 与 safety 效果直接关联。该连接确实是 novel 的。
+
+- 调研总结: 多轮 LLM safety 是一个活跃领域，防御方法（XGuard、MUSE-D、X-Boundary、MTSA）和机制分析（attention heads、continuation vs. refusal）都已有成熟工作。Proposal 的独特定位是将一个 *非安全目标的* discourse intervention（CPL）与安全效果进行因果联系测试，这个交叉连接确实没人做过。但该领域的防御方法已经比较成熟，实际增量价值存疑。
+
+
+【Trivial Alternative 检验】:
+
+存在明确的 trivial alternatives，增量价值有限：
+
+1. **直接用多轮安全训练数据做 DPO/SFT/RL**：MUSE-D（turn-level DPO, 24% ASR reduction）、MTSA（RL, ASR 74.5%→23.5%）、XGuard-Train（SFT, 48.3% vulnerability reduction）已经用 *直接针对安全的训练数据* 取得了显著效果。如果目标是提高多轮安全性，最直接的方法就是用安全标注数据训练。Proposal 的论证是 CPL 解决"根因"（注意力惯性）而非"症状"——但这一"根因论"本身是未经验证的假设。
+
+2. **直接对 DETAM 做多轮扩展**：Proposal 论证 DETAM 不适用于多轮（因为 intent tokens 分散），但这并未被实证否定。可以将 DETAM 的注意力掩码修改扩展到跨轮的 intent token 定位（如在每轮使用滑动窗口识别 intent tokens），成本可能远低于 CPL reproduction + 5 phase study。
+
+3. **CPL 本身就是一个 trivial "apply existing method to new domain" 的操作**：CPL 已经存在，把它应用到 safety 评估上本质上是"测试方法 X 在场景 Y 上的效果"——这类工作的增量价值取决于结果是否 surprising。如果 CPL 确实改善了安全性，审稿人的反应更可能是 "reducing attention inertia frees up capacity for safety tokens — makes sense" 而非 "this is surprising"。
+
+增量价值：Proposal 的真正增量在于 **mechanistic insight**（per-head 分解 + head overlap 分析）而非实际安全改善。但如果实际安全改善不显著（被 trivial alternatives 碾压），mechanistic insight 的价值就降格为 workshop paper 级别。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有 **至少 3 个关键环节** 是未经验证的假设：
+
+1. **"对角注意力与安全注意力共享 heads/layers，因此存在 softmax 零和竞争"**——这是整个 hypothesis 的核心前提，但 Proposal 自己承认这是未知的（Phase 0.5 的目的就是测试它）。如果 Phase 0.5 结果是 Level 3（<10% overlap），整个 softmax zero-sum competition 的因果机制就不成立，剩余的 "representation-level competition" 说法实质上是一个远弱于原始 claim 的 fallback，且与 X-Boundary 已有工作重叠。
+
+2. **"CPL 减少的惯性就是导致多轮安全退化的惯性"**——CPL 减少的是"第 i 个输出 token 关注前一轮第 i 个位置"的对角模式。但多轮安全退化可能由完全不同的机制驱动：context window 中 safety instructions 被稀释、user-assistant role alignment 渐变、或纯粹的 representation drift（如 STAR 论文的发现）。对角注意力可能只是多轮退化的一个伴随现象（epiphenomenon），而非原因。
+
+3. **"Johnson & Huo 的 tipping point 理论适用于 attention head 层面的惯性积累"**——Johnson & Huo 的论文是一篇物理学/复杂系统风格的理论工作，其 tipping point 是关于 dot-product 注意力在抽象 "good/bad" 输出之间的竞争。将其具体化到"对角注意力惯性在每轮累积最终越过安全阈值"是一个相当大的推理跳跃，缺乏任何实证支撑。
+
+4. **"三级框架是可证伪的"**——三级框架（head-level / layer-level / representation-level）覆盖了所有可能的overlap程度。无论 Phase 0.5 结果如何，都可以声称"属于某一级"。这使得框架本身难以被证伪，降低了其作为科学假设的信息量。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   将 CPL（discourse intervention）与 safety 效果进行因果测试确实没有先例（调研未发现任何此类工作）。Per-head diagonal attention decomposition 确实是 Wan et al. 未做的新贡献。但核心操作本质上是 "apply existing method (CPL) to new evaluation dimension (safety)" + "use existing analysis tools (Ships, DETAM sensitivity, AISA) for head overlap analysis"。每一个组件都已存在，novelty 主要在于 **连接**（connection）而非 **创造**（creation）。与 ASGuard（提出了新的 EAP-IG + channel-wise scaling pipeline）、DETAM（提出了新的 targeted attention mask 方法）相比，方法论 novelty 偏弱。三级竞争框架（Level 1/2/3）形式上看起来有理论贡献，但实际覆盖了所有可能性，信息量有限。
+
+2. **Significance: 中偏弱** — 
+   多轮 agent 安全是重要问题，但该 proposal 的 practical significance 受限于两个因素：(a) 如果 CPL 改善安全性，效果大概率不如直接的安全训练方法（XGuard-Train 48.3% reduction, MTSA 74.5%→23.5%），那么 contribution 退化为"有趣的 side observation"而非实用防御；(b) 如果 CPL 不改善安全性，null result 的贡献（per-head decomposition, triple-method comparison）虽有价值但属于 incremental analysis contribution，对领域影响有限。核心问题是：**即使结果是 positive，审稿人更可能说 "makes sense that freeing attention capacity helps safety — but how much better is this than just training for safety directly?" 而非 "this is a surprising finding"**。对 CoRL（机器人学习）的 significance 几乎为零——该工作完全关于 LLM 内部注意力机制，无任何 embodied/robotics 成分。
+
+3. **Related Work: 强** — 
+   Related work 覆盖极其全面。涵盖了 attention reallocation defenses（DETAM）、training-time head intervention（ASGuard）、safety head localization（Zhou et al., AISA, Depth Charge）、multi-turn safety defenses（XGuard-Train, MUSE-D, X-Boundary, MTSA）、attention competition theory（Johnson & Huo）、discourse dynamics（Wan et al.）。差异化定位清晰：明确说明 DETAM 的 single-turn limitation、ASGuard 的 localizable-circuit 依赖、现有多轮防御的"直接训练安全数据"范式。唯一遗漏：没有讨论是否有其他 discourse-level interventions（如 retrieval augmentation、context compression）可能达到类似效果。
+
+
+【概率估计】: 
+
+**⚠️ 关键预警：严重的 venue mismatch**
+Proposal 自述 target venues 为 ICLR 2027 / AAAI 2027，但用户要求评估 **CoRL 2026** 中稿概率。CoRL (Conference on Robot Learning) 的核心 scope 是机器学习与机器人学的交叉领域。本 proposal 完全关于 LLM attention head 层面的安全机制分析，**无任何 robotics/embodiment 成分**。benchmarks（MT-AgentRisk, OpenAgentSafety）是 tool-using LLM agents，非物理机器人。该 proposal 极大概率被 CoRL desk reject 为 out-of-scope。
+
+**CoRL 2026 概率估计**: [3% - 8%] 中位 5%
+**若投 ICLR 2027（proposal 自述目标，idea 质量估计）**: [18% - 28%] 中位 23%
+
+【估计理由】:
+
+**CoRL 维度**：无论 idea 质量如何，venue mismatch 是 near-fatal 的。CoRL 2026 的 scope 明确面向 robot learning，本工作无任何 robotics 组件。即使 area chair 宽容地理解"agent safety"，benchmarks 和方法论完全在 NLP/LLM interpretability 范畴内。3-8% 反映的是极小概率的 scope 宽松解读。
+
+**Idea 质量维度（适用于 ICLR/NeurIPS）**：
+- Novelty 是"中"——连接型 novelty（将 CPL 用于 safety）而非创造型 novelty，限制了上界。
+- Significance 是"中偏弱"——核心发现无论正反，impact 都受限：positive 结果不够 surprising（"reducing inertia helps safety" 是 directionally predictable），negative 结果的 standalone contributions 偏 incremental。
+- Trivial Alternative 威胁实质存在——直接多轮安全训练（MUSE-D, MTSA, XGuard）是更简单的路径，CPL 的增量价值需要靠 mechanistic insight 支撑，但 insight 的深度取决于 Phase 0.5 的 overlap 结果。
+- Related Work 是"强"，提供了项目的合理下限保障。
+
+上界受限于 **Significance**（核心发现的"惊讶度"不足）和 **Trivial Alternative 威胁**（直接安全训练方法已成熟）。
+
+【主要风险】:
+1. **核心假设可能是 epiphenomenal**：对角注意力惯性可能只是多轮退化的伴随现象（epiphenomenon），而非因果驱动因素。如果 Phase 0.5 发现 overlap 极低（Level 3），整个 softmax competition 的因果叙事崩塌，剩余的 "representation-level competition" 故事与 X-Boundary 高度重叠且无新增 insight。
+2. **"Apply X to Y" 结构的 novelty 天花板**：即使结果 positive，审稿人可能评价为 "interesting empirical observation, but the contribution is applying an existing method (CPL) and observing a side effect (safety improvement) — the mechanistic story, while well-executed, is confirmatory rather than revelatory"。在顶会中，这类工作容易落入 "borderline, lean reject" 区间。
+```
+
+**Sources:**
+- [Mitigating Conversational Inertia in Multi-Turn Agents (Wan et al.)](https://arxiv.org/abs/2602.03664)
+- [DETAM: Defending LLMs Against Jailbreak Attacks via Targeted Attention Modification](https://arxiv.org/abs/2504.13562)
+- [ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack](https://arxiv.org/abs/2509.25843)
+- [The Struggle Between Continuation and Refusal (Deng et al.)](https://arxiv.org/abs/2603.08234)
+- [Competition for attention predicts good-to-bad tipping in AI (Johnson & Huo)](https://arxiv.org/abs/2602.14370)
+- [AISA: Awakening Intrinsic Safety Awareness in LLMs](https://arxiv.org/abs/2602.13547)
+- [X-Boundary (Lu et al.)](https://arxiv.org/abs/2502.09990)
+- [MTSA (Guo et al.)](https://arxiv.org/abs/2505.17147)
+- [DeTAM - ACL Anthology](https://aclanthology.org/2025.findings-acl.613/)
+- [ASGuard - OpenReview](https://openreview.net/forum?id=wmiEXNEXPs)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have comprehensive field research. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562): 推理时注意力重分配防御，将 ASR 从 46% 降至 1.2%，仅限单轮。Proposal 对其描述准确，且正确识别了其在多轮场景中"intent token 不可定位"的局限。
+
+2. ASGuard (Park et al., ICLR 2026, arXiv:2509.25843): 训练时电路级注意力头修改（channel-wise scaling），针对特定可定位漏洞（tense jailbreaking）。在 Llama-3.1-8B 上 ASR 42%→8%。Proposal 描述准确，正确指出其依赖"可定位因果电路"的局限。
+
+3. Wan et al. Conversational Inertia / CPL (ICML 2026, arXiv:2602.03664): 确认存在，识别对角注意力模式（conversational inertia），提出 Context Preference Learning (CPL)，在 8 个 agentic 环境上验证，从未评估安全性。确认原论文仅做聚合层面分析（平均所有 head），无 per-head 分解。
+
+4. Johnson & Huo (arXiv:2602.14370, Feb 2026): 数学化 attention competition tipping point (n*)，验证于多个手机级 AI 模型。Proposal 对其理论框架的引用准确。
+
+5. Zhou et al. Ships (ICLR 2025 Oral, arXiv:2410.13708): 安全注意力头归因，单个最关键 head 的 ablation 使 ASR 从 0.04 升至 0.64（16x）。Proposal 描述准确。
+
+6. Deng et al. (arXiv:2603.08234, Mar 2026): 确认存在，分析 continuation vs. refusal 的注意力头竞争机制。描述准确。
+
+7. AISA (Song et al., arXiv:2602.13547, Feb 2026): 通过时空分析定位安全注意力头，top-K=16 heads 达 0.92 检测精度。Proposal 描述准确。
+
+8. Depth Charge (Wu et al., arXiv:2603.05772, Mar 2026): SAHA 框架，揭示深层安全注意力头脆弱性，ASR 82-91%。Proposal 描述准确。
+
+9. XGuard-Train / X-Teaming (arXiv:2504.13203, COLM 2025): 30K 多轮安全训练数据集，SFT 训练减少高达 48.3% 漏洞。HuggingFace 数据集已公开。描述准确。
+
+10. 多轮安全防御近期工作: Attention-Aware GNN (Jul 2025), STREAM (May 2025), TurnGate (May 2026), DeepContext (Feb 2026), Latent Adversarial Detection (Apr 2026) — 多轮安全防御领域非常活跃，但尚无工作将 discourse-level training（非 safety-labeled）与安全效果因果关联。
+
+⚠️ 11. CoRL 2026 Call for Papers (corl.org): CoRL 是 Conference on Robot Learning，要求论文"focus on a core robotics problem"并"demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics"。鼓励 real-robot experiments 或 simulation-to-real transfer 的证据。主题包括机器人感知、控制、模仿学习、强化学习等。论文截稿 2026-05-29。
+
+- **调研总结**: 多轮 LLM 安全与注意力机制是一个快速发展的领域（2025-2026 年密集产出），已有多条独立研究线程（attention reallocation, circuit intervention, safety head identification, tipping point theory），但"非安全标注的 discourse-level 训练是否因果性地改善安全"这一具体问题确实未被回答。然而，**CoRL 是一个机器人学习会议，本 proposal 完全不涉及任何机器人问题**——这是一个根本性的 venue mismatch。
+
+
+【⚠️ 关键前置问题：Venue Mismatch】
+
+本 proposal 投稿目标为 **CoRL 2026（Conference on Robot Learning）**，但其内容 100% 关于 LLM 多轮对话安全、注意力机制分析和 jailbreak 防御。Proposal 中**没有任何机器人相关内容**——无机器人任务、无物理交互、无 sim-to-real、无控制问题。CoRL 的 Call for Papers 明确要求 "Submissions should focus on a core robotics problem"。
+
+Proposal 自身的 Target Venues 列的是 ICLR 2027 和 AAAI 2027，而非 CoRL。
+
+**这意味着此 proposal 在 CoRL 2026 几乎必然被 desk-reject，与 idea 质量无关。** 以下评估仍然按照 idea 本身的质量进行，但概率估计必须反映 venue mismatch 这一致命因素。
+
+
+【Trivial Alternative 检验】:
+
+存在多个更低成本的替代方案需要考虑：
+
+1. **直接用 XGuard-Train SFT**: XGuard-Train 已有 30K 多轮安全数据，SFT 直接在安全数据上训练，已证明减少 48.3% 漏洞。如果目标是改善多轮安全，这是最直接、成本最低的路径。Proposal 的增量价值在于测试"非安全标注的 discourse training 是否也能改善安全"——这是一个*机制理解*问题，不是一个*工程效用*问题。如果 CPL 的安全效果不如 XGuard-Train SFT，那核心 claim 就变成"discourse training 不足以替代 safety training"，这是一个有信息量但 unsurprising 的负面结论。
+
+2. **简单上下文截断/管理**: 如果 conversational inertia 来自于对 previous output 的对角注意力，一种 trivial approach 是简单截断或摘要化历史上下文。Wan et al. 的论文本身就提出了推理时 context management strategies。是否需要训练时干预（CPL）来解决一个推理时策略可能就能解决的问题？
+
+3. **直接将 DETAM 拓展到多轮**: Proposal 论证 DETAM 在多轮中"intent token 不可定位"，但这一论证并不绝对——可以将每个 turn 的完整 user input 作为 "intent region" 进行 attention amplification，成本远低于完整的 CPL 训练 + 5 阶段实验。
+
+**增量价值判断**: Proposal 的真正价值不在于实用防御方案，而在于*机制理解*——测试 attention capacity competition hypothesis。这限制了其 significance 上界：它是一个 mechanistic insight 论文，而非一个 defense method 论文。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链中存在多个未经验证的关键环节：
+
+1. **"对角注意力 = conversational inertia = 与安全注意力竞争"**: 这是整个 hypothesis 的基础，但存在逻辑跳跃。Wan et al. 的对角注意力描述的是"模型倾向于重复/延续之前的输出模式"，这是一个*任务表现*层面的现象。将其等同于"挤占安全注意力"需要证明二者确实在同一 attention budget 内竞争。softmax 的零和性质在数学上成立，但在 multi-head attention 中（32-64 个 heads），不同 head 可以专注不同功能——对角注意力 head 和安全 head 可能完全不重叠，使得 Level 1 假设落空。Proposal 通过 Phase 0.5 来测试这一点是正确的，但这也说明**核心假设在实验前是完全未验证的**。
+
+2. **"CPL 减少 inertia → 释放 attention capacity → 安全注意力增强"**: 即使 Level 1 或 Level 2 成立，CPL 减少对角注意力后，释放的 capacity 不一定流向安全功能——它可能流向其他任务功能（如更好的指令遵循、更准确的工具使用等）。没有机制保证释放的 attention 会被安全 head 捕获。
+
+3. **"Johnson & Huo 的 tipping point 模型适用于多轮 LLM 交互"**: Johnson & Huo 的模型是在手机级 AI 上验证的一个简化数学框架。将其直接映射到 transformer 的 multi-head attention 在多轮对话中的行为是一个很大的 analogy leap。
+
+4. **"多轮安全退化的主要驱动力是 attention inertia 而非其他因素"**: 多轮安全退化可能由多种因素驱动（context flooding, role confusion, goal drift, representation drift 等），attention inertia 只是其中之一。STAR (arXiv:2603.15684) 显示 monotonic drift from refusal representations——这更像是 representation-level 的问题而非 attention-level。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   核心研究问题（"非安全标注的 discourse training 是否因果性地改善安全"）确实未被直接回答，具有真实的 novelty delta。per-head diagonal attention decomposition 是 Wan et al. 明确未做的（"All attention heads are averaged"），这是一个有价值的贡献。triple-method safety head triangulation (Ships + DETAM sensitivity + AISA) 也是新的组合。
+   
+   但是：(a) 核心方法论是"将方法 A (CPL) 应用到领域 B (安全评估)"——这是一种 application-level novelty，而非 method-level 或 theory-level novelty；(b) three-level competition hypothesis 的逻辑结构（head → layer → representation）虽然组织清晰，但每一层的机制都已被独立工作暗示（Zhou et al. for head-level, Deng et al. for layer-level, X-Boundary for representation-level），proposal 的贡献是将它们组织为一个框架，而非发现新机制；(c) 与最近的 Attention-Aware GNN (Jul 2025)、DeepContext (Feb 2026)、Latent Adversarial Detection (Apr 2026) 等工作相比，mechanistic analysis of multi-turn safety attention 已经不再是完全空白的领域。
+
+2. **Significance: 中偏弱** — 
+   (a) **Venue mismatch 是致命的**：对于 CoRL 而言，这篇论文的 significance 为零——它不解决任何机器人问题；
+   (b) 即使忽略 venue 问题，significance 受限于几个因素：
+   - 如果结果是 positive（CPL 改善安全），审稿人反应更可能是 "interesting but incremental" 而非 "surprising"——因为 attention reallocation 改善安全已被 DETAM 证明，CPL 通过训练实现类似效果并不违反直觉；
+   - 如果结果是 negative（CPL 不改善安全），这是一个 unsurprising 的负面结果——毕竟 CPL 没有在安全数据上训练，不改善安全是默认预期；
+   - 研究影响范围局限于 mechanistic understanding 而非实用方法：即使 hypothesis 被验证，实际防御中直接用 safety-labeled training（XGuard-Train）或 inference-time intervention（DETAM）仍更有效；
+   - Wan et al. 的 CPL 代码未公开（"Code not released"），reproduction 风险增加了不确定性。
+
+3. **Related Work: 强** — 
+   Related work 覆盖异常全面：涵盖了 attention reallocation defense (DETAM)、circuit intervention (ASGuard)、safety head identification (Zhou et al., AISA, Depth Charge)、attention competition theory (Johnson & Huo, Deng et al.)、multi-turn safety benchmarks (MT-AgentRisk, OpenAgentSafety)、multi-turn safety defenses (XGuard-Train, MUSE-D, X-Boundary, MTSA)、discourse dynamics (Wan et al.)、DPO length bias (Park et al., Meng et al.)。差异化定位清晰——明确说明 DETAM 的单轮限制、ASGuard 的电路特异性限制、现有工作均未测试 discourse → safety 因果链。每篇引用论文经调研确认真实存在且描述准确。
+
+
+【概率估计】: [0% - 3%] 中位 1%
+
+【估计理由】: 
+**概率估计主要由 venue mismatch 决定，而非 idea 质量。** CoRL 2026 是 Conference on Robot Learning，明确要求论文 "focus on a core robotics problem"。本 proposal 100% 关于 LLM 多轮对话安全与注意力机制，不涉及任何机器人内容。这将导致几乎确定的 desk-reject。
+
+若忽略 venue 因素，仅评估 idea 本身在合适 venue（如 ICLR/NeurIPS/ACL）的质量，我的估计为 **[22% - 32%] 中位 27%**：
+- Related Work 覆盖强（下限保障）
+- Novelty 中等（application-level novelty, per-head decomposition 有价值但 contribution 有限）
+- Significance 受限（positive result 不够 surprising, negative result 是默认预期, 实用影响有限）
+- 前提假设链条中 2-3 个环节未经验证
+- Trivial alternative（直接 safety training）威胁 significance claim
+
+**限制上界的维度**: Significance。核心发现无论 positive 还是 negative，审稿人都不太会说 "surprising"。正面结果（CPL 改善安全）是 DETAM 已证明的方向的延伸；负面结果（CPL 不改善安全）是默认预期。加上 venue mismatch，实际概率极低。
+
+【主要风险】:
+1. **Venue Mismatch（致命）**: CoRL 是机器人学习会议，本 proposal 无任何机器人内容，几乎必然 desk-reject。Proposal 自身列出的 Target Venues 是 ICLR 2027 和 AAAI 2027。
+2. **Significance Ceiling**: 核心 hypothesis 的 positive/negative 结果均不够 surprising——positive 是已知方向的延伸，negative 是默认预期。这使得即使在合适 venue，论文也面临 "interesting but incremental" 的评价风险。
+```
+
+---
+
+**总结**：这是一个在 related work 覆盖和实验设计形式上非常成熟的 proposal，核心研究问题（discourse training → safety）有真实的 novelty gap。但存在两个根本问题：
+
+1. **CoRL 2026 是完全错误的投稿 venue**——这不是一个可以通过修改弥补的问题，而是 proposal 主题与会议 scope 的根本不匹配。建议考虑 proposal 自身提出的 ICLR 2027 或其他 NLP/AI safety venue。
+
+2. **即使在合适 venue，idea 的 significance ceiling 有限**——核心是一个 mechanistic insight 研究，无论结果如何都不会产生足够 surprising 的发现来支撑顶会中稿的上限。
+
+Sources:
+- [DETAM - arXiv:2504.13562](https://arxiv.org/abs/2504.13562)
+- [DETAM - ACL Anthology](https://aclanthology.org/2025.findings-acl.613/)
+- [ASGuard - arXiv:2509.25843](https://arxiv.org/abs/2509.25843)
+- [ASGuard - ICLR 2026 OpenReview](https://openreview.net/forum?id=wmiEXNEXPs)
+- [Wan et al. Conversational Inertia - arXiv:2602.03664](https://arxiv.org/abs/2602.03664)
+- [Johnson & Huo Tipping Points - arXiv:2602.14370](https://arxiv.org/abs/2602.14370)
+- [Zhou et al. Ships - arXiv:2410.13708 (ICLR 2025 Oral)](https://arxiv.org/abs/2410.13708)
+- [Deng et al. Continuation vs Refusal - arXiv:2603.08234](https://arxiv.org/abs/2603.08234)
+- [AISA - arXiv:2602.13547](https://arxiv.org/abs/2602.13547)
+- [Depth Charge - arXiv:2603.05772](https://arxiv.org/abs/2603.05772)
+- [X-Teaming / XGuard-Train - arXiv:2504.13203](https://arxiv.org/abs/2504.13203)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [Attention-Aware GNN Defense - arXiv:2507.07146](https://arxiv.org/abs/2507.07146)
+- [MTSA - arXiv:2505.17147](https://arxiv.org/abs/2505.17147)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Based on my research, I now have sufficient information to evaluate this proposal. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562): 直接相关的推理时防御。通过修改注意力掩码放大intent token的注意力，单轮ASR从46%降至1.2%。证实注意力重分配可因果性地改善安全性。但限于单轮设置且需运行时识别intent tokens。
+- ASGuard (Park et al., ICLR 2026, arXiv:2509.25843): 训练时注意力头干预。通过EAP-IG定位漏洞相关的注意力头，训练channel-wise scaling vector。在tense jailbreaking上ASR从42%降至8%。但明确局限于"可定位的因果电路"，无法处理渐进式多轮侵蚀。
+- Wan et al. Conversational Inertia (ICML 2026, arXiv:2602.03664): 识别对角注意力作为"会话惯性"的机制，提出CPL（LoRA rank-16 DPO，beta=0.01）。在8个agentic环境中验证改善性能。关键点：该工作完全不涉及安全评估；对角注意力仅在聚合层面（所有头平均）表征。
+- Zhou et al. (ICLR 2025, arXiv:2410.13708): Ships score识别安全关键注意力头，发现Llama-2-7B-Chat中Head(2,26)最关键。消融单个safety head可使有害响应增加16倍。
+- AISA (Song et al., arXiv:2602.13547): 通过时空分析定位安全关键注意力头，K=16头在中间层达到0.92检测精度。提供了第三种互补的head定位方法。
+- Johnson & Huo (arXiv:2602.14370, Feb 2026): 数学形式化注意力竞争的tipping point机制。理论框架，但来自物理系，在NLP社区的接受度待验证。
+- Deng et al. (arXiv:2603.08234, Mar 2026): 机制分析continuation vs. refusal heads的对抗关系。Safety heads在layers 25-27，continuation heads在Layer 13。
+- X-Boundary (EMNLP 2025, arXiv:2502.09990): 表示层面防御，多轮ASR从58.5-76%降至16-25%，同时减少over-refusal ~20%。
+- XGuard-Train (COLM 2025, arXiv:2504.13203): 直接在多轮安全数据上SFT，达到48.3%漏洞减少。
+- MTSA (ACL 2025, arXiv:2505.17147): RL-based对齐，ASR从74.5%降至23.5%。
+- 调研总结: 多轮LLM安全防御是2025-2026活跃领域，已有多种有效防御（XGuard-Train, X-Boundary, MTSA），且注意力头在安全中的作用已被充分研究。Wan et al.的CPL是性能导向的工作，从未涉及安全。本proposal处于"连接两个已有方向（会话惯性 + 注意力安全机制）"的位置，核心是一个empirical bridge。
+
+【Trivial Alternative 检验】:
+存在明显的trivial alternative威胁：
+1. **直接在安全数据上训练**：XGuard-Train SFT已达48.3%漏洞减少，X-Boundary将ASR降至16%，MTSA从74.5%降至23.5%。这些方法直接针对安全目标训练，成本更低，效果已验证。如果目标是改善多轮安全，为什么要用一个间接的discourse干预（CPL）而不是直接的安全训练？
+2. **简单地运行CPL + 安全评估**：不需要5个phase、3个level、Phase 0.5的复杂框架就能回答"CPL是否改善安全"这个核心问题。per-head分解和triple triangulation增加了方法论完备性，但核心实验就是"训练CPL，跑安全benchmark"。
+3. **增量价值论证**：proposal的增量在于"理解机制"而非"达到最优防御"。如果CPL确实改善安全，其价值在于证明一个非安全导向的训练可以间接改善安全——这是一个关于机制理解的贡献，而非实用防御贡献。这使得significance受限于mechanistic insight社区。
+
+【前提假设检验】:
+核心逻辑链中有3个未验证假设：
+1. **对角注意力与安全注意力共享容量（head/layer overlap）**：这是整个competition hypothesis的前提。Wan et al.从未测量过per-head对角注意力分布，Zhou et al./AISA的safety heads定位是在不同模型/不同条件下做的。两者是否overlap是完全未知的——proposal自己承认这需要Phase 0.5来验证。但如果Phase 0.5结果是Level 3（<10% overlap），整个competition hypothesis的强形式就坍塌了。
+2. **CPL的注意力重分配效果可持续到安全场景**：CPL在agentic performance任务上验证过，但安全场景的token分布、上下文结构完全不同。CPL训练数据来自AgentGym环境（ALFWorld, WebShop等），没有理由假设这种训练能泛化到safety-relevant的注意力分配。
+3. **多轮安全侵蚀的根本原因是注意力惯性累积**：这假设crescendo attacks之所以成功是因为对角注意力progressively dilutes safety attention。但Du et al.(ASJA)只是展示了相关性（successful attacks correlate with attention dispersion），而非因果性。多轮攻击的成功可能更多是因为in-context learning of harmful frames，而非简单的注意力重分配问题。
+
+【3 维度打分】:
+  1. Novelty: 中 — 核心贡献是连接两个已有方向（CPL/会话惯性 + 注意力安全机制），per-head diagonal attention分解是modest but real的新贡献。但"把方法A用在领域B看效果如何"本质上是一个application/bridge study，理论框架（三级competition hypothesis）更多是taxonomy而非deep insight。与最相关工作对比：DETAM已证明注意力重分配→安全改善的因果链；ASGuard已证明训练时头修改可行；Wan et al.已提出CPL。本proposal的真正novel delta是"测试非安全导向训练能否间接改善安全"——有价值但非paradigm-shifting。
+  2. Significance: 中偏弱 — 如果结果positive（CPL改善安全）：不够surprising，因为DETAM已证明注意力重分配改善安全，CPL也是一种注意力重分配，逻辑上已经expected。如果结果negative（CPL不改善安全）：更不surprising，因为CPL不是为安全设计的。真正surprising的发现场景很窄：只有"CPL的效果comparable to直接安全训练（如XGuard-Train）"这一特定结果才会让审稿人说"I didn't expect that"。此外，对实际多轮安全防御的实用影响有限——已有更直接有效的方法。
+  3. Related Work: 强 — proposal对相关工作的覆盖极为全面详尽，引用的论文经验证均为真实存在，描述准确。差异化定位清晰（DETAM单轮+推理时；ASGuard circuit-specific；CPL untargeted discourse-level training）。对gap的论证逻辑严密。这是proposal最强的维度。
+
+【概率估计】: [22% - 32%] 中位 26%
+
+【估计理由】: 
+Related Work覆盖是强项，表明作者对领域理解深入。但Novelty止于"中"——本质上是一个well-motivated的empirical bridge study，连接了两个已有方向，不是一个新的insight或paradigm。Significance是主要限制维度：无论结果正反，审稿人大概率反应是"I would have guessed this"——positive结果因DETAM的先例而expected，negative结果因CPL非安全导向而expected。只有极窄的outcome space（CPL匹敌直接安全训练的效果）才会产生surprise。上界受限于significance维度——即便实验执行完美，核心发现的exciting程度不够high-impact venue的门槛。此外，venue mismatch需注意：用户询问CoRL 2026（机器人学习会议），但本proposal完全是NLP/AI safety工作，与CoRL完全不匹配。若投ICLR 2027（proposal自述目标），上述概率适用。若投CoRL，概率接近0%。
+
+【主要风险】: 
+1. **"Expected outcome"陷阱**：核心发现无论正反都不够surprising——审稿人会质疑"so what?"。正面结果→"注意力重分配改善安全已知（DETAM），你只是用了另一种方式做"；负面结果→"一个非安全导向的训练不改善安全，不意外"。
+2. **Trivial alternative质疑**：审稿人会问"为什么不直接用安全训练数据？XGuard-Train/X-Boundary已经很有效了，你的间接方法的practical value在哪里？"——这使得contribution定位被压缩到纯mechanistic insight，而mechanistic insight的novelty又被DETAM/ASGuard部分覆盖。
+```
+
+Sources:
+- [DETAM: Defending LLMs Against Jailbreak Attacks via Targeted Attention Modification](https://arxiv.org/abs/2504.13562)
+- [ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack](https://arxiv.org/abs/2509.25843)
+- [Mitigating Conversational Inertia in Multi-Turn Agents](https://arxiv.org/abs/2602.03664)
+- [On the Role of Attention Heads in Large Language Model Safety (Zhou et al., ICLR 2025)](https://arxiv.org/abs/2410.13708)
+- [AISA: Awakening Intrinsic Safety Awareness in Large Language Models](https://arxiv.org/abs/2602.13547)
+- [Competition for attention predicts good-to-bad tipping in AI](https://arxiv.org/pdf/2602.14370)
+- [X-Boundary: Establishing Exact Safety Boundary](https://arxiv.org/abs/2502.09990)
+- [MTSA: Multi-turn Safety Alignment](https://arxiv.org/html/2505.17147)
+- [X-Teaming: Multi-Turn Jailbreaks and Defenses](https://arxiv.org/pdf/2504.13203)
+- [The Struggle Between Continuation and Refusal](https://arxiv.org/pdf/2603.08234)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Does Reducing Conversational Inertia Improve Multi-Turn Safety? Testing the Attention Capacity Competition Hypothesis
+
+## Description
+This project conducts the first controlled interventional study testing whether mitigating conversational inertia — diagonal attention to previous outputs (Wan et al., ICML 2026) — causally reduces multi-turn safety erosion, organized around a refined three-level 'attention capacity competition hypothesis.' We build on DETAM's proof that inference-time attention reallocation improves safety (ASR 46%→1.2%) and ASGuard's demonstration that training-time head modification is feasible for specific vulnerabilities, testing whether CPL achieves broad attention reallocation through untargeted discourse training — addressing the progressive multi-turn erosion that DETAM (single-turn, requires runtime intent localization) and ASGuard (targets specific localizable circuits) structurally cannot. In multi-turn crescendo attacks, malicious intent is distributed across turns, making DETAM's intent-token identification ill-defined; CPL instead reduces the cumulative inertia that pushes systems past Johnson & Huo's tipping point. A novel Phase 0.5 provides the first per-head decomposition of diagonal attention (Wan et al. explicitly averages all heads) and measures overlap with safety-critical heads using triple triangulation (Ships score, DETAM sensitivity, AISA spatiotemporal analysis), cross-validated against published head sets (Zhou et al., Depth Charge, ASGuard — whose 4 Layer-13 vulnerable heads independently corroborate the continuation-safety nexus). Our five-phase causal design tests CPL against five confound controls including XGuard-Train SFT at both published and CPL-matched ranks. Mechanistic verification tests whether CPL achieves 'implicit DETAM' (same heads, same direction) and 'implicit circuit modification' (affecting ASGuard's identified vulnerable heads without targeting them). The study is designed for informative outcomes at all three competition levels, with the per-head diagonal attention decomposition, triple-method head identification comparison, and DETAM/ASGuard mechanistic comparison constituting standalone contributions.
+
+## Core Problem
+Multi-turn agent interactions exhibit systematic safety degradation (16% higher attack success rates), and while recent work has identified attention-level mechanisms — attention dispersion on safety keywords (ASJA, AAAI 2025), competition between safety and continuation heads (Deng et al., 2026), and attention reallocation as a defense (DETAM, ACL 2025 Findings) — and developed multi-turn safety defenses (MUSE-D turn-level DPO, EMNLP 2025; XGuard-Train SFT, COLM 2025; X-Boundary representation boundaries, EMNLP 2025; MTSA RL-based alignment, ACL 2025), and even training-time attention head interventions for specific vulnerability types (ASGuard circuit-targeted scaling, ICLR 2026), these studies are either attack-oriented, single-turn, operate at inference time, target specific localizable vulnerabilities, or train directly on safety-labeled data without testing whether discourse-level mechanisms causally drive safety erosion. Critically, DETAM (Li et al., ACL 2025 Findings) demonstrates that simply reallocating attention from attack tokens toward safety-relevant tokens at inference time — without any weight changes — reduces ASR from 46% to 1.2% on LLaMA-2, providing the strongest existing evidence that attention redistribution causally improves safety. Yet DETAM requires explicit identification of 'intent tokens' at runtime and operates only in single-turn settings — in multi-turn crescendo attacks where malicious intent is progressively distributed across turns, the notion of localizable 'intent tokens' breaks down fundamentally. ASGuard (Park et al., ICLR 2026) demonstrates that training-time modification of safety-relevant heads is feasible via circuit-targeted scaling vectors, but its efficacy 'hinges on localizable causal circuits' for specific attack types (tense jailbreaking) — multi-turn safety erosion through cumulative discourse dynamics may not produce such localizable circuits. No work has tested whether a training-time discourse intervention (reducing conversational inertia) achieves broad attention reallocation indirectly, nor whether the specific attention heads carrying diagonal inertia patterns overlap with safety-critical heads — a prerequisite for the softmax zero-sum competition mechanism to operate at the head level. Notably, the only characterization of diagonal attention (Wan et al., ICML 2026) reports aggregate-level patterns averaged across all heads; no per-head decomposition exists, leaving the head-level competition question empirically open. Additionally, the response-length confound in DPO-based interventions has never been explicitly controlled for in safety evaluations of discourse-level interventions.
+
+## Opportunity
+Six independent research threads have converged to make a controlled causal study newly feasible: (1) Conversational Inertia (Wan et al., ICML 2026) identifies diagonal attention where the i-th token attends to the i-th previous output position and provides Context Preference Learning (CPL) as a parameter-efficient intervention (0.4% params, LoRA rank-16 DPO with beta=0.01), validated on Qwen3-8B and Llama 3.1-8B-Instruct across eight agentic environments but never evaluated for safety — crucially, the diagonal attention pattern is characterized only at the aggregate level (averaged across all heads), so the per-head distribution remains unknown; (2) DETAM (Li et al., ACL 2025 Findings) provides direct causal evidence that attention reallocation toward safety-relevant tokens improves safety — reducing ASR by 97%+ without weight modification — but requires runtime intent token identification and is single-turn only, creating a fundamental limitation for multi-turn settings where intent is distributed across turns; (3) ASGuard (Park et al., ICLR 2026) demonstrates that training-time modification of safety-relevant attention heads is feasible via circuit-targeted channel-wise scaling vectors and preventative fine-tuning — crucially, ASGuard identifies 4 vulnerable heads at Layer 13 in Llama-3.1-8B (L13H8, L13H18, L13H25, L13H30), exactly where Deng et al. find continuation heads, providing independent corroboration that Layer 13 is a nexus of safety-relevant competition — but ASGuard targets specific localizable vulnerability circuits (tense jailbreaking) rather than discourse-level dynamics; (4) Multi-turn safety erosion is now well-benchmarked via MT-AgentRisk (365 tasks, 5 tools, avg 3.19 turns) with ToolShield as a defense baseline, and supplemented by OpenAgentSafety (ICLR 2026, 356 real-tool tasks with multi-turn multi-user dynamics); (5) Multi-turn safety training has mature baselines spanning multiple paradigms: XGuard-Train SFT (COLM 2025, up to 48.3% vulnerability reduction), MUSE-D turn-level DPO (EMNLP 2025, 24% ASR reduction), X-Boundary representation-level boundaries (EMNLP 2025, ASR reduction to 16-25%), and MTSA RL with future rewards (ACL 2025, ASR 74.5% to 23.5%) — but all train directly on safety-labeled data; (6) AISA (Song et al., arXiv:2602.13547) provides a third complementary method for localizing safety-critical attention heads via spatiotemporal analysis — identifying that safety-discriminative signals concentrate in middle-layer head outputs with K=16 heads achieving 0.92 detection accuracy — enabling methodological triangulation in our head overlap analysis. This six-thread convergence, combined with Johnson & Huo's (2026) formalization of attention competition tipping points and the layered distribution of safety mechanisms across layers 2-27, motivates a three-level attention capacity competition hypothesis testable through a novel Phase 0.5 head overlap analysis.
+
+## Landscape
+**Attention reallocation defenses:** DETAM (Li et al., ACL 2025 Findings, arXiv:2504.13562) is the most directly relevant inference-time prior work. It identifies attention heads sensitive to jailbreaks by computing attention score differences between successful and unsuccessful defenses (threshold alpha: 0.1 for LLaMA-2, 0.03 for Vicuna). During inference, it modifies the causal mask matrix by multiplying mask values at intent token positions by beta=5.0, amplifying attention to the user's core intention. DETAM reduces average ASR from 46.0% to 1.2% on LLaMA-2-7b-chat and from 81.8% to 4.0% on Vicuna-13b-v1.5. Cross-model transferability: sensitive heads from LLaMA-2 transferred to Meta-LLaMA-3 achieve 4% ASR vs. 96% vanilla. However, DETAM has three fundamental limitations for multi-turn agent settings: (a) it requires runtime identification of 'intent tokens' — in multi-turn crescendo attacks (Russinovich et al., USENIX Security 2025) where harmful intent is progressively distributed across turns, no single set of tokens constitutes 'the intent,' making DETAM's token-level localization fundamentally ill-defined; (b) it is tested only in single-turn settings and cannot address the cumulative attention shift across turns that Johnson & Huo's tipping point theory predicts; (c) it imposes per-turn computational overhead for mask modification in each forward pass across all turns of agent interaction. Our study tests whether CPL achieves DETAM-like attention redistribution persistently through training, addressing a failure mode DETAM structurally cannot: the gradual accumulation of continuation pressure across turns that progressively dilutes safety attention below the tipping point. **Training-time attention head intervention:** ASGuard (Park et al., ICLR 2026, arXiv:2509.25843) is the closest existing work to training-time attention head modification for safety. It uses Edge Attribution Patching with Integrated Gradients (EAP-IG) to identify attention heads causally linked to specific jailbreaking vulnerabilities, trains channel-wise activation scaling vectors (s_j ∈ R^{d_head}, applied via Hadamard product H'_{l,j} = H_{l,j} ⊙ s_j) on identified heads, and applies preventative fine-tuning with scaling vectors frozen. On tense jailbreaking, ASGuard reduces ASR from 42% to 8% on Llama-3.1-8B and 51% to 8% on Qwen2.5-7B, achieving Pareto-optimal safety-utility balance. Critically, ASGuard identifies 11 vulnerable heads in Llama-3.1-8B, of which 4 are at Layer 13 (L13H8, L13H18, L13H25, L13H30) — exactly where Deng et al. find continuation heads — providing independent corroboration that Layer 13 is a nexus of safety-relevant attention competition. However, ASGuard differs from our approach in three key ways: (a) it targets specific, localizable vulnerability circuits ('efficacy hinges on localizable causal circuits' — their Limitations, Section 7) — multi-turn safety erosion through cumulative discourse dynamics may not produce such localizable circuits, as the failure is progressive rather than circuit-specific; (b) it surgically fixes known attack types (tense jailbreaking, GCG, LogiBreak) one at a time, whereas CPL is an untargeted discourse intervention testing whether reducing general inertia achieves broad safety benefits; (c) it is single-turn only. ASGuard's success actually supports a key premise of our hypothesis: training-time modification of attention heads CAN improve safety. Our study tests whether indirect, untargeted discourse training achieves what targeted head intervention achieves — and whether it generalizes to the multi-turn progressive erosion that targeted approaches cannot address. **Safety head localization methods:** AISA (Song et al., arXiv:2602.13547) provides a third complementary approach to localizing safety-critical heads via spatiotemporal analysis — large-scale linear probing across 15 positions per layer identifies that attention head outputs demonstrate superior safety separability, with top-K=16 heads (concentrated in middle layers) achieving 0.92 detection accuracy and O(1) runtime overhead. AISA's finding that safety heads cluster in middle layers in standard models but shift toward higher layers in strongly safety-aligned models adds nuance to the competition hypothesis — the relevant layers may differ by alignment strength. **Attack-side mechanisms:** Du et al. (ASJA, AAAI 2025) show that successful multi-turn jailbreaks correlate with attention dispersion away from safety keywords (p=4.38e-07), achieving 44.9% higher ASR. Deng et al. (arXiv:2603.08234) identify competing safety and continuation attention heads — safety heads concentrated in layers 25-27, continuation heads in middle layers (~Layer 13) — whose antagonistic interaction determines jailbreak success. Notably, continuation heads at Layer 13 occupy the same layer range as both induction/copying mechanisms AND ASGuard's identified vulnerable heads, suggesting this layer is a critical nexus where diagonal attention patterns, continuation signals, and safety vulnerability converge. Depth Charge (Wu et al., arXiv:2603.05772, March 2026) introduces SAHA using Ablation-Impact Ranking and Layer-Wise Perturbation, achieving 82-91% ASR, revealing layer-specific safety head concentrations (layer 7 for Llama 3.1-8B, layer 5 for Qwen 1.5-7B, head 31 universally important) and sharp threshold behavior. Attention Eclipse (Zaree et al., arXiv:2502.15334) achieves 91.2% ASR by manipulating attention to strengthen harmful content focus and weaken safety focus. **Attention competition theory:** Johnson & Huo (arXiv:2602.14370, Feb 2026) formalize the competition-for-attention mechanism mathematically, showing that dot-product competition creates dynamical tipping points (n*) where behavior transitions from safe to unsafe — providing the theoretical framework for why cumulative inertia across turns can push the system past a tipping point that single-turn defenses like DETAM cannot prevent. **Multi-turn safety benchmarking:** Yang et al. (arXiv 2026) document 16% average ASR increase on MT-AgentRisk and propose ToolShield (~30% ASR reduction). OpenAgentSafety (ICLR 2026) provides 356 multi-turn, multi-user tasks with real tools. Li et al. (STAR, arXiv:2603.15684) show monotonic drift from refusal representations. MultiBreak (arXiv:2605.01687) provides 10,389 multi-turn adversarial prompts. **Multi-turn safety defenses:** X-Teaming (COLM 2025, arXiv:2504.13203) introduces XGuard-Train, a 30K multi-turn safety training dataset. Models SFT-trained on a 14K subset with LoRA rank-8, lr=1e-4, 3 epochs achieve up to 48.3% vulnerability reduction on Llama-3.1-8B and Qwen-2.5-7B. MUSE-D (EMNLP 2025, arXiv:2509.14651) applies turn-level DPO achieving 24% ASR reduction. X-Boundary (Lu et al., EMNLP 2025, arXiv:2502.09990) operates at the representation level, reducing multi-turn ASR from 58.5-76.0% to 16.0-25.0% while reducing over-refusal by ~20%. MTSA (Guo et al., ACL 2025, arXiv:2505.17147) performs RL with future rewards, reducing ASR from 74.5% to 23.5%, with the finding that maximum attack effectiveness peaks at round 5 — confirming multi-turn pressure accumulates through discourse dynamics. Agent Safety Alignment (Sha et al., arXiv:2507.08270) proposes unified sandboxed RL with benign/malicious/sensitive taxonomy. STREAM (arXiv:2506.00668) proposes safety reasoning moderator reducing ASR by 51.2%. TurnGate (arXiv:2605.05630) introduces turn-level harm detection. **Discourse dynamics:** Wan et al. (ICML 2026, arXiv:2602.03664; note: also submitted to ICLR 2026 as OpenReview #UubLs3lUfk, subsequently published in PMLR 306 at ICML 2026, Seoul, July 6-11) identify conversational inertia and propose CPL. The paper characterizes diagonal attention only at the aggregate level — explicitly stating 'All attention heads are averaged to create a unified attention matrix' and 'the trend of diagonal attention in the final layer is similar to other layers' — with no per-head decomposition. Code not released. **Safety attention head mechanisms:** Zhou et al. (ICLR 2025, arXiv:2410.13708) show the single most critical head in Llama-2-7B-Chat is Head (2, 26) at Layer 2. Wei et al. identify safety layers at layers 9-14. The refusal direction (Arditi et al.) is strongest around layer 15. Safety Alignment Should Be Made More Than Just A Few Attention Heads (arXiv:2508.19697) proposes distributed safety head training. **Safety persistence:** Plaut (arXiv:2603.02229) shows LoRA safety DPO persists with 90-94% retention, Pareto frontier R-squared=0.77, slope=-0.83. **DPO length bias:** Park et al. (2024) and Meng et al. (2024) document hidden length dependence. **Gap:** Despite convergent progress on inference-time attention reallocation (DETAM), training-time targeted head intervention (ASGuard), training-time safety defenses (XGuard-Train, MUSE-D, X-Boundary, MTSA), safety head localization (Zhou et al., AISA, Depth Charge), attention competition theory (Johnson & Huo), and discourse dynamics (conversational inertia), no work has: (a) tested whether a training-time discourse intervention achieves broad DETAM-like attention reallocation and causally reduces safety erosion in multi-turn settings — addressing the progressive accumulation that both DETAM (single-turn only) and ASGuard (circuit-specific only) cannot; (b) provided a per-head decomposition of diagonal attention to determine whether inertia heads overlap with safety heads; (c) compared discourse-targeted vs. safety-targeted training under matched parameter budgets; or (d) controlled for DPO response-length confounds in discourse-safety evaluations.
+
+## Approach
+We run a five-phase causal study on MT-AgentRisk (primary) and OpenAgentSafety (secondary) benchmarks using Qwen3-8B and Llama 3.1-8B-Instruct, organized around the 'attention capacity competition hypothesis' and motivated by a specific gap that neither DETAM nor ASGuard can address: progressive multi-turn safety erosion through cumulative discourse dynamics.
+
+**Why Training-Time Discourse Intervention? The Multi-Turn Intent Distribution Problem.** DETAM achieves 97%+ ASR reduction in single-turn settings at zero training cost — but it requires identifying 'intent tokens' at runtime. In multi-turn crescendo attacks where harmful intent is progressively distributed across 3-10 turns (MTSA finds peak attack at round 5), no single set of tokens constitutes 'the intent.' The malicious instruction at turn 7 is only harmful in the context of the innocuous-seeming turns 1-6 that established the frame. DETAM cannot solve this because its mechanism — amplifying attention to intent tokens in sensitive heads — presupposes that intent is localizable within a single turn. ASGuard demonstrates training-time head modification is feasible but targets specific localizable circuits (tense jailbreaking), and its own Limitations section notes 'efficacy hinges on localizable causal circuits.' Multi-turn safety erosion through cumulative inertia is NOT a localizable circuit — it's a progressive process where each turn incrementally shifts the attention distribution. CPL's advantage is that it operates at the discourse dynamics level: reducing the cumulative inertia that progressively dilutes safety attention across turns, without needing to identify which tokens are 'intent' tokens or which circuits carry a specific vulnerability. It addresses the ROOT CAUSE (attention inertia accumulation across turns) rather than the SYMPTOM (misallocated attention at any single turn). This is the failure mode that Johnson & Huo's tipping point theory predicts: gradual accumulation of continuation pressure pushes the system past n* — and the only way to prevent reaching the tipping point is to reduce the per-turn accumulation rate, which is exactly what CPL does.
+
+**The Attention Capacity Competition Hypothesis (Three-Level Framework):** We theorize that diagonal attention (the inertia mechanism) competes with safety-keyword attention at three distinct levels: **Level 1 (Head-level, strong form):** If diagonal attention and safety attention share the same heads, softmax's zero-sum constraint directly displaces safety-keyword attention. Given that safety heads span layers 2-27 and induction/copying mechanisms typically concentrate in middle layers, partial overlap is plausible. **Level 2 (Layer-level, medium form):** If diagonal and safety attention occupy different heads within the same or adjacent layers, competition occurs through the residual stream. This is supported by Deng et al.'s finding that continuation heads (Layer 13) antagonize safety heads (Layers 25-27), and strikingly corroborated by ASGuard's identification of 4 vulnerable heads at Layer 13 in Llama-3.1-8B (L13H8, L13H18, L13H25, L13H30) — the same layer where continuation heads reside, independently confirming Layer 13 as a nexus of safety-relevant competition. **Level 3 (Representation-level, weak form):** Competition mediated through accumulated representation drift, validated by X-Boundary's success (ASR 58.5% to 16.5%). Phase 0.5 empirically determines which level(s) apply.
+
+**Phase 0 — CPL Acquisition/Reproduction + Baseline Preparation (weeks 1-3):** Contact Wan et al. for CPL checkpoints (ICML 2026 July 6-11). Simultaneously reproduce CPL using TRL DPOTrainer + PEFT: LoRA rank-16, alpha-16, 0.4% params, DPO with beta=0.01, sigmoid loss, 2 epochs, lr=5e-7, AdamW, 1000 preference pairs per environment. The training recipe maps directly to TRL v1.0+ (sigmoid loss is the default DPOConfig, all hyperparameters natively supported); the main reproduction risk is the preference pair construction pipeline (dual-rollout with long-context vs. short-context on AgentGym environments) rather than the training loop itself. Estimated: ~40 A100-hours per model. In parallel, prepare XGuard-Train SFT baselines: (a) LoRA rank-8 with lr=1e-4, 3 epochs (matching published configuration from X-Teaming, validated on Llama-3.1-8B and Qwen-2.5-7B); (b) LoRA rank-16 with CPL-matched hyperparameters for parameter-matched comparison. Construct extended-turn variants: prepend 4-6 benign tool-use turns to 50 representative MT-AgentRisk tasks.
+
+**Hard Go/No-Go Checkpoint at Week 3:** The project proceeds to Phase 0.5 only if ALL criteria are met: (1) AgentGym environment setup working for >=3 of 8 environments (prioritizing ALFWorld, WebShop, HotpotQA); (2) dual-rollout preference pair generation produces pairs where long-context trajectories show measurably higher diagonal attention scores than short-context trajectories (statistically significant at p<0.05 on at least 2 environments); (3) DPO training pipeline converges (decreasing loss, increasing reward margins over 2 epochs); (4) base model evaluation on >=2 environments matches Wan et al.'s published baselines within 1 SEM. **Fallback paths:** (a) environment failure: proceed with 2-3 most reliable environments; (b) inertia differential failure: pivot to correlational-only study (Phases 1 and 4 only); (c) training failure: debug 1 additional week — if still failing by week 4, pivot to 'DETAM in multi-turn settings' (extending DETAM's mechanism to MT-AgentRisk, testing whether Focus Loss intensifies across turns).
+
+**Phase 0.5 — Head Overlap Test and Per-Head Diagonal Attention Decomposition (weeks 3-4, ~20 A100-hours):** This phase provides the first per-head decomposition of diagonal attention patterns and tests the prerequisite assumption of the competition hypothesis. Using both base models on 50 MT-AgentRisk tasks: (a) **Novel per-head diagonal attention decomposition:** Compute diagonal attention scores per head (not just aggregate) using Wan et al.'s metric (attention between current output position i and previous assistant output position i +/- 5 tokens) — this is the first such decomposition, given that Wan et al. explicitly average all heads ('All attention heads are averaged to create a unified attention matrix'). Identify which heads carry the strongest diagonal patterns and their layer distribution. (b) **Safety head identification via triple triangulation:** Apply three complementary methods: (i) Ships score (Zhou et al., ICLR 2025) via KL divergence after head ablation; (ii) DETAM's sensitivity metric (attention score differences between successful/unsuccessful safety responses); (iii) AISA's spatiotemporal analysis — linear probing on head outputs at final structural tokens to identify safety-discriminative heads (K=16). Cross-validate against published localizations: Zhou et al.'s Head (2,26) for Llama-2-family; Depth Charge's layer-specific data (layer 7 for Llama 3.1-8B); ASGuard's EAP-IG identified heads (11 heads for Llama-3.1-8B including 4 at Layer 13). Using three independent methods plus cross-validation against three published head sets provides robust head identification. (c) **Overlap analysis:** Compute Jaccard index between top-k diagonal attention heads and top-k safety heads (k = 5, 10, 20, 50) with permutation tests. Also measure layer-level co-occurrence (same layer, different heads). Cross-reference against ASGuard's Layer 13 vulnerable heads — if diagonal attention heads concentrate at Layer 13, this would connect conversational inertia to the continuation-safety competition nexus identified by both Deng et al. and ASGuard independently. (d) **Level determination:** Level 1 (>30% head overlap) — proceed with strong per-head softmax hypothesis; Level 2 (same layers, <30% head overlap) — reformulate around residual stream competition, particularly the Layer 13 continuation-inertia-safety nexus; Level 3 (<10% overlap in both heads and layers) — reformulate around representation-level competition. Each determination shapes subsequent analysis. This phase costs ~20 A100-hours but de-risks the project and provides standalone novel contributions (first per-head diagonal attention map; first triple-method safety head identification comparison).
+
+**Phase 1 — Correlational with Attention Capacity Analysis (weeks 4-7):** Measure diagonal attention (per-head, informed by Phase 0.5) AND safety-keyword attention concentration at each turn on 365 MT-AgentRisk tasks and 50 extended-turn variants. Calibrate analysis to competition level from Phase 0.5. Fit mixed-effects regressions testing P1 (diagonal attention negatively correlates with safety attention at the operative level), controlling for turn position, task category, model, and response token count. Test Granger causality for temporal dynamics.
+
+**Phase 2 — Interventional with Confound Controls (weeks 7-11):** Apply CPL and re-evaluate on MT-AgentRisk. Five control conditions: (a) **Random-Preference LoRA** — shuffled preference labels, same architecture; (b) **Reversed-CPL** — prefer long-context over short-context; (c) **XGuard-Train SFT (rank-8)** — published configuration for validation against published results; (d) **XGuard-Train SFT (rank-16)** — CPL-matched parameters for direct paradigm comparison (discourse-targeted vs. safety-targeted training); (e) **Response-Length Analysis** — ASR stratified by length quartiles, per-100-token normalization, regression with length covariate (testing P3: CPL's safety effect, if any, is not explained by response-length changes). Frame CPL's effect relative to both DETAM and ASGuard: test whether CPL affects the same heads DETAM identifies as sensitive and shifts attention in the same direction (implicit DETAM test), and whether it affects ASGuard's identified vulnerable heads at Layer 13 (implicit untargeted circuit modification test). Compare against ToolShield baseline and MUSE-D's published results.
+
+**Phase 3 — Autonomy Tax Audit (weeks 9-11, parallel):** Step-1 completion rate, cascade failure rate, end-to-end success, over-refusal. Report safety-competence Pareto frontier extending Plaut's analysis. Compare CPL's frontier position with X-Boundary's ~20% over-refusal reduction, ASGuard's Pareto-optimal balance, and XGuard-SFT's published results.
+
+**Phase 4 — Mechanistic Verification (weeks 10-14):** (a) SRI signal framework for step-wise refusal dynamics; (b) Head-level analysis extending Deng et al.'s safety-continuation head identification to multi-turn, calibrated by Phase 0.5 overlap findings — test whether CPL modulates the Layer 13 continuation vs. Layer 25-27 safety head balance across conversation turns; (c) **DETAM-informed analysis:** Apply DETAM's sensitivity metric to CPL-treated models — does CPL training shift attention in the same heads and direction that DETAM targets at inference time? If so, CPL achieves 'implicit DETAM' through discourse training, but persistently and without runtime intent localization; (d) **ASGuard-informed analysis:** Test whether CPL affects ASGuard's identified vulnerable heads (particularly the 4 at Layer 13) despite not targeting them — this would demonstrate that untargeted discourse training can modify the same heads that targeted circuit analysis identifies, but as a side effect of reducing general inertia rather than through explicit circuit surgery; (e) Level-appropriate analysis: Level 2 — residual stream composition analysis at shared layers; Level 3 — representation trajectory analysis following X-Boundary's framework.
+
+**Secondary Evaluation — OpenAgentSafety (weeks 12-14):** Best-performing config and XGuard-SFT on a subset for ecological validity.
+
+**Null-Result Framing Strategy:** (1) First per-head decomposition of diagonal attention patterns and their overlap (or non-overlap) with safety heads — novel regardless of CPL results; (2) First triple-method safety head identification comparison (Ships + DETAM sensitivity + AISA spatiotemporal), cross-validated against three published head sets (Zhou et al., Depth Charge, ASGuard); (3) Empirical evidence for or against the three-level competition hierarchy; (4) First confound-controlled causal framework for discourse-safety evaluation; (5) First discourse-targeted vs. safety-targeted training comparison under matched parameters; (6) First multi-turn extension of DETAM's Focus Loss analysis; (7) Empirical test of whether CPL-like untargeted training affects the same heads as ASGuard's targeted circuit intervention.
+
+**Extended-Turn Variant Validity (Limitation):** Acknowledged with mitigations: OpenAgentSafety for ecological validity, attention pattern validation, conservative amplification framing.
+
+All primary experiments use MT-AgentRisk (365 tasks), ToolShield codebase (GitHub: CHATS-lab/ToolShield), XGuard-Train (HuggingFace: marslabucla/XGuard-Train), and the CPL training recipe from Wan et al. (ICML 2026).
+
+## Resource Estimate
+{'manual': {'gpu_hours': '720-900 A100-hours (CPL reproduction 2 models ~80h, XGuard-SFT rank-8 + rank-16 training 2 models ~60h, 2 control LoRAs for 2 models ~80h, Phase 0.5 head overlap test with AISA probing ~25h, MT-AgentRisk evaluation across 6 conditions x 2 models ~240h, extended-turn evaluation ~40h, OpenAgentSafety subset ~60h, SRI signal analysis ~30h, attention analysis including per-head diagonal decomposition + DETAM-informed + ASGuard-informed metrics ~85h, head-level safety-continuation analysis ~40h, response-length analysis ~10h)', 'timeline': '15-17 weeks (3 weeks Phase 0 + go/no-go, 1 week Phase 0.5, 3 weeks Phase 1, 4 weeks Phase 2 + Phase 3 parallel, 4 weeks Phase 4 + OpenAgentSafety, 3 weeks writing; comfortable for ICLR 2027)', 'estimated_gpu_cost': '$1080-1350 at $1.50/A100-hr spot pricing'}, 'human_in_loop': {'gpu_hours': '720-900 A100-hours', 'timeline': '13-15 weeks (Claude accelerates CPL reproduction, Phase 0.5 triple-method pipeline, DETAM/ASGuard comparison metrics, statistical analysis)', 'claude_api_cost': '$300-450 (CPL reproduction, per-head diagonal decomposition, triple-method head overlap analysis, DETAM/ASGuard-informed metrics, experiment orchestration, statistical modeling)', 'estimated_gpu_cost': '$1080-1350 at $1.50/A100-hr spot pricing'}, 'auto_research': {'gpu_hours': '920-1140 A100-hours (additional automated sweeps, full OpenAgentSafety evaluation, extended ablation across competition levels, comprehensive per-head analysis with triple methods)', 'timeline': '9-11 weeks (parallelized execution, automated Phase 0.5 -> Phase 1 pipeline)', 'claude_api_cost': '$600-850 (end-to-end orchestration including CPL reproduction, triple-method head analysis, DETAM/ASGuard comparison, control sweeps, result interpretation, draft generation)', 'estimated_gpu_cost': '$1380-1710 at $1.50/A100-hr spot pricing', 'speed_bottleneck': 'Sequential multi-turn interaction generation; 12 model configurations (2 models x 6 conditions); Phase 0.5 is a serial dependency before Phase 1; triple-method safety head analysis computationally intensive'}}
+
+## Inspired By
+Field guide Section 4 (cascading failures, production gap) + Section 5.2 (error propagation as primary bottleneck). Key insight: DETAM's demonstration that inference-time attention reallocation dramatically improves safety (ASR 46% to 1.2%) establishes the empirical foundation for our hypothesis — if explicitly redirecting attention works, does implicit redirection via discourse training also work? ASGuard's demonstration that training-time head modification is feasible for specific vulnerabilities raises the natural question: can untargeted discourse training achieve what targeted circuit intervention achieves, but for the progressive multi-turn erosion that circuit-based approaches cannot address? The three-level competition hierarchy was motivated by the finding that Wan et al. only characterizes diagonal attention at the aggregate level (explicitly averaging all heads into a unified matrix) and that safety heads span multiple layer ranges (L2, L9-14, L25-27), while continuation heads at Layer 13 overlap with both induction/copying head territory and ASGuard's identified vulnerable heads (4 of 11 Llama-3.1-8B vulnerable heads are at L13). Johnson & Huo's (2026) formalization of attention competition tipping points provides the theoretical framework for why cumulative discourse inertia can push multi-turn interactions past a safety threshold that per-turn defenses cannot prevent. The reviewer's observation about per-head specificity led to Phase 0.5, which provides the first per-head decomposition of diagonal attention — a novel contribution regardless of results. AISA's spatiotemporal analysis provides methodological triangulation for safety head identification, strengthening Phase 0.5's robustness.
+
+## Target Venues
+- ICLR 2027 (abstract September 19 2026, full paper September 24 2026 [estimated] — primary target, ~18 weeks from project start, comfortable timeline with 3+ weeks buffer including Phase 0.5)
+- AAAI 2027 (abstract July 21 2026, full paper July 28 2026 — stretch target, ~10 weeks; feasible only if CPL checkpoints obtained by week 2, Phase 0.5 shows Level 1 or 2 overlap, and Phase 1 results are clean)
+
+## Key References
+- DETAM: Defending LLMs Against Jailbreak Attacks via Targeted Attention Modification (Li et al., ACL 2025 Findings, arXiv:2504.13562)
+- ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack (Park et al., ICLR 2026, arXiv:2509.25843)
+- AISA: Awakening Intrinsic Safety Awareness in Large Language Models against Jailbreak Attacks (Song et al., arXiv:2602.13547, Feb 2026)
+- Multi-Turn Jailbreaking Large Language Models via Attention Shifting (ASJA, AAAI 2025)
+- Mitigating Conversational Inertia in Multi-Turn Agents (Wan et al., ICML 2026, arXiv:2602.03664)
+- Unsafer in Many Turns: Benchmarking and Defending Multi-Turn Safety Risks in Tool-Using Agents (Yang et al., arXiv 2026)
+- X-Teaming: Multi-Turn Jailbreaks and Defenses with Adaptive Multi-Agents (COLM 2025, arXiv:2504.13203)
+- MUSE: MCTS-Driven Red Teaming Framework for Enhanced Multi-Turn Dialogue Safety (EMNLP 2025, arXiv:2509.14651)
+- X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability (Lu et al., EMNLP 2025, arXiv:2502.09990)
+- MTSA: Multi-turn Safety Alignment for LLMs through Multi-round Red-teaming (Guo et al., ACL 2025, arXiv:2505.17147)
+- Agent Safety Alignment via Reinforcement Learning (Sha et al., arXiv:2507.08270)
+- Safety Training Persists Through Helpfulness Optimization in LLM Agents (Plaut, arXiv:2603.02229, March 2026)
+- The Struggle Between Continuation and Refusal (Deng et al., arXiv:2603.08234, Mar 2026)
+- The Autonomy Tax: Defense Training Breaks LLM Agents (Li & Zhao, arXiv:2603.19423, Mar 2026)
+- On the Role of Attention Heads in Large Language Model Safety (Zhou et al., ICLR 2025, arXiv:2410.13708)
+- Depth Charge: Jailbreak Large Language Models from Deep Safety Attention Heads (Wu et al., arXiv:2603.05772, Mar 2026)
+- Safety Alignment Should Be Made More Than Just A Few Attention Heads (Huang et al., arXiv:2508.19697, 2025)
+- Competition for attention predicts good-to-bad tipping in AI (Johnson & Huo, arXiv:2602.14370, Feb 2026)
+- Attention Eclipse: Manipulating Attention to Bypass LLM Safety-Alignment (Zaree et al., arXiv:2502.15334, Feb 2025)
+- Safety Layers in Aligned Large Language Models (Wei et al., arXiv:2408.17003, 2024)
+- Refusal in Language Models Is Mediated by a Single Direction (Arditi et al., arXiv:2406.11717, 2024)
+- State-Dependent Safety Failures in Multi-Turn Language Model Interaction (STAR, arXiv:2603.15684, Mar 2026)
+- OpenAgentSafety: A Comprehensive Framework for Evaluating Real-World AI Agent Safety (ICLR 2026, arXiv:2507.06134)
+- One Turn Too Late: Response-Aware Defense Against Hidden Malicious Intent in Multi-Turn Dialogue (TurnGate, arXiv:2605.05630, May 2026)
+- MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark (arXiv:2605.01687, May 2026)
+- STREAM: SafeTy Reasoning Elicitation Alignment for Multi-Turn Dialogues (arXiv:2506.00668, May 2025)
+- Agent Drift: Quantifying Behavioral Degradation in Multi-Agent LLM Systems Over Extended Interactions (arXiv 2026)
+- Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks (arXiv 2026)
+- TRUTH DECAY: Quantifying Multi-Turn Sycophancy in Language Models (arXiv 2025)
+- Breaking Contextual Inertia: Reinforcement Learning with Single-Turn Anchors for Stable Multi-Turn Interaction (arXiv 2026)
+- SafetyDrift: Predicting When AI Agents Cross the Line Before They Actually Do (arXiv 2026)
+- Token Statistics Reveal Conversational Drift in Multi-turn LLM Interaction (arXiv 2026)
+- Asking Forever: Universal Activations Behind Turn Amplification (arXiv:2602.17778, Feb 2026)
+- Step-Wise Refusal Dynamics in Autoregressive and Diffusion Language Models (arXiv:2602.02600, Feb 2026)
+- Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv:2604.28129, Apr 2026)
+- Many-Turn Jailbreaking (arXiv:2508.06755, Aug 2025)
+- Disentangling Length from Quality in Direct Preference Optimization (Park et al., arXiv:2403.19159, 2024)
+- Length Desensitization in Direct Preference Optimization (Meng et al., arXiv:2409.06411, 2024)
+- Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack (Russinovich et al., USENIX Security 2025, arXiv:2404.01833)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9782beae-1e1c-4fe2-86e2-ae6a96a265de",
+  "type": "user",
+  "uuid": "6475f085-7d22-443f-8464-cc28a9013eea",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:30:56.177Z_
+
+```json
+{
+  "parentUuid": "6475f085-7d22-443f-8464-cc28a9013eea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "f9d24358-3517-4a83-98a2-f343c07d532a",
+  "timestamp": "2026-05-20T03:30:56.177Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:30:56.177Z_
+
+```json
+{
+  "parentUuid": "f9d24358-3517-4a83-98a2-f343c07d532a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "42fe7df7-b82a-4bd4-a0e7-6a317a3f1fb2",
+  "timestamp": "2026-05-20T03:30:56.177Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to provide my assessment. Let m…",
+  "leafUuid": "42fe7df7-b82a-4bd4-a0e7-6a317a3f1fb2",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate multi-turn LLM safety attention mechanism proposal",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:31:31.796Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments and synthesize them into a Meta Judge evaluation.
+
+**Key observations from all three reviewers:**
+
+**Reviewer 1:**
+- Novelty: 中 (Medium)
+- Significance: 中偏弱 (Medium-weak)
+- Related Work: 强 (Strong)
+- CoRL 2026 probability: [3% - 8%] 中位 5%
+- ICLR 2027 probability: [18% - 28%] 中位 23%
+- Key concerns: Venue mismatch (fatal for CoRL), epiphenomenal hypothesis, "apply X to Y" novelty ceiling, trivial alternatives
+
+
+- Reviewer 2 is even more pessimistic about CoRL prospects, rating it at just 1% median probability, while maintaining similar ICLR expectations around 27%, and emphasizing that the significance ceiling and expected outcomes regardless of direction are fundamental limitations.
+- Reviewer 3 appears to align with the consensus on novelty and significance assessments, though their full evaluation is still coming through.
+- Across all three reviewers, there's unanimous agreement on three critical points: the venue choice is fatally misaligned with CoRL's robotics focus, the novelty is limited to application-level rather than methodological contribution, and the significance is undermined by the "expected outcome" problem where both positive and negative results would be unsurprising given existing precedents like DETAM and the nature of CPL itself.
+- All three also converge on the related work being comprehensive and well-differentiated, the existence of simpler and more effective direct safety training alternatives that pose a real threat to the work's contribution, and the presence of multiple unvalidated assumptions in the hypothesis chain before experiments even begin.
+- The reviewers show minor variance in their probability estimates—CoRL ranges from near-zero to 8% across the three, while ICLR clusters tightly around 23-27%—but these differences are negligible given the consensus on fundamental issues.
+- Since the user specifically asked about CoRL 2026, I should report that as the primary probability while acknowledging the ICLR estimate, which the proposal itself seems better suited for. RL number, they said "概率接近0%". I'll use 1% for R3.
+
+Looking at the breakdown more carefully:
+- R1: CoRL [3%-8%] with median 5%
+- R2: CoRL [0%-3%] with median 1%  
+- R3: Explicitly stated "若投CoRL，概率接近0%" and gave [22%-32%] with median 26% for idea quality at an appropriate venue
+
+So CoRL midpoints are 5%, 1%, and ~1%, giving a standard deviation around 2.3%, while an appropriate venue like ICLR shows midpoints of 23%, 27%, 26% with similar consistency at 2.1%.
+
+Now I'm assessing the implementation feasibility by looking at the resource requirements and reviewer feedback: the project needs 720-900 A100-hours, spans 15-17 weeks, and relies on reproducing CPL (which all reviewers flagged as a risk since the code isn't released). The datasets are publicly available, training is required for baselines, and it doesn't introduce a new benchmark.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42fe7df7-b82a-4bd4-a0e7-6a317a3f1fb2",
+  "isSidechain": false,
+  "requestId": "req_011CbD7aNpZtZbCDxjekFgry",
+  "type": "assistant",
+  "uuid": "6883989f-799c-4a39-9f72-bcf2008fafc7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEwaq3buSL13Jkfe8HTLmR",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 24873,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 3245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3245,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 24873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:32:13.476Z_
+
+【阶段】: Meta Judge
+【三次中位】: [5%, 1%, ~1%]  std=2.3%（CoRL 2026）；[23%, 27%, 26%] std=2.1%（适配 venue ICLR 2027）
+【共识维度】: 
+- **Venue Mismatch = 致命**（3/3 审稿人一致）：CoRL 是 Conference on Robot Learning，proposal 无任何 robotics 内容，几乎必然 desk-reject
+- **Novelty = 中**（3/3 一致）：application-level / connection novelty（"将 CPL 用于 safety 评估"），非 method-level 或 theory-level novelty
+- **Significance = 中偏弱**（3/3 一致）："Expected outcome" 问题——positive 结果不够 surprising（DETAM 已有先例），negative 结果是默认预期
+- **Related Work = 强**（3/3 一致）：覆盖全面、描述准确、差异化定位清晰
+- **Trivial Alternative 威胁实质存在**（3/3 一致）：直接安全训练（XGuard-Train, MUSE-D, MTSA）是更简单有效的路径
+- **核心假设链未验证**（3/3 一致）：2-3 个关键环节（overlap、因果方向、CPL 泛化性）在实验前完全未知
+
+【异常维度】: 
+- R1 单独提到"三级框架不可证伪"的问题（覆盖所有可能性，信息量有限）——有道理但其他两位未强调
+- R2 单独提到 "CPL 代码未公开" 增加 reproduction 风险——合理关切但非致命（proposal 已有详细 reproduction recipe）
+- R3 单独提到 "CPL 训练数据来自 AgentGym，无法假设泛化到 safety 场景"——这实际上是前提假设检验的一部分，与其他两位的 concern 同质
+
+【最终概率】: [0% - 5%] 中位 2%（CoRL 2026）；[20% - 30%] 中位 25%（若投 ICLR 2027）
+【一致性】: 高（三位审稿人在所有核心维度判决高度一致，概率估计 std < 3%）
+【综合理由】: 
+
+**CoRL 2026（用户指定 venue）**：三位审稿人完全一致认定 venue mismatch 是致命的。CoRL 明确要求 "focus on a core robotics problem"，本 proposal 100% 是 LLM 注意力机制 + 多轮对话安全，无任何 embodied/robotics 成分。Proposal 自身列出的 Target Venues 是 ICLR 2027 / AAAI 2027，而非 CoRL。这不是 idea 质量问题——任何质量的 NLP safety 论文投 CoRL 都会 desk-reject。中位取 2%（比三位中最严格的 R2 的 1% 略宽容，反映极小概率的 scope 误判）。
+
+**适配 venue（ICLR 2027）**：三位中位分别为 23%、27%、26%，std=2.1%，属于高一致。取中位 25%，区间 [20%-30%]。上界被 Significance 天花板锁定——核心发现无论正反方向，"惊讶度"不足以支撑顶会 strong accept 级别的评价。下界由 Related Work 的强覆盖和实验设计的形式完备性托底。即使在 ICLR，这也是一篇 borderline 区间（lean reject to weak accept）的论文，主要因为：(1) contribution 是 mechanistic insight 而非实用方法；(2) positive/negative 结果的 informativeness 不对称地偏弱；(3) trivial alternative 质疑难以完全消解。
+
+**处理逻辑**：由于三位一致性极高（无严重分歧），直接取中位附近，不需额外偏严。所有异常维度均不影响主判决。
+
+【建议】: KILL（CoRL 2026）/ 边缘（若转投 ICLR 2027，但 significance ceiling 限制了优化空间）
+
+【实施评估】:
+- 计算资源: 720-900 A100-hours（约 $1080-1350 spot pricing），需 multi-GPU 集群，主要成本在 12 个模型配置的 MT-AgentRisk 全量评估（~240h）和 CPL reproduction（~80h）
+- 数据需求: MT-AgentRisk（365 tasks，公开）、OpenAgentSafety（356 tasks，ICLR 2026 公开）、XGuard-Train（HuggingFace 公开）、AgentGym 环境（公开）。数据可得性无障碍
+- 人工介入: 需联系 Wan et al. 获取 CPL checkpoints（代码未公开，reproduction 有风险）；需专业人员设计 extended-turn variants 和 SRI signal 分析。无大规模人工标注需求
+- 训练需求: 需要训练——CPL reproduction（LoRA rank-16 DPO, ~40h/model）、XGuard-SFT（rank-8 + rank-16, ~30h/model）、2 个 control LoRA（~40h/model）。模型规模 7-8B（Qwen3-8B, Llama 3.1-8B-Instruct）
+- 新 Benchmark: 不需要（使用现有 MT-AgentRisk + OpenAgentSafety）
+- 预估周期: 15-17 周（含 Phase 0 go/no-go checkpoint），ICLR 2027 deadline（估计 2026 年 9 月）前可完成，有 3+ 周 buffer
+
+---
+
+**最终判决**：本 proposal 投 CoRL 2026 应立即 KILL——这是纯粹的 venue mismatch，与 idea 质量无关，无法通过任何修改弥补。若用户考虑转投 ICLR 2027（proposal 自述目标），idea 处于 borderline 区间（中位 25%），主要受限于 significance ceiling（"expected outcome" 问题）和 trivial alternative 威胁。可通过迭代优化 framing 将概率推至 30% 附近，但很难突破 35%——因为 idea 的核心结构（apply existing method to new evaluation dimension）决定了 novelty/significance 的天花板。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6883989f-799c-4a39-9f72-bcf2008fafc7",
+  "isSidechain": false,
+  "requestId": "req_011CbD7aNpZtZbCDxjekFgry",
+  "type": "assistant",
+  "uuid": "5ad7d3ff-a900-4e75-9353-59eaabbd9cca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEwaq3buSL13Jkfe8HTLmR",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 24873,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 3245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3245,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 24873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to provide my assessment. Let m…",
+  "leafUuid": "5ad7d3ff-a900-4e75-9353-59eaabbd9cca",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate multi-turn LLM safety attention mechanism proposal",
+  "sessionId": "2fd96a12-e8e8-4a99-8334-ee14e745392f"
+}
+```
+
+---

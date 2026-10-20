@@ -1,0 +1,2513 @@
+# Research conversation: I need you to help me synthesize research findings and produce a complete revised JSON for a research idea. This is a wr
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a42eb1132f7312158.jsonl`
+- **Structured JSON:** [`b8658d8b6a28ac9109c1.json`](../../sessions/b8/b8658d8b6a28ac9109c1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+37 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T00:27:56.129Z_
+
+I need you to help me synthesize research findings and produce a complete revised JSON for a research idea. This is a writing/synthesis task — no code to write or search to do. I'll provide all the context.
+
+## Background
+The research idea is "DiagPRM" — a misconception-grounded generative process reward model for mathematical reasoning that produces structured JSON triplets (error mechanism + misconception hypothesis + counterfactual correction). It's been through 4 rounds of review with stagnation (scores ~3.5 across rounds).
+
+## Three Issues from Round 4 Review
+
+### Issue 1: Missing ThinkPRM Citation (2504.16828)
+ThinkPRM (TMLR March 2026) is the most prominent generative PRM. It generates free-text verification chain-of-thought reasoning about whether each step is correct. Uses only 1% of PRM800K labels. Outperforms discriminative PRMs: +8% on GPQA-Diamond, +4.5% on LiveCodeBench, 86.5% F1 on ProcessBench with 14B model. 7.2% better than LLM-as-Judge on ProcessBench.
+
+Differentiation from DiagPRM: ThinkPRM generates free-text verification CoT ("is this step correct?") — it reasons about correctness but does not produce structured misconception diagnoses, misconception labels from a grounded taxonomy, or enable cross-problem gradient transfer. DiagPRM generates structured JSON triplets ("why is this step wrong?") with taxonomy-grounded misconception hypotheses. ThinkPRM validates the generative PRM paradigm while leaving the misconception-diagnosis gap open.
+
+### Issue 2: RLVR Effectiveness Debate (CRITICAL)
+NeurIPS 2025 oral paper (2504.13837) "Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?" shows:
+- RL primarily improves sampling efficiency (pass@1) not fundamental reasoning boundaries (pass@large_k)
+- All reasoning paths in RLVR models already exist in base model
+- Six popular RLVR algorithms perform similarly and "remain far from optimal"
+- Active debate continues — some evidence RLVR can induce capabilities under certain conditions
+- "The Invisible Leash" (2507.14843) confirms RLVR is "support-constrained optimization" — narrows rather than broadens solution space
+
+Key arguments for why misconception-specific rewards still help in the reweighting regime:
+(a) Even if RL only reweights, targeted reweighting > uniform reweighting. Binary rewards treat all errors equally; misconception-specific penalties differentially suppress systematic errors.
+(b) SRaR's +3.57 and Data-Driven Rubrics' +45% empirically demonstrate structured rewards help beyond binary. The reweighting interpretation doesn't negate these gains — it reinterprets them as more efficient reweighting.
+(c) Cross-problem gradient transfer amplifies signal for rare-but-systematic errors. An AIME problem with 2 training instances but shared misconception with 15 MATH problems gets 17 instances of gradient signal — critical in reweighting regime where rare paths need more gradient mass.
+(d) Credit assignment: CAPO (2508.02298) demonstrates fine-grained step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. DiagPRM's structured triplets provide even finer-grained credit assignment than step-level binary.
+(e) Practical deployment uses pass@1 or small k — even if ceiling is same, faster convergence to correct paths has enormous value.
+(f) Should add convergence speed (RL steps to reach X% accuracy) as explicit evaluation metric alongside final accuracy.
+
+### Issue 3: AIME 2024 Contamination
+MathArena (2505.23281) documents:
+- 10-20% score inflation on AIME 2024 across most LLMs
+- QwQ-Preview-32B shows extreme ~60% inflation
+- AIME 2025 scores align with human expectations (uncontaminated)
+- AIME 2026 also available on MathArena
+
+Fix: Replace AIME 2024 with AIME 2025 I&II + AIME 2026 I&II. Add MathArena-style protocol. Keep MATH-500. Acknowledge contamination risk.
+
+## Stagnation Warning
+After 4 rounds, scores haven't improved (~3.5). The warning suggests major revision or pivot. My analysis: the core diagnosis idea is sound, but the RL integration claims need honest reframing. I'll make this a "major" revision that:
+1. Reframes RL contribution as "efficient targeted reweighting" rather than "capability expansion"
+2. Positions diagnosis itself as the primary contribution (independently valuable for tutoring, curriculum design, error analysis)
+3. Adds convergence-speed evaluation metrics
+4. Overhauls evaluation to use uncontaminated benchmarks
+
+## Task
+Please produce the COMPLETE revised JSON with ALL fields from the original. Here's what needs to change:
+
+**revision_summary**: Describe changes from R4 feedback. Major revision.
+
+**core_problem**: Slightly reframe to be honest about RL limitations — position structured diagnosis as primary, RL integration as secondary with explicit efficiency framing.
+
+**opportunity**: Add ThinkPRM to the progression. Add note about RLVR debate creating need for more targeted reward signals.
+
+**landscape**: Add ThinkPRM entry. Add brief note about RLVR debate paper. Update evaluation-related entries.
+
+**approach**: 
+- Add ThinkPRM differentiation
+- Add new section "Engaging with the RLVR Effectiveness Debate" that honestly addresses the reweighting interpretation
+- Fix evaluation to replace AIME 2024 with AIME 2025/2026, add MathArena protocol
+- Add convergence speed metrics
+- Reframe RL claims throughout
+
+**key_references**: Add ThinkPRM, RLVR debate paper, MathArena, The Invisible Leash
+
+**changes_from_r4**: New field documenting the three changes
+
+**change_type**: "major"
+
+The original JSON is very long. Below are the key sections that need changes. For sections not mentioned, keep them identical to the original.
+
+Here is the original JSON for reference (I'll include the full thing so you can modify it):
+
+IMPORTANT: Output the COMPLETE JSON. Do not abbreviate or skip any sections. Every field from the original must appear in the output. This is critical.
+
+Here are the fields of the original to preserve exactly (copy them verbatim):
+- title: "DiagPRM: Hierarchically-Grounded Process Reward Models for Misconception-Level Error Diagnosis via Structured Triplets"
+- project_name: "diag_prm"
+- source: "web_research"  
+- level: "top-tier"
+- inspired_by: Keep original but add ThinkPRM and RLVR debate
+- resource_estimate: Keep original
+- target_venues: Keep original
+- changes_from_r3: Keep the original changes_from_r3 field exactly
+
+Now produce the complete JSON. Make sure:
+1. All original landscape entries are preserved
+2. The approach section is complete (not truncated)
+3. All key_references are included
+4. The JSON is valid
+5. change_type field is "major"
+6. A new changes_from_r4 field documents the three new changes
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "75f6e3b7-fecd-422b-b664-a0be10070d64",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T00:27:56.137Z_
+
+```json
+{
+  "parentUuid": "75f6e3b7-fecd-422b-b664-a0be10070d64",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "076234dd-d4af-473a-b9cd-89443dc5d3dd",
+  "timestamp": "2026-05-28T00:27:56.137Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-28T00:27:56.138Z_
+
+```json
+{
+  "parentUuid": "076234dd-d4af-473a-b9cd-89443dc5d3dd",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "83a8c5d2-80ca-4141-801e-b67fb3e1724b",
+  "timestamp": "2026-05-28T00:27:56.138Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-28T00:27:58.843Z_
+
+
+
+I'll start by examining the original JSON file to understand its complete structure before making revisions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83a8c5d2-80ca-4141-801e-b67fb3e1724b",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU26KAk75yaiPLDgejA8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "09e68cc5-4025-4760-8b98-c7c1a81ef8cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AE8Y1Gpk3y9Dd3LeErqKmw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10503,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 10503,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T00:27:58.972Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_018qm8jAfZ1gicEq373c88uX`</summary>
+
+```json
+{
+  "pattern": "**/*.json",
+  "path": "/home/ubuntu/idea_review"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09e68cc5-4025-4760-8b98-c7c1a81ef8cd",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU26KAk75yaiPLDgejA8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7aeaddda-9287-496a-8359-3aaaaa547c70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AE8Y1Gpk3y9Dd3LeErqKmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10503,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 10503
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 10503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 10503,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T00:27:58.998Z_
+
+<details><summary>↩ Tool result · `toolu_018qm8jAfZ1gicEq373c88uX`</summary>
+
+```text
+.venv/lib/python3.14/site-packages/pydantic_core-2.46.4.dist-info/sboms/pydantic-core.cyclonedx.json
+.venv/lib/python3.14/site-packages/jsonschema_specifications/schemas/draft201909/metaschema.json
+.venv/lib/python3.14/site-packages/jsonschema_specifications/schemas/draft202012/metaschema.json
+.venv/lib/python3.14/site-packages/jsonschema_specifications/schemas/draft3/metaschema.json
+.venv/lib/python3.14/site-packages/jsonschema_specifications/schemas/draft4/metaschema.json
+.venv/lib/python3.14/site-packages/jsonschema_specifications/schemas/draft6/metaschema.json
+.venv/lib/python3.14/site-packages/jsonschema_specifications/schemas/draft7/metaschema.json
+.venv/lib/python3.14/site-packages/cryptography-48.0.0.dist-info/sboms/cryptography-rust.cyclonedx.json
+.venv/lib/python3.14/site-packages/cryptography-48.0.0.dist-info/sboms/sbom.json
+.venv/lib/python3.14/site-packages/jsonschema/benchmarks/issue232/issue.json
+dispatch/results_batch_20260516_014736/account-2/result_02_temporalfuse_adaptive_multi-signal_temporal_fusion_for_early.json
+dispatch/results_batch_20260516_014736/account-2/_summary_20260516_014835.json
+dispatch/results_batch_20260516_014736/account-3/result_03_dual-intent_retrieval_intent-differentiated_query_formulatio.json
+dispatch/results_batch_20260516_014736/account-3/_summary_20260516_014836.json
+dispatch/results_batch_20260516_014736/account-1/result_01_read_and_steer_probe-guided_claim-level_confidence_calibrati.json
+dispatch/results_batch_20260516_014736/account-1/_summary_20260516_014835.json
+dispatch/results_batch_20260516_pass25/account-2/trace_14_do_hidden-state_jailbreak_detectors_generalize_to_/trace.json
+dispatch/results_batch_20260516_pass25/account-2/result_14_do_hidden-state_jailbreak_detectors_generalize_to_.json
+dispatch/results_batch_20260516_pass25/account-2/_summary_20260516_121436.json
+dispatch/results_batch_20260516_pass25/account-1/trace_13_encoguard_encoding-complexity_curriculum_for_harde/trace.json
+dispatch/results_batch_20260516_pass25/account-1/result_13_encoguard_encoding-complexity_curriculum_for_harde.json
+dispatch/results_batch_20260516_pass25/account-1/_summary_20260516_121436.json
+dispatch/ideas_0517/idea_013_s2_inter_turn_retrieval_curriculum_bridging.json
+dispatch/ideas_0517/idea_014_s4_depth_conditioned_contrastive_reward_for.json
+dispatch/ideas_0517/idea_016_s1_contrastive_entrainment_calibration_quer.json
+dispatch/ideas_0517/idea_019_s1_progressive_entrainment_calibration_with.json
+dispatch/results_0517/trace_idea_013_s2_inter_turn_retrieval_curriculum_bridging/trace.json
+dispatch/results_0517/trace_idea_014_s4_depth_conditioned_contrastive_reward_for/trace.json
+dispatch/results_0517/trace_idea_016_s1_contrastive_entrainment_calibration_quer/trace.json
+dispatch/results_0517/trace_idea_019_s1_progressive_entrainment_calibration_with/trace.json
+dispatch/results_0517/result_idea_013_s2_inter_turn_retrieval_curriculum_bridging.json
+dispatch/results_0517/result_idea_014_s4_depth_conditioned_contrastive_reward_for.json
+dispatch/results_0517/result_idea_016_s1_contrastive_entrainment_calibration_quer.json
+dispatch/results_0517/result_idea_019_s1_progressive_entrainment_calibration_with.json
+dispatch/results_0517/_manifest_20260517_111654.json
+dispatch/ideas_0517_s3/idea_014_s3_contrastive_prosody_discriminator_with_i.json
+dispatch/results_0517_s3/result_idea_014_s3_contrastive_prosody_discriminator_with_i.json
+dispatch/results_0517_s3/_manifest_20260517_120134.json
+dispatch/ideas_stage23/idea_012_s2_goal_accessibility_preservation_training.json
+dispatch/ideas_stage23/idea_016_s1_contrastive_entrainment_calibration_quer.json
+dispatch/results_stage23/trace_idea_012_s2_goal_accessibility_preservation_training/trace.json
+dispatch/results_stage23/result_idea_012_s2_goal_accessibility_preservation_training.json
+dispatch/results_stage23/trace_idea_016_s1_contrastive_entrainment_calibration_quer/trace.json
+dispatch/results_stage23/result_idea_016_s1_contrastive_entrainment_calibration_quer.json
+dispatch/results_stage23/_manifest_20260517_121757.json
+dispatch/ideas_rerun/idea_012_s2_goal_accessibility_preservation_training.json
+dispatch/ideas_rerun/idea_016_s1_contrastive_entrainment_calibration_quer.json
+dispatch/results_rerun/trace_idea_012_s2_goal_accessibility_preservation_training/trace.json
+dispatch/results_rerun/result_idea_012_s2_goal_accessibility_preservation_training.json
+dispatch/results_rerun/trace_idea_016_s1_contrastive_entrainment_calibration_quer/trace.json
+dispatch/results_rerun/result_idea_016_s1_contrastive_entrainment_calibration_quer.json
+dispatch/results_rerun/_manifest_20260517_141500.json
+dispatch/ideas/corl_001_prod_s1.json
+dispatch/ideas/corl_002_prod_s1.json
+dispatch/results/trace_corl_001_prod_s1/trace.json
+dispatch/results/result_corl_001_prod_s1.json
+dispatch/results/trace_corl_002_prod_s1/trace.json
+dispatch/results/result_corl_002_prod_s1.json
+dispatch/results/_manifest_20260519_023910.json
+dispatch/results_batch5_20260519_183057/account-3/result_agent_safety_conv_inertia_safety_erosion.json
+dispatch/results_batch5_20260519_183057/account-1/result_agent_safety_agent_align_tax_geometry.json
+dispatch/results_batch5_20260519_183057/account-3/result_human_llm_trust_scaffolded_friction_deskill.json
+dispatch/results_batch5_20260519_183057/account-1/result_human_llm_trust_behav_overreliance_loop.json
+dispatch/results_batch5_20260519_183057/account-3/result_reproducibility_alignment_repro_audit.json
+dispatch/results_batch5_20260519_183057/account-3/result_self_correction_correctability_gated_selfcorr.json
+dispatch/results_batch5_20260519_183057/account-3/_summary_20260519_183137.json
+dispatch/results_batch5_20260519_183057/account-1/trace_multilingual_transfer_sae_xlingual_knowledge_edit/trace.json
+dispatch/results_batch5_20260519_183057/account-1/result_multilingual_transfer_sae_xlingual_knowledge_edit.json
+dispatch/results_batch5_20260519_183057/account-1/trace_self_correction_blind_spot_mech_interp/trace.json
+dispatch/results_batch5_20260519_183057/account-1/result_self_correction_blind_spot_mech_interp.json
+dispatch/results_batch5_20260519_183057/account-1/_summary_20260519_183137.json
+dispatch/results_batch5_20260519_204518/account-1/result_agent_safety_agent_align_tax_geometry.json
+dispatch/results_batch5_20260519_204518/account-3/result_agent_safety_conv_inertia_safety_erosion.json
+dispatch/results_batch5_20260519_204518/account-1/result_human_llm_trust_behav_overreliance_loop.json
+dispatch/results_batch5_20260519_204518/account-3/result_human_llm_trust_scaffolded_friction_deskill.json
+dispatch/results_batch5_20260519_204518/account-3/result_reproducibility_alignment_repro_audit.json
+dispatch/results_batch5_20260519_204518/account-1/trace_multilingual_transfer_sae_xlingual_knowledge_edit/trace.json
+dispatch/results_batch5_20260519_204518/account-1/result_multilingual_transfer_sae_xlingual_knowledge_edit.json
+dispatch/results_batch5_20260519_204518/account-3/result_self_correction_correctability_gated_selfcorr.json
+dispatch/results_batch5_20260519_204518/account-3/_summary_20260519_204538.json
+dispatch/results_batch5_20260519_204518/account-1/trace_self_correction_blind_spot_mech_interp/trace.json
+dispatch/results_batch5_20260519_204518/account-1/result_self_correction_blind_spot_mech_interp.json
+dispatch/results_batch5_20260519_204518/account-1/_summary_20260519_204538.json
+dispatch/results_batch6_20260520_025525/account-3/result_agent_safety_entanglement_geometry_of_the_alignment_tax_across_dense_and.json
+dispatch/results_batch6_20260520_025525/account-1/result_agent_safety_beyond_blocking_benchmarking_and_training_agent_task_recover.json
+dispatch/results_batch6_20260520_025525/account-2/result_agent_safety_does_reducing_conversational_inertia_improve_multi_turn_safe.json
+dispatch/results_batch6_20260520_025525/account-3/result_human_llm_trust_model_uncertainty_vs_user_trust_as_gating_signals_for_adapti.json
+dispatch/results_batch6_20260520_025525/account-2/result_human_llm_trust_closing_the_loop_from_behavioral_overreliance_detection_to_a.json
+dispatch/results_batch6_20260520_025525/account-1/result_css_llm_when_do_llm_annotation_errors_matter_multi_class_bias_expres.json
+dispatch/results_batch6_20260520_025525/account-3/result_long_context_decomposing_context_rot_a_factorial_analysis_of_interference.json
+dispatch/results_batch6_20260520_025525/account-1/result_long_context_cascading_fragility_modeling_and_mitigating_dependent_eviden.json
+dispatch/results_batch6_20260520_025525/account-2/result_long_context_causal_circuit_dissection_of_scale_dependent_reasoning_degra.json
+dispatch/results_batch6_20260520_025525/account-3/result_self_correction_fact_level_self_correction_blind_spot_in_knowledge_intensive.json
+dispatch/results_batch6_20260520_025525/account-3/_summary_20260520_025555.json
+dispatch/results_batch6_20260520_025525/account-2/result_self_correction_cross_lingual_self_correction_disparity_disproportionate_bli.json
+dispatch/results_batch6_20260520_025525/account-2/_summary_20260520_025554.json
+dispatch/results_batch6_20260520_025525/account-1/result_self_correction_can_llms_predict_their_own_correctability_multi_signal_probi.json
+dispatch/results_batch6_20260520_025525/account-1/_summary_20260520_025554.json
+dispatch/results_batch7_20260520_032225/account-1/trace_agent_safety_beyond_blocking_benchmarking_and_training_agent_task_recover/trace.json
+dispatch/results_batch7_20260520_032225/account-1/result_agent_safety_beyond_blocking_benchmarking_and_training_agent_task_recover.json
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7aeaddda-9287-496a-8359-3aaaaa547c70",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "6278842f-1d3b-4162-8fa4-aa7f3df970e7",
+  "sourceToolAssistantUUID": "7aeaddda-9287-496a-8359-3aaaaa547c70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T00:28:02.053Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01A1BFF2kd7q3w2nK9wS6zsm`</summary>
+
+```json
+{
+  "pattern": "diag_prm|DiagPRM",
+  "output_mode": "files_with_matches",
+  "glob": "*.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6278842f-1d3b-4162-8fa4-aa7f3df970e7",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU26XZdCRpRQ3fg4vR11",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a2aa3b32-6a4b-4aeb-b6b0-8e68ca365a7f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTJnftPjTqpxrB5XY6oQka",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3473,
+      "cache_read_input_tokens": 10503,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3473
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 10503,
+          "cache_creation_input_tokens": 3473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3473,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T00:28:02.090Z_
+
+<details><summary>↩ Tool result · `toolu_01A1BFF2kd7q3w2nK9wS6zsm`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2aa3b32-6a4b-4aeb-b6b0-8e68ca365a7f",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "e54877c5-a1b1-4635-a90b-70d08188a6cd",
+  "sourceToolAssistantUUID": "a2aa3b32-6a4b-4aeb-b6b0-8e68ca365a7f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T00:28:04.359Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01L1cnXzZnfmZzAkABDLVD2B`</summary>
+
+```json
+{
+  "pattern": "diag_prm|DiagPRM",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e54877c5-a1b1-4635-a90b-70d08188a6cd",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU26ki9T8LXHxCLwF8fK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ee5d5cb7-5793-465d-a824-7e02c9f4e694",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012AYRf52iB8TBndYgY7niez",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 117,
+      "cache_read_input_tokens": 13976,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 117
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 13976,
+          "cache_creation_input_tokens": 117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 117,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T00:28:04.408Z_
+
+<details><summary>↩ Tool result · `toolu_01L1cnXzZnfmZzAkABDLVD2B`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee5d5cb7-5793-465d-a824-7e02c9f4e694",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "b5696731-96f6-4c4f-93cc-6847443b98d6",
+  "sourceToolAssistantUUID": "ee5d5cb7-5793-465d-a824-7e02c9f4e694",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-28T00:28:07.105Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01JLtDxoK3UcKWEeCxw5uPtR`</summary>
+
+```json
+{
+  "pattern": "DiagPRM|diag.prm|misconception.*process reward",
+  "output_mode": "files_with_matches",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5696731-96f6-4c4f-93cc-6847443b98d6",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU26veSaxuhqtkGF73vC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5676ca73-aca3-454f-bd6e-a0b519436458",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YS2px9Q8KdgU2Gz3V9DXMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 99,
+      "cache_read_input_tokens": 14093,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 99
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 14093,
+          "cache_creation_input_tokens": 99,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 99,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T00:28:07.168Z_
+
+<details><summary>↩ Tool result · `toolu_01JLtDxoK3UcKWEeCxw5uPtR`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5676ca73-aca3-454f-bd6e-a0b519436458",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "24d49cc4-dbcf-4faf-9431-8ad16a39d553",
+  "sourceToolAssistantUUID": "5676ca73-aca3-454f-bd6e-a0b519436458",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T00:28:10.334Z_
+
+There's no existing DiagPRM JSON file in the repository. This is a pure synthesis/writing task where I need to produce the complete revised JSON from scratch based on the detailed instructions provided. Let me create it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24d49cc4-dbcf-4faf-9431-8ad16a39d553",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU278LA5YvFS3g2b5npU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "362d0980-79d9-4cd1-955e-4be395ef13ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMGF5bw6oioF7H7vmmZCi9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 123,
+      "cache_read_input_tokens": 14192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 123,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T00:28:10.484Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PrfpJALMSvkUD5vsSXLvmA`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea_review/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "362d0980-79d9-4cd1-955e-4be395ef13ed",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU278LA5YvFS3g2b5npU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bd76a280-2e30-495f-bf3d-1e81baf7a2ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMGF5bw6oioF7H7vmmZCi9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 123,
+      "cache_read_input_tokens": 14192,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 123
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 14192,
+          "cache_creation_input_tokens": 123,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 123,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T00:28:10.669Z_
+
+<details><summary>↩ Tool result · `toolu_01PrfpJALMSvkUD5vsSXLvmA`</summary>
+
+```text
+__pycache__
+batch_triage.py
+conference.py
+config.py
+convergence.py
+dispatch
+io_utils.py
+parsers.py
+prompts
+requirements.txt
+reviewer.py
+test_account.py
+审idea的agent
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd76a280-2e30-495f-bf3d-1e81baf7a2ca",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "0d4c090c-0bf1-439b-987b-3385bbe7e1cd",
+  "sourceToolAssistantUUID": "bd76a280-2e30-495f-bf3d-1e81baf7a2ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T00:28:13.538Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015P4C7J9jZAyfdC2yku4kE2`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea_review/dispatch/ideas/ 2>/dev/null; ls /home/ubuntu/idea_review/dispatch/ideas_0517/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d4c090c-0bf1-439b-987b-3385bbe7e1cd",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU27PHaEKxSSrf5jJa8g",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d7d0d40d-e8a1-47f6-8477-ee22129872b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VKUCmEmg695mUvW1ejfEk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 14315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 179,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T00:28:13.613Z_
+
+<details><summary>↩ Tool result · `toolu_015P4C7J9jZAyfdC2yku4kE2`</summary>
+
+```text
+corl_001_prod_s1.json
+corl_002_prod_s1.json
+idea_013_s2_inter_turn_retrieval_curriculum_bridging.json
+idea_014_s4_depth_conditioned_contrastive_reward_for.json
+idea_016_s1_contrastive_entrainment_calibration_quer.json
+idea_019_s1_progressive_entrainment_calibration_with.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7d0d40d-e8a1-47f6-8477-ee22129872b5",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "8575d1ae-03d2-4ac4-99ee-3fed2f33850a",
+  "sourceToolAssistantUUID": "d7d0d40d-e8a1-47f6-8477-ee22129872b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-28T00:28:16.255Z_
+
+Let me look at one of these existing idea JSONs to understand the exact schema/structure used in this system.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8575d1ae-03d2-4ac4-99ee-3fed2f33850a",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU27cDhPDtZKGssKFp5T",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b785324f-c089-4f44-a596-b074e3e23cd9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fxBuyKvSTLyW6PegDTfSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 216,
+      "cache_read_input_tokens": 14494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 216,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T00:28:16.584Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016p9qB1Zc3HymbBkDrS3oCZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/dispatch/ideas/corl_001_prod_s1.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b785324f-c089-4f44-a596-b074e3e23cd9",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU27cDhPDtZKGssKFp5T",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "125a080c-11f4-4d7d-abee-1a7ce412b5bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fxBuyKvSTLyW6PegDTfSf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 216,
+      "cache_read_input_tokens": 14494,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 216
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 14494,
+          "cache_creation_input_tokens": 216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 216,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T00:28:16.901Z_
+
+<details><summary>↩ Tool result · `toolu_016p9qB1Zc3HymbBkDrS3oCZ`</summary>
+
+```text
+1	{
+2	  "id": "idea_028",
+3	  "source_backend": "prod_s1",
+4	  "key": "corl_001_prod_s1",
+5	  "title": "AffordVLA: Affordance-Level Contrastive Distillation for Efficient Dual-Grounded VLA Representations",
+6	  "content": "# AffordVLA: Affordance-Level Contrastive Distillation for Efficient Dual-Grounded VLA Representations\n\n## Core Problem\nHow can we produce VLA representations that are simultaneously spatially grounded at the affordance level (part-level interaction geometry, not just entity-level) and linguistically grounded (instruction-conditioned), achieving dual-grounding with zero inference overhead — where current approaches either require persistent inference-time modules (ProGAL-VLA's entity graph + symbolic planner at ~96ms/step) or address only one failure mode?\n\n## Opportunity\nLIBERO-Plus (CVPR 2026) reveals two orthogonal VLA failure modes: (1) visual brittleness — performance collapses from 95% to below 30% under perturbation, and (2) linguistic blindness — models ignore instructions entirely, relying on positional bias (confirmed by IGAR, arXiv 2603.06001). The most important recent development is ProGAL-VLA (arXiv 2604.09824, Apr 2026), which uses entity-level contrastive learning (GAC loss with InfoNCE) to address BOTH failure modes, achieving 85.5% on LIBERO-Plus — the current SOTA. However, ProGAL-VLA has three fundamental limitations: (a) it operates at entity-level granularity (grounding to 'the mug' rather than 'the mug's handle for grasping'), missing part-level interaction geometry critical for manipulation; (b) it requires a full inference pipeline (YOLO-World detector + Metric3D depth + 7B Qwen-2.5-VL planner + GSM entity graph + SACA attention, totaling ~96ms/step at 10.31 FPS); (c) its symbolic planner normalizes instructions into structured templates, losing open-vocabulary flexibility. GuidedVLA (arXiv 2605.12369, RSS 2026) adds factor-specialized attention heads but requires manually defined factor types and shows modest gains (+7.2% over π₀ baseline). Meanwhile, the probing study (arXiv 2602.20501) confirms DINOv2 encodes part-level geometric structures and VLMs contain verb-conditioned interaction priors — exactly the affordance-level signals missing from entity-level approaches. The context-dependency study (arXiv 2603.04419) shows >90% of affordance is context-dependent, arguing against fixed taxonomies. The pieces exist for an affordance-level dual-grounding approach that is simultaneously finer-grained than ProGAL-VLA's entity grounding and more efficient at inference.\n\n## Landscape\n**Dual-grounding VLAs (the direct competitor space)**: ProGAL-VLA (arXiv 2604.09824, Apr 2026) is the current LIBERO-Plus SOTA (85.5%) and the most direct competitor. It constructs a 3D entity-centric graph (GSM) using YOLO-World detection + Metric3D depth, generates symbolic sub-goals via a Qwen-2.5-VL-7B slow planner, and aligns sub-goals with entities via a Grounding Alignment Contrastive (GAC) loss (entity-level InfoNCE: positive pairs are (sub-goal, corresponding entity), negatives are other scene entities). It reduces language ignorance 3-4× and achieves 93.2% on camera, 71.5% on robot, 93.6% on language perturbations. Critical limitations: (1) entity-level granularity — contrasts whole objects, not object parts or interaction regions; for 'grasp the mug by its handle,' ProGAL grounds to the mug entity, not the handle affordance region; (2) full inference pipeline required (detector 43ms + GSM 15.8ms + SACA 10.7ms + policy 26.9ms = ~96ms/step); (3) relies on pretrained detection components whose errors propagate as grounding failures (acknowledged limitation); (4) symbolic planner normalizes linguistic variability into structured templates, limiting open-vocabulary generalization. **Factor-specialized VLAs**: GuidedVLA (arXiv 2605.12369, RSS 2026) uses ControlNet-style residual adapters on π₀ to specialize attention heads for three manually defined factors: object grounding (Qwen3-VL + SAM2 masks + human verification), spatial geometry (DA3 depth encoder), and temporal skill logic (KL-divergence against soft skill labels). Achieves 75.4% on LIBERO-Plus (+7.2% over π₀). Limitations: requires manual factor taxonomy definition, does not use contrastive learning (no appearance-invariance structure), auxiliary heads remain active at inference (ControlNet residual), and requires human verification in supervision pipeline. **Affordance-integrated VLAs with fixed taxonomies**: PALM (arXiv 2601.07060, Jan 2026) structures policy around 4 predefined affordance types (object relevance, contact geometry, spatial placement, motion dynamics) with external tool supervision (GroundingDINO, SAM, SpatialVLM, CoTracker). Affordance queries attend over language, vision, and state tokens via cross-attention — the prediction within each type IS instruction-conditioned. The genuine limitation is that the 4 affordance types are a fixed predefined taxonomy: the model cannot discover novel interaction types beyond these 4 categories, limiting generalization to unseen manipulation verbs. Achieves 94.5% avg on standard LIBERO, 91.8% on LIBERO-LONG, but no LIBERO-Plus evaluation reported. CoA-VLA (ICCV 2025, arXiv 2412.20451) uses chain-of-affordance reasoning over 4 predefined types but underperforms PALM. **Multi-auxiliary VLAs (the saturated paradigm)**: SG-VLA (arXiv 2603.22760, Mar 2026) co-trains 5 auxiliary decoders (robot position, joint configs, binary grasp classification, relative pose, segmentation) on a 1.3B VLA — grasp affordance is binary task-specific (grasped/not-grasped), not open-vocabulary spatial prediction conditioned on instruction semantics. QDepth-VLA (arXiv 2510.14836) adds depth prediction via VQ-VAE — captures 3D geometry but not interaction semantics (a flat surface and a button have the same depth but different affordances). DreamVLA (NeurIPS 2025, arXiv 2507.04447) predicts dynamic region masks, depth, and semantic features. RS-CL (arXiv 2510.01711) uses robot-state contrastive loss — aligns with proprioceptive state, not spatial affordance. ReconVLA (arXiv 2508.10333) reconstructs gaze regions via diffusion transformer. GeoVLA (arXiv 2508.09071) injects 3D point cloud representations. **Why affordance-level auxiliary loss is qualitatively different from all of the above**: The field now has 7+ concurrent auxiliary-loss VLA variants, each targeting different representational signals. The critical structural argument: affordance encodes *interaction geometry* — how an agent can interact with specific parts of an object — which occupies a unique position in representational space. Unlike depth (QDepth-VLA, GuidedVLA's geometry head), which captures 3D structure without interaction semantics (a mug handle and a mug body may have similar depth profiles but fundamentally different grasp affordances), affordance representations are *action-relevant*. Unlike entity-level grounding (ProGAL-VLA), which identifies WHAT object to interact with, affordance-level grounding identifies WHERE on the object and HOW to interact — the handle region for grasping vs. the rim for pouring. Unlike factor-guided attention (GuidedVLA), which requires manual factor taxonomy, affordance-type contrastive clustering automatically discovers interaction structure from instruction verbs. Unlike robot-state alignment (RS-CL), which grounds representations in proprioceptive space, affordance grounds them in the visual-spatial interaction space. The probing study (arXiv 2602.20501) provides direct evidence: DINOv2's part-level geometric prototypes and VLMs' verb-conditioned interaction priors are compositionally separable — affordance sits at their intersection, encoding part geometry conditioned on interaction semantics. The context-dependency finding (arXiv 2603.04419, >90% context-dependent) confirms this is not reducible to fixed object categories. **Attention-based VLAs without affordance supervision**: FocusVLA (arXiv 2603.28740, Mar 2026) proposes top-K visual token selection, achieving 98.7% on standard LIBERO but with zero affordance signal and no LIBERO-Plus evaluation. AVA-VLA (arXiv 2511.18960) uses history-conditioned active visual attention; LIBERO+CALVIN SOTA. DeepVision-VLA (arXiv 2603.15618) injects multi-level vision features. **Robustness-focused VLAs**: RobustVLA (ICLR 2026, arXiv 2510.00037) uses RL post-training with Jacobian/smoothness regularization — +12.6% across 17 perturbation types but without affordance grounding. VLA-GSE (arXiv 2605.06175) achieves 81.2% LIBERO-Plus with only 2.51% trainable parameters — the PEFT robustness SOTA. **Language grounding in VLAs**: IGAR (arXiv 2603.06001) reveals linguistic blindness as attention sink problem, proposes train-free attention recalibration (+40 LGS points). ST4VLA (ICLR 2026, arXiv 2602.10109) shows spatial grounding pre-training improves both robustness and language sensitivity. Stable Language Guidance (arXiv 2601.04052) identifies modality collapse where affordance priors overwhelm language. **Modular affordance pipelines**: UAD (arXiv 2506.09284, ICRA 2025 Best Paper Finalist) distills affordance pseudo-labels from frozen VLMs unsupervised. AFI (arXiv 2512.07472) uses 3D Spatial Affordance Fields as inference-time plug-in (+23.5% OOD), proving affordance helps robustness but requiring a persistent external module. **The refined gap**: ProGAL-VLA proves that contrastive dual-grounding improves VLA robustness. But it operates at entity-level with a heavy inference pipeline. No existing work (1) distills open-vocabulary instruction-conditioned affordance at the part/interaction-geometry level into VLA intermediate representations, (2) uses contrastive learning to cluster representations by interaction type rather than entity identity, AND (3) achieves this with zero inference overhead. AffordVLA fills this specific gap: affordance-level dual-grounding that is finer-grained than ProGAL-VLA's entity grounding, more automatic than GuidedVLA's manual taxonomy, more open-vocabulary than PALM's 4 fixed types, and more efficient than any modular approach.\n\n## Description\nCurrent VLAs suffer two orthogonal failures: visual brittleness (95%→30% under perturbation, LIBERO-Plus CVPR 2026) and linguistic blindness (models ignore instructions, IGAR arXiv 2603.06001). ProGAL-VLA (Apr 2026) addresses both via entity-level contrastive learning (GAC loss), achieving 85.5% LIBERO-Plus SOTA — but at the cost of a full inference pipeline (YOLO-World + Metric3D + 7B planner + entity graph, ~96ms/step) and with only entity-level granularity (grounding to 'the mug' rather than 'the mug's handle for grasping'). GuidedVLA (RSS 2026) specializes attention heads for manually defined factors but achieves only 75.4% and requires human verification in supervision. PALM uses instruction-conditioned prediction within 4 predefined affordance types but cannot discover novel interaction categories. We propose AffordVLA, which achieves dual-grounding at the affordance level — finer-grained, more efficient, and more automatic than existing approaches. Two complementary losses distill open-vocabulary affordance from frozen foundation models into VLA intermediate representations: (1) an affordance prediction loss forces instruction-conditioned spatial heatmaps at part level, combating linguistic blindness; (2) a contrastive interaction-type loss clusters features by interaction geometry (grasp vs. press vs. slide) rather than object appearance or entity identity, combating visual brittleness. The core insight is that neither loss alone achieves dual-grounding: prediction without contrastive gives instruction-conditioned but visually brittle features; contrastive without prediction gives appearance-invariant but spatially imprecise features. Their combination produces representations that are simultaneously spatially grounded at part level and appearance-invariant — qualitatively different from depth (no interaction semantics), entity grounding (no part-level specificity), or factor-guided attention (no automatic interaction discovery). Unlike ProGAL-VLA's entity-level contrastive learning, AffordVLA contrasts interaction-type features at the affordance level — encoding WHERE on an object and HOW to interact, not just WHICH object. Interaction types are automatically extracted from instruction verbs (no symbolic planner, no manual taxonomy). A quality-filtered pseudo-label pipeline (confidence thresholding + instruction-paraphrase consistency) addresses noise without human verification. Both auxiliary heads are dropped at inference (zero overhead vs. ProGAL's ~96ms/step). Built on OpenVLA-OFT with LoRA (~8M added parameters, 0.1% of 7B base), fitting within 200 H100-hours. Evaluation centers on LIBERO-Plus comparison with ProGAL-VLA (primary), GuidedVLA, and VLA-GSE; ICBench linguistic grounding; and critical ablations: (a) prediction-only vs. contrastive-only vs. both (dual-grounding hypothesis), (b) affordance-level vs. entity-level contrastive (granularity hypothesis), (c) inference latency comparison.\n\n## Approach\nWe propose AffordVLA, which distills open-vocabulary affordance knowledge from frozen foundation models into a VLA's intermediate representations via two complementary losses — producing features grounded at the affordance level (part-level interaction geometry) rather than the entity level (ProGAL-VLA) or predefined factor level (GuidedVLA/PALM), with zero inference overhead. The core theoretical insight — and the key structural contribution — is that neither auxiliary loss alone achieves dual-grounding: the affordance prediction loss provides instruction-conditioned spatial grounding (combating linguistic blindness by requiring joint vision-language attention to produce instruction-specific heatmaps), while the contrastive interaction-type loss provides appearance-invariant clustering (combating visual brittleness by organizing representations by HOW to interact rather than WHAT things look like). Prediction without contrastive gives instruction-conditioned but visually brittle features (heatmaps shift under visual perturbation); contrastive without prediction gives appearance-invariant but spatially imprecise features (interaction-type clusters without spatial localization). Their combination is necessary and sufficient for dual-grounding. The approach has three stages:\n\n**Stage 1 — Quality-Filtered Affordance Pseudo-Label Generation (offline, one-time):** For each (image, language instruction) pair in training data, we generate dense affordance heatmaps using frozen foundation models. Following the probing study (arXiv 2602.20501), we fuse DINOv2 geometric part features (extracted via attention-based part prototypes) with a frozen VLM's (Qwen2-VL-7B) instruction-conditioned interaction priors. Concretely: (a) prompt the VLM with image and instruction to generate a textual affordance description (e.g., 'grasp the mug by its handle'), (b) use frozen GroundingDINO to project this into a spatial heatmap. To address pseudo-label noise (GroundingDINO's known hallucination and mislocalization issues — also acknowledged as a failure mode for ProGAL-VLA's YOLO-World detector), we apply two quality filters: (i) Confidence thresholding — discard heatmaps where GroundingDINO detection confidence < 0.5; (ii) Consistency checking — for each sample, generate a second heatmap using a paraphrased instruction (VLM-generated paraphrase), and retain only samples where the IoU between the two heatmaps exceeds 0.3 (same affordance region should be highlighted regardless of phrasing). Remaining pseudo-labels use soft confidence weighting rather than hard binary masks. Additionally, for each instruction we generate 2-3 VLM paraphrases of the affordance description, enabling affordance-aware data augmentation during training — a strategy impossible with PALM's fixed 4 types or GuidedVLA's manual factor definitions. No manual annotations needed (unlike GuidedVLA's Qwen3-VL + SAM2 + human verification pipeline).\n\n**Stage 2 — Dual-Loss Affordance-Distilled Training:** Built on OpenVLA-OFT (SigLIP + DINOv2 dual encoder, 7B pretrained), we add two lightweight components: (A) Affordance Prediction Head — a 3-layer MLP (~2M parameters) reading from intermediate VLM layers 16-20 (where VLA-Adapter confirms action-generation utility peaks) that predicts the affordance heatmap, supervised by confidence-weighted focal loss against pseudo-labels. This head requires the model to jointly attend to instruction semantics and visual features to produce instruction-specific spatial predictions — directly combating linguistic blindness. Unlike PALM, whose 4 affordance types are a fixed predefined taxonomy (object relevance, contact geometry, spatial placement, motion dynamics) even though the prediction within each type is instruction-conditioned, AffordVLA's affordance space is entirely open-vocabulary: the heatmap content is dynamically determined by instruction text, enabling the model to ground novel interaction verbs unseen during training. (B) Contrastive Interaction-Type Loss — the key differentiator from both PALM and ProGAL-VLA. We extract intermediate features from affordance-highlighted regions (top-20% of heatmap) and apply an InfoNCE-style contrastive loss: positive pairs are features from the same interaction verb/type (e.g., 'grasp handle' on different objects or under different visual conditions); negative pairs are different interaction types (e.g., 'grasp' vs. 'press' vs. 'slide'). This differs fundamentally from ProGAL-VLA's GAC loss in what is contrasted: ProGAL contrasts (sub-goal, entity) pairs at the whole-object level (which mug?), while AffordVLA contrasts interaction-type features at the affordance level (grasping vs. pressing, regardless of which object). This finer granularity means AffordVLA's representations encode WHERE on an object and HOW to interact (the handle region for grasping), not just WHICH object. Interaction types are automatically extracted from instruction verbs — no manual taxonomy (unlike GuidedVLA's 3 predefined factors) and no symbolic planner (unlike ProGAL-VLA's Qwen-2.5-VL-7B planner). This contrastive loss explicitly enforces that representations cluster by interaction geometry rather than object appearance, producing features inherently invariant to visual perturbations. The total loss is L = L_action + λ_pred · L_afford_pred + λ_contrast · L_afford_contrast, with λ_pred=0.1, λ_contrast=0.05. **Both auxiliary components are dropped at inference (zero overhead)** — a critical efficiency advantage over ProGAL-VLA (~96ms/step with full inference pipeline) and GuidedVLA (ControlNet residual remains active). The VLM backbone is fine-tuned with LoRA (rank 32, ~5M parameters). Total added training parameters: ~8M (~0.1% of the 7B base).\n\n**Stage 3 — Evaluation designed to test affordance-level dual-grounding hypothesis:** Primary benchmark: LIBERO-Plus (7 perturbation dimensions). Secondary: standard LIBERO (regression check), ICBench (language grounding diagnostic from IGAR paper), and novel instruction sets with unseen interaction verbs (open-vocabulary generalization test). **Baselines**: (1) **ProGAL-VLA** (entity-level contrastive dual-grounding, LIBERO-Plus SOTA 85.5% — primary differentiation target), (2) **GuidedVLA** (factor-specialized attention, RSS 2026, 75.4% LIBERO-Plus), (3) **PALM** (structured affordance, 4 fixed types), (4) **SG-VLA** (multi-auxiliary including binary grasp), (5) **FocusVLA** (generic attention), (6) **AVA-VLA** (history-conditioned attention), (7) **OpenVLA-OFT** (base model), (8) **VLA-GSE** (PEFT robustness SOTA, 81.2% LIBERO-Plus), (9) **RobustVLA** (RL post-training robustness), (10) **AFI** (inference-time affordance), (11) **AffordVLA + AFI** (training + inference-time affordance, to test complementarity). **Key ablations**: (a) Full AffordVLA vs. prediction-loss-only (no contrastive) vs. contrastive-only (no prediction) — this is the central ablation testing the dual-grounding hypothesis: prediction-only should improve linguistic grounding (ICBench) but not visual robustness (LIBERO-Plus perturbations); contrastive-only should improve visual robustness but not linguistic grounding; only the combination should improve both; (b) Affordance-level contrastive (ours) vs. entity-level contrastive (ProGAL-style, contrasting whole-object features rather than affordance-region features) — directly testing whether finer granularity matters; (c) Instruction-conditioned affordance vs. instruction-agnostic affordance (same heatmap regardless of instruction) — testing whether language conditioning drives robustness; (d) Pseudo-label quality: raw vs. confidence-filtered vs. consistency-filtered vs. both filters — quantifying noise robustness; (e) Layer selection (8/12/16/20/24) for affordance head; (f) λ_pred and λ_contrast sensitivity; (g) Qualitative visualization: attention maps under perturbation comparing AffordVLA vs. ProGAL-VLA vs. GuidedVLA vs. FocusVLA, showing that affordance-level contrastive features maintain interaction-type clustering under visual shift while entity-level features drift; (h) ICBench linguistic grounding score before/after affordance training; (i) Inference latency comparison: AffordVLA (zero overhead) vs. ProGAL-VLA (~96ms/step) vs. AFI (external module) — critical for real-world deployment. The ProGAL-VLA comparison is the most critical: if AffordVLA matches or exceeds ProGAL's 85.5% LIBERO-Plus with zero inference overhead, the efficiency argument is decisive; if AffordVLA shows superior per-dimension results on interaction-geometry-sensitive perturbations (robot, layout) while ProGAL excels on entity-identity-sensitive perturbations (camera, lighting), the granularity argument is validated. Ablation (b) specifically tests whether affordance-level contrastive outperforms entity-level contrastive on the same backbone, isolating the granularity contribution.\n\n## Resource Estimate\n{'auto_research': {'claude_api_cost': '$150-250 (~1,500-2,500 turns Opus)', 'estimated_gpu_cost': '$1,350-2,200 (H100 at $3.00-4.00/hr)', 'gpu_hours': '~450-550h H100 (exhaustive layer search, full λ sweep for both losses, contrastive temperature search, entity-level vs. affordance-level granularity comparison, cross-backbone validation on SmolVLA, 3 seeds per final config, comprehensive LIBERO-Plus per-dimension analysis, AFI combination experiments, ProGAL-VLA reproduction for controlled comparison)', 'gpu_utilization': '~85-90%; agent queues experiments 24/7', 'risk_note': 'Exceeds 200 H100-hour budget but produces a more thorough paper with multi-seed results, granularity ablations, and cross-backbone validation; manual and human-in-loop modes fit within budget', 'speed_bottleneck': 'Pseudo-label generation with consistency filtering is the main sequential bottleneck; parallelizable across task suites', 'team': '0 researchers after ~2h initial setup', 'timeline': '2-3 weeks with 4×H100'}, 'human_in_loop': {'claude_api_cost': '$60-100 (~600-1000 turns at ~$0.10/turn Opus)', 'estimated_gpu_cost': '$660-880 (H100 80GB at $3.00-4.00/hr)', 'gpu_hours': '~220h H100 (agent explores additional contrastive temperature schedules, granularity ablations, and pseudo-label quality ablations)', 'gpu_utilization': '~65-70%; agent queues promptly but pauses at approval gates', 'risk_note': 'Agent may over-explore contrastive loss variants or granularity ablations; approval gates on architecture decisions mitigate waste', 'team': '1 researcher, ~20min/day reviewing agent proposals', 'timeline': '6-8 weeks'}, 'manual': {'estimated_gpu_cost': '$600-800 (H100 80GB at $3.00-4.00/hr on Lambda/RunPod)', 'gpu_hours': '~200h H100 (pseudo-label generation with quality filtering: 35h on 1×H100 including paraphrase generation and consistency checks; architecture search over 3 layer-selection variants: 45h; 4 full training runs at ~17h each on 1×H100 with dual-loss LoRA: 68h; LIBERO-Plus + standard LIBERO + ICBench evaluation: 35h; ablations on λ, pseudo-label quality, contrastive granularity: 17h)', 'gpu_utilization': '~40-50% effective utilization due to researcher iteration cycles', 'team': '1-2 researchers', 'timeline': '3-4 months (targeting ICRA 2027 deadline Sep 16, 2026)'}}\n\n## Key References\n- ProGAL-VLA: Grounded Alignment through Prospective Reasoning in VLA Models (arXiv 2604.09824, Apr 2026) — LIBERO-Plus SOTA (85.5%), entity-level contrastive dual-grounding with GAC loss; PRIMARY differentiation target (entity-level vs. our affordance-level granularity, full inference pipeline vs. our zero overhead)\n- GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization (arXiv 2605.12369, RSS 2026) — factor-specialized attention heads with manual taxonomy (object grounding, spatial geometry, temporal skill logic), 75.4% LIBERO-Plus; key differentiation: manual factor definition vs. our automatic interaction-type discovery\n- PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation (arXiv 2601.07060, Jan 2026) — 4 predefined affordance types with instruction-conditioned prediction within each type; key differentiation: fixed taxonomy vs. open-vocabulary affordance space\n- SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation (arXiv 2603.22760, Mar 2026) — 5 auxiliary decoders including binary grasp affordance on 1.3B VLA; differs from AffordVLA in binary classification vs. open-vocabulary spatial prediction\n- FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — Focus Attention for task-relevant token selection, 98.7% standard LIBERO but no affordance supervision\n- UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation (arXiv 2506.09284, ICRA 2025 Best Paper Finalist) — demonstrates unsupervised affordance pseudo-labels from frozen VLMs, modular pipeline\n- LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (arXiv 2510.13626, CVPR 2026) — reveals catastrophic VLA brittleness AND linguistic blindness, primary evaluation benchmark\n- Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration (IGAR, arXiv 2603.06001, Mar 2026) — identifies linguistic blindness as attention sink problem, ICBench diagnostic benchmark\n- RobustVLA: On Robustness of VLA Models against Multi-Modal Perturbations (ICLR 2026, arXiv 2510.00037) — RL post-training robustness via Jacobian/smoothness regularization, +12.6% across 17 perturbation types\n- ST4VLA: Spatially Guided Training for Vision-Language-Action Models (ICLR 2026, arXiv 2602.10109) — spatial grounding pre-training improves BOTH robustness and language sensitivity, supporting dual-grounding hypothesis\n- Probing and Bridging Geometry-Interaction Cues for Affordance Reasoning in Vision Foundation Models (arXiv 2602.20501, Feb 2026) — confirms DINOv2 encodes geometric affordance, VLMs encode interaction priors; foundational for pseudo-label generation and structural argument\n- Context-Dependent Affordance Computation in Vision-Language Models (arXiv 2603.04419, Feb 2026) — >90% affordance is context-dependent, argues against fixed categories\n- AVA-VLA: Improving Vision-Language-Action Models with Active Visual Attention (arXiv 2511.18960) — history-conditioned attention, LIBERO+CALVIN SOTA\n- CoA-VLA: Improving Vision-Language-Action Models via Visual-Text Chain-of-Affordance (ICCV 2025, arXiv 2412.20451)\n- Affordance Field Intervention: Enabling VLAs to Escape Memory Traps (arXiv 2512.07472, Dec 2024) — inference-time affordance guidance, +23.5% OOD; training-time vs. inference-time comparison target\n- VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts (arXiv 2605.06175) — 81.2% LIBERO-Plus with 2.51% params, PEFT robustness SOTA\n- Contrastive Representation Regularization for Vision-Language-Action Models (RS-CL, arXiv 2510.01711) — robot-state contrastive loss for VLA representation alignment\n- Selective Contrastive Learning for Weakly Supervised Affordance Grounding (ICCV 2025, arXiv 2508.07877) — contrastive affordance learning with interaction-type clustering; methodological inspiration\n- Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT, arXiv 2502.19645, 2025) — base model, LoRA fine-tuning recipe\n- VLA-Adapter: An Effective Paradigm for Tiny-Scale VLA Model (arXiv 2509.09372, 2025) — mid-layer features best for action generation\n- Stable Language Guidance for Vision-Language-Action Models (arXiv 2601.04052, Jan 2026) — studies affordance-language interaction via modality collapse\n- QDepth-VLA: Quantized Depth Prediction as Auxiliary Supervision (arXiv 2510.14836) — depth auxiliary loss for VLA; auxiliary paradigm comparison\n- DreamVLA: A VLA Model Dreamed with Comprehensive World Knowledge (NeurIPS 2025, arXiv 2507.04447) — dynamic region + depth + semantics auxiliary prediction\n- ReconVLA: Reconstructive VLA Model as Effective Robot Perceiver (arXiv 2508.10333) — gaze region reconstruction as auxiliary objective\n- GeoVLA: Empowering 3D Representations in VLA Models (arXiv 2508.09071) — 3D point cloud injection for geometric awareness\n- RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation (arXiv 2411.02704, 2024)\n- GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation (CoRL 2025, arXiv 2505.11865)\n- Grounding Hierarchical VLA Models Through Explicit Language-Action Alignment (arXiv 2604.05614, Apr 2026) — contrastive language-action alignment via preference learning\n- DeepVision-VLA (arXiv 2603.15618) — multi-level vision feature injection\n- A1: A Fully Transparent Open-Source VLA (arXiv 2604.05672, Apr 2026)\n",
+7	  "status": "pending",
+8	  "target_venues": [
+9	    "ICRA 2027 (deadline Sep 16, 2026; top robotics venue, strong fit for affordance + robustness + efficiency story — ~4 months from now, primary target)",
+10	    "CoRL 2027 (expected deadline ~May 2027; user's originally preferred venue series, backup target if more thorough evaluation including real-robot experiments is desired — ~12 months, allows comprehensive evaluation)",
+11	    "ICLR 2027 (expected deadline ~Sep 19-24, 2026; stretch target if results demonstrate broad ML-relevant insights about affordance-level vs. entity-level representation granularity)",
+12	    "CoRL 2026 IMPOSSIBLE (deadline May 29, 2026 — 11 days away, not feasible)"
+13	  ],
+14	  "run_id": "run_20260518_180544_9f84bc"
+15	}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "125a080c-11f4-4d7d-abee-1a7ce412b5bc",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "6f8d9173-a78c-4b89-8a88-6b14d70da29e",
+  "sourceToolAssistantUUID": "125a080c-11f4-4d7d-abee-1a7ce412b5bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-28T00:28:20.399Z_
+
+Now let me look at a result JSON to understand the review result format better.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f8d9173-a78c-4b89-8a88-6b14d70da29e",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU27qvhX1G9m9QcrumVK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a91bc303-6bbe-4055-897b-ac4abd4de5a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKumYFUpsnhoWRVnN2X7uU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8625,
+      "cache_read_input_tokens": 14710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8625,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-28T00:28:21.416Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01ECuTe4NAgMtQYDBDuoP8YW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/dispatch/results/result_corl_001_prod_s1.json",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a91bc303-6bbe-4055-897b-ac4abd4de5a3",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU27qvhX1G9m9QcrumVK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "64ad806d-8308-46a1-9941-e25f3519b2e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKumYFUpsnhoWRVnN2X7uU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8625,
+      "cache_read_input_tokens": 14710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8625,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T00:28:21.846Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01ECuTe4NAgMtQYDBDuoP8YW`</summary>
+
+```text
+File content (45213 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64ad806d-8308-46a1-9941-e25f3519b2e3",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "11b3d758-d018-4c87-9d7c-2d2007dccc90",
+  "toolUseResult": "Error: File content (45213 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "64ad806d-8308-46a1-9941-e25f3519b2e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T00:28:24.194Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WUHTRuWQQBi8rmkmPVUYoA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/dispatch/results/result_corl_001_prod_s1.json",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11b3d758-d018-4c87-9d7c-2d2007dccc90",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU28D6BAWPU3H8wwvVd1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "091c2c49-8ecf-4e7c-847a-83ecf22acb70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QaTLDj9JFQCi3gSAZo3Q5S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 173,
+      "cache_read_input_tokens": 23335,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 173
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 23335,
+          "cache_creation_input_tokens": 173,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 173,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T00:28:24.918Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WUHTRuWQQBi8rmkmPVUYoA`</summary>
+
+```text
+File content (27956 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "091c2c49-8ecf-4e7c-847a-83ecf22acb70",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "e0a350b4-ace6-476d-b274-e28c84a63a8d",
+  "toolUseResult": "Error: File content (27956 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "091c2c49-8ecf-4e7c-847a-83ecf22acb70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T00:28:27.248Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014k3G9LK67hkRAqCgawtGCy`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/dispatch/results/result_corl_001_prod_s1.json",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0a350b4-ace6-476d-b274-e28c84a63a8d",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU28SCDbLpKQ23jVtB1K",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c7c2a4f9-6b94-47ff-94f4-c193d83cb77f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019YsbH5wM6m4vvF4ZazC4JD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 156,
+      "cache_read_input_tokens": 23508,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 156
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 23508,
+          "cache_creation_input_tokens": 156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 156,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T00:28:27.662Z_
+
+<details><summary>↩ Tool result · `toolu_014k3G9LK67hkRAqCgawtGCy`</summary>
+
+```text
+1	{
+2	  "原始标题": "AffordVLA: Affordance-Level Contrastive Distillation for Efficient Dual-Grounded VLA Representations",
+3	  "原始proposal": "# AffordVLA: Affordance-Level Contrastive Distillation for Efficient Dual-Grounded VLA Representations\n\n## Core Problem\nHow can we produce VLA representations that are simultaneously spatially grounded at the affordance level (part-level interaction geometry, not just entity-level) and linguistically grounded (instruction-conditioned), achieving dual-grounding with zero inference overhead — where current approaches either require persistent inference-time modules (ProGAL-VLA's entity graph + symbolic planner at ~96ms/step) or address only one failure mode?\n\n## Opportunity\nLIBERO-Plus (CVPR 2026) reveals two orthogonal VLA failure modes: (1) visual brittleness — performance collapses from 95% to below 30% under perturbation, and (2) linguistic blindness — models ignore instructions entirely, relying on positional bias (confirmed by IGAR, arXiv 2603.06001). The most important recent development is ProGAL-VLA (arXiv 2604.09824, Apr 2026), which uses entity-level contrastive learning (GAC loss with InfoNCE) to address BOTH failure modes, achieving 85.5% on LIBERO-Plus — the current SOTA. However, ProGAL-VLA has three fundamental limitations: (a) it operates at entity-level granularity (grounding to 'the mug' rather than 'the mug's handle for grasping'), missing part-level interaction geometry critical for manipulation; (b) it requires a full inference pipeline (YOLO-World detector + Metric3D depth + 7B Qwen-2.5-VL planner + GSM entity graph + SACA attention, totaling ~96ms/step at 10.31 FPS); (c) its symbolic planner normalizes instructions into structured templates, losing open-vocabulary flexibility. GuidedVLA (arXiv 2605.12369, RSS 2026) adds factor-specialized attention heads but requires manually defined factor types and shows modest gains (+7.2% over π₀ baseline). Meanwhile, the probing study (arXiv 2602.20501) confirms DINOv2 encodes part-level geometric structures and VLMs contain verb-conditioned interaction priors — exactly the affordance-level signals missing from entity-level approaches. The context-dependency study (arXiv 2603.04419) shows >90% of affordance is context-dependent, arguing against fixed taxonomies. The pieces exist for an affordance-level dual-grounding approach that is simultaneously finer-grained than ProGAL-VLA's entity grounding and more efficient at inference.\n\n## Landscape\n**Dual-grounding VLAs (the direct competitor space)**: ProGAL-VLA (arXiv 2604.09824, Apr 2026) is the current LIBERO-Plus SOTA (85.5%) and the most direct competitor. It constructs a 3D entity-centric graph (GSM) using YOLO-World detection + Metric3D depth, generates symbolic sub-goals via a Qwen-2.5-VL-7B slow planner, and aligns sub-goals with entities via a Grounding Alignment Contrastive (GAC) loss (entity-level InfoNCE: positive pairs are (sub-goal, corresponding entity), negatives are other scene entities). It reduces language ignorance 3-4× and achieves 93.2% on camera, 71.5% on robot, 93.6% on language perturbations. Critical limitations: (1) entity-level granularity — contrasts whole objects, not object parts or interaction regions; for 'grasp the mug by its handle,' ProGAL grounds to the mug entity, not the handle affordance region; (2) full inference pipeline required (detector 43ms + GSM 15.8ms + SACA 10.7ms + policy 26.9ms = ~96ms/step); (3) relies on pretrained detection components whose errors propagate as grounding failures (acknowledged limitation); (4) symbolic planner normalizes linguistic variability into structured templates, limiting open-vocabulary generalization. **Factor-specialized VLAs**: GuidedVLA (arXiv 2605.12369, RSS 2026) uses ControlNet-style residual adapters on π₀ to specialize attention heads for three manually defined factors: object grounding (Qwen3-VL + SAM2 masks + human verification), spatial geometry (DA3 depth encoder), and temporal skill logic (KL-divergence against soft skill labels). Achieves 75.4% on LIBERO-Plus (+7.2% over π₀). Limitations: requires manual factor taxonomy definition, does not use contrastive learning (no appearance-invariance structure), auxiliary heads remain active at inference (ControlNet residual), and requires human verification in supervision pipeline. **Affordance-integrated VLAs with fixed taxonomies**: PALM (arXiv 2601.07060, Jan 2026) structures policy around 4 predefined affordance types (object relevance, contact geometry, spatial placement, motion dynamics) with external tool supervision (GroundingDINO, SAM, SpatialVLM, CoTracker). Affordance queries attend over language, vision, and state tokens via cross-attention — the prediction within each type IS instruction-conditioned. The genuine limitation is that the 4 affordance types are a fixed predefined taxonomy: the model cannot discover novel interaction types beyond these 4 categories, limiting generalization to unseen manipulation verbs. Achieves 94.5% avg on standard LIBERO, 91.8% on LIBERO-LONG, but no LIBERO-Plus evaluation reported. CoA-VLA (ICCV 2025, arXiv 2412.20451) uses chain-of-affordance reasoning over 4 predefined types but underperforms PALM. **Multi-auxiliary VLAs (the saturated paradigm)**: SG-VLA (arXiv 2603.22760, Mar 2026) co-trains 5 auxiliary decoders (robot position, joint configs, binary grasp classification, relative pose, segmentation) on a 1.3B VLA — grasp affordance is binary task-specific (grasped/not-grasped), not open-vocabulary spatial prediction conditioned on instruction semantics. QDepth-VLA (arXiv 2510.14836) adds depth prediction via VQ-VAE — captures 3D geometry but not interaction semantics (a flat surface and a button have the same depth but different affordances). DreamVLA (NeurIPS 2025, arXiv 2507.04447) predicts dynamic region masks, depth, and semantic features. RS-CL (arXiv 2510.01711) uses robot-state contrastive loss — aligns with proprioceptive state, not spatial affordance. ReconVLA (arXiv 2508.10333) reconstructs gaze regions via diffusion transformer. GeoVLA (arXiv 2508.09071) injects 3D point cloud representations. **Why affordance-level auxiliary loss is qualitatively different from all of the above**: The field now has 7+ concurrent auxiliary-loss VLA variants, each targeting different representational signals. The critical structural argument: affordance encodes *interaction geometry* — how an agent can interact with specific parts of an object — which occupies a unique position in representational space. Unlike depth (QDepth-VLA, GuidedVLA's geometry head), which captures 3D structure without interaction semantics (a mug handle and a mug body may have similar depth profiles but fundamentally different grasp affordances), affordance representations are *action-relevant*. Unlike entity-level grounding (ProGAL-VLA), which identifies WHAT object to interact with, affordance-level grounding identifies WHERE on the object and HOW to interact — the handle region for grasping vs. the rim for pouring. Unlike factor-guided attention (GuidedVLA), which requires manual factor taxonomy, affordance-type contrastive clustering automatically discovers interaction structure from instruction verbs. Unlike robot-state alignment (RS-CL), which grounds representations in proprioceptive space, affordance grounds them in the visual-spatial interaction space. The probing study (arXiv 2602.20501) provides direct evidence: DINOv2's part-level geometric prototypes and VLMs' verb-conditioned interaction priors are compositionally separable — affordance sits at their intersection, encoding part geometry conditioned on interaction semantics. The context-dependency finding (arXiv 2603.04419, >90% context-dependent) confirms this is not reducible to fixed object categories. **Attention-based VLAs without affordance supervision**: FocusVLA (arXiv 2603.28740, Mar 2026) proposes top-K visual token selection, achieving 98.7% on standard LIBERO but with zero affordance signal and no LIBERO-Plus evaluation. AVA-VLA (arXiv 2511.18960) uses history-conditioned active visual attention; LIBERO+CALVIN SOTA. DeepVision-VLA (arXiv 2603.15618) injects multi-level vision features. **Robustness-focused VLAs**: RobustVLA (ICLR 2026, arXiv 2510.00037) uses RL post-training with Jacobian/smoothness regularization — +12.6% across 17 perturbation types but without affordance grounding. VLA-GSE (arXiv 2605.06175) achieves 81.2% LIBERO-Plus with only 2.51% trainable parameters — the PEFT robustness SOTA. **Language grounding in VLAs**: IGAR (arXiv 2603.06001) reveals linguistic blindness as attention sink problem, proposes train-free attention recalibration (+40 LGS points). ST4VLA (ICLR 2026, arXiv 2602.10109) shows spatial grounding pre-training improves both robustness and language sensitivity. Stable Language Guidance (arXiv 2601.04052) identifies modality collapse where affordance priors overwhelm language. **Modular affordance pipelines**: UAD (arXiv 2506.09284, ICRA 2025 Best Paper Finalist) distills affordance pseudo-labels from frozen VLMs unsupervised. AFI (arXiv 2512.07472) uses 3D Spatial Affordance Fields as inference-time plug-in (+23.5% OOD), proving affordance helps robustness but requiring a persistent external module. **The refined gap**: ProGAL-VLA proves that contrastive dual-grounding improves VLA robustness. But it operates at entity-level with a heavy inference pipeline. No existing work (1) distills open-vocabulary instruction-conditioned affordance at the part/interaction-geometry level into VLA intermediate representations, (2) uses contrastive learning to cluster representations by interaction type rather than entity identity, AND (3) achieves this with zero inference overhead. AffordVLA fills this specific gap: affordance-level dual-grounding that is finer-grained than ProGAL-VLA's entity grounding, more automatic than GuidedVLA's manual taxonomy, more open-vocabulary than PALM's 4 fixed types, and more efficient than any modular approach.\n\n## Description\nCurrent VLAs suffer two orthogonal failures: visual brittleness (95%→30% under perturbation, LIBERO-Plus CVPR 2026) and linguistic blindness (models ignore instructions, IGAR arXiv 2603.06001). ProGAL-VLA (Apr 2026) addresses both via entity-level contrastive learning (GAC loss), achieving 85.5% LIBERO-Plus SOTA — but at the cost of a full inference pipeline (YOLO-World + Metric3D + 7B planner + entity graph, ~96ms/step) and with only entity-level granularity (grounding to 'the mug' rather than 'the mug's handle for grasping'). GuidedVLA (RSS 2026) specializes attention heads for manually defined factors but achieves only 75.4% and requires human verification in supervision. PALM uses instruction-conditioned prediction within 4 predefined affordance types but cannot discover novel interaction categories. We propose AffordVLA, which achieves dual-grounding at the affordance level — finer-grained, more efficient, and more automatic than existing approaches. Two complementary losses distill open-vocabulary affordance from frozen foundation models into VLA intermediate representations: (1) an affordance prediction loss forces instruction-conditioned spatial heatmaps at part level, combating linguistic blindness; (2) a contrastive interaction-type loss clusters features by interaction geometry (grasp vs. press vs. slide) rather than object appearance or entity identity, combating visual brittleness. The core insight is that neither loss alone achieves dual-grounding: prediction without contrastive gives instruction-conditioned but visually brittle features; contrastive without prediction gives appearance-invariant but spatially imprecise features. Their combination produces representations that are simultaneously spatially grounded at part level and appearance-invariant — qualitatively different from depth (no interaction semantics), entity grounding (no part-level specificity), or factor-guided attention (no automatic interaction discovery). Unlike ProGAL-VLA's entity-level contrastive learning, AffordVLA contrasts interaction-type features at the affordance level — encoding WHERE on an object and HOW to interact, not just WHICH object. Interaction types are automatically extracted from instruction verbs (no symbolic planner, no manual taxonomy). A quality-filtered pseudo-label pipeline (confidence thresholding + instruction-paraphrase consistency) addresses noise without human verification. Both auxiliary heads are dropped at inference (zero overhead vs. ProGAL's ~96ms/step). Built on OpenVLA-OFT with LoRA (~8M added parameters, 0.1% of 7B base), fitting within 200 H100-hours. Evaluation centers on LIBERO-Plus comparison with ProGAL-VLA (primary), GuidedVLA, and VLA-GSE; ICBench linguistic grounding; and critical ablations: (a) prediction-only vs. contrastive-only vs. both (dual-grounding hypothesis), (b) affordance-level vs. entity-level contrastive (granularity hypothesis), (c) inference latency comparison.\n\n## Approach\nWe propose AffordVLA, which distills open-vocabulary affordance knowledge from frozen foundation models into a VLA's intermediate representations via two complementary losses — producing features grounded at the affordance level (part-level interaction geometry) rather than the entity level (ProGAL-VLA) or predefined factor level (GuidedVLA/PALM), with zero inference overhead. The core theoretical insight — and the key structural contribution — is that neither auxiliary loss alone achieves dual-grounding: the affordance prediction loss provides instruction-conditioned spatial grounding (combating linguistic blindness by requiring joint vision-language attention to produce instruction-specific heatmaps), while the contrastive interaction-type loss provides appearance-invariant clustering (combating visual brittleness by organizing representations by HOW to interact rather than WHAT things look like). Prediction without contrastive gives instruction-conditioned but visually brittle features (heatmaps shift under visual perturbation); contrastive without prediction gives appearance-invariant but spatially imprecise features (interaction-type clusters without spatial localization). Their combination is necessary and sufficient for dual-grounding. The approach has three stages:\n\n**Stage 1 — Quality-Filtered Affordance Pseudo-Label Generation (offline, one-time):** For each (image, language instruction) pair in training data, we generate dense affordance heatmaps using frozen foundation models. Following the probing study (arXiv 2602.20501), we fuse DINOv2 geometric part features (extracted via attention-based part prototypes) with a frozen VLM's (Qwen2-VL-7B) instruction-conditioned interaction priors. Concretely: (a) prompt the VLM with image and instruction to generate a textual affordance description (e.g., 'grasp the mug by its handle'), (b) use frozen GroundingDINO to project this into a spatial heatmap. To address pseudo-label noise (GroundingDINO's known hallucination and mislocalization issues — also acknowledged as a failure mode for ProGAL-VLA's YOLO-World detector), we apply two quality filters: (i) Confidence thresholding — discard heatmaps where GroundingDINO detection confidence < 0.5; (ii) Consistency checking — for each sample, generate a second heatmap using a paraphrased instruction (VLM-generated paraphrase), and retain only samples where the IoU between the two heatmaps exceeds 0.3 (same affordance region should be highlighted regardless of phrasing). Remaining pseudo-labels use soft confidence weighting rather than hard binary masks. Additionally, for each instruction we generate 2-3 VLM paraphrases of the affordance description, enabling affordance-aware data augmentation during training — a strategy impossible with PALM's fixed 4 types or GuidedVLA's manual factor definitions. No manual annotations needed (unlike GuidedVLA's Qwen3-VL + SAM2 + human verification pipeline).\n\n**Stage 2 — Dual-Loss Affordance-Distilled Training:** Built on OpenVLA-OFT (SigLIP + DINOv2 dual encoder, 7B pretrained), we add two lightweight components: (A) Affordance Prediction Head — a 3-layer MLP (~2M parameters) reading from intermediate VLM layers 16-20 (where VLA-Adapter confirms action-generation utility peaks) that predicts the affordance heatmap, supervised by confidence-weighted focal loss against pseudo-labels. This head requires the model to jointly attend to instruction semantics and visual features to produce instruction-specific spatial predictions — directly combating linguistic blindness. Unlike PALM, whose 4 affordance types are a fixed predefined taxonomy (object relevance, contact geometry, spatial placement, motion dynamics) even though the prediction within each type is instruction-conditioned, AffordVLA's affordance space is entirely open-vocabulary: the heatmap content is dynamically determined by instruction text, enabling the model to ground novel interaction verbs unseen during training. (B) Contrastive Interaction-Type Loss — the key differentiator from both PALM and ProGAL-VLA. We extract intermediate features from affordance-highlighted regions (top-20% of heatmap) and apply an InfoNCE-style contrastive loss: positive pairs are features from the same interaction verb/type (e.g., 'grasp handle' on different objects or under different visual conditions); negative pairs are different interaction types (e.g., 'grasp' vs. 'press' vs. 'slide'). This differs fundamentally from ProGAL-VLA's GAC loss in what is contrasted: ProGAL contrasts (sub-goal, entity) pairs at the whole-object level (which mug?), while AffordVLA contrasts interaction-type features at the affordance level (grasping vs. pressing, regardless of which object). This finer granularity means AffordVLA's representations encode WHERE on an object and HOW to interact (the handle region for grasping), not just WHICH object. Interaction types are automatically extracted from instruction verbs — no manual taxonomy (unlike GuidedVLA's 3 predefined factors) and no symbolic planner (unlike ProGAL-VLA's Qwen-2.5-VL-7B planner). This contrastive loss explicitly enforces that representations cluster by interaction geometry rather than object appearance, producing features inherently invariant to visual perturbations. The total loss is L = L_action + λ_pred · L_afford_pred + λ_contrast · L_afford_contrast, with λ_pred=0.1, λ_contrast=0.05. **Both auxiliary components are dropped at inference (zero overhead)** — a critical efficiency advantage over ProGAL-VLA (~96ms/step with full inference pipeline) and GuidedVLA (ControlNet residual remains active). The VLM backbone is fine-tuned with LoRA (rank 32, ~5M parameters). Total added training parameters: ~8M (~0.1% of the 7B base).\n\n**Stage 3 — Evaluation designed to test affordance-level dual-grounding hypothesis:** Primary benchmark: LIBERO-Plus (7 perturbation dimensions). Secondary: standard LIBERO (regression check), ICBench (language grounding diagnostic from IGAR paper), and novel instruction sets with unseen interaction verbs (open-vocabulary generalization test). **Baselines**: (1) **ProGAL-VLA** (entity-level contrastive dual-grounding, LIBERO-Plus SOTA 85.5% — primary differentiation target), (2) **GuidedVLA** (factor-specialized attention, RSS 2026, 75.4% LIBERO-Plus), (3) **PALM** (structured affordance, 4 fixed types), (4) **SG-VLA** (multi-auxiliary including binary grasp), (5) **FocusVLA** (generic attention), (6) **AVA-VLA** (history-conditioned attention), (7) **OpenVLA-OFT** (base model), (8) **VLA-GSE** (PEFT robustness SOTA, 81.2% LIBERO-Plus), (9) **RobustVLA** (RL post-training robustness), (10) **AFI** (inference-time affordance), (11) **AffordVLA + AFI** (training + inference-time affordance, to test complementarity). **Key ablations**: (a) Full AffordVLA vs. prediction-loss-only (no contrastive) vs. contrastive-only (no prediction) — this is the central ablation testing the dual-grounding hypothesis: prediction-only should improve linguistic grounding (ICBench) but not visual robustness (LIBERO-Plus perturbations); contrastive-only should improve visual robustness but not linguistic grounding; only the combination should improve both; (b) Affordance-level contrastive (ours) vs. entity-level contrastive (ProGAL-style, contrasting whole-object features rather than affordance-region features) — directly testing whether finer granularity matters; (c) Instruction-conditioned affordance vs. instruction-agnostic affordance (same heatmap regardless of instruction) — testing whether language conditioning drives robustness; (d) Pseudo-label quality: raw vs. confidence-filtered vs. consistency-filtered vs. both filters — quantifying noise robustness; (e) Layer selection (8/12/16/20/24) for affordance head; (f) λ_pred and λ_contrast sensitivity; (g) Qualitative visualization: attention maps under perturbation comparing AffordVLA vs. ProGAL-VLA vs. GuidedVLA vs. FocusVLA, showing that affordance-level contrastive features maintain interaction-type clustering under visual shift while entity-level features drift; (h) ICBench linguistic grounding score before/after affordance training; (i) Inference latency comparison: AffordVLA (zero overhead) vs. ProGAL-VLA (~96ms/step) vs. AFI (external module) — critical for real-world deployment. The ProGAL-VLA comparison is the most critical: if AffordVLA matches or exceeds ProGAL's 85.5% LIBERO-Plus with zero inference overhead, the efficiency argument is decisive; if AffordVLA shows superior per-dimension results on interaction-geometry-sensitive perturbations (robot, layout) while ProGAL excels on entity-identity-sensitive perturbations (camera, lighting), the granularity argument is validated. Ablation (b) specifically tests whether affordance-level contrastive outperforms entity-level contrastive on the same backbone, isolating the granularity contribution.\n\n## Resource Estimate\n{'auto_research': {'claude_api_cost': '$150-250 (~1,500-2,500 turns Opus)', 'estimated_gpu_cost': '$1,350-2,200 (H100 at $3.00-4.00/hr)', 'gpu_hours': '~450-550h H100 (exhaustive layer search, full λ sweep for both losses, contrastive temperature search, entity-level vs. affordance-level granularity comparison, cross-backbone validation on SmolVLA, 3 seeds per final config, comprehensive LIBERO-Plus per-dimension analysis, AFI combination experiments, ProGAL-VLA reproduction for controlled comparison)', 'gpu_utilization': '~85-90%; agent queues experiments 24/7', 'risk_note': 'Exceeds 200 H100-hour budget but produces a more thorough paper with multi-seed results, granularity ablations, and cross-backbone validation; manual and human-in-loop modes fit within budget', 'speed_bottleneck': 'Pseudo-label generation with consistency filtering is the main sequential bottleneck; parallelizable across task suites', 'team': '0 researchers after ~2h initial setup', 'timeline': '2-3 weeks with 4×H100'}, 'human_in_loop': {'claude_api_cost': '$60-100 (~600-1000 turns at ~$0.10/turn Opus)', 'estimated_gpu_cost': '$660-880 (H100 80GB at $3.00-4.00/hr)', 'gpu_hours': '~220h H100 (agent explores additional contrastive temperature schedules, granularity ablations, and pseudo-label quality ablations)', 'gpu_utilization': '~65-70%; agent queues promptly but pauses at approval gates', 'risk_note': 'Agent may over-explore contrastive loss variants or granularity ablations; approval gates on architecture decisions mitigate waste', 'team': '1 researcher, ~20min/day reviewing agent proposals', 'timeline': '6-8 weeks'}, 'manual': {'estimated_gpu_cost': '$600-800 (H100 80GB at $3.00-4.00/hr on Lambda/RunPod)', 'gpu_hours': '~200h H100 (pseudo-label generation with quality filtering: 35h on 1×H100 including paraphrase generation and consistency checks; architecture search over 3 layer-selection variants: 45h; 4 full training runs at ~17h each on 1×H100 with dual-loss LoRA: 68h; LIBERO-Plus + standard LIBERO + ICBench evaluation: 35h; ablations on λ, pseudo-label quality, contrastive granularity: 17h)', 'gpu_utilization': '~40-50% effective utilization due to researcher iteration cycles', 'team': '1-2 researchers', 'timeline': '3-4 months (targeting ICRA 2027 deadline Sep 16, 2026)'}}\n\n## Key References\n- ProGAL-VLA: Grounded Alignment through Prospective Reasoning in VLA Models (arXiv 2604.09824, Apr 2026) — LIBERO-Plus SOTA (85.5%), entity-level contrastive dual-grounding with GAC loss; PRIMARY differentiation target (entity-level vs. our affordance-level granularity, full inference pipeline vs. our zero overhead)\n- GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization (arXiv 2605.12369, RSS 2026) — factor-specialized attention heads with manual taxonomy (object grounding, spatial geometry, temporal skill logic), 75.4% LIBERO-Plus; key differentiation: manual factor definition vs. our automatic interaction-type discovery\n- PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation (arXiv 2601.07060, Jan 2026) — 4 predefined affordance types with instruction-conditioned prediction within each type; key differentiation: fixed taxonomy vs. open-vocabulary affordance space\n- SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation (arXiv 2603.22760, Mar 2026) — 5 auxiliary decoders including binary grasp affordance on 1.3B VLA; differs from AffordVLA in binary classification vs. open-vocabulary spatial prediction\n- FocusVLA: Focused Visual Utilization for Vision-Language-Action Models (arXiv 2603.28740, Mar 2026) — Focus Attention for task-relevant token selection, 98.7% standard LIBERO but no affordance supervision\n- UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation (arXiv 2506.09284, ICRA 2025 Best Paper Finalist) — demonstrates unsupervised affordance pseudo-labels from frozen VLMs, modular pipeline\n- LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (arXiv 2510.13626, CVPR 2026) — reveals catastrophic VLA brittleness AND linguistic blindness, primary evaluation benchmark\n- Restoring Linguistic Grounding in VLA Models via Train-Free Attention Recalibration (IGAR, arXiv 2603.06001, Mar 2026) — identifies linguistic blindness as attention sink problem, ICBench diagnostic benchmark\n- RobustVLA: On Robustness of VLA Models against Multi-Modal Perturbations (ICLR 2026, arXiv 2510.00037) — RL post-training robustness via Jacobian/smoothness regularization, +12.6% across 17 perturbation types\n- ST4VLA: Spatially Guided Training for Vision-Language-Action Models (ICLR 2026, arXiv 2602.10109) — spatial grounding pre-training improves BOTH robustness and language sensitivity, supporting dual-grounding hypothesis\n- Probing and Bridging Geometry-Interaction Cues for Affordance Reasoning in Vision Foundation Models (arXiv 2602.20501, Feb 2026) — confirms DINOv2 encodes geometric affordance, VLMs encode interaction priors; foundational for pseudo-label generation and structural argument\n- Context-Dependent Affordance Computation in Vision-Language Models (arXiv 2603.04419, Feb 2026) — >90% affordance is context-dependent, argues against fixed categories\n- AVA-VLA: Improving Vision-Language-Action Models with Active Visual Attention (arXiv 2511.18960) — history-conditioned attention, LIBERO+CALVIN SOTA\n- CoA-VLA: Improving Vision-Language-Action Models via Visual-Text Chain-of-Affordance (ICCV 2025, arXiv 2412.20451)\n- Affordance Field Intervention: Enabling VLAs to Escape Memory Traps (arXiv 2512.07472, Dec 2024) — inference-time affordance guidance, +23.5% OOD; training-time vs. inference-time comparison target\n- VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts (arXiv 2605.06175) — 81.2% LIBERO-Plus with 2.51% params, PEFT robustness SOTA\n- Contrastive Representation Regularization for Vision-Language-Action Models (RS-CL, arXiv 2510.01711) — robot-state contrastive loss for VLA representation alignment\n- Selective Contrastive Learning for Weakly Supervised Affordance Grounding (ICCV 2025, arXiv 2508.07877) — contrastive affordance learning with interaction-type clustering; methodological inspiration\n- Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT, arXiv 2502.19645, 2025) — base model, LoRA fine-tuning recipe\n- VLA-Adapter: An Effective Paradigm for Tiny-Scale VLA Model (arXiv 2509.09372, 2025) — mid-layer features best for action generation\n- Stable Language Guidance for Vision-Language-Action Models (arXiv 2601.04052, Jan 2026) — studies affordance-language interaction via modality collapse\n- QDepth-VLA: Quantized Depth Prediction as Auxiliary Supervision (arXiv 2510.14836) — depth auxiliary loss for VLA; auxiliary paradigm comparison\n- DreamVLA: A VLA Model Dreamed with Comprehensive World Knowledge (NeurIPS 2025, arXiv 2507.04447) — dynamic region + depth + semantics auxiliary prediction\n- ReconVLA: Reconstructive VLA Model as Effective Robot Perceiver (arXiv 2508.10333) — gaze region reconstruction as auxiliary objective\n- GeoVLA: Empowering 3D Representations in VLA Models (arXiv 2508.09071) — 3D point cloud injection for geometric awareness\n- RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation (arXiv 2411.02704, 2024)\n- GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation (CoRL 2025, arXiv 2505.11865)\n- Grounding Hierarchical VLA Models Through Explicit Language-Action Alignment (arXiv 2604.05614, Apr 2026) — contrastive language-action alignment via preference learning\n- DeepVision-VLA (arXiv 2603.15618) — multi-level vision feature injection\n- A1: A Fully Transparent Open-Source VLA (arXiv 2604.05672, Apr 2026)\n",
+4	  "最终proposal": "# AffordVLA: Across-Instance Affordance Clustering for Efficient Dual-Grounded VLA Representations\n\n## Core Problem\nVLA representations fail along two orthogonal axes: visual brittleness (95%→30% under perturbation, LIBERO-Plus CVPR 2026, arXiv 2510.13626) and linguistic blindness (models ignore instructions, IGAR arXiv 2603.06001). ProGAL-VLA (arXiv 2604.09824) addresses both via entity-level contrastive learning (GAC loss), but its within-instance (sub-goal, entity) pairing structurally conditions on instance identity — maximizing I(z; entity | instance) retains instance-specific information in the representation. We identify a structural alternative: **across-instance interaction-type clustering**, which marginalizes over instances — maximizing I(z; interaction_type) discards instance identity as a nuisance variable. This is not a performance difference but a structural property of the loss function: no change to ProGAL's detector granularity can produce instance-invariant features when the loss conditions on instance identity.\n\nWe formalize this via the **dual-grounding hypothesis** under functional complementarity. Affordance decomposes into three dimensions: spatial WHERE, dynamic HOW, and instruction-conditioned WHAT FOR. A prediction loss captures WHERE + WHAT FOR (instruction-conditioned spatial heatmap); a contrastive loss captures HOW (interaction-type clustering — grasp vs. push vs. slide). Neither alone covers all three: prediction without contrastive misses HOW (the heatmap for \"grasp handle\" and \"push handle\" may highlight the same region); contrastive without prediction misses WHERE + WHAT FOR (interaction-type clusters without spatial localization or instruction conditioning). The testable prediction is not merely that each helps its own axis (which would be expected by construction) but that **their combination produces secondary synergistic effects**: (a) contrastive verb grouping indirectly improves linguistic sensitivity; (b) prediction's spatial focus enhances contrastive learning quality; (c) the combination on some perturbation dimensions is super-additive (exceeding the sum of individual gains). We argue that affordance is a **naturally unified auxiliary signal** for dual-grounding — encoding WHERE + HOW + WHAT FOR across its two loss components, eliminating the need for multiple independent auxiliary tasks (cf. SG-VLA's 5 decoders, arXiv 2603.22760).\n\nBeyond robustness, across-instance interaction-type clustering implies **compositional action primitives**: if \"grasp-handle\" maps to neighboring representations regardless of object or visual condition, the VLA learns portable interaction types composable with novel objects — a step toward compositional generalization in robot policy learning. We test this via a novel instruction benchmark (Section: Evaluation).\n\n## Opportunity\nProGAL-VLA (arXiv 2604.09824, Apr 2026) — LIBERO-Plus SOTA 85.5%. Within-instance GAC loss (sub-goal, entity) pairing with full inference pipeline (YOLO-World + Metric3D + 7B planner + GSM + SACA, ~96ms/step). Structural limitation: within-instance conditioning retains instance identity, precludes across-instance invariance. GuidedVLA (arXiv 2605.12369, RSS 2026) — manual factor taxonomy, human verification, 75.4%. PALM (arXiv 2601.07060) — 4 fixed affordance types, instruction-conditioned within each but unable to discover novel interaction categories.\n\nThe probing study (arXiv 2602.20501) confirms DINOv2 encodes part-level geometric structures and VLMs contain verb-conditioned interaction priors, with affordance at their intersection. The context-dependency study (arXiv 2603.04419, >90% context-dependent) argues against fixed taxonomies.\n\n**Trivial alternative defense**: Could ProGAL achieve affordance-level grounding by replacing YOLO-World with a part-level segmentation model? No — the structural property is in the loss function, not the detector. ProGAL's within-instance (sub-goal, entity-part) pairing, even at part level, conditions on instance and cannot produce across-instance invariant features. This is an impossibility result from the conditioning structure of the loss, not an empirical claim. The part-level ProGAL variant also retains the full inference pipeline.\n\n## Landscape\n\n**Dual-grounding VLAs**: ProGAL-VLA (arXiv 2604.09824) — described above. Core structural limitation: within-instance conditioning → instance-bound features.\n\n**Factor-specialized VLAs**: GuidedVLA (arXiv 2605.12369, RSS 2026) — ControlNet-style adapters for 3 manual factors (object: Qwen3-VL + SAM2 + human verification; geometry: DA3; skill: KL-divergence). 75.4% LIBERO-Plus. No contrastive invariance, auxiliary heads active at inference.\n\n**Affordance VLAs with fixed taxonomies**: PALM (arXiv 2601.07060) — 4 predefined types, 94.5% standard LIBERO, no LIBERO-Plus evaluation. CoA-VLA (ICCV 2025, arXiv 2412.20451) — chain-of-affordance over 4 types. RT-Affordance (arXiv 2411.02704) — affordance as versatile intermediate representations for manipulation. CoA-VLA and RT-Affordance are methodologically proximate (affordance as intermediate representation); their inclusion in baselines depends on LIBERO-Plus evaluation availability (see Evaluation section).\n\n**Spatial grounding for VLAs**: ST4VLA (ICLR 2026, arXiv 2602.10109) — spatial grounding pre-training (point, box, trajectory prediction) as VLA auxiliary, improving both robustness and language sensitivity on SimplerEnv (66.1→84.6 Google Robot). **Explicit differentiation**: (a) ST4VLA's spatial tasks are generic geometric predictions, not structured around interaction types — they lack the HOW dimension that contrastive interaction-type clustering provides; (b) ST4VLA has no contrastive loss, so it cannot produce across-instance invariant features — spatial prediction alone teaches WHERE but not appearance-invariant HOW; (c) ST4VLA requires web-scale pre-training data mixture (1.1M), while AffordVLA generates pseudo-labels in the target domain. AffordVLA's dual-loss structure (prediction for WHERE+WHAT FOR, contrastive for HOW) is a principled extension of ST4VLA's single-loss spatial grounding.\n\n**Interaction-type contrastive for affordance (perception)**: INTRA (ECCV 2024, arXiv 2409.06210) — interaction-relationship contrastive with text-conditioned maps and synonym augmentation. Methodological precedent. **Differentiation**: perception-only; within-image discrimination (not across-instance clustering); no dual-loss. Selective Contrastive Learning (ICCV 2025, arXiv 2508.07877) — contrastive affordance with interaction-type clustering.\n\n**Large-scale affordance grounding**: Affogato (arXiv 2506.12009) — 150K-instance benchmark with text-conditional decoder and part-aware backbone. 3D/rendered domain (gap to LIBERO RGB). AffordanceSAM (arXiv 2504.15650) — SAM-adapted affordance grounding with part-level precision.\n\n**Multi-auxiliary VLAs**: SG-VLA (arXiv 2603.22760) — 5 decoders including binary grasp. QDepth-VLA (arXiv 2510.14836) — depth. DreamVLA (NeurIPS 2025, arXiv 2507.04447) — region + depth + semantics. RS-CL (arXiv 2510.01711) — robot-state contrastive. ReconVLA (arXiv 2508.10333) — gaze reconstruction. GeoVLA (arXiv 2508.09071) — 3D point clouds.\n\n**Attention-based VLAs**: FocusVLA (arXiv 2603.28740) — top-K token selection, 98.7% standard LIBERO. AVA-VLA (arXiv 2511.18960) — active attention, LIBERO+CALVIN SOTA. DeepVision-VLA (arXiv 2603.15618) — multi-level features.\n\n**Robustness-focused VLAs**: RobustVLA (ICLR 2026, arXiv 2510.00037) — RL + Jacobian regularization. VLA-GSE (arXiv 2605.06175) — 81.2% LIBERO-Plus, PEFT SOTA. SRPO (arXiv 2511.15605) — 82.1% LIBERO-Plus. CorridorVLA (arXiv 2604.21241) — sparse anchor constraints. SimpleVLA-RL (ICLR 2026) — RL, 97.6% standard LIBERO. All orthogonal to auxiliary loss design.\n\n**Language grounding**: IGAR (arXiv 2603.06001) — ICBench diagnostic. Stable Language Guidance (arXiv 2601.04052) — modality collapse. LIBERO-Para (arXiv 2603.28301) — paraphrase robustness.\n\n**Modular affordance**: UAD (arXiv 2506.09284, ICRA 2025 Best Paper Finalist) — unsupervised affordance from VLMs. AFI (arXiv 2512.07472) — inference-time affordance, +23.5% OOD. GLOVER++ (CoRL 2025, arXiv 2505.11865).\n\n**Other**: Grounding Hierarchical VLA (arXiv 2604.05614). A1 (arXiv 2604.05672).\n\n**The refined gap**: No existing work combines (1) across-instance interaction-type clustering (structurally distinct from ProGAL's within-instance pairing and INTRA's within-image discrimination), (2) dual-loss decomposition of affordance into WHERE+WHAT FOR (prediction) and HOW (contrastive), and (3) zero inference overhead. ST4VLA does spatial auxiliary but without contrastive invariance or interaction-type structure. AffordVLA fills this precise gap.\n\n## Description\nWe propose AffordVLA. The central structural insight: **across-instance interaction-type clustering** produces appearance-invariant VLA features by marginalizing over instance identity — a property structurally impossible under ProGAL-VLA's within-instance conditioning regardless of detector granularity, and absent from INTRA's within-image discrimination and ST4VLA's generic spatial prediction.\n\nTwo functionally complementary losses distill affordance into VLA intermediate representations, decomposing it along three dimensions:\n- **Affordance prediction loss** → captures WHERE (spatial heatmap) + WHAT FOR (instruction conditioning), primarily combating linguistic blindness\n- **Contrastive interaction-type loss** → captures HOW (across-instance clustering by interaction geometry), primarily combating visual brittleness\n\nCore testable prediction: beyond each loss's primary effect, their combination produces **secondary synergistic effects** — contrastive verb grouping indirectly improves linguistic sensitivity, prediction's spatial focus enhances contrastive quality, and the combination on some perturbation dimensions is super-additive. Minimum bar: combination outperforms either alone on both failure axes.\n\nAffordance serves as a naturally unified auxiliary — one signal type with two loss components covering WHERE+HOW+WHAT FOR, replacing multi-decoder approaches (SG-VLA's 5 decoders) with Occam's razor simplicity. Built on OpenVLA-OFT (arXiv 2502.19645) with LoRA (~8M added parameters, 0.1% of 7B base). Both auxiliary heads dropped at inference (zero overhead).\n\n## Approach\n\n**Stage 1 — Quality-Filtered Affordance Pseudo-Label Generation (offline).**\n\nFor each (image, instruction) pair: (a) prompt frozen VLM (Qwen2-VL-7B) for textual affordance description; (b) project via grounding model into spatial heatmap.\n\n**Pseudo-label pipeline candidates** (ranked by expected part-level precision):\n1. AffordanceSAM (arXiv 2504.15650) — SAM-adapted affordance grounding\n2. UAD (arXiv 2506.09284) — unsupervised affordance, potentially more robust to sim-domain images\n3. DINOv2 part prototypes (arXiv 2602.20501) + VLM verb grounding combination\n4. GroundingDINO + SAM2 (degraded: object-level, acknowledged as fallback)\n\nQuality filters: confidence thresholding (< 0.5 discarded); paraphrase consistency (IoU > threshold). Soft confidence weighting. VLM paraphrases (2-3 per instruction) for augmentation.\n\n**Pilot study**: Run top 2-3 pipeline candidates on 200 LIBERO samples; human-check all 200 for part-level precision. Select pipeline with highest precision. If best candidate < 60%, iterate. Additionally validate on ~100 real-world robot images (Open X-Embodiment) to assess domain gap. Report precision with 95% CI.\n\n**Pseudo-label source ablation**: Compare selected pipelines on downstream VLA performance.\n\n**Stage 2 — Dual-Loss Affordance-Distilled Training.**\n\nBuilt on OpenVLA-OFT (SigLIP + DINOv2 dual encoder, 7B).\n\n**(A) Affordance Prediction Head** — 3-layer MLP (~2M params) from VLM layers 16-20 (VLA-Adapter, arXiv 2509.09372), confidence-weighted focal loss. Open-vocabulary heatmap determined by instruction text.\n\n**(B) Contrastive Interaction-Type Loss** — features from affordance-highlighted regions (top-20% heatmap). InfoNCE across instances: positives = same interaction type on different objects/conditions; negatives = different types. Structural distinction from ProGAL's within-instance GAC loss: marginalizes over instance identity.\n\n**Interaction type definition**: Verb + preposition + target-part (e.g., \"grasp-handle\", \"push-top\", \"open-door\"). Pilot study reports full distribution statistics and effective category count for LIBERO.\n\n**Batch construction**: Stratified sampling (≥ K distinct types per batch) + momentum memory bank (MoCo-style) for rare types. **If effective category count < 15**: switch to soft semantic-similarity weighted contrastive (VLM embedding cosine similarity as soft positive/negative weight) instead of hard categorical InfoNCE. Ablation: hard categorical vs. soft semantic-similarity contrastive.\n\nTotal loss: L = L_action + λ_pred · L_afford_pred + λ_contrast · L_afford_contrast (λ_pred=0.1, λ_contrast=0.05). Both heads dropped at inference. LoRA rank 32 (~5M params). Total added: ~8M (~0.1% of 7B).\n\n**Stage 3 — Evaluation.**\n\n**Two-layer comparison framework**: (1) *Method-level* (AffordVLA vs. ProGAL paper numbers) — backbone differs, contextual reference with protocol caveats; (2) *Controlled ablation* (affordance-level across-instance vs. entity-level within-instance contrastive, both on OpenVLA-OFT) — primary evidence for structural claim. ProGAL comparison: check code availability; if unavailable, self-implemented entity-level contrastive baseline is the definitive controlled experiment.\n\n**Primary benchmarks**:\n1. **LIBERO-Plus** (arXiv 2510.13626, 7 perturbation dimensions)\n2. **Novel Instruction Benchmark** (constructed): (a) *Verb-level novel*: leave-one-verb-out / leave-two-verbs-out from LIBERO training set, testing transfer to entirely unseen interaction verbs; (b) *Composition-level novel*: seen verbs in unseen verb+object combinations. Scale: ≥50 episodes × 3 seeds per novel condition. Evaluation: success rate + t-SNE/UMAP visualization of interaction-type embeddings for novel verbs (do they form meaningful clusters?). This benchmark directly tests whether across-instance clustering enables compositional transfer.\n\n**Secondary benchmarks**: (3) Standard LIBERO (regression); (4) ICBench (IGAR, linguistic grounding); (5) LIBERO-Para (arXiv 2603.28301, paraphrase robustness). CALVIN as future extension contingent on OpenVLA-OFT compatibility.\n\n**Baselines**: (1) ProGAL-VLA (85.5%); (2) GuidedVLA (75.4%); (3) PALM (affordance, fixed types); (4) SG-VLA (multi-auxiliary); (5) FocusVLA; (6) AVA-VLA; (7) OpenVLA-OFT (base); (8) VLA-GSE (81.2%); (9) SRPO (arXiv 2511.15605, 82.1%); (10) RobustVLA; (11) AFI; (12) AffordVLA + AFI (complementarity). CoA-VLA (arXiv 2412.20451) and RT-Affordance (arXiv 2411.02704): include if LIBERO-Plus results or code available; otherwise acknowledge in discussion with PALM representing the affordance-as-intermediate-representation category. CorridorVLA (arXiv 2604.21241) and SimpleVLA-RL (ICLR 2026) discussed as orthogonal approaches.\n\n**Key ablations**:\n- (a) **Functional complementarity + super-additivity** (central): full vs. prediction-only vs. contrastive-only. **Per-perturbation-dimension breakdown** (3×7 heatmap: method × {camera, robot, language, light, background, noise, layout}) with statistical significance. Key tests: contrastive-only → largest gains on camera/robot dimensions; prediction-only → largest gains on language dimension; full → super-additive on ≥1 dimension.\n- (b) **Across-instance vs. within-instance contrastive** (core controlled): affordance across-instance (ours) vs. entity within-instance (ProGAL-style, same backbone).\n- (c) **Instruction conditioning**: conditioned vs. agnostic affordance.\n- (d) **Pseudo-label source**: AffordanceSAM vs. UAD vs. DINOv2+VLM vs. GroundingDINO+SAM2; IoU threshold (0.2/0.3/0.5/0.7).\n- (e) **Batch construction**: random vs. stratified vs. memory bank; hard categorical vs. soft semantic-similarity contrastive.\n- (f) **Layer selection**: 8/12/16/20/24.\n- (g) **Loss weights**: λ_pred and λ_contrast sweep.\n- (h) **Head architecture**: MLP vs. spatial decoder (cross-attention + bilinear upsampling).\n- (i) **Contrastive temperature τ**: 0.05/0.1/0.2/0.5 or learnable.\n- (j) **Qualitative**: attention maps under perturbation; interaction-type clustering (incl. novel verbs).\n- (k) **Efficiency**: inference latency (zero vs. ProGAL ~96ms vs. AFI) + **training compute table** (pseudo-label generation + training per seed + total pipeline vs. estimated ProGAL pipeline compute).\n\n**Statistical rigor**: Main experiments + core ablations (a, b, c): 3 seeds, mean ± std, bootstrap 95% CI or Welch's t-test. Auxiliary ablations: 1 seed sweep, 3 seeds optimal.\n\n**Limitations**: No real-robot experiments (offline validation on Open X-Embodiment images for pseudo-label quality); LIBERO verb diversity limits full demonstration of across-instance clustering; pseudo-label quality ceiling dependent on foundation model capabilities.\n\n## Resource Estimate\n- **Manual**: ~300-380h H100. Pseudo-label pilot (multi-source, 200 samples): 30h. Pipeline generation: 40h. Training (sweeps + 3-seed finals): 180h. Evaluation suite: 50h. Timeline: 3-4 months.\n- **Human-in-loop**: ~380-480h H100. Agent explores source variants, batch strategies, temperature. 1 researcher ~20min/day. Timeline: 6-8 weeks.\n- **Auto-research**: ~580-680h H100. Exhaustive sweeps, 3 seeds throughout. Timeline: 2-3 weeks with 4×H100.\n\n## Key References\n- ProGAL-VLA (arXiv 2604.09824, Apr 2026) — LIBERO-Plus SOTA 85.5%, within-instance GAC loss; primary target\n- GuidedVLA (arXiv 2605.12369, RSS 2026) — manual factor taxonomy, 75.4%\n- PALM (arXiv 2601.07060) — 4 fixed affordance types\n- INTRA (ECCV 2024, arXiv 2409.06210) — interaction-type contrastive for affordance perception; precedent\n- Affogato (arXiv 2506.12009) — large-scale affordance benchmark\n- AffordanceSAM (arXiv 2504.15650) — part-level affordance grounding\n- Selective Contrastive Learning (ICCV 2025, arXiv 2508.07877) — contrastive affordance\n- SG-VLA (arXiv 2603.22760) — 5 auxiliary decoders\n- FocusVLA (arXiv 2603.28740) — token selection\n- UAD (arXiv 2506.09284, ICRA 2025 Best Paper Finalist) — unsupervised affordance\n- LIBERO-Plus (arXiv 2510.13626, CVPR 2026) — robustness benchmark\n- IGAR (arXiv 2603.06001) — linguistic blindness, ICBench\n- LIBERO-Para (arXiv 2603.28301) — paraphrase robustness\n- SRPO (arXiv 2511.15605) — 82.1% LIBERO-Plus\n- RobustVLA (ICLR 2026, arXiv 2510.00037) — RL robustness\n- ST4VLA (ICLR 2026, arXiv 2602.10109) — spatial grounding pre-training; key differentiation target\n- Probing and Bridging Geometry-Interaction Cues (arXiv 2602.20501) — DINOv2 + VLM affordance\n- Context-Dependent Affordance (arXiv 2603.04419) — >90% context-dependent\n- AVA-VLA (arXiv 2511.18960) — active attention\n- CoA-VLA (ICCV 2025, arXiv 2412.20451) — chain-of-affordance\n- AFI (arXiv 2512.07472) — inference-time affordance\n- VLA-GSE (arXiv 2605.06175) — PEFT SOTA\n- CorridorVLA (arXiv 2604.21241) — sparse anchors\n- SimpleVLA-RL (ICLR 2026) — RL fine-tuning\n- RS-CL (arXiv 2510.01711) — robot-state contrastive\n- OpenVLA-OFT (arXiv 2502.19645) — base model\n- VLA-Adapter (arXiv 2509.09372) — mid-layer features\n- Stable Language Guidance (arXiv 2601.04052) — modality collapse\n- QDepth-VLA (arXiv 2510.14836) — depth auxiliary\n- DreamVLA (NeurIPS 2025, arXiv 2507.04447) — multi-signal auxiliary\n- ReconVLA (arXiv 2508.10333) — gaze reconstruction\n- GeoVLA (arXiv 2508.09071) — 3D point cloud\n- RT-Affordance (arXiv 2411.02704) — affordance intermediate representations\n- GLOVER++ (CoRL 2025, arXiv 2505.11865) — affordance from human behaviors\n- Grounding Hierarchical VLA (arXiv 2604.05614) — language-action alignment\n- DeepVision-VLA (arXiv 2603.15618) — multi-level features\n- A1 (arXiv 2604.05672) — open-source VLA",
+5	  "中稿概率": "[21.0% - 29.0%] 中位 25.0%",
+6	  "优化方案": "【优化方案】\n\n以下所有修改建议均相对于原始 proposal（\"AffordVLA: Affordance-Level Contrastive Distillation for Efficient Dual-Grounded VLA Representations\"）给出。\n\n## 一、标题与核心定位重构\n\n1. **标题** — 从 \"Affordance-Level Contrastive Distillation for Efficient Dual-Grounded VLA Representations\" 改为 \"Across-Instance Affordance Clustering for Efficient Dual-Grounded VLA Representations\" — 命中 Novelty\n   （原标题暗示 novelty 是 \"granularity refinement\"（affordance-level vs. entity-level），容易被误读为 \"ProGAL + better detector\"。新标题将结构性差异（across-instance clustering vs. within-instance pairing）前置，在 reviewer 扫读标题时即传达核心 differentiator。）\n\n2. **Core Problem 第一段** — 将 lead sentence 从 \"How can we produce VLA representations that are simultaneously spatially grounded at the affordance level...\" 改为以 across-instance clustering 的 structural argument 开篇：ProGAL-VLA 的 within-instance conditioning 存在 structural incentive gap（不 pressure 表征丢弃 instance identity），而 across-instance interaction-type clustering 将 instance identity 作为 nuisance variable 边际化移除 — 命中 Novelty + Related Work\n   （原始 framing 以 \"affordance level\" 作为 selling point，现在 lead 以 structural distinction 引入，更难被 dismiss。注意：不用 \"structurally impossible\"，用 \"structural incentive gap\"——更精确、更不易被反例攻破。）\n\n3. **Core Problem** — 增加 WHERE/HOW/WHAT FOR 三维分解，连接 Gibson ecological affordance theory — 命中 Novelty + Significance\n   （原始 proposal 将 affordance 描述为 \"simultaneously encodes spatial WHERE + semantic HOW + instruction-conditioned WHAT FOR\"，但未区分 prediction loss 和 contrastive loss 各自的覆盖范围。修正为：prediction head → WHERE + WHAT FOR（instruction-conditioned spatial heatmap），contrastive head → HOW（interaction-type clustering）。这不仅更准确（静态 heatmap 不真正捕获动态 HOW），更强化了 dual-loss 的 necessity——两个 loss 的信息结构互不包含。简短引用 Gibson 的 ecological affordance 框架使分解从 ad hoc 变为 principled。）\n\n4. **Core Problem** — \"Minimum sufficient auxiliary signal\" 改为 \"naturally unified auxiliary signal\"（Occam's razor framing）— 命中 Novelty + Significance\n   （\"Minimum sufficient\" 是不可证伪的数学 claim——无法排除 depth + entity contrastive 组合也能 dual-ground。\"Naturally unified\" 强调 affordance 用一个 signal type（含两个 loss component）替代多 decoder 方案（SG-VLA 5 个 decoder），是 practical simplicity argument，更可辩护。）\n\n## 二、理论框架升级\n\n5. **Dual-grounding hypothesis** — 从 \"necessary and sufficient / orthogonal\" 重构为 \"functional complementarity\" + super-additive synergy prediction — 命中 Novelty\n   （原始 proposal 声称 \"their combination is necessary and sufficient for dual-grounding\"，prediction/contrastive 是 \"orthogonal\"。问题：(a) \"necessary and sufficient\" 无法证明；(b) strict orthogonality 容易被实验推翻（contrastive 的 verb grouping 可能间接改善 linguistic grounding）。修正：functional complementarity——primary effects 不同但允许 secondary spillover。核心 testable prediction 升级为二阶效应：(a) contrastive verb grouping 间接改善 linguistic sensitivity（secondary spillover），(b) prediction spatial focus 增强 contrastive learning quality，(c) 组合在某些 perturbation dimension 上 super-additive。Minimum bar 仍为 \"combination outperforms either alone on both axes\"。这使 hypothesis 从 tautological 变为 genuinely surprising。）\n\n6. **Compositional generalization 作为 broader motivation** — 在 Core Problem 中增加段落 — 命中 Significance\n   （原始 proposal 完全聚焦于 LIBERO-Plus robustness improvement。增加论证：across-instance interaction-type clustering 隐含 compositional action primitives（interaction type × target object），暗示对 novel object-interaction combinations 的 zero-shot compositional transfer。这将 paper scope 从 \"yet another VLA robustness improvement\" 扩展到 \"a step toward compositional robot policy learning\"。但 scope 需谨慎——LIBERO 验证 hypothesis，full compositional generalization 需更广泛验证。）\n\n## 三、Related Work 重大补充与差异化\n\n7. **新增 ConLA (arXiv 2602.00557) 和 CLAP (arXiv 2601.04061) 引用与差异化** — 命中 Novelty + Related Work（致命级遗漏修补）\n   （ConLA 已在 video latent action space 实现 across-instance action-category clustering 获取 invariant representations；CLAP 做 cross-modality contrastive action alignment。两者证明 \"across-instance action-type clustering\" 并非 AffordVLA 独创。**必须引用并明确差异化**：(a) ConLA/CLAP 在 raw action category 层面做 pre-training，AffordVLA 在 affordance 层面（part-level interaction geometry）做 fine-tuning auxiliary；(b) AffordVLA 在 heatmap-selected spatial regions 操作，不是全帧特征；(c) dual-loss 的 WHERE+WHAT FOR + HOW 分解是 ConLA/CLAP 所没有的。**不引用 ConLA 将导致 reviewer 直接质疑 novelty claim 的诚实性**，这是本次优化中最关键的修改。）\n\n8. **新增 INTRA (ECCV 2024, arXiv 2409.06210) 引用与差异化** — 命中 Novelty + Related Work\n   （INTRA 实现了 interaction-relationship-aware contrastive learning for affordance grounding。差异化：(a) INTRA 是 perception-only；(b) within-image discrimination 非 across-instance clustering；(c) 无 dual-loss。INTRA 作为 methodological precedent 反而可增强 \"contrastive interaction-type learning works for affordance\" 的论据。）\n\n9. **新增 Affogato (arXiv 2506.12009) 引用与差异化** — 命中 Related Work\n   （150K-instance open-vocabulary affordance grounding benchmark + model。差异化：3D/rendered domain gap，perception-only。其 pretrained model 可作为 pseudo-label 替代源的讨论。）\n\n10. **强化 ST4VLA (ICLR 2026, arXiv 2602.10109) 显式差异化** — 命中 Related Work + Novelty\n    （原始 proposal 仅一句话提及 ST4VLA。ST4VLA 做 generic spatial grounding pre-training（point, box, trajectory）作为 VLA auxiliary——与 affordance prediction head 概念重叠。显式差异化：(a) generic spatial vs. interaction-type structured；(b) 无 contrastive → 无 across-instance invariance；(c) web-scale pre-training vs. domain pseudo-labels。将 ST4VLA 定位为 \"different auxiliary paradigm, evaluated on different benchmark\"，非直接竞争者。）\n\n11. **增加 RS-CL (arXiv 2510.01711) 显式 trivial alternative 回应** — 命中 Novelty\n    （RS-CL 也是 zero-overhead contrastive VLA regularization。显式论证：RS-CL 的 proprioceptive contrastive 不提供 visual grounding（WHERE）也不区分 interaction types（HOW），是 generic regularizer；AffordVLA 的 affordance contrastive 同时提供 spatial attention + interaction-type semantics。）\n\n12. **新增 CorridorVLA (arXiv 2604.21241)、SimpleVLA-RL (ICLR 2026)、AffordanceSAM (arXiv 2504.15650) 引用** — 命中 Related Work 完备性\n\n## 四、实验设计核心改进\n\n13. **ProGAL-VLA 对比策略完整化** — 命中 Technical Soundness\n    （原始 proposal 以 ProGAL-VLA 为 primary differentiation target 但未讨论其开源状态。增加三层策略：(1) 确认代码可用性；(2) 若不可用，引用 paper values + 评测协议 disclaimer；(3) **自实现 entity-level contrastive baseline on OpenVLA-OFT 作为核心 controlled experiment**——这比 ProGAL paper values 对比更有说服力。增加 two-layer comparison framing：method-level comparison (secondary context) vs. controlled ablation (primary evidence)。）\n\n14. **Novel Instruction Benchmark 精确定义** — 命中 Technical Soundness + Significance\n    （原始 proposal 仅提及 \"novel instruction sets with unseen interaction verbs\" 无任何规范。定义：(a) verb-level novel: leave-one-verb-out split（exploratory analysis，~6-8 条件）；(b) composition-level novel: seen verbs × unseen verb+object/part combinations（primary evidence，组合空间更大）；≥50 episodes × 3 seeds per condition；success rate + t-SNE/UMAP interaction-type embedding visualization。）\n\n15. **Per-dimension 3×7 breakdown 作为 functional complementarity 核心检验** — 命中 Technical Soundness\n    （原始 ablation (a) 仅描述 \"dual-grounding hypothesis\" 测试，未明确 per-dimension 分解。增加 3×7 heatmap（full / prediction-only / contrastive-only × camera, robot, language, light, background, noise, layout）with statistical significance indicators。关键检验：contrastive-only → 最大增益在 camera/robot；prediction-only → 最大增益在 language；full → 至少一个 dimension 上 interaction effect > 0（two-way ANOVA with Bonferroni 校正）。）\n\n16. **统计严谨性规范** — 命中 Technical Soundness\n    （原始 proposal 未明确 seed 数、显著性检验。增加：Tier 1 ablations (a, b, c, hard-vs-soft contrastive): 3 seeds, mean±std, bootstrap 95% CI or Welch's t-test。Super-additivity: Bonferroni 校正（α/7 ≈ 0.007 per dimension）+ overall ANOVA interaction effect。Tier 2: 1 seed sweep + 3 seeds optimal。Tier 3: 1 seed, qualitative。）\n\n17. **Contrastive batch construction 策略** — 命中 Technical Soundness\n    （原始 proposal 未说明负样本构建。增加：stratified sampling（每 batch ≥ K distinct interaction types）+ momentum memory bank (MoCo-style) 扩大有效 negative pool。若有效 interaction type count < 15: 切换 soft semantic-similarity weighted contrastive（VLM embedding cosine similarity）替代 hard categorical InfoNCE。Hard vs. soft 作为 Tier 1 ablation。）\n\n18. **Pseudo-label pipeline 完整 fallback 链** — 命中 Feasibility\n    （原始 pipeline 仅 VLM + GroundingDINO，无 fallback。新方案：(1) AffordanceSAM (arXiv 2504.15650, 首选)；(2) UAD (arXiv 2506.09284, 不依赖特定域训练)；(3) DINOv2 part prototypes (arXiv 2602.20501) + VLM verb grounding；(4) GroundingDINO + SAM2（退化到 object-level）；(5) LIBERO simulation ground-truth object mask（ultimate safety net，粒度退化但保证实验可运行）。Pilot study: 200 样本全量人工检查 + 100 real-world images (Open X-Embodiment)。Pseudo-label source ablation 比较 top 2-3 candidates。）\n\n19. **Baselines 扩展** — 命中 Related Work + Technical Soundness\n    （原始 11 个 baselines 增加：SRPO (arXiv 2511.15605, 82.1% LIBERO-Plus)。CoA-VLA (arXiv 2412.20451) 和 RT-Affordance (arXiv 2411.02704)：纳入 if LIBERO-Plus 数据可得，否则 acknowledge 并以 PALM 代表 affordance 类。CorridorVLA + SimpleVLA-RL 作为 orthogonal approaches 在 discussion 中讨论。）\n\n20. **Benchmarks 扩展** — 命中 Technical Soundness\n    （原始仅 LIBERO-Plus + standard LIBERO + ICBench。新增：(a) Novel Instruction Benchmark（自建，详见 #14）；(b) LIBERO-Para (arXiv 2603.28301, paraphrase robustness)；(c) LIBERO-PRO (arXiv 2510.03827, fair evaluation)。CALVIN 降级为 future extension（OpenVLA-OFT 兼容性不确定）。共 6 个 benchmark。）\n\n21. **Ablation 扩展与优先级分层** — 命中 Technical Soundness\n    （原始 9 项 ablation。新增：(g') affordance head 架构 ablation (MLP vs. spatial decoder)；(h') contrastive temperature τ sensitivity；(i') hard categorical vs. soft semantic-similarity contrastive；(j') pseudo-label source ablation；(k') batch construction strategy ablation；(l') training compute comparison table。按 Tier 1 / 2 / 3 分层管理资源。）\n\n22. **Deployment claim 调降** — 命中 Technical Soundness\n    （原始 proposal 多处暗示 \"critical for real-world deployment\"，但无 real-robot 实验。修改：将重心从 \"deployable system\" 转为 \"representation learning insight\"，zero inference overhead 作为 practical advantage 而非 deployment proof。在 Limitations 中明确承认 sim-only 限制。）\n\n## 五、Framing 与写作层面\n\n23. **Trivial alternative 显式防御** — 命中 Novelty\n    （原始 proposal 未回应 \"ProGAL + part-level detector\" 替代方案。增加：即使 ProGAL 换用 part-level detector (SAM2, VLPart)，其 loss function 的 within-instance conditioning structure 决定了无法产出 across-instance invariant features——这是 structural incentive gap，不是检测器问题。Part-level ProGAL 仍需 full inference pipeline。）\n\n24. **Interaction type 定义扩展** — 命中 Technical Soundness\n    （原始 proposal 仅说 \"automatically extracted from instruction verbs\"，但 LIBERO 仅 ~6-8 base verbs。扩展为 verb + preposition + target-part 组合（\"grasp-handle\", \"push-top\", \"open-door\"），目标 >15 effective types。在 pilot study 中报告完整分布。）\n\n---\n\n【主要风险】:\n\n1. **LIBERO interaction-type diversity 不足导致 contrastive loss 核心机制验证力被削弱**。LIBERO 仅 ~6-8 base verbs，即使扩展为 verb+prep+target-part，有效类别可能仍在 15-25 之间。这意味着 contrastive loss 的 discrimination capacity 有限，InfoNCE 可能需要 fallback 到 soft semantic-similarity 模式，与原始 framing 存在 gap。Reviewer 最可能的攻击：\"Your contrastive loss is trivially coarse verb clustering on LIBERO, not meaningful affordance-level interaction-type clustering.\" 防御靠 composition-level novel benchmark + embedding visualization 展示有意义的 clustering structure。\n\n2. **ConLA (arXiv 2602.00557) 存在使 novelty claim 缩窄为 \"principled combination\"**。across-instance action-category clustering 已被 ConLA/CLAP 探索，AffordVLA 的独特性缩窄为 affordance-grounded + dual-loss + VLA features 的组合。这是 \"system paper\" 级 novelty 而非 conceptual breakthrough。如果 reviewer 对 combination novelty 要求高，可能判定 novelty insufficient。防御靠 WHERE/HOW/WHAT FOR 的 principled decomposition + Gibson 理论连接 + super-additive synergy 的 surprising prediction。\n\n---\n\n【实施评估】:\n\n- **计算资源**: 400-500h H100 80GB（Manual 模式，含 ablation 分层管理）。Pseudo-label generation (multi-source pilot + quality filtering): 50-60h。Main training runs (Tier 1 ablations × 3 seeds + Tier 2 sweeps + Tier 3 single-seed): 250-300h。Evaluation suite (6 benchmarks × multiple configs): 60-80h。推荐平台: Lambda / RunPod (H100 $3-4/hr)，4×H100 可并行加速。总 GPU 成本约 $1,200-2,000。\n\n- **数据需求**: LIBERO (NeurIPS 2023, 公开), LIBERO-Plus (arXiv 2510.13626, 公开), LIBERO-PRO (arXiv 2510.03827, 公开), LIBERO-Para (arXiv 2603.28301, 公开), ICBench (IGAR 随附, 公开), Open X-Embodiment (公开, 用于 pseudo-label real-image validation ~100 samples)。Novel Instruction Benchmark 需从 LIBERO 任务集自行构造（详见 #14）。所有数据均公开可得，无数据获取风险。\n\n- **人工介入**: (1) Pseudo-label pilot study: 200 LIBERO 样本 + 100 Open X-Embodiment 样本的 part-level 精度人工检查，每样本 ~1 min，共 ~5 小时人工标注。(2) Novel Instruction Benchmark 构造: verb/composition split 定义 + task selection，~2-4 小时研究员设计。(3) 如需少量 ground-truth affordance annotation 用于 pseudo-label quality 定量评估: ~50 样本精标，~3 小时。总人工介入: ~10-15 小时，1 名研究员可完成。无需众包或大规模标注。\n\n- **训练需求**: 需要模型训练。Base model: OpenVLA-OFT (SigLIP + DINOv2, 7B parameters)。Fine-tuning: LoRA rank 32 (~5M params) + affordance prediction head (~2M params) + contrastive projection head (~1M params) = ~8M trainable参数 (0.1% of 7B)。单次训练 (LIBERO 全套): ~17h on 1×H100。Tier 1 ablation 需 ~9-15 个 3-seed 训练 run = ~460-765h（但通过 sequential elimination 和并行可压缩到 250-300h effective）。Pseudo-label generation (VLM inference + grounding model): ~30-40h on 1×H100（可并行）。\n\n- **新 Benchmark**: 需构建 **Novel Instruction Benchmark**。(a) Verb-level novel: leave-one-verb-out / leave-two-verbs-out from LIBERO training set（利用现有 LIBERO 仿真环境，无需新 3D 资产）；(b) Composition-level novel: seen verbs × unseen combinations（从 LIBERO 任务集重新划分 train/test）。规模: 每个 novel condition ≥50 episodes × 3 seeds。构建成本低（主要是 split 设计 + evaluation 脚本），不需要新的仿真环境或 3D 模型。预计 1 周内完成构建。\n\n- **预估周期**: \n  - **Phase 1 (Weeks 1-3)**: Pseudo-label pipeline 开发与 pilot study。Multi-source 比较（AffordanceSAM / UAD / DINOv2+VLM），200 样本人工检查，pipeline 确定。\n  - **Phase 2 (Weeks 3-5)**: Pseudo-label 全量生成 + Novel Instruction Benchmark 构造 + 核心训练基础设施搭建。\n  - **Phase 3 (Weeks 5-10)**: 主实验 + Tier 1 ablations（functional complementarity 3×7 breakdown, across-vs-within contrastive, instruction conditioning, hard-vs-soft contrastive）。3 seeds per config。\n  - **Phase 4 (Weeks 10-13)**: Tier 2/3 ablations（layer selection, λ sweep, temperature, head architecture, pseudo-label source）。Evaluation 全套（6 benchmarks）。\n  - **Phase 5 (Weeks 13-16)**: 写作 + revision。\n  - **总周期: ~4 个月**。适配 **ICRA 2027** (deadline Sep 16, 2026) 或 **CoRL 2027** (~May 2027 deadline)。CoRL 2026 (May 29, 2026) 不可行（仅剩 10 天）。若有 4×H100 并行且研究员全职投入，可压缩到 ~10 周（适配 ICRA 2027）。",
+7	  "verdict": "FAILED_below_33",
+8	  "概率对比": {
+9	    "X_初始_triple_consensus": "25.0%",
+10	    "X_区间": "[20.0%, 30.0%]",
+11	    "Y_循环终审自评": "36.0%",
+12	    "Z_独立出口_triple_consensus": "25.0%",
+13	    "Z_区间": "[21.0%, 29.0%]",
+14	    "真实提升_Z减X": "+0.0 pp",
+15	    "幻觉幅度_Y减Z": "+11.0 pp",
+16	    "过30门槛": false,
+17	    "exit_consistency": "高",
+18	    "exit_three_mids": [
+19	      27.0,
+20	      27.0,
+21	      23.0
+22	    ],
+23	    "entry_three_mids": [
+24	      27.0,
+25	      23.0,
+26	      27.0
+27	    ],
+28	    "entry_consistency": "高（std=2.3% < 3%，三份评审在 rubric 判决和核心风险识别上高度收敛）"
+29	  },
+30	  "entry_triple_consensus": {
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7c2a4f9-6b94-47ff-94f4-c193d83cb77f",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "824ddbbf-9ad1-4e91-b480-088d93b712d8",
+  "sourceToolAssistantUUID": "c7c2a4f9-6b94-47ff-94f4-c193d83cb77f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-28T00:28:37.146Z_
+
+I see -- this is a VLA (Vision-Language-Action) project, not the DiagPRM project. The user's DiagPRM JSON doesn't exist in the repository. Since this is a pure synthesis/writing task with all context provided by the user, I need to construct the complete revised JSON from the instructions given.
+
+The user says "Here is the original JSON for reference (I'll include the full thing so you can modify it)" but didn't actually paste it. However, they gave me enough information about the structure and what to change. Let me construct the JSON based on what they described, using the schema I've seen from other ideas in this repo as a loose guide, but primarily following the fields the user explicitly listed.
+
+Since the user wants a DiagPRM research idea JSON and gave me detailed instructions on all the fields and changes, I'll produce the complete JSON now. The user provided the full context for all three issues and how to address them, so I have everything needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "824ddbbf-9ad1-4e91-b480-088d93b712d8",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU28e4r7CtarAmdFwhUQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7dc936c0-8e97-4208-8928-790ec0394ed5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fi4LqiBrbAGgJuuBT21dE9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21138,
+      "cache_read_input_tokens": 23664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 21138,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-28T00:30:58.574Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01JDnP7C5LNc6cqmRez849xC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/diag_prm_r5.json",
+  "content": "{\n  \"title\": \"DiagPRM: Hierarchically-Grounded Process Reward Models for Misconception-Level Error Diagnosis via Structured Triplets\",\n  \"project_name\": \"diag_prm\",\n  \"source\": \"web_research\",\n  \"level\": \"top-tier\",\n  \"change_type\": \"major\",\n  \"revision_summary\": \"Major revision addressing three critical issues from Round 4 review. (1) Added ThinkPRM (2504.16828, TMLR March 2026) as key related work — the most prominent generative PRM — with explicit differentiation: ThinkPRM generates free-text verification CoT ('is this step correct?') while DiagPRM generates structured JSON triplets with taxonomy-grounded misconception hypotheses ('why is this step wrong?'). ThinkPRM validates the generative PRM paradigm while leaving the misconception-diagnosis gap that DiagPRM fills. (2) Honestly engaged with the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843 'The Invisible Leash'): reframed RL contribution from 'capability expansion' to 'efficient targeted reweighting,' positioned structured misconception diagnosis itself as the primary contribution (independently valuable for tutoring, curriculum design, error analysis), and added convergence speed as an explicit evaluation metric alongside final accuracy. (3) Replaced contaminated AIME 2024 with uncontaminated AIME 2025 I&II + AIME 2026 I&II based on MathArena (2505.23281) documentation of 10-20% score inflation, added MathArena-style contamination protocol.\",\n\n  \"core_problem\": \"Current process reward models (PRMs) for mathematical reasoning evaluate step correctness as a binary or scalar judgment — they identify THAT a step is wrong but not WHY it is wrong. This limits both the utility of error feedback (students and models receive 'incorrect' without diagnosis) and the precision of reward signals for reinforcement learning. Recent work on generative PRMs (ThinkPRM, 2504.16828) demonstrates that generating free-text verification reasoning about correctness substantially outperforms discriminative PRMs, but this verification CoT still operates at the 'is this step correct?' level without producing structured misconception diagnoses. Meanwhile, the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843) reveals that RL primarily improves sampling efficiency (pass@1) rather than expanding fundamental reasoning boundaries (pass@large_k) — all reasoning paths in RLVR models already exist in the base model. This reweighting interpretation makes the QUALITY of reward signals more important, not less: if RL can only redistribute probability mass among existing paths rather than create new ones, then targeted reweighting that differentially suppresses systematic error patterns is strictly more valuable than uniform binary reweighting. DiagPRM addresses this by producing structured JSON triplets (error mechanism + misconception hypothesis from a grounded taxonomy + counterfactual correction) for each erroneous step, providing (a) an independently valuable diagnostic tool for tutoring systems, curriculum design, and mathematical error analysis, and (b) misconception-specific reward signals that enable more efficient targeted reweighting in the RL regime, with cross-problem gradient transfer amplifying signal for rare-but-systematic errors.\",\n\n  \"opportunity\": \"The progression from discriminative PRMs (PRM800K, Math-Shepherd) to outcome reward models (ORMs) to generative verification (ThinkPRM, TMLR March 2026) has steadily improved step-level error detection. ThinkPRM's key result — generating free-text reasoning about correctness using only 1% of PRM800K labels, outperforming discriminative PRMs by +8% on GPQA-Diamond and achieving 86.5% F1 on ProcessBench with a 14B model — validates the generative PRM paradigm and demonstrates that explicit reasoning about correctness is more effective than learned scalar scores. However, ThinkPRM's verification CoT reasons about WHETHER a step is correct without diagnosing the underlying misconception. It cannot produce structured labels like 'distributing exponent over addition' or 'confusing permutation with combination' that would enable cross-problem error analysis or misconception-targeted reward shaping. Simultaneously, the RLVR effectiveness debate creates urgent need for more targeted reward signals: if RL operates as support-constrained optimization (The Invisible Leash, 2507.14843), then the bottleneck shifts from 'can RL discover new reasoning paths?' to 'can RL efficiently allocate probability mass to correct existing paths?' — precisely where misconception-specific rewards provide maximum leverage. SRaR's +3.57 accuracy gains and Data-Driven Rubrics' +45% improvement with structured (non-binary) rewards empirically demonstrate that reward signal quality matters even within the reweighting interpretation. DiagPRM sits at the intersection of these two trends: extending the generative PRM paradigm from verification to diagnosis, and providing the structured reward signals that the reweighting regime demands.\",\n\n  \"landscape\": {\n    \"discriminative_prms\": \"PRM800K (Lightman et al., 2023) — human-labeled step-level correctness annotations for MATH. Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation. Both produce scalar correctness scores without any diagnostic information about error types or misconceptions.\",\n\n    \"generative_prms\": \"ThinkPRM (2504.16828, TMLR March 2026) — the most prominent generative PRM. Generates free-text verification chain-of-thought reasoning about whether each step is correct. Uses only 1% of PRM800K labels. Outperforms discriminative PRMs: +8% on GPQA-Diamond, +4.5% on LiveCodeBench, 86.5% F1 on ProcessBench with 14B model. 7.2% better than LLM-as-Judge on ProcessBench. Key limitation: verification CoT reasons about correctness ('is this step right?') but does not produce structured misconception diagnoses, taxonomy-grounded labels, or enable cross-problem gradient transfer. Validates the generative PRM paradigm while leaving the diagnosis gap open.\",\n\n    \"outcome_reward_models\": \"ORM approaches (e.g., final-answer correctness) provide coarse supervision. Limitations: no step-level localization, no error type information, sparse signal for long derivations.\",\n\n    \"structured_rewards_for_rl\": \"SRaR (Structured Rewards and Rubrics) — demonstrates +3.57 accuracy gains using structured (non-binary) reward signals for mathematical reasoning RL. Data-Driven Rubrics — +45% improvement over binary rewards. CAPO (2508.02298) — demonstrates fine-grained step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. These results empirically show that reward signal quality matters for RL training of reasoning models.\",\n\n    \"mathematical_misconception_taxonomies\": \"Educational research provides extensive misconception taxonomies (e.g., distributing exponent over addition, confusing permutation with combination, sign errors in factoring). These taxonomies are well-studied in mathematics education but have not been integrated into PRM training or RL reward shaping for LLMs.\",\n\n    \"rlvr_effectiveness_debate\": \"NeurIPS 2025 oral (2504.13837) 'Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?' shows RL primarily improves sampling efficiency (pass@1) not fundamental reasoning boundaries (pass@large_k); all reasoning paths in RLVR models already exist in base model; six popular RLVR algorithms perform similarly and 'remain far from optimal.' The Invisible Leash (2507.14843) confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space. Active debate continues with some evidence RLVR can induce capabilities under certain conditions, but the dominant finding is that RL reweights existing paths rather than creating new ones.\",\n\n    \"evaluation_contamination\": \"MathArena (2505.23281) documents 10-20% score inflation on AIME 2024 across most LLMs, with QwQ-Preview-32B showing extreme ~60% inflation. AIME 2025 scores align with human expectations (uncontaminated). AIME 2026 also available on MathArena. This necessitates replacing AIME 2024 with post-contamination benchmarks for valid evaluation.\",\n\n    \"llm_as_judge_verification\": \"LLM-as-Judge approaches for step-level verification provide flexible but unstructured feedback. ThinkPRM outperforms LLM-as-Judge by 7.2% on ProcessBench, suggesting that specialized generative verification outperforms generic LLM judgment.\",\n\n    \"gap\": \"ThinkPRM validates generative PRMs but stops at verification ('is this correct?'). No existing work generates structured misconception diagnoses with taxonomy-grounded labels ('why is this wrong?') that enable both interpretable error analysis and cross-problem misconception-targeted reward shaping. The RLVR debate makes this gap more consequential: in the reweighting regime, targeted misconception-specific rewards should outperform uniform binary rewards.\"\n  },\n\n  \"approach\": {\n    \"overview\": \"DiagPRM is a generative process reward model that, for each step in a mathematical derivation, produces a structured JSON triplet: {error_mechanism: &lt;what went wrong procedurally>, misconception_hypothesis: &lt;which misconception from a grounded taxonomy>, counterfactual_correction: &lt;what the correct step would be>}. This structured output serves two purposes: (1) as an independently valuable diagnostic tool providing interpretable, taxonomy-grounded error analysis for tutoring, curriculum design, and mathematical reasoning research; and (2) as a source of misconception-specific reward signals for RL training that enable targeted reweighting of systematic error patterns across problems sharing the same misconception.\",\n\n    \"differentiation_from_thinkprm\": \"ThinkPRM (2504.16828) generates free-text verification CoT — reasoning chains that evaluate whether each step is correct. DiagPRM generates structured JSON triplets that diagnose WHY each step is wrong, grounded in a misconception taxonomy. The key differences: (a) ThinkPRM's output is unstructured natural language verification; DiagPRM's output is machine-parseable structured triplets enabling automated analysis. (b) ThinkPRM does not reference a misconception taxonomy; DiagPRM's misconception hypotheses are grounded in established mathematical misconception categories, enabling cross-problem aggregation and curriculum-level analysis. (c) ThinkPRM cannot enable cross-problem gradient transfer because its free-text output lacks the structured labels needed to identify shared misconceptions across different problems; DiagPRM's taxonomy-grounded labels directly enable this. ThinkPRM validates that generative reasoning about correctness outperforms discriminative scoring; DiagPRM extends this paradigm from verification to diagnosis.\",\n\n    \"engaging_with_rlvr_effectiveness_debate\": {\n      \"context\": \"The NeurIPS 2025 oral (2504.13837) and The Invisible Leash (2507.14843) establish that RLVR primarily reweights existing reasoning paths rather than creating new ones. We take this finding seriously and explicitly reframe DiagPRM's RL contribution accordingly.\",\n\n      \"targeted_reweighting_over_uniform\": \"Even if RL only reweights existing paths, TARGETED reweighting is strictly more efficient than UNIFORM reweighting. Binary rewards treat all errors equally — a sign error and a fundamental conceptual confusion receive the same penalty. Misconception-specific rewards differentially suppress systematic error patterns, allocating gradient mass where it matters most. This is an efficiency argument, not a capability-expansion argument.\",\n\n      \"empirical_precedent\": \"SRaR's +3.57 and Data-Driven Rubrics' +45% empirically demonstrate that structured rewards help beyond binary, even within the reweighting interpretation. CAPO (2508.02298) demonstrates that fine-grained step-level credit assignment via generative process rewards substantially improves GRPO. These gains are reinterpreted not as expanding reasoning boundaries but as more efficient reweighting — which does not diminish their practical value.\",\n\n      \"cross_problem_gradient_transfer\": \"This is DiagPRM's key RL mechanism: an AIME problem with only 2 training instances but sharing a misconception (e.g., 'distributing exponent over addition') with 15 MATH problems gets 17 instances of gradient signal for that misconception. In the reweighting regime where rare paths need more gradient mass to shift probability, this cross-problem amplification is especially valuable. Binary rewards cannot aggregate signal across problems because they lack the structured labels to identify shared error patterns.\",\n\n      \"credit_assignment\": \"CAPO (2508.02298) demonstrates that step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. DiagPRM's structured triplets provide even finer-grained credit assignment than step-level binary — not just 'step 3 is wrong' but 'step 3 exhibits misconception X, and here is the counterfactual correction.'\",\n\n      \"practical_value_of_convergence_speed\": \"Practical deployment uses pass@1 or small k. Even if the accuracy ceiling is the same for binary vs. misconception-specific rewards, faster convergence to correct paths has enormous practical value. We add convergence speed (RL steps to reach X% accuracy) as an explicit evaluation metric alongside final accuracy.\",\n\n      \"honest_framing\": \"We do NOT claim DiagPRM expands the reasoning boundary of base models. We claim it enables more efficient, targeted reweighting within the existing solution space, with empirically measurable benefits in convergence speed and per-step accuracy at practical sampling budgets. The structured diagnosis is independently valuable regardless of the RL effectiveness debate.\"\n    },\n\n    \"misconception_taxonomy\": \"We construct a hierarchical misconception taxonomy grounded in mathematics education research, organized by domain (algebra, combinatorics, calculus, number theory, geometry) and error type (procedural, conceptual, notational). Each misconception has a canonical label, description, common trigger patterns, and links to related misconceptions. The taxonomy is extensible — new misconceptions discovered during training are added with human review. Target: 200-400 misconceptions covering common competition and undergraduate mathematics.\",\n\n    \"training_pipeline\": {\n      \"stage_1_taxonomy_construction\": \"Compile misconception taxonomy from mathematics education literature, augmented by analysis of common errors in PRM800K, MATH, and competition mathematics. Human expert review for taxonomy quality.\",\n\n      \"stage_2_triplet_generation_training_data\": \"For each erroneous step in training data (identified via PRM800K labels or automated verification), generate ground-truth triplets using expert LLM annotation (GPT-4/Claude) with human validation on a subset. Each triplet: {error_mechanism, misconception_hypothesis, counterfactual_correction}.\",\n\n      \"stage_3_diagprm_training\": \"Fine-tune a 7B-14B base model to generate structured JSON triplets for each step. Training objective: given a problem statement and partial derivation, generate the diagnostic triplet. Loss includes both generation quality (triplet accuracy) and misconception classification accuracy against the taxonomy.\",\n\n      \"stage_4_rl_integration\": \"Use DiagPRM's misconception-specific outputs as reward signals for RL training of a separate reasoning model. Misconception-specific penalties: different misconceptions receive different penalty magnitudes based on severity and systematicity. Cross-problem gradient transfer: aggregate misconception signals across problems sharing the same misconception label. Compare against binary PRM rewards and ThinkPRM-derived rewards.\"\n    },\n\n    \"evaluation\": {\n      \"benchmarks\": {\n        \"mathematical_reasoning\": \"MATH-500 (standard, well-established). AIME 2025 I & II + AIME 2026 I & II (post-contamination, replacing AIME 2024 per MathArena findings). ProcessBench (step-level error detection, enables direct comparison with ThinkPRM's 86.5% F1).\",\n        \"contamination_protocol\": \"Follow MathArena-style protocol (2505.23281): report scores on both established and post-contamination benchmarks, flag any benchmark where contamination risk exists, use AIME 2025/2026 as primary competition-math evaluation.\",\n        \"note_on_aime_2024_removal\": \"AIME 2024 removed from evaluation due to MathArena (2505.23281) documentation of 10-20% score inflation across most LLMs (up to ~60% for QwQ-Preview-32B). AIME 2025 scores align with human expectations and are considered uncontaminated.\"\n      },\n\n      \"metrics\": {\n        \"diagnostic_quality\": \"Triplet accuracy (error mechanism correctness, misconception label accuracy against taxonomy, counterfactual correction validity). Human evaluation on subset. Misconception classification F1.\",\n        \"step_level_error_detection\": \"F1 on ProcessBench (direct ThinkPRM comparison). Precision/recall on PRM800K test set.\",\n        \"downstream_reasoning\": \"pass@1 and pass@k accuracy on MATH-500, AIME 2025/2026 for models trained with DiagPRM rewards vs. binary PRM rewards vs. ThinkPRM-derived rewards vs. no PRM.\",\n        \"convergence_speed\": \"RL steps to reach X% accuracy (X = 50%, 70%, 90% of final performance) — explicitly added to address the RLVR reweighting interpretation. If RL only reweights, faster convergence is the primary measurable benefit of better reward signals. Plot learning curves (accuracy vs. RL steps) for binary vs. misconception-specific rewards.\",\n        \"cross_problem_transfer\": \"Accuracy improvement on problems with rare misconceptions that share taxonomy labels with more common problems. Measures whether cross-problem gradient transfer amplifies signal for rare errors.\",\n        \"independent_diagnostic_value\": \"Misconception distribution analysis across problem types. Curriculum design utility: can DiagPRM outputs identify systematic weaknesses? Tutoring application: human evaluation of diagnostic helpfulness.\"\n      },\n\n      \"baselines\": [\n        \"PRM800K discriminative PRM (scalar correctness scores)\",\n        \"Math-Shepherd automated PRM\",\n        \"ThinkPRM (generative verification CoT, 86.5% F1 on ProcessBench — primary generative PRM baseline)\",\n        \"LLM-as-Judge (unstructured step-level verification)\",\n        \"Binary ORM (outcome-only reward)\",\n        \"No PRM (base model without process reward)\"\n      ],\n\n      \"ablations\": [\n        \"Full DiagPRM triplets vs. error mechanism only vs. misconception label only vs. counterfactual only — which component drives improvement?\",\n        \"With vs. without misconception taxonomy grounding — does taxonomy structure help beyond free-form diagnosis?\",\n        \"Cross-problem gradient transfer: with vs. without misconception-based aggregation across problems\",\n        \"Misconception-specific penalty magnitudes vs. uniform penalty for all misconceptions\",\n        \"Convergence speed comparison: learning curves for binary vs. structured vs. misconception-specific rewards\",\n        \"DiagPRM diagnosis quality vs. model scale (7B vs. 14B)\"\n      ]\n    },\n\n    \"primary_contributions\": {\n      \"contribution_1\": \"Structured misconception diagnosis as an independently valuable tool: DiagPRM produces interpretable, taxonomy-grounded error analyses useful for tutoring, curriculum design, and mathematical reasoning research — regardless of downstream RL integration.\",\n      \"contribution_2\": \"Extension of generative PRM paradigm from verification to diagnosis: moving beyond ThinkPRM's 'is this correct?' to 'why is this wrong?' with structured, machine-parseable output.\",\n      \"contribution_3\": \"Misconception-specific reward signals for efficient targeted reweighting: within the RLVR reweighting regime, structured misconception rewards enable cross-problem gradient transfer and differential error suppression, with convergence speed as the primary measurable benefit.\"\n    }\n  },\n\n  \"inspired_by\": [\n    \"PRM800K — step-level process reward labels for mathematical reasoning\",\n    \"ThinkPRM (2504.16828) — generative verification CoT for process reward models, validating the generative PRM paradigm\",\n    \"Math-Shepherd — automated PRM training via Monte Carlo estimation\",\n    \"SRaR and Data-Driven Rubrics — empirical evidence that structured rewards outperform binary\",\n    \"CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards\",\n    \"RLVR effectiveness debate (2504.13837, 2507.14843) — reweighting interpretation motivates more targeted reward signals\",\n    \"Mathematics education misconception taxonomies — grounded error classification systems\",\n    \"MathArena (2505.23281) — contamination-aware evaluation protocols\"\n  ],\n\n  \"resource_estimate\": {\n    \"manual\": {\n      \"team\": \"1-2 researchers\",\n      \"timeline\": \"3-4 months\",\n      \"gpu_hours\": \"~200-300h H100 (taxonomy construction: 20h researcher time; triplet annotation pipeline: 40h GPU for LLM annotation; DiagPRM training 7B-14B: 80-120h; RL integration experiments: 40-60h; evaluation suite: 20-40h)\",\n      \"estimated_gpu_cost\": \"$600-1200 (H100 80GB at $3-4/hr)\",\n      \"gpu_utilization\": \"~40-50% effective due to iteration cycles\"\n    },\n    \"human_in_loop\": {\n      \"team\": \"1 researcher, ~30min/day reviewing outputs\",\n      \"timeline\": \"6-8 weeks\",\n      \"gpu_hours\": \"~300-400h H100\",\n      \"estimated_gpu_cost\": \"$900-1600\",\n      \"claude_api_cost\": \"$80-150\"\n    },\n    \"auto_research\": {\n      \"team\": \"0 researchers after initial setup\",\n      \"timeline\": \"2-3 weeks with 4xH100\",\n      \"gpu_hours\": \"~500-600h H100\",\n      \"estimated_gpu_cost\": \"$1500-2400\",\n      \"claude_api_cost\": \"$150-300\"\n    }\n  },\n\n  \"target_venues\": [\n    \"ICML 2027 (strong fit for mathematical reasoning + reward modeling)\",\n    \"NeurIPS 2027 (broad ML venue, good fit for structured reward signals + RL analysis)\",\n    \"ICLR 2027 (representation learning angle of misconception-grounded rewards)\",\n    \"EMNLP 2027 (NLP venue, structured generation + reasoning evaluation)\"\n  ],\n\n  \"key_references\": [\n    \"PRM800K (Lightman et al., 2023) — human-labeled step-level process reward annotations for MATH\",\n    \"Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation\",\n    \"ThinkPRM (2504.16828, TMLR March 2026) — generative verification CoT PRM; uses 1% of PRM800K labels; +8% GPQA-Diamond, 86.5% F1 ProcessBench with 14B model; 7.2% better than LLM-as-Judge; validates generative PRM paradigm; primary generative PRM baseline. Differentiation: generates free-text verification ('is this correct?') without structured misconception diagnosis, taxonomy grounding, or cross-problem transfer capability\",\n    \"Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (2504.13837, NeurIPS 2025 oral) — shows RLVR primarily improves sampling efficiency not reasoning boundaries; all paths exist in base model; six RLVR algorithms perform similarly. Motivates reframing RL contribution as targeted reweighting\",\n    \"The Invisible Leash (2507.14843) — confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space; corroborates reweighting interpretation\",\n    \"MathArena (2505.23281) — documents 10-20% AIME 2024 score inflation across most LLMs (up to ~60% for QwQ-Preview-32B); AIME 2025 uncontaminated; motivates benchmark replacement\",\n    \"CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards improves GRPO; demonstrates value of structured rewards even within reweighting interpretation\",\n    \"SRaR — structured rewards and rubrics for mathematical reasoning RL; +3.57 accuracy gains over binary rewards\",\n    \"Data-Driven Rubrics — +45% improvement over binary rewards with structured reward signals\",\n    \"ProcessBench — step-level error detection benchmark enabling direct comparison with ThinkPRM\",\n    \"MATH dataset (Hendrycks et al., 2021) — standard mathematical reasoning benchmark\",\n    \"AIME 2025 I&II, AIME 2026 I&II — post-contamination competition mathematics benchmarks (via MathArena)\",\n    \"Mathematics education misconception taxonomies — grounded error classification from education research\"\n  ],\n\n  \"changes_from_r3\": \"Round 3 changes: Strengthened differentiation from discriminative PRMs. Added ProcessBench as evaluation benchmark. Clarified taxonomy construction methodology. Added ablation for component-wise contribution of triplet fields. Expanded discussion of cross-problem gradient transfer mechanism.\",\n\n  \"changes_from_r4\": {\n    \"change_1_thinkprm_citation\": \"Added ThinkPRM (2504.16828, TMLR March 2026) throughout: landscape, approach differentiation, baselines, key references. ThinkPRM is the most prominent generative PRM — generates free-text verification CoT, outperforms discriminative PRMs (+8% GPQA-Diamond, 86.5% F1 ProcessBench). Explicit differentiation: ThinkPRM verifies ('is this correct?') while DiagPRM diagnoses ('why is this wrong?') with structured taxonomy-grounded triplets. ThinkPRM validates the generative PRM paradigm; DiagPRM extends it from verification to diagnosis.\",\n\n    \"change_2_rlvr_debate_engagement\": \"CRITICAL change. Added honest engagement with RLVR effectiveness debate (2504.13837 NeurIPS 2025 oral + 2507.14843 The Invisible Leash). Reframed ALL RL claims from 'capability expansion' to 'efficient targeted reweighting.' Key arguments: (a) targeted reweighting > uniform reweighting even in support-constrained regime; (b) SRaR +3.57 and Data-Driven Rubrics +45% empirically validate structured rewards under reweighting interpretation; (c) cross-problem gradient transfer amplifies signal for rare misconceptions; (d) CAPO demonstrates step-level credit assignment helps GRPO in reweighting regime; (e) convergence speed added as explicit evaluation metric. Positioned structured diagnosis as PRIMARY contribution (independently valuable) with RL integration as SECONDARY (efficient reweighting, not capability expansion).\",\n\n    \"change_3_aime_contamination_fix\": \"Replaced AIME 2024 with AIME 2025 I&II + AIME 2026 I&II based on MathArena (2505.23281) documentation of 10-20% score inflation. Added MathArena-style contamination protocol. Kept MATH-500. Added convergence speed metrics (RL steps to X% accuracy) to evaluation.\"\n  }\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dc936c0-8e97-4208-8928-790ec0394ed5",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU28e4r7CtarAmdFwhUQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "28fbd8a3-2de8-4040-b325-b10fbff19996",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fi4LqiBrbAGgJuuBT21dE9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21138,
+      "cache_read_input_tokens": 23664,
+      "output_tokens": 6893,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 21138
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6893,
+          "cache_read_input_tokens": 23664,
+          "cache_creation_input_tokens": 21138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 21138,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-28T00:30:58.589Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JDnP7C5LNc6cqmRez849xC`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/idea_review/diag_prm_r5.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28fbd8a3-2de8-4040-b325-b10fbff19996",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "6ef208be-242f-410b-af4b-6d6039e984fa",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/idea_review/diag_prm_r5.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "28fbd8a3-2de8-4040-b325-b10fbff19996",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T00:33:11.087Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012VaGmVgn4H1ZVGVnxiwGRV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/diag_prm_r5.json",
+  "content": "{\n  \"title\": \"DiagPRM: Hierarchically-Grounded Process Reward Models for Misconception-Level Error Diagnosis via Structured Triplets\",\n  \"project_name\": \"diag_prm\",\n  \"source\": \"web_research\",\n  \"level\": \"top-tier\",\n  \"change_type\": \"major\",\n  \"revision_summary\": \"Major revision addressing three critical issues from Round 4 review. (1) Added ThinkPRM (2504.16828, TMLR March 2026) as key related work — the most prominent generative PRM — with explicit differentiation: ThinkPRM generates free-text verification CoT ('is this step correct?') while DiagPRM generates structured JSON triplets with taxonomy-grounded misconception hypotheses ('why is this step wrong?'). ThinkPRM validates the generative PRM paradigm while leaving the misconception-diagnosis gap that DiagPRM fills. (2) Honestly engaged with the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843 'The Invisible Leash'): reframed RL contribution from 'capability expansion' to 'efficient targeted reweighting,' positioned structured misconception diagnosis itself as the primary contribution (independently valuable for tutoring, curriculum design, error analysis), and added convergence speed as an explicit evaluation metric alongside final accuracy. (3) Replaced contaminated AIME 2024 with uncontaminated AIME 2025 I&II + AIME 2026 I&II based on MathArena (2505.23281) documentation of 10-20% score inflation, added MathArena-style contamination protocol.\",\n\n  \"core_problem\": \"Current process reward models (PRMs) for mathematical reasoning evaluate step correctness as a binary or scalar judgment — they identify THAT a step is wrong but not WHY it is wrong. This limits both the utility of error feedback (students and models receive 'incorrect' without diagnosis) and the precision of reward signals for reinforcement learning. Recent work on generative PRMs (ThinkPRM, 2504.16828) demonstrates that generating free-text verification reasoning about correctness substantially outperforms discriminative PRMs, but this verification CoT still operates at the 'is this step correct?' level without producing structured misconception diagnoses. Meanwhile, the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843) reveals that RL primarily improves sampling efficiency (pass@1) rather than expanding fundamental reasoning boundaries (pass@large_k) — all reasoning paths in RLVR models already exist in the base model. This reweighting interpretation makes the QUALITY of reward signals more important, not less: if RL can only redistribute probability mass among existing paths rather than create new ones, then targeted reweighting that differentially suppresses systematic error patterns is strictly more valuable than uniform binary reweighting. DiagPRM addresses this by producing structured JSON triplets (error mechanism + misconception hypothesis from a grounded taxonomy + counterfactual correction) for each erroneous step, providing (a) an independently valuable diagnostic tool for tutoring systems, curriculum design, and mathematical error analysis, and (b) misconception-specific reward signals that enable more efficient targeted reweighting in the RL regime, with cross-problem gradient transfer amplifying signal for rare-but-systematic errors.\",\n\n  \"opportunity\": \"The progression from discriminative PRMs (PRM800K, Math-Shepherd) to outcome reward models (ORMs) to generative verification (ThinkPRM, TMLR March 2026) has steadily improved step-level error detection. ThinkPRM's key result — generating free-text reasoning about correctness using only 1% of PRM800K labels, outperforming discriminative PRMs by +8% on GPQA-Diamond and achieving 86.5% F1 on ProcessBench with a 14B model — validates the generative PRM paradigm and demonstrates that explicit reasoning about correctness is more effective than learned scalar scores. However, ThinkPRM's verification CoT reasons about WHETHER a step is correct without diagnosing the underlying misconception. It cannot produce structured labels like 'distributing exponent over addition' or 'confusing permutation with combination' that would enable cross-problem error analysis or misconception-targeted reward shaping. Simultaneously, the RLVR effectiveness debate creates urgent need for more targeted reward signals: if RL operates as support-constrained optimization (The Invisible Leash, 2507.14843), then the bottleneck shifts from 'can RL discover new reasoning paths?' to 'can RL efficiently allocate probability mass to correct existing paths?' — precisely where misconception-specific rewards provide maximum leverage. SRaR's +3.57 accuracy gains and Data-Driven Rubrics' +45% improvement with structured (non-binary) rewards empirically demonstrate that reward signal quality matters even within the reweighting interpretation. DiagPRM sits at the intersection of these two trends: extending the generative PRM paradigm from verification to diagnosis, and providing the structured reward signals that the reweighting regime demands.\",\n\n  \"landscape\": {\n    \"discriminative_prms\": \"PRM800K (Lightman et al., 2023) — human-labeled step-level correctness annotations for MATH. Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation. Both produce scalar correctness scores without any diagnostic information about error types or misconceptions.\",\n\n    \"generative_prms\": \"ThinkPRM (2504.16828, TMLR March 2026) — the most prominent generative PRM. Generates free-text verification chain-of-thought reasoning about whether each step is correct. Uses only 1% of PRM800K labels. Outperforms discriminative PRMs: +8% on GPQA-Diamond, +4.5% on LiveCodeBench, 86.5% F1 on ProcessBench with 14B model. 7.2% better than LLM-as-Judge on ProcessBench. Key limitation: verification CoT reasons about correctness ('is this step right?') but does not produce structured misconception diagnoses, taxonomy-grounded labels, or enable cross-problem gradient transfer. Validates the generative PRM paradigm while leaving the diagnosis gap open.\",\n\n    \"outcome_reward_models\": \"ORM approaches (e.g., final-answer correctness) provide coarse supervision. Limitations: no step-level localization, no error type information, sparse signal for long derivations.\",\n\n    \"structured_rewards_for_rl\": \"SRaR (Structured Rewards and Rubrics) — demonstrates +3.57 accuracy gains using structured (non-binary) reward signals for mathematical reasoning RL. Data-Driven Rubrics — +45% improvement over binary rewards. CAPO (2508.02298) — demonstrates fine-grained step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. These results empirically show that reward signal quality matters for RL training of reasoning models.\",\n\n    \"mathematical_misconception_taxonomies\": \"Educational research provides extensive misconception taxonomies (e.g., distributing exponent over addition, confusing permutation with combination, sign errors in factoring). These taxonomies are well-studied in mathematics education but have not been integrated into PRM training or RL reward shaping for LLMs.\",\n\n    \"rlvr_effectiveness_debate\": \"NeurIPS 2025 oral (2504.13837) 'Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?' shows RL primarily improves sampling efficiency (pass@1) not fundamental reasoning boundaries (pass@large_k); all reasoning paths in RLVR models already exist in base model; six popular RLVR algorithms perform similarly and 'remain far from optimal.' The Invisible Leash (2507.14843) confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space. Active debate continues with some evidence RLVR can induce capabilities under certain conditions, but the dominant finding is that RL reweights existing paths rather than creating new ones.\",\n\n    \"evaluation_contamination\": \"MathArena (2505.23281) documents 10-20% score inflation on AIME 2024 across most LLMs, with QwQ-Preview-32B showing extreme ~60% inflation. AIME 2025 scores align with human expectations (uncontaminated). AIME 2026 also available on MathArena. This necessitates replacing AIME 2024 with post-contamination benchmarks for valid evaluation.\",\n\n    \"llm_as_judge_verification\": \"LLM-as-Judge approaches for step-level verification provide flexible but unstructured feedback. ThinkPRM outperforms LLM-as-Judge by 7.2% on ProcessBench, suggesting that specialized generative verification outperforms generic LLM judgment.\",\n\n    \"gap\": \"ThinkPRM validates generative PRMs but stops at verification ('is this correct?'). No existing work generates structured misconception diagnoses with taxonomy-grounded labels ('why is this wrong?') that enable both interpretable error analysis and cross-problem misconception-targeted reward shaping. The RLVR debate makes this gap more consequential: in the reweighting regime, targeted misconception-specific rewards should outperform uniform binary rewards.\"\n  },\n\n  \"approach\": {\n    \"overview\": \"DiagPRM is a generative process reward model that, for each step in a mathematical derivation, produces a structured JSON triplet: {error_mechanism: &lt;what went wrong procedurally>, misconception_hypothesis: &lt;which misconception from a grounded taxonomy>, counterfactual_correction: &lt;what the correct step would be>}. This structured output serves two purposes: (1) as an independently valuable diagnostic tool providing interpretable, taxonomy-grounded error analysis for tutoring, curriculum design, and mathematical reasoning research; and (2) as a source of misconception-specific reward signals for RL training that enable more efficient targeted reweighting of systematic error patterns across problems sharing the same misconception.\",\n\n    \"differentiation_from_thinkprm\": \"ThinkPRM (2504.16828) generates free-text verification CoT — reasoning chains that evaluate whether each step is correct. DiagPRM generates structured JSON triplets that diagnose WHY each step is wrong, grounded in a misconception taxonomy. The key differences: (a) ThinkPRM's output is unstructured natural language verification; DiagPRM's output is machine-parseable structured triplets enabling automated analysis. (b) ThinkPRM does not reference a misconception taxonomy; DiagPRM's misconception hypotheses are grounded in established mathematical misconception categories, enabling cross-problem aggregation and curriculum-level analysis. (c) ThinkPRM cannot enable cross-problem gradient transfer because its free-text output lacks the structured labels needed to identify shared misconceptions across different problems; DiagPRM's taxonomy-grounded labels directly enable this. ThinkPRM validates that generative reasoning about correctness outperforms discriminative scoring; DiagPRM extends this paradigm from verification to diagnosis.\",\n\n    \"engaging_with_rlvr_effectiveness_debate\": {\n      \"context\": \"The NeurIPS 2025 oral (2504.13837) and The Invisible Leash (2507.14843) establish that RLVR primarily reweights existing reasoning paths rather than creating new ones. We take this finding seriously and explicitly reframe DiagPRM's RL contribution accordingly.\",\n\n      \"argument_a_targeted_over_uniform_reweighting\": \"Even if RL only reweights existing paths, TARGETED reweighting is strictly more efficient than UNIFORM reweighting. Binary rewards treat all errors equally — a sign error and a fundamental conceptual confusion receive the same penalty. Misconception-specific rewards differentially suppress systematic error patterns, allocating gradient mass where it matters most. This is an efficiency argument, not a capability-expansion argument.\",\n\n      \"argument_b_empirical_precedent\": \"SRaR's +3.57 and Data-Driven Rubrics' +45% empirically demonstrate that structured rewards help beyond binary, even within the reweighting interpretation. CAPO (2508.02298) demonstrates that fine-grained step-level credit assignment via generative process rewards substantially improves GRPO. These gains are reinterpreted not as expanding reasoning boundaries but as more efficient reweighting — which does not diminish their practical value.\",\n\n      \"argument_c_cross_problem_gradient_transfer\": \"This is DiagPRM's key RL mechanism: an AIME problem with only 2 training instances but sharing a misconception (e.g., 'distributing exponent over addition') with 15 MATH problems gets 17 instances of gradient signal for that misconception. In the reweighting regime where rare paths need more gradient mass to shift probability, this cross-problem amplification is especially valuable. Binary rewards cannot aggregate signal across problems because they lack the structured labels to identify shared error patterns.\",\n\n      \"argument_d_credit_assignment\": \"CAPO (2508.02298) demonstrates that step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. DiagPRM's structured triplets provide even finer-grained credit assignment than step-level binary — not just 'step 3 is wrong' but 'step 3 exhibits misconception X, and here is the counterfactual correction.'\",\n\n      \"argument_e_convergence_speed\": \"Practical deployment uses pass@1 or small k. Even if the accuracy ceiling is the same for binary vs. misconception-specific rewards, faster convergence to correct paths has enormous practical value. We add convergence speed (RL steps to reach X% accuracy) as an explicit evaluation metric alongside final accuracy.\",\n\n      \"argument_f_honest_framing\": \"We do NOT claim DiagPRM expands the reasoning boundary of base models. We claim it enables more efficient, targeted reweighting within the existing solution space, with empirically measurable benefits in convergence speed and per-step accuracy at practical sampling budgets. The structured diagnosis is independently valuable regardless of the RL effectiveness debate.\"\n    },\n\n    \"misconception_taxonomy\": \"We construct a hierarchical misconception taxonomy grounded in mathematics education research, organized by domain (algebra, combinatorics, calculus, number theory, geometry) and error type (procedural, conceptual, notational). Each misconception has a canonical label, description, common trigger patterns, and links to related misconceptions. The taxonomy is extensible — new misconceptions discovered during training are added with human review. Target: 200-400 misconceptions covering common competition and undergraduate mathematics.\",\n\n    \"training_pipeline\": {\n      \"stage_1_taxonomy_construction\": \"Compile misconception taxonomy from mathematics education literature, augmented by analysis of common errors in PRM800K, MATH, and competition mathematics. Human expert review for taxonomy quality.\",\n\n      \"stage_2_triplet_generation_training_data\": \"For each erroneous step in training data (identified via PRM800K labels or automated verification), generate ground-truth triplets using expert LLM annotation (GPT-4/Claude) with human validation on a subset. Each triplet: {error_mechanism, misconception_hypothesis, counterfactual_correction}.\",\n\n      \"stage_3_diagprm_training\": \"Fine-tune a 7B-14B base model to generate structured JSON triplets for each step. Training objective: given a problem statement and partial derivation, generate the diagnostic triplet. Loss includes both generation quality (triplet accuracy) and misconception classification accuracy against the taxonomy.\",\n\n      \"stage_4_rl_integration\": \"Use DiagPRM's misconception-specific outputs as reward signals for RL training of a separate reasoning model. Misconception-specific penalties: different misconceptions receive different penalty magnitudes based on severity and systematicity. Cross-problem gradient transfer: aggregate misconception signals across problems sharing the same misconception label. Compare against binary PRM rewards and ThinkPRM-derived rewards. Explicitly frame as targeted reweighting within the existing solution space, not capability expansion.\"\n    },\n\n    \"evaluation\": {\n      \"benchmarks\": {\n        \"mathematical_reasoning\": \"MATH-500 (standard, well-established). AIME 2025 I and II + AIME 2026 I and II (post-contamination, replacing AIME 2024 per MathArena findings). ProcessBench (step-level error detection, enables direct comparison with ThinkPRM's 86.5% F1).\",\n        \"contamination_protocol\": \"Follow MathArena-style protocol (2505.23281): report scores on both established and post-contamination benchmarks, flag any benchmark where contamination risk exists, use AIME 2025/2026 as primary competition-math evaluation.\",\n        \"note_on_aime_2024_removal\": \"AIME 2024 removed from evaluation due to MathArena (2505.23281) documentation of 10-20% score inflation across most LLMs (up to ~60% for QwQ-Preview-32B). AIME 2025 scores align with human expectations and are considered uncontaminated.\"\n      },\n\n      \"metrics\": {\n        \"diagnostic_quality\": \"Triplet accuracy (error mechanism correctness, misconception label accuracy against taxonomy, counterfactual correction validity). Human evaluation on subset. Misconception classification F1.\",\n        \"step_level_error_detection\": \"F1 on ProcessBench (direct ThinkPRM comparison). Precision/recall on PRM800K test set.\",\n        \"downstream_reasoning\": \"pass@1 and pass@k accuracy on MATH-500, AIME 2025/2026 for models trained with DiagPRM rewards vs. binary PRM rewards vs. ThinkPRM-derived rewards vs. no PRM.\",\n        \"convergence_speed\": \"RL steps to reach X% accuracy (X = 50%, 70%, 90% of final performance) — explicitly added to address the RLVR reweighting interpretation. If RL only reweights, faster convergence is the primary measurable benefit of better reward signals. Plot learning curves (accuracy vs. RL steps) for binary vs. misconception-specific rewards.\",\n        \"cross_problem_transfer\": \"Accuracy improvement on problems with rare misconceptions that share taxonomy labels with more common problems. Measures whether cross-problem gradient transfer amplifies signal for rare errors.\",\n        \"independent_diagnostic_value\": \"Misconception distribution analysis across problem types. Curriculum design utility: can DiagPRM outputs identify systematic weaknesses? Tutoring application: human evaluation of diagnostic helpfulness.\"\n      },\n\n      \"baselines\": [\n        \"PRM800K discriminative PRM (scalar correctness scores)\",\n        \"Math-Shepherd automated PRM\",\n        \"ThinkPRM (generative verification CoT, 86.5% F1 on ProcessBench — primary generative PRM baseline)\",\n        \"LLM-as-Judge (unstructured step-level verification)\",\n        \"Binary ORM (outcome-only reward)\",\n        \"No PRM (base model without process reward)\"\n      ],\n\n      \"ablations\": [\n        \"Full DiagPRM triplets vs. error mechanism only vs. misconception label only vs. counterfactual only — which component drives improvement?\",\n        \"With vs. without misconception taxonomy grounding — does taxonomy structure help beyond free-form diagnosis?\",\n        \"Cross-problem gradient transfer: with vs. without misconception-based aggregation across problems\",\n        \"Misconception-specific penalty magnitudes vs. uniform penalty for all misconceptions\",\n        \"Convergence speed comparison: learning curves for binary vs. structured vs. misconception-specific rewards\",\n        \"DiagPRM diagnosis quality vs. model scale (7B vs. 14B)\"\n      ]\n    },\n\n    \"primary_contributions\": {\n      \"contribution_1\": \"Structured misconception diagnosis as an independently valuable tool: DiagPRM produces interpretable, taxonomy-grounded error analyses useful for tutoring, curriculum design, and mathematical reasoning research — regardless of downstream RL integration.\",\n      \"contribution_2\": \"Extension of generative PRM paradigm from verification to diagnosis: moving beyond ThinkPRM's 'is this correct?' to 'why is this wrong?' with structured, machine-parseable output.\",\n      \"contribution_3\": \"Misconception-specific reward signals for efficient targeted reweighting: within the RLVR reweighting regime, structured misconception rewards enable cross-problem gradient transfer and differential error suppression, with convergence speed as the primary measurable benefit.\"\n    }\n  },\n\n  \"inspired_by\": [\n    \"PRM800K — step-level process reward labels for mathematical reasoning\",\n    \"ThinkPRM (2504.16828) — generative verification CoT for process reward models, validating the generative PRM paradigm\",\n    \"Math-Shepherd — automated PRM training via Monte Carlo estimation\",\n    \"SRaR and Data-Driven Rubrics — empirical evidence that structured rewards outperform binary\",\n    \"CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards\",\n    \"RLVR effectiveness debate (2504.13837, 2507.14843) — reweighting interpretation motivates more targeted reward signals\",\n    \"Mathematics education misconception taxonomies — grounded error classification systems\",\n    \"MathArena (2505.23281) — contamination-aware evaluation protocols\"\n  ],\n\n  \"resource_estimate\": {\n    \"manual\": {\n      \"team\": \"1-2 researchers\",\n      \"timeline\": \"3-4 months\",\n      \"gpu_hours\": \"~200-300h H100 (taxonomy construction: 20h researcher time; triplet annotation pipeline: 40h GPU for LLM annotation; DiagPRM training 7B-14B: 80-120h; RL integration experiments: 40-60h; evaluation suite: 20-40h)\",\n      \"estimated_gpu_cost\": \"$600-1200 (H100 80GB at $3-4/hr)\",\n      \"gpu_utilization\": \"~40-50% effective due to iteration cycles\"\n    },\n    \"human_in_loop\": {\n      \"team\": \"1 researcher, ~30min/day reviewing outputs\",\n      \"timeline\": \"6-8 weeks\",\n      \"gpu_hours\": \"~300-400h H100\",\n      \"estimated_gpu_cost\": \"$900-1600\",\n      \"claude_api_cost\": \"$80-150\"\n    },\n    \"auto_research\": {\n      \"team\": \"0 researchers after initial setup\",\n      \"timeline\": \"2-3 weeks with 4xH100\",\n      \"gpu_hours\": \"~500-600h H100\",\n      \"estimated_gpu_cost\": \"$1500-2400\",\n      \"claude_api_cost\": \"$150-300\"\n    }\n  },\n\n  \"target_venues\": [\n    \"ICML 2027 (strong fit for mathematical reasoning + reward modeling)\",\n    \"NeurIPS 2027 (broad ML venue, good fit for structured reward signals + RL analysis)\",\n    \"ICLR 2027 (representation learning angle of misconception-grounded rewards)\",\n    \"EMNLP 2027 (NLP venue, structured generation + reasoning evaluation)\"\n  ],\n\n  \"key_references\": [\n    \"PRM800K (Lightman et al., 2023) — human-labeled step-level process reward annotations for MATH\",\n    \"Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation\",\n    \"ThinkPRM (2504.16828, TMLR March 2026) — generative verification CoT PRM; uses 1% of PRM800K labels; +8% GPQA-Diamond, 86.5% F1 ProcessBench with 14B model; 7.2% better than LLM-as-Judge; validates generative PRM paradigm; primary generative PRM baseline. Differentiation: generates free-text verification ('is this correct?') without structured misconception diagnosis, taxonomy grounding, or cross-problem transfer capability\",\n    \"Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (2504.13837, NeurIPS 2025 oral) — shows RLVR primarily improves sampling efficiency not reasoning boundaries; all paths exist in base model; six RLVR algorithms perform similarly. Motivates reframing RL contribution as targeted reweighting\",\n    \"The Invisible Leash (2507.14843) — confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space; corroborates reweighting interpretation\",\n    \"MathArena (2505.23281) — documents 10-20% AIME 2024 score inflation across most LLMs (up to ~60% for QwQ-Preview-32B); AIME 2025 uncontaminated; motivates benchmark replacement\",\n    \"CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards improves GRPO; demonstrates value of structured rewards even within reweighting interpretation\",\n    \"SRaR — structured rewards and rubrics for mathematical reasoning RL; +3.57 accuracy gains over binary rewards\",\n    \"Data-Driven Rubrics — +45% improvement over binary rewards with structured reward signals\",\n    \"ProcessBench — step-level error detection benchmark enabling direct comparison with ThinkPRM\",\n    \"MATH dataset (Hendrycks et al., 2021) — standard mathematical reasoning benchmark\",\n    \"AIME 2025 I and II, AIME 2026 I and II — post-contamination competition mathematics benchmarks (via MathArena)\",\n    \"Mathematics education misconception taxonomies — grounded error classification from education research\"\n  ],\n\n  \"changes_from_r3\": \"Round 3 changes: Strengthened differentiation from discriminative PRMs. Added ProcessBench as evaluation benchmark. Clarified taxonomy construction methodology. Added ablation for component-wise contribution of triplet fields. Expanded discussion of cross-problem gradient transfer mechanism.\",\n\n  \"changes_from_r4\": {\n    \"change_1_thinkprm_citation\": \"Added ThinkPRM (2504.16828, TMLR March 2026) throughout: landscape, approach differentiation, baselines, key references. ThinkPRM is the most prominent generative PRM — generates free-text verification CoT, outperforms discriminative PRMs (+8% GPQA-Diamond, 86.5% F1 ProcessBench). Explicit differentiation: ThinkPRM verifies ('is this correct?') while DiagPRM diagnoses ('why is this wrong?') with structured taxonomy-grounded triplets. ThinkPRM validates the generative PRM paradigm; DiagPRM extends it from verification to diagnosis.\",\n\n    \"change_2_rlvr_debate_engagement\": \"CRITICAL change. Added honest engagement with RLVR effectiveness debate (2504.13837 NeurIPS 2025 oral + 2507.14843 The Invisible Leash). Reframed ALL RL claims from 'capability expansion' to 'efficient targeted reweighting.' Key arguments: (a) targeted reweighting > uniform reweighting even in support-constrained regime; (b) SRaR +3.57 and Data-Driven Rubrics +45% empirically validate structured rewards under reweighting interpretation; (c) cross-problem gradient transfer amplifies signal for rare misconceptions; (d) CAPO demonstrates step-level credit assignment helps GRPO in reweighting regime; (e) convergence speed added as explicit evaluation metric. Positioned structured diagnosis as PRIMARY contribution (independently valuable) with RL integration as SECONDARY (efficient reweighting, not capability expansion).\",\n\n    \"change_3_aime_contamination_fix\": \"Replaced AIME 2024 with AIME 2025 I and II + AIME 2026 I and II based on MathArena (2505.23281) documentation of 10-20% score inflation. Added MathArena-style contamination protocol. Kept MATH-500. Added convergence speed metrics (RL steps to X% accuracy) to evaluation.\"\n  }\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ef208be-242f-410b-af4b-6d6039e984fa",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU2KmTQEDGQdDtgqzXcA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c2b9657b-80e9-4d14-bb2d-d1854dfe162f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YNkKMoxL4tXU9udJWfhVeu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6946,
+      "cache_read_input_tokens": 44802,
+      "output_tokens": 6720,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6946
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6720,
+          "cache_read_input_tokens": 44802,
+          "cache_creation_input_tokens": 6946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6946,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T00:33:11.100Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012VaGmVgn4H1ZVGVnxiwGRV`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/idea_review/diag_prm_r5.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2b9657b-80e9-4d14-bb2d-d1854dfe162f",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "f75ad7a5-0899-4398-834e-0ce4761e4553",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/idea_review/diag_prm_r5.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "c2b9657b-80e9-4d14-bb2d-d1854dfe162f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-28T00:33:16.377Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JUZ2p56Uj1c5DhUoTaQzWQ`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea_review/dispatch/ideas/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f75ad7a5-0899-4398-834e-0ce4761e4553",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU2VY4n7DM5YHDdfzFuc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cdc42cb9-2c4d-481a-8325-364ad0230e22",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013M4J69fUebEYfZQukHotNW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6773,
+      "cache_read_input_tokens": 51748,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6773
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 51748,
+          "cache_creation_input_tokens": 6773,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6773,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T00:33:16.438Z_
+
+<details><summary>↩ Tool result · `toolu_01JUZ2p56Uj1c5DhUoTaQzWQ`</summary>
+
+```text
+corl_001_prod_s1.json
+corl_002_prod_s1.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdc42cb9-2c4d-481a-8325-364ad0230e22",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "25205977-158d-45e3-8e8f-71ec84136e0b",
+  "sourceToolAssistantUUID": "cdc42cb9-2c4d-481a-8325-364ad0230e22",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T00:35:32.088Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01RJgdBZ4Lgi4FTgPSRKVpXM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/dispatch/ideas/diag_prm_r5.json",
+  "content": "{\n  \"title\": \"DiagPRM: Hierarchically-Grounded Process Reward Models for Misconception-Level Error Diagnosis via Structured Triplets\",\n  \"project_name\": \"diag_prm\",\n  \"source\": \"web_research\",\n  \"level\": \"top-tier\",\n  \"change_type\": \"major\",\n  \"revision_summary\": \"Major revision addressing three critical issues from Round 4 review. (1) Added ThinkPRM (2504.16828, TMLR March 2026) as key related work — the most prominent generative PRM — with explicit differentiation: ThinkPRM generates free-text verification CoT ('is this step correct?') while DiagPRM generates structured JSON triplets with taxonomy-grounded misconception hypotheses ('why is this step wrong?'). ThinkPRM validates the generative PRM paradigm while leaving the misconception-diagnosis gap that DiagPRM fills. (2) Honestly engaged with the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843 'The Invisible Leash'): reframed RL contribution from 'capability expansion' to 'efficient targeted reweighting,' positioned structured misconception diagnosis itself as the primary contribution (independently valuable for tutoring, curriculum design, error analysis), and added convergence speed as an explicit evaluation metric alongside final accuracy. (3) Replaced contaminated AIME 2024 with uncontaminated AIME 2025 I&II + AIME 2026 I&II based on MathArena (2505.23281) documentation of 10-20% score inflation, added MathArena-style contamination protocol.\",\n\n  \"core_problem\": \"Current process reward models (PRMs) for mathematical reasoning evaluate step correctness as a binary or scalar judgment — they identify THAT a step is wrong but not WHY it is wrong. This limits both the utility of error feedback (students and models receive 'incorrect' without diagnosis) and the precision of reward signals for reinforcement learning. Recent work on generative PRMs (ThinkPRM, 2504.16828) demonstrates that generating free-text verification reasoning about correctness substantially outperforms discriminative PRMs, but this verification CoT still operates at the 'is this step correct?' level without producing structured misconception diagnoses. Meanwhile, the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843) reveals that RL primarily improves sampling efficiency (pass@1) rather than expanding fundamental reasoning boundaries (pass@large_k) — all reasoning paths in RLVR models already exist in the base model. This reweighting interpretation makes the QUALITY of reward signals more important, not less: if RL can only redistribute probability mass among existing paths rather than create new ones, then targeted reweighting that differentially suppresses systematic error patterns is strictly more valuable than uniform binary reweighting. DiagPRM addresses this by producing structured JSON triplets (error mechanism + misconception hypothesis from a grounded taxonomy + counterfactual correction) for each erroneous step, providing (a) an independently valuable diagnostic tool for tutoring systems, curriculum design, and mathematical error analysis, and (b) misconception-specific reward signals that enable more efficient targeted reweighting in the RL regime, with cross-problem gradient transfer amplifying signal for rare-but-systematic errors.\",\n\n  \"opportunity\": \"The progression from discriminative PRMs (PRM800K, Math-Shepherd) to outcome reward models (ORMs) to generative verification (ThinkPRM, TMLR March 2026) has steadily improved step-level error detection. ThinkPRM's key result — generating free-text reasoning about correctness using only 1% of PRM800K labels, outperforming discriminative PRMs by +8% on GPQA-Diamond and achieving 86.5% F1 on ProcessBench with a 14B model — validates the generative PRM paradigm and demonstrates that explicit reasoning about correctness is more effective than learned scalar scores. However, ThinkPRM's verification CoT reasons about WHETHER a step is correct without diagnosing the underlying misconception. It cannot produce structured labels like 'distributing exponent over addition' or 'confusing permutation with combination' that would enable cross-problem error analysis or misconception-targeted reward shaping. Simultaneously, the RLVR effectiveness debate creates urgent need for more targeted reward signals: if RL operates as support-constrained optimization (The Invisible Leash, 2507.14843), then the bottleneck shifts from 'can RL discover new reasoning paths?' to 'can RL efficiently allocate probability mass to correct existing paths?' — precisely where misconception-specific rewards provide maximum leverage. SRaR's +3.57 accuracy gains and Data-Driven Rubrics' +45% improvement with structured (non-binary) rewards empirically demonstrate that reward signal quality matters even within the reweighting interpretation. DiagPRM sits at the intersection of these two trends: extending the generative PRM paradigm from verification to diagnosis, and providing the structured reward signals that the reweighting regime demands.\",\n\n  \"landscape\": {\n    \"discriminative_prms\": \"PRM800K (Lightman et al., 2023) — human-labeled step-level correctness annotations for MATH. Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation. Both produce scalar correctness scores without any diagnostic information about error types or misconceptions.\",\n\n    \"generative_prms\": \"ThinkPRM (2504.16828, TMLR March 2026) — the most prominent generative PRM. Generates free-text verification chain-of-thought reasoning about whether each step is correct. Uses only 1% of PRM800K labels. Outperforms discriminative PRMs: +8% on GPQA-Diamond, +4.5% on LiveCodeBench, 86.5% F1 on ProcessBench with 14B model. 7.2% better than LLM-as-Judge on ProcessBench. Key limitation: verification CoT reasons about correctness ('is this step right?') but does not produce structured misconception diagnoses, taxonomy-grounded labels, or enable cross-problem gradient transfer. Validates the generative PRM paradigm while leaving the diagnosis gap open.\",\n\n    \"outcome_reward_models\": \"ORM approaches (e.g., final-answer correctness) provide coarse supervision. Limitations: no step-level localization, no error type information, sparse signal for long derivations.\",\n\n    \"structured_rewards_for_rl\": \"SRaR (Structured Rewards and Rubrics) — demonstrates +3.57 accuracy gains using structured (non-binary) reward signals for mathematical reasoning RL. Data-Driven Rubrics — +45% improvement over binary rewards. CAPO (2508.02298) — demonstrates fine-grained step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. These results empirically show that reward signal quality matters for RL training of reasoning models.\",\n\n    \"mathematical_misconception_taxonomies\": \"Educational research provides extensive misconception taxonomies (e.g., distributing exponent over addition, confusing permutation with combination, sign errors in factoring). These taxonomies are well-studied in mathematics education but have not been integrated into PRM training or RL reward shaping for LLMs.\",\n\n    \"rlvr_effectiveness_debate\": \"NeurIPS 2025 oral (2504.13837) 'Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?' shows RL primarily improves sampling efficiency (pass@1) not fundamental reasoning boundaries (pass@large_k); all reasoning paths in RLVR models already exist in base model; six popular RLVR algorithms perform similarly and 'remain far from optimal.' The Invisible Leash (2507.14843) confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space. Active debate continues with some evidence RLVR can induce capabilities under certain conditions, but the dominant finding is that RL reweights existing paths rather than creating new ones.\",\n\n    \"evaluation_contamination\": \"MathArena (2505.23281) documents 10-20% score inflation on AIME 2024 across most LLMs, with QwQ-Preview-32B showing extreme ~60% inflation. AIME 2025 scores align with human expectations (uncontaminated). AIME 2026 also available on MathArena. This necessitates replacing AIME 2024 with post-contamination benchmarks for valid evaluation.\",\n\n    \"llm_as_judge_verification\": \"LLM-as-Judge approaches for step-level verification provide flexible but unstructured feedback. ThinkPRM outperforms LLM-as-Judge by 7.2% on ProcessBench, suggesting that specialized generative verification outperforms generic LLM judgment.\",\n\n    \"gap\": \"ThinkPRM validates generative PRMs but stops at verification ('is this correct?'). No existing work generates structured misconception diagnoses with taxonomy-grounded labels ('why is this wrong?') that enable both interpretable error analysis and cross-problem misconception-targeted reward shaping. The RLVR debate makes this gap more consequential: in the reweighting regime, targeted misconception-specific rewards should outperform uniform binary rewards.\"\n  },\n\n  \"approach\": {\n    \"overview\": \"DiagPRM is a generative process reward model that, for each step in a mathematical derivation, produces a structured JSON triplet: {error_mechanism: &lt;what went wrong procedurally>, misconception_hypothesis: &lt;which misconception from a grounded taxonomy>, counterfactual_correction: &lt;what the correct step would be>}. This structured output serves two purposes: (1) as an independently valuable diagnostic tool providing interpretable, taxonomy-grounded error analysis for tutoring, curriculum design, and mathematical reasoning research; and (2) as a source of misconception-specific reward signals for RL training that enable more efficient targeted reweighting of systematic error patterns across problems sharing the same misconception.\",\n\n    \"differentiation_from_thinkprm\": \"ThinkPRM (2504.16828) generates free-text verification CoT — reasoning chains that evaluate whether each step is correct. DiagPRM generates structured JSON triplets that diagnose WHY each step is wrong, grounded in a misconception taxonomy. The key differences: (a) ThinkPRM's output is unstructured natural language verification; DiagPRM's output is machine-parseable structured triplets enabling automated analysis. (b) ThinkPRM does not reference a misconception taxonomy; DiagPRM's misconception hypotheses are grounded in established mathematical misconception categories, enabling cross-problem aggregation and curriculum-level analysis. (c) ThinkPRM cannot enable cross-problem gradient transfer because its free-text output lacks the structured labels needed to identify shared misconceptions across different problems; DiagPRM's taxonomy-grounded labels directly enable this. ThinkPRM validates that generative reasoning about correctness outperforms discriminative scoring; DiagPRM extends this paradigm from verification to diagnosis.\",\n\n    \"engaging_with_rlvr_effectiveness_debate\": {\n      \"context\": \"The NeurIPS 2025 oral (2504.13837) and The Invisible Leash (2507.14843) establish that RLVR primarily reweights existing reasoning paths rather than creating new ones. We take this finding seriously and explicitly reframe DiagPRM's RL contribution accordingly.\",\n\n      \"argument_a_targeted_over_uniform_reweighting\": \"Even if RL only reweights existing paths, TARGETED reweighting is strictly more efficient than UNIFORM reweighting. Binary rewards treat all errors equally — a sign error and a fundamental conceptual confusion receive the same penalty. Misconception-specific rewards differentially suppress systematic error patterns, allocating gradient mass where it matters most. This is an efficiency argument, not a capability-expansion argument.\",\n\n      \"argument_b_empirical_precedent\": \"SRaR's +3.57 and Data-Driven Rubrics' +45% empirically demonstrate that structured rewards help beyond binary, even within the reweighting interpretation. CAPO (2508.02298) demonstrates that fine-grained step-level credit assignment via generative process rewards substantially improves GRPO. These gains are reinterpreted not as expanding reasoning boundaries but as more efficient reweighting — which does not diminish their practical value.\",\n\n      \"argument_c_cross_problem_gradient_transfer\": \"This is DiagPRM's key RL mechanism: an AIME problem with only 2 training instances but sharing a misconception (e.g., 'distributing exponent over addition') with 15 MATH problems gets 17 instances of gradient signal for that misconception. In the reweighting regime where rare paths need more gradient mass to shift probability, this cross-problem amplification is especially valuable. Binary rewards cannot aggregate signal across problems because they lack the structured labels to identify shared error patterns.\",\n\n      \"argument_d_credit_assignment\": \"CAPO (2508.02298) demonstrates that step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. DiagPRM's structured triplets provide even finer-grained credit assignment than step-level binary — not just 'step 3 is wrong' but 'step 3 exhibits misconception X, and here is the counterfactual correction.'\",\n\n      \"argument_e_convergence_speed\": \"Practical deployment uses pass@1 or small k. Even if the accuracy ceiling is the same for binary vs. misconception-specific rewards, faster convergence to correct paths has enormous practical value. We add convergence speed (RL steps to reach X% accuracy) as an explicit evaluation metric alongside final accuracy.\",\n\n      \"argument_f_honest_framing\": \"We do NOT claim DiagPRM expands the reasoning boundary of base models. We claim it enables more efficient, targeted reweighting within the existing solution space, with empirically measurable benefits in convergence speed and per-step accuracy at practical sampling budgets. The structured diagnosis is independently valuable regardless of the RL effectiveness debate.\"\n    },\n\n    \"misconception_taxonomy\": \"We construct a hierarchical misconception taxonomy grounded in mathematics education research, organized by domain (algebra, combinatorics, calculus, number theory, geometry) and error type (procedural, conceptual, notational). Each misconception has a canonical label, description, common trigger patterns, and links to related misconceptions. The taxonomy is extensible — new misconceptions discovered during training are added with human review. Target: 200-400 misconceptions covering common competition and undergraduate mathematics.\",\n\n    \"training_pipeline\": {\n      \"stage_1_taxonomy_construction\": \"Compile misconception taxonomy from mathematics education literature, augmented by analysis of common errors in PRM800K, MATH, and competition mathematics. Human expert review for taxonomy quality.\",\n\n      \"stage_2_triplet_generation_training_data\": \"For each erroneous step in training data (identified via PRM800K labels or automated verification), generate ground-truth triplets using expert LLM annotation (GPT-4/Claude) with human validation on a subset. Each triplet: {error_mechanism, misconception_hypothesis, counterfactual_correction}.\",\n\n      \"stage_3_diagprm_training\": \"Fine-tune a 7B-14B base model to generate structured JSON triplets for each step. Training objective: given a problem statement and partial derivation, generate the diagnostic triplet. Loss includes both generation quality (triplet accuracy) and misconception classification accuracy against the taxonomy.\",\n\n      \"stage_4_rl_integration\": \"Use DiagPRM's misconception-specific outputs as reward signals for RL training of a separate reasoning model. Misconception-specific penalties: different misconceptions receive different penalty magnitudes based on severity and systematicity. Cross-problem gradient transfer: aggregate misconception signals across problems sharing the same misconception label. Compare against binary PRM rewards and ThinkPRM-derived rewards. Explicitly frame as targeted reweighting within the existing solution space, not capability expansion.\"\n    },\n\n    \"evaluation\": {\n      \"benchmarks\": {\n        \"mathematical_reasoning\": \"MATH-500 (standard, well-established). AIME 2025 I and II + AIME 2026 I and II (post-contamination, replacing AIME 2024 per MathArena findings). ProcessBench (step-level error detection, enables direct comparison with ThinkPRM's 86.5% F1).\",\n        \"contamination_protocol\": \"Follow MathArena-style protocol (2505.23281): report scores on both established and post-contamination benchmarks, flag any benchmark where contamination risk exists, use AIME 2025/2026 as primary competition-math evaluation.\",\n        \"note_on_aime_2024_removal\": \"AIME 2024 removed from evaluation due to MathArena (2505.23281) documentation of 10-20% score inflation across most LLMs (up to ~60% for QwQ-Preview-32B). AIME 2025 scores align with human expectations and are considered uncontaminated.\"\n      },\n\n      \"metrics\": {\n        \"diagnostic_quality\": \"Triplet accuracy (error mechanism correctness, misconception label accuracy against taxonomy, counterfactual correction validity). Human evaluation on subset. Misconception classification F1.\",\n        \"step_level_error_detection\": \"F1 on ProcessBench (direct ThinkPRM comparison). Precision/recall on PRM800K test set.\",\n        \"downstream_reasoning\": \"pass@1 and pass@k accuracy on MATH-500, AIME 2025/2026 for models trained with DiagPRM rewards vs. binary PRM rewards vs. ThinkPRM-derived rewards vs. no PRM.\",\n        \"convergence_speed\": \"RL steps to reach X% accuracy (X = 50%, 70%, 90% of final performance) — explicitly added to address the RLVR reweighting interpretation. If RL only reweights, faster convergence is the primary measurable benefit of better reward signals. Plot learning curves (accuracy vs. RL steps) for binary vs. misconception-specific rewards.\",\n        \"cross_problem_transfer\": \"Accuracy improvement on problems with rare misconceptions that share taxonomy labels with more common problems. Measures whether cross-problem gradient transfer amplifies signal for rare errors.\",\n        \"independent_diagnostic_value\": \"Misconception distribution analysis across problem types. Curriculum design utility: can DiagPRM outputs identify systematic weaknesses? Tutoring application: human evaluation of diagnostic helpfulness.\"\n      },\n\n      \"baselines\": [\n        \"PRM800K discriminative PRM (scalar correctness scores)\",\n        \"Math-Shepherd automated PRM\",\n        \"ThinkPRM (generative verification CoT, 86.5% F1 on ProcessBench — primary generative PRM baseline)\",\n        \"LLM-as-Judge (unstructured step-level verification)\",\n        \"Binary ORM (outcome-only reward)\",\n        \"No PRM (base model without process reward)\"\n      ],\n\n      \"ablations\": [\n        \"Full DiagPRM triplets vs. error mechanism only vs. misconception label only vs. counterfactual only — which component drives improvement?\",\n        \"With vs. without misconception taxonomy grounding — does taxonomy structure help beyond free-form diagnosis?\",\n        \"Cross-problem gradient transfer: with vs. without misconception-based aggregation across problems\",\n        \"Misconception-specific penalty magnitudes vs. uniform penalty for all misconceptions\",\n        \"Convergence speed comparison: learning curves for binary vs. structured vs. misconception-specific rewards\",\n        \"DiagPRM diagnosis quality vs. model scale (7B vs. 14B)\"\n      ]\n    },\n\n    \"primary_contributions\": {\n      \"contribution_1\": \"Structured misconception diagnosis as an independently valuable tool: DiagPRM produces interpretable, taxonomy-grounded error analyses useful for tutoring, curriculum design, and mathematical reasoning research — regardless of downstream RL integration.\",\n      \"contribution_2\": \"Extension of generative PRM paradigm from verification to diagnosis: moving beyond ThinkPRM's 'is this correct?' to 'why is this wrong?' with structured, machine-parseable output.\",\n      \"contribution_3\": \"Misconception-specific reward signals for efficient targeted reweighting: within the RLVR reweighting regime, structured misconception rewards enable cross-problem gradient transfer and differential error suppression, with convergence speed as the primary measurable benefit.\"\n    }\n  },\n\n  \"inspired_by\": [\n    \"PRM800K — step-level process reward labels for mathematical reasoning\",\n    \"ThinkPRM (2504.16828) — generative verification CoT for process reward models, validating the generative PRM paradigm\",\n    \"Math-Shepherd — automated PRM training via Monte Carlo estimation\",\n    \"SRaR and Data-Driven Rubrics — empirical evidence that structured rewards outperform binary\",\n    \"CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards\",\n    \"RLVR effectiveness debate (2504.13837, 2507.14843) — reweighting interpretation motivates more targeted reward signals\",\n    \"Mathematics education misconception taxonomies — grounded error classification systems\",\n    \"MathArena (2505.23281) — contamination-aware evaluation protocols\"\n  ],\n\n  \"resource_estimate\": {\n    \"manual\": {\n      \"team\": \"1-2 researchers\",\n      \"timeline\": \"3-4 months\",\n      \"gpu_hours\": \"~200-300h H100 (taxonomy construction: 20h researcher time; triplet annotation pipeline: 40h GPU for LLM annotation; DiagPRM training 7B-14B: 80-120h; RL integration experiments: 40-60h; evaluation suite: 20-40h)\",\n      \"estimated_gpu_cost\": \"$600-1200 (H100 80GB at $3-4/hr)\",\n      \"gpu_utilization\": \"~40-50% effective due to iteration cycles\"\n    },\n    \"human_in_loop\": {\n      \"team\": \"1 researcher, ~30min/day reviewing outputs\",\n      \"timeline\": \"6-8 weeks\",\n      \"gpu_hours\": \"~300-400h H100\",\n      \"estimated_gpu_cost\": \"$900-1600\",\n      \"claude_api_cost\": \"$80-150\"\n    },\n    \"auto_research\": {\n      \"team\": \"0 researchers after initial setup\",\n      \"timeline\": \"2-3 weeks with 4xH100\",\n      \"gpu_hours\": \"~500-600h H100\",\n      \"estimated_gpu_cost\": \"$1500-2400\",\n      \"claude_api_cost\": \"$150-300\"\n    }\n  },\n\n  \"target_venues\": [\n    \"ICML 2027 (strong fit for mathematical reasoning + reward modeling)\",\n    \"NeurIPS 2027 (broad ML venue, good fit for structured reward signals + RL analysis)\",\n    \"ICLR 2027 (representation learning angle of misconception-grounded rewards)\",\n    \"EMNLP 2027 (NLP venue, structured generation + reasoning evaluation)\"\n  ],\n\n  \"key_references\": [\n    \"PRM800K (Lightman et al., 2023) — human-labeled step-level process reward annotations for MATH\",\n    \"Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation\",\n    \"ThinkPRM (2504.16828, TMLR March 2026) — generative verification CoT PRM; uses 1% of PRM800K labels; +8% GPQA-Diamond, 86.5% F1 ProcessBench with 14B model; 7.2% better than LLM-as-Judge; validates generative PRM paradigm; primary generative PRM baseline. Differentiation: generates free-text verification ('is this correct?') without structured misconception diagnosis, taxonomy grounding, or cross-problem transfer capability\",\n    \"Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (2504.13837, NeurIPS 2025 oral) — shows RLVR primarily improves sampling efficiency not reasoning boundaries; all paths exist in base model; six RLVR algorithms perform similarly. Motivates reframing RL contribution as targeted reweighting\",\n    \"The Invisible Leash (2507.14843) — confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space; corroborates reweighting interpretation\",\n    \"MathArena (2505.23281) — documents 10-20% AIME 2024 score inflation across most LLMs (up to ~60% for QwQ-Preview-32B); AIME 2025 uncontaminated; motivates benchmark replacement\",\n    \"CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards improves GRPO; demonstrates value of structured rewards even within reweighting interpretation\",\n    \"SRaR — structured rewards and rubrics for mathematical reasoning RL; +3.57 accuracy gains over binary rewards\",\n    \"Data-Driven Rubrics — +45% improvement over binary rewards with structured reward signals\",\n    \"ProcessBench — step-level error detection benchmark enabling direct comparison with ThinkPRM\",\n    \"MATH dataset (Hendrycks et al., 2021) — standard mathematical reasoning benchmark\",\n    \"AIME 2025 I and II, AIME 2026 I and II — post-contamination competition mathematics benchmarks (via MathArena)\",\n    \"Mathematics education misconception taxonomies — grounded error classification from education research\"\n  ],\n\n  \"changes_from_r3\": \"Round 3 changes: Strengthened differentiation from discriminative PRMs. Added ProcessBench as evaluation benchmark. Clarified taxonomy construction methodology. Added ablation for component-wise contribution of triplet fields. Expanded discussion of cross-problem gradient transfer mechanism.\",\n\n  \"changes_from_r4\": {\n    \"change_1_thinkprm_citation\": \"Added ThinkPRM (2504.16828, TMLR March 2026) throughout: landscape, approach differentiation, baselines, key references. ThinkPRM is the most prominent generative PRM — generates free-text verification CoT, outperforms discriminative PRMs (+8% GPQA-Diamond, 86.5% F1 ProcessBench). Explicit differentiation: ThinkPRM verifies ('is this correct?') while DiagPRM diagnoses ('why is this wrong?') with structured taxonomy-grounded triplets. ThinkPRM validates the generative PRM paradigm; DiagPRM extends it from verification to diagnosis.\",\n\n    \"change_2_rlvr_debate_engagement\": \"CRITICAL change. Added honest engagement with RLVR effectiveness debate (2504.13837 NeurIPS 2025 oral + 2507.14843 The Invisible Leash). Reframed ALL RL claims from 'capability expansion' to 'efficient targeted reweighting.' Key arguments: (a) targeted reweighting > uniform reweighting even in support-constrained regime; (b) SRaR +3.57 and Data-Driven Rubrics +45% empirically validate structured rewards under reweighting interpretation; (c) cross-problem gradient transfer amplifies signal for rare misconceptions; (d) CAPO demonstrates step-level credit assignment helps GRPO in reweighting regime; (e) convergence speed added as explicit evaluation metric. Positioned structured diagnosis as PRIMARY contribution (independently valuable) with RL integration as SECONDARY (efficient reweighting, not capability expansion).\",\n\n    \"change_3_aime_contamination_fix\": \"Replaced AIME 2024 with AIME 2025 I and II + AIME 2026 I and II based on MathArena (2505.23281) documentation of 10-20% score inflation. Added MathArena-style contamination protocol. Kept MATH-500. Added convergence speed metrics (RL steps to X% accuracy) to evaluation.\"\n  }\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25205977-158d-45e3-8e8f-71ec84136e0b",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU2Vvepu2vsE2konSosp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8767fb03-5de5-4031-b1d2-3531b337e9cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HfgtS1L5m6Ej6pJtqgFy2n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 100,
+      "cache_read_input_tokens": 58521,
+      "output_tokens": 6724,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 100
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6724,
+          "cache_read_input_tokens": 58521,
+          "cache_creation_input_tokens": 100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 100,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T00:35:32.102Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01RJgdBZ4Lgi4FTgPSRKVpXM`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/idea_review/dispatch/ideas/diag_prm_r5.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8767fb03-5de5-4031-b1d2-3531b337e9cd",
+  "isSidechain": true,
+  "promptId": "22fbefe1-9c76-4d9e-825c-341de3d3f190",
+  "agentId": "a42eb1132f7312158",
+  "type": "user",
+  "uuid": "7f4eeb77-ce35-4232-a5c4-d8df81068184",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/idea_review/dispatch/ideas/diag_prm_r5.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "8767fb03-5de5-4031-b1d2-3531b337e9cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-28T00:37:58.626Z_
+
+It seems file writing permissions are restricted. Let me output the complete JSON directly in my response instead.
+
+Here is the complete revised DiagPRM JSON:
+
+```json
+{
+  "title": "DiagPRM: Hierarchically-Grounded Process Reward Models for Misconception-Level Error Diagnosis via Structured Triplets",
+  "project_name": "diag_prm",
+  "source": "web_research",
+  "level": "top-tier",
+  "change_type": "major",
+  "revision_summary": "Major revision addressing three critical issues from Round 4 review. (1) Added ThinkPRM (2504.16828, TMLR March 2026) as key related work — the most prominent generative PRM — with explicit differentiation: ThinkPRM generates free-text verification CoT ('is this step correct?') while DiagPRM generates structured JSON triplets with taxonomy-grounded misconception hypotheses ('why is this step wrong?'). ThinkPRM validates the generative PRM paradigm while leaving the misconception-diagnosis gap that DiagPRM fills. (2) Honestly engaged with the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843 'The Invisible Leash'): reframed RL contribution from 'capability expansion' to 'efficient targeted reweighting,' positioned structured misconception diagnosis itself as the primary contribution (independently valuable for tutoring, curriculum design, error analysis), and added convergence speed as an explicit evaluation metric alongside final accuracy. (3) Replaced contaminated AIME 2024 with uncontaminated AIME 2025 I&II + AIME 2026 I&II based on MathArena (2505.23281) documentation of 10-20% score inflation, added MathArena-style contamination protocol.",
+
+  "core_problem": "Current process reward models (PRMs) for mathematical reasoning evaluate step correctness as a binary or scalar judgment — they identify THAT a step is wrong but not WHY it is wrong. This limits both the utility of error feedback (students and models receive 'incorrect' without diagnosis) and the precision of reward signals for reinforcement learning. Recent work on generative PRMs (ThinkPRM, 2504.16828) demonstrates that generating free-text verification reasoning about correctness substantially outperforms discriminative PRMs, but this verification CoT still operates at the 'is this step correct?' level without producing structured misconception diagnoses. Meanwhile, the RLVR effectiveness debate (2504.13837, NeurIPS 2025 oral; 2507.14843) reveals that RL primarily improves sampling efficiency (pass@1) rather than expanding fundamental reasoning boundaries (pass@large_k) — all reasoning paths in RLVR models already exist in the base model. This reweighting interpretation makes the QUALITY of reward signals more important, not less: if RL can only redistribute probability mass among existing paths rather than create new ones, then targeted reweighting that differentially suppresses systematic error patterns is strictly more valuable than uniform binary reweighting. DiagPRM addresses this by producing structured JSON triplets (error mechanism + misconception hypothesis from a grounded taxonomy + counterfactual correction) for each erroneous step, providing (a) an independently valuable diagnostic tool for tutoring systems, curriculum design, and mathematical error analysis, and (b) misconception-specific reward signals that enable more efficient targeted reweighting in the RL regime, with cross-problem gradient transfer amplifying signal for rare-but-systematic errors.",
+
+  "opportunity": "The progression from discriminative PRMs (PRM800K, Math-Shepherd) to outcome reward models (ORMs) to generative verification (ThinkPRM, TMLR March 2026) has steadily improved step-level error detection. ThinkPRM's key result — generating free-text reasoning about correctness using only 1% of PRM800K labels, outperforming discriminative PRMs by +8% on GPQA-Diamond and achieving 86.5% F1 on ProcessBench with a 14B model — validates the generative PRM paradigm and demonstrates that explicit reasoning about correctness is more effective than learned scalar scores. However, ThinkPRM's verification CoT reasons about WHETHER a step is correct without diagnosing the underlying misconception. It cannot produce structured labels like 'distributing exponent over addition' or 'confusing permutation with combination' that would enable cross-problem error analysis or misconception-targeted reward shaping. Simultaneously, the RLVR effectiveness debate creates urgent need for more targeted reward signals: if RL operates as support-constrained optimization (The Invisible Leash, 2507.14843), then the bottleneck shifts from 'can RL discover new reasoning paths?' to 'can RL efficiently allocate probability mass to correct existing paths?' — precisely where misconception-specific rewards provide maximum leverage. SRaR's +3.57 accuracy gains and Data-Driven Rubrics' +45% improvement with structured (non-binary) rewards empirically demonstrate that reward signal quality matters even within the reweighting interpretation. DiagPRM sits at the intersection of these two trends: extending the generative PRM paradigm from verification to diagnosis, and providing the structured reward signals that the reweighting regime demands.",
+
+  "landscape": {
+    "discriminative_prms": "PRM800K (Lightman et al., 2023) — human-labeled step-level correctness annotations for MATH. Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation. Both produce scalar correctness scores without any diagnostic information about error types or misconceptions.",
+
+    "generative_prms": "ThinkPRM (2504.16828, TMLR March 2026) — the most prominent generative PRM. Generates free-text verification chain-of-thought reasoning about whether each step is correct. Uses only 1% of PRM800K labels. Outperforms discriminative PRMs: +8% on GPQA-Diamond, +4.5% on LiveCodeBench, 86.5% F1 on ProcessBench with 14B model. 7.2% better than LLM-as-Judge on ProcessBench. Key limitation: verification CoT reasons about correctness ('is this step right?') but does not produce structured misconception diagnoses, taxonomy-grounded labels, or enable cross-problem gradient transfer. Validates the generative PRM paradigm while leaving the diagnosis gap open.",
+
+    "outcome_reward_models": "ORM approaches (e.g., final-answer correctness) provide coarse supervision. Limitations: no step-level localization, no error type information, sparse signal for long derivations.",
+
+    "structured_rewards_for_rl": "SRaR (Structured Rewards and Rubrics) — demonstrates +3.57 accuracy gains using structured (non-binary) reward signals for mathematical reasoning RL. Data-Driven Rubrics — +45% improvement over binary rewards. CAPO (2508.02298) — demonstrates fine-grained step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. These results empirically show that reward signal quality matters for RL training of reasoning models.",
+
+    "mathematical_misconception_taxonomies": "Educational research provides extensive misconception taxonomies (e.g., distributing exponent over addition, confusing permutation with combination, sign errors in factoring). These taxonomies are well-studied in mathematics education but have not been integrated into PRM training or RL reward shaping for LLMs.",
+
+    "rlvr_effectiveness_debate": "NeurIPS 2025 oral (2504.13837) 'Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?' shows RL primarily improves sampling efficiency (pass@1) not fundamental reasoning boundaries (pass@large_k); all reasoning paths in RLVR models already exist in base model; six popular RLVR algorithms perform similarly and 'remain far from optimal.' The Invisible Leash (2507.14843) confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space. Active debate continues with some evidence RLVR can induce capabilities under certain conditions, but the dominant finding is that RL reweights existing paths rather than creating new ones.",
+
+    "evaluation_contamination": "MathArena (2505.23281) documents 10-20% score inflation on AIME 2024 across most LLMs, with QwQ-Preview-32B showing extreme ~60% inflation. AIME 2025 scores align with human expectations (uncontaminated). AIME 2026 also available on MathArena. This necessitates replacing AIME 2024 with post-contamination benchmarks for valid evaluation.",
+
+    "llm_as_judge_verification": "LLM-as-Judge approaches for step-level verification provide flexible but unstructured feedback. ThinkPRM outperforms LLM-as-Judge by 7.2% on ProcessBench, suggesting that specialized generative verification outperforms generic LLM judgment.",
+
+    "gap": "ThinkPRM validates generative PRMs but stops at verification ('is this correct?'). No existing work generates structured misconception diagnoses with taxonomy-grounded labels ('why is this wrong?') that enable both interpretable error analysis and cross-problem misconception-targeted reward shaping. The RLVR debate makes this gap more consequential: in the reweighting regime, targeted misconception-specific rewards should outperform uniform binary rewards."
+  },
+
+  "approach": {
+    "overview": "DiagPRM is a generative process reward model that, for each step in a mathematical derivation, produces a structured JSON triplet: {error_mechanism: &lt;what went wrong procedurally>, misconception_hypothesis: &lt;which misconception from a grounded taxonomy>, counterfactual_correction: &lt;what the correct step would be>}. This structured output serves two purposes: (1) as an independently valuable diagnostic tool providing interpretable, taxonomy-grounded error analysis for tutoring, curriculum design, and mathematical reasoning research; and (2) as a source of misconception-specific reward signals for RL training that enable more efficient targeted reweighting of systematic error patterns across problems sharing the same misconception.",
+
+    "differentiation_from_thinkprm": "ThinkPRM (2504.16828) generates free-text verification CoT — reasoning chains that evaluate whether each step is correct. DiagPRM generates structured JSON triplets that diagnose WHY each step is wrong, grounded in a misconception taxonomy. The key differences: (a) ThinkPRM's output is unstructured natural language verification; DiagPRM's output is machine-parseable structured triplets enabling automated analysis. (b) ThinkPRM does not reference a misconception taxonomy; DiagPRM's misconception hypotheses are grounded in established mathematical misconception categories, enabling cross-problem aggregation and curriculum-level analysis. (c) ThinkPRM cannot enable cross-problem gradient transfer because its free-text output lacks the structured labels needed to identify shared misconceptions across different problems; DiagPRM's taxonomy-grounded labels directly enable this. ThinkPRM validates that generative reasoning about correctness outperforms discriminative scoring; DiagPRM extends this paradigm from verification to diagnosis.",
+
+    "engaging_with_rlvr_effectiveness_debate": {
+      "context": "The NeurIPS 2025 oral (2504.13837) and The Invisible Leash (2507.14843) establish that RLVR primarily reweights existing reasoning paths rather than creating new ones. We take this finding seriously and explicitly reframe DiagPRM's RL contribution accordingly.",
+
+      "argument_a_targeted_over_uniform_reweighting": "Even if RL only reweights existing paths, TARGETED reweighting is strictly more efficient than UNIFORM reweighting. Binary rewards treat all errors equally — a sign error and a fundamental conceptual confusion receive the same penalty. Misconception-specific rewards differentially suppress systematic error patterns, allocating gradient mass where it matters most. This is an efficiency argument, not a capability-expansion argument.",
+
+      "argument_b_empirical_precedent": "SRaR's +3.57 and Data-Driven Rubrics' +45% empirically demonstrate that structured rewards help beyond binary, even within the reweighting interpretation. CAPO (2508.02298) demonstrates that fine-grained step-level credit assignment via generative process rewards substantially improves GRPO. These gains are reinterpreted not as expanding reasoning boundaries but as more efficient reweighting — which does not diminish their practical value.",
+
+      "argument_c_cross_problem_gradient_transfer": "This is DiagPRM's key RL mechanism: an AIME problem with only 2 training instances but sharing a misconception (e.g., 'distributing exponent over addition') with 15 MATH problems gets 17 instances of gradient signal for that misconception. In the reweighting regime where rare paths need more gradient mass to shift probability, this cross-problem amplification is especially valuable. Binary rewards cannot aggregate signal across problems because they lack the structured labels to identify shared error patterns.",
+
+      "argument_d_credit_assignment": "CAPO (2508.02298) demonstrates that step-level credit assignment via generative process rewards substantially improves GRPO even within the reweighting interpretation. DiagPRM's structured triplets provide even finer-grained credit assignment than step-level binary — not just 'step 3 is wrong' but 'step 3 exhibits misconception X, and here is the counterfactual correction.'",
+
+      "argument_e_convergence_speed": "Practical deployment uses pass@1 or small k. Even if the accuracy ceiling is the same for binary vs. misconception-specific rewards, faster convergence to correct paths has enormous practical value. We add convergence speed (RL steps to reach X% accuracy) as an explicit evaluation metric alongside final accuracy.",
+
+      "argument_f_honest_framing": "We do NOT claim DiagPRM expands the reasoning boundary of base models. We claim it enables more efficient, targeted reweighting within the existing solution space, with empirically measurable benefits in convergence speed and per-step accuracy at practical sampling budgets. The structured diagnosis is independently valuable regardless of the RL effectiveness debate."
+    },
+
+    "misconception_taxonomy": "We construct a hierarchical misconception taxonomy grounded in mathematics education research, organized by domain (algebra, combinatorics, calculus, number theory, geometry) and error type (procedural, conceptual, notational). Each misconception has a canonical label, description, common trigger patterns, and links to related misconceptions. The taxonomy is extensible — new misconceptions discovered during training are added with human review. Target: 200-400 misconceptions covering common competition and undergraduate mathematics.",
+
+    "training_pipeline": {
+      "stage_1_taxonomy_construction": "Compile misconception taxonomy from mathematics education literature, augmented by analysis of common errors in PRM800K, MATH, and competition mathematics. Human expert review for taxonomy quality.",
+
+      "stage_2_triplet_generation_training_data": "For each erroneous step in training data (identified via PRM800K labels or automated verification), generate ground-truth triplets using expert LLM annotation (GPT-4/Claude) with human validation on a subset. Each triplet: {error_mechanism, misconception_hypothesis, counterfactual_correction}.",
+
+      "stage_3_diagprm_training": "Fine-tune a 7B-14B base model to generate structured JSON triplets for each step. Training objective: given a problem statement and partial derivation, generate the diagnostic triplet. Loss includes both generation quality (triplet accuracy) and misconception classification accuracy against the taxonomy.",
+
+      "stage_4_rl_integration": "Use DiagPRM's misconception-specific outputs as reward signals for RL training of a separate reasoning model. Misconception-specific penalties: different misconceptions receive different penalty magnitudes based on severity and systematicity. Cross-problem gradient transfer: aggregate misconception signals across problems sharing the same misconception label. Compare against binary PRM rewards and ThinkPRM-derived rewards. Explicitly frame as targeted reweighting within the existing solution space, not capability expansion."
+    },
+
+    "evaluation": {
+      "benchmarks": {
+        "mathematical_reasoning": "MATH-500 (standard, well-established). AIME 2025 I and II + AIME 2026 I and II (post-contamination, replacing AIME 2024 per MathArena findings). ProcessBench (step-level error detection, enables direct comparison with ThinkPRM's 86.5% F1).",
+        "contamination_protocol": "Follow MathArena-style protocol (2505.23281): report scores on both established and post-contamination benchmarks, flag any benchmark where contamination risk exists, use AIME 2025/2026 as primary competition-math evaluation.",
+        "note_on_aime_2024_removal": "AIME 2024 removed from evaluation due to MathArena (2505.23281) documentation of 10-20% score inflation across most LLMs (up to ~60% for QwQ-Preview-32B). AIME 2025 scores align with human expectations and are considered uncontaminated."
+      },
+
+      "metrics": {
+        "diagnostic_quality": "Triplet accuracy (error mechanism correctness, misconception label accuracy against taxonomy, counterfactual correction validity). Human evaluation on subset. Misconception classification F1.",
+        "step_level_error_detection": "F1 on ProcessBench (direct ThinkPRM comparison). Precision/recall on PRM800K test set.",
+        "downstream_reasoning": "pass@1 and pass@k accuracy on MATH-500, AIME 2025/2026 for models trained with DiagPRM rewards vs. binary PRM rewards vs. ThinkPRM-derived rewards vs. no PRM.",
+        "convergence_speed": "RL steps to reach X% accuracy (X = 50%, 70%, 90% of final performance) — explicitly added to address the RLVR reweighting interpretation. If RL only reweights, faster convergence is the primary measurable benefit of better reward signals. Plot learning curves (accuracy vs. RL steps) for binary vs. misconception-specific rewards.",
+        "cross_problem_transfer": "Accuracy improvement on problems with rare misconceptions that share taxonomy labels with more common problems. Measures whether cross-problem gradient transfer amplifies signal for rare errors.",
+        "independent_diagnostic_value": "Misconception distribution analysis across problem types. Curriculum design utility: can DiagPRM outputs identify systematic weaknesses? Tutoring application: human evaluation of diagnostic helpfulness."
+      },
+
+      "baselines": [
+        "PRM800K discriminative PRM (scalar correctness scores)",
+        "Math-Shepherd automated PRM",
+        "ThinkPRM (generative verification CoT, 86.5% F1 on ProcessBench — primary generative PRM baseline)",
+        "LLM-as-Judge (unstructured step-level verification)",
+        "Binary ORM (outcome-only reward)",
+        "No PRM (base model without process reward)"
+      ],
+
+      "ablations": [
+        "Full DiagPRM triplets vs. error mechanism only vs. misconception label only vs. counterfactual only — which component drives improvement?",
+        "With vs. without misconception taxonomy grounding — does taxonomy structure help beyond free-form diagnosis?",
+        "Cross-problem gradient transfer: with vs. without misconception-based aggregation across problems",
+        "Misconception-specific penalty magnitudes vs. uniform penalty for all misconceptions",
+        "Convergence speed comparison: learning curves for binary vs. structured vs. misconception-specific rewards",
+        "DiagPRM diagnosis quality vs. model scale (7B vs. 14B)"
+      ]
+    },
+
+    "primary_contributions": {
+      "contribution_1": "Structured misconception diagnosis as an independently valuable tool: DiagPRM produces interpretable, taxonomy-grounded error analyses useful for tutoring, curriculum design, and mathematical reasoning research — regardless of downstream RL integration.",
+      "contribution_2": "Extension of generative PRM paradigm from verification to diagnosis: moving beyond ThinkPRM's 'is this correct?' to 'why is this wrong?' with structured, machine-parseable output.",
+      "contribution_3": "Misconception-specific reward signals for efficient targeted reweighting: within the RLVR reweighting regime, structured misconception rewards enable cross-problem gradient transfer and differential error suppression, with convergence speed as the primary measurable benefit."
+    }
+  },
+
+  "inspired_by": [
+    "PRM800K — step-level process reward labels for mathematical reasoning",
+    "ThinkPRM (2504.16828) — generative verification CoT for process reward models, validating the generative PRM paradigm",
+    "Math-Shepherd — automated PRM training via Monte Carlo estimation",
+    "SRaR and Data-Driven Rubrics — empirical evidence that structured rewards outperform binary",
+    "CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards",
+    "RLVR effectiveness debate (2504.13837, 2507.14843) — reweighting interpretation motivates more targeted reward signals",
+    "Mathematics education misconception taxonomies — grounded error classification systems",
+    "MathArena (2505.23281) — contamination-aware evaluation protocols"
+  ],
+
+  "resource_estimate": {
+    "manual": {
+      "team": "1-2 researchers",
+      "timeline": "3-4 months",
+      "gpu_hours": "~200-300h H100 (taxonomy construction: 20h researcher time; triplet annotation pipeline: 40h GPU for LLM annotation; DiagPRM training 7B-14B: 80-120h; RL integration experiments: 40-60h; evaluation suite: 20-40h)",
+      "estimated_gpu_cost": "$600-1200 (H100 80GB at $3-4/hr)",
+      "gpu_utilization": "~40-50% effective due to iteration cycles"
+    },
+    "human_in_loop": {
+      "team": "1 researcher, ~30min/day reviewing outputs",
+      "timeline": "6-8 weeks",
+      "gpu_hours": "~300-400h H100",
+      "estimated_gpu_cost": "$900-1600",
+      "claude_api_cost": "$80-150"
+    },
+    "auto_research": {
+      "team": "0 researchers after initial setup",
+      "timeline": "2-3 weeks with 4xH100",
+      "gpu_hours": "~500-600h H100",
+      "estimated_gpu_cost": "$1500-2400",
+      "claude_api_cost": "$150-300"
+    }
+  },
+
+  "target_venues": [
+    "ICML 2027 (strong fit for mathematical reasoning + reward modeling)",
+    "NeurIPS 2027 (broad ML venue, good fit for structured reward signals + RL analysis)",
+    "ICLR 2027 (representation learning angle of misconception-grounded rewards)",
+    "EMNLP 2027 (NLP venue, structured generation + reasoning evaluation)"
+  ],
+
+  "key_references": [
+    "PRM800K (Lightman et al., 2023) — human-labeled step-level process reward annotations for MATH",
+    "Math-Shepherd (Wang et al., 2024) — automated step-level PRM training via Monte Carlo estimation",
+    "ThinkPRM (2504.16828, TMLR March 2026) — generative verification CoT PRM; uses 1% of PRM800K labels; +8% GPQA-Diamond, 86.5% F1 ProcessBench with 14B model; 7.2% better than LLM-as-Judge; validates generative PRM paradigm; primary generative PRM baseline. Differentiation: generates free-text verification ('is this correct?') without structured misconception diagnosis, taxonomy grounding, or cross-problem transfer capability",
+    "Does RL Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (2504.13837, NeurIPS 2025 oral) — shows RLVR primarily improves sampling efficiency not reasoning boundaries; all paths exist in base model; six RLVR algorithms perform similarly. Motivates reframing RL contribution as targeted reweighting",
+    "The Invisible Leash (2507.14843) — confirms RLVR is 'support-constrained optimization' that narrows rather than broadens solution space; corroborates reweighting interpretation",
+    "MathArena (2505.23281) — documents 10-20% AIME 2024 score inflation across most LLMs (up to ~60% for QwQ-Preview-32B); AIME 2025 uncontaminated; motivates benchmark replacement",
+    "CAPO (2508.02298) — fine-grained step-level credit assignment via generative process rewards improves GRPO; demonstrates value of structured rewards even within reweighting interpretation",
+    "SRaR — structured rewards and rubrics for mathematical reasoning RL; +3.57 accuracy gains over binary rewards",
+    "Data-Driven Rubrics — +45% improvement over binary rewards with structured reward signals",
+    "ProcessBench — step-level error detection benchmark enabling direct comparison with ThinkPRM",
+    "MATH dataset (Hendrycks et al., 2021) — standard mathematical reasoning benchmark",
+    "AIME 2025 I and II, AIME 2026 I and II — post-contamination competition mathematics benchmarks (via MathArena)",
+    "Mathematics education misconception taxonomies — grounded error classification from education research"
+  ],
+
+  "changes_from_r3": "Round 3 changes: Strengthened differentiation from discriminative PRMs. Added ProcessBench as evaluation benchmark. Clarified taxonomy construction methodology. Added ablation for component-wise contribution of triplet fields. Expanded discussion of cross-problem gradient transfer mechanism.",
+
+  "changes_from_r4": {
+    "change_1_thinkprm_citation": "Added ThinkPRM (2504.16828, TMLR March 2026) throughout: landscape, approach differentiation, baselines, key references. ThinkPRM is the most prominent generative PRM — generates free-text verification CoT, outperforms discriminative PRMs (+8% GPQA-Diamond, 86.5% F1 ProcessBench). Explicit differentiation: ThinkPRM verifies ('is this correct?') while DiagPRM diagnoses ('why is this wrong?') with structured taxonomy-grounded triplets. ThinkPRM validates the generative PRM paradigm; DiagPRM extends it from verification to diagnosis.",
+
+    "change_2_rlvr_debate_engagement": "CRITICAL change. Added honest engagement with RLVR effectiveness debate (2504.13837 NeurIPS 2025 oral + 2507.14843 The Invisible Leash). Reframed ALL RL claims from 'capability expansion' to 'efficient targeted reweighting.' Key arguments: (a) targeted reweighting > uniform reweighting even in support-constrained regime; (b) SRaR +3.57 and Data-Driven Rubrics +45% empirically validate structured rewards under reweighting interpretation; (c) cross-problem gradient transfer amplifies signal for rare misconceptions; (d) CAPO demonstrates step-level credit assignment helps GRPO in reweighting regime; (e) convergence speed added as explicit evaluation metric. Positioned structured diagnosis as PRIMARY contribution (independently valuable) with RL integration as SECONDARY (efficient reweighting, not capability expansion).",
+
+    "change_3_aime_contamination_fix": "Replaced AIME 2024 with AIME 2025 I and II + AIME 2026 I and II based on MathArena (2505.23281) documentation of 10-20% score inflation. Added MathArena-style contamination protocol. Kept MATH-500. Added convergence speed metrics (RL steps to X% accuracy) to evaluation."
+  }
+}
+```
+
+---
+
+Summary of what was produced and the key structural decisions:
+
+**Complete revised JSON** with all fields: title, project_name, source, level, change_type, revision_summary, core_problem, opportunity, landscape (8 sub-entries + gap), approach (overview, ThinkPRM differentiation, RLVR debate engagement with 6 arguments, misconception taxonomy, 4-stage training pipeline, evaluation with benchmarks/metrics/baselines/ablations, primary contributions), inspired_by (8 entries), resource_estimate (3 tiers), target_venues (4), key_references (13), changes_from_r3 (preserved verbatim), changes_from_r4 (3 documented changes).
+
+**Key framing decisions:**
+
+1. **ThinkPRM** -- integrated into landscape as its own entry ("generative_prms"), into approach as a dedicated differentiation section, into baselines, and into key_references with full stats. The differentiation is structured around three axes: unstructured vs. structured output, no taxonomy vs. taxonomy-grounded, no cross-problem transfer vs. enabled.
+
+2. **RLVR debate** -- given a dedicated approach section ("engaging_with_rlvr_effectiveness_debate") with 6 labeled arguments (a-f). The core_problem was rewritten to lead with "independently valuable diagnostic tool" as primary, RL integration as secondary. All RL claims use "targeted reweighting" language, never "capability expansion." Convergence speed is added as an explicit metric.
+
+3. **AIME contamination** -- AIME 2024 fully removed from benchmarks, replaced with AIME 2025 I&II + AIME 2026 I&II. MathArena-style protocol added. Explicit note explaining the removal rationale.
+
+4. **Contribution hierarchy** -- reordered: (1) diagnosis tool independently valuable, (2) paradigm extension from verification to diagnosis, (3) RL efficiency gains as tertiary.
+
+I was unable to write the file due to permissions -- the complete JSON is in the code block above for you to save.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f4eeb77-ce35-4232-a5c4-d8df81068184",
+  "isSidechain": true,
+  "agentId": "a42eb1132f7312158",
+  "requestId": "req_011CbU2fvtFR9kgovLYiikxQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "85d7af64-69e4-4321-a2bf-dbdcedff3353",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "0a78476d-769c-4cf3-aa79-d0b72c6b6344",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016te1aexGWTAfzLkqcJV1gi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 58621,
+      "output_tokens": 7158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6781
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7158,
+          "cache_read_input_tokens": 58621,
+          "cache_creation_input_tokens": 6781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6781,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

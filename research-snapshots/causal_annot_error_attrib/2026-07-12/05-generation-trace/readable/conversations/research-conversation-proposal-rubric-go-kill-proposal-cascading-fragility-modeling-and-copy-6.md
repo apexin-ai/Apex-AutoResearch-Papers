@@ -1,0 +1,3063 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Cascading Fragility: Modeling and
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-1/52775dbb-a4bf-401f-86b5-5bcd52a6b765.jsonl`
+- **Structured JSON:** [`73da0d486aaca24782dc.json`](../../sessions/73/73da0d486aaca24782dc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:26:35.108Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:26:35.108Z",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning\n\n## Description\nWe introduce a formal cascading failure framework for predicting and mitigating multi-hop reasoning failures in long-context LLMs. While the Weakest Link Law treats evidence pieces as independent and attributes chain failure to the least-visible node, and the Fano-Style bound provides a theoretical ceiling using uniform per-step error, real compositional reasoning has directed dependency structure where upstream failures propagate downstream with position-dependent probability. We adapt series-reliability cascading failure theory from network science: each evidence node has a position-dependent local failure probability (estimated via MFAI attention steering instructions), and failures cascade through the evidence dependency DAG via recursive multiplicative propagation. We explicitly acknowledge that the recursion is standard reliability theory; our four core contributions are (a) the first empirical demonstration that LLM multi-hop reasoning failures follow this cascading model with superior calibration over independence, min-visibility, uniform-chain, and stratified-key-token baselines — with pre-specified minimum viable thresholds of ≥0.03 ECE reduction and ≥0.08 Kendall's τ improvement over the best baseline, (b) MFAI-calibrated positional visibility functions, (c) two novel topology-aware interventions — Cascade-Aware MFAI (CA-MFAI) that steers attention to the highest-fragility node in the DAG first, and Topology-Aware Evidence Reordering (TAER) that places upstream dependency nodes in high-visibility positions as a single-pass strategy, explicitly differentiated from GOLD PANNING's iterative Bayesian reordering for single-evidence retrieval (arXiv:2510.09770), Chow-Liu chunk ordering for multi-agent bounded-memory systems (arXiv:2603.09835), and CoRe context repetition (arXiv:2410.07103), and (d) a fully oracle-free deployment pipeline combining automatic LLM-based dependency DAG extraction (building on Self-Ask, DecomP, and QDMR paradigms) with attention head entropy for failure estimation. We additionally test whether upstream failures are more damaging than downstream failures in dependency chains — the opposite prediction from ASCoT's 'late-stage fragility' finding (arXiv:2508.05282) in CoT math reasoning — providing an empirical bridge between these error regime hypotheses. Ablation extensions include copula-based correlation modeling motivated by Self-Consistency Falls Short (Byerly & Khashabi, TACL 2026) showing positional bias creates correlated failures, comparison of DAG extraction methods (LLM decomposition vs. entity overlap vs. DAG-free), and GOLD PANNING-style iterative reordering as a multi-round baseline. Evaluating three open-source LLMs spanning two architectural paradigms — large-scale MoE (Qwen3-235B-A22B-Instruct-2507, 22B active), efficient MoE (Llama 4 Scout, 17B active across 16 experts), and dense (Gemma 4 31B) — on both controlled benchmarks (MuSiQue, HotpotQA with systematic topology variation) and naturalistic long-context settings (NovelHopQA, 64K-128K tokens), our cascading model yields tighter failure probability predictions than all baselines, CA-MFAI outperforms position-only MFAI by steering to topologically critical nodes, and TAER outperforms both position-only reordering, CoRe context repetition, and iterative reordering baselines. The MoE vs. dense comparison further reveals whether expert routing interacts with positional visibility in dependency chains. The framework provides the first formal bridge between network cascading failure theory and LLM reasoning analysis, with actionable interventions deployable without oracle knowledge.\n\n## Core Problem\nHow do multi-hop reasoning failures compound when evidence pieces have dependency structure (A→B→C), can we formally predict chain-level failure probability from the evidence dependency graph and positional visibility of each node, and can we exploit this model to steer attention and reorder evidence for improved reasoning?\n\n## Opportunity\nThe Weakest Link Law (arXiv:2601.12499) established that multi-hop QA performance is governed by the absolute position of the least visible evidence, but treats evidence pieces as independent nodes with equal weight. A Fano-Style upper bound (arXiv:2509.21199, ICLR 2026) proves that single-pass multi-hop accuracy inevitably collapses once complexity exceeds model capacity, with error accumulation following (1−ε)^(K+1) — but uses uniform per-step error and does not model position-dependent or topology-dependent failure. In reality, compositional reasoning has directed dependency structure — discovering fact B requires first processing fact A — and each node's failure probability varies with its absolute position in the context. When dependencies exist, failures should compound multiplicatively through the DAG rather than following a simple min-visibility or uniform-chain rule. GOLD PANNING (arXiv:2510.09770, Byerly & Khashabi) demonstrates that positional bias can be strategically exploited via iterative Bayesian inference to improve single-evidence retrieval through O(log N) rounds of document reordering, but targets single-needle identification without any awareness of dependency structure between evidence pieces — leaving multi-hop cascading failures entirely unaddressed. Self-Consistency Falls Short (arXiv:2411.01101, Byerly & Khashabi, TACL 2026) provides direct empirical evidence that positional bias creates correlated intra-sequence failures that violate independence assumptions, demonstrating that long-context SC amplifies positional errors rather than diversifying reasoning paths — motivating copula-based correlation modeling for cascading failure prediction. While Chow-Liu Ordering (arXiv:2603.09835) optimizes chunk processing order for multi-agent Chain-of-Agents systems with bounded shared memory, no work addresses dependency-topology-aware evidence placement within a single long context to mitigate positional visibility bias. CoRe (arXiv:2410.07103, NAACL 2025) uses brute-force context repetition to address document misordering, but does not exploit dependency structure to select which documents need high-visibility placement. Network failure propagation theory (cascading failures in interdependent systems) provides well-established mathematical tools (series-reliability recursions, Buldyrev-style percolation) that have not been applied to LLM reasoning chains. The MFAI diagnostic protocol from the Weakest Link paper can isolate recognition from synthesis failures at each hop, enabling per-node failure probability estimation in controlled settings. Scaling Reasoning Hop (arXiv:2601.21214, ICLR 2026) identifies 'erroneous processing heads' (ep heads) whose deactivation restores correct reasoning, providing a complementary attention-level intervention mechanism — but targets generated CoT hop generalization rather than evidence retrieval and integration over long contexts with positional visibility bias. Recent work on attention head entropy (arXiv:2602.13699) shows that per-head Rényi entropy predicts answer correctness before generation (+17.7% AUROC over baselines), providing an oracle-free proxy for node-level failure estimation that could extend our framework beyond controlled benchmarks.\n\n## Landscape\nThe Weakest Link paper (arXiv:2601.12499) showed multi-hop failures are governed by absolute position (variance <3% with linear distance) and introduced MFAI (Multi-Focus Attention Instructions) achieving up to 11.5% accuracy improvement by steering attention via natural language prompts directing focus to specific document positions. However, MFAI requires oracle knowledge of gold document positions and treats evidence nodes independently. A Fano-Style Accuracy Upper Bound (arXiv:2509.21199, ICLR 2026) derives an information-theoretic ceiling for single-pass multi-hop QA: Accuracy ≤ min{1, (C+1)/β} where information demand scales super-linearly with hop count (β(h,L) = β₀ + α·L·γ^(h−1), γ>1), providing theoretical grounding that cascading failures are inevitable beyond capacity thresholds — but uses uniform per-step error rates rather than position-dependent or topology-aware failure modeling. Chow-Liu Ordering (arXiv:2603.09835, ICLR 2026 Workshop MemAgents) uses Chow-Liu trees to learn mutual-information-based chunk dependency structure, with BFS traversal yielding orderings that reduce information loss in Chain-of-Agents systems — but addresses lossy information bottlenecks in multi-agent sequential processing with bounded shared memory, fundamentally different from positional visibility bias in single-context transformer reasoning where all evidence is simultaneously accessible. CoRe (arXiv:2410.07103, NAACL 2025) demonstrates that document ordering causes up to 26 F1 points difference in multi-hop QA and proposes context repetition (repeating documents k times) as a brute-force fix achieving up to 30 F1 improvement — but does not exploit dependency topology to determine which documents most critically need high-visibility placement, instead uniformly repeating all context. GOLD PANNING (arXiv:2510.09770, Byerly & Khashabi, 2025 preprint) introduces a black-box Bayesian framework for inference-time active search over long contexts that strategically reorders documents to concentrate high-belief items in highly diagnostic positions (signal anchoring) and updates relevance beliefs via Bayesian inference across multiple rounds. GOLD PANNING provably identifies a target among N documents in O(log N) rounds, achieving performance comparable to Permutation Self-Consistency with 30–65% fewer queries. Key differentiations from our proposed TAER: (i) GOLD PANNING requires multiple inference rounds while TAER is single-pass; (ii) GOLD PANNING targets single-evidence needle-in-haystack retrieval while TAER addresses multi-hop dependency chains with cascading failure modes; (iii) GOLD PANNING uses Bayesian belief updates agnostic to evidence relationships while TAER uses dependency topology to determine joint optimal placement of all evidence pieces; (iv) GOLD PANNING treats positional bias as a signal for iterative narrowing while TAER treats it as a constraint to be satisfied by topology-aware placement. Self-Consistency Falls Short (arXiv:2411.01101, Byerly & Khashabi, TACL 2026) demonstrates through comprehensive experiments that self-consistency not only fails to improve but actively degrades performance on long-context tasks, because positional bias induces correlated failures across SC samples rather than diversifying reasoning paths. The degradation worsens with longer context lengths and smaller model sizes but remains invariant to prompt format or task type. This finding is directly relevant to our independence assumption: it provides empirical evidence that shared positional bias creates correlated intra-sequence failures, motivating our copula-based correlation modeling as an ablation to capture non-independent failure propagation through dependency DAGs. Lost in the Middle, and In-Between (arXiv:2412.10079, Baker et al. 2024) extends the lost-in-the-middle phenomenon specifically to multi-hop QA settings, demonstrating that performance degrades not only with respect to the distance of information from context edges but also with increasing distance between pieces of information required for multi-step reasoning. This finding directly supports our hypothesis that inter-evidence positional relationships — not just absolute position — drive multi-hop failure patterns, and that dependency-aware placement must consider both absolute visibility and relative evidence proximity. Scaling Reasoning Hop (arXiv:2601.21214, Li et al., ICLR 2026) identifies 'erroneous processing heads' (ep heads) — attention heads that amplify incorrect reasoning trajectories while suppressing correct ones — and proposes Test-time Correction of Reasoning (TCR), a lightweight intervention that dynamically deactivates ep heads during inference, improving reasoning hop generalization by +4.9–6.8% across Phi-3, LLaMA3-8B, and Qwen2.5-7B. EP heads are identified via Causal Indirect Effect analysis on token-level prediction errors and exhibit systematically higher entropy than correct-processing heads. TCR is complementary to our attention-entropy-based failure estimation: while TCR targets individual head-level interventions to correct generated CoT reasoning steps, our framework uses aggregate attention entropy as a proxy for node-level recognition failure probability in evidence-retrieval settings, and our interventions operate at the evidence-placement level (TAER) and attention-steering level (CA-MFAI) rather than head deactivation. ASCoT (arXiv:2508.05282, Zhang et al.) identifies 'late-stage fragility' in Chain-of-Thought math reasoning, showing that errors injected in later CoT steps are 3–4× more damaging than early-step errors (e.g., 51.7% vs. 14.6% accuracy drop at step 4 vs. step 2 on GSM8K). This finding appears to challenge the cascading failure hypothesis by suggesting late errors matter more than early ones. However, the two settings involve fundamentally different error regimes: in CoT math reasoning, each step is generated sequentially by the model, and early errors can be self-corrected because the model retains 'higher semantic entropy and contextual flexibility' during initial stages (the authors' explanation). In multi-hop QA over long contexts with dependency structure, failures propagate through structural dependency — if evidence A (required to process evidence B) is not recognized due to positional invisibility, evidence B cannot be correctly integrated regardless of its own visibility. There is no self-correction mechanism for missed upstream evidence in single-pass retrieval-then-integrate reasoning. Our cascading model specifically addresses this structural propagation regime, and we empirically test whether upstream failures are indeed more damaging than downstream failures in dependency chains — the opposite prediction from ASCoT's CoT setting. Beyond Exponential Decay (arXiv:2505.24187) argues that autoregressive generation errors concentrate at sparse 'key tokens' (5–10% of total) rather than accumulating uniformly, proposing a stratified model P(correct) ≈ (1−e_key)^k · (1−e_non)^(n−k) where k scales sublinearly — but studies token-level generation coherence, not multi-hop reasoning; in structured multi-hop QA, every evidence token is a 'key token' and errors propagate causally through dependency chains rather than clustering on sparse decision points. HopChain (arXiv:2603.17024) generates multi-hop vision-language reasoning data showing errors compound across intermediate steps but provides no formal failure model. BRIDGE (arXiv:2603.07931) benchmarks multi-hop reasoning in long scientific documents but doesn't model dependency structure. NovelHopQA (arXiv:2506.02000) provides 1–4 hop QA over 64K–128K-token novel excerpts, revealing consistent accuracy drops with increased hops (86% at 1-hop to 74% at 4-hop at 64K tokens) and identifying 'missed final-hop integration' and 'long-range drift' as key failure modes — providing ecological validity for cascading failures in naturalistic long-context settings. Fragile Reasoning (arXiv:2604.01639) introduces the Cascading Amplification Index (CAI) measuring layer-wise divergence amplification within transformer architectures, showing 28–45% answer-flip rates from meaning-preserving perturbations — providing mechanistic evidence that small perturbations cascade through model layers, analogous to inter-hop error propagation. ReCAPA (arXiv:2604.21232) addresses cascading failures in VLA multi-step execution through hierarchical predictive correction, introducing error propagation and recovery metrics — a cross-domain analogue to evidence-chain failure mitigation. The ManyICLBench (ACL 2025) SSL/ASL taxonomy reveals that global context understanding (ASL) fails at 16K tokens while local retrieval (SSL) persists to 64K, suggesting dependent evidence integration is the bottleneck. 'From Spark to Fire' (arXiv:2603.04474) models error cascades in LLM multi-agent systems via directed dependency graphs, raising defense success from 0.32 to 0.89 — but targets inter-agent message propagation, not intra-context evidence chains. 'From Chains to DAGs' (arXiv:2601.17593) shows DAG structure is linearly recoverable from LLM hidden states, confirming models internally represent dependency graphs. ARES (arXiv:2507.12948, EMNLP 2025) provides probabilistic step-level soundness guarantees but evaluates each step conditioned on verified premises rather than modeling how positional visibility propagates failures through the dependency topology. Back Attention (arXiv:2502.10835, EMNLP 2025) identifies four stages of multi-hop reasoning via logit flow and proposes a back-attention mechanism improving multi-hop accuracy. 'Context Length Alone Hurts LLM Performance Despite Perfect Retrieval' (arXiv:2510.05381) shows 13.9–85% degradation from context length alone even with perfect evidence placement, suggesting visibility functions must account for context-length-dependent baseline degradation. 'Attention Head Entropy Predicts Answer Correctness' (arXiv:2602.13699) demonstrates that per-head 2-Rényi entropy predicts answer correctness before generation with +17.7% AUROC, suggesting a deployment-time proxy for node failure probability. MHTS (arXiv:2504.08756) generates difficulty-controllable multi-hop QA with explicit tree structures. No existing work combines evidence dependency DAGs with position-dependent visibility functions, cascading failure theory, topology-aware single-pass interventions, and automated dependency extraction to both predict and mitigate reasoning chain failures in single-context long-form LLM reasoning.\n\n## Approach\nWe formalize each multi-hop QA instance as a directed acyclic evidence-dependency graph G=(V,E) where each node v_i has a positional visibility score estimated via MFAI (Multi-Focus Attention Instruction) diagnostic protocols from the Weakest Link methodology. MFAI is a natural language instructional steering technique that prepends position-directing prompts (e.g., 'The answer is in Document XX and Document YY') to diagnostically isolate recognition from synthesis failures — not a learned probe or classifier. We adapt series-reliability cascading failure models: a node fails if it cannot be recognized OR if any of its parent nodes in the dependency DAG have failed, yielding a recursive failure probability P_fail(v) = 1 − (1 − p_local(v)) · ∏_{u∈parents(v)} (1 − P_fail(u)), where p_local(v) is the position-dependent recognition failure rate. We explicitly acknowledge that this recursion is standard series-reliability theory; the novelty lies in (a) the empirical demonstration that LLM reasoning failures follow this multiplicative cascading model rather than independent, min-visibility, uniform-chain, or stratified-key-token alternatives, (b) the positional visibility function p_local(v) calibrated via MFAI instructions as a function of absolute position and context length, (c) topology-aware interventions derived from the model, and (d) automated dependency DAG extraction for deployment settings.\n\nIndependence assumption and empirical validation. Rather than assuming independence a priori, we treat it as a testable hypothesis central to the paper. We empirically measure inter-node failure correlation across all node pairs within the same sequence using Pearson and tetrachoric correlation on per-instance binary failure indicators. Motivated by Self-Consistency Falls Short (Byerly & Khashabi, TACL 2026), which empirically demonstrates that positional bias creates correlated failures across self-consistency samples in long contexts, we include a copula-based ablation extension: P_fail(v) = 1 − C_θ(1−p_local(v), ∏_{u∈parents(v)}(1−P_fail(u))) where C_θ is a Clayton copula capturing tail dependence, and report whether the copula extension improves calibration over the independence model. The degree to which failures at different nodes are independent within a sequence is itself a key empirical finding of the paper.\n\nBenchmarks and models. We construct controlled multi-hop QA benchmarks on MuSiQue and HotpotQA with systematically varied dependency structures (chains of 2–4 hops, binary trees, diamond DAGs) and evidence positions across 128K-token contexts, following the MHTS framework for topology-controlled generation. We additionally evaluate on NovelHopQA (arXiv:2506.02000) as a naturalistic long-context multi-hop benchmark with 64K–128K-token novel excerpts, testing whether our cascading model's predictions generalize beyond synthetic controlled settings. We evaluate three open-source LLMs with native long-context support spanning two architectural paradigms: Qwen3-235B-A22B-Instruct-2507 (262K native context, large-scale MoE with 22B active out of 235B total parameters, representing frontier open-weight MoE models), Llama 4 Scout (10M native context, efficient MoE with 17B active out of 109B total parameters across 16 experts, representing compact MoE designs), and Gemma 4 31B (256K native context, Google's dense architecture representing non-MoE models). All models natively support 128K tokens, eliminating confounds from context extrapolation. This selection provides meaningful architectural diversity — two MoE models at different scales (large vs. efficient) plus one dense model — enabling us to test whether cascading failure patterns differ systematically between MoE and dense architectures, and whether MoE expert routing interacts with positional visibility in dependency chains.\n\nBaselines and prediction evaluation. We empirically measure per-node and chain-level failure rates, then compare our cascading model's predictions against four baselines: (1) independent-product (uniform per-hop failure rate), (2) min-visibility (Weakest Link Law), (3) uniform-chain ((1−ε)^K following the Fano-Style bound's formulation), and (4) stratified key-token model (P ≈ (1−e_key)^k · (1−e_non)^(n−k) from Beyond Exponential Decay, adapted to multi-hop QA by treating evidence-bearing positions as key tokens), using Expected Calibration Error (ECE), Brier score, and Kendall's τ rank correlation.\n\nMinimum viable results. We pre-specify the following thresholds for a meaningful contribution: (1) the cascading model must achieve ECE reduction of ≥0.03 absolute (or ≥15% relative) over the best-performing baseline (expected to be min-visibility), reflecting meaningful calibration improvement given that ECE in LLM multi-hop reasoning typically ranges 0.15–0.35; (2) Kendall's τ rank correlation between predicted and observed chain-level failure probabilities must improve by ≥0.08 over the best baseline, indicating the cascading model captures failure ordering that topology-unaware models miss; (3) TAER and CA-MFAI interventions must each yield ≥3% absolute accuracy improvement over their topology-unaware counterparts (position-only reordering and position-only MFAI, respectively). If the cascading model achieves only marginal improvement over min-visibility (<0.02 ECE), this constitutes a negative result — that dependency topology does not meaningfully improve failure prediction beyond positional visibility alone — which we commit to reporting transparently, as it would itself be an important finding about the sufficiency of position-only models.\n\nTopology-aware interventions. Beyond prediction, we derive two interventions: (1) Cascade-Aware MFAI (CA-MFAI), which uses the cascading model to identify the highest-fragility node in the DAG — the node whose failure causes the greatest expected downstream cascade — and steers attention there first via MFAI natural language instructions, rather than the simple position-based steering in the original Weakest Link work; and (2) Topology-Aware Evidence Reordering (TAER), which places evidence documents in topological dependency order with upstream (root) nodes in high-visibility positions (context start/end), minimizing cascade propagation by ensuring that nodes whose failure would cascade furthest are placed where recognition probability is highest. TAER is a single-pass intervention — unlike GOLD PANNING (arXiv:2510.09770) which requires O(log N) inference rounds with Bayesian belief updates to iteratively narrow down a single target, TAER computes optimal placement from the DAG topology before inference and requires only one forward pass. TAER also differs from GOLD PANNING in three further respects: (i) TAER addresses multi-hop dependency chains rather than single-evidence retrieval; (ii) TAER jointly optimizes placement of all evidence pieces using dependency structure rather than using belief-agnostic reordering; (iii) TAER targets cascading failure mitigation rather than iterative target identification. TAER differs from Chow-Liu Ordering (arXiv:2603.09835) in three key ways: (i) TAER operates within a single long context for single-model reasoning, while Chow-Liu optimizes chunk processing order for multi-agent systems with bounded shared memory; (ii) TAER uses task-level evidence dependency structure (which evidence piece is required to process which), while Chow-Liu uses statistical mutual information between chunk contents; (iii) TAER targets positional visibility bias in transformers, while Chow-Liu targets information loss at agent handoff boundaries. TAER also differs from CoRe (arXiv:2410.07103) by exploiting dependency topology to selectively place critical upstream nodes in high-visibility positions, rather than brute-force repeating all context. We compare CA-MFAI and TAER against position-only MFAI, random reordering, CoRe context repetition, GOLD PANNING-style iterative reordering (adapted from single-evidence to multi-evidence as a strong iterative baseline), and recency-ordered baselines.\n\nUpstream vs. downstream failure impact. Motivated by ASCoT's (arXiv:2508.05282) finding of 'late-stage fragility' in CoT math reasoning — where later-step errors are 3–4× more damaging than earlier ones due to reduced self-correction capacity — we include a targeted analysis comparing the impact of upstream (root-adjacent) vs. downstream (leaf-adjacent) evidence failures in our dependency chains. We hypothesize the opposite pattern from ASCoT: in multi-hop QA with structural dependency, upstream failures should be more damaging because downstream integration structurally requires upstream evidence, and there is no self-correction mechanism for missed evidence in single-pass retrieval-then-integrate reasoning. This comparison directly tests whether the error regime in evidence-dependency chains is fundamentally different from sequential CoT generation, providing an important empirical bridge between these two lines of work.\n\nDependency DAG acquisition at test time. For controlled benchmarks, gold dependency DAGs are available from benchmark construction. For deployment settings, we implement LLM-based question decomposition as the primary automatic DAG extraction method: the model decomposes a multi-hop question into ordered sub-questions with explicit dependency annotations (building on the Self-Ask, DecomP, and QDMR paradigms, with recent methods like CompactRAG achieving competitive accuracy in only two LLM calls). We measure DAG extraction accuracy against gold annotations and evaluate how noisy/approximate DAGs affect cascading model calibration and intervention effectiveness. As ablation extensions, we additionally evaluate: (a) post-hoc dependency inference from retrieved evidence documents using entity overlap and coreference signals, and (b) a DAG-free baseline using only attention entropy for failure prediction without dependency knowledge — quantifying the value of explicit dependency modeling.\n\nOracle-free deployment. To address the MFAI oracle limitation, we evaluate attention head entropy (per-head 2-Rényi entropy from arXiv:2602.13699) as an oracle-free proxy for p_local(v), testing whether entropy-estimated failure probabilities yield comparable cascading predictions and intervention effectiveness. We note that Scaling Reasoning Hop (arXiv:2601.21214, ICLR 2026) identifies erroneous processing heads (ep heads) via entropy-based detection, providing convergent evidence that attention-level signals are informative for failure prediction — though their TCR intervention (head deactivation) targets generated CoT steps while our framework targets evidence placement and attention steering. Combined with automatic DAG extraction, this enables a fully oracle-free deployment pipeline: automatic DAG extraction → entropy-based failure estimation → cascade prediction → topology-aware intervention.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '250-380 (A100-80GB): ~130h inference across 3 LLMs × 3 dependency topologies × ~1500 samples at 128K context + NovelHopQA evaluation, ~60h for MFAI + CA-MFAI + TAER + CoRe + GOLD PANNING-style iterative baseline comparison intervention runs, ~25h for primary DAG extraction pipeline evaluation, ~35h for copula ablation, stratified-model baselines, DAG method comparison ablations, upstream-vs-downstream analysis, and entropy proxy evaluation', 'timeline': '10-13 weeks (2w dataset construction + dependency annotation + DAG extraction pipeline, 3w inference + MFAI diagnostic + intervention experiments, 2w model fitting + correlation analysis + copula ablation + baseline comparison, 1w DAG extraction accuracy evaluation + ablations, 2-3w writing + revisions)', 'estimated_gpu_cost': '$500-760 at ~$2/A100-hr (cloud spot pricing)'}, 'human_in_loop': {'gpu_hours': '200-310 (A100-80GB): Claude assists with dataset construction, DAG annotation, DAG extraction pipeline development, intervention design iteration, and experiment analysis reducing manual overhead by ~25%', 'timeline': '8-11 weeks (1.5w dataset construction with Claude-assisted annotation, 3w inference + diagnostics + interventions, 1.5w model fitting + analysis + ablations, 2-3w writing)', 'claude_api_cost': '$300-450 (dependency graph extraction, automated error categorization, DAG extraction pipeline development, intervention ablation analysis, writing assistance)', 'estimated_gpu_cost': '$400-620'}, 'auto_research': {'gpu_hours': '180-280 (A100-80GB): automated pipeline reduces redundant runs via adaptive experiment design', 'timeline': '7-9 weeks (1w automated dataset + DAG pipeline, 2.5w parallelized inference + interventions, 1w automated analysis + model fitting + ablations, 2-3w human-reviewed writing)', 'claude_api_cost': '$550-800 (end-to-end pipeline orchestration, DAG extraction pipeline, automated annotation, iterative experiment design, intervention optimization, draft generation and revision)', 'estimated_gpu_cost': '$360-560', 'speed_bottleneck': 'Long-context inference throughput: 128K-token inputs on Qwen3-235B-A22B-Instruct-2507 at ~15-20 tokens/sec on 4xA100 limits to ~120 samples/hr; total inference across all conditions requires ~70-100 GPU-hours sequentially. Llama 4 Scout and Gemma 4 31B run efficiently on 1-2 GPUs each, significantly reducing multi-GPU scheduling complexity compared to the prior 5-model design.'}}\n\n## Inspired By\nField guide Section 6 (Reasoning vs Retrieval: multi-hop reasoning failures) + Weakest Link Law's treatment of evidence as independent + Fano-Style upper bound's theoretical ceiling motivating tighter per-instance prediction + CoRe's demonstration that ordering matters but lacking topology awareness + ManyICLBench SSL/ASL divergence showing integration is harder than retrieval + cross-domain transfer from network cascading failure theory + 'From Spark to Fire' governance-layer intervention pattern + attention head entropy as oracle-free failure proxy + ep heads (Scaling Reasoning Hop, ICLR 2026) as complementary attention-level intervention + Self-Consistency Falls Short (TACL 2026) empirically demonstrating that positional bias creates correlated failures, motivating copula-based correlation modeling + GOLD PANNING's insight that positional bias can be strategically exploited at inference time, which we extend from iterative single-evidence retrieval to single-pass dependency-aware multi-evidence placement + ASCoT's late-stage fragility counter-narrative motivating explicit empirical test of upstream-vs-downstream failure impact in dependency chains\n\n## Target Venues\n- ICLR 2027 (abstract: ~Sep 19, full paper: ~Sep 24, 2026; dates projected from ICLR 2026 pattern per trybibby.com, official CFP not yet released as of May 2026) — PRIMARY, ~18 weeks\n- AAAI 2027 (abstract: Jul 21, full paper: Jul 28, 2026; Montréal, Canada, Feb 16-23, 2027) — STRETCH if ready early, ~10 weeks (dates confirmed against official AAAI-27 CFP)\n\n## Key References\n- Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck (arXiv 2601.12499, 2026)\n- A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA (arXiv 2509.21199, ICLR 2026)\n- Scaling Reasoning Hop Exposes Weaknesses: Demystifying and Improving Hop Generalization in Large Language Models (arXiv 2601.21214, Li et al., ICLR 2026)\n- Chow-Liu Ordering for Long-Context Reasoning in Chain-of-Agents (arXiv 2603.09835, ICLR 2026 Workshop MemAgents)\n- Unleashing Multi-Hop Reasoning Potential through Repetition of Misordered Context — CoRe (arXiv 2410.07103, NAACL 2025 Findings)\n- Beyond Exponential Decay: Rethinking Error Accumulation in Large Language Models (arXiv 2505.24187, 2025)\n- Not All Errors Are Created Equal: ASCoT Addresses Late-Stage Fragility in Efficient LLM Reasoning (arXiv 2508.05282, Zhang et al., 2025)\n- NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts (arXiv 2506.02000, 2025)\n- Fragile Reasoning: Cascading Amplification Index for LLM Sensitivity to Perturbations (arXiv 2604.01639, 2026)\n- ReCAPA: Hierarchical Predictive Correction to Mitigate Cascading Failures (arXiv 2604.21232, 2026)\n- HopChain: Multi-Hop Data Synthesis for Generalizable Vision-Language Reasoning (arXiv 2603.17024, 2026)\n- BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence (arXiv 2603.07931, 2026)\n- StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering (arXiv 2510.02827, 2025)\n- On Many-Shot In-Context Learning for Long-Context Evaluation (ACL 2025)\n- From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration (arXiv 2603.04474, 2026)\n- From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs (arXiv 2601.17593, 2026)\n- Probabilistic Soundness Guarantees in LLM Reasoning Chains — ARES (EMNLP 2025)\n- Transformers Remember First, Forget Last: Dual-Process Interference in LLMs (arXiv 2603.00270, 2026)\n- Back Attention: Understanding and Enhancing Multi-Hop Reasoning in Large Language Models (EMNLP 2025)\n- Context Length Alone Hurts LLM Performance Despite Perfect Retrieval (arXiv 2510.05381, 2025)\n- Attention Head Entropy of LLMs Predicts Answer Correctness (arXiv 2602.13699, 2026)\n- MHTS: Multi-Hop Tree Structure Framework for Generating Difficulty-Controllable QA Datasets (arXiv 2504.08756, 2025)\n- Catastrophic cascade of failures in interdependent networks — Buldyrev et al. (Nature 2010)\n- Entropy trajectory shape predicts LLM reasoning reliability (arXiv 2603.18940, 2026)\n- Copula-based reliability analysis of degrading systems with dependent failures (Reliability Engineering & System Safety 2020)\n- Question Decomposition with Dependency Graphs (arXiv 2104.08647, ACL 2021)\n- GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning (arXiv 2510.09770, Byerly & Khashabi, 2025)\n- Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems (arXiv 2411.01101, Byerly & Khashabi, TACL 2026)\n- Lost in the Middle, and In-Between: Enhancing Language Models' Ability to Reason Over Long Contexts in Multi-Hop QA (arXiv 2412.10079, Baker et al. 2024)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:26:35.114Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:26:35.114Z",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:26:35.139Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning
+
+## Description
+We introduce a formal cascading failure framework for predicting and mitigating multi-hop reasoning failures in long-context LLMs. While the Weakest Link Law treats evidence pieces as independent and attributes chain failure to the least-visible node, and the Fano-Style bound provides a theoretical ceiling using uniform per-step error, real compositional reasoning has directed dependency structure where upstream failures propagate downstream with position-dependent probability. We adapt series-reliability cascading failure theory from network science: each evidence node has a position-dependent local failure probability (estimated via MFAI attention steering instructions), and failures cascade through the evidence dependency DAG via recursive multiplicative propagation. We explicitly acknowledge that the recursion is standard reliability theory; our four core contributions are (a) the first empirical demonstration that LLM multi-hop reasoning failures follow this cascading model with superior calibration over independence, min-visibility, uniform-chain, and stratified-key-token baselines — with pre-specified minimum viable thresholds of ≥0.03 ECE reduction and ≥0.08 Kendall's τ improvement over the best baseline, (b) MFAI-calibrated positional visibility functions, (c) two novel topology-aware interventions — Cascade-Aware MFAI (CA-MFAI) that steers attention to the highest-fragility node in the DAG first, and Topology-Aware Evidence Reordering (TAER) that places upstream dependency nodes in high-visibility positions as a single-pass strategy, explicitly differentiated from GOLD PANNING's iterative Bayesian reordering for single-evidence retrieval (arXiv:2510.09770), Chow-Liu chunk ordering for multi-agent bounded-memory systems (arXiv:2603.09835), and CoRe context repetition (arXiv:2410.07103), and (d) a fully oracle-free deployment pipeline combining automatic LLM-based dependency DAG extraction (building on Self-Ask, DecomP, and QDMR paradigms) with attention head entropy for failure estimation. We additionally test whether upstream failures are more damaging than downstream failures in dependency chains — the opposite prediction from ASCoT's 'late-stage fragility' finding (arXiv:2508.05282) in CoT math reasoning — providing an empirical bridge between these error regime hypotheses. Ablation extensions include copula-based correlation modeling motivated by Self-Consistency Falls Short (Byerly & Khashabi, TACL 2026) showing positional bias creates correlated failures, comparison of DAG extraction methods (LLM decomposition vs. entity overlap vs. DAG-free), and GOLD PANNING-style iterative reordering as a multi-round baseline. Evaluating three open-source LLMs spanning two architectural paradigms — large-scale MoE (Qwen3-235B-A22B-Instruct-2507, 22B active), efficient MoE (Llama 4 Scout, 17B active across 16 experts), and dense (Gemma 4 31B) — on both controlled benchmarks (MuSiQue, HotpotQA with systematic topology variation) and naturalistic long-context settings (NovelHopQA, 64K-128K tokens), our cascading model yields tighter failure probability predictions than all baselines, CA-MFAI outperforms position-only MFAI by steering to topologically critical nodes, and TAER outperforms both position-only reordering, CoRe context repetition, and iterative reordering baselines. The MoE vs. dense comparison further reveals whether expert routing interacts with positional visibility in dependency chains. The framework provides the first formal bridge between network cascading failure theory and LLM reasoning analysis, with actionable interventions deployable without oracle knowledge.
+
+## Core Problem
+How do multi-hop reasoning failures compound when evidence pieces have dependency structure (A→B→C), can we formally predict chain-level failure probability from the evidence dependency graph and positional visibility of each node, and can we exploit this model to steer attention and reorder evidence for improved reasoning?
+
+## Opportunity
+The Weakest Link Law (arXiv:2601.12499) established that multi-hop QA performance is governed by the absolute position of the least visible evidence, but treats evidence pieces as independent nodes with equal weight. A Fano-Style upper bound (arXiv:2509.21199, ICLR 2026) proves that single-pass multi-hop accuracy inevitably collapses once complexity exceeds model capacity, with error accumulation following (1−ε)^(K+1) — but uses uniform per-step error and does not model position-dependent or topology-dependent failure. In reality, compositional reasoning has directed dependency structure — discovering fact B requires first processing fact A — and each node's failure probability varies with its absolute position in the context. When dependencies exist, failures should compound multiplicatively through the DAG rather than following a simple min-visibility or uniform-chain rule. GOLD PANNING (arXiv:2510.09770, Byerly & Khashabi) demonstrates that positional bias can be strategically exploited via iterative Bayesian inference to improve single-evidence retrieval through O(log N) rounds of document reordering, but targets single-needle identification without any awareness of dependency structure between evidence pieces — leaving multi-hop cascading failures entirely unaddressed. Self-Consistency Falls Short (arXiv:2411.01101, Byerly & Khashabi, TACL 2026) provides direct empirical evidence that positional bias creates correlated intra-sequence failures that violate independence assumptions, demonstrating that long-context SC amplifies positional errors rather than diversifying reasoning paths — motivating copula-based correlation modeling for cascading failure prediction. While Chow-Liu Ordering (arXiv:2603.09835) optimizes chunk processing order for multi-agent Chain-of-Agents systems with bounded shared memory, no work addresses dependency-topology-aware evidence placement within a single long context to mitigate positional visibility bias. CoRe (arXiv:2410.07103, NAACL 2025) uses brute-force context repetition to address document misordering, but does not exploit dependency structure to select which documents need high-visibility placement. Network failure propagation theory (cascading failures in interdependent systems) provides well-established mathematical tools (series-reliability recursions, Buldyrev-style percolation) that have not been applied to LLM reasoning chains. The MFAI diagnostic protocol from the Weakest Link paper can isolate recognition from synthesis failures at each hop, enabling per-node failure probability estimation in controlled settings. Scaling Reasoning Hop (arXiv:2601.21214, ICLR 2026) identifies 'erroneous processing heads' (ep heads) whose deactivation restores correct reasoning, providing a complementary attention-level intervention mechanism — but targets generated CoT hop generalization rather than evidence retrieval and integration over long contexts with positional visibility bias. Recent work on attention head entropy (arXiv:2602.13699) shows that per-head Rényi entropy predicts answer correctness before generation (+17.7% AUROC over baselines), providing an oracle-free proxy for node-level failure estimation that could extend our framework beyond controlled benchmarks.
+
+## Landscape
+The Weakest Link paper (arXiv:2601.12499) showed multi-hop failures are governed by absolute position (variance <3% with linear distance) and introduced MFAI (Multi-Focus Attention Instructions) achieving up to 11.5% accuracy improvement by steering attention via natural language prompts directing focus to specific document positions. However, MFAI requires oracle knowledge of gold document positions and treats evidence nodes independently. A Fano-Style Accuracy Upper Bound (arXiv:2509.21199, ICLR 2026) derives an information-theoretic ceiling for single-pass multi-hop QA: Accuracy ≤ min{1, (C+1)/β} where information demand scales super-linearly with hop count (β(h,L) = β₀ + α·L·γ^(h−1), γ>1), providing theoretical grounding that cascading failures are inevitable beyond capacity thresholds — but uses uniform per-step error rates rather than position-dependent or topology-aware failure modeling. Chow-Liu Ordering (arXiv:2603.09835, ICLR 2026 Workshop MemAgents) uses Chow-Liu trees to learn mutual-information-based chunk dependency structure, with BFS traversal yielding orderings that reduce information loss in Chain-of-Agents systems — but addresses lossy information bottlenecks in multi-agent sequential processing with bounded shared memory, fundamentally different from positional visibility bias in single-context transformer reasoning where all evidence is simultaneously accessible. CoRe (arXiv:2410.07103, NAACL 2025) demonstrates that document ordering causes up to 26 F1 points difference in multi-hop QA and proposes context repetition (repeating documents k times) as a brute-force fix achieving up to 30 F1 improvement — but does not exploit dependency topology to determine which documents most critically need high-visibility placement, instead uniformly repeating all context. GOLD PANNING (arXiv:2510.09770, Byerly & Khashabi, 2025 preprint) introduces a black-box Bayesian framework for inference-time active search over long contexts that strategically reorders documents to concentrate high-belief items in highly diagnostic positions (signal anchoring) and updates relevance beliefs via Bayesian inference across multiple rounds. GOLD PANNING provably identifies a target among N documents in O(log N) rounds, achieving performance comparable to Permutation Self-Consistency with 30–65% fewer queries. Key differentiations from our proposed TAER: (i) GOLD PANNING requires multiple inference rounds while TAER is single-pass; (ii) GOLD PANNING targets single-evidence needle-in-haystack retrieval while TAER addresses multi-hop dependency chains with cascading failure modes; (iii) GOLD PANNING uses Bayesian belief updates agnostic to evidence relationships while TAER uses dependency topology to determine joint optimal placement of all evidence pieces; (iv) GOLD PANNING treats positional bias as a signal for iterative narrowing while TAER treats it as a constraint to be satisfied by topology-aware placement. Self-Consistency Falls Short (arXiv:2411.01101, Byerly & Khashabi, TACL 2026) demonstrates through comprehensive experiments that self-consistency not only fails to improve but actively degrades performance on long-context tasks, because positional bias induces correlated failures across SC samples rather than diversifying reasoning paths. The degradation worsens with longer context lengths and smaller model sizes but remains invariant to prompt format or task type. This finding is directly relevant to our independence assumption: it provides empirical evidence that shared positional bias creates correlated intra-sequence failures, motivating our copula-based correlation modeling as an ablation to capture non-independent failure propagation through dependency DAGs. Lost in the Middle, and In-Between (arXiv:2412.10079, Baker et al. 2024) extends the lost-in-the-middle phenomenon specifically to multi-hop QA settings, demonstrating that performance degrades not only with respect to the distance of information from context edges but also with increasing distance between pieces of information required for multi-step reasoning. This finding directly supports our hypothesis that inter-evidence positional relationships — not just absolute position — drive multi-hop failure patterns, and that dependency-aware placement must consider both absolute visibility and relative evidence proximity. Scaling Reasoning Hop (arXiv:2601.21214, Li et al., ICLR 2026) identifies 'erroneous processing heads' (ep heads) — attention heads that amplify incorrect reasoning trajectories while suppressing correct ones — and proposes Test-time Correction of Reasoning (TCR), a lightweight intervention that dynamically deactivates ep heads during inference, improving reasoning hop generalization by +4.9–6.8% across Phi-3, LLaMA3-8B, and Qwen2.5-7B. EP heads are identified via Causal Indirect Effect analysis on token-level prediction errors and exhibit systematically higher entropy than correct-processing heads. TCR is complementary to our attention-entropy-based failure estimation: while TCR targets individual head-level interventions to correct generated CoT reasoning steps, our framework uses aggregate attention entropy as a proxy for node-level recognition failure probability in evidence-retrieval settings, and our interventions operate at the evidence-placement level (TAER) and attention-steering level (CA-MFAI) rather than head deactivation. ASCoT (arXiv:2508.05282, Zhang et al.) identifies 'late-stage fragility' in Chain-of-Thought math reasoning, showing that errors injected in later CoT steps are 3–4× more damaging than early-step errors (e.g., 51.7% vs. 14.6% accuracy drop at step 4 vs. step 2 on GSM8K). This finding appears to challenge the cascading failure hypothesis by suggesting late errors matter more than early ones. However, the two settings involve fundamentally different error regimes: in CoT math reasoning, each step is generated sequentially by the model, and early errors can be self-corrected because the model retains 'higher semantic entropy and contextual flexibility' during initial stages (the authors' explanation). In multi-hop QA over long contexts with dependency structure, failures propagate through structural dependency — if evidence A (required to process evidence B) is not recognized due to positional invisibility, evidence B cannot be correctly integrated regardless of its own visibility. There is no self-correction mechanism for missed upstream evidence in single-pass retrieval-then-integrate reasoning. Our cascading model specifically addresses this structural propagation regime, and we empirically test whether upstream failures are indeed more damaging than downstream failures in dependency chains — the opposite prediction from ASCoT's CoT setting. Beyond Exponential Decay (arXiv:2505.24187) argues that autoregressive generation errors concentrate at sparse 'key tokens' (5–10% of total) rather than accumulating uniformly, proposing a stratified model P(correct) ≈ (1−e_key)^k · (1−e_non)^(n−k) where k scales sublinearly — but studies token-level generation coherence, not multi-hop reasoning; in structured multi-hop QA, every evidence token is a 'key token' and errors propagate causally through dependency chains rather than clustering on sparse decision points. HopChain (arXiv:2603.17024) generates multi-hop vision-language reasoning data showing errors compound across intermediate steps but provides no formal failure model. BRIDGE (arXiv:2603.07931) benchmarks multi-hop reasoning in long scientific documents but doesn't model dependency structure. NovelHopQA (arXiv:2506.02000) provides 1–4 hop QA over 64K–128K-token novel excerpts, revealing consistent accuracy drops with increased hops (86% at 1-hop to 74% at 4-hop at 64K tokens) and identifying 'missed final-hop integration' and 'long-range drift' as key failure modes — providing ecological validity for cascading failures in naturalistic long-context settings. Fragile Reasoning (arXiv:2604.01639) introduces the Cascading Amplification Index (CAI) measuring layer-wise divergence amplification within transformer architectures, showing 28–45% answer-flip rates from meaning-preserving perturbations — providing mechanistic evidence that small perturbations cascade through model layers, analogous to inter-hop error propagation. ReCAPA (arXiv:2604.21232) addresses cascading failures in VLA multi-step execution through hierarchical predictive correction, introducing error propagation and recovery metrics — a cross-domain analogue to evidence-chain failure mitigation. The ManyICLBench (ACL 2025) SSL/ASL taxonomy reveals that global context understanding (ASL) fails at 16K tokens while local retrieval (SSL) persists to 64K, suggesting dependent evidence integration is the bottleneck. 'From Spark to Fire' (arXiv:2603.04474) models error cascades in LLM multi-agent systems via directed dependency graphs, raising defense success from 0.32 to 0.89 — but targets inter-agent message propagation, not intra-context evidence chains. 'From Chains to DAGs' (arXiv:2601.17593) shows DAG structure is linearly recoverable from LLM hidden states, confirming models internally represent dependency graphs. ARES (arXiv:2507.12948, EMNLP 2025) provides probabilistic step-level soundness guarantees but evaluates each step conditioned on verified premises rather than modeling how positional visibility propagates failures through the dependency topology. Back Attention (arXiv:2502.10835, EMNLP 2025) identifies four stages of multi-hop reasoning via logit flow and proposes a back-attention mechanism improving multi-hop accuracy. 'Context Length Alone Hurts LLM Performance Despite Perfect Retrieval' (arXiv:2510.05381) shows 13.9–85% degradation from context length alone even with perfect evidence placement, suggesting visibility functions must account for context-length-dependent baseline degradation. 'Attention Head Entropy Predicts Answer Correctness' (arXiv:2602.13699) demonstrates that per-head 2-Rényi entropy predicts answer correctness before generation with +17.7% AUROC, suggesting a deployment-time proxy for node failure probability. MHTS (arXiv:2504.08756) generates difficulty-controllable multi-hop QA with explicit tree structures. No existing work combines evidence dependency DAGs with position-dependent visibility functions, cascading failure theory, topology-aware single-pass interventions, and automated dependency extraction to both predict and mitigate reasoning chain failures in single-context long-form LLM reasoning.
+
+## Approach
+We formalize each multi-hop QA instance as a directed acyclic evidence-dependency graph G=(V,E) where each node v_i has a positional visibility score estimated via MFAI (Multi-Focus Attention Instruction) diagnostic protocols from the Weakest Link methodology. MFAI is a natural language instructional steering technique that prepends position-directing prompts (e.g., 'The answer is in Document XX and Document YY') to diagnostically isolate recognition from synthesis failures — not a learned probe or classifier. We adapt series-reliability cascading failure models: a node fails if it cannot be recognized OR if any of its parent nodes in the dependency DAG have failed, yielding a recursive failure probability P_fail(v) = 1 − (1 − p_local(v)) · ∏_{u∈parents(v)} (1 − P_fail(u)), where p_local(v) is the position-dependent recognition failure rate. We explicitly acknowledge that this recursion is standard series-reliability theory; the novelty lies in (a) the empirical demonstration that LLM reasoning failures follow this multiplicative cascading model rather than independent, min-visibility, uniform-chain, or stratified-key-token alternatives, (b) the positional visibility function p_local(v) calibrated via MFAI instructions as a function of absolute position and context length, (c) topology-aware interventions derived from the model, and (d) automated dependency DAG extraction for deployment settings.
+
+Independence assumption and empirical validation. Rather than assuming independence a priori, we treat it as a testable hypothesis central to the paper. We empirically measure inter-node failure correlation across all node pairs within the same sequence using Pearson and tetrachoric correlation on per-instance binary failure indicators. Motivated by Self-Consistency Falls Short (Byerly & Khashabi, TACL 2026), which empirically demonstrates that positional bias creates correlated failures across self-consistency samples in long contexts, we include a copula-based ablation extension: P_fail(v) = 1 − C_θ(1−p_local(v), ∏_{u∈parents(v)}(1−P_fail(u))) where C_θ is a Clayton copula capturing tail dependence, and report whether the copula extension improves calibration over the independence model. The degree to which failures at different nodes are independent within a sequence is itself a key empirical finding of the paper.
+
+Benchmarks and models. We construct controlled multi-hop QA benchmarks on MuSiQue and HotpotQA with systematically varied dependency structures (chains of 2–4 hops, binary trees, diamond DAGs) and evidence positions across 128K-token contexts, following the MHTS framework for topology-controlled generation. We additionally evaluate on NovelHopQA (arXiv:2506.02000) as a naturalistic long-context multi-hop benchmark with 64K–128K-token novel excerpts, testing whether our cascading model's predictions generalize beyond synthetic controlled settings. We evaluate three open-source LLMs with native long-context support spanning two architectural paradigms: Qwen3-235B-A22B-Instruct-2507 (262K native context, large-scale MoE with 22B active out of 235B total parameters, representing frontier open-weight MoE models), Llama 4 Scout (10M native context, efficient MoE with 17B active out of 109B total parameters across 16 experts, representing compact MoE designs), and Gemma 4 31B (256K native context, Google's dense architecture representing non-MoE models). All models natively support 128K tokens, eliminating confounds from context extrapolation. This selection provides meaningful architectural diversity — two MoE models at different scales (large vs. efficient) plus one dense model — enabling us to test whether cascading failure patterns differ systematically between MoE and dense architectures, and whether MoE expert routing interacts with positional visibility in dependency chains.
+
+Baselines and prediction evaluation. We empirically measure per-node and chain-level failure rates, then compare our cascading model's predictions against four baselines: (1) independent-product (uniform per-hop failure rate), (2) min-visibility (Weakest Link Law), (3) uniform-chain ((1−ε)^K following the Fano-Style bound's formulation), and (4) stratified key-token model (P ≈ (1−e_key)^k · (1−e_non)^(n−k) from Beyond Exponential Decay, adapted to multi-hop QA by treating evidence-bearing positions as key tokens), using Expected Calibration Error (ECE), Brier score, and Kendall's τ rank correlation.
+
+Minimum viable results. We pre-specify the following thresholds for a meaningful contribution: (1) the cascading model must achieve ECE reduction of ≥0.03 absolute (or ≥15% relative) over the best-performing baseline (expected to be min-visibility), reflecting meaningful calibration improvement given that ECE in LLM multi-hop reasoning typically ranges 0.15–0.35; (2) Kendall's τ rank correlation between predicted and observed chain-level failure probabilities must improve by ≥0.08 over the best baseline, indicating the cascading model captures failure ordering that topology-unaware models miss; (3) TAER and CA-MFAI interventions must each yield ≥3% absolute accuracy improvement over their topology-unaware counterparts (position-only reordering and position-only MFAI, respectively). If the cascading model achieves only marginal improvement over min-visibility (<0.02 ECE), this constitutes a negative result — that dependency topology does not meaningfully improve failure prediction beyond positional visibility alone — which we commit to reporting transparently, as it would itself be an important finding about the sufficiency of position-only models.
+
+Topology-aware interventions. Beyond prediction, we derive two interventions: (1) Cascade-Aware MFAI (CA-MFAI), which uses the cascading model to identify the highest-fragility node in the DAG — the node whose failure causes the greatest expected downstream cascade — and steers attention there first via MFAI natural language instructions, rather than the simple position-based steering in the original Weakest Link work; and (2) Topology-Aware Evidence Reordering (TAER), which places evidence documents in topological dependency order with upstream (root) nodes in high-visibility positions (context start/end), minimizing cascade propagation by ensuring that nodes whose failure would cascade furthest are placed where recognition probability is highest. TAER is a single-pass intervention — unlike GOLD PANNING (arXiv:2510.09770) which requires O(log N) inference rounds with Bayesian belief updates to iteratively narrow down a single target, TAER computes optimal placement from the DAG topology before inference and requires only one forward pass. TAER also differs from GOLD PANNING in three further respects: (i) TAER addresses multi-hop dependency chains rather than single-evidence retrieval; (ii) TAER jointly optimizes placement of all evidence pieces using dependency structure rather than using belief-agnostic reordering; (iii) TAER targets cascading failure mitigation rather than iterative target identification. TAER differs from Chow-Liu Ordering (arXiv:2603.09835) in three key ways: (i) TAER operates within a single long context for single-model reasoning, while Chow-Liu optimizes chunk processing order for multi-agent systems with bounded shared memory; (ii) TAER uses task-level evidence dependency structure (which evidence piece is required to process which), while Chow-Liu uses statistical mutual information between chunk contents; (iii) TAER targets positional visibility bias in transformers, while Chow-Liu targets information loss at agent handoff boundaries. TAER also differs from CoRe (arXiv:2410.07103) by exploiting dependency topology to selectively place critical upstream nodes in high-visibility positions, rather than brute-force repeating all context. We compare CA-MFAI and TAER against position-only MFAI, random reordering, CoRe context repetition, GOLD PANNING-style iterative reordering (adapted from single-evidence to multi-evidence as a strong iterative baseline), and recency-ordered baselines.
+
+Upstream vs. downstream failure impact. Motivated by ASCoT's (arXiv:2508.05282) finding of 'late-stage fragility' in CoT math reasoning — where later-step errors are 3–4× more damaging than earlier ones due to reduced self-correction capacity — we include a targeted analysis comparing the impact of upstream (root-adjacent) vs. downstream (leaf-adjacent) evidence failures in our dependency chains. We hypothesize the opposite pattern from ASCoT: in multi-hop QA with structural dependency, upstream failures should be more damaging because downstream integration structurally requires upstream evidence, and there is no self-correction mechanism for missed evidence in single-pass retrieval-then-integrate reasoning. This comparison directly tests whether the error regime in evidence-dependency chains is fundamentally different from sequential CoT generation, providing an important empirical bridge between these two lines of work.
+
+Dependency DAG acquisition at test time. For controlled benchmarks, gold dependency DAGs are available from benchmark construction. For deployment settings, we implement LLM-based question decomposition as the primary automatic DAG extraction method: the model decomposes a multi-hop question into ordered sub-questions with explicit dependency annotations (building on the Self-Ask, DecomP, and QDMR paradigms, with recent methods like CompactRAG achieving competitive accuracy in only two LLM calls). We measure DAG extraction accuracy against gold annotations and evaluate how noisy/approximate DAGs affect cascading model calibration and intervention effectiveness. As ablation extensions, we additionally evaluate: (a) post-hoc dependency inference from retrieved evidence documents using entity overlap and coreference signals, and (b) a DAG-free baseline using only attention entropy for failure prediction without dependency knowledge — quantifying the value of explicit dependency modeling.
+
+Oracle-free deployment. To address the MFAI oracle limitation, we evaluate attention head entropy (per-head 2-Rényi entropy from arXiv:2602.13699) as an oracle-free proxy for p_local(v), testing whether entropy-estimated failure probabilities yield comparable cascading predictions and intervention effectiveness. We note that Scaling Reasoning Hop (arXiv:2601.21214, ICLR 2026) identifies erroneous processing heads (ep heads) via entropy-based detection, providing convergent evidence that attention-level signals are informative for failure prediction — though their TCR intervention (head deactivation) targets generated CoT steps while our framework targets evidence placement and attention steering. Combined with automatic DAG extraction, this enables a fully oracle-free deployment pipeline: automatic DAG extraction → entropy-based failure estimation → cascade prediction → topology-aware intervention.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '250-380 (A100-80GB): ~130h inference across 3 LLMs × 3 dependency topologies × ~1500 samples at 128K context + NovelHopQA evaluation, ~60h for MFAI + CA-MFAI + TAER + CoRe + GOLD PANNING-style iterative baseline comparison intervention runs, ~25h for primary DAG extraction pipeline evaluation, ~35h for copula ablation, stratified-model baselines, DAG method comparison ablations, upstream-vs-downstream analysis, and entropy proxy evaluation', 'timeline': '10-13 weeks (2w dataset construction + dependency annotation + DAG extraction pipeline, 3w inference + MFAI diagnostic + intervention experiments, 2w model fitting + correlation analysis + copula ablation + baseline comparison, 1w DAG extraction accuracy evaluation + ablations, 2-3w writing + revisions)', 'estimated_gpu_cost': '$500-760 at ~$2/A100-hr (cloud spot pricing)'}, 'human_in_loop': {'gpu_hours': '200-310 (A100-80GB): Claude assists with dataset construction, DAG annotation, DAG extraction pipeline development, intervention design iteration, and experiment analysis reducing manual overhead by ~25%', 'timeline': '8-11 weeks (1.5w dataset construction with Claude-assisted annotation, 3w inference + diagnostics + interventions, 1.5w model fitting + analysis + ablations, 2-3w writing)', 'claude_api_cost': '$300-450 (dependency graph extraction, automated error categorization, DAG extraction pipeline development, intervention ablation analysis, writing assistance)', 'estimated_gpu_cost': '$400-620'}, 'auto_research': {'gpu_hours': '180-280 (A100-80GB): automated pipeline reduces redundant runs via adaptive experiment design', 'timeline': '7-9 weeks (1w automated dataset + DAG pipeline, 2.5w parallelized inference + interventions, 1w automated analysis + model fitting + ablations, 2-3w human-reviewed writing)', 'claude_api_cost': '$550-800 (end-to-end pipeline orchestration, DAG extraction pipeline, automated annotation, iterative experiment design, intervention optimization, draft generation and revision)', 'estimated_gpu_cost': '$360-560', 'speed_bottleneck': 'Long-context inference throughput: 128K-token inputs on Qwen3-235B-A22B-Instruct-2507 at ~15-20 tokens/sec on 4xA100 limits to ~120 samples/hr; total inference across all conditions requires ~70-100 GPU-hours sequentially. Llama 4 Scout and Gemma 4 31B run efficiently on 1-2 GPUs each, significantly reducing multi-GPU scheduling complexity compared to the prior 5-model design.'}}
+
+## Inspired By
+Field guide Section 6 (Reasoning vs Retrieval: multi-hop reasoning failures) + Weakest Link Law's treatment of evidence as independent + Fano-Style upper bound's theoretical ceiling motivating tighter per-instance prediction + CoRe's demonstration that ordering matters but lacking topology awareness + ManyICLBench SSL/ASL divergence showing integration is harder than retrieval + cross-domain transfer from network cascading failure theory + 'From Spark to Fire' governance-layer intervention pattern + attention head entropy as oracle-free failure proxy + ep heads (Scaling Reasoning Hop, ICLR 2026) as complementary attention-level intervention + Self-Consistency Falls Short (TACL 2026) empirically demonstrating that positional bias creates correlated failures, motivating copula-based correlation modeling + GOLD PANNING's insight that positional bias can be strategically exploited at inference time, which we extend from iterative single-evidence retrieval to single-pass dependency-aware multi-evidence placement + ASCoT's late-stage fragility counter-narrative motivating explicit empirical test of upstream-vs-downstream failure impact in dependency chains
+
+## Target Venues
+- ICLR 2027 (abstract: ~Sep 19, full paper: ~Sep 24, 2026; dates projected from ICLR 2026 pattern per trybibby.com, official CFP not yet released as of May 2026) — PRIMARY, ~18 weeks
+- AAAI 2027 (abstract: Jul 21, full paper: Jul 28, 2026; Montréal, Canada, Feb 16-23, 2027) — STRETCH if ready early, ~10 weeks (dates confirmed against official AAAI-27 CFP)
+
+## Key References
+- Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck (arXiv 2601.12499, 2026)
+- A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA (arXiv 2509.21199, ICLR 2026)
+- Scaling Reasoning Hop Exposes Weaknesses: Demystifying and Improving Hop Generalization in Large Language Models (arXiv 2601.21214, Li et al., ICLR 2026)
+- Chow-Liu Ordering for Long-Context Reasoning in Chain-of-Agents (arXiv 2603.09835, ICLR 2026 Workshop MemAgents)
+- Unleashing Multi-Hop Reasoning Potential through Repetition of Misordered Context — CoRe (arXiv 2410.07103, NAACL 2025 Findings)
+- Beyond Exponential Decay: Rethinking Error Accumulation in Large Language Models (arXiv 2505.24187, 2025)
+- Not All Errors Are Created Equal: ASCoT Addresses Late-Stage Fragility in Efficient LLM Reasoning (arXiv 2508.05282, Zhang et al., 2025)
+- NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts (arXiv 2506.02000, 2025)
+- Fragile Reasoning: Cascading Amplification Index for LLM Sensitivity to Perturbations (arXiv 2604.01639, 2026)
+- ReCAPA: Hierarchical Predictive Correction to Mitigate Cascading Failures (arXiv 2604.21232, 2026)
+- HopChain: Multi-Hop Data Synthesis for Generalizable Vision-Language Reasoning (arXiv 2603.17024, 2026)
+- BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence (arXiv 2603.07931, 2026)
+- StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering (arXiv 2510.02827, 2025)
+- On Many-Shot In-Context Learning for Long-Context Evaluation (ACL 2025)
+- From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration (arXiv 2603.04474, 2026)
+- From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs (arXiv 2601.17593, 2026)
+- Probabilistic Soundness Guarantees in LLM Reasoning Chains — ARES (EMNLP 2025)
+- Transformers Remember First, Forget Last: Dual-Process Interference in LLMs (arXiv 2603.00270, 2026)
+- Back Attention: Understanding and Enhancing Multi-Hop Reasoning in Large Language Models (EMNLP 2025)
+- Context Length Alone Hurts LLM Performance Despite Perfect Retrieval (arXiv 2510.05381, 2025)
+- Attention Head Entropy of LLMs Predicts Answer Correctness (arXiv 2602.13699, 2026)
+- MHTS: Multi-Hop Tree Structure Framework for Generating Difficulty-Controllable QA Datasets (arXiv 2504.08756, 2025)
+- Catastrophic cascade of failures in interdependent networks — Buldyrev et al. (Nature 2010)
+- Entropy trajectory shape predicts LLM reasoning reliability (arXiv 2603.18940, 2026)
+- Copula-based reliability analysis of degrading systems with dependent failures (Reliability Engineering & System Safety 2020)
+- Question Decomposition with Dependency Graphs (arXiv 2104.08647, ACL 2021)
+- GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning (arXiv 2510.09770, Byerly & Khashabi, 2025)
+- Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems (arXiv 2411.01101, Byerly & Khashabi, TACL 2026)
+- Lost in the Middle, and In-Between: Enhancing Language Models' Ability to Reason Over Long Contexts in Multi-Hop QA (arXiv 2412.10079, Baker et al. 2024)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "05c95d9b-8bfb-4e3f-a198-bf302d266913",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:26:35.136Z_
+
+```json
+{
+  "parentUuid": "05c95d9b-8bfb-4e3f-a198-bf302d266913",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "68d72ce8-c157-449d-9e25-0a108cf9c018",
+  "timestamp": "2026-05-20T05:26:35.136Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:26:35.136Z_
+
+```json
+{
+  "parentUuid": "68d72ce8-c157-449d-9e25-0a108cf9c018",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d2d1a371-d01d-4f65-8218-97965b9c992b",
+  "timestamp": "2026-05-20T05:26:35.136Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning  ## Descripti…",
+  "leafUuid": "d2d1a371-d01d-4f65-8218-97965b9c992b",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cascading failure model for multi-hop LLM reasoning",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:26:42.408Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze this proposal for EMNLP 2026. First, I need to do thorough literature research to understand the current landscape before making any judgments.
+
+Let me search for the key papers and concepts mentioned in this proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2d1a371-d01d-4f65-8218-97965b9c992b",
+  "isSidechain": false,
+  "requestId": "req_011CbDGPsrK7SVan2urwq9QR",
+  "type": "assistant",
+  "uuid": "817e35c3-00b7-43b6-8697-955809ff8d54",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThdmFXWjXvWdh968Tv5dWc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10407,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 10407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T05:26:42.959Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key related works and the current state of the field.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "817e35c3-00b7-43b6-8697-955809ff8d54",
+  "isSidechain": false,
+  "requestId": "req_011CbDGPsrK7SVan2urwq9QR",
+  "type": "assistant",
+  "uuid": "8bcaee72-e02f-493d-87ee-ea8b715c1792",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThdmFXWjXvWdh968Tv5dWc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10407,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 10407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T05:26:43.707Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01URDGBpGDrJGa4jKTLSFLBn`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8bcaee72-e02f-493d-87ee-ea8b715c1792",
+  "isSidechain": false,
+  "requestId": "req_011CbDGPsrK7SVan2urwq9QR",
+  "type": "assistant",
+  "uuid": "ef4b5d9a-1e4e-404a-bf6f-ed453f47e9f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThdmFXWjXvWdh968Tv5dWc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10407,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 10407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T05:26:43.714Z_
+
+<details><summary>↩ Tool result · `toolu_01URDGBpGDrJGa4jKTLSFLBn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef4b5d9a-1e4e-404a-bf6f-ed453f47e9f1",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "5a4ad1dc-e131-4bd4-b419-be8d057a5121",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ef4b5d9a-1e4e-404a-bf6f-ed453f47e9f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T05:26:46.134Z_
+
+Now let me conduct the required literature searches. I'll run multiple searches in parallel to understand the current landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a4ad1dc-e131-4bd4-b419-be8d057a5121",
+  "isSidechain": false,
+  "requestId": "req_011CbDGQWsH6y3zXALbrX6zY",
+  "type": "assistant",
+  "uuid": "7b41ee51-b7a7-44df-82ca-d8154eac4344",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XyvWaZuD8uf2bZjJRWsVuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 24740,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 24740,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T05:26:46.865Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015xQVSxrb9KYCnhWxDhh8hF`</summary>
+
+```json
+{
+  "query": "Weakest Link Law multi-hop QA LLM reasoning failures arXiv 2601.12499"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b41ee51-b7a7-44df-82ca-d8154eac4344",
+  "isSidechain": false,
+  "requestId": "req_011CbDGQWsH6y3zXALbrX6zY",
+  "type": "assistant",
+  "uuid": "9862840d-d270-4a2e-8b8a-44358851fcfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XyvWaZuD8uf2bZjJRWsVuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 24740,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 24740,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T05:26:51.955Z_
+
+<details><summary>↩ Tool result · `toolu_015xQVSxrb9KYCnhWxDhh8hF`</summary>
+
+```text
+Web search results for query: "Weakest Link Law multi-hop QA LLM reasoning failures arXiv 2601.12499"
+
+Links: [{"title":"[2601.12499] Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck","url":"https://arxiv.org/abs/2601.12499"},{"title":"Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck","url":"https://arxiv.org/pdf/2601.12499"},{"title":"(PDF) Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck","url":"https://www.researchgate.net/publication/399930384_Failure_Modes_in_Multi-Hop_QA_The_Weakest_Link_Law_and_the_Recognition_Bottleneck"},{"title":"Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck","url":"https://arxiv.org/html/2601.12499v1"},{"title":"Failure Modes in Multi-Hop QA: The Weakest Link Effect and the Recognition Bottleneck","url":"https://arxiv.org/html/2601.12499v2"}]
+
+I found the paper! Here are the details about arXiv 2601.12499:
+
+**Title:** "Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck"
+
+**Authors:** Meiru Zhang, Zaiqiao Meng, and Nigel Collier (University of Cambridge)
+
+**Key Findings:**
+
+Across 5 LLMs on two multi-hop QA tasks (MuSiQue and NeoQA), the researchers establish the "Weakest Link Law": multi-hop reasoning performance collapses to the performance level of the least visible evidence.
+
+Despite scaling to massive context windows, LLMs struggle with multi-hop reasoning due to inherent position bias, which causes them to overlook information at certain positions, and it's unclear whether these failures stem from an inability to locate evidence (recognition failure) or integrate it (synthesis failure).
+
+**Methodology and Solutions:**
+
+The researchers introduce Multi-Focus Attention Instruction (MFAI), a semantic probe to disentangle these mechanisms by explicitly steering attention towards selected positions.
+
+Crucially, this failure is governed by absolute position rather than the linear distance between facts (performance variance <3%).
+
+Matched MFAI resolves recognition bottlenecks, improving accuracy by up to 11.5% in low-visibility positions.
+
+The paper was published in January 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9862840d-d270-4a2e-8b8a-44358851fcfe",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "a510b549-4c00-487f-8a90-44ffde23a24c",
+  "toolUseResult": {
+    "query": "Weakest Link Law multi-hop QA LLM reasoning failures arXiv 2601.12499",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XCyXQkSCDacFcyadjSwAEu",
+        "content": [
+          {
+            "title": "[2601.12499] Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck",
+            "url": "https://arxiv.org/abs/2601.12499"
+          },
+          {
+            "title": "Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck",
+            "url": "https://arxiv.org/pdf/2601.12499"
+          },
+          {
+            "title": "(PDF) Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck",
+            "url": "https://www.researchgate.net/publication/399930384_Failure_Modes_in_Multi-Hop_QA_The_Weakest_Link_Law_and_the_Recognition_Bottleneck"
+          },
+          {
+            "title": "Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck",
+            "url": "https://arxiv.org/html/2601.12499v1"
+          },
+          {
+            "title": "Failure Modes in Multi-Hop QA: The Weakest Link Effect and the Recognition Bottleneck",
+            "url": "https://arxiv.org/html/2601.12499v2"
+          }
+        ]
+      },
+      "I found the paper! Here are the details about arXiv 2601.12499:\n\n**Title:** \"Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck\"\n\n**Authors:** Meiru Zhang, Zaiqiao Meng, and Nigel Collier (University of Cambridge)\n\n**Key Findings:**\n\nAcross 5 LLMs on two multi-hop QA tasks (MuSiQue and NeoQA), the researchers establish the \"Weakest Link Law\": multi-hop reasoning performance collapses to the performance level of the least visible evidence.\n\nDespite scaling to massive context windows, LLMs struggle with multi-hop reasoning due to inherent position bias, which causes them to overlook information at certain positions, and it's unclear whether these failures stem from an inability to locate evidence (recognition failure) or integrate it (synthesis failure).\n\n**Methodology and Solutions:**\n\nThe researchers introduce Multi-Focus Attention Instruction (MFAI), a semantic probe to disentangle these mechanisms by explicitly steering attention towards selected positions.\n\nCrucially, this failure is governed by absolute position rather than the linear distance between facts (performance variance <3%).\n\nMatched MFAI resolves recognition bottlenecks, improving accuracy by up to 11.5% in low-visibility positions.\n\nThe paper was published in January 2026."
+    ],
+    "durationSeconds": 5.086460506,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9862840d-d270-4a2e-8b8a-44358851fcfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T05:26:54.601Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VGi5XeVnW9CwS9QuYuQ5e2`</summary>
+
+```json
+{
+  "query": "cascading failure LLM reasoning multi-hop dependency graph topology-aware 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a510b549-4c00-487f-8a90-44ffde23a24c",
+  "isSidechain": false,
+  "requestId": "req_011CbDGR7e4NRzoHjuYEx5vf",
+  "type": "assistant",
+  "uuid": "38409a98-cddc-4002-a7e9-6cd80e4f708d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LnVCmxYQa9BLWDHTCdfgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 766,
+      "cache_read_input_tokens": 25441,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 25441,
+          "cache_creation_input_tokens": 766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T05:27:03.649Z_
+
+<details><summary>↩ Tool result · `toolu_01VGi5XeVnW9CwS9QuYuQ5e2`</summary>
+
+```text
+Web search results for query: "cascading failure LLM reasoning multi-hop dependency graph topology-aware 2025 2026"
+
+Links: [{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs","url":"https://arxiv.org/pdf/2601.17593"},{"title":"Stalled, Biased, and Confused: Uncovering Reasoning Failures in LLMs for Cloud-Based Root Cause Analysis","url":"https://arxiv.org/pdf/2601.22208"},{"title":"Adversarial Network Imagination: Causal LLMs and Digital Twins for Proactive Telecom Mitigation","url":"https://arxiv.org/pdf/2602.13203"},{"title":"Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck","url":"https://arxiv.org/pdf/2601.12499"},{"title":"Memory Injections: Correcting Multi-Hop Reasoning Failures during   Inference in Transformer-Based Language Models","url":"https://arxiv.org/pdf/2309.05605"},{"title":"Think Locally, Explain Globally: Graph-Guided LLM Investigations via Local Reasoning and Belief Propagation","url":"https://arxiv.org/pdf/2601.17915"},{"title":"Reasoning with Graphs: Structuring Implicit Knowledge to Enhance LLMs   Reasoning","url":"https://arxiv.org/pdf/2501.07845"}]
+
+I found several relevant research papers and resources related to your query. Here's what the search revealed:
+
+## Key Findings:
+
+**Cascading Failures and Dependency Graphs:**
+
+Fault-injection frameworks struggle to capture rare, coordinated, or cascading failures arising from complex dependency structures, and recent work formulates causal scenario generation as a constrained language generation problem where LLM outputs must respect explicit dependency graphs, with Causal LLMs grounded in causal structure to produce hypothetically valid, multi-step failure scenarios.
+
+**Multi-Hop Reasoning Failures:**
+
+Multi-hop reasoning follows a "Weakest Link Law" where performance is governed by the absolute bucket position of the least visible evidence, and if a single reasoning hop falls into an under-attended region, the entire chain collapses. Current open-source LLMs show varying success and failure in multi-hop RCA (Root Cause Analysis).
+
+**Graph-Structured Reasoning:**
+
+DAG structure is meaningfully encoded in LLM representations, with recoverability peaking in intermediate layers, and LLM reasoning exhibits measurable internal graph structure. Additionally, dependency graphs model environments where nodes are entities and edges encode structural dependencies along which effects propagate.
+
+**Topology-Aware Approaches:**
+
+PAGER introduces a topology-aware agent that decomposes geometric construction into dependency-structured planning modules with precision optimization.
+
+The search results include several 2025-2026 papers addressing these interconnected topics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38409a98-cddc-4002-a7e9-6cd80e4f708d",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "d89cad09-19d5-45ac-a001-03821f153f0a",
+  "toolUseResult": {
+    "query": "cascading failure LLM reasoning multi-hop dependency graph topology-aware 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XZsVdXpjJN6wumEMZ4jQ8q",
+        "content": [
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2601.17593"
+          },
+          {
+            "title": "Stalled, Biased, and Confused: Uncovering Reasoning Failures in LLMs for Cloud-Based Root Cause Analysis",
+            "url": "https://arxiv.org/pdf/2601.22208"
+          },
+          {
+            "title": "Adversarial Network Imagination: Causal LLMs and Digital Twins for Proactive Telecom Mitigation",
+            "url": "https://arxiv.org/pdf/2602.13203"
+          },
+          {
+            "title": "Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck",
+            "url": "https://arxiv.org/pdf/2601.12499"
+          },
+          {
+            "title": "Memory Injections: Correcting Multi-Hop Reasoning Failures during   Inference in Transformer-Based Language Models",
+            "url": "https://arxiv.org/pdf/2309.05605"
+          },
+          {
+            "title": "Think Locally, Explain Globally: Graph-Guided LLM Investigations via Local Reasoning and Belief Propagation",
+            "url": "https://arxiv.org/pdf/2601.17915"
+          },
+          {
+            "title": "Reasoning with Graphs: Structuring Implicit Knowledge to Enhance LLMs   Reasoning",
+            "url": "https://arxiv.org/pdf/2501.07845"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to your query. Here's what the search revealed:\n\n## Key Findings:\n\n**Cascading Failures and Dependency Graphs:**\n\nFault-injection frameworks struggle to capture rare, coordinated, or cascading failures arising from complex dependency structures, and recent work formulates causal scenario generation as a constrained language generation problem where LLM outputs must respect explicit dependency graphs, with Causal LLMs grounded in causal structure to produce hypothetically valid, multi-step failure scenarios.\n\n**Multi-Hop Reasoning Failures:**\n\nMulti-hop reasoning follows a \"Weakest Link Law\" where performance is governed by the absolute bucket position of the least visible evidence, and if a single reasoning hop falls into an under-attended region, the entire chain collapses. Current open-source LLMs show varying success and failure in multi-hop RCA (Root Cause Analysis).\n\n**Graph-Structured Reasoning:**\n\nDAG structure is meaningfully encoded in LLM representations, with recoverability peaking in intermediate layers, and LLM reasoning exhibits measurable internal graph structure. Additionally, dependency graphs model environments where nodes are entities and edges encode structural dependencies along which effects propagate.\n\n**Topology-Aware Approaches:**\n\nPAGER introduces a topology-aware agent that decomposes geometric construction into dependency-structured planning modules with precision optimization.\n\nThe search results include several 2025-2026 papers addressing these interconnected topics."
+    ],
+    "durationSeconds": 9.043472646000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "38409a98-cddc-4002-a7e9-6cd80e4f708d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T05:27:06.824Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0175yhMG5jvaxzLF2c9w84i7`</summary>
+
+```json
+{
+  "query": "GOLD PANNING context shuffling positional bias long-context reasoning arXiv 2510.09770"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d89cad09-19d5-45ac-a001-03821f153f0a",
+  "isSidechain": false,
+  "requestId": "req_011CbDGRydNwra9fiMDpj8uG",
+  "type": "assistant",
+  "uuid": "f8738def-7f15-4800-903b-9db8fc689db8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQn1VTkRf8wXihFX8XPcPk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 26207,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 26207,
+          "cache_creation_input_tokens": 843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T05:27:14.463Z_
+
+<details><summary>↩ Tool result · `toolu_0175yhMG5jvaxzLF2c9w84i7`</summary>
+
+```text
+Web search results for query: "GOLD PANNING context shuffling positional bias long-context reasoning arXiv 2510.09770"
+
+Links: [{"title":"[2510.09770] GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning","url":"https://arxiv.org/abs/2510.09770"},{"title":"GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning","url":"https://arxiv.org/pdf/2510.09770"},{"title":"Gold Panning: Strategic Context Shuffling for Needle-in-Haystack Reasoning","url":"https://arxiv.org/html/2510.09770"},{"title":"Positional Biases Shift as Inputs Approach Context Window Limits","url":"https://arxiv.org/pdf/2508.07479"},{"title":"Positional Biases Shift as Inputs Approach Context Window Limits","url":"https://arxiv.org/html/2508.07479v1"}]
+
+Based on the search results, here's what I found about the arXiv paper 2510.09770:
+
+## GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning
+
+Large language models (LLMs) exhibit pronounced position bias in long-context needle-in-haystack problems, systematically prioritizing the location of information over its relevance. 
+
+GOLD PANNING is a black-box Bayesian framework that performs inference-time active search over long contexts by reordering documents to concentrate high-belief items in highly diagnostic positions (signal anchoring) and updating beliefs over document relevance from model outputs. Unlike conventional active learning, which prioritizes uncertainty reduction, GOLD PANNING leverages anchoring—once flagged, keep it in sight—to preserve weak cues.
+
+The framework implements iterative assignment derived from the model's diagnosticity profile, which provably identifies a target among N documents in O(log N) rounds, ensuring scalability to many-document settings.
+
+On needle-in-a-haystack retrieval and long-context QA, GOLD PANNING matches Permutation Self-Consistency's target identification with 30–65% fewer queries and remains effective under calibration mismatch.
+
+The paper was published by Adam Byerly and Daniel Khashabi and appears to have been made available in February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8738def-7f15-4800-903b-9db8fc689db8",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "364a56ad-d100-43cd-993b-4f13bbd061d9",
+  "toolUseResult": {
+    "query": "GOLD PANNING context shuffling positional bias long-context reasoning arXiv 2510.09770",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PwkDZVepi5jH6uzAbciF3N",
+        "content": [
+          {
+            "title": "[2510.09770] GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning",
+            "url": "https://arxiv.org/abs/2510.09770"
+          },
+          {
+            "title": "GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning",
+            "url": "https://arxiv.org/pdf/2510.09770"
+          },
+          {
+            "title": "Gold Panning: Strategic Context Shuffling for Needle-in-Haystack Reasoning",
+            "url": "https://arxiv.org/html/2510.09770"
+          },
+          {
+            "title": "Positional Biases Shift as Inputs Approach Context Window Limits",
+            "url": "https://arxiv.org/pdf/2508.07479"
+          },
+          {
+            "title": "Positional Biases Shift as Inputs Approach Context Window Limits",
+            "url": "https://arxiv.org/html/2508.07479v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the arXiv paper 2510.09770:\n\n## GOLD PANNING: Strategic Context Shuffling for Needle-in-Haystack Reasoning\n\nLarge language models (LLMs) exhibit pronounced position bias in long-context needle-in-haystack problems, systematically prioritizing the location of information over its relevance. \n\nGOLD PANNING is a black-box Bayesian framework that performs inference-time active search over long contexts by reordering documents to concentrate high-belief items in highly diagnostic positions (signal anchoring) and updating beliefs over document relevance from model outputs. Unlike conventional active learning, which prioritizes uncertainty reduction, GOLD PANNING leverages anchoring—once flagged, keep it in sight—to preserve weak cues.\n\nThe framework implements iterative assignment derived from the model's diagnosticity profile, which provably identifies a target among N documents in O(log N) rounds, ensuring scalability to many-document settings.\n\nOn needle-in-a-haystack retrieval and long-context QA, GOLD PANNING matches Permutation Self-Consistency's target identification with 30–65% fewer queries and remains effective under calibration mismatch.\n\nThe paper was published by Adam Byerly and Daniel Khashabi and appears to have been made available in February 2026."
+    ],
+    "durationSeconds": 7.6324991459999945,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f8738def-7f15-4800-903b-9db8fc689db8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T05:27:16.958Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NUSSrcxiVtzmbKMjzP9iJw`</summary>
+
+```json
+{
+  "query": "multi-hop reasoning error propagation dependency structure evidence ordering long-context LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "364a56ad-d100-43cd-993b-4f13bbd061d9",
+  "isSidechain": false,
+  "requestId": "req_011CbDGSmsUoqaUExNLUShK6",
+  "type": "assistant",
+  "uuid": "8453cb05-8f9a-408e-a279-9c0e95a83d22",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5wXKsP9uL2kSARgyBtnea",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 27050,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 27050,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T05:27:26.926Z_
+
+<details><summary>↩ Tool result · `toolu_01NUSSrcxiVtzmbKMjzP9iJw`</summary>
+
+```text
+Web search results for query: "multi-hop reasoning error propagation dependency structure evidence ordering long-context LLM 2025 2026"
+
+Links: [{"title":"Improving Retrieval-Augmented Generation for Multi-Hop ...","url":"https://arxiv.org/pdf/2601.11255"},{"title":"Chow-Liu Ordering for Long-Context Reasoning in Chain-of-Agents","url":"https://arxiv.org/pdf/2603.09835"},{"title":"Multi-hop Reasoning Guide - Practical Tips for 2025 | ShadeCoder","url":"https://www.shadecoder.com/topics/multi-hop-reasoning-a-comprehensive-guide-for-2025"},{"title":"Reasoning Paths as Signals: Augmenting Multi-hop Fact Verification through Structural Reasoning Progression","url":"https://arxiv.org/pdf/2506.07075"},{"title":"BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence","url":"https://arxiv.org/pdf/2603.07931"},{"title":"Emulating Retrieval Augmented Generation via Prompt Engineering for   Enhanced Long Context Comprehension in LLMs","url":"https://arxiv.org/pdf/2502.12462"}]
+
+Great! I've found several highly relevant research papers and articles on this topic. Here's a summary of what the search revealed:
+
+## Key Findings on Multi-hop Reasoning in Long-Context LLMs (2025-2026)
+
+**Error Propagation in Sequential Methods:**
+Unlike sequential methods where errors cascade, bottom-up traversal of reasoning trees ensures that sub-problems are resolved and verified with retrieved evidence before their results are used to tackle parent nodes, critically minimizing error propagation.
+
+**Dependency Structure and Evidence Ordering:**
+Chunk ordering for long-context reasoning has been studied using Chow–Liu trees to learn a dependency structure that prioritizes strongly related chunks. A breadth-first traversal of the resulting tree yields chunk orderings that reduce information loss and consistently outperform both default document-chunk ordering and semantic score-based ordering.
+
+**Long-Context Reasoning Challenges:**
+While recent LLMs support over 100,000 tokens in a single prompt, simply enlarging context windows has not guaranteed robust multi-hop reasoning when key details are scattered across massive input.
+
+**Progressive Reasoning Structures:**
+Current methods largely rely on static reasoning structures, which fail to reflect the progressive nature of multi-hop reasoning, making it difficult to handle long, dependency-rich evidence chains.
+
+These findings reflect cutting-edge research being presented at major conferences like WWW '26 and arXiv preprints from 2025-2026, addressing fundamental challenges in improving multi-hop reasoning reliability in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8453cb05-8f9a-408e-a279-9c0e95a83d22",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "5e20ec6b-7a6d-48f9-b023-999b7f98d626",
+  "toolUseResult": {
+    "query": "multi-hop reasoning error propagation dependency structure evidence ordering long-context LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D8e4HFzWwiTqhigwHzpmJP",
+        "content": [
+          {
+            "title": "Improving Retrieval-Augmented Generation for Multi-Hop ...",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          },
+          {
+            "title": "Chow-Liu Ordering for Long-Context Reasoning in Chain-of-Agents",
+            "url": "https://arxiv.org/pdf/2603.09835"
+          },
+          {
+            "title": "Multi-hop Reasoning Guide - Practical Tips for 2025 | ShadeCoder",
+            "url": "https://www.shadecoder.com/topics/multi-hop-reasoning-a-comprehensive-guide-for-2025"
+          },
+          {
+            "title": "Reasoning Paths as Signals: Augmenting Multi-hop Fact Verification through Structural Reasoning Progression",
+            "url": "https://arxiv.org/pdf/2506.07075"
+          },
+          {
+            "title": "BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence",
+            "url": "https://arxiv.org/pdf/2603.07931"
+          },
+          {
+            "title": "Emulating Retrieval Augmented Generation via Prompt Engineering for   Enhanced Long Context Comprehension in LLMs",
+            "url": "https://arxiv.org/pdf/2502.12462"
+          }
+        ]
+      },
+      "Great! I've found several highly relevant research papers and articles on this topic. Here's a summary of what the search revealed:\n\n## Key Findings on Multi-hop Reasoning in Long-Context LLMs (2025-2026)\n\n**Error Propagation in Sequential Methods:**\nUnlike sequential methods where errors cascade, bottom-up traversal of reasoning trees ensures that sub-problems are resolved and verified with retrieved evidence before their results are used to tackle parent nodes, critically minimizing error propagation.\n\n**Dependency Structure and Evidence Ordering:**\nChunk ordering for long-context reasoning has been studied using Chow–Liu trees to learn a dependency structure that prioritizes strongly related chunks. A breadth-first traversal of the resulting tree yields chunk orderings that reduce information loss and consistently outperform both default document-chunk ordering and semantic score-based ordering.\n\n**Long-Context Reasoning Challenges:**\nWhile recent LLMs support over 100,000 tokens in a single prompt, simply enlarging context windows has not guaranteed robust multi-hop reasoning when key details are scattered across massive input.\n\n**Progressive Reasoning Structures:**\nCurrent methods largely rely on static reasoning structures, which fail to reflect the progressive nature of multi-hop reasoning, making it difficult to handle long, dependency-rich evidence chains.\n\nThese findings reflect cutting-edge research being presented at major conferences like WWW '26 and arXiv preprints from 2025-2026, addressing fundamental challenges in improving multi-hop reasoning reliability in language models."
+    ],
+    "durationSeconds": 9.960536522000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8453cb05-8f9a-408e-a279-9c0e95a83d22",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning  ## Descripti…",
+  "leafUuid": "5e20ec6b-7a6d-48f9-b023-999b7f98d626",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cascading failure model for multi-hop LLM reasoning",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T05:27:29.628Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GAJJfNAKyq3gAvG8V6hN9t`</summary>
+
+```json
+{
+  "query": "Fano style accuracy upper bound multi-hop QA arXiv 2509.21199 ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e20ec6b-7a6d-48f9-b023-999b7f98d626",
+  "isSidechain": false,
+  "requestId": "req_011CbDGThFh18SZpD9mNLHzS",
+  "type": "assistant",
+  "uuid": "773eed0d-e727-4073-b69c-a64b915e8e08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDYL3DabLpf9q3ukM6cixM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 741,
+      "cache_read_input_tokens": 27712,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 27712,
+          "cache_creation_input_tokens": 741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:27:35.662Z_
+
+<details><summary>↩ Tool result · `toolu_01GAJJfNAKyq3gAvG8V6hN9t`</summary>
+
+```text
+Web search results for query: "Fano style accuracy upper bound multi-hop QA arXiv 2509.21199 ICLR 2026"
+
+Links: [{"title":"[2509.21199] A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA","url":"https://arxiv.org/abs/2509.21199"},{"title":"A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA | OpenReview","url":"https://openreview.net/forum?id=dPAcHrG4rl"},{"title":"A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA","url":"https://arxiv.org/html/2509.21199"},{"title":"A Fano-Style Accuracy Upper Bound for LLM Single-Pass ...","url":"https://arxiv.org/pdf/2509.21199"},{"title":"(PDF) A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA","url":"https://www.researchgate.net/publication/395848334_A_Fano-Style_Accuracy_Upper_Bound_for_LLM_Single-Pass_Reasoning_in_Multi-Hop_QA"},{"title":"Multi-Hop Question Answering: When Can Humans Help, and Where do They Struggle?","url":"https://arxiv.org/pdf/2510.04493"},{"title":"The Reasoning Bottleneck in Graph-RAG: Structured Prompting and Context Compression for Multi-Hop QA","url":"https://arxiv.org/pdf/2603.14045"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper is titled "A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA" with arXiv ID 2509.21199, authored by Kaiyang Wan, Lang Gao, Honglin Mu, Preslav Nakov, Yuxia Wang, and Xiuying Chen.
+
+The analysis establishes a Fano-style accuracy upper bound that defines a theoretical performance ceiling for single-pass LLMs, revealing that accuracy inevitably collapses once task complexity exceeds model capacity.
+
+The paper introduces a proof-of-concept multi-call framework for Multi-Hop Question Answering (MHQA) called InfoQA, which combines capacity-aware task decomposition with active pruning of prior reasoning traces to ensure high per-step accuracy.
+
+The paper appears to be under consideration for ICLR 2026, as indicated by the OpenReview forum link in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "773eed0d-e727-4073-b69c-a64b915e8e08",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "a8c2383b-5eea-4825-b527-9eaab79e5e17",
+  "toolUseResult": {
+    "query": "Fano style accuracy upper bound multi-hop QA arXiv 2509.21199 ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011TKC8BGWDzTFcZnZdZw4Nr",
+        "content": [
+          {
+            "title": "[2509.21199] A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA",
+            "url": "https://arxiv.org/abs/2509.21199"
+          },
+          {
+            "title": "A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA | OpenReview",
+            "url": "https://openreview.net/forum?id=dPAcHrG4rl"
+          },
+          {
+            "title": "A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA",
+            "url": "https://arxiv.org/html/2509.21199"
+          },
+          {
+            "title": "A Fano-Style Accuracy Upper Bound for LLM Single-Pass ...",
+            "url": "https://arxiv.org/pdf/2509.21199"
+          },
+          {
+            "title": "(PDF) A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA",
+            "url": "https://www.researchgate.net/publication/395848334_A_Fano-Style_Accuracy_Upper_Bound_for_LLM_Single-Pass_Reasoning_in_Multi-Hop_QA"
+          },
+          {
+            "title": "Multi-Hop Question Answering: When Can Humans Help, and Where do They Struggle?",
+            "url": "https://arxiv.org/pdf/2510.04493"
+          },
+          {
+            "title": "The Reasoning Bottleneck in Graph-RAG: Structured Prompting and Context Compression for Multi-Hop QA",
+            "url": "https://arxiv.org/pdf/2603.14045"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper is titled \"A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA\" with arXiv ID 2509.21199, authored by Kaiyang Wan, Lang Gao, Honglin Mu, Preslav Nakov, Yuxia Wang, and Xiuying Chen.\n\nThe analysis establishes a Fano-style accuracy upper bound that defines a theoretical performance ceiling for single-pass LLMs, revealing that accuracy inevitably collapses once task complexity exceeds model capacity.\n\nThe paper introduces a proof-of-concept multi-call framework for Multi-Hop Question Answering (MHQA) called InfoQA, which combines capacity-aware task decomposition with active pruning of prior reasoning traces to ensure high per-step accuracy.\n\nThe paper appears to be under consideration for ICLR 2026, as indicated by the OpenReview forum link in the search results."
+    ],
+    "durationSeconds": 6.030266001999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "773eed0d-e727-4073-b69c-a64b915e8e08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T05:27:39.350Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013749BuhFMDcLMhNNTbxokn`</summary>
+
+```json
+{
+  "query": "reliability theory series system cascading failure applied to neural network reasoning transformer 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8c2383b-5eea-4825-b527-9eaab79e5e17",
+  "isSidechain": false,
+  "requestId": "req_011CbDGULUZQvqc8be9zAp8U",
+  "type": "assistant",
+  "uuid": "ff6a4138-6389-4412-a904-a90f73885c2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Ym8kAhernKARBEsAk4oFT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 28453,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 28453,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T05:27:46.195Z_
+
+<details><summary>↩ Tool result · `toolu_013749BuhFMDcLMhNNTbxokn`</summary>
+
+```text
+Web search results for query: "reliability theory series system cascading failure applied to neural network reasoning transformer 2024 2025 2026"
+
+Links: [{"title":"(PDF) Predicting Cascading Failures in Power Systems using Machine Learning","url":"https://www.researchgate.net/publication/389547579_Predicting_Cascading_Failures_in_Power_Systems_using_Machine_Learning"},{"title":"Predicting Cascading Failures in Power Systems using Machine Learning","url":"https://arxiv.org/pdf/2503.00567"},{"title":"Artificial intelligence-driven framework for predicting cascading failure paths in power grids - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0951832026003935"},{"title":"Predicting Cascading Failures in Power Systems using Machine Learning","url":"https://arxiv.org/html/2503.00567v1"},{"title":"Hybrid learning-based fault prediction and cascading failure","url":"https://www.nature.com/articles/s41598-025-10304-7.pdf"},{"title":"Prediction of Cascading Failures in Spatial Networks","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4836660/"},{"title":"Lightweight model for power grid cascading failures risk evaluation based on graph physics-informed attention network - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417425020871"},{"title":"Physics-Informed Graph Neural Jump ODEs for Cascading Failure Prediction in Power Grids","url":"https://arxiv.org/pdf/2603.20838"},{"title":"Fast and Reliable $N-k$ Contingency Screening with Input-Convex Neural   Networks","url":"https://arxiv.org/pdf/2410.00796"}]
+
+Based on my search results, here's what I found related to reliability theory, cascading failures, and neural networks in recent publications:
+
+## Cascading Failures in Power Systems with Machine Learning (2024-2025)
+
+The increasing complexity and interconnectivity of modern power grids have made them more vulnerable to cascading failures, where an initial disturbance can lead to widespread outages. Recent research has focused on applying machine learning and neural network approaches to predict and prevent these failures.
+
+Studies focus on predicting the onset time of cascading failures using various traditional machine learning algorithms, where the onset time is a critical parameter representing the time-frame within which initial disturbances can lead to subsequent cascading failures.
+
+## Advanced Neural Network Architectures
+
+Recent work proposes Physics-Informed Graph Neural Jump ODEs (PI-GN-JODE), combining an edge-conditioned graph neural network encoder, a Neural ODE for continuous power redistribution, and Kirchhoff-based physics regularization, simultaneously predicting edge and node failure probabilities, severity classification, and demand not served.
+
+## Graph Transformers Applied to Cascading Failures (2025)
+
+A lightweight Graph Physics-Informed Attention Network (GPIAN) integrates power grid physical laws with graph neural network attention, where the Electric Functional Strength metric drives adaptive information aggregation.
+
+## Performance Results
+
+Physics-informed models achieve high performance metrics including a Precision-Recall Area Under the Curve of 0.991 for edge failure detection and 0.973 for node failure detection on IEEE test systems.
+
+The research demonstrates growing interest in combining reliability theory principles with advanced neural network architectures like transformers and graph neural networks for predicting cascading failures in complex infrastructure systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff6a4138-6389-4412-a904-a90f73885c2b",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "3c89769e-03d8-406f-83dd-8c65b9ff20ef",
+  "toolUseResult": {
+    "query": "reliability theory series system cascading failure applied to neural network reasoning transformer 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XNrdKqtm8q9nW8pSGcNfpd",
+        "content": [
+          {
+            "title": "(PDF) Predicting Cascading Failures in Power Systems using Machine Learning",
+            "url": "https://www.researchgate.net/publication/389547579_Predicting_Cascading_Failures_in_Power_Systems_using_Machine_Learning"
+          },
+          {
+            "title": "Predicting Cascading Failures in Power Systems using Machine Learning",
+            "url": "https://arxiv.org/pdf/2503.00567"
+          },
+          {
+            "title": "Artificial intelligence-driven framework for predicting cascading failure paths in power grids - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0951832026003935"
+          },
+          {
+            "title": "Predicting Cascading Failures in Power Systems using Machine Learning",
+            "url": "https://arxiv.org/html/2503.00567v1"
+          },
+          {
+            "title": "Hybrid learning-based fault prediction and cascading failure",
+            "url": "https://www.nature.com/articles/s41598-025-10304-7.pdf"
+          },
+          {
+            "title": "Prediction of Cascading Failures in Spatial Networks",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4836660/"
+          },
+          {
+            "title": "Lightweight model for power grid cascading failures risk evaluation based on graph physics-informed attention network - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425020871"
+          },
+          {
+            "title": "Physics-Informed Graph Neural Jump ODEs for Cascading Failure Prediction in Power Grids",
+            "url": "https://arxiv.org/pdf/2603.20838"
+          },
+          {
+            "title": "Fast and Reliable $N-k$ Contingency Screening with Input-Convex Neural   Networks",
+            "url": "https://arxiv.org/pdf/2410.00796"
+          }
+        ]
+      },
+      "Based on my search results, here's what I found related to reliability theory, cascading failures, and neural networks in recent publications:\n\n## Cascading Failures in Power Systems with Machine Learning (2024-2025)\n\nThe increasing complexity and interconnectivity of modern power grids have made them more vulnerable to cascading failures, where an initial disturbance can lead to widespread outages. Recent research has focused on applying machine learning and neural network approaches to predict and prevent these failures.\n\nStudies focus on predicting the onset time of cascading failures using various traditional machine learning algorithms, where the onset time is a critical parameter representing the time-frame within which initial disturbances can lead to subsequent cascading failures.\n\n## Advanced Neural Network Architectures\n\nRecent work proposes Physics-Informed Graph Neural Jump ODEs (PI-GN-JODE), combining an edge-conditioned graph neural network encoder, a Neural ODE for continuous power redistribution, and Kirchhoff-based physics regularization, simultaneously predicting edge and node failure probabilities, severity classification, and demand not served.\n\n## Graph Transformers Applied to Cascading Failures (2025)\n\nA lightweight Graph Physics-Informed Attention Network (GPIAN) integrates power grid physical laws with graph neural network attention, where the Electric Functional Strength metric drives adaptive information aggregation.\n\n## Performance Results\n\nPhysics-informed models achieve high performance metrics including a Precision-Recall Area Under the Curve of 0.991 for edge failure detection and 0.973 for node failure detection on IEEE test systems.\n\nThe research demonstrates growing interest in combining reliability theory principles with advanced neural network architectures like transformers and graph neural networks for predicting cascading failures in complex infrastructure systems."
+    ],
+    "durationSeconds": 6.839421776999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ff6a4138-6389-4412-a904-a90f73885c2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T05:27:50.407Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q6f6EuaesuBCJ9mj1m2eMF`</summary>
+
+```json
+{
+  "query": "\"Self-Consistency Falls Short\" positional bias long-context Byerly Khashabi TACL 2026 arXiv 2411.01101"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c89769e-03d8-406f-83dd-8c65b9ff20ef",
+  "isSidechain": false,
+  "requestId": "req_011CbDGV7dRZZrQbhrihdtJ3",
+  "type": "assistant",
+  "uuid": "561d5a3f-6659-48ef-982b-30155dba6d9b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VnW2fNKjyr84SJHjjpHSXS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 939,
+      "cache_read_input_tokens": 29231,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 939,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 29231,
+          "cache_creation_input_tokens": 939,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 939
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T05:27:56.100Z_
+
+<details><summary>↩ Tool result · `toolu_01Q6f6EuaesuBCJ9mj1m2eMF`</summary>
+
+```text
+Web search results for query: ""Self-Consistency Falls Short" positional bias long-context Byerly Khashabi TACL 2026 arXiv 2411.01101"
+
+Links: [{"title":"Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.625/136156/Self-Consistency-Falls-Short-The-Adverse-Effects"},{"title":"[2411.01101] Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems","url":"https://arxiv.org/abs/2411.01101"},{"title":"Self-Consistency Falls Short! The Adverse Effects of ...","url":"https://arxiv.org/pdf/2411.01101"},{"title":"Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems","url":"https://arxiv.org/html/2411.01101"},{"title":"(PDF) How Effective Is Self-Consistency for Long-Context Problems?","url":"https://www.researchgate.net/publication/385529304_How_Effective_Is_Self-Consistency_for_Long-Context_Problems"},{"title":"How Effective Is Self-Consistency for Long-Context Problems?","url":"https://arxiv.org/html/2411.01101v1"},{"title":"(PDF) Insights into LLM Long-Context Failures: When Transformers Know but Don't Tell","url":"https://www.researchgate.net/publication/381652297_Insights_into_LLM_Long-Context_Failures_When_Transformers_Know_but_Don't_Tell"},{"title":"Self-Consistency in Language Models","url":"https://www.emergentmind.com/topics/self-consistency-in-language-models"}]
+
+I found the paper you're looking for! Here's information about it:
+
+**Title:** "Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems"
+
+**Authors:** Adam Byerly, Daniel Khashabi
+
+**Publication:** Published in Transactions of the Association for Computational Linguistics (TACL) 2026, volume 14, pages 292–317
+
+**arXiv:** The paper is available at arXiv:2411.01101
+
+**Main Finding:** While self-consistency (SC) improves the performance of large language models (LLMs) across various tasks and domains that involve short content, the research challenges the assumption that SC's benefits generalize to long-context settings where LLMs often struggle with position bias—the systematic over-reliance on specific context regions. The research finds that SC not only fails to improve but actively degrades performance on long-context tasks.
+
+**Key Detail:** The degradation is driven by persistent position bias, which worsens with longer context lengths and smaller model sizes but remains invariant to prompt format or task type.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "561d5a3f-6659-48ef-982b-30155dba6d9b",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "7f6ae241-a9fb-46db-967c-f6b1c5a829da",
+  "toolUseResult": {
+    "query": "\"Self-Consistency Falls Short\" positional bias long-context Byerly Khashabi TACL 2026 arXiv 2411.01101",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LBrJTdyfoWAMP5SMRKkqoi",
+        "content": [
+          {
+            "title": "Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.625/136156/Self-Consistency-Falls-Short-The-Adverse-Effects"
+          },
+          {
+            "title": "[2411.01101] Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems",
+            "url": "https://arxiv.org/abs/2411.01101"
+          },
+          {
+            "title": "Self-Consistency Falls Short! The Adverse Effects of ...",
+            "url": "https://arxiv.org/pdf/2411.01101"
+          },
+          {
+            "title": "Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems",
+            "url": "https://arxiv.org/html/2411.01101"
+          },
+          {
+            "title": "(PDF) How Effective Is Self-Consistency for Long-Context Problems?",
+            "url": "https://www.researchgate.net/publication/385529304_How_Effective_Is_Self-Consistency_for_Long-Context_Problems"
+          },
+          {
+            "title": "How Effective Is Self-Consistency for Long-Context Problems?",
+            "url": "https://arxiv.org/html/2411.01101v1"
+          },
+          {
+            "title": "(PDF) Insights into LLM Long-Context Failures: When Transformers Know but Don't Tell",
+            "url": "https://www.researchgate.net/publication/381652297_Insights_into_LLM_Long-Context_Failures_When_Transformers_Know_but_Don't_Tell"
+          },
+          {
+            "title": "Self-Consistency in Language Models",
+            "url": "https://www.emergentmind.com/topics/self-consistency-in-language-models"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about it:\n\n**Title:** \"Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\"\n\n**Authors:** Adam Byerly, Daniel Khashabi\n\n**Publication:** Published in Transactions of the Association for Computational Linguistics (TACL) 2026, volume 14, pages 292–317\n\n**arXiv:** The paper is available at arXiv:2411.01101\n\n**Main Finding:** While self-consistency (SC) improves the performance of large language models (LLMs) across various tasks and domains that involve short content, the research challenges the assumption that SC's benefits generalize to long-context settings where LLMs often struggle with position bias—the systematic over-reliance on specific context regions. The research finds that SC not only fails to improve but actively degrades performance on long-context tasks.\n\n**Key Detail:** The degradation is driven by persistent position bias, which worsens with longer context lengths and smaller model sizes but remains invariant to prompt format or task type."
+    ],
+    "durationSeconds": 5.688626671000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "561d5a3f-6659-48ef-982b-30155dba6d9b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-20T05:27:56.106Z_
+
+```json
+{
+  "parentUuid": "7f6ae241-a9fb-46db-967c-f6b1c5a829da",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "487ffdb7-5626-4bd1-b6a8-858496502dfc",
+  "timestamp": "2026-05-20T05:27:56.106Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T05:27:59.014Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XZxJGE1s6eC96RTz6Qn689`</summary>
+
+```json
+{
+  "query": "topology-aware evidence reordering multi-hop QA positional visibility dependency-aware placement 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "487ffdb7-5626-4bd1-b6a8-858496502dfc",
+  "isSidechain": false,
+  "requestId": "req_011CbDGVqtuYK8nzpeu9AhJx",
+  "type": "assistant",
+  "uuid": "67665fa3-a1aa-487c-a857-9e37a8f8c408",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnF8FGuvFtqck2TxVkGsch",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 937,
+      "cache_read_input_tokens": 30170,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 937,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 30170,
+          "cache_creation_input_tokens": 937,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 937
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T05:28:06.073Z_
+
+<details><summary>↩ Tool result · `toolu_01XZxJGE1s6eC96RTz6Qn689`</summary>
+
+```text
+Web search results for query: "topology-aware evidence reordering multi-hop QA positional visibility dependency-aware placement 2025 2026"
+
+Links: [{"title":"Shattering the Shortcut: A Topology-Regularized Benchmark for Multi-hop Medical Reasoning in LLMs","url":"https://arxiv.org/html/2603.12458"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps | Request PDF","url":"https://www.researchgate.net/publication/348345157_Constructing_A_Multi-hop_QA_Dataset_for_Comprehensive_Evaluation_of_Reasoning_Steps"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=multi-hop+Science+QA"},{"title":"Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck","url":"https://arxiv.org/html/2601.12499"},{"title":"Divide & Conquer for Entailment-aware Multi-hop Evidence Retrieval","url":"https://arxiv.org/pdf/2311.02616"},{"title":"HopRetriever: Retrieve Hops over Wikipedia to Answer Complex Questions","url":"https://arxiv.org/pdf/2012.15534"},{"title":"Decomposing Complex Questions Makes Multi-Hop QA Easier and More   Interpretable","url":"https://arxiv.org/pdf/2110.13472"}]
+
+Based on my web search, I found several recent papers related to topology-aware approaches in multi-hop question answering:
+
+## Key Findings:
+
+**Topology-Aware Multi-Hop QA Research (2025-2026):**
+
+ShatterMed-QA is a bilingual benchmark of 10,558 multi-hop clinical questions that constructs a topology-regularized medical Knowledge Graph using a novel k-Shattering algorithm, which physically prunes generic hubs to explicitly sever logical shortcuts.
+
+Recent research addresses whether the linear distance between distributed facts or absolute position governs multi-hop reasoning, as Large Language Models struggle with multi-hop reasoning due to inherent position bias.
+
+Topology-aware graph propagation is used to quantify state-wise contributions and yield objective, state-level rewards for multi-hop reasoning tasks.
+
+**Position and Visibility Factors:**
+
+Multi-Focus Attention Instruction (MFAI) is a semantic probe that steers attention towards selected positions to address position bias issues.
+
+The search results indicate active research in 2025-2026 on how topology, position, and evidence visibility affect multi-hop QA systems, though the specific concept of "positional visibility dependency-aware placement" as you phrased it wasn't explicitly found in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67665fa3-a1aa-487c-a857-9e37a8f8c408",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "944e9fa7-0dd6-4f19-b423-01df1334a359",
+  "toolUseResult": {
+    "query": "topology-aware evidence reordering multi-hop QA positional visibility dependency-aware placement 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kq6U56BqnzA8RTNSRiYnkH",
+        "content": [
+          {
+            "title": "Shattering the Shortcut: A Topology-Regularized Benchmark for Multi-hop Medical Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2603.12458"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps | Request PDF",
+            "url": "https://www.researchgate.net/publication/348345157_Constructing_A_Multi-hop_QA_Dataset_for_Comprehensive_Evaluation_of_Reasoning_Steps"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=multi-hop+Science+QA"
+          },
+          {
+            "title": "Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck",
+            "url": "https://arxiv.org/html/2601.12499"
+          },
+          {
+            "title": "Divide & Conquer for Entailment-aware Multi-hop Evidence Retrieval",
+            "url": "https://arxiv.org/pdf/2311.02616"
+          },
+          {
+            "title": "HopRetriever: Retrieve Hops over Wikipedia to Answer Complex Questions",
+            "url": "https://arxiv.org/pdf/2012.15534"
+          },
+          {
+            "title": "Decomposing Complex Questions Makes Multi-Hop QA Easier and More   Interpretable",
+            "url": "https://arxiv.org/pdf/2110.13472"
+          }
+        ]
+      },
+      "Based on my web search, I found several recent papers related to topology-aware approaches in multi-hop question answering:\n\n## Key Findings:\n\n**Topology-Aware Multi-Hop QA Research (2025-2026):**\n\nShatterMed-QA is a bilingual benchmark of 10,558 multi-hop clinical questions that constructs a topology-regularized medical Knowledge Graph using a novel k-Shattering algorithm, which physically prunes generic hubs to explicitly sever logical shortcuts.\n\nRecent research addresses whether the linear distance between distributed facts or absolute position governs multi-hop reasoning, as Large Language Models struggle with multi-hop reasoning due to inherent position bias.\n\nTopology-aware graph propagation is used to quantify state-wise contributions and yield objective, state-level rewards for multi-hop reasoning tasks.\n\n**Position and Visibility Factors:**\n\nMulti-Focus Attention Instruction (MFAI) is a semantic probe that steers attention towards selected positions to address position bias issues.\n\nThe search results indicate active research in 2025-2026 on how topology, position, and evidence visibility affect multi-hop QA systems, though the specific concept of \"positional visibility dependency-aware placement\" as you phrased it wasn't explicitly found in these results."
+    ],
+    "durationSeconds": 7.055117522000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67665fa3-a1aa-487c-a857-9e37a8f8c408",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T05:28:09.578Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TAX1WyeTdHtoKfbpgwTB7B`</summary>
+
+```json
+{
+  "query": "attention head entropy predict answer correctness oracle-free failure estimation LLM arXiv 2602.13699"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "944e9fa7-0dd6-4f19-b423-01df1334a359",
+  "isSidechain": false,
+  "requestId": "req_011CbDGWaXDAm7V3UERQNMXc",
+  "type": "assistant",
+  "uuid": "fb10c8c0-82ba-4402-a1a9-e09af4a0e9c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FUyCxMSUr5xszJLo47qEad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 31107,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 31107,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T05:28:16.077Z_
+
+<details><summary>↩ Tool result · `toolu_01TAX1WyeTdHtoKfbpgwTB7B`</summary>
+
+```text
+Web search results for query: "attention head entropy predict answer correctness oracle-free failure estimation LLM arXiv 2602.13699"
+
+Links: [{"title":"Attention Head Entropy of LLMs Predicts Answer Correctness | OpenReview","url":"https://openreview.net/forum?id=HJ6EGxNpgb"},{"title":"[2602.13699] Attention Head Entropy of LLMs Predicts Answer Correctness","url":"https://arxiv.org/abs/2602.13699"},{"title":"Attention Head Entropy of LLMs Predicts Answer Correctness","url":"https://arxiv.org/html/2602.13699"},{"title":"Attention Head Entropy of LLMs Predicts Answer Correctness","url":"https://arxiv.org/pdf/2602.13699"},{"title":"ATTENTION HEAD ENTROPY OF LLMS PREDICTS AN","url":"https://openreview.net/pdf/f1d8fabcdf88c7a7a6c264ffba2eef62e00a8f66.pdf"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research is about:
+
+The paper introduces Head Entropy, a method that predicts answer correctness from attention entropy patterns, specifically measuring the spread of the attention mass. It uses the attention patterns inside the model itself to determine the likelihood of a correct answer while generating the answer, with the key insight that certain attention heads exhibit distinct entropy patterns when the model gives correct versus incorrect answers.
+
+During a single forward pass, Head Entropy estimates the LLM generation's correctness using the entropy of individual attention heads as features, which are fed to a sparse, ℓ1-regularized logistic regression that produces calibrated correctness probabilities.
+
+Using sparse logistic regression on per-head 2-Rényi entropies, Head Entropy matches or exceeds baselines in-distribution and generalizes substantially better on out-of-domains, outperforming lookback lens ratio on average by +8.5% AUROC. The research further shows that attention patterns over the question/context alone, before answer generation, already carry predictive signal with on average +17.7% AUROC over the closest baseline, evaluated across 5 instruction-tuned LLMs and 3 QA datasets spanning general knowledge, multi-hop reasoning, and medicine.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb10c8c0-82ba-4402-a1a9-e09af4a0e9c2",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "079b2242-f817-4025-ad1e-833a1f957296",
+  "toolUseResult": {
+    "query": "attention head entropy predict answer correctness oracle-free failure estimation LLM arXiv 2602.13699",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V24dcnRDuQ1FC21ApNxKAX",
+        "content": [
+          {
+            "title": "Attention Head Entropy of LLMs Predicts Answer Correctness | OpenReview",
+            "url": "https://openreview.net/forum?id=HJ6EGxNpgb"
+          },
+          {
+            "title": "[2602.13699] Attention Head Entropy of LLMs Predicts Answer Correctness",
+            "url": "https://arxiv.org/abs/2602.13699"
+          },
+          {
+            "title": "Attention Head Entropy of LLMs Predicts Answer Correctness",
+            "url": "https://arxiv.org/html/2602.13699"
+          },
+          {
+            "title": "Attention Head Entropy of LLMs Predicts Answer Correctness",
+            "url": "https://arxiv.org/pdf/2602.13699"
+          },
+          {
+            "title": "ATTENTION HEAD ENTROPY OF LLMS PREDICTS AN",
+            "url": "https://openreview.net/pdf/f1d8fabcdf88c7a7a6c264ffba2eef62e00a8f66.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research is about:\n\nThe paper introduces Head Entropy, a method that predicts answer correctness from attention entropy patterns, specifically measuring the spread of the attention mass. It uses the attention patterns inside the model itself to determine the likelihood of a correct answer while generating the answer, with the key insight that certain attention heads exhibit distinct entropy patterns when the model gives correct versus incorrect answers.\n\nDuring a single forward pass, Head Entropy estimates the LLM generation's correctness using the entropy of individual attention heads as features, which are fed to a sparse, ℓ1-regularized logistic regression that produces calibrated correctness probabilities.\n\nUsing sparse logistic regression on per-head 2-Rényi entropies, Head Entropy matches or exceeds baselines in-distribution and generalizes substantially better on out-of-domains, outperforming lookback lens ratio on average by +8.5% AUROC. The research further shows that attention patterns over the question/context alone, before answer generation, already carry predictive signal with on average +17.7% AUROC over the closest baseline, evaluated across 5 instruction-tuned LLMs and 3 QA datasets spanning general knowledge, multi-hop reasoning, and medicine."
+    ],
+    "durationSeconds": 6.491910766000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fb10c8c0-82ba-4402-a1a9-e09af4a0e9c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning  ## Descripti…",
+  "leafUuid": "079b2242-f817-4025-ad1e-833a1f957296",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cascading failure model for multi-hop LLM reasoning",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T05:28:19.946Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TtL92rNz7GQnXqMY9ZcnY7`</summary>
+
+```json
+{
+  "query": "NovelHopQA multi-hop long narrative context 64K 128K arXiv 2506.02000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "079b2242-f817-4025-ad1e-833a1f957296",
+  "isSidechain": false,
+  "requestId": "req_011CbDGXKbZHoBdBCzG2NMCK",
+  "type": "assistant",
+  "uuid": "1a89296a-1ca4-4277-8b78-fe2e8ae5960a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MLX1CtyvVgq4oDw9rJBox",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 660,
+      "cache_read_input_tokens": 31864,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 31864,
+          "cache_creation_input_tokens": 660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T05:28:27.514Z_
+
+<details><summary>↩ Tool result · `toolu_01TtL92rNz7GQnXqMY9ZcnY7`</summary>
+
+```text
+Web search results for query: "NovelHopQA multi-hop long narrative context 64K 128K arXiv 2506.02000"
+
+Links: [{"title":"NovelHopQA: Multi-Hop Long-Context QA Benchmark","url":"https://www.emergentmind.com/topics/novelhopqa"},{"title":"[2506.02000] NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts","url":"https://arxiv.org/abs/2506.02000"},{"title":"NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/novelhopqa-diagnosing-multi-hop-reasoning-failures-long"},{"title":"NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250602000G/abstract"},{"title":"NovelHopQA","url":"https://novelhopqa.github.io/"},{"title":"(PDF) NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts","url":"https://www.researchgate.net/publication/392371278_NovelHopQA_Diagnosing_Multi-Hop_Reasoning_Failures_in_Long_Narrative_Contexts"},{"title":"NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts","url":"https://arxiv.org/html/2506.02000"},{"title":"NOVELHOPQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts","url":"https://openreview.net/pdf?id=a5Lj1aTKyU"}]
+
+Based on the search results, here's what I found about NovelHopQA:
+
+## NovelHopQA Overview
+
+NovelHopQA is the first benchmark to evaluate 1-4 hop QA over 64k-128k-token excerpts from 83 full-length public-domain novels. It's a diagnostic benchmark designed to evaluate and analyze multi-hop reasoning capabilities in long-context question answering (QA) systems, specifically within full-length narrative contexts spanning 64,000–128,000 tokens.
+
+## Significance
+
+While prior benchmarks explore long-context comprehension or multi-hop reasoning in isolation, none jointly vary context length and reasoning depth in natural narrative settings. This makes NovelHopQA unique in addressing both extended context processing and multi-hop reasoning together.
+
+## Methodology
+
+A keyword-guided pipeline builds hop-separated chains grounded in coherent storylines. Seven state-of-the-art models were evaluated and oracle-context filtering was applied to ensure all questions are genuinely answerable, with human annotators validating both alignment and hop depth.
+
+## Key Findings
+
+Empirical results show LLM performance degradation with increased hop depth and context length, highlighting issues like entity confusion and incomplete evidence integration. All models experience accuracy drops as context length and hop count increase, revealing the challenge of multi-hop reasoning over long narratives.
+
+The paper (arXiv:2506.02000) was submitted on May 20, 2025, with the latest version released on June 23, 2025. The code and datasets are available at https://novelhopqa.github.io.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a89296a-1ca4-4277-8b78-fe2e8ae5960a",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "6e89f933-00af-4c5f-b8be-0c84c5e2d86a",
+  "toolUseResult": {
+    "query": "NovelHopQA multi-hop long narrative context 64K 128K arXiv 2506.02000",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Dwe2eRPsag5BpCgT1fh1io",
+        "content": [
+          {
+            "title": "NovelHopQA: Multi-Hop Long-Context QA Benchmark",
+            "url": "https://www.emergentmind.com/topics/novelhopqa"
+          },
+          {
+            "title": "[2506.02000] NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts",
+            "url": "https://arxiv.org/abs/2506.02000"
+          },
+          {
+            "title": "NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/novelhopqa-diagnosing-multi-hop-reasoning-failures-long"
+          },
+          {
+            "title": "NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250602000G/abstract"
+          },
+          {
+            "title": "NovelHopQA",
+            "url": "https://novelhopqa.github.io/"
+          },
+          {
+            "title": "(PDF) NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts",
+            "url": "https://www.researchgate.net/publication/392371278_NovelHopQA_Diagnosing_Multi-Hop_Reasoning_Failures_in_Long_Narrative_Contexts"
+          },
+          {
+            "title": "NovelHopQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts",
+            "url": "https://arxiv.org/html/2506.02000"
+          },
+          {
+            "title": "NOVELHOPQA: Diagnosing Multi-Hop Reasoning Failures in Long Narrative Contexts",
+            "url": "https://openreview.net/pdf?id=a5Lj1aTKyU"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about NovelHopQA:\n\n## NovelHopQA Overview\n\nNovelHopQA is the first benchmark to evaluate 1-4 hop QA over 64k-128k-token excerpts from 83 full-length public-domain novels. It's a diagnostic benchmark designed to evaluate and analyze multi-hop reasoning capabilities in long-context question answering (QA) systems, specifically within full-length narrative contexts spanning 64,000–128,000 tokens.\n\n## Significance\n\nWhile prior benchmarks explore long-context comprehension or multi-hop reasoning in isolation, none jointly vary context length and reasoning depth in natural narrative settings. This makes NovelHopQA unique in addressing both extended context processing and multi-hop reasoning together.\n\n## Methodology\n\nA keyword-guided pipeline builds hop-separated chains grounded in coherent storylines. Seven state-of-the-art models were evaluated and oracle-context filtering was applied to ensure all questions are genuinely answerable, with human annotators validating both alignment and hop depth.\n\n## Key Findings\n\nEmpirical results show LLM performance degradation with increased hop depth and context length, highlighting issues like entity confusion and incomplete evidence integration. All models experience accuracy drops as context length and hop count increase, revealing the challenge of multi-hop reasoning over long narratives.\n\nThe paper (arXiv:2506.02000) was submitted on May 20, 2025, with the latest version released on June 23, 2025. The code and datasets are available at https://novelhopqa.github.io."
+    ],
+    "durationSeconds": 7.565084276000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1a89296a-1ca4-4277-8b78-fe2e8ae5960a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-20T05:28:34.180Z_
+
+Now let me do one more critical search — looking for any work that has already applied reliability/cascading failure theory to LLM reasoning chains, which would directly threaten the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e89f933-00af-4c5f-b8be-0c84c5e2d86a",
+  "isSidechain": false,
+  "requestId": "req_011CbDGYAKEipQrAkZ9ECUic",
+  "type": "assistant",
+  "uuid": "e219a74c-02e7-4716-879b-e23378a12f59",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oywrfRWLqSGbEE74QJ8VK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 32524,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 32524,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T05:28:34.955Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XX6hLE96SQ5j7vXKaDUjxj`</summary>
+
+```json
+{
+  "query": "\"From Spark to Fire\" error cascades LLM multi-agent dependency graph arXiv 2603.04474"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e219a74c-02e7-4716-879b-e23378a12f59",
+  "isSidechain": false,
+  "requestId": "req_011CbDGYAKEipQrAkZ9ECUic",
+  "type": "assistant",
+  "uuid": "50b1ea8c-68bb-4aaa-9400-5ba2c9a9af31",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oywrfRWLqSGbEE74QJ8VK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 32524,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 32524,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T05:28:40.435Z_
+
+<details><summary>↩ Tool result · `toolu_01XX6hLE96SQ5j7vXKaDUjxj`</summary>
+
+```text
+Web search results for query: ""From Spark to Fire" error cascades LLM multi-agent dependency graph arXiv 2603.04474"
+
+Links: [{"title":"[2603.04474] From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration","url":"https://arxiv.org/abs/2603.04474"},{"title":"[2603.04474v1] From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration","url":"https://arxiv.org/abs/2603.04474v1"},{"title":"From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration","url":"https://arxiv.org/pdf/2603.04474"},{"title":"From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration","url":"https://arxiv.org/html/2603.04474v1"},{"title":"From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.04474v1"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Title:** "From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration"
+
+**arXiv ID:** 2603.04474 (submitted March 4, 2026)
+
+**Authors:** Yizhe Xie, Congcong Zhu, Xinyue Zhang, Tianqing Zhu, Dayong Ye, Minfeng Qi, Huajie Chen, and Wanlei Zhou
+
+**Summary:** 
+
+The paper addresses Large Language Model-based Multi-Agent Systems (LLM-MAS) increasingly applied to complex collaborative scenarios, but notes that their collaborative mechanisms may cause minor inaccuracies to gradually solidify into system-level false consensus through iteration. Such risks are difficult to trace since errors can propagate and amplify through message dependencies.
+
+**Main Contributions:**
+
+- The authors propose a propagation dynamics model tailored for LLM-MAS that abstracts collaboration as a directed dependency graph and provides an early-stage risk criterion to characterize amplification risk.
+- Through experiments on six mainstream frameworks, they identify three vulnerability classes: cascade amplification, topological sensitivity, and consensus inertia.
+- They introduce a genealogy-graph-based governance layer that suppresses both endogenous and exogenous error amplification without altering the collaboration architecture, raising the defense success rate from 0.32 to over 0.89.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50b1ea8c-68bb-4aaa-9400-5ba2c9a9af31",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "de21ece2-a946-4829-a791-85a43b07c04c",
+  "toolUseResult": {
+    "query": "\"From Spark to Fire\" error cascades LLM multi-agent dependency graph arXiv 2603.04474",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015fCYucuQnhVVpZUiGN6pRp",
+        "content": [
+          {
+            "title": "[2603.04474] From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration",
+            "url": "https://arxiv.org/abs/2603.04474"
+          },
+          {
+            "title": "[2603.04474v1] From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration",
+            "url": "https://arxiv.org/abs/2603.04474v1"
+          },
+          {
+            "title": "From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration",
+            "url": "https://arxiv.org/pdf/2603.04474"
+          },
+          {
+            "title": "From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration",
+            "url": "https://arxiv.org/html/2603.04474v1"
+          },
+          {
+            "title": "From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.04474v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Title:** \"From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration\"\n\n**arXiv ID:** 2603.04474 (submitted March 4, 2026)\n\n**Authors:** Yizhe Xie, Congcong Zhu, Xinyue Zhang, Tianqing Zhu, Dayong Ye, Minfeng Qi, Huajie Chen, and Wanlei Zhou\n\n**Summary:** \n\nThe paper addresses Large Language Model-based Multi-Agent Systems (LLM-MAS) increasingly applied to complex collaborative scenarios, but notes that their collaborative mechanisms may cause minor inaccuracies to gradually solidify into system-level false consensus through iteration. Such risks are difficult to trace since errors can propagate and amplify through message dependencies.\n\n**Main Contributions:**\n\n- The authors propose a propagation dynamics model tailored for LLM-MAS that abstracts collaboration as a directed dependency graph and provides an early-stage risk criterion to characterize amplification risk.\n- Through experiments on six mainstream frameworks, they identify three vulnerability classes: cascade amplification, topological sensitivity, and consensus inertia.\n- They introduce a genealogy-graph-based governance layer that suppresses both endogenous and exogenous error amplification without altering the collaboration architecture, raising the defense success rate from 0.32 to over 0.89."
+    ],
+    "durationSeconds": 5.47454370000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "50b1ea8c-68bb-4aaa-9400-5ba2c9a9af31",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T05:28:43.826Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MYYtyz8ii6tXw9joCR5UTP`</summary>
+
+```json
+{
+  "query": "CoRe context repetition misordered document multi-hop QA NAACL 2025 arXiv 2410.07103"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de21ece2-a946-4829-a791-85a43b07c04c",
+  "isSidechain": false,
+  "requestId": "req_011CbDGZ7SNXs9Gq46aefoiD",
+  "type": "assistant",
+  "uuid": "b06d8fd0-75f5-4746-99a8-5c28b5e8f5ae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8MacQpVxqAcTJy6d2zA7Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 807,
+      "cache_read_input_tokens": 33467,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 807,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 33467,
+          "cache_creation_input_tokens": 807,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 807
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T05:28:49.398Z_
+
+<details><summary>↩ Tool result · `toolu_01MYYtyz8ii6tXw9joCR5UTP`</summary>
+
+```text
+Web search results for query: "CoRe context repetition misordered document multi-hop QA NAACL 2025 arXiv 2410.07103"
+
+Links: [{"title":"[2410.07103] Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context","url":"https://arxiv.org/abs/2410.07103"},{"title":"Unleashing Multi-Hop Reasoning Potential in Large Language Models   through Repetition of Misordered Context","url":"https://arxiv.org/pdf/2410.07103"},{"title":"Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context","url":"https://arxiv.org/html/2410.07103v1"},{"title":"Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context - ACL Anthology","url":"https://aclanthology.org/2025.findings-naacl.360/"},{"title":"Masking in Multi-hop QA: An Analysis of How Language Models Perform with Context Permutation","url":"https://arxiv.org/pdf/2505.11754"}]
+
+Based on the search results, here's what I found about this research:
+
+The paper "Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context" was published in the Findings of the Association for Computational Linguistics: NAACL 2025.
+
+The paper addresses the challenge that multi-hop reasoning remains difficult for LLMs, identifying that their performance is sensitive to the order in which supporting documents are presented. This is referred to as the misordered context problem.
+
+The researchers propose a method called context repetition (CoRe), which involves repeatedly presenting the context to ensure certain contiguous reasoning segments are presented in the optimal order.
+
+The method improves the F1 score by up to 30 percentage points on multi-hop QA tasks and increases accuracy by up to 70 percentage points on a synthetic task. Additionally, CoRe helps mitigate the "lost-in-the-middle" problem in LLMs.
+
+The paper is authored by Sangwon Yu, Ik-hwan Kim, Jongyoon Song, Saehyung Lee, Junsung Park, and Sungroh Yoon.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b06d8fd0-75f5-4746-99a8-5c28b5e8f5ae",
+  "isSidechain": false,
+  "promptId": "5d4ce5e9-6855-4a69-9438-d9a10ff95821",
+  "type": "user",
+  "uuid": "6350ede8-4de9-44b9-86dd-6aa7abe322e2",
+  "toolUseResult": {
+    "query": "CoRe context repetition misordered document multi-hop QA NAACL 2025 arXiv 2410.07103",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016QrfF9fPVidpjvAF2nupRM",
+        "content": [
+          {
+            "title": "[2410.07103] Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context",
+            "url": "https://arxiv.org/abs/2410.07103"
+          },
+          {
+            "title": "Unleashing Multi-Hop Reasoning Potential in Large Language Models   through Repetition of Misordered Context",
+            "url": "https://arxiv.org/pdf/2410.07103"
+          },
+          {
+            "title": "Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context",
+            "url": "https://arxiv.org/html/2410.07103v1"
+          },
+          {
+            "title": "Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-naacl.360/"
+          },
+          {
+            "title": "Masking in Multi-hop QA: An Analysis of How Language Models Perform with Context Permutation",
+            "url": "https://arxiv.org/pdf/2505.11754"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about this research:\n\nThe paper \"Unleashing Multi-Hop Reasoning Potential in Large Language Models through Repetition of Misordered Context\" was published in the Findings of the Association for Computational Linguistics: NAACL 2025.\n\nThe paper addresses the challenge that multi-hop reasoning remains difficult for LLMs, identifying that their performance is sensitive to the order in which supporting documents are presented. This is referred to as the misordered context problem.\n\nThe researchers propose a method called context repetition (CoRe), which involves repeatedly presenting the context to ensure certain contiguous reasoning segments are presented in the optimal order.\n\nThe method improves the F1 score by up to 30 percentage points on multi-hop QA tasks and increases accuracy by up to 70 percentage points on a synthetic task. Additionally, CoRe helps mitigate the \"lost-in-the-middle\" problem in LLMs.\n\nThe paper is authored by Sangwon Yu, Ik-hwan Kim, Jongyoon Song, Saehyung Lee, Junsung Park, and Sungroh Yoon."
+    ],
+    "durationSeconds": 5.5669146959999924,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b06d8fd0-75f5-4746-99a8-5c28b5e8f5ae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-20T05:30:37.111Z_
+
+Now I have sufficient research to make my evaluation. Let me synthesize everything.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Failure Modes in Multi-Hop QA: The Weakest Link Law and the Recognition Bottleneck](https://arxiv.org/abs/2601.12499) (arXiv, Jan 2026): 建立了多跳QA中的"最弱环法则"——性能由最低可见度证据决定，variance <3%。引入MFAI诊断协议区分识别vs.整合失败，改善高达11.5%。但将证据节点视为独立，不考虑依赖结构。本proposal的直接前驱工作。
+- [A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning in Multi-Hop QA](https://arxiv.org/abs/2509.21199) (ICLR 2026): 信息论上界证明单遍多跳QA精度必然随复杂度崩溃，(1−ε)^(K+1)模型使用均匀per-step error。不建模位置依赖或拓扑依赖的失败。本proposal的理论动机之一。
+- [GOLD PANNING: Strategic Context Shuffling](https://arxiv.org/abs/2510.09770) (Byerly & Khashabi, 2025): Bayesian推理时主动搜索框架，O(log N)轮迭代重排文档。针对单证据needle-in-haystack，不涉及多跳依赖结构。本proposal与之做了清晰区分（单遍vs.多轮，多跳vs.单跳）。
+- [Self-Consistency Falls Short](https://arxiv.org/abs/2411.01101) (Byerly & Khashabi, TACL 2026): 实证表明位置偏差在long-context中制造相关失败，SC不仅无效还有害。直接支持本proposal中copula相关失败建模的动机。
+- [CoRe: Context Repetition](https://arxiv.org/abs/2410.07103) (NAACL 2025 Findings): 通过重复上下文解决文档顺序问题，F1提升可达30点。暴力方法，不利用依赖拓扑。本proposal的baseline之一。
+- [From Spark to Fire](https://arxiv.org/abs/2603.04474) (Mar 2026): 将LLM多agent协作建模为有向依赖图，用传播动力学模型+治理层将防御成功率从0.32提升到0.89。**这是最重要的竞争工作**——同样用了依赖图+级联传播思路，但针对的是inter-agent消息传播，而非intra-context证据链。
+- [Chow-Liu Ordering](https://arxiv.org/abs/2603.09835) (ICLR 2026 Workshop): 用Chow-Liu树学习chunk互信息依赖结构优化处理顺序，但针对多agent bounded-memory系统，非单context推理。
+- [Attention Head Entropy Predicts Answer Correctness](https://arxiv.org/abs/2602.13699) (2026): 用per-head 2-Rényi entropy预测答案正确性，+17.7% AUROC。为本proposal的oracle-free部署管线提供关键组件。
+- [NovelHopQA](https://arxiv.org/abs/2506.02000) (2025): 1-4跳QA over 64K-128K token novel excerpts，性能随hop数和context长度系统性下降。提供生态效度benchmark。
+- [Scaling Reasoning Hop](https://arxiv.org/abs/2601.21214) (ICLR 2026): 识别ep heads并通过TCR去激活改善推理泛化。互补但不同方向（CoT步骤vs.证据检索）。
+
+- **调研总结**: 这个领域（长上下文多跳QA的失败模式建模与缓解）在2025-2026年进入爆发期。Weakest Link和Fano上界分别从实证和理论角度建立了基础，但均假设独立或均匀的per-hop失败。"From Spark to Fire"已经在multi-agent设定中应用了依赖图+级联传播，但尚无工作在**单context transformer推理**中将依赖拓扑与位置可见度函数结合进行级联失败建模。本proposal恰好填补了这个具体的gap。
+
+【Trivial Alternative 检验】:
+最直接的trivial alternative是：**直接用min-visibility（Weakest Link Law）+ CoRe context repetition就足够了吗？** 即不需要建模依赖拓扑，只需要把最弱位置的文档重复/移到高可见度位置。
+
+Proposal回应了这一点：它明确将min-visibility作为baseline之一，并pre-specify了需要≥0.03 ECE reduction和≥0.08 Kendall's τ improvement才算有意义。但问题的关键在于：**依赖拓扑带来的增量预测能力到底有多大？** 如果在实际multi-hop QA中，大部分失败确实由最弱位置的单节点决定（Weakest Link Law已证variance <3%），那么拓扑感知的边际贡献可能很有限。Proposal自身也承认了这一风险（negative result条款），这是一个正面信号。
+
+增量价值的核心在于：(a) 预测层面——如果拓扑感知模型确实比min-visibility有更好的校准，这本身是一个有价值的实证发现；(b) 干预层面——TAER和CA-MFAI如果能超越position-only方法，说明拓扑信息确实可被利用。两层增量都需要实验验证。
+
+**判断：trivial alternative威胁真实存在但有限。** Proposal已充分意识到并设计了对照，且承诺报告negative result。
+
+【前提假设检验】:
+核心逻辑链中有以下未经验证的环节：
+
+1. **"上游失败必然导致下游失败"假设**：级联模型的核心假设是，如果证据A（B的前置依赖）不被识别，B就无法被正确整合。但在LLM的实际推理中，这不一定成立——LLM可能通过部分信息推断、世界知识补偿、或从B的上下文中间接推断出A的内容。ASCoT的"后期脆弱性"发现就暗示LLM有一定的自我修正能力。Proposal意识到了这一点（upstream vs. downstream分析），但级联模型的乘法传播假设可能过于强烈。
+
+2. **MFAI诊断作为p_local(v)的可靠估计**：MFAI通过自然语言指令引导注意力来隔离识别vs.整合失败。但MFAI本身改变了模型的行为——指令条件下的失败率不一定等于无指令条件下的"自然"失败率。将MFAI诊断失败率用作级联模型的输入参数是否准确，本身需要验证。
+
+3. **自动DAG提取的准确性足以支撑级联预测**：LLM-based question decomposition在复杂多跳问题上的准确性有多高？如果DAG提取有较大噪声，整个oracle-free pipeline的可靠性存疑。Proposal设计了DAG准确性评估和noisy DAG的鲁棒性测试，但这是一个关键风险点。
+
+4. **系列可靠性递归的直接适用性**：网络科学中的级联失败模型假设节点失败是0/1事件。LLM推理中的"节点失败"是连续的、程度性的——部分识别、部分整合都是可能的。将二值可靠性理论直接套用可能过于简化。
+
+**这些假设中，#1和#4是最根本的——它们决定了级联模型是否比simpler alternatives有实质性优势。** 但这些都是可以通过实验回答的实证问题，不构成idea层面的致命缺陷。
+
+【3 维度打分】:
+1. **Novelty: 中偏强** — 核心贡献是将series-reliability级联失败理论应用于单context LLM多跳推理，结合位置可见度函数和依赖拓扑。Proposal诚实地承认递归公式本身是标准的可靠性理论，novelty claim集中在(a)实证验证LLM失败符合级联模型, (b)MFAI校准的位置可见度函数, (c)拓扑感知干预, (d)oracle-free部署管线。"From Spark to Fire"(arXiv:2603.04474)已在multi-agent场景做了类似的依赖图+级联建模，但该工作针对inter-agent消息传播，本proposal针对intra-context证据链，问题设定和干预机制确实不同。Weakest Link Law(arXiv:2601.12499)已建立位置-失败关系但假设独立，Fano上界(arXiv:2509.21199)使用均匀error，两者都未建模依赖拓扑——本proposal填补了明确的gap。但novelty的"惊喜度"受限：将可靠性理论的乘法传播应用于有依赖结构的系统，这一conceptual step对于了解可靠性理论的人来说是fairly obvious的，核心价值更多在于实证验证而非conceptual breakthrough。
+
+2. **Significance: 中偏强** — 多跳长上下文推理是LLM的核心挑战之一，Weakest Link和Fano上界发表在顶会说明社区高度关注。如果级联模型确实比独立假设有更好的预测和干预效果，这对理解和改善LLM多跳推理有直接且广泛的价值。TAER作为单遍、无需oracle的干预方法，有实际部署价值。upstream vs. downstream的实证比较（与ASCoT的CoT设定对照）也能提供有价值的insights。但significance的上限受限于：(1)干预改善幅度可能有限（Weakest Link已解释了大部分variance）；(2)如果negative result（拓扑不显著帮助），贡献主要是实证发现，影响力较小。
+
+3. **Related Work: 强** — 这是本proposal最突出的优点。对相关工作的覆盖非常全面，包括直接前驱(Weakest Link, Fano上界)、竞争工作(GOLD PANNING, CoRe, Chow-Liu Ordering)、互补工作(Scaling Reasoning Hop, ASCoT, attention entropy)、跨领域启发(From Spark to Fire, Buldyrev级联理论)。每个对比都有具体的差异化定位，不是泛泛引用。特别值得注意的是与GOLD PANNING的四维度差异化（单遍vs.多轮、多跳vs.单跳、依赖拓扑vs. Bayesian belief、级联缓解vs.迭代搜索）和对ASCoT反面预测的处理。所有我搜索到的关键论文(arXiv:2601.12499, 2509.21199, 2510.09770, 2411.01101, 2410.07103, 2603.04474, 2602.13699, 2506.02000)都被准确引用和讨论。我未发现明显的遗漏工作。
+
+【概率估计】: [28% - 40%] 中位 33%
+
+【估计理由】: 
+这个idea处于"有实质内核但surprisingness有限"的区间。从3维度到概率的推理如下：
+
+**上行因素（支撑30%+）**：
+- Related Work覆盖极为全面，差异化定位清晰，审稿人难以找到被遗漏的关键对比
+- 填补了明确、具体的gap（Weakest Link的独立假设 → 依赖拓扑感知的级联模型）
+- 研究问题的重要性已被Weakest Link(arXiv:2601.12499)和Fano上界(arXiv:2509.21199)发表在顶会所验证
+- 实验设计包含明确的minimum viable thresholds和negative result承诺，methodological rigor高
+- Oracle-free pipeline设计增加了实际价值
+- Upstream vs. downstream分析提供了与ASCoT的有趣对比
+
+**下行因素（限制上界在40%以下）**：
+- **核心conceptual step的surprisingness有限**：将series-reliability的乘法传播应用于有依赖结构的系统，对于了解可靠性理论的人来说是natural extension。审稿人可能会说"I would have guessed that dependency structure matters"——question是how much。
+- **Trivial alternative威胁真实存在**：Weakest Link Law已解释了大部分variance（<3%），拓扑感知的增量可能marginal
+- **前提假设#1（上游失败必然导致下游失败）的强度**：LLM的部分信息推断能力可能削弱级联效应
+- **"From Spark to Fire"的conceptual overlap**：虽然问题设定不同，但"依赖图+级联传播+干预"的高层框架相似
+
+限制上界的主要维度是 **Novelty**——conceptual contribution的surprisingness是天花板。Related Work很强但它更多决定下限（不容易被reject on coverage grounds），不决定上限。
+
+【主要风险】: 
+1. **审稿人可能认为conceptual contribution是"obvious application of reliability theory"**——公式本身是标准的，novelty完全依赖实证验证结果。如果实验结果显示级联模型只比min-visibility marginal improvement，整篇文章的contribution就变成了一个(比较完善的) negative result。
+2. **Weakest Link Law的<3% variance finding可能暗示依赖拓扑的增量很小**——如果绝对位置已经是压倒性的失败预测因子，那么拓扑结构能提供的额外预测信号可能有限，使得整个框架的实际价值存疑。
+```
+
+Sources:
+- [Failure Modes in Multi-Hop QA: The Weakest Link Law](https://arxiv.org/abs/2601.12499)
+- [A Fano-Style Accuracy Upper Bound for LLM Single-Pass Reasoning](https://arxiv.org/abs/2509.21199)
+- [GOLD PANNING: Strategic Context Shuffling](https://arxiv.org/abs/2510.09770)
+- [Self-Consistency Falls Short](https://arxiv.org/abs/2411.01101)
+- [CoRe: Context Repetition](https://arxiv.org/abs/2410.07103)
+- [From Spark to Fire: Error Cascades in Multi-Agent Collaboration](https://arxiv.org/abs/2603.04474)
+- [Chow-Liu Ordering for Long-Context Reasoning](https://arxiv.org/abs/2603.09835)
+- [Attention Head Entropy Predicts Answer Correctness](https://arxiv.org/abs/2602.13699)
+- [NovelHopQA: Multi-Hop Reasoning in Long Narratives](https://arxiv.org/abs/2506.02000)
+- [Scaling Reasoning Hop](https://arxiv.org/abs/2601.21214)
+- [From Chains to DAGs](https://arxiv.org/abs/2601.17593)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6350ede8-4de9-44b9-86dd-6aa7abe322e2",
+  "isSidechain": false,
+  "requestId": "req_011CbDGZmjjQLtgyBmjWYsj6",
+  "type": "assistant",
+  "uuid": "a1a21c71-61de-4fad-b627-d67937909173",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01No4XJUNyd7v8yJPxwRowak",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 34274,
+      "output_tokens": 4464,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4464,
+          "cache_read_input_tokens": 34274,
+          "cache_creation_input_tokens": 673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning  ## Descripti…",
+  "leafUuid": "a1a21c71-61de-4fad-b627-d67937909173",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cascading failure model for multi-hop LLM reasoning",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Cascading Fragility: Modeling and Mitigating Dependent Evidence Failures in Long-Context Reasoning  ## Descripti…",
+  "leafUuid": "a1a21c71-61de-4fad-b627-d67937909173",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cascading failure model for multi-hop LLM reasoning",
+  "sessionId": "52775dbb-a4bf-401f-86b5-5bcd52a6b765"
+}
+```
+
+---

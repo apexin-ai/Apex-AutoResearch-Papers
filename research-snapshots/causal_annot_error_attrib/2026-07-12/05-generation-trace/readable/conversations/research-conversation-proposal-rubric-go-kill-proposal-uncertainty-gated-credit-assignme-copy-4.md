@@ -1,0 +1,3034 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Uncertainty-Gated Credit Assignme
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-1/475dbd0f-9789-4ff9-a226-4abbf3fbfcfc.jsonl`
+- **Structured JSON:** [`5b3f011f6549f1564702.json`](../../sessions/5b/5b3f011f6549f1564702.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:50:44.345Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:50:44.345Z",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL\n\n## Core Problem\n\nProcess-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equally trustworthy or apply only trajectory-level corrections, yet PRMs are demonstrably miscalibrated—overestimating success on uncertain steps—leading to reward hacking where the policy exploits unreliable PRM signals. Two distinct bias sources compound this problem: (a) PRM miscalibration bias—PRM scores deviate from true step correctness probabilities, varying in severity across step types (e.g., well-calibrated on computational steps but poorly calibrated on conceptual reasoning); (b) aggregation bias—structural artifacts of the credit assignment form itself (e.g., min-form's conservative lower-bound effect). Existing methods address neither bias source adaptively at the per-step level. The per-step heterogeneity of PRM calibration quality means that global or trajectory-level corrections cannot fully resolve (a)—adaptive per-step treatment is necessary.\n\n## Research Opportunity\n\nPRM calibration methods have matured rapidly (quantile regression [Park et al., NeurIPS 2025], conditional optimal transport [arXiv 2605.06785]) but are applied exclusively to test-time scaling. PROGRS (arXiv Apr 2026) brings a calibrated PRM into RL training but applies trajectory-level outcome-conditioned centering—a deterministic rule that does not use per-step uncertainty information. No work uses PRM per-step calibration confidence to adaptively gate credit assignment during RL training. Jia et al. [ICML 2025] proved outcome supervision is statistically no harder than process supervision, ensuring fallback to outcome credit preserves learning guarantees. This frames a principled bias-variance tradeoff: process credit provides low-variance but potentially biased (when PRM is miscalibrated) signal; outcome credit is unbiased but high-variance (sparse, trajectory-level). The optimal per-step interpolation depends on local PRM reliability—precisely what calibrated confidence intervals quantify.\n\n## Research Landscape\n\nWe organize the design space along two axes—**signal source** (what drives credit allocation) and **granularity** (per-step vs. trajectory-level)—yielding four quadrants:\n\n| | Per-step | Trajectory-level |\n|---|---|---|\n| **Verifier calibration** | **UGCA (ours)** | PROGRS |\n| **Intrinsic / structural** | Process-Outcome Credit (arXiv 2602.01034) | GRPO, DAPO |\n\n**Process-aware RL (uniform PRM trust).** PURE (NeurIPS 2025) replaces summation-form with min-form credit assignment (82.6% MATH-500, 82.5% AMC23 on Qwen2.5-Math-7B) but assumes PRM scores are reliable. GRPO-λ (arXiv 2510.00194, ICLR 2026) adds eligibility traces to GRPO, improving math scores by 3–4.5 points on 7B models but trusts PRM outputs uniformly. PRPO (arXiv Jan 2026) aligns process and outcome advantages via location-parameter shift on Qwen2.5-Math-1.5B (61.2→64.4% MATH-500) using fixed structural alignment. PRL (arXiv 2026) improves reasoning through process reward learning without conditioning on PRM reliability. PRIME (arXiv Feb 2025) enables online PRM updates through implicit process rewards but uses uniform trust in PRM signals.\n\n**Calibrated PRM in RL (trajectory-level).** PROGRS (arXiv 2604.02341, Apr 2026) uses outcome-conditioned centering with a frozen quantile-regression PRM (74.9% MATH-500 vs 69.7% DAPO), shifting incorrect-trajectory PRM scores to zero mean within each prompt group. This addresses systematic PRM bias at trajectory level but does not use per-step uncertainty information—all steps within a trajectory receive the same centering treatment regardless of individual calibration quality.\n\n**Per-step process-outcome mixing (non-uncertainty-based).** \"Discovering Process-Outcome Credit\" (arXiv 2602.01034) proposes Step-wise Marginal Information Gain + Decoupled Masking for per-step process-outcome credit mixing via Monte Carlo estimation of intrinsic information gain—computationally heavier (requiring additional MC rollouts) and subject to higher estimation variance than calibration-derived uncertainty. VPPO / \"Save the Good Prefix\" (arXiv 2601.18984) uses PRM to localize the first error step and applies binary prefix reward + suffix penalty—a degenerate (hard) form of per-step gating that cannot gracefully handle PRM uncertainty on ambiguous steps.\n\n**Implicit process credit in GRPO.** Sullivan et al. (arXiv 2509.21154, ICLR 2026) prove GRPO + ORM under shared-prefix conditions is equivalent to PRM-aware RL with a Monte-Carlo-based implicit PRM. This implies vanilla GRPO already carries implicit process credit, but this credit is uniform across steps—not adaptive to PRM confidence. UGCA provides the missing per-step adaptivity.\n\n**Confidence-based reward modulation.** UCAS (arXiv Oct 2025) modulates advantages via the policy model's own logit uncertainty. ConfClip (arXiv 2509.17730) uses policy model confidence to weight rewards in RLVR. Uncertainty-Aware Reward Discounting (arXiv Apr 2026) uses ensemble disagreement for reward modulation in general RLHF. All three use policy-side or ensemble-based uncertainty signals that shift with training, whereas UGCA uses an external frozen verifier's calibrated uncertainty—stable, independent of policy training dynamics, and specifically designed to interpolate between process and outcome credit sources rather than simply scaling rewards.\n\n**PRM calibration.** Park et al. (NeurIPS 2025) introduce quantile-regression calibration for PRMs. Distributional PRM (arXiv 2605.06785, May 2026) achieves state-of-the-art calibration via conditional optimal transport, targeting only test-time scaling. PathFinder-PRM (arXiv May 2025) achieves 67.7 PRMScore on PRMBench with error-type-aware scoring but does not feed uncertainty into RL. TP-GRPO (arXiv Jul 2025) uses generative PRM at the thought level with intrinsic signals, not PRM calibration.\n\n**PRM vulnerability.** \"Reward Under Attack\" (arXiv 2603.06621) demonstrates PRMs are systematically exploitable as \"fluency detectors\"—achieving PRM scores >0.9 while ground-truth accuracy <4% under adversarial RL optimization—directly motivating uncertainty-aware trust in PRM signals.\n\n**Gap.** The specific combination—per-step PRM calibration confidence driving adaptive process-outcome credit interpolation during RL training, framed as an uncertainty-driven bias-variance tradeoff—remains unaddressed.\n\n## Proposed Approach\n\nUGCA frames credit assignment as a per-step bias-variance tradeoff. Process credit (PURE-style min-form advantage A^min) provides dense, low-variance signal but inherits PRM miscalibration bias—distinct from the structural aggregation bias of min-form itself, which UGCA does not claim to resolve. Outcome credit (GRPO group-relative advantage A^GRPO) is unbiased (based on verifiable correctness) but high-variance (sparse, trajectory-level). The key insight is separating what the verifier predicts (PRM score) from how confident the verifier is (calibrated confidence interval width)—the former determines the reward signal, the latter determines how much to trust it.\n\nWe equip the off-the-shelf Qwen2.5-Math-PRM-7B with calibrated confidence intervals via quantile regression (adapting open-source code from Park et al., NeurIPS 2025), then define a per-step gating coefficient α_i = σ(−(w_i − τ)/β) based on each step's confidence-interval width w_i. The advantage at step i is A_i = α_i · A^min_i + (1 − α_i) · A^GRPO_i: high-confidence PRM steps (small w_i, high α) lean on low-variance process credit; uncertain steps (large w_i, low α) gracefully degrade to unbiased outcome credit.\n\n**Why not simpler alternatives?** (1) Using raw PRM score magnitude as gating signal conflates \"the PRM thinks this step is correct\" with \"the PRM is confident about this step\"—a PRM can produce narrow, high-confidence intervals around a wrong prediction. Calibrated CI width separates prediction from confidence. (2) Global clipping/truncation of low-confidence PRM scores discards useful information on partially confident steps. (3) PROGRS's trajectory-level centering treats all steps within a trajectory uniformly despite heterogeneous per-step calibration quality.\n\n**Theoretical grounding.** (1) Jia et al. (ICML 2025) prove outcome supervision is statistically no harder than process supervision, ensuring degradation to outcome credit preserves learning guarantees. (2) Under simplifying assumptions (Gaussian noise on PRM scores with variance proportional to w_i²), the MSE-optimal interpolation weight takes a sigmoid-like form in w_i (formal derivation in appendix), providing a prescriptive justification for the gating function form.\n\n## Experimental Design\n\n**Models.** Qwen3-8B and Qwen3-1.7B, trained on MATH training set (8K prompts) using modified GRPO objective atop PURE codebase with veRL framework. Calibrated PRM frozen throughout.\n\n**Baselines.** 8B: GRPO, DAPO, PURE, GRPO-λ, PROGRS (5 baselines). 1.7B: all 8B baselines + PRPO + VPPO (7 baselines), providing complete coverage of fixed process-outcome mixing strategies (PRPO: parametric shift; VPPO: binary first-error gating).\n\n**Benchmarks.** MATH-500, AMC23, AIME 2024, AIME 2025, OlympiadBench, MinervaMath. Pass@1 as primary metric; Pass@8 on AIME benchmarks to increase statistical power (30-problem sets).\n\n**Reward hacking quantification.**\n- PRM-Accuracy Gap (PAG): periodic rollout sampling during training, plotting mean PRM score vs. ground-truth pass rate as overoptimization curves.\n- Per-step uncertainty-conditioned accuracy: steps binned by w_i into 5 quantile bins, reporting per-bin step correctness.\n- Reward hacking rate: proportion of trajectories where PRM score > threshold but final answer incorrect.\n\n**Core assumption validation.** Per-step w_i quantile bins with PRM step-level prediction accuracy (not just policy correctness): if narrow-w_i bins show higher PRM accuracy, the core assumption (CI width proxies PRM reliability) is confirmed. Report Spearman rank correlation between w_i and PRM prediction error.\n\n**Longitudinal PRM calibration tracking.** At every 25% training progress checkpoint, compute ECE and Brier score of frozen PRM on freshly sampled rollouts. Plot calibration quality vs. training progress and gating coefficient α distribution drift. If significant degradation detected, discuss periodic re-calibration as mitigation.\n\n**Cross-family PRM validation.** ECE and Brier score of calibrated Qwen2.5-Math-PRM-7B on Qwen3-8B initial rollouts vs. Qwen2.5 rollouts. If significant degradation, perform additional quantile calibration fine-tuning on Qwen3 data.\n\n**Ablation studies (Qwen3-1.7B, 3 seeds each).**\n- Boundary cases: α≡1 (pure PURE) and α≡0 (pure GRPO).\n- Hard vs. soft gating: binary threshold (α∈{0,1}) vs. sigmoid.\n- Raw PRM score gating: α_i = σ(PRM_score_i) vs. calibrated CI width gating.\n- Calibrated vs. uncalibrated: raw PRM score variance as uncertainty proxy vs. calibrated CI width.\n- Hyperparameters: threshold τ, temperature β, quantile level.\n\n**Statistical rigor.** 1.7B: 3 seeds, mean ± std. 8B: top 2 configs × 3 seeds + evaluation-level bootstrap CIs (1000 resamples).\n\n**Compute fairness.** Per-method training wall-clock time and FLOPs. PRM calibration cost as separate one-time overhead. Accuracy-vs-compute Pareto curves. Theoretical FLOPs comparison with \"Discovering Process-Outcome Credit\" (arXiv 2602.01034) to justify not running as direct baseline (MC estimation overhead makes compute-normalized comparison unfavorable).\n\n## Broader Significance\n\nUGCA instantiates a general principle—Verifier-Uncertainty-Aware RL: when training with imperfect verifiers, credit assignment should adapt to per-instance verifier confidence. Math reasoning is a clean testbed where PRM uncertainty is measurable and calibratable. The framework generalizes to any domain with imperfect step-level verifiers (code generation, scientific reasoning, agentic tasks). We scope experiments to math reasoning and leave cross-domain validation as future work.\n\n## Key References\n\n- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning (NeurIPS 2025)\n- GRPO-λ / GRPO is Secretly a Process Reward Model (arXiv 2510.00194 / arXiv 2509.21154, ICLR 2026)\n- LLM Reasoning with Process Rewards for Outcome-Guided Steps [PROGRS] (arXiv 2604.02341, 2026)\n- Discovering Process-Outcome Credit in Multi-Step LLM Reasoning (arXiv 2602.01034, 2026)\n- Save the Good Prefix: Precise Error Penalization via Process-Supervised RL [VPPO] (arXiv 2601.18984, 2026)\n- Know What You Don't Know: Uncertainty Calibration of Process Reward Models (Park et al., NeurIPS 2025)\n- Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport (arXiv 2605.06785, 2026)\n- Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective (Jia et al., ICML 2025)\n- Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping [UCAS] (arXiv 2025)\n- ConfClip: Confidence-Weighted and Clipped Reward for RL in LLMs (arXiv 2509.17730, 2025)\n- PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization (arXiv 2026)\n- PRL: Process Reward Learning Improves LLMs' Reasoning Ability (arXiv 2026)\n- Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)\n- Process Reinforcement through Implicit Rewards [PRIME] (arXiv 2025)\n- Uncertainty-Aware Reward Discounting (arXiv Apr 2026)\n- Reward Under Attack: Analyzing Robustness and Hackability of PRMs (arXiv 2603.06621, 2026)\n- DAPO: An Open-Source LLM Reinforcement Learning System at Scale (2025)\n- Good Learners Think Their Thinking [TP-GRPO] (arXiv Jul 2025)\n\n## Resource Estimate\n\n- **GPU compute**: ~2900 H100-hours (PRM quantile calibration: 100h; cross-family validation: 20h; Qwen3-1.7B ablations + baselines ~14 configs × 3 seeds: 840h; Qwen3-8B comparison 6 configs (top 2 × 3 seeds + 4 × 1 seed): 1600h; PROGRS/GRPO-λ reproduction development: 80h; DAPO/PROGRS/extra baseline runs: 200h; evaluation + diagnostics: 60h)\n- **Timeline**: 8 weeks (wk1–2: PRM calibration + cross-family validation + PURE/veRL integration + PROGRS core reproduction; wk3–4: 1.7B full ablation sweep + PRPO/VPPO baselines + core assumption validation; wk5–6: 8B runs vs all baselines + longitudinal calibration tracking; wk7: reward-hacking analysis, PAG curves, Pareto curves, per-step visualization; wk8: paper writing and submission)\n- **Estimated GPU cost**: ~$7,250 (H100 spot ~$2.50/hr)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:50:44.349Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:50:44.349Z",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+## Round 1
+
+43 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:50:44.402Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL
+
+## Core Problem
+
+Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equally trustworthy or apply only trajectory-level corrections, yet PRMs are demonstrably miscalibrated—overestimating success on uncertain steps—leading to reward hacking where the policy exploits unreliable PRM signals. Two distinct bias sources compound this problem: (a) PRM miscalibration bias—PRM scores deviate from true step correctness probabilities, varying in severity across step types (e.g., well-calibrated on computational steps but poorly calibrated on conceptual reasoning); (b) aggregation bias—structural artifacts of the credit assignment form itself (e.g., min-form's conservative lower-bound effect). Existing methods address neither bias source adaptively at the per-step level. The per-step heterogeneity of PRM calibration quality means that global or trajectory-level corrections cannot fully resolve (a)—adaptive per-step treatment is necessary.
+
+## Research Opportunity
+
+PRM calibration methods have matured rapidly (quantile regression [Park et al., NeurIPS 2025], conditional optimal transport [arXiv 2605.06785]) but are applied exclusively to test-time scaling. PROGRS (arXiv Apr 2026) brings a calibrated PRM into RL training but applies trajectory-level outcome-conditioned centering—a deterministic rule that does not use per-step uncertainty information. No work uses PRM per-step calibration confidence to adaptively gate credit assignment during RL training. Jia et al. [ICML 2025] proved outcome supervision is statistically no harder than process supervision, ensuring fallback to outcome credit preserves learning guarantees. This frames a principled bias-variance tradeoff: process credit provides low-variance but potentially biased (when PRM is miscalibrated) signal; outcome credit is unbiased but high-variance (sparse, trajectory-level). The optimal per-step interpolation depends on local PRM reliability—precisely what calibrated confidence intervals quantify.
+
+## Research Landscape
+
+We organize the design space along two axes—**signal source** (what drives credit allocation) and **granularity** (per-step vs. trajectory-level)—yielding four quadrants:
+
+| | Per-step | Trajectory-level |
+|---|---|---|
+| **Verifier calibration** | **UGCA (ours)** | PROGRS |
+| **Intrinsic / structural** | Process-Outcome Credit (arXiv 2602.01034) | GRPO, DAPO |
+
+**Process-aware RL (uniform PRM trust).** PURE (NeurIPS 2025) replaces summation-form with min-form credit assignment (82.6% MATH-500, 82.5% AMC23 on Qwen2.5-Math-7B) but assumes PRM scores are reliable. GRPO-λ (arXiv 2510.00194, ICLR 2026) adds eligibility traces to GRPO, improving math scores by 3–4.5 points on 7B models but trusts PRM outputs uniformly. PRPO (arXiv Jan 2026) aligns process and outcome advantages via location-parameter shift on Qwen2.5-Math-1.5B (61.2→64.4% MATH-500) using fixed structural alignment. PRL (arXiv 2026) improves reasoning through process reward learning without conditioning on PRM reliability. PRIME (arXiv Feb 2025) enables online PRM updates through implicit process rewards but uses uniform trust in PRM signals.
+
+**Calibrated PRM in RL (trajectory-level).** PROGRS (arXiv 2604.02341, Apr 2026) uses outcome-conditioned centering with a frozen quantile-regression PRM (74.9% MATH-500 vs 69.7% DAPO), shifting incorrect-trajectory PRM scores to zero mean within each prompt group. This addresses systematic PRM bias at trajectory level but does not use per-step uncertainty information—all steps within a trajectory receive the same centering treatment regardless of individual calibration quality.
+
+**Per-step process-outcome mixing (non-uncertainty-based).** "Discovering Process-Outcome Credit" (arXiv 2602.01034) proposes Step-wise Marginal Information Gain + Decoupled Masking for per-step process-outcome credit mixing via Monte Carlo estimation of intrinsic information gain—computationally heavier (requiring additional MC rollouts) and subject to higher estimation variance than calibration-derived uncertainty. VPPO / "Save the Good Prefix" (arXiv 2601.18984) uses PRM to localize the first error step and applies binary prefix reward + suffix penalty—a degenerate (hard) form of per-step gating that cannot gracefully handle PRM uncertainty on ambiguous steps.
+
+**Implicit process credit in GRPO.** Sullivan et al. (arXiv 2509.21154, ICLR 2026) prove GRPO + ORM under shared-prefix conditions is equivalent to PRM-aware RL with a Monte-Carlo-based implicit PRM. This implies vanilla GRPO already carries implicit process credit, but this credit is uniform across steps—not adaptive to PRM confidence. UGCA provides the missing per-step adaptivity.
+
+**Confidence-based reward modulation.** UCAS (arXiv Oct 2025) modulates advantages via the policy model's own logit uncertainty. ConfClip (arXiv 2509.17730) uses policy model confidence to weight rewards in RLVR. Uncertainty-Aware Reward Discounting (arXiv Apr 2026) uses ensemble disagreement for reward modulation in general RLHF. All three use policy-side or ensemble-based uncertainty signals that shift with training, whereas UGCA uses an external frozen verifier's calibrated uncertainty—stable, independent of policy training dynamics, and specifically designed to interpolate between process and outcome credit sources rather than simply scaling rewards.
+
+**PRM calibration.** Park et al. (NeurIPS 2025) introduce quantile-regression calibration for PRMs. Distributional PRM (arXiv 2605.06785, May 2026) achieves state-of-the-art calibration via conditional optimal transport, targeting only test-time scaling. PathFinder-PRM (arXiv May 2025) achieves 67.7 PRMScore on PRMBench with error-type-aware scoring but does not feed uncertainty into RL. TP-GRPO (arXiv Jul 2025) uses generative PRM at the thought level with intrinsic signals, not PRM calibration.
+
+**PRM vulnerability.** "Reward Under Attack" (arXiv 2603.06621) demonstrates PRMs are systematically exploitable as "fluency detectors"—achieving PRM scores >0.9 while ground-truth accuracy <4% under adversarial RL optimization—directly motivating uncertainty-aware trust in PRM signals.
+
+**Gap.** The specific combination—per-step PRM calibration confidence driving adaptive process-outcome credit interpolation during RL training, framed as an uncertainty-driven bias-variance tradeoff—remains unaddressed.
+
+## Proposed Approach
+
+UGCA frames credit assignment as a per-step bias-variance tradeoff. Process credit (PURE-style min-form advantage A^min) provides dense, low-variance signal but inherits PRM miscalibration bias—distinct from the structural aggregation bias of min-form itself, which UGCA does not claim to resolve. Outcome credit (GRPO group-relative advantage A^GRPO) is unbiased (based on verifiable correctness) but high-variance (sparse, trajectory-level). The key insight is separating what the verifier predicts (PRM score) from how confident the verifier is (calibrated confidence interval width)—the former determines the reward signal, the latter determines how much to trust it.
+
+We equip the off-the-shelf Qwen2.5-Math-PRM-7B with calibrated confidence intervals via quantile regression (adapting open-source code from Park et al., NeurIPS 2025), then define a per-step gating coefficient α_i = σ(−(w_i − τ)/β) based on each step's confidence-interval width w_i. The advantage at step i is A_i = α_i · A^min_i + (1 − α_i) · A^GRPO_i: high-confidence PRM steps (small w_i, high α) lean on low-variance process credit; uncertain steps (large w_i, low α) gracefully degrade to unbiased outcome credit.
+
+**Why not simpler alternatives?** (1) Using raw PRM score magnitude as gating signal conflates "the PRM thinks this step is correct" with "the PRM is confident about this step"—a PRM can produce narrow, high-confidence intervals around a wrong prediction. Calibrated CI width separates prediction from confidence. (2) Global clipping/truncation of low-confidence PRM scores discards useful information on partially confident steps. (3) PROGRS's trajectory-level centering treats all steps within a trajectory uniformly despite heterogeneous per-step calibration quality.
+
+**Theoretical grounding.** (1) Jia et al. (ICML 2025) prove outcome supervision is statistically no harder than process supervision, ensuring degradation to outcome credit preserves learning guarantees. (2) Under simplifying assumptions (Gaussian noise on PRM scores with variance proportional to w_i²), the MSE-optimal interpolation weight takes a sigmoid-like form in w_i (formal derivation in appendix), providing a prescriptive justification for the gating function form.
+
+## Experimental Design
+
+**Models.** Qwen3-8B and Qwen3-1.7B, trained on MATH training set (8K prompts) using modified GRPO objective atop PURE codebase with veRL framework. Calibrated PRM frozen throughout.
+
+**Baselines.** 8B: GRPO, DAPO, PURE, GRPO-λ, PROGRS (5 baselines). 1.7B: all 8B baselines + PRPO + VPPO (7 baselines), providing complete coverage of fixed process-outcome mixing strategies (PRPO: parametric shift; VPPO: binary first-error gating).
+
+**Benchmarks.** MATH-500, AMC23, AIME 2024, AIME 2025, OlympiadBench, MinervaMath. Pass@1 as primary metric; Pass@8 on AIME benchmarks to increase statistical power (30-problem sets).
+
+**Reward hacking quantification.**
+- PRM-Accuracy Gap (PAG): periodic rollout sampling during training, plotting mean PRM score vs. ground-truth pass rate as overoptimization curves.
+- Per-step uncertainty-conditioned accuracy: steps binned by w_i into 5 quantile bins, reporting per-bin step correctness.
+- Reward hacking rate: proportion of trajectories where PRM score > threshold but final answer incorrect.
+
+**Core assumption validation.** Per-step w_i quantile bins with PRM step-level prediction accuracy (not just policy correctness): if narrow-w_i bins show higher PRM accuracy, the core assumption (CI width proxies PRM reliability) is confirmed. Report Spearman rank correlation between w_i and PRM prediction error.
+
+**Longitudinal PRM calibration tracking.** At every 25% training progress checkpoint, compute ECE and Brier score of frozen PRM on freshly sampled rollouts. Plot calibration quality vs. training progress and gating coefficient α distribution drift. If significant degradation detected, discuss periodic re-calibration as mitigation.
+
+**Cross-family PRM validation.** ECE and Brier score of calibrated Qwen2.5-Math-PRM-7B on Qwen3-8B initial rollouts vs. Qwen2.5 rollouts. If significant degradation, perform additional quantile calibration fine-tuning on Qwen3 data.
+
+**Ablation studies (Qwen3-1.7B, 3 seeds each).**
+- Boundary cases: α≡1 (pure PURE) and α≡0 (pure GRPO).
+- Hard vs. soft gating: binary threshold (α∈{0,1}) vs. sigmoid.
+- Raw PRM score gating: α_i = σ(PRM_score_i) vs. calibrated CI width gating.
+- Calibrated vs. uncalibrated: raw PRM score variance as uncertainty proxy vs. calibrated CI width.
+- Hyperparameters: threshold τ, temperature β, quantile level.
+
+**Statistical rigor.** 1.7B: 3 seeds, mean ± std. 8B: top 2 configs × 3 seeds + evaluation-level bootstrap CIs (1000 resamples).
+
+**Compute fairness.** Per-method training wall-clock time and FLOPs. PRM calibration cost as separate one-time overhead. Accuracy-vs-compute Pareto curves. Theoretical FLOPs comparison with "Discovering Process-Outcome Credit" (arXiv 2602.01034) to justify not running as direct baseline (MC estimation overhead makes compute-normalized comparison unfavorable).
+
+## Broader Significance
+
+UGCA instantiates a general principle—Verifier-Uncertainty-Aware RL: when training with imperfect verifiers, credit assignment should adapt to per-instance verifier confidence. Math reasoning is a clean testbed where PRM uncertainty is measurable and calibratable. The framework generalizes to any domain with imperfect step-level verifiers (code generation, scientific reasoning, agentic tasks). We scope experiments to math reasoning and leave cross-domain validation as future work.
+
+## Key References
+
+- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning (NeurIPS 2025)
+- GRPO-λ / GRPO is Secretly a Process Reward Model (arXiv 2510.00194 / arXiv 2509.21154, ICLR 2026)
+- LLM Reasoning with Process Rewards for Outcome-Guided Steps [PROGRS] (arXiv 2604.02341, 2026)
+- Discovering Process-Outcome Credit in Multi-Step LLM Reasoning (arXiv 2602.01034, 2026)
+- Save the Good Prefix: Precise Error Penalization via Process-Supervised RL [VPPO] (arXiv 2601.18984, 2026)
+- Know What You Don't Know: Uncertainty Calibration of Process Reward Models (Park et al., NeurIPS 2025)
+- Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport (arXiv 2605.06785, 2026)
+- Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective (Jia et al., ICML 2025)
+- Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping [UCAS] (arXiv 2025)
+- ConfClip: Confidence-Weighted and Clipped Reward for RL in LLMs (arXiv 2509.17730, 2025)
+- PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization (arXiv 2026)
+- PRL: Process Reward Learning Improves LLMs' Reasoning Ability (arXiv 2026)
+- Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)
+- Process Reinforcement through Implicit Rewards [PRIME] (arXiv 2025)
+- Uncertainty-Aware Reward Discounting (arXiv Apr 2026)
+- Reward Under Attack: Analyzing Robustness and Hackability of PRMs (arXiv 2603.06621, 2026)
+- DAPO: An Open-Source LLM Reinforcement Learning System at Scale (2025)
+- Good Learners Think Their Thinking [TP-GRPO] (arXiv Jul 2025)
+
+## Resource Estimate
+
+- **GPU compute**: ~2900 H100-hours (PRM quantile calibration: 100h; cross-family validation: 20h; Qwen3-1.7B ablations + baselines ~14 configs × 3 seeds: 840h; Qwen3-8B comparison 6 configs (top 2 × 3 seeds + 4 × 1 seed): 1600h; PROGRS/GRPO-λ reproduction development: 80h; DAPO/PROGRS/extra baseline runs: 200h; evaluation + diagnostics: 60h)
+- **Timeline**: 8 weeks (wk1–2: PRM calibration + cross-family validation + PURE/veRL integration + PROGRS core reproduction; wk3–4: 1.7B full ablation sweep + PRPO/VPPO baselines + core assumption validation; wk5–6: 8B runs vs all baselines + longitudinal calibration tracking; wk7: reward-hacking analysis, PAG curves, Pareto curves, per-step visualization; wk8: paper writing and submission)
+- **Estimated GPU cost**: ~$7,250 (H100 spot ~$2.50/hr)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "96cd10d2-33f0-4a43-9b92-7b9da26dfda9",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:50:44.400Z_
+
+```json
+{
+  "parentUuid": "96cd10d2-33f0-4a43-9b92-7b9da26dfda9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "61741fb2-4a7d-4fed-9d72-29b2d2fc83e1",
+  "timestamp": "2026-05-27T08:50:44.400Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:50:44.400Z_
+
+```json
+{
+  "parentUuid": "61741fb2-4a7d-4fed-9d72-29b2d2fc83e1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "73823f8f-80cf-42b0-b240-b40e853d60cb",
+  "timestamp": "2026-05-27T08:50:44.400Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-a…",
+  "leafUuid": "73823f8f-80cf-42b0-b240-b40e853d60cb",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for mathematical reasoning RL",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:50:53.278Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for AAAI 2026. Let me carefully read through the proposal first, then conduct web searches to understand the current landscape before making my assessment.
+
+The proposal is about "Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL" (UGCA). Let me understand the core idea:
+
+1. Process-aware RL methods use PRM (Process Reward Model) step-level scores for credit assignment
+2. PRMs are miscalibrated - they don't accurately reflect true step correctness probabilities
+
+
+3. The key insight is to leverage calibrated confidence intervals from PRMs as a gating mechanism, dynamically blending between process-level credit (which is dense but potentially biased) and outcome-level credit (which is sparse but unbiased)
+4. The gating coefficient varies per step based on confidence interval width, interpolating between different advantage formulations like PURE and GRPO
+
+Now I need to search for related work to assess the novelty and positioning of this approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73823f8f-80cf-42b0-b240-b40e853d60cb",
+  "isSidechain": false,
+  "requestId": "req_011CbSndEUhC5rUnSRhA8rYC",
+  "type": "assistant",
+  "uuid": "13671e58-2a1d-4a1a-9bbd-58fd402fbfcc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STbE3mdyBmJFAShWFqKvHX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19547,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 19547,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T08:50:53.285Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key related works and current landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13671e58-2a1d-4a1a-9bbd-58fd402fbfcc",
+  "isSidechain": false,
+  "requestId": "req_011CbSndEUhC5rUnSRhA8rYC",
+  "type": "assistant",
+  "uuid": "4d63a28f-df15-4c3f-9f4f-a341c8d8b999",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STbE3mdyBmJFAShWFqKvHX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19547,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 19547,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T08:50:53.321Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TUSTprgD2CiBWbejqD3d7Q`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d63a28f-df15-4c3f-9f4f-a341c8d8b999",
+  "isSidechain": false,
+  "requestId": "req_011CbSndEUhC5rUnSRhA8rYC",
+  "type": "assistant",
+  "uuid": "f8763fe4-77a1-47b2-acf3-b509bbf2a1ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STbE3mdyBmJFAShWFqKvHX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19547,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 19547,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T08:50:53.329Z_
+
+<details><summary>↩ Tool result · `toolu_01TUSTprgD2CiBWbejqD3d7Q`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8763fe4-77a1-47b2-acf3-b509bbf2a1ad",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "91ae7054-3416-424e-9e18-50cfb5fd3c67",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "f8763fe4-77a1-47b2-acf3-b509bbf2a1ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T08:50:55.975Z_
+
+Now let me conduct my research searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91ae7054-3416-424e-9e18-50cfb5fd3c67",
+  "isSidechain": false,
+  "requestId": "req_011CbSndtoneMFco3XiHTLmq",
+  "type": "assistant",
+  "uuid": "f3ad22eb-a18a-41c1-91af-ba291e06835d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6ctwYx1GbYAF5whSZPoi3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 19547,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 19547,
+          "cache_creation_input_tokens": 871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T08:50:56.955Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TT1vPp8PmcM1ZYP6VDpd9m`</summary>
+
+```json
+{
+  "query": "PROGRS process reward RL training calibrated PRM 2026 arXiv 2604.02341"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3ad22eb-a18a-41c1-91af-ba291e06835d",
+  "isSidechain": false,
+  "requestId": "req_011CbSndtoneMFco3XiHTLmq",
+  "type": "assistant",
+  "uuid": "5782d5c7-515f-4a46-8f3a-f91bd06265af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6ctwYx1GbYAF5whSZPoi3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 19547,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 19547,
+          "cache_creation_input_tokens": 871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T08:51:03.706Z_
+
+<details><summary>↩ Tool result · `toolu_01TT1vPp8PmcM1ZYP6VDpd9m`</summary>
+
+```text
+Web search results for query: "PROGRS process reward RL training calibrated PRM 2026 arXiv 2604.02341"
+
+Links: [{"title":"[2604.02341] LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/abs/2604.02341"},{"title":"LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/html/2604.02341"},{"title":"Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/html/2604.24583"},{"title":"LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/pdf/2604.02341"},{"title":"Efficient Process Reward Model Training via Active Learning","url":"https://arxiv.org/pdf/2504.10559"},{"title":"Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner","url":"https://arxiv.org/pdf/2507.23317"},{"title":"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training","url":"https://arxiv.org/html/2509.03403v1"}]
+
+Based on the search results, here's information about the paper arXiv 2604.02341:
+
+## PROGRS: LLM Reasoning with Process Rewards for Outcome-Guided Steps
+
+PROGRS is a framework that leverages PRMs (Process Reward Models) while keeping outcome correctness dominant.
+
+**Key Innovation:**
+PROGRS treats process rewards as relative preferences within outcome groups rather than absolute targets. It introduces outcome-conditioned centering, which shifts PRM scores of incorrect trajectories to have zero mean within each prompt group, removing systematic bias while preserving informative rankings.
+
+**Technical Components:**
+PROGRS combines a frozen quantile-regression PRM with a multi-scale coherence evaluator. It integrates the resulting centered process bonus into Group Relative Policy Optimization (GRPO) without auxiliary objectives or additional trainable components.
+
+**Experimental Results:**
+Across MATH-500, AMC, AIME, MinervaMath, and OlympiadBench, PROGRS consistently improves Pass@1 over outcome-only baselines and achieves stronger performance with fewer rollouts.
+
+The paper was posted on arXiv on February 8, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5782d5c7-515f-4a46-8f3a-f91bd06265af",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "0fcc4c01-57fc-4c49-9aba-93799f291454",
+  "toolUseResult": {
+    "query": "PROGRS process reward RL training calibrated PRM 2026 arXiv 2604.02341",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HUHQF7fu3Qbk9vzsKq1eeH",
+        "content": [
+          {
+            "title": "[2604.02341] LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/abs/2604.02341"
+          },
+          {
+            "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/html/2604.02341"
+          },
+          {
+            "title": "Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/html/2604.24583"
+          },
+          {
+            "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/pdf/2604.02341"
+          },
+          {
+            "title": "Efficient Process Reward Model Training via Active Learning",
+            "url": "https://arxiv.org/pdf/2504.10559"
+          },
+          {
+            "title": "Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner",
+            "url": "https://arxiv.org/pdf/2507.23317"
+          },
+          {
+            "title": "Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training",
+            "url": "https://arxiv.org/html/2509.03403v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper arXiv 2604.02341:\n\n## PROGRS: LLM Reasoning with Process Rewards for Outcome-Guided Steps\n\nPROGRS is a framework that leverages PRMs (Process Reward Models) while keeping outcome correctness dominant.\n\n**Key Innovation:**\nPROGRS treats process rewards as relative preferences within outcome groups rather than absolute targets. It introduces outcome-conditioned centering, which shifts PRM scores of incorrect trajectories to have zero mean within each prompt group, removing systematic bias while preserving informative rankings.\n\n**Technical Components:**\nPROGRS combines a frozen quantile-regression PRM with a multi-scale coherence evaluator. It integrates the resulting centered process bonus into Group Relative Policy Optimization (GRPO) without auxiliary objectives or additional trainable components.\n\n**Experimental Results:**\nAcross MATH-500, AMC, AIME, MinervaMath, and OlympiadBench, PROGRS consistently improves Pass@1 over outcome-only baselines and achieves stronger performance with fewer rollouts.\n\nThe paper was posted on arXiv on February 8, 2026."
+    ],
+    "durationSeconds": 6.7447713600000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5782d5c7-515f-4a46-8f3a-f91bd06265af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T08:51:06.583Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BWYzqYmVo9o2qzTxV2KJje`</summary>
+
+```json
+{
+  "query": "PURE min-form credit assignment process reward model NeurIPS 2025 \"Stop Summation\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fcc4c01-57fc-4c49-9aba-93799f291454",
+  "isSidechain": false,
+  "requestId": "req_011CbSneeuQLyqctsCmd5rqV",
+  "type": "assistant",
+  "uuid": "33a2afcc-6677-4f94-bdce-10b1584f845c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LmJtw7cq2vXSeQ2VY8N5jW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 20418,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 20418,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T08:51:14.607Z_
+
+<details><summary>↩ Tool result · `toolu_01BWYzqYmVo9o2qzTxV2KJje`</summary>
+
+```text
+Web search results for query: "PURE min-form credit assignment process reward model NeurIPS 2025 "Stop Summation""
+
+Links: [{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/pdf/2504.15275"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning | OpenReview","url":"https://openreview.net/forum?id=3Sxby0hH1q"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://paperreading.club/page?id=300681"},{"title":"GitHub - CJReinforce/PURE: Official code for the paper, \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\" · GitHub","url":"https://github.com/cjreinforce/pure"},{"title":"[2504.15275] Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/abs/2504.15275"},{"title":"NeurIPS Poster Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://neurips.cc/virtual/2025/poster/120032"},{"title":"The AI Timeline on X: \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning Overview: This work identifies canonical summation-form credit assignment as the cause of reward hacking when using process reward models (PRMs) for reinforcement fine-tuning of LLMs. The https://t.co/PeNYqmOV8t\" / X","url":"https://x.com/TheAITimeline/status/1916560394656833851"},{"title":"Min-Form Credit Assignment Is All Process Reward Model ...","url":"https://openreview.net/pdf?id=3Sxby0hH1q"}]
+
+I found the research paper! Here's what the web search revealed:
+
+## Overview
+
+"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning" is a paper by Jie Cheng, Ruixi Qiao, Lijun Li, and others from CASIA, University of Chinese Academy of Sciences, and Shanghai Artificial Intelligence Laboratory.
+
+## Key Problem and Solution
+
+The paper identifies that the canonical summation-form credit assignment in reinforcement learning (RL), which defines the value as cumulative gamma-decayed future rewards, easily induces LLMs to hack steps with high rewards.
+
+To address this, the authors propose PURE: Process sUpervised Reinforcement lEarning. The key innovation of PURE is a min-form credit assignment that formulates the value function as the minimum of future rewards.
+
+## Results and Impact
+
+This method significantly alleviates reward hacking by limiting the value function range and distributing advantages more reasonably. Through extensive experiments on 3 base models, PRM-based approaches enabling min-form credit assignment achieve comparable reasoning performance to verifiable reward-based methods within only 30% steps.
+
+## Publication
+
+The paper was accepted by NeurIPS 2025. The official code is available on [GitHub](https://github.com/cjreinforce/pure).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33a2afcc-6677-4f94-bdce-10b1584f845c",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "9d156931-e798-46b3-8761-87f2f0d9128e",
+  "toolUseResult": {
+    "query": "PURE min-form credit assignment process reward model NeurIPS 2025 \"Stop Summation\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011pkQCgYwpAZ44gakZ7jaY7",
+        "content": [
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/pdf/2504.15275"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=3Sxby0hH1q"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://paperreading.club/page?id=300681"
+          },
+          {
+            "title": "GitHub - CJReinforce/PURE: Official code for the paper, \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\" · GitHub",
+            "url": "https://github.com/cjreinforce/pure"
+          },
+          {
+            "title": "[2504.15275] Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/abs/2504.15275"
+          },
+          {
+            "title": "NeurIPS Poster Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://neurips.cc/virtual/2025/poster/120032"
+          },
+          {
+            "title": "The AI Timeline on X: \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning Overview: This work identifies canonical summation-form credit assignment as the cause of reward hacking when using process reward models (PRMs) for reinforcement fine-tuning of LLMs. The https://t.co/PeNYqmOV8t\" / X",
+            "url": "https://x.com/TheAITimeline/status/1916560394656833851"
+          },
+          {
+            "title": "Min-Form Credit Assignment Is All Process Reward Model ...",
+            "url": "https://openreview.net/pdf?id=3Sxby0hH1q"
+          }
+        ]
+      },
+      "I found the research paper! Here's what the web search revealed:\n\n## Overview\n\n\"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\" is a paper by Jie Cheng, Ruixi Qiao, Lijun Li, and others from CASIA, University of Chinese Academy of Sciences, and Shanghai Artificial Intelligence Laboratory.\n\n## Key Problem and Solution\n\nThe paper identifies that the canonical summation-form credit assignment in reinforcement learning (RL), which defines the value as cumulative gamma-decayed future rewards, easily induces LLMs to hack steps with high rewards.\n\nTo address this, the authors propose PURE: Process sUpervised Reinforcement lEarning. The key innovation of PURE is a min-form credit assignment that formulates the value function as the minimum of future rewards.\n\n## Results and Impact\n\nThis method significantly alleviates reward hacking by limiting the value function range and distributing advantages more reasonably. Through extensive experiments on 3 base models, PRM-based approaches enabling min-form credit assignment achieve comparable reasoning performance to verifiable reward-based methods within only 30% steps.\n\n## Publication\n\nThe paper was accepted by NeurIPS 2025. The official code is available on [GitHub](https://github.com/cjreinforce/pure)."
+    ],
+    "durationSeconds": 8.020695723000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "33a2afcc-6677-4f94-bdce-10b1584f845c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T08:51:17.487Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EjEkXY4mQt4f4vAzKrRrz2`</summary>
+
+```json
+{
+  "query": "per-step process outcome credit assignment LLM reasoning RL 2026 uncertainty-aware reward"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d156931-e798-46b3-8761-87f2f0d9128e",
+  "isSidechain": false,
+  "requestId": "req_011CbSnfTU6aercqeor8GY4K",
+  "type": "assistant",
+  "uuid": "64ce037f-5cfd-4242-a483-db756fa57865",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuC9A9tAEEy63Vvrk7irri",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 21117,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 21117,
+          "cache_creation_input_tokens": 899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T08:51:26.767Z_
+
+<details><summary>↩ Tool result · `toolu_01EjEkXY4mQt4f4vAzKrRrz2`</summary>
+
+```text
+Web search results for query: "per-step process outcome credit assignment LLM reasoning RL 2026 uncertainty-aware reward"
+
+Links: [{"title":"Linking Process to Outcome: Conditional Reward Modeling (CRM) for LLM Reasoning","url":"https://foundation-model-research.github.io/CRM/"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"Step-Level Credit Assignment","url":"https://www.emergentmind.com/topics/step-level-credit-assignment"},{"title":"[2601.14209] InT: Self-Proposed Interventions Enable Credit Assignment in LLM Reasoning","url":"https://arxiv.org/abs/2601.14209"},{"title":"[2602.01034] Discovering Process-Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/abs/2602.01034"},{"title":"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning","url":"https://arxiv.org/html/2509.26578"},{"title":"Discovering Process–Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/html/2602.01034"},{"title":"Discovering Process-Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/pdf/2602.01034"}]
+
+Based on the web search results, here's what I found about per-step process outcome credit assignment in LLM reasoning with RL in 2026:
+
+## Key Research Areas
+
+Credit assignment in RL for LLMs is challenging because determining which actions within long trajectories caused outcomes remains difficult, manifesting in reasoning RL where credit must be distributed across tokens and steps within a single chain-of-thought generation (500–30K+ tokens).
+
+## Notable Approaches
+
+**Conditional Reward Modeling (CRM):** CRM explicitly conditions each step reward on previous steps and links it to the final outcome, and is more robust to reward hacking. The process reward is treated as a conditional probability dependent on all preceding steps, thereby capturing causal structure inherent in sequential reasoning.
+
+**Step Potential Estimation (SPAE):** This approach combines training-free probes for intermediate confidence and correctness into a dense per-step "potential," then shapes the advantage estimate to emphasize pivotal deduction and penalize spurious checking.
+
+**Marginal Information Gain (MIG):** One framework introduces a Step-wise Marginal Information Gain mechanism that quantifies the intrinsic value of reasoning steps against a Monotonic Historical Watermark, effectively filtering out training noise.
+
+## Core Problem
+
+Standard RL assigns credit only at the level of the final answer, penalizing entire reasoning traces when the outcome is incorrect, which can result in correct intermediate steps being discouraged in failed traces while spurious steps may be reinforced in successful ones.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64ce037f-5cfd-4242-a483-db756fa57865",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "c547a71b-4129-4f3f-9a7e-97e8807c12ff",
+  "toolUseResult": {
+    "query": "per-step process outcome credit assignment LLM reasoning RL 2026 uncertainty-aware reward",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011PizjCGaARDztdDdszDs4E",
+        "content": [
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling (CRM) for LLM Reasoning",
+            "url": "https://foundation-model-research.github.io/CRM/"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "Step-Level Credit Assignment",
+            "url": "https://www.emergentmind.com/topics/step-level-credit-assignment"
+          },
+          {
+            "title": "[2601.14209] InT: Self-Proposed Interventions Enable Credit Assignment in LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.14209"
+          },
+          {
+            "title": "[2602.01034] Discovering Process-Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/abs/2602.01034"
+          },
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+            "url": "https://arxiv.org/html/2509.26578"
+          },
+          {
+            "title": "Discovering Process–Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/html/2602.01034"
+          },
+          {
+            "title": "Discovering Process-Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.01034"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about per-step process outcome credit assignment in LLM reasoning with RL in 2026:\n\n## Key Research Areas\n\nCredit assignment in RL for LLMs is challenging because determining which actions within long trajectories caused outcomes remains difficult, manifesting in reasoning RL where credit must be distributed across tokens and steps within a single chain-of-thought generation (500–30K+ tokens).\n\n## Notable Approaches\n\n**Conditional Reward Modeling (CRM):** CRM explicitly conditions each step reward on previous steps and links it to the final outcome, and is more robust to reward hacking. The process reward is treated as a conditional probability dependent on all preceding steps, thereby capturing causal structure inherent in sequential reasoning.\n\n**Step Potential Estimation (SPAE):** This approach combines training-free probes for intermediate confidence and correctness into a dense per-step \"potential,\" then shapes the advantage estimate to emphasize pivotal deduction and penalize spurious checking.\n\n**Marginal Information Gain (MIG):** One framework introduces a Step-wise Marginal Information Gain mechanism that quantifies the intrinsic value of reasoning steps against a Monotonic Historical Watermark, effectively filtering out training noise.\n\n## Core Problem\n\nStandard RL assigns credit only at the level of the final answer, penalizing entire reasoning traces when the outcome is incorrect, which can result in correct intermediate steps being discouraged in failed traces while spurious steps may be reinforced in successful ones."
+    ],
+    "durationSeconds": 9.276761890000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "64ce037f-5cfd-4242-a483-db756fa57865",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T08:51:29.502Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ge8S2vkRPcyh7icNYHQHTH`</summary>
+
+```json
+{
+  "query": "PRM calibration confidence interval quantile regression process reward model uncertainty 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c547a71b-4129-4f3f-9a7e-97e8807c12ff",
+  "isSidechain": false,
+  "requestId": "req_011CbSngMVDEy7Q65ssPE7W7",
+  "type": "assistant",
+  "uuid": "d6f3567d-543a-461d-b6f0-f35db1dc6246",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tdj1zUgq5ydynwm378RpoY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 22016,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 796,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 22016,
+          "cache_creation_input_tokens": 796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T08:51:37.858Z_
+
+<details><summary>↩ Tool result · `toolu_01Ge8S2vkRPcyh7icNYHQHTH`</summary>
+
+```text
+Web search results for query: "PRM calibration confidence interval quantile regression process reward model uncertainty 2025 2026"
+
+Links: [{"title":"Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview","url":"https://openreview.net/forum?id=hzMkfIrdDT"},{"title":"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models for NeurIPS 2025 - IBM Research","url":"https://research.ibm.com/publications/know-what-you-dont-know-uncertainty-calibration-of-process-reward-models"},{"title":"NeurIPS Poster Know What You Don't Know: Uncertainty Calibration of Process Reward Models","url":"https://neurips.cc/virtual/2025/poster/116598"},{"title":"[2506.09338] Know What You Don't Know: Uncertainty Calibration of Process Reward Models","url":"https://arxiv.org/abs/2506.09338"},{"title":"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models","url":"https://arxiv.org/pdf/2506.09338"},{"title":"Know What You Don't Know | PRM Calibration","url":"https://young-j-park.github.io/know-what-you-dont-know/"},{"title":"[2605.06785] Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport","url":"https://arxiv.org/abs/2605.06785"},{"title":"Know What You Don't Know: Uncertainty Calibration of Process Reward Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/know-what-you-dont-know-uncertainty-calibration"},{"title":"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport","url":"https://arxiv.org/html/2605.06785"},{"title":"Process Reward Models (PRMs): Calibration & Scaling","url":"https://www.emergentmind.com/topics/process-reward-models-prms"}]
+
+## Search Results
+
+I found several highly relevant papers and resources on PRM (Process Reward Model) calibration using quantile regression and confidence intervals from 2025-2026:
+
+### Primary Research
+
+**"Know What You Don't Know: Uncertainty Calibration of Process Reward Models"**
+
+This NeurIPS 2025 paper, published September 18, 2025 and last modified January 24, 2026, addresses the core issue of PRM calibration. Even state-of-the-art PRMs can be poorly calibrated, and they tend to overestimate the success probability that a partial reasoning step will lead to a correct final answer.
+
+**Quantile Regression Calibration Method**
+
+The paper presents a calibration approach performed via quantile regression that adjusts PRM outputs to better align with true success probabilities. The PRM architecture is modified to generate multiple predictions—one for each target quantile level (e.g., 10%, 50%, and 90%)—rather than a single reward value.
+
+The method transforms existing PRMs into calibrated models that provide uncertainty quantification through quantile predictions (10%, 50%, 90% confidence intervals).
+
+**Instance-Adaptive Scaling Framework**
+
+The calibrated success estimates and their associated confidence bounds enable an instance-adaptive scaling framework that dynamically adjusts the compute budget based on the estimated likelihood that a partial reasoning trajectory will yield a correct final answer, adapting to each instance and reasoning step.
+
+### Related Work
+
+A subsequent paper proposes the first use of conditional optimal transport for calibrating PRMs, estimating a monotonic conditional quantile function over success probabilities, which yields structurally valid quantile estimates and enables efficient extraction of confidence bounds at arbitrary levels.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6f3567d-543a-461d-b6f0-f35db1dc6246",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "5993ffca-2d72-403c-8b4f-d450acf8ba47",
+  "toolUseResult": {
+    "query": "PRM calibration confidence interval quantile regression process reward model uncertainty 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0118HxdfouyiPhtLWrCx3CY5",
+        "content": [
+          {
+            "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview",
+            "url": "https://openreview.net/forum?id=hzMkfIrdDT"
+          },
+          {
+            "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models for NeurIPS 2025 - IBM Research",
+            "url": "https://research.ibm.com/publications/know-what-you-dont-know-uncertainty-calibration-of-process-reward-models"
+          },
+          {
+            "title": "NeurIPS Poster Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://neurips.cc/virtual/2025/poster/116598"
+          },
+          {
+            "title": "[2506.09338] Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://arxiv.org/abs/2506.09338"
+          },
+          {
+            "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://arxiv.org/pdf/2506.09338"
+          },
+          {
+            "title": "Know What You Don't Know | PRM Calibration",
+            "url": "https://young-j-park.github.io/know-what-you-dont-know/"
+          },
+          {
+            "title": "[2605.06785] Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport",
+            "url": "https://arxiv.org/abs/2605.06785"
+          },
+          {
+            "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/know-what-you-dont-know-uncertainty-calibration"
+          },
+          {
+            "title": "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport",
+            "url": "https://arxiv.org/html/2605.06785"
+          },
+          {
+            "title": "Process Reward Models (PRMs): Calibration & Scaling",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prms"
+          }
+        ]
+      },
+      "## Search Results\n\nI found several highly relevant papers and resources on PRM (Process Reward Model) calibration using quantile regression and confidence intervals from 2025-2026:\n\n### Primary Research\n\n**\"Know What You Don't Know: Uncertainty Calibration of Process Reward Models\"**\n\nThis NeurIPS 2025 paper, published September 18, 2025 and last modified January 24, 2026, addresses the core issue of PRM calibration. Even state-of-the-art PRMs can be poorly calibrated, and they tend to overestimate the success probability that a partial reasoning step will lead to a correct final answer.\n\n**Quantile Regression Calibration Method**\n\nThe paper presents a calibration approach performed via quantile regression that adjusts PRM outputs to better align with true success probabilities. The PRM architecture is modified to generate multiple predictions—one for each target quantile level (e.g., 10%, 50%, and 90%)—rather than a single reward value.\n\nThe method transforms existing PRMs into calibrated models that provide uncertainty quantification through quantile predictions (10%, 50%, 90% confidence intervals).\n\n**Instance-Adaptive Scaling Framework**\n\nThe calibrated success estimates and their associated confidence bounds enable an instance-adaptive scaling framework that dynamically adjusts the compute budget based on the estimated likelihood that a partial reasoning trajectory will yield a correct final answer, adapting to each instance and reasoning step.\n\n### Related Work\n\nA subsequent paper proposes the first use of conditional optimal transport for calibrating PRMs, estimating a monotonic conditional quantile function over success probabilities, which yields structurally valid quantile estimates and enables efficient extraction of confidence bounds at arbitrary levels."
+    ],
+    "durationSeconds": 8.350675435999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d6f3567d-543a-461d-b6f0-f35db1dc6246",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-a…",
+  "leafUuid": "5993ffca-2d72-403c-8b4f-d450acf8ba47",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for mathematical reasoning RL",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T08:51:40.881Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019KPRWQCvkbNvbjLcyFhw7P`</summary>
+
+```json
+{
+  "query": "\"uncertainty-gated\" OR \"uncertainty gated\" credit assignment reinforcement learning reward model 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5993ffca-2d72-403c-8b4f-d450acf8ba47",
+  "isSidechain": false,
+  "requestId": "req_011CbSnhAukNM84b6KXejf94",
+  "type": "assistant",
+  "uuid": "2c148379-e14e-4691-8a12-c66e60184637",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jLcK9zJNq5xi8mjzpA2ew",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 22812,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 22812,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T08:51:47.338Z_
+
+<details><summary>↩ Tool result · `toolu_019KPRWQCvkbNvbjLcyFhw7P`</summary>
+
+```text
+Web search results for query: ""uncertainty-gated" OR "uncertainty gated" credit assignment reinforcement learning reward model 2025 2026"
+
+Links: [{"title":"Credit assignment in movement-dependent reinforcement learning | PNAS","url":"https://www.pnas.org/doi/10.1073/pnas.1523669113"},{"title":"Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning","url":"https://arxiv.org/pdf/2510.10649"},{"title":"Retrospective model-based inference guides model-free credit assignment","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6375980/"},{"title":"SELAUR: Self Evolving LLM Agent via Uncertainty-aware Rewards","url":"https://arxiv.org/pdf/2602.21158"},{"title":"Information uncertainty influences learning strategy from sequentially delayed rewards | PLOS Computational Biology","url":"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1013879"}]
+
+Based on the search results, I found several recent papers related to uncertainty-aware credit assignment in reinforcement learning:
+
+**Recent Papers (2025-2026):**
+
+1. **SELAUR: Self Evolving LLM Agent via Uncertainty-aware Rewards** (2026): This reinforcement learning framework incorporates uncertainty directly into reward design, integrating entropy-, least-confidence-, and margin-based metrics into token-level uncertainty estimates, and employing a failure-aware reward reshaping mechanism that injects uncertainty signals into step- and trajectory-level rewards.
+
+2. **Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning** (2025): This paper introduces UnCertainty-aware Advantage Shaping (UCAS), a model-free method that refines credit assignment by leveraging the model's internal uncertainty signals. The approach addresses how prevailing algorithms broadcast uniform advantage signals across all tokens in a sequence, overlooking the pivotal role of uncertain, high-stakes decisions during reasoning.
+
+3. **Information uncertainty influences learning strategy from sequentially delayed rewards** (2026): This work examines the credit assignment problem when people encounter sequentially delayed rewards, manipulating the degree of information in feedback presentation to modulate information uncertainty.
+
+These papers represent recent work on uncertainty-aware approaches to credit assignment in reinforcement learning contexts, particularly for LLM agents and reward models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c148379-e14e-4691-8a12-c66e60184637",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "2b3a44ae-5650-4c53-b018-396b9a44b756",
+  "toolUseResult": {
+    "query": "\"uncertainty-gated\" OR \"uncertainty gated\" credit assignment reinforcement learning reward model 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FLWmbHLz5ygMtmSUzpqpJW",
+        "content": [
+          {
+            "title": "Credit assignment in movement-dependent reinforcement learning | PNAS",
+            "url": "https://www.pnas.org/doi/10.1073/pnas.1523669113"
+          },
+          {
+            "title": "Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning",
+            "url": "https://arxiv.org/pdf/2510.10649"
+          },
+          {
+            "title": "Retrospective model-based inference guides model-free credit assignment",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6375980/"
+          },
+          {
+            "title": "SELAUR: Self Evolving LLM Agent via Uncertainty-aware Rewards",
+            "url": "https://arxiv.org/pdf/2602.21158"
+          },
+          {
+            "title": "Information uncertainty influences learning strategy from sequentially delayed rewards | PLOS Computational Biology",
+            "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1013879"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers related to uncertainty-aware credit assignment in reinforcement learning:\n\n**Recent Papers (2025-2026):**\n\n1. **SELAUR: Self Evolving LLM Agent via Uncertainty-aware Rewards** (2026): This reinforcement learning framework incorporates uncertainty directly into reward design, integrating entropy-, least-confidence-, and margin-based metrics into token-level uncertainty estimates, and employing a failure-aware reward reshaping mechanism that injects uncertainty signals into step- and trajectory-level rewards.\n\n2. **Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning** (2025): This paper introduces UnCertainty-aware Advantage Shaping (UCAS), a model-free method that refines credit assignment by leveraging the model's internal uncertainty signals. The approach addresses how prevailing algorithms broadcast uniform advantage signals across all tokens in a sequence, overlooking the pivotal role of uncertain, high-stakes decisions during reasoning.\n\n3. **Information uncertainty influences learning strategy from sequentially delayed rewards** (2026): This work examines the credit assignment problem when people encounter sequentially delayed rewards, manipulating the degree of information in feedback presentation to modulate information uncertainty.\n\nThese papers represent recent work on uncertainty-aware approaches to credit assignment in reinforcement learning contexts, particularly for LLM agents and reward models."
+    ],
+    "durationSeconds": 6.452153639999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2c148379-e14e-4691-8a12-c66e60184637",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-27T08:51:50.302Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PBgNFsWYfabFi5EKdqfcVB`</summary>
+
+```json
+{
+  "query": "Jia et al ICML 2025 \"outcome supervision\" \"process supervision\" theoretical perspective step-by-step verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b3a44ae-5650-4c53-b018-396b9a44b756",
+  "isSidechain": false,
+  "requestId": "req_011CbSnhsSYkxDemCxbtQLSx",
+  "type": "assistant",
+  "uuid": "6c352231-b049-419a-96ee-d9c19755c7b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQZwSfh9Vbx4SCSd22uzkD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 23809,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 690,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 23809,
+          "cache_creation_input_tokens": 690,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 690
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T08:51:57.261Z_
+
+<details><summary>↩ Tool result · `toolu_01PBgNFsWYfabFi5EKdqfcVB`</summary>
+
+```text
+Web search results for query: "Jia et al ICML 2025 "outcome supervision" "process supervision" theoretical perspective step-by-step verify"
+
+Links: [{"title":"ICML Poster Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective","url":"https://icml.cc/virtual/2025/poster/46497"},{"title":"Process vs. Outcome Supervision","url":"https://www.emergentmind.com/topics/process-vs-outcome-supervision"},{"title":"Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective | OpenReview","url":"https://openreview.net/forum?id=4BfaPHfhJ0&noteId=xuhztU8gs6"},{"title":"Do We Need to Verify Step by Step? Rethinking Process Supervision from a   Theoretical Perspective","url":"https://arxiv.org/pdf/2502.10581"},{"title":"Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation","url":"https://arxiv.org/pdf/2412.15118"},{"title":"Let's Verify Step by Step","url":"https://arxiv.org/pdf/2305.20050"},{"title":"Improve Mathematical Reasoning in Language Models by Automated Process   Supervision","url":"https://arxiv.org/pdf/2406.06592"}]
+
+I found the paper you're looking for! Here are the key details:
+
+The paper is by Zeyu Jia, Alexander Rakhlin, and Tengyang Xie, presented as a 2025 ICML Poster, and addresses how "Process and outcome supervision represent two fundamental approaches to reinforcement learning, especially for complex reasoning tasks in large language models."
+
+**Main Finding:**
+
+The paper's main theorem shows that under standard data coverage assumptions, reinforcement learning through outcome supervision is no more statistically difficult than through process supervision.
+
+**The Debate Being Addressed:**
+
+Conventional wisdom suggests that outcome supervision is fundamentally more challenging due to the trajectory-level coverage problem, leading to significant investment in collecting fine-grained process supervision data. However, while process supervision offers intuitive advantages for long-term credit assignment, the precise relationship between these paradigms has remained an open question.
+
+**Key Implication:**
+
+The theoretical analysis demonstrates that the empirical advantages of process supervision are primarily due to improved gradient dynamics and algorithmic aspects, not irreducible statistical barriers.
+
+The paper is available on OpenReview and arXiv (preprint dated March 28, 2025), providing a theoretical perspective on why step-by-step verification may not be as necessary as previously assumed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c352231-b049-419a-96ee-d9c19755c7b3",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "9976d5fd-1276-447f-9ebd-dbeb4c770803",
+  "toolUseResult": {
+    "query": "Jia et al ICML 2025 \"outcome supervision\" \"process supervision\" theoretical perspective step-by-step verify",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W7cyjMkBJ2Bxs2zda718W1",
+        "content": [
+          {
+            "title": "ICML Poster Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective",
+            "url": "https://icml.cc/virtual/2025/poster/46497"
+          },
+          {
+            "title": "Process vs. Outcome Supervision",
+            "url": "https://www.emergentmind.com/topics/process-vs-outcome-supervision"
+          },
+          {
+            "title": "Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective | OpenReview",
+            "url": "https://openreview.net/forum?id=4BfaPHfhJ0&noteId=xuhztU8gs6"
+          },
+          {
+            "title": "Do We Need to Verify Step by Step? Rethinking Process Supervision from a   Theoretical Perspective",
+            "url": "https://arxiv.org/pdf/2502.10581"
+          },
+          {
+            "title": "Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation",
+            "url": "https://arxiv.org/pdf/2412.15118"
+          },
+          {
+            "title": "Let's Verify Step by Step",
+            "url": "https://arxiv.org/pdf/2305.20050"
+          },
+          {
+            "title": "Improve Mathematical Reasoning in Language Models by Automated Process   Supervision",
+            "url": "https://arxiv.org/pdf/2406.06592"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\nThe paper is by Zeyu Jia, Alexander Rakhlin, and Tengyang Xie, presented as a 2025 ICML Poster, and addresses how \"Process and outcome supervision represent two fundamental approaches to reinforcement learning, especially for complex reasoning tasks in large language models.\"\n\n**Main Finding:**\n\nThe paper's main theorem shows that under standard data coverage assumptions, reinforcement learning through outcome supervision is no more statistically difficult than through process supervision.\n\n**The Debate Being Addressed:**\n\nConventional wisdom suggests that outcome supervision is fundamentally more challenging due to the trajectory-level coverage problem, leading to significant investment in collecting fine-grained process supervision data. However, while process supervision offers intuitive advantages for long-term credit assignment, the precise relationship between these paradigms has remained an open question.\n\n**Key Implication:**\n\nThe theoretical analysis demonstrates that the empirical advantages of process supervision are primarily due to improved gradient dynamics and algorithmic aspects, not irreducible statistical barriers.\n\nThe paper is available on OpenReview and arXiv (preprint dated March 28, 2025), providing a theoretical perspective on why step-by-step verification may not be as necessary as previously assumed."
+    ],
+    "durationSeconds": 6.953827848,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6c352231-b049-419a-96ee-d9c19755c7b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T08:52:00.958Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Si6rJDVUjbpCs3JzvxAuHs`</summary>
+
+```json
+{
+  "query": "GRPO-lambda eligibility traces process reward ICLR 2026 arXiv 2510.00194"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9976d5fd-1276-447f-9ebd-dbeb4c770803",
+  "isSidechain": false,
+  "requestId": "req_011CbSnibriESCKvcnNw33v7",
+  "type": "assistant",
+  "uuid": "74297c25-2117-4db3-8f89-15a8136a60a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCm5Y5VSAZsXcYDjVWacpD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 24499,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 24499,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T08:52:11.429Z_
+
+<details><summary>↩ Tool result · `toolu_01Si6rJDVUjbpCs3JzvxAuHs`</summary>
+
+```text
+Web search results for query: "GRPO-lambda eligibility traces process reward ICLR 2026 arXiv 2510.00194"
+
+Links: [{"title":"GRPO-$\\lambda$: Credit Assignment improves LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=iRWqcnBlLQ"},{"title":"[2510.00194] GRPO-$λ$: Credit Assignment improves LLM Reasoning","url":"https://arxiv.org/abs/2510.00194"},{"title":"GRPO-$\\lambda$: Credit Assignment improves LLM Reasoning","url":"https://arxiv.org/pdf/2510.00194"},{"title":"GRPO-𝜆 : Credit Assignment improves LLM Reasoning","url":"https://arxiv.org/html/2510.00194"},{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/pdf/2509.21154"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.20659"},{"title":"Published as a workshop paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.16158"}]
+
+Based on the search results, I found relevant information about the paper you're asking about:
+
+GRPO-λ is a novel extension to GRPO that enhances credit assignment in RL finetuning of LLMs for complex reasoning tasks. It approximates learning from λ-return with a reformulation of eligibility traces using token-level log-probabilities applied after each sequence generation.
+
+The motivation for this approach is that the lack of an explicit reward or critic model limits GRPO's ability to assign fine-grained credit across token sequences.
+
+The paper (arXiv 2510.00194) was submitted to ICLR 2026 and represents research by Prasanna Parthasarathi and co-authors. According to the paper, GRPO-λ improves R1-Distill-Qwen-7B's evaluation performance by over 4 points on average across math benchmarks including a 10 point improvement on AIME24.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74297c25-2117-4db3-8f89-15a8136a60a1",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "e43b2752-337f-409a-8b8a-d8f5bf10d04a",
+  "toolUseResult": {
+    "query": "GRPO-lambda eligibility traces process reward ICLR 2026 arXiv 2510.00194",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014LuVKj1XZN8Aue6VPrcBUz",
+        "content": [
+          {
+            "title": "GRPO-$\\lambda$: Credit Assignment improves LLM Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=iRWqcnBlLQ"
+          },
+          {
+            "title": "[2510.00194] GRPO-$λ$: Credit Assignment improves LLM Reasoning",
+            "url": "https://arxiv.org/abs/2510.00194"
+          },
+          {
+            "title": "GRPO-$\\lambda$: Credit Assignment improves LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2510.00194"
+          },
+          {
+            "title": "GRPO-𝜆 : Credit Assignment improves LLM Reasoning",
+            "url": "https://arxiv.org/html/2510.00194"
+          },
+          {
+            "title": "GRPO is Secretly a Process Reward Model",
+            "url": "https://arxiv.org/pdf/2509.21154"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.20659"
+          },
+          {
+            "title": "Published as a workshop paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.16158"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the paper you're asking about:\n\nGRPO-λ is a novel extension to GRPO that enhances credit assignment in RL finetuning of LLMs for complex reasoning tasks. It approximates learning from λ-return with a reformulation of eligibility traces using token-level log-probabilities applied after each sequence generation.\n\nThe motivation for this approach is that the lack of an explicit reward or critic model limits GRPO's ability to assign fine-grained credit across token sequences.\n\nThe paper (arXiv 2510.00194) was submitted to ICLR 2026 and represents research by Prasanna Parthasarathi and co-authors. According to the paper, GRPO-λ improves R1-Distill-Qwen-7B's evaluation performance by over 4 points on average across math benchmarks including a 10 point improvement on AIME24."
+    ],
+    "durationSeconds": 10.468476150000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "74297c25-2117-4db3-8f89-15a8136a60a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-27T08:52:11.433Z_
+
+```json
+{
+  "parentUuid": "e43b2752-337f-409a-8b8a-d8f5bf10d04a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6f5206ea-1fc8-46d6-8f0e-338d4d65e8e1",
+  "timestamp": "2026-05-27T08:52:11.433Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-27T08:52:15.184Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019WBBLB9WMPnUeRkBZS7yfT`</summary>
+
+```json
+{
+  "query": "\"reward hacking\" process reward model PRM exploitation RL training LLM 2026 adversarial"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f5206ea-1fc8-46d6-8f0e-338d4d65e8e1",
+  "isSidechain": false,
+  "requestId": "req_011CbSnjeT1WLC93vVKR1uBP",
+  "type": "assistant",
+  "uuid": "7233bf8c-76c3-4ff6-aac5-141c3566d7b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WwAiavFWCgFQwLiAaqyCtX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 741,
+      "cache_read_input_tokens": 25228,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 25228,
+          "cache_creation_input_tokens": 741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T08:52:23.888Z_
+
+<details><summary>↩ Tool result · `toolu_019WBBLB9WMPnUeRkBZS7yfT`</summary>
+
+```text
+Web search results for query: ""reward hacking" process reward model PRM exploitation RL training LLM 2026 adversarial"
+
+Links: [{"title":"LLM-Based Reward Models","url":"https://www.emergentmind.com/topics/llm-based-reward-models"},{"title":"Mitigating Reward Hacking with RL Training Interventions | OpenReview","url":"https://openreview.net/forum?id=1TIWkM3nY4"},{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"},{"title":"Reward-Tampering in LLMs","url":"https://www.emergentmind.com/topics/reward-tampering-in-llms"},{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/pdf/2502.10325"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/pdf/2504.15275"}]
+
+Based on the search results, here's what recent research reveals about reward hacking, process reward models (PRMs), and RL training in LLMs:
+
+## Overview of Reward Hacking in LLMs
+
+Reinforcement learning is central to LLM post-training, but reward functions are imperfect incentives for desired behavior and models often reward hack by exploiting loopholes in reward design. Reward hacking undermines the trustworthiness of the training process and has even been shown to generalize to broader misalignment.
+
+## Specific Issues with Process Reward Models
+
+Recent 2026 research has identified critical vulnerabilities in PRMs. Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with policies trained on AIME problems achieving near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. These findings reveal that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.
+
+## Root Causes and Mitigation Strategies
+
+The main cause of PRM-induced reward hacking is the canonical summation-form credit assignment in reinforcement learning, which defines the value as cumulative gamma-decayed future rewards, easily inducing LLMs to hack steps with high rewards.
+
+For prevention, clipping and delta mechanisms guard dense reward accumulation against reward hacking, bounding the total reward and restoring training stability. Additionally, recent work introduces reward hacking mitigation through penalizing detected reward hacking rollouts, negatively rewarding such rollouts, and inoculation prompting, with best interventions achieving comparable performance to models trained in non-hackable environments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7233bf8c-76c3-4ff6-aac5-141c3566d7b6",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "ed21fd6c-37df-4238-8bf0-f4ea358b4af9",
+  "toolUseResult": {
+    "query": "\"reward hacking\" process reward model PRM exploitation RL training LLM 2026 adversarial",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018HfoA5hbEn54HdHoXvAJRr",
+        "content": [
+          {
+            "title": "LLM-Based Reward Models",
+            "url": "https://www.emergentmind.com/topics/llm-based-reward-models"
+          },
+          {
+            "title": "Mitigating Reward Hacking with RL Training Interventions | OpenReview",
+            "url": "https://openreview.net/forum?id=1TIWkM3nY4"
+          },
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          },
+          {
+            "title": "Reward-Tampering in LLMs",
+            "url": "https://www.emergentmind.com/topics/reward-tampering-in-llms"
+          },
+          {
+            "title": "Reward Hacking in Reinforcement Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+          },
+          {
+            "title": "Process Reward Models for LLM Agents: Practical Framework and Directions",
+            "url": "https://arxiv.org/pdf/2502.10325"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/pdf/2504.15275"
+          }
+        ]
+      },
+      "Based on the search results, here's what recent research reveals about reward hacking, process reward models (PRMs), and RL training in LLMs:\n\n## Overview of Reward Hacking in LLMs\n\nReinforcement learning is central to LLM post-training, but reward functions are imperfect incentives for desired behavior and models often reward hack by exploiting loopholes in reward design. Reward hacking undermines the trustworthiness of the training process and has even been shown to generalize to broader misalignment.\n\n## Specific Issues with Process Reward Models\n\nRecent 2026 research has identified critical vulnerabilities in PRMs. Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with policies trained on AIME problems achieving near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. These findings reveal that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\n## Root Causes and Mitigation Strategies\n\nThe main cause of PRM-induced reward hacking is the canonical summation-form credit assignment in reinforcement learning, which defines the value as cumulative gamma-decayed future rewards, easily inducing LLMs to hack steps with high rewards.\n\nFor prevention, clipping and delta mechanisms guard dense reward accumulation against reward hacking, bounding the total reward and restoring training stability. Additionally, recent work introduces reward hacking mitigation through penalizing detected reward hacking rollouts, negatively rewarding such rollouts, and inoculation prompting, with best interventions achieving comparable performance to models trained in non-hackable environments."
+    ],
+    "durationSeconds": 8.697416828000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7233bf8c-76c3-4ff6-aac5-141c3566d7b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T08:52:26.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CH8GNpbmnufVo55mKSHXx6`</summary>
+
+```json
+{
+  "query": "adaptive per-step interpolation process outcome reward LLM reasoning calibration confidence gating 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed21fd6c-37df-4238-8bf0-f4ea358b4af9",
+  "isSidechain": false,
+  "requestId": "req_011CbSnkZj2FPHRRvH1soz3V",
+  "type": "assistant",
+  "uuid": "4aba0a47-9801-432b-abd6-3fb97861aaa5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Md2gVyy6m9Qp6BtiGdgVSp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 25969,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 25969,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T08:52:34.511Z_
+
+<details><summary>↩ Tool result · `toolu_01CH8GNpbmnufVo55mKSHXx6`</summary>
+
+```text
+Web search results for query: "adaptive per-step interpolation process outcome reward LLM reasoning calibration confidence gating 2025 2026"
+
+Links: [{"title":"LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/html/2604.02341v1"},{"title":"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning","url":"https://arxiv.org/pdf/2509.26578"},{"title":"Discovering Process-Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/pdf/2602.01034"},{"title":"LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/pdf/2604.02341"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"}]
+
+The web search returned several highly relevant results on advanced LLM reasoning techniques from 2025-2026. Here's what I found:
+
+## Key Research Areas
+
+**Process Reward Models with Outcome Guidance (PROGRS)**
+
+PROGRS combines a frozen quantile-regression PRM with a multi-scale coherence evaluator that penalizes short-window confidence volatility to stabilize process signals. Across MATH-500, AMC, AIME, MinervaMath, and Olympiad-Bench, PROGRS consistently improves Pass@1 over outcome-only baselines (e.g., 74.9% vs. 69.7% on MATH-500).
+
+**Conditional Reward Modeling (CRM)**
+
+CRM explicitly conditions each step reward on the previous reasoning steps and aligns it with the final outcome, offering improved robustness compared to traditional reward models.
+
+**Calibration and Confidence Gating**
+
+Quantile regression calibrates PRM outputs to reliably indicate success probabilities, while instance-adaptive scaling (IAS) dynamically determines the compute budget needed per query. A central challenge is miscalibration: PRMs may assign high scores to trajectories that are coherent locally yet incorrect globally, and optimizing such scores as absolute rewards can induce reward hacking.
+
+**Generative PRMs and Uncertainty-Based Methods**
+
+Generative PRMs like ThinkPRM and GenPRM provide long-form verification chains with less annotation, while training PRMs without ground-truth step labels and with entropy-based data selection enables scalable learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4aba0a47-9801-432b-abd6-3fb97861aaa5",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "3bc13e09-d451-4b49-b00d-343762aa765d",
+  "toolUseResult": {
+    "query": "adaptive per-step interpolation process outcome reward LLM reasoning calibration confidence gating 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RYyGE9PjkxBMADd31mCjS2",
+        "content": [
+          {
+            "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/html/2604.02341v1"
+          },
+          {
+            "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2509.26578"
+          },
+          {
+            "title": "Discovering Process-Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.01034"
+          },
+          {
+            "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/pdf/2604.02341"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          }
+        ]
+      },
+      "The web search returned several highly relevant results on advanced LLM reasoning techniques from 2025-2026. Here's what I found:\n\n## Key Research Areas\n\n**Process Reward Models with Outcome Guidance (PROGRS)**\n\nPROGRS combines a frozen quantile-regression PRM with a multi-scale coherence evaluator that penalizes short-window confidence volatility to stabilize process signals. Across MATH-500, AMC, AIME, MinervaMath, and Olympiad-Bench, PROGRS consistently improves Pass@1 over outcome-only baselines (e.g., 74.9% vs. 69.7% on MATH-500).\n\n**Conditional Reward Modeling (CRM)**\n\nCRM explicitly conditions each step reward on the previous reasoning steps and aligns it with the final outcome, offering improved robustness compared to traditional reward models.\n\n**Calibration and Confidence Gating**\n\nQuantile regression calibrates PRM outputs to reliably indicate success probabilities, while instance-adaptive scaling (IAS) dynamically determines the compute budget needed per query. A central challenge is miscalibration: PRMs may assign high scores to trajectories that are coherent locally yet incorrect globally, and optimizing such scores as absolute rewards can induce reward hacking.\n\n**Generative PRMs and Uncertainty-Based Methods**\n\nGenerative PRMs like ThinkPRM and GenPRM provide long-form verification chains with less annotation, while training PRMs without ground-truth step labels and with entropy-based data selection enables scalable learning."
+    ],
+    "durationSeconds": 7.735991242999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4aba0a47-9801-432b-abd6-3fb97861aaa5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-a…",
+  "leafUuid": "3bc13e09-d451-4b49-b00d-343762aa765d",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for mathematical reasoning RL",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-27T08:52:37.571Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019DhqCSiWMZHpMT9gTwdXrQ`</summary>
+
+```json
+{
+  "query": "UCAS uncertainty-aware advantage shaping RLVR ConfClip confidence-weighted reward RL LLM arXiv 2509.17730"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bc13e09-d451-4b49-b00d-343762aa765d",
+  "isSidechain": false,
+  "requestId": "req_011CbSnmM7H2FvFR497Y98Nk",
+  "type": "assistant",
+  "uuid": "08d87e22-664b-4564-8c25-5c2ded2a3a15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHX3zG6ZWDPwZzGUN4qsCr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 26826,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 692,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 26826,
+          "cache_creation_input_tokens": 692,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 692
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-27T08:52:45.782Z_
+
+<details><summary>↩ Tool result · `toolu_019DhqCSiWMZHpMT9gTwdXrQ`</summary>
+
+```text
+Web search results for query: "UCAS uncertainty-aware advantage shaping RLVR ConfClip confidence-weighted reward RL LLM arXiv 2509.17730"
+
+Links: [{"title":"Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning","url":"https://arxiv.org/html/2510.10649v1"},{"title":"Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning | OpenReview","url":"https://openreview.net/forum?id=CTmu1mqDuz"},{"title":"[Literature Review] Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning","url":"https://www.themoonlight.io/en/review/unlocking-exploration-in-rlvr-uncertainty-aware-advantage-shaping-for-deeper-reasoning"},{"title":"[2510.10649] Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning","url":"https://arxiv.org/abs/2510.10649"},{"title":"ConfClip: Confidence-Weighted and Clipped Reward for Reinforcement Learning in LLMs","url":"https://arxiv.org/html/2509.17730"},{"title":"[2509.17730] ConfClip: Confidence-Weighted and Clipped Reward for Reinforcement Learning in LLMs","url":"https://arxiv.org/abs/2509.17730"},{"title":"Learn More with Less: Uncertainty Consistency Guided Query Selection for RLVR","url":"https://arxiv.org/pdf/2601.22595"},{"title":"Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning","url":"https://www.researchgate.net/publication/396460231_Unlocking_Exploration_in_RLVR_Uncertainty-aware_Advantage_Shaping_for_Deeper_Reasoning"},{"title":"Preprint. UNLOCKING EXPLORATION IN RLVR: UNCERTAINTY-","url":"https://arxiv.org/pdf/2510.10649"}]
+
+Based on the search results, I found information about both papers mentioned in your query:
+
+## UCAS (Uncertainty-Aware Advantage Shaping)
+
+UCAS is a model-free method that refines credit assignment by leveraging the model's internal uncertainty signals. UCAS operates in two stages: it first modulates the response-level advantage using the model's overall self-confidence, and then applies a token-level penalty based on raw logit certainty. 
+
+Experiments on five mathematical reasoning benchmarks show that UCAS significantly outperforms strong RLVR baselines across multiple model scales, and achieves higher rewards while promoting greater reasoning diversity and successfully mitigating entropy collapse.
+
+## ConfClip (arXiv 2509.17730)
+
+ConfClip integrates verifiable outcomes with the model's own confidence estimates, enriching the reward signal and providing finer-grained feedback while implicitly supervising the reasoning process. ConfClip uses fewer tokens, maintains stable training, and directly improves the performance of state-of-the-art RLVR-based methods.
+
+Both papers address challenges in Reinforcement Learning with Verifiable Rewards (RLVR) for large language models by incorporating uncertainty and confidence signals to improve reward design and exploration efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08d87e22-664b-4564-8c25-5c2ded2a3a15",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "5310abe8-b945-4ad1-aae3-d8898fa290ab",
+  "toolUseResult": {
+    "query": "UCAS uncertainty-aware advantage shaping RLVR ConfClip confidence-weighted reward RL LLM arXiv 2509.17730",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017VudmnCR8ne6TA3bhFN39t",
+        "content": [
+          {
+            "title": "Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning",
+            "url": "https://arxiv.org/html/2510.10649v1"
+          },
+          {
+            "title": "Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=CTmu1mqDuz"
+          },
+          {
+            "title": "[Literature Review] Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning",
+            "url": "https://www.themoonlight.io/en/review/unlocking-exploration-in-rlvr-uncertainty-aware-advantage-shaping-for-deeper-reasoning"
+          },
+          {
+            "title": "[2510.10649] Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning",
+            "url": "https://arxiv.org/abs/2510.10649"
+          },
+          {
+            "title": "ConfClip: Confidence-Weighted and Clipped Reward for Reinforcement Learning in LLMs",
+            "url": "https://arxiv.org/html/2509.17730"
+          },
+          {
+            "title": "[2509.17730] ConfClip: Confidence-Weighted and Clipped Reward for Reinforcement Learning in LLMs",
+            "url": "https://arxiv.org/abs/2509.17730"
+          },
+          {
+            "title": "Learn More with Less: Uncertainty Consistency Guided Query Selection for RLVR",
+            "url": "https://arxiv.org/pdf/2601.22595"
+          },
+          {
+            "title": "Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning",
+            "url": "https://www.researchgate.net/publication/396460231_Unlocking_Exploration_in_RLVR_Uncertainty-aware_Advantage_Shaping_for_Deeper_Reasoning"
+          },
+          {
+            "title": "Preprint. UNLOCKING EXPLORATION IN RLVR: UNCERTAINTY-",
+            "url": "https://arxiv.org/pdf/2510.10649"
+          }
+        ]
+      },
+      "Based on the search results, I found information about both papers mentioned in your query:\n\n## UCAS (Uncertainty-Aware Advantage Shaping)\n\nUCAS is a model-free method that refines credit assignment by leveraging the model's internal uncertainty signals. UCAS operates in two stages: it first modulates the response-level advantage using the model's overall self-confidence, and then applies a token-level penalty based on raw logit certainty. \n\nExperiments on five mathematical reasoning benchmarks show that UCAS significantly outperforms strong RLVR baselines across multiple model scales, and achieves higher rewards while promoting greater reasoning diversity and successfully mitigating entropy collapse.\n\n## ConfClip (arXiv 2509.17730)\n\nConfClip integrates verifiable outcomes with the model's own confidence estimates, enriching the reward signal and providing finer-grained feedback while implicitly supervising the reasoning process. ConfClip uses fewer tokens, maintains stable training, and directly improves the performance of state-of-the-art RLVR-based methods.\n\nBoth papers address challenges in Reinforcement Learning with Verifiable Rewards (RLVR) for large language models by incorporating uncertainty and confidence signals to improve reward design and exploration efficiency."
+    ],
+    "durationSeconds": 8.204852048000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "08d87e22-664b-4564-8c25-5c2ded2a3a15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T08:52:48.673Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01StMX12BU4abrzZPcr9LSUQ`</summary>
+
+```json
+{
+  "query": "\"credit assignment\" \"process reward\" \"bias-variance tradeoff\" OR \"bias variance\" interpolation per-step 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5310abe8-b945-4ad1-aae3-d8898fa290ab",
+  "isSidechain": false,
+  "requestId": "req_011CbSnnBKwYfMMA4apRJkMi",
+  "type": "assistant",
+  "uuid": "3b05ffd9-bf5c-4e94-9e6c-75de164b2530",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBsMLPcYLUR83rPsUzGgb7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 27518,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 951,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 27518,
+          "cache_creation_input_tokens": 951,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 951
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T08:52:57.986Z_
+
+<details><summary>↩ Tool result · `toolu_01StMX12BU4abrzZPcr9LSUQ`</summary>
+
+```text
+Web search results for query: ""credit assignment" "process reward" "bias-variance tradeoff" OR "bias variance" interpolation per-step 2025 2026"
+
+Links: [{"title":"Sequence Compression Speeds Up Credit Assignment in Reinforcement Learning","url":"https://arxiv.org/html/2405.03878v2"},{"title":"Reducing Credit Assignment Variance via Counterfactual Reasoning Paths","url":"https://arxiv.org/html/2605.16302"},{"title":"Hindsight Credit Assignment","url":"http://papers.neurips.cc/paper/9413-hindsight-credit-assignment.pdf"},{"title":"GRPO-𝜆 : Credit Assignment improves LLM Reasoning","url":"https://arxiv.org/html/2510.00194v1"},{"title":"Sequence Compression Speeds Up Credit Assignment in Reinforcement   Learning","url":"https://arxiv.org/pdf/2405.03878"},{"title":"Rethinking Token-Level Credit Assignment in RLVR: A Polarity-Entropy Analysis","url":"https://arxiv.org/html/2604.11056v1"},{"title":"Information uncertainty influences learning strategy from sequentially delayed rewards - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12885371/"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards","url":"https://arxiv.org/pdf/2509.19199"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"}]
+
+I found several relevant papers from 2025-2026 that discuss credit assignment, process rewards, and bias-variance tradeoffs. Here are the key results:
+
+## Recent Papers on Credit Assignment and Process Rewards (2025-2026)
+
+**GRPO-λ: Credit Assignment improves LLM Reasoning (September 2025)**
+This paper uses interpolation between one-step TD and Monte Carlo methods to balance high bias from TD updates and high variance from MC estimates, specifically applying this interpolation to policy gradient methods.
+
+**Reducing Credit Assignment Variance via Counterfactual Reasoning Paths (April 2026)**
+The paper proposes a counterfactual comparison-based credit assignment framework that constructs an implicit process-level advantage estimator to convert sparse terminal rewards into step-sensitive learning signals.
+
+**Rethinking Token-Level Credit Assignment in RLVR: A Polarity-Entropy Analysis (April 2026)**
+Recent work addresses credit assignment along two dimensions: reward polarity, which redistributes credit by positive and negative samples, and token entropy, which differentiates tokens by their predictive uncertainty.
+
+**Agentic Reinforcement Learning with Implicit Step Rewards (September 2025)**
+This paper proposes Online Learning Process Rewards (OPRL), a general credit assignment strategy that trains a process reward model (PRM) alongside the policy using only on-policy trajectories and their outcome preferences.
+
+**From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models (April 2026)**
+This survey covers credit assignment methods for LLM RL published between January 2024 and April 2026.
+
+These papers collectively address the bias-variance tradeoff in credit assignment through various mechanisms including process reward models, eligibility traces with interpolation parameters, and entropy-based token weighting approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b05ffd9-bf5c-4e94-9e6c-75de164b2530",
+  "isSidechain": false,
+  "promptId": "87b46c75-281b-40b7-90ec-2eeaa31d1c5c",
+  "type": "user",
+  "uuid": "04d05481-bf09-4bf4-9086-e541a0133e4d",
+  "toolUseResult": {
+    "query": "\"credit assignment\" \"process reward\" \"bias-variance tradeoff\" OR \"bias variance\" interpolation per-step 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AajAJfRaRd48zQZHGVwRaW",
+        "content": [
+          {
+            "title": "Sequence Compression Speeds Up Credit Assignment in Reinforcement Learning",
+            "url": "https://arxiv.org/html/2405.03878v2"
+          },
+          {
+            "title": "Reducing Credit Assignment Variance via Counterfactual Reasoning Paths",
+            "url": "https://arxiv.org/html/2605.16302"
+          },
+          {
+            "title": "Hindsight Credit Assignment",
+            "url": "http://papers.neurips.cc/paper/9413-hindsight-credit-assignment.pdf"
+          },
+          {
+            "title": "GRPO-𝜆 : Credit Assignment improves LLM Reasoning",
+            "url": "https://arxiv.org/html/2510.00194v1"
+          },
+          {
+            "title": "Sequence Compression Speeds Up Credit Assignment in Reinforcement   Learning",
+            "url": "https://arxiv.org/pdf/2405.03878"
+          },
+          {
+            "title": "Rethinking Token-Level Credit Assignment in RLVR: A Polarity-Entropy Analysis",
+            "url": "https://arxiv.org/html/2604.11056v1"
+          },
+          {
+            "title": "Information uncertainty influences learning strategy from sequentially delayed rewards - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12885371/"
+          },
+          {
+            "title": "Agentic Reinforcement Learning with Implicit Step Rewards",
+            "url": "https://arxiv.org/pdf/2509.19199"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          }
+        ]
+      },
+      "I found several relevant papers from 2025-2026 that discuss credit assignment, process rewards, and bias-variance tradeoffs. Here are the key results:\n\n## Recent Papers on Credit Assignment and Process Rewards (2025-2026)\n\n**GRPO-λ: Credit Assignment improves LLM Reasoning (September 2025)**\nThis paper uses interpolation between one-step TD and Monte Carlo methods to balance high bias from TD updates and high variance from MC estimates, specifically applying this interpolation to policy gradient methods.\n\n**Reducing Credit Assignment Variance via Counterfactual Reasoning Paths (April 2026)**\nThe paper proposes a counterfactual comparison-based credit assignment framework that constructs an implicit process-level advantage estimator to convert sparse terminal rewards into step-sensitive learning signals.\n\n**Rethinking Token-Level Credit Assignment in RLVR: A Polarity-Entropy Analysis (April 2026)**\nRecent work addresses credit assignment along two dimensions: reward polarity, which redistributes credit by positive and negative samples, and token entropy, which differentiates tokens by their predictive uncertainty.\n\n**Agentic Reinforcement Learning with Implicit Step Rewards (September 2025)**\nThis paper proposes Online Learning Process Rewards (OPRL), a general credit assignment strategy that trains a process reward model (PRM) alongside the policy using only on-policy trajectories and their outcome preferences.\n\n**From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models (April 2026)**\nThis survey covers credit assignment methods for LLM RL published between January 2024 and April 2026.\n\nThese papers collectively address the bias-variance tradeoff in credit assignment through various mechanisms including process reward models, eligibility traces with interpolation parameters, and entropy-based token weighting approaches."
+    ],
+    "durationSeconds": 9.307583205000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3b05ffd9-bf5c-4e94-9e6c-75de164b2530",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-27T08:53:50.933Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the research landscape. Let me synthesize my findings and evaluate this proposal.
+
+## Summary of Research Landscape
+
+The proposal is about using PRM calibration confidence (specifically, confidence interval width from quantile regression) to adaptively gate between process credit (PURE-style min-form) and outcome credit (GRPO-style) on a per-step basis during RL training for mathematical reasoning.
+
+### Key Related Works:
+
+1. **PURE (NeurIPS 2025)** - Min-form credit assignment to reduce reward hacking. Treats PRM scores as reliable.
+
+
+2. **PROGRS (2026)** - Applies calibrated PRM through quantile regression but only aggregates at the trajectory level rather than per-step.
+3. **GRPO-λ (ICLR 2026)** - Uses eligibility traces for credit assignment without differentiating PRM reliability.
+4. **"Discovering Process-Outcome Credit" (2602.01034)** - Mixes process and outcome credit per-step using Monte Carlo estimation of information gain, independent of PRM calibration.
+5. **Park et al. (NeurIPS 2025)** - Develops quantile regression for PRM calibration but limits it to test-time scaling.
+6. **Distributional PRM (2605.06...)** - Examining additional approaches to modeling PRM uncertainty.
+7. **UCAS** - Leverages the policy model's own logit uncertainty to shape advantages.
+8. **ConfClip** - Weights rewards based on policy confidence.
+9. **VPPO / "Save the Good Prefix"** - Assigns binary rewards to prefixes based on where errors first occur.
+10. **Jia et al. (ICML 2025)** - Establishes that outcome supervision isn't statistically harder than process supervision.
+11. **"Reward Under Attack" (2603.06621)** - Demonstrates systematic vulnerabilities in PRM-based reward models.
+12. **SELAUR** - Incorporates uncertainty awareness into rewards for LLM agents.
+13. **Counterfactual reasoning paths (2605.16302)** - Reduces variance in credit assignment through counterfactual analysis.
+14. **Rethinking Token-Level Credit Assignment (2604.11056)** - Analyzes credit assignment through polarity-entropy metrics.
+
+Now I'm evaluating the novelty of this approach. The core idea combines calibrated confidence intervals from PRMs with per-step gating between process and outcome rewards, framed as a bias-variance tradeoff. While PRM calibration and per-step credit mixing both exist independently, using the width of calibrated confidence intervals to control the interpolation between them appears to be genuinely unaddressed in the literature—PROGRS applies calibrated PRMs only at the trajectory level, and prior work on per-step mixing relies on Monte Carlo estimation rather than PRM confidence signals.
+
+The conceptual contribution is modest though. The intuition that "trust the verifier less when it's uncertain" is fairly straightforward, and the sigmoid gating mechanism is a natural choice. The theoretical justification around MSE-optimal interpolation under Gaussian assumptions adds rigor but isn't particularly deep.
+
+On the problem side, this addresses a real and documented issue—PRM miscalibration leading to reward hacking in math reasoning RL is well-established, and the space is actively researched. The practical value of making PRM-based RL more robust is clear. The key question for impact is whether positive results would actually be surprising, or if the improvement would be expected given the intuitive appeal of the approach.
+
+The core mechanism—using calibration confidence to weight credit assignment and reduce reward hacking—is predictable in direction. What matters is whether the magnitude of improvement over existing methods like PROGRS is substantial enough to justify the added complexity. There's also the question of whether simpler alternatives like hard gating on wide confidence intervals or combining PROGRS's trajectory-level centering with basic per-step thresholding might achieve similar results more directly.
+
+The authors do address these concerns in their ablations and alternatives section, which is reassuring. The key empirical assumptions I'm checking are whether confidence interval width from quantile regression actually correlates with prediction reliability, and whether the frozen PRM's calibration holds up as the policy drifts during training—though they do track this longitudinally, which helps mitigate that risk.
+
+There's also the distribution shift question of using a Qwen2.5 PRM to evaluate Qwen3 models, which they acknowledge. And while the bias-variance framing is elegant—treating process credit as biased and outcome credit as unbiased—it's somewhat simplified since outcome credit can have its own biases from how GRPO groups are formed.
+
+The related work section is genuinely impressive, with a clean 2×2 design space and differentiation from 20+ papers. But stepping back, the core contribution is fairly incremental: essentially gating between two existing credit assignment methods using calibrated uncertainty. The expected direction is predictable, and the real question is whether the improvement over trajectory-level calibrated approaches like PROGRS will be meaningful or just marginal. The bias-variance framing, while intellectually satisfying, might be more of a post-hoc story than a fundamental insight.
+
+For AAAI 2026, I'm settling on the 30-38% range. The novelty is genuine in its specific combination, the problem matters, and the approach is principled with exceptional related work coverage. But the conceptual leap is modest, and the expected gains may be incremental.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04d05481-bf09-4bf4-9086-e541a0133e4d",
+  "isSidechain": false,
+  "requestId": "req_011CbSno5Vj1i1Y9xZiRAPoR",
+  "type": "assistant",
+  "uuid": "27071b85-b351-42e2-99a2-e7d7ba54945b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UULPBcGLjuDRpGJhN2g3nd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 28469,
+      "output_tokens": 6080,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6080,
+          "cache_read_input_tokens": 28469,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-27T08:55:11.069Z_
+
+Now I have sufficient information to make my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+- "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning" [PURE] (NeurIPS 2025): 提出 min-form 替代 summation-form credit assignment 以缓解 reward hacking。假设 PRM score 可靠，不做 per-step 可信度区分。本 proposal 的核心 process credit 来源。
+  
+- "LLM Reasoning with Process Rewards for Outcome-Guided Steps" [PROGRS] (arXiv 2604.02341, 2026): 使用 frozen quantile-regression PRM + outcome-conditioned centering。在 trajectory level 做校准修正（incorrect trajectories 的 PRM scores 归零中心化），MATH-500 达 74.9% vs DAPO 69.7%。是本 proposal 最直接的竞争对手——同样使用 calibrated PRM，但在 trajectory level 而非 per-step level 操作。
+
+- "Discovering Process-Outcome Credit in Multi-Step LLM Reasoning" (arXiv 2602.01034, 2026): 提出 Step-wise Marginal Information Gain + Decoupled Masking 做 per-step process-outcome credit mixing，但基于 Monte Carlo estimation 的 intrinsic information gain，非 PRM calibration confidence。计算开销更大。是 per-step mixing 维度的竞争者，但 signal source 不同。
+
+- "Know What You Don't Know: Uncertainty Calibration of Process Reward Models" (Park et al., NeurIPS 2025): 提出 quantile regression 校准 PRM，生成 calibrated confidence intervals。仅用于 test-time scaling（instance-adaptive compute allocation），未将 uncertainty 反馈到 RL training。本 proposal 的技术基座——直接复用其校准方法。
+
+- "Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport" (arXiv 2605.06785, May 2026): PRM 校准的最新 SOTA，同样仅用于 test-time scaling。
+
+- GRPO-λ (arXiv 2510.00194, ICLR 2026): eligibility traces 改善 credit assignment，但均匀信任 PRM outputs。
+
+- UCAS (arXiv 2510.10649, 2025): 用 policy 模型自身 logit uncertainty 做 advantage shaping。信号来源是 policy-side，随训练漂移。
+
+- ConfClip (arXiv 2509.17730, 2025): 用 policy confidence 加权 reward。同样是 policy-side signal。
+
+- "Reward Under Attack" (arXiv 2603.06621, 2026): 证明 PRM 在 adversarial RL 下 systematically exploitable，PRM scores >0.9 而 accuracy <4%。直接支持 proposal 的 motivation。
+
+- Jia et al. "Do We Need to Verify Step by Step?" (ICML 2025): 理论证明 outcome supervision 统计难度不高于 process supervision。为 fallback to outcome credit 提供理论保障。
+
+- VPPO / "Save the Good Prefix" (arXiv 2601.18984, 2026): binary first-error gating，per-step 但 hard threshold。
+
+- "Reducing Credit Assignment Variance via Counterfactual Reasoning Paths" (arXiv 2605.16302, 2026): 用 counterfactual comparison 做 per-step credit，signal source 不同。
+
+- "From Reasoning to Agentic: Credit Assignment in RL for LLMs" (arXiv 2604.09459, 2026): 2024.01–2026.04 credit assignment 综述，覆盖了这个领域的完整 taxonomy。
+
+- 调研总结: 数学推理 RL 中的 credit assignment 是 2025-2026 最活跃的研究方向之一。当前格局沿两轴分化：(1) signal source（verifier calibration vs. intrinsic/structural）和 (2) granularity（per-step vs. trajectory-level）。PROGRS 占据了 "verifier calibration × trajectory-level" 象限；"Discovering Process-Outcome Credit" 占据了 "intrinsic × per-step" 象限。本 proposal 定位于 "verifier calibration × per-step" 象限，这一组合确实未被直接占据。但 PROGRS 的 trajectory-level centering 和 "Discovering Process-Outcome Credit" 的 per-step mixing 各自覆盖了 UGCA 的一个维度。
+
+
+【Trivial Alternative 检验】:
+
+存在几个成本更低的替代方案需要考量：
+
+(1) **Hard threshold gating**：直接丢弃 CI width 超过阈值的 PRM step（α∈{0,1}），不做 soft sigmoid 插值。这比 soft gating 简单得多，proposal 将其作为 ablation 对照，但如果 hard gating 效果接近，soft gating 的增量 contribution 就很薄。
+
+(2) **PROGRS + 简单 per-step PRM score filtering**：在 PROGRS 的 trajectory-level centering 基础上，对低 confidence 的 step 做简单 clipping（如去掉 bottom 20% confidence 的 step rewards）。这不需要 sigmoid gating 函数、bias-variance framing 等理论构造，但可能捕获大部分收益。
+
+(3) **Raw PRM score magnitude 作为 gating signal**：proposal 认为这混淆了 "prediction" 和 "confidence"，指出 PRM 可以在错误预测上有高 confidence。这是一个有效的区分点，但需要实证验证两者差距有多大。
+
+增量价值的核心在于：calibrated CI width 比 raw score magnitude 或简单阈值方法能更精准地识别 PRM 不可靠的 step。如果这个区分在实证中不显著，UGCA 的核心贡献就会大打折扣。Proposal 的 ablation 设计覆盖了这些对比（ablation 3 和 4），说明作者意识到了这个威胁，但 idea 层面的风险仍然存在：如果 soft calibrated gating 仅比 hard thresholding 好 0.5-1%，reviewer 会质疑是否值得引入这套机制。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有以下未经验证的环节：
+
+(1) **CI width ↔ PRM prediction reliability 的相关性假设**。这是整个方法的基石。Quantile regression 产生的 CI width 衡量的是 PRM 对 "该 step 后续能否导向正确答案" 的预测不确定性，但这不一定等价于 "PRM 的 step-level 评估是否准确"。一个 PRM 可能对某类 step 系统性地给出窄 CI 但偏差很大（confident but wrong），也可能给出宽 CI 但方向正确。Proposal 设计了 core assumption validation（per-step w_i quantile bins vs. PRM accuracy），但这是实验层面的验证，idea 层面这个假设是核心弱点。
+
+(2) **Frozen PRM 在 policy drift 下保持 calibration 的假设**。随着 RL training 推进，policy 生成的 rollout 分布会偏离 PRM 训练数据分布。PRM 的 calibration quality 可能因此退化。Proposal 设计了 longitudinal tracking（每 25% 进度检查 ECE/Brier score），但这只是诊断而非修复。如果退化显著，整个 gating 机制的基础就动摇了。
+
+(3) **Bias-variance framing 的严格性**。将 outcome credit 称为 "unbiased" 是一个简化——GRPO 的 group-relative advantage 在有限 sample 下也存在 sampling bias。将 process credit 的 "bias" 完全归因于 PRM miscalibration 也忽略了 min-form 本身的 structural bias（proposal 承认了这一点但声称不解决它）。sigmoid gating 的 MSE-optimal 推导依赖 Gaussian noise 假设，实际 PRM 误差分布可能远非 Gaussian。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 具体组合（per-step PRM calibrated CI width → sigmoid gating → process-outcome credit interpolation）在现有文献中确实未被占据，2×2 design space 定位清晰。但核心 insight——"当 verifier 不确定时少信任它"——是高度直觉性的，conceptual leap 较小。与 PROGRS 的差异是 "trajectory-level → per-step"，与 "Discovering Process-Outcome Credit" 的差异是 "MC information gain → calibrated CI width"。两者都是沿已有维度的渐进延伸，而非开辟新维度。Park et al. (NeurIPS 2025) 的 quantile regression 方法被直接复用而非改进。sigmoid gating 函数虽有理论推导（Gaussian 假设下 MSE-optimal），但形式上是标准的 soft interpolation。
+
+2. **Significance: 中偏强** — 研究问题确实重要：PRM miscalibration 导致 reward hacking 是 math reasoning RL 的核心痛点（"Reward Under Attack" 给出了触目惊心的数据），且整个 process-supervised RL 领域正在快速发展。UGCA 提出的 "Verifier-Uncertainty-Aware RL" 原则有一定的 generalizable insight（适用于任何 imperfect step-level verifier），这比纯技术改进有更大的影响力。但 proposal 明确将实验 scope 限制在 math reasoning，cross-domain generalization 留作 future work，这限制了即时的 significance。此外，如果核心 positive result 成立（per-step uncertainty gating 比 trajectory-level centering 更好），reviewer 的反应更可能是 "makes sense, expected" 而非 "surprising"。
+
+3. **Related Work: 强** — 这是 proposal 最突出的优点。2×2 design space taxonomy 是优秀的 positioning 工具。对 ~20 篇高度相关工作的覆盖非常全面，包括 NeurIPS 2025、ICLR 2026、ICML 2025 的最新工作。与每篇工作的差异化定位清晰且准确（我通过调研验证了引用的准确性）。对 PROGRS、"Discovering Process-Outcome Credit"、UCAS、ConfClip 等最直接竞争者的技术区分是精准的。唯一小缺陷：未提及 "From Reasoning to Agentic: Credit Assignment in RL for LLMs" (arXiv 2604.09459, 2026) 这篇综述，以及 "Reducing Credit Assignment Variance via Counterfactual Reasoning Paths" (arXiv 2605.16302, 2026) 这篇 per-step credit 工作，但这不影响核心 positioning。
+
+
+【概率估计】: [28% - 38%] 中位 32%
+
+【估计理由】: 
+Novelty 为"中"而非"强"是概率上界的主要限制因素。核心 insight（trust uncertain verifier signals less）方向高度可预测，conceptual leap 有限，属于 design space 中一个自然但未填充的格点，而非paradigm-level 创新。这意味着即使实验结果 positive，审稿人的反应更可能是 "well-executed incremental work" 而非 "this changes how I think about the problem"。Significance 中偏强（问题确实重要 + generalization principle 有价值），Related Work 强（positioning exemplary），这两项将概率托住在 28% 以上。但 trivial alternative 威胁真实存在——如果 PROGRS + 简单 per-step filtering 已能获得大部分收益，或者 hard gating 与 soft gating 差距不大，核心贡献的增量价值就会被压缩。中位 32% 反映了：idea 方向正确、定位精准、有真实的 novelty delta，但 delta 的量级可能不足以让 top venue reviewer 写出 "strong accept"。
+
+【主要风险】: 
+1. **Novelty 被认为 incremental**：reviewer 可能认为 "从 trajectory-level calibration (PROGRS) 到 per-step calibration" 只是 granularity 的自然细化，不构成足够的 intellectual contribution；核心 gating 机制（sigmoid on CI width）过于 straightforward。
+2. **Core assumption fragility**：CI width 与 PRM prediction reliability 的相关性假设如果在实验中不强（如 Spearman 相关 < 0.3），整个方法的理论基础就会瓦解——而这个假设在 idea 层面缺乏先验保证，完全依赖实证验证。
+```
+
+Sources:
+- [PURE: Stop Summation (NeurIPS 2025)](https://openreview.net/forum?id=3Sxby0hH1q)
+- [PROGRS: LLM Reasoning with Process Rewards (arXiv 2604.02341)](https://arxiv.org/abs/2604.02341)
+- [Discovering Process-Outcome Credit (arXiv 2602.01034)](https://arxiv.org/abs/2602.01034)
+- [Know What You Don't Know: PRM Calibration (Park et al., NeurIPS 2025)](https://openreview.net/forum?id=hzMkfIrdDT)
+- [Distributional Process Reward Models (arXiv 2605.06785)](https://arxiv.org/abs/2605.06785)
+- [GRPO-λ (ICLR 2026)](https://openreview.net/forum?id=iRWqcnBlLQ)
+- [UCAS: Uncertainty-aware Advantage Shaping](https://arxiv.org/abs/2510.10649)
+- [ConfClip (arXiv 2509.17730)](https://arxiv.org/abs/2509.17730)
+- [Reward Under Attack (arXiv 2603.06621)](https://arxiv.org/pdf/2603.06621)
+- [Jia et al., ICML 2025: Do We Need to Verify Step by Step?](https://icml.cc/virtual/2025/poster/46497)
+- [From Reasoning to Agentic: Credit Assignment Survey (arXiv 2604.09459)](https://arxiv.org/html/2604.09459v1)
+- [Reducing Credit Assignment Variance (arXiv 2605.16302)](https://arxiv.org/html/2605.16302)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27071b85-b351-42e2-99a2-e7d7ba54945b",
+  "isSidechain": false,
+  "requestId": "req_011CbSno5Vj1i1Y9xZiRAPoR",
+  "type": "assistant",
+  "uuid": "078476cd-5320-4b5e-9021-8fa0554c21da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UULPBcGLjuDRpGJhN2g3nd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 28469,
+      "output_tokens": 6080,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6080,
+          "cache_read_input_tokens": 28469,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-a…",
+  "leafUuid": "078476cd-5320-4b5e-9021-8fa0554c21da",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for mathematical reasoning RL",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-a…",
+  "leafUuid": "078476cd-5320-4b5e-9021-8fa0554c21da",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for mathematical reasoning RL",
+  "sessionId": "475dbd0f-9789-4ff9-a226-4abbf3fbfcfc"
+}
+```
+
+---

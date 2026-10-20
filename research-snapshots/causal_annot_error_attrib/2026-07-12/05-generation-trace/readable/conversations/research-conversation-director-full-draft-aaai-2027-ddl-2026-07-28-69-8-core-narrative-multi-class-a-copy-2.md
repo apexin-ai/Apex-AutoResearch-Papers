@@ -1,0 +1,23 @@
+# Research conversation: [Director 指令] [Full Draft] 写一篇 AAAI 2027 论文，DDL 2026-07-28（~69 天）。8 页正文限制。 **Core narrative**: Multi-class annotation er
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 6,147
+- **Recorded user turns:** 203
+- **Tool calls:** 1,633
+- **Original source:** `logs/chats/exported-trajectories/account-2/35fb04f7-d2db-441f-a3b1-35490ca0d54b.jsonl`
+- **Structured JSON:** [`756c4cd9f1cce1f7bcdb.json`](../../sessions/75/756c4cd9f1cce1f7bcdb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-001.md) · [Part 2](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-002.md) · [Part 3](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-003.md) · [Part 4](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-004.md) · [Part 5](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-005.md) · [Part 6](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-006.md) · [Part 7](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-007.md) · [Part 8](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-008.md) · [Part 9](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-009.md) · [Part 10](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-010.md) · [Part 11](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-011.md) · [Part 12](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-012.md) · [Part 13](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-013.md) · [Part 14](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-014.md) · [Part 15](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-015.md) · [Part 16](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-016.md) · [Part 17](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-017.md) · [Part 18](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-018.md) · [Part 19](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-019.md) · [Part 20](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-020.md) · [Part 21](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-021.md) · [Part 22](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-022.md) · [Part 23](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-023.md) · [Part 24](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-024.md) · [Part 25](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-025.md) · [Part 26](research-conversation-director-full-draft-aaai-2027-ddl-2026-07-28-69-8-core-narrative-multi-class-a-copy-2/part-026.md)

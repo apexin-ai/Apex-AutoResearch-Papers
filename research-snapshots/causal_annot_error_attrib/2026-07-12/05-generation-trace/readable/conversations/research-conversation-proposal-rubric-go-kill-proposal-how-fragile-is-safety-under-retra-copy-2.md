@@ -1,0 +1,2550 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # How Fragile Is Safety Under Retra
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-3/8fc0caca-e38e-494a-b894-e2bce35f634a.jsonl`
+- **Structured JSON:** [`bf72943da671f7f4b40a.json`](../../sessions/bf/bf72943da671f7f4b40a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:51:06.409Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:51:06.409Z",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment\n\n## Description\nPreliminary evidence shows that safety alignment is fragile: Larsen (2025) found 18–28% of prompts flip between refusal and compliance across inference seeds, and Fraser et al. (2025) found up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on small models using LoRA. Yet no study has systematically measured training-time safety reproducibility for the preference optimization methods (DPO, PPO-RLHF, GRPO) that actually power deployed alignment, characterized how fragility scales with model size, disentangled LoRA initialization variance from seed variance, or provided power-justified minimum-seed recommendations for reliable safety claims. We propose the first large-scale training-time safety reproducibility audit of preference-based alignment. Using TRL v1.0's unified training stack with full fine-tuning throughout (eliminating LoRA initialization as a confound), we train DPO, PPO-RLHF, and GRPO on Qwen3-Instruct at 1.7B, 4B, and 8B scales with 20 seeds per configuration using PKU-SafeRLHF-30K safety preference data (~260 total runs including hardware and reward model ablations). The three algorithms cover distinct paradigms: offline preference optimization (DPO), online reward-model-based RL (PPO with Skywork/ArmoRM/FsfairX reward models), and online classifier-based RL (GRPO with WildGuard as safety reward). We evaluate on WildGuard, HarmBench, SORRY-Bench, and four capability benchmarks under a fixed evaluation pipeline. We introduce SCI-T (Safety Consistency Index for Training), extending Larsen's inference-time SSI to training-time: while SSI measures agreement across sampling randomness with fixed weights, SCI-T measures agreement across different training seeds under fixed inference—capturing fundamentally different learned safety boundaries. We decompose variance via ANOVA across seed, algorithm, scale, hardware, and reward model factors, testing the central hypothesis that safety is significantly more fragile than capabilities under retraining. A priori power analysis using Fraser et al.'s empirical variance (σ̂_safety ≈ 3.9pp) and OXRL's capability baseline (σ̂_capability ≈ 0.55pp) confirms 20 seeds provides ≥88% power for detecting safety/capability variance ratios ≥3:1 and ≥82% power for ANOVA interaction effects. The primary deliverable is empirically-grounded minimum-seed lookup tables for AI governance frameworks.\n\n## Core Problem\nWhen the same preference-based alignment algorithm (DPO/PPO-RLHF/GRPO) is rerun with different random seeds, hardware configurations, or reward model instances, how much do safety properties—refusal behavior, harmlessness scores, and instance-level safety decisions—vary compared to general capabilities? Preliminary evidence from SFT (Fraser et al. 2025) and inference-time sampling (Larsen 2025) shows safety decisions are surprisingly inconsistent, but no study has systematically measured training-time safety reproducibility for the preference optimization methods that actually power deployed safety alignment (PPO-RLHF at OpenAI/Anthropic, DPO in open-source pipelines, GRPO at DeepSeek), or characterized how this fragility scales with model size.\n\n## Opportunity\nThree converging lines of evidence create a clear gap. First, Larsen (arXiv:2512.12066) introduced the Safety Stability Index (SSI) showing 18–28% of prompts flip between refusal and compliance across inference seeds and temperatures—but this measures generation-level variance with fixed model weights, not the deeper question of whether retraining produces models with fundamentally different safety boundaries. Second, Fraser et al. (arXiv:2506.17209) demonstrated up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and SORRY-Bench—establishing that training-time safety variance exists but leaving preference-based alignment (DPO/PPO/GRPO), larger scales, multi-benchmark evaluation, LoRA-vs-full-FT variance confounds, and formal consistency metrics unexplored. Third, OXRL (arXiv:2603.19335) revealed dramatic scale-dependent ranking inversions across post-training algorithms on capability benchmarks using Qwen 2.5 at 0.5B–7B, but evaluated no safety properties. Fourth, SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) demonstrated that safety alignment via DPO on PKU-SafeRLHF-30K can achieve ~97% harmless ratio, establishing both the dataset and method as mature—but reported no cross-seed variance. Meanwhile, TRL v1.0 (March 2026) now provides a unified training stack for DPO, PPO, and GRPO, eliminating infrastructure confounds. We propose to close this gap with the first large-scale, multi-algorithm, multi-scale reproducibility audit of training-time safety alignment, using full fine-tuning throughout to cleanly isolate training-seed variance from LoRA initialization noise.\n\n## Related Work / Landscape\nLarsen (arXiv:2512.12066, Dec 2025) introduced the SSI metric measuring per-prompt refusal agreement across inference configurations (5 seeds × 4 temperatures), finding 18–28% flip rates on BeaverTails across four 7–12B models. Critically, SSI captures generation-level stochasticity (same weights, different sampling), not model-level variance from retraining. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC) studied SFT seed variance with 5 seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and AdamW-8bit optimizer, evaluating on SORRY-Bench (440 class-balanced unsafe instructions); they found up to 9pp harmfulness score variance (e.g., 0.73 to 0.82 on Llama-1B fine-tuned on Dolly) and called for 'multiple runs to estimate random variation' but used only SFT, not preference optimization, and did not disentangle LoRA initialization variance from true seed variance. SafeTuneBed (arXiv:2506.00676, May 2025) offers a fine-tuning safety toolkit that averages results over 3 seeds and lists 'refusal consistency' as a metric but never formally defines or operationalizes it. OXRL (arXiv:2603.19335, March 2026) provides a controlled framework for 51 post-training algorithms using Qwen 2.5 Instruct at 0.5B–7B with full FT at ≤3B and LoRA (rank 16, α=32) at 7B, using 3–5 seeds per configuration on GSM8K self-play data—but evaluates only capability benchmarks with no safety evaluation. Notably, OXRL found scale-dependent ranking inversions (SimPO worst at 1.5B, best at 7B) and cross-seed std of ±0.57pp on GSM8K for SGRPO at 1.5B with 5 seeds, establishing a baseline for capability variance. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) achieves ~97% harmless ratio using DPO on PKU-SafeRLHF-30K but reports no cross-seed variance. The 'LLM-Safety Evaluations Lack Robustness' paper (arXiv:2503.02574, March 2025) demonstrates that evaluation pipeline choices cause up to 28% ASR variance, motivating fixed-evaluation-pipeline designs. SafeGRPO (arXiv:2511.12982, Nov 2025) proposes rule-governed reward construction for GRPO-based safety alignment, demonstrating that safety classifiers can serve as GRPO reward signals—validating our approach to using WildGuard as GRPO's safety reward function. TRL v1.0 (March 2026) provides a unified post-training stack for SFT, DPO, PPO, and GRPO with consistent infrastructure, enabling fair cross-algorithm comparison. PKU-SafeRLHF (arXiv:2406.15513, ACL 2025) provides 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories and 3 severity levels—the standard safety preference dataset used by SafeDPO and related work. Open-source reward models (Skywork-Reward-Llama-3.1-8B-v0.2, ArmoRM-Llama3-8B-v0.1, FsfairX-LLaMA3-RM-v0.1) achieve strong RewardBench scores including explicit safety dimensions, enabling controlled reward model ablations for PPO. No published work combines: (a) three distinct alignment paradigms (offline DPO, online PPO-RLHF, online GRPO), (b) multiple model scales with full fine-tuning, (c) ≥20 seeds per configuration with a priori power justification, (d) multiple safety benchmarks with fixed evaluation pipeline, (e) a formal training-time consistency metric, and (f) separated variance decomposition across seed, algorithm, scale, hardware, and reward model factors.\n\n## Approach\nPhase 1 — Infrastructure (3 weeks): Build unified training and evaluation pipeline using TRL v1.0 as the training backbone and OXRL-inspired evaluation infrastructure. Training setup: Configure DPO, PPO-RLHF, and GRPO trainers in TRL v1.0 with full fine-tuning at all scales using DeepSpeed ZeRO-2 for memory management at 8B. We use full fine-tuning throughout (not LoRA) to eliminate LoRA random A/B matrix initialization as a variance source—a confound identified in Fraser et al.'s LoRA-based SFT study where LoRA initialization and seed variance were entangled. This increases compute by ~50% at 8B but produces cleaner variance isolation, which is essential for a paper whose central contribution is variance decomposition. Preference dataset: PKU-SafeRLHF-30K (PKU-Alignment, ACL 2025), selected for three reasons: (i) decoupled safety/helpfulness annotations enable isolating safety-specific preference learning, (ii) it is the standard benchmark used by SafeDPO (ICLR 2026 Oral) enabling direct comparability, (iii) 19 harm categories with 3 severity levels enable fine-grained analysis of which safety dimensions are most fragile. Dataset adaptation per algorithm: DPO receives safety preference pairs directly (safer response as chosen, less safe as rejected); PPO uses the 27K prompts with an external reward model scoring generated responses; GRPO uses the same prompts with WildGuard (7B) as a binary safety classifier reward (safe=1, unsafe=0), following the classifier-as-reward paradigm validated by SafeGRPO (arXiv:2511.12982). Evaluation pipeline: Fix the evaluation pipeline completely (WildGuard as primary safety judge, deterministic decoding at temperature=0, fixed chat template, bf16 quantization) per the robustness findings of arXiv:2503.02574 to isolate training-time variance from evaluation-time variance. Integrate WildGuard (prompt + response classification, 7B Mistral-based), HarmBench (400 harmful behaviors with 7B Mistral classifier), SORRY-Bench (440 category-balanced unsafe instructions), and capability benchmarks (GSM8K, MATH, AlpacaEval 2, MT-Bench).\n\nPhase 2 — Training Runs (6–7 weeks): Algorithm selection rationale: We select DPO, PPO-RLHF, and GRPO to cover three fundamentally distinct alignment paradigms—(i) DPO: offline, reference-model-regularized preference optimization without a reward model, the dominant method in open-source safety alignment; (ii) PPO-RLHF: online, reward-model-based reinforcement learning, the method deployed for safety-critical systems at OpenAI and Anthropic; (iii) GRPO: online, group-relative optimization with classifier-based rewards, the emerging paradigm (DeepSeek-R1) increasingly applied to safety via SafeGRPO. This replaces the originally proposed SimPO, which is architecturally a DPO variant (reference-free but still offline preference optimization)—including both DPO and SimPO would over-represent the offline paradigm while leaving online RL unrepresented, creating an algorithmic coverage gap for the methods that actually power deployed safety alignment. Core runs: Train DPO, PPO, and GRPO on Qwen3-Instruct at three scales (1.7B, 4B, 8B) with 20 random seeds each, holding all hyperparameters fixed per algorithm. Full fine-tuning with DeepSpeed ZeRO-2; 1 H100 for 1.7B/4B DPO/GRPO, 2 H100s for 8B and all PPO runs (policy + reference + reward/value models). Total core: 180 runs (3 × 3 × 20). Hardware ablation: For the 8B DPO configuration, run 20 seeds on A100-80GB vs H100-80GB and 20 seeds with bf16 vs fp16 to isolate hardware/precision effects (40 additional runs, comparing against the 20 core H100/bf16 runs). Reward model ablation: For the 8B PPO configuration, run 20 seeds each with three independently-developed open-source reward models: (RM1) Skywork-Reward-Llama-3.1-8B-v0.2 — Bradley-Terry RM, #1 on RewardBench among 8B models, trained on Skywork's curated preference data; (RM2) ArmoRM-Llama3-8B-v0.1 — multi-objective RM with mixture-of-experts gating across 19 reward dimensions including an explicit safety objective, 89.0 RewardBench overall; (RM3) FsfairX-LLaMA3-RM-v0.1 — Bradley-Terry RM trained on the RLHFlow dataset, different training distribution from Skywork. The core PPO runs use ArmoRM as default (its explicit safety dimension makes it most appropriate for safety alignment); the ablation adds 40 additional runs with Skywork-RM and FsfairX-RM. All three RMs are ~8B parameters, Llama-3-based, publicly available, and independently trained with different objectives, architectures (Bradley-Terry vs MoE-gated multi-objective), and training data—providing genuine variance in the reward signal. Total runs: 180 core + 40 hardware + 40 reward model = 260 runs.\n\nPhase 3 — Evaluation and Analysis (3–4 weeks): For each of 260 checkpoints, evaluate safety (WildGuard refusal rate on WildGuardTest 5K subset, HarmBench ASR with 400 behaviors, SORRY-Bench harmfulness with 440 prompts) and capabilities (GSM8K 1.3K, MATH 5K, AlpacaEval 2 805 prompts, MT-Bench 80 turns). All safety evaluations use deterministic decoding (temperature=0) to ensure SCI-T captures training-time variance only. Introduce the Safety Consistency Index for Training (SCI-T), explicitly extending Larsen's SSI from inference-time to training-time: SCI-T(p) = max_c(n_c) / K where n_c counts training-seed runs in category c ∈ {REFUSE, COMPLY} and K = number of seeds. While SSI measures whether the same model produces consistent safety decisions across sampling randomness, SCI-T measures whether different models (from different training seeds) make consistent safety decisions under fixed inference conditions (temperature=0). This distinction matters because training-time inconsistency implies fundamentally different learned safety boundaries, not mere sampling noise. Compute SCI-T for every prompt × algorithm × scale combination. Apply ANOVA decomposition: Var(safety_metric) = Var(seed) + Var(algorithm) + Var(scale) + Var(hardware) + Var(reward_model) + Var(algorithm×scale) + residual. Test the central hypothesis: safety properties exhibit significantly higher cross-seed variance than capability properties at the same scale, and this differential fragility changes with scale. Additionally analyze which of PKU-SafeRLHF's 19 harm categories show highest SCI-T fragility—identifying 'fragile safety categories' that are most sensitive to training randomness.\n\nPhase 4 — Minimum-Seed Recommendations (2–3 weeks): A priori power justification for 20 seeds: We apply Cédric et al.'s (2018) framework to our own experimental design before running. From Fraser et al.'s empirical data: 5 SFT seeds on Llama-1B produced harmfulness scores ranging 0.73–0.82, yielding σ̂_safety ≈ 3.9pp (range/d₂ for n=5). From OXRL: 5 SGRPO seeds at 1.5B on GSM8K produced ±0.57pp std, yielding σ̂_capability ≈ 0.55pp. For our central F-test (H₀: σ²_safety = σ²_capability vs H₁: σ²_safety > σ²_capability) with df=(19,19): at true variance ratio λ=3 (conservative estimate from Fraser/OXRL data suggesting λ≈50), power ≥ 0.88 at α=0.05. For ANOVA main effects (3 levels, N=180, medium effect f=0.25): power ≈ 0.92. For ANOVA interactions (3×3 design, df=(4,171)): power ≈ 0.82 for medium effects. For variance estimation precision: with n=20 (df=19), the 95% CI for σ² spans a factor of 3.69 (χ²_{0.975,19}/χ²_{0.025,19} = 32.85/8.91), sufficient for categorizing configurations as 'high-fragility' vs 'low-fragility.' Conclusion: 20 seeds per cell provides ≥80% power for all planned analyses, meeting the standard power threshold. Adaptive provision: if Phase 2 pilot (first 5 seeds per cell) reveals smaller effect sizes than estimated, we increase to 25 seeds with ~25% additional compute within budget contingency. Post-hoc deliverable: Using the full empirical variance estimates, derive minimum seed counts needed for P(detecting a true safety difference ≥ δ) ≥ 0.8 at α=0.05 via inverse power analysis. Produce concrete lookup tables: 'To claim safety refusal rate ≥ R% with 95% confidence for algorithm X at scale Y, run ≥ N seeds.' This is the actionable regulatory deliverable targeting EU AI Act verifiable safety requirements and NIST AI RMF reproducibility standards.\n\n## Inspiration\nExtension: Larsen's SSI measures inference-time safety agreement; we extend this concept to training-time agreement across different model weights, a fundamentally harder reproducibility challenge since different weights may encode different safety boundaries. Scale-up: Fraser et al.'s SFT seed study (2 models, 5 seeds, 1 benchmark, LoRA) demonstrated the phenomenon exists; we scale to 3 algorithms × 3 model sizes × 20 seeds × 4 benchmarks with full fine-tuning (eliminating LoRA initialization variance) and formal ANOVA decomposition. Bridge: OXRL's controlled post-training infrastructure + TRL v1.0's unified training stack + PKU-SafeRLHF-30K's decoupled safety preference data + WildGuard/HarmBench classifiers can be composed to create a safety-aware reproducibility audit pipeline that none provides alone. Safety reward signals: SafeGRPO's demonstration that safety classifiers can serve as GRPO reward functions validates our approach to using WildGuard as GRPO's reward signal for safety alignment. Reward model variance: ArmoRM's multi-objective design (with explicit safety dimension), Skywork-Reward's top RewardBench performance, and FsfairX's Bradley-Terry approach provide three independently-trained reward models for PPO ablation, operationalizing RVPO's concern about inter-reward variance. Statistical grounding: Cédric et al.'s power analysis framework for RL seed selection (arXiv:1806.08295) provides the methodology for deriving minimum-seed recommendations—never applied to safety alignment. We apply it a priori to justify our 20-seed design.\n\n## Key References\n- The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior (arXiv:2512.12066, Dec 2025) — introduces SSI metric for inference-time refusal consistency; SCI-T extends SSI to training-time\n- Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency (arXiv:2506.17209, June 2025, LLMSEC) — first evidence of training-seed safety variance: 9pp range across 5 SFT seeds on Llama-1B with LoRA/4-bit, SORRY-Bench; establishes σ̂_safety ≈ 3.9pp used in our power analysis\n- SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning (arXiv:2506.00676, May 2025) — safety fine-tuning toolkit with 3-seed averaging; mentions 'refusal consistency' without formal definition\n- Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales (arXiv:2603.19335, March 2026) — OXRL framework, Qwen 2.5 at 0.5B–7B, scale-dependent ranking inversions, ±0.57pp GSM8K std providing σ̂_capability baseline for our power analysis\n- LLM-Safety Evaluations Lack Robustness (arXiv:2503.02574, March 2025) — evaluation pipeline variance up to 28%, motivates our fixed-pipeline design\n- PKU-SafeRLHF: Towards Multi-Level Safety Alignment for LLMs with Human Preference (arXiv:2406.15513, ACL 2025) — 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories; our primary training dataset\n- SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety (arXiv:2505.20065, ICLR 2026 Oral) — achieves ~97% harmless ratio via DPO on PKU-SafeRLHF-30K; establishes dataset+method maturity but reports no cross-seed variance\n- SafeGRPO: Self-Rewarded Multimodal Safety Alignment via Rule-Governed Policy Optimization (arXiv:2511.12982, Nov 2025) — validates classifier-as-reward paradigm for GRPO safety alignment; motivates our WildGuard-as-reward design\n- TRL v1.0: Post-Training Library Built to Move with the Field (Hugging Face, March 2026) — unified training stack for DPO, PPO, GRPO eliminating infrastructure confounds across algorithms\n- How Many Random Seeds? Statistical Power Analysis in Deep RL Experiments (arXiv:1806.08295, 2018) — methodology for minimum-seed derivation via power analysis; we extend to safety alignment and apply a priori to justify our 20-seed design\n- What Matters For Safety Alignment? (arXiv:2601.03868, Jan 2026) — cross-model safety comparison across 32 models and 13 families\n- WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs (arXiv:2406.18495, 2024) — 7B safety classifier achieving 94.7% F1 on response harmfulness; our primary safety judge and GRPO reward signal\n- Skywork-Reward: Bag of Tricks for Reward Modeling in LLMs (arXiv:2410.18451, 2024) — Skywork-Reward-Llama-3.1-8B-v0.2, #1 8B model on RewardBench; one of three PPO reward models in our ablation\n- Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (arXiv:2406.12845, 2024) — ArmoRM-Llama3-8B-v0.1, 89.0 RewardBench with explicit safety dimension; default PPO reward model\n- Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping (arXiv 2020) — seed variance methodology for NLP\n- Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning LLMs (IJCNLP-AACL 2025) — macro/micro consistency metrics for LLM fine-tuning\n- RVPO: Risk-Sensitive Alignment via Variance Regularization (arXiv:2605.05750, May 2026) — inter-reward variance penalization in single runs; motivates reward model ablation\n- Improving Safety Alignment via Balanced Direct Preference Optimization (arXiv:2603.22829, March 2026) — safety alignment overfitting in DPO\n- Safety Training Persists Through Helpfulness Optimization in LLM Agents (arXiv:2603.02229, March 2026) — safety-helpfulness Pareto frontier under DPO\n- Reproducibility in Machine-Learning-Based Research: Overview, Barriers, and Drivers (AI Magazine 2025)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '~2,800 H100-hours total: ~1,600 training (260 runs across 3 algorithms × 3 scales × 20+ seeds, all full fine-tuning with DeepSpeed ZeRO-2; PPO runs require 2 H100s for policy+reference+RM) + ~1,200 evaluation (260 checkpoints × 8 benchmarks including WildGuard 7B and HarmBench 7B classifier inference, each checkpoint requiring ~3-4 GPU-hours for generation + classification across all benchmarks)', 'timeline': '17–19 weeks (infrastructure + TRL v1.0 pipeline setup 3w, training runs 6–7w on 8×H100 cluster, evaluation 3–4w, statistical analysis + minimum-seed derivation + paper writing 5–6w)', 'estimated_gpu_cost': '$7,000 at ~$2.50/H100-hr on mid-tier providers'}\n- **human_in_loop**: {'gpu_hours': '~2,800 H100-hours (identical core compute; full FT precludes further memory optimization)', 'timeline': '14–16 weeks (Claude accelerates TRL v1.0 pipeline integration, ANOVA analysis scripts, power analysis code, per-category fragility analysis, and paper drafting)', 'claude_api_cost': '$500–700 (Sonnet 4.6 for code generation, statistical analysis automation, and drafting; ~150M tokens)', 'estimated_gpu_cost': '$7,000'}\n- **auto_research**: {'gpu_hours': '~2,800 H100-hours', 'timeline': '11–14 weeks (parallelized experiment orchestration with automated sweep management, evaluation pipelines, and ANOVA analysis)', 'claude_api_cost': '$1,500–2,200 (experiment orchestration, automated analysis, full paper draft generation; ~600M tokens)', 'estimated_gpu_cost': '$7,000', 'speed_bottleneck': 'GPU cluster queue time for 260 training jobs (PPO runs ~2× longer than DPO/GRPO due to multi-model training); sequential dependency between training completion and safety evaluation; WildGuard 7B + HarmBench 7B classifier inference throughput across 260 checkpoints × ~6K safety evaluation prompts each'}\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:51:06.413Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:51:06.413Z",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+## Round 1
+
+36 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:51:06.426Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment
+
+## Description
+Preliminary evidence shows that safety alignment is fragile: Larsen (2025) found 18–28% of prompts flip between refusal and compliance across inference seeds, and Fraser et al. (2025) found up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on small models using LoRA. Yet no study has systematically measured training-time safety reproducibility for the preference optimization methods (DPO, PPO-RLHF, GRPO) that actually power deployed alignment, characterized how fragility scales with model size, disentangled LoRA initialization variance from seed variance, or provided power-justified minimum-seed recommendations for reliable safety claims. We propose the first large-scale training-time safety reproducibility audit of preference-based alignment. Using TRL v1.0's unified training stack with full fine-tuning throughout (eliminating LoRA initialization as a confound), we train DPO, PPO-RLHF, and GRPO on Qwen3-Instruct at 1.7B, 4B, and 8B scales with 20 seeds per configuration using PKU-SafeRLHF-30K safety preference data (~260 total runs including hardware and reward model ablations). The three algorithms cover distinct paradigms: offline preference optimization (DPO), online reward-model-based RL (PPO with Skywork/ArmoRM/FsfairX reward models), and online classifier-based RL (GRPO with WildGuard as safety reward). We evaluate on WildGuard, HarmBench, SORRY-Bench, and four capability benchmarks under a fixed evaluation pipeline. We introduce SCI-T (Safety Consistency Index for Training), extending Larsen's inference-time SSI to training-time: while SSI measures agreement across sampling randomness with fixed weights, SCI-T measures agreement across different training seeds under fixed inference—capturing fundamentally different learned safety boundaries. We decompose variance via ANOVA across seed, algorithm, scale, hardware, and reward model factors, testing the central hypothesis that safety is significantly more fragile than capabilities under retraining. A priori power analysis using Fraser et al.'s empirical variance (σ̂_safety ≈ 3.9pp) and OXRL's capability baseline (σ̂_capability ≈ 0.55pp) confirms 20 seeds provides ≥88% power for detecting safety/capability variance ratios ≥3:1 and ≥82% power for ANOVA interaction effects. The primary deliverable is empirically-grounded minimum-seed lookup tables for AI governance frameworks.
+
+## Core Problem
+When the same preference-based alignment algorithm (DPO/PPO-RLHF/GRPO) is rerun with different random seeds, hardware configurations, or reward model instances, how much do safety properties—refusal behavior, harmlessness scores, and instance-level safety decisions—vary compared to general capabilities? Preliminary evidence from SFT (Fraser et al. 2025) and inference-time sampling (Larsen 2025) shows safety decisions are surprisingly inconsistent, but no study has systematically measured training-time safety reproducibility for the preference optimization methods that actually power deployed safety alignment (PPO-RLHF at OpenAI/Anthropic, DPO in open-source pipelines, GRPO at DeepSeek), or characterized how this fragility scales with model size.
+
+## Opportunity
+Three converging lines of evidence create a clear gap. First, Larsen (arXiv:2512.12066) introduced the Safety Stability Index (SSI) showing 18–28% of prompts flip between refusal and compliance across inference seeds and temperatures—but this measures generation-level variance with fixed model weights, not the deeper question of whether retraining produces models with fundamentally different safety boundaries. Second, Fraser et al. (arXiv:2506.17209) demonstrated up to 9-percentage-point variance in harmfulness scores across 5 SFT seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and SORRY-Bench—establishing that training-time safety variance exists but leaving preference-based alignment (DPO/PPO/GRPO), larger scales, multi-benchmark evaluation, LoRA-vs-full-FT variance confounds, and formal consistency metrics unexplored. Third, OXRL (arXiv:2603.19335) revealed dramatic scale-dependent ranking inversions across post-training algorithms on capability benchmarks using Qwen 2.5 at 0.5B–7B, but evaluated no safety properties. Fourth, SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) demonstrated that safety alignment via DPO on PKU-SafeRLHF-30K can achieve ~97% harmless ratio, establishing both the dataset and method as mature—but reported no cross-seed variance. Meanwhile, TRL v1.0 (March 2026) now provides a unified training stack for DPO, PPO, and GRPO, eliminating infrastructure confounds. We propose to close this gap with the first large-scale, multi-algorithm, multi-scale reproducibility audit of training-time safety alignment, using full fine-tuning throughout to cleanly isolate training-seed variance from LoRA initialization noise.
+
+## Related Work / Landscape
+Larsen (arXiv:2512.12066, Dec 2025) introduced the SSI metric measuring per-prompt refusal agreement across inference configurations (5 seeds × 4 temperatures), finding 18–28% flip rates on BeaverTails across four 7–12B models. Critically, SSI captures generation-level stochasticity (same weights, different sampling), not model-level variance from retraining. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC) studied SFT seed variance with 5 seeds on Llama-3.2-1B and Mistral-7B using LoRA with 4-bit quantization and AdamW-8bit optimizer, evaluating on SORRY-Bench (440 class-balanced unsafe instructions); they found up to 9pp harmfulness score variance (e.g., 0.73 to 0.82 on Llama-1B fine-tuned on Dolly) and called for 'multiple runs to estimate random variation' but used only SFT, not preference optimization, and did not disentangle LoRA initialization variance from true seed variance. SafeTuneBed (arXiv:2506.00676, May 2025) offers a fine-tuning safety toolkit that averages results over 3 seeds and lists 'refusal consistency' as a metric but never formally defines or operationalizes it. OXRL (arXiv:2603.19335, March 2026) provides a controlled framework for 51 post-training algorithms using Qwen 2.5 Instruct at 0.5B–7B with full FT at ≤3B and LoRA (rank 16, α=32) at 7B, using 3–5 seeds per configuration on GSM8K self-play data—but evaluates only capability benchmarks with no safety evaluation. Notably, OXRL found scale-dependent ranking inversions (SimPO worst at 1.5B, best at 7B) and cross-seed std of ±0.57pp on GSM8K for SGRPO at 1.5B with 5 seeds, establishing a baseline for capability variance. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral) achieves ~97% harmless ratio using DPO on PKU-SafeRLHF-30K but reports no cross-seed variance. The 'LLM-Safety Evaluations Lack Robustness' paper (arXiv:2503.02574, March 2025) demonstrates that evaluation pipeline choices cause up to 28% ASR variance, motivating fixed-evaluation-pipeline designs. SafeGRPO (arXiv:2511.12982, Nov 2025) proposes rule-governed reward construction for GRPO-based safety alignment, demonstrating that safety classifiers can serve as GRPO reward signals—validating our approach to using WildGuard as GRPO's safety reward function. TRL v1.0 (March 2026) provides a unified post-training stack for SFT, DPO, PPO, and GRPO with consistent infrastructure, enabling fair cross-algorithm comparison. PKU-SafeRLHF (arXiv:2406.15513, ACL 2025) provides 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories and 3 severity levels—the standard safety preference dataset used by SafeDPO and related work. Open-source reward models (Skywork-Reward-Llama-3.1-8B-v0.2, ArmoRM-Llama3-8B-v0.1, FsfairX-LLaMA3-RM-v0.1) achieve strong RewardBench scores including explicit safety dimensions, enabling controlled reward model ablations for PPO. No published work combines: (a) three distinct alignment paradigms (offline DPO, online PPO-RLHF, online GRPO), (b) multiple model scales with full fine-tuning, (c) ≥20 seeds per configuration with a priori power justification, (d) multiple safety benchmarks with fixed evaluation pipeline, (e) a formal training-time consistency metric, and (f) separated variance decomposition across seed, algorithm, scale, hardware, and reward model factors.
+
+## Approach
+Phase 1 — Infrastructure (3 weeks): Build unified training and evaluation pipeline using TRL v1.0 as the training backbone and OXRL-inspired evaluation infrastructure. Training setup: Configure DPO, PPO-RLHF, and GRPO trainers in TRL v1.0 with full fine-tuning at all scales using DeepSpeed ZeRO-2 for memory management at 8B. We use full fine-tuning throughout (not LoRA) to eliminate LoRA random A/B matrix initialization as a variance source—a confound identified in Fraser et al.'s LoRA-based SFT study where LoRA initialization and seed variance were entangled. This increases compute by ~50% at 8B but produces cleaner variance isolation, which is essential for a paper whose central contribution is variance decomposition. Preference dataset: PKU-SafeRLHF-30K (PKU-Alignment, ACL 2025), selected for three reasons: (i) decoupled safety/helpfulness annotations enable isolating safety-specific preference learning, (ii) it is the standard benchmark used by SafeDPO (ICLR 2026 Oral) enabling direct comparability, (iii) 19 harm categories with 3 severity levels enable fine-grained analysis of which safety dimensions are most fragile. Dataset adaptation per algorithm: DPO receives safety preference pairs directly (safer response as chosen, less safe as rejected); PPO uses the 27K prompts with an external reward model scoring generated responses; GRPO uses the same prompts with WildGuard (7B) as a binary safety classifier reward (safe=1, unsafe=0), following the classifier-as-reward paradigm validated by SafeGRPO (arXiv:2511.12982). Evaluation pipeline: Fix the evaluation pipeline completely (WildGuard as primary safety judge, deterministic decoding at temperature=0, fixed chat template, bf16 quantization) per the robustness findings of arXiv:2503.02574 to isolate training-time variance from evaluation-time variance. Integrate WildGuard (prompt + response classification, 7B Mistral-based), HarmBench (400 harmful behaviors with 7B Mistral classifier), SORRY-Bench (440 category-balanced unsafe instructions), and capability benchmarks (GSM8K, MATH, AlpacaEval 2, MT-Bench).
+
+Phase 2 — Training Runs (6–7 weeks): Algorithm selection rationale: We select DPO, PPO-RLHF, and GRPO to cover three fundamentally distinct alignment paradigms—(i) DPO: offline, reference-model-regularized preference optimization without a reward model, the dominant method in open-source safety alignment; (ii) PPO-RLHF: online, reward-model-based reinforcement learning, the method deployed for safety-critical systems at OpenAI and Anthropic; (iii) GRPO: online, group-relative optimization with classifier-based rewards, the emerging paradigm (DeepSeek-R1) increasingly applied to safety via SafeGRPO. This replaces the originally proposed SimPO, which is architecturally a DPO variant (reference-free but still offline preference optimization)—including both DPO and SimPO would over-represent the offline paradigm while leaving online RL unrepresented, creating an algorithmic coverage gap for the methods that actually power deployed safety alignment. Core runs: Train DPO, PPO, and GRPO on Qwen3-Instruct at three scales (1.7B, 4B, 8B) with 20 random seeds each, holding all hyperparameters fixed per algorithm. Full fine-tuning with DeepSpeed ZeRO-2; 1 H100 for 1.7B/4B DPO/GRPO, 2 H100s for 8B and all PPO runs (policy + reference + reward/value models). Total core: 180 runs (3 × 3 × 20). Hardware ablation: For the 8B DPO configuration, run 20 seeds on A100-80GB vs H100-80GB and 20 seeds with bf16 vs fp16 to isolate hardware/precision effects (40 additional runs, comparing against the 20 core H100/bf16 runs). Reward model ablation: For the 8B PPO configuration, run 20 seeds each with three independently-developed open-source reward models: (RM1) Skywork-Reward-Llama-3.1-8B-v0.2 — Bradley-Terry RM, #1 on RewardBench among 8B models, trained on Skywork's curated preference data; (RM2) ArmoRM-Llama3-8B-v0.1 — multi-objective RM with mixture-of-experts gating across 19 reward dimensions including an explicit safety objective, 89.0 RewardBench overall; (RM3) FsfairX-LLaMA3-RM-v0.1 — Bradley-Terry RM trained on the RLHFlow dataset, different training distribution from Skywork. The core PPO runs use ArmoRM as default (its explicit safety dimension makes it most appropriate for safety alignment); the ablation adds 40 additional runs with Skywork-RM and FsfairX-RM. All three RMs are ~8B parameters, Llama-3-based, publicly available, and independently trained with different objectives, architectures (Bradley-Terry vs MoE-gated multi-objective), and training data—providing genuine variance in the reward signal. Total runs: 180 core + 40 hardware + 40 reward model = 260 runs.
+
+Phase 3 — Evaluation and Analysis (3–4 weeks): For each of 260 checkpoints, evaluate safety (WildGuard refusal rate on WildGuardTest 5K subset, HarmBench ASR with 400 behaviors, SORRY-Bench harmfulness with 440 prompts) and capabilities (GSM8K 1.3K, MATH 5K, AlpacaEval 2 805 prompts, MT-Bench 80 turns). All safety evaluations use deterministic decoding (temperature=0) to ensure SCI-T captures training-time variance only. Introduce the Safety Consistency Index for Training (SCI-T), explicitly extending Larsen's SSI from inference-time to training-time: SCI-T(p) = max_c(n_c) / K where n_c counts training-seed runs in category c ∈ {REFUSE, COMPLY} and K = number of seeds. While SSI measures whether the same model produces consistent safety decisions across sampling randomness, SCI-T measures whether different models (from different training seeds) make consistent safety decisions under fixed inference conditions (temperature=0). This distinction matters because training-time inconsistency implies fundamentally different learned safety boundaries, not mere sampling noise. Compute SCI-T for every prompt × algorithm × scale combination. Apply ANOVA decomposition: Var(safety_metric) = Var(seed) + Var(algorithm) + Var(scale) + Var(hardware) + Var(reward_model) + Var(algorithm×scale) + residual. Test the central hypothesis: safety properties exhibit significantly higher cross-seed variance than capability properties at the same scale, and this differential fragility changes with scale. Additionally analyze which of PKU-SafeRLHF's 19 harm categories show highest SCI-T fragility—identifying 'fragile safety categories' that are most sensitive to training randomness.
+
+Phase 4 — Minimum-Seed Recommendations (2–3 weeks): A priori power justification for 20 seeds: We apply Cédric et al.'s (2018) framework to our own experimental design before running. From Fraser et al.'s empirical data: 5 SFT seeds on Llama-1B produced harmfulness scores ranging 0.73–0.82, yielding σ̂_safety ≈ 3.9pp (range/d₂ for n=5). From OXRL: 5 SGRPO seeds at 1.5B on GSM8K produced ±0.57pp std, yielding σ̂_capability ≈ 0.55pp. For our central F-test (H₀: σ²_safety = σ²_capability vs H₁: σ²_safety > σ²_capability) with df=(19,19): at true variance ratio λ=3 (conservative estimate from Fraser/OXRL data suggesting λ≈50), power ≥ 0.88 at α=0.05. For ANOVA main effects (3 levels, N=180, medium effect f=0.25): power ≈ 0.92. For ANOVA interactions (3×3 design, df=(4,171)): power ≈ 0.82 for medium effects. For variance estimation precision: with n=20 (df=19), the 95% CI for σ² spans a factor of 3.69 (χ²_{0.975,19}/χ²_{0.025,19} = 32.85/8.91), sufficient for categorizing configurations as 'high-fragility' vs 'low-fragility.' Conclusion: 20 seeds per cell provides ≥80% power for all planned analyses, meeting the standard power threshold. Adaptive provision: if Phase 2 pilot (first 5 seeds per cell) reveals smaller effect sizes than estimated, we increase to 25 seeds with ~25% additional compute within budget contingency. Post-hoc deliverable: Using the full empirical variance estimates, derive minimum seed counts needed for P(detecting a true safety difference ≥ δ) ≥ 0.8 at α=0.05 via inverse power analysis. Produce concrete lookup tables: 'To claim safety refusal rate ≥ R% with 95% confidence for algorithm X at scale Y, run ≥ N seeds.' This is the actionable regulatory deliverable targeting EU AI Act verifiable safety requirements and NIST AI RMF reproducibility standards.
+
+## Inspiration
+Extension: Larsen's SSI measures inference-time safety agreement; we extend this concept to training-time agreement across different model weights, a fundamentally harder reproducibility challenge since different weights may encode different safety boundaries. Scale-up: Fraser et al.'s SFT seed study (2 models, 5 seeds, 1 benchmark, LoRA) demonstrated the phenomenon exists; we scale to 3 algorithms × 3 model sizes × 20 seeds × 4 benchmarks with full fine-tuning (eliminating LoRA initialization variance) and formal ANOVA decomposition. Bridge: OXRL's controlled post-training infrastructure + TRL v1.0's unified training stack + PKU-SafeRLHF-30K's decoupled safety preference data + WildGuard/HarmBench classifiers can be composed to create a safety-aware reproducibility audit pipeline that none provides alone. Safety reward signals: SafeGRPO's demonstration that safety classifiers can serve as GRPO reward functions validates our approach to using WildGuard as GRPO's reward signal for safety alignment. Reward model variance: ArmoRM's multi-objective design (with explicit safety dimension), Skywork-Reward's top RewardBench performance, and FsfairX's Bradley-Terry approach provide three independently-trained reward models for PPO ablation, operationalizing RVPO's concern about inter-reward variance. Statistical grounding: Cédric et al.'s power analysis framework for RL seed selection (arXiv:1806.08295) provides the methodology for deriving minimum-seed recommendations—never applied to safety alignment. We apply it a priori to justify our 20-seed design.
+
+## Key References
+- The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior (arXiv:2512.12066, Dec 2025) — introduces SSI metric for inference-time refusal consistency; SCI-T extends SSI to training-time
+- Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency (arXiv:2506.17209, June 2025, LLMSEC) — first evidence of training-seed safety variance: 9pp range across 5 SFT seeds on Llama-1B with LoRA/4-bit, SORRY-Bench; establishes σ̂_safety ≈ 3.9pp used in our power analysis
+- SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning (arXiv:2506.00676, May 2025) — safety fine-tuning toolkit with 3-seed averaging; mentions 'refusal consistency' without formal definition
+- Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales (arXiv:2603.19335, March 2026) — OXRL framework, Qwen 2.5 at 0.5B–7B, scale-dependent ranking inversions, ±0.57pp GSM8K std providing σ̂_capability baseline for our power analysis
+- LLM-Safety Evaluations Lack Robustness (arXiv:2503.02574, March 2025) — evaluation pipeline variance up to 28%, motivates our fixed-pipeline design
+- PKU-SafeRLHF: Towards Multi-Level Safety Alignment for LLMs with Human Preference (arXiv:2406.15513, ACL 2025) — 30K+ expert comparisons with decoupled safety/helpfulness annotations across 19 harm categories; our primary training dataset
+- SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety (arXiv:2505.20065, ICLR 2026 Oral) — achieves ~97% harmless ratio via DPO on PKU-SafeRLHF-30K; establishes dataset+method maturity but reports no cross-seed variance
+- SafeGRPO: Self-Rewarded Multimodal Safety Alignment via Rule-Governed Policy Optimization (arXiv:2511.12982, Nov 2025) — validates classifier-as-reward paradigm for GRPO safety alignment; motivates our WildGuard-as-reward design
+- TRL v1.0: Post-Training Library Built to Move with the Field (Hugging Face, March 2026) — unified training stack for DPO, PPO, GRPO eliminating infrastructure confounds across algorithms
+- How Many Random Seeds? Statistical Power Analysis in Deep RL Experiments (arXiv:1806.08295, 2018) — methodology for minimum-seed derivation via power analysis; we extend to safety alignment and apply a priori to justify our 20-seed design
+- What Matters For Safety Alignment? (arXiv:2601.03868, Jan 2026) — cross-model safety comparison across 32 models and 13 families
+- WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs (arXiv:2406.18495, 2024) — 7B safety classifier achieving 94.7% F1 on response harmfulness; our primary safety judge and GRPO reward signal
+- Skywork-Reward: Bag of Tricks for Reward Modeling in LLMs (arXiv:2410.18451, 2024) — Skywork-Reward-Llama-3.1-8B-v0.2, #1 8B model on RewardBench; one of three PPO reward models in our ablation
+- Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (arXiv:2406.12845, 2024) — ArmoRM-Llama3-8B-v0.1, 89.0 RewardBench with explicit safety dimension; default PPO reward model
+- Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping (arXiv 2020) — seed variance methodology for NLP
+- Assessing the Macro and Micro Effects of Random Seeds on Fine-Tuning LLMs (IJCNLP-AACL 2025) — macro/micro consistency metrics for LLM fine-tuning
+- RVPO: Risk-Sensitive Alignment via Variance Regularization (arXiv:2605.05750, May 2026) — inter-reward variance penalization in single runs; motivates reward model ablation
+- Improving Safety Alignment via Balanced Direct Preference Optimization (arXiv:2603.22829, March 2026) — safety alignment overfitting in DPO
+- Safety Training Persists Through Helpfulness Optimization in LLM Agents (arXiv:2603.02229, March 2026) — safety-helpfulness Pareto frontier under DPO
+- Reproducibility in Machine-Learning-Based Research: Overview, Barriers, and Drivers (AI Magazine 2025)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '~2,800 H100-hours total: ~1,600 training (260 runs across 3 algorithms × 3 scales × 20+ seeds, all full fine-tuning with DeepSpeed ZeRO-2; PPO runs require 2 H100s for policy+reference+RM) + ~1,200 evaluation (260 checkpoints × 8 benchmarks including WildGuard 7B and HarmBench 7B classifier inference, each checkpoint requiring ~3-4 GPU-hours for generation + classification across all benchmarks)', 'timeline': '17–19 weeks (infrastructure + TRL v1.0 pipeline setup 3w, training runs 6–7w on 8×H100 cluster, evaluation 3–4w, statistical analysis + minimum-seed derivation + paper writing 5–6w)', 'estimated_gpu_cost': '$7,000 at ~$2.50/H100-hr on mid-tier providers'}
+- **human_in_loop**: {'gpu_hours': '~2,800 H100-hours (identical core compute; full FT precludes further memory optimization)', 'timeline': '14–16 weeks (Claude accelerates TRL v1.0 pipeline integration, ANOVA analysis scripts, power analysis code, per-category fragility analysis, and paper drafting)', 'claude_api_cost': '$500–700 (Sonnet 4.6 for code generation, statistical analysis automation, and drafting; ~150M tokens)', 'estimated_gpu_cost': '$7,000'}
+- **auto_research**: {'gpu_hours': '~2,800 H100-hours', 'timeline': '11–14 weeks (parallelized experiment orchestration with automated sweep management, evaluation pipelines, and ANOVA analysis)', 'claude_api_cost': '$1,500–2,200 (experiment orchestration, automated analysis, full paper draft generation; ~600M tokens)', 'estimated_gpu_cost': '$7,000', 'speed_bottleneck': 'GPU cluster queue time for 260 training jobs (PPO runs ~2× longer than DPO/GRPO due to multi-model training); sequential dependency between training completion and safety evaluation; WildGuard 7B + HarmBench 7B classifier inference throughput across 260 checkpoints × ~6K safety evaluation prompts each'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "f7a1bf76-23ba-4a51-9503-49804c1991a2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:51:06.425Z_
+
+```json
+{
+  "parentUuid": "f7a1bf76-23ba-4a51-9503-49804c1991a2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6fd149e5-fdae-48c1-bc97-7aadddef8130",
+  "timestamp": "2026-05-19T18:51:06.425Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:51:06.425Z_
+
+```json
+{
+  "parentUuid": "6fd149e5-fdae-48c1-bc97-7aadddef8130",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8d48dbd5-0bed-4ef5-9018-e689e1855d20",
+  "timestamp": "2026-05-19T18:51:06.425Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment  ## Descr…",
+  "leafUuid": "8d48dbd5-0bed-4ef5-9018-e689e1855d20",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit safety reproducibility across preference optimization algorithms",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:51:19.833Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for CoRL 2026 submission. Let me first note something important: CoRL is the Conference on Robot Learning. This proposal is about LLM safety alignment reproducibility - this seems like it would be more appropriate for NLP/ML venues (like NeurIPS, ICML, ACL, EMNLP) rather than CoRL. Let me re-read the task description...
+
+Actually, looking back at the system prompt, it says "评估其投稿 CoRL 2026 主会的中稿潜力" - evaluating its potential for acceptance at CoRL 2026 main conference. 
+
+There's a fundamental mismatch here - this is clearly an NLP/ML safety paper with zero robotics content, but CoRL focuses on robot learning and embodied AI. I should flag this venue mismatch as a key issue in my evaluation, though I'll still assess the proposal's technical quality as requested.
+
+Before scoring, I need to search for context on the field: training-time safety reproducibility in LLM alignment, the cited papers, and recent work on DPO/PPO/GRPO safety consistency to understand what's already been done in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d48dbd5-0bed-4ef5-9018-e689e1855d20",
+  "isSidechain": false,
+  "requestId": "req_011CbCRwFAsTArkHQUrdsZtb",
+  "type": "assistant",
+  "uuid": "d81e4010-b662-4512-b6af-c39203aeeff7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012riwj2swE7HzvFYfKZMtau",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 22315,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 22315,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:51:19.836Z_
+
+I need to do thorough field research before evaluating this proposal. Let me start with targeted searches on the key topics and cited papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d81e4010-b662-4512-b6af-c39203aeeff7",
+  "isSidechain": false,
+  "requestId": "req_011CbCRwFAsTArkHQUrdsZtb",
+  "type": "assistant",
+  "uuid": "39aaac8a-1d57-470f-af9d-7d221e5e3e2c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012riwj2swE7HzvFYfKZMtau",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 22315,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 22315,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T18:51:20.089Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01V5z4hz5TYVFnQQ4nESjR9T`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39aaac8a-1d57-470f-af9d-7d221e5e3e2c",
+  "isSidechain": false,
+  "requestId": "req_011CbCRwFAsTArkHQUrdsZtb",
+  "type": "assistant",
+  "uuid": "f396b14f-ade2-482e-9fe0-7f9da051f655",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012riwj2swE7HzvFYfKZMtau",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 22315,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 22315,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T18:51:20.097Z_
+
+<details><summary>↩ Tool result · `toolu_01V5z4hz5TYVFnQQ4nESjR9T`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f396b14f-ade2-482e-9fe0-7f9da051f655",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "92e3b6dd-2c9b-46be-b271-8277d212e3e9",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "f396b14f-ade2-482e-9fe0-7f9da051f655",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T18:51:23.518Z_
+
+Now let me run multiple searches in parallel to cover the key aspects of this proposal's landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92e3b6dd-2c9b-46be-b271-8277d212e3e9",
+  "isSidechain": false,
+  "requestId": "req_011CbCRxFu43q8RMbgF6W2Q1",
+  "type": "assistant",
+  "uuid": "3cf24748-59d1-4d3e-928b-6bafeb3ad0b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B47JUWuDVuGYFNDp5be5FH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 22315,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 22315,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:51:23.653Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KPP8qiFfWXLgMs8MAe1g6p`</summary>
+
+```json
+{
+  "query": "LLM safety alignment reproducibility training seed variance DPO PPO 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cf24748-59d1-4d3e-928b-6bafeb3ad0b9",
+  "isSidechain": false,
+  "requestId": "req_011CbCRxFu43q8RMbgF6W2Q1",
+  "type": "assistant",
+  "uuid": "d7a7059a-009d-4225-9e8c-06f53434f4d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B47JUWuDVuGYFNDp5be5FH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 22315,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 22315,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T18:51:30.053Z_
+
+<details><summary>↩ Tool result · `toolu_01KPP8qiFfWXLgMs8MAe1g6p`</summary>
+
+```text
+Web search results for query: "LLM safety alignment reproducibility training seed variance DPO PPO 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.11391"},{"title":"Efficient Safety Retrofitting Against Jailbreaking for LLMs","url":"https://arxiv.org/pdf/2502.13603"},{"title":"Provably Convergent Primal-Dual DPO for Constrained LLM Alignment","url":"https://arxiv.org/pdf/2510.05703"},{"title":"Improving LLM Safety Alignment with Dual-Objective Optimization","url":"https://arxiv.org/pdf/2503.03710"},{"title":"More is Less: The Pitfalls of Multi-Model Synthetic Preference Data in DPO Safety Alignment","url":"https://arxiv.org/pdf/2504.02193"}]
+
+I found several recent research papers on LLM safety alignment, DPO, and related methods from 2025-2026. Here's a summary of the key findings:
+
+## Research Overview
+
+Safety alignment for LLMs has become critically important to ensure their behaviors align with human values, societal norms, and ethical principles.
+
+## DPO and Alternative Methods
+
+Direct Preference Optimization (DPO) has become a popular solution because of its efficiency compared to RLHF. However, while DPO has emerged as a streamlined alternative to RLHF for aligning LLMs with human preferences, its effectiveness in refusal learning remains inadequate.
+
+Due to computational expense, complexity, and training instability associated with PPO, researchers have developed DPO as a simpler method that achieves comparable alignment results.
+
+## Recent Approaches
+
+Recent research has explored several refinements:
+
+- A primal-dual DPO approach that first trains a model using standard DPO on reward preference data, then fine-tunes LLMs with a rearranged Lagrangian DPO objective on cost preference data
+
+- Several DPO variants have emerged, including IPO, CPO, ORPO, KTO, and SimPO, each with different training objectives
+
+- Recent work reveals systemic flaws in DPO's gradient dynamics in safety-critical scenarios, including disproportionate suppression of harmful responses rather than active reinforcement of refusal strategies
+
+The search results contain papers published at ICLR 2026 and from 2025-2026, indicating active research on improving LLM safety alignment methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7a7059a-009d-4225-9e8c-06f53434f4d3",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "687a30a3-631a-4e11-8597-6d1982abaecf",
+  "toolUseResult": {
+    "query": "LLM safety alignment reproducibility training seed variance DPO PPO 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BPAHbd1hFzdN5vSpNPyitL",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.11391"
+          },
+          {
+            "title": "Efficient Safety Retrofitting Against Jailbreaking for LLMs",
+            "url": "https://arxiv.org/pdf/2502.13603"
+          },
+          {
+            "title": "Provably Convergent Primal-Dual DPO for Constrained LLM Alignment",
+            "url": "https://arxiv.org/pdf/2510.05703"
+          },
+          {
+            "title": "Improving LLM Safety Alignment with Dual-Objective Optimization",
+            "url": "https://arxiv.org/pdf/2503.03710"
+          },
+          {
+            "title": "More is Less: The Pitfalls of Multi-Model Synthetic Preference Data in DPO Safety Alignment",
+            "url": "https://arxiv.org/pdf/2504.02193"
+          }
+        ]
+      },
+      "I found several recent research papers on LLM safety alignment, DPO, and related methods from 2025-2026. Here's a summary of the key findings:\n\n## Research Overview\n\nSafety alignment for LLMs has become critically important to ensure their behaviors align with human values, societal norms, and ethical principles.\n\n## DPO and Alternative Methods\n\nDirect Preference Optimization (DPO) has become a popular solution because of its efficiency compared to RLHF. However, while DPO has emerged as a streamlined alternative to RLHF for aligning LLMs with human preferences, its effectiveness in refusal learning remains inadequate.\n\nDue to computational expense, complexity, and training instability associated with PPO, researchers have developed DPO as a simpler method that achieves comparable alignment results.\n\n## Recent Approaches\n\nRecent research has explored several refinements:\n\n- A primal-dual DPO approach that first trains a model using standard DPO on reward preference data, then fine-tunes LLMs with a rearranged Lagrangian DPO objective on cost preference data\n\n- Several DPO variants have emerged, including IPO, CPO, ORPO, KTO, and SimPO, each with different training objectives\n\n- Recent work reveals systemic flaws in DPO's gradient dynamics in safety-critical scenarios, including disproportionate suppression of harmful responses rather than active reinforcement of refusal strategies\n\nThe search results contain papers published at ICLR 2026 and from 2025-2026, indicating active research on improving LLM safety alignment methods."
+    ],
+    "durationSeconds": 6.391104477000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d7a7059a-009d-4225-9e8c-06f53434f4d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T18:51:33.074Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HW2m7zT93WjgXC7yyPQgQE`</summary>
+
+```json
+{
+  "query": "Fraser et al \"Fine-Tuning Lowers Safety\" arXiv 2506.17209 seed variance safety"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "687a30a3-631a-4e11-8597-6d1982abaecf",
+  "isSidechain": false,
+  "requestId": "req_011CbCRxz93ccerLxfYfawBg",
+  "type": "assistant",
+  "uuid": "3b48dcfa-ead1-4bff-8fdd-eea9c47378eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Axd8wwwfBenBmBeFy5T4Rd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 23389,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 23389,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T18:51:40.061Z_
+
+<details><summary>↩ Tool result · `toolu_01HW2m7zT93WjgXC7yyPQgQE`</summary>
+
+```text
+Web search results for query: "Fraser et al "Fine-Tuning Lowers Safety" arXiv 2506.17209 seed variance safety"
+
+Links: [{"title":"[2506.17209] Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency","url":"https://arxiv.org/abs/2506.17209"},{"title":"Fine-Tuning Lowers Safety and Disrupts Evaluation ...","url":"https://arxiv.org/pdf/2506.17209"},{"title":"(PDF) Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency","url":"https://www.researchgate.net/publication/392917561_Fine-Tuning_Lowers_Safety_and_Disrupts_Evaluation_Consistency"},{"title":"Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency","url":"https://arxiv.org/html/2506.17209v1"},{"title":"Computation and Language Jun 2025","url":"https://www.arxiv.org/list/cs.CL/2025-06?skip=1325&show=50"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=8700&show=2000"},{"title":"Behavior Modeling for Training-free Building of Private ...","url":"https://arxiv.org/pdf/2511.10283"},{"title":"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring","url":"https://arxiv.org/html/2512.12069v3"},{"title":"MedRiskEval: Medical Risk Evaluation Benchmark of ...","url":"https://aclanthology.org/2026.eacl-industry.39.pdf"}]
+
+I found the paper! Here are the search results for the Fraser et al. paper on arXiv 2506.17209:
+
+## Summary
+
+The paper "Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency" is authored by Kathleen C. Fraser, Hillary Dawkins, Isar Nejadgholi, and Svetlana Kiritchenko from the National Research Council Canada.
+
+## Main Findings
+
+Fine-tuning is known to remove the safety alignment features of the model, even when the fine-tuning data does not contain any harmful content. The authors consider this a critical failure mode of LLMs due to the widespread uptake of fine-tuning, with most well-intentioned developers likely unaware that they are deploying an LLM with reduced safety.
+
+## Research Focus on Variance and Safety Evaluation
+
+The work investigates how robust a safety benchmark is to trivial variations in the experimental procedure and the stochastic nature of LLMs. The paper includes analysis of variance in safety measurements, as indicated by figures showing variance in repeated measurements with error bars showing min and max values over five measurements, and variance due to randomness in fine-tuning procedures with error bands representing minimum and maximum harmfulness scores across five similarly fine-tuned models.
+
+The paper is to appear at LLMSEC 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b48dcfa-ead1-4bff-8fdd-eea9c47378eb",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "dc2a5433-4a93-4037-b202-dd70fbc2eb35",
+  "toolUseResult": {
+    "query": "Fraser et al \"Fine-Tuning Lowers Safety\" arXiv 2506.17209 seed variance safety",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q1WaVwGUpjutgZ6NEcsGf6",
+        "content": [
+          {
+            "title": "[2506.17209] Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency",
+            "url": "https://arxiv.org/abs/2506.17209"
+          },
+          {
+            "title": "Fine-Tuning Lowers Safety and Disrupts Evaluation ...",
+            "url": "https://arxiv.org/pdf/2506.17209"
+          },
+          {
+            "title": "(PDF) Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency",
+            "url": "https://www.researchgate.net/publication/392917561_Fine-Tuning_Lowers_Safety_and_Disrupts_Evaluation_Consistency"
+          },
+          {
+            "title": "Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency",
+            "url": "https://arxiv.org/html/2506.17209v1"
+          },
+          {
+            "title": "Computation and Language Jun 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-06?skip=1325&show=50"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=8700&show=2000"
+          },
+          {
+            "title": "Behavior Modeling for Training-free Building of Private ...",
+            "url": "https://arxiv.org/pdf/2511.10283"
+          },
+          {
+            "title": "Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring",
+            "url": "https://arxiv.org/html/2512.12069v3"
+          },
+          {
+            "title": "MedRiskEval: Medical Risk Evaluation Benchmark of ...",
+            "url": "https://aclanthology.org/2026.eacl-industry.39.pdf"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for the Fraser et al. paper on arXiv 2506.17209:\n\n## Summary\n\nThe paper \"Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency\" is authored by Kathleen C. Fraser, Hillary Dawkins, Isar Nejadgholi, and Svetlana Kiritchenko from the National Research Council Canada.\n\n## Main Findings\n\nFine-tuning is known to remove the safety alignment features of the model, even when the fine-tuning data does not contain any harmful content. The authors consider this a critical failure mode of LLMs due to the widespread uptake of fine-tuning, with most well-intentioned developers likely unaware that they are deploying an LLM with reduced safety.\n\n## Research Focus on Variance and Safety Evaluation\n\nThe work investigates how robust a safety benchmark is to trivial variations in the experimental procedure and the stochastic nature of LLMs. The paper includes analysis of variance in safety measurements, as indicated by figures showing variance in repeated measurements with error bars showing min and max values over five measurements, and variance due to randomness in fine-tuning procedures with error bands representing minimum and maximum harmfulness scores across five similarly fine-tuned models.\n\nThe paper is to appear at LLMSEC 2025."
+    ],
+    "durationSeconds": 6.982684412999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3b48dcfa-ead1-4bff-8fdd-eea9c47378eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T18:51:43.041Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DyWy64pb42VJpgGM6uL4P8`</summary>
+
+```json
+{
+  "query": "OXRL \"Do Post-Training Algorithms Actually Differ\" arXiv 2603.19335 controlled study model scales 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc2a5433-4a93-4037-b202-dd70fbc2eb35",
+  "isSidechain": false,
+  "requestId": "req_011CbCRyiwXAPPKhgyhHXt67",
+  "type": "assistant",
+  "uuid": "e9e1284d-3629-4038-8d9d-7cf222dbe7ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYEyBDywgy96AknvvVs4fN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 24108,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 24108,
+          "cache_creation_input_tokens": 843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T18:51:50.682Z_
+
+<details><summary>↩ Tool result · `toolu_01DyWy64pb42VJpgGM6uL4P8`</summary>
+
+```text
+Web search results for query: "OXRL "Do Post-Training Algorithms Actually Differ" arXiv 2603.19335 controlled study model scales 2026"
+
+Links: [{"title":"[2603.19335] Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales Uncovers Scale-Dependent Ranking Inversions","url":"https://arxiv.org/abs/2603.19335"},{"title":"Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales Uncovers Scale-Dependent Ranking Inversions","url":"https://arxiv.org/html/2603.19335"},{"title":"Do Post-Training Algorithms Actually Differ? A Controlled ...","url":"https://arxiv.org/pdf/2603.19335"},{"title":"Towards a Unified View of Large Language Model Post-Training","url":"https://arxiv.org/pdf/2509.04419"},{"title":"Understanding Post-Training Structural Changes in Large Language Models","url":"https://arxiv.org/pdf/2509.17866"},{"title":"Can Post-Training Transform LLMs into Causal Reasoners?","url":"https://arxiv.org/pdf/2602.06337"},{"title":"Echo Chamber: RL Post-training Amplifies Behaviors Learned in Pretraining","url":"https://arxiv.org/pdf/2504.07912"},{"title":"Learning Dynamics in RL Post-Training for Language Models","url":"https://arxiv.org/pdf/2601.04670"}]
+
+I found the paper you're looking for. Here's what I found about this research:
+
+## Overview
+
+The paper addresses the lack of controlled comparisons between post-training alignment algorithms like DPO, SimPO, KTO, and GRPO by presenting OXRL, a unified framework implementing 51 post-training algorithms with identical infrastructure for large-scale apples-to-apples evaluation.
+
+## Study Design
+
+The study spans 8 algorithms across 4 model scales (0.5B--7B), 3 evaluation domains, and a 20-variant DPO taxonomy (100 runs at 1.5B, 5 seeds each), totaling approximately 240 training runs on H100 GPUs. The researchers fixed the model family (Qwen 2.5), training data, optimizer, and LR schedule, varying only the loss function, and standardized additional components where algorithms required them (reference models, rollouts).
+
+## Key Finding
+
+A major finding is that algorithm rankings are unstable across scale: at 1.5B, online RL (SGRPO) tops all methods at 58.0% ± 0.57 on GSM8K; by 7B, the worst small-scale method (SimPO) becomes the best (85.8%), a complete ranking inversion driven by model scale rather than LoRA regularization (confirmed via a 2×2 factorial).
+
+The paper was submitted to arXiv on March 19, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9e1284d-3629-4038-8d9d-7cf222dbe7ad",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "7bae5659-f787-45c6-8df5-ed9a05f802c3",
+  "toolUseResult": {
+    "query": "OXRL \"Do Post-Training Algorithms Actually Differ\" arXiv 2603.19335 controlled study model scales 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YQp4ZTePmGwpAbMCKDkjcW",
+        "content": [
+          {
+            "title": "[2603.19335] Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales Uncovers Scale-Dependent Ranking Inversions",
+            "url": "https://arxiv.org/abs/2603.19335"
+          },
+          {
+            "title": "Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales Uncovers Scale-Dependent Ranking Inversions",
+            "url": "https://arxiv.org/html/2603.19335"
+          },
+          {
+            "title": "Do Post-Training Algorithms Actually Differ? A Controlled ...",
+            "url": "https://arxiv.org/pdf/2603.19335"
+          },
+          {
+            "title": "Towards a Unified View of Large Language Model Post-Training",
+            "url": "https://arxiv.org/pdf/2509.04419"
+          },
+          {
+            "title": "Understanding Post-Training Structural Changes in Large Language Models",
+            "url": "https://arxiv.org/pdf/2509.17866"
+          },
+          {
+            "title": "Can Post-Training Transform LLMs into Causal Reasoners?",
+            "url": "https://arxiv.org/pdf/2602.06337"
+          },
+          {
+            "title": "Echo Chamber: RL Post-training Amplifies Behaviors Learned in Pretraining",
+            "url": "https://arxiv.org/pdf/2504.07912"
+          },
+          {
+            "title": "Learning Dynamics in RL Post-Training for Language Models",
+            "url": "https://arxiv.org/pdf/2601.04670"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I found about this research:\n\n## Overview\n\nThe paper addresses the lack of controlled comparisons between post-training alignment algorithms like DPO, SimPO, KTO, and GRPO by presenting OXRL, a unified framework implementing 51 post-training algorithms with identical infrastructure for large-scale apples-to-apples evaluation.\n\n## Study Design\n\nThe study spans 8 algorithms across 4 model scales (0.5B--7B), 3 evaluation domains, and a 20-variant DPO taxonomy (100 runs at 1.5B, 5 seeds each), totaling approximately 240 training runs on H100 GPUs. The researchers fixed the model family (Qwen 2.5), training data, optimizer, and LR schedule, varying only the loss function, and standardized additional components where algorithms required them (reference models, rollouts).\n\n## Key Finding\n\nA major finding is that algorithm rankings are unstable across scale: at 1.5B, online RL (SGRPO) tops all methods at 58.0% ± 0.57 on GSM8K; by 7B, the worst small-scale method (SimPO) becomes the best (85.8%), a complete ranking inversion driven by model scale rather than LoRA regularization (confirmed via a 2×2 factorial).\n\nThe paper was submitted to arXiv on March 19, 2026."
+    ],
+    "durationSeconds": 7.6362439310000045,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e9e1284d-3629-4038-8d9d-7cf222dbe7ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T18:51:53.877Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XRH7A8Aw8EXavQVddvH1rw`</summary>
+
+```json
+{
+  "query": "Larsen 2025 \"Instability of Safety\" random seeds temperature LLM refusal SSI arXiv 2512.12066"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bae5659-f787-45c6-8df5-ed9a05f802c3",
+  "isSidechain": false,
+  "requestId": "req_011CbCRzWL2NWj9ncRs4r9sv",
+  "type": "assistant",
+  "uuid": "c00b76c8-4462-45ec-993f-9cac7301ee34",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015si43zJMH4WrwFY2Qs9JZY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 24951,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 24951,
+          "cache_creation_input_tokens": 818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:52:01.128Z_
+
+<details><summary>↩ Tool result · `toolu_01XRH7A8Aw8EXavQVddvH1rw`</summary>
+
+```text
+Web search results for query: "Larsen 2025 "Instability of Safety" random seeds temperature LLM refusal SSI arXiv 2512.12066"
+
+Links: [{"title":"[2512.12066] The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior","url":"https://arxiv.org/abs/2512.12066"},{"title":"The Instability of Safety: How Random Seeds and Temperature","url":"https://www.arxiv.org/pdf/2512.12066v2"},{"title":"The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior","url":"https://arxiv.org/html/2512.12066v2"},{"title":"The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior","url":"https://arxiv.org/pdf/2512.12066"},{"title":"(PDF) The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior","url":"https://www.researchgate.net/publication/398719981_The_Instability_of_Safety_How_Random_Seeds_and_Temperature_Expose_Inconsistent_LLM_Refusal_Behavior"},{"title":"Artificial Intelligence Dec 2025","url":"https://arxiv.org/list/cs.AI/2025-12?skip=2125&show=1000"}]
+
+I found the paper! Here's what the search reveals:
+
+"The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior" is a paper by Erik Larsen published December 16, 2025.
+
+**Key Findings:**
+
+The paper challenges the assumption that current safety evaluations rely on single-shot testing by investigating the stability of safety refusal decisions across random seeds and temperature settings.
+
+Testing four instruction-tuned models (Llama 3.1 8B, Qwen 2.5 7B, Qwen 3 8B, Gemma 3 12B) on 876 harmful prompts across 20 different sampling configurations (4 temperatures × 5 random seeds), the authors found that 18–28% of prompts exhibit decision flips—where the model refuses in some configurations but complies in others.
+
+**Safety Stability Index (SSI):**
+
+The paper introduces the Safety Stability Index (SSI), a metric that quantifies how consistently a model makes the same safety decision across different sampling configurations. Higher temperatures significantly reduce decision stability, with mean SSI dropping from 0.951 at temperature 0.0 to 0.896 at temperature 1.0.
+
+**Recommendations:**
+
+The authors recommend using at least 3 samples per prompt for reliable safety assessment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c00b76c8-4462-45ec-993f-9cac7301ee34",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "dbab071e-27cb-4618-985e-0b79fc9ac0d5",
+  "toolUseResult": {
+    "query": "Larsen 2025 \"Instability of Safety\" random seeds temperature LLM refusal SSI arXiv 2512.12066",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KHDABiGirqmpw6xxL528wp",
+        "content": [
+          {
+            "title": "[2512.12066] The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior",
+            "url": "https://arxiv.org/abs/2512.12066"
+          },
+          {
+            "title": "The Instability of Safety: How Random Seeds and Temperature",
+            "url": "https://www.arxiv.org/pdf/2512.12066v2"
+          },
+          {
+            "title": "The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior",
+            "url": "https://arxiv.org/html/2512.12066v2"
+          },
+          {
+            "title": "The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior",
+            "url": "https://arxiv.org/pdf/2512.12066"
+          },
+          {
+            "title": "(PDF) The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior",
+            "url": "https://www.researchgate.net/publication/398719981_The_Instability_of_Safety_How_Random_Seeds_and_Temperature_Expose_Inconsistent_LLM_Refusal_Behavior"
+          },
+          {
+            "title": "Artificial Intelligence Dec 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-12?skip=2125&show=1000"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search reveals:\n\n\"The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior\" is a paper by Erik Larsen published December 16, 2025.\n\n**Key Findings:**\n\nThe paper challenges the assumption that current safety evaluations rely on single-shot testing by investigating the stability of safety refusal decisions across random seeds and temperature settings.\n\nTesting four instruction-tuned models (Llama 3.1 8B, Qwen 2.5 7B, Qwen 3 8B, Gemma 3 12B) on 876 harmful prompts across 20 different sampling configurations (4 temperatures × 5 random seeds), the authors found that 18–28% of prompts exhibit decision flips—where the model refuses in some configurations but complies in others.\n\n**Safety Stability Index (SSI):**\n\nThe paper introduces the Safety Stability Index (SSI), a metric that quantifies how consistently a model makes the same safety decision across different sampling configurations. Higher temperatures significantly reduce decision stability, with mean SSI dropping from 0.951 at temperature 0.0 to 0.896 at temperature 1.0.\n\n**Recommendations:**\n\nThe authors recommend using at least 3 samples per prompt for reliable safety assessment."
+    ],
+    "durationSeconds": 7.246760481999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c00b76c8-4462-45ec-993f-9cac7301ee34",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment  ## Descr…",
+  "leafUuid": "dbab071e-27cb-4618-985e-0b79fc9ac0d5",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit safety reproducibility across preference optimization algorithms",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T18:52:04.663Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Si2Y39GBUKQkJwpqJou1W7`</summary>
+
+```json
+{
+  "query": "SafeDPO arXiv 2505.20065 ICLR 2026 PKU-SafeRLHF safety alignment DPO"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbab071e-27cb-4618-985e-0b79fc9ac0d5",
+  "isSidechain": false,
+  "requestId": "req_011CbCS1H1rkCLmAAAuiQvb3",
+  "type": "assistant",
+  "uuid": "806e6592-4bcb-44b3-ba44-63bb0fc5f381",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPN9uQgNcpoXsgsY4cAoMy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 25769,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 25769,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:52:10.559Z_
+
+<details><summary>↩ Tool result · `toolu_01Si2Y39GBUKQkJwpqJou1W7`</summary>
+
+```text
+Web search results for query: "SafeDPO arXiv 2505.20065 ICLR 2026 PKU-SafeRLHF safety alignment DPO"
+
+Links: [{"title":"[2505.20065] SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety","url":"https://arxiv.org/abs/2505.20065"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.20065"},{"title":"ICLR Oral SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety","url":"https://iclr.cc/virtual/2026/oral/10009693"},{"title":"SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety","url":"https://arxiv.org/html/2505.20065"},{"title":"[2505.20065v1] SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety","url":"https://arxiv.org/abs/2505.20065v1"},{"title":"GitHub - PKU-Alignment/safe-rlhf: Safe RLHF: Constrained Value Alignment via Safe Reinforcement Learning from Human Feedback · GitHub","url":"https://github.com/PKU-Alignment/safe-rlhf"}]
+
+Based on the search results, here's what I found about SafeDPO:
+
+## Overview
+
+SafeDPO revisits the original safety alignment objective and shows that, under mild assumptions, it admits a closed-form optimal policy. It further derives a provably equivalent and tractable objective, enabling direct optimization, and proposes SafeDPO as a lightweight method that preserves the optimal solution of the underlying safety-constrained objective while requiring only one additional hyperparameter and minimal modifications to existing preference-based training methods.
+
+## Key Features
+
+SafeDPO eliminates the need for reward models, cost models, and online sampling, relying only on preference data and safety indicators. Despite its simplicity, SafeDPO achieves competitive safety–helpfulness trade-offs compared to existing safety alignment methods, and experiments on the PKU-SafeRLHF-30K benchmark demonstrate that SafeDPO substantially improves safety while maintaining competitive helpfulness.
+
+## Publication
+
+SafeDPO performs strongly in practice, substantially reducing unsafe generations while preserving helpfulness across models up to 13B parameters. The paper has been published as a conference paper at ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "806e6592-4bcb-44b3-ba44-63bb0fc5f381",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "0e373915-de1f-4f83-85e2-a70a732c052b",
+  "toolUseResult": {
+    "query": "SafeDPO arXiv 2505.20065 ICLR 2026 PKU-SafeRLHF safety alignment DPO",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qb2EjgKENTXarDucssWHgp",
+        "content": [
+          {
+            "title": "[2505.20065] SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety",
+            "url": "https://arxiv.org/abs/2505.20065"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2505.20065"
+          },
+          {
+            "title": "ICLR Oral SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety",
+            "url": "https://iclr.cc/virtual/2026/oral/10009693"
+          },
+          {
+            "title": "SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety",
+            "url": "https://arxiv.org/html/2505.20065"
+          },
+          {
+            "title": "[2505.20065v1] SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety",
+            "url": "https://arxiv.org/abs/2505.20065v1"
+          },
+          {
+            "title": "GitHub - PKU-Alignment/safe-rlhf: Safe RLHF: Constrained Value Alignment via Safe Reinforcement Learning from Human Feedback · GitHub",
+            "url": "https://github.com/PKU-Alignment/safe-rlhf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SafeDPO:\n\n## Overview\n\nSafeDPO revisits the original safety alignment objective and shows that, under mild assumptions, it admits a closed-form optimal policy. It further derives a provably equivalent and tractable objective, enabling direct optimization, and proposes SafeDPO as a lightweight method that preserves the optimal solution of the underlying safety-constrained objective while requiring only one additional hyperparameter and minimal modifications to existing preference-based training methods.\n\n## Key Features\n\nSafeDPO eliminates the need for reward models, cost models, and online sampling, relying only on preference data and safety indicators. Despite its simplicity, SafeDPO achieves competitive safety–helpfulness trade-offs compared to existing safety alignment methods, and experiments on the PKU-SafeRLHF-30K benchmark demonstrate that SafeDPO substantially improves safety while maintaining competitive helpfulness.\n\n## Publication\n\nSafeDPO performs strongly in practice, substantially reducing unsafe generations while preserving helpfulness across models up to 13B parameters. The paper has been published as a conference paper at ICLR 2026."
+    ],
+    "durationSeconds": 5.892771360999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "806e6592-4bcb-44b3-ba44-63bb0fc5f381",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-19T18:52:13.452Z_
+
+Now let me search for more recent work that might directly compete with or overlap this proposal's contribution:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e373915-de1f-4f83-85e2-a70a732c052b",
+  "isSidechain": false,
+  "requestId": "req_011CbCS1yJH5r7rQM4TLvn9h",
+  "type": "assistant",
+  "uuid": "20efd2b6-7e98-4f73-a5ca-98a4bc317ba0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJFX7buGRWKZEo4XwuNLn5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 26550,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 704,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 26550,
+          "cache_creation_input_tokens": 704,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 704
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T18:52:14.014Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017MWEpva5oCZfmrLL1gXgMc`</summary>
+
+```json
+{
+  "query": "training-time safety reproducibility audit alignment algorithms seed variance benchmark 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20efd2b6-7e98-4f73-a5ca-98a4bc317ba0",
+  "isSidechain": false,
+  "requestId": "req_011CbCS1yJH5r7rQM4TLvn9h",
+  "type": "assistant",
+  "uuid": "e447c5ca-7261-4dde-9f91-42d4912e77ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJFX7buGRWKZEo4XwuNLn5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 26550,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 704,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 26550,
+          "cache_creation_input_tokens": 704,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 704
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T18:52:20.774Z_
+
+<details><summary>↩ Tool result · `toolu_017MWEpva5oCZfmrLL1gXgMc`</summary>
+
+```text
+Web search results for query: "training-time safety reproducibility audit alignment algorithms seed variance benchmark 2026"
+
+Links: [{"title":"[2602.22755v1] AuditBench: Evaluating Alignment Auditing Techniques on Models with Hidden Behaviors","url":"https://arxiv.org/abs/2602.22755v1"},{"title":"AuditBench: Evaluating Alignment Auditing Techniques on Models with Hidden Behaviors","url":"https://arxiv.org/html/2602.22755"},{"title":"On the Extreme Variance of Certified Local Robustness Across Model Seeds","url":"https://arxiv.org/pdf/2601.13303"},{"title":"A Toolkit for Benchmarking LLM Safety Alignment in Fine- ...","url":"https://arxiv.org/pdf/2506.00676"},{"title":"Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency","url":"https://arxiv.org/pdf/2506.17209"},{"title":"Main Technical Track: Call for Papers - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/"},{"title":"A Generalizable Distribution Structure Analysis Algorithm with Audit-Ready Framework for Medical Research","url":"https://www.medrxiv.org/content/10.1101/2025.11.03.25339124.full.pdf"}]
+
+Based on the search results, I found several relevant papers and resources related to your query:
+
+## Key Findings:
+
+**AuditBench (2026)**: AuditBench is an alignment auditing benchmark consisting of 56 language models with implanted hidden behaviors. Each model has one of 14 concerning behaviors such as sycophantic deference, opposition to AI regulation, or secret geopolitical loyalties.
+
+**Seed Variance in Certified Robustness**: Models that differ only in random seeds during training exhibit extreme variance in their certified robustness, with standard deviation statistically larger than marginal robustness improvements reported in recent papers.
+
+**SafeTuneBed Toolkit (2025)**: A toolkit that ensures full reproducibility and provides transparent provenance for every experiment through self-documenting Python files.
+
+**Fine-Tuning and Safety Evaluation Consistency (2025)**: Research investigating how robust safety benchmarks are to trivial variations in experimental procedure found surprising variance in safety evaluation results, even with seemingly inconsequential changes to fine-tuning setup.
+
+These results align with your search focus on reproducibility, seed variance, safety evaluation, and alignment algorithms in the 2026 research landscape.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e447c5ca-7261-4dde-9f91-42d4912e77ff",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "e28dd999-305f-42ec-9d2c-38c40a9d53a6",
+  "toolUseResult": {
+    "query": "training-time safety reproducibility audit alignment algorithms seed variance benchmark 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WJUkxsFHLaUuLTFadh1TW1",
+        "content": [
+          {
+            "title": "[2602.22755v1] AuditBench: Evaluating Alignment Auditing Techniques on Models with Hidden Behaviors",
+            "url": "https://arxiv.org/abs/2602.22755v1"
+          },
+          {
+            "title": "AuditBench: Evaluating Alignment Auditing Techniques on Models with Hidden Behaviors",
+            "url": "https://arxiv.org/html/2602.22755"
+          },
+          {
+            "title": "On the Extreme Variance of Certified Local Robustness Across Model Seeds",
+            "url": "https://arxiv.org/pdf/2601.13303"
+          },
+          {
+            "title": "A Toolkit for Benchmarking LLM Safety Alignment in Fine- ...",
+            "url": "https://arxiv.org/pdf/2506.00676"
+          },
+          {
+            "title": "Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency",
+            "url": "https://arxiv.org/pdf/2506.17209"
+          },
+          {
+            "title": "Main Technical Track: Call for Papers - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/"
+          },
+          {
+            "title": "A Generalizable Distribution Structure Analysis Algorithm with Audit-Ready Framework for Medical Research",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.11.03.25339124.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources related to your query:\n\n## Key Findings:\n\n**AuditBench (2026)**: AuditBench is an alignment auditing benchmark consisting of 56 language models with implanted hidden behaviors. Each model has one of 14 concerning behaviors such as sycophantic deference, opposition to AI regulation, or secret geopolitical loyalties.\n\n**Seed Variance in Certified Robustness**: Models that differ only in random seeds during training exhibit extreme variance in their certified robustness, with standard deviation statistically larger than marginal robustness improvements reported in recent papers.\n\n**SafeTuneBed Toolkit (2025)**: A toolkit that ensures full reproducibility and provides transparent provenance for every experiment through self-documenting Python files.\n\n**Fine-Tuning and Safety Evaluation Consistency (2025)**: Research investigating how robust safety benchmarks are to trivial variations in experimental procedure found surprising variance in safety evaluation results, even with seemingly inconsequential changes to fine-tuning setup.\n\nThese results align with your search focus on reproducibility, seed variance, safety evaluation, and alignment algorithms in the 2026 research landscape."
+    ],
+    "durationSeconds": 6.755378404000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e447c5ca-7261-4dde-9f91-42d4912e77ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-19T18:52:20.778Z_
+
+```json
+{
+  "parentUuid": "e28dd999-305f-42ec-9d2c-38c40a9d53a6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0c45c4e4-1753-4c50-8993-f2223a7724e2",
+  "timestamp": "2026-05-19T18:52:20.778Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T18:52:24.726Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WWFK6s3BAb1rETF7Cxx6Fw`</summary>
+
+```json
+{
+  "query": "CoRL 2026 call for papers topics scope robot learning conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c45c4e4-1753-4c50-8993-f2223a7724e2",
+  "isSidechain": false,
+  "requestId": "req_011CbCS2j15EZVsEUStSB1JN",
+  "type": "assistant",
+  "uuid": "7dfe67eb-674d-4f0e-be7d-ea8f571a0be5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbZoeoWWc6sA2m2tS4K1bd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 27254,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 829,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 27254,
+          "cache_creation_input_tokens": 829,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 829
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T18:52:31.716Z_
+
+<details><summary>↩ Tool result · `toolu_01WWFK6s3BAb1rETF7Cxx6Fw`</summary>
+
+```text
+Web search results for query: "CoRL 2026 call for papers topics scope robot learning conference"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI","url":"https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"}]
+
+Based on the search results, here's information about the CoRL 2026 Call for Papers topics and scope:
+
+## Conference Overview
+
+The Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics. The aim of CoRL 2026 is to publish significant original research at the intersection of robotics and machine learning.
+
+## Paper Topics and Scope
+
+CoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning for robotics, reinforcement learning for control of physical robots, learning for human-robot interaction and robot instruction by natural language, learning approaches to robot safety and alignment, applications of robot learning in robot manipulation, navigation, locomotion, driving, flight, and other areas of robotics, robot systems and hardware for learning, and theoretical foundations of robot learning.
+
+CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.
+
+## Submission Requirements
+
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. The paper submission deadline is May 29, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7dfe67eb-674d-4f0e-be7d-ea8f571a0be5",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "92a4da45-4b49-4749-823e-0f5b888f0d08",
+  "toolUseResult": {
+    "query": "CoRL 2026 call for papers topics scope robot learning conference",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MhbC2CFFgrq6iotbTAP7ej",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI",
+            "url": "https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the CoRL 2026 Call for Papers topics and scope:\n\n## Conference Overview\n\nThe Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics. The aim of CoRL 2026 is to publish significant original research at the intersection of robotics and machine learning.\n\n## Paper Topics and Scope\n\nCoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning for robotics, reinforcement learning for control of physical robots, learning for human-robot interaction and robot instruction by natural language, learning approaches to robot safety and alignment, applications of robot learning in robot manipulation, navigation, locomotion, driving, flight, and other areas of robotics, robot systems and hardware for learning, and theoretical foundations of robot learning.\n\nCoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.\n\n## Submission Requirements\n\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. The paper submission deadline is May 29, 2026."
+    ],
+    "durationSeconds": 6.983243697999991,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7dfe67eb-674d-4f0e-be7d-ea8f571a0be5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T18:52:34.830Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016nZxHoXH3D7dEgfoDuG6Nn`</summary>
+
+```json
+{
+  "query": "\"safety alignment\" \"cross-seed\" OR \"seed variance\" OR \"reproducibility\" preference optimization DPO GRPO multi-scale 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92a4da45-4b49-4749-823e-0f5b888f0d08",
+  "isSidechain": false,
+  "requestId": "req_011CbCS3XoQeU93wYaeTEQ2j",
+  "type": "assistant",
+  "uuid": "8e17987d-c398-45f3-bef1-846bd883dda4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KCS1V7eZEszdb3NTxJ2Cy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 28083,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 28083,
+          "cache_creation_input_tokens": 688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T18:52:42.499Z_
+
+<details><summary>↩ Tool result · `toolu_016nZxHoXH3D7dEgfoDuG6Nn`</summary>
+
+```text
+Web search results for query: ""safety alignment" "cross-seed" OR "seed variance" OR "reproducibility" preference optimization DPO GRPO multi-scale 2025 2026"
+
+Links: [{"title":"Optimizing Safe and Aligned Language Generation: A Multi-Objective GRPO Approach","url":"https://arxiv.org/html/2503.21819v1"},{"title":"Multi-context Group Relative Policy Optimization","url":"https://www.emergentmind.com/topics/multi-context-group-relative-policy-optimization-grpo"},{"title":"Grouped Policy Optimization (GRPO)","url":"https://www.emergentmind.com/topics/grouped-policy-optimization-grpo"},{"title":"Improving Safety Alignment via Balanced Direct Preference Optimization","url":"https://arxiv.org/pdf/2603.22829"},{"title":"More is Less: The Pitfalls of Multi-Model Synthetic Preference Data in DPO Safety Alignment","url":"https://arxiv.org/pdf/2504.02193"},{"title":"On the Role of Preference Variance in Preference Optimization","url":"https://arxiv.org/pdf/2510.13022"},{"title":"Multi-Objective Preference Optimization: Improving Human Alignment of Generative Models","url":"https://arxiv.org/pdf/2505.10892"}]
+
+I found several relevant papers and resources on safety alignment with preference optimization methods. Here's what the search returned:
+
+## Key Findings:
+
+**Multi-Objective Safety Alignment with GRPO:**
+A Group Relative Policy Optimization (GRPO) framework with a multi-label reward regression model has been proposed to achieve safe and aligned language generation. This approach improves safety and quality metrics across model scales (0.5B, 7B, and 14B parameters), demonstrating a robust balance of objectives.
+
+**GRPO Variants and Computational Efficiency:**
+Two-sample GRPO (2-GRPO) recovers the generalization and stability benefits at a fraction of the computational cost, achieving identical policy performance to large-group classical GRPO.
+
+**Safety Alignment via Balanced DPO:**
+Balanced Direct Preference Optimization (B-DPO) adaptively modulates optimization strength between preferred and dispreferred responses and can enhance safety capability while maintaining competitive general capabilities of LLMs.
+
+**Preference Variance in DPO:**
+Prompts with higher preference variance tend to drive larger updates and have outsized impact on alignment performance.
+
+**Multi-Objective Preference Optimization:**
+Multi-Objective Preference Optimization (MOPO) frames alignment as constrained KL-regularized optimization and reduces to simple closed-form iterative updates suitable for large-scale training.
+
+These results cover recent work from 2025-2026 on safety alignment using modern preference optimization approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e17987d-c398-45f3-bef1-846bd883dda4",
+  "isSidechain": false,
+  "promptId": "32b54b36-1a2b-4c82-aa60-e615a0343c6f",
+  "type": "user",
+  "uuid": "51fdd600-581d-4444-8e7e-db9c2ef2172e",
+  "toolUseResult": {
+    "query": "\"safety alignment\" \"cross-seed\" OR \"seed variance\" OR \"reproducibility\" preference optimization DPO GRPO multi-scale 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H6hpzVPYvaXcDaWC2NnwX6",
+        "content": [
+          {
+            "title": "Optimizing Safe and Aligned Language Generation: A Multi-Objective GRPO Approach",
+            "url": "https://arxiv.org/html/2503.21819v1"
+          },
+          {
+            "title": "Multi-context Group Relative Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/multi-context-group-relative-policy-optimization-grpo"
+          },
+          {
+            "title": "Grouped Policy Optimization (GRPO)",
+            "url": "https://www.emergentmind.com/topics/grouped-policy-optimization-grpo"
+          },
+          {
+            "title": "Improving Safety Alignment via Balanced Direct Preference Optimization",
+            "url": "https://arxiv.org/pdf/2603.22829"
+          },
+          {
+            "title": "More is Less: The Pitfalls of Multi-Model Synthetic Preference Data in DPO Safety Alignment",
+            "url": "https://arxiv.org/pdf/2504.02193"
+          },
+          {
+            "title": "On the Role of Preference Variance in Preference Optimization",
+            "url": "https://arxiv.org/pdf/2510.13022"
+          },
+          {
+            "title": "Multi-Objective Preference Optimization: Improving Human Alignment of Generative Models",
+            "url": "https://arxiv.org/pdf/2505.10892"
+          }
+        ]
+      },
+      "I found several relevant papers and resources on safety alignment with preference optimization methods. Here's what the search returned:\n\n## Key Findings:\n\n**Multi-Objective Safety Alignment with GRPO:**\nA Group Relative Policy Optimization (GRPO) framework with a multi-label reward regression model has been proposed to achieve safe and aligned language generation. This approach improves safety and quality metrics across model scales (0.5B, 7B, and 14B parameters), demonstrating a robust balance of objectives.\n\n**GRPO Variants and Computational Efficiency:**\nTwo-sample GRPO (2-GRPO) recovers the generalization and stability benefits at a fraction of the computational cost, achieving identical policy performance to large-group classical GRPO.\n\n**Safety Alignment via Balanced DPO:**\nBalanced Direct Preference Optimization (B-DPO) adaptively modulates optimization strength between preferred and dispreferred responses and can enhance safety capability while maintaining competitive general capabilities of LLMs.\n\n**Preference Variance in DPO:**\nPrompts with higher preference variance tend to drive larger updates and have outsized impact on alignment performance.\n\n**Multi-Objective Preference Optimization:**\nMulti-Objective Preference Optimization (MOPO) frames alignment as constrained KL-regularized optimization and reduces to simple closed-form iterative updates suitable for large-scale training.\n\nThese results cover recent work from 2025-2026 on safety alignment using modern preference optimization approaches."
+    ],
+    "durationSeconds": 7.662369405000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8e17987d-c398-45f3-bef1-846bd883dda4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-19T18:53:15.600Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to make my assessment. Let me synthesize what I've found and evaluate the proposal.
+
+**Key observations from my research:**
+
+1. **Venue mismatch**: CoRL 2026 is the Conference on Robot Learning. Its topics include "learning approaches to robot safety and alignment" but in the context of ROBOTICS. This proposal is entirely about LLM text-based safety alignment (DPO, PPO, GRPO on language models). There is zero robotics content. This is a fundamental venue mismatch. The paper belongs at NeurIPS, ICML, ACL, EMNLP, or AIES - not CoRL. 
+
+When CoRL mentions "safety and alignment," they're referring to physical robot safety and safe robot behavior, not LLM safety alignment.
+
+2. **Cited papers check**: The key references appear to be real:
+   - Larsen (2512.12066) - confirmed, SSI metric, inference-time safety stability
+   - Fraser et al. (2506.17209) - confirmed, fine-tuning safety variance with SFT
+   - OXRL (2603.19335) - confirmed, controlled study across model scales
+   - SafeDPO (2505.20065) - confirmed, ICLR 2026 Oral
+
+3. **Novelty assessment**: The proposal is essentially a large-scale empirical comparison of existing safety alignment methods without introducing fundamentally new techniques or insights.
+
+4. **Core finding**: The hypothesis that safety degrades more readily than capabilities during retraining is intuitive and somewhat expected. The SCI-T metric is just a straightforward adaptation of SSI—swapping seed variation for sampling variation. The real contribution is the scale of the study (260 runs across multiple seeds, algorithms, and model sizes), which provides precision but doesn't necessarily yield deeper understanding. A smaller study with fewer seeds and algorithms could likely demonstrate the same core phenomenon, as Fraser et al. already showed safety variance exists with minimal seeds.
+
+5. **The intuition problem**: If the main result is that safety is more fragile than capabilities, most reviewers would immediately think "I already expected that." Safety alignment is known to be more surface-level than capability learning, so finding that safety metrics vary more across seeds feels like confirming something already understood.
+
+6. **The venue mismatch**: This is being submitted to CoRL, which focuses on robotics—learning for robot perception, control, foundation models, imitation learning, and physical robot safety. This proposal is purely NLP and alignment work with no robotics component whatsoever.  Even though CoRL lists robot safety as a topic, they mean safety of robotic systems, not LLM text safety alignment. The paper discusses DPO/PPO/GRPO for text-based safety like refusal behavior and harmlessness benchmarks, which is completely out of scope. This would almost certainly get desk-rejected or scored very low for being off-topic.
+
+Looking at the actual contributions: the novelty is weak-to-medium since it's mostly an empirical scale-up of existing observations, SCI-T is a trivial metric extension, and the ANOVA approach is just standard statistics applied to a new domain. Fraser et al. already showed this phenomenon exists. The significance is also limited—the governance deliverable is practical but won't be seen as a strong intellectual contribution by ML conference reviewers.
+
+For the right venue like NeurIPS or ICML, this could be medium-impact work, but for CoRL it's fatal due to being completely out of scope. I'd estimate only 5-10% acceptance probability here.
+
+Actually, I need to be clearer about the venue mismatch—that's the critical issue to emphasize, since the paper's quality assessment is almost secondary to whether it belongs at CoRL at all.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51fdd600-581d-4444-8e7e-db9c2ef2172e",
+  "isSidechain": false,
+  "requestId": "req_011CbCS4KynqrZ6V7HKxJMzi",
+  "type": "assistant",
+  "uuid": "3acb66f4-09e4-4cf4-9d92-fa25aec9ce61",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ksZZSvw4dn2WwoB1bbg3i",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 28771,
+      "output_tokens": 5764,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5764,
+          "cache_read_input_tokens": 28771,
+          "cache_creation_input_tokens": 777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-19T18:54:53.615Z_
+
+Now I have sufficient information to conduct my evaluation. Let me compile the assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【⚠️ 致命前置问题：投稿会议与论文内容严重不匹配】
+
+CoRL (Conference on Robot Learning) 的主题范围包括：robot perception, robot control, imitation learning for robotics, 
+RL for physical robots, robot manipulation/navigation/locomotion, sim-to-real transfer 等。虽然 CoRL 列出了 
+"learning approaches to robot safety and alignment" 作为一个话题方向，但这指的是**机器人系统的安全**（物理安全、
+安全控制策略），而非 LLM 文本安全对齐。
+
+本 proposal 的全部内容——DPO/PPO/GRPO 对齐算法、文本安全评估 (WildGuard, HarmBench, SORRY-Bench)、
+refusal behavior、harmlessness scores——完全属于 NLP/LLM alignment 领域，与机器人学习零交集。
+这篇论文更适合投稿 NeurIPS、ICML、ICLR、ACL、EMNLP 或 AIES/FAccT 等会议。
+
+在 CoRL，本文极大概率被 desk reject 或因 out-of-scope 获得极低分数。
+这一问题独立于 idea 质量本身，但对中稿概率有决定性影响。
+
+以下评估分两部分：(A) 假设投到 CoRL 的实际概率；(B) idea 本身的内在质量（venue-agnostic）。
+
+=====================================================================
+
+【领域调研】:
+
+1. Larsen (arXiv:2512.12066, Dec 2025): 提出 Safety Stability Index (SSI)，测量 inference-time 的安全
+   一致性。在 4 个 7-12B 模型上发现 18-28% 的 prompt 在不同 seed/temperature 下会 flip refusal/compliance。
+   关键区别：SSI 测量的是固定权重下的生成随机性，不是 training-time 的权重差异。
+   → 本 proposal 的 SCI-T 是 SSI 的直接类比（将 "across sampling seeds" 替换为 "across training seeds"）。
+
+2. Fraser et al. (arXiv:2506.17209, June 2025, LLMSEC): 首次展示 training-seed safety variance。
+   5 个 SFT seeds 在 Llama-3.2-1B 和 Mistral-7B (LoRA + 4-bit) 上产生最高 9pp harmfulness score 差异。
+   → 本 proposal 的核心前提（safety variance exists）已被此工作初步验证。本文是其 scale-up。
+
+3. OXRL (arXiv:2603.19335, March 2026): 51 个 post-training 算法在 Qwen 2.5 上的 controlled study，
+   发现 scale-dependent ranking inversions (SimPO 在 1.5B 最差、7B 最佳)。3-5 seeds，仅评估 capability。
+   → 本 proposal 复用了其框架思路但加入 safety 维度。OXRL 报告了 ±0.57pp capability variance。
+
+4. SafeDPO (arXiv:2505.20065, ICLR 2026 Oral): DPO 在 PKU-SafeRLHF-30K 上达到 ~97% harmless ratio。
+   无 cross-seed variance 报告。→ 本 proposal 使用相同数据集和方法，填补 variance 空白。
+
+5. SafeTuneBed (arXiv:2506.00676, May 2025): Safety fine-tuning toolkit，3 seeds 平均，
+   提到 "refusal consistency" 但未正式定义。→ 验证该方向有需求但无人正式做。
+
+6. "LLM-Safety Evaluations Lack Robustness" (arXiv:2503.02574, March 2025): evaluation pipeline 选择
+   导致最高 28% ASR variance。→ 支持 proposal 的 fixed-evaluation-pipeline 设计。
+
+7. SafeGRPO (arXiv:2511.12982, Nov 2025): 验证 classifier-as-reward 用于 GRPO safety alignment。
+   → 支持 proposal 使用 WildGuard 作为 GRPO reward 的设计。
+
+- 调研总结: Safety alignment 的 reproducibility 是一个正在形成但尚未系统化的研究方向。
+  Fraser et al. 开了头（SFT, 小规模），OXRL 做了 capability 的 controlled study 但没碰 safety。
+  本 proposal 位于这两条线的交叉点：将 OXRL 式的 controlled multi-algorithm study 引入 safety 领域。
+  Gap 确实存在，但这个 gap 更多是 "scale up existing observation" 而非 "discover something new"。
+
+=====================================================================
+
+【Trivial Alternative 检验】:
+
+存在。以下是一个成本显著更低的 trivial baseline：
+
+(1) **缩小实验规模的 baseline**: 用 5-10 seeds（而非 20）、1-2 个算法（如 DPO + PPO）、
+    1-2 个 scale，仍然可以验证 "safety variance > capability variance" 这一核心 claim。
+    Fraser et al. 用 5 seeds 就已经观测到了 9pp variance。增加到 20 seeds 提高的是统计精度，
+    不是改变核心发现。一个更精简的 study（~40-60 runs vs 260 runs）可能得到相同的定性结论。
+
+(2) **直接复用 Fraser et al. 的 setup 加 preference optimization**: 在 Fraser 的框架上
+    简单加入 DPO/PPO trainer 即可验证 "preference optimization 也有同样问题"。
+
+增量价值在于：(a) 20 seeds 的统计置信度更高，能产出 power-justified minimum-seed tables；
+(b) 方差分解可以 disentangle seed/algorithm/scale/hardware effects；(c) full FT vs LoRA 的对比
+消除了 initialization confound。但这些都是 **精度提升**，不是 **洞察提升**。核心结论
+（"safety is fragile under retraining"）很可能不需要 260 runs 就能得到。
+
+=====================================================================
+
+【前提假设检验】:
+
+核心 claim: "Safety properties exhibit significantly higher cross-seed variance than capability 
+properties at the same scale."
+
+未经验证的关键假设：
+
+(1) **"Safety variance from SFT generalizes to preference optimization" 假设**:
+    Fraser et al. 的 variance 数据来自 SFT (supervised fine-tuning)，不是 DPO/PPO/GRPO。
+    Proposal 用 Fraser 的 SFT σ̂_safety ≈ 3.9pp 做 power analysis，但 DPO/PPO/GRPO 的
+    optimization landscape 与 SFT 完全不同（DPO 有 reference model regularization，
+    PPO 有 reward model + value function + clipping，GRPO 有 group normalization）。
+    这些正则化机制可能**降低** seed variance，也可能**放大**它。用 SFT 的 variance
+    估计做 power analysis 的前提假设未经验证。
+
+(2) **"Full FT vs LoRA 的 variance 差异方向" 假设**:
+    Proposal 假设 LoRA 引入了额外 initialization noise（A/B matrix random init），
+    因此 full FT 能"更干净地隔离 seed variance"。但也有可能 LoRA 的低秩约束反而**降低**了
+    variance（因为参数空间更小、优化更稳定），而 full FT 在高维空间中 seed variance 更大。
+    这个方向性假设是 proposal 选择 full FT 的核心理由，但未提供论证。
+
+(3) **"Safety 的 fragility 是训练层面而非数据/评估层面" 的假设**:
+    arXiv:2503.02574 已经证明 evaluation pipeline 本身能引入 28% ASR variance。
+    虽然 proposal 固定了 evaluation pipeline，但 safety 评估本身的 metric noise 
+    （WildGuard 的分类边界、prompt ambiguity）可能远大于 capability metrics 
+    （GSM8K 有明确答案）。观测到的 "safety variance > capability variance" 
+    可能部分反映的是 **metric reliability 的差异** 而非 training fragility 的差异。
+    这是一个严重的 confound，proposal 未讨论。
+
+=====================================================================
+
+【3 维度打分】:
+
+1. Novelty: 弱-中 (Weak-to-Medium)
+
+   理由：核心贡献是将已有观察（Fraser et al. 的 SFT seed variance）scale up 到 preference 
+   optimization 领域。SCI-T 是 SSI 的 trivial 类比（换掉 "across sampling" → "across training seeds"），
+   公式完全同构 (max_c(n_c)/K)。ANOVA 是标准统计方法。真正的 "新" 在于实验规模（260 runs, 3 algorithms, 
+   3 scales），但规模不是 novelty——它是 engineering effort。
+   
+   与 Fraser et al. (2506.17209) 相比：本质上是同一个 research question 的 bigger version。
+   与 OXRL (2603.19335) 相比：将 OXRL 的 capability-focused controlled study 加上 safety 评估。
+   这两个 delta 都是增量的、可预见的 next steps，不是 conceptual leap。
+
+2. Significance: 中 (Medium)
+
+   理由：研究问题本身是重要的——safety alignment 的 reproducibility 关乎 AI governance 和部署决策。
+   Minimum-seed lookup tables 对 regulatory framework (EU AI Act, NIST AI RMF) 有实用价值。
+   
+   但核心 limitation 是："If the result is positive (safety is more fragile than capability), 
+   would reviewers say 'surprising'?" **不会。** Safety alignment 比 capability 更脆弱是
+   领域内的共识直觉（safety 依赖更表层的 behavior patterns，capability 植根于 pre-training）。
+   Larsen (2512.12066) 和 Fraser et al. (2506.17209) 都已经初步证实了这一点。
+   本 proposal 用更多 runs 去量化一个已知的现象，提供了 precision 但不太可能提供 surprise。
+   
+   如果结果是 negative（safety 不比 capability 更 fragile），那才真正 surprising——但 proposal 
+   的整个 framing 和 power analysis 都假设了 positive result，对 negative result 的讨论不足。
+
+3. Related Work: 强 (Strong)
+
+   理由：对已有工作的覆盖非常全面和准确。所有关键引用（Larsen, Fraser, OXRL, SafeDPO, SafeGRPO, 
+   SafeTuneBed, arXiv:2503.02574）都真实存在且描述准确。Gap 的识别清晰——确实没有工作同时覆盖 
+   (a) preference optimization, (b) multi-scale, (c) ≥20 seeds, (d) multi-benchmark, 
+   (e) formal consistency metric, (f) ANOVA decomposition。差异化定位做得很好。
+   
+   唯一的小瑕疵：proposal 声称 Fraser et al. 的 σ̂_safety ≈ 3.9pp 是从 "range/d₂ for n=5" 
+   估计的，但这种从 range 估计 σ 的方法在 n=5 时精度很差，且 Fraser 的 variance 来自 SFT+LoRA 
+   而非 preference optimization，跨方法的 variance 外推不一定成立。
+
+=====================================================================
+
+【概率估计 — CoRL 2026】: 2% - 5%，中位 3%
+
+理由：这是一篇纯 NLP/LLM safety alignment 论文，与 CoRL (Conference on Robot Learning) 的
+scope 严重不匹配。论文无任何机器人学习内容（无 embodied AI, 无 robot control, 无 sim-to-real, 
+无 physical safety）。极大概率被 desk reject 或被 area chair 判定 out of scope。
+即使进入评审，reviewer pool 是 robotics/RL 研究者，对 LLM safety 评估 benchmark 
+(WildGuard, HarmBench, SORRY-Bench) 不熟悉，难以给出有利评价。
+
+【概率估计 — 如果投到合适会议 (NeurIPS/ICML/ICLR)】: 18% - 30%，中位 23%
+
+理由：Idea 方向站得住脚，gap 识别清晰，related work 扎实，实验设计严谨。但 novelty 主要在
+实验规模而非 conceptual contribution；核心发现（safety > capability variance）在直觉上可预期，
+不会让 reviewer 感到 surprising；SCI-T 是 trivial metric extension；存在 trivial alternative 
+威胁（更小规模实验可能得到相同定性结论）。作为 empirical study，需要结果本身足够有趣
+（如发现 scale 有 non-monotonic effect on fragility, 或某个算法意外 robust）才能突破 25% 线。
+
+=====================================================================
+
+【主要风险】:
+
+1. **致命风险 — 会议不匹配**: 投稿 CoRL 2026 是方向性错误。本文是纯 NLP safety alignment 工作，
+   CoRL 的 scope 是 robot learning。这一问题无法通过修改论文内容补救（除非彻底重写为 
+   robot safety alignment 方向）。建议改投 NeurIPS 2026, ICML 2026, 或 EMNLP 2026。
+
+2. **Idea 层面风险 — "I would have guessed this" 问题**: 核心 hypothesis（safety is more 
+   fragile than capability）是领域共识直觉，positive result 不会让 reviewer surprised。
+   如果实验结果只是确认了大家的预期（"是的，safety variance 确实更大"），reviewer 可能评价为
+   "confirmatory but not insightful"。论文需要在 WHERE/WHY/HOW 维度上提供超出 "yes it's fragile" 
+   的洞察（如哪些 harm categories 最 fragile？fragility 和 model scale 是什么关系？
+   算法间的 fragility ranking 是否和 capability ranking 反转？），但这些是实验结果，
+   不是 idea 本身能保证的。
+```
+
+Sources:
+- [The Instability of Safety: How Random Seeds and Temperature Expose Inconsistent LLM Refusal Behavior](https://arxiv.org/abs/2512.12066)
+- [Fine-Tuning Lowers Safety and Disrupts Evaluation Consistency](https://arxiv.org/abs/2506.17209)
+- [Do Post-Training Algorithms Actually Differ? A Controlled Study Across Model Scales](https://arxiv.org/abs/2603.19335)
+- [SafeDPO: A Simple Approach to Direct Preference Optimization with Enhanced Safety](https://arxiv.org/abs/2505.20065)
+- [SafeTuneBed: A Toolkit for Benchmarking LLM Safety Alignment in Fine-Tuning](https://arxiv.org/abs/2506.00676)
+- [LLM-Safety Evaluations Lack Robustness](https://arxiv.org/abs/2503.02574)
+- [SafeGRPO: Self-Rewarded Multimodal Safety Alignment](https://arxiv.org/abs/2511.12982)
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [On the Extreme Variance of Certified Local Robustness Across Model Seeds](https://arxiv.org/pdf/2601.13303)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3acb66f4-09e4-4cf4-9d92-fa25aec9ce61",
+  "isSidechain": false,
+  "requestId": "req_011CbCS4KynqrZ6V7HKxJMzi",
+  "type": "assistant",
+  "uuid": "19d66f6e-5245-4100-90fc-d6a21890a4a4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ksZZSvw4dn2WwoB1bbg3i",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 28771,
+      "output_tokens": 5764,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5764,
+          "cache_read_input_tokens": 28771,
+          "cache_creation_input_tokens": 777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment  ## Descr…",
+  "leafUuid": "19d66f6e-5245-4100-90fc-d6a21890a4a4",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit safety reproducibility across preference optimization algorithms",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # How Fragile Is Safety Under Retraining? A Large-Scale Reproducibility Audit of Post-Training Alignment  ## Descr…",
+  "leafUuid": "19d66f6e-5245-4100-90fc-d6a21890a4a4",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit safety reproducibility across preference optimization algorithms",
+  "sessionId": "8fc0caca-e38e-494a-b894-e2bce35f634a"
+}
+```
+
+---

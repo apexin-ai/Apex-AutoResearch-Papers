@@ -1,0 +1,3438 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Beyond Neurons: SAE Feature Decom
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-1/9335e1b1-d25e-4a24-9622-87e7e80a2a8a.jsonl`
+- **Structured JSON:** [`2c1f1f9e7d981fd2a224.json`](../../sessions/2c/2c1f1f9e7d981fd2a224.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:48:53.251Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:48:53.251Z",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation\n\n## Description\nCurrent cross-lingual knowledge editing faces a universal portability bottleneck: not just LU-LAFNs (COLING 2025) but ALL current methods achieve near-zero portability EM (< 10) on Bi-ZsRE, with the LU-LAFNs authors themselves noting 'all methods underperform on this metric without significant difference.' We hypothesize that this bottleneck has a specific causal mechanism: polysemantic neurons entangle factual relational structure with language identity, so any neuron-level editing that removes language components inevitably corrupts relational knowledge needed for portability. This hypothesis is independently supported by Mondal et al. (NAACL 2025 InsightsNLP), who showed that neuron-level language-specific interventions are insufficient for cross-lingual transfer even outside the editing setting.\n\nWe propose SAE-Projected Editing: using pre-trained Qwen-Scope SAEs (64K features on Qwen3-8B) and Llama Scope SAEs (128K features on Llama-3.1-8B) to decompose edit vectors into finer-grained sparse features, classify each as language-specific or language-agnostic via cross-lingual activation-probability contrasts, then apply adaptive soft projection that suppresses language-specific components proportionally to their Factual Causal Effect (FCE) — a per-feature ablation-based metric measuring how much factual recall degrades when the feature is removed. Unlike binary feature zeroing — which Farrell et al. (2024) showed is ineffective — our adaptive λ-projection preserves factual content encoded in partially-entangled features while removing pure language-identity signal.\n\n**Engagement with SAE intervention skepticism:** Peng et al. (arXiv:2506.23845) argue SAEs are better for discovery than intervention; however, Arad et al. (EMNLP 2025) directly rebut this by showing that output-score-based feature selection yields 2–3× improvement in SAE steering, matching supervised methods. The critique applies to naive feature selection, not SAE interventions as a paradigm. We incorporate output-score filtering into our pipeline. Chou et al. (arXiv:2507.13410) provide further feasibility evidence: modifying a single SAE feature achieves up to 90% language steering success on Gemma-2B/9B. Leask et al. (ICLR 2025) show SAE features are not atomic canonical units — larger latents decompose into sub-components. We accommodate this by: (a) treating features as a continuous weighted basis rather than binary switches, (b) using adaptive λ coefficients that handle partial feature overlap, and (c) ablating across SAE widths (16K/64K/128K) to identify task-appropriate granularity per Leask et al.'s recommendation.\n\n**FeatureEdit context note:** The +23% reliability and 2.8× generalization gains from FeatureEdit (ACL 2025) are for knowledge erasure on the PrivacyParaRel privacy dataset using Gemma-2 models, not factual knowledge editing or cross-lingual propagation. We cite these as evidence that features outperform neurons as representation-level intervention units, but do not assume these specific gains transfer to the editing setting.\n\n**FCE metric protocol:** For each of ~64K SAE features, we first compute point-biserial correlation r_pb between feature activation magnitude and binary factual recall success across ≥5,000 multilingual facts (computational cost: ~4 GPU-hours for forward passes). The top ~2K features by |r_pb| undergo full causal ablation: each feature is individually zeroed, and the change in factual recall probability is measured (FCE). This two-stage approach reduces the 64K × 5K evaluation matrix to a tractable 2K × 5K, requiring ~40 GPU-hours. Bootstrap confidence intervals (1000 resamples) provide uncertainty estimates for FCE values. As a validation check, we compute Spearman rank correlation between r_pb and FCE on the 2K features to verify the proxy quality.\n\nKey contributions: (1) First application of SAE feature decomposition to cross-lingual knowledge editing, providing ~5-10× finer granularity than neuron-level LAFN identification; (2) Adaptive soft projection mechanism that explicitly accounts for factual-language feature entanglement via a concrete, causal FCE metric with a two-stage efficient computation protocol; (3) Principled engagement with SAE intervention skepticism (Peng et al., Leask et al.) through output-score filtering, continuous-basis treatment, and multi-width ablation; (4) Testable portability hypothesis: if SAE features do NOT improve portability EM over neuron-level approaches (ablation A3), this falsifies the polysemanticity-entanglement explanation and has standalone diagnostic value; (5) Reconstruction fidelity validation protocol establishing whether SAE round-trip preserves edit vector quality across dictionary sizes.\n\nWe evaluate on CLM-Bench (zh-en), Bi-ZsRE, and MzsRE across 12 languages, targeting improvements over LU-LAFNs (77.87 Bi-ZsRE avg on bloomz-7b1-mt; MzsRE results reported as per-language heatmaps rather than a single average) particularly on portability metrics. Primary baselines: LU-LAFNs, FeatureEdit (adapted cross-lingual), MEMIT, AlphaEdit, M-MEMIT, X-KDE, LangEdit.\n\n**Risk mitigation:** The core risk is that the portability bottleneck is NOT caused by polysemantic entanglement but by a more fundamental limitation (e.g., the portability metric itself measuring reasoning ability that editing cannot improve). We address this through: (a) explicit FCE measurement before editing to quantify the entanglement ceiling, (b) adaptive λ-projection that preserves high-FCE features, (c) reconstruction fidelity go/no-go gate, (d) ablation A3 as a direct falsification test, and (e) relational follow-up evaluation (A2) that provides a complementary portability measure independent of the Bi-ZsRE metric. If SAE features fail to improve portability, the negative result still contributes a rigorous decomposition analysis of what fraction of factual information resides in language-specific vs. language-agnostic features — valuable for the multilingual interpretability community. Fallback: hybrid approach combining SAE-projected editing for low-entanglement facts with LU-LAFNs for high-entanglement cases.\n\n## Core Problem\nCross-lingual knowledge editing methods face two linked failures: (1) raw edit vectors reside in nearly orthogonal, language-specific subspaces (CLM-Bench), and (2) neuron-level approaches like LU-LAFNs that identify language-agnostic neurons achieve high monolingual reliability but suffer catastrophically low portability (26.43% F1, EM < 5) — a failure shared by ALL current methods (all EM < 10 on Bi-ZsRE portability), suggesting a fundamental representation-level bottleneck. We hypothesize that this bottleneck stems from polysemantic neurons entangling factual relational structure with language identity: edits that operate at neuron granularity cannot cleanly separate these components, corrupting relational knowledge during cross-lingual transfer. Can sparse autoencoder feature decomposition — which yields finer-grained, more monosemantic units — provide a cleaner separation that better preserves relational structure, and is this hypothesis even testable given recent challenges to SAE feature canonicality (Leask et al., ICLR 2025)?\n\n## Opportunity\nCLM-Bench (arXiv:2601.17397, Jan 2026) provided geometric evidence that Chinese and English edit vectors are nearly orthogonal, explaining why ROME/MEMIT fail cross-lingually (~20% reliability). LU-LAFNs (COLING 2025) achieved 77.87 avg on Bi-ZsRE by targeting language-agnostic neurons, but its neuron-level approach identifies 67.9% of neurons as LAFNs — an extremely coarse decomposition reflecting neuron polysemanticity — and ALL methods achieve near-zero portability EM (< 10 across the board), which the authors attribute to the difficulty of measuring reasoning without a reasoning process. Crucially, Mondal et al. (NAACL 2025 InsightsNLP) independently showed that neuron-level language-specific interventions are insufficient for cross-lingual transfer on XNLI/XQuAD, reinforcing the case that neuron-level decomposition is fundamentally too coarse.\n\nMeanwhile, FeatureEdit (ACL 2025) demonstrated that SAE features outperform neurons for knowledge erasure on PrivacyParaRel (~0.80 vs ~0.65 reliability, ~0.70 vs ~0.25 generalization on Gemma-2 2B/9B) — though notably this was for privacy-knowledge erasure, not factual editing or cross-lingual propagation, so these gains may not directly transfer. LangSAE (arXiv:2601.04768) proved SAE-based language identity removal improves cross-lingual retrieval by +21.9% nDCG@20. Chou et al. (arXiv:2507.13410) achieved up to 90% language steering success by modifying a single SAE feature on Gemma-2B/9B, demonstrating that SAE-based language manipulation is feasible and precise.\n\nHowever, recent work challenges SAE interventions: Peng et al. (arXiv:2506.23845) argue SAEs are better for concept discovery than acting on known concepts, finding SAE-based steering underperforms prompting/fine-tuning. Critically, Arad et al. (EMNLP 2025) rebut this: proper feature selection via output-score filtering yields 2–3× improvement in SAE steering, matching supervised methods — the issue was feature selection, not SAE interventions per se. Leask et al. (ICLR 2025) show SAE features aren't canonical atomic units — larger latents decompose into combinations — but recommend pragmatic choice of dictionary size suited to task, and our adaptive soft projection naturally accommodates non-atomicity by treating features as a continuous basis rather than binary switches.\n\nThe missing link: no work has combined SAE feature-level decomposition with cross-lingual knowledge editing. SAE features offer ~64K monosemantic units (vs. ~14K polysemantic neurons), enabling more precisely targeted language-component manipulation that may better preserve relational/factual structure — a hypothesis we propose to test directly.\n\n## Related Work / Landscape\nCross-lingual knowledge editing is a recognized open problem: the survey (arXiv:2505.14393) identifies language anisotropy and edit scalability as key challenges. The field is structured in three tiers:\n\n**Tier 1 — Direct multilingual editing baselines:** MEMIT/M-MEMIT apply locate-then-edit across languages (74.86 avg on Bi-ZsRE but ~20% cross-lingual reliability). AlphaEdit (ICLR 2025) uses null-space constraints. Merging Methods for MKE (arXiv:2605.13919, May 2026) explores vector merging with shared covariance for 12-language editing but without representation-level decomposition.\n\n**Tier 2 — Neuron/representation-level multilingual editing:** LU-LAFNs (COLING 2025, arXiv:2406.16416) is the closest prior work — identifies language-agnostic factual neurons via activation frequency intersection across languages, achieving 77.87 avg on Bi-ZsRE (bloomz-7b1-mt). However, it identifies 67.9% of neurons as LAFNs (extremely coarse), and ALL methods achieve near-zero portability (EM < 10, F1 ~26-36%), which the authors acknowledge as a universal challenge rather than a method-specific failure. Mondal et al. (NAACL 2025 InsightsNLP, arXiv:2503.17456) provide independent evidence that neuron-level language-specific interventions are insufficient for cross-lingual transfer. MEMLA (arXiv:2406.11566) uses neuron masking with LoRA but doesn't leverage monosemantic features. X-KDE (ACL 2025 Findings, arXiv:2502.14645) uses instruction tuning + preference optimization (+8.19% avg improvement). LangEdit (ACL 2025 Findings, arXiv:2506.10800) applies null-space projection for multilingual sequential editing across 6 languages.\n\n**Tier 3 — SAE-based editing and language feature work (our building blocks):** FeatureEdit from 'The Knowledge Microscope' (ACL 2025, arXiv:2502.12483) is the first SAE-feature-based model editing method — uses Gemma Scope JumpReLU SAEs to identify knowledge features and zero out specific weight positions. On the PrivacyParaRel knowledge-erasure benchmark (not factual editing), features achieve ~0.80 reliability (vs. ~0.65 for neurons) and ~0.70 generalization (vs. ~0.25), demonstrating features' advantage for representation-level interventions. However, it is monolingual English-only, targets knowledge erasure rather than cross-lingual propagation, and these gains may not directly transfer to the editing setting. SSPU (EMNLP 2025, arXiv:2505.24428) shows SAE-guided subspace projection via QR decomposition can unlearn knowledge while preserving non-target capabilities. LangSAE (arXiv:2601.04768) removes language identity from embeddings using SAE feature suppression (+21.9% nDCG@20). SAE-LAPE/LangFIR (arXiv:2604.03532) discover sparse language-specific features using activation probability contrasts. SASFT (ICLR 2026) shows SAE-guided fine-tuning preserves targeted knowledge. SpARE (NAACL 2025, arXiv:2410.15999) uses SAE-based representation engineering for knowledge selection steering but not cross-lingually. SCAN (arXiv:2603.15226, Mar 2026) uses sparse transcoders for lifelong editing on Qwen3/Llama3.1 but addresses sequential stability, not cross-lingual transfer. Farrell et al. (arXiv:2410.19278) found that zero ablation of SAE features is ineffective for knowledge unlearning — negative scaling is necessary. Chou et al. (arXiv:2507.13410) achieved up to 90% language steering success by modifying single SAE features on Gemma-2B/9B, providing direct feasibility evidence for SAE-based language manipulation.\n\n**Tier 4 — SAE intervention skepticism and counter-evidence (critical context):** Peng et al. (arXiv:2506.23845) argue SAEs are better for discovering unknown concepts than acting on known ones, finding SAE-based steering underperforms prompting/fine-tuning. However, Arad et al. (EMNLP 2025, arXiv:2505.20063) directly rebut this: by distinguishing 'input features' (capture input patterns) from 'output features' (causally affect model behavior) and filtering by output scores, SAE steering achieves 2–3× improvement, matching supervised methods. The issue was naive feature selection, not SAE interventions as a paradigm. Zhao et al. (arXiv:2505.15038) further show denoising concept vectors via SAE improves steering 4–16%. SAE-SSV (EMNLP 2025, arXiv:2505.16188) achieves high steering success rates using supervised feature selection in sparse spaces. Leask et al. (ICLR 2025, arXiv:2502.04878) demonstrate SAE features are neither atomic nor canonical — meta-SAEs decompose latents into sub-components (e.g., 'Einstein' → 'scientist' + 'Germany' + 'famous person'), and smaller SAEs miss information captured by larger ones. They recommend pragmatic dictionary size selection rather than assuming canonicality. Our approach accommodates this by treating SAE features as a practical continuous basis with adaptive coefficients, not as binary canonical units.\n\n**The gap:** No work combines SAE feature decomposition with cross-lingual knowledge editing. Specifically, no one has (a) used monosemantic SAE features instead of polysemantic neurons to decompose cross-lingual edit vectors, (b) tested whether finer-grained decomposition causally improves portability by preserving relational structure, or (c) engaged with the feature-selection insights from Arad et al. to ensure intervention-effective features are targeted.\n\n## Approach\n**Phase 1: Feature Classification with Output-Score Filtering (Weeks 1-2).** Leverage pre-trained SAEs — Qwen-Scope (64K features, 16× expansion) on Qwen3-8B and Llama Scope (128K features, 32× expansion) on Llama-3.1-8B — to decompose residual-stream activations at editing-critical layers (layers 12-25 for Qwen3-8B based on LU-LAFNs' LAFN distribution peaks). Classify each feature as language-specific, language-agnostic, or factual using activation-probability contrasts across Chinese, English, and 4+ additional languages (following SAE-LAPE/LangFIR methodology). Critically, following Arad et al.'s (EMNLP 2025) insight that input-pattern features and output-causal features rarely co-occur, compute output scores for all features to ensure we target features that causally affect model behavior, not merely correlational activations — this addresses the core criticism of Peng et al. For each language-specific feature f_i, compute its Factual Causal Effect (FCE): ablate f_i and measure the change in correct factual recall probability across a multilingual fact corpus of ≥5,000 facts (drawn from Bi-ZsRE + MzsRE test sets, held out from editing evaluation). FCE(f_i) = |P(correct | f_i active) - P(correct | f_i ablated)|. This produces a per-feature entanglement map. FCE is preferred over mutual information because: (a) it is causal rather than correlational, (b) it avoids the curse-of-dimensionality problems that plague MI estimation with 64K+ features (KSG estimators break down beyond ~10 dimensions), and (c) it is directly interpretable as the factual cost of removing a feature. As a computationally efficient proxy during initial screening, we also compute point-biserial correlation r_pb between feature activation magnitude and binary factual recall success, filtering to the top ~2K candidate features for full FCE ablation (reducing 64K × 5K evaluations to ~2K × 5K).\n\n**Phase 2: SAE-Projected Editing with Adaptive Soft Projection (Weeks 3-5).** For a given ROME/MEMIT edit vector e, decompose it into the SAE feature basis: e ≈ Σ_j α_j d_j (where d_j are SAE decoder directions and α_j are coefficients from the encoder). Following Farrell et al.'s finding that binary zeroing is ineffective and Leask et al.'s evidence that features are not atomic canonical units, we apply adaptive soft projection that treats features as a continuous basis: e_proj = e - Σ_{i ∈ L_spec} λ_i · α_i · d_i, where λ_i ∈ [0, 1] is inversely proportional to FCE(f_i) — features with high factual causal effect are preserved more, pure language-identity features (low FCE, high language specificity) are fully suppressed. This formulation naturally handles Leask et al.'s non-atomicity concern: since features are weighted continuously rather than treated as binary switches, partial overlap between sub-features is accommodated through the λ gradient. The projected vector e_proj is then applied via the standard locate-then-edit pipeline.\n\n**Phase 3: Reconstruction Fidelity Validation (Weeks 3-4, parallel).** Before full-scale editing, validate that SAE round-trip reconstruction preserves edit vector fidelity. Measure: (a) cosine similarity between original and reconstructed edit vectors, (b) monolingual edit success rate with SAE-reconstructed vectors (no language feature removal) vs. original ROME/MEMIT — this isolates reconstruction error from projection effects. If reconstruction degrades edit quality by >5%, investigate top-k sparsity adjustments or layer-specific SAE selection. Following Leask et al.'s recommendation, test multiple SAE widths (16K, 64K, 128K where available) to identify task-appropriate granularity rather than assuming larger is better. Establish a reconstruction quality threshold as a go/no-go gate.\n\n**Phase 4: Evaluation and Ablation (Weeks 5-8).** Evaluate on CLM-Bench (1,010 zh-en pairs), Bi-ZsRE, and MzsRE (12 languages) using Qwen3-8B and Llama-3.1-8B. Primary baselines: LU-LAFNs (77.87/Bi-ZsRE on bloomz-7b1-mt — the SOTA to beat), FeatureEdit (adapted to cross-lingual setting), MEMIT, AlphaEdit, M-MEMIT, X-KDE, LangEdit. Secondary baselines: SCAN, MEMLA. Key ablations: (A1) Full zeroing vs. soft projection — measuring factual content loss, directly testing Farrell et al.'s finding in the cross-lingual setting. (A2) Relational structure preservation: for edited facts, measure whether the model correctly answers relational follow-up questions (e.g., after editing 'capital of X', test 'X is in which continent?') — this directly tests the portability hypothesis. (A3) Feature granularity: SAE features (64K/128K) vs. neuron-level LAFNs (~10K) vs. random subspace projection — if SAE features do not improve portability over neurons, this falsifies our core hypothesis. (A4) λ scheduling: fixed λ vs. FCE-adaptive λ vs. oracle λ (per-fact optimal). (A5) Layer selection: which layers' SAEs are most critical for cross-lingual transfer. (A6) SAE width: 16K vs. 64K vs. 128K features, testing Leask et al.'s prediction that task-appropriate granularity matters more than raw dictionary size. (A7) Output-score filtering (per Arad et al.): restrict projection to high-output-score features vs. all language-classified features.\n\n## Inspiration\nLU-LAFNs' universal portability failure (all methods EM < 10) revealing a fundamental representation-level bottleneck + Mondal et al.'s independent evidence that neuron-level language interventions are insufficient + FeatureEdit's demonstration that SAE features outperform neurons for knowledge erasure + LangSAE proving language features can be surgically suppressed + Chou et al.'s 90% language steering with single SAE features + CLM-Bench's geometric evidence of language-specific subspaces + SSPU's QR-decomposition subspace methodology + Arad et al.'s insight that output-score feature selection rescues SAE interventions + Farrell et al.'s finding that soft scaling outperforms zero ablation\n\n## Key References\n- LU-LAFNs: Multilingual Knowledge Editing with Language-Agnostic Factual Neurons (COLING 2025, arXiv:2406.16416) — PRIMARY BASELINE\n- FeatureEdit / The Knowledge Microscope: Features as Better Analytical Lenses than Neurons (ACL 2025, arXiv:2502.12483) — METHODOLOGICAL PREDECESSOR (knowledge erasure, not editing)\n- CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing (arXiv 2026, arXiv:2601.17397)\n- LangSAE Editing: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal (arXiv 2026, arXiv:2601.04768)\n- LangEdit: Mitigating Negative Interference in Multilingual Sequential Knowledge Editing through Null-Space Constraints (ACL 2025 Findings, arXiv:2506.10800)\n- SCAN: Sparse Circuit Anchor Interpretable Neuron for Lifelong Knowledge Editing (arXiv 2026, arXiv:2603.15226)\n- SSPU: Model Unlearning via Sparse Autoencoder Subspace Guided Projections (EMNLP 2025, arXiv:2505.24428)\n- Applying Sparse Autoencoders to Unlearn Knowledge in Language Models (arXiv 2024, arXiv:2410.19278)\n- X-KDE: Edit Once, Update Everywhere: A Simple Framework for Cross-Lingual Knowledge Synchronization in LLMs (ACL 2025 Findings, arXiv:2502.14645)\n- MEMLA: Enhancing Multilingual Knowledge Editing with Neuron-Masked Low-Rank Adaptation (arXiv 2024, arXiv:2406.11566)\n- Editing Across Languages: A Survey of Multilingual Knowledge Editing (arXiv 2025, arXiv:2505.14393)\n- SAE-LAPE: Unveiling Language-Specific Features in Large Language Models via Sparse Autoencoders (ACL 2025, arXiv:2505.05111)\n- LinguaLens: Towards Interpreting Linguistic Mechanisms of Large Language Models via Sparse Auto-Encoder (EMNLP 2025)\n- SASFT: Sparse Autoencoder-guided Supervised Finetuning to Mitigate Unexpected Code-Switching in LLMs (ICLR 2026)\n- AlphaEdit: Null-Space Constrained Knowledge Editing for Language Models (ICLR 2025)\n- SpARE: Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (NAACL 2025, arXiv:2410.15999)\n- LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering (arXiv 2026, arXiv:2604.03532)\n- Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey (arXiv 2026, arXiv:2605.13919)\n- SALVE: Sparse Autoencoder-Latent Vector Editing for Mechanistic Control of Neural Networks (arXiv 2025, arXiv:2512.15938)\n- Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models (arXiv 2026, arXiv:2605.11887)\n- Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders (arXiv 2024, arXiv:2410.20526)\n- Language-Specific Neurons: The Key to Multilingual Capabilities in Large Language Models (ACL 2024, arXiv:2402.16438)\n- Peng et al.: Use Sparse Autoencoders to Discover Unknown Concepts, Not to Act on Known Concepts (arXiv 2025, arXiv:2506.23845) — ADVERSARIAL: argues SAEs underperform for interventions\n- Leask et al.: Sparse Autoencoders Do Not Find Canonical Units of Analysis (ICLR 2025, arXiv:2502.04878) — ADVERSARIAL: shows features are not atomic/canonical\n- Arad et al.: SAEs Are Good for Steering — If You Select the Right Features (EMNLP 2025, arXiv:2505.20063) — REBUTTAL to Peng et al.: output-score filtering yields 2-3× improvement\n- Mondal et al.: Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer (NAACL 2025 InsightsNLP, arXiv:2503.17456) — SUPPORTS motivation: neuron-level is insufficient\n- Chou et al.: Causal Language Control in Multilingual Transformers via Sparse Feature Steering (arXiv 2025, arXiv:2507.13410) — FEASIBILITY: 90% language steering with single SAE feature\n- Zhao et al.: Denoising Concept Vectors with Sparse Autoencoders for Improved Language Model Steering (arXiv 2025, arXiv:2505.15038) — SAE steering improves 4-16% with denoising\n- SAE-SSV: Supervised Steering in Sparse Representation Spaces for Reliable Control of Language Models (EMNLP 2025, arXiv:2505.16188)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '450-550 (SAE feature classification + FCE ablation analysis ~120h on 1×A100 — increased due to per-feature ablation; reconstruction fidelity validation across SAE widths ~40h; editing experiments across 2 models × 3 benchmarks × 8+ baselines ~250h; ablation studies A1-A7 ~120h; analysis ~40h)', 'timeline': '10-12 weeks', 'estimated_gpu_cost': '$1,125-$1,375 (A100 at ~$2.50/hr; major savings from pre-trained Qwen-Scope and Llama Scope SAEs)'}\n- **human_in_loop**: {'gpu_hours': '400-500', 'timeline': '7-9 weeks', 'claude_api_cost': '$150-$250 (code generation for SAE analysis pipeline, FCE computation, experiment orchestration)', 'estimated_gpu_cost': '$1,000-$1,250'}\n- **auto_research**: {'gpu_hours': '400-500', 'timeline': '5-7 weeks', 'claude_api_cost': '$400-$550 (end-to-end experiment management, hyperparameter sweeps for λ, paper drafting)', 'estimated_gpu_cost': '$1,000-$1,250', 'speed_bottleneck': 'FCE ablation requires sequential per-feature evaluation (mitigated by r_pb pre-screening to ~2K features); sequential editing experiments per model-benchmark pair; CLM-Bench evaluation involves Chinese cultural knowledge judgment requiring human spot-checking'}\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:48:53.256Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:48:53.256Z",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:48:53.277Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation
+
+## Description
+Current cross-lingual knowledge editing faces a universal portability bottleneck: not just LU-LAFNs (COLING 2025) but ALL current methods achieve near-zero portability EM (< 10) on Bi-ZsRE, with the LU-LAFNs authors themselves noting 'all methods underperform on this metric without significant difference.' We hypothesize that this bottleneck has a specific causal mechanism: polysemantic neurons entangle factual relational structure with language identity, so any neuron-level editing that removes language components inevitably corrupts relational knowledge needed for portability. This hypothesis is independently supported by Mondal et al. (NAACL 2025 InsightsNLP), who showed that neuron-level language-specific interventions are insufficient for cross-lingual transfer even outside the editing setting.
+
+We propose SAE-Projected Editing: using pre-trained Qwen-Scope SAEs (64K features on Qwen3-8B) and Llama Scope SAEs (128K features on Llama-3.1-8B) to decompose edit vectors into finer-grained sparse features, classify each as language-specific or language-agnostic via cross-lingual activation-probability contrasts, then apply adaptive soft projection that suppresses language-specific components proportionally to their Factual Causal Effect (FCE) — a per-feature ablation-based metric measuring how much factual recall degrades when the feature is removed. Unlike binary feature zeroing — which Farrell et al. (2024) showed is ineffective — our adaptive λ-projection preserves factual content encoded in partially-entangled features while removing pure language-identity signal.
+
+**Engagement with SAE intervention skepticism:** Peng et al. (arXiv:2506.23845) argue SAEs are better for discovery than intervention; however, Arad et al. (EMNLP 2025) directly rebut this by showing that output-score-based feature selection yields 2–3× improvement in SAE steering, matching supervised methods. The critique applies to naive feature selection, not SAE interventions as a paradigm. We incorporate output-score filtering into our pipeline. Chou et al. (arXiv:2507.13410) provide further feasibility evidence: modifying a single SAE feature achieves up to 90% language steering success on Gemma-2B/9B. Leask et al. (ICLR 2025) show SAE features are not atomic canonical units — larger latents decompose into sub-components. We accommodate this by: (a) treating features as a continuous weighted basis rather than binary switches, (b) using adaptive λ coefficients that handle partial feature overlap, and (c) ablating across SAE widths (16K/64K/128K) to identify task-appropriate granularity per Leask et al.'s recommendation.
+
+**FeatureEdit context note:** The +23% reliability and 2.8× generalization gains from FeatureEdit (ACL 2025) are for knowledge erasure on the PrivacyParaRel privacy dataset using Gemma-2 models, not factual knowledge editing or cross-lingual propagation. We cite these as evidence that features outperform neurons as representation-level intervention units, but do not assume these specific gains transfer to the editing setting.
+
+**FCE metric protocol:** For each of ~64K SAE features, we first compute point-biserial correlation r_pb between feature activation magnitude and binary factual recall success across ≥5,000 multilingual facts (computational cost: ~4 GPU-hours for forward passes). The top ~2K features by |r_pb| undergo full causal ablation: each feature is individually zeroed, and the change in factual recall probability is measured (FCE). This two-stage approach reduces the 64K × 5K evaluation matrix to a tractable 2K × 5K, requiring ~40 GPU-hours. Bootstrap confidence intervals (1000 resamples) provide uncertainty estimates for FCE values. As a validation check, we compute Spearman rank correlation between r_pb and FCE on the 2K features to verify the proxy quality.
+
+Key contributions: (1) First application of SAE feature decomposition to cross-lingual knowledge editing, providing ~5-10× finer granularity than neuron-level LAFN identification; (2) Adaptive soft projection mechanism that explicitly accounts for factual-language feature entanglement via a concrete, causal FCE metric with a two-stage efficient computation protocol; (3) Principled engagement with SAE intervention skepticism (Peng et al., Leask et al.) through output-score filtering, continuous-basis treatment, and multi-width ablation; (4) Testable portability hypothesis: if SAE features do NOT improve portability EM over neuron-level approaches (ablation A3), this falsifies the polysemanticity-entanglement explanation and has standalone diagnostic value; (5) Reconstruction fidelity validation protocol establishing whether SAE round-trip preserves edit vector quality across dictionary sizes.
+
+We evaluate on CLM-Bench (zh-en), Bi-ZsRE, and MzsRE across 12 languages, targeting improvements over LU-LAFNs (77.87 Bi-ZsRE avg on bloomz-7b1-mt; MzsRE results reported as per-language heatmaps rather than a single average) particularly on portability metrics. Primary baselines: LU-LAFNs, FeatureEdit (adapted cross-lingual), MEMIT, AlphaEdit, M-MEMIT, X-KDE, LangEdit.
+
+**Risk mitigation:** The core risk is that the portability bottleneck is NOT caused by polysemantic entanglement but by a more fundamental limitation (e.g., the portability metric itself measuring reasoning ability that editing cannot improve). We address this through: (a) explicit FCE measurement before editing to quantify the entanglement ceiling, (b) adaptive λ-projection that preserves high-FCE features, (c) reconstruction fidelity go/no-go gate, (d) ablation A3 as a direct falsification test, and (e) relational follow-up evaluation (A2) that provides a complementary portability measure independent of the Bi-ZsRE metric. If SAE features fail to improve portability, the negative result still contributes a rigorous decomposition analysis of what fraction of factual information resides in language-specific vs. language-agnostic features — valuable for the multilingual interpretability community. Fallback: hybrid approach combining SAE-projected editing for low-entanglement facts with LU-LAFNs for high-entanglement cases.
+
+## Core Problem
+Cross-lingual knowledge editing methods face two linked failures: (1) raw edit vectors reside in nearly orthogonal, language-specific subspaces (CLM-Bench), and (2) neuron-level approaches like LU-LAFNs that identify language-agnostic neurons achieve high monolingual reliability but suffer catastrophically low portability (26.43% F1, EM < 5) — a failure shared by ALL current methods (all EM < 10 on Bi-ZsRE portability), suggesting a fundamental representation-level bottleneck. We hypothesize that this bottleneck stems from polysemantic neurons entangling factual relational structure with language identity: edits that operate at neuron granularity cannot cleanly separate these components, corrupting relational knowledge during cross-lingual transfer. Can sparse autoencoder feature decomposition — which yields finer-grained, more monosemantic units — provide a cleaner separation that better preserves relational structure, and is this hypothesis even testable given recent challenges to SAE feature canonicality (Leask et al., ICLR 2025)?
+
+## Opportunity
+CLM-Bench (arXiv:2601.17397, Jan 2026) provided geometric evidence that Chinese and English edit vectors are nearly orthogonal, explaining why ROME/MEMIT fail cross-lingually (~20% reliability). LU-LAFNs (COLING 2025) achieved 77.87 avg on Bi-ZsRE by targeting language-agnostic neurons, but its neuron-level approach identifies 67.9% of neurons as LAFNs — an extremely coarse decomposition reflecting neuron polysemanticity — and ALL methods achieve near-zero portability EM (< 10 across the board), which the authors attribute to the difficulty of measuring reasoning without a reasoning process. Crucially, Mondal et al. (NAACL 2025 InsightsNLP) independently showed that neuron-level language-specific interventions are insufficient for cross-lingual transfer on XNLI/XQuAD, reinforcing the case that neuron-level decomposition is fundamentally too coarse.
+
+Meanwhile, FeatureEdit (ACL 2025) demonstrated that SAE features outperform neurons for knowledge erasure on PrivacyParaRel (~0.80 vs ~0.65 reliability, ~0.70 vs ~0.25 generalization on Gemma-2 2B/9B) — though notably this was for privacy-knowledge erasure, not factual editing or cross-lingual propagation, so these gains may not directly transfer. LangSAE (arXiv:2601.04768) proved SAE-based language identity removal improves cross-lingual retrieval by +21.9% nDCG@20. Chou et al. (arXiv:2507.13410) achieved up to 90% language steering success by modifying a single SAE feature on Gemma-2B/9B, demonstrating that SAE-based language manipulation is feasible and precise.
+
+However, recent work challenges SAE interventions: Peng et al. (arXiv:2506.23845) argue SAEs are better for concept discovery than acting on known concepts, finding SAE-based steering underperforms prompting/fine-tuning. Critically, Arad et al. (EMNLP 2025) rebut this: proper feature selection via output-score filtering yields 2–3× improvement in SAE steering, matching supervised methods — the issue was feature selection, not SAE interventions per se. Leask et al. (ICLR 2025) show SAE features aren't canonical atomic units — larger latents decompose into combinations — but recommend pragmatic choice of dictionary size suited to task, and our adaptive soft projection naturally accommodates non-atomicity by treating features as a continuous basis rather than binary switches.
+
+The missing link: no work has combined SAE feature-level decomposition with cross-lingual knowledge editing. SAE features offer ~64K monosemantic units (vs. ~14K polysemantic neurons), enabling more precisely targeted language-component manipulation that may better preserve relational/factual structure — a hypothesis we propose to test directly.
+
+## Related Work / Landscape
+Cross-lingual knowledge editing is a recognized open problem: the survey (arXiv:2505.14393) identifies language anisotropy and edit scalability as key challenges. The field is structured in three tiers:
+
+**Tier 1 — Direct multilingual editing baselines:** MEMIT/M-MEMIT apply locate-then-edit across languages (74.86 avg on Bi-ZsRE but ~20% cross-lingual reliability). AlphaEdit (ICLR 2025) uses null-space constraints. Merging Methods for MKE (arXiv:2605.13919, May 2026) explores vector merging with shared covariance for 12-language editing but without representation-level decomposition.
+
+**Tier 2 — Neuron/representation-level multilingual editing:** LU-LAFNs (COLING 2025, arXiv:2406.16416) is the closest prior work — identifies language-agnostic factual neurons via activation frequency intersection across languages, achieving 77.87 avg on Bi-ZsRE (bloomz-7b1-mt). However, it identifies 67.9% of neurons as LAFNs (extremely coarse), and ALL methods achieve near-zero portability (EM < 10, F1 ~26-36%), which the authors acknowledge as a universal challenge rather than a method-specific failure. Mondal et al. (NAACL 2025 InsightsNLP, arXiv:2503.17456) provide independent evidence that neuron-level language-specific interventions are insufficient for cross-lingual transfer. MEMLA (arXiv:2406.11566) uses neuron masking with LoRA but doesn't leverage monosemantic features. X-KDE (ACL 2025 Findings, arXiv:2502.14645) uses instruction tuning + preference optimization (+8.19% avg improvement). LangEdit (ACL 2025 Findings, arXiv:2506.10800) applies null-space projection for multilingual sequential editing across 6 languages.
+
+**Tier 3 — SAE-based editing and language feature work (our building blocks):** FeatureEdit from 'The Knowledge Microscope' (ACL 2025, arXiv:2502.12483) is the first SAE-feature-based model editing method — uses Gemma Scope JumpReLU SAEs to identify knowledge features and zero out specific weight positions. On the PrivacyParaRel knowledge-erasure benchmark (not factual editing), features achieve ~0.80 reliability (vs. ~0.65 for neurons) and ~0.70 generalization (vs. ~0.25), demonstrating features' advantage for representation-level interventions. However, it is monolingual English-only, targets knowledge erasure rather than cross-lingual propagation, and these gains may not directly transfer to the editing setting. SSPU (EMNLP 2025, arXiv:2505.24428) shows SAE-guided subspace projection via QR decomposition can unlearn knowledge while preserving non-target capabilities. LangSAE (arXiv:2601.04768) removes language identity from embeddings using SAE feature suppression (+21.9% nDCG@20). SAE-LAPE/LangFIR (arXiv:2604.03532) discover sparse language-specific features using activation probability contrasts. SASFT (ICLR 2026) shows SAE-guided fine-tuning preserves targeted knowledge. SpARE (NAACL 2025, arXiv:2410.15999) uses SAE-based representation engineering for knowledge selection steering but not cross-lingually. SCAN (arXiv:2603.15226, Mar 2026) uses sparse transcoders for lifelong editing on Qwen3/Llama3.1 but addresses sequential stability, not cross-lingual transfer. Farrell et al. (arXiv:2410.19278) found that zero ablation of SAE features is ineffective for knowledge unlearning — negative scaling is necessary. Chou et al. (arXiv:2507.13410) achieved up to 90% language steering success by modifying single SAE features on Gemma-2B/9B, providing direct feasibility evidence for SAE-based language manipulation.
+
+**Tier 4 — SAE intervention skepticism and counter-evidence (critical context):** Peng et al. (arXiv:2506.23845) argue SAEs are better for discovering unknown concepts than acting on known ones, finding SAE-based steering underperforms prompting/fine-tuning. However, Arad et al. (EMNLP 2025, arXiv:2505.20063) directly rebut this: by distinguishing 'input features' (capture input patterns) from 'output features' (causally affect model behavior) and filtering by output scores, SAE steering achieves 2–3× improvement, matching supervised methods. The issue was naive feature selection, not SAE interventions as a paradigm. Zhao et al. (arXiv:2505.15038) further show denoising concept vectors via SAE improves steering 4–16%. SAE-SSV (EMNLP 2025, arXiv:2505.16188) achieves high steering success rates using supervised feature selection in sparse spaces. Leask et al. (ICLR 2025, arXiv:2502.04878) demonstrate SAE features are neither atomic nor canonical — meta-SAEs decompose latents into sub-components (e.g., 'Einstein' → 'scientist' + 'Germany' + 'famous person'), and smaller SAEs miss information captured by larger ones. They recommend pragmatic dictionary size selection rather than assuming canonicality. Our approach accommodates this by treating SAE features as a practical continuous basis with adaptive coefficients, not as binary canonical units.
+
+**The gap:** No work combines SAE feature decomposition with cross-lingual knowledge editing. Specifically, no one has (a) used monosemantic SAE features instead of polysemantic neurons to decompose cross-lingual edit vectors, (b) tested whether finer-grained decomposition causally improves portability by preserving relational structure, or (c) engaged with the feature-selection insights from Arad et al. to ensure intervention-effective features are targeted.
+
+## Approach
+**Phase 1: Feature Classification with Output-Score Filtering (Weeks 1-2).** Leverage pre-trained SAEs — Qwen-Scope (64K features, 16× expansion) on Qwen3-8B and Llama Scope (128K features, 32× expansion) on Llama-3.1-8B — to decompose residual-stream activations at editing-critical layers (layers 12-25 for Qwen3-8B based on LU-LAFNs' LAFN distribution peaks). Classify each feature as language-specific, language-agnostic, or factual using activation-probability contrasts across Chinese, English, and 4+ additional languages (following SAE-LAPE/LangFIR methodology). Critically, following Arad et al.'s (EMNLP 2025) insight that input-pattern features and output-causal features rarely co-occur, compute output scores for all features to ensure we target features that causally affect model behavior, not merely correlational activations — this addresses the core criticism of Peng et al. For each language-specific feature f_i, compute its Factual Causal Effect (FCE): ablate f_i and measure the change in correct factual recall probability across a multilingual fact corpus of ≥5,000 facts (drawn from Bi-ZsRE + MzsRE test sets, held out from editing evaluation). FCE(f_i) = |P(correct | f_i active) - P(correct | f_i ablated)|. This produces a per-feature entanglement map. FCE is preferred over mutual information because: (a) it is causal rather than correlational, (b) it avoids the curse-of-dimensionality problems that plague MI estimation with 64K+ features (KSG estimators break down beyond ~10 dimensions), and (c) it is directly interpretable as the factual cost of removing a feature. As a computationally efficient proxy during initial screening, we also compute point-biserial correlation r_pb between feature activation magnitude and binary factual recall success, filtering to the top ~2K candidate features for full FCE ablation (reducing 64K × 5K evaluations to ~2K × 5K).
+
+**Phase 2: SAE-Projected Editing with Adaptive Soft Projection (Weeks 3-5).** For a given ROME/MEMIT edit vector e, decompose it into the SAE feature basis: e ≈ Σ_j α_j d_j (where d_j are SAE decoder directions and α_j are coefficients from the encoder). Following Farrell et al.'s finding that binary zeroing is ineffective and Leask et al.'s evidence that features are not atomic canonical units, we apply adaptive soft projection that treats features as a continuous basis: e_proj = e - Σ_{i ∈ L_spec} λ_i · α_i · d_i, where λ_i ∈ [0, 1] is inversely proportional to FCE(f_i) — features with high factual causal effect are preserved more, pure language-identity features (low FCE, high language specificity) are fully suppressed. This formulation naturally handles Leask et al.'s non-atomicity concern: since features are weighted continuously rather than treated as binary switches, partial overlap between sub-features is accommodated through the λ gradient. The projected vector e_proj is then applied via the standard locate-then-edit pipeline.
+
+**Phase 3: Reconstruction Fidelity Validation (Weeks 3-4, parallel).** Before full-scale editing, validate that SAE round-trip reconstruction preserves edit vector fidelity. Measure: (a) cosine similarity between original and reconstructed edit vectors, (b) monolingual edit success rate with SAE-reconstructed vectors (no language feature removal) vs. original ROME/MEMIT — this isolates reconstruction error from projection effects. If reconstruction degrades edit quality by >5%, investigate top-k sparsity adjustments or layer-specific SAE selection. Following Leask et al.'s recommendation, test multiple SAE widths (16K, 64K, 128K where available) to identify task-appropriate granularity rather than assuming larger is better. Establish a reconstruction quality threshold as a go/no-go gate.
+
+**Phase 4: Evaluation and Ablation (Weeks 5-8).** Evaluate on CLM-Bench (1,010 zh-en pairs), Bi-ZsRE, and MzsRE (12 languages) using Qwen3-8B and Llama-3.1-8B. Primary baselines: LU-LAFNs (77.87/Bi-ZsRE on bloomz-7b1-mt — the SOTA to beat), FeatureEdit (adapted to cross-lingual setting), MEMIT, AlphaEdit, M-MEMIT, X-KDE, LangEdit. Secondary baselines: SCAN, MEMLA. Key ablations: (A1) Full zeroing vs. soft projection — measuring factual content loss, directly testing Farrell et al.'s finding in the cross-lingual setting. (A2) Relational structure preservation: for edited facts, measure whether the model correctly answers relational follow-up questions (e.g., after editing 'capital of X', test 'X is in which continent?') — this directly tests the portability hypothesis. (A3) Feature granularity: SAE features (64K/128K) vs. neuron-level LAFNs (~10K) vs. random subspace projection — if SAE features do not improve portability over neurons, this falsifies our core hypothesis. (A4) λ scheduling: fixed λ vs. FCE-adaptive λ vs. oracle λ (per-fact optimal). (A5) Layer selection: which layers' SAEs are most critical for cross-lingual transfer. (A6) SAE width: 16K vs. 64K vs. 128K features, testing Leask et al.'s prediction that task-appropriate granularity matters more than raw dictionary size. (A7) Output-score filtering (per Arad et al.): restrict projection to high-output-score features vs. all language-classified features.
+
+## Inspiration
+LU-LAFNs' universal portability failure (all methods EM < 10) revealing a fundamental representation-level bottleneck + Mondal et al.'s independent evidence that neuron-level language interventions are insufficient + FeatureEdit's demonstration that SAE features outperform neurons for knowledge erasure + LangSAE proving language features can be surgically suppressed + Chou et al.'s 90% language steering with single SAE features + CLM-Bench's geometric evidence of language-specific subspaces + SSPU's QR-decomposition subspace methodology + Arad et al.'s insight that output-score feature selection rescues SAE interventions + Farrell et al.'s finding that soft scaling outperforms zero ablation
+
+## Key References
+- LU-LAFNs: Multilingual Knowledge Editing with Language-Agnostic Factual Neurons (COLING 2025, arXiv:2406.16416) — PRIMARY BASELINE
+- FeatureEdit / The Knowledge Microscope: Features as Better Analytical Lenses than Neurons (ACL 2025, arXiv:2502.12483) — METHODOLOGICAL PREDECESSOR (knowledge erasure, not editing)
+- CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing (arXiv 2026, arXiv:2601.17397)
+- LangSAE Editing: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal (arXiv 2026, arXiv:2601.04768)
+- LangEdit: Mitigating Negative Interference in Multilingual Sequential Knowledge Editing through Null-Space Constraints (ACL 2025 Findings, arXiv:2506.10800)
+- SCAN: Sparse Circuit Anchor Interpretable Neuron for Lifelong Knowledge Editing (arXiv 2026, arXiv:2603.15226)
+- SSPU: Model Unlearning via Sparse Autoencoder Subspace Guided Projections (EMNLP 2025, arXiv:2505.24428)
+- Applying Sparse Autoencoders to Unlearn Knowledge in Language Models (arXiv 2024, arXiv:2410.19278)
+- X-KDE: Edit Once, Update Everywhere: A Simple Framework for Cross-Lingual Knowledge Synchronization in LLMs (ACL 2025 Findings, arXiv:2502.14645)
+- MEMLA: Enhancing Multilingual Knowledge Editing with Neuron-Masked Low-Rank Adaptation (arXiv 2024, arXiv:2406.11566)
+- Editing Across Languages: A Survey of Multilingual Knowledge Editing (arXiv 2025, arXiv:2505.14393)
+- SAE-LAPE: Unveiling Language-Specific Features in Large Language Models via Sparse Autoencoders (ACL 2025, arXiv:2505.05111)
+- LinguaLens: Towards Interpreting Linguistic Mechanisms of Large Language Models via Sparse Auto-Encoder (EMNLP 2025)
+- SASFT: Sparse Autoencoder-guided Supervised Finetuning to Mitigate Unexpected Code-Switching in LLMs (ICLR 2026)
+- AlphaEdit: Null-Space Constrained Knowledge Editing for Language Models (ICLR 2025)
+- SpARE: Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (NAACL 2025, arXiv:2410.15999)
+- LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering (arXiv 2026, arXiv:2604.03532)
+- Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey (arXiv 2026, arXiv:2605.13919)
+- SALVE: Sparse Autoencoder-Latent Vector Editing for Mechanistic Control of Neural Networks (arXiv 2025, arXiv:2512.15938)
+- Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models (arXiv 2026, arXiv:2605.11887)
+- Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders (arXiv 2024, arXiv:2410.20526)
+- Language-Specific Neurons: The Key to Multilingual Capabilities in Large Language Models (ACL 2024, arXiv:2402.16438)
+- Peng et al.: Use Sparse Autoencoders to Discover Unknown Concepts, Not to Act on Known Concepts (arXiv 2025, arXiv:2506.23845) — ADVERSARIAL: argues SAEs underperform for interventions
+- Leask et al.: Sparse Autoencoders Do Not Find Canonical Units of Analysis (ICLR 2025, arXiv:2502.04878) — ADVERSARIAL: shows features are not atomic/canonical
+- Arad et al.: SAEs Are Good for Steering — If You Select the Right Features (EMNLP 2025, arXiv:2505.20063) — REBUTTAL to Peng et al.: output-score filtering yields 2-3× improvement
+- Mondal et al.: Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer (NAACL 2025 InsightsNLP, arXiv:2503.17456) — SUPPORTS motivation: neuron-level is insufficient
+- Chou et al.: Causal Language Control in Multilingual Transformers via Sparse Feature Steering (arXiv 2025, arXiv:2507.13410) — FEASIBILITY: 90% language steering with single SAE feature
+- Zhao et al.: Denoising Concept Vectors with Sparse Autoencoders for Improved Language Model Steering (arXiv 2025, arXiv:2505.15038) — SAE steering improves 4-16% with denoising
+- SAE-SSV: Supervised Steering in Sparse Representation Spaces for Reliable Control of Language Models (EMNLP 2025, arXiv:2505.16188)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '450-550 (SAE feature classification + FCE ablation analysis ~120h on 1×A100 — increased due to per-feature ablation; reconstruction fidelity validation across SAE widths ~40h; editing experiments across 2 models × 3 benchmarks × 8+ baselines ~250h; ablation studies A1-A7 ~120h; analysis ~40h)', 'timeline': '10-12 weeks', 'estimated_gpu_cost': '$1,125-$1,375 (A100 at ~$2.50/hr; major savings from pre-trained Qwen-Scope and Llama Scope SAEs)'}
+- **human_in_loop**: {'gpu_hours': '400-500', 'timeline': '7-9 weeks', 'claude_api_cost': '$150-$250 (code generation for SAE analysis pipeline, FCE computation, experiment orchestration)', 'estimated_gpu_cost': '$1,000-$1,250'}
+- **auto_research**: {'gpu_hours': '400-500', 'timeline': '5-7 weeks', 'claude_api_cost': '$400-$550 (end-to-end experiment management, hyperparameter sweeps for λ, paper drafting)', 'estimated_gpu_cost': '$1,000-$1,250', 'speed_bottleneck': 'FCE ablation requires sequential per-feature evaluation (mitigated by r_pb pre-screening to ~2K features); sequential editing experiments per model-benchmark pair; CLM-Bench evaluation involves Chinese cultural knowledge judgment requiring human spot-checking'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "f021c813-bd79-44e5-bd92-889c8439af66",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:48:53.275Z_
+
+```json
+{
+  "parentUuid": "f021c813-bd79-44e5-bd92-889c8439af66",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "f820e6c4-41fc-46ad-b227-df671d606438",
+  "timestamp": "2026-05-19T18:48:53.275Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:48:53.275Z_
+
+```json
+{
+  "parentUuid": "f820e6c4-41fc-46ad-b227-df671d606438",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7c2212ff-053d-4353-aeeb-e4fb89c31a08",
+  "timestamp": "2026-05-19T18:48:53.275Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation  ## Description Current c…",
+  "leafUuid": "7c2212ff-053d-4353-aeeb-e4fb89c31a08",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SAE features for cross-lingual knowledge editing",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:49:07.921Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for CoRL 2026 submission. Let me first carefully read the proposal, then conduct web searches to understand the field landscape before making my assessment.
+
+Wait - the user says CoRL 2026, but the proposal is about cross-lingual knowledge editing in LLMs, which is an NLP topic. CoRL is Conference on Robot Learning. Let me re-read... The system prompt says "CoRL 2026 主会" but the rubric mentions "NLP/CL 领域". Let me just evaluate based on the content - this is clearly an NLP/computational linguistics proposal. 
+
+There's definitely a venue mismatch here since this is purely an NLP/interpretability paper with no robotics content, but I'll focus on assessing the idea quality itself and flag the discrepancy.
+
+Now I need to do some research to understand the current landscape—I'll search for recent work on cross-lingual knowledge editing, SAE-based model editing approaches, the key papers this proposal references, what competing methods exist, and whether there's ongoing debate about how effective SAE interventions actually are.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c2212ff-053d-4353-aeeb-e4fb89c31a08",
+  "isSidechain": false,
+  "requestId": "req_011CbCRmRyijrascassNFfqg",
+  "type": "assistant",
+  "uuid": "a0261015-aa44-4741-9c57-260f457d6f43",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pi6FUs2gfFrEqDH9w2MyhT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8887,
+      "cache_read_input_tokens": 13985,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 13985,
+          "cache_creation_input_tokens": 8887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:49:07.927Z_
+
+I'll start by conducting the required field research before making any assessments. Let me search for the key topics in this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0261015-aa44-4741-9c57-260f457d6f43",
+  "isSidechain": false,
+  "requestId": "req_011CbCRmRyijrascassNFfqg",
+  "type": "assistant",
+  "uuid": "a8f04130-24fa-499b-93f4-c0cb736a80e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pi6FUs2gfFrEqDH9w2MyhT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8887,
+      "cache_read_input_tokens": 13985,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 13985,
+          "cache_creation_input_tokens": 8887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T18:49:07.940Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NXgfHWACp3kppSm65a5VL8`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8f04130-24fa-499b-93f4-c0cb736a80e5",
+  "isSidechain": false,
+  "requestId": "req_011CbCRmRyijrascassNFfqg",
+  "type": "assistant",
+  "uuid": "ef425ecc-d314-4c60-bae2-84ad6075cf3b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pi6FUs2gfFrEqDH9w2MyhT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8887,
+      "cache_read_input_tokens": 13985,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 13985,
+          "cache_creation_input_tokens": 8887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T18:49:07.951Z_
+
+<details><summary>↩ Tool result · `toolu_01NXgfHWACp3kppSm65a5VL8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef425ecc-d314-4c60-bae2-84ad6075cf3b",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "b6ed25de-936e-4b6b-848d-03bc92b94e21",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ef425ecc-d314-4c60-bae2-84ad6075cf3b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T18:49:10.580Z_
+
+Now let me conduct the required field research with multiple targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6ed25de-936e-4b6b-848d-03bc92b94e21",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnWpxFBJCMkipsBNWi",
+  "type": "assistant",
+  "uuid": "f53ed8a9-2726-4547-8e3d-009da23b10e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu9A4AH2NhdsVm7tmkkyB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 22872,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 22872,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:49:11.564Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VNfrEDVygridvAoa9HAMCh`</summary>
+
+```json
+{
+  "query": "cross-lingual knowledge editing LLM 2025 2026 survey portability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f53ed8a9-2726-4547-8e3d-009da23b10e7",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnWpxFBJCMkipsBNWi",
+  "type": "assistant",
+  "uuid": "c9884a0d-4587-43ae-a666-d0c497d4d744",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu9A4AH2NhdsVm7tmkkyB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 22872,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 22872,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T18:49:12.032Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FpEiozS2uMEBBzsY1w8pvL`</summary>
+
+```json
+{
+  "query": "sparse autoencoder SAE knowledge editing model editing 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9884a0d-4587-43ae-a666-d0c497d4d744",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnWpxFBJCMkipsBNWi",
+  "type": "assistant",
+  "uuid": "327fbf57-0ac5-4c10-b57f-1a63adef10d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu9A4AH2NhdsVm7tmkkyB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 22872,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 22872,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T18:49:12.504Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019iZyQyTRovMhYcyN7xrj46`</summary>
+
+```json
+{
+  "query": "SAE intervention skepticism Peng et al Arad et al steering effectiveness 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "327fbf57-0ac5-4c10-b57f-1a63adef10d6",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnWpxFBJCMkipsBNWi",
+  "type": "assistant",
+  "uuid": "ba655a03-a9b4-44f2-8848-12b862d05093",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu9A4AH2NhdsVm7tmkkyB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 22872,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 22872,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T18:49:13.512Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EQC5hhPy7JohUaV3B3Vvzb`</summary>
+
+```json
+{
+  "query": "LU-LAFNs language-agnostic factual neurons cross-lingual editing COLING 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba655a03-a9b4-44f2-8848-12b862d05093",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnWpxFBJCMkipsBNWi",
+  "type": "assistant",
+  "uuid": "c04f5fc9-e252-444a-a48f-0200228835b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu9A4AH2NhdsVm7tmkkyB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 22872,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 22872,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T18:49:13.883Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SMBFJnDkmYjsnyXFMpk5D3`</summary>
+
+```json
+{
+  "query": "FeatureEdit knowledge microscope SAE features ACL 2025 arXiv 2502.12483"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c04f5fc9-e252-444a-a48f-0200228835b3",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnWpxFBJCMkipsBNWi",
+  "type": "assistant",
+  "uuid": "b1d8d7e9-c02e-48aa-8d28-b05c37757048",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu9A4AH2NhdsVm7tmkkyB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 22872,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 22872,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T18:49:19.202Z_
+
+<details><summary>↩ Tool result · `toolu_01VNfrEDVygridvAoa9HAMCh`</summary>
+
+```text
+Web search results for query: "cross-lingual knowledge editing LLM 2025 2026 survey portability"
+
+Links: [{"title":"Editing Across Languages: A Survey of Multilingual Knowledge Editing","url":"https://alt.qcri.org/~ndurrani/pubs/EMNLP25a.pdf"},{"title":"Cross-Lingual Knowledge Editing in Large Language Models","url":"https://arxiv.org/pdf/2309.08952"},{"title":"Edit Once, Update Everywhere: A Simple Framework for Cross-Lingual Knowledge Synchronization in LLMs","url":"https://arxiv.org/pdf/2502.14645"},{"title":"Cross-Lingual Multi-Hop Knowledge Editing","url":"https://arxiv.org/pdf/2407.10275"},{"title":"Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge   Representation Sharing in LLMs","url":"https://arxiv.org/pdf/2408.10646"},{"title":"CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing","url":"https://arxiv.org/pdf/2601.17397"}]
+
+Based on the web search results, I found several relevant resources on cross-lingual knowledge editing in LLMs:
+
+## Key Findings:
+
+**Recent Survey and Research:**
+
+A survey on "Editing Across Languages" covers multilingual knowledge editing, addressing the challenges of editing LLMs across different languages.
+
+**Core Concepts:**
+
+Cross-lingual knowledge editing evaluation includes four aspects: reliability, generality, locality and portability. In cross-lingual knowledge editing, knowledge is transferred from a source language (e.g., English) to target languages (e.g., Chinese), unlike monolingual editing where both editing and verification languages are the same.
+
+**Current Challenges:**
+
+As LLMs are increasingly required to handle multilingual queries, monolingual solutions often fail, making it crucial to ensure that changes made in the source language are correctly applied to target languages.
+
+**Recent Developments:**
+
+Several studies on multilingual knowledge editing have emerged including work by Xu et al. (2022), Wang et al. (2023), Wei et al. (2024), Xie et al. (2024), and Liang et al. (2024). Additionally, Knowledge Editing has emerged as a promising paradigm aimed at precisely modifying specific facts in a model without the prohibitive cost of retraining.
+
+The search results reveal active research in this area with various benchmarks and methods being developed to address cross-lingual knowledge editing and portability issues in LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9884a0d-4587-43ae-a666-d0c497d4d744",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "033a7ef4-6361-40b1-8236-89304c4745ef",
+  "toolUseResult": {
+    "query": "cross-lingual knowledge editing LLM 2025 2026 survey portability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0176xZwrVgL2dhcUzCkEREb8",
+        "content": [
+          {
+            "title": "Editing Across Languages: A Survey of Multilingual Knowledge Editing",
+            "url": "https://alt.qcri.org/~ndurrani/pubs/EMNLP25a.pdf"
+          },
+          {
+            "title": "Cross-Lingual Knowledge Editing in Large Language Models",
+            "url": "https://arxiv.org/pdf/2309.08952"
+          },
+          {
+            "title": "Edit Once, Update Everywhere: A Simple Framework for Cross-Lingual Knowledge Synchronization in LLMs",
+            "url": "https://arxiv.org/pdf/2502.14645"
+          },
+          {
+            "title": "Cross-Lingual Multi-Hop Knowledge Editing",
+            "url": "https://arxiv.org/pdf/2407.10275"
+          },
+          {
+            "title": "Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge   Representation Sharing in LLMs",
+            "url": "https://arxiv.org/pdf/2408.10646"
+          },
+          {
+            "title": "CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing",
+            "url": "https://arxiv.org/pdf/2601.17397"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant resources on cross-lingual knowledge editing in LLMs:\n\n## Key Findings:\n\n**Recent Survey and Research:**\n\nA survey on \"Editing Across Languages\" covers multilingual knowledge editing, addressing the challenges of editing LLMs across different languages.\n\n**Core Concepts:**\n\nCross-lingual knowledge editing evaluation includes four aspects: reliability, generality, locality and portability. In cross-lingual knowledge editing, knowledge is transferred from a source language (e.g., English) to target languages (e.g., Chinese), unlike monolingual editing where both editing and verification languages are the same.\n\n**Current Challenges:**\n\nAs LLMs are increasingly required to handle multilingual queries, monolingual solutions often fail, making it crucial to ensure that changes made in the source language are correctly applied to target languages.\n\n**Recent Developments:**\n\nSeveral studies on multilingual knowledge editing have emerged including work by Xu et al. (2022), Wang et al. (2023), Wei et al. (2024), Xie et al. (2024), and Liang et al. (2024). Additionally, Knowledge Editing has emerged as a promising paradigm aimed at precisely modifying specific facts in a model without the prohibitive cost of retraining.\n\nThe search results reveal active research in this area with various benchmarks and methods being developed to address cross-lingual knowledge editing and portability issues in LLMs."
+    ],
+    "durationSeconds": 7.632989834,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c9884a0d-4587-43ae-a666-d0c497d4d744",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T18:49:19.282Z_
+
+<details><summary>↩ Tool result · `toolu_019iZyQyTRovMhYcyN7xrj46`</summary>
+
+```text
+Web search results for query: "SAE intervention skepticism Peng et al Arad et al steering effectiveness 2025"
+
+Links: [{"title":"SAEs Are Good for Steering – If You Select the Right Features","url":"https://www.researchgate.net/publication/397422533_SAEs_Are_Good_for_Steering_-_If_You_Select_the_Right_Features"},{"title":"SAEs Are Good for Steering – If You Select the Right Features - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.519/"},{"title":"SAEs Are Good for Steering – If You Select the Right Features","url":"https://arxiv.org/html/2505.20063v1"},{"title":"SAE-SSV: Supervised Steering in Sparse Representation Spaces for Reliable Control of Language Models - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.112/"},{"title":"Does higher interpretability imply better utility? A Pairwise Analysis on Sparse Autoencoders","url":"https://arxiv.org/pdf/2510.03659"},{"title":"What Can We Actually Steer? A Multi-Behavior Study of Activation Control","url":"https://arxiv.org/html/2511.18284"},{"title":"SAEs Are Good for Steering -- If You Select the Right Features","url":"https://arxiv.org/pdf/2505.20063"},{"title":"Published at Building Trust Workshop at ICLR 2025","url":"https://openreview.net/pdf?id=swRxS7s4rB"}]
+
+Based on the search results, I found relevant information about SAE intervention skepticism and steering effectiveness in 2025:
+
+## Overview
+
+While sparse autoencoders (SAEs) have generated significant excitement, a series of negative results have added to skepticism about their usefulness. This distinction reconciles competing narratives: while SAEs may be less effective for acting on known concepts, SAEs are powerful tools for discovering unknown concepts.
+
+## Key Finding from Arad et al.
+
+Arad et al. (2025) found that the features that detect the input concept and the features that control the output concept are distinct. This is a crucial insight for understanding SAE effectiveness in steering.
+
+## Addressing the Skepticism
+
+After filtering out features with low output scores, steering with SAEs results in a 2–3x improvement, matching the performance of existing supervised methods. Features with high output scores are more effective for coherent and high-quality steering. While AxBench found SAEs to be poor for steering, feature selection results in a 2–3x improvement, causing SAE steering to score significantly closer to supervised methods like LoRA.
+
+The research suggests that skepticism about SAE steering effectiveness was driven by using the wrong features (input detection features rather than output-affecting features), and proper feature selection can dramatically improve performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba655a03-a9b4-44f2-8848-12b862d05093",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "4ccd3e06-22c6-4c65-96f3-9384036a7e44",
+  "toolUseResult": {
+    "query": "SAE intervention skepticism Peng et al Arad et al steering effectiveness 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DLGdY1ZcDWmWvrEcfASzvn",
+        "content": [
+          {
+            "title": "SAEs Are Good for Steering – If You Select the Right Features",
+            "url": "https://www.researchgate.net/publication/397422533_SAEs_Are_Good_for_Steering_-_If_You_Select_the_Right_Features"
+          },
+          {
+            "title": "SAEs Are Good for Steering – If You Select the Right Features - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.519/"
+          },
+          {
+            "title": "SAEs Are Good for Steering – If You Select the Right Features",
+            "url": "https://arxiv.org/html/2505.20063v1"
+          },
+          {
+            "title": "SAE-SSV: Supervised Steering in Sparse Representation Spaces for Reliable Control of Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.112/"
+          },
+          {
+            "title": "Does higher interpretability imply better utility? A Pairwise Analysis on Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2510.03659"
+          },
+          {
+            "title": "What Can We Actually Steer? A Multi-Behavior Study of Activation Control",
+            "url": "https://arxiv.org/html/2511.18284"
+          },
+          {
+            "title": "SAEs Are Good for Steering -- If You Select the Right Features",
+            "url": "https://arxiv.org/pdf/2505.20063"
+          },
+          {
+            "title": "Published at Building Trust Workshop at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=swRxS7s4rB"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about SAE intervention skepticism and steering effectiveness in 2025:\n\n## Overview\n\nWhile sparse autoencoders (SAEs) have generated significant excitement, a series of negative results have added to skepticism about their usefulness. This distinction reconciles competing narratives: while SAEs may be less effective for acting on known concepts, SAEs are powerful tools for discovering unknown concepts.\n\n## Key Finding from Arad et al.\n\nArad et al. (2025) found that the features that detect the input concept and the features that control the output concept are distinct. This is a crucial insight for understanding SAE effectiveness in steering.\n\n## Addressing the Skepticism\n\nAfter filtering out features with low output scores, steering with SAEs results in a 2–3x improvement, matching the performance of existing supervised methods. Features with high output scores are more effective for coherent and high-quality steering. While AxBench found SAEs to be poor for steering, feature selection results in a 2–3x improvement, causing SAE steering to score significantly closer to supervised methods like LoRA.\n\nThe research suggests that skepticism about SAE steering effectiveness was driven by using the wrong features (input detection features rather than output-affecting features), and proper feature selection can dramatically improve performance."
+    ],
+    "durationSeconds": 6.775580933000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ba655a03-a9b4-44f2-8848-12b862d05093",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:49:22.387Z_
+
+<details><summary>↩ Tool result · `toolu_01EQC5hhPy7JohUaV3B3Vvzb`</summary>
+
+```text
+Web search results for query: "LU-LAFNs language-agnostic factual neurons cross-lingual editing COLING 2025"
+
+Links: [{"title":"Multilingual Knowledge Editing with Language-Agnostic Factual Neurons - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.385/"},{"title":"[2406.16416] Multilingual Knowledge Editing with Language-Agnostic Factual Neurons","url":"https://arxiv.org/abs/2406.16416"},{"title":"Multilingual Knowledge Editing with Language-Agnostic Factual Neurons - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240616416Z/abstract"},{"title":"Multilingual Knowledge Editing with Language-Agnostic Factual Neurons","url":"https://arxiv.org/pdf/2406.16416"},{"title":"Multilingual Knowledge Editing with Language-Agnostic ...","url":"https://aclanthology.org/2025.coling-main.385.pdf"},{"title":"Accepted Main Conference Papers - COLING 2025","url":"https://coling2025.org/program/main_conference_papers/"},{"title":"MPN: Leveraging Multilingual Patch Neuron for Cross-lingual Model   Editing","url":"https://arxiv.org/pdf/2401.03190"},{"title":"Language-Specific Neurons Do Not Facilitate Cross-Lingual Transfer - ACL Anthology","url":"https://aclanthology.org/2025.insights-1.6/"},{"title":"Converging to a Lingua Franca: Evolution of Linguistic Regions and Semantics Alignment in Multilingual Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.707/"}]
+
+Based on the search results, here's what I found about LU-LAFNs:
+
+LU-LAFNs is a new multilingual knowledge editing (MKE) method that Locates and Updates Language-Agnostic Factual Neurons to edit multilingual knowledge simultaneously, which avoids knowledge conflicts and improves edit performance.
+
+The research investigates how large language models (LLMs) process multilingual factual knowledge and discovers that the same factual knowledge in different languages generally activates a shared set of neurons, called language-agnostic factual neurons (LAFNs). These neurons represent the same factual knowledge shared across languages and imply the semantic connections among multilingual knowledge.
+
+Experimental results on Bi-ZsRE and MzsRE benchmarks demonstrate that the method achieves the best edit performance, indicating the effectiveness and importance of modeling the semantic connections among multilingual knowledge.
+
+The paper was accepted at COLING 2025 and is authored by Xue Zhang, Yunlong Liang, Fandong Meng, Songming Zhang, Yufeng Chen, Jinan Xu, and Jie Zhou. You can find the full paper on the ACL Anthology and arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c04f5fc9-e252-444a-a48f-0200228835b3",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "7503a6a4-7c72-4aec-a6de-7f392adb0ce8",
+  "toolUseResult": {
+    "query": "LU-LAFNs language-agnostic factual neurons cross-lingual editing COLING 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VeS2ALCEmDB5SZErZpcY1f",
+        "content": [
+          {
+            "title": "Multilingual Knowledge Editing with Language-Agnostic Factual Neurons - ACL Anthology",
+            "url": "https://aclanthology.org/2025.coling-main.385/"
+          },
+          {
+            "title": "[2406.16416] Multilingual Knowledge Editing with Language-Agnostic Factual Neurons",
+            "url": "https://arxiv.org/abs/2406.16416"
+          },
+          {
+            "title": "Multilingual Knowledge Editing with Language-Agnostic Factual Neurons - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240616416Z/abstract"
+          },
+          {
+            "title": "Multilingual Knowledge Editing with Language-Agnostic Factual Neurons",
+            "url": "https://arxiv.org/pdf/2406.16416"
+          },
+          {
+            "title": "Multilingual Knowledge Editing with Language-Agnostic ...",
+            "url": "https://aclanthology.org/2025.coling-main.385.pdf"
+          },
+          {
+            "title": "Accepted Main Conference Papers - COLING 2025",
+            "url": "https://coling2025.org/program/main_conference_papers/"
+          },
+          {
+            "title": "MPN: Leveraging Multilingual Patch Neuron for Cross-lingual Model   Editing",
+            "url": "https://arxiv.org/pdf/2401.03190"
+          },
+          {
+            "title": "Language-Specific Neurons Do Not Facilitate Cross-Lingual Transfer - ACL Anthology",
+            "url": "https://aclanthology.org/2025.insights-1.6/"
+          },
+          {
+            "title": "Converging to a Lingua Franca: Evolution of Linguistic Regions and Semantics Alignment in Multilingual Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.coling-main.707/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LU-LAFNs:\n\nLU-LAFNs is a new multilingual knowledge editing (MKE) method that Locates and Updates Language-Agnostic Factual Neurons to edit multilingual knowledge simultaneously, which avoids knowledge conflicts and improves edit performance.\n\nThe research investigates how large language models (LLMs) process multilingual factual knowledge and discovers that the same factual knowledge in different languages generally activates a shared set of neurons, called language-agnostic factual neurons (LAFNs). These neurons represent the same factual knowledge shared across languages and imply the semantic connections among multilingual knowledge.\n\nExperimental results on Bi-ZsRE and MzsRE benchmarks demonstrate that the method achieves the best edit performance, indicating the effectiveness and importance of modeling the semantic connections among multilingual knowledge.\n\nThe paper was accepted at COLING 2025 and is authored by Xue Zhang, Yunlong Liang, Fandong Meng, Songming Zhang, Yufeng Chen, Jinan Xu, and Jie Zhou. You can find the full paper on the ACL Anthology and arXiv."
+    ],
+    "durationSeconds": 8.869332568,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c04f5fc9-e252-444a-a48f-0200228835b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation  ## Description Current c…",
+  "leafUuid": "7503a6a4-7c72-4aec-a6de-7f392adb0ce8",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SAE features for cross-lingual knowledge editing",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T18:49:24.835Z_
+
+<details><summary>↩ Tool result · `toolu_01FpEiozS2uMEBBzsY1w8pvL`</summary>
+
+```text
+Web search results for query: "sparse autoencoder SAE knowledge editing model editing 2025 2026"
+
+Links: [{"title":"Aligned Sparse Autoencoder (SAE)","url":"https://www.emergentmind.com/topics/aligned-sparse-autoencoder-sae"},{"title":"Sparse Autoencoder Framework","url":"https://www.emergentmind.com/topics/sparse-autoencoder-based-framework"},{"title":"MODEL UNLEARNING VIA SPARSE AUTOENCODER SUBSPACE GUIDED PROJECTIONS","url":"https://arxiv.org/pdf/2505.24428"},{"title":"Sparse Autoencoder Frameworks","url":"https://www.emergentmind.com/topics/sparse-autoencoder-frameworks"},{"title":"Automated Interpretability-Driven Model Auditing and Control: A Research Agenda","url":"https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"},{"title":"Steering Knowledge Selection Behaviours in LLMs via SAE-Based   Representation Engineering","url":"https://arxiv.org/pdf/2410.15999"},{"title":"Applying sparse autoencoders to unlearn knowledge in language models","url":"https://arxiv.org/pdf/2410.19278"},{"title":"Building Sparse Autoencoders (SAEs) from Scratch | by Ayo Akinkugbe | Data Science Collective | Mar, 2026 | Medium","url":"https://medium.com/data-science-collective/building-sparse-autoencoders-saes-from-scratch-b93c1a72e0ac"}]
+
+Based on the search results, here's what I found about sparse autoencoders (SAEs) in knowledge editing and model editing for 2025-2026:
+
+## Knowledge Editing Applications
+
+SAEs enable "concept swaps" or ontology-level knowledge edits in LLMs through dedicated, semantically supervised concept slots. In vision and medical imaging, aligned SAEs facilitate localization of diagnostic features and provide causal taxonomy for downstream fine-tuning.
+
+## Recent Model Editing Frameworks
+
+SALVE (Sparse Autoencoder-Latent Vector Editing) is a pipeline for mechanistic model control where a sparse basis is learned offline, features are validated by Grad-FAM saliency maps, and interventions are performed by multiplicative weight-space edits along decoder directions. These edits are permanent and model-native, outperforming activation steering and key-value update baselines in precision and interpretability.
+
+## Knowledge Unlearning
+
+SAE-based frameworks leverage subspaces to implement knowledge removal with increased adversarial robustness, outperforming gradient or direct feature steering baselines. SAEs trained on LLM hidden representations have emerged as a powerful tool for interpreting and manipulating LLM behaviors.
+
+## Broader Interpretability Progress
+
+Significant progress in 2024–2025 refined the ability to decompose networks at scale, with Anthropic successfully scaling Sparse Autoencoders to Claude 3 Sonnet.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "327fbf57-0ac5-4c10-b57f-1a63adef10d6",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "0ff59ac1-989d-4095-9324-f617d1377631",
+  "toolUseResult": {
+    "query": "sparse autoencoder SAE knowledge editing model editing 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VwYL9sGZZbDHTtVZE2fKiD",
+        "content": [
+          {
+            "title": "Aligned Sparse Autoencoder (SAE)",
+            "url": "https://www.emergentmind.com/topics/aligned-sparse-autoencoder-sae"
+          },
+          {
+            "title": "Sparse Autoencoder Framework",
+            "url": "https://www.emergentmind.com/topics/sparse-autoencoder-based-framework"
+          },
+          {
+            "title": "MODEL UNLEARNING VIA SPARSE AUTOENCODER SUBSPACE GUIDED PROJECTIONS",
+            "url": "https://arxiv.org/pdf/2505.24428"
+          },
+          {
+            "title": "Sparse Autoencoder Frameworks",
+            "url": "https://www.emergentmind.com/topics/sparse-autoencoder-frameworks"
+          },
+          {
+            "title": "Automated Interpretability-Driven Model Auditing and Control: A Research Agenda",
+            "url": "https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"
+          },
+          {
+            "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based   Representation Engineering",
+            "url": "https://arxiv.org/pdf/2410.15999"
+          },
+          {
+            "title": "Applying sparse autoencoders to unlearn knowledge in language models",
+            "url": "https://arxiv.org/pdf/2410.19278"
+          },
+          {
+            "title": "Building Sparse Autoencoders (SAEs) from Scratch | by Ayo Akinkugbe | Data Science Collective | Mar, 2026 | Medium",
+            "url": "https://medium.com/data-science-collective/building-sparse-autoencoders-saes-from-scratch-b93c1a72e0ac"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about sparse autoencoders (SAEs) in knowledge editing and model editing for 2025-2026:\n\n## Knowledge Editing Applications\n\nSAEs enable \"concept swaps\" or ontology-level knowledge edits in LLMs through dedicated, semantically supervised concept slots. In vision and medical imaging, aligned SAEs facilitate localization of diagnostic features and provide causal taxonomy for downstream fine-tuning.\n\n## Recent Model Editing Frameworks\n\nSALVE (Sparse Autoencoder-Latent Vector Editing) is a pipeline for mechanistic model control where a sparse basis is learned offline, features are validated by Grad-FAM saliency maps, and interventions are performed by multiplicative weight-space edits along decoder directions. These edits are permanent and model-native, outperforming activation steering and key-value update baselines in precision and interpretability.\n\n## Knowledge Unlearning\n\nSAE-based frameworks leverage subspaces to implement knowledge removal with increased adversarial robustness, outperforming gradient or direct feature steering baselines. SAEs trained on LLM hidden representations have emerged as a powerful tool for interpreting and manipulating LLM behaviors.\n\n## Broader Interpretability Progress\n\nSignificant progress in 2024–2025 refined the ability to decompose networks at scale, with Anthropic successfully scaling Sparse Autoencoders to Claude 3 Sonnet."
+    ],
+    "durationSeconds": 12.798453979000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "327fbf57-0ac5-4c10-b57f-1a63adef10d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:49:30.421Z_
+
+<details><summary>↩ Tool result · `toolu_01SMBFJnDkmYjsnyXFMpk5D3`</summary>
+
+```text
+Web search results for query: "FeatureEdit knowledge microscope SAE features ACL 2025 arXiv 2502.12483"
+
+Links: [{"title":"[2502.12483] The Knowledge Microscope: Features as Better Analytical Lenses than Neurons","url":"https://arxiv.org/abs/2502.12483"},{"title":"The Knowledge Microscope: Features as Better Analytical Lenses than   Neurons","url":"https://arxiv.org/pdf/2502.12483"},{"title":"The Knowledge Microscope: Features as Better Analytical Lenses than Neurons","url":"https://arxiv.org/html/2502.12483"},{"title":"Sparse Autoencoder Features for Classifications and Transferability","url":"https://arxiv.org/pdf/2502.11367"},{"title":"Beyond Activation Patterns: A Weight-Based Out-of-Context Explanation of Sparse Autoencoder Features","url":"https://arxiv.org/pdf/2601.22447"}]
+
+Based on the search results, here's what I found:
+
+The paper introduces research on using Sparse Autoencoders (SAE) to decompose neurons into features, which reveal three key advantages of features over neurons, including stronger influence on knowledge expression and superior interpretability.
+
+The paper proposes FeatureEdit, a method for erasing privacy-sensitive information from language models, which significantly outperforms existing neuron-based approaches. FeatureEdit achieves higher success rates in erasing privacy-sensitive knowledge from language models while maintaining better generalization across semantically equivalent rephrase queries, and causes less damage to the model's general capabilities.
+
+The features also demonstrate enhanced monosemanticity, showing distinct activation patterns between related and unrelated facts.
+
+The paper is titled "The Knowledge Microscope: Features as Better Analytical Lenses than Neurons" and was posted to arXiv on February 27, 2025, with the identifier 2502.12483.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1d8d7e9-c02e-48aa-8d28-b05c37757048",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "8d3780ec-c260-4998-ac47-e5c637b403b4",
+  "toolUseResult": {
+    "query": "FeatureEdit knowledge microscope SAE features ACL 2025 arXiv 2502.12483",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RrQ7c5bTZ6RiheTq2z6qiH",
+        "content": [
+          {
+            "title": "[2502.12483] The Knowledge Microscope: Features as Better Analytical Lenses than Neurons",
+            "url": "https://arxiv.org/abs/2502.12483"
+          },
+          {
+            "title": "The Knowledge Microscope: Features as Better Analytical Lenses than   Neurons",
+            "url": "https://arxiv.org/pdf/2502.12483"
+          },
+          {
+            "title": "The Knowledge Microscope: Features as Better Analytical Lenses than Neurons",
+            "url": "https://arxiv.org/html/2502.12483"
+          },
+          {
+            "title": "Sparse Autoencoder Features for Classifications and Transferability",
+            "url": "https://arxiv.org/pdf/2502.11367"
+          },
+          {
+            "title": "Beyond Activation Patterns: A Weight-Based Out-of-Context Explanation of Sparse Autoencoder Features",
+            "url": "https://arxiv.org/pdf/2601.22447"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\nThe paper introduces research on using Sparse Autoencoders (SAE) to decompose neurons into features, which reveal three key advantages of features over neurons, including stronger influence on knowledge expression and superior interpretability.\n\nThe paper proposes FeatureEdit, a method for erasing privacy-sensitive information from language models, which significantly outperforms existing neuron-based approaches. FeatureEdit achieves higher success rates in erasing privacy-sensitive knowledge from language models while maintaining better generalization across semantically equivalent rephrase queries, and causes less damage to the model's general capabilities.\n\nThe features also demonstrate enhanced monosemanticity, showing distinct activation patterns between related and unrelated facts.\n\nThe paper is titled \"The Knowledge Microscope: Features as Better Analytical Lenses than Neurons\" and was posted to arXiv on February 27, 2025, with the identifier 2502.12483."
+    ],
+    "durationSeconds": 16.535531012999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b1d8d7e9-c02e-48aa-8d28-b05c37757048",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-19T18:49:33.535Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial results. Let me do a few more targeted searches to verify specific claims and check for competing/overlapping work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d3780ec-c260-4998-ac47-e5c637b403b4",
+  "isSidechain": false,
+  "requestId": "req_011CbCRpAcakcPnpsjHsuRMp",
+  "type": "assistant",
+  "uuid": "901e44e2-deb6-444f-9842-56178e8da52c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLemr2odHcwqZKUDFGjto8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 23933,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 23933,
+          "cache_creation_input_tokens": 3738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-19T18:49:34.033Z_
+
+Let me do a few more targeted searches to verify key claims and check for directly competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "901e44e2-deb6-444f-9842-56178e8da52c",
+  "isSidechain": false,
+  "requestId": "req_011CbCRpAcakcPnpsjHsuRMp",
+  "type": "assistant",
+  "uuid": "648f5877-e465-474a-850e-8f148c759e90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLemr2odHcwqZKUDFGjto8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 23933,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 23933,
+          "cache_creation_input_tokens": 3738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T18:49:35.020Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DXyt8x7z9iYe3kWJru6vp2`</summary>
+
+```json
+{
+  "query": "LangSAE language identity removal SAE multilingual retrieval arXiv 2601.04768"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "648f5877-e465-474a-850e-8f148c759e90",
+  "isSidechain": false,
+  "requestId": "req_011CbCRpAcakcPnpsjHsuRMp",
+  "type": "assistant",
+  "uuid": "991b5a06-1028-418d-af86-26d6e5b60472",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLemr2odHcwqZKUDFGjto8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 23933,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 23933,
+          "cache_creation_input_tokens": 3738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T18:49:35.957Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YAfbPwU6WdKkk5z1WN9Eo3`</summary>
+
+```json
+{
+  "query": "Chou et al causal language control multilingual sparse feature steering arXiv 2507.13410 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "991b5a06-1028-418d-af86-26d6e5b60472",
+  "isSidechain": false,
+  "requestId": "req_011CbCRpAcakcPnpsjHsuRMp",
+  "type": "assistant",
+  "uuid": "07822bbb-783b-4f33-9f24-9463e0433759",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLemr2odHcwqZKUDFGjto8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 23933,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 23933,
+          "cache_creation_input_tokens": 3738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T18:49:37.527Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DP5959w5abzFmXiN2mhVrG`</summary>
+
+```json
+{
+  "query": "SCAN sparse circuit anchor lifelong knowledge editing Qwen Llama 2026 arXiv 2603.15226"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07822bbb-783b-4f33-9f24-9463e0433759",
+  "isSidechain": false,
+  "requestId": "req_011CbCRpAcakcPnpsjHsuRMp",
+  "type": "assistant",
+  "uuid": "988b5d65-444c-4550-8a49-ba7aecb6b771",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLemr2odHcwqZKUDFGjto8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 23933,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 23933,
+          "cache_creation_input_tokens": 3738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T18:49:37.999Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LmV3pf8vBTCRjfFua9YvqL`</summary>
+
+```json
+{
+  "query": "SAE cross-lingual knowledge editing feature decomposition multilingual 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "988b5d65-444c-4550-8a49-ba7aecb6b771",
+  "isSidechain": false,
+  "requestId": "req_011CbCRpAcakcPnpsjHsuRMp",
+  "type": "assistant",
+  "uuid": "6e9dbbb8-41ad-4bd4-a696-091df4377c10",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLemr2odHcwqZKUDFGjto8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3738,
+      "cache_read_input_tokens": 23933,
+      "output_tokens": 312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 312,
+          "cache_read_input_tokens": 23933,
+          "cache_creation_input_tokens": 3738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T18:49:41.080Z_
+
+<details><summary>↩ Tool result · `toolu_01DXyt8x7z9iYe3kWJru6vp2`</summary>
+
+```text
+Web search results for query: "LangSAE language identity removal SAE multilingual retrieval arXiv 2601.04768"
+
+Links: [{"title":"[2601.04768] LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal","url":"https://arxiv.org/abs/2601.04768"},{"title":"LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal","url":"https://arxiv.org/pdf/2601.04768"},{"title":"LangSAE Editing: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal","url":"https://arxiv.org/html/2601.04768v1"},{"title":"LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2601.04768"},{"title":"LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering","url":"https://arxiv.org/pdf/2604.03532"}]
+
+Based on the search results, here's what I found about the paper:
+
+## LangSAE Editing: arXiv 2601.04768
+
+LangSAE Editing is a post-hoc sparse autoencoder trained on pooled embeddings that enables controllable removal of language-identity signal directly in vector space.
+
+**The Problem:** Dense retrieval in multilingual settings often searches over mixed-language collections, yet multilingual embeddings encode language identity alongside semantics. This language signal can inflate similarity for same-language pairs and crowd out relevant evidence written in other languages.
+
+**How It Works:** The method identifies language-associated latent units using cross-language activation statistics, suppresses these units at inference time, and reconstructs embeddings in the original dimensionality, making it compatible with existing vector databases without retraining the base encoder or re-encoding raw text.
+
+**Results:** Experiments across multiple languages show consistent improvements in ranking quality and cross-language coverage, with especially strong gains for script-distinct languages.
+
+The paper was submitted on January 8, 2026, and is authored by Dongjun Kim, Jeongho Yoon, Chanjun Park, and Heuiseok Lim from Korea University and Soongsil University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "991b5a06-1028-418d-af86-26d6e5b60472",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "c6b0e2d8-ba0b-4e37-8e0d-e204d21d2e56",
+  "toolUseResult": {
+    "query": "LangSAE language identity removal SAE multilingual retrieval arXiv 2601.04768",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C3RihNJ87ygFamdRWtvjPg",
+        "content": [
+          {
+            "title": "[2601.04768] LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal",
+            "url": "https://arxiv.org/abs/2601.04768"
+          },
+          {
+            "title": "LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal",
+            "url": "https://arxiv.org/pdf/2601.04768"
+          },
+          {
+            "title": "LangSAE Editing: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal",
+            "url": "https://arxiv.org/html/2601.04768v1"
+          },
+          {
+            "title": "LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2601.04768"
+          },
+          {
+            "title": "LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering",
+            "url": "https://arxiv.org/pdf/2604.03532"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## LangSAE Editing: arXiv 2601.04768\n\nLangSAE Editing is a post-hoc sparse autoencoder trained on pooled embeddings that enables controllable removal of language-identity signal directly in vector space.\n\n**The Problem:** Dense retrieval in multilingual settings often searches over mixed-language collections, yet multilingual embeddings encode language identity alongside semantics. This language signal can inflate similarity for same-language pairs and crowd out relevant evidence written in other languages.\n\n**How It Works:** The method identifies language-associated latent units using cross-language activation statistics, suppresses these units at inference time, and reconstructs embeddings in the original dimensionality, making it compatible with existing vector databases without retraining the base encoder or re-encoding raw text.\n\n**Results:** Experiments across multiple languages show consistent improvements in ranking quality and cross-language coverage, with especially strong gains for script-distinct languages.\n\nThe paper was submitted on January 8, 2026, and is authored by Dongjun Kim, Jeongho Yoon, Chanjun Park, and Heuiseok Lim from Korea University and Soongsil University."
+    ],
+    "durationSeconds": 6.054313914000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "991b5a06-1028-418d-af86-26d6e5b60472",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T18:49:42.614Z_
+
+<details><summary>↩ Tool result · `toolu_01YAfbPwU6WdKkk5z1WN9Eo3`</summary>
+
+```text
+Web search results for query: "Chou et al causal language control multilingual sparse feature steering arXiv 2507.13410 2025"
+
+Links: [{"title":"[2507.13410] Causal Language Control in Multilingual Transformers via Sparse Feature Steering","url":"https://arxiv.org/abs/2507.13410"},{"title":"Causal Language Control in Multilingual Transformers via Sparse Feature Steering","url":"https://arxiv.org/html/2507.13410v1"},{"title":"Causal Language Control in Multilingual Transformers via Sparse Feature","url":"https://arxiv.org/pdf/2507.13410"},{"title":"Causal Language Control in Multilingual Transformers via Sparse Feature Steering | OpenReview","url":"https://openreview.net/forum?id=MJTqUV4Eqe"},{"title":"Computer Science Jul 2025","url":"https://www.arxiv.org/list/cs/2025-07?skip=6075&show=1000"},{"title":"Artificial Intelligence Jul 2025","url":"https://arxiv.org/list/cs.AI/2025-07?skip=2325&show=2000"},{"title":"Causal Language Control in Multilingual Transformers via Sparse Feature Steering | Algoverse | Algoverse AI Research","url":"https://algoverseairesearch.org/news/causal-language-control"},{"title":"LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering","url":"https://arxiv.org/pdf/2604.03532"}]
+
+I found the paper you're looking for. Here's what I found:
+
+The paper is titled "Causal Language Control in Multilingual Transformers via Sparse Feature Steering" by authors Cheng-Ting Chou, George Liu, Jessica Sun, Cole Blondin, Kevin Zhu, Vasu Sharma, and Sean O'Brien.
+
+**Overview:**
+The paper addresses the challenge of deterministically controlling the target generation language of large multilingual language models (LLMs), particularly in zero-shot settings where neither explicit language prompts nor fine-tuning are available.
+
+**Methodology:**
+The researchers investigate whether sparse autoencoder (SAE) features can be leveraged to steer the generated language of LLMs during inference. They use pretrained SAEs on the residual streams of Gemma-2B and Gemma-9B models to identify features whose activations differ significantly between English and four target languages: Chinese, Japanese, Spanish, and French.
+
+**Key Results:**
+By modifying just a single SAE feature at one transformer layer, they achieve controlled language shifts with up to 90% success as measured by FastText language classification, while preserving semantic fidelity according to LaBSE (Language-Agnostic BERT Sentence Embedding) similarity.
+
+The paper was submitted to arXiv on July 17, 2025, and is available at https://arxiv.org/abs/2507.13410.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07822bbb-783b-4f33-9f24-9463e0433759",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "8221043b-d79a-4719-8a0a-0e49a50e4af4",
+  "toolUseResult": {
+    "query": "Chou et al causal language control multilingual sparse feature steering arXiv 2507.13410 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017w5MrQXY292nUFwsdMUFMB",
+        "content": [
+          {
+            "title": "[2507.13410] Causal Language Control in Multilingual Transformers via Sparse Feature Steering",
+            "url": "https://arxiv.org/abs/2507.13410"
+          },
+          {
+            "title": "Causal Language Control in Multilingual Transformers via Sparse Feature Steering",
+            "url": "https://arxiv.org/html/2507.13410v1"
+          },
+          {
+            "title": "Causal Language Control in Multilingual Transformers via Sparse Feature",
+            "url": "https://arxiv.org/pdf/2507.13410"
+          },
+          {
+            "title": "Causal Language Control in Multilingual Transformers via Sparse Feature Steering | OpenReview",
+            "url": "https://openreview.net/forum?id=MJTqUV4Eqe"
+          },
+          {
+            "title": "Computer Science Jul 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-07?skip=6075&show=1000"
+          },
+          {
+            "title": "Artificial Intelligence Jul 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-07?skip=2325&show=2000"
+          },
+          {
+            "title": "Causal Language Control in Multilingual Transformers via Sparse Feature Steering | Algoverse | Algoverse AI Research",
+            "url": "https://algoverseairesearch.org/news/causal-language-control"
+          },
+          {
+            "title": "LangFIR: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering",
+            "url": "https://arxiv.org/pdf/2604.03532"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I found:\n\nThe paper is titled \"Causal Language Control in Multilingual Transformers via Sparse Feature Steering\" by authors Cheng-Ting Chou, George Liu, Jessica Sun, Cole Blondin, Kevin Zhu, Vasu Sharma, and Sean O'Brien.\n\n**Overview:**\nThe paper addresses the challenge of deterministically controlling the target generation language of large multilingual language models (LLMs), particularly in zero-shot settings where neither explicit language prompts nor fine-tuning are available.\n\n**Methodology:**\nThe researchers investigate whether sparse autoencoder (SAE) features can be leveraged to steer the generated language of LLMs during inference. They use pretrained SAEs on the residual streams of Gemma-2B and Gemma-9B models to identify features whose activations differ significantly between English and four target languages: Chinese, Japanese, Spanish, and French.\n\n**Key Results:**\nBy modifying just a single SAE feature at one transformer layer, they achieve controlled language shifts with up to 90% success as measured by FastText language classification, while preserving semantic fidelity according to LaBSE (Language-Agnostic BERT Sentence Embedding) similarity.\n\nThe paper was submitted to arXiv on July 17, 2025, and is available at https://arxiv.org/abs/2507.13410."
+    ],
+    "durationSeconds": 6.6534644929999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "07822bbb-783b-4f33-9f24-9463e0433759",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T18:49:44.952Z_
+
+<details><summary>↩ Tool result · `toolu_01DP5959w5abzFmXiN2mhVrG`</summary>
+
+```text
+Web search results for query: "SCAN sparse circuit anchor lifelong knowledge editing Qwen Llama 2026 arXiv 2603.15226"
+
+Links: [{"title":"SCAN: Sparse Circuit Anchor Interpretable Neuron for Lifelong Knowledge Editing","url":"https://arxiv.org/pdf/2603.15226"},{"title":"Edit Less, Achieve More: Dynamic Sparse Neuron Masking for Lifelong Knowledge Editing in LLMs","url":"https://arxiv.org/html/2510.22139v1"},{"title":"[2510.22139] Edit Less, Achieve More: Dynamic Sparse Neuron Masking for Lifelong Knowledge Editing in LLMs","url":"https://arxiv.org/abs/2510.22139"},{"title":"Lifelong Knowledge Editing requires Better Regularization","url":"https://arxiv.org/pdf/2502.01636"},{"title":"MEMOIR: Lifelong Model Editing with Minimal Overwrite and Informed Retention for LLMs","url":"https://arxiv.org/pdf/2506.07899"},{"title":"Lifelong Knowledge Editing for LLMs with Retrieval-Augmented Continuous   Prompt Learning","url":"https://arxiv.org/pdf/2405.03279"}]
+
+I found the paper you're looking for! Here's the information about it:
+
+**SCAN: Sparse Circuit Anchor Interpretable Neuron for Lifelong Knowledge Editing** is a research paper by Yuhuan Liu, Haitian Zhong, Xinyuan Xia, Qiang Liu, Shu Wu, and Liang Wang.
+
+**Key Findings:**
+
+The paper addresses how Large Language Models (LLMs) often suffer from catastrophic forgetting and collapse during sequential knowledge editing, which stems from dense editing paradigms that treat models as black boxes and rely on coarse-grained parameter interventions that disrupt preserved knowledge.
+
+SCAN proposes a sparse editing framework based on Sparse Circuit Anchored Neuron, which transforms editing into mechanism-aware manipulation by constructing a knowledge circuit via Sparse Transcoders.
+
+**Experimental Results:**
+
+Experiments on Gemma2, Qwen3, and Llama3.1 across CounterFact, ZsRE and WikiFactDiff demonstrate that SCAN achieves superior performance, maintaining model integrity on benchmarks like MMLU and GSM8K even after 3,000 sequential edits, whereas other existing methods deteriorate progressively as editing accumulates.
+
+The paper was published on March 17, 2026 on arXiv with ID 2603.15226.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "988b5d65-444c-4550-8a49-ba7aecb6b771",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "ad6bb574-1e68-4dd7-97ab-73a4d7ee6320",
+  "toolUseResult": {
+    "query": "SCAN sparse circuit anchor lifelong knowledge editing Qwen Llama 2026 arXiv 2603.15226",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018g8ir8VD9RqRdVw4jDPcXS",
+        "content": [
+          {
+            "title": "SCAN: Sparse Circuit Anchor Interpretable Neuron for Lifelong Knowledge Editing",
+            "url": "https://arxiv.org/pdf/2603.15226"
+          },
+          {
+            "title": "Edit Less, Achieve More: Dynamic Sparse Neuron Masking for Lifelong Knowledge Editing in LLMs",
+            "url": "https://arxiv.org/html/2510.22139v1"
+          },
+          {
+            "title": "[2510.22139] Edit Less, Achieve More: Dynamic Sparse Neuron Masking for Lifelong Knowledge Editing in LLMs",
+            "url": "https://arxiv.org/abs/2510.22139"
+          },
+          {
+            "title": "Lifelong Knowledge Editing requires Better Regularization",
+            "url": "https://arxiv.org/pdf/2502.01636"
+          },
+          {
+            "title": "MEMOIR: Lifelong Model Editing with Minimal Overwrite and Informed Retention for LLMs",
+            "url": "https://arxiv.org/pdf/2506.07899"
+          },
+          {
+            "title": "Lifelong Knowledge Editing for LLMs with Retrieval-Augmented Continuous   Prompt Learning",
+            "url": "https://arxiv.org/pdf/2405.03279"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about it:\n\n**SCAN: Sparse Circuit Anchor Interpretable Neuron for Lifelong Knowledge Editing** is a research paper by Yuhuan Liu, Haitian Zhong, Xinyuan Xia, Qiang Liu, Shu Wu, and Liang Wang.\n\n**Key Findings:**\n\nThe paper addresses how Large Language Models (LLMs) often suffer from catastrophic forgetting and collapse during sequential knowledge editing, which stems from dense editing paradigms that treat models as black boxes and rely on coarse-grained parameter interventions that disrupt preserved knowledge.\n\nSCAN proposes a sparse editing framework based on Sparse Circuit Anchored Neuron, which transforms editing into mechanism-aware manipulation by constructing a knowledge circuit via Sparse Transcoders.\n\n**Experimental Results:**\n\nExperiments on Gemma2, Qwen3, and Llama3.1 across CounterFact, ZsRE and WikiFactDiff demonstrate that SCAN achieves superior performance, maintaining model integrity on benchmarks like MMLU and GSM8K even after 3,000 sequential edits, whereas other existing methods deteriorate progressively as editing accumulates.\n\nThe paper was published on March 17, 2026 on arXiv with ID 2603.15226."
+    ],
+    "durationSeconds": 7.422326466999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "988b5d65-444c-4550-8a49-ba7aecb6b771",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation  ## Description Current c…",
+  "leafUuid": "ad6bb574-1e68-4dd7-97ab-73a4d7ee6320",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SAE features for cross-lingual knowledge editing",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T18:49:46.049Z_
+
+<details><summary>↩ Tool result · `toolu_01LmV3pf8vBTCRjfFua9YvqL`</summary>
+
+```text
+Web search results for query: "SAE cross-lingual knowledge editing feature decomposition multilingual 2025 2026"
+
+Links: [{"title":"MKE-PLLM: A benchmark for multilingual knowledge editing on pretrained large language model - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231225016510"},{"title":"Edit Once, Update Everywhere: A Simple Framework for Cross-Lingual Knowledge Synchronization in LLMs","url":"https://arxiv.org/pdf/2502.14645"},{"title":"LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal","url":"https://arxiv.org/pdf/2601.04768"},{"title":"Cross-Lingual Knowledge Editing in Large Language Models","url":"https://arxiv.org/pdf/2309.08952"},{"title":"Multilingual Knowledge Editing with Language-Agnostic Factual Neurons","url":"https://arxiv.org/pdf/2406.16416"},{"title":"(PDF) Editing Across Languages: A Survey of Multilingual Knowledge Editing","url":"https://www.researchgate.net/publication/391911755_Editing_Across_Languages_A_Survey_of_Multilingual_Knowledge_Editing"},{"title":"Proceedings of the 5th Workshop on Multilingual Representation Learning (MRL 2025) - ACL Anthology","url":"https://aclanthology.org/volumes/2025.mrl-main/"}]
+
+Based on the search results, here's what I found regarding cross-lingual knowledge editing and related multilingual research:
+
+## Recent Research on Cross-Lingual Knowledge Editing
+
+While most existing knowledge editing approaches focus on monolingual editing, LLMs are increasingly required to handle multilingual queries. Expanding knowledge editing to cross-lingual settings is crucial to ensure that changes made in the source language are correctly applied to target languages.
+
+## Key Findings (2025-2026)
+
+Recent comprehensive experiments revealed three key findings: minimal correlation between pre-training language resources and edit success, cross-lingual transference of edits among genealogically proximate languages, and the pivotal role of knowledge types in multilingual editing outcomes.
+
+Research surveys available benchmarks, summarizes key findings on method effectiveness and transfer patterns, identifies challenges in cross-lingual propagation, and highlights open problems related to language anisotropy, evaluation coverage, and edit scalability. Additionally, edits in high-resource or related languages transfer better than those in low-resource or distant ones.
+
+## Multilingual Knowledge Editing Challenges
+
+The edited knowledge should be consistent across multiple languages, which presents more challenges compared to knowledge editing in monolingual scenarios.
+
+The research area shows significant advancement in 2025-2026, with multiple benchmarks and methods being developed to address the complexities of cross-lingual knowledge editing in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e9dbbb8-41ad-4bd4-a696-091df4377c10",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "911eda5b-92b4-4fc2-8388-fd296c17f74d",
+  "toolUseResult": {
+    "query": "SAE cross-lingual knowledge editing feature decomposition multilingual 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017MRYpX3ZWkHpbewpZxqAMJ",
+        "content": [
+          {
+            "title": "MKE-PLLM: A benchmark for multilingual knowledge editing on pretrained large language model - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225016510"
+          },
+          {
+            "title": "Edit Once, Update Everywhere: A Simple Framework for Cross-Lingual Knowledge Synchronization in LLMs",
+            "url": "https://arxiv.org/pdf/2502.14645"
+          },
+          {
+            "title": "LANGSAE EDITING: Improving Multilingual Information Retrieval via Post-hoc Language Identity Removal",
+            "url": "https://arxiv.org/pdf/2601.04768"
+          },
+          {
+            "title": "Cross-Lingual Knowledge Editing in Large Language Models",
+            "url": "https://arxiv.org/pdf/2309.08952"
+          },
+          {
+            "title": "Multilingual Knowledge Editing with Language-Agnostic Factual Neurons",
+            "url": "https://arxiv.org/pdf/2406.16416"
+          },
+          {
+            "title": "(PDF) Editing Across Languages: A Survey of Multilingual Knowledge Editing",
+            "url": "https://www.researchgate.net/publication/391911755_Editing_Across_Languages_A_Survey_of_Multilingual_Knowledge_Editing"
+          },
+          {
+            "title": "Proceedings of the 5th Workshop on Multilingual Representation Learning (MRL 2025) - ACL Anthology",
+            "url": "https://aclanthology.org/volumes/2025.mrl-main/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding cross-lingual knowledge editing and related multilingual research:\n\n## Recent Research on Cross-Lingual Knowledge Editing\n\nWhile most existing knowledge editing approaches focus on monolingual editing, LLMs are increasingly required to handle multilingual queries. Expanding knowledge editing to cross-lingual settings is crucial to ensure that changes made in the source language are correctly applied to target languages.\n\n## Key Findings (2025-2026)\n\nRecent comprehensive experiments revealed three key findings: minimal correlation between pre-training language resources and edit success, cross-lingual transference of edits among genealogically proximate languages, and the pivotal role of knowledge types in multilingual editing outcomes.\n\nResearch surveys available benchmarks, summarizes key findings on method effectiveness and transfer patterns, identifies challenges in cross-lingual propagation, and highlights open problems related to language anisotropy, evaluation coverage, and edit scalability. Additionally, edits in high-resource or related languages transfer better than those in low-resource or distant ones.\n\n## Multilingual Knowledge Editing Challenges\n\nThe edited knowledge should be consistent across multiple languages, which presents more challenges compared to knowledge editing in monolingual scenarios.\n\nThe research area shows significant advancement in 2025-2026, with multiple benchmarks and methods being developed to address the complexities of cross-lingual knowledge editing in large language models."
+    ],
+    "durationSeconds": 8.046838815000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6e9dbbb8-41ad-4bd4-a696-091df4377c10",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-19T18:49:46.056Z_
+
+```json
+{
+  "parentUuid": "911eda5b-92b4-4fc2-8388-fd296c17f74d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9abc49c9-ace5-4a6e-be7a-b2716f1a9de1",
+  "timestamp": "2026-05-19T18:49:46.056Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-19T18:49:50.213Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me check one more critical thing - whether anyone has already combined SAE features with cross-lingual knowledge editing, which is this proposal's core novelty claim. Also let me verify the Mondal et al. paper and check if there's a venue mismatch issue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9abc49c9-ace5-4a6e-be7a-b2716f1a9de1",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqKSvi1vbAEvRwpamP",
+  "type": "assistant",
+  "uuid": "61b4ef91-3e9a-4a73-9949-285fabe7d608",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNs4fwvTbUia2ED11Nsmgi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3183,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 3183,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3183
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-19T18:49:51.048Z_
+
+Let me do one more round of targeted searches to verify the gap claim and check for any very recent overlapping work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61b4ef91-3e9a-4a73-9949-285fabe7d608",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqKSvi1vbAEvRwpamP",
+  "type": "assistant",
+  "uuid": "4fb38fa0-a7cd-49a7-8717-e460ffc9ca2c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNs4fwvTbUia2ED11Nsmgi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3183,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 3183,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3183
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T18:49:52.002Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FoiUm89pFvaKuz4KxPzrWx`</summary>
+
+```json
+{
+  "query": "Leask et al \"sparse autoencoders do not find canonical units\" ICLR 2025 meta-SAE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fb38fa0-a7cd-49a7-8717-e460ffc9ca2c",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqKSvi1vbAEvRwpamP",
+  "type": "assistant",
+  "uuid": "03081486-13aa-4ffb-a5e2-998e484e6e05",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNs4fwvTbUia2ED11Nsmgi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3183,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 3183,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3183
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T18:49:52.717Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SXEZbn8MSYHfwWhVeK1vQY`</summary>
+
+```json
+{
+  "query": "Mondal et al \"language-specific neurons do not facilitate cross-lingual transfer\" NAACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03081486-13aa-4ffb-a5e2-998e484e6e05",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqKSvi1vbAEvRwpamP",
+  "type": "assistant",
+  "uuid": "e0aca60d-355b-4b16-96c0-8960f95ac6c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNs4fwvTbUia2ED11Nsmgi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3183,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 3183,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3183
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T18:49:53.278Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ntHPUoQn7GxNwkoXjJZtC`</summary>
+
+```json
+{
+  "query": "merging methods multilingual knowledge editing 2026 arXiv 2605.13919"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0aca60d-355b-4b16-96c0-8960f95ac6c8",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqKSvi1vbAEvRwpamP",
+  "type": "assistant",
+  "uuid": "580f954d-2c93-4490-8cdc-1897efc1bb5f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNs4fwvTbUia2ED11Nsmgi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3183,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 3183,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3183
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T18:49:59.641Z_
+
+<details><summary>↩ Tool result · `toolu_01SXEZbn8MSYHfwWhVeK1vQY`</summary>
+
+```text
+Web search results for query: "Mondal et al "language-specific neurons do not facilitate cross-lingual transfer" NAACL 2025"
+
+Links: [{"title":"Language-Specific Neurons Do Not Facilitate Cross-Lingual Transfer - ACL Anthology","url":"https://aclanthology.org/2025.insights-1.6/"},{"title":"Tracing Multilingual Knowledge Acquisition Dynamics in Domain Adaptation: A Case Study of English-Japanese Biomedical Adaptation","url":"https://arxiv.org/html/2510.12115v1"},{"title":"Linguistic Neuron Overlap Patterns to Facilitate Cross-lingual Transfer on Low-resource Languages","url":"https://arxiv.org/html/2508.17078v2"},{"title":"[2503.17456] Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer","url":"https://arxiv.org/abs/2503.17456"},{"title":"Language Arithmetics: Towards Systematic Language Neuron Identification and Manipulation","url":"https://arxiv.org/html/2507.22608v1"},{"title":"Cross-Lingual Activation Steering for Multilingual Language Models","url":"https://arxiv.org/html/2601.16390v1"},{"title":"Unveiling the Influence of Amplifying Language-Specific Neurons","url":"https://arxiv.org/html/2507.22581v3"},{"title":"Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer - Paper Detail","url":"https://deeplearn.org/arxiv/590221/language-specific-neurons-do-not-facilitate-cross-lingual-transfer"},{"title":"Language-specific Neurons Do Not Facilitate Cross- ...","url":"https://aclanthology.org/2025.insights-1.6.pdf"},{"title":"Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer","url":"https://arxiv.org/pdf/2503.17456"}]
+
+I found the paper you're looking for! Here are the key details:
+
+## Paper Information
+
+**Language-Specific Neurons Do Not Facilitate Cross-Lingual Transfer** by Soumen Kumar Mondal, Sayambhu Sen, Abhishek Singhania, and Preethi Jyothi was published in The Sixth Workshop on Insights from Negative Results in NLP in 2025.
+
+Note: The paper appears in the workshop on "Insights from Negative Results in NLP" rather than being directly published at NAACL 2025, though it was presented at the Albuquerque, New Mexico venue where NAACL 2025 was held.
+
+## Research Focus
+
+The work explores multilingual large language models (LLMs) which aim towards robust natural language understanding across diverse languages, yet their performance significantly degrades on low-resource languages. The research explores whether existing techniques to identify language-specific neurons can be leveraged to enhance cross-lingual task performance of low-resource languages.
+
+## How to Access
+
+The paper is available at:
+- **ACL Anthology**: https://aclanthology.org/2025.insights-1.6/
+- **arXiv**: https://arxiv.org/abs/2503.17456
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0aca60d-355b-4b16-96c0-8960f95ac6c8",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "efdcd166-2556-4fa4-bd7f-bc681476584e",
+  "toolUseResult": {
+    "query": "Mondal et al \"language-specific neurons do not facilitate cross-lingual transfer\" NAACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TACxKAfRAoWuoA5CHraSnY",
+        "content": [
+          {
+            "title": "Language-Specific Neurons Do Not Facilitate Cross-Lingual Transfer - ACL Anthology",
+            "url": "https://aclanthology.org/2025.insights-1.6/"
+          },
+          {
+            "title": "Tracing Multilingual Knowledge Acquisition Dynamics in Domain Adaptation: A Case Study of English-Japanese Biomedical Adaptation",
+            "url": "https://arxiv.org/html/2510.12115v1"
+          },
+          {
+            "title": "Linguistic Neuron Overlap Patterns to Facilitate Cross-lingual Transfer on Low-resource Languages",
+            "url": "https://arxiv.org/html/2508.17078v2"
+          },
+          {
+            "title": "[2503.17456] Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer",
+            "url": "https://arxiv.org/abs/2503.17456"
+          },
+          {
+            "title": "Language Arithmetics: Towards Systematic Language Neuron Identification and Manipulation",
+            "url": "https://arxiv.org/html/2507.22608v1"
+          },
+          {
+            "title": "Cross-Lingual Activation Steering for Multilingual Language Models",
+            "url": "https://arxiv.org/html/2601.16390v1"
+          },
+          {
+            "title": "Unveiling the Influence of Amplifying Language-Specific Neurons",
+            "url": "https://arxiv.org/html/2507.22581v3"
+          },
+          {
+            "title": "Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/590221/language-specific-neurons-do-not-facilitate-cross-lingual-transfer"
+          },
+          {
+            "title": "Language-specific Neurons Do Not Facilitate Cross- ...",
+            "url": "https://aclanthology.org/2025.insights-1.6.pdf"
+          },
+          {
+            "title": "Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer",
+            "url": "https://arxiv.org/pdf/2503.17456"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n## Paper Information\n\n**Language-Specific Neurons Do Not Facilitate Cross-Lingual Transfer** by Soumen Kumar Mondal, Sayambhu Sen, Abhishek Singhania, and Preethi Jyothi was published in The Sixth Workshop on Insights from Negative Results in NLP in 2025.\n\nNote: The paper appears in the workshop on \"Insights from Negative Results in NLP\" rather than being directly published at NAACL 2025, though it was presented at the Albuquerque, New Mexico venue where NAACL 2025 was held.\n\n## Research Focus\n\nThe work explores multilingual large language models (LLMs) which aim towards robust natural language understanding across diverse languages, yet their performance significantly degrades on low-resource languages. The research explores whether existing techniques to identify language-specific neurons can be leveraged to enhance cross-lingual task performance of low-resource languages.\n\n## How to Access\n\nThe paper is available at:\n- **ACL Anthology**: https://aclanthology.org/2025.insights-1.6/\n- **arXiv**: https://arxiv.org/abs/2503.17456"
+    ],
+    "durationSeconds": 6.920765354000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e0aca60d-355b-4b16-96c0-8960f95ac6c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T18:50:00.653Z_
+
+<details><summary>↩ Tool result · `toolu_01FoiUm89pFvaKuz4KxPzrWx`</summary>
+
+```text
+Web search results for query: "Leask et al "sparse autoencoders do not find canonical units" ICLR 2025 meta-SAE"
+
+Links: [{"title":"Sparse Autoencoders Do Not Find Canonical Units of Analysis","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/84ca3f2d9d9bfca13f69b48ea63eb4a5-Abstract-Conference.html"},{"title":"(PDF) Sparse Autoencoders Do Not Find Canonical Units of Analysis","url":"https://www.researchgate.net/publication/388847461_Sparse_Autoencoders_Do_Not_Find_Canonical_Units_of_Analysis"},{"title":"ActivationReasoning: Logical Reasoning in Latent Activation Spaces","url":"https://arxiv.org/html/2510.18184v1"},{"title":"ICLR Poster Sparse Autoencoders Do Not Find Canonical Units of Analysis","url":"https://iclr.cc/virtual/2025/poster/30676"},{"title":"[2502.04878] Sparse Autoencoders Do Not Find Canonical Units of Analysis","url":"https://arxiv.org/abs/2502.04878"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2502.04878"},{"title":"SPARSE AUTOENCODERS DO NOT FIND CANONICAL ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/84ca3f2d9d9bfca13f69b48ea63eb4a5-Paper-Conference.pdf"},{"title":"Sparse Autoencoders Do Not Find Canonical Units of Analysis","url":"https://arxiv.org/html/2502.04878v1"},{"title":"Sparse Autoencoders Do Not Find Canonical Units of Analysis | OpenReview","url":"https://openreview.net/forum?id=9ca9eHNrdH"}]
+
+I found the paper you're looking for! The paper "Sparse Autoencoders Do Not Find Canonical Units of Analysis" was published at ICLR 2025 by Patrick Leask, Bart Bussmann, Michael Pearce, Joseph Bloom, Curt Tigges, Noura Al Moubayed, Lee Sharkey, and Neel Nanda.
+
+The paper uses two novel techniques: SAE stitching to show they are incomplete, and meta-SAEs to show they are not atomic. SAE stitching involves inserting or swapping latents from a larger SAE into a smaller one, with latents divided into novel latents (which improve performance when added) and reconstruction latents (which can replace corresponding latents with similar behavior).
+
+The paper challenges the assumption that sparse autoencoders can be used to find a canonical set of units: a unique and complete list of atomic features in language models.
+
+You can access the paper through the ICLR proceedings, arXiv (2502.04878), or OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03081486-13aa-4ffb-a5e2-998e484e6e05",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "4a3d4ad1-e99a-43ed-acd9-75fd39ba78ff",
+  "toolUseResult": {
+    "query": "Leask et al \"sparse autoencoders do not find canonical units\" ICLR 2025 meta-SAE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011qJAj4zycVyjKTEak4wf1K",
+        "content": [
+          {
+            "title": "Sparse Autoencoders Do Not Find Canonical Units of Analysis",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/84ca3f2d9d9bfca13f69b48ea63eb4a5-Abstract-Conference.html"
+          },
+          {
+            "title": "(PDF) Sparse Autoencoders Do Not Find Canonical Units of Analysis",
+            "url": "https://www.researchgate.net/publication/388847461_Sparse_Autoencoders_Do_Not_Find_Canonical_Units_of_Analysis"
+          },
+          {
+            "title": "ActivationReasoning: Logical Reasoning in Latent Activation Spaces",
+            "url": "https://arxiv.org/html/2510.18184v1"
+          },
+          {
+            "title": "ICLR Poster Sparse Autoencoders Do Not Find Canonical Units of Analysis",
+            "url": "https://iclr.cc/virtual/2025/poster/30676"
+          },
+          {
+            "title": "[2502.04878] Sparse Autoencoders Do Not Find Canonical Units of Analysis",
+            "url": "https://arxiv.org/abs/2502.04878"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2502.04878"
+          },
+          {
+            "title": "SPARSE AUTOENCODERS DO NOT FIND CANONICAL ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/84ca3f2d9d9bfca13f69b48ea63eb4a5-Paper-Conference.pdf"
+          },
+          {
+            "title": "Sparse Autoencoders Do Not Find Canonical Units of Analysis",
+            "url": "https://arxiv.org/html/2502.04878v1"
+          },
+          {
+            "title": "Sparse Autoencoders Do Not Find Canonical Units of Analysis | OpenReview",
+            "url": "https://openreview.net/forum?id=9ca9eHNrdH"
+          }
+        ]
+      },
+      "I found the paper you're looking for! The paper \"Sparse Autoencoders Do Not Find Canonical Units of Analysis\" was published at ICLR 2025 by Patrick Leask, Bart Bussmann, Michael Pearce, Joseph Bloom, Curt Tigges, Noura Al Moubayed, Lee Sharkey, and Neel Nanda.\n\nThe paper uses two novel techniques: SAE stitching to show they are incomplete, and meta-SAEs to show they are not atomic. SAE stitching involves inserting or swapping latents from a larger SAE into a smaller one, with latents divided into novel latents (which improve performance when added) and reconstruction latents (which can replace corresponding latents with similar behavior).\n\nThe paper challenges the assumption that sparse autoencoders can be used to find a canonical set of units: a unique and complete list of atomic features in language models.\n\nYou can access the paper through the ICLR proceedings, arXiv (2502.04878), or OpenReview."
+    ],
+    "durationSeconds": 8.646379921999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03081486-13aa-4ffb-a5e2-998e484e6e05",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T18:50:04.802Z_
+
+<details><summary>↩ Tool result · `toolu_018ntHPUoQn7GxNwkoXjJZtC`</summary>
+
+```text
+Web search results for query: "merging methods multilingual knowledge editing 2026 arXiv 2605.13919"
+
+Links: [{"title":"[2605.13919] Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey","url":"https://arxiv.org/abs/2605.13919"},{"title":"Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey","url":"https://arxiv.org/html/2605.13919"},{"title":"Model Merging for Knowledge Editing","url":"https://arxiv.org/html/2506.12384v1"},{"title":"Multilingual Knowledge Editing with Language-Agnostic Factual Neurons","url":"https://arxiv.org/pdf/2406.16416"},{"title":"Retrieval-augmented Multilingual Knowledge Editing","url":"https://arxiv.org/pdf/2312.13040"},{"title":"MEMLA: Enhancing Multilingual Knowledge Editing with Neuron-Masked   Low-Rank Adaptation","url":"https://arxiv.org/pdf/2406.11566"},{"title":"Model Merging for Knowledge Editing","url":"https://arxiv.org/pdf/2506.12384"},{"title":"Merge and Conquer: Instructing Multilingual Models by Adding Target Language Weights","url":"https://arxiv.org/pdf/2603.28263"},{"title":"[2506.12384] Model Merging for Knowledge Editing","url":"https://arxiv.org/abs/2506.12384"}]
+
+I found the paper you're looking for! Here's what I can tell you about it:
+
+The paper "Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey" (arXiv:2605.13919) addresses the challenge that multilingual knowledge editing (MKE) remains difficult because language-specific edits interfere with one another, even when locate-then-edit methods work well in monolingual settings.
+
+The paper focuses on three issues: the effectiveness of vector merging methods for MKE, the extent to which Task Singular Vectors for Merging (TSVM) can reduce multilingual interference, and the influence of the weight scaling factor and rank compression ratio on performance.
+
+The researchers evaluate six merging variants with two popular backbone large language models, two base knowledge editing methods, and 12 languages on the MzsRE benchmark under a large-scale batch-editing setting.
+
+Their results show that vector summation with shared covariance is the most reliable overall strategy, whereas simple summation without shared covariance performs poorly. TSVM improves performance in some settings, but its ability to mitigate multilingual interference is limited.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "580f954d-2c93-4490-8cdc-1897efc1bb5f",
+  "isSidechain": false,
+  "promptId": "e10e7b41-3d4a-42e5-81e1-8b04ad99faed",
+  "type": "user",
+  "uuid": "805c233b-6711-4057-85ea-9376b725622b",
+  "toolUseResult": {
+    "query": "merging methods multilingual knowledge editing 2026 arXiv 2605.13919",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YXsjqoVraLKTAArQYpY2D5",
+        "content": [
+          {
+            "title": "[2605.13919] Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey",
+            "url": "https://arxiv.org/abs/2605.13919"
+          },
+          {
+            "title": "Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey",
+            "url": "https://arxiv.org/html/2605.13919"
+          },
+          {
+            "title": "Model Merging for Knowledge Editing",
+            "url": "https://arxiv.org/html/2506.12384v1"
+          },
+          {
+            "title": "Multilingual Knowledge Editing with Language-Agnostic Factual Neurons",
+            "url": "https://arxiv.org/pdf/2406.16416"
+          },
+          {
+            "title": "Retrieval-augmented Multilingual Knowledge Editing",
+            "url": "https://arxiv.org/pdf/2312.13040"
+          },
+          {
+            "title": "MEMLA: Enhancing Multilingual Knowledge Editing with Neuron-Masked   Low-Rank Adaptation",
+            "url": "https://arxiv.org/pdf/2406.11566"
+          },
+          {
+            "title": "Model Merging for Knowledge Editing",
+            "url": "https://arxiv.org/pdf/2506.12384"
+          },
+          {
+            "title": "Merge and Conquer: Instructing Multilingual Models by Adding Target Language Weights",
+            "url": "https://arxiv.org/pdf/2603.28263"
+          },
+          {
+            "title": "[2506.12384] Model Merging for Knowledge Editing",
+            "url": "https://arxiv.org/abs/2506.12384"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I can tell you about it:\n\nThe paper \"Merging Methods for Multilingual Knowledge Editing for Large Language Models: An Empirical Odyssey\" (arXiv:2605.13919) addresses the challenge that multilingual knowledge editing (MKE) remains difficult because language-specific edits interfere with one another, even when locate-then-edit methods work well in monolingual settings.\n\nThe paper focuses on three issues: the effectiveness of vector merging methods for MKE, the extent to which Task Singular Vectors for Merging (TSVM) can reduce multilingual interference, and the influence of the weight scaling factor and rank compression ratio on performance.\n\nThe researchers evaluate six merging variants with two popular backbone large language models, two base knowledge editing methods, and 12 languages on the MzsRE benchmark under a large-scale batch-editing setting.\n\nTheir results show that vector summation with shared covariance is the most reliable overall strategy, whereas simple summation without shared covariance performs poorly. TSVM improves performance in some settings, but its ability to mitigate multilingual interference is limited."
+    ],
+    "durationSeconds": 11.521480547000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "580f954d-2c93-4490-8cdc-1897efc1bb5f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-19T18:51:06.025Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the field. Let me synthesize my findings and produce the triage evaluation.
+
+Let me think about this proposal carefully:
+
+## Core Idea Assessment
+
+The proposal's core claim: The cross-lingual knowledge editing portability bottleneck (all methods EM < 10 on Bi-ZsRE) is caused by polysemantic neuron entanglement of factual relational structure with language identity. SAE feature decomposition can provide finer-grained separation, enabling better portability through adaptive soft projection.
+
+### Novelty Assessment
+
+**What's genuinely new:**
+
+
+The specific pairing of SAE feature decomposition with cross-lingual knowledge editing appears to be unexplored, along with the FCE metric for determining adaptive projection weights and the polysemanticity entanglement hypothesis as an explanation for why current methods struggle with cross-lingual transfer.
+
+**What's incremental:**
+This is essentially applying existing techniques from different domains—SAE features have been used for language identification and knowledge editing separately, but combining them here feels like a straightforward extension rather than a fundamental breakthrough.
+
+The adaptive soft projection itself is just a weighted subtraction in feature space, which isn't particularly novel algorithmically. The underlying intuition that better feature decomposition leads to cleaner separation and improved portability is fairly straightforward.
+
+**Trivial Alternative Check**
+
+I'm wondering if simpler approaches could achieve similar results—for instance, LangSAE already suppresses language identity features, so could we just apply that same suppression strategy to edit vectors instead of building out the full pipeline with FCE computation and adaptive weighting? Or could we directly use the output-score filtered SAE features from prior work without the additional complexity?
+
+The proposal would counter that naive suppression misses the factual-language entanglement problem: some language-specific features also encode factual information, and the FCE-based adaptive projection is designed to handle this distinction. That's a reasonable argument, though it's unclear whether this represents a fundamental insight or just an engineering refinement.
+
+**Premise Check**
+
+The core claim is that polysemantic neurons conflate factual relational structure with language identity, so removing language components at the neuron level necessarily damages the relational knowledge needed for portability. But the LU-LAFNs authors themselves hint that the portability bottleneck might stem from measurement issues—specifically, the difficulty of evaluating reasoning without an actual reasoning process—which suggests the metric itself could be measuring something other than what we think.
+
+Even granting that polysemanticity is the culprit, SAE features aren't guaranteed to be monosemantic enough; Leask et al. show they're not atomic units. And the fact that ~67.9% of neurons are LAFNs might just mean most neurons have some language-agnostic component, not that the decomposition is fundamentally too coarse.
+
+**Significance Assessment**
+
+The problem is genuinely important and currently unsolved—cross-lingual knowledge editing portability is a recognized challenge, and all existing methods fail here. If this approach works, it would be a meaningful contribution. That said, cross-lingual knowledge editing is a relatively specialized niche within NLP, and the practical impact is constrained since knowledge editing itself remains largely a research problem.
+
+**Related Work Assessment**
+
+The related work is exceptionally thorough, covering direct competitors, SAE-based editing methods, SAE language feature work, and both supporting and skeptical evidence. This breadth demonstrates serious engagement with the literature, especially the adversarial findings.
+
+**Overall Assessment**
+
+This is a well-constructed bridge paper that synthesizes two research directions.
+
+The core novelty is primarily the combination itself rather than a fundamentally new algorithmic insight. The intuition that finer-grained decomposition improves separation is reasonable but not particularly surprising. The adaptive λ-projection based on FCE is a solid engineering contribution, though not groundbreaking.
+
+The real vulnerability is whether the portability problem actually stems from polysemanticity or from something deeper—the metric itself, representation issues, or persistent entanglement at the SAE feature level. SAE reconstruction error could also degrade edit quality. The proposal does include falsification tests to probe these risks, which is commendable, but a reviewer would likely push back on whether the core hypothesis is novel enough to sustain a full paper.
+
+There's also a venue mismatch—this is purely NLP/interpretability work, not robotics, so CoRL would be inappropriate. The right venues would be ACL, EMNLP, NAACL, COLING, or possibly NeurIPS/ICLR if positioned more broadly. But I should focus primarily on idea quality rather than venue fit. I'm concerned about the venue mismatch—CoRL is a robotics conference, but this is clearly an NLP paper—so the acceptance probability would be essentially zero. That said, the evaluation rubric is designed for NLP venues, so I'll assess the idea quality as instructed while flagging this discrepancy.
+
+Looking at novelty, the combination of SAE features with cross-lingual editing is new, but it's more of a bridge between existing approaches than a fundamental algorithmic advance. The core intuition that finer granularity improves separation is fairly straightforward, and the adaptive projection method is reasonable but not particularly groundbreaking.
+
+On significance, the problem is genuine and important—current methods struggle with portability across languages—but cross-lingual knowledge editing remains a relatively specialized area within NLP.
+
+The related work section is exceptionally strong, with thorough coverage, honest engagement with counterevidence, and clear differentiation from similar work. For a top-tier NLP venue like ACL or EMNLP, I'd estimate the acceptance probability around 25-35%, limited mainly by the medium novelty and the risk that reviewers might see this as an obvious next step rather than a surprising insight.
+
+There's a venue mismatch I need to flag though — CoRL is a robotics conference, not an NLP venue, so submitting there would be a fundamental misalignment. I'll evaluate this as an NLP contribution and note that concern prominently in my assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "805c233b-6711-4057-85ea-9376b725622b",
+  "isSidechain": false,
+  "requestId": "req_011CbCRrhcTSwAgZv4r2aiU5",
+  "type": "assistant",
+  "uuid": "7c57ffe0-1324-42df-b8bd-35a7b6251c48",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BguyaZ5U9ZbyoDHczQsqyS",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2584,
+      "cache_read_input_tokens": 30854,
+      "output_tokens": 6263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6263,
+          "cache_read_input_tokens": 30854,
+          "cache_creation_input_tokens": 2584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-19T18:52:28.726Z_
+
+Now I have sufficient information to make my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- LU-LAFNs (COLING 2025, arXiv:2406.16416): 最直接的竞争工作。通过激活频率交集识别跨语言共享的"语言无关事实神经元"(LAFNs)，在Bi-ZsRE上达到77.87 avg。但67.9%的神经元被识别为LAFNs（极粗粒度），且所有方法在portability EM上均<10。论文真实存在，proposal描述准确。
+- FeatureEdit / The Knowledge Microscope (ACL 2025, arXiv:2502.12483): SAE特征用于知识擦除（非事实编辑），在PrivacyParaRel上特征vs神经元有显著优势（~0.80 vs ~0.65 reliability）。论文真实存在，proposal对其适用范围的限定（隐私擦除而非跨语言编辑）是诚实的。
+- LangSAE Editing (arXiv:2601.04768, Jan 2026): 用SAE特征抑制语言身份信号改善多语言信息检索，+21.9% nDCG@20。论文真实，但其目标是检索而非知识编辑。
+- Chou et al. (arXiv:2507.13410, Jul 2025): 修改单个SAE特征实现高达90%语言转向成功率（Gemma-2B/9B）。论文真实，为SAE语言操控的可行性提供了直接证据。
+- Arad et al. (EMNLP 2025, arXiv:2505.20063): 证明SAE steering失败源于特征选择不当而非SAE范式本身，output-score filtering带来2-3×提升。论文真实存在于ACL Anthology，proposal的引用和解读准确。
+- Leask et al. (ICLR 2025, arXiv:2502.04878): 证明SAE特征非原子/非规范化单位。论文真实，proposal对其的应对策略（连续加权基而非二值开关）是合理的。
+- Mondal et al. (NAACL 2025 InsightsNLP Workshop, arXiv:2503.17456): 证明神经元级语言特定干预不足以实现跨语言迁移。注意：这是NAACL的Insights from Negative Results Workshop论文，非主会论文，影响力有限。
+- SCAN (arXiv:2603.15226, Mar 2026): 用sparse transcoders做lifelong editing，在Qwen3/Llama3.1上实验，但目标是sequential stability而非跨语言传播。
+- Merging Methods for MKE (arXiv:2605.13919, May 2026): 极新工作，探索向量合并方法用于12语言编辑，发现vector summation + shared covariance最稳定，但无表示级分解。
+- Editing Across Languages Survey (arXiv:2505.14393): 综述确认language anisotropy和edit scalability为关键挑战。
+- 调研总结: 跨语言知识编辑是一个被综述和多篇近期工作认可的开放问题，portability是公认瓶颈。SAE特征已分别被用于知识擦除（FeatureEdit）、语言身份操控（LangSAE、Chou et al.）和lifelong editing（SCAN），但**确实没有工作将SAE特征分解与跨语言知识编辑结合**——proposal的gap claim成立。然而，这一组合是两条成熟线路的"显然下一步"衔接。
+
+【Trivial Alternative 检验】:
+存在明显的更简单替代方案威胁：
+(1) **直接应用LangSAE方法到编辑向量**：LangSAE已经能通过SAE特征抑制语言身份信号。将其直接用于编辑向量的语言成分去除（不需要FCE指标、不需要自适应λ），是一个成本极低的baseline。Proposal的增量价值声称在于"自适应软投影考虑了事实-语言纠缠"——但这一增量是否真正必要，取决于纯语言特征和事实特征之间的纠缠程度，而这恰恰是proposal试图验证的假设，尚无先验证据。
+(2) **简单的Chou et al.式单特征操控**：既然单个SAE特征就能实现90%语言转向，直接在编辑后做语言特征转向（而非在编辑向量上做投影）可能是更简单的路径。
+增量价值：Proposal的核心增量在于FCE指标引导的自适应程度控制，以及对"为什么neuron级别不够"的因果假设检验。但如果简单方案（如直接LangSAE-style suppression + ROME/MEMIT）已经能显著改善portability，则整个elaborate pipeline的价值大幅缩水。
+
+【前提假设检验】:
+核心逻辑链中有两个关键未验证假设：
+(1) **"Portability bottleneck源于polysemantic entanglement"假设**：这是整篇论文的因果前提，但LU-LAFNs作者自己提出了一个竞争性解释——portability指标本身可能在测量推理能力而非可编辑的事实关联。如果portability EM低是因为这些问题需要multi-hop reasoning（编辑无法触及的能力），那么无论用多细的特征分解都不会改善结果。Proposal虽然在risk mitigation中提到了这一点并设计了A2 ablation，但这不改变核心claim的前提是未经验证的。
+(2) **"SAE特征足够monosemantic来实现clean separation"假设**：Leask et al.已经证明SAE特征不是原子化的规范单位，meta-SAE可以进一步分解大特征。Proposal通过连续加权来应对，但这实质上承认了特征并非真正monosemantic——那么"比neuron更细粒度"的优势到底能带来多少实际改善？从67.9% LAFNs到64K features的粒度跃升，在portability这个具体指标上能否转化为可测量的改善，是完全开放的。
+
+【3 维度打分】:
+
+1. Novelty: 中 — 
+组合novelty成立：经调研确认，SAE特征分解+跨语言知识编辑的交叉点确实无人占据。但这是一个"bridge combination"而非新范式——SAE用于语言操控（LangSAE, Chou et al.）、SAE用于知识编辑（FeatureEdit, SCAN, SSPU）、跨语言知识编辑（LU-LAFNs, X-KDE, LangEdit）三条线各自成熟，将它们组合是一个可预见的下一步。FCE指标和自适应λ投影是合理的工程贡献，但不构成方法论突破。核心假设"更细粒度→更好分离→更好portability"是直觉性的，审稿人的反应更可能是"I would have guessed this"而非"surprising"。类比：如果FeatureEdit已经证明features > neurons for knowledge erasure，LangSAE已经证明SAE可以去除语言信号，那将二者组合用于跨语言编辑几乎是"显然应该尝试的事情"。
+
+2. Significance: 中 —
+正面：跨语言知识编辑的portability是被综述（arXiv:2505.14393）和多篇论文（LU-LAFNs, CLM-Bench）共同确认的开放问题，所有方法EM<10的普遍失败确实需要新思路。假设检验设计（A3 falsification test）有独立的科学价值。
+负面：(a) 跨语言知识编辑本身是NLP中一个相对小众的子领域；(b) 知识编辑整体仍处于研究阶段，实际落地遥远；(c) 即使positive result，提升幅度可能有限——从EM<10到EM=15-25仍然不具备实用价值；(d) 该工作绑定特定模型的pre-trained SAE（Qwen-Scope, Llama Scope），可推广性受限于SAE的可用性。
+
+3. Related Work: 强 —
+这是proposal最突出的优势。覆盖范围极为全面，四层分类清晰（直接baseline → 神经元级 → SAE编辑 → SAE干预质疑）。对adversarial evidence的引用和应对诚实且具体（Peng et al. → Arad et al.反驳；Leask et al. → 连续基处理；Farrell et al. → 软投影而非零化）。对FeatureEdit适用范围的限定（知识擦除而非事实编辑）显示了学术诚信。唯一小瑕疵：Mondal et al.被标为"NAACL 2025 InsightsNLP"，实际是NAACL的Negative Results Workshop论文，非主会，作为"independent evidence"的权重应有所调降。
+
+【概率估计】: [22% - 32%] 中位 27%
+（注：此概率假设投稿至ACL/EMNLP等NLP主会。若真的投稿CoRL 2026——一个机器人学习会议——则概率接近0%，因为完全不在scope内。）
+
+【估计理由】:
+从3维度到概率的推理：Related Work强是执行层面的优势，不拉高idea上限；Significance中等限制了ceiling（审稿人可能认为子领域太窄、practical impact不足）；**Novelty中等是主要上限限制因素**——"bridge combination"类工作在顶会的认可度取决于组合后是否产生非trivial的insight，而本proposal的核心假设"finer granularity → better separation"直觉性过强。如果positive result只是modest improvement（比如portability EM从<10升到15-25），审稿人很可能评价为"reasonable engineering contribution but limited novelty"。Proposal的falsifiability设计和dual-outcome framing可以保底（negative result也有价值），但这本身说明了idea的风险——需要用"即使失败也有价值"来对冲，侧面反映了作者对positive outcome的信心有限。上界32%的情景是：positive result显著（portability EM大幅跃升）+ 分析揭示出关于多语言表示的deep insight；下界22%的情景是：提升modest + 审稿人质疑trivial alternative。
+
+【主要风险】:
+1. **Trivial alternative威胁**：审稿人可能要求与"直接LangSAE-style suppression on edit vectors"做对比——如果这个极简baseline已经能获得大部分改善，则整个FCE + adaptive λ pipeline的增量价值被严重削弱，论文会被评为over-engineered。
+2. **核心因果前提不成立的风险**：如果portability bottleneck的真正原因是metric本身测量推理能力（如LU-LAFNs作者所暗示），或者是更深层的表示对齐问题（而非polysemanticity），那么无论SAE特征分解做得多好，portability都不会显著改善——此时论文沦为一篇"negative result with analysis"，发表难度大幅增加。
+```
+
+Sources:
+- [LU-LAFNs - ACL Anthology (COLING 2025)](https://aclanthology.org/2025.coling-main.385/)
+- [FeatureEdit / The Knowledge Microscope (arXiv:2502.12483)](https://arxiv.org/abs/2502.12483)
+- [LangSAE Editing (arXiv:2601.04768)](https://arxiv.org/abs/2601.04768)
+- [Chou et al. - Causal Language Control (arXiv:2507.13410)](https://arxiv.org/abs/2507.13410)
+- [Arad et al. - SAEs Are Good for Steering (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.519/)
+- [Leask et al. - SAE Canonical Units (ICLR 2025)](https://arxiv.org/abs/2502.04878)
+- [Mondal et al. - Language-Specific Neurons (NAACL InsightsNLP 2025)](https://aclanthology.org/2025.insights-1.6/)
+- [SCAN (arXiv:2603.15226)](https://arxiv.org/pdf/2603.15226)
+- [Merging Methods for MKE (arXiv:2605.13919)](https://arxiv.org/abs/2605.13919)
+- [CLM-Bench (arXiv:2601.17397)](https://arxiv.org/pdf/2601.17397)
+- [Editing Across Languages Survey (arXiv:2505.14393)](https://alt.qcri.org/~ndurrani/pubs/EMNLP25a.pdf)
+- [X-KDE (arXiv:2502.14645)](https://arxiv.org/pdf/2502.14645)
+- [SSPU (arXiv:2505.24428)](https://arxiv.org/pdf/2505.24428)
+- [SpARE (arXiv:2410.15999)](https://arxiv.org/pdf/2410.15999)
+- [Farrell et al. (arXiv:2410.19278)](https://arxiv.org/pdf/2410.19278)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c57ffe0-1324-42df-b8bd-35a7b6251c48",
+  "isSidechain": false,
+  "requestId": "req_011CbCRrhcTSwAgZv4r2aiU5",
+  "type": "assistant",
+  "uuid": "8646c0c1-da85-4714-a665-f545331a7d58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BguyaZ5U9ZbyoDHczQsqyS",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2584,
+      "cache_read_input_tokens": 30854,
+      "output_tokens": 6263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6263,
+          "cache_read_input_tokens": 30854,
+          "cache_creation_input_tokens": 2584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation  ## Description Current c…",
+  "leafUuid": "8646c0c1-da85-4714-a665-f545331a7d58",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SAE features for cross-lingual knowledge editing",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Beyond Neurons: SAE Feature Decomposition for Cross-Lingual Knowledge Edit Propagation  ## Description Current c…",
+  "leafUuid": "8646c0c1-da85-4714-a665-f545331a7d58",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SAE features for cross-lingual knowledge editing",
+  "sessionId": "9335e1b1-d25e-4a24-9622-87e7e80a2a8a"
+}
+```
+
+---

@@ -1,0 +1,684 @@
+# Research conversation: Do Hidden-State Jailbreak Detectors Generalize to Reasoning Models? A Cross-Architecture Empirical Study and Temporal Co
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/b9fd2909-c46d-4c4e-9658-56df42eaacb1.jsonl`
+- **Structured JSON:** [`e6528edabb15c1683001.json`](../../sessions/e6/e6528edabb15c1683001.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T12:14:39.523Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T12:14:39.523Z",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1",
+  "content": "# Do Hidden-State Jailbreak Detectors Generalize to Reasoning Models? A Cross-Architecture Empirical Study and Temporal Contrastive Detection Method\n\n**状态**: 待审阅  \n**级别**: top-tier  \n**创建时间**: 2026-05-15T18:57:29.492068+00:00\n\n## 描述\nHidden-state jailbreak detectors have matured for standard instruction-tuned LLMs (TrajGuard 95% defense rate, SALO >90%, RTV detection accuracy 0.58–1.00 across attack types (AUROC 0.9946 against JB-GCG)), but none have been evaluated on reasoning-model self-jailbreak — a qualitatively different threat where the safety override unfolds within the model's own extended chain-of-thought over dozens of steps. Meanwhile, mechanistic analysis has confirmed that these transitions are visible in hidden states (Yong & Bach, ICLR 2026), and text-level entropy methods like SafeRemind (arXiv:2601.03662) can detect decision-locking points via output entropy (up to 45.5pp improvement) but remain vulnerable to pathological CoT. We conduct the first systematic cross-architecture empirical study evaluating whether existing hidden-state detectors and text-level entropy methods generalize to reasoning-model self-jailbreak on traces from THREE models spanning TWO base architecture families: DeepSeek-R1-Distill-Qwen-32B and QwQ-32B (both Qwen2.5-32B base, different training: knowledge distillation vs. two-phase RL) plus DeepSeek-R1-Distill-Llama-8B (Llama 3.1-8B base, knowledge distillation). This three-model design creates a structured evaluation matrix that cleanly decomposes transfer failure into architecture effects vs. training-procedure effects — motivated by 'Detection Is Cheap, Routing Is Learned' (arXiv:2603.18280) and Latent Adversarial Detection (arXiv:2604.28129), which independently confirm safety probes don't transfer across model families. We evaluate a comprehensive comparison ladder: text-level monitors (Beyond Content Safety, SFCoT, TraceGuard, SafeRemind entropy-based detection) → empirically-derived contrastive direction vectors (Self-Jailbreaking, computed via mean-difference) → static hidden-state probes (SafeSwitch, SIREN) → geometric trajectory monitoring (TrajGuard) → CRTA (ours). All methods evaluated within-model, same-architecture, same-source, cross-family, leave-one-out, and jointly. We hypothesize existing detectors fail because: (a) token-level granularity misses reasoning-step-level transitions, (b) empirically-derived contrastive direction vectors miss nuanced transition patterns since not gradient-optimized, (c) static probes lack temporal modeling, (d) input-level detectors miss self-jailbreak where the input is legitimate, (e) entropy-based methods miss hidden-state transitions without surface entropy signatures. CRTA is a learned temporal contrastive detector purpose-built for this setting: it operates at reasoning-step granularity within extended CoT, projects hidden states from different architectures (5120-dim Qwen2.5 and 4096-dim Llama 3.1) to a shared d=2048 representation space via learned linear projections, uses gradient-optimized contrastive representations trained on the HarmThoughts 16-label taxonomy (0.70–0.85+ binary Macro F1 depending on probing method but only 0.461–0.501 16-label Macro F1, with the 0.30–0.40 gap between binary detection and fine-grained classification directly motivating learned contrastive approaches over simple linear probes) to capture nuanced transition patterns, trains jointly on all three models for architecture-invariant representations, and deploys as a real-time monitor with pattern-adaptive intervention. Causal validation via bidirectional activation patching (300 samples, 100 per model, LOCA methodology) confirms transition steps are causally necessary across both architecture families. The headline contribution is empirical: demonstrating that existing detectors don't generalize to reasoning-model self-jailbreak ACROSS architecture families, with CRTA as the principled purpose-built solution achieving cross-architecture generalization via jointly-trained architecture-invariant representations. Targeting EMNLP 2026 (ARR May 25).\n\n## 核心问题\nLarge reasoning models exhibit 'self-jailbreak' — initially recognizing harmful intent but overriding safety judgments during extended chain-of-thought, with 94.2% of harmful queries initially recognized yet 52.3% still producing hazardous output (Chain-of-Guardrails). Recent mechanistic analysis has confirmed that this transition is visible in hidden-state dynamics: the Self-Jailbreaking paper (Yong & Bach, ICLR 2026) demonstrated that compliance and perceived-harmfulness direction vectors in the residual stream shift systematically at self-jailbreaking sentences, and that these shifts are causally linked to safety override (compliance change +3.1±0.8 at jailbreaking sentences vs. −0.2±0.7 at counterfactual replacements (Table 1)). Meanwhile, hidden-state jailbreak detectors have matured rapidly for standard instruction-tuned LLMs — TrajGuard achieving 95% defense rate, SALO >90%, RTV detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (AUROC 0.9946 against JB-GCG) — but ALL are designed for and evaluated on instruction-tuned conversational models (Llama-2, Vicuna, Mistral), detecting adversarial inputs or unsafe generation at the token/input level. The critical unanswered question is: do these detectors generalize to the qualitatively different setting of reasoning-model self-jailbreak, where the safety failure unfolds WITHIN the model's own extended reasoning over dozens of steps, the 'attack' is the model's own reasoning process (not an adversarial input), and surface text at transition steps appears safe? Crucially, generalization must be tested ACROSS architecture families — not just within the Qwen2.5 family (where DeepSeek-R1-Distill-Qwen-32B and QwQ-32B share the same base) but across fundamentally different base architectures (Qwen2.5 vs. Llama 3.1). Recent work ('Detection Is Cheap, Routing Is Learned,' Frank, arXiv:2603.18280) has shown that safety probe transfer fails across models from different labs, with routing geometry being model- and lab-specific — suggesting that cross-architecture generalization of hidden-state detectors is unlikely without purpose-built methods. If they fail — as we hypothesize — what purpose-built detection method can fill the gap?\n\n## 机遇 / Why Now\nTwo mature research threads have developed independently without empirical connection. Thread 1: Hidden-state jailbreak detection has achieved strong results on standard LLMs — TrajGuard (arXiv:2604.07727) achieves 95% defense rate via streaming Mahalanobis-distance trajectory monitoring; SALO (ICML 2026) captures refusal trajectory signatures at >90%; RTV (arXiv:2605.03095) reaches detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (Table 7), with AUROC 0.9946 against JB-GCG (Table 6) on Llama-3-8B (as low as 0.58 against naturalistic PAIR attacks where adversarial prompts produce representations inherently close to harmless inputs). All are designed for and evaluated on instruction-tuned conversational models at the token/input level. Thread 2: Reasoning-model self-jailbreak has been mechanistically characterized — Yong & Bach (ICLR 2026) showed hidden-state dynamics reveal safety transitions via empirically-derived contrastive direction vectors (computed via mean-difference between contrastive prompt pairs, not gradient-optimized), and HarmThoughts (arXiv:2604.19001) demonstrated 0.70–0.85+ Macro F1 at binary granularity depending on probing method (Figure 3: contrastive mean-difference methods 0.70–0.80, linear probes exceeding 0.85) but only 0.461–0.501 Macro F1 on the full 16-label taxonomy across multiple model families including DeepSeek-R1-Distill-Llama-8B, DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and OpenThinker-7B — validating that safety information is extractable but fine-grained transition classification leaves substantial room for improvement, and the 0.30–0.40 gap between binary detection (0.70–0.85+) and fine-grained 16-label classification (0.46–0.50) directly motivates learned contrastive approaches over simple linear probes. Meanwhile, inference-time text-level defenses like SafeRemind (arXiv:2601.03662) detect decision-locking points via output entropy (up to 45.5pp safety improvement across 5 LRMs) but operate on surface signals vulnerable to pathological CoT. But Thread 2's analysis tools (contrastive mean-difference direction vectors, post-hoc probes) are not designed as real-time deployable detectors, and Thread 1's detectors have never been evaluated on reasoning-model self-jailbreak. The missing bridge is an empirical study: (1) evaluating Thread 1's detectors on Thread 2's problem ACROSS architecture families — we hypothesize they fail because the safety override occurs at reasoning-step granularity within extended CoT, not at the token/input level; (2) proposing CRTA, a learned temporal contrastive detector purpose-built for this setting, building on the mechanistic observations from Thread 2. Critically, HarmThoughts provides labeled traces from BOTH Qwen2.5-based models (DeepSeek-R1-Distill-Qwen-32B and QwQ-32B) AND the Llama 3.1-based DeepSeek-R1-Distill-Llama-8B — enabling a cross-architecture evaluation that dramatically strengthens the generalizability argument beyond same-family transfer. 'Detection Is Cheap, Routing Is Learned' (Frank, arXiv:2603.18280) independently confirms that safety representations don't transfer across model families, reinforcing that purpose-built cross-architecture methods are needed. This creates a clean contribution: the headline finding is that existing detectors don't generalize across reasoning model architecture families, and CRTA is the principled solution validated against a comprehensive comparison ladder.\n\n## 方法思路\nWe conduct the first systematic cross-architecture evaluation of existing hidden-state jailbreak detectors on reasoning-model self-jailbreak, demonstrating they fail to generalize across architecture families, and propose CRTA — a learned temporal contrastive detector purpose-built for this setting — validated against a comprehensive comparison ladder from empirically-derived contrastive direction vectors through geometric trajectory monitoring to text-level entropy methods.\n\n**Part 1: Cross-Architecture Empirical Study — Do Existing Detectors Generalize?**\n\nWe evaluate five existing hidden-state detection methods and one text-level entropy baseline on reasoning-model self-jailbreak traces from THREE models spanning TWO base architecture families:\n- DeepSeek-R1-Distill-Qwen-32B (Qwen2.5-32B base: 64 layers, hidden_size=5120, knowledge distillation from DeepSeek-R1)\n- QwQ-32B (Qwen2.5-32B base: 64 layers, hidden_size=5120, two-phase RL training)\n- DeepSeek-R1-Distill-Llama-8B (Llama 3.1-8B base: 32 layers, hidden_size=4096, knowledge distillation from DeepSeek-R1)\n\nThis three-model design creates a structured evaluation matrix:\n- (i) Same-architecture transfer: DeepSeek-R1-Distill-Qwen-32B ↔ QwQ-32B (shared Qwen2.5-32B base, different reasoning training — distillation vs. two-phase RL), isolating training-procedure effects\n- (ii) Same-source transfer: DeepSeek-R1-Distill-Qwen-32B ↔ DeepSeek-R1-Distill-Llama-8B (shared distillation from DeepSeek-R1, different base architecture — Qwen2.5 vs. Llama 3.1), isolating architecture effects\n- (iii) Cross-family transfer: QwQ-32B ↔ DeepSeek-R1-Distill-Llama-8B (neither architecture nor training source shared), testing the hardest generalization setting\n- (iv) Leave-one-out: train on any two, test on the third — most diagnostic of generalization\n- (v) Joint: train on all three, test on held-out from each\n\nThe six baselines:\n- (a) Self-Jailbreaking's empirically-derived contrastive direction vectors (compliance + harmfulness directions extracted from Qwen2.5-Instruct-7B base model via contrastive mean-difference computation using 5 system prompt pairs on XSTest)\n- (b) SafeSwitch-style static linear probes (retrained on reasoning traces for fairest comparison)\n- (c) SIREN per-layer probes applied to reasoning traces\n- (d) TrajGuard's SGS module (Mahalanobis distance, 8-token sliding window, EWMA) — reimplemented and evaluated both as-is (trained on standard jailbreak data) and retrained on reasoning traces\n- (e) SALO's refusal trajectory signatures\n- (f) SafeRemind's entropy-based detection at sentence boundaries — providing comparison between hidden-state and surface-level detection paradigms\n\nAll baselines evaluated in the full five-setting matrix per model pair. The cross-architecture settings are particularly diagnostic: if existing detectors fail even within the same architecture family (DeepSeek vs. QwQ, both Qwen2.5), the failure is clearly due to reasoning-training-specific dynamics; if they additionally fail across architecture families (Qwen2.5 vs. Llama 3.1), this demonstrates that architecture-invariant representations are necessary.\n\nWe hypothesize these fail on reasoning-model self-jailbreak because: (i) token-level granularity (TrajGuard's 8-token window) misses reasoning-step-level transitions spanning dozens of tokens; (ii) empirically-derived contrastive direction vectors (Self-Jailbreaking) capture the dominant compliance/harmfulness axes via mean-difference computation but miss nuanced transition patterns (e.g., distinguishing 'Constraint Reframing' from 'Intent Rationalization' in HarmThoughts' taxonomy) since they are not gradient-optimized for the detection task; (iii) static probes (SafeSwitch, SIREN) lack temporal modeling needed to detect when a transition occurs; (iv) input-level detectors (SALO, RTV) miss self-jailbreak entirely since the input is a legitimate prompt; (v) entropy-based methods (SafeRemind) detect decision-locking via surface entropy but miss hidden-state safety transitions that occur without surface-level entropy signatures, especially under pathological CoT.\n\n**Part 2: CRTA — Temporal Contrastive Detection Method**\n\nBuilding on the mechanistic observation that hidden-state dynamics reveal safety transitions during reasoning (Yong & Bach, ICLR 2026), we train a lightweight temporal contrastive classifier on step-level hidden-state trajectories to detect the precise reasoning step where safety judgment flips, optimized for cross-architecture generalization.\n\n**Data collection**: We generate paired reasoning traces (safe refusals vs. self-jailbreak completions) using a multi-attack strategy prioritizing high-reliability non-gradient methods:\n- PRIMARY attacks: (1) CoT Hijacking (94-100% ASR on reasoning models) — prepending benign puzzle reasoning before harmful instructions; (2) H-CoT: Hijacking the Chain-of-Thought Safety Reasoning (71-97% ASR on DeepSeek-R1); (3) Few-shot jailbreaking (4-shot ~88%, 8-shot ~98% ASR).\n- SUPPLEMENTARY attacks: (4) Transfer GCG from DeepSeek-R1-Distill-Qwen-7B — if within-family transfer rate exceeds 30% (plausible given 4-9x within-family advantage per Angell et al. 2025 and 32-39% GCG-T success on DeepSeek distilled models per Talukder et al. 2025), retain as attack family; if below 30%, switch to template-based attacks (role-playing, hypothetical framing, authority appeals) as the 4th family. AmpleGCG retraining is not assumed since pretrained weights are not publicly released.\n- HELD-OUT for generalization: (5) PAIR attacks; (6) one primary attack family (selected after initial success rates measured).\n- Prompts drawn from JailbreakBench (100 behaviors) and HarmBench.\n- Traces generated from ALL THREE models, enabling architecture-balanced training.\n- Additionally, we leverage HarmThoughts (56,931 annotations covering both Qwen2.5 and Llama 3.1 families, MIT license, publicly available at huggingface.co/datasets/ishitakakkar-10/HarmThoughts) for probe pre-training and the Self-Jailbreaking paper's GPT-5 annotation methodology for transition ground-truth validation.\n- Target: ~600 paired traces per model for training (~1,800 total), ~300 per model for testing (~900 total).\n\n**Transition step identification for training**: We use a two-stage pipeline: (1) AUTOMATIC: Apply the HarmThoughts 16-label taxonomy via Claude Sonnet (validated at JSD 0.035 bits vs. human labels) to each sentence in every training trace. The transition step is defined as the first sentence where the label shifts from a safety-oriented category (Risk Acknowledgement, Safe Alternative, Compliance Check, Ethical Deliberation, Intent Assessment) to a harmful-compliance category (Refusal Suppression, Constraint Reframing, Intent Rationalization, Persona Adoption, or any Type III label). (2) VALIDATION: For a 300-trace subset (100 per model), cross-validate against the Self-Jailbreaking paper's direction-vector method — the transition should coincide with the point where compliance projection increases sharply (+3.1±0.8 at jailbreaking sentences vs. −0.2±0.7 at counterfactual replacements (Table 1) per their findings). Traces with label/direction-vector disagreement are flagged for manual review. Expected automatic transition labeling accuracy: ~85% based on HarmThoughts' binary-granularity probe performance.\n\n**Hidden state extraction**: At each reasoning step (sentence boundaries, following HarmThoughts methodology), extract hidden states from empirically selected layers on ALL THREE models. For Qwen2.5-32B models (DeepSeek-R1-Distill-Qwen-32B and QwQ-32B): preliminary sweep across layers 12-48, selecting top 8 layers by safety discriminability — expected in layers 24-40 (37.5%-62.5% depth), consistent with SIREN's middle-layer finding. For Llama 3.1-8B model (DeepSeek-R1-Distill-Llama-8B): sweep across layers 6-28, selecting top 6 layers — expected in layers 12-24 (37.5%-75% depth). Different hidden dimensions (5120 for Qwen2.5-32B vs. 4096 for Llama 3.1-8B) are handled via learned linear projection to a shared dimension d=2048 before contrastive training — analogous to how multilingual models project different languages into a shared semantic space. Per-sample storage: Qwen2.5-32B models: 40 steps × 8 layers × 5120 dims × 2 bytes (BF16) ≈ 3.1 MB; Llama 3.1-8B model: 40 steps × 6 layers × 4096 dims × 2 bytes ≈ 1.9 MB. Total: ~2 × 900 × 3.1 MB + 900 × 1.9 MB ≈ 7.3 GB (manageable with memory-mapped storage).\n\n**Temporal contrastive objective**: We extend CRL-LLM-Defense's triplet framework to step-level temporal sequences with cross-architecture projection. For each trace with an identified transition step T: anchor = hidden state at step T−1 (last safety-aware step), projected to shared d=2048; positive = hidden state at step T−1 in a matched safe refusal trace (remains safety-aware); negative = hidden state at step T+1 in the self-jailbreak trace (first post-transition step). The loss also includes inter-step temporal terms capturing the *trajectory* of change: the contrastive margin should be larger for step pairs straddling T than for pairs within the safe or unsafe regime. Unlike TrajGuard's geometric Mahalanobis thresholding against fixed centroids, this contrastive objective learns to represent nuanced transition patterns. Unlike Self-Jailbreaking's empirically-derived contrastive direction vectors (which capture only the two dominant axes of compliance and harmfulness via mean-difference computation from generic safety prompts), the learned representations are gradient-optimized on the detection task itself and can capture multi-dimensional transition signatures corresponding to different self-jailbreak strategies (HarmThoughts' Type I vs. Type II vs. Type III patterns). Cross-architecture projection enables the contrastive loss to learn architecture-invariant transition signatures in the shared d=2048 space. Training jointly on traces from all three models (spanning two architecture families) forces the learned subspace to capture genuinely model-invariant features, not Qwen2.5-specific representations. We also draw on ICR Probe's cross-layer dynamics methodology to incorporate inter-layer transition features alongside inter-step features.\n\n**Deployment**: The trained probe deploys as a real-time reasoning monitor. When a transition is detected, we inject a corrective prefix conditioned on the detected behavior type (mapped from HarmThoughts taxonomy: Type I 'Disabling Safety' → strong refusal redirect; Type II 'Enabling Compliance' → safety reanchoring; Type III 'Executing Harm' → immediate halt). Additionally, CRTA's transition detection could trigger Chain of Risk's per-principle activation steering at the detected step, combining CRTA's precise temporal localization with Chain of Risk's proven steering mechanism.\n\n**Part 3: Comprehensive Cross-Architecture Evaluation**\n\n**(a) Primary experiment — comparison ladder**: We report detection performance (AUROC, F1, step-level localization accuracy) for the full comparison ladder on ALL THREE models, as well as all cross-model transfer settings:\n(i) Text-level monitors: Beyond Content Safety's LLM-monitor, SFCoT's three-tier scoring, TraceGuard's contrastive reasoning trace verification, SafeRemind's entropy-based decision-locking detection\n(ii) Self-Jailbreaking's empirically-derived contrastive direction vectors (compliance + harmfulness, computed via mean-difference)\n(iii) Static hidden-state probes: SafeSwitch-style, SIREN per-layer probes (retrained on reasoning traces)\n(iv) TrajGuard's geometric trajectory monitoring (both zero-shot from standard jailbreak training and retrained on reasoning traces)\n(v) CRTA (ours)\nEach step up adds a capability (surface entropy → learned representations → temporal modeling → step-level granularity → contrastive training → cross-architecture joint training), making CRTA's contribution cumulative and well-motivated. Each method evaluated within-model, same-architecture, same-source, cross-family, leave-one-out, and jointly.\n\n**(b) Cross-architecture generalization analysis (key contribution)**: The three-model design enables decomposing generalization failure into three factors: (i) training-procedure effect (DeepSeek-R1-Distill-Qwen-32B vs. QwQ-32B, same Qwen2.5 architecture, different training), (ii) architecture effect (DeepSeek-R1-Distill-Qwen-32B vs. DeepSeek-R1-Distill-Llama-8B, shared distillation source, different base architecture — Qwen2.5 vs. Llama 3.1), (iii) combined effect (QwQ-32B vs. DeepSeek-R1-Distill-Llama-8B, neither architecture nor training source shared). If existing detectors fail on same-architecture transfer but CRTA succeeds, this shows reasoning-step temporal modeling matters regardless of architecture. If existing detectors also fail on cross-architecture transfer while CRTA maintains performance via joint training with shared projections, this shows architecture-invariant representations are necessary and achievable. Additionally, compare self-jailbreak dynamics across architectures: do the same HarmThoughts behavior types (Type I/II/III) distribute differently across Qwen2.5 vs. Llama 3.1 models? The scale difference between the 32B and 8B models introduces a potential confound; this is partially mitigated by HarmThoughts showing similar probe performance across 8B and 32B variants (0.461 vs. 0.479 Macro F1 for 16-label).\n\n**(c) Surface-text deceptiveness analysis (key insight)**: At probe-detected transition steps, measure surface text safety scores using LlamaGuard/WildGuard. We hypothesize transition steps score as textually SAFE (rationalization appears as legitimate reasoning) while hidden states diverge — quantifying the gap that hidden-state analysis fills and that text-level monitors (including TraceGuard and SafeRemind) cannot close. Performed across all three models to assess whether deceptiveness patterns vary by architecture.\n\n**(d) Robustness — addressing 'Diagnosing Pathological CoT'**: Empirically validate that CRTA is robust to post-hoc rationalization because it reads internal computation, not surface text. Test on traces where surface CoT is deliberately obfuscated. Compare against SafeRemind's entropy-based detection under the same obfuscation conditions.\n\n**(e) Probing generalization protocol (following 'False Sense of Security')**: Train on 3-4 attack families, evaluate on 2 entirely held-out families, report in-distribution and OOD F1; compare against n-gram surface baseline and text-level safety classifiers; compare against random-step baseline for localization validation.\n\n**(f) Causal validation with bidirectional patching**: At the detected transition step, perform bidirectional activation patching (LOCA methodology) on 300 samples (100 per model) with controls:\n- SAFE→UNSAFE direction: Patch activations from a matched safe refusal trace at the transition step and measure causal effect on compliance probability — does the model shift back to refusal?\n- UNSAFE→SAFE direction: Patch activations from a self-jailbreak trace's post-transition states into a matched safe trace at corresponding positions and measure whether compliance is induced earlier.\n- Controls: patching at transition step vs. random steps vs. adjacent non-transition steps.\n- Success criterion: ≥30% compliance reduction (safe→unsafe patching) and ≥20% compliance increase (unsafe→safe patching) at transition step, <10% effect at random steps.\n- Cross-architecture comparison: do causal effect sizes differ between Qwen2.5 and Llama 3.1 models?\nThis bidirectional design demonstrates that the transition step is causally NECESSARY for the safety override, not just correlated.\n\n**(g) Ablation studies**: (i) Learned contrastive probe vs. Self-Jailbreaking's empirically-derived contrastive direction vectors vs. TrajGuard's Mahalanobis distance — isolating the benefit of gradient-optimized learned representations over mean-difference-derived representations; (ii) Temporal modeling vs. static snapshots — isolating the benefit of step-level trajectory; (iii) Reasoning-step granularity vs. token-level granularity — isolating the benefit of step-level aggregation; (iv) Layer selection sensitivity; (v) Joint vs. single-model training — isolating the benefit of cross-model training for generalization; (vi) Cross-architecture projection ablation — shared linear projection to d=2048 vs. architecture-specific encoders vs. naive zero-padding to max dimension; (vii) Leave-one-architecture-out — train on both Qwen2.5-32B models only and test on Llama 3.1-8B model, and train on Llama 3.1-8B only and test on both Qwen2.5-32B models, to isolate whether cross-architecture training data is necessary or whether the contrastive objective alone enables generalization.\n\n## 研究现状\nThe reasoning model safety landscape spans multiple paradigms with a recently identified gap between hidden-state detection and reasoning-model self-jailbreak:\n\n**(1) Mechanistic analysis of reasoning-model self-jailbreak (establishes the phenomenon CRTA detects)**: 'Self-Jailbreaking: Language Models Can Reason Themselves Out of Safety Alignment' (Yong & Bach, ICLR 2026, arXiv:2510.20956) is the most direct precursor — it tracks compliance and perceived-harmfulness direction vectors through the residual stream sentence-by-sentence during reasoning-model CoT, demonstrating that self-jailbreaking sentences causally shift internal representations (compliance change +3.1±0.8 at jailbreaking sentences vs. −0.2±0.7 at counterfactual replacements (Table 1)). Critically, their approach uses EMPIRICALLY-DERIVED CONTRASTIVE direction vectors extracted via mean-difference computation using 5 contrastive system prompt pairs on the XSTest benchmark, applied to the Qwen2.5-Instruct-7B base model (following Chen et al.'s persona vector / representation engineering methodology) — these are data-derived representations computed through contrastive mean-difference, not gradient-optimized task-specific vectors. The approach serves as a diagnostic/analysis tool (not a deployable detector), and was validated on s1.1-7B (not larger reasoning models). Chain-of-Guardrails (arXiv:2510.21285) performs PCA-based hidden representation analysis but only for post-hoc evaluation of training methods — it does not track temporal dynamics within individual reasoning chains. HarmThoughts (arXiv:2604.19001) provides 56,931 sentence-level annotations across 1,018 reasoning traces from DeepSeek-R1-Distill-Llama-8B (Llama 3.1 base), DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and OpenThinker-7B (MIT license, publicly available at huggingface.co/datasets/ishitakakkar-10/HarmThoughts) with a 16-label taxonomy, showing 0.70–0.85+ Macro F1 at binary granularity depending on probing method (Figure 3: contrastive mean-difference methods 0.70–0.80, linear probes exceeding 0.85) but only 0.461–0.501 Macro F1 on the full 16-label taxonomy — validating that safety information is extractable but fine-grained transition classification leaves substantial room for improvement, and the 0.30–0.40 gap between binary detection (0.70–0.85+) and fine-grained 16-label classification (0.46–0.50) directly motivates learned contrastive approaches over simple linear probes. Critically for our cross-architecture evaluation design, HarmThoughts covers models from TWO base architecture families: Qwen2.5 (DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, OpenThinker-7B) and Llama 3.1 (DeepSeek-R1-Distill-Llama-8B).\n\n**(2) Hidden-state jailbreak detectors (strong on standard LLMs, UNTESTED on reasoning-model self-jailbreak)**: TrajGuard (arXiv:2604.07727, April 2026) — streaming hidden-state trajectory detection using Mahalanobis distance with 8-token sliding windows and EWMA smoothing, achieving 95% defense rate, 5.2ms/token, <1.5% FPR across 12 attack types on Llama-2-7B, Llama-3.1-8B, Mistral-7B, Vicuna-7B. SALO (ICML 2026, arXiv:2605.02958) captures refusal trajectory signatures via causal tracing at >90% detection on instruction-tuned models. RTV (arXiv:2605.03095, May 2026) constructs multi-layer refusal-direction fingerprints with detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (Table 7), with AUROC 0.9946 against JB-GCG (Table 6) on Llama-3-8B (as low as 0.58 against naturalistic PAIR attacks where adversarial prompts produce representations inherently close to harmless inputs). SafeSwitch (EMNLP 2025, arXiv:2502.01042) uses internal state probes reducing harmful outputs ~80%. SIREN (April 2026) achieves 86.7% F1 with per-layer probes. SafeProbing (arXiv:2601.10543) demonstrates latent safety signals during decoding. AISA (arXiv:2602.13547) localizes safety awareness via spatiotemporal attention-head analysis. Building Production-Ready Probes for Gemini (arXiv:2601.11516, Google DeepMind, January 2026) found that activation probes are fragile to distribution shifts, particularly on long-context inputs — directly supporting our hypothesis that probes trained on standard LLMs may fail on reasoning models' extended CoT. 'Detection Is Cheap, Routing Is Learned: Why Refusal-Based Alignment Evaluation Fails' (Frank, arXiv:2603.18280, March 2026) probes 9 open-weight models from 5 labs, finding that cross-model safety probe transfer fails because routing geometry is model- and lab-specific — directly supporting our hypothesis that existing hidden-state detectors won't generalize across reasoning model architecture families and motivating purpose-built cross-architecture methods like CRTA. Latent Adversarial Detection (arXiv:2604.28129, April 2026) probes residual stream trajectories for multi-turn attack detection across four model families (24B–70B), finding that probes are model-specific and do not transfer across architectures — independently confirming Frank (2603.18280) and supporting our cross-architecture evaluation design. **Crucially, NO paper has evaluated any of these detectors on reasoning-model self-jailbreak traces, let alone across multiple reasoning model architecture families.**\n\n**(3) Text-level CoT monitors (dominant paradigm, vulnerable to pathological CoT)**: Beyond Content Safety (arXiv:2603.25412) deploys an external LLM verifier achieving 87.11% step-level localization. SFCoT (arXiv:2603.15397) uses three-tier scoring reducing ASR from 58.97% to 12.31%. SafeThink (arXiv:2602.11096) monitors with a safety reward model reducing ASR from 63% to 5.7%. SafeRemind (arXiv:2601.03662, January 2026) provides a training-free inference-time defense using Shannon entropy at sentence boundaries to detect 'decision-locking' points and inject pre-defined safe-reminding phrases; achieves up to 45.5pp safety improvement across 5 LRMs (DeepSeek-R1 7B/8B/32B, QwQ-32B, AM-Thinking-v1 32B) on 6 benchmarks (JailBreakBench, HarmBench, AdvBench, XSTest, MATH-500, GPQA-Diamond), but operates on output logits only (not hidden states) and suffers a 19.2% false refusal rate on benign queries. Clean differentiation: SafeRemind detects decision-locking via output entropy (surface signal); CRTA detects safety-override transitions via hidden-state contrastive features (representation-level signal). SafeRemind is vulnerable to pathological CoT where surface-level entropy does not reflect underlying safety transitions. TraceGuard (arXiv:2603.02436, March 2026) proposes a process-guided framework for detecting reasoning backdoors through three synergistic phases: (i) Automated Forensic Synthesis generating contrastive reasoning pairs to isolate logical 'points of fracture,' (ii) Step-Aware Supervised Fine-Tuning (SSFT), and (iii) Verifier-Guided Reinforcement Learning via GRPO — achieving 99.7% detection on explicit fallacy injections and 94.8% Det-F1 on deceptive post-hoc rationalizations with a compact Qwen3-4B-Guard verifier. TraceGuard operates on TEXT-level reasoning traces (not hidden states), confirming that temporal contrastive structure is a powerful detection signal while remaining complementary to hidden-state approaches: hidden-state methods can detect sub-surface transitions invisible to text monitors (as demonstrated by 'Diagnosing Pathological CoT'). Behavior Cue Reasoning (arXiv:2605.07021) trains models to emit behavior cues. All text-level approaches are vulnerable to pathological CoT — 'Diagnosing Pathological CoT' (arXiv:2602.13904) identifies three CoT pathologies with detection collapsing to ~10% under obfuscation.\n\n**(4) Training-time alignment**: CRAFT (arXiv:2603.17305) combines contrastive representation learning with GRPO achieving 79% reasoning safety improvement. R2D (arXiv:2502.12970) introduces Contrastive Pivot Optimization. The Self-Jailbreaking paper shows remarkably few safety reasoning samples (50 from STAR-1) suffice for mitigation. All require model weight modification and cannot deploy post-hoc.\n\n**(4a) Inference-time hidden-state steering**: Chain of Risk (arXiv:2605.05678) is a white-box TEST-TIME method that learns per-principle unsafe-to-safe activation steering directions and selectively activates only directions whose current hidden state is closer to the unsafe than safe centroid — reducing unsafe reasoning by 77.2% without model retraining. Differentiation from CRTA: Chain of Risk STEERS activations toward safety (intervention), while CRTA DETECTS safety-override transitions (monitoring). They are complementary — CRTA could trigger Chain of Risk's steering at the detected transition step.\n\n**(5) Methodological precedent**: 'Where Does Reasoning Break?' (arXiv:2605.13772) validates step-level hidden-state analysis for reasoning failure detection (91-96% AUROC). ICR Probe (ACL 2025, arXiv:2507.16488) tracks cross-layer dynamics for hallucination detection. StALT (arXiv:2605.01853) introduces training-free spatiotemporal dynamics as signatures of internal reasoning. LOCA (arXiv:2605.00123) identifies minimal causal hidden-state interventions (~6 changes) to induce refusal. CREST (arXiv:2512.24574) trains linear classifiers to identify cognitive behavior types (verification, backtracking) and uses steering vectors via attention head intervention to suppress unproductive reasoning behaviors (17.5% accuracy improvement, 37.6% token reduction).\n\n**(6) Attack characterization for reasoning models**: CoT Hijacking (arXiv:2510.26418) achieves 94-100% ASR on frontier reasoning models. H-CoT (arXiv:2502.12893) drops DeepSeek-R1 refusal from ~20% to 4%. Few-shot jailbreaking achieves ~88% ASR with 4 shots. GCG transfer to DeepSeek-R1 distilled models achieves 32-39% (Talukder et al., 2025), while MoE R1 resists at <1%. Within-family transfer is 4-9x stronger than cross-family (Angell et al., 2025).\n\n**The gap**: No empirical study has evaluated whether existing hidden-state jailbreak detectors (designed for instruction-tuned models) generalize to reasoning-model self-jailbreak, nor has any study tested this across multiple reasoning model architecture families. The Self-Jailbreaking paper demonstrates the phenomenon is visible in hidden states but uses empirically-derived contrastive direction vectors (computed via mean-difference, not gradient-optimized), not learned detectors. SafeRemind demonstrates that inference-time step-level intervention is effective but relies on surface entropy signals rather than hidden-state features. 'Detection Is Cheap, Routing Is Learned' independently confirms that safety probes don't transfer across model families, and Latent Adversarial Detection (arXiv:2604.28129) independently confirms the same finding across four model families (24B–70B), together reinforcing the need for purpose-built cross-architecture methods. Chain of Risk demonstrates that inference-time hidden-state steering can reduce unsafe reasoning by 77.2% without retraining, providing a complementary intervention mechanism that CRTA could trigger at detected transition steps. CRTA fills this gap with three contributions: (1) the first systematic cross-architecture evaluation of existing hidden-state detectors on reasoning-model self-jailbreak across DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and DeepSeek-R1-Distill-Llama-8B — spanning two base architecture families (Qwen2.5 and Llama 3.1) and three distinct reasoning training procedures (empirical study), (2) cross-architecture generalization analysis decomposing transfer failure into architecture effects vs. training-procedure effects (generalizability), and (3) a purpose-built learned temporal contrastive detector with architecture-invariant representations that outperforms both existing detectors and empirically-derived contrastive direction vectors (method contribution).\n\n## 目标 Venue\n- EMNLP 2026 (ARR submission deadline May 25, 2026)\n\n## 关键参考\n- Self-Jailbreaking: Language Models Can Reason Themselves Out of Safety Alignment (Yong & Bach, ICLR 2026, arXiv:2510.20956) — CRITICAL PRECURSOR: sentence-level hidden-state analysis via empirically-derived contrastive direction vectors (mean-difference on XSTest with 5 system prompt pairs, applied to Qwen2.5-Instruct-7B)\n- TrajGuard: Streaming Hidden-state Trajectory Detection for Decoding-time Jailbreak Defense (arXiv:2604.07727, April 2026)\n- HarmThoughts: When Safety Fails Before the Answer (arXiv:2604.19001, April 2026) — 56,931 sentence-level annotations across DeepSeek-R1-Distill-Llama-8B (Llama 3.1 base), DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and OpenThinker-7B, 16-label taxonomy, MIT license (publicly available at huggingface.co/datasets/ishitakakkar-10/HarmThoughts) — provides traces from BOTH architecture families\n- TraceGuard: Process-Guided Firewall against Reasoning Backdoors in Large Language Models (arXiv:2603.02436, March 2026) — text-level contrastive reasoning trace verification via forensic synthesis + step-aware SFT + verifier-guided RL; 99.7% on explicit fallacy injections, 94.8% Det-F1 on post-hoc rationalizations; complementary text-level baseline\n- How Does the Thinking Step Influence Model Safety? An Entropy-based Safety Reminder for LRMs [SafeRemind] (arXiv:2601.03662, January 2026) — training-free inference-time defense using Shannon entropy at sentence boundaries to detect decision-locking points and inject safe-reminding phrases; up to 45.5pp safety improvement across 5 LRMs (DeepSeek-R1 7B/8B/32B, QwQ-32B, AM-Thinking-v1 32B); operates on output logits, not hidden states; 19.2% false refusal rate on benign queries\n- Detection Is Cheap, Routing Is Learned: Why Refusal-Based Alignment Evaluation Fails (Frank, arXiv:2603.18280, March 2026) — probes 9 open-weight models from 5 labs showing cross-model safety probe transfer fails because routing geometry is model- and lab-specific; directly supports cross-architecture evaluation motivation\n- Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv:2604.28129, April 2026) — probes residual stream across 4 model families (24B-70B), finding probes are model-specific and don't transfer across architectures; independently supports cross-architecture motivation\n- SafeDream: Safety World Model for Proactive Early Jailbreak Detection (arXiv:2604.16824, April 2026)\n- Defending Large Language Models Against Jailbreak Attacks via In-Decoding Safety-Awareness Probing [SafeProbing] (arXiv:2601.10543, January 2026)\n- AISA: Awakening Intrinsic Safety Awareness in Large Language Models against Jailbreak Attacks (arXiv:2602.13547, February 2026)\n- Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses [RTV] (arXiv:2605.03095, May 2026) — detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (Table 7), with AUROC 0.9946 against JB-GCG (Table 6) on Llama-3-8B\n- ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv:2507.16488)\n- Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models [StALT] (arXiv:2605.01853, May 2026)\n- Beyond Content Safety: Real-Time Monitoring for Reasoning Vulnerabilities in Large Language Models (arXiv:2603.25412, March 2026)\n- SFCoT: Safer Chain-of-Thought via Active Safety Evaluation and Calibration (arXiv:2603.15397, March 2026)\n- Diagnosing Pathological Chain-of-Thought in Reasoning Models (arXiv:2602.13904, February 2026)\n- When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models [Chain-of-Guardrails] (arXiv:2510.21285, October 2025)\n- Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations [CRAFT] (arXiv:2603.17305, March 2026)\n- Reasoning-to-Defend: Safety-Aware Reasoning Can Defend Large Language Models from Jailbreaking [R2D] (arXiv:2502.12970, February 2025)\n- Towards Safe Reasoning in Large Reasoning Models via Corrective Intervention [IPO] (arXiv:2509.24393, September 2025)\n- Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection [SALO] (ICML 2026, arXiv:2605.02958)\n- SafeSwitch: Steering Unsafe LLM Behavior via Internal Activation Signals (EMNLP 2025 Findings, arXiv:2502.01042)\n- Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv:2605.13772, May 2026)\n- Hidden States as Early Signals: Step-level Trace Evaluation and Pruning [STEP] (arXiv:2601.09093, January 2026)\n- Minimal, Local, Causal Explanations for Jailbreak Success in Large Language Models [LOCA] (arXiv:2605.00123, May 2026)\n- Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away [SafeThink] (arXiv:2602.11096, February 2026)\n- Chain of Risk: Safety Failures in Large Reasoning Models and Mitigation via Adaptive Multi-Principle Steering (arXiv:2605.05678, May 2026)\n- THINKSAFE: Self-Generated Safety Alignment for Reasoning Models (arXiv:2601.23143, January 2026)\n- ReasoningShield: Safety Detection over Reasoning Traces of Large Reasoning Models (arXiv:2505.17244, May 2025)\n- Behavior Cue Reasoning: Monitorable Reasoning Improves Efficiency and Safety through Oversight (arXiv:2605.07021, May 2026)\n- Annotating the Chain-of-Thought: A Behavior-Labeled Dataset for AI Safety (arXiv:2510.18154, October 2025)\n- Bleeding Pathways: Vanishing Discriminability in LLM Hidden States Fuels Jailbreak Attacks [DEEPALIGN] (NDSS 2026)\n- Improving Large Language Model Safety with Contrastive Representation Learning [CRL-LLM-Defense] (EMNLP 2025)\n- SIREN: LLM Safety From Within (arXiv 2026)\n- False Sense of Security: Why Probing-based Malicious Input Detection Fails to Generalize (NeurIPS 2025 Workshop Spotlight)\n- Building Production-Ready Probes for Gemini (arXiv:2601.11516, Google DeepMind, January 2026)\n- JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models (NeurIPS 2024)\n- AmpleGCG: Learning a Universal and Transferable Generative Model of Adversarial Suffixes (arXiv:2404.07921)\n- Effectively Controlling Reasoning Models through Thinking Intervention (arXiv:2503.24370, March 2025)\n- Chain-of-Thought Hijacking (arXiv:2510.26418, October 2025)\n- H-CoT: Hijacking the Chain-of-Thought Safety Reasoning Mechanism (arXiv:2502.12893, February 2025)\n- Jailbreak Transferability Emerges from Shared Representations (Angell et al., 2025)\n- The Resurgence of GCG Adversarial Attacks on Large Language Models (Talukder et al., 2025)\n- CREST: Understanding and Steering Cognitive Behaviors in LLMs (arXiv:2512.24574, December 2025) — trains linear classifiers to identify cognitive behavior types and uses steering vectors via attention head intervention (17.5% accuracy improvement, 37.6% token reduction)\n- Large Reasoning Models Are Autonomous Jailbreak Agents (Nature Communications, 2026)\n\n## 资源估算\n### auto_research\n- **claude_api_cost**: $220-480 (~900-1600 Opus turns)\n- **estimated_gpu_cost**: $480-630\n- **gpu_hours**: ~180-210h H100 (more thorough baseline sweep across three models, full hyperparameter search for projection layers, extended robustness matrix across all attack families and three models, comprehensive ablation grid including all cross-architecture variants)\n- **gpu_utilization**: High (~85%): agent pipelines attack generation → extraction → baseline evaluation → CRTA training → comparison continuously across three models\n- **risk_note**: Without human judgment, the cross-architecture empirical study framing and nuanced interpretation of when/why each baseline fails on each architecture may lack the precision EMNLP reviewers expect\n- **speed_bottleneck**: Baseline reimplementation (TrajGuard, SALO, SafeRemind) and trace generation from 32B models are the throughput limiters — 2 H100s enable parallel baseline evaluation and trace generation across models\n- **team**: 0 (initial 2-hour setup)\n- **timeline**: 9-11 days with 2x H100\n\n### human_in_loop\n- **claude_api_cost**: $130-220 (~350-600 Opus turns for experiment orchestration, baseline reimplementation, cross-architecture result analysis, and paper drafting; ~$30-40 for Claude Sonnet transition labeling of ~2,700 traces across three models)\n- **estimated_gpu_cost**: $360-465 (at ~$3/hr H100 spot pricing)\n- **gpu_hours**: ~135-155h H100 (Attack generation with non-gradient primary methods: ~10h; GCG on 7B if used: ~20h; trace generation on THREE models: ~24h [~12h DeepSeek-R1-Distill-Qwen-32B + ~8h QwQ-32B + ~4h DeepSeek-R1-Distill-Llama-8B]; hidden state extraction on three models: ~17h [6h+6h+5h, Llama-8B has smaller hidden states]; layer selection sweep on three models: ~10h; transition labeling pipeline: ~4h; baseline reimplementation and evaluation across three models with full cross-model matrix — TrajGuard, SafeSwitch, SIREN, direction vectors, SafeRemind: ~30h; CRTA probe training with joint cross-architecture objective including projection layers: ~7h; comparison ladder evaluation on three models: ~12h; robustness + bidirectional causal validation 300 samples across three models: ~10h; cross-architecture generalization analysis: ~6h; ablations including leave-one-architecture-out and projection ablation: ~8h)\n- **gpu_utilization**: Moderate (~55%): agent queues experiments while human reviews empirical findings and validates the 'existing detectors fail across architecture families' narrative\n- **risk_note**: Primary risks: (1) Existing detectors may partially generalize within the Qwen2.5 family but fail on Llama 3.1 — this is actually the MOST informative outcome, cleanly separating architecture effects from training effects. (2) Self-Jailbreaking's empirically-derived contrastive direction vectors may prove surprisingly competitive on same-architecture transfer but fail on cross-architecture — this is useful for the narrative, validating prior work while motivating gradient-optimized learned representations for cross-architecture settings. (3) The Llama-8B model differs from the Qwen-32B models in both architecture AND scale (8B vs 32B); scale confound is partially mitigated by HarmThoughts showing similar probe performance across 8B and 32B variants (0.461 vs. 0.479 Macro F1). (4) GCG fallback: if GCG transfer from 7B fails (<30%) AND AmpleGCG too costly (pretrained weights not publicly released), proceed with 3 non-gradient families (CoT Hijacking, H-CoT, few-shot) + template-based attacks as 4th family — sufficient attack diversity for the empirical study. (5) The saturated probing landscape means reviewers may view the method contribution as incremental — the paper's success hinges on the cross-architecture empirical study being the primary contribution, which the three-model design substantially strengthens.\n- **team**: 1 researcher, ~1hr/day for reviewing cross-architecture comparison results, validating headline finding (existing detectors fail on reasoning traces across Qwen2.5 and Llama 3.1 families), guiding paper framing as cross-architecture empirical study + method, approving transition labeling quality, reviewing leave-one-architecture-out transfer results\n- **timeline**: 10-12 days (feasible with daily 1-hour check-ins)\n\n### manual\n- **gpu_hours**: Not recommended — 10-day timeline requires automation\n- **team**: N/A\n- **timeline**: Infeasible manually in 10 days\n\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T12:14:39.537Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T12:14:39.537Z",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T12:14:39.704Z_
+
+# Do Hidden-State Jailbreak Detectors Generalize to Reasoning Models? A Cross-Architecture Empirical Study and Temporal Contrastive Detection Method
+
+**状态**: 待审阅  
+**级别**: top-tier  
+**创建时间**: 2026-05-15T18:57:29.492068+00:00
+
+## 描述
+Hidden-state jailbreak detectors have matured for standard instruction-tuned LLMs (TrajGuard 95% defense rate, SALO >90%, RTV detection accuracy 0.58–1.00 across attack types (AUROC 0.9946 against JB-GCG)), but none have been evaluated on reasoning-model self-jailbreak — a qualitatively different threat where the safety override unfolds within the model's own extended chain-of-thought over dozens of steps. Meanwhile, mechanistic analysis has confirmed that these transitions are visible in hidden states (Yong & Bach, ICLR 2026), and text-level entropy methods like SafeRemind (arXiv:2601.03662) can detect decision-locking points via output entropy (up to 45.5pp improvement) but remain vulnerable to pathological CoT. We conduct the first systematic cross-architecture empirical study evaluating whether existing hidden-state detectors and text-level entropy methods generalize to reasoning-model self-jailbreak on traces from THREE models spanning TWO base architecture families: DeepSeek-R1-Distill-Qwen-32B and QwQ-32B (both Qwen2.5-32B base, different training: knowledge distillation vs. two-phase RL) plus DeepSeek-R1-Distill-Llama-8B (Llama 3.1-8B base, knowledge distillation). This three-model design creates a structured evaluation matrix that cleanly decomposes transfer failure into architecture effects vs. training-procedure effects — motivated by 'Detection Is Cheap, Routing Is Learned' (arXiv:2603.18280) and Latent Adversarial Detection (arXiv:2604.28129), which independently confirm safety probes don't transfer across model families. We evaluate a comprehensive comparison ladder: text-level monitors (Beyond Content Safety, SFCoT, TraceGuard, SafeRemind entropy-based detection) → empirically-derived contrastive direction vectors (Self-Jailbreaking, computed via mean-difference) → static hidden-state probes (SafeSwitch, SIREN) → geometric trajectory monitoring (TrajGuard) → CRTA (ours). All methods evaluated within-model, same-architecture, same-source, cross-family, leave-one-out, and jointly. We hypothesize existing detectors fail because: (a) token-level granularity misses reasoning-step-level transitions, (b) empirically-derived contrastive direction vectors miss nuanced transition patterns since not gradient-optimized, (c) static probes lack temporal modeling, (d) input-level detectors miss self-jailbreak where the input is legitimate, (e) entropy-based methods miss hidden-state transitions without surface entropy signatures. CRTA is a learned temporal contrastive detector purpose-built for this setting: it operates at reasoning-step granularity within extended CoT, projects hidden states from different architectures (5120-dim Qwen2.5 and 4096-dim Llama 3.1) to a shared d=2048 representation space via learned linear projections, uses gradient-optimized contrastive representations trained on the HarmThoughts 16-label taxonomy (0.70–0.85+ binary Macro F1 depending on probing method but only 0.461–0.501 16-label Macro F1, with the 0.30–0.40 gap between binary detection and fine-grained classification directly motivating learned contrastive approaches over simple linear probes) to capture nuanced transition patterns, trains jointly on all three models for architecture-invariant representations, and deploys as a real-time monitor with pattern-adaptive intervention. Causal validation via bidirectional activation patching (300 samples, 100 per model, LOCA methodology) confirms transition steps are causally necessary across both architecture families. The headline contribution is empirical: demonstrating that existing detectors don't generalize to reasoning-model self-jailbreak ACROSS architecture families, with CRTA as the principled purpose-built solution achieving cross-architecture generalization via jointly-trained architecture-invariant representations. Targeting EMNLP 2026 (ARR May 25).
+
+## 核心问题
+Large reasoning models exhibit 'self-jailbreak' — initially recognizing harmful intent but overriding safety judgments during extended chain-of-thought, with 94.2% of harmful queries initially recognized yet 52.3% still producing hazardous output (Chain-of-Guardrails). Recent mechanistic analysis has confirmed that this transition is visible in hidden-state dynamics: the Self-Jailbreaking paper (Yong & Bach, ICLR 2026) demonstrated that compliance and perceived-harmfulness direction vectors in the residual stream shift systematically at self-jailbreaking sentences, and that these shifts are causally linked to safety override (compliance change +3.1±0.8 at jailbreaking sentences vs. −0.2±0.7 at counterfactual replacements (Table 1)). Meanwhile, hidden-state jailbreak detectors have matured rapidly for standard instruction-tuned LLMs — TrajGuard achieving 95% defense rate, SALO >90%, RTV detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (AUROC 0.9946 against JB-GCG) — but ALL are designed for and evaluated on instruction-tuned conversational models (Llama-2, Vicuna, Mistral), detecting adversarial inputs or unsafe generation at the token/input level. The critical unanswered question is: do these detectors generalize to the qualitatively different setting of reasoning-model self-jailbreak, where the safety failure unfolds WITHIN the model's own extended reasoning over dozens of steps, the 'attack' is the model's own reasoning process (not an adversarial input), and surface text at transition steps appears safe? Crucially, generalization must be tested ACROSS architecture families — not just within the Qwen2.5 family (where DeepSeek-R1-Distill-Qwen-32B and QwQ-32B share the same base) but across fundamentally different base architectures (Qwen2.5 vs. Llama 3.1). Recent work ('Detection Is Cheap, Routing Is Learned,' Frank, arXiv:2603.18280) has shown that safety probe transfer fails across models from different labs, with routing geometry being model- and lab-specific — suggesting that cross-architecture generalization of hidden-state detectors is unlikely without purpose-built methods. If they fail — as we hypothesize — what purpose-built detection method can fill the gap?
+
+## 机遇 / Why Now
+Two mature research threads have developed independently without empirical connection. Thread 1: Hidden-state jailbreak detection has achieved strong results on standard LLMs — TrajGuard (arXiv:2604.07727) achieves 95% defense rate via streaming Mahalanobis-distance trajectory monitoring; SALO (ICML 2026) captures refusal trajectory signatures at >90%; RTV (arXiv:2605.03095) reaches detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (Table 7), with AUROC 0.9946 against JB-GCG (Table 6) on Llama-3-8B (as low as 0.58 against naturalistic PAIR attacks where adversarial prompts produce representations inherently close to harmless inputs). All are designed for and evaluated on instruction-tuned conversational models at the token/input level. Thread 2: Reasoning-model self-jailbreak has been mechanistically characterized — Yong & Bach (ICLR 2026) showed hidden-state dynamics reveal safety transitions via empirically-derived contrastive direction vectors (computed via mean-difference between contrastive prompt pairs, not gradient-optimized), and HarmThoughts (arXiv:2604.19001) demonstrated 0.70–0.85+ Macro F1 at binary granularity depending on probing method (Figure 3: contrastive mean-difference methods 0.70–0.80, linear probes exceeding 0.85) but only 0.461–0.501 Macro F1 on the full 16-label taxonomy across multiple model families including DeepSeek-R1-Distill-Llama-8B, DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and OpenThinker-7B — validating that safety information is extractable but fine-grained transition classification leaves substantial room for improvement, and the 0.30–0.40 gap between binary detection (0.70–0.85+) and fine-grained 16-label classification (0.46–0.50) directly motivates learned contrastive approaches over simple linear probes. Meanwhile, inference-time text-level defenses like SafeRemind (arXiv:2601.03662) detect decision-locking points via output entropy (up to 45.5pp safety improvement across 5 LRMs) but operate on surface signals vulnerable to pathological CoT. But Thread 2's analysis tools (contrastive mean-difference direction vectors, post-hoc probes) are not designed as real-time deployable detectors, and Thread 1's detectors have never been evaluated on reasoning-model self-jailbreak. The missing bridge is an empirical study: (1) evaluating Thread 1's detectors on Thread 2's problem ACROSS architecture families — we hypothesize they fail because the safety override occurs at reasoning-step granularity within extended CoT, not at the token/input level; (2) proposing CRTA, a learned temporal contrastive detector purpose-built for this setting, building on the mechanistic observations from Thread 2. Critically, HarmThoughts provides labeled traces from BOTH Qwen2.5-based models (DeepSeek-R1-Distill-Qwen-32B and QwQ-32B) AND the Llama 3.1-based DeepSeek-R1-Distill-Llama-8B — enabling a cross-architecture evaluation that dramatically strengthens the generalizability argument beyond same-family transfer. 'Detection Is Cheap, Routing Is Learned' (Frank, arXiv:2603.18280) independently confirms that safety representations don't transfer across model families, reinforcing that purpose-built cross-architecture methods are needed. This creates a clean contribution: the headline finding is that existing detectors don't generalize across reasoning model architecture families, and CRTA is the principled solution validated against a comprehensive comparison ladder.
+
+## 方法思路
+We conduct the first systematic cross-architecture evaluation of existing hidden-state jailbreak detectors on reasoning-model self-jailbreak, demonstrating they fail to generalize across architecture families, and propose CRTA — a learned temporal contrastive detector purpose-built for this setting — validated against a comprehensive comparison ladder from empirically-derived contrastive direction vectors through geometric trajectory monitoring to text-level entropy methods.
+
+**Part 1: Cross-Architecture Empirical Study — Do Existing Detectors Generalize?**
+
+We evaluate five existing hidden-state detection methods and one text-level entropy baseline on reasoning-model self-jailbreak traces from THREE models spanning TWO base architecture families:
+- DeepSeek-R1-Distill-Qwen-32B (Qwen2.5-32B base: 64 layers, hidden_size=5120, knowledge distillation from DeepSeek-R1)
+- QwQ-32B (Qwen2.5-32B base: 64 layers, hidden_size=5120, two-phase RL training)
+- DeepSeek-R1-Distill-Llama-8B (Llama 3.1-8B base: 32 layers, hidden_size=4096, knowledge distillation from DeepSeek-R1)
+
+This three-model design creates a structured evaluation matrix:
+- (i) Same-architecture transfer: DeepSeek-R1-Distill-Qwen-32B ↔ QwQ-32B (shared Qwen2.5-32B base, different reasoning training — distillation vs. two-phase RL), isolating training-procedure effects
+- (ii) Same-source transfer: DeepSeek-R1-Distill-Qwen-32B ↔ DeepSeek-R1-Distill-Llama-8B (shared distillation from DeepSeek-R1, different base architecture — Qwen2.5 vs. Llama 3.1), isolating architecture effects
+- (iii) Cross-family transfer: QwQ-32B ↔ DeepSeek-R1-Distill-Llama-8B (neither architecture nor training source shared), testing the hardest generalization setting
+- (iv) Leave-one-out: train on any two, test on the third — most diagnostic of generalization
+- (v) Joint: train on all three, test on held-out from each
+
+The six baselines:
+- (a) Self-Jailbreaking's empirically-derived contrastive direction vectors (compliance + harmfulness directions extracted from Qwen2.5-Instruct-7B base model via contrastive mean-difference computation using 5 system prompt pairs on XSTest)
+- (b) SafeSwitch-style static linear probes (retrained on reasoning traces for fairest comparison)
+- (c) SIREN per-layer probes applied to reasoning traces
+- (d) TrajGuard's SGS module (Mahalanobis distance, 8-token sliding window, EWMA) — reimplemented and evaluated both as-is (trained on standard jailbreak data) and retrained on reasoning traces
+- (e) SALO's refusal trajectory signatures
+- (f) SafeRemind's entropy-based detection at sentence boundaries — providing comparison between hidden-state and surface-level detection paradigms
+
+All baselines evaluated in the full five-setting matrix per model pair. The cross-architecture settings are particularly diagnostic: if existing detectors fail even within the same architecture family (DeepSeek vs. QwQ, both Qwen2.5), the failure is clearly due to reasoning-training-specific dynamics; if they additionally fail across architecture families (Qwen2.5 vs. Llama 3.1), this demonstrates that architecture-invariant representations are necessary.
+
+We hypothesize these fail on reasoning-model self-jailbreak because: (i) token-level granularity (TrajGuard's 8-token window) misses reasoning-step-level transitions spanning dozens of tokens; (ii) empirically-derived contrastive direction vectors (Self-Jailbreaking) capture the dominant compliance/harmfulness axes via mean-difference computation but miss nuanced transition patterns (e.g., distinguishing 'Constraint Reframing' from 'Intent Rationalization' in HarmThoughts' taxonomy) since they are not gradient-optimized for the detection task; (iii) static probes (SafeSwitch, SIREN) lack temporal modeling needed to detect when a transition occurs; (iv) input-level detectors (SALO, RTV) miss self-jailbreak entirely since the input is a legitimate prompt; (v) entropy-based methods (SafeRemind) detect decision-locking via surface entropy but miss hidden-state safety transitions that occur without surface-level entropy signatures, especially under pathological CoT.
+
+**Part 2: CRTA — Temporal Contrastive Detection Method**
+
+Building on the mechanistic observation that hidden-state dynamics reveal safety transitions during reasoning (Yong & Bach, ICLR 2026), we train a lightweight temporal contrastive classifier on step-level hidden-state trajectories to detect the precise reasoning step where safety judgment flips, optimized for cross-architecture generalization.
+
+**Data collection**: We generate paired reasoning traces (safe refusals vs. self-jailbreak completions) using a multi-attack strategy prioritizing high-reliability non-gradient methods:
+- PRIMARY attacks: (1) CoT Hijacking (94-100% ASR on reasoning models) — prepending benign puzzle reasoning before harmful instructions; (2) H-CoT: Hijacking the Chain-of-Thought Safety Reasoning (71-97% ASR on DeepSeek-R1); (3) Few-shot jailbreaking (4-shot ~88%, 8-shot ~98% ASR).
+- SUPPLEMENTARY attacks: (4) Transfer GCG from DeepSeek-R1-Distill-Qwen-7B — if within-family transfer rate exceeds 30% (plausible given 4-9x within-family advantage per Angell et al. 2025 and 32-39% GCG-T success on DeepSeek distilled models per Talukder et al. 2025), retain as attack family; if below 30%, switch to template-based attacks (role-playing, hypothetical framing, authority appeals) as the 4th family. AmpleGCG retraining is not assumed since pretrained weights are not publicly released.
+- HELD-OUT for generalization: (5) PAIR attacks; (6) one primary attack family (selected after initial success rates measured).
+- Prompts drawn from JailbreakBench (100 behaviors) and HarmBench.
+- Traces generated from ALL THREE models, enabling architecture-balanced training.
+- Additionally, we leverage HarmThoughts (56,931 annotations covering both Qwen2.5 and Llama 3.1 families, MIT license, publicly available at huggingface.co/datasets/ishitakakkar-10/HarmThoughts) for probe pre-training and the Self-Jailbreaking paper's GPT-5 annotation methodology for transition ground-truth validation.
+- Target: ~600 paired traces per model for training (~1,800 total), ~300 per model for testing (~900 total).
+
+**Transition step identification for training**: We use a two-stage pipeline: (1) AUTOMATIC: Apply the HarmThoughts 16-label taxonomy via Claude Sonnet (validated at JSD 0.035 bits vs. human labels) to each sentence in every training trace. The transition step is defined as the first sentence where the label shifts from a safety-oriented category (Risk Acknowledgement, Safe Alternative, Compliance Check, Ethical Deliberation, Intent Assessment) to a harmful-compliance category (Refusal Suppression, Constraint Reframing, Intent Rationalization, Persona Adoption, or any Type III label). (2) VALIDATION: For a 300-trace subset (100 per model), cross-validate against the Self-Jailbreaking paper's direction-vector method — the transition should coincide with the point where compliance projection increases sharply (+3.1±0.8 at jailbreaking sentences vs. −0.2±0.7 at counterfactual replacements (Table 1) per their findings). Traces with label/direction-vector disagreement are flagged for manual review. Expected automatic transition labeling accuracy: ~85% based on HarmThoughts' binary-granularity probe performance.
+
+**Hidden state extraction**: At each reasoning step (sentence boundaries, following HarmThoughts methodology), extract hidden states from empirically selected layers on ALL THREE models. For Qwen2.5-32B models (DeepSeek-R1-Distill-Qwen-32B and QwQ-32B): preliminary sweep across layers 12-48, selecting top 8 layers by safety discriminability — expected in layers 24-40 (37.5%-62.5% depth), consistent with SIREN's middle-layer finding. For Llama 3.1-8B model (DeepSeek-R1-Distill-Llama-8B): sweep across layers 6-28, selecting top 6 layers — expected in layers 12-24 (37.5%-75% depth). Different hidden dimensions (5120 for Qwen2.5-32B vs. 4096 for Llama 3.1-8B) are handled via learned linear projection to a shared dimension d=2048 before contrastive training — analogous to how multilingual models project different languages into a shared semantic space. Per-sample storage: Qwen2.5-32B models: 40 steps × 8 layers × 5120 dims × 2 bytes (BF16) ≈ 3.1 MB; Llama 3.1-8B model: 40 steps × 6 layers × 4096 dims × 2 bytes ≈ 1.9 MB. Total: ~2 × 900 × 3.1 MB + 900 × 1.9 MB ≈ 7.3 GB (manageable with memory-mapped storage).
+
+**Temporal contrastive objective**: We extend CRL-LLM-Defense's triplet framework to step-level temporal sequences with cross-architecture projection. For each trace with an identified transition step T: anchor = hidden state at step T−1 (last safety-aware step), projected to shared d=2048; positive = hidden state at step T−1 in a matched safe refusal trace (remains safety-aware); negative = hidden state at step T+1 in the self-jailbreak trace (first post-transition step). The loss also includes inter-step temporal terms capturing the *trajectory* of change: the contrastive margin should be larger for step pairs straddling T than for pairs within the safe or unsafe regime. Unlike TrajGuard's geometric Mahalanobis thresholding against fixed centroids, this contrastive objective learns to represent nuanced transition patterns. Unlike Self-Jailbreaking's empirically-derived contrastive direction vectors (which capture only the two dominant axes of compliance and harmfulness via mean-difference computation from generic safety prompts), the learned representations are gradient-optimized on the detection task itself and can capture multi-dimensional transition signatures corresponding to different self-jailbreak strategies (HarmThoughts' Type I vs. Type II vs. Type III patterns). Cross-architecture projection enables the contrastive loss to learn architecture-invariant transition signatures in the shared d=2048 space. Training jointly on traces from all three models (spanning two architecture families) forces the learned subspace to capture genuinely model-invariant features, not Qwen2.5-specific representations. We also draw on ICR Probe's cross-layer dynamics methodology to incorporate inter-layer transition features alongside inter-step features.
+
+**Deployment**: The trained probe deploys as a real-time reasoning monitor. When a transition is detected, we inject a corrective prefix conditioned on the detected behavior type (mapped from HarmThoughts taxonomy: Type I 'Disabling Safety' → strong refusal redirect; Type II 'Enabling Compliance' → safety reanchoring; Type III 'Executing Harm' → immediate halt). Additionally, CRTA's transition detection could trigger Chain of Risk's per-principle activation steering at the detected step, combining CRTA's precise temporal localization with Chain of Risk's proven steering mechanism.
+
+**Part 3: Comprehensive Cross-Architecture Evaluation**
+
+**(a) Primary experiment — comparison ladder**: We report detection performance (AUROC, F1, step-level localization accuracy) for the full comparison ladder on ALL THREE models, as well as all cross-model transfer settings:
+(i) Text-level monitors: Beyond Content Safety's LLM-monitor, SFCoT's three-tier scoring, TraceGuard's contrastive reasoning trace verification, SafeRemind's entropy-based decision-locking detection
+(ii) Self-Jailbreaking's empirically-derived contrastive direction vectors (compliance + harmfulness, computed via mean-difference)
+(iii) Static hidden-state probes: SafeSwitch-style, SIREN per-layer probes (retrained on reasoning traces)
+(iv) TrajGuard's geometric trajectory monitoring (both zero-shot from standard jailbreak training and retrained on reasoning traces)
+(v) CRTA (ours)
+Each step up adds a capability (surface entropy → learned representations → temporal modeling → step-level granularity → contrastive training → cross-architecture joint training), making CRTA's contribution cumulative and well-motivated. Each method evaluated within-model, same-architecture, same-source, cross-family, leave-one-out, and jointly.
+
+**(b) Cross-architecture generalization analysis (key contribution)**: The three-model design enables decomposing generalization failure into three factors: (i) training-procedure effect (DeepSeek-R1-Distill-Qwen-32B vs. QwQ-32B, same Qwen2.5 architecture, different training), (ii) architecture effect (DeepSeek-R1-Distill-Qwen-32B vs. DeepSeek-R1-Distill-Llama-8B, shared distillation source, different base architecture — Qwen2.5 vs. Llama 3.1), (iii) combined effect (QwQ-32B vs. DeepSeek-R1-Distill-Llama-8B, neither architecture nor training source shared). If existing detectors fail on same-architecture transfer but CRTA succeeds, this shows reasoning-step temporal modeling matters regardless of architecture. If existing detectors also fail on cross-architecture transfer while CRTA maintains performance via joint training with shared projections, this shows architecture-invariant representations are necessary and achievable. Additionally, compare self-jailbreak dynamics across architectures: do the same HarmThoughts behavior types (Type I/II/III) distribute differently across Qwen2.5 vs. Llama 3.1 models? The scale difference between the 32B and 8B models introduces a potential confound; this is partially mitigated by HarmThoughts showing similar probe performance across 8B and 32B variants (0.461 vs. 0.479 Macro F1 for 16-label).
+
+**(c) Surface-text deceptiveness analysis (key insight)**: At probe-detected transition steps, measure surface text safety scores using LlamaGuard/WildGuard. We hypothesize transition steps score as textually SAFE (rationalization appears as legitimate reasoning) while hidden states diverge — quantifying the gap that hidden-state analysis fills and that text-level monitors (including TraceGuard and SafeRemind) cannot close. Performed across all three models to assess whether deceptiveness patterns vary by architecture.
+
+**(d) Robustness — addressing 'Diagnosing Pathological CoT'**: Empirically validate that CRTA is robust to post-hoc rationalization because it reads internal computation, not surface text. Test on traces where surface CoT is deliberately obfuscated. Compare against SafeRemind's entropy-based detection under the same obfuscation conditions.
+
+**(e) Probing generalization protocol (following 'False Sense of Security')**: Train on 3-4 attack families, evaluate on 2 entirely held-out families, report in-distribution and OOD F1; compare against n-gram surface baseline and text-level safety classifiers; compare against random-step baseline for localization validation.
+
+**(f) Causal validation with bidirectional patching**: At the detected transition step, perform bidirectional activation patching (LOCA methodology) on 300 samples (100 per model) with controls:
+- SAFE→UNSAFE direction: Patch activations from a matched safe refusal trace at the transition step and measure causal effect on compliance probability — does the model shift back to refusal?
+- UNSAFE→SAFE direction: Patch activations from a self-jailbreak trace's post-transition states into a matched safe trace at corresponding positions and measure whether compliance is induced earlier.
+- Controls: patching at transition step vs. random steps vs. adjacent non-transition steps.
+- Success criterion: ≥30% compliance reduction (safe→unsafe patching) and ≥20% compliance increase (unsafe→safe patching) at transition step, <10% effect at random steps.
+- Cross-architecture comparison: do causal effect sizes differ between Qwen2.5 and Llama 3.1 models?
+This bidirectional design demonstrates that the transition step is causally NECESSARY for the safety override, not just correlated.
+
+**(g) Ablation studies**: (i) Learned contrastive probe vs. Self-Jailbreaking's empirically-derived contrastive direction vectors vs. TrajGuard's Mahalanobis distance — isolating the benefit of gradient-optimized learned representations over mean-difference-derived representations; (ii) Temporal modeling vs. static snapshots — isolating the benefit of step-level trajectory; (iii) Reasoning-step granularity vs. token-level granularity — isolating the benefit of step-level aggregation; (iv) Layer selection sensitivity; (v) Joint vs. single-model training — isolating the benefit of cross-model training for generalization; (vi) Cross-architecture projection ablation — shared linear projection to d=2048 vs. architecture-specific encoders vs. naive zero-padding to max dimension; (vii) Leave-one-architecture-out — train on both Qwen2.5-32B models only and test on Llama 3.1-8B model, and train on Llama 3.1-8B only and test on both Qwen2.5-32B models, to isolate whether cross-architecture training data is necessary or whether the contrastive objective alone enables generalization.
+
+## 研究现状
+The reasoning model safety landscape spans multiple paradigms with a recently identified gap between hidden-state detection and reasoning-model self-jailbreak:
+
+**(1) Mechanistic analysis of reasoning-model self-jailbreak (establishes the phenomenon CRTA detects)**: 'Self-Jailbreaking: Language Models Can Reason Themselves Out of Safety Alignment' (Yong & Bach, ICLR 2026, arXiv:2510.20956) is the most direct precursor — it tracks compliance and perceived-harmfulness direction vectors through the residual stream sentence-by-sentence during reasoning-model CoT, demonstrating that self-jailbreaking sentences causally shift internal representations (compliance change +3.1±0.8 at jailbreaking sentences vs. −0.2±0.7 at counterfactual replacements (Table 1)). Critically, their approach uses EMPIRICALLY-DERIVED CONTRASTIVE direction vectors extracted via mean-difference computation using 5 contrastive system prompt pairs on the XSTest benchmark, applied to the Qwen2.5-Instruct-7B base model (following Chen et al.'s persona vector / representation engineering methodology) — these are data-derived representations computed through contrastive mean-difference, not gradient-optimized task-specific vectors. The approach serves as a diagnostic/analysis tool (not a deployable detector), and was validated on s1.1-7B (not larger reasoning models). Chain-of-Guardrails (arXiv:2510.21285) performs PCA-based hidden representation analysis but only for post-hoc evaluation of training methods — it does not track temporal dynamics within individual reasoning chains. HarmThoughts (arXiv:2604.19001) provides 56,931 sentence-level annotations across 1,018 reasoning traces from DeepSeek-R1-Distill-Llama-8B (Llama 3.1 base), DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and OpenThinker-7B (MIT license, publicly available at huggingface.co/datasets/ishitakakkar-10/HarmThoughts) with a 16-label taxonomy, showing 0.70–0.85+ Macro F1 at binary granularity depending on probing method (Figure 3: contrastive mean-difference methods 0.70–0.80, linear probes exceeding 0.85) but only 0.461–0.501 Macro F1 on the full 16-label taxonomy — validating that safety information is extractable but fine-grained transition classification leaves substantial room for improvement, and the 0.30–0.40 gap between binary detection (0.70–0.85+) and fine-grained 16-label classification (0.46–0.50) directly motivates learned contrastive approaches over simple linear probes. Critically for our cross-architecture evaluation design, HarmThoughts covers models from TWO base architecture families: Qwen2.5 (DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, OpenThinker-7B) and Llama 3.1 (DeepSeek-R1-Distill-Llama-8B).
+
+**(2) Hidden-state jailbreak detectors (strong on standard LLMs, UNTESTED on reasoning-model self-jailbreak)**: TrajGuard (arXiv:2604.07727, April 2026) — streaming hidden-state trajectory detection using Mahalanobis distance with 8-token sliding windows and EWMA smoothing, achieving 95% defense rate, 5.2ms/token, <1.5% FPR across 12 attack types on Llama-2-7B, Llama-3.1-8B, Mistral-7B, Vicuna-7B. SALO (ICML 2026, arXiv:2605.02958) captures refusal trajectory signatures via causal tracing at >90% detection on instruction-tuned models. RTV (arXiv:2605.03095, May 2026) constructs multi-layer refusal-direction fingerprints with detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (Table 7), with AUROC 0.9946 against JB-GCG (Table 6) on Llama-3-8B (as low as 0.58 against naturalistic PAIR attacks where adversarial prompts produce representations inherently close to harmless inputs). SafeSwitch (EMNLP 2025, arXiv:2502.01042) uses internal state probes reducing harmful outputs ~80%. SIREN (April 2026) achieves 86.7% F1 with per-layer probes. SafeProbing (arXiv:2601.10543) demonstrates latent safety signals during decoding. AISA (arXiv:2602.13547) localizes safety awareness via spatiotemporal attention-head analysis. Building Production-Ready Probes for Gemini (arXiv:2601.11516, Google DeepMind, January 2026) found that activation probes are fragile to distribution shifts, particularly on long-context inputs — directly supporting our hypothesis that probes trained on standard LLMs may fail on reasoning models' extended CoT. 'Detection Is Cheap, Routing Is Learned: Why Refusal-Based Alignment Evaluation Fails' (Frank, arXiv:2603.18280, March 2026) probes 9 open-weight models from 5 labs, finding that cross-model safety probe transfer fails because routing geometry is model- and lab-specific — directly supporting our hypothesis that existing hidden-state detectors won't generalize across reasoning model architecture families and motivating purpose-built cross-architecture methods like CRTA. Latent Adversarial Detection (arXiv:2604.28129, April 2026) probes residual stream trajectories for multi-turn attack detection across four model families (24B–70B), finding that probes are model-specific and do not transfer across architectures — independently confirming Frank (2603.18280) and supporting our cross-architecture evaluation design. **Crucially, NO paper has evaluated any of these detectors on reasoning-model self-jailbreak traces, let alone across multiple reasoning model architecture families.**
+
+**(3) Text-level CoT monitors (dominant paradigm, vulnerable to pathological CoT)**: Beyond Content Safety (arXiv:2603.25412) deploys an external LLM verifier achieving 87.11% step-level localization. SFCoT (arXiv:2603.15397) uses three-tier scoring reducing ASR from 58.97% to 12.31%. SafeThink (arXiv:2602.11096) monitors with a safety reward model reducing ASR from 63% to 5.7%. SafeRemind (arXiv:2601.03662, January 2026) provides a training-free inference-time defense using Shannon entropy at sentence boundaries to detect 'decision-locking' points and inject pre-defined safe-reminding phrases; achieves up to 45.5pp safety improvement across 5 LRMs (DeepSeek-R1 7B/8B/32B, QwQ-32B, AM-Thinking-v1 32B) on 6 benchmarks (JailBreakBench, HarmBench, AdvBench, XSTest, MATH-500, GPQA-Diamond), but operates on output logits only (not hidden states) and suffers a 19.2% false refusal rate on benign queries. Clean differentiation: SafeRemind detects decision-locking via output entropy (surface signal); CRTA detects safety-override transitions via hidden-state contrastive features (representation-level signal). SafeRemind is vulnerable to pathological CoT where surface-level entropy does not reflect underlying safety transitions. TraceGuard (arXiv:2603.02436, March 2026) proposes a process-guided framework for detecting reasoning backdoors through three synergistic phases: (i) Automated Forensic Synthesis generating contrastive reasoning pairs to isolate logical 'points of fracture,' (ii) Step-Aware Supervised Fine-Tuning (SSFT), and (iii) Verifier-Guided Reinforcement Learning via GRPO — achieving 99.7% detection on explicit fallacy injections and 94.8% Det-F1 on deceptive post-hoc rationalizations with a compact Qwen3-4B-Guard verifier. TraceGuard operates on TEXT-level reasoning traces (not hidden states), confirming that temporal contrastive structure is a powerful detection signal while remaining complementary to hidden-state approaches: hidden-state methods can detect sub-surface transitions invisible to text monitors (as demonstrated by 'Diagnosing Pathological CoT'). Behavior Cue Reasoning (arXiv:2605.07021) trains models to emit behavior cues. All text-level approaches are vulnerable to pathological CoT — 'Diagnosing Pathological CoT' (arXiv:2602.13904) identifies three CoT pathologies with detection collapsing to ~10% under obfuscation.
+
+**(4) Training-time alignment**: CRAFT (arXiv:2603.17305) combines contrastive representation learning with GRPO achieving 79% reasoning safety improvement. R2D (arXiv:2502.12970) introduces Contrastive Pivot Optimization. The Self-Jailbreaking paper shows remarkably few safety reasoning samples (50 from STAR-1) suffice for mitigation. All require model weight modification and cannot deploy post-hoc.
+
+**(4a) Inference-time hidden-state steering**: Chain of Risk (arXiv:2605.05678) is a white-box TEST-TIME method that learns per-principle unsafe-to-safe activation steering directions and selectively activates only directions whose current hidden state is closer to the unsafe than safe centroid — reducing unsafe reasoning by 77.2% without model retraining. Differentiation from CRTA: Chain of Risk STEERS activations toward safety (intervention), while CRTA DETECTS safety-override transitions (monitoring). They are complementary — CRTA could trigger Chain of Risk's steering at the detected transition step.
+
+**(5) Methodological precedent**: 'Where Does Reasoning Break?' (arXiv:2605.13772) validates step-level hidden-state analysis for reasoning failure detection (91-96% AUROC). ICR Probe (ACL 2025, arXiv:2507.16488) tracks cross-layer dynamics for hallucination detection. StALT (arXiv:2605.01853) introduces training-free spatiotemporal dynamics as signatures of internal reasoning. LOCA (arXiv:2605.00123) identifies minimal causal hidden-state interventions (~6 changes) to induce refusal. CREST (arXiv:2512.24574) trains linear classifiers to identify cognitive behavior types (verification, backtracking) and uses steering vectors via attention head intervention to suppress unproductive reasoning behaviors (17.5% accuracy improvement, 37.6% token reduction).
+
+**(6) Attack characterization for reasoning models**: CoT Hijacking (arXiv:2510.26418) achieves 94-100% ASR on frontier reasoning models. H-CoT (arXiv:2502.12893) drops DeepSeek-R1 refusal from ~20% to 4%. Few-shot jailbreaking achieves ~88% ASR with 4 shots. GCG transfer to DeepSeek-R1 distilled models achieves 32-39% (Talukder et al., 2025), while MoE R1 resists at <1%. Within-family transfer is 4-9x stronger than cross-family (Angell et al., 2025).
+
+**The gap**: No empirical study has evaluated whether existing hidden-state jailbreak detectors (designed for instruction-tuned models) generalize to reasoning-model self-jailbreak, nor has any study tested this across multiple reasoning model architecture families. The Self-Jailbreaking paper demonstrates the phenomenon is visible in hidden states but uses empirically-derived contrastive direction vectors (computed via mean-difference, not gradient-optimized), not learned detectors. SafeRemind demonstrates that inference-time step-level intervention is effective but relies on surface entropy signals rather than hidden-state features. 'Detection Is Cheap, Routing Is Learned' independently confirms that safety probes don't transfer across model families, and Latent Adversarial Detection (arXiv:2604.28129) independently confirms the same finding across four model families (24B–70B), together reinforcing the need for purpose-built cross-architecture methods. Chain of Risk demonstrates that inference-time hidden-state steering can reduce unsafe reasoning by 77.2% without retraining, providing a complementary intervention mechanism that CRTA could trigger at detected transition steps. CRTA fills this gap with three contributions: (1) the first systematic cross-architecture evaluation of existing hidden-state detectors on reasoning-model self-jailbreak across DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and DeepSeek-R1-Distill-Llama-8B — spanning two base architecture families (Qwen2.5 and Llama 3.1) and three distinct reasoning training procedures (empirical study), (2) cross-architecture generalization analysis decomposing transfer failure into architecture effects vs. training-procedure effects (generalizability), and (3) a purpose-built learned temporal contrastive detector with architecture-invariant representations that outperforms both existing detectors and empirically-derived contrastive direction vectors (method contribution).
+
+## 目标 Venue
+- EMNLP 2026 (ARR submission deadline May 25, 2026)
+
+## 关键参考
+- Self-Jailbreaking: Language Models Can Reason Themselves Out of Safety Alignment (Yong & Bach, ICLR 2026, arXiv:2510.20956) — CRITICAL PRECURSOR: sentence-level hidden-state analysis via empirically-derived contrastive direction vectors (mean-difference on XSTest with 5 system prompt pairs, applied to Qwen2.5-Instruct-7B)
+- TrajGuard: Streaming Hidden-state Trajectory Detection for Decoding-time Jailbreak Defense (arXiv:2604.07727, April 2026)
+- HarmThoughts: When Safety Fails Before the Answer (arXiv:2604.19001, April 2026) — 56,931 sentence-level annotations across DeepSeek-R1-Distill-Llama-8B (Llama 3.1 base), DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, and OpenThinker-7B, 16-label taxonomy, MIT license (publicly available at huggingface.co/datasets/ishitakakkar-10/HarmThoughts) — provides traces from BOTH architecture families
+- TraceGuard: Process-Guided Firewall against Reasoning Backdoors in Large Language Models (arXiv:2603.02436, March 2026) — text-level contrastive reasoning trace verification via forensic synthesis + step-aware SFT + verifier-guided RL; 99.7% on explicit fallacy injections, 94.8% Det-F1 on post-hoc rationalizations; complementary text-level baseline
+- How Does the Thinking Step Influence Model Safety? An Entropy-based Safety Reminder for LRMs [SafeRemind] (arXiv:2601.03662, January 2026) — training-free inference-time defense using Shannon entropy at sentence boundaries to detect decision-locking points and inject safe-reminding phrases; up to 45.5pp safety improvement across 5 LRMs (DeepSeek-R1 7B/8B/32B, QwQ-32B, AM-Thinking-v1 32B); operates on output logits, not hidden states; 19.2% false refusal rate on benign queries
+- Detection Is Cheap, Routing Is Learned: Why Refusal-Based Alignment Evaluation Fails (Frank, arXiv:2603.18280, March 2026) — probes 9 open-weight models from 5 labs showing cross-model safety probe transfer fails because routing geometry is model- and lab-specific; directly supports cross-architecture evaluation motivation
+- Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv:2604.28129, April 2026) — probes residual stream across 4 model families (24B-70B), finding probes are model-specific and don't transfer across architectures; independently supports cross-architecture motivation
+- SafeDream: Safety World Model for Proactive Early Jailbreak Detection (arXiv:2604.16824, April 2026)
+- Defending Large Language Models Against Jailbreak Attacks via In-Decoding Safety-Awareness Probing [SafeProbing] (arXiv:2601.10543, January 2026)
+- AISA: Awakening Intrinsic Safety Awareness in Large Language Models against Jailbreak Attacks (arXiv:2602.13547, February 2026)
+- Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses [RTV] (arXiv:2605.03095, May 2026) — detection accuracy (TPR@5%FPR) 0.58–1.00 across attack types (Table 7), with AUROC 0.9946 against JB-GCG (Table 6) on Llama-3-8B
+- ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv:2507.16488)
+- Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models [StALT] (arXiv:2605.01853, May 2026)
+- Beyond Content Safety: Real-Time Monitoring for Reasoning Vulnerabilities in Large Language Models (arXiv:2603.25412, March 2026)
+- SFCoT: Safer Chain-of-Thought via Active Safety Evaluation and Calibration (arXiv:2603.15397, March 2026)
+- Diagnosing Pathological Chain-of-Thought in Reasoning Models (arXiv:2602.13904, February 2026)
+- When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models [Chain-of-Guardrails] (arXiv:2510.21285, October 2025)
+- Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations [CRAFT] (arXiv:2603.17305, March 2026)
+- Reasoning-to-Defend: Safety-Aware Reasoning Can Defend Large Language Models from Jailbreaking [R2D] (arXiv:2502.12970, February 2025)
+- Towards Safe Reasoning in Large Reasoning Models via Corrective Intervention [IPO] (arXiv:2509.24393, September 2025)
+- Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection [SALO] (ICML 2026, arXiv:2605.02958)
+- SafeSwitch: Steering Unsafe LLM Behavior via Internal Activation Signals (EMNLP 2025 Findings, arXiv:2502.01042)
+- Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv:2605.13772, May 2026)
+- Hidden States as Early Signals: Step-level Trace Evaluation and Pruning [STEP] (arXiv:2601.09093, January 2026)
+- Minimal, Local, Causal Explanations for Jailbreak Success in Large Language Models [LOCA] (arXiv:2605.00123, May 2026)
+- Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away [SafeThink] (arXiv:2602.11096, February 2026)
+- Chain of Risk: Safety Failures in Large Reasoning Models and Mitigation via Adaptive Multi-Principle Steering (arXiv:2605.05678, May 2026)
+- THINKSAFE: Self-Generated Safety Alignment for Reasoning Models (arXiv:2601.23143, January 2026)
+- ReasoningShield: Safety Detection over Reasoning Traces of Large Reasoning Models (arXiv:2505.17244, May 2025)
+- Behavior Cue Reasoning: Monitorable Reasoning Improves Efficiency and Safety through Oversight (arXiv:2605.07021, May 2026)
+- Annotating the Chain-of-Thought: A Behavior-Labeled Dataset for AI Safety (arXiv:2510.18154, October 2025)
+- Bleeding Pathways: Vanishing Discriminability in LLM Hidden States Fuels Jailbreak Attacks [DEEPALIGN] (NDSS 2026)
+- Improving Large Language Model Safety with Contrastive Representation Learning [CRL-LLM-Defense] (EMNLP 2025)
+- SIREN: LLM Safety From Within (arXiv 2026)
+- False Sense of Security: Why Probing-based Malicious Input Detection Fails to Generalize (NeurIPS 2025 Workshop Spotlight)
+- Building Production-Ready Probes for Gemini (arXiv:2601.11516, Google DeepMind, January 2026)
+- JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models (NeurIPS 2024)
+- AmpleGCG: Learning a Universal and Transferable Generative Model of Adversarial Suffixes (arXiv:2404.07921)
+- Effectively Controlling Reasoning Models through Thinking Intervention (arXiv:2503.24370, March 2025)
+- Chain-of-Thought Hijacking (arXiv:2510.26418, October 2025)
+- H-CoT: Hijacking the Chain-of-Thought Safety Reasoning Mechanism (arXiv:2502.12893, February 2025)
+- Jailbreak Transferability Emerges from Shared Representations (Angell et al., 2025)
+- The Resurgence of GCG Adversarial Attacks on Large Language Models (Talukder et al., 2025)
+- CREST: Understanding and Steering Cognitive Behaviors in LLMs (arXiv:2512.24574, December 2025) — trains linear classifiers to identify cognitive behavior types and uses steering vectors via attention head intervention (17.5% accuracy improvement, 37.6% token reduction)
+- Large Reasoning Models Are Autonomous Jailbreak Agents (Nature Communications, 2026)
+
+## 资源估算
+### auto_research
+- **claude_api_cost**: $220-480 (~900-1600 Opus turns)
+- **estimated_gpu_cost**: $480-630
+- **gpu_hours**: ~180-210h H100 (more thorough baseline sweep across three models, full hyperparameter search for projection layers, extended robustness matrix across all attack families and three models, comprehensive ablation grid including all cross-architecture variants)
+- **gpu_utilization**: High (~85%): agent pipelines attack generation → extraction → baseline evaluation → CRTA training → comparison continuously across three models
+- **risk_note**: Without human judgment, the cross-architecture empirical study framing and nuanced interpretation of when/why each baseline fails on each architecture may lack the precision EMNLP reviewers expect
+- **speed_bottleneck**: Baseline reimplementation (TrajGuard, SALO, SafeRemind) and trace generation from 32B models are the throughput limiters — 2 H100s enable parallel baseline evaluation and trace generation across models
+- **team**: 0 (initial 2-hour setup)
+- **timeline**: 9-11 days with 2x H100
+
+### human_in_loop
+- **claude_api_cost**: $130-220 (~350-600 Opus turns for experiment orchestration, baseline reimplementation, cross-architecture result analysis, and paper drafting; ~$30-40 for Claude Sonnet transition labeling of ~2,700 traces across three models)
+- **estimated_gpu_cost**: $360-465 (at ~$3/hr H100 spot pricing)
+- **gpu_hours**: ~135-155h H100 (Attack generation with non-gradient primary methods: ~10h; GCG on 7B if used: ~20h; trace generation on THREE models: ~24h [~12h DeepSeek-R1-Distill-Qwen-32B + ~8h QwQ-32B + ~4h DeepSeek-R1-Distill-Llama-8B]; hidden state extraction on three models: ~17h [6h+6h+5h, Llama-8B has smaller hidden states]; layer selection sweep on three models: ~10h; transition labeling pipeline: ~4h; baseline reimplementation and evaluation across three models with full cross-model matrix — TrajGuard, SafeSwitch, SIREN, direction vectors, SafeRemind: ~30h; CRTA probe training with joint cross-architecture objective including projection layers: ~7h; comparison ladder evaluation on three models: ~12h; robustness + bidirectional causal validation 300 samples across three models: ~10h; cross-architecture generalization analysis: ~6h; ablations including leave-one-architecture-out and projection ablation: ~8h)
+- **gpu_utilization**: Moderate (~55%): agent queues experiments while human reviews empirical findings and validates the 'existing detectors fail across architecture families' narrative
+- **risk_note**: Primary risks: (1) Existing detectors may partially generalize within the Qwen2.5 family but fail on Llama 3.1 — this is actually the MOST informative outcome, cleanly separating architecture effects from training effects. (2) Self-Jailbreaking's empirically-derived contrastive direction vectors may prove surprisingly competitive on same-architecture transfer but fail on cross-architecture — this is useful for the narrative, validating prior work while motivating gradient-optimized learned representations for cross-architecture settings. (3) The Llama-8B model differs from the Qwen-32B models in both architecture AND scale (8B vs 32B); scale confound is partially mitigated by HarmThoughts showing similar probe performance across 8B and 32B variants (0.461 vs. 0.479 Macro F1). (4) GCG fallback: if GCG transfer from 7B fails (<30%) AND AmpleGCG too costly (pretrained weights not publicly released), proceed with 3 non-gradient families (CoT Hijacking, H-CoT, few-shot) + template-based attacks as 4th family — sufficient attack diversity for the empirical study. (5) The saturated probing landscape means reviewers may view the method contribution as incremental — the paper's success hinges on the cross-architecture empirical study being the primary contribution, which the three-model design substantially strengthens.
+- **team**: 1 researcher, ~1hr/day for reviewing cross-architecture comparison results, validating headline finding (existing detectors fail on reasoning traces across Qwen2.5 and Llama 3.1 families), guiding paper framing as cross-architecture empirical study + method, approving transition labeling quality, reviewing leave-one-architecture-out transfer results
+- **timeline**: 10-12 days (feasible with daily 1-hour check-ins)
+
+### manual
+- **gpu_hours**: Not recommended — 10-day timeline requires automation
+- **team**: N/A
+- **timeline**: Infeasible manually in 10 days
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a3d37f1e-0a47-44d6-9229-dd83c4b2034e",
+  "type": "user",
+  "uuid": "5186e723-c630-435f-9a14-6eccf79dc652",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T12:14:39.695Z_
+
+```json
+{
+  "parentUuid": "5186e723-c630-435f-9a14-6eccf79dc652",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "256d82ef-f96d-4ccb-9b19-d216e61b856a",
+  "timestamp": "2026-05-16T12:14:39.695Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T12:14:39.695Z_
+
+```json
+{
+  "parentUuid": "256d82ef-f96d-4ccb-9b19-d216e61b856a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "ab67b1d4-c083-4a60-aa29-c57fa81cc907",
+  "timestamp": "2026-05-16T12:14:39.695Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Do Hidden-State Jailbreak Detectors Generalize to Reasoning Models? A Cross-Architecture Empirical Study and Temporal Contrastive Detection Method  **状态**: 待审阅   **级别**: top-tier   **创建时间**: 2026-05…",
+  "leafUuid": "ab67b1d4-c083-4a60-aa29-c57fa81cc907",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-architecture jailbreak detection in reasoning models",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T12:15:56.676Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze this proposal from the perspective of the "补救 agent" — focusing exclusively on experimental design, baseline coverage, evaluation metrics, ablation design, and feasibility. I should not comment on novelty, significance, or framing.
+
+Let me read through the proposal carefully and assess:
+
+1. **Baseline coverage**: The proposal lists 6 baselines (Self-Jailbreaking direction vectors, SafeSwitch, SIREN, TrajGuard, SALO, SafeRemind) plus text-level monitors (Beyond Content Safety, SFCoT, TraceGuard). This seems comprehensive.
+
+
+2. **Experimental design**: Three models tested across five evaluation settings (within-model, same-architecture, same-source, cross-family, leave-one-out, joint) — a solid structure for assessing generalization.
+3. **Evaluation metrics**: Using AUROC, F1, and step-level localization accuracy covers both detection and localization performance.
+4. **Ablation design**: Seven ablations are planned to isolate component contributions.
+5. **Feasibility**: The proposal was created May 15 with a May 25 ARR deadline, leaving just 10 days. This is tight, and I'm concerned about whether all three models can be properly evaluated, the cross-family generalization tested, and the ablations completed in that timeframe.
+
+The main bottlenecks are reimplementing five baseline methods (TrajGuard, SALO, SIREN, SafeSwitch, SafeRemind) from scratch while also training CRTA — some of these are very recent papers without public implementations. Running inference on the 32B model for trace generation is also computationally intensive, and data availability for HarmThoughts could be another constraint.
+
+Now looking at the technical soundness issues: the scale confound between the 8B Llama and 32B Qwen models is a real problem that the proposal only partially addresses, and reviewers will likely push back on this. There's also a fairness question about whether CRTA's joint training across all three models with learned projections gives it an unfair advantage over baselines that are retrained per-model.
+
+The automatic labeling pipeline using Claude Sonnet has only ~85% expected accuracy, which raises concerns about how noisy ground truth affects CRTA training versus baseline evaluation — this could introduce bias if CRTA trains on noisy labels while baselines are evaluated against cleaner data. The proposal also lacks confidence intervals or significance testing despite having relatively small sample sizes (300 per model). Additionally, both SALO and RTV are very recent papers from May 2026, so code availability is uncertain.
+
+I notice RTV is discussed extensively in related work but missing from the baseline comparison ladder, which seems like an oversight since it's a representation-level detector that should be included. The causal validation with 300 samples (100 per model) using LOCA methodology may be underpowered for reliable statistics, especially when broken down by architecture, though the success criteria seem reasonable. I'm also wondering about the diversity of attacks used to train CRTA.
+
+With only 150-200 traces per attack family per model across 3-4 families from ~600 total traces, that's quite sparse for robust contrastive learning. The GCG fallback to template-based attacks is solid contingency planning though. Looking at the evaluation setup, there's some organizational confusion—the text-level monitors (Beyond Content Safety's LLM-monitor, SFCoT's three-tier scoring, TraceGuard's contrastive reasoning, SafeRemind's entropy detection) are listed separately from the 6 main baselines, making it unclear whether there are actually ~10 baselines total, which would be comprehensive but potentially unwieldy.
+
+The joint training advantage for CRTA is legitimate when compared in the same setting, but the real strength comes from the leave-one-out cross-architecture evaluation where CRTA's learned projections give it an inherent design advantage. Reviewers might push back on this being an apples-to-oranges comparison since existing methods weren't built for cross-architecture transfer. The scale confound between 8B and 32B models is the most pressing experimental issue—the proposal needs to either find an additional 32B reasoning model or address this mismatch directly. model distillation), (b) a 7B-8B Qwen reasoning model to control for scale (OpenThinker-7B could serve this role — it's in HarmThoughts!), or (c) stronger argumentation for why scale doesn't confound. Actually, wait — OpenThinker-7B IS available in HarmThoughts and uses Qwen2.5-7B base. Adding OpenThinker-7B would give a 7B Qwen model to pair with the 8B Llama model, partially controlling for scale. But the proposal doesn't include it despite mentioning it.
+
+2. **Baseline code availability**: SALO and RTV are from May 2026. If code isn't public, reimplementation from a paper description in 10 days is extremely risky.
+
+3. **Compute fairness**: The "jointly trained on all three models" aspect of CRTA gives it an inherent data advantage in cross-architecture settings compared to methods that were designed for single-model deployment.
+
+4. **Timeline with 10 baselines**: Implementing/adapting ~10 baseline methods (6 hidden-state + 4 text-level) in 10 days while also developing CRTA is extremely ambitious.
+
+5. **Missing RTV from baselines**: RTV is a strong representation-level baseline that's directly relevant.
+
+Most of these concerns seem addressable — I could add OpenThinker-7B to handle the scale confound, prioritize baselines with available code while simplifying others, include a single-model CRTA ablation to address the compute fairness issue, focus the timeline on core experiments, and make sure to include RTV in the comparison.
+
+Now I'm checking whether the evaluation design can actually support the main claims about existing detectors failing to generalize to reasoning-model self-jailbreak across architectures while CRTA succeeds. The empirical study showing detector failures looks solid, the design supports demonstrating CRTA's success, and the ablations are comprehensive enough to isolate the architectural innovations driving the improvements. Overall the experimental design is strong, though I should double-check the RTV comparison details in the proposal.
+
+Looking at the baseline listings more carefully, I notice some inconsistency between how the baselines are enumerated in Part 1 versus how they're organized in the comparison ladder in Part 3(a). Part 1 lists six baselines including SALO and SafeRemind, but the comparison ladder in Part 3(a) seems to organize them differently, and I'm not seeing SALO explicitly mentioned there despite it being discussed extensively. Let me trace through exactly which baselines appear where to make sure the evaluation actually covers everything it claims to.
+
+What's more concerning is that RTV is completely absent from the comparison despite being a very recent and strong baseline—it achieves 0.9946 AUROC on GCG attacks and directly reconstructs refusal directions from multi-layer representations, which seems directly relevant to what's being evaluated here. That's a notable gap.
+
+On the "False Sense of Security" protocol itself, the numbers look workable: with 600 traces per model split across 4 attack families, that gives roughly 150 traces per family for training and 150 for each of the 2 held-out families for testing. The generalization setup is reasonable, though I should think through whether this sample size is sufficient for the claims being made.
+
+Now I'm noticing a potential circularity issue in the causal validation design—they're using CRTA to detect transition steps, then validating causality by patching at those CRTA-detected steps. But if you're confirming CRTA's detection accuracy by showing causal effects at the steps CRTA identified, you need ground-truth transition labels from the manual annotation pipeline to break that circularity. The proposal doesn't clearly specify whether they're validating against those ground-truth steps or just against CRTA's own detections. I'm categorizing the severity of each issue—the scale confound and code availability concerns are moderate and likely to draw reviewer attention, while the compute fairness and statistical reporting gaps are easier fixes. None of these are showstoppers, so I'll mark this as having addressable flaws rather than fundamental problems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab67b1d4-c083-4a60-aa29-c57fa81cc907",
+  "isSidechain": false,
+  "requestId": "req_011Cb6EH5iEaH2kJeqow2C9m",
+  "type": "assistant",
+  "uuid": "7832410f-b473-4b71-9365-66d338c434d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYuvJeNtge3Ldyynrkk9bb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 28405,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 5790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 5790,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 28405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T12:16:52.936Z_
+
+【状态】: 有缺陷待补救
+
+---
+
+【缺陷 1】
+- 类别: 实验设计不足
+- 问题: 三模型设计中存在 **scale confound**：DeepSeek-R1-Distill-Llama-8B 是 8B 模型，而两个 Qwen2.5 模型都是 32B。当 cross-architecture transfer 失败时（设置 (ii) 和 (iii)），无法干净区分"失败是因为 architecture 不同（Qwen2.5 vs. Llama 3.1）"还是"失败是因为 scale 不同（32B vs. 8B）"。Proposal 仅以 HarmThoughts 中 8B 和 32B 的 Macro F1 相似（0.461 vs. 0.479）作为 mitigation，但这只是 probe performance 相似，不能证明 hidden-state geometry 本身不受 scale 影响。
+- 严重度: 可补救
+- 补救方案: 将 **OpenThinker-7B**（Qwen2.5-7B base，HarmThoughts 已有标注数据）纳入为第四个模型（或至少作为 supplementary analysis），构成 2×2 矩阵（Qwen2.5 / Llama × large / small）。这样 OpenThinker-7B vs. DeepSeek-R1-Distill-Llama-8B 在 scale-matched 条件下测试 architecture effect，OpenThinker-7B vs. DeepSeek-R1-Distill-Qwen-32B 在 same-architecture 条件下测试 scale effect。若资源不允许完整加入第四模型的所有实验，至少对 CRTA 和 2-3 个核心 baseline 做 scale-controlled ablation。
+
+【缺陷 2】
+- 类别: baseline 不足或过时
+- 问题: **RTV**（arXiv:2605.03095）在 related work 中被大量讨论（AUROC 0.9946, TPR@5%FPR 0.58-1.00），但未出现在 comparison ladder 的 baseline 列表中。RTV 构建 multi-layer refusal-direction fingerprints，与 CRTA 的 multi-layer hidden-state approach 最为直接可比。遗漏最强 representation-level baseline 会被 reviewer 质疑实验公正性。
+- 严重度: 可补救
+- 补救方案: 将 RTV 加入 comparison ladder，位于 static probes (iii) 和 TrajGuard (iv) 之间（因其是 representation-level 但非 temporal 方法）。如 RTV 代码未公开，按论文描述复现其核心组件（multi-layer refusal direction extraction + fingerprint matching），并在 paper 中注明为 re-implementation。
+
+【缺陷 3】
+- 类别: compute 公平性问题
+- 问题: CRTA 在 **jointly trained** 设置下使用三模型的数据（~1800 traces）训练，而所有 baseline（TrajGuard retrained、SafeSwitch retrained、SIREN retrained）在 cross-architecture transfer 设置中仅使用源模型数据训练。这使 CRTA 在 cross-architecture generalization 评估中拥有 **training data advantage**——它看到了更多样本和更多 architecture 的数据。Reviewer 会质疑："CRTA 的优势到底来自 temporal contrastive architecture 还是仅仅因为多模型联合训练？"
+- 严重度: 可补救
+- 补救方案: 在 ablation (v)（Joint vs. single-model training）中明确包含一个 **"fair baseline"** 对照：对 TrajGuard / SafeSwitch 也做 joint training（将三模型数据合并后训练，对 dimension 差异做简单 zero-padding 或 PCA 降维到共同维度），验证 joint training alone 不足以实现 cross-architecture generalization，从而隔离 CRTA 的 temporal contrastive + learned projection 的贡献。当前 ablation (vi) 比较了 shared projection vs. zero-padding vs. architecture-specific encoders，但缺少"给 baseline 也提供 joint training"的对照。
+
+【缺陷 4】
+- 类别: 可行性问题
+- 问题: **Baseline reimplementation 的可行性风险**：SALO（ICML 2026, arXiv:2605.02958）和 RTV（arXiv:2605.03095）均为 2026 年 5 月发表，距 ARR 截稿（May 25）仅 20 天。这些论文极可能尚无公开代码。TrajGuard（April 2026）同理。在 10-12 天内从论文描述复现 5+ 个 hidden-state 方法（each 涉及不同的 hidden-state extraction pipeline、训练策略和推理逻辑），同时还要开发 CRTA 本身，存在严重的 timeline 风险。
+- 严重度: 可补救
+- 补救方案: (1) 对 baseline 进行优先级分层——**Tier 1**（必须完整复现）：TrajGuard（最直接的 trajectory-based 对比）、Self-Jailbreaking direction vectors（最直接的 reasoning-model precursor）、SafeRemind（text-level 对照）；**Tier 2**（尽力复现，若时间不够可简化）：SafeSwitch-style probe、SIREN；**Tier 3**（若代码可用则加入，否则引用其 reported numbers 并讨论为何不可直接适用）：SALO、RTV。(2) 对 Tier 3 方法，可在 paper 中讨论其设计局限性（input-level detection / instruction-tuned models specific），说明为什么直接应用到 reasoning traces 是不合理的，而不是硬要复现一个 approximation。(3) Text-level monitors (Beyond Content Safety, SFCoT, TraceGuard) 可使用 LLM-as-judge pipeline 快速评估，不需要复现完整 training。
+
+【缺陷 5】
+- 类别: 评估方案缺陷
+- 问题: Proposal 未提及 **统计显著性** 报告方案。在 leave-one-out 和 cross-family settings 中，per-setting 样本量为 ~300（单模型测试集），但拆分到具体 attack family 后可能只有 ~50-75 per cell。在这些小样本 cell 上，AUROC/F1 差异可能不具统计显著性。EMNLP 2026 review criteria 通常要求 confidence intervals 或 significance tests。
+- 严重度: 可补救
+- 补救方案: (1) 对所有 per-setting 结果报告 **bootstrap 95% CI**（1000 resamples）；(2) 对 CRTA vs. 最强 baseline 的 pairwise comparison 使用 **McNemar's test 或 paired bootstrap test**；(3) 在 main table 中用粗体/下划线区分统计显著优势 vs. 数值优势但未达显著。对于 cell size < 100 的设置，明确标注 CI width 可能较大。
+
+【缺陷 6】
+- 类别: 实验设计不足
+- 问题: **Causal validation 的 circularity 问题**——Proposal 写道 "At the detected transition step, perform bidirectional activation patching"。如果 causal validation 使用的是 **CRTA 检测到的** transition step，则存在 circular reasoning：你用 CRTA 找到 step，然后证明该 step 是 causal 的，再用 causal 结果验证 CRTA 找得准。应区分 (a) phenomenon validation（ground-truth transition steps 是否 causal）和 (b) CRTA accuracy validation（CRTA-detected steps 是否与 causal steps 吻合）。
+- 严重度: 可补救
+- 补救方案: 将 causal validation 分为两步：**(a) Phenomenon validation**：在 ground-truth transition steps（来自 HarmThoughts taxonomy labeling pipeline 的自动标注）上执行 bidirectional patching，证明 safety-override transition 本身是 causal phenomenon（不依赖任何检测方法）。**(b) Detection validation**：比较 CRTA-detected step 与 ground-truth step 的 offset 分布（e.g., ±1 step tolerance 内的 localization accuracy），并验证 CRTA-detected steps 的 causal effect size 不显著低于 ground-truth steps 的 causal effect size。这样避免 circularity 同时更有说服力。
+
+---
+
+**整体评估**：实验设计框架扎实，三模型设计、五种 transfer settings、comprehensive comparison ladder、七项 ablation 均显示出成熟的 empirical methodology。上述缺陷均可补救且不涉及方向性问题。其中 **缺陷 1（scale confound）和缺陷 3（compute fairness）** 最可能被 EMNLP reviewer 直接作为 weakness 提出；**缺陷 4（timeline feasibility）** 是实际执行最大风险。建议优先处理这三项。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7832410f-b473-4b71-9365-66d338c434d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6EH5iEaH2kJeqow2C9m",
+  "type": "assistant",
+  "uuid": "c3882f06-62ee-45d4-8f41-4b0a919993f5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYuvJeNtge3Ldyynrkk9bb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 28405,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 5790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 5790,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 28405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Do Hidden-State Jailbreak Detectors Generalize to Reasoning Models? A Cross-Architecture Empirical Study and Temporal Contrastive Detection Method  **状态**: 待审阅   **级别**: top-tier   **创建时间**: 2026-05…",
+  "leafUuid": "c3882f06-62ee-45d4-8f41-4b0a919993f5",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-architecture jailbreak detection in reasoning models",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Do Hidden-State Jailbreak Detectors Generalize to Reasoning Models? A Cross-Architecture Empirical Study and Temporal Contrastive Detection Method  **状态**: 待审阅   **级别**: top-tier   **创建时间**: 2026-05…",
+  "leafUuid": "c3882f06-62ee-45d4-8f41-4b0a919993f5",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-architecture jailbreak detection in reasoning models",
+  "sessionId": "b9fd2909-c46d-4c4e-9658-56df42eaacb1"
+}
+```
+
+---

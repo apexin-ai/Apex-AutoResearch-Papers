@@ -1,0 +1,3981 @@
+# Research conversation: Consistency-Regularized RL for Perturbation-Robust Math Reasoning ## Core Problem RL-trained mathematical reasoning mode
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-2/abe9010d-53f8-4a81-b246-82aa9b906a50.jsonl`
+- **Structured JSON:** [`e373b9699a10d5baf97c.json`](../../sessions/e3/e373b9699a10d5baf97c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T08:10:17.850Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T08:10:17.850Z",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "content": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning\n\n## Core Problem\n\nRL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (numerical re-parameterization, variable renaming), revealing a fundamental limitation of outcome-based RLVR: binary reward provides no gradient against surface-form-dependent reasoning patterns. ReasonMaxxer (arXiv 2605.06241) shows RL acts as sparse policy selection at high-entropy tokens rather than capability learning, and RLTR (arXiv 2602.08489) demonstrates that robust reasoning requires transferability beyond the producing model—both implying that outcome-only RL is insufficient for genuine robustness. Can we enforce invariance to mathematically irrelevant features during RL training without degrading clean accuracy?\n\n## Research Opportunity\n\nMathematical perturbation space has a structural duality that demands a dual-objective response: equivalence-preserving perturbations (variable renaming, numerical reparameterization) and semantics-altering perturbations (changed constraints, added conditions) are surface-similar but require opposite model behaviors—invariance for the former, discrimination for the latter. No existing method addresses both sides. ROMA (arXiv 2605.09262, May 2026) validates that token-level KL consistency regularization during GRPO improves robustness to visual corruptions by +2.4%/+2.3% on seen/unseen degradations while preserving clean accuracy—but only targets single-direction invariance in the visual domain. TA-GRPO (arXiv 2601.22478, Jan 2026) pools advantages across equivalent problem rephrasings during GRPO, improving pass@k by up to 9.84 points on competition math, but uses no explicit consistency loss and does not evaluate perturbation robustness. CLIPO (arXiv 2603.10101, Mar 2026) introduces contrastive learning into GRPO to extract invariant structures across correct reasoning trajectories, but operates at the trajectory level (correct vs. incorrect rollouts) rather than at the input perturbation level—an orthogonal invariance dimension. PPCL (EACL Findings 2024) demonstrates that consistency regularization achieves 10× sample efficiency over pure augmentation in NLP. The gap is clear: no method combines perturbation-type-aware dual objectives (invariance + discrimination) with RL-integrated consistency regularization for mathematical reasoning.\n\n## Research Landscape\n\nThe robustness problem is extensively documented: VAR-MATH (arXiv 2507.12885) reports 47.9–72.9% accuracy drops for 7B RL models on symbolically re-parameterized competition math (AMC23/AIME24/AIME25); GSM-Symbolic (ICLR 2025) shows up to 65% drops from a single irrelevant clause; the Robust Reasoning Benchmark (arXiv 2604.08571, Apr 2026) finds up to 54% drops for open-weights models on perturbed AIME problems; MATH-Perturb (ICML 2025) identifies a critical \"blind technique application\" failure mode where models mechanically apply memorized solution strategies without verifying applicability—accounting for ~40% of o1-mini's errors and ~25% of Claude-3.5-Sonnet's errors on hard perturbations.\n\nTraining-time interventions remain scarce and incomplete: AbstRaL (ICLR 2026) achieves GSM-level robustness via symbolic abstraction but is explicitly limited to elementary math and does not scale to competition problems. TA-GRPO generates equivalent rephrasings via GPT-4 paraphrasing and pools GRPO advantages across them but lacks symbolic equivalence verification, explicit distribution-level consistency enforcement, and any discrimination against semantically-altered problems. ROMA demonstrates that KL consistency regularization during GRPO works for visual robustness in multimodal models but addresses neither text perturbations nor the discrimination side. CLIPO (arXiv 2603.10101) captures invariant structure across correct reasoning paths via trajectory-level contrastive learning but does not address input-level perturbation invariance—its invariance dimension (trajectory noise) is orthogonal to ours (surface-form noise). RLTR (arXiv 2602.08489) improves reasoning robustness via transfer reward (+3.6% Maj@64 on MATH500) but does not target perturbation-specific invariance. GRPO-CARE (arXiv 2506.16141) and COPO (arXiv 2508.04138) address multimodal visual consistency and zero-gradient issues respectively, not math text robustness. Concurrent GRPO variants DAPO (arXiv 2503.14476) and Dr.GRPO improve training dynamics but include no robustness mechanisms.\n\n## Proposed Approach\n\nExtend GRPO with dual consistency objectives motivated by the structural duality of mathematical perturbation space: (1) JS-divergence enforcing output invariance between original and math-equivalence-preserving perturbations (variable renaming, numerical reparameterization via VAR-MATH's open-source symbolic pipeline); (2) contrastive discrimination loss penalizing invariance on semantics-altering hard perturbations—directly targeting the \"blind technique application\" failure mode quantified by MATH-Perturb (ICML 2025). Both losses applied at entropy-gated decision tokens per ReasonMaxxer's insight, with entropy-gating itself treated as a hypothesis to be validated (the correspondence between RL policy-selection points and consistency-critical points is not a priori guaranteed). Pool advantages across perturbation groups à la TA-GRPO. Train Qwen3-8B (primary) and Qwen3-1.5B (scaling validation) on MATH/AMC/AIME, 8×H100.\n\n## Detailed Description\n\nWe propose ConsistRL, augmenting GRPO with dual consistency objectives for math perturbation robustness. The design is motivated by a structural property of mathematical perturbation space: equivalence-preserving perturbations (variable renaming, numerical reparameterization) and semantics-altering perturbations (changed constraints, added conditions) are surface-similar but require opposite model behaviors, making single-direction consistency insufficient and potentially harmful.\n\n**Invariance objective.** A JS-divergence loss enforces output-distribution invariance across math-equivalence-preserving perturbations generated via VAR-MATH's open-source symbolic pipeline (arXiv 2507.12885), applied selectively at high-entropy decision points where ReasonMaxxer (arXiv 2605.06241) shows RL concentrates its effect (1–3% of tokens). We treat the entropy-gating hypothesis as a testable claim: RL policy-selection points may not perfectly overlap with consistency-critical points, and we design an explicit ablation (full-sequence vs. entropy-gated consistency loss, static base-model entropy vs. dynamic policy entropy) to validate or refine this.\n\n**Discrimination objective.** A contrastive discrimination loss penalizes output similarity on semantics-altering hard perturbations where surface similarity masks semantic divergence—directly addressing the \"blind technique application\" failure mode that MATH-Perturb (ICML 2025) quantifies as responsible for ~40% of o1-mini's errors on MATH-P-Hard. Training data for hard perturbations is generated via an LLM-based pipeline (GPT-4 generating semantics-altering variants of MATH training set problems), with human verification on a sampled subset to ensure perturbation quality, strictly separated from evaluation data to prevent contamination.\n\n**Advantage pooling.** TA-GRPO-style advantage pooling across perturbation groups simultaneously mitigates GRPO's zero-gradient problem (arXiv 2601.22478).\n\nThis approach differs from ROMA (single-direction visual invariance), CLIPO (trajectory-level contrastive for reasoning path invariance, orthogonal to input perturbation invariance), TA-GRPO (no distribution-level consistency), and AbstRaL (symbolic abstraction limited to elementary math).\n\n## Experimental Design\n\n**Primary model:** Qwen3-8B. **Scaling validation:** Qwen3-1.5B.\n\n**Baselines (7):** (1) Vanilla GRPO, (2) DAPO (arXiv 2503.14476), (3) Dr.GRPO, (4) TA-GRPO (arXiv 2601.22478), (5) COPO (arXiv 2508.04138), (6) GRPO + augmentation-only (same perturbation data, no consistency losses—isolates regularization's contribution per PPCL), (7) AbstRaL (ICLR 2026, GSM-level subset only).\n\n**Evaluation benchmarks:** VAR-MATH (AMC23/AIME24/AIME25), MATH-Perturb (MATH-P-Simple and MATH-P-Hard reported separately), Robust Reasoning Benchmark (arXiv 2604.08571), MATH-500 (clean accuracy).\n\n**Metrics:** VAR-MATH strict consistency rate and loose consistency rate with bootstrapping 95% CIs; robustness gap (clean − perturbed accuracy); per-benchmark accuracy with CIs; clean accuracy non-degradation criterion (MATH-500 drop ≤ 1%, verified by statistical test).\n\n**Ablation matrix (6 variants):** (1) ConsistRL full, (2) w/o JS-divergence, (3) w/o contrastive discrimination loss, (4) w/o entropy gating (losses on all tokens), (5) w/o advantage pooling, (6) JS-divergence only + entropy gating (minimal variant). Additionally: static base-model entropy vs. dynamic policy entropy for gating; entropy threshold sensitivity analysis.\n\n**Compute fairness:** Report training wall-clock time and total GPU-hours for all methods. Compute-matched comparison ensuring equal total FLOPs across methods. Robustness vs. compute curve.\n\n**Target:** ≥15% robustness recovery over vanilla GRPO on VAR-MATH while preserving clean MATH-500 accuracy (≤1% drop).\n\n## Key References\n\n- Reinforcing Multimodal Reasoning Against Visual Degradation / ROMA (arXiv 2605.09262, 2026)\n- Transform-Augmented GRPO Improves Pass@k / TA-GRPO (arXiv 2601.22478, 2026)\n- CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR (arXiv 2603.10101, 2026)\n- Beyond Correctness: Learning Robust Reasoning via Transfer / RLTR (arXiv 2602.08489, 2026)\n- Prompt Perturbation Consistency Learning / PPCL (EACL Findings 2024)\n- MATH-Perturb: Benchmarking LLMs' Math Reasoning against Hard Perturbations (ICML 2025)\n- GSM-Symbolic: Understanding Limitations of Mathematical Reasoning in LLMs (ICLR 2025)\n- AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking (ICLR 2026)\n- VAR-MATH: Probing True Mathematical Reasoning via Symbolic Benchmarks (arXiv 2507.12885, 2025)\n- Rethinking RL for LLM Reasoning / ReasonMaxxer (arXiv 2605.06241, 2026)\n- Robust Reasoning Benchmark (arXiv 2604.08571, 2026)\n- GRPO-CARE: Consistency-Aware RL for Multimodal Reasoning (arXiv 2506.16141, 2025)\n- COPO: Consistency-Aware Policy Optimization (arXiv 2508.04138, 2025)\n- DAPO: An Open-Source LLM Reinforcement Learning System at Scale (arXiv 2503.14476, 2025)\n- Dr.GRPO: Group Relative Policy Optimization Done Right"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T08:10:17.858Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T08:10:17.858Z",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+## Round 1
+
+57 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T08:10:17.887Z_
+
+# Consistency-Regularized RL for Perturbation-Robust Math Reasoning
+
+## Core Problem
+
+RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (numerical re-parameterization, variable renaming), revealing a fundamental limitation of outcome-based RLVR: binary reward provides no gradient against surface-form-dependent reasoning patterns. ReasonMaxxer (arXiv 2605.06241) shows RL acts as sparse policy selection at high-entropy tokens rather than capability learning, and RLTR (arXiv 2602.08489) demonstrates that robust reasoning requires transferability beyond the producing model—both implying that outcome-only RL is insufficient for genuine robustness. Can we enforce invariance to mathematically irrelevant features during RL training without degrading clean accuracy?
+
+## Research Opportunity
+
+Mathematical perturbation space has a structural duality that demands a dual-objective response: equivalence-preserving perturbations (variable renaming, numerical reparameterization) and semantics-altering perturbations (changed constraints, added conditions) are surface-similar but require opposite model behaviors—invariance for the former, discrimination for the latter. No existing method addresses both sides. ROMA (arXiv 2605.09262, May 2026) validates that token-level KL consistency regularization during GRPO improves robustness to visual corruptions by +2.4%/+2.3% on seen/unseen degradations while preserving clean accuracy—but only targets single-direction invariance in the visual domain. TA-GRPO (arXiv 2601.22478, Jan 2026) pools advantages across equivalent problem rephrasings during GRPO, improving pass@k by up to 9.84 points on competition math, but uses no explicit consistency loss and does not evaluate perturbation robustness. CLIPO (arXiv 2603.10101, Mar 2026) introduces contrastive learning into GRPO to extract invariant structures across correct reasoning trajectories, but operates at the trajectory level (correct vs. incorrect rollouts) rather than at the input perturbation level—an orthogonal invariance dimension. PPCL (EACL Findings 2024) demonstrates that consistency regularization achieves 10× sample efficiency over pure augmentation in NLP. The gap is clear: no method combines perturbation-type-aware dual objectives (invariance + discrimination) with RL-integrated consistency regularization for mathematical reasoning.
+
+## Research Landscape
+
+The robustness problem is extensively documented: VAR-MATH (arXiv 2507.12885) reports 47.9–72.9% accuracy drops for 7B RL models on symbolically re-parameterized competition math (AMC23/AIME24/AIME25); GSM-Symbolic (ICLR 2025) shows up to 65% drops from a single irrelevant clause; the Robust Reasoning Benchmark (arXiv 2604.08571, Apr 2026) finds up to 54% drops for open-weights models on perturbed AIME problems; MATH-Perturb (ICML 2025) identifies a critical "blind technique application" failure mode where models mechanically apply memorized solution strategies without verifying applicability—accounting for ~40% of o1-mini's errors and ~25% of Claude-3.5-Sonnet's errors on hard perturbations.
+
+Training-time interventions remain scarce and incomplete: AbstRaL (ICLR 2026) achieves GSM-level robustness via symbolic abstraction but is explicitly limited to elementary math and does not scale to competition problems. TA-GRPO generates equivalent rephrasings via GPT-4 paraphrasing and pools GRPO advantages across them but lacks symbolic equivalence verification, explicit distribution-level consistency enforcement, and any discrimination against semantically-altered problems. ROMA demonstrates that KL consistency regularization during GRPO works for visual robustness in multimodal models but addresses neither text perturbations nor the discrimination side. CLIPO (arXiv 2603.10101) captures invariant structure across correct reasoning paths via trajectory-level contrastive learning but does not address input-level perturbation invariance—its invariance dimension (trajectory noise) is orthogonal to ours (surface-form noise). RLTR (arXiv 2602.08489) improves reasoning robustness via transfer reward (+3.6% Maj@64 on MATH500) but does not target perturbation-specific invariance. GRPO-CARE (arXiv 2506.16141) and COPO (arXiv 2508.04138) address multimodal visual consistency and zero-gradient issues respectively, not math text robustness. Concurrent GRPO variants DAPO (arXiv 2503.14476) and Dr.GRPO improve training dynamics but include no robustness mechanisms.
+
+## Proposed Approach
+
+Extend GRPO with dual consistency objectives motivated by the structural duality of mathematical perturbation space: (1) JS-divergence enforcing output invariance between original and math-equivalence-preserving perturbations (variable renaming, numerical reparameterization via VAR-MATH's open-source symbolic pipeline); (2) contrastive discrimination loss penalizing invariance on semantics-altering hard perturbations—directly targeting the "blind technique application" failure mode quantified by MATH-Perturb (ICML 2025). Both losses applied at entropy-gated decision tokens per ReasonMaxxer's insight, with entropy-gating itself treated as a hypothesis to be validated (the correspondence between RL policy-selection points and consistency-critical points is not a priori guaranteed). Pool advantages across perturbation groups à la TA-GRPO. Train Qwen3-8B (primary) and Qwen3-1.5B (scaling validation) on MATH/AMC/AIME, 8×H100.
+
+## Detailed Description
+
+We propose ConsistRL, augmenting GRPO with dual consistency objectives for math perturbation robustness. The design is motivated by a structural property of mathematical perturbation space: equivalence-preserving perturbations (variable renaming, numerical reparameterization) and semantics-altering perturbations (changed constraints, added conditions) are surface-similar but require opposite model behaviors, making single-direction consistency insufficient and potentially harmful.
+
+**Invariance objective.** A JS-divergence loss enforces output-distribution invariance across math-equivalence-preserving perturbations generated via VAR-MATH's open-source symbolic pipeline (arXiv 2507.12885), applied selectively at high-entropy decision points where ReasonMaxxer (arXiv 2605.06241) shows RL concentrates its effect (1–3% of tokens). We treat the entropy-gating hypothesis as a testable claim: RL policy-selection points may not perfectly overlap with consistency-critical points, and we design an explicit ablation (full-sequence vs. entropy-gated consistency loss, static base-model entropy vs. dynamic policy entropy) to validate or refine this.
+
+**Discrimination objective.** A contrastive discrimination loss penalizes output similarity on semantics-altering hard perturbations where surface similarity masks semantic divergence—directly addressing the "blind technique application" failure mode that MATH-Perturb (ICML 2025) quantifies as responsible for ~40% of o1-mini's errors on MATH-P-Hard. Training data for hard perturbations is generated via an LLM-based pipeline (GPT-4 generating semantics-altering variants of MATH training set problems), with human verification on a sampled subset to ensure perturbation quality, strictly separated from evaluation data to prevent contamination.
+
+**Advantage pooling.** TA-GRPO-style advantage pooling across perturbation groups simultaneously mitigates GRPO's zero-gradient problem (arXiv 2601.22478).
+
+This approach differs from ROMA (single-direction visual invariance), CLIPO (trajectory-level contrastive for reasoning path invariance, orthogonal to input perturbation invariance), TA-GRPO (no distribution-level consistency), and AbstRaL (symbolic abstraction limited to elementary math).
+
+## Experimental Design
+
+**Primary model:** Qwen3-8B. **Scaling validation:** Qwen3-1.5B.
+
+**Baselines (7):** (1) Vanilla GRPO, (2) DAPO (arXiv 2503.14476), (3) Dr.GRPO, (4) TA-GRPO (arXiv 2601.22478), (5) COPO (arXiv 2508.04138), (6) GRPO + augmentation-only (same perturbation data, no consistency losses—isolates regularization's contribution per PPCL), (7) AbstRaL (ICLR 2026, GSM-level subset only).
+
+**Evaluation benchmarks:** VAR-MATH (AMC23/AIME24/AIME25), MATH-Perturb (MATH-P-Simple and MATH-P-Hard reported separately), Robust Reasoning Benchmark (arXiv 2604.08571), MATH-500 (clean accuracy).
+
+**Metrics:** VAR-MATH strict consistency rate and loose consistency rate with bootstrapping 95% CIs; robustness gap (clean − perturbed accuracy); per-benchmark accuracy with CIs; clean accuracy non-degradation criterion (MATH-500 drop ≤ 1%, verified by statistical test).
+
+**Ablation matrix (6 variants):** (1) ConsistRL full, (2) w/o JS-divergence, (3) w/o contrastive discrimination loss, (4) w/o entropy gating (losses on all tokens), (5) w/o advantage pooling, (6) JS-divergence only + entropy gating (minimal variant). Additionally: static base-model entropy vs. dynamic policy entropy for gating; entropy threshold sensitivity analysis.
+
+**Compute fairness:** Report training wall-clock time and total GPU-hours for all methods. Compute-matched comparison ensuring equal total FLOPs across methods. Robustness vs. compute curve.
+
+**Target:** ≥15% robustness recovery over vanilla GRPO on VAR-MATH while preserving clean MATH-500 accuracy (≤1% drop).
+
+## Key References
+
+- Reinforcing Multimodal Reasoning Against Visual Degradation / ROMA (arXiv 2605.09262, 2026)
+- Transform-Augmented GRPO Improves Pass@k / TA-GRPO (arXiv 2601.22478, 2026)
+- CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR (arXiv 2603.10101, 2026)
+- Beyond Correctness: Learning Robust Reasoning via Transfer / RLTR (arXiv 2602.08489, 2026)
+- Prompt Perturbation Consistency Learning / PPCL (EACL Findings 2024)
+- MATH-Perturb: Benchmarking LLMs' Math Reasoning against Hard Perturbations (ICML 2025)
+- GSM-Symbolic: Understanding Limitations of Mathematical Reasoning in LLMs (ICLR 2025)
+- AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking (ICLR 2026)
+- VAR-MATH: Probing True Mathematical Reasoning via Symbolic Benchmarks (arXiv 2507.12885, 2025)
+- Rethinking RL for LLM Reasoning / ReasonMaxxer (arXiv 2605.06241, 2026)
+- Robust Reasoning Benchmark (arXiv 2604.08571, 2026)
+- GRPO-CARE: Consistency-Aware RL for Multimodal Reasoning (arXiv 2506.16141, 2025)
+- COPO: Consistency-Aware Policy Optimization (arXiv 2508.04138, 2025)
+- DAPO: An Open-Source LLM Reinforcement Learning System at Scale (arXiv 2503.14476, 2025)
+- Dr.GRPO: Group Relative Policy Optimization Done Right
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "bf0bcf66-99a5-448a-802a-1a84104b7a02",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T08:10:17.886Z_
+
+```json
+{
+  "parentUuid": "bf0bcf66-99a5-448a-802a-1a84104b7a02",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "ac33c71d-2a9d-444a-96dd-a968342098a8",
+  "timestamp": "2026-05-29T08:10:17.886Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T08:10:17.886Z_
+
+```json
+{
+  "parentUuid": "ac33c71d-2a9d-444a-96dd-a968342098a8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3d0f4b97-041a-4a48-99f9-25baa3a6a2c6",
+  "timestamp": "2026-05-29T08:10:17.886Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-29T08:10:23.562Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the "发掘 agent" (Discovery Agent). I need to:
+
+1. First, do thorough literature research via WebSearch to understand the current landscape
+2. Then evaluate the proposal's novelty, significance, and related work differentiation
+3. Provide concrete suggestions to raise the idea's ceiling, or declare convergence if it's already solid
+
+Let me start by searching for the most relevant recent work in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d0f4b97-041a-4a48-99f9-25baa3a6a2c6",
+  "isSidechain": false,
+  "requestId": "req_011CbWXACbMMPbR7yWMLEEcQ",
+  "type": "assistant",
+  "uuid": "fd369d5c-d92a-493c-9ae7-be59ce995193",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BN7P5omuxhVPn8fg8mDdAN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4267,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4267,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4267,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4267
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T08:10:24.667Z_
+
+I'll start by conducting thorough literature research before making any assessments. Let me search for the most relevant recent work in this space.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd369d5c-d92a-493c-9ae7-be59ce995193",
+  "isSidechain": false,
+  "requestId": "req_011CbWXACbMMPbR7yWMLEEcQ",
+  "type": "assistant",
+  "uuid": "5a4e1541-96f3-42ec-8a7b-ed5453021e30",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BN7P5omuxhVPn8fg8mDdAN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4267,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4267,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4267,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4267
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-29T08:10:24.689Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K7sucdABtEi55nBZK5Xmub`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a4e1541-96f3-42ec-8a7b-ed5453021e30",
+  "isSidechain": false,
+  "requestId": "req_011CbWXACbMMPbR7yWMLEEcQ",
+  "type": "assistant",
+  "uuid": "d3bffc17-a4ac-45c8-b633-dedf9dec080f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BN7P5omuxhVPn8fg8mDdAN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4267,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4267,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4267,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4267
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-29T08:10:24.697Z_
+
+<details><summary>↩ Tool result · `toolu_01K7sucdABtEi55nBZK5Xmub`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3bffc17-a4ac-45c8-b633-dedf9dec080f",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "4b967b72-6993-48f2-9e43-1765833140c4",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "d3bffc17-a4ac-45c8-b633-dedf9dec080f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-29T08:10:27.263Z_
+
+Now let me conduct the prerequisite literature research with multiple targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b967b72-6993-48f2-9e43-1765833140c4",
+  "isSidechain": false,
+  "requestId": "req_011CbWXAhdMBpfJkFqQyEuaY",
+  "type": "assistant",
+  "uuid": "ff043882-dc7f-4311-851c-add94bac51a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011sBbzfMDRNYH9uyHZ9auQ5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 18451,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 745,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 18451,
+          "cache_creation_input_tokens": 745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 745
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-29T08:10:27.878Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qx8EsogFSxigkNQJr58GGt`</summary>
+
+```json
+{
+  "query": "consistency regularization reinforcement learning math reasoning robustness 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff043882-dc7f-4311-851c-add94bac51a8",
+  "isSidechain": false,
+  "requestId": "req_011CbWXAhdMBpfJkFqQyEuaY",
+  "type": "assistant",
+  "uuid": "8d3468d6-a96b-482a-ab72-89b0c8251bc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011sBbzfMDRNYH9uyHZ9auQ5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 18451,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 745,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 18451,
+          "cache_creation_input_tokens": 745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 745
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning  ## Core Problem  RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (nu…",
+  "leafUuid": "8d3468d6-a96b-482a-ab72-89b0c8251bc9",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-29T08:10:35.740Z_
+
+<details><summary>↩ Tool result · `toolu_01Qx8EsogFSxigkNQJr58GGt`</summary>
+
+```text
+Web search results for query: "consistency regularization reinforcement learning math reasoning robustness 2025 2026"
+
+Links: [{"title":"COPO: Consistency-Aware Policy Optimization","url":"https://arxiv.org/pdf/2508.04138"},{"title":"Answer-Consistent Chain-of-thought Reinforcement Learning For Multi-modal Large Langauge Models","url":"https://arxiv.org/pdf/2510.10104"},{"title":"Beyond Correctness: Learning Robust Reasoning via Transfer","url":"https://arxiv.org/pdf/2602.08489"},{"title":"enhancing llm reasoning with adversarial reinforce","url":"https://arxiv.org/pdf/2512.16917"},{"title":"Published as a conference paper at ICLR 2025 CREAM: CONSISTENCY REGULARIZED","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8f9d459c19b59b5400ce396e0f8c23e0-Paper-Conference.pdf"},{"title":"Consistency Regularization Can Improve Robustness to Label Noise","url":"https://arxiv.org/pdf/2110.01242"}]
+
+Based on the search results, I found several relevant papers on consistency regularization, reinforcement learning, and mathematical reasoning robustness from 2025-2026:
+
+## Key Findings:
+
+### CREAM: Consistency Regularized Reinforcement Learning
+
+CREAM uses regularization to mitigate rewarding bias and leverages the iterative nature of self-rewarding language models (SRLMs) to estimate consistency between iterations to regularize preference pairs, published at ICLR 2025.
+
+### Mathematical Reasoning with RL
+
+Recent work validates consistency-aware policy optimization frameworks through substantial performance gains on multiple mathematical reasoning benchmarks, highlighting robustness and general applicability. Despite gains in outcome-based verification, a critical dimension remains underexplored: the robustness of the reasoning process itself.
+
+### Robust Reasoning Approaches
+
+An approach to robust reasoning improves sampling consistency while improving final-answer accuracy, reaching comparable performance in substantially fewer training steps—on MATH-500, achieving a +3.6%p gain in Majority@64 compared to standard verifiable reward approaches.
+
+### Adversarial Methods for RL
+
+Recent work jointly trains reasoners and discriminators under an on-policy scheme, yielding dense rewards with alignment regularization to curb reward hacking for enhanced mathematical reasoning performance.
+
+These papers demonstrate active research into consistency regularization techniques for improving both the robustness and reliability of reinforcement learning-based mathematical reasoning in large language models during 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d3468d6-a96b-482a-ab72-89b0c8251bc9",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "e8ff475b-c7c6-4fb1-9273-de90d9c91915",
+  "toolUseResult": {
+    "query": "consistency regularization reinforcement learning math reasoning robustness 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V5UjPQGHEGmyq3jbWK22vd",
+        "content": [
+          {
+            "title": "COPO: Consistency-Aware Policy Optimization",
+            "url": "https://arxiv.org/pdf/2508.04138"
+          },
+          {
+            "title": "Answer-Consistent Chain-of-thought Reinforcement Learning For Multi-modal Large Langauge Models",
+            "url": "https://arxiv.org/pdf/2510.10104"
+          },
+          {
+            "title": "Beyond Correctness: Learning Robust Reasoning via Transfer",
+            "url": "https://arxiv.org/pdf/2602.08489"
+          },
+          {
+            "title": "enhancing llm reasoning with adversarial reinforce",
+            "url": "https://arxiv.org/pdf/2512.16917"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 CREAM: CONSISTENCY REGULARIZED",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8f9d459c19b59b5400ce396e0f8c23e0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Consistency Regularization Can Improve Robustness to Label Noise",
+            "url": "https://arxiv.org/pdf/2110.01242"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on consistency regularization, reinforcement learning, and mathematical reasoning robustness from 2025-2026:\n\n## Key Findings:\n\n### CREAM: Consistency Regularized Reinforcement Learning\n\nCREAM uses regularization to mitigate rewarding bias and leverages the iterative nature of self-rewarding language models (SRLMs) to estimate consistency between iterations to regularize preference pairs, published at ICLR 2025.\n\n### Mathematical Reasoning with RL\n\nRecent work validates consistency-aware policy optimization frameworks through substantial performance gains on multiple mathematical reasoning benchmarks, highlighting robustness and general applicability. Despite gains in outcome-based verification, a critical dimension remains underexplored: the robustness of the reasoning process itself.\n\n### Robust Reasoning Approaches\n\nAn approach to robust reasoning improves sampling consistency while improving final-answer accuracy, reaching comparable performance in substantially fewer training steps—on MATH-500, achieving a +3.6%p gain in Majority@64 compared to standard verifiable reward approaches.\n\n### Adversarial Methods for RL\n\nRecent work jointly trains reasoners and discriminators under an on-policy scheme, yielding dense rewards with alignment regularization to curb reward hacking for enhanced mathematical reasoning performance.\n\nThese papers demonstrate active research into consistency regularization techniques for improving both the robustness and reliability of reinforcement learning-based mathematical reasoning in large language models during 2025-2026."
+    ],
+    "durationSeconds": 7.856607582999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8d3468d6-a96b-482a-ab72-89b0c8251bc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-29T08:10:38.359Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HCtqyRSk95Z6u1o77bLb31`</summary>
+
+```json
+{
+  "query": "GRPO perturbation robustness mathematical reasoning TA-GRPO ROMA 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8ff475b-c7c6-4fb1-9273-de90d9c91915",
+  "isSidechain": false,
+  "requestId": "req_011CbWXBWWPzG4vE9uVcmovB",
+  "type": "assistant",
+  "uuid": "5e3fa8a7-49f5-4014-887f-780847ad4c50",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gw62UYeLCRtNfKSETWQu1p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 19196,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 19196,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-29T08:10:46.438Z_
+
+<details><summary>↩ Tool result · `toolu_01HCtqyRSk95Z6u1o77bLb31`</summary>
+
+```text
+Web search results for query: "GRPO perturbation robustness mathematical reasoning TA-GRPO ROMA 2026 arXiv"
+
+Links: [{"title":"Transform-Augmented GRPO Improves Pass@k","url":"https://arxiv.org/pdf/2601.22478"},{"title":"Mitigating Think-Answer Mismatch in LLM Reasoning Through Noise-Aware Advantage Reweighting","url":"https://arxiv.org/pdf/2508.05928"},{"title":"[2601.20614] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/abs/2601.20614"},{"title":"Reinforcing Multimodal Reasoning Against Visual Degradation","url":"https://arxiv.org/pdf/2605.09262"},{"title":"Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/html/2511.08022"},{"title":"Geometric-Mean Policy Optimization","url":"https://arxiv.org/pdf/2507.20673"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/html/2505.09655v4"},{"title":"GRPO-LEAD: A Difficulty-Aware Reinforcement Learning Approach for Concise Mathematical Reasoning in Language Models","url":"https://arxiv.org/pdf/2504.09696"},{"title":"DRPO: Efficient Reasoning via Decoupled Reward Policy ...","url":"https://arxiv.org/pdf/2510.04474"}]
+
+Based on the search results, I found several relevant papers related to GRPO, mathematical reasoning, and robustness. Here are the key findings:
+
+## TA-GRPO (Transform-Augmented GRPO)
+
+TA-GRPO generates semantically equivalent transformed variants of each question through paraphrasing, variable renaming, and format changes, and computes advantages by pooling rewards across the entire group. This pooled computation ensures mixed rewards even when the original question is too easy or too hard, while training on diverse phrasings promotes multiple solution strategies. Experiments on mathematical reasoning benchmarks show consistent Pass@k improvements, with gains up to 9.84 points on competition math (AMC12, AIME24) and 5.05 points on out-of-distribution scientific reasoning (GPQA-Diamond).
+
+## ROMA (Reinforcing Multimodal Reasoning Against Visual Degradation)
+
+GRPO suffers a larger performance drop when transitioning from clean to degraded inputs, decreasing by 8.7% for the 4B model and by 9.7% for the 8B model. ROMA consistently achieves higher accuracy at severe corruption levels and exhibits smaller performance degradation compared to the base model.
+
+## Perturbation and Robustness
+
+Under perturbation with numerical information, all models experience a sharp performance drop with accuracy rates dropping by up to 51.55% under strong perturbation conditions, highlighting the extreme sensitivity of LLMs to perturbations with numerical information when solving mathematical reasoning tasks.
+
+The search results show active research on improving GRPO's robustness to perturbations in mathematical reasoning tasks through both transform augmentation and multimodal degradation approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e3fa8a7-49f5-4014-887f-780847ad4c50",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "e0245ac8-cdbe-4ec5-8a5b-2c6731e45596",
+  "toolUseResult": {
+    "query": "GRPO perturbation robustness mathematical reasoning TA-GRPO ROMA 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UFC2E2fhU5dUM8M2mayZbZ",
+        "content": [
+          {
+            "title": "Transform-Augmented GRPO Improves Pass@k",
+            "url": "https://arxiv.org/pdf/2601.22478"
+          },
+          {
+            "title": "Mitigating Think-Answer Mismatch in LLM Reasoning Through Noise-Aware Advantage Reweighting",
+            "url": "https://arxiv.org/pdf/2508.05928"
+          },
+          {
+            "title": "[2601.20614] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://arxiv.org/abs/2601.20614"
+          },
+          {
+            "title": "Reinforcing Multimodal Reasoning Against Visual Degradation",
+            "url": "https://arxiv.org/pdf/2605.09262"
+          },
+          {
+            "title": "Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models",
+            "url": "https://arxiv.org/html/2511.08022"
+          },
+          {
+            "title": "Geometric-Mean Policy Optimization",
+            "url": "https://arxiv.org/pdf/2507.20673"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.09655v4"
+          },
+          {
+            "title": "GRPO-LEAD: A Difficulty-Aware Reinforcement Learning Approach for Concise Mathematical Reasoning in Language Models",
+            "url": "https://arxiv.org/pdf/2504.09696"
+          },
+          {
+            "title": "DRPO: Efficient Reasoning via Decoupled Reward Policy ...",
+            "url": "https://arxiv.org/pdf/2510.04474"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers related to GRPO, mathematical reasoning, and robustness. Here are the key findings:\n\n## TA-GRPO (Transform-Augmented GRPO)\n\nTA-GRPO generates semantically equivalent transformed variants of each question through paraphrasing, variable renaming, and format changes, and computes advantages by pooling rewards across the entire group. This pooled computation ensures mixed rewards even when the original question is too easy or too hard, while training on diverse phrasings promotes multiple solution strategies. Experiments on mathematical reasoning benchmarks show consistent Pass@k improvements, with gains up to 9.84 points on competition math (AMC12, AIME24) and 5.05 points on out-of-distribution scientific reasoning (GPQA-Diamond).\n\n## ROMA (Reinforcing Multimodal Reasoning Against Visual Degradation)\n\nGRPO suffers a larger performance drop when transitioning from clean to degraded inputs, decreasing by 8.7% for the 4B model and by 9.7% for the 8B model. ROMA consistently achieves higher accuracy at severe corruption levels and exhibits smaller performance degradation compared to the base model.\n\n## Perturbation and Robustness\n\nUnder perturbation with numerical information, all models experience a sharp performance drop with accuracy rates dropping by up to 51.55% under strong perturbation conditions, highlighting the extreme sensitivity of LLMs to perturbations with numerical information when solving mathematical reasoning tasks.\n\nThe search results show active research on improving GRPO's robustness to perturbations in mathematical reasoning tasks through both transform augmentation and multimodal degradation approaches."
+    ],
+    "durationSeconds": 8.074696495,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5e3fa8a7-49f5-4014-887f-780847ad4c50",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-29T08:10:49.358Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XCK74NuUzym2n1DEcrha3t`</summary>
+
+```json
+{
+  "query": "VAR-MATH symbolic benchmark mathematical reasoning perturbation accuracy drop 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0245ac8-cdbe-4ec5-8a5b-2c6731e45596",
+  "isSidechain": false,
+  "requestId": "req_011CbWXCJJhhCNerVf5mj8yj",
+  "type": "assistant",
+  "uuid": "c862071c-f130-4ff8-b3d2-19a8a9a68026",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RhWbTQDWpFiTqvpzWuLo8Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 19925,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 19925,
+          "cache_creation_input_tokens": 913,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 913
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-29T08:10:55.927Z_
+
+<details><summary>↩ Tool result · `toolu_01XCK74NuUzym2n1DEcrha3t`</summary>
+
+```text
+Web search results for query: "VAR-MATH symbolic benchmark mathematical reasoning perturbation accuracy drop 2025"
+
+Links: [{"title":"VAR-MATH: Probing True Mathematical Reasoning in ...","url":"https://arxiv.org/pdf/2507.12885"},{"title":"VAR-MATH: Mathematical Reasoning & Risk Metrics","url":"https://www.emergentmind.com/topics/var-math"},{"title":"VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks","url":"https://arxiv.org/html/2507.12885"},{"title":"Mathematical Reasoning Benchmarks Overview","url":"https://www.emergentmind.com/topics/mathematical-reasoning-benchmarks"},{"title":"VAR-MATH: Probing True Mathematical Reasoning in Large Language Models via Symbolic Multi-Instance Benchmarks","url":"https://arxiv.org/html/2507.12885v1"},{"title":"[2507.12885] VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks","url":"https://arxiv.org/abs/2507.12885"},{"title":"T-Math Reasoning Benchmark","url":"https://www.emergentmind.com/topics/t-math-reasoning-benchmark"}]
+
+Based on the search results, here's what I found about VAR-MATH and its findings regarding accuracy drops:
+
+## VAR-MATH Overview
+
+VAR-MATH is a symbolic evaluation framework that converts fixed numerical problems into parameterized templates and requires models to solve multiple instantiations of each.
+
+## Key Findings on Accuracy Drops
+
+Experimental results show substantial performance drops for RL-trained models on these variabilized benchmarks, especially for smaller models, with average declines of 47.9% on AMC23, 58.8% on AIME24, and 72.9% on AIME25.
+
+For specific model examples, Light-R1-7B-DS drops from 78.6 to 53.3 on AMC23, and from 40.8 to 24.4 on AIME24.
+
+## Root Causes
+
+The underlying issues include overfitting to specific numeric templates, possibly exacerbated by data leakage from publicly available math problems, and fragile symbolic reasoning, where models solve one variant correctly but fail others that differ only in surface values.
+
+## Significance
+
+By enforcing consistency across structurally equivalent variants, VAR-MATH uncovers reasoning failures that are masked by single-instance evaluations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c862071c-f130-4ff8-b3d2-19a8a9a68026",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "d28b0c6f-ce3e-44a8-9968-da96207c5978",
+  "toolUseResult": {
+    "query": "VAR-MATH symbolic benchmark mathematical reasoning perturbation accuracy drop 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013cgsaSkWRJJZ5nUgFXCHw3",
+        "content": [
+          {
+            "title": "VAR-MATH: Probing True Mathematical Reasoning in ...",
+            "url": "https://arxiv.org/pdf/2507.12885"
+          },
+          {
+            "title": "VAR-MATH: Mathematical Reasoning & Risk Metrics",
+            "url": "https://www.emergentmind.com/topics/var-math"
+          },
+          {
+            "title": "VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks",
+            "url": "https://arxiv.org/html/2507.12885"
+          },
+          {
+            "title": "Mathematical Reasoning Benchmarks Overview",
+            "url": "https://www.emergentmind.com/topics/mathematical-reasoning-benchmarks"
+          },
+          {
+            "title": "VAR-MATH: Probing True Mathematical Reasoning in Large Language Models via Symbolic Multi-Instance Benchmarks",
+            "url": "https://arxiv.org/html/2507.12885v1"
+          },
+          {
+            "title": "[2507.12885] VAR-MATH: Probing True Mathematical Reasoning in LLMS via Symbolic Multi-Instance Benchmarks",
+            "url": "https://arxiv.org/abs/2507.12885"
+          },
+          {
+            "title": "T-Math Reasoning Benchmark",
+            "url": "https://www.emergentmind.com/topics/t-math-reasoning-benchmark"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VAR-MATH and its findings regarding accuracy drops:\n\n## VAR-MATH Overview\n\nVAR-MATH is a symbolic evaluation framework that converts fixed numerical problems into parameterized templates and requires models to solve multiple instantiations of each.\n\n## Key Findings on Accuracy Drops\n\nExperimental results show substantial performance drops for RL-trained models on these variabilized benchmarks, especially for smaller models, with average declines of 47.9% on AMC23, 58.8% on AIME24, and 72.9% on AIME25.\n\nFor specific model examples, Light-R1-7B-DS drops from 78.6 to 53.3 on AMC23, and from 40.8 to 24.4 on AIME24.\n\n## Root Causes\n\nThe underlying issues include overfitting to specific numeric templates, possibly exacerbated by data leakage from publicly available math problems, and fragile symbolic reasoning, where models solve one variant correctly but fail others that differ only in surface values.\n\n## Significance\n\nBy enforcing consistency across structurally equivalent variants, VAR-MATH uncovers reasoning failures that are masked by single-instance evaluations."
+    ],
+    "durationSeconds": 6.5599044130000035,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c862071c-f130-4ff8-b3d2-19a8a9a68026",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-29T08:10:58.900Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DMarae51hc9nFQg2ewLLRK`</summary>
+
+```json
+{
+  "query": "CLIPO contrastive learning policy optimization RLVR reasoning 2026 arXiv 2603.10101"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d28b0c6f-ce3e-44a8-9968-da96207c5978",
+  "isSidechain": false,
+  "requestId": "req_011CbWXCzr13kG557J6CezkF",
+  "type": "assistant",
+  "uuid": "89ff962e-f12d-433b-ba89-e57da2002757",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016sfp3hLgmj6vWEn8xME1tr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 20838,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 20838,
+          "cache_creation_input_tokens": 705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-29T08:11:04.205Z_
+
+<details><summary>↩ Tool result · `toolu_01DMarae51hc9nFQg2ewLLRK`</summary>
+
+```text
+Web search results for query: "CLIPO contrastive learning policy optimization RLVR reasoning 2026 arXiv 2603.10101"
+
+Links: [{"title":"[2603.10101] CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR","url":"https://arxiv.org/abs/2603.10101"},{"title":"Paper page - CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR","url":"https://huggingface.co/papers/2603.10101"},{"title":"CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR","url":"https://www.researchgate.net/publication/401833359_CLIPO_Contrastive_Learning_in_Policy_Optimization_Generalizes_RLVR"},{"title":"GitHub - Qwen-Applications/CLIPO: CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR · GitHub","url":"https://github.com/Qwen-Applications/CLIPO"},{"title":"CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR","url":"https://arxiv.org/pdf/2603.10101"},{"title":"Sijia Cui","url":"https://www.catalyzex.com/author/Sijia%20Cui"}]
+
+I found the paper! Here's what I can tell you about it:
+
+## CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR
+
+Reinforcement Learning with Verifiable Rewards (RLVR) has significantly advanced the reasoning capacity of Large Language Models (LLMs), but RLVR solely relies on final answers as outcome rewards, neglecting the correctness of intermediate reasoning steps. Training on these process-wrong but outcome-correct rollouts can lead to hallucination and answer-copying, severely undermining the model's generalization and robustness.
+
+To address this, the researchers incorporate a Contrastive Learning mechanism into the Policy Optimization (CLIPO) to generalize the RLVR process. By optimizing a contrastive loss over successful rollouts, CLIPO steers the LLM to capture the invariant structure shared across correct reasoning paths. This provides a more robust cross-trajectory regularization than the original single-path supervision in RLVR, effectively mitigating step-level reasoning inconsistencies and suppressing hallucinatory artifacts.
+
+CLIPO introduces a lightweight contrastive head and an intra-group contrastive objective into RLVR-style policy optimization, and by aligning multiple successful reasoning trajectories and contrasting them against incorrect ones, the method extracts invariant reasoning structures shared by correct rollouts.
+
+The paper is available on arXiv and was posted on March 10, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89ff962e-f12d-433b-ba89-e57da2002757",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "f7f31776-a8a3-446c-8f25-f29c37549109",
+  "toolUseResult": {
+    "query": "CLIPO contrastive learning policy optimization RLVR reasoning 2026 arXiv 2603.10101",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014YbBnwJkfVRpk1kzYzH5Jo",
+        "content": [
+          {
+            "title": "[2603.10101] CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR",
+            "url": "https://arxiv.org/abs/2603.10101"
+          },
+          {
+            "title": "Paper page - CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR",
+            "url": "https://huggingface.co/papers/2603.10101"
+          },
+          {
+            "title": "CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR",
+            "url": "https://www.researchgate.net/publication/401833359_CLIPO_Contrastive_Learning_in_Policy_Optimization_Generalizes_RLVR"
+          },
+          {
+            "title": "GitHub - Qwen-Applications/CLIPO: CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR · GitHub",
+            "url": "https://github.com/Qwen-Applications/CLIPO"
+          },
+          {
+            "title": "CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR",
+            "url": "https://arxiv.org/pdf/2603.10101"
+          },
+          {
+            "title": "Sijia Cui",
+            "url": "https://www.catalyzex.com/author/Sijia%20Cui"
+          }
+        ]
+      },
+      "I found the paper! Here's what I can tell you about it:\n\n## CLIPO: Contrastive Learning in Policy Optimization Generalizes RLVR\n\nReinforcement Learning with Verifiable Rewards (RLVR) has significantly advanced the reasoning capacity of Large Language Models (LLMs), but RLVR solely relies on final answers as outcome rewards, neglecting the correctness of intermediate reasoning steps. Training on these process-wrong but outcome-correct rollouts can lead to hallucination and answer-copying, severely undermining the model's generalization and robustness.\n\nTo address this, the researchers incorporate a Contrastive Learning mechanism into the Policy Optimization (CLIPO) to generalize the RLVR process. By optimizing a contrastive loss over successful rollouts, CLIPO steers the LLM to capture the invariant structure shared across correct reasoning paths. This provides a more robust cross-trajectory regularization than the original single-path supervision in RLVR, effectively mitigating step-level reasoning inconsistencies and suppressing hallucinatory artifacts.\n\nCLIPO introduces a lightweight contrastive head and an intra-group contrastive objective into RLVR-style policy optimization, and by aligning multiple successful reasoning trajectories and contrasting them against incorrect ones, the method extracts invariant reasoning structures shared by correct rollouts.\n\nThe paper is available on arXiv and was posted on March 10, 2026."
+    ],
+    "durationSeconds": 5.301333141999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "89ff962e-f12d-433b-ba89-e57da2002757",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-29T08:11:06.811Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UyQB5RJuabJKVdhaXD99WB`</summary>
+
+```json
+{
+  "query": "ReasonMaxxer rethinking RL LLM reasoning sparse policy selection entropy tokens 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7f31776-a8a3-446c-8f25-f29c37549109",
+  "isSidechain": false,
+  "requestId": "req_011CbWXDcGyPiwzQPTpfkwrc",
+  "type": "assistant",
+  "uuid": "bc24eb68-9066-473c-8373-6c611d5a6d27",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sWDk1eNTCMSt2aMjGBJTK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 21543,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 21543,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-29T08:11:14.268Z_
+
+<details><summary>↩ Tool result · `toolu_01UyQB5RJuabJKVdhaXD99WB`</summary>
+
+```text
+Web search results for query: "ReasonMaxxer rethinking RL LLM reasoning sparse policy selection entropy tokens 2026"
+
+Links: [{"title":"[2605.06241] Rethinking RL for LLM Reasoning: It's Sparse Policy Selection, Not Capability Learning","url":"https://arxiv.org/abs/2605.06241"},{"title":"Rethinking RL for LLM Reasoning: It’s Sparse Policy Selection, Not Capability Learning","url":"https://arxiv.org/html/2605.06241v2"},{"title":"Rethinking RL for LLM Reasoning: It's Sparse Policy ...","url":"https://arxiv.org/pdf/2605.06241"},{"title":"On the Direction of RLVR Updates for LLM Reasoning:","url":"https://arxiv.org/pdf/2603.22117"},{"title":"Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=yfcpdY4gMP"},{"title":"Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning","url":"https://arxiv.org/pdf/2506.01939"}]
+
+I found relevant results for your search. Here's what the research shows:
+
+## ReasonMaxxer: Key Findings
+
+ReasonMaxxer is a minimal RL-free method that applies contrastive loss only at entropy-gated decision points, using a few hundred base-model rollouts and no online generation, matching or exceeding full RL performance while requiring only tens of problems and minutes of single-GPU training—roughly three orders of magnitude reduction in training cost.
+
+## Core Insight: Sparse Policy Selection
+
+These findings reframe reasoning improvement as sparse policy selection, not capability acquisition. RL's beneficial footprint is sparse, predictable correction concentrated at high-entropy decision points where the model is uncertain which branch to take, with only 1–3% of token positions affected.
+
+## Entropy-Based Detection
+
+The base model's own token entropy, which peaks at the positions RL edits, provides a strong proxy for where intervention is useful. The base model's own entropy identifies these positions without any RL-trained model, and the entire correction is low-dimensional, representable in a tiny fraction of model parameters.
+
+## Performance Results
+
+Across three model families, six scales, and six math reasoning benchmarks, ReasonMaxxer matches or exceeds full RL performance while requiring only tens of problems and minutes of single-GPU training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc24eb68-9066-473c-8373-6c611d5a6d27",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "98477ba1-0416-4364-b057-08d27ccda63f",
+  "toolUseResult": {
+    "query": "ReasonMaxxer rethinking RL LLM reasoning sparse policy selection entropy tokens 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FPFsGRvM9U1Yvnhf8hspA9",
+        "content": [
+          {
+            "title": "[2605.06241] Rethinking RL for LLM Reasoning: It's Sparse Policy Selection, Not Capability Learning",
+            "url": "https://arxiv.org/abs/2605.06241"
+          },
+          {
+            "title": "Rethinking RL for LLM Reasoning: It’s Sparse Policy Selection, Not Capability Learning",
+            "url": "https://arxiv.org/html/2605.06241v2"
+          },
+          {
+            "title": "Rethinking RL for LLM Reasoning: It's Sparse Policy ...",
+            "url": "https://arxiv.org/pdf/2605.06241"
+          },
+          {
+            "title": "On the Direction of RLVR Updates for LLM Reasoning:",
+            "url": "https://arxiv.org/pdf/2603.22117"
+          },
+          {
+            "title": "Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=yfcpdY4gMP"
+          },
+          {
+            "title": "Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2506.01939"
+          }
+        ]
+      },
+      "I found relevant results for your search. Here's what the research shows:\n\n## ReasonMaxxer: Key Findings\n\nReasonMaxxer is a minimal RL-free method that applies contrastive loss only at entropy-gated decision points, using a few hundred base-model rollouts and no online generation, matching or exceeding full RL performance while requiring only tens of problems and minutes of single-GPU training—roughly three orders of magnitude reduction in training cost.\n\n## Core Insight: Sparse Policy Selection\n\nThese findings reframe reasoning improvement as sparse policy selection, not capability acquisition. RL's beneficial footprint is sparse, predictable correction concentrated at high-entropy decision points where the model is uncertain which branch to take, with only 1–3% of token positions affected.\n\n## Entropy-Based Detection\n\nThe base model's own token entropy, which peaks at the positions RL edits, provides a strong proxy for where intervention is useful. The base model's own entropy identifies these positions without any RL-trained model, and the entire correction is low-dimensional, representable in a tiny fraction of model parameters.\n\n## Performance Results\n\nAcross three model families, six scales, and six math reasoning benchmarks, ReasonMaxxer matches or exceeds full RL performance while requiring only tens of problems and minutes of single-GPU training."
+    ],
+    "durationSeconds": 7.449637057,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bc24eb68-9066-473c-8373-6c611d5a6d27",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning  ## Core Problem  RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (nu…",
+  "leafUuid": "98477ba1-0416-4364-b057-08d27ccda63f",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-29T08:11:17.560Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EjAxmzgo1NSM4rwbBWPWjp`</summary>
+
+```json
+{
+  "query": "DRA-GRPO diverse reasoning paths mathematical reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98477ba1-0416-4364-b057-08d27ccda63f",
+  "isSidechain": false,
+  "requestId": "req_011CbWXEP3GZ236sigSsGvya",
+  "type": "assistant",
+  "uuid": "55c30757-7df3-4c1b-9e7a-8b9a04003886",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaHoHYF8X3UWGJNHWaKgrX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 22324,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 22324,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-29T08:11:24.524Z_
+
+<details><summary>↩ Tool result · `toolu_01EjAxmzgo1NSM4rwbBWPWjp`</summary>
+
+```text
+Web search results for query: "DRA-GRPO diverse reasoning paths mathematical reasoning 2025 2026"
+
+Links: [{"title":"[2505.09655] DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/abs/2505.09655"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/html/2505.09655"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for","url":"https://arxiv.org/pdf/2505.09655"},{"title":"DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models","url":"https://arxiv.org/html/2505.09655v1"},{"title":"Papers with Code - DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models","url":"https://paperswithcode.com/paper/dra-grpo-exploring-diversity-aware-reward"},{"title":"DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for","url":"https://arxiv.org/pdf/2505.09655v1"},{"title":"Diversity-Enhanced Reasoning for Subjective Questions","url":"https://arxiv.org/html/2507.20187"}]
+
+I found relevant information about DRA-GRPO. Here's a summary of the search results:
+
+## DRA-GRPO Overview
+
+DRA-GRPO is a method for post-training large language models with reinforcement learning, specifically using Group Relative Policy Optimization (GRPO), to enhance mathematical reasoning.
+
+## The Problem It Addresses
+
+Standard GRPO relies on scalar correctness rewards that are often non-injective with respect to semantic content: distinct reasoning paths receive identical rewards, leading to a Diversity-Quality Inconsistency where the policy collapses into a narrow set of dominant modes while ignoring equally valid but structurally novel strategies.
+
+## The Solution
+
+DRA-GRPO is a diversity-aware reward adjustment mechanism designed to resolve the "Diversity-Quality Inconsistency" in R1-Zero-like training. The method is plug-and-play and integrates seamlessly with GRPO variants.
+
+## Key Results
+
+Empirical evaluations on five math benchmarks demonstrate that DRA-GRPO consistently outperforms strong baselines, achieving an average accuracy of 58.2% on DeepSeek-R1-Distill-Qwen-1.5B with only 7,000 training samples and $55 cost.
+
+## Publication Status
+
+The paper was submitted on May 14, 2025, with the latest version (v4) revised on March 1, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55c30757-7df3-4c1b-9e7a-8b9a04003886",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "7ebb3394-31b7-449b-8081-781380295dcf",
+  "toolUseResult": {
+    "query": "DRA-GRPO diverse reasoning paths mathematical reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DLs2PwsM9YBRxUvE2iHvtf",
+        "content": [
+          {
+            "title": "[2505.09655] DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2505.09655"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.09655"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for",
+            "url": "https://arxiv.org/pdf/2505.09655"
+          },
+          {
+            "title": "DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models",
+            "url": "https://arxiv.org/html/2505.09655v1"
+          },
+          {
+            "title": "Papers with Code - DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models",
+            "url": "https://paperswithcode.com/paper/dra-grpo-exploring-diversity-aware-reward"
+          },
+          {
+            "title": "DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for",
+            "url": "https://arxiv.org/pdf/2505.09655v1"
+          },
+          {
+            "title": "Diversity-Enhanced Reasoning for Subjective Questions",
+            "url": "https://arxiv.org/html/2507.20187"
+          }
+        ]
+      },
+      "I found relevant information about DRA-GRPO. Here's a summary of the search results:\n\n## DRA-GRPO Overview\n\nDRA-GRPO is a method for post-training large language models with reinforcement learning, specifically using Group Relative Policy Optimization (GRPO), to enhance mathematical reasoning.\n\n## The Problem It Addresses\n\nStandard GRPO relies on scalar correctness rewards that are often non-injective with respect to semantic content: distinct reasoning paths receive identical rewards, leading to a Diversity-Quality Inconsistency where the policy collapses into a narrow set of dominant modes while ignoring equally valid but structurally novel strategies.\n\n## The Solution\n\nDRA-GRPO is a diversity-aware reward adjustment mechanism designed to resolve the \"Diversity-Quality Inconsistency\" in R1-Zero-like training. The method is plug-and-play and integrates seamlessly with GRPO variants.\n\n## Key Results\n\nEmpirical evaluations on five math benchmarks demonstrate that DRA-GRPO consistently outperforms strong baselines, achieving an average accuracy of 58.2% on DeepSeek-R1-Distill-Qwen-1.5B with only 7,000 training samples and $55 cost.\n\n## Publication Status\n\nThe paper was submitted on May 14, 2025, with the latest version (v4) revised on March 1, 2026."
+    ],
+    "durationSeconds": 6.957896459999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "55c30757-7df3-4c1b-9e7a-8b9a04003886",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-29T08:11:28.179Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QC53GtKAacnRPpf45wLr8L`</summary>
+
+```json
+{
+  "query": "MATH-Perturb blind technique application failure mode o1-mini perturbation robustness ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ebb3394-31b7-449b-8081-781380295dcf",
+  "isSidechain": false,
+  "requestId": "req_011CbWXF7RgpEM2qXLdta3Cr",
+  "type": "assistant",
+  "uuid": "02781fd6-1b4f-40de-a7e8-6208bd0d609d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LH7As8zcazAjMtexq73oyN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 784,
+      "cache_read_input_tokens": 23043,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 23043,
+          "cache_creation_input_tokens": 784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-29T08:11:35.522Z_
+
+<details><summary>↩ Tool result · `toolu_01QC53GtKAacnRPpf45wLr8L`</summary>
+
+```text
+Web search results for query: "MATH-Perturb blind technique application failure mode o1-mini perturbation robustness ICML 2025"
+
+Links: [{"title":"MATH-Perturb: Benchmarking LLMs’ Math Reasoning Abilities","url":"https://arxiv.org/pdf/2502.06453"},{"title":"ICML Poster MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations","url":"https://icml.cc/virtual/2025/poster/45435"},{"title":"GitHub - Kaffaljidhmah2/MATH-Perturb: Evaluation Code and Dataset for [ICML 2025] MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations","url":"https://github.com/Kaffaljidhmah2/MATH-Perturb"},{"title":"Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations","url":"https://arxiv.org/pdf/2603.03332"},{"title":"RIDE: DIFFICULTY EVOLVING PERTURBATION WITH ...","url":"https://openreview.net/pdf/a83cd39cfda0263faa17943c8f4832d28003298c.pdf"},{"title":"Improving Model Robustness by Adaptively Correcting Perturbation Levels   with Active Queries","url":"https://arxiv.org/pdf/2103.14824"},{"title":"Assessing Robustness of Machine Learning Models using Covariate   Perturbations","url":"https://arxiv.org/pdf/2408.01300"},{"title":"Constant Random Perturbations Provide Adversarial Robustness with   Minimal Effect on Accuracy","url":"https://arxiv.org/pdf/2103.08265"}]
+
+Based on the search results, I found relevant information about MATH-Perturb from ICML 2025. Here are the key findings:
+
+## MATH-Perturb: Overview
+
+MATH-Perturb is an ICML 2025 paper about benchmarking LLMs' math reasoning abilities against hard perturbations.
+
+## Blind Technique Application as a Failure Mode
+
+The paper raises concerns about a novel form of memorization where models blindly apply learned problem-solving skills without assessing their applicability to modified contexts. More specifically, models blindly apply techniques for the original problems without first determining whether these techniques are still suitable in the modified setting.
+
+## Performance Impact on o1-mini
+
+Significant performance drops are observed on MATH-P-Hard across various models, including o1-mini (-16.49%). Additionally, for large models, the paper estimates that memorization errors account for 40% for o1-mini.
+
+## Perturbation Types and Robustness
+
+The researchers constructed MATH-P-Simple and MATH-P-Hard via simple perturbation and hard perturbation, respectively, with each consisting of 279 perturbed math problems derived from level-5 (hardest) problems in the MATH dataset. Hard perturbations fundamentally change the nature of the problem so that the original solution steps do not apply.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02781fd6-1b4f-40de-a7e8-6208bd0d609d",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "9b7bec41-c40a-4b5f-92ba-1636239c1737",
+  "toolUseResult": {
+    "query": "MATH-Perturb blind technique application failure mode o1-mini perturbation robustness ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012hWi3AJ2UK7aiAWCR9R3gA",
+        "content": [
+          {
+            "title": "MATH-Perturb: Benchmarking LLMs’ Math Reasoning Abilities",
+            "url": "https://arxiv.org/pdf/2502.06453"
+          },
+          {
+            "title": "ICML Poster MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations",
+            "url": "https://icml.cc/virtual/2025/poster/45435"
+          },
+          {
+            "title": "GitHub - Kaffaljidhmah2/MATH-Perturb: Evaluation Code and Dataset for [ICML 2025] MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations",
+            "url": "https://github.com/Kaffaljidhmah2/MATH-Perturb"
+          },
+          {
+            "title": "Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations",
+            "url": "https://arxiv.org/pdf/2603.03332"
+          },
+          {
+            "title": "RIDE: DIFFICULTY EVOLVING PERTURBATION WITH ...",
+            "url": "https://openreview.net/pdf/a83cd39cfda0263faa17943c8f4832d28003298c.pdf"
+          },
+          {
+            "title": "Improving Model Robustness by Adaptively Correcting Perturbation Levels   with Active Queries",
+            "url": "https://arxiv.org/pdf/2103.14824"
+          },
+          {
+            "title": "Assessing Robustness of Machine Learning Models using Covariate   Perturbations",
+            "url": "https://arxiv.org/pdf/2408.01300"
+          },
+          {
+            "title": "Constant Random Perturbations Provide Adversarial Robustness with   Minimal Effect on Accuracy",
+            "url": "https://arxiv.org/pdf/2103.08265"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about MATH-Perturb from ICML 2025. Here are the key findings:\n\n## MATH-Perturb: Overview\n\nMATH-Perturb is an ICML 2025 paper about benchmarking LLMs' math reasoning abilities against hard perturbations.\n\n## Blind Technique Application as a Failure Mode\n\nThe paper raises concerns about a novel form of memorization where models blindly apply learned problem-solving skills without assessing their applicability to modified contexts. More specifically, models blindly apply techniques for the original problems without first determining whether these techniques are still suitable in the modified setting.\n\n## Performance Impact on o1-mini\n\nSignificant performance drops are observed on MATH-P-Hard across various models, including o1-mini (-16.49%). Additionally, for large models, the paper estimates that memorization errors account for 40% for o1-mini.\n\n## Perturbation Types and Robustness\n\nThe researchers constructed MATH-P-Simple and MATH-P-Hard via simple perturbation and hard perturbation, respectively, with each consisting of 279 perturbed math problems derived from level-5 (hardest) problems in the MATH dataset. Hard perturbations fundamentally change the nature of the problem so that the original solution steps do not apply."
+    ],
+    "durationSeconds": 7.33414792599999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "02781fd6-1b4f-40de-a7e8-6208bd0d609d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-29T08:11:35.530Z_
+
+```json
+{
+  "parentUuid": "9b7bec41-c40a-4b5f-92ba-1636239c1737",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1f1538be-7c4c-44ab-965f-162cd407e8f5",
+  "timestamp": "2026-05-29T08:11:35.530Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-29T08:11:38.722Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011dVApGGEfE9pSYBLhTtE2X`</summary>
+
+```json
+{
+  "query": "dual objective invariance discrimination contrastive perturbation training LLM robustness 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f1538be-7c4c-44ab-965f-162cd407e8f5",
+  "isSidechain": false,
+  "requestId": "req_011CbWXFvSRSpGtjJjYdjwmt",
+  "type": "assistant",
+  "uuid": "6d4f954a-9986-4664-b8e3-67bffe4f4e6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019anCfUmvxVEXbZXstxzrDe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-29T08:11:46.438Z_
+
+<details><summary>↩ Tool result · `toolu_011dVApGGEfE9pSYBLhTtE2X`</summary>
+
+```text
+Web search results for query: "dual objective invariance discrimination contrastive perturbation training LLM robustness 2025 2026"
+
+Links: [{"title":"Contrastive adversarial tuning: Enhancing discriminability and robustness of LLMs for emotion recognition in conversation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0031320325016887"},{"title":"Large language models robustness against perturbation | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-29770-0"},{"title":"Improving the Robustness of Large Language Models for Code Tasks via Fine-tuning with Perturbed Data","url":"https://arxiv.org/pdf/2602.11411"},{"title":"Flip-Flop Consistency: Unsupervised Training for Robustness to Prompt Perturbations in LLMs","url":"https://arxiv.org/pdf/2510.14242"},{"title":"Robustness in Large Language Models: A Survey of Mitiga","url":"https://www.arxiv.org/pdf/2505.18658v1"},{"title":"Prompt Perturbation Consistency Learning for Robust Language Models","url":"https://arxiv.org/pdf/2402.15833"},{"title":"Efficient Adversarial Training in LLMs with Continuous Attacks","url":"https://arxiv.org/pdf/2405.15589"},{"title":"[2503.06648] Enhancing NLP Robustness and Generalization through LLM-Generated Contrast Sets: A Scalable Framework for Systematic Evaluation and Adversarial Training","url":"https://arxiv.org/abs/2503.06648"},{"title":"[2503.06648v1] Enhancing NLP Robustness and Generalization through LLM-Generated Contrast Sets: A Scalable Framework for Systematic Evaluation and Adversarial Training","url":"https://arxiv.org/abs/2503.06648v1"}]
+
+Based on the search results, I found several relevant recent papers on LLM robustness using contrastive learning and perturbation-based training approaches from 2025-2026:
+
+## Key Research Areas
+
+**Contrastive Adversarial Tuning (2026):**
+A novel fine-tuning framework has been proposed to enhance representation discriminability and robustness of LLMs. This approach uses context-based contrastive learning to increase intra-class compactness and inter-class separability, along with distribution-based adversarial training to enforce prediction stability under noisy conditions.
+
+**Perturbation-Based Robustness Training:**
+Training with controlled noise teaches models invariances to linguistic variation, a mechanism aligned with adversarial training principles. Research has applied character-, word-, and sentence-level perturbations, which are known to critically impact model robustness.
+
+**Prompt Consistency and Adversarial Training (2025):**
+Flip-Flop Consistency (F²C) has been proposed as an effective unsupervised method for enhancing LLM consistency, performance, and generalization under prompt perturbations. Additionally, continuous adversarial training algorithms have demonstrated substantial enhancement of LLM robustness against discrete attacks while showing that robustness to continuous perturbations can extrapolate to discrete threat models.
+
+**LLM-Generated Contrast Sets (2025):**
+Fine-tuning on LLM-generated contrast sets enhanced performance on systematically perturbed examples while offering a scalable solution for advancing robustness in real-world applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d4f954a-9986-4664-b8e3-67bffe4f4e6d",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "faa61a14-7d7f-4386-9f08-a5f59fb1ea4d",
+  "toolUseResult": {
+    "query": "dual objective invariance discrimination contrastive perturbation training LLM robustness 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BW6grz4SVaQEDnoPkTHxDQ",
+        "content": [
+          {
+            "title": "Contrastive adversarial tuning: Enhancing discriminability and robustness of LLMs for emotion recognition in conversation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0031320325016887"
+          },
+          {
+            "title": "Large language models robustness against perturbation | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-29770-0"
+          },
+          {
+            "title": "Improving the Robustness of Large Language Models for Code Tasks via Fine-tuning with Perturbed Data",
+            "url": "https://arxiv.org/pdf/2602.11411"
+          },
+          {
+            "title": "Flip-Flop Consistency: Unsupervised Training for Robustness to Prompt Perturbations in LLMs",
+            "url": "https://arxiv.org/pdf/2510.14242"
+          },
+          {
+            "title": "Robustness in Large Language Models: A Survey of Mitiga",
+            "url": "https://www.arxiv.org/pdf/2505.18658v1"
+          },
+          {
+            "title": "Prompt Perturbation Consistency Learning for Robust Language Models",
+            "url": "https://arxiv.org/pdf/2402.15833"
+          },
+          {
+            "title": "Efficient Adversarial Training in LLMs with Continuous Attacks",
+            "url": "https://arxiv.org/pdf/2405.15589"
+          },
+          {
+            "title": "[2503.06648] Enhancing NLP Robustness and Generalization through LLM-Generated Contrast Sets: A Scalable Framework for Systematic Evaluation and Adversarial Training",
+            "url": "https://arxiv.org/abs/2503.06648"
+          },
+          {
+            "title": "[2503.06648v1] Enhancing NLP Robustness and Generalization through LLM-Generated Contrast Sets: A Scalable Framework for Systematic Evaluation and Adversarial Training",
+            "url": "https://arxiv.org/abs/2503.06648v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant recent papers on LLM robustness using contrastive learning and perturbation-based training approaches from 2025-2026:\n\n## Key Research Areas\n\n**Contrastive Adversarial Tuning (2026):**\nA novel fine-tuning framework has been proposed to enhance representation discriminability and robustness of LLMs. This approach uses context-based contrastive learning to increase intra-class compactness and inter-class separability, along with distribution-based adversarial training to enforce prediction stability under noisy conditions.\n\n**Perturbation-Based Robustness Training:**\nTraining with controlled noise teaches models invariances to linguistic variation, a mechanism aligned with adversarial training principles. Research has applied character-, word-, and sentence-level perturbations, which are known to critically impact model robustness.\n\n**Prompt Consistency and Adversarial Training (2025):**\nFlip-Flop Consistency (F²C) has been proposed as an effective unsupervised method for enhancing LLM consistency, performance, and generalization under prompt perturbations. Additionally, continuous adversarial training algorithms have demonstrated substantial enhancement of LLM robustness against discrete attacks while showing that robustness to continuous perturbations can extrapolate to discrete threat models.\n\n**LLM-Generated Contrast Sets (2025):**\nFine-tuning on LLM-generated contrast sets enhanced performance on systematically perturbed examples while offering a scalable solution for advancing robustness in real-world applications."
+    ],
+    "durationSeconds": 7.708526479000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6d4f954a-9986-4664-b8e3-67bffe4f4e6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-29T08:11:50.391Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PxZfY3pKFCrxvBEXB2iqdg`</summary>
+
+```json
+{
+  "query": "\"entropy gating\" OR \"entropy-gated\" reinforcement learning consistency loss token-level 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faa61a14-7d7f-4386-9f08-a5f59fb1ea4d",
+  "isSidechain": false,
+  "requestId": "req_011CbWXGiphgoK2srzUFnfgJ",
+  "type": "assistant",
+  "uuid": "5142ee83-89c7-4e0f-acc2-6023ea69056a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017g4cSk83zNpWt85UyJRczp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 24799,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 24799,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-29T08:11:57.631Z_
+
+<details><summary>↩ Tool result · `toolu_01PxZfY3pKFCrxvBEXB2iqdg`</summary>
+
+```text
+Web search results for query: ""entropy gating" OR "entropy-gated" reinforcement learning consistency loss token-level 2025 2026"
+
+Links: [{"title":"Token-Level Entropy Gating in LLMs","url":"https://www.emergentmind.com/topics/token-level-entropy-gating"},{"title":"ERPO: Token-Level Entropy-Regulated Policy Optimization ...","url":"https://arxiv.org/pdf/2603.28204"},{"title":"Token-Level Loss Analysis","url":"https://www.emergentmind.com/topics/token-level-loss-analysis"},{"title":"Entropy-Regularized Token-Level Policy Optimization for Language Agent   Reinforcement","url":"https://arxiv.org/pdf/2402.06700"},{"title":"Revisiting Entropy in Reinforcement Learning for Large Reasoning Models","url":"https://arxiv.org/html/2511.05993v3"},{"title":"Decomposing the Entropy-Performance Exchange: The Missing Keys to Unlocking Effective Reinforcement Learning","url":"https://arxiv.org/pdf/2508.02260"}]
+
+Based on the search results, here's what I found about entropy gating in reinforcement learning:
+
+## Overview
+
+Token-level entropy gating is a class of techniques that selectively modulate training or inference in sequence models—especially LLMs—by computing Shannon entropy over the model's output distribution at each token position, and has become central to recent advances in LLM reasoning, reward optimization, decoding efficiency, and calibration.
+
+## Recent Applications (2025-2026)
+
+Reinforcement learning approaches including RLVR, AEPO, and GTPO exploit entropy gating for finely-targeted credit assignment and exploration in mathematical and multi-step reasoning.
+
+Entropy-UID (February 2025) minimizes variance of information density by jointly gating on entropy and surprisal, deriving global constraints on text "spikiness" and fluency.
+
+## Token-Level Credit Assignment
+
+Entropy-gated credit assignment with token-level approaches effectively compensates for smaller parameter counts by maximizing the reasoning potential of each layer.
+
+## Consistency and Loss
+
+Entropy-based reweighting and loss smoothing techniques adjust gradient contributions, thereby improving prediction accuracy for infrequent and difficult tokens. Additionally, token-level policy optimization frameworks ensure low-variance updates and prevent collapse modes characteristic of sequence-level-only entropy regularization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5142ee83-89c7-4e0f-acc2-6023ea69056a",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "ec00b91e-1898-4443-8e40-53a46b02ad19",
+  "toolUseResult": {
+    "query": "\"entropy gating\" OR \"entropy-gated\" reinforcement learning consistency loss token-level 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q7NeR1S4s7ZvEQKg1nB7n4",
+        "content": [
+          {
+            "title": "Token-Level Entropy Gating in LLMs",
+            "url": "https://www.emergentmind.com/topics/token-level-entropy-gating"
+          },
+          {
+            "title": "ERPO: Token-Level Entropy-Regulated Policy Optimization ...",
+            "url": "https://arxiv.org/pdf/2603.28204"
+          },
+          {
+            "title": "Token-Level Loss Analysis",
+            "url": "https://www.emergentmind.com/topics/token-level-loss-analysis"
+          },
+          {
+            "title": "Entropy-Regularized Token-Level Policy Optimization for Language Agent   Reinforcement",
+            "url": "https://arxiv.org/pdf/2402.06700"
+          },
+          {
+            "title": "Revisiting Entropy in Reinforcement Learning for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2511.05993v3"
+          },
+          {
+            "title": "Decomposing the Entropy-Performance Exchange: The Missing Keys to Unlocking Effective Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2508.02260"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about entropy gating in reinforcement learning:\n\n## Overview\n\nToken-level entropy gating is a class of techniques that selectively modulate training or inference in sequence models—especially LLMs—by computing Shannon entropy over the model's output distribution at each token position, and has become central to recent advances in LLM reasoning, reward optimization, decoding efficiency, and calibration.\n\n## Recent Applications (2025-2026)\n\nReinforcement learning approaches including RLVR, AEPO, and GTPO exploit entropy gating for finely-targeted credit assignment and exploration in mathematical and multi-step reasoning.\n\nEntropy-UID (February 2025) minimizes variance of information density by jointly gating on entropy and surprisal, deriving global constraints on text \"spikiness\" and fluency.\n\n## Token-Level Credit Assignment\n\nEntropy-gated credit assignment with token-level approaches effectively compensates for smaller parameter counts by maximizing the reasoning potential of each layer.\n\n## Consistency and Loss\n\nEntropy-based reweighting and loss smoothing techniques adjust gradient contributions, thereby improving prediction accuracy for infrequent and difficult tokens. Additionally, token-level policy optimization frameworks ensure low-variance updates and prevent collapse modes characteristic of sequence-level-only entropy regularization."
+    ],
+    "durationSeconds": 7.234814345999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5142ee83-89c7-4e0f-acc2-6023ea69056a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-29T08:12:00.922Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CBhtPsXMGT8e5BMQGMSZwx`</summary>
+
+```json
+{
+  "query": "AbstRaL abstract thinking reinforcement learning mathematical reasoning ICLR 2026 symbolic abstraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec00b91e-1898-4443-8e40-53a46b02ad19",
+  "isSidechain": false,
+  "requestId": "req_011CbWXHYd4PmHaMuTCufka1",
+  "type": "assistant",
+  "uuid": "0483c6a8-4b66-4d86-b2e7-5420f1e8f444",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDaftA4b9qTTZj9rydyFnE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 25753,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 671,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 25753,
+          "cache_creation_input_tokens": 671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 671
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-29T08:12:07.144Z_
+
+<details><summary>↩ Tool result · `toolu_01CBhtPsXMGT8e5BMQGMSZwx`</summary>
+
+```text
+Web search results for query: "AbstRaL abstract thinking reinforcement learning mathematical reasoning ICLR 2026 symbolic abstraction"
+
+Links: [{"title":"AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking","url":"https://arxiv.org/pdf/2506.07751"},{"title":"ABSTRAL: AUGMENTING LLMS' REASONING BY ...","url":"https://openreview.net/pdf/cc239e2e8102d68f6e31bcda2af53e08d6bb6a91.pdf"},{"title":"AbstRaL: Augmenting LLMs’ Reasoning by Reinforcing Abstract Thinking","url":"https://arxiv.org/html/2506.07751v2"},{"title":"AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking | OpenReview","url":"https://openreview.net/forum?id=49vo7D9LbI"},{"title":"AbstRaL: Augmenting LLMs’ Reasoning by Reinforcing Abstract Thinking - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/abstral"},{"title":"International Conference on Learning Representations (ICLR) 2026 - Apple Machine Learning Research","url":"https://machinelearning.apple.com/updates/apple-at-iclr-2026"},{"title":"[2506.07751] AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking","url":"https://arxiv.org/abs/2506.07751"},{"title":"Published in Transactions on Machine Learning Research (11/2025)","url":"https://arxiv.org/pdf/2507.10624"}]
+
+Based on the search results, here's what I found about AbstRaL:
+
+## Overview
+
+AbstRaL is a method that promotes abstract reasoning in LLMs using RL on granular abstraction data. The abstraction process is better acquired through reinforcement learning (RL) than just supervised fine-tuning, which often fails to produce faithful abstractions.
+
+## Key Results
+
+AbstRaL effectively improves the reasoning robustness of LLMs and almost reverts the performance drop caused by variations of relevant input conditions, while also significantly mitigating the interference of distracting conditions added to the perturbed testing samples.
+
+The method was tested on two benchmarks that evaluate the robustness of mathematical reasoning: GSM-Symbolic and GSM-Plus.
+
+## Broader Impact
+
+Improving GSM robustness via AbstRaL is shown to also implicitly benefit LLMs' capabilities on OOD mathematical and general reasoning tasks, indicating that abstract thinking broadly enables better generalizability.
+
+## ICLR 2026 Presentation
+
+AbstRaL was presented as a poster at ICLR 2026, held by Silin Gao (EPFL), Antoine Bosselut (EPFL), Samy Bengio, and Emmanuel Abbe, during Poster Session 3, Pavilion 4, #4615.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0483c6a8-4b66-4d86-b2e7-5420f1e8f444",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "bb872925-f41b-45cc-a6c2-52f8a1a0ada4",
+  "toolUseResult": {
+    "query": "AbstRaL abstract thinking reinforcement learning mathematical reasoning ICLR 2026 symbolic abstraction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YBoCmfCy2fqLXgSSgRSC8G",
+        "content": [
+          {
+            "title": "AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking",
+            "url": "https://arxiv.org/pdf/2506.07751"
+          },
+          {
+            "title": "ABSTRAL: AUGMENTING LLMS' REASONING BY ...",
+            "url": "https://openreview.net/pdf/cc239e2e8102d68f6e31bcda2af53e08d6bb6a91.pdf"
+          },
+          {
+            "title": "AbstRaL: Augmenting LLMs’ Reasoning by Reinforcing Abstract Thinking",
+            "url": "https://arxiv.org/html/2506.07751v2"
+          },
+          {
+            "title": "AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking | OpenReview",
+            "url": "https://openreview.net/forum?id=49vo7D9LbI"
+          },
+          {
+            "title": "AbstRaL: Augmenting LLMs’ Reasoning by Reinforcing Abstract Thinking - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/abstral"
+          },
+          {
+            "title": "International Conference on Learning Representations (ICLR) 2026 - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/updates/apple-at-iclr-2026"
+          },
+          {
+            "title": "[2506.07751] AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking",
+            "url": "https://arxiv.org/abs/2506.07751"
+          },
+          {
+            "title": "Published in Transactions on Machine Learning Research (11/2025)",
+            "url": "https://arxiv.org/pdf/2507.10624"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AbstRaL:\n\n## Overview\n\nAbstRaL is a method that promotes abstract reasoning in LLMs using RL on granular abstraction data. The abstraction process is better acquired through reinforcement learning (RL) than just supervised fine-tuning, which often fails to produce faithful abstractions.\n\n## Key Results\n\nAbstRaL effectively improves the reasoning robustness of LLMs and almost reverts the performance drop caused by variations of relevant input conditions, while also significantly mitigating the interference of distracting conditions added to the perturbed testing samples.\n\nThe method was tested on two benchmarks that evaluate the robustness of mathematical reasoning: GSM-Symbolic and GSM-Plus.\n\n## Broader Impact\n\nImproving GSM robustness via AbstRaL is shown to also implicitly benefit LLMs' capabilities on OOD mathematical and general reasoning tasks, indicating that abstract thinking broadly enables better generalizability.\n\n## ICLR 2026 Presentation\n\nAbstRaL was presented as a poster at ICLR 2026, held by Silin Gao (EPFL), Antoine Bosselut (EPFL), Samy Bengio, and Emmanuel Abbe, during Poster Session 3, Pavilion 4, #4615."
+    ],
+    "durationSeconds": 6.214649093,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0483c6a8-4b66-4d86-b2e7-5420f1e8f444",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning  ## Core Problem  RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (nu…",
+  "leafUuid": "bb872925-f41b-45cc-a6c2-52f8a1a0ada4",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-29T08:12:10.044Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YB5SGaCktXcAmxPuq1jn2E`</summary>
+
+```json
+{
+  "query": "Robust Reasoning Benchmark arXiv 2604.08571 AIME perturbation open-weights models 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb872925-f41b-45cc-a6c2-52f8a1a0ada4",
+  "isSidechain": false,
+  "requestId": "req_011CbWXJFPFeFuDuBjo1o4dp",
+  "type": "assistant",
+  "uuid": "1b822bee-eb9a-459c-a862-fde0c1530bf2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAeGkGBm5E9drAegRZ7UM1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 26424,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 842,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 26424,
+          "cache_creation_input_tokens": 842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 842
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-29T08:12:17.739Z_
+
+<details><summary>↩ Tool result · `toolu_01YB5SGaCktXcAmxPuq1jn2E`</summary>
+
+```text
+Web search results for query: "Robust Reasoning Benchmark arXiv 2604.08571 AIME perturbation open-weights models 2026"
+
+Links: [{"title":"[2604.08571] Robust Reasoning Benchmark","url":"https://arxiv.org/abs/2604.08571"},{"title":"Robust Reasoning Benchmark – Paper Detail · SwiftScholar - Review with AI","url":"https://www.swiftscholar.net/paper/69dd894984947a5132b62b34"},{"title":"Robust Reasoning Benchmark","url":"https://arxiv.org/html/2604.08571v1"},{"title":"Benchmarking Reasoning Robustness in Large Language Models","url":"https://arxiv.org/pdf/2503.04550"},{"title":"Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2511.08022"},{"title":"Towards Robust Mathematical Reasoning","url":"https://arxiv.org/html/2511.01846v1"},{"title":"Are Reasoning LLMs Robust to Interventions on Their Chain-of-Thought?","url":"https://arxiv.org/pdf/2602.07470"},{"title":"A Systematic Comparison of Single-Cell Perturbation Response Prediction Models","url":"https://www.biorxiv.org/content/10.1101/2024.12.23.630036.full.pdf"}]
+
+Based on the search results, here's what I found about the arXiv paper 2604.08571:
+
+## Robust Reasoning Benchmark (arXiv 2604.08571)
+
+The Robust Reasoning Benchmark (RRB) is a pipeline of 13 deterministic textual perturbations applied to AIME 2024 and AIME 2025. The paper was published on March 26, 2026.
+
+### Key Findings
+
+Evaluating 8 state-of-the-art models, the research found that frontier models are largely resilient, with the notable exception of Claude, which categorically refuses many transformed prompts.
+
+A significant gap exists between model types: Open-weights reasoning models exhibit a range of failure modes under structural noise (cognitive thrashing, tokenization breakdown, and reasoning collapse), with up to 54% average accuracy drops across perturbations and up to 100% on some.
+
+### Methodology
+
+The research proposes a perturbation pipeline consisting of 14 techniques to evaluate robustness of LLM reasoning. This comprehensive evaluation framework reveals how sensitive different models are to textual variations while maintaining the semantic meaning of mathematical problems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b822bee-eb9a-459c-a862-fde0c1530bf2",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "022753be-1641-45a6-9bc6-5297529935fe",
+  "toolUseResult": {
+    "query": "Robust Reasoning Benchmark arXiv 2604.08571 AIME perturbation open-weights models 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RHxxuzEJYKzaqS2KgF521t",
+        "content": [
+          {
+            "title": "[2604.08571] Robust Reasoning Benchmark",
+            "url": "https://arxiv.org/abs/2604.08571"
+          },
+          {
+            "title": "Robust Reasoning Benchmark – Paper Detail · SwiftScholar - Review with AI",
+            "url": "https://www.swiftscholar.net/paper/69dd894984947a5132b62b34"
+          },
+          {
+            "title": "Robust Reasoning Benchmark",
+            "url": "https://arxiv.org/html/2604.08571v1"
+          },
+          {
+            "title": "Benchmarking Reasoning Robustness in Large Language Models",
+            "url": "https://arxiv.org/pdf/2503.04550"
+          },
+          {
+            "title": "Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2511.08022"
+          },
+          {
+            "title": "Towards Robust Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2511.01846v1"
+          },
+          {
+            "title": "Are Reasoning LLMs Robust to Interventions on Their Chain-of-Thought?",
+            "url": "https://arxiv.org/pdf/2602.07470"
+          },
+          {
+            "title": "A Systematic Comparison of Single-Cell Perturbation Response Prediction Models",
+            "url": "https://www.biorxiv.org/content/10.1101/2024.12.23.630036.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the arXiv paper 2604.08571:\n\n## Robust Reasoning Benchmark (arXiv 2604.08571)\n\nThe Robust Reasoning Benchmark (RRB) is a pipeline of 13 deterministic textual perturbations applied to AIME 2024 and AIME 2025. The paper was published on March 26, 2026.\n\n### Key Findings\n\nEvaluating 8 state-of-the-art models, the research found that frontier models are largely resilient, with the notable exception of Claude, which categorically refuses many transformed prompts.\n\nA significant gap exists between model types: Open-weights reasoning models exhibit a range of failure modes under structural noise (cognitive thrashing, tokenization breakdown, and reasoning collapse), with up to 54% average accuracy drops across perturbations and up to 100% on some.\n\n### Methodology\n\nThe research proposes a perturbation pipeline consisting of 14 techniques to evaluate robustness of LLM reasoning. This comprehensive evaluation framework reveals how sensitive different models are to textual variations while maintaining the semantic meaning of mathematical problems."
+    ],
+    "durationSeconds": 7.681805267999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1b822bee-eb9a-459c-a862-fde0c1530bf2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-29T08:12:20.788Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A5Fp2qgk4y1RYLVpLYeG3U`</summary>
+
+```json
+{
+  "query": "GRPO consistency regularization math robustness training-time intervention competition math AIME AMC 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "022753be-1641-45a6-9bc6-5297529935fe",
+  "isSidechain": false,
+  "requestId": "req_011CbWXK2kX5wMtbg7krFjdN",
+  "type": "assistant",
+  "uuid": "ee7f4b20-9006-46cb-9935-024c160015a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NukQpQspRtDVkYcMBGkjAv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 27266,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 27266,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-29T08:12:31.508Z_
+
+<details><summary>↩ Tool result · `toolu_01A5Fp2qgk4y1RYLVpLYeG3U`</summary>
+
+```text
+Web search results for query: "GRPO consistency regularization math robustness training-time intervention competition math AIME AMC 2026"
+
+Links: [{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Group+Relative+Policy+Optimization+(GRPO)"},{"title":"Consistency Regularization Can Improve Robustness to Label Noise","url":"https://arxiv.org/pdf/2110.01242"},{"title":"GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control","url":"https://arxiv.org/html/2508.03772"},{"title":"Guide: Group Relative Policy Optimization (GRPO)","url":"https://www.emergentmind.com/topics/guide-grpo"},{"title":"R2PO: Decoupling Training Trajectories from Inference Responses for LLM Reasoning","url":"https://arxiv.org/html/2601.11960"},{"title":"GRPO-Based Post-Training","url":"https://www.emergentmind.com/topics/grpo-based-post-training"},{"title":"Consistency Regularization for Adversarial Robustness","url":"https://arxiv.org/pdf/2103.04623"},{"title":"WARDS: GRPO'S LOSS, DYNAMICS, AND SUCCESS","url":"https://openreview.net/pdf/48169733659efcf74f5df1d4c8be1041120c7d2a.pdf"},{"title":"Mitigating Think-Answer Mismatch in LLM Reasoning Through Noise-Aware Advantage Reweighting","url":"https://arxiv.org/pdf/2508.05928"}]
+
+Now let me search for information about AIME and AMC 2026 competitions in relation to math training:
+
+Links: [{"title":"American Mathematics Competitions – Mathematical Association of America","url":"https://maa.org/student-programs/amc/"},{"title":"AMC 10 AIME Online Math Class — 2026 Spring Semester | Think Academy US","url":"https://www.thethinkacademy.com/blog/think-academy-2026-spring-amc-10-aime-course-introduction/"},{"title":"2026 AIME Webinars | RSM Math Competition Preparation","url":"https://www.mathschool.com/blog/competitions/2026-aime-webinars"},{"title":"MAA Invitational Competitions – Mathematical Association of America","url":"https://maa.org/maa-invitational-competitions/"},{"title":"2026 Summer – Competitive Math Courses | Ivy League Education Center","url":"https://ivyleaguecenter.org/2026/02/21/2026-summer-competitive-math-courses/"},{"title":"American Math Competition (AMC 8, 10 & 12) Registration | Exam Dates & Schedule","url":"https://en.amcclub.org.cn/"},{"title":"AIME | RandomMath","url":"https://www.randommath.com/tournaments/aime"},{"title":"How to Prepare for AMC: Complete Study Guide (2026)","url":"https://gonit.app/blog/how-to-prepare-for-amc/"},{"title":"Math Tournament | AMC Math Contest Practice | AIME Training","url":"https://www.randommath.com/tournaments"},{"title":"AIME Practice Tests & Online Prep | 10 Practice Tests with solutions + AI-powered review","url":"https://www.mathpreppro.com/features/aime"}]
+
+Based on my web search results, here's what I found:
+
+## GRPO, Consistency Regularization, and Math Robustness
+
+GRPO-trained models have demonstrated strong results across diverse domains including mathematical and logical reasoning tasks, with GRPO-trained models consistently increasing success rates in these areas.
+
+Regarding training-time interventions, a THR-guided reweighting algorithm has been proposed that modulates GRPO's learning signals to explicitly bias training toward exploitation or exploration. Additionally, direct reasoning–answer consistency regularizers have been employed for improving model performance.
+
+S-GRPO derives an optimal, closed-form advantage weight that minimizes expected squared error between observed and true advantages under a symmetric noise model, automatically down-weighting signals from unbalanced groups where noise has an outsized impact. S-GRPO demonstrates significant gains on models like Qwen-Math-7B (+2.5%), Llama-3.2-3B (+2.2%), and Qwen-Math-1.5B (+2.4%).
+
+## AMC and AIME 2026
+
+The 2026-27 MAA AMC dates are: AMC 10 A and AMC 12 A – November 5, 2026 and AMC 10 B and AMC 12 B – November 13, 2026. The AIME I will be held on February 5 and the AIME II will be held on February 11 (in the 2025-26 cycle, which overlaps with 2026).
+
+The search results provide information about GRPO's mathematical robustness improvements and the structure of these math competitions, though the specific connection between GRPO training interventions and AMC/AIME competition performance in research literature was not found in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee7f4b20-9006-46cb-9935-024c160015a3",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "7252f861-7fc0-401b-8d40-c074de77511c",
+  "toolUseResult": {
+    "query": "GRPO consistency regularization math robustness training-time intervention competition math AIME AMC 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tpo6wvrnBDQvivEk4Pfhsu",
+        "content": [
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Group+Relative+Policy+Optimization+(GRPO)"
+          },
+          {
+            "title": "Consistency Regularization Can Improve Robustness to Label Noise",
+            "url": "https://arxiv.org/pdf/2110.01242"
+          },
+          {
+            "title": "GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control",
+            "url": "https://arxiv.org/html/2508.03772"
+          },
+          {
+            "title": "Guide: Group Relative Policy Optimization (GRPO)",
+            "url": "https://www.emergentmind.com/topics/guide-grpo"
+          },
+          {
+            "title": "R2PO: Decoupling Training Trajectories from Inference Responses for LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.11960"
+          },
+          {
+            "title": "GRPO-Based Post-Training",
+            "url": "https://www.emergentmind.com/topics/grpo-based-post-training"
+          },
+          {
+            "title": "Consistency Regularization for Adversarial Robustness",
+            "url": "https://arxiv.org/pdf/2103.04623"
+          },
+          {
+            "title": "WARDS: GRPO'S LOSS, DYNAMICS, AND SUCCESS",
+            "url": "https://openreview.net/pdf/48169733659efcf74f5df1d4c8be1041120c7d2a.pdf"
+          },
+          {
+            "title": "Mitigating Think-Answer Mismatch in LLM Reasoning Through Noise-Aware Advantage Reweighting",
+            "url": "https://arxiv.org/pdf/2508.05928"
+          }
+        ]
+      },
+      "Now let me search for information about AIME and AMC 2026 competitions in relation to math training:",
+      {
+        "tool_use_id": "srvtoolu_013u6XJNqVi9VWz1tWtEGghB",
+        "content": [
+          {
+            "title": "American Mathematics Competitions – Mathematical Association of America",
+            "url": "https://maa.org/student-programs/amc/"
+          },
+          {
+            "title": "AMC 10 AIME Online Math Class — 2026 Spring Semester | Think Academy US",
+            "url": "https://www.thethinkacademy.com/blog/think-academy-2026-spring-amc-10-aime-course-introduction/"
+          },
+          {
+            "title": "2026 AIME Webinars | RSM Math Competition Preparation",
+            "url": "https://www.mathschool.com/blog/competitions/2026-aime-webinars"
+          },
+          {
+            "title": "MAA Invitational Competitions – Mathematical Association of America",
+            "url": "https://maa.org/maa-invitational-competitions/"
+          },
+          {
+            "title": "2026 Summer – Competitive Math Courses | Ivy League Education Center",
+            "url": "https://ivyleaguecenter.org/2026/02/21/2026-summer-competitive-math-courses/"
+          },
+          {
+            "title": "American Math Competition (AMC 8, 10 & 12) Registration | Exam Dates & Schedule",
+            "url": "https://en.amcclub.org.cn/"
+          },
+          {
+            "title": "AIME | RandomMath",
+            "url": "https://www.randommath.com/tournaments/aime"
+          },
+          {
+            "title": "How to Prepare for AMC: Complete Study Guide (2026)",
+            "url": "https://gonit.app/blog/how-to-prepare-for-amc/"
+          },
+          {
+            "title": "Math Tournament | AMC Math Contest Practice | AIME Training",
+            "url": "https://www.randommath.com/tournaments"
+          },
+          {
+            "title": "AIME Practice Tests & Online Prep | 10 Practice Tests with solutions + AI-powered review",
+            "url": "https://www.mathpreppro.com/features/aime"
+          }
+        ]
+      },
+      "Based on my web search results, here's what I found:\n\n## GRPO, Consistency Regularization, and Math Robustness\n\nGRPO-trained models have demonstrated strong results across diverse domains including mathematical and logical reasoning tasks, with GRPO-trained models consistently increasing success rates in these areas.\n\nRegarding training-time interventions, a THR-guided reweighting algorithm has been proposed that modulates GRPO's learning signals to explicitly bias training toward exploitation or exploration. Additionally, direct reasoning–answer consistency regularizers have been employed for improving model performance.\n\nS-GRPO derives an optimal, closed-form advantage weight that minimizes expected squared error between observed and true advantages under a symmetric noise model, automatically down-weighting signals from unbalanced groups where noise has an outsized impact. S-GRPO demonstrates significant gains on models like Qwen-Math-7B (+2.5%), Llama-3.2-3B (+2.2%), and Qwen-Math-1.5B (+2.4%).\n\n## AMC and AIME 2026\n\nThe 2026-27 MAA AMC dates are: AMC 10 A and AMC 12 A – November 5, 2026 and AMC 10 B and AMC 12 B – November 13, 2026. The AIME I will be held on February 5 and the AIME II will be held on February 11 (in the 2025-26 cycle, which overlaps with 2026).\n\nThe search results provide information about GRPO's mathematical robustness improvements and the structure of these math competitions, though the specific connection between GRPO training interventions and AMC/AIME competition performance in research literature was not found in these results."
+    ],
+    "durationSeconds": 10.712414340000002,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "ee7f4b20-9006-46cb-9935-024c160015a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-29T08:13:36.008Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now synthesize all the research findings and provide my assessment as the "发掘 agent" (Discovery Agent). Let me think carefully about this proposal.
+
+## Proposal Summary
+ConsistRL augments GRPO with dual consistency objectives:
+1. JS-divergence loss for invariance to equivalence-preserving perturbations (variable renaming, numerical reparameterization)
+2. Contrastive discrimination loss against semantics-altering perturbations
+
+Key innovations claimed:
+- "Structural duality" of mathematical perturbation space requiring dual objectives
+- Entropy-gated application at decision tokens (from ReasonMaxxer)
+
+
+- TA-GRPO-style advantage pooling to address blind technique application failures
+
+Now I'm examining whether simpler alternatives could achieve the same results. The proposal includes an augmentation-only baseline, which is important—PPCL demonstrates that consistency regularization delivers roughly 10× better sample efficiency compared to pure augmentation alone, suggesting the consistency losses genuinely contribute beyond just exposing the model to varied data. For TA-GRPO's advantage pooling approach, even with more sophisticated perturbation generation, it's unclear whether it could match the robustness gains without the explicit consistency objectives.
+
+The core novelty centers on recognizing that perturbations naturally split into two categories—those preserving equivalence and those altering semantics—and that enforcing consistency in only one direction risks being insufficient. I'm checking how original this framing is by comparing against prior work like ROMA, which focuses on single-direction invariance in the visual domain.
+
+Looking at the landscape, consistency regularization itself is well-established, and applying it to GRPO feels like a natural extension once the problem is properly framed. The real question is whether the specific combination of dual-direction consistency, entropy-gating, and mathematical motivation for the duality constitutes a genuinely surprising contribution or something that follows predictably from existing ideas.
+
+The structural duality framing—distinguishing between perturbations that should preserve answers versus those that shouldn't—is actually quite intuitive given that MATH-Perturb already identified these two categories. The conceptual leap from recognizing these distinct perturbation types to designing dual objectives is relatively straightforward, so the novelty lies more in the careful execution and integration rather than a fundamental conceptual breakthrough. This would be solid work for AAAI but not a paradigm shift.
+
+The problem itself is undeniably significant—those 47-73% accuracy drops on trivial perturbations represent a real gap that no existing training-time method addresses comprehensively. If the approach works in practice, it's a meaningful contribution even if the core ideas aren't revolutionary.
+
+To strengthen this work, I could formalize the structural duality more rigorously—perhaps through group theory or by connecting it to invariance and equivariance concepts from geometric deep learning, which would shift the framing from "we observed this pattern" to "we've identified a fundamental structural property of mathematical problem spaces." I'm also curious about the deeper mechanism linking ReasonMaxxer's entropy gating to consistency-critical points—if there's a principled explanation for why high-entropy tokens coincide with decision points that most affect solution paths, that would ground the approach more theoretically. The discrimination objective also has potential to be positioned more compellingly than it currently is. it's framed as "penalizing invariance on semantics-altering perturbations." But the deeper insight is about teaching the model to VERIFY whether a perturbation changes the problem's mathematical structure before applying a solution strategy. This connects to a broader theme of metacognitive reasoning - the model learning to check its own assumptions. This framing would significantly elevate significance.
+
+The proposal could also position itself within the broader framework of in-distribution vs. out-of-distribution generalization. Equivalence-preserving perturbations are essentially in-distribution (same mathematical content), while semantics-altering perturbations create OOD scenarios. This connects to a richer theoretical landscape.
+
+Looking at what's already here - the structural duality framing, entropy-gating hypothesis, detailed ablation matrix, compute-fairness considerations, seven baselines, and multiple evaluation benchmarks - this has clearly matured through several iterations. The real question is whether there are genuine opportunities to push it further.
+
+The discrimination objective could be reframed as "mathematical structure verification" - the model learning to check whether its learned strategies actually apply. This metacognitive capacity directly addresses the failure mode where models blindly apply techniques without verifying their training distribution applies, which connects to broader AI safety concerns. The structural duality itself could be formalized through mathematical group theory, where variable renaming becomes a concrete instantiation of symmetry operations.
+
+But for AAAI, I should probably keep this grounded. A clean empirical contribution with solid motivation is sufficient - the geometric deep learning connection might overcomplicate things and distract from the practical value.
+
+The entropy-gating plus consistency loss synergy is where real compute savings emerge. If consistency loss targets only the 1-3% of tokens where RL acts, that's a massive efficiency gain.
+
+The consistency regularization overhead becomes negligible when applied only at those sparse positions, which is a genuine practical advantage worth highlighting as a core contribution rather than burying in ablations. And if ConsistRL generalizes across different perturbation types - training on numerical reparameterization but transferring to structural noise like formatting changes - that's a much stronger robustness claim than just hardening against specific perturbation styles.
+
+Looking back at the proposal, it does use VAR-MATH for training but evaluates across multiple benchmarks, yet it doesn't explicitly frame this as transfer robustness. That's a framing opportunity I should emphasize. On the fatal issues front, data augmentation alone probably can't match PPCL's 10× sample efficiency gains, and while the entropy-gating and duality assumptions need validation, neither seems like a showstopper. This is fundamentally a solid proposal that just needs sharper positioning on a few key points.
+
+Before finalizing my assessment, I want to check if there's any very recent work from 2026 that already combines consistency regularization with GRPO for math reasoning robustness, since that would undercut the novelty claim.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7252f861-7fc0-401b-8d40-c074de77511c",
+  "isSidechain": false,
+  "requestId": "req_011CbWXL3XBRsk9WDLqFJKnD",
+  "type": "assistant",
+  "uuid": "5a7baf96-1f51-4340-844b-30d84db8caac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JL8NoL5TahFJcKMpc21MjY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 28002,
+      "output_tokens": 2362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1375,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2362,
+          "cache_read_input_tokens": 28002,
+          "cache_creation_input_tokens": 1375,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1375
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-29T08:13:36.010Z_
+
+Let me do one final targeted search to check for any very recent work that could directly threaten the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a7baf96-1f51-4340-844b-30d84db8caac",
+  "isSidechain": false,
+  "requestId": "req_011CbWXL3XBRsk9WDLqFJKnD",
+  "type": "assistant",
+  "uuid": "ef033bbc-947d-4281-ac2e-d8d0905458f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JL8NoL5TahFJcKMpc21MjY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 28002,
+      "output_tokens": 2362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1375,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2362,
+          "cache_read_input_tokens": 28002,
+          "cache_creation_input_tokens": 1375,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1375
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-29T08:13:36.014Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PvBZbj2FnZ2o6WAEw78tZr`</summary>
+
+```json
+{
+  "query": "consistency loss GRPO math reasoning robustness dual invariance discrimination training 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef033bbc-947d-4281-ac2e-d8d0905458f8",
+  "isSidechain": false,
+  "requestId": "req_011CbWXL3XBRsk9WDLqFJKnD",
+  "type": "assistant",
+  "uuid": "c61b579e-ba96-439d-b1f9-745f75c6c439",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JL8NoL5TahFJcKMpc21MjY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 28002,
+      "output_tokens": 2362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1375,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2362,
+          "cache_read_input_tokens": 28002,
+          "cache_creation_input_tokens": 1375,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1375
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning  ## Core Problem  RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (nu…",
+  "leafUuid": "c61b579e-ba96-439d-b1f9-745f75c6c439",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-29T08:13:43.025Z_
+
+<details><summary>↩ Tool result · `toolu_01PvBZbj2FnZ2o6WAEw78tZr`</summary>
+
+```text
+Web search results for query: "consistency loss GRPO math reasoning robustness dual invariance discrimination training 2026"
+
+Links: [{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/pdf/2505.09655"},{"title":"Mitigating Think-Answer Mismatch in LLM Reasoning Through Noise-Aware Advantage Reweighting","url":"https://arxiv.org/pdf/2508.05928"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.20659"},{"title":"Boosting Mathematical Reasoning via Difficulty-Aware ...","url":"https://arxiv.org/pdf/2601.20614"},{"title":"Prompt Augmentation Scales up GRPO Training on Mathematical Reasoning","url":"https://arxiv.org/pdf/2602.03190"},{"title":"Are complicated loss functions necessary for teaching LLMs to reason?","url":"https://arxiv.org/pdf/2603.18756"},{"title":"Reinforcing Multimodal Reasoning Against Visual Degradation","url":"https://arxiv.org/pdf/2605.09262"}]
+
+Based on the web search results, I found several relevant papers on GRPO and mathematical reasoning from 2026. Here are the key findings:
+
+## Recent GRPO Variants and Improvements (2026)
+
+Stable Group-Relative Policy Optimization (S-GRPO) is a principled enhancement that derives optimal, noise-aware advantage weights to stabilize training. On various models, S-GRPO significantly outperforms DR. GRPO, achieving performance gains of +2.5% on Qwen-Math-7B-Base, +2.2% on Llama-3.2-3B-Base, and +2.4% on Qwen-Math-1.5B-Instruct. While standard GRPO fails to learn under 20% synthetic reward noise, S-GRPO maintains stable learning progress.
+
+## Diversity-Aware Training
+
+DRA-GRPO consistently outperforms strong baselines, achieving an average accuracy of 58.2% on DeepSeek-R1-Distill-Qwen-1.5B with only 7,000 training samples. This method dynamically downweights redundant completions and amplifies the reward signal for semantically unique trajectories.
+
+## Robustness Improvements
+
+A recent approach consistently outperforms GRPO across all benchmarks under degraded conditions, reducing the performance gap from a 9.7% drop to 7.1% when dealing with visual perturbations.
+
+## Loss Function Analysis
+
+A recent systematic analysis simplifies the GRPO loss function by isolating and removing individual components to identify which elements are essential for enabling learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c61b579e-ba96-439d-b1f9-745f75c6c439",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "367fdfef-3ca0-4df4-9a7d-bdab441b05f3",
+  "toolUseResult": {
+    "query": "consistency loss GRPO math reasoning robustness dual invariance discrimination training 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011TVKexeBhPGbwPxjzykHw2",
+        "content": [
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2505.09655"
+          },
+          {
+            "title": "Mitigating Think-Answer Mismatch in LLM Reasoning Through Noise-Aware Advantage Reweighting",
+            "url": "https://arxiv.org/pdf/2508.05928"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.20659"
+          },
+          {
+            "title": "Boosting Mathematical Reasoning via Difficulty-Aware ...",
+            "url": "https://arxiv.org/pdf/2601.20614"
+          },
+          {
+            "title": "Prompt Augmentation Scales up GRPO Training on Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2602.03190"
+          },
+          {
+            "title": "Are complicated loss functions necessary for teaching LLMs to reason?",
+            "url": "https://arxiv.org/pdf/2603.18756"
+          },
+          {
+            "title": "Reinforcing Multimodal Reasoning Against Visual Degradation",
+            "url": "https://arxiv.org/pdf/2605.09262"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on GRPO and mathematical reasoning from 2026. Here are the key findings:\n\n## Recent GRPO Variants and Improvements (2026)\n\nStable Group-Relative Policy Optimization (S-GRPO) is a principled enhancement that derives optimal, noise-aware advantage weights to stabilize training. On various models, S-GRPO significantly outperforms DR. GRPO, achieving performance gains of +2.5% on Qwen-Math-7B-Base, +2.2% on Llama-3.2-3B-Base, and +2.4% on Qwen-Math-1.5B-Instruct. While standard GRPO fails to learn under 20% synthetic reward noise, S-GRPO maintains stable learning progress.\n\n## Diversity-Aware Training\n\nDRA-GRPO consistently outperforms strong baselines, achieving an average accuracy of 58.2% on DeepSeek-R1-Distill-Qwen-1.5B with only 7,000 training samples. This method dynamically downweights redundant completions and amplifies the reward signal for semantically unique trajectories.\n\n## Robustness Improvements\n\nA recent approach consistently outperforms GRPO across all benchmarks under degraded conditions, reducing the performance gap from a 9.7% drop to 7.1% when dealing with visual perturbations.\n\n## Loss Function Analysis\n\nA recent systematic analysis simplifies the GRPO loss function by isolating and removing individual components to identify which elements are essential for enabling learning."
+    ],
+    "durationSeconds": 7.00423285499998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c61b579e-ba96-439d-b1f9-745f75c6c439",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-29T08:13:45.877Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M3D98kK8px3eBK72XjtV18`</summary>
+
+```json
+{
+  "query": "\"perturbation robustness\" \"mathematical reasoning\" \"reinforcement learning\" training method 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "367fdfef-3ca0-4df4-9a7d-bdab441b05f3",
+  "isSidechain": false,
+  "requestId": "req_011CbWXRKG7iwcbRbcXByN5Y",
+  "type": "assistant",
+  "uuid": "571a8046-bb17-49f5-9226-11e0ea8733f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XX8Qutd14uLvprUK8U5ej",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3062,
+      "cache_read_input_tokens": 29377,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 29377,
+          "cache_creation_input_tokens": 3062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-29T08:13:53.351Z_
+
+<details><summary>↩ Tool result · `toolu_01M3D98kK8px3eBK72XjtV18`</summary>
+
+```text
+Web search results for query: ""perturbation robustness" "mathematical reasoning" "reinforcement learning" training method 2026 arxiv"
+
+Links: [{"title":"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning","url":"https://arxiv.org/html/2511.04120"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"Training Verifiably Robust Agents Using Set-Based Reinforcement Learning","url":"https://arxiv.org/pdf/2408.09112"},{"title":"Reliable Use of Lemmas via Eligibility Reasoning and Section‑Aware Reinforcement Learning","url":"https://arxiv.org/html/2602.00998"},{"title":"Improve Robustness of Reinforcement Learning against Observation   Perturbations via $l_\\infty$ Lipschitz Policy Networks","url":"https://arxiv.org/pdf/2312.08751"},{"title":"Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2511.08022"},{"title":"Recovering Robustness in Model-Free Reinforcement learning","url":"https://arxiv.org/pdf/1810.09337"}]
+
+I found several relevant papers on arXiv related to your search query. Here are the most relevant results:
+
+## Key Findings:
+
+**1. RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning**
+This paper proposes a benchmark perturbation framework with IRT to evaluate robustness in mathematical reasoning. The framework includes an IRT-based difficulty ranker that serves as a difficulty reward signal for reinforcement learning on Qwen3-8B, with the reinforcement learning approach encouraging the model to adaptively generate questions with higher difficulty while enhancing consistency between rewritten questions and their answers. (Published January 31, 2026)
+
+**2. Reliable Use of Lemmas via Eligibility Reasoning and Section-Aware Reinforcement Learning (RULES)**
+This work proposes that requiring models to externalize eligibility reasoning and aligning credit assignment per section will reduce reliance on spurious surface cues, improve robustness and safety to applicability-breaking perturbations, and transfer to end-to-end tasks. The results show that both two-section outputs and section-aware RL are necessary, as excluding training-time perturbations supervision substantially reduces the robustness of eligibility reasoning. (Published January 31, 2026)
+
+**3. Numerical Sensitivity and Robustness Study**
+Research shows that when minor perturbations are applied to input problems, the performance of mathematical reasoning models decreases significantly.
+
+These papers directly address the intersection of perturbation robustness, mathematical reasoning, and reinforcement learning training methods from 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "571a8046-bb17-49f5-9226-11e0ea8733f1",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "592f45e5-b288-4a75-b22f-d80e289326ee",
+  "toolUseResult": {
+    "query": "\"perturbation robustness\" \"mathematical reasoning\" \"reinforcement learning\" training method 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013NPGjPEHkvTNBUoQjUaiwP",
+        "content": [
+          {
+            "title": "RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2511.04120"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "Training Verifiably Robust Agents Using Set-Based Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2408.09112"
+          },
+          {
+            "title": "Reliable Use of Lemmas via Eligibility Reasoning and Section‑Aware Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.00998"
+          },
+          {
+            "title": "Improve Robustness of Reinforcement Learning against Observation   Perturbations via $l_\\infty$ Lipschitz Policy Networks",
+            "url": "https://arxiv.org/pdf/2312.08751"
+          },
+          {
+            "title": "Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2511.08022"
+          },
+          {
+            "title": "Recovering Robustness in Model-Free Reinforcement learning",
+            "url": "https://arxiv.org/pdf/1810.09337"
+          }
+        ]
+      },
+      "I found several relevant papers on arXiv related to your search query. Here are the most relevant results:\n\n## Key Findings:\n\n**1. RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning**\nThis paper proposes a benchmark perturbation framework with IRT to evaluate robustness in mathematical reasoning. The framework includes an IRT-based difficulty ranker that serves as a difficulty reward signal for reinforcement learning on Qwen3-8B, with the reinforcement learning approach encouraging the model to adaptively generate questions with higher difficulty while enhancing consistency between rewritten questions and their answers. (Published January 31, 2026)\n\n**2. Reliable Use of Lemmas via Eligibility Reasoning and Section-Aware Reinforcement Learning (RULES)**\nThis work proposes that requiring models to externalize eligibility reasoning and aligning credit assignment per section will reduce reliance on spurious surface cues, improve robustness and safety to applicability-breaking perturbations, and transfer to end-to-end tasks. The results show that both two-section outputs and section-aware RL are necessary, as excluding training-time perturbations supervision substantially reduces the robustness of eligibility reasoning. (Published January 31, 2026)\n\n**3. Numerical Sensitivity and Robustness Study**\nResearch shows that when minor perturbations are applied to input problems, the performance of mathematical reasoning models decreases significantly.\n\nThese papers directly address the intersection of perturbation robustness, mathematical reasoning, and reinforcement learning training methods from 2026."
+    ],
+    "durationSeconds": 7.470168120999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "571a8046-bb17-49f5-9226-11e0ea8733f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-29T08:13:57.061Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The RIDE paper and RULES paper are interesting and potentially relevant. Let me look more closely at RULES - it seems to directly address the "eligibility reasoning" angle which is closely related to the "blind technique application" failure mode that MATH-Perturb identified. This could be a highly relevant concurrent work that the proposal should discuss.
+
+Let me search for more on RULES.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "592f45e5-b288-4a75-b22f-d80e289326ee",
+  "isSidechain": false,
+  "requestId": "req_011CbWXS5PxSNtHj7rhSNc8K",
+  "type": "assistant",
+  "uuid": "30e18064-a3cc-40ba-a17d-035a10a3cffb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XQ7VRSGJeXmgh24GkddMHC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 32439,
+      "output_tokens": 173,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 173,
+          "cache_read_input_tokens": 32439,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-29T08:13:57.489Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XEqRXyJHVop7zbw6U3QpnW`</summary>
+
+```json
+{
+  "query": "RULES eligibility reasoning section-aware reinforcement learning applicability perturbation arXiv 2602.00998"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30e18064-a3cc-40ba-a17d-035a10a3cffb",
+  "isSidechain": false,
+  "requestId": "req_011CbWXS5PxSNtHj7rhSNc8K",
+  "type": "assistant",
+  "uuid": "78d53256-aa3c-4057-a7a6-e922edb96661",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XQ7VRSGJeXmgh24GkddMHC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 32439,
+      "output_tokens": 173,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 173,
+          "cache_read_input_tokens": 32439,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-29T08:14:05.468Z_
+
+<details><summary>↩ Tool result · `toolu_01XEqRXyJHVop7zbw6U3QpnW`</summary>
+
+```text
+Web search results for query: "RULES eligibility reasoning section-aware reinforcement learning applicability perturbation arXiv 2602.00998"
+
+Links: [{"title":"Reliable Use of Lemmas via Eligibility Reasoning and Section‑Aware Reinforcement Learning","url":"https://arxiv.org/html/2602.00998"},{"title":"[2602.00998] Reliable Use of Lemmas via Eligibility Reasoning and Section$-$Aware Reinforcement Learning","url":"https://arxiv.org/abs/2602.00998"},{"title":"Reliable Use of Lemmas via Eligibility Reasoning and Section$-$Aware Reinforcement Learning","url":"https://arxiv.org/pdf/2602.00998"},{"title":"One-shot learning and behavioral eligibility traces in sequential decision making","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6897511/"},{"title":"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement   Learning","url":"https://arxiv.org/pdf/2502.14768"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found about arXiv 2602.00998:
+
+**Title:** Reliable Use of Lemmas via Eligibility Reasoning and Section-Aware Reinforcement Learning
+
+**Authors:** Zhikun Xu, Xiaodong Yu, Ben Zhou, Jiang Liu, Jialian Wu, Ze Wang, Ximeng Sun, Hao Chen, Zicheng Liu from Arizona State University and Advanced Micro Devices, Inc.
+
+**Overview:** The paper addresses how recent large language models (LLMs) perform strongly on mathematical benchmarks yet often misapply lemmas, importing conclusions without validating assumptions.
+
+**Approach:** The work formalizes lemma-judging as a structured prediction task where the model outputs a precondition check and a conclusion-utility check. RULES encodes this specification via a two-section output and trains with reinforcement learning plus section-aware loss masking to assign penalty to the section responsible for errors.
+
+**Evaluation:** Training and evaluation draw on diverse natural-language and formal proof corpora; robustness is assessed with a held-out perturbation suite; and results show consistent in-domain gains, with larger improvements on applicability-breaking perturbations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78d53256-aa3c-4057-a7a6-e922edb96661",
+  "isSidechain": false,
+  "promptId": "138e8fb6-c7a7-4dc6-8dba-3d07cab557fa",
+  "type": "user",
+  "uuid": "89600100-dcee-400d-9a6a-debf5830f141",
+  "toolUseResult": {
+    "query": "RULES eligibility reasoning section-aware reinforcement learning applicability perturbation arXiv 2602.00998",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wqo7sGAz5BjKMFv7pz7a7K",
+        "content": [
+          {
+            "title": "Reliable Use of Lemmas via Eligibility Reasoning and Section‑Aware Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.00998"
+          },
+          {
+            "title": "[2602.00998] Reliable Use of Lemmas via Eligibility Reasoning and Section$-$Aware Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2602.00998"
+          },
+          {
+            "title": "Reliable Use of Lemmas via Eligibility Reasoning and Section$-$Aware Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2602.00998"
+          },
+          {
+            "title": "One-shot learning and behavioral eligibility traces in sequential decision making",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6897511/"
+          },
+          {
+            "title": "Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement   Learning",
+            "url": "https://arxiv.org/pdf/2502.14768"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found about arXiv 2602.00998:\n\n**Title:** Reliable Use of Lemmas via Eligibility Reasoning and Section-Aware Reinforcement Learning\n\n**Authors:** Zhikun Xu, Xiaodong Yu, Ben Zhou, Jiang Liu, Jialian Wu, Ze Wang, Ximeng Sun, Hao Chen, Zicheng Liu from Arizona State University and Advanced Micro Devices, Inc.\n\n**Overview:** The paper addresses how recent large language models (LLMs) perform strongly on mathematical benchmarks yet often misapply lemmas, importing conclusions without validating assumptions.\n\n**Approach:** The work formalizes lemma-judging as a structured prediction task where the model outputs a precondition check and a conclusion-utility check. RULES encodes this specification via a two-section output and trains with reinforcement learning plus section-aware loss masking to assign penalty to the section responsible for errors.\n\n**Evaluation:** Training and evaluation draw on diverse natural-language and formal proof corpora; robustness is assessed with a held-out perturbation suite; and results show consistent in-domain gains, with larger improvements on applicability-breaking perturbations."
+    ],
+    "durationSeconds": 7.970256303999981,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "78d53256-aa3c-4057-a7a6-e922edb96661",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-29T08:14:30.544Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also check one more thing - the RIDE paper which is about difficulty-evolving perturbation with IRT and RL, which could be a relevant concurrent work.
+
+Actually, I think I have enough information now. Let me synthesize everything and write my assessment.
+
+## Key findings from my research:
+
+1. **RULES (arXiv 2602.00998, Feb 2026)** is a highly relevant paper that the proposal does NOT cite. It directly addresses the "blind technique application" / "lemma misapplication" problem through eligibility reasoning + section-aware RL. This is closely related to ConsistRL's discrimination objective. 
+
+The proposal should clarify how its approach differs from RULES, particularly in how it handles consistency checking versus eligibility-based reasoning.
+
+2. **RIDE (arXiv 2511.04120)** generates perturbations using IRT-based difficulty ranking combined with RL, which is somewhat tangential but relevant to the benchmark construction aspect.
+
+3. **DRA-GRPO** addresses diversity-aware reward adjustment, touching on a related dimension of GRPO training though not directly about robustness.
+
+4. The proposal's existing related work citations (ROMA, TA-GRPO, CLIPO, RLTR, AbstRaL, MATH-Perturb, etc.) are well-chosen and comprehensive.
+
+5. No existing work appears to combine dual-direction consistency checking in the way this proposal does.
+
+Looking at the novelty angle, the "structural duality" concept—where equivalence-preserving perturbations require consistent model behavior while semantics-altering ones require opposite responses—is the key insight here. It's intuitive once articulated but represents a genuine contribution. The system-level novelty comes from integrating JS-divergence, contrastive discrimination, entropy gating, and advantage pooling into GRPO, even though these are individually known techniques. The significance is clear given the substantial accuracy drops observed (47-73%), and the approach is practical to implement, though I should examine whether the gains justify the added complexity.
+
+I'm noticing some critical gaps that could strengthen the work. RULES (arXiv 2602.00998) addresses the same "blind technique application" problem but through explicit eligibility reasoning rather than implicit discrimination learning—this distinction needs to be articulated clearly in the related work. Beyond that, there's a deeper framing opportunity: the discrimination objective isn't just penalizing invariance on semantics-altering perturbations; it's teaching the model to perform implicit applicability verification, essentially checking whether a problem's mathematical structure matches its learned solution patterns. This metacognitive verification angle connects to a much broader and more active research area around metacognitive monitoring in AI reasoning, which could significantly elevate the work's significance. I'm also curious about the transfer robustness claims—
+
+if the model trains on VAR-MATH perturbations but generalizes across different perturbation types like structural noise in MATH-Perturb and RRB, that's a much stronger story than perturbation-specific robustness, and it should be framed explicitly as a transfer hypothesis. The entropy-gating mechanism also deserves more prominence: if consistency loss only activates at 1-3% of tokens, the compute overhead becomes a genuine practical advantage rather than just an ablation detail. One lingering question though—is the structural duality truly novel, or is it just a mathematical instantiation of the well-established distinction between invariant and discriminative features from adversarial robustness literature?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89600100-dcee-400d-9a6a-debf5830f141",
+  "isSidechain": false,
+  "requestId": "req_011CbWXSyGdr18NNxiKuEovf",
+  "type": "assistant",
+  "uuid": "4024a777-540d-4e6a-a533-edbc08a3fc26",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ETRM4nc2vZUUUFwnTWGjYi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 33217,
+      "output_tokens": 4762,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4762,
+          "cache_read_input_tokens": 33217,
+          "cache_creation_input_tokens": 760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-29T08:15:41.648Z_
+
+Now I have sufficient information to provide my assessment. Let me synthesize everything.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **RULES (arXiv 2602.00998, Feb 2026)**: 直接针对"lemma misapplication"问题（与 MATH-Perturb 的"blind technique application"高度对应），通过显式的 eligibility reasoning（前提条件验证 + 结论适用性验证）+ section-aware RL 来训练模型在应用定理前先验证前提是否成立。**这是一篇 proposal 未引用但高度相关的工作，直接威胁 discrimination objective 的 novelty claim。**
+- **RIDE (arXiv 2511.04120, Nov 2025)**: 基于 IRT 的难度演化扰动框架，用 RL 训练 Qwen3-8B 生成自适应难度的扰动问题。与 ConsistRL 的扰动生成环节相关但不直接竞争。
+- **DRA-GRPO (arXiv 2505.09655, May 2025/revised Mar 2026)**: 多样性感知奖励调整，解决 GRPO 的语义折叠问题。与 ConsistRL 的 advantage pooling 有交集但目标不同。
+- **Flip-Flop Consistency / F²C (arXiv 2510.14242, 2025)**: 无监督 prompt 扰动一致性方法，提升 LLM 在 prompt 扰动下的一致性和泛化能力。思路与 PPCL 类似但应用于更一般的 LLM 场景。
+- **ERPO (arXiv 2603.28204, Mar 2026)**: Token-level entropy-regulated policy optimization，直接在 token 级别利用 entropy 进行策略优化调控。与 ConsistRL 的 entropy gating 机制有思路交叉。
+- **"Are complicated loss functions necessary for teaching LLMs to reason?" (arXiv 2603.18756, Mar 2026)**: 系统分析 GRPO loss 各组件的必要性，发现很多"花哨"的 loss 改动并非必要。**这对 ConsistRL 的多 loss 设计构成潜在质疑——审稿人可能用此论据质疑 dual loss 的必要性。**
+- 调研总结: 当前该领域的研究者主要从两条路径突破 math reasoning robustness：(1) 扰动感知训练（TA-GRPO, ROMA, RIDE），侧重让模型在训练时见到多样化变体；(2) 推理过程结构化验证（RULES, CLIPO），侧重让模型在推理时显式检查自身逻辑。ConsistRL 试图在这两条路径之间架桥，但需要更清晰地定位自己与 RULES 的区别以及回应"复杂 loss 是否必要"的质疑。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / 前提假设质疑
+- 内容: **RULES (arXiv 2602.00998) 是一篇必须讨论的 missing related work。** RULES 直接针对 MATH-Perturb 揭示的同一个核心问题——模型盲目套用已学到的解题策略而不验证前提是否适用。它的解决思路是让模型在输出中显式生成 eligibility reasoning（前提条件验证段落），然后用 section-aware RL 将错误归因到具体段落。ConsistRL 的 discrimination objective 目标相同但机制不同：通过隐式的 contrastive signal 训练模型区分语义变化的扰动，而非显式的推理输出结构。Proposal 必须明确讨论这一区别，并论证隐式 discrimination 相对于显式 eligibility reasoning 的优势（例如：不需要修改输出格式、不依赖 section boundary 的准确识别、可以与任意 reasoning format 兼容）。否则审稿人会直接质疑：为什么不直接用 RULES 的思路？
+- 价值: 直接加固 Related Work 差异化，防止审稿人以"已有更直接的解决方案"为由否定 novelty。
+- 调研依据: RULES (arXiv 2602.00998) 的 eligibility reasoning 框架直接对标本 proposal 的 discrimination objective。
+
+【发掘点 2】
+- 维度: significance 提升 / 核心 claim 强化
+- 内容: **将 discrimination objective 重新定位为"隐式数学结构验证"（implicit mathematical structure verification），而非单纯的"对比损失"。** 当前 proposal 将 discrimination objective 定义为"penalizing output similarity on semantics-altering perturbations"——这是技术层面准确的描述，但没有抓住它的深层意义。更有力的 framing 是：ConsistRL 的 discrimination loss 教会模型在推理过程中隐式地完成"这道题的数学结构是否匹配我的解题策略"的验证。这与 MATH-Perturb 发现的核心失败模式（盲目套用技术）形成直接的问题-解决方案对应。进一步地，这连接到当前 AI reasoning 领域的热点议题——模型的 metacognitive monitoring 能力（知道自己什么时候知道，什么时候不知道）。将 discrimination objective 定位为 metacognitive capacity building，会显著提升 significance 的说服力。
+- 价值: 将一个技术组件的描述提升为对领域核心问题（reasoning models 缺乏 metacognitive monitoring）的回应，直接增强 significance 和 novelty 的说服力。
+- 调研依据: MATH-Perturb (ICML 2025) 的 "blind technique application" 失败模式分析 + RULES (arXiv 2602.00998) 从 eligibility reasoning 角度切入同一问题的思路启发。
+
+【发掘点 3】
+- 维度: novelty 锐化
+- 内容: **显式提出并强调"跨扰动类型迁移鲁棒性"（cross-perturbation-type transfer robustness）假说。** 当前 proposal 的实验设计中，训练时的扰动来自 VAR-MATH 的 symbolic pipeline（数值重参数化、变量重命名），而评估涵盖 VAR-MATH、MATH-Perturb、Robust Reasoning Benchmark 三个不同的扰动源。这三个 benchmark 使用不同类型的扰动：VAR-MATH 是符号重参数化，MATH-Perturb 包含语义变更，RRB 是文本格式级别的结构噪声。如果 ConsistRL 在未见过的扰动类型上也展现鲁棒性提升，这说明模型学到的不是"对特定扰动类型的免疫"，而是一种更泛化的"数学结构敏感性"。这是一个比"在训练分布内的扰动上准确率提升"强得多的 claim。Proposal 应该将此作为一个显式的研究假说提出，而不是作为实验设计的附带结果。这也构成与 TA-GRPO（仅在其训练的 rephrasing 类型上评估）的清晰差异化。
+- 价值: 将实验结果从"在特定 benchmark 上的数字提升"提升为"泛化鲁棒性的机制性证据"，直接锐化 novelty claim。
+- 调研依据: 对比 TA-GRPO (arXiv 2601.22478) 仅在 rephrasing 类型上评估 + ROMA (arXiv 2605.09262) 的 seen/unseen degradation 分开报告的思路。
+
+【发掘点 4】
+- 维度: trivial alternative 威胁 / 核心 claim 强化
+- 内容: **必须预防性回应"复杂 loss 是否必要"的质疑。** arXiv 2603.18756 ("Are complicated loss functions necessary for teaching LLMs to reason?") 系统分析了 GRPO loss 组件的必要性，发现许多附加设计并非必要。ConsistRL 引入了 JS-divergence + contrastive discrimination + entropy gating 三个额外组件，审稿人很可能援引此论据质疑：是不是简单的数据增强 + 标准 GRPO 就够了？Proposal 已经设计了"GRPO + augmentation-only"的 baseline（基线 6），这很好，但这还不够——需要在 motivation 层面先发制人地论证为什么 distribution-level consistency constraint 不可被数据增强替代。PPCL 的 10× sample efficiency 结果是一个论据，但最强的论据应该是概念层面的：数据增强只增加了训练分布的覆盖面，而 consistency loss 施加了一个显式的归纳偏置（同一数学结构的不同表面形式应映射到同一推理路径），这是数据量无法替代的结构约束。
+- 价值: 预防最可能的审稿人质疑路径，加强核心 claim 在受到 trivial alternative 挑战时的防御力。
+- 调研依据: "Are complicated loss functions necessary for teaching LLMs to reason?" (arXiv 2603.18756) 对复杂 loss 设计的质疑 + PPCL (EACL 2024) 的 sample efficiency 证据。
+
+【发掘点 5】
+- 维度: significance 提升
+- 内容: **将 entropy-gated consistency 从"假说验证"提升为"计算高效一致性正则化"的方法论贡献。** 当前 proposal 将 entropy gating 定位为"a hypothesis to be validated"——这在学术诚实度上是好的，但过于保守。如果 entropy gating 有效（ReasonMaxxer 的证据已经很强），其意义远不止"验证一个假说"：它意味着 consistency regularization 只需要在 1-3% 的 token 位置计算，带来约 30-100× 的一致性 loss 计算量降低。这不是一个 ablation 细节，而是一个有独立方法论价值的发现——高 entropy token 是 consistency-critical token 的代理。如果验证成功，这个发现可以迁移到其他需要 consistency regularization 的场景（不限于 math reasoning）。建议将这一点在 contribution 中单独列出，而非仅作为设计选择。
+- 价值: 为 proposal 增加一个独立的方法论贡献维度，提升整体 significance，同时解释为何 ConsistRL 的额外计算开销可以被控制在合理范围内。
+- 调研依据: ReasonMaxxer (arXiv 2605.06241) 的 1-3% token 发现 + ERPO (arXiv 2603.28204) 的 token-level entropy regulation 思路。
+
+Sources:
+- [RULES: Reliable Use of Lemmas via Eligibility Reasoning](https://arxiv.org/abs/2602.00998)
+- [ReasonMaxxer: Rethinking RL for LLM Reasoning](https://arxiv.org/abs/2605.06241)
+- [ROMA: Reinforcing Multimodal Reasoning Against Visual Degradation](https://arxiv.org/abs/2605.09262)
+- [TA-GRPO: Transform-Augmented GRPO](https://arxiv.org/abs/2601.22478)
+- [CLIPO: Contrastive Learning in Policy Optimization](https://arxiv.org/abs/2603.10101)
+- [DRA-GRPO: Diverse Reasoning Paths](https://arxiv.org/abs/2505.09655)
+- [MATH-Perturb: Benchmarking LLMs' Math Reasoning](https://arxiv.org/abs/2502.06453)
+- [VAR-MATH: Probing True Mathematical Reasoning](https://arxiv.org/abs/2507.12885)
+- [ERPO: Token-Level Entropy-Regulated Policy Optimization](https://arxiv.org/abs/2603.28204)
+- [RIDE: Difficulty Evolving Perturbation with IRT](https://arxiv.org/abs/2511.04120)
+- [Robust Reasoning Benchmark](https://arxiv.org/abs/2604.08571)
+- [PPCL: Prompt Perturbation Consistency Learning](https://arxiv.org/abs/2402.15833)
+- [Flip-Flop Consistency](https://arxiv.org/abs/2510.14242)
+- [Are complicated loss functions necessary for teaching LLMs to reason?](https://arxiv.org/abs/2603.18756)
+- [AbstRaL: Augmenting LLMs' Reasoning by Reinforcing Abstract Thinking](https://arxiv.org/abs/2506.07751)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4024a777-540d-4e6a-a533-edbc08a3fc26",
+  "isSidechain": false,
+  "requestId": "req_011CbWXSyGdr18NNxiKuEovf",
+  "type": "assistant",
+  "uuid": "affe4091-845c-48a7-855f-6617d9c2b93b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ETRM4nc2vZUUUFwnTWGjYi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 33217,
+      "output_tokens": 4762,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4762,
+          "cache_read_input_tokens": 33217,
+          "cache_creation_input_tokens": 760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning  ## Core Problem  RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (nu…",
+  "leafUuid": "affe4091-845c-48a7-855f-6617d9c2b93b",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Consistency-Regularized RL for Perturbation-Robust Math Reasoning  ## Core Problem  RL-trained mathematical reasoning models suffer 47–73% accuracy drops under trivial surface-form perturbations (nu…",
+  "leafUuid": "affe4091-845c-48a7-855f-6617d9c2b93b",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Consistency-regularized RL for math reasoning robustness",
+  "sessionId": "abe9010d-53f8-4a81-b246-82aa9b906a50"
+}
+```
+
+---

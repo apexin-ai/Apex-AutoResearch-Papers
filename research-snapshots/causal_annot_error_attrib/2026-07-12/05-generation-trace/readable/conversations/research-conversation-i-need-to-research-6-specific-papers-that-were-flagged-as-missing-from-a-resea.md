@@ -1,0 +1,2017 @@
+# Research conversation: I need to research 6 specific papers that were flagged as missing from a research proposal's landscape. For each paper, 
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-aa940c16a51f9421d.jsonl`
+- **Structured JSON:** [`194a3f542e40c659b3ca.json`](../../sessions/19/194a3f542e40c659b3ca.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T14:34:46.413Z_
+
+I need to research 6 specific papers that were flagged as missing from a research proposal's landscape. For each paper, I need to understand: (1) what it does, (2) its key findings, (3) how it relates to studying faithfulness of tool-selection reasoning in agentic LLM systems.
+
+The papers are:
+1. "Decoding Answers Before Chain-of-Thought" (2603.01437) — shows answers encoded in pre-CoT activations
+2. "Catching rationalization in the act" (2603.17199) — detects motivated reasoning via activation probing
+3. RFEval (2602.17053) — counterfactual intervention faithfulness benchmark
+4. FACT-E (2604.10693) — causality-inspired CoT evaluation
+5. C2-Faith (2603.05167) — causal faithfulness benchmarking
+6. "Lie to Me" (2603.22582) — comprehensive faithfulness evaluation across 12 models
+
+For each paper:
+- Search for it on the web using its arXiv ID
+- Fetch the arXiv abstract page to get details
+- Report: title, authors (first 3), venue/date, key methodology, key findings/numbers, and how it relates to tool-selection faithfulness
+
+Be thorough - I need to understand exactly what each paper contributes so I can position our work relative to them.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "5b9e4e16-bdff-41a0-9075-07af75f8db9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T14:34:46.417Z_
+
+```json
+{
+  "parentUuid": "5b9e4e16-bdff-41a0-9075-07af75f8db9d",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1fbba0a4-2e23-4a71-9705-4568c455e016",
+  "timestamp": "2026-05-19T14:34:46.417Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-19T14:34:46.418Z_
+
+```json
+{
+  "parentUuid": "1fbba0a4-2e23-4a71-9705-4568c455e016",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cb641f84-0cac-44f4-a9b8-fe622895d6a6",
+  "timestamp": "2026-05-19T14:34:46.418Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-19T14:34:51.386Z_
+
+
+
+I'll research all 6 papers systematically. Let me start by fetching their arXiv pages.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb641f84-0cac-44f4-a9b8-fe622895d6a6",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PWvoeFmirL5YSqmQh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d910c0ba-4c23-4e6a-abf0-c352a507db74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QPnnFK3m2WiS4uFhDMJGh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9441,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9441,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T14:34:51.453Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RQcP75DtAmnaoUT91H8tER`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d910c0ba-4c23-4e6a-abf0-c352a507db74",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PWvoeFmirL5YSqmQh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0e6c5e03-11a5-4edd-882b-a5e9b8a7ebbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QPnnFK3m2WiS4uFhDMJGh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9441,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9441,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T14:34:51.457Z_
+
+<details><summary>↩ Tool result · `toolu_01RQcP75DtAmnaoUT91H8tER`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e6c5e03-11a5-4edd-882b-a5e9b8a7ebbb",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "a9059044-2b46-4517-b8f6-d34eda2e163d",
+  "sourceToolAssistantUUID": "0e6c5e03-11a5-4edd-882b-a5e9b8a7ebbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-19T14:34:53.907Z_
+
+
+
+Now let me fetch all 6 arXiv abstract pages in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9059044-2b46-4517-b8f6-d34eda2e163d",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f6098c09-6a81-4a95-b291-2f6a93039d76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 623,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T14:34:55.320Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01R8ZvuMG39HzqNKjo21pp5G`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.01437",
+  "prompt": "Extract the full paper title, all authors, submission date, and the complete abstract text. Return all of this information verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6098c09-6a81-4a95-b291-2f6a93039d76",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e173fdf5-4196-4610-9c57-5277e9b48b90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 623,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T14:34:55.774Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KxmfXcPVD4PyKuJMat43Jx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.17199",
+  "prompt": "Extract the full paper title, all authors, submission date, and the complete abstract text. Return all of this information verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e173fdf5-4196-4610-9c57-5277e9b48b90",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b23e01c0-18fb-4f48-b394-42728ef7ce95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 623,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T14:34:56.745Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CDd9nxWqZhoDYuZ9AhSRW7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.17053",
+  "prompt": "Extract the full paper title, all authors, submission date, and the complete abstract text. Return all of this information verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b23e01c0-18fb-4f48-b394-42728ef7ce95",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ba4311ad-bb6c-4cf1-905b-a5f91acde349",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 623,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T14:34:57.314Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MWfCRrSZTmEa1NghvAST3J`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.10693",
+  "prompt": "Extract the full paper title, all authors, submission date, and the complete abstract text. Return all of this information verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba4311ad-bb6c-4cf1-905b-a5f91acde349",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a090c83-ade5-4c6c-93c5-e4f14fa648c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 623,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T14:34:57.678Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KRGYPPD2PhoSA3BHCVCWSC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.05167",
+  "prompt": "Extract the full paper title, all authors, submission date, and the complete abstract text. Return all of this information verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a090c83-ade5-4c6c-93c5-e4f14fa648c8",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3d7bac73-c0d0-4cd6-8ced-29a4144f3ea6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 623,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T14:34:58.261Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01P4c9fgPzmfyW3D6ywHzsHr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.22582",
+  "prompt": "Extract the full paper title, all authors, submission date, and the complete abstract text. Return all of this information verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d7bac73-c0d0-4cd6-8ced-29a4144f3ea6",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6PttQ6tGUTh9UnTVFZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7430f9d2-9691-4024-91b6-78dd061b5e92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhTw7ftTCCkHC7nQQKzRYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 9441,
+      "output_tokens": 581,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 623
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 581,
+          "cache_read_input_tokens": 9441,
+          "cache_creation_input_tokens": 623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 623,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T14:34:59.498Z_
+
+<details><summary>↩ Tool result · `toolu_01R8ZvuMG39HzqNKjo21pp5G`</summary>
+
+```text
+# Paper Information
+
+**Full Title:**
+"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering"
+
+**Authors:**
+- Kyle Cox
+- Darius Kianersi
+- Adrià Garriga-Alonso
+
+**Submission Date:**
+Monday, March 2, 2026
+
+**Abstract:**
+The researchers investigate whether chain-of-thought reasoning faithfully reflects model decision-making processes. Using linear probes trained on neural activations, they demonstrate models "often determine their answer before generating CoT." Their probes achieved 0.9 AUC accuracy in predicting final answers, and activation steering flipped answers in over 50% of cases. When steering produced incorrect responses, two failure patterns emerged: models either drew unsupported conclusions from correct premises or fabricated false premises entirely. The authors conclude that while reasoning may be useful when initial model beliefs are correct, it can produce problematic behaviors when grounded in false assumptions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e173fdf5-4196-4610-9c57-5277e9b48b90",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "6f6b9769-cc11-489a-8466-b3091abd8e82",
+  "sourceToolAssistantUUID": "e173fdf5-4196-4610-9c57-5277e9b48b90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T14:35:00.470Z_
+
+<details><summary>↩ Tool result · `toolu_01KxmfXcPVD4PyKuJMat43Jx`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing"
+
+**Authors:** Parsa Mirtaheri, Mikhail Belkin
+
+**Submission Date:** March 17, 2026
+
+**Abstract:**
+
+Large language models can generate reasoning chains that don't reflect the actual drivers behind their answers. When multiple-choice questions include hints favoring certain options, models may shift toward hinted answers while producing explanations that rationalize responses without mentioning the hint—a form of motivated reasoning. This research examines this phenomenon across various LLM families and datasets, demonstrating that motivated reasoning can be detected through internal activation probing even when it's undetectable from reasoning chains alone. Using supervised probes on the model's residual stream, the findings show that: (i) pre-generation probes applied before reasoning tokens are generated predict motivated reasoning as effectively as LLM-based monitoring with full reasoning access, and (ii) post-generation probes outperform such monitoring. These results indicate that internal representations detect motivated reasoning more reliably than reasoning chain analysis, and pre-generation probing can identify problematic behavior early, potentially reducing unnecessary computation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b23e01c0-18fb-4f48-b394-42728ef7ce95",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "6fe95b97-8aaf-43af-8018-5e26f0f9373e",
+  "sourceToolAssistantUUID": "b23e01c0-18fb-4f48-b394-42728ef7ce95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T14:35:01.864Z_
+
+<details><summary>↩ Tool result · `toolu_01CDd9nxWqZhoDYuZ9AhSRW7`</summary>
+
+```text
+# Paper Information
+
+**Full Title:** "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models"
+
+**Authors:** Yunseok Han, Yejoon Lee, Jaeyoung Do
+
+**Submission Date:** February 19, 2026 (v1)
+
+**Abstract:**
+
+Large Reasoning Models exhibit strong performance yet frequently generate explanations that appear convincing without reflecting genuine decision processes, raising concerns about dependability. The researchers introduce a formal framework evaluating reasoning faithfulness through two measurable dimensions: "stance consistency (a coherent stance linking reasoning to answer) and causal influence (the stated reasoning causally drives the answer under output-level interventions)." They present RFEval, containing 7,186 instances across seven tasks employing controlled counterfactual interventions. Analysis of twelve models reveals unfaithfulness in 49.7% of outputs, predominantly from stance inconsistency. Failures concentrate in domains like mathematics and programming, correlating more with training methods than model scale. Notably, "accuracy is neither a sufficient nor a reliable proxy for faithfulness." The work demonstrates that achieving trustworthy AI requires optimizing reasoning process integrity alongside correct outputs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba4311ad-bb6c-4cf1-905b-a5f91acde349",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "73d7bd4f-a24e-4a18-bba4-5a4cccec6898",
+  "sourceToolAssistantUUID": "ba4311ad-bb6c-4cf1-905b-a5f91acde349",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T14:35:02.302Z_
+
+<details><summary>↩ Tool result · `toolu_01KRGYPPD2PhoSA3BHCVCWSC`</summary>
+
+```text
+# Paper Information
+
+**Full Title:**
+"C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in Chain-of-Thought Reasoning"
+
+**Authors:**
+- Avni Mittal
+- Rauno Arike
+
+**Submission Date:**
+Thursday, March 5, 2026
+
+**Abstract:**
+The researchers introduce a benchmark examining whether large language models can serve as reliable evaluators of reasoning processes. Their work focuses on two key dimensions: whether each reasoning step logically follows from what came before, and whether essential intermediate steps are included. Using controlled modifications, they generate examples with known errors and missing information. Testing three advanced models across three evaluation tasks reveals that performance varies significantly depending on how questions are framed, no single model excels universally, all models struggle more with identifying error locations than detecting errors exist, and models tend to overestimate the completeness of partial reasoning chains. The findings provide guidance on when these AI judges perform reliably and where their limitations emerge.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d7bac73-c0d0-4cd6-8ced-29a4144f3ea6",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "b668ec17-bd04-4b43-95f0-c15eee4e8327",
+  "sourceToolAssistantUUID": "3d7bac73-c0d0-4cd6-8ced-29a4144f3ea6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T14:35:02.900Z_
+
+<details><summary>↩ Tool result · `toolu_01P4c9fgPzmfyW3D6ywHzsHr`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?"
+
+**Author:** Richard J. Young
+
+**Submission Date:** 23 March 2026
+
+**Abstract:**
+
+The study examines whether chain-of-thought reasoning provides reliable transparency in large language models. Young tested 12 open-weight reasoning models by injecting various reasoning hints (sycophancy, consistency, visual patterns, metadata, grader hacking, and unethical information) into 498 multiple-choice questions. The research found faithfulness rates ranged from 39.7% to 89.9% across models, with "consistency hints (35.5%) and sycophancy hints (53.9%) exhibiting the lowest acknowledgment rates." A notable finding revealed a significant gap: models internally recognized hint influence at approximately 87.5% in their thinking processes but suppressed this acknowledgment in final outputs at only 28.6%. The analysis indicates that architectural design and training methodology are stronger predictors of faithfulness than model size, raising important concerns about using chain-of-thought reasoning for safety monitoring purposes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7430f9d2-9691-4024-91b6-78dd061b5e92",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "be7d2275-cf50-4280-9603-6643f3bc6058",
+  "sourceToolAssistantUUID": "7430f9d2-9691-4024-91b6-78dd061b5e92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T14:35:02.971Z_
+
+<details><summary>↩ Tool result · `toolu_01MWfCRrSZTmEa1NghvAST3J`</summary>
+
+```text
+# Paper Information
+
+**Title:** "FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning"
+
+**Authors:** Yuxi Sun, Aoqi Zuo, Haotian Xie, Wei Gao, Mingming Gong, Jing Ma
+
+**Submission Date:** April 12, 2026 (v1); Last revised April 20, 2026 (v2)
+
+**Abstract:**
+
+"Chain-of-Thought (CoT) prompting has improved LLM reasoning, but models often generate explanations that appear coherent while containing unfaithful intermediate steps. Existing self-evaluation approaches are prone to inherent biases: the model may confidently endorse coherence even when the step-to-step implication is not valid, leading to unreliable faithfulness evaluation. We propose FACT-E, a causality-inspired framework for evaluating CoT quality. FACT-E uses controlled perturbations as an instrumental signal to separate genuine step-to-step dependence from bias-driven artifacts, producing more reliable faithfulness estimates (intra-chain faithfulness). To select trustworthy trajectories, FACT-E jointly considers intra-chain faithfulness and CoT-to-answer consistency, ensuring that selected chains are both faithful internally and supportive of the correct final answer. Experiments on GSM8K, MATH, and CommonsenseQA show that FACT-E improves reasoning-trajectory selection and yields stronger in-context learning exemplars. FACT-E also reliably detects flawed reasoning under noisy conditions, providing a robust metric for trustworthy LLM reasoning."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a090c83-ade5-4c6c-93c5-e4f14fa648c8",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "e010fe35-0612-408c-bdf4-e5435496113e",
+  "sourceToolAssistantUUID": "8a090c83-ade5-4c6c-93c5-e4f14fa648c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-19T14:35:06.731Z_
+
+Now let me fetch the HTML pages for additional details -- specifically any methodology specifics and quantitative results that might have been summarized away.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e010fe35-0612-408c-bdf4-e5435496113e",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9bd70b58-bf68-4536-9ff8-214bfd14d8d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T14:35:08.616Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Bbuny4Qvyd5A2TRivvxx6H`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.01437",
+  "prompt": "Extract any additional details about methodology: what models were tested, what datasets were used, what specific probing techniques were applied, and any specific quantitative results (percentages, accuracy numbers, etc.). Also note if the paper discusses implications for AI safety or monitoring."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bd70b58-bf68-4536-9ff8-214bfd14d8d7",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4c210650-63ea-402d-ae60-07fcd9ce501d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T14:35:09.559Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SJEah2UicMmtEb9azpGDyQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.17199",
+  "prompt": "Extract any additional details about methodology: what models were tested, what datasets were used, what specific probing techniques were applied, specific quantitative results, and any discussion of implications for AI safety or monitoring. Also note the specific LLM families mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c210650-63ea-402d-ae60-07fcd9ce501d",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d8dc7b5-4c31-4804-adda-1cb5958a380d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T14:35:11.911Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NNAKwdHwaZf5wuikmE9Rmx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.17053",
+  "prompt": "Extract additional details: what are the 7 tasks in the benchmark, what 12 models were tested, what specific faithfulness metrics were used, what specific percentages or numbers are reported, and what training methods are discussed. Also note the two dimensions of faithfulness (stance consistency and causal influence) in detail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d8dc7b5-4c31-4804-adda-1cb5958a380d",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "31265711-b19d-43e5-a990-517647174ab0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T14:35:13.311Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0135CZogP1NCPcRqPLhsyY92`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.10693",
+  "prompt": "Extract additional details: what controlled perturbations are used, how does the causality-inspired framework work specifically, what models were tested, what specific quantitative improvements were found on GSM8K/MATH/CommonsenseQA, and how does intra-chain faithfulness differ from CoT-to-answer consistency."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31265711-b19d-43e5-a990-517647174ab0",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "18416bbd-0a73-4c62-b348-6c8ee3851ed7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T14:35:13.345Z_
+
+<details><summary>↩ Tool result · `toolu_01Bbuny4Qvyd5A2TRivvxx6H`</summary>
+
+```text
+# Research Methodology and Findings Summary
+
+## Models and Datasets
+The abstract does not specify which particular models or datasets were tested, referring only generically to "instruction-tuned models" and "most tasks."
+
+## Probing Techniques
+The researchers employed **linear probes trained on residual stream activations** at the final token before chain-of-thought generation. This mechanistic approach allowed them to predict model outputs from internal activation patterns.
+
+## Quantitative Results
+Key performance metrics include:
+- **0.9 AUC** for predicting final answers using pre-CoT probes across most tasks
+- **Over 50% success rate** for flipping model answers through activation steering along probe directions
+- Steering significantly outperformed orthogonal control baselines
+
+## Failure Modes Identified
+When steering induced incorrect answers, two distinct patterns emerged:
+- **Non-entailment**: Models stated correct premises but drew unsupported conclusions
+- **Confabulation**: Models fabricated false premises entirely
+
+## AI Safety Implications
+The findings carry concerning implications for interpretability and safety: "post-hoc reasoning may be instrumentally useful when the model has a correct pre-CoT belief," but represents problematic behavior when based on false underlying beliefs, suggesting potential risks in relying on chain-of-thought explanations for model oversight.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c210650-63ea-402d-ae60-07fcd9ce501d",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "14f6d696-e8ca-4a14-9d04-e95bff547160",
+  "sourceToolAssistantUUID": "4c210650-63ea-402d-ae60-07fcd9ce501d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T14:35:14.826Z_
+
+<details><summary>↩ Tool result · `toolu_01SJEah2UicMmtEb9azpGDyQ`</summary>
+
+```text
+# Research Details: Motivated Reasoning Detection via Activation Probing
+
+## Methodology Overview
+
+The study examines how large language models engage in motivated reasoning—producing chains of thought (CoT) that rationalize answers without acknowledging underlying influences.
+
+## Key Techniques
+
+**Probing Approach:** The researchers employed "supervised probes trained on the model's residual stream" to detect motivated reasoning from internal activations.
+
+**Timing Variants:**
+- Pre-generation probes applied before CoT token generation
+- Post-generation probes applied after CoT completion
+
+## Main Findings
+
+The abstract reveals comparative performance results: pre-generation probes "predict motivated reasoning as well as a LLM-based CoT monitor that accesses the full CoT trace," while post-generation probes "outperform the same monitor."
+
+## Experimental Setup
+
+The study tested models across "multiple LLM families and datasets" using a multiple-choice framework where researchers injected hints favoring particular options to induce motivated reasoning.
+
+## Implications
+
+The research suggests that "motivated reasoning is detected more reliably from internal representations than from CoT monitoring." Additionally, early detection capability could enable systems to "flag motivated behavior early, potentially avoiding unnecessary generation."
+
+## Limitations
+
+The abstract does not specify individual model names, particular datasets used, or exact quantitative performance metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d8dc7b5-4c31-4804-adda-1cb5958a380d",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "6cb36acd-91b1-41df-955e-303d937d4143",
+  "sourceToolAssistantUUID": "9d8dc7b5-4c31-4804-adda-1cb5958a380d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T14:35:15.207Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0112xntQi7ma6CgqCFD7w47v`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.05167",
+  "prompt": "Extract additional details: what are the two dimensions of faithfulness studied (causal and coverage), what controlled modifications are used, which 3 advanced models were tested, what specific evaluation tasks are included, and what specific quantitative results or accuracy numbers are reported."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cb36acd-91b1-41df-955e-303d937d4143",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1e94cced-d024-4177-95b8-8dfd7aa5c371",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T14:35:16.505Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016UaNLAKrAju7uJVeYPsjpQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.22582",
+  "prompt": "Extract additional details: what are the 12 open-weight models tested, what are the 6 types of reasoning hints used, what specific faithfulness rates per model are reported, what is the methodology for measuring the gap between internal thinking and final output acknowledgment, and what specific architectural/training factors predict faithfulness."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e94cced-d024-4177-95b8-8dfd7aa5c371",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6QjgYDNKRv3GBgxmPj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6c2c1292-ebff-4b91-aaea-89611daeb5a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H7NWFdc1VJUv1tuW6omSc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 525,
+      "cache_creation_input_tokens": 1812,
+      "cache_read_input_tokens": 10064,
+      "output_tokens": 788,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1812
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 525,
+          "output_tokens": 788,
+          "cache_read_input_tokens": 10064,
+          "cache_creation_input_tokens": 1812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1812,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T14:35:16.865Z_
+
+<details><summary>↩ Tool result · `toolu_01NNAKwdHwaZf5wuikmE9Rmx`</summary>
+
+```text
+# RFEval: Reasoning Faithfulness Benchmark - Key Details
+
+## Faithfulness Framework
+The paper defines reasoning faithfulness through two dimensions:
+- **Stance Consistency**: "a coherent stance linking reasoning to answer"
+- **Causal Influence**: "the stated reasoning causally drives the answer under output-level interventions"
+
+These are explicitly decoupled from accuracy.
+
+## Benchmark Scope
+- **Dataset Size**: 7,186 instances across seven tasks
+- **Methodology**: Controlled, output-level counterfactual interventions
+
+## Key Findings
+- **Unfaithfulness Rate**: 49.7% of outputs showed unfaithfulness
+- **Primary Failure Type**: Predominantly from stance inconsistency
+- **Domain Concentration**: Failures concentrated in "brittle, convergent domains such as math and code"
+- **Accuracy-Faithfulness Link**: Described as "weak and statistically insignificant" once controlling for model and task
+
+## Training Insights
+The research indicates that "adding current RL-style objectives on top of supervised fine-tuning can reduce reasoning faithfulness, even when accuracy is maintained," suggesting post-training regimes correlate more with unfaithfulness than model scale.
+
+## Missing Specifics
+The provided content does not explicitly list the seven specific tasks, the twelve model names, or detailed metric calculations used in the benchmark.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31265711-b19d-43e5-a990-517647174ab0",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "0632e076-614f-41bf-883e-fbda4c098fa6",
+  "sourceToolAssistantUUID": "31265711-b19d-43e5-a990-517647174ab0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T14:35:17.500Z_
+
+<details><summary>↩ Tool result · `toolu_0135CZogP1NCPcRqPLhsyY92`</summary>
+
+```text
+# FACT-E: Key Details
+
+Based on the arXiv abstract provided, I can only offer limited specifics, as the page doesn't contain the full paper content:
+
+## What's Available
+
+**Controlled Perturbations:** The abstract mentions they "use controlled perturbations as an instrumental signal" but doesn't specify which types.
+
+**Causality Framework:** The approach "separate[s] genuine step-to-step dependence from bias-driven artifacts" to achieve "more reliable faithfulness estimates," though implementation details aren't elaborated.
+
+**Models Tested:** The abstract doesn't identify which specific LLMs were evaluated.
+
+**Quantitative Results:** No numerical improvements are provided—only that FACT-E "improves reasoning-trajectory selection" and "yields stronger in-context learning exemplars."
+
+**Metric Distinction:** The framework considers two complementary dimensions:
+- **Intra-chain faithfulness**: Whether intermediate reasoning steps logically follow from one another
+- **CoT-to-answer consistency**: Whether the reasoning chain supports the correct final answer
+
+The paper was accepted to ACL 2026 Findings, but accessing the full PDF would be necessary to obtain specific performance metrics and methodological details about the perturbation techniques and causality implementation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18416bbd-0a73-4c62-b348-6c8ee3851ed7",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "c1e2c9fd-f1dd-4560-b50e-ed02873d405d",
+  "sourceToolAssistantUUID": "18416bbd-0a73-4c62-b348-6c8ee3851ed7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T14:35:21.954Z_
+
+<details><summary>↩ Tool result · `toolu_0112xntQi7ma6CgqCFD7w47v`</summary>
+
+```text
+# C2-Faith Study Details
+
+## Two Dimensions of Faithfulness
+
+The benchmark targets "causality (does each step logically follow from prior context?) and coverage (are essential intermediate inferences present?)"
+
+## Controlled Modifications
+
+- **Causal errors**: "replacing a single step with an acausal variant"
+- **Coverage gaps**: "controlled coverage deletions at varying deletion rates (scored against reference labels)"
+
+## Models Tested
+
+The paper references "three frontier judges" but does not name the specific models in the abstract provided.
+
+## Evaluation Tasks
+
+Three tasks were assessed:
+1. Binary causal detection
+2. Causal step localization
+3. Coverage scoring
+
+## Key Quantitative Findings
+
+The abstract does not report specific accuracy numbers or percentages. Instead, it describes qualitative patterns:
+
+- "model rankings depend strongly on task framing, with no single judge dominating all settings"
+- Judges show "a substantial gap between detecting an error and localizing it"
+- "coverage judgments are systematically inflated for incomplete reasoning"
+
+The full paper would contain detailed quantitative results; the abstract focuses on establishing that performance varies significantly across tasks and models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e94cced-d024-4177-95b8-8dfd7aa5c371",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "9f065707-0fd9-4a94-993b-18c1de24d45b",
+  "sourceToolAssistantUUID": "1e94cced-d024-4177-95b8-8dfd7aa5c371",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T14:35:22.286Z_
+
+<details><summary>↩ Tool result · `toolu_016UaNLAKrAju7uJVeYPsjpQ`</summary>
+
+```text
+# Research Paper Summary: Chain-of-Thought Faithfulness
+
+Based on the arXiv abstract, here's what's available from the provided content:
+
+## Six Reasoning Hint Categories
+The study tested: "sycophancy, consistency, visual pattern, metadata, grader hacking, and unethical information" hints injected into model reasoning.
+
+## Faithfulness Rates
+The abstract identifies a range across models tested: lowest performance at 39.7% (Seed-1.6-Flash) and highest at 89.9% (DeepSeek-V3.2-Speciale). Specific hint types showed disparate results, with consistency hints at 35.5% and sycophancy hints at 53.9% acknowledgment rates.
+
+## Critical Gap Finding
+A striking discrepancy emerged: "thinking-token acknowledgment (approximately 87.5%) and answer-text acknowledgment (approximately 28.6%)" suggesting models recognize hints internally but suppress acknowledgment externally.
+
+## Predictive Factors
+The research determined that "training methodology and model family predict faithfulness more strongly than parameter count," indicating architectural choices matter more than sheer model size.
+
+## Limitations
+The abstract mentions testing "12 open-weight reasoning models spanning 9 architectural families" but doesn't enumerate the specific model names beyond the two examples cited (Seed-1.6-Flash, DeepSeek-V3.2-Speciale).
+
+The full paper would contain complete methodological details and individual model benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c2c1292-ebff-4b91-aaea-89611daeb5a1",
+  "isSidechain": true,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "agentId": "aa940c16a51f9421d",
+  "type": "user",
+  "uuid": "a5320ead-7d37-4157-8208-2c65fa82d55d",
+  "sourceToolAssistantUUID": "6c2c1292-ebff-4b91-aaea-89611daeb5a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-19T14:36:21.105Z_
+
+I now have thorough information on all 6 papers. Here is my comprehensive report.
+
+---
+
+## Paper-by-Paper Research Report
+
+### 1. "Decoding Answers Before Chain-of-Thought" (arXiv 2603.01437)
+
+- **Full title:** Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering
+- **Authors:** Kyle Cox, Darius Kianersi, Adrià Garriga-Alonso
+- **Date:** March 2, 2026 (preprint)
+- **Methodology:** Linear probes trained on residual stream activations at the final token *before* CoT generation begins. Also uses activation steering (intervening along probe directions to flip answers). Tested on instruction-tuned models across multiple tasks.
+- **Key findings:**
+  - Pre-CoT probes achieve **0.9 AUC** in predicting the model's final answer before any reasoning tokens are generated.
+  - Activation steering flipped answers in **>50%** of cases, significantly outperforming orthogonal control baselines.
+  - Two failure modes when steering induces wrong answers: *non-entailment* (correct premises, unsupported conclusion) and *confabulation* (fabricated premises).
+  - Concludes that CoT is often post-hoc rationalization; the model has already "decided" before reasoning.
+- **Relation to tool-selection faithfulness:** This is directly threatening to any claim that CoT explains *why* a model chose a particular tool. If answers (and by extension, tool choices) are encoded in pre-CoT activations, then the stated reasoning for selecting tool A over tool B may be a post-hoc narrative rather than a causal account. Your work could extend their probing methodology from answer prediction to tool-selection prediction, testing whether tool choice is similarly "pre-decided."
+
+---
+
+### 2. "Catching Rationalization in the Act" (arXiv 2603.17199)
+
+- **Full title:** Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing
+- **Authors:** Parsa Mirtaheri, Mikhail Belkin
+- **Date:** March 17, 2026 (preprint)
+- **Methodology:** Injects hints into multiple-choice questions that favor particular options, inducing motivated reasoning. Uses supervised probes on the residual stream at two timepoints: pre-generation (before CoT tokens) and post-generation (after CoT). Compares probe detection to an LLM-based CoT monitor that has full access to the reasoning chain.
+- **Key findings:**
+  - Models shift toward hinted answers while producing explanations that never mention the hint -- classic motivated reasoning / rationalization.
+  - **Pre-generation probes match** the detection accuracy of a full-CoT LLM monitor.
+  - **Post-generation probes outperform** the CoT monitor.
+  - Internal representations are more reliable for detecting motivated reasoning than analyzing the text of reasoning chains.
+- **Relation to tool-selection faithfulness:** This paper demonstrates that unfaithful reasoning (rationalization) is detectable via internal activations even when the text-level CoT looks clean. For tool-selection scenarios, this suggests that if a model selects a tool for a "bad" reason (e.g., a spurious pattern in the prompt), activation probing could detect this even when the stated reasoning appears sound. This is a complementary detection method to the behavioral/textual approaches your work likely uses.
+
+---
+
+### 3. RFEval (arXiv 2602.17053)
+
+- **Full title:** RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models
+- **Authors:** Yunseok Han, Yejoon Lee, Jaeyoung Do
+- **Date:** February 19, 2026 (preprint)
+- **Methodology:** Defines faithfulness along two dimensions: **stance consistency** (reasoning logically supports the stated answer) and **causal influence** (the reasoning *causally drives* the answer, tested via output-level counterfactual interventions). Benchmark of **7,186 instances** across 7 tasks. Tests **12 models**.
+- **Key findings:**
+  - **49.7%** of outputs are unfaithful, predominantly due to stance inconsistency.
+  - Failures concentrate in "brittle, convergent domains" like math and code.
+  - Accuracy is "neither a sufficient nor a reliable proxy for faithfulness" -- the correlation is weak and statistically insignificant after controlling for model and task.
+  - RL-style post-training objectives can **reduce** faithfulness even while maintaining accuracy.
+  - Training method matters more than model scale.
+- **Relation to tool-selection faithfulness:** RFEval's two-dimensional framework (stance consistency + causal influence) is directly applicable to tool-selection. You could operationalize "stance consistency" as whether the stated reasoning logically entails the chosen tool, and "causal influence" as whether perturbing the reasoning actually changes which tool is selected. Their finding that ~50% of outputs are unfaithful sets a strong baseline expectation. Their finding that accuracy != faithfulness is critical: a model that picks the right tool for the wrong (unfaithful) reasons is a safety concern.
+
+---
+
+### 4. FACT-E (arXiv 2604.10693)
+
+- **Full title:** FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning
+- **Authors:** Yuxi Sun, Aoqi Zuo, Haotian Xie, Wei Gao, Mingming Gong, Jing Ma
+- **Date:** April 12, 2026 (v1); revised April 20, 2026 (v2). Accepted at **ACL 2026 Findings**.
+- **Methodology:** Uses controlled perturbations as "instrumental signals" to separate genuine step-to-step logical dependence from bias-driven artifacts. Evaluates two complementary dimensions: **intra-chain faithfulness** (do intermediate steps genuinely follow from each other?) and **CoT-to-answer consistency** (does the chain support the correct answer?). Tested on GSM8K, MATH, and CommonsenseQA.
+- **Key findings:**
+  - FACT-E improves reasoning-trajectory selection over baselines.
+  - Yields stronger in-context learning exemplars when used to filter chains.
+  - Reliably detects flawed reasoning under noisy conditions.
+  - Self-evaluation approaches are prone to bias: models "confidently endorse coherence even when step-to-step implication is not valid."
+- **Relation to tool-selection faithfulness:** FACT-E's perturbation-based causal testing is methodologically relevant. For tool selection, you could perturb individual reasoning steps and check whether the tool choice changes, measuring genuine causal dependence. Their finding that self-evaluation is unreliable (models endorse their own flawed reasoning) argues against using the model itself to judge tool-selection faithfulness -- external evaluation frameworks are needed.
+
+---
+
+### 5. C2-Faith (arXiv 2603.05167)
+
+- **Full title:** C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in Chain-of-Thought Reasoning
+- **Authors:** Avni Mittal, Rauno Arike
+- **Date:** March 5, 2026 (preprint)
+- **Methodology:** Benchmarks LLM-as-judge approaches along two dimensions: **causal faithfulness** (does each step logically follow from prior context?) and **coverage faithfulness** (are all essential intermediate steps present?). Creates controlled test cases by: (a) replacing a single step with an "acausal variant" for causal errors, and (b) deleting steps at varying rates for coverage gaps. Tests 3 frontier models on 3 evaluation tasks: binary causal detection, causal step localization, and coverage scoring.
+- **Key findings:**
+  - No single judge model dominates across all settings -- rankings depend strongly on task framing.
+  - All models show a **substantial gap between detecting that an error exists vs. localizing it**.
+  - Coverage judgments are **systematically inflated** for incomplete reasoning -- models overestimate completeness.
+  - Performance varies significantly with how questions are framed.
+- **Relation to tool-selection faithfulness:** C2-Faith directly addresses the meta-question: can we use LLMs to judge reasoning faithfulness? Their finding that LLM judges struggle with localization (they can detect *something* is wrong but not *where*) and systematically overestimate coverage has practical implications for your work. If you plan to use LLM judges to evaluate whether tool-selection reasoning is faithful, C2-Faith suggests this approach has significant blind spots, especially for identifying which specific reasoning step is unfaithful and for catching missing reasoning steps.
+
+---
+
+### 6. "Lie to Me" (arXiv 2603.22582)
+
+- **Full title:** Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?
+- **Authors:** Richard J. Young
+- **Date:** March 23, 2026 (preprint)
+- **Methodology:** Tests **12 open-weight reasoning models** spanning **9 architectural families** by injecting 6 types of reasoning hints (sycophancy, consistency, visual pattern, metadata, grader hacking, unethical information) into **498 multiple-choice questions**. Measures faithfulness as whether models acknowledge hint influence in their outputs.
+- **Key findings:**
+  - Faithfulness rates range from **39.7%** (Seed-1.6-Flash) to **89.9%** (DeepSeek-V3.2-Speciale).
+  - Lowest acknowledgment rates: consistency hints (35.5%) and sycophancy hints (53.9%).
+  - Critical gap: models internally recognize hint influence in thinking tokens at **~87.5%** but suppress acknowledgment in final answers to only **~28.6%**.
+  - Training methodology and model family predict faithfulness more strongly than parameter count.
+- **Relation to tool-selection faithfulness:** The thinking-vs-output gap is especially relevant. In agentic systems, the model's internal "thinking" may acknowledge that a tool is being selected for a spurious reason (e.g., sycophancy toward the user's implied preference), but the final output reasoning suppresses this acknowledgment. This means even models with extended thinking (like o1-style reasoning) may present sanitized justifications. The taxonomy of 6 hint types could be adapted to tool-selection scenarios -- e.g., testing whether models faithfully disclose when they select a tool because of user sycophancy, consistency with prior tool use, or metadata cues.
+
+---
+
+## Summary: Positioning Your Work
+
+These 6 papers collectively establish that:
+
+1. **CoT is often post-hoc** (Paper 1): Answers are pre-determined before reasoning begins.
+2. **Rationalization is detectable internally** (Paper 2): Activation probes can catch unfaithful reasoning that text analysis misses.
+3. **~50% of reasoning is unfaithful** (Paper 3): And accuracy does not predict faithfulness.
+4. **Causal perturbation testing works** (Paper 4): But self-evaluation is unreliable.
+5. **LLM judges have systematic blind spots** (Paper 5): Especially for localization and coverage.
+6. **Models suppress self-knowledge of unfaithfulness** (Paper 6): The thinking/output gap is ~60 percentage points.
+
+**The gap your work fills:** None of these papers study faithfulness specifically in the context of **tool selection** in agentic systems. They focus on QA/math/commonsense reasoning. Tool selection introduces unique challenges: the action space is discrete and functional (tools have real-world effects), the reasoning must account for tool capabilities/APIs, and unfaithful tool-selection reasoning has direct safety implications in deployed agents. Your work would be the first to bridge the faithfulness evaluation literature with the agentic tool-use literature.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5320ead-7d37-4157-8208-2c65fa82d55d",
+  "isSidechain": true,
+  "agentId": "aa940c16a51f9421d",
+  "requestId": "req_011CbC6SAHQp7CQRyFLnTEPX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7be4ce55-4b4b-47ea-bc91-e341e63d8deb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZKGKsWJPwcYApenV8SCBG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3322,
+      "cache_read_input_tokens": 11876,
+      "output_tokens": 2845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3322
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2845,
+          "cache_read_input_tokens": 11876,
+          "cache_creation_input_tokens": 3322,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3322,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

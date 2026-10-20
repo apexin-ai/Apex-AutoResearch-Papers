@@ -1,0 +1,10716 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-15 (UTC).** Only recommend ve
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 147
+- **Recorded user turns:** 1
+- **Tool calls:** 49
+- **Original source:** `logs/chats/exported-trajectories/account-1/5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7.jsonl`
+- **Structured JSON:** [`3ff2d75789dbf167b4e2.json`](../../sessions/3f/3ff2d75789dbf167b4e2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T13:00:18.329Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T13:00:18.329Z",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Claim-Level Verbal Uncertainty Calibration for Long-Form Generation\",\n  \"core_problem\": \"LLMs express hallucinated claims in long-form outputs with uniformly high confidence, yet the only known method for calibrating verbal uncertainty via representation intervention (Ji et al., EMNLP 2025 Outstanding Paper) operates at the response level on short-form QA — it cannot distinguish reliable from unreliable claims within a single long-form generation.\",\n  \"opportunity\": \"The Verbal Uncertainty Feature (VUF) is a single linear direction in representation space, making per-claim extraction and steering computationally cheap. Concurrent work (CURE, April 2026; CAG, May 2026) addresses claim-level calibration in long-form but requires multi-stage training or RL — a training-free, representation-intervention approach that extends VUF to claim-level granularity fills an open niche. The 11-day timeline is feasible because VUF extraction is well-documented, claim segmentation tools exist (FActScore decomposition), and evaluation benchmarks (FActScore, LongFact, ECE/Brier, MT-Bench) are established.\",\n  \"landscape\": \"Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a linear feature in LLM representation space and introduced MUC (Mechanistic Uncertainty Calibration), achieving ~30% reduction in confident hallucinations — but only on short-form answers. CURE (arxiv 2604.12046, April 2026) teaches claim-level confidence reasoning via a multi-stage training pipeline, improving claim accuracy by up to 39.9% on biography generation. 'Only Say What You Know' (arxiv 2605.01749, May 2026) proposes exploration-commitment decoupling with up to 13% factuality gain and 37% decoding speedup, but uses training. Atomic Calibration (arxiv 2410.13246) showed LLMs have poor claim-level calibration in long-form generation. No existing work applies training-free representation intervention at claim-level granularity for long-form outputs — the combination of VUF steering with per-claim semantic uncertainty estimation is unexplored.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-15; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T13:00:18.334Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T13:00:18.334Z",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+## Round 1
+
+145 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T13:00:18.372Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Claim-Level Verbal Uncertainty Calibration for Long-Form Generation",
+  "core_problem": "LLMs express hallucinated claims in long-form outputs with uniformly high confidence, yet the only known method for calibrating verbal uncertainty via representation intervention (Ji et al., EMNLP 2025 Outstanding Paper) operates at the response level on short-form QA — it cannot distinguish reliable from unreliable claims within a single long-form generation.",
+  "opportunity": "The Verbal Uncertainty Feature (VUF) is a single linear direction in representation space, making per-claim extraction and steering computationally cheap. Concurrent work (CURE, April 2026; CAG, May 2026) addresses claim-level calibration in long-form but requires multi-stage training or RL — a training-free, representation-intervention approach that extends VUF to claim-level granularity fills an open niche. The 11-day timeline is feasible because VUF extraction is well-documented, claim segmentation tools exist (FActScore decomposition), and evaluation benchmarks (FActScore, LongFact, ECE/Brier, MT-Bench) are established.",
+  "landscape": "Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a linear feature in LLM representation space and introduced MUC (Mechanistic Uncertainty Calibration), achieving ~30% reduction in confident hallucinations — but only on short-form answers. CURE (arxiv 2604.12046, April 2026) teaches claim-level confidence reasoning via a multi-stage training pipeline, improving claim accuracy by up to 39.9% on biography generation. 'Only Say What You Know' (arxiv 2605.01749, May 2026) proposes exploration-commitment decoupling with up to 13% factuality gain and 37% decoding speedup, but uses training. Atomic Calibration (arxiv 2410.13246) showed LLMs have poor claim-level calibration in long-form generation. No existing work applies training-free representation intervention at claim-level granularity for long-form outputs — the combination of VUF steering with per-claim semantic uncertainty estimation is unexplored."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-15; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "b1fcf10d-47cf-43f5-9c96-f6f9649100c2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T13:00:18.370Z_
+
+```json
+{
+  "parentUuid": "b1fcf10d-47cf-43f5-9c96-f6f9649100c2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a76b8dd2-1626-4a94-b6dc-d7b04b28fd04",
+  "timestamp": "2026-05-15T13:00:18.370Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T13:00:18.371Z_
+
+```json
+{
+  "parentUuid": "a76b8dd2-1626-4a94-b6dc-d7b04b28fd04",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "216780e1-7136-4586-a6e9-864f356c643a",
+  "timestamp": "2026-05-15T13:00:18.371Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-15T13:00:23.009Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for concurrent work and verify no one is doing the same thing
+2. Verify references are real
+3. Find current top-performing open-source models
+4. Check feasibility (GitHub implementations, datasets, baselines)
+5. Search for venue deadlines
+6. Compile everything into a JSON object
+
+Let me start with parallel searches for concurrent work, model freshness, reference verification, and venue deadlines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "216780e1-7136-4586-a6e9-864f356c643a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Px3Qx3sfKQpJcyJnup",
+  "type": "assistant",
+  "uuid": "4502a563-29ad-402d-b7fb-2e24f3bf068f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1KNxRY4WH2Lgm3chqxANE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7335,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T13:00:24.100Z_
+
+I'll research this thoroughly before producing the final JSON. Let me start with concurrent work searches, reference verification, model checks, and venue deadlines in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4502a563-29ad-402d-b7fb-2e24f3bf068f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Px3Qx3sfKQpJcyJnup",
+  "type": "assistant",
+  "uuid": "ae179af6-d3fe-4725-918d-f16e99c8491b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1KNxRY4WH2Lgm3chqxANE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7335,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T13:00:24.732Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QjFU4Ces98TwuUWu5vLCwr`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae179af6-d3fe-4725-918d-f16e99c8491b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Px3Qx3sfKQpJcyJnup",
+  "type": "assistant",
+  "uuid": "e148bce0-c2d1-4e64-8b0d-f8ea587446ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1KNxRY4WH2Lgm3chqxANE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7335,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 7335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T13:00:24.738Z_
+
+<details><summary>↩ Tool result · `toolu_01QjFU4Ces98TwuUWu5vLCwr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e148bce0-c2d1-4e64-8b0d-f8ea587446ae",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "7e75aa0d-1a0a-437c-8d37-cb7418ddc329",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "e148bce0-c2d1-4e64-8b0d-f8ea587446ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-15T13:00:28.192Z_
+
+Now let me launch parallel searches to gather all the information I need.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e75aa0d-1a0a-437c-8d37-cb7418ddc329",
+  "isSidechain": false,
+  "requestId": "req_011Cb4PxXcMLxTyfvWdB2mva",
+  "type": "assistant",
+  "uuid": "b81f704b-cc75-4799-964c-c08529bfb3c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011xn1rp5YwnnYjC1ioM8kdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 19176,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 19176,
+          "cache_creation_input_tokens": 760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T13:00:28.436Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NZSTsoC4uFRZWUH11zfakq`</summary>
+
+```json
+{
+  "query": "claim-level verbal uncertainty calibration long-form generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b81f704b-cc75-4799-964c-c08529bfb3c9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4PxXcMLxTyfvWdB2mva",
+  "type": "assistant",
+  "uuid": "588eacaa-2318-49cc-b381-45fb67bc0a78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011xn1rp5YwnnYjC1ioM8kdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 19176,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 19176,
+          "cache_creation_input_tokens": 760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T13:00:36.531Z_
+
+<details><summary>↩ Tool result · `toolu_01NZSTsoC4uFRZWUH11zfakq`</summary>
+
+```text
+Web search results for query: "claim-level verbal uncertainty calibration long-form generation 2026"
+
+Links: [{"title":"[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/abs/2604.12046"},{"title":"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/html/2604.12046"},{"title":"A Survey on Uncertainty Quantification of Large Language Models: Taxonomy, Open Research Challenges, and Future Directions | ACM Computing Surveys","url":"https://dl.acm.org/doi/full/10.1145/3744238"},{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems","url":"https://arxiv.org/html/2604.17487"},{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity","url":"https://arxiv.org/pdf/2604.17487"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2503.02623"},{"title":"Uncertainty Quantification and Confidence Calibration in ...","url":"https://arxiv.org/pdf/2503.15850"},{"title":"LLM Uncertainty Quantification Should Be More Human- ...","url":"https://arxiv.org/pdf/2506.07461"},{"title":"Enhancing Trust in Large Language Models with Uncertainty-Aware Fine-Tuning | OpenReview","url":"https://openreview.net/forum?id=dSTSl6QK5m"},{"title":"A Survey on Uncertainty Quantification of Large Language ...","url":"https://dl.acm.org/doi/pdf/10.1145/3744238"}]
+
+Based on the search results, I found several highly relevant papers from 2026 on claim-level verbal uncertainty calibration in long-form generation:
+
+## Key Research
+
+The CURE framework improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level through a Claim-Aware Reasoning Protocol, which structures outputs into atomic claims paired with explicit confidence estimates.
+
+The framework uses a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality, with the resulting calibrated confidence enabling selective prediction where the model can abstain from uncertain claims at inference time.
+
+Experiments on four long-form factuality benchmarks show that CURE consistently improves factual accuracy over competitive baselines while maintaining factual recall, with claim-level accuracy improvements of up to 39.9% on Biography generation and a 16.0% increase in AUROC on FactBench.
+
+Another related approach is Conformal Linguistic Calibration and Selective Abstraction work on uncertainty-aware rewrites, with calibrated CSS being proposed as a deployable uncertainty layer that turns noisy support scores into a claim-selection rule.
+
+The CSS method decomposes draft answers into claims and for each claim constructs a specificity ladder with the original fine-grained statement, a coarser backoff, and omission options.
+
+These methods represent significant progress in addressing the challenge that existing approaches remain limited to a single scalar confidence for the entire response, which is insufficient for long-form generation where uncertainty varies across individual claims.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "588eacaa-2318-49cc-b381-45fb67bc0a78",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "b0012fd5-4f48-4b82-ae0f-452689f80e46",
+  "toolUseResult": {
+    "query": "claim-level verbal uncertainty calibration long-form generation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TcXoHhexTY4PPF7Nct9gKC",
+        "content": [
+          {
+            "title": "[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/abs/2604.12046"
+          },
+          {
+            "title": "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/html/2604.12046"
+          },
+          {
+            "title": "A Survey on Uncertainty Quantification of Large Language Models: Taxonomy, Open Research Challenges, and Future Directions | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/full/10.1145/3744238"
+          },
+          {
+            "title": "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems",
+            "url": "https://arxiv.org/html/2604.17487"
+          },
+          {
+            "title": "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity",
+            "url": "https://arxiv.org/pdf/2604.17487"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2503.02623"
+          },
+          {
+            "title": "Uncertainty Quantification and Confidence Calibration in ...",
+            "url": "https://arxiv.org/pdf/2503.15850"
+          },
+          {
+            "title": "LLM Uncertainty Quantification Should Be More Human- ...",
+            "url": "https://arxiv.org/pdf/2506.07461"
+          },
+          {
+            "title": "Enhancing Trust in Large Language Models with Uncertainty-Aware Fine-Tuning | OpenReview",
+            "url": "https://openreview.net/forum?id=dSTSl6QK5m"
+          },
+          {
+            "title": "A Survey on Uncertainty Quantification of Large Language ...",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3744238"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers from 2026 on claim-level verbal uncertainty calibration in long-form generation:\n\n## Key Research\n\nThe CURE framework improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level through a Claim-Aware Reasoning Protocol, which structures outputs into atomic claims paired with explicit confidence estimates.\n\nThe framework uses a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality, with the resulting calibrated confidence enabling selective prediction where the model can abstain from uncertain claims at inference time.\n\nExperiments on four long-form factuality benchmarks show that CURE consistently improves factual accuracy over competitive baselines while maintaining factual recall, with claim-level accuracy improvements of up to 39.9% on Biography generation and a 16.0% increase in AUROC on FactBench.\n\nAnother related approach is Conformal Linguistic Calibration and Selective Abstraction work on uncertainty-aware rewrites, with calibrated CSS being proposed as a deployable uncertainty layer that turns noisy support scores into a claim-selection rule.\n\nThe CSS method decomposes draft answers into claims and for each claim constructs a specificity ladder with the original fine-grained statement, a coarser backoff, and omission options.\n\nThese methods represent significant progress in addressing the challenge that existing approaches remain limited to a single scalar confidence for the entire response, which is insufficient for long-form generation where uncertainty varies across individual claims."
+    ],
+    "durationSeconds": 8.089278537999999
+  },
+  "sourceToolAssistantUUID": "588eacaa-2318-49cc-b381-45fb67bc0a78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "b0012fd5-4f48-4b82-ae0f-452689f80e46",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T13:00:39.699Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RWrPDoBkUg6DN4RFcnRZf4`</summary>
+
+```json
+{
+  "query": "representation intervention verbal uncertainty feature VUF claim-level 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0012fd5-4f48-4b82-ae0f-452689f80e46",
+  "isSidechain": false,
+  "requestId": "req_011Cb4PyP2Scmg8L2TgeS2C1",
+  "type": "assistant",
+  "uuid": "eceec2e9-f771-4e8c-bfed-7a7b7ee6b411",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K1h6oDS5UaNqNmVMcAZi7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 19936,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 19936,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T13:00:45.753Z_
+
+<details><summary>↩ Tool result · `toolu_01RWrPDoBkUg6DN4RFcnRZf4`</summary>
+
+```text
+Web search results for query: "representation intervention verbal uncertainty feature VUF claim-level 2026 arxiv"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Verbal Uncertainty Estimation","url":"https://www.emergentmind.com/topics/verbal-uncertainty-estimation"},{"title":"[Literature Review] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.themoonlight.io/en/review/calibrating-verbal-uncertainty-as-a-linear-feature-to-reduce-hallucinations"},{"title":"BayesAgent: Bayesian Agentic Reasoning Under Uncertainty via Verbalized Probabilistic Graphical Modeling","url":"https://arxiv.org/html/2406.05516v4"},{"title":"[2405.02917] Overconfidence is Key: Verbalized Uncertainty Evaluation in Large Language and Vision-Language Models","url":"https://arxiv.org/abs/2405.02917"},{"title":"Uncertainty-Aware Evaluation for Vision-Language Models","url":"https://arxiv.org/html/2402.14418v1"},{"title":"[2402.14418] Uncertainty-Aware Evaluation for Vision-Language Models","url":"https://arxiv.org/abs/2402.14418"},{"title":"Computer Science Mar 2024","url":"https://arxiv.org/list/cs/2024-03?skip=4365&show=2000"}]
+
+I found the paper you're searching for! The results show "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations", which is arxiv paper 2503.14477.
+
+Here's what the research is about:
+
+The paper finds that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+The researchers discover a linear verbal uncertainty feature (VUF) that controls model expression of uncertainty, and apply this insight to: (1) detect hallucinations arising from the miscalibration between high semantic uncertainty and low verbal uncertainty; (2) mitigate hallucinations by intervening on activations along the VUF direction at inference time to make verbal uncertainty more aligned with the model's semantic uncertainty.
+
+They show that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and that they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eceec2e9-f771-4e8c-bfed-7a7b7ee6b411",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "cba7fdaf-4da2-4db4-b945-d355f192d08b",
+  "toolUseResult": {
+    "query": "representation intervention verbal uncertainty feature VUF claim-level 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HGX6VZeu6Q2ZPNKNPXj8ai",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Verbal Uncertainty Estimation",
+            "url": "https://www.emergentmind.com/topics/verbal-uncertainty-estimation"
+          },
+          {
+            "title": "[Literature Review] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.themoonlight.io/en/review/calibrating-verbal-uncertainty-as-a-linear-feature-to-reduce-hallucinations"
+          },
+          {
+            "title": "BayesAgent: Bayesian Agentic Reasoning Under Uncertainty via Verbalized Probabilistic Graphical Modeling",
+            "url": "https://arxiv.org/html/2406.05516v4"
+          },
+          {
+            "title": "[2405.02917] Overconfidence is Key: Verbalized Uncertainty Evaluation in Large Language and Vision-Language Models",
+            "url": "https://arxiv.org/abs/2405.02917"
+          },
+          {
+            "title": "Uncertainty-Aware Evaluation for Vision-Language Models",
+            "url": "https://arxiv.org/html/2402.14418v1"
+          },
+          {
+            "title": "[2402.14418] Uncertainty-Aware Evaluation for Vision-Language Models",
+            "url": "https://arxiv.org/abs/2402.14418"
+          },
+          {
+            "title": "Computer Science Mar 2024",
+            "url": "https://arxiv.org/list/cs/2024-03?skip=4365&show=2000"
+          }
+        ]
+      },
+      "I found the paper you're searching for! The results show \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\", which is arxiv paper 2503.14477.\n\nHere's what the research is about:\n\nThe paper finds that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\nThe researchers discover a linear verbal uncertainty feature (VUF) that controls model expression of uncertainty, and apply this insight to: (1) detect hallucinations arising from the miscalibration between high semantic uncertainty and low verbal uncertainty; (2) mitigate hallucinations by intervening on activations along the VUF direction at inference time to make verbal uncertainty more aligned with the model's semantic uncertainty.\n\nThey show that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and that they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%."
+    ],
+    "durationSeconds": 6.050295487
+  },
+  "sourceToolAssistantUUID": "eceec2e9-f771-4e8c-bfed-7a7b7ee6b411",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T13:00:48.234Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XBnoJ1WsRiWwy3XFHTFJw4`</summary>
+
+```json
+{
+  "query": "Ji et al \"Calibrating Verbal Uncertainty\" EMNLP 2025 Outstanding Paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cba7fdaf-4da2-4db4-b945-d355f192d08b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Pz4DsieaFHKU59bqLg",
+  "type": "assistant",
+  "uuid": "ffa5b961-8a24-4bc1-a101-e939f3ba1577",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0169KEL7Rzf6tv5yqS8tMgbG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 20842,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 20842,
+          "cache_creation_input_tokens": 844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T13:00:55.231Z_
+
+<details><summary>↩ Tool result · `toolu_01XBnoJ1WsRiWwy3XFHTFJw4`</summary>
+
+```text
+Web search results for query: "Ji et al "Calibrating Verbal Uncertainty" EMNLP 2025 Outstanding Paper"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.187/"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.emnlp-main.187@ACL"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to ...","url":"https://aclanthology.org/2025.emnlp-main.187.pdf"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.","url":"https://dblp.org/rec/journals/corr/abs-2503-14477.html"}]
+
+Based on the search results, I found information about the paper "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" by Ji et al. at EMNLP 2025.
+
+## Paper Information
+
+The paper "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 3769–3793, Suzhou, China.
+
+The authors are Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda.
+
+## Paper Overview
+
+LLMs often adopt an assertive language style also when making false claims. Such "overconfident hallucinations" mislead users and erode trust. Achieving the ability to express in language the actual degree of uncertainty around a claim is therefore of great importance.
+
+The paper finds that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+The authors show that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and that they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+However, I note that the search results do not specifically mention this paper receiving an "Outstanding Paper" award at EMNLP 2025, though it appears to be a main conference paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffa5b961-8a24-4bc1-a101-e939f3ba1577",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "468f7156-6540-47c9-9134-634ba7be139d",
+  "toolUseResult": {
+    "query": "Ji et al \"Calibrating Verbal Uncertainty\" EMNLP 2025 Outstanding Paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018baMZKuHzxecw7CkgLQKvK",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.187/"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.emnlp-main.187@ACL"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.187.pdf"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2503-14477.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\" by Ji et al. at EMNLP 2025.\n\n## Paper Information\n\nThe paper \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\" was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 3769–3793, Suzhou, China.\n\nThe authors are Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda.\n\n## Paper Overview\n\nLLMs often adopt an assertive language style also when making false claims. Such \"overconfident hallucinations\" mislead users and erode trust. Achieving the ability to express in language the actual degree of uncertainty around a claim is therefore of great importance.\n\nThe paper finds that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\nThe authors show that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and that they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.\n\nHowever, I note that the search results do not specifically mention this paper receiving an \"Outstanding Paper\" award at EMNLP 2025, though it appears to be a main conference paper."
+    ],
+    "durationSeconds": 6.990783732000003
+  },
+  "sourceToolAssistantUUID": "ffa5b961-8a24-4bc1-a101-e939f3ba1577",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T13:00:58.303Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018BdGCGYhMjKwHwSkz58ujy`</summary>
+
+```json
+{
+  "query": "EMNLP 2025 outstanding paper award winners list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "468f7156-6540-47c9-9134-634ba7be139d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4PzknARrU8J928ut7Fu",
+  "type": "assistant",
+  "uuid": "93ce4f17-2fc5-4537-a4aa-2599b0fc4fb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FpwDEtViN3UdxAuKhBRFCj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 21686,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 993,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 21686,
+          "cache_creation_input_tokens": 993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 993
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T13:01:10.383Z_
+
+<details><summary>↩ Tool result · `toolu_018BdGCGYhMjKwHwSkz58ujy`</summary>
+
+```text
+Web search results for query: "EMNLP 2025 outstanding paper award winners list"
+
+Links: [{"title":"Awards - EMNLP 2025","url":"https://2025.emnlp.org/program/awards/"},{"title":"EMNLP 2026 on X: \"🎉 Congratulations to all #EMNLP2025 award winners 🎉 Starting with the ✨Best Paper award ✨: \"Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index\" by Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, and Hannaneh Hajishirzi https://t.co/DKYhylaopF 1/n https://t.co/lrrtlZuyWw\" / X","url":"https://x.com/emnlpmeeting/status/1986922316643651775"},{"title":"Freda Shi and colleagues win EMNLP 2025 Outstanding Paper Award for research on LLM meta-linguistic reasoning | Cheriton School of Computer Science | University of Waterloo","url":"https://cs.uwaterloo.ca/news/freda-shi-colleagues-win-emnlp-2025-outstanding-paper-award-research-llm-meta-linguistic-reasoning"},{"title":"Linguistics Doctoral Student, Sasha Boguraev, wins Outstanding Paper Award at EMNLP 2025.>","url":"https://liberalarts.utexas.edu/linguistics/news/linguistics-doctoral-student-sasha-boguraev-wins-outstanding-paper-award-at-emnlp-2025"},{"title":"🏆 EMNLP 2025 Outstanding Paper Award - Nick Clark","url":"https://nicholasclark.org/media/emnlp-outstanding-paper-2025"},{"title":"Best Paper Award MRL 2025 WS at EMNLP | Universität des Saarlandes","url":"https://www.uni-saarland.de/en/department/lst/news/best-paper-award-mrl-2025-ws-at-emnlp-40784.html"},{"title":"B6: Best Paper Award MRL 2025 WS at EMNLP 2025 - SFB 1102","url":"https://sfb1102.uni-saarland.de/news/b6-best-paper-award-mrl-2025-ws-at-emnlp-2025/"},{"title":"EMNLP 2025 on X: \"Thanks again all for a wonderful #EMNLP2025! For future reference, you can now find all accepted papers, award winners, and outstanding reviewers, area chairs, and senior area chairs on the conference website: https://t.co/dMWGwPej05\" / X","url":"https://x.com/emnlpmeeting/status/1997739138695778793"},{"title":"EMNLP 2025 Highlights. I just got back from EMNLP 2025 in… | by Itay Nakash | Medium","url":"https://medium.com/@itaynakash/emnlp-2025-highlights-1d2bca37cc7a"},{"title":"Allen School News » Allen School researchers earn EMNLP Best Paper Award for making Internet-scale texts efficiently searchable with infini-gram mini","url":"https://news.cs.washington.edu/2026/01/29/allen-school-researchers-earn-emnlp-best-paper-award/"}]
+
+Based on the search results, here's what I found about EMNLP 2025 award winners:
+
+## Best Paper Award
+
+The Best Paper award went to "Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index" by Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, and Hannaneh Hajishirzi.
+
+## Outstanding Paper Awards
+
+Several papers received Outstanding Paper Awards at EMNLP 2025:
+
+1. Professor Freda Shi and her collaborators Changbing Yang, Franklin Ma and Jian Zhu from the University of British Columbia received an Outstanding Paper Award for their paper "LingGym: How Far Are LLMs from Thinking Like Field Linguists?", which introduced a new benchmark that evaluates how effectively large language models can perform meta-linguistic reasoning.
+
+2. Sasha Boguraev, a doctoral student, won an Outstanding Paper Award at EMNLP 2025.
+
+## Other Notable Papers
+
+The Senior Area Chairs highlighted the following 35 papers as particularly noteworthy, including papers on prompt-agnostic fine-tuning, linguistic constructions, human-AI alignment, unified translation frameworks, and reducing hallucinations in language models.
+
+For a complete list of all award winners, the official EMNLP awards page is available at 2025.emnlp.org.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93ce4f17-2fc5-4537-a4aa-2599b0fc4fb9",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "6a23075f-06ae-49df-a089-4815dcb75cbb",
+  "toolUseResult": {
+    "query": "EMNLP 2025 outstanding paper award winners list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PAUsTSkF7RxWUhDcQqmhQy",
+        "content": [
+          {
+            "title": "Awards - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/awards/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"🎉 Congratulations to all #EMNLP2025 award winners 🎉 Starting with the ✨Best Paper award ✨: \"Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index\" by Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, and Hannaneh Hajishirzi https://t.co/DKYhylaopF 1/n https://t.co/lrrtlZuyWw\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1986922316643651775"
+          },
+          {
+            "title": "Freda Shi and colleagues win EMNLP 2025 Outstanding Paper Award for research on LLM meta-linguistic reasoning | Cheriton School of Computer Science | University of Waterloo",
+            "url": "https://cs.uwaterloo.ca/news/freda-shi-colleagues-win-emnlp-2025-outstanding-paper-award-research-llm-meta-linguistic-reasoning"
+          },
+          {
+            "title": "Linguistics Doctoral Student, Sasha Boguraev, wins Outstanding Paper Award at EMNLP 2025.>",
+            "url": "https://liberalarts.utexas.edu/linguistics/news/linguistics-doctoral-student-sasha-boguraev-wins-outstanding-paper-award-at-emnlp-2025"
+          },
+          {
+            "title": "🏆 EMNLP 2025 Outstanding Paper Award - Nick Clark",
+            "url": "https://nicholasclark.org/media/emnlp-outstanding-paper-2025"
+          },
+          {
+            "title": "Best Paper Award MRL 2025 WS at EMNLP | Universität des Saarlandes",
+            "url": "https://www.uni-saarland.de/en/department/lst/news/best-paper-award-mrl-2025-ws-at-emnlp-40784.html"
+          },
+          {
+            "title": "B6: Best Paper Award MRL 2025 WS at EMNLP 2025 - SFB 1102",
+            "url": "https://sfb1102.uni-saarland.de/news/b6-best-paper-award-mrl-2025-ws-at-emnlp-2025/"
+          },
+          {
+            "title": "EMNLP 2025 on X: \"Thanks again all for a wonderful #EMNLP2025! For future reference, you can now find all accepted papers, award winners, and outstanding reviewers, area chairs, and senior area chairs on the conference website: https://t.co/dMWGwPej05\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1997739138695778793"
+          },
+          {
+            "title": "EMNLP 2025 Highlights. I just got back from EMNLP 2025 in… | by Itay Nakash | Medium",
+            "url": "https://medium.com/@itaynakash/emnlp-2025-highlights-1d2bca37cc7a"
+          },
+          {
+            "title": "Allen School News » Allen School researchers earn EMNLP Best Paper Award for making Internet-scale texts efficiently searchable with infini-gram mini",
+            "url": "https://news.cs.washington.edu/2026/01/29/allen-school-researchers-earn-emnlp-best-paper-award/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about EMNLP 2025 award winners:\n\n## Best Paper Award\n\nThe Best Paper award went to \"Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index\" by Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, and Hannaneh Hajishirzi.\n\n## Outstanding Paper Awards\n\nSeveral papers received Outstanding Paper Awards at EMNLP 2025:\n\n1. Professor Freda Shi and her collaborators Changbing Yang, Franklin Ma and Jian Zhu from the University of British Columbia received an Outstanding Paper Award for their paper \"LingGym: How Far Are LLMs from Thinking Like Field Linguists?\", which introduced a new benchmark that evaluates how effectively large language models can perform meta-linguistic reasoning.\n\n2. Sasha Boguraev, a doctoral student, won an Outstanding Paper Award at EMNLP 2025.\n\n## Other Notable Papers\n\nThe Senior Area Chairs highlighted the following 35 papers as particularly noteworthy, including papers on prompt-agnostic fine-tuning, linguistic constructions, human-AI alignment, unified translation frameworks, and reducing hallucinations in language models.\n\nFor a complete list of all award winners, the official EMNLP awards page is available at 2025.emnlp.org."
+    ],
+    "durationSeconds": 12.076613929999999
+  },
+  "sourceToolAssistantUUID": "93ce4f17-2fc5-4537-a4aa-2599b0fc4fb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T13:01:13.496Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y12h628YeWnGHHJZcF4oar`</summary>
+
+```json
+{
+  "query": "CURE arxiv 2604.12046 \"Think Through Uncertainty\" claim-level calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a23075f-06ae-49df-a089-4815dcb75cbb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q1shfUbUEL8SXXeJV5",
+  "type": "assistant",
+  "uuid": "1aafafb9-b4a6-413c-af63-d6ece5e1797e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016e6FHXAy3sspaLr2UKxHKR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 22679,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 22679,
+          "cache_creation_input_tokens": 1300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T13:01:20.243Z_
+
+<details><summary>↩ Tool result · `toolu_01Y12h628YeWnGHHJZcF4oar`</summary>
+
+```text
+Web search results for query: "CURE arxiv 2604.12046 "Think Through Uncertainty" claim-level calibration"
+
+Links: [{"title":"[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/abs/2604.12046"},{"title":"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/html/2604.12046"},{"title":"Uncertainty-Aware Web-Conditioned Scientific Fact-Checking","url":"https://arxiv.org/html/2604.11036"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"CURA: Clinical Uncertainty Risk Alignment for Language Model–Based Risk Prediction","url":"https://arxiv.org/html/2604.14651v1"},{"title":"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models","url":"https://arxiv.org/html/2506.09338v2"},{"title":"Agentic Uncertainty Quantification","url":"https://arxiv.org/html/2601.15703v1"},{"title":"[2506.09338] Know What You Don't Know: Uncertainty Calibration of Process Reward Models","url":"https://arxiv.org/abs/2506.09338"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=235&show=1000"},{"title":"Measuring Uncertainty Calibration","url":"https://arxiv.org/html/2512.13872v1"}]
+
+I found the paper! Here are the key findings about CURE (arxiv 2604.12046):
+
+**Paper Overview:**
+CURE is a framework that improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level.
+
+**Main Problem Addressed:**
+Existing approaches remain limited to a single scalar confidence for the entire response, which is insufficient for long-form generation where uncertainty varies across individual claims.
+
+**Key Innovation:**
+The framework develops a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality. The resulting calibrated confidence further enables selective prediction, allowing the model to abstain from uncertain claims at inference time.
+
+**Claim-Level Calibration Results:**
+CURE improves claim-level accuracy by up to 39.9% on Biography generation. These gains are accompanied by improved calibration, as reflected by a 16.0% increase in AUROC on FactBench.
+
+**General Performance:**
+Experiments on four long-form factuality benchmarks show that CURE consistently improves factual accuracy over competitive supervised and RL baselines, while maintaining factual recall.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1aafafb9-b4a6-413c-af63-d6ece5e1797e",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "7abfe6ad-765a-4914-9886-686ac3e7c1e9",
+  "toolUseResult": {
+    "query": "CURE arxiv 2604.12046 \"Think Through Uncertainty\" claim-level calibration",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XhWxJCznmpHunXHEVm695n",
+        "content": [
+          {
+            "title": "[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/abs/2604.12046"
+          },
+          {
+            "title": "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/html/2604.12046"
+          },
+          {
+            "title": "Uncertainty-Aware Web-Conditioned Scientific Fact-Checking",
+            "url": "https://arxiv.org/html/2604.11036"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "CURA: Clinical Uncertainty Risk Alignment for Language Model–Based Risk Prediction",
+            "url": "https://arxiv.org/html/2604.14651v1"
+          },
+          {
+            "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://arxiv.org/html/2506.09338v2"
+          },
+          {
+            "title": "Agentic Uncertainty Quantification",
+            "url": "https://arxiv.org/html/2601.15703v1"
+          },
+          {
+            "title": "[2506.09338] Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://arxiv.org/abs/2506.09338"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=235&show=1000"
+          },
+          {
+            "title": "Measuring Uncertainty Calibration",
+            "url": "https://arxiv.org/html/2512.13872v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the key findings about CURE (arxiv 2604.12046):\n\n**Paper Overview:**\nCURE is a framework that improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level.\n\n**Main Problem Addressed:**\nExisting approaches remain limited to a single scalar confidence for the entire response, which is insufficient for long-form generation where uncertainty varies across individual claims.\n\n**Key Innovation:**\nThe framework develops a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality. The resulting calibrated confidence further enables selective prediction, allowing the model to abstain from uncertain claims at inference time.\n\n**Claim-Level Calibration Results:**\nCURE improves claim-level accuracy by up to 39.9% on Biography generation. These gains are accompanied by improved calibration, as reflected by a 16.0% increase in AUROC on FactBench.\n\n**General Performance:**\nExperiments on four long-form factuality benchmarks show that CURE consistently improves factual accuracy over competitive supervised and RL baselines, while maintaining factual recall."
+    ],
+    "durationSeconds": 6.743270618000002
+  },
+  "sourceToolAssistantUUID": "1aafafb9-b4a6-413c-af63-d6ece5e1797e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "7abfe6ad-765a-4914-9886-686ac3e7c1e9",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T13:01:22.976Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015VomxgsGTkSFYAmb5p4YGA`</summary>
+
+```json
+{
+  "query": "\"Only Say What You Know\" arxiv 2605.01749 exploration-commitment decoupling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7abfe6ad-765a-4914-9886-686ac3e7c1e9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q2bhmm85h6wy2oJWPk",
+  "type": "assistant",
+  "uuid": "cb0d0d1a-15ee-4b7d-b97e-95f2ae23dc24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFGAnzYLakEwL9wrDjFgVz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T13:01:29.872Z_
+
+<details><summary>↩ Tool result · `toolu_015VomxgsGTkSFYAmb5p4YGA`</summary>
+
+```text
+Web search results for query: ""Only Say What You Know" arxiv 2605.01749 exploration-commitment decoupling"
+
+Links: [{"title":"[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/abs/2605.01749"},{"title":"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/html/2605.01749"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1822&show=1000"},{"title":"[2603.22273] Decoupling Exploration and Policy Optimization: Uncertainty Guided Tree Search for Hard Exploration","url":"https://arxiv.org/abs/2603.22273"},{"title":"[2605.01349] Sequentially decoupling estimators for Box-Jenkins model estimation","url":"https://arxiv.org/abs/2605.01349"},{"title":"Machine Learning arXiv on X: \"Decoupling Exploration and Policy Optimization: Uncertainty Guided Tree Search for Hard Exploration Zakaria Mhammedi, James Cohan https://t.co/Cmj4uLh9du [𝚌𝚜.𝙻𝙶] https://t.co/Yh6vXbL1Ze\" / X","url":"https://x.com/Memoirs/status/2036308121983799577"},{"title":"Efficient Reinforcement Learning via Decoupling Exploration and Utilization","url":"https://arxiv.org/html/2312.15965v4"},{"title":"Decoupling Exploration and Exploitation for Unsupervised Pre-training with Successor Features This work was supported by the Australian Research Council through Discovery Early Career Researcher Award DE200100245 and Linkage Project LP210301046.","url":"https://arxiv.org/html/2405.02569v1"},{"title":"Decoupling Exploration and Policy Optimization: Uncertainty Guided Tree Search for Hard Exploration","url":"https://scirate.com/arxiv/2603.22273"},{"title":"[2605.13287] Delightful Exploration","url":"https://arxiv.org/abs/2605.13287"}]
+
+I found the paper you're looking for! Here are the key details about arxiv 2605.01749:
+
+**Paper Title:** Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality
+
+**Authors:** Wen Luo, Guangyue Peng, Liang Wang, Nan Yang, Wei Li, Yuhan Song, Shaohang Wei, Feifan Song, Furu Wei, and Houfeng Wang
+
+**Main Contribution:** The paper addresses hallucinations in large reasoning models, particularly in long-form generation. It proposes an Exploration-Commitment Decoupling paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously.
+
+**Method:** The authors instantiate the paradigm with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content.
+
+**Results:** Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%.
+
+The paper was submitted on May 3, 2026 and is classified under Computation and Language (cs.CL).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb0d0d1a-15ee-4b7d-b97e-95f2ae23dc24",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "4cefa158-d17a-41e7-8c37-4bd1c4ff4cde",
+  "toolUseResult": {
+    "query": "\"Only Say What You Know\" arxiv 2605.01749 exploration-commitment decoupling",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CGxbs9rJ5BmBqd27xoUVhv",
+        "content": [
+          {
+            "title": "[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality",
+            "url": "https://arxiv.org/abs/2605.01749"
+          },
+          {
+            "title": "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality",
+            "url": "https://arxiv.org/html/2605.01749"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1822&show=1000"
+          },
+          {
+            "title": "[2603.22273] Decoupling Exploration and Policy Optimization: Uncertainty Guided Tree Search for Hard Exploration",
+            "url": "https://arxiv.org/abs/2603.22273"
+          },
+          {
+            "title": "[2605.01349] Sequentially decoupling estimators for Box-Jenkins model estimation",
+            "url": "https://arxiv.org/abs/2605.01349"
+          },
+          {
+            "title": "Machine Learning arXiv on X: \"Decoupling Exploration and Policy Optimization: Uncertainty Guided Tree Search for Hard Exploration Zakaria Mhammedi, James Cohan https://t.co/Cmj4uLh9du [𝚌𝚜.𝙻𝙶] https://t.co/Yh6vXbL1Ze\" / X",
+            "url": "https://x.com/Memoirs/status/2036308121983799577"
+          },
+          {
+            "title": "Efficient Reinforcement Learning via Decoupling Exploration and Utilization",
+            "url": "https://arxiv.org/html/2312.15965v4"
+          },
+          {
+            "title": "Decoupling Exploration and Exploitation for Unsupervised Pre-training with Successor Features This work was supported by the Australian Research Council through Discovery Early Career Researcher Award DE200100245 and Linkage Project LP210301046.",
+            "url": "https://arxiv.org/html/2405.02569v1"
+          },
+          {
+            "title": "Decoupling Exploration and Policy Optimization: Uncertainty Guided Tree Search for Hard Exploration",
+            "url": "https://scirate.com/arxiv/2603.22273"
+          },
+          {
+            "title": "[2605.13287] Delightful Exploration",
+            "url": "https://arxiv.org/abs/2605.13287"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about arxiv 2605.01749:\n\n**Paper Title:** Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality\n\n**Authors:** Wen Luo, Guangyue Peng, Liang Wang, Nan Yang, Wei Li, Yuhan Song, Shaohang Wei, Feifan Song, Furu Wei, and Houfeng Wang\n\n**Main Contribution:** The paper addresses hallucinations in large reasoning models, particularly in long-form generation. It proposes an Exploration-Commitment Decoupling paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously.\n\n**Method:** The authors instantiate the paradigm with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content.\n\n**Results:** Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%.\n\nThe paper was submitted on May 3, 2026 and is classified under Computation and Language (cs.CL)."
+    ],
+    "durationSeconds": 6.89092886
+  },
+  "sourceToolAssistantUUID": "cb0d0d1a-15ee-4b7d-b97e-95f2ae23dc24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T13:01:32.528Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uz9Yuf9DE9FnUWMgzdHXhq`</summary>
+
+```json
+{
+  "query": "Atomic Calibration arxiv 2410.13246 claim-level calibration long-form"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cefa158-d17a-41e7-8c37-4bd1c4ff4cde",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q3JsGpXs4A3qrQv6Qa",
+  "type": "assistant",
+  "uuid": "4a0f11df-1612-486f-8b93-0cf5a252ab26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7xv6YZLzuwnJLZjxvoEfT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 966,
+      "cache_read_input_tokens": 24761,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 966,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24761,
+          "cache_creation_input_tokens": 966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 966
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T13:01:38.090Z_
+
+<details><summary>↩ Tool result · `toolu_01Uz9Yuf9DE9FnUWMgzdHXhq`</summary>
+
+```text
+Web search results for query: "Atomic Calibration arxiv 2410.13246 claim-level calibration long-form"
+
+Links: [{"title":"[2410.13246] Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/abs/2410.13246"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/html/2410.13246"},{"title":"open source AI","url":"https://bytez.com/docs/arxiv/2410.13246/paper"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://www.researchgate.net/publication/385010223_Atomic_Calibration_of_LLMs_in_Long-Form_Generations"},{"title":"When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/html/2602.11908v2"},{"title":"[2410.12558] A Claim Decomposition Benchmark for Long-form Answer Verification","url":"https://arxiv.org/abs/2410.12558"},{"title":"Fact-Level Confidence Calibration and Self-Correction","url":"https://arxiv.org/html/2411.13343"},{"title":"Atomic Consistency Preference Optimization for Long-Form Question Answering","url":"https://arxiv.org/html/2505.09039v1"},{"title":"[2411.13343] Fact-Level Confidence Calibration and Self-Correction","url":"https://arxiv.org/abs/2411.13343"},{"title":"A Perfectly Truthful Calibration Measure","url":"https://arxiv.org/html/2508.13100v1"}]
+
+I found the research paper you were looking for. Here's what the paper is about:
+
+The paper "Atomic Calibration of LLMs in Long-Form Generations" systematically studies atomic calibration, which evaluates factuality calibration at a fine-grained level by decomposing long responses into atomic claims.
+
+The key motivation is that prior work mainly focuses on short-form tasks using a single response-level score (macro calibration), which is insufficient for long-form outputs that may contain both accurate and inaccurate claims.
+
+The paper's contributions include:
+
+1. Categorizing existing confidence elicitation methods into discriminative and generative types, and proposing two new confidence fusion strategies to improve calibration.
+
+2. Their experiments demonstrate that LLMs exhibit poorer calibration at the atomic level during long-form generation.
+
+The paper was submitted on October 17, 2024, and last revised on November 20, 2025. You can access it directly on arXiv at https://arxiv.org/abs/2410.13246.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a0f11df-1612-486f-8b93-0cf5a252ab26",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "26ab00e2-934a-4733-b81d-b9697caa9426",
+  "toolUseResult": {
+    "query": "Atomic Calibration arxiv 2410.13246 claim-level calibration long-form",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XCuBCT3FMcSLfbKJ8ZkAdJ",
+        "content": [
+          {
+            "title": "[2410.13246] Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/abs/2410.13246"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/html/2410.13246"
+          },
+          {
+            "title": "open source AI",
+            "url": "https://bytez.com/docs/arxiv/2410.13246/paper"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://www.researchgate.net/publication/385010223_Atomic_Calibration_of_LLMs_in_Long-Form_Generations"
+          },
+          {
+            "title": "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/html/2602.11908v2"
+          },
+          {
+            "title": "[2410.12558] A Claim Decomposition Benchmark for Long-form Answer Verification",
+            "url": "https://arxiv.org/abs/2410.12558"
+          },
+          {
+            "title": "Fact-Level Confidence Calibration and Self-Correction",
+            "url": "https://arxiv.org/html/2411.13343"
+          },
+          {
+            "title": "Atomic Consistency Preference Optimization for Long-Form Question Answering",
+            "url": "https://arxiv.org/html/2505.09039v1"
+          },
+          {
+            "title": "[2411.13343] Fact-Level Confidence Calibration and Self-Correction",
+            "url": "https://arxiv.org/abs/2411.13343"
+          },
+          {
+            "title": "A Perfectly Truthful Calibration Measure",
+            "url": "https://arxiv.org/html/2508.13100v1"
+          }
+        ]
+      },
+      "I found the research paper you were looking for. Here's what the paper is about:\n\nThe paper \"Atomic Calibration of LLMs in Long-Form Generations\" systematically studies atomic calibration, which evaluates factuality calibration at a fine-grained level by decomposing long responses into atomic claims.\n\nThe key motivation is that prior work mainly focuses on short-form tasks using a single response-level score (macro calibration), which is insufficient for long-form outputs that may contain both accurate and inaccurate claims.\n\nThe paper's contributions include:\n\n1. Categorizing existing confidence elicitation methods into discriminative and generative types, and proposing two new confidence fusion strategies to improve calibration.\n\n2. Their experiments demonstrate that LLMs exhibit poorer calibration at the atomic level during long-form generation.\n\nThe paper was submitted on October 17, 2024, and last revised on November 20, 2025. You can access it directly on arXiv at https://arxiv.org/abs/2410.13246."
+    ],
+    "durationSeconds": 5.559008335000006
+  },
+  "sourceToolAssistantUUID": "4a0f11df-1612-486f-8b93-0cf5a252ab26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-15T13:01:38.093Z_
+
+```json
+{
+  "parentUuid": "26ab00e2-934a-4733-b81d-b9697caa9426",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0f1f33de-e030-4f9a-b896-71788e2c7913",
+  "timestamp": "2026-05-15T13:01:38.093Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-15T13:01:46.835Z_
+
+Good, I've verified all four key references. Now let me search for concurrent work, current SOTA models, venue deadlines, and feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f1f33de-e030-4f9a-b896-71788e2c7913",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q3v2NVRko7PcB4KJ7k",
+  "type": "assistant",
+  "uuid": "e7358304-e0ac-40da-b839-75c496c1c25d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2UJBo8AaXDJAtxgxj3Sx1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 25727,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 25727,
+          "cache_creation_input_tokens": 884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T13:01:47.343Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N2VyL1eutm3fJTZwWFFyg7`</summary>
+
+```json
+{
+  "query": "training-free representation intervention claim-level hallucination detection 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7358304-e0ac-40da-b839-75c496c1c25d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q3v2NVRko7PcB4KJ7k",
+  "type": "assistant",
+  "uuid": "f2d8c294-bbab-410c-8240-8edd816419bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2UJBo8AaXDJAtxgxj3Sx1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 25727,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 25727,
+          "cache_creation_input_tokens": 884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T13:01:55.232Z_
+
+<details><summary>↩ Tool result · `toolu_01N2VyL1eutm3fJTZwWFFyg7`</summary>
+
+```text
+Web search results for query: "training-free representation intervention claim-level hallucination detection 2026 arxiv"
+
+Links: [{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"[2601.17467] Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping","url":"https://arxiv.org/abs/2601.17467"},{"title":"Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models","url":"https://arxiv.org/html/2603.22303"},{"title":"HALP: Detecting Hallucinations in Vision-Language Models without Generating a Single Token","url":"https://arxiv.org/html/2603.05465v1"},{"title":"A Head to Predict and a Head to Question: Pre-trained Uncertainty Quantification Heads for Hallucination Detection in LLM Outputs","url":"https://arxiv.org/html/2505.08200v1"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping","url":"https://arxiv.org/html/2601.17467v1"},{"title":"GPTZero uncovers 50+ Hallucinations in ICLR 2026","url":"https://gptzero.me/news/iclr-2026/"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"1 Introduction","url":"https://arxiv.org/html/2512.07564v1"}]
+
+I found several recent papers on arxiv related to hallucination detection in 2026. Here are the key results:
+
+## Most Relevant Result
+
+A paper proposes a training-free distribution-consistency framework for hallucination detection using generated-token intermediate representations, introducing two complementary signals: AvgWD (cost magnitude) and EigenWD (cost-structure complexity). This paper from March 17, 2026 appears to directly address your search terms about training-free representation intervention.
+
+## Other Notable 2026 Papers on Hallucination Detection:
+
+1. **Answer-agreement Representation Shaping (ARS)** - This January 2026 paper introduces ARS, which learns detection-friendly trace-conditioned representations by encoding answer stability through counterfactual answers via small latent interventions at the trace-boundary embedding, then learns representations that bring answer-agreeing states together and separate answer-disagreeing ones.
+
+2. **Vision-Language Model Detection (HALP)** - A March 2026 paper investigates whether hallucination risk can be predicted before any token is generated by probing a model's internal representations in a single forward pass.
+
+3. **Probabilistic Circuits for Hallucination Detection** - Recent work shows truthfulness is linearly encoded in LLM hidden states, and outlier detection over representations can reduce hallucinations, with a framework that replaces linear probes with a full probabilistic density model to capture complex geometry of LLM representation spaces.
+
+These papers all focus on representation-based approaches to hallucination detection without requiring training, which aligns with your search query about training-free representation intervention.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2d8c294-bbab-410c-8240-8edd816419bd",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "0e498175-7e25-4bca-851e-1095c542914a",
+  "toolUseResult": {
+    "query": "training-free representation intervention claim-level hallucination detection 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DA47769cW5jKJuTgnCiqcY",
+        "content": [
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "[2601.17467] Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+            "url": "https://arxiv.org/abs/2601.17467"
+          },
+          {
+            "title": "Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models",
+            "url": "https://arxiv.org/html/2603.22303"
+          },
+          {
+            "title": "HALP: Detecting Hallucinations in Vision-Language Models without Generating a Single Token",
+            "url": "https://arxiv.org/html/2603.05465v1"
+          },
+          {
+            "title": "A Head to Predict and a Head to Question: Pre-trained Uncertainty Quantification Heads for Hallucination Detection in LLM Outputs",
+            "url": "https://arxiv.org/html/2505.08200v1"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+            "url": "https://arxiv.org/html/2601.17467v1"
+          },
+          {
+            "title": "GPTZero uncovers 50+ Hallucinations in ICLR 2026",
+            "url": "https://gptzero.me/news/iclr-2026/"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2512.07564v1"
+          }
+        ]
+      },
+      "I found several recent papers on arxiv related to hallucination detection in 2026. Here are the key results:\n\n## Most Relevant Result\n\nA paper proposes a training-free distribution-consistency framework for hallucination detection using generated-token intermediate representations, introducing two complementary signals: AvgWD (cost magnitude) and EigenWD (cost-structure complexity). This paper from March 17, 2026 appears to directly address your search terms about training-free representation intervention.\n\n## Other Notable 2026 Papers on Hallucination Detection:\n\n1. **Answer-agreement Representation Shaping (ARS)** - This January 2026 paper introduces ARS, which learns detection-friendly trace-conditioned representations by encoding answer stability through counterfactual answers via small latent interventions at the trace-boundary embedding, then learns representations that bring answer-agreeing states together and separate answer-disagreeing ones.\n\n2. **Vision-Language Model Detection (HALP)** - A March 2026 paper investigates whether hallucination risk can be predicted before any token is generated by probing a model's internal representations in a single forward pass.\n\n3. **Probabilistic Circuits for Hallucination Detection** - Recent work shows truthfulness is linearly encoded in LLM hidden states, and outlier detection over representations can reduce hallucinations, with a framework that replaces linear probes with a full probabilistic density model to capture complex geometry of LLM representation spaces.\n\nThese papers all focus on representation-based approaches to hallucination detection without requiring training, which aligns with your search query about training-free representation intervention."
+    ],
+    "durationSeconds": 7.883783664000003
+  },
+  "sourceToolAssistantUUID": "f2d8c294-bbab-410c-8240-8edd816419bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T13:01:57.577Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011GBkAMHwHQyovrsMfGwdYR`</summary>
+
+```json
+{
+  "query": "best open source LLM 2026 leaderboard SOTA language model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e498175-7e25-4bca-851e-1095c542914a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q5BHRSQzXDzC2ZXGYR",
+  "type": "assistant",
+  "uuid": "81b17738-aeb0-49fe-8ad9-8b913c783fa8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019wohUb6snDxVsXR82jPVr9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 975,
+      "cache_read_input_tokens": 26611,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 26611,
+          "cache_creation_input_tokens": 975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T13:02:06.260Z_
+
+<details><summary>↩ Tool result · `toolu_011GBkAMHwHQyovrsMfGwdYR`</summary>
+
+```text
+Web search results for query: "best open source LLM 2026 leaderboard SOTA language model"
+
+Links: [{"title":"Best Open Source LLM Leaderboard 2026","url":"https://onyx.app/open-llm-leaderboard"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"Top Open-Source LLMs 2026: The Best Models & Comparison","url":"https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"},{"title":"AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/code-generation"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"},{"title":"Open Source LLM Leaderboard 2025–2026: Llama, Mistral, DeepSeek, Qwen | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm/open-models"}]
+
+Based on the search results, here's what the latest open source LLM leaderboards show for 2026:
+
+## Top Open Source Models (SOTA)
+
+S-tier models like GLM-4.7, Kimi K2.5, and MiniMax M2.5 are matching or exceeding proprietary model performance on specific benchmarks.
+
+**Best Overall Performers:**
+
+- **GLM-4.7**: GLM-4.7 is the highest-ranked model on the leaderboard for most people's practical needs, with its HumanEval score of 94.2 — the best of any model listed — signaling exceptional code generation ability. It scores 95.7 on AIME 2025 (the hardest math benchmark tracked), 85.7 on GPQA Diamond (a doctoral-level science reasoning test), and 84.9 on LiveCodeBench, with a 200K context window and strong instruction-following.
+
+- **Kimi K2.5**: Its HumanEval score of 99.0 is the highest of any model tracked, and it leads in MMLU (92.0), IFEval (94.0), MATH-500 (98.0), and GPQA Diamond (87.6).
+
+- **MiniMax M2.5**: MiniMax M2.5 earns its S-tier placement primarily on the strength of its SWE-bench Verified score of 80.2 — the highest of any model on the leaderboard for real-world software engineering tasks.
+
+**Other Notable Models:**
+
+DeepSeek-R1 is a 671B MoE model trained with reinforcement learning for chain-of-thought reasoning that matches or exceeds GPT-4o on math and coding benchmarks.
+
+## Key Resources
+
+Several leaderboards track open source models with different focuses:
+- Open source LLM leaderboards compare open-weight models including Llama, DeepSeek, Qwen, Kimi and more with updated rankings across reasoning, coding, math, and multilingual tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81b17738-aeb0-49fe-8ad9-8b913c783fa8",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "619b7367-91e0-4630-bc87-2568be4f3c6f",
+  "toolUseResult": {
+    "query": "best open source LLM 2026 leaderboard SOTA language model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PZx4xFQGXdCQL4WCoY9aws",
+        "content": [
+          {
+            "title": "Best Open Source LLM Leaderboard 2026",
+            "url": "https://onyx.app/open-llm-leaderboard"
+          },
+          {
+            "title": "LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm"
+          },
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026 — Compare Open-Weight Models",
+            "url": "https://www.vellum.ai/open-llm-leaderboard"
+          },
+          {
+            "title": "LLM Leaderboard 2026 — Compare Top AI Models - Vellum",
+            "url": "https://www.vellum.ai/llm-leaderboard"
+          },
+          {
+            "title": "Best Open Source LLM 2026 Ranking + Ollama Guide",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "Top Open-Source LLMs 2026: The Best Models & Comparison",
+            "url": "https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"
+          },
+          {
+            "title": "AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/code-generation"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site",
+            "url": "https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2025–2026: Llama, Mistral, DeepSeek, Qwen | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm/open-models"
+          }
+        ]
+      },
+      "Based on the search results, here's what the latest open source LLM leaderboards show for 2026:\n\n## Top Open Source Models (SOTA)\n\nS-tier models like GLM-4.7, Kimi K2.5, and MiniMax M2.5 are matching or exceeding proprietary model performance on specific benchmarks.\n\n**Best Overall Performers:**\n\n- **GLM-4.7**: GLM-4.7 is the highest-ranked model on the leaderboard for most people's practical needs, with its HumanEval score of 94.2 — the best of any model listed — signaling exceptional code generation ability. It scores 95.7 on AIME 2025 (the hardest math benchmark tracked), 85.7 on GPQA Diamond (a doctoral-level science reasoning test), and 84.9 on LiveCodeBench, with a 200K context window and strong instruction-following.\n\n- **Kimi K2.5**: Its HumanEval score of 99.0 is the highest of any model tracked, and it leads in MMLU (92.0), IFEval (94.0), MATH-500 (98.0), and GPQA Diamond (87.6).\n\n- **MiniMax M2.5**: MiniMax M2.5 earns its S-tier placement primarily on the strength of its SWE-bench Verified score of 80.2 — the highest of any model on the leaderboard for real-world software engineering tasks.\n\n**Other Notable Models:**\n\nDeepSeek-R1 is a 671B MoE model trained with reinforcement learning for chain-of-thought reasoning that matches or exceeds GPT-4o on math and coding benchmarks.\n\n## Key Resources\n\nSeveral leaderboards track open source models with different focuses:\n- Open source LLM leaderboards compare open-weight models including Llama, DeepSeek, Qwen, Kimi and more with updated rankings across reasoning, coding, math, and multilingual tasks."
+    ],
+    "durationSeconds": 8.680687977000009
+  },
+  "sourceToolAssistantUUID": "81b17738-aeb0-49fe-8ad9-8b913c783fa8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "619b7367-91e0-4630-bc87-2568be4f3c6f",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T13:02:08.742Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XPrCWgVP2UHWGFus6RLJto`</summary>
+
+```json
+{
+  "query": "FActScore claim decomposition github implementation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "619b7367-91e0-4630-bc87-2568be4f3c6f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q5zU554gMgC2uwdKuy",
+  "type": "assistant",
+  "uuid": "011ed4f3-efb6-4df0-be91-4d142b25f62c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXPX9JUDuCRnEbVPVA2MCr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 27586,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 27586,
+          "cache_creation_input_tokens": 1110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T13:02:15.802Z_
+
+<details><summary>↩ Tool result · `toolu_01XPrCWgVP2UHWGFus6RLJto`</summary>
+
+```text
+Web search results for query: "FActScore claim decomposition github implementation 2025 2026"
+
+Links: [{"title":"GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub","url":"https://github.com/shmsw25/FActScore"},{"title":"ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation","url":"https://arxiv.org/pdf/2505.16973"},{"title":"FActScore/factscore/factscorer.py at main · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/blob/main/factscore/factscorer.py"},{"title":"FactScore: Factual Evaluation Framework","url":"https://www.emergentmind.com/topics/factscore-113e12f4-d246-433f-8289-063e105dc511"},{"title":"FActScore/factscore/openai_lm.py at main · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/blob/main/factscore/openai_lm.py"},{"title":"FACTSCORE: Fine-grained Atomic Evaluation of Factual ...","url":"https://martiansideofthemoon.github.io/assets/factscore.pdf"},{"title":"FActScore/factscore/npm.py at main · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/blob/main/factscore/npm.py"},{"title":"FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta","url":"https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"},{"title":"FActScore/factscore/retrieval.py at main · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/blob/main/factscore/retrieval.py"},{"title":"Actions · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/actions"}]
+
+Based on the search results, here's what I found about FActScore claim decomposition and GitHub implementations:
+
+## FActScore Overview
+
+FActScore is the original implementation of the EMNLP 2023 paper "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation". FActScore is available as a PIP package.
+
+## Claim Decomposition in FActScore
+
+The evaluation pipeline includes a Claim/Fact Extraction stage where model output is segmented into atomic, independently verifiable facts, often involving LLM-assisted decomposition at or below the sentence level.
+
+FActScore values are sensitive to the decomposition method, with different LLM-based or rule-based decomposers yielding variable subclaim sets that impact both atomicity and total score.
+
+## GitHub Implementation
+
+The official FActScore package can be installed via pip (pip install factscore), and it is disseminated as an open-source package with auxiliary resources supporting custom decomposition, annotation, and evaluation. The official repository is available at https://github.com/shmsw25/FActScore.
+
+The search results indicate this is the main active implementation, though the original paper was from 2023, not specifically from 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "011ed4f3-efb6-4df0-be91-4d142b25f62c",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "a81aed1e-9e9c-4b71-804a-451a294f0337",
+  "toolUseResult": {
+    "query": "FActScore claim decomposition github implementation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019TXaSKT2EdXkLJqzdp8y9e",
+        "content": [
+          {
+            "title": "GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub",
+            "url": "https://github.com/shmsw25/FActScore"
+          },
+          {
+            "title": "ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation",
+            "url": "https://arxiv.org/pdf/2505.16973"
+          },
+          {
+            "title": "FActScore/factscore/factscorer.py at main · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/blob/main/factscore/factscorer.py"
+          },
+          {
+            "title": "FactScore: Factual Evaluation Framework",
+            "url": "https://www.emergentmind.com/topics/factscore-113e12f4-d246-433f-8289-063e105dc511"
+          },
+          {
+            "title": "FActScore/factscore/openai_lm.py at main · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/blob/main/factscore/openai_lm.py"
+          },
+          {
+            "title": "FACTSCORE: Fine-grained Atomic Evaluation of Factual ...",
+            "url": "https://martiansideofthemoon.github.io/assets/factscore.pdf"
+          },
+          {
+            "title": "FActScore/factscore/npm.py at main · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/blob/main/factscore/npm.py"
+          },
+          {
+            "title": "FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"
+          },
+          {
+            "title": "FActScore/factscore/retrieval.py at main · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/blob/main/factscore/retrieval.py"
+          },
+          {
+            "title": "Actions · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/actions"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FActScore claim decomposition and GitHub implementations:\n\n## FActScore Overview\n\nFActScore is the original implementation of the EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\". FActScore is available as a PIP package.\n\n## Claim Decomposition in FActScore\n\nThe evaluation pipeline includes a Claim/Fact Extraction stage where model output is segmented into atomic, independently verifiable facts, often involving LLM-assisted decomposition at or below the sentence level.\n\nFActScore values are sensitive to the decomposition method, with different LLM-based or rule-based decomposers yielding variable subclaim sets that impact both atomicity and total score.\n\n## GitHub Implementation\n\nThe official FActScore package can be installed via pip (pip install factscore), and it is disseminated as an open-source package with auxiliary resources supporting custom decomposition, annotation, and evaluation. The official repository is available at https://github.com/shmsw25/FActScore.\n\nThe search results indicate this is the main active implementation, though the original paper was from 2023, not specifically from 2025-2026."
+    ],
+    "durationSeconds": 7.055446492000002
+  },
+  "sourceToolAssistantUUID": "011ed4f3-efb6-4df0-be91-4d142b25f62c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T13:02:19.375Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S9H79Cw1RCdLzCezbEidxC`</summary>
+
+```json
+{
+  "query": "github representation engineering activation steering linear probe LLM implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a81aed1e-9e9c-4b71-804a-451a294f0337",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q6hKinRd3fMEV3SYxT",
+  "type": "assistant",
+  "uuid": "2b192d88-b609-411a-b371-c1bad84931c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NauLQEyEjhf5zguY78DS1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 28696,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 28696,
+          "cache_creation_input_tokens": 996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T13:02:26.989Z_
+
+<details><summary>↩ Tool result · `toolu_01S9H79Cw1RCdLzCezbEidxC`</summary>
+
+```text
+Web search results for query: "github representation engineering activation steering linear probe LLM implementation"
+
+Links: [{"title":"GitHub - chrisliu298/awesome-representation-engineering: A resource repository for representation engineering in large language models · GitHub","url":"https://github.com/chrisliu298/awesome-representation-engineering"},{"title":"representation-engineering · GitHub Topics · GitHub","url":"https://github.com/topics/representation-engineering"},{"title":"GitHub - cma1114/activation_steering: An exploration of LLM steering · GitHub","url":"https://github.com/cma1114/activation_steering"},{"title":"Representation Engineering - I: Steering Language Models With Activation Engineering | Deeply Learning","url":"https://mandliya.github.io/blog/2025/paper-implementation-steering-language-models-with-activation-engineering/"},{"title":"GitHub - Mihaiii/llm_steer: Steer LLM outputs towards a certain topic/subject and enhance response capabilities using activation engineering by adding steering vectors · GitHub","url":"https://github.com/Mihaiii/llm_steer"},{"title":"GitHub - bhdsc/CLAS: Official implementation of Contextual Linear Activation Steering of Language Models (CLAS) · GitHub","url":"https://github.com/bhdsc/CLAS"},{"title":"GitHub - nrimsky/LM-exp: LLM experiments done during SERI MATS - focusing on activation steering / interpreting activation spaces","url":"https://github.com/nrimsky/LM-exp"},{"title":"Steering LLMs' Behavior with Concept Activation Vectors | ICLR Blogposts 2025","url":"https://iclr-blogposts.github.io/2025/blog/steering-llms-behavior/"},{"title":"GitHub - cooperleong00/Awesome-LLM-Interpretability: A curated list of LLM Interpretability related material - Tutorial, Library, Survey, Paper, Blog, etc.. · GitHub","url":"https://github.com/cooperleong00/Awesome-LLM-Interpretability"},{"title":"GitHub - adamkarvonen/chess_llm_interpretability: Visualizing the internal board state of a GPT trained on chess PGN strings, and performing interventions on its internal board state and representation of player Elo. · GitHub","url":"https://github.com/adamkarvonen/chess_llm_interpretability"}]
+
+Based on the web search results, I found several relevant GitHub repositories and implementations related to representation engineering, activation steering, linear probes, and LLM control:
+
+## Key GitHub Resources
+
+There are implementations of novel approaches to activation editing in LLMs with direction-magnitude perspectives, including:
+
+1. **Awesome Representation Engineering** - A comprehensive resource repository for representation engineering techniques in large language models
+
+2. **Activation Steering Implementations**:
+   - An exploration of LLM activation steering and representation engineering at github.com/cma1114/activation_steering
+   - A Python module to steer LLM responses towards certain topics and enhance capabilities using activation engineering by adding steering vectors to different layers
+
+3. **Linear Probe-Based Steering**:
+   - Activation steering methods that add interpretable directions extracted from activation probes to internal activations at inference, with learned vectors that map model activations to context-dependent steering coefficients (CLAS)
+   - Repositories that train, evaluate, and visualize linear probes on LLMs to probe their internal understanding
+
+## Core Concepts
+
+Activation steering involves identifying activation patterns corresponding to high-level behaviors, creating behavior vectors from activation differences between contrasting pairs, then adding scaled versions to model activations during generation.
+
+You can steer large language models at inference time by adding steering vectors to the residual stream without gradient updates, training, finetuning, or RLHF.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b192d88-b609-411a-b371-c1bad84931c7",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "eafe6cb6-48dd-49c0-8d9a-f7105534c022",
+  "toolUseResult": {
+    "query": "github representation engineering activation steering linear probe LLM implementation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019nxizfLoC976bKec9KAL6a",
+        "content": [
+          {
+            "title": "GitHub - chrisliu298/awesome-representation-engineering: A resource repository for representation engineering in large language models · GitHub",
+            "url": "https://github.com/chrisliu298/awesome-representation-engineering"
+          },
+          {
+            "title": "representation-engineering · GitHub Topics · GitHub",
+            "url": "https://github.com/topics/representation-engineering"
+          },
+          {
+            "title": "GitHub - cma1114/activation_steering: An exploration of LLM steering · GitHub",
+            "url": "https://github.com/cma1114/activation_steering"
+          },
+          {
+            "title": "Representation Engineering - I: Steering Language Models With Activation Engineering | Deeply Learning",
+            "url": "https://mandliya.github.io/blog/2025/paper-implementation-steering-language-models-with-activation-engineering/"
+          },
+          {
+            "title": "GitHub - Mihaiii/llm_steer: Steer LLM outputs towards a certain topic/subject and enhance response capabilities using activation engineering by adding steering vectors · GitHub",
+            "url": "https://github.com/Mihaiii/llm_steer"
+          },
+          {
+            "title": "GitHub - bhdsc/CLAS: Official implementation of Contextual Linear Activation Steering of Language Models (CLAS) · GitHub",
+            "url": "https://github.com/bhdsc/CLAS"
+          },
+          {
+            "title": "GitHub - nrimsky/LM-exp: LLM experiments done during SERI MATS - focusing on activation steering / interpreting activation spaces",
+            "url": "https://github.com/nrimsky/LM-exp"
+          },
+          {
+            "title": "Steering LLMs' Behavior with Concept Activation Vectors | ICLR Blogposts 2025",
+            "url": "https://iclr-blogposts.github.io/2025/blog/steering-llms-behavior/"
+          },
+          {
+            "title": "GitHub - cooperleong00/Awesome-LLM-Interpretability: A curated list of LLM Interpretability related material - Tutorial, Library, Survey, Paper, Blog, etc.. · GitHub",
+            "url": "https://github.com/cooperleong00/Awesome-LLM-Interpretability"
+          },
+          {
+            "title": "GitHub - adamkarvonen/chess_llm_interpretability: Visualizing the internal board state of a GPT trained on chess PGN strings, and performing interventions on its internal board state and representation of player Elo. · GitHub",
+            "url": "https://github.com/adamkarvonen/chess_llm_interpretability"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant GitHub repositories and implementations related to representation engineering, activation steering, linear probes, and LLM control:\n\n## Key GitHub Resources\n\nThere are implementations of novel approaches to activation editing in LLMs with direction-magnitude perspectives, including:\n\n1. **Awesome Representation Engineering** - A comprehensive resource repository for representation engineering techniques in large language models\n\n2. **Activation Steering Implementations**:\n   - An exploration of LLM activation steering and representation engineering at github.com/cma1114/activation_steering\n   - A Python module to steer LLM responses towards certain topics and enhance capabilities using activation engineering by adding steering vectors to different layers\n\n3. **Linear Probe-Based Steering**:\n   - Activation steering methods that add interpretable directions extracted from activation probes to internal activations at inference, with learned vectors that map model activations to context-dependent steering coefficients (CLAS)\n   - Repositories that train, evaluate, and visualize linear probes on LLMs to probe their internal understanding\n\n## Core Concepts\n\nActivation steering involves identifying activation patterns corresponding to high-level behaviors, creating behavior vectors from activation differences between contrasting pairs, then adding scaled versions to model activations during generation.\n\nYou can steer large language models at inference time by adding steering vectors to the residual stream without gradient updates, training, finetuning, or RLHF."
+    ],
+    "durationSeconds": 7.609704325999992
+  },
+  "sourceToolAssistantUUID": "2b192d88-b609-411a-b371-c1bad84931c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T13:02:31.115Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012kikxHdoGRMLdgYACUPA99`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eafe6cb6-48dd-49c0-8d9a-f7105534c022",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q7ZQ16vH8k8oafYzeY",
+  "type": "assistant",
+  "uuid": "aaa1d61c-89b5-42c2-bf31-4244f1409d2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013nKL1ZsJ16xQbpZv48ixEJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 29692,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 29692,
+          "cache_creation_input_tokens": 983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T13:02:37.834Z_
+
+<details><summary>↩ Tool result · `toolu_012kikxHdoGRMLdgYACUPA99`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"2026 Conference","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://neurips.cc/public/JournalToConference"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"}]
+
+Based on the search results, here's the information about NeurIPS 2026 submission deadlines and call for papers:
+
+## Key Submission Deadlines
+
+Abstracts are due by May 4th, 2026, with full papers due on May 6th, 2026, Anywhere On Earth (AOE).
+
+## Submission Tracks
+
+The different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.
+
+### Main Track
+Main Track submissions can select a Contribution Type, including General, Theory, Use-Inspired, Concept & Feasibility, and Negative Results.
+
+### Evaluations & Datasets Track
+The deadlines are the same as for the main and Papers for Position tracks, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).
+
+### Position Paper Track
+The deadlines are the same as for the main track, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).
+
+## Other Important Information
+
+NeurIPS 2026 is now accepting submissions as of April 15, 2026, and all authors must have an OpenReview profile when submitting.
+
+The Fortieth annual conference is held Sun. Dec 6th through Sat the 12th, 2026 at the International Convention Centre in Sydney, Australia.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aaa1d61c-89b5-42c2-bf31-4244f1409d2f",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "1e8f2014-aa1c-40f5-bdb8-3c5e30e36203",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018TYc9foQKsFY35RV5t2Qev",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://neurips.cc/public/JournalToConference"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about NeurIPS 2026 submission deadlines and call for papers:\n\n## Key Submission Deadlines\n\nAbstracts are due by May 4th, 2026, with full papers due on May 6th, 2026, Anywhere On Earth (AOE).\n\n## Submission Tracks\n\nThe different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines.\n\n### Main Track\nMain Track submissions can select a Contribution Type, including General, Theory, Use-Inspired, Concept & Feasibility, and Negative Results.\n\n### Evaluations & Datasets Track\nThe deadlines are the same as for the main and Papers for Position tracks, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).\n\n### Position Paper Track\nThe deadlines are the same as for the main track, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).\n\n## Other Important Information\n\nNeurIPS 2026 is now accepting submissions as of April 15, 2026, and all authors must have an OpenReview profile when submitting.\n\nThe Fortieth annual conference is held Sun. Dec 6th through Sat the 12th, 2026 at the International Convention Centre in Sydney, Australia."
+    ],
+    "durationSeconds": 6.7143993180000106
+  },
+  "sourceToolAssistantUUID": "aaa1d61c-89b5-42c2-bf31-4244f1409d2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-15T13:02:40.545Z_
+
+NeurIPS 2026 deadline has passed (May 6). Let me check other top venues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e8f2014-aa1c-40f5-bdb8-3c5e30e36203",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q8KV84RPHbPLYt48v7",
+  "type": "assistant",
+  "uuid": "3cd38301-d6f3-44d1-b3bd-526f09a5fd69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mwt9ZhGWHzhogN5Noq5BDi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 30675,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 30675,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T13:02:40.726Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F5ZFSgB1vYZQwo94tAKqFG`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cd38301-d6f3-44d1-b3bd-526f09a5fd69",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q8KV84RPHbPLYt48v7",
+  "type": "assistant",
+  "uuid": "fb1b5591-4f24-48be-8501-6c3d6a64f59b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mwt9ZhGWHzhogN5Noq5BDi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 30675,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 30675,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T13:02:44.277Z_
+
+<details><summary>↩ Tool result · `toolu_01F5ZFSgB1vYZQwo94tAKqFG`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline call for papers"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"2026 Conference","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"}]
+
+Based on the search results, I found information about ICLR 2027, though specific submission deadline details are limited. ICLR 2027 is scheduled for November 12-15, 2027, with the submission deadline listed as TBA (To Be Announced) and based on predicted previous year schedule.
+
+The search results show information about ICLR 2026, which is the most recent conference with available details. For ICLR 2027 specifically, the official call for papers has not yet been formally announced. I recommend checking the official ICLR website at iclr.cc or monitoring the OpenReview platform for the official ICLR 2027 call for papers announcement with exact submission deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb1b5591-4f24-48be-8501-6c3d6a64f59b",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "f7cee76f-a9a7-425c-b233-9d6af6d65873",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015FJNWLqDRutm7Q86hNFJWz",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2027, though specific submission deadline details are limited. ICLR 2027 is scheduled for November 12-15, 2027, with the submission deadline listed as TBA (To Be Announced) and based on predicted previous year schedule.\n\nThe search results show information about ICLR 2026, which is the most recent conference with available details. For ICLR 2027 specifically, the official call for papers has not yet been formally announced. I recommend checking the official ICLR website at iclr.cc or monitoring the OpenReview platform for the official ICLR 2027 call for papers announcement with exact submission deadlines."
+    ],
+    "durationSeconds": 3.547132317999989
+  },
+  "sourceToolAssistantUUID": "fb1b5591-4f24-48be-8501-6c3d6a64f59b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T13:02:46.971Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WGZtFUF63vYWHXhAME27px`</summary>
+
+```json
+{
+  "query": "ACL 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7cee76f-a9a7-425c-b233-9d6af6d65873",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q8nws2t2EkBXjX24Fb",
+  "type": "assistant",
+  "uuid": "c6b6e769-0708-4cb5-b062-6931228a070a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWsxXE2M7XPh3McXBKRZvL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 31523,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 31523,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "c6b6e769-0708-4cb5-b062-6931228a070a",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T13:02:53.373Z_
+
+<details><summary>↩ Tool result · `toolu_01WGZtFUF63vYWHXhAME27px`</summary>
+
+```text
+Web search results for query: "ACL 2026 submission deadline call for papers"
+
+Links: [{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=acl26"},{"title":"ACL 2026","url":"https://acl.swoogo.com/acl2026"},{"title":"Final call for EACL and ACL 2026 workshops","url":"https://groups.google.com/g/ML-news/c/3rH5gRoL_8k"},{"title":"Industry Track — Call for Papers -","url":"https://2026.eacl.org/calls/industry/"}]
+
+Based on the search results, here's what I found about ACL 2026 submission information:
+
+## Submission Process
+
+ACL 2026 will use ACL Rolling Review (ARR) as a reviewing system with final decisions made by the conference. Both submissions of articles for review and commitment of reviewed articles to the conference will be performed via the OpenReview platform. Authors will follow a two-step process: submit articles to ARR where they receive reviews and meta-reviews, then commit reviewed articles to ACL 2026 where acceptance decisions are made.
+
+## Submission Deadlines
+
+Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle. All deadlines are at 11:59PM UTC-12:00 ("anywhere on Earth").
+
+## Paper Types
+
+ACL 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research in all aspects of Computational Linguistics and Natural Language Processing.
+
+## Key Details
+
+Papers that have already received reviews and a meta-review from ARR from earlier cycles may be committed to ACL 2026 via the conference commitment site.
+
+For more specific information about exact dates and detailed submission requirements, you can visit the official ACL 2026 call for papers page at https://2026.aclweb.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6b6e769-0708-4cb5-b062-6931228a070a",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "718dd93b-4e8e-43a5-8b37-12ca404697e7",
+  "toolUseResult": {
+    "query": "ACL 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QbPmKJDpQEm56UWucB2MHi",
+        "content": [
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=acl26"
+          },
+          {
+            "title": "ACL 2026",
+            "url": "https://acl.swoogo.com/acl2026"
+          },
+          {
+            "title": "Final call for EACL and ACL 2026 workshops",
+            "url": "https://groups.google.com/g/ML-news/c/3rH5gRoL_8k"
+          },
+          {
+            "title": "Industry Track — Call for Papers -",
+            "url": "https://2026.eacl.org/calls/industry/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ACL 2026 submission information:\n\n## Submission Process\n\nACL 2026 will use ACL Rolling Review (ARR) as a reviewing system with final decisions made by the conference. Both submissions of articles for review and commitment of reviewed articles to the conference will be performed via the OpenReview platform. Authors will follow a two-step process: submit articles to ARR where they receive reviews and meta-reviews, then commit reviewed articles to ACL 2026 where acceptance decisions are made.\n\n## Submission Deadlines\n\nPapers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle. All deadlines are at 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\n## Paper Types\n\nACL 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research in all aspects of Computational Linguistics and Natural Language Processing.\n\n## Key Details\n\nPapers that have already received reviews and a meta-review from ARR from earlier cycles may be committed to ACL 2026 via the conference commitment site.\n\nFor more specific information about exact dates and detailed submission requirements, you can visit the official ACL 2026 call for papers page at https://2026.aclweb.org/calls/main_conference_papers/"
+    ],
+    "durationSeconds": 6.398669106000016
+  },
+  "sourceToolAssistantUUID": "c6b6e769-0708-4cb5-b062-6931228a070a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T13:02:56.249Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NS1aopGKQjPuGQEXu7EAns`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review ARR 2026 submission deadlines cycle dates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "718dd93b-4e8e-43a5-8b37-12ca404697e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Q9Ttut3a2F5GQHrmuQ",
+  "type": "assistant",
+  "uuid": "9598f454-013b-4a46-b380-7a0404ca71c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYEXiFkpAX1NRXV62agsPo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 784,
+      "cache_read_input_tokens": 32180,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 32180,
+          "cache_creation_input_tokens": 784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T13:03:01.872Z_
+
+<details><summary>↩ Tool result · `toolu_01NS1aopGKQjPuGQEXu7EAns`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review ARR 2026 submission deadlines cycle dates"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"},{"title":"ACL ARR 2026 March | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"}]
+
+Based on the search results, here's information about ACL Rolling Review (ARR) 2026 submission deadlines and cycles:
+
+## Schedule Change
+
+The ACL Peer Review Committee recommended switching from 8-week review cycles to 10-week cycles, with the new schedule starting in May 2025. This means instead of 6 cycles a year there will generally be 5.
+
+## 2026 Submission Cycle Information
+
+The search results reference specific ARR 2026 cycles, including:
+- Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle
+- An ARR 2026 March cycle exists
+
+The submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc.
+
+For specific information about all 2026 cycle dates and detailed timelines for each review cycle, you can visit the official ACL Rolling Review dates page at http://aclrollingreview.org/dates, which contains a complete table of key dates for upcoming cycles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9598f454-013b-4a46-b380-7a0404ca71c4",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "cbc77220-0b06-435b-a738-cbfa91f51ffd",
+  "toolUseResult": {
+    "query": "ACL Rolling Review ARR 2026 submission deadlines cycle dates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R8ukACM4ZDaG8ngYhC1EaR",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ACL ARR 2026 January | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"
+          },
+          {
+            "title": "ACL ARR 2026 March | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"
+          }
+        ]
+      },
+      "Based on the search results, here's information about ACL Rolling Review (ARR) 2026 submission deadlines and cycles:\n\n## Schedule Change\n\nThe ACL Peer Review Committee recommended switching from 8-week review cycles to 10-week cycles, with the new schedule starting in May 2025. This means instead of 6 cycles a year there will generally be 5.\n\n## 2026 Submission Cycle Information\n\nThe search results reference specific ARR 2026 cycles, including:\n- Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle\n- An ARR 2026 March cycle exists\n\nThe submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc.\n\nFor specific information about all 2026 cycle dates and detailed timelines for each review cycle, you can visit the official ACL Rolling Review dates page at http://aclrollingreview.org/dates, which contains a complete table of key dates for upcoming cycles."
+    ],
+    "durationSeconds": 5.618264487000007
+  },
+  "sourceToolAssistantUUID": "9598f454-013b-4a46-b380-7a0404ca71c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-15T13:03:01.880Z_
+
+```json
+{
+  "parentUuid": "cbc77220-0b06-435b-a738-cbfa91f51ffd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3345ba42-f0e9-49f4-86ef-3e222ca60d9d",
+  "timestamp": "2026-05-15T13:03:01.880Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T13:03:04.964Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UFZE6MDaWQCJekpq1TEK6w`</summary>
+
+```json
+{
+  "query": "ARR 2026 May June July submission deadline dates cycle schedule"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3345ba42-f0e9-49f4-86ef-3e222ca60d9d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QA6GSEtqttscLwwkiN",
+  "type": "assistant",
+  "uuid": "6eb35514-eac2-4c4f-b108-9e328ef85d86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ReuWXihqdW4H72VzwXehH3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 882,
+      "cache_read_input_tokens": 32964,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 32964,
+          "cache_creation_input_tokens": 882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T13:03:10.052Z_
+
+<details><summary>↩ Tool result · `toolu_01UFZE6MDaWQCJekpq1TEK6w`</summary>
+
+```text
+Web search results for query: "ARR 2026 May June July submission deadline dates cycle schedule"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"ARR 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=arr2601"}]
+
+Based on the search results, I can provide you with information about the ARR (ACL Rolling Review) schedule for 2026:
+
+## ARR 2026 Schedule Overview
+
+ARR switched to 10-week review cycles starting in May 2025, replacing the previous 8-week schedule. This means that instead of 6 cycles a year there will generally be 5, but with more reasonable timelines for the review tasks and author response, as well as platform maintenance.
+
+However, the search results do not contain the specific submission deadline dates for the May, June, and July 2026 cycles. While the official ARR website (aclrollingreview.org/dates) is referenced as having a table with "all the key dates, by which the authors may need to take action, for the upcoming cycles following the new schedule," the detailed deadline information was not included in the search results.
+
+For the most current and specific submission deadline dates for May, June, and July 2026 ARR cycles, I recommend visiting the official ARR website directly at **http://aclrollingreview.org/dates** where the complete schedule table should be available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6eb35514-eac2-4c4f-b108-9e328ef85d86",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "5b06baeb-d99c-41d8-81c2-03c3f936944f",
+  "toolUseResult": {
+    "query": "ARR 2026 May June July submission deadline dates cycle schedule",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JC9nMJAX4RXHRUFNTuBxtZ",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          },
+          {
+            "title": "ARR 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=arr2601"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the ARR (ACL Rolling Review) schedule for 2026:\n\n## ARR 2026 Schedule Overview\n\nARR switched to 10-week review cycles starting in May 2025, replacing the previous 8-week schedule. This means that instead of 6 cycles a year there will generally be 5, but with more reasonable timelines for the review tasks and author response, as well as platform maintenance.\n\nHowever, the search results do not contain the specific submission deadline dates for the May, June, and July 2026 cycles. While the official ARR website (aclrollingreview.org/dates) is referenced as having a table with \"all the key dates, by which the authors may need to take action, for the upcoming cycles following the new schedule,\" the detailed deadline information was not included in the search results.\n\nFor the most current and specific submission deadline dates for May, June, and July 2026 ARR cycles, I recommend visiting the official ARR website directly at **http://aclrollingreview.org/dates** where the complete schedule table should be available."
+    ],
+    "durationSeconds": 5.084892340999999
+  },
+  "sourceToolAssistantUUID": "6eb35514-eac2-4c4f-b108-9e328ef85d86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T13:03:12.648Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XA9UmgrjVR7wunzh35Jeu2`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline call for papers dates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b06baeb-d99c-41d8-81c2-03c3f936944f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QAhENd59Uuwojhmn31",
+  "type": "assistant",
+  "uuid": "a80621e6-c323-40a2-9572-4c1ea37dadee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZcKuZTjhkhxVwrpwuQQXy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 33846,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 33846,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T13:03:21.159Z_
+
+<details><summary>↩ Tool result · `toolu_01XA9UmgrjVR7wunzh35Jeu2`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline call for papers dates"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"}]
+
+Based on the search results, here are the key dates for EMNLP 2026 call for papers:
+
+**Main Submission Deadline:**
+The EMNLP 2026 paper submission deadline is May 25, 2026 23:59:59 (UTC-12).
+
+**Other Important Dates:**
+- Reviewer registration deadline for all authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+- Conference dates: October 24 - 29, 2026 in Budapest, Hungary
+
+**Important Note:**
+Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a80621e6-c323-40a2-9572-4c1ea37dadee",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "283c675f-2cc6-4829-bb75-d86be84fc6a8",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline call for papers dates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DbbquD3ynaVpxs8gg6HEmy",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          }
+        ]
+      },
+      "Based on the search results, here are the key dates for EMNLP 2026 call for papers:\n\n**Main Submission Deadline:**\nThe EMNLP 2026 paper submission deadline is May 25, 2026 23:59:59 (UTC-12).\n\n**Other Important Dates:**\n- Reviewer registration deadline for all authors: May 27, 2026\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- Meta review released: July 30, 2026\n- Conference dates: October 24 - 29, 2026 in Budapest, Hungary\n\n**Important Note:**\nGiven that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026."
+    ],
+    "durationSeconds": 8.507710188000026
+  },
+  "sourceToolAssistantUUID": "a80621e6-c323-40a2-9572-4c1ea37dadee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-15T13:03:24.773Z_
+
+EMNLP 2026 deadline is May 25, 2026 — still open. Let me check a few more venues and do additional concurrent work searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "283c675f-2cc6-4829-bb75-d86be84fc6a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QBWi8iQkXQ3KjQdHL8",
+  "type": "assistant",
+  "uuid": "e7e7fcd9-3854-4dde-9d0a-942975156d07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CigZ7eHYh2akMp54Niqokk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1068,
+      "cache_read_input_tokens": 34578,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 34578,
+          "cache_creation_input_tokens": 1068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T13:03:24.785Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CbaYedrPXw1fjuGaRCUGpA`</summary>
+
+```json
+{
+  "query": "ICML 2026 submission deadline dates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7e7fcd9-3854-4dde-9d0a-942975156d07",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QBWi8iQkXQ3KjQdHL8",
+  "type": "assistant",
+  "uuid": "d6a70c10-08ef-47f6-92a1-a45105f855f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CigZ7eHYh2akMp54Niqokk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1068,
+      "cache_read_input_tokens": 34578,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 34578,
+          "cache_creation_input_tokens": 1068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T13:03:29.469Z_
+
+<details><summary>↩ Tool result · `toolu_01CbaYedrPXw1fjuGaRCUGpA`</summary>
+
+```text
+Web search results for query: "ICML 2026 submission deadline dates"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"},{"title":"IEEE ICMLCN 2026 | IEEE International Conference on Machine Learning for Communication and Networking 2026 | IEEE ICMLCN 2026","url":"https://icmlcn2026.ieee-icmlcn.org/"}]
+
+Based on the search results, here are the ICML 2026 submission deadline dates:
+
+**Main Conference Paper Submission:**
+- Abstract submission deadline: January 23, 2026 · AoE (Jan 24, 2026, 12 Noon UTC-0)
+- Full paper submission deadline: January 28th, 2026
+
+**Position Paper Track:**
+- Abstract submission deadline: January 23, 2026 · AoE (Jan 24, 2026, 12 Noon UTC-0)
+- Full paper submission deadline: January 28, 2026 · AoE (Jan 29, 2026, 12 Noon UTC-0)
+
+**Post-Conference Workshops:**
+- Workshop application deadline: February 13, 2026, AOE
+
+The conference itself will be held Jul 6th through Sat the 11th, 2026 at the Coex Convention & Exhibition Center in Seoul.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6a70c10-08ef-47f6-92a1-a45105f855f2",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "5a875a00-315c-4f40-978d-6df4db6edc55",
+  "toolUseResult": {
+    "query": "ICML 2026 submission deadline dates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016BjCwrpZ5whttL8EsBkJ6r",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "IEEE ICMLCN 2026 | IEEE International Conference on Machine Learning for Communication and Networking 2026 | IEEE ICMLCN 2026",
+            "url": "https://icmlcn2026.ieee-icmlcn.org/"
+          }
+        ]
+      },
+      "Based on the search results, here are the ICML 2026 submission deadline dates:\n\n**Main Conference Paper Submission:**\n- Abstract submission deadline: January 23, 2026 · AoE (Jan 24, 2026, 12 Noon UTC-0)\n- Full paper submission deadline: January 28th, 2026\n\n**Position Paper Track:**\n- Abstract submission deadline: January 23, 2026 · AoE (Jan 24, 2026, 12 Noon UTC-0)\n- Full paper submission deadline: January 28, 2026 · AoE (Jan 29, 2026, 12 Noon UTC-0)\n\n**Post-Conference Workshops:**\n- Workshop application deadline: February 13, 2026, AOE\n\nThe conference itself will be held Jul 6th through Sat the 11th, 2026 at the Coex Convention & Exhibition Center in Seoul."
+    ],
+    "durationSeconds": 4.680490194999991
+  },
+  "sourceToolAssistantUUID": "d6a70c10-08ef-47f6-92a1-a45105f855f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "5a875a00-315c-4f40-978d-6df4db6edc55",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T13:03:31.575Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HkLKd7ugmKyokMKpkzKKyj`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a875a00-315c-4f40-978d-6df4db6edc55",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QC8BqGAiLDtK1EabnJ",
+  "type": "assistant",
+  "uuid": "4124eb41-972e-4bc0-a123-e85d8b900a8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjHcYMuLv7xzYKfsV4rwtS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 803,
+      "cache_read_input_tokens": 35646,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 35646,
+          "cache_creation_input_tokens": 803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T13:03:38.074Z_
+
+<details><summary>↩ Tool result · `toolu_01HkLKd7ugmKyokMKpkzKKyj`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline call for papers"
+
+Links: [{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"COLM 2026: Submission Instructions","url":"https://colmweb.org/submission-instructions.html"},{"title":"Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X","url":"https://x.com/aviral_kumar2/status/2000963068717625813"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"COLM 2026: FAQ","url":"https://colmweb.org/faq.html"},{"title":"COLM 2026 Conference | OpenReview","url":"https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026: Author Guide","url":"https://colmweb.org/AuthorGuide.html"}]
+
+Based on the search results, here are the key submission deadlines and details for COLM 2026:
+
+## Submission Deadlines
+
+The abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.
+
+## Key Requirements
+
+- Anyone who plans to submit a paper as an author or co-author will need to create (or update) their OpenReview profile by the abstract submission deadline.
+
+- There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations, and authors may use as many pages of appendices as they wish, but reviewers are not required to read the appendix.
+
+- Full papers submitted to COLM cannot be under review for another conference simultaneously, and if your paper was submitted to another venue such as ICML, it must be withdrawn from that venue prior to the COLM full paper submission deadline.
+
+## Review Timeline
+
+The rebuttal period runs from May 22 to June 8, 2026, with decision notifications on July 8, 2026, and the conference dates are October 6-9, 2026.
+
+For more details, you can visit the official COLM 2026 website at colmweb.org or submit through the OpenReview system.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4124eb41-972e-4bc0-a123-e85d8b900a8b",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "eb1c44a4-d2ab-43a9-9b10-ba3076175769",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018jtz5EGXPy8f2PxG55Hucw",
+        "content": [
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "COLM 2026: Submission Instructions",
+            "url": "https://colmweb.org/submission-instructions.html"
+          },
+          {
+            "title": "Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X",
+            "url": "https://x.com/aviral_kumar2/status/2000963068717625813"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "COLM 2026: FAQ",
+            "url": "https://colmweb.org/faq.html"
+          },
+          {
+            "title": "COLM 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026: Author Guide",
+            "url": "https://colmweb.org/AuthorGuide.html"
+          }
+        ]
+      },
+      "Based on the search results, here are the key submission deadlines and details for COLM 2026:\n\n## Submission Deadlines\n\nThe abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.\n\n## Key Requirements\n\n- Anyone who plans to submit a paper as an author or co-author will need to create (or update) their OpenReview profile by the abstract submission deadline.\n\n- There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations, and authors may use as many pages of appendices as they wish, but reviewers are not required to read the appendix.\n\n- Full papers submitted to COLM cannot be under review for another conference simultaneously, and if your paper was submitted to another venue such as ICML, it must be withdrawn from that venue prior to the COLM full paper submission deadline.\n\n## Review Timeline\n\nThe rebuttal period runs from May 22 to June 8, 2026, with decision notifications on July 8, 2026, and the conference dates are October 6-9, 2026.\n\nFor more details, you can visit the official COLM 2026 website at colmweb.org or submit through the OpenReview system."
+    ],
+    "durationSeconds": 6.4970896340000035
+  },
+  "sourceToolAssistantUUID": "4124eb41-972e-4bc0-a123-e85d8b900a8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T13:03:41.092Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bPVokph9R98EbLtAc22WP`</summary>
+
+```json
+{
+  "query": "NAACL 2026 AACL 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb1c44a4-d2ab-43a9-9b10-ba3076175769",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QCm3NwXSLJ73ivmigt",
+  "type": "assistant",
+  "uuid": "75a8ffd9-1d6c-4d28-a97d-b6412d4d1f5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FETE6MtgNZJwVapi2a75yt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 36449,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 36449,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T13:03:48.357Z_
+
+<details><summary>↩ Tool result · `toolu_019bPVokph9R98EbLtAc22WP`</summary>
+
+```text
+Web search results for query: "NAACL 2026 AACL 2026 submission deadline call for papers"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"},{"title":"Announcements | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)","url":"https://naacl.org/"},{"title":"AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X","url":"https://x.com/aaclmeeting/status/2041832211599733075"},{"title":"NAACL 2026 - Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/naacl"},{"title":"LINGUIST List 36.2630 Confs: Joint Call for Tutorial Proposals: EACL/ACL 2026 (Online)","url":"https://linguistlist.org/issues/36/2630/"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"},{"title":"NAACL: North American Chapter of the Association for Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=2170"}]
+
+Based on the web search results, here's what I found about the 2026 submission deadlines for these conferences:
+
+## AACL 2026
+
+The ARR submission deadline for long and short papers is May 25, 2026. The full call for papers details are available at https://2026.aaclnet.org/calls/main_conference_papers/.
+
+## NAACL 2026
+
+The search results indicate that NAACL 2026 will be held in Albuquerque, USA, but specific submission deadlines for main conference papers were not clearly detailed in the results. The search results mention that some 2026/2027 CFPs are not yet posted, with the table using the most recent known CFP dates for NAACL until new dates are published.
+
+For the most current and detailed information about NAACL 2026 submission deadlines, I recommend checking the official NAACL website or the ACL Rolling Review platform directly, as the CFP details appear to still be in development.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75a8ffd9-1d6c-4d28-a97d-b6412d4d1f5e",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "a3977d9f-5b73-49bb-8a55-a3f23d8f5232",
+  "toolUseResult": {
+    "query": "NAACL 2026 AACL 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QpEwR9tAUuqmotuTU7v4qc",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          },
+          {
+            "title": "Announcements | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)",
+            "url": "https://naacl.org/"
+          },
+          {
+            "title": "AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X",
+            "url": "https://x.com/aaclmeeting/status/2041832211599733075"
+          },
+          {
+            "title": "NAACL 2026 - Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/naacl"
+          },
+          {
+            "title": "LINGUIST List 36.2630 Confs: Joint Call for Tutorial Proposals: EACL/ACL 2026 (Online)",
+            "url": "https://linguistlist.org/issues/36/2630/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          },
+          {
+            "title": "NAACL: North American Chapter of the Association for Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=2170"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about the 2026 submission deadlines for these conferences:\n\n## AACL 2026\n\nThe ARR submission deadline for long and short papers is May 25, 2026. The full call for papers details are available at https://2026.aaclnet.org/calls/main_conference_papers/.\n\n## NAACL 2026\n\nThe search results indicate that NAACL 2026 will be held in Albuquerque, USA, but specific submission deadlines for main conference papers were not clearly detailed in the results. The search results mention that some 2026/2027 CFPs are not yet posted, with the table using the most recent known CFP dates for NAACL until new dates are published.\n\nFor the most current and detailed information about NAACL 2026 submission deadlines, I recommend checking the official NAACL website or the ACL Rolling Review platform directly, as the CFP details appear to still be in development."
+    ],
+    "durationSeconds": 7.260647263999999
+  },
+  "sourceToolAssistantUUID": "75a8ffd9-1d6c-4d28-a97d-b6412d4d1f5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T13:03:50.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q2T9MyDRe3APAvooSgFrf1`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline call for papers 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3977d9f-5b73-49bb-8a55-a3f23d8f5232",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QDWyKevsDjjjVJvc9L",
+  "type": "assistant",
+  "uuid": "d04a3312-bcd7-4d86-868b-c1d8bc2be617",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E21ZxDgBtDjTkgm3Lbmmhk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 37315,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 37315,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T13:03:54.908Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2T9MyDRe3APAvooSgFrf1`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline call for papers 2026"
+
+Links: [{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"}]
+
+Based on the search results, here's what I found about AAAI 2027:
+
+The AAAI 2027 paper submission deadline is TBD (UTC-12). AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.
+
+No deadlines have been announced yet as of the most recent information available. The official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/.
+
+Since the specific submission deadline hasn't been officially released yet, I recommend checking the official AAAI website or the OpenReview submission system for updates as they become available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d04a3312-bcd7-4d86-868b-c1d8bc2be617",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "80000d26-bae7-4736-8d8e-793c5c94dd9b",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline call for papers 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UNZsyb5VGMbLtg1eWo1zXc",
+        "content": [
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AAAI 2027:\n\nThe AAAI 2027 paper submission deadline is TBD (UTC-12). AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.\n\nNo deadlines have been announced yet as of the most recent information available. The official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/.\n\nSince the specific submission deadline hasn't been officially released yet, I recommend checking the official AAAI website or the OpenReview submission system for updates as they become available."
+    ],
+    "durationSeconds": 4.036207332999998
+  },
+  "sourceToolAssistantUUID": "d04a3312-bcd7-4d86-868b-c1d8bc2be617",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T13:03:57.232Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TZm1rkx74icJ5A9hbun37u`</summary>
+
+```json
+{
+  "query": "AAAI 2027 abstract submission deadline August September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80000d26-bae7-4736-8d8e-793c5c94dd9b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QDzx4p6KhDymK2Eb9E",
+  "type": "assistant",
+  "uuid": "c23f28d2-899b-4f36-98bb-d9eb2cadcdbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxtdwP48YHq1ZpVvh1dVs1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 38236,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 38236,
+          "cache_creation_input_tokens": 826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T13:04:01.038Z_
+
+<details><summary>↩ Tool result · `toolu_01TZm1rkx74icJ5A9hbun37u`</summary>
+
+```text
+Web search results for query: "AAAI 2027 abstract submission deadline August September 2026"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"}]
+
+Based on the search results, the AAAI 2027 abstract submission deadline is July 21, 2026 at 11:59 PM UTC-12. This falls within the timeframe you mentioned (August-September 2026 was referenced in your query, but the actual deadline is in July). 
+
+The full papers are due on July 28, 2026, and supplementary material and code are due by July 31, 2026. The conference will be held in Montréal, Canada from February 16-23, 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c23f28d2-899b-4f36-98bb-d9eb2cadcdbd",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "a2032da5-2594-42d5-9e42-e3c107ac876e",
+  "toolUseResult": {
+    "query": "AAAI 2027 abstract submission deadline August September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L52X5bGWXfiXtXTF9Yr7PQ",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          }
+        ]
+      },
+      "Based on the search results, the AAAI 2027 abstract submission deadline is July 21, 2026 at 11:59 PM UTC-12. This falls within the timeframe you mentioned (August-September 2026 was referenced in your query, but the actual deadline is in July). \n\nThe full papers are due on July 28, 2026, and supplementary material and code are due by July 31, 2026. The conference will be held in Montréal, Canada from February 16-23, 2027."
+    ],
+    "durationSeconds": 3.804527061999979
+  },
+  "sourceToolAssistantUUID": "c23f28d2-899b-4f36-98bb-d9eb2cadcdbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T13:04:03.780Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ayt3d9kwijS1uxs8JvmBcD`</summary>
+
+```json
+{
+  "query": "LongFact benchmark dataset huggingface long-form factuality evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2032da5-2594-42d5-9e42-e3c107ac876e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QET9f6Syf6ujCaZkSc",
+  "type": "assistant",
+  "uuid": "4789362d-30c8-4148-88ea-cab783bbbb45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VgCGdYovNdQhYrhMkaABEY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 39062,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 39062,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T13:04:11.699Z_
+
+<details><summary>↩ Tool result · `toolu_01Ayt3d9kwijS1uxs8JvmBcD`</summary>
+
+```text
+Web search results for query: "LongFact benchmark dataset huggingface long-form factuality evaluation"
+
+Links: [{"title":"Paper page - Long-form factuality in large language models","url":"https://huggingface.co/papers/2403.18802"},{"title":"FACTORY: A Challenging Human-Verified Prompt Set for Long-Form Factuality","url":"https://arxiv.org/pdf/2508.00109"},{"title":"[2403.18802] Long-form factuality in large language models","url":"https://arxiv.org/abs/2403.18802"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=long-form+factuality+benchmark"},{"title":"Long-form factuality in large language models Jerry Wei∗1 Chengrun Yang∗1","url":"https://arxiv.org/pdf/2403.18802"},{"title":"VeriFact: Enhancing Long-Form Factuality Evaluation with Refined Fact Extraction and Reference Facts","url":"https://arxiv.org/html/2505.09701"},{"title":"GitHub - google-deepmind/long-form-factuality: Benchmarking long-form factuality in large language models. Original code for our paper \"Long-form factuality in large language models\". · GitHub","url":"https://github.com/google-deepmind/long-form-factuality"},{"title":"Long-form factuality in large language models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/long-form-factuality-large-language-models"},{"title":"launch/FactBench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/launch/FactBench"},{"title":"Paper page - The FACTS Leaderboard: A Comprehensive Benchmark for Large Language Model Factuality","url":"https://huggingface.co/papers/2512.10791"}]
+
+Based on the search results, here's comprehensive information about the LongFact benchmark dataset:
+
+## Overview
+
+LongFact is a prompt set comprising thousands of questions spanning 38 topics, designed to benchmark long-form factuality in large language models.
+
+## Key Components
+
+The LongFact framework consists of three main elements:
+
+1. **LongFact Dataset**: Generated using GPT-4 to create a prompt set of thousands of questions spanning 38 topics.
+
+2. **SAFE Evaluation Method**: SAFE (Search-Augmented Factuality Evaluator) is a method where LLM agents are used as automated evaluators, utilizing an LLM to break down a long-form response into individual facts and evaluate the accuracy of each fact using a multi-step reasoning process comprising sending search queries to Google Search and determining whether a fact is supported by the search results.
+
+3. **F1@K Metric**: An F1 score adapted for long-form factuality that balances the percentage of supported facts in a response (precision) with the percentage of provided facts relative to a hyperparameter representing a user's preferred response length (recall).
+
+## Benchmarking Results
+
+Thirteen language models were benchmarked on LongFact across four model families (Gemini, GPT, Claude, and PaLM-2), finding that larger language models generally achieve better long-form factuality.
+
+On a set of ~16k individual facts, SAFE agrees with crowdsourced human annotators 72% of the time, and on a random subset of 100 disagreement cases, SAFE wins 76% of the time.
+
+## Availability
+
+LongFact, SAFE, and all experimental code are available at https://github.com/google-deepmind/long-form-factuality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4789362d-30c8-4148-88ea-cab783bbbb45",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "933e36ea-7d48-418e-9833-105450a30c18",
+  "toolUseResult": {
+    "query": "LongFact benchmark dataset huggingface long-form factuality evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YCeFvDf5GCjQ9QzTDYoGHu",
+        "content": [
+          {
+            "title": "Paper page - Long-form factuality in large language models",
+            "url": "https://huggingface.co/papers/2403.18802"
+          },
+          {
+            "title": "FACTORY: A Challenging Human-Verified Prompt Set for Long-Form Factuality",
+            "url": "https://arxiv.org/pdf/2508.00109"
+          },
+          {
+            "title": "[2403.18802] Long-form factuality in large language models",
+            "url": "https://arxiv.org/abs/2403.18802"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=long-form+factuality+benchmark"
+          },
+          {
+            "title": "Long-form factuality in large language models Jerry Wei∗1 Chengrun Yang∗1",
+            "url": "https://arxiv.org/pdf/2403.18802"
+          },
+          {
+            "title": "VeriFact: Enhancing Long-Form Factuality Evaluation with Refined Fact Extraction and Reference Facts",
+            "url": "https://arxiv.org/html/2505.09701"
+          },
+          {
+            "title": "GitHub - google-deepmind/long-form-factuality: Benchmarking long-form factuality in large language models. Original code for our paper \"Long-form factuality in large language models\". · GitHub",
+            "url": "https://github.com/google-deepmind/long-form-factuality"
+          },
+          {
+            "title": "Long-form factuality in large language models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/long-form-factuality-large-language-models"
+          },
+          {
+            "title": "launch/FactBench · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/launch/FactBench"
+          },
+          {
+            "title": "Paper page - The FACTS Leaderboard: A Comprehensive Benchmark for Large Language Model Factuality",
+            "url": "https://huggingface.co/papers/2512.10791"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about the LongFact benchmark dataset:\n\n## Overview\n\nLongFact is a prompt set comprising thousands of questions spanning 38 topics, designed to benchmark long-form factuality in large language models.\n\n## Key Components\n\nThe LongFact framework consists of three main elements:\n\n1. **LongFact Dataset**: Generated using GPT-4 to create a prompt set of thousands of questions spanning 38 topics.\n\n2. **SAFE Evaluation Method**: SAFE (Search-Augmented Factuality Evaluator) is a method where LLM agents are used as automated evaluators, utilizing an LLM to break down a long-form response into individual facts and evaluate the accuracy of each fact using a multi-step reasoning process comprising sending search queries to Google Search and determining whether a fact is supported by the search results.\n\n3. **F1@K Metric**: An F1 score adapted for long-form factuality that balances the percentage of supported facts in a response (precision) with the percentage of provided facts relative to a hyperparameter representing a user's preferred response length (recall).\n\n## Benchmarking Results\n\nThirteen language models were benchmarked on LongFact across four model families (Gemini, GPT, Claude, and PaLM-2), finding that larger language models generally achieve better long-form factuality.\n\nOn a set of ~16k individual facts, SAFE agrees with crowdsourced human annotators 72% of the time, and on a random subset of 100 disagreement cases, SAFE wins 76% of the time.\n\n## Availability\n\nLongFact, SAFE, and all experimental code are available at https://github.com/google-deepmind/long-form-factuality."
+    ],
+    "durationSeconds": 7.913520167999988
+  },
+  "sourceToolAssistantUUID": "4789362d-30c8-4148-88ea-cab783bbbb45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "933e36ea-7d48-418e-9833-105450a30c18",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T13:04:14.507Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012EKU4RzwfHziQTxmcobJCJ`</summary>
+
+```json
+{
+  "query": "semantic uncertainty LLM estimation per-token hidden state implementation github 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "933e36ea-7d48-418e-9833-105450a30c18",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QFEjZprJ3LVKK3pn1i",
+  "type": "assistant",
+  "uuid": "a3cea1dc-4b01-4e49-9c95-3138daa03a8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NyrFj6PcDDER4Q94A12TzL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 39763,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 39763,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T13:04:24.031Z_
+
+<details><summary>↩ Tool result · `toolu_012EKU4RzwfHziQTxmcobJCJ`</summary>
+
+```text
+Web search results for query: "semantic uncertainty LLM estimation per-token hidden state implementation github 2025 2026"
+
+Links: [{"title":"GitHub - OATML/semantic-entropy-probes · GitHub","url":"https://github.com/OATML/semantic-entropy-probes"},{"title":"GitHub - UCSB-NLP-Chang/llm_uncertainty · GitHub","url":"https://github.com/UCSB-NLP-Chang/llm_uncertainty"},{"title":"GitHub - MaHuanAAA/logtoku · GitHub","url":"https://github.com/MaHuanAAA/logtoku"},{"title":"Build software better, together","url":"https://github.com/topics/hallucination-mitigation"},{"title":"GitHub - jlko/semantic_uncertainty: Codebase for reproducing the experiments of the semantic uncertainty paper (short-phrase and sentence-length experiments).","url":"https://github.com/jlko/semantic_uncertainty"},{"title":"A Survey on Uncertainty Quantification of Large Language Models: Taxonomy, Open Research Challenges, and Future Directions | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3744238"},{"title":"Encoding Semantic Uncertainty in the Latent Space of LLMs","url":"https://openreview.net/pdf?id=BbZKxrZCNn"},{"title":"GitHub - jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness: Awesome-LLM-Robustness: a curated list of Uncertainty, Reliability and Robustness in Large Language Models · GitHub","url":"https://github.com/jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness"},{"title":"GitHub - lorenzkuhn/semantic_uncertainty · GitHub","url":"https://github.com/lorenzkuhn/semantic_uncertainty"},{"title":"GitHub - userTogrul/large-model-calibration-and-uncertainty: A collection of source codes for various methods of quantification of uncertainty and calibration in large models. · GitHub","url":"https://github.com/userTogrul/large-model-calibration-and-uncertainty"}]
+
+I found several relevant GitHub repositories and research implementations related to semantic uncertainty estimation in LLMs using per-token hidden states. Here are the key findings:
+
+## Main Repositories Found
+
+### 1. **Semantic Entropy Probes (OATML/semantic-entropy-probes)**
+This repository retrieves saved model hidden states on two token positions (TBG, SLT) with which linear probes are trained to predict model semantic uncertainty and further predict correctness. The approach directly approximates semantic entropy from the hidden states of a single generation, and is simple to train without requiring sampling multiple model generations at test time.
+
+### 2. **LogTokU (MaHuanAAA/logtoku)**
+This repository contains the official implementation for the paper "Estimating LLM Uncertainty with Evidence (Logits)", introducing a novel approach for efficient uncertainty quantification in large language models. It also includes how to utilize this method to enhance Semantic Entropy.
+
+### 3. **Original Semantic Uncertainty (jlko/semantic_uncertainty)**
+This standard implementation executes a script that samples responses (and their likelihoods/hidden states) from models for a set of input questions.
+
+### 4. **UCSB LLM Uncertainty (UCSB-NLP-Chang/llm_uncertainty)**
+This repository provides implementations for clustering semantically equivalent answers to better compute output distributions.
+
+## Related Techniques
+
+Token-level uncertainty quantification methods utilize metrics to estimate randomness in probability distributions associated with LLM responses, with some computing entropy of probability distributions over tokens or semantic clusters (referred to as semantic entropy) to estimate the LLM's confidence.
+
+These implementations align with recent research through 2025 and provide practical GitHub-based code for implementing semantic uncertainty estimation using per-token hidden state approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3cea1dc-4b01-4e49-9c95-3138daa03a8c",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "9575ea9d-07a5-4751-aa26-63bcb046e1f6",
+  "toolUseResult": {
+    "query": "semantic uncertainty LLM estimation per-token hidden state implementation github 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LAvbcHjJKfFxYQfYWt9kf4",
+        "content": [
+          {
+            "title": "GitHub - OATML/semantic-entropy-probes · GitHub",
+            "url": "https://github.com/OATML/semantic-entropy-probes"
+          },
+          {
+            "title": "GitHub - UCSB-NLP-Chang/llm_uncertainty · GitHub",
+            "url": "https://github.com/UCSB-NLP-Chang/llm_uncertainty"
+          },
+          {
+            "title": "GitHub - MaHuanAAA/logtoku · GitHub",
+            "url": "https://github.com/MaHuanAAA/logtoku"
+          },
+          {
+            "title": "Build software better, together",
+            "url": "https://github.com/topics/hallucination-mitigation"
+          },
+          {
+            "title": "GitHub - jlko/semantic_uncertainty: Codebase for reproducing the experiments of the semantic uncertainty paper (short-phrase and sentence-length experiments).",
+            "url": "https://github.com/jlko/semantic_uncertainty"
+          },
+          {
+            "title": "A Survey on Uncertainty Quantification of Large Language Models: Taxonomy, Open Research Challenges, and Future Directions | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3744238"
+          },
+          {
+            "title": "Encoding Semantic Uncertainty in the Latent Space of LLMs",
+            "url": "https://openreview.net/pdf?id=BbZKxrZCNn"
+          },
+          {
+            "title": "GitHub - jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness: Awesome-LLM-Robustness: a curated list of Uncertainty, Reliability and Robustness in Large Language Models · GitHub",
+            "url": "https://github.com/jxzhangjhu/Awesome-LLM-Uncertainty-Reliability-Robustness"
+          },
+          {
+            "title": "GitHub - lorenzkuhn/semantic_uncertainty · GitHub",
+            "url": "https://github.com/lorenzkuhn/semantic_uncertainty"
+          },
+          {
+            "title": "GitHub - userTogrul/large-model-calibration-and-uncertainty: A collection of source codes for various methods of quantification of uncertainty and calibration in large models. · GitHub",
+            "url": "https://github.com/userTogrul/large-model-calibration-and-uncertainty"
+          }
+        ]
+      },
+      "I found several relevant GitHub repositories and research implementations related to semantic uncertainty estimation in LLMs using per-token hidden states. Here are the key findings:\n\n## Main Repositories Found\n\n### 1. **Semantic Entropy Probes (OATML/semantic-entropy-probes)**\nThis repository retrieves saved model hidden states on two token positions (TBG, SLT) with which linear probes are trained to predict model semantic uncertainty and further predict correctness. The approach directly approximates semantic entropy from the hidden states of a single generation, and is simple to train without requiring sampling multiple model generations at test time.\n\n### 2. **LogTokU (MaHuanAAA/logtoku)**\nThis repository contains the official implementation for the paper \"Estimating LLM Uncertainty with Evidence (Logits)\", introducing a novel approach for efficient uncertainty quantification in large language models. It also includes how to utilize this method to enhance Semantic Entropy.\n\n### 3. **Original Semantic Uncertainty (jlko/semantic_uncertainty)**\nThis standard implementation executes a script that samples responses (and their likelihoods/hidden states) from models for a set of input questions.\n\n### 4. **UCSB LLM Uncertainty (UCSB-NLP-Chang/llm_uncertainty)**\nThis repository provides implementations for clustering semantically equivalent answers to better compute output distributions.\n\n## Related Techniques\n\nToken-level uncertainty quantification methods utilize metrics to estimate randomness in probability distributions associated with LLM responses, with some computing entropy of probability distributions over tokens or semantic clusters (referred to as semantic entropy) to estimate the LLM's confidence.\n\nThese implementations align with recent research through 2025 and provide practical GitHub-based code for implementing semantic uncertainty estimation using per-token hidden state approaches."
+    ],
+    "durationSeconds": 9.519507225999988
+  },
+  "sourceToolAssistantUUID": "a3cea1dc-4b01-4e49-9c95-3138daa03a8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77 · 2026-05-15T13:04:24.033Z_
+
+```json
+{
+  "parentUuid": "9575ea9d-07a5-4751-aa26-63bcb046e1f6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d87ac755-d19f-499c-9bdd-dccb40d0671f",
+  "timestamp": "2026-05-15T13:04:24.033Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T13:04:27.074Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QjewuTeKYeG9kG43pTNdko`</summary>
+
+```json
+{
+  "query": "per-claim activation steering representation engineering long-form generation arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d87ac755-d19f-499c-9bdd-dccb40d0671f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QG9TbF6zAmoydGqWkB",
+  "type": "assistant",
+  "uuid": "691b42ed-44c8-467a-b9a2-290a7b030cf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dKk6BRogrgX1rmMGEjxvs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 40737,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 40737,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T13:04:36.409Z_
+
+<details><summary>↩ Tool result · `toolu_01QjewuTeKYeG9kG43pTNdko`</summary>
+
+```text
+Web search results for query: "per-claim activation steering representation engineering long-form generation arxiv 2026"
+
+Links: [{"title":"STEERING LANGUAGE MODELS WITH ACTIVATION EN- GINEERING Alexander Matt Turner","url":"https://arxiv.org/pdf/2308.10248"},{"title":"Steering Language Models With Activation Engineering","url":"https://arxiv.org/html/2308.10248v5"},{"title":"[2308.10248] Steering Language Models With Activation Engineering","url":"https://arxiv.org/abs/2308.10248"},{"title":"Activation Addition: Steering Language Models Without Optimization","url":"https://arxiv.org/html/2308.10248v4"},{"title":"Representation Engineering for Large-Language Models: Survey and Research Challenges","url":"https://arxiv.org/html/2502.17601v1"},{"title":"GitHub - ZFancy/awesome-activation-engineering: A curated list of resources for activation engineering · GitHub","url":"https://github.com/ZFancy/awesome-activation-engineering"},{"title":"[2308.10248] Activation Addition: Steering Language Models Without Optimization","url":"https://ar5iv.labs.arxiv.org/html/2308.10248"},{"title":"[2410.16314] Steering Large Language Models using Conceptors: Improving Addition-Based Activation Engineering","url":"https://arxiv.org/abs/2410.16314"},{"title":"Steering Awareness: Detecting Activation Steering from Within","url":"https://arxiv.org/html/2511.21399v3"},{"title":"STEERING LANGUAGE MODELS WITH ACTIVATION EN","url":"https://openreview.net/pdf?id=2XBPdPIcFK"}]
+
+I found search results related to activation steering and representation engineering, though the specific paper you're looking for with that exact title doesn't appear in the results. However, I can share what I found:
+
+The search returned several highly relevant papers on activation steering and representation engineering:
+
+1. **"Steering Language Models With Activation Engineering"** by Alexander Matt Turner et al. (arXiv 2308.10248): This introduces activation engineering as inference-time modification of activations to control model outputs, with the Activation Addition (ActAdd) technique which contrasts intermediate activations on prompt pairs to compute a steering vector.
+
+2. **"Representation Engineering for Large-Language Models: Survey and Research Challenges"** (arXiv 2502.17601, February 2025): This work seeks to resolve interaction problems through representation engineering, utilizing samples of contrasting inputs to detect and edit high-level representations of concepts such as honesty, harmfulness or power-seeking, formalizing the goals and methods of representation engineering.
+
+3. **Recent work on steering awareness** (arXiv 2511.21399, March 2026): Activation steering modifies model behavior by intervening on internal representations and has been applied to reduce sycophancy and promote honesty.
+
+If you're looking for a specific 2026 paper on "per-claim activation steering" for long-form generation, it may be a very recent publication that hasn't yet appeared in major search indexes, or it might use slightly different terminology than your search query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "691b42ed-44c8-467a-b9a2-290a7b030cf4",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "082acf1a-409e-428c-9416-f3397bad6741",
+  "toolUseResult": {
+    "query": "per-claim activation steering representation engineering long-form generation arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016jQvoJncDcvXju6E6CQUwC",
+        "content": [
+          {
+            "title": "STEERING LANGUAGE MODELS WITH ACTIVATION EN- GINEERING Alexander Matt Turner",
+            "url": "https://arxiv.org/pdf/2308.10248"
+          },
+          {
+            "title": "Steering Language Models With Activation Engineering",
+            "url": "https://arxiv.org/html/2308.10248v5"
+          },
+          {
+            "title": "[2308.10248] Steering Language Models With Activation Engineering",
+            "url": "https://arxiv.org/abs/2308.10248"
+          },
+          {
+            "title": "Activation Addition: Steering Language Models Without Optimization",
+            "url": "https://arxiv.org/html/2308.10248v4"
+          },
+          {
+            "title": "Representation Engineering for Large-Language Models: Survey and Research Challenges",
+            "url": "https://arxiv.org/html/2502.17601v1"
+          },
+          {
+            "title": "GitHub - ZFancy/awesome-activation-engineering: A curated list of resources for activation engineering · GitHub",
+            "url": "https://github.com/ZFancy/awesome-activation-engineering"
+          },
+          {
+            "title": "[2308.10248] Activation Addition: Steering Language Models Without Optimization",
+            "url": "https://ar5iv.labs.arxiv.org/html/2308.10248"
+          },
+          {
+            "title": "[2410.16314] Steering Large Language Models using Conceptors: Improving Addition-Based Activation Engineering",
+            "url": "https://arxiv.org/abs/2410.16314"
+          },
+          {
+            "title": "Steering Awareness: Detecting Activation Steering from Within",
+            "url": "https://arxiv.org/html/2511.21399v3"
+          },
+          {
+            "title": "STEERING LANGUAGE MODELS WITH ACTIVATION EN",
+            "url": "https://openreview.net/pdf?id=2XBPdPIcFK"
+          }
+        ]
+      },
+      "I found search results related to activation steering and representation engineering, though the specific paper you're looking for with that exact title doesn't appear in the results. However, I can share what I found:\n\nThe search returned several highly relevant papers on activation steering and representation engineering:\n\n1. **\"Steering Language Models With Activation Engineering\"** by Alexander Matt Turner et al. (arXiv 2308.10248): This introduces activation engineering as inference-time modification of activations to control model outputs, with the Activation Addition (ActAdd) technique which contrasts intermediate activations on prompt pairs to compute a steering vector.\n\n2. **\"Representation Engineering for Large-Language Models: Survey and Research Challenges\"** (arXiv 2502.17601, February 2025): This work seeks to resolve interaction problems through representation engineering, utilizing samples of contrasting inputs to detect and edit high-level representations of concepts such as honesty, harmfulness or power-seeking, formalizing the goals and methods of representation engineering.\n\n3. **Recent work on steering awareness** (arXiv 2511.21399, March 2026): Activation steering modifies model behavior by intervening on internal representations and has been applied to reduce sycophancy and promote honesty.\n\nIf you're looking for a specific 2026 paper on \"per-claim activation steering\" for long-form generation, it may be a very recent publication that hasn't yet appeared in major search indexes, or it might use slightly different terminology than your search query."
+    ],
+    "durationSeconds": 9.331787098000001
+  },
+  "sourceToolAssistantUUID": "691b42ed-44c8-467a-b9a2-290a7b030cf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-15T13:04:38.967Z_
+
+Good — no one has done per-claim VUF steering yet. Let me do a few more targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "082acf1a-409e-428c-9416-f3397bad6741",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QH4PmgXDQp1WTAZviE",
+  "type": "assistant",
+  "uuid": "5b834498-81c2-4386-b512-ccd81bb0f06e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NFwUVac2TzqjZAYgCGThN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 41880,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 41880,
+          "cache_creation_input_tokens": 844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T13:04:39.792Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mbj8XUoF2SuvtGzsBbJpFu`</summary>
+
+```json
+{
+  "query": "\"verbal uncertainty\" \"claim level\" OR \"per-claim\" OR \"atomic\" steering intervention 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b834498-81c2-4386-b512-ccd81bb0f06e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QH4PmgXDQp1WTAZviE",
+  "type": "assistant",
+  "uuid": "ff709292-52a9-4fae-b041-72675e406cc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NFwUVac2TzqjZAYgCGThN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 41880,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 41880,
+          "cache_creation_input_tokens": 844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T13:04:44.833Z_
+
+<details><summary>↩ Tool result · `toolu_01Mbj8XUoF2SuvtGzsBbJpFu`</summary>
+
+```text
+Web search results for query: ""verbal uncertainty" "claim level" OR "per-claim" OR "atomic" steering intervention 2026"
+
+Links: [{"title":"Arms control and the management of uncertainty after New START - Bulletin of the Atomic Scientists","url":"https://thebulletin.org/2026/02/arms-control-and-the-management-of-uncertainty-after-new-start/"},{"title":"‘On level of atomic bomb’: Iran highlights Hormuz importance amid US talks | US-Israel war on Iran News | Al Jazeera","url":"https://www.aljazeera.com/news/2026/5/9/on-level-of-atomic-bomb-iran-highlights-hormuz-importance-amid-us-talks"},{"title":"Federal Register :: Streamlining Contested Adjudications in Licensing Proceedings","url":"https://www.federalregister.gov/documents/2026/03/03/2026-04187/streamlining-contested-adjudications-in-licensing-proceedings"},{"title":"Federal Register :: Risk-Informed, Technology-Inclusive Regulatory Framework for Advanced Reactors","url":"https://www.federalregister.gov/documents/2026/03/30/2026-06048/risk-informed-technology-inclusive-regulatory-framework-for-advanced-reactors"},{"title":"Top Ten Global Risks for 2026 • Stimson Center","url":"https://www.stimson.org/2026/top-ten-global-risks-for-2026/"},{"title":"Trump's Claim About the Obama Nuclear Deal and Iran's Nuclear Development - FactCheck.org","url":"https://www.factcheck.org/2026/03/trumps-claim-about-the-obama-nuclear-deal-and-irans-nuclear-development/"},{"title":"- DEPARTMENT OF DEFENSE AUTHORIZATION FOR APPROPRIATIONS FOR FISCAL YEAR 2019 AND THE FUTURE YEARS DEFENSE PROGRAM","url":"https://www.govinfo.gov/content/pkg/CHRG-115shrg42143/html/CHRG-115shrg42143.htm"},{"title":"Verify, Verify, Verify: How Technological Disruption is Redefining Nuclear Risk • Stimson Center","url":"https://www.stimson.org/2025/verify-verify-verify-how-technological-disruption-is-redefining-nuclear-risk/"},{"title":"Interpreting and propagating the uncertainty of the standard atomic weights (IUPAC Technical Report) - R Discovery","url":"https://discovery.researcher.life/article/interpreting-and-propagating-the-uncertainty-of-the-standard-atomic-weights-iupac-technical-report/b1fbda678805346b8af1f129e2a59c81"},{"title":"Reevaluation of Radiation Protection Standards for Workers","url":"https://inl.gov/content/uploads/2023/07/INLRPT-25-85463_Reevaluation-of-Radiation-Protection-Standards-R0-Final.pdf"}]
+
+The search results don't contain information directly related to your query about "verbal uncertainty," "claim level," "per-claim," or "atomic" in relation to steering interventions in 2026. 
+
+The results primarily focus on nuclear policy, arms control, radiation protection, and nuclear energy regulation from 2026, but none of these match the specific technical or research topic you're looking for.
+
+Could you provide more context about what you're searching for? Are you looking for:
+- Academic research on AI/ML steering interventions?
+- Information about uncertainty quantification methods?
+- A specific paper or publication?
+- Research from a particular field (machine learning, AI safety, etc.)?
+
+This would help me refine the search to find more relevant results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff709292-52a9-4fae-b041-72675e406cc9",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "5fbb07c9-42cb-4f48-80ad-2967ff6bff26",
+  "toolUseResult": {
+    "query": "\"verbal uncertainty\" \"claim level\" OR \"per-claim\" OR \"atomic\" steering intervention 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NKQEJ4yrYbED2wNJjpBAhp",
+        "content": [
+          {
+            "title": "Arms control and the management of uncertainty after New START - Bulletin of the Atomic Scientists",
+            "url": "https://thebulletin.org/2026/02/arms-control-and-the-management-of-uncertainty-after-new-start/"
+          },
+          {
+            "title": "‘On level of atomic bomb’: Iran highlights Hormuz importance amid US talks | US-Israel war on Iran News | Al Jazeera",
+            "url": "https://www.aljazeera.com/news/2026/5/9/on-level-of-atomic-bomb-iran-highlights-hormuz-importance-amid-us-talks"
+          },
+          {
+            "title": "Federal Register :: Streamlining Contested Adjudications in Licensing Proceedings",
+            "url": "https://www.federalregister.gov/documents/2026/03/03/2026-04187/streamlining-contested-adjudications-in-licensing-proceedings"
+          },
+          {
+            "title": "Federal Register :: Risk-Informed, Technology-Inclusive Regulatory Framework for Advanced Reactors",
+            "url": "https://www.federalregister.gov/documents/2026/03/30/2026-06048/risk-informed-technology-inclusive-regulatory-framework-for-advanced-reactors"
+          },
+          {
+            "title": "Top Ten Global Risks for 2026 • Stimson Center",
+            "url": "https://www.stimson.org/2026/top-ten-global-risks-for-2026/"
+          },
+          {
+            "title": "Trump's Claim About the Obama Nuclear Deal and Iran's Nuclear Development - FactCheck.org",
+            "url": "https://www.factcheck.org/2026/03/trumps-claim-about-the-obama-nuclear-deal-and-irans-nuclear-development/"
+          },
+          {
+            "title": "- DEPARTMENT OF DEFENSE AUTHORIZATION FOR APPROPRIATIONS FOR FISCAL YEAR 2019 AND THE FUTURE YEARS DEFENSE PROGRAM",
+            "url": "https://www.govinfo.gov/content/pkg/CHRG-115shrg42143/html/CHRG-115shrg42143.htm"
+          },
+          {
+            "title": "Verify, Verify, Verify: How Technological Disruption is Redefining Nuclear Risk • Stimson Center",
+            "url": "https://www.stimson.org/2025/verify-verify-verify-how-technological-disruption-is-redefining-nuclear-risk/"
+          },
+          {
+            "title": "Interpreting and propagating the uncertainty of the standard atomic weights (IUPAC Technical Report) - R Discovery",
+            "url": "https://discovery.researcher.life/article/interpreting-and-propagating-the-uncertainty-of-the-standard-atomic-weights-iupac-technical-report/b1fbda678805346b8af1f129e2a59c81"
+          },
+          {
+            "title": "Reevaluation of Radiation Protection Standards for Workers",
+            "url": "https://inl.gov/content/uploads/2023/07/INLRPT-25-85463_Reevaluation-of-Radiation-Protection-Standards-R0-Final.pdf"
+          }
+        ]
+      },
+      "The search results don't contain information directly related to your query about \"verbal uncertainty,\" \"claim level,\" \"per-claim,\" or \"atomic\" in relation to steering interventions in 2026. \n\nThe results primarily focus on nuclear policy, arms control, radiation protection, and nuclear energy regulation from 2026, but none of these match the specific technical or research topic you're looking for.\n\nCould you provide more context about what you're searching for? Are you looking for:\n- Academic research on AI/ML steering interventions?\n- Information about uncertainty quantification methods?\n- A specific paper or publication?\n- Research from a particular field (machine learning, AI safety, etc.)?\n\nThis would help me refine the search to find more relevant results."
+    ],
+    "durationSeconds": 5.036973140000017
+  },
+  "sourceToolAssistantUUID": "ff709292-52a9-4fae-b041-72675e406cc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-15T13:04:51.010Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014bV8mJpae7euNRUWeJp3at`</summary>
+
+```json
+{
+  "query": "OpenReview EMNLP 2026 ICLR 2027 representation uncertainty hallucination claim calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fbb07c9-42cb-4f48-80ad-2967ff6bff26",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QHgPDqGTQXYkBZK1Vj",
+  "type": "assistant",
+  "uuid": "a3bcb005-2c78-441f-b440-8b3bd1bfe7fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dh58zPL1MRRPS4SomhVUsR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1019,
+      "cache_read_input_tokens": 42724,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 42724,
+          "cache_creation_input_tokens": 1019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T13:04:59.738Z_
+
+<details><summary>↩ Tool result · `toolu_014bV8mJpae7euNRUWeJp3at`</summary>
+
+```text
+Web search results for query: "OpenReview EMNLP 2026 ICLR 2027 representation uncertainty hallucination claim calibration"
+
+Links: [{"title":"HALDEC-BENCH: BENCHMARKING HALLUCINATION ...","url":"https://openreview.net/pdf/71af79f794a0761e06e6c998ae2d8fcb033560d3.pdf"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"Workshop proposal for ICLR 2026","url":"https://openreview.net/pdf?id=zos64EBGgS"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=lOoRJo8xWy"},{"title":"HALLUCINATION MITIGATION IN LARGE VISION","url":"https://openreview.net/pdf?id=Km4l2Fi2lc"},{"title":"Venues | OpenReview","url":"https://openreview.net/"},{"title":"EMNLP 2026 | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026"},{"title":"Exposing Hallucinations To Suppress Them: VLMs Representation Editing With Generative Anchors | OpenReview","url":"https://openreview.net/forum?id=cBhqgPtEqw"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"INVESTIGATING UNCERTAINTY CALIBRATION","url":"https://openreview.net/pdf?id=I1OcffsjUX"}]
+
+Based on the web search results, here's what I found related to your query about OpenReview papers on EMNLP 2026, ICLR 2026/2027, and topics around representation, uncertainty, hallucination, claim, and calibration:
+
+## Key Findings:
+
+**ICLR 2026 Papers:**
+
+Methods for estimating epistemic uncertainty by iteratively querying models and measuring probabilistic inconsistencies have limitations, with gains mainly reported on multi-label data and limited benefits on standard single-label QA. Additionally, low aleatoric uncertainty is especially prone to hallucination and is best complemented by epistemic uncertainty.
+
+A paper titled "HALDEC-BENCH: BENCHMARKING HALLUCINATION" is under review as a conference paper at ICLR 2026, and another paper on "HALLUCINATION MITIGATION IN LARGE VISION" is also under review at ICLR 2026.
+
+**Related Research Topics:**
+
+Studies on hallucinations include factual inaccuracies, fabricated/phantom citations, and calibration of model confidence/trust, alongside leak-resistant evaluation and mitigation.
+
+One approach introduces a novel hallucination amplification mechanism where a caption is projected into the visual space via a text-to-image model to reveal implicit hallucination signals, serving as a negative anchor.
+
+The search results indicate active research in these areas at major venues, particularly focusing on uncertainty quantification, hallucination detection, and calibration methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3bcb005-2c78-441f-b440-8b3bd1bfe7fc",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "cacd6205-ed45-4bae-ba96-8f09ac23e8f7",
+  "toolUseResult": {
+    "query": "OpenReview EMNLP 2026 ICLR 2027 representation uncertainty hallucination claim calibration",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YVWhLzXhvqUEACk22FRJxZ",
+        "content": [
+          {
+            "title": "HALDEC-BENCH: BENCHMARKING HALLUCINATION ...",
+            "url": "https://openreview.net/pdf/71af79f794a0761e06e6c998ae2d8fcb033560d3.pdf"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "Workshop proposal for ICLR 2026",
+            "url": "https://openreview.net/pdf?id=zos64EBGgS"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=lOoRJo8xWy"
+          },
+          {
+            "title": "HALLUCINATION MITIGATION IN LARGE VISION",
+            "url": "https://openreview.net/pdf?id=Km4l2Fi2lc"
+          },
+          {
+            "title": "Venues | OpenReview",
+            "url": "https://openreview.net/"
+          },
+          {
+            "title": "EMNLP 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026"
+          },
+          {
+            "title": "Exposing Hallucinations To Suppress Them: VLMs Representation Editing With Generative Anchors | OpenReview",
+            "url": "https://openreview.net/forum?id=cBhqgPtEqw"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "INVESTIGATING UNCERTAINTY CALIBRATION",
+            "url": "https://openreview.net/pdf?id=I1OcffsjUX"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about OpenReview papers on EMNLP 2026, ICLR 2026/2027, and topics around representation, uncertainty, hallucination, claim, and calibration:\n\n## Key Findings:\n\n**ICLR 2026 Papers:**\n\nMethods for estimating epistemic uncertainty by iteratively querying models and measuring probabilistic inconsistencies have limitations, with gains mainly reported on multi-label data and limited benefits on standard single-label QA. Additionally, low aleatoric uncertainty is especially prone to hallucination and is best complemented by epistemic uncertainty.\n\nA paper titled \"HALDEC-BENCH: BENCHMARKING HALLUCINATION\" is under review as a conference paper at ICLR 2026, and another paper on \"HALLUCINATION MITIGATION IN LARGE VISION\" is also under review at ICLR 2026.\n\n**Related Research Topics:**\n\nStudies on hallucinations include factual inaccuracies, fabricated/phantom citations, and calibration of model confidence/trust, alongside leak-resistant evaluation and mitigation.\n\nOne approach introduces a novel hallucination amplification mechanism where a caption is projected into the visual space via a text-to-image model to reveal implicit hallucination signals, serving as a negative anchor.\n\nThe search results indicate active research in these areas at major venues, particularly focusing on uncertainty quantification, hallucination detection, and calibration methods."
+    ],
+    "durationSeconds": 8.723825147000024
+  },
+  "sourceToolAssistantUUID": "a3bcb005-2c78-441f-b440-8b3bd1bfe7fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "cacd6205-ed45-4bae-ba96-8f09ac23e8f7",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-15T13:05:02.352Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014n92PvYSkkmTswNCfqhSFx`</summary>
+
+```json
+{
+  "query": "Qwen3 LLaMA 4 open source model 2026 parameters release"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cacd6205-ed45-4bae-ba96-8f09ac23e8f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QJnB1KRbFTcYHsnUsP",
+  "type": "assistant",
+  "uuid": "ab958ce8-eeb8-4e98-81d5-58c1320e618f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGeZ5JABFFmzFu9ZJaEJzN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 43743,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 43743,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T13:05:11.545Z_
+
+<details><summary>↩ Tool result · `toolu_014n92PvYSkkmTswNCfqhSFx`</summary>
+
+```text
+Web search results for query: "Qwen3 LLaMA 4 open source model 2026 parameters release"
+
+Links: [{"title":"Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License","url":"https://huggingface.co/blog/daya-shankar/open-source-llms"},{"title":"New Ollama Models May 2026: Latest Releases & Updates","url":"https://www.promptquorum.com/local-llms/top-open-source-models-ollama"},{"title":"Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org","url":"https://whatllm.org/best-open-source-llm"},{"title":"Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5","url":"https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"},{"title":"Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag","url":"https://till-freitag.com/en/blog/open-source-llm-comparison"},{"title":"Open Source LLM Comparison Table (2026) | ComputingForGeeks","url":"https://computingforgeeks.com/open-source-llm-comparison/"},{"title":"Open-Source LLM Landscape 2026: DeepSeek V4 vs Llama 4 vs Qwen 3.5 vs Gemma 4","url":"https://codersera.com/blog/open-source-llms-landscape-2026/"},{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"Open-Source AI Models 2026: Llama 4 vs Qwen 3.6 vs DeepSeek V4 | Get AI Perks","url":"https://www.getaiperks.com/en/blogs/48-open-source-ai-models-2026"},{"title":"Best Local LLM Models 2026 | Developer Comparison","url":"https://www.sitepoint.com/best-local-llm-models-2026/"}]
+
+Based on the search results, here's what I found about Qwen3, LLaMA 4, and other open-source models released in 2026:
+
+## Qwen3 / Qwen 3.5 / Qwen 3.6
+
+Qwen3 is the fastest-growing model family in the Ollama library, with Qwen3 and the new Qwen 3.6 dense variant quickly displacing Qwen2.5. Qwen3 is a strong fit when you need multilingual support, commercial flexibility, and a broad ecosystem of fine-tunes, quantizations, and deployment examples.
+
+The Qwen family includes multiple parameter configurations:
+- Mistral's own Medium 3.5 announcement directly compares against "Qwen3.5 397B A17B," confirming a larger MoE flavor exists in the family.
+- Qwen 3.6 27B achieved 77.2% SWE-bench as the best dense coding model.
+
+## Llama 4
+
+Meta released Llama 4 in April 2026 with Scout (17B active, 109B total, MoE) and Maverick (17B active, 400B total) variants. The Llama 4 family uses Mixture-of-Experts (MoE) architecture — only 17B parameters are active per token, making Scout runnable on ~10 GB VRAM despite having 109B total parameters.
+
+Scout's headline feature is its 10 million token context window, the longest of any open model by a wide margin.
+
+## Other Major 2026 Releases
+
+In the last 30 days, five frontier-class open-weight LLMs shipped: Meta's Llama 4 (Scout + Maverick), Alibaba's Qwen 3.5, DeepSeek V4 (Pro + Flash), Google's Gemma 4, and — most recently — Mistral Medium 3.5 on April 29.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab958ce8-eeb8-4e98-81d5-58c1320e618f",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "323d1073-0bb9-4747-912a-714abd7cf7bd",
+  "toolUseResult": {
+    "query": "Qwen3 LLaMA 4 open source model 2026 parameters release",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HwGGNDf7hmK7FQMjAmF36T",
+        "content": [
+          {
+            "title": "Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License",
+            "url": "https://huggingface.co/blog/daya-shankar/open-source-llms"
+          },
+          {
+            "title": "New Ollama Models May 2026: Latest Releases & Updates",
+            "url": "https://www.promptquorum.com/local-llms/top-open-source-models-ollama"
+          },
+          {
+            "title": "Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5",
+            "url": "https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"
+          },
+          {
+            "title": "Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag",
+            "url": "https://till-freitag.com/en/blog/open-source-llm-comparison"
+          },
+          {
+            "title": "Open Source LLM Comparison Table (2026) | ComputingForGeeks",
+            "url": "https://computingforgeeks.com/open-source-llm-comparison/"
+          },
+          {
+            "title": "Open-Source LLM Landscape 2026: DeepSeek V4 vs Llama 4 vs Qwen 3.5 vs Gemma 4",
+            "url": "https://codersera.com/blog/open-source-llms-landscape-2026/"
+          },
+          {
+            "title": "Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy",
+            "url": "https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"
+          },
+          {
+            "title": "Open-Source AI Models 2026: Llama 4 vs Qwen 3.6 vs DeepSeek V4 | Get AI Perks",
+            "url": "https://www.getaiperks.com/en/blogs/48-open-source-ai-models-2026"
+          },
+          {
+            "title": "Best Local LLM Models 2026 | Developer Comparison",
+            "url": "https://www.sitepoint.com/best-local-llm-models-2026/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3, LLaMA 4, and other open-source models released in 2026:\n\n## Qwen3 / Qwen 3.5 / Qwen 3.6\n\nQwen3 is the fastest-growing model family in the Ollama library, with Qwen3 and the new Qwen 3.6 dense variant quickly displacing Qwen2.5. Qwen3 is a strong fit when you need multilingual support, commercial flexibility, and a broad ecosystem of fine-tunes, quantizations, and deployment examples.\n\nThe Qwen family includes multiple parameter configurations:\n- Mistral's own Medium 3.5 announcement directly compares against \"Qwen3.5 397B A17B,\" confirming a larger MoE flavor exists in the family.\n- Qwen 3.6 27B achieved 77.2% SWE-bench as the best dense coding model.\n\n## Llama 4\n\nMeta released Llama 4 in April 2026 with Scout (17B active, 109B total, MoE) and Maverick (17B active, 400B total) variants. The Llama 4 family uses Mixture-of-Experts (MoE) architecture — only 17B parameters are active per token, making Scout runnable on ~10 GB VRAM despite having 109B total parameters.\n\nScout's headline feature is its 10 million token context window, the longest of any open model by a wide margin.\n\n## Other Major 2026 Releases\n\nIn the last 30 days, five frontier-class open-weight LLMs shipped: Meta's Llama 4 (Scout + Maverick), Alibaba's Qwen 3.5, DeepSeek V4 (Pro + Flash), Google's Gemma 4, and — most recently — Mistral Medium 3.5 on April 29."
+    ],
+    "durationSeconds": 9.188800700000021
+  },
+  "sourceToolAssistantUUID": "ab958ce8-eeb8-4e98-81d5-58c1320e618f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T13:05:14.526Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018MzXYFwwpcDJLvgCrpQLkf`</summary>
+
+```json
+{
+  "query": "Qwen 3.5 Llama 4 Maverick activation intervention representation engineering compatible transformers nnsight"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "323d1073-0bb9-4747-912a-714abd7cf7bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QKebdBW13iGx7k2zqi",
+  "type": "assistant",
+  "uuid": "42b05ed9-6524-47c0-85fe-c61501755bb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P2FQrNY3qUDM5w2E75qZ9S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 44671,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 44671,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T13:05:21.449Z_
+
+<details><summary>↩ Tool result · `toolu_018MzXYFwwpcDJLvgCrpQLkf`</summary>
+
+```text
+Web search results for query: "Qwen 3.5 Llama 4 Maverick activation intervention representation engineering compatible transformers nnsight"
+
+Links: [{"title":"Qwen/Qwen3.5-4B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-4B"},{"title":"Qwen/Qwen3.5-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-27B"},{"title":"Qwen/Qwen3.5-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-35B-A3B"},{"title":"Release v4.51.0: Llama 4, Phi4-Multimodal, DeepSeek-v3, Qwen3 · huggingface/transformers","url":"https://github.com/huggingface/transformers/releases/tag/v4.51.0"},{"title":"Qwen 3.5 vs Llama vs Mistral: China's Open-Source AI Is Catching Up Faster Than You Think | AI Magicx Blog | AI Magicx","url":"https://www.aimagicx.com/blog/qwen-3-5-vs-llama-vs-mistral-china-open-source-ai-2026"},{"title":"Qwen/Qwen3.5-9B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-9B"},{"title":"Transformers - Qwen","url":"https://qwen.readthedocs.io/en/latest/inference/transformers.html"},{"title":"Welcome Llama 4 Maverick & Scout on Hugging Face","url":"https://huggingface.co/blog/llama4-release"},{"title":"Qwen 3.6 vs Gemma 4 vs Llama 4 vs GLM-5.1 vs DeepSeek V4 Comparison | Lushbinary","url":"https://lushbinary.com/blog/qwen-3-6-vs-gemma-4-llama-4-glm-5-1-deepseek-v4-open-source-comparison/"},{"title":"Qwen 3.5 Developer Guide: Benchmarks, Architecture & Integration | Lushbinary","url":"https://lushbinary.com/blog/qwen-3-5-developer-guide-benchmarks-architecture-integration-2026/"}]
+
+Based on the search results, here's what I found regarding your query about Qwen 3.5, Llama 4 Maverick, and related technologies:
+
+## Model Overview
+
+Qwen3.5-397B-A17B competes head-to-head with Llama 4 Maverick and the closed-source heavyweights. Llama 4 Maverick is a highly capable model with 17B active parameters out of ~400B total, with 128 experts.
+
+## Transformer Compatibility
+
+Both models have strong compatibility with the transformers library. Qwen3.5 artifacts are compatible with Hugging Face Transformers, vLLM, SGLang, KTransformers, etc. Similarly, Llama 4 models are fully integrated with transformers (version v4.51.0), allowing for easy loading, inference, and fine-tuning using familiar APIs.
+
+## Architecture & Representation
+
+Qwen 3.5 fuses linear attention via Gated Delta Networks and a sparse Mixture-of-Experts system, resulting in 397 billion total parameters with just 17 billion active per token. Meta refers to Llama 4's interleaved use of NoPE layers, together with temperature scaling, as the iRoPE architecture.
+
+However, the search results did not return specific information about "nnsight" compatibility or details about "activation intervention representation engineering" for these models. If you're looking for more specific technical information about mechanistic interpretability tools like nnsight for these models, you may need to search for additional resources or documentation from the respective model repositories.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42b05ed9-6524-47c0-85fe-c61501755bb8",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "f424b9e2-9c3f-4f30-a4ef-63c6365a01be",
+  "toolUseResult": {
+    "query": "Qwen 3.5 Llama 4 Maverick activation intervention representation engineering compatible transformers nnsight",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KKqGkEgxYwjaqhWSpqsigD",
+        "content": [
+          {
+            "title": "Qwen/Qwen3.5-4B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-4B"
+          },
+          {
+            "title": "Qwen/Qwen3.5-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-27B"
+          },
+          {
+            "title": "Qwen/Qwen3.5-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-35B-A3B"
+          },
+          {
+            "title": "Release v4.51.0: Llama 4, Phi4-Multimodal, DeepSeek-v3, Qwen3 · huggingface/transformers",
+            "url": "https://github.com/huggingface/transformers/releases/tag/v4.51.0"
+          },
+          {
+            "title": "Qwen 3.5 vs Llama vs Mistral: China's Open-Source AI Is Catching Up Faster Than You Think | AI Magicx Blog | AI Magicx",
+            "url": "https://www.aimagicx.com/blog/qwen-3-5-vs-llama-vs-mistral-china-open-source-ai-2026"
+          },
+          {
+            "title": "Qwen/Qwen3.5-9B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-9B"
+          },
+          {
+            "title": "Transformers - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/inference/transformers.html"
+          },
+          {
+            "title": "Welcome Llama 4 Maverick & Scout on Hugging Face",
+            "url": "https://huggingface.co/blog/llama4-release"
+          },
+          {
+            "title": "Qwen 3.6 vs Gemma 4 vs Llama 4 vs GLM-5.1 vs DeepSeek V4 Comparison | Lushbinary",
+            "url": "https://lushbinary.com/blog/qwen-3-6-vs-gemma-4-llama-4-glm-5-1-deepseek-v4-open-source-comparison/"
+          },
+          {
+            "title": "Qwen 3.5 Developer Guide: Benchmarks, Architecture & Integration | Lushbinary",
+            "url": "https://lushbinary.com/blog/qwen-3-5-developer-guide-benchmarks-architecture-integration-2026/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding your query about Qwen 3.5, Llama 4 Maverick, and related technologies:\n\n## Model Overview\n\nQwen3.5-397B-A17B competes head-to-head with Llama 4 Maverick and the closed-source heavyweights. Llama 4 Maverick is a highly capable model with 17B active parameters out of ~400B total, with 128 experts.\n\n## Transformer Compatibility\n\nBoth models have strong compatibility with the transformers library. Qwen3.5 artifacts are compatible with Hugging Face Transformers, vLLM, SGLang, KTransformers, etc. Similarly, Llama 4 models are fully integrated with transformers (version v4.51.0), allowing for easy loading, inference, and fine-tuning using familiar APIs.\n\n## Architecture & Representation\n\nQwen 3.5 fuses linear attention via Gated Delta Networks and a sparse Mixture-of-Experts system, resulting in 397 billion total parameters with just 17 billion active per token. Meta refers to Llama 4's interleaved use of NoPE layers, together with temperature scaling, as the iRoPE architecture.\n\nHowever, the search results did not return specific information about \"nnsight\" compatibility or details about \"activation intervention representation engineering\" for these models. If you're looking for more specific technical information about mechanistic interpretability tools like nnsight for these models, you may need to search for additional resources or documentation from the respective model repositories."
+    ],
+    "durationSeconds": 6.919721579000004
+  },
+  "sourceToolAssistantUUID": "42b05ed9-6524-47c0-85fe-c61501755bb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-15T13:05:24.717Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VktbV994x5cgfHDQU3NE1P`</summary>
+
+```json
+{
+  "query": "GPU cost A100 rental per hour 2026 cloud pricing Lambda Labs RunPod"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f424b9e2-9c3f-4f30-a4ef-63c6365a01be",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QLP2mhYwAEjV1jnYcd",
+  "type": "assistant",
+  "uuid": "6ba8444a-8382-4577-820d-75fece9ea021",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGiCSNst5QF6aCSQ74yuBk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 45877,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 45877,
+          "cache_creation_input_tokens": 1122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T13:05:31.380Z_
+
+<details><summary>↩ Tool result · `toolu_01VktbV994x5cgfHDQU3NE1P`</summary>
+
+```text
+Web search results for query: "GPU cost A100 rental per hour 2026 cloud pricing Lambda Labs RunPod"
+
+Links: [{"title":"GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda","url":"https://lambda.ai/pricing"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"Pricing | Runpod","url":"https://www.runpod.io/pricing"},{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud","url":"https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"},{"title":"RunPod vs Lambda Labs vs CoreWeave: GPU Cloud Pricing","url":"https://www.buildmvpfast.com/blog/gpu-cloud-cost-comparison-runpod-lambda-labs-coreweave-2026"},{"title":"GPU Cloud Pricing Comparison (April 2026) | RunPod, Lambda Labs, Modal","url":"https://www.buildmvpfast.com/api-costs/gpu"},{"title":"2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers","url":"https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"},{"title":"7 cheapest cloud GPU providers in 2026 | Blog — Northflank","url":"https://northflank.com/blog/cheapest-cloud-gpu-providers"}]
+
+Based on the search results, here's the current A100 GPU rental pricing for 2026:
+
+## A100 80GB Pricing by Provider (2026)
+
+Individual A100 80GB GPUs can be rented from Jarvislabs ($1.49/hr with per-minute billing), RunPod ($1.49/hr), and Lambda Labs ($2.06/hr).
+
+Additional pricing information:
+
+- Lambda Labs lists the A100 80GB at about $2.49 per hour for on-demand usage
+- A100 80G SXM4 on-demand costs $1.07/hr on some providers
+- A100 80GB pricing ranges from ~$1.57/hr per GPU on some platforms
+
+## Key Provider Comparison
+
+**RunPod**: Offers A100 80GB at $1.49/hr
+
+**Lambda Labs**: Charges $2.06/hr for A100 80GB, though some sources cite higher rates
+
+**AWS/Azure**: AWS and Azure offer A100s only in 8-GPU instances at $3.40-$3.43 per GPU per hour
+
+## Overall Market Context
+
+Cloud rental for A100 GPUs ranges from $1.49 to $3.43 per GPU hour as of March 2026. Both RunPod and Lambda Labs platforms offer per-minute billing, spot instances, and multi-GPU configurations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ba8444a-8382-4577-820d-75fece9ea021",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "26402251-1fad-41d3-87f9-cce5773a9f44",
+  "toolUseResult": {
+    "query": "GPU cost A100 rental per hour 2026 cloud pricing Lambda Labs RunPod",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BRMtmS8hh1eocRurHkmYiz",
+        "content": [
+          {
+            "title": "GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda",
+            "url": "https://lambda.ai/pricing"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...",
+            "url": "https://jarvislabs.ai/blog/a100-price"
+          },
+          {
+            "title": "Pricing | Runpod",
+            "url": "https://www.runpod.io/pricing"
+          },
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud",
+            "url": "https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"
+          },
+          {
+            "title": "RunPod vs Lambda Labs vs CoreWeave: GPU Cloud Pricing",
+            "url": "https://www.buildmvpfast.com/blog/gpu-cloud-cost-comparison-runpod-lambda-labs-coreweave-2026"
+          },
+          {
+            "title": "GPU Cloud Pricing Comparison (April 2026) | RunPod, Lambda Labs, Modal",
+            "url": "https://www.buildmvpfast.com/api-costs/gpu"
+          },
+          {
+            "title": "2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers",
+            "url": "https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"
+          },
+          {
+            "title": "7 cheapest cloud GPU providers in 2026 | Blog — Northflank",
+            "url": "https://northflank.com/blog/cheapest-cloud-gpu-providers"
+          }
+        ]
+      },
+      "Based on the search results, here's the current A100 GPU rental pricing for 2026:\n\n## A100 80GB Pricing by Provider (2026)\n\nIndividual A100 80GB GPUs can be rented from Jarvislabs ($1.49/hr with per-minute billing), RunPod ($1.49/hr), and Lambda Labs ($2.06/hr).\n\nAdditional pricing information:\n\n- Lambda Labs lists the A100 80GB at about $2.49 per hour for on-demand usage\n- A100 80G SXM4 on-demand costs $1.07/hr on some providers\n- A100 80GB pricing ranges from ~$1.57/hr per GPU on some platforms\n\n## Key Provider Comparison\n\n**RunPod**: Offers A100 80GB at $1.49/hr\n\n**Lambda Labs**: Charges $2.06/hr for A100 80GB, though some sources cite higher rates\n\n**AWS/Azure**: AWS and Azure offer A100s only in 8-GPU instances at $3.40-$3.43 per GPU per hour\n\n## Overall Market Context\n\nCloud rental for A100 GPUs ranges from $1.49 to $3.43 per GPU hour as of March 2026. Both RunPod and Lambda Labs platforms offer per-minute billing, spot instances, and multi-GPU configurations."
+    ],
+    "durationSeconds": 6.657577910000051
+  },
+  "sourceToolAssistantUUID": "6ba8444a-8382-4577-820d-75fece9ea021",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-15T13:05:34.717Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012vtSobFB9BSY1UKJmdfcRK`</summary>
+
+```json
+{
+  "query": "\"selective abstraction\" \"When Should LLMs Be Less Specific\" arxiv 2602.11908 claim uncertainty"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26402251-1fad-41d3-87f9-cce5773a9f44",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QM7TRrgnfVUgHshMuN",
+  "type": "assistant",
+  "uuid": "db8c148c-e2a8-45fe-b82e-168e149b52c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCPwqdaLFoSN1KYAZxzDaC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 945,
+      "cache_read_input_tokens": 46999,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 46999,
+          "cache_creation_input_tokens": 945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T13:05:40.216Z_
+
+<details><summary>↩ Tool result · `toolu_012vtSobFB9BSY1UKJmdfcRK`</summary>
+
+```text
+Web search results for query: ""selective abstraction" "When Should LLMs Be Less Specific" arxiv 2602.11908 claim uncertainty"
+
+Links: [{"title":"[2602.11908v2] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/abs/2602.11908v2"},{"title":"[2602.11908] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/abs/2602.11908"},{"title":"When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://arxiv.org/html/2602.11908"},{"title":"When Should LLMs Be Less Specific? Selective ...","url":"https://arxiv.org/pdf/2602.11908"},{"title":"(PDF) When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation","url":"https://www.researchgate.net/publication/400742961_When_Should_LLMs_Be_Less_Specific_Selective_Abstraction_for_Reliable_Long-Form_Text_Generation"}]
+
+Based on the search results, I can provide you with information about the paper and its key concepts:
+
+## Overview
+
+Selective Abstraction (SA) is a framework that enables LLMs to trade specificity for reliability by selectively reducing the detail of uncertain content.
+
+## Problem It Addresses
+
+While uncertainty estimation mechanisms can help by having models abstain when confidence is low, this binary "all-or-nothing" approach is excessively restrictive in long-form settings, often discarding valuable information.
+
+## How It Works
+
+The generated text is decomposed into atoms, and low-confidence atoms are replaced with confident abstractions. An LLM may be uncertain about the exact date while remaining confident about the month, the year, or any of the other details.
+
+## Key Framework Elements
+
+The framework formalizes SA through the lenses of selective risk and coverage.
+
+The paper (arxiv 2602.11908) was submitted on February 12, 2026, and represents a recent approach to improving the reliability of long-form text generation from language models by handling uncertainty at a fine-grained level rather than using an all-or-nothing abstention approach.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db8c148c-e2a8-45fe-b82e-168e149b52c6",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "15a57d6a-664e-45e6-a2d2-acd009a566ec",
+  "toolUseResult": {
+    "query": "\"selective abstraction\" \"When Should LLMs Be Less Specific\" arxiv 2602.11908 claim uncertainty",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B2zVrZesYfKehKAbNqbnra",
+        "content": [
+          {
+            "title": "[2602.11908v2] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/abs/2602.11908v2"
+          },
+          {
+            "title": "[2602.11908] When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/abs/2602.11908"
+          },
+          {
+            "title": "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://arxiv.org/html/2602.11908"
+          },
+          {
+            "title": "When Should LLMs Be Less Specific? Selective ...",
+            "url": "https://arxiv.org/pdf/2602.11908"
+          },
+          {
+            "title": "(PDF) When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation",
+            "url": "https://www.researchgate.net/publication/400742961_When_Should_LLMs_Be_Less_Specific_Selective_Abstraction_for_Reliable_Long-Form_Text_Generation"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the paper and its key concepts:\n\n## Overview\n\nSelective Abstraction (SA) is a framework that enables LLMs to trade specificity for reliability by selectively reducing the detail of uncertain content.\n\n## Problem It Addresses\n\nWhile uncertainty estimation mechanisms can help by having models abstain when confidence is low, this binary \"all-or-nothing\" approach is excessively restrictive in long-form settings, often discarding valuable information.\n\n## How It Works\n\nThe generated text is decomposed into atoms, and low-confidence atoms are replaced with confident abstractions. An LLM may be uncertain about the exact date while remaining confident about the month, the year, or any of the other details.\n\n## Key Framework Elements\n\nThe framework formalizes SA through the lenses of selective risk and coverage.\n\nThe paper (arxiv 2602.11908) was submitted on February 12, 2026, and represents a recent approach to improving the reliability of long-form text generation from language models by handling uncertainty at a fine-grained level rather than using an all-or-nothing abstention approach."
+    ],
+    "durationSeconds": 5.495396600999986
+  },
+  "sourceToolAssistantUUID": "db8c148c-e2a8-45fe-b82e-168e149b52c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T13:05:43.231Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LAkWKiZKQucmgL7mHJbQkm`</summary>
+
+```json
+{
+  "query": "FActScore decomposition implementation Qwen Llama compatible 2025 2026 github atomic facts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15a57d6a-664e-45e6-a2d2-acd009a566ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QMmDYibmG7ShFRMumZ",
+  "type": "assistant",
+  "uuid": "0382ff53-6935-4e2b-ac0b-1072ef4bd27a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTj7Nmx7FEou35SwtRdEU5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 47944,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 47944,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T13:05:51.267Z_
+
+<details><summary>↩ Tool result · `toolu_01LAkWKiZKQucmgL7mHJbQkm`</summary>
+
+```text
+Web search results for query: "FActScore decomposition implementation Qwen Llama compatible 2025 2026 github atomic facts"
+
+Links: [{"title":"GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub","url":"https://github.com/shmsw25/FActScore"},{"title":"FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta","url":"https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"},{"title":"FActScore/README.md at main · yichi-yang/FActScore","url":"https://github.com/yichi-yang/FActScore/blob/main/README.md"},{"title":"factscore · PyPI","url":"https://pypi.org/project/factscore/"},{"title":"GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.","url":"https://github.com/lflage/OpenFActScore"},{"title":"FACTSCORE: Fine-grained Atomic Evaluation of Factual ...","url":"https://martiansideofthemoon.github.io/assets/factscore.pdf"},{"title":"Releases · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/releases"},{"title":"OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation","url":"https://arxiv.org/html/2507.05965v1"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF","url":"https://www.researchgate.net/publication/376394762_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"},{"title":"FactScore: Factual Evaluation Framework","url":"https://www.emergentmind.com/topics/factscore-113e12f4-d246-433f-8289-063e105dc511"}]
+
+Based on the web search results, here's what I found regarding FActScore decomposition implementation with Qwen, Llama compatibility, and recent GitHub developments:
+
+## Key Findings:
+
+### Original FActScore Implementation
+FActScore is the original implementation from the EMNLP 2023 paper "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation", available on GitHub at https://github.com/shmsw25/FActScore.
+
+### OpenFActScore - Open-Source Alternative (2025)
+A newer open-source implementation called OpenFActScore (available at https://github.com/lflage/OpenFActScore) breaks down generations into atomic facts, retrieves relevant passages, and checks each fact for support using LLMs.
+
+### Qwen and Llama Compatibility
+OpenFActScore performs experiments with Qwen and Llama 3.1-Instruct, which are currently popular open-usage models. The research found that Gemma and Olmo produce the most human-aligned Atomic Facts, while Llama3.1 is more evaluator-sensitive, and Qwen would benefit from a better suited prompting strategy.
+
+### Recent Development (July 2025)
+OpenFActScore was published in 2025 with the ArXiv paper "OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation", and open models follow very similar performance patterns to closed models with Pearson correlation over 0.99.
+
+### Local Model Support
+Recent reproducible local experiments using Ollama with Llama 3 8B Instruct and Qwen 2.5 7B Instruct show different performance characteristics depending on prompt templates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0382ff53-6935-4e2b-ac0b-1072ef4bd27a",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "008fe91e-bfcc-494e-be56-0f414be4fe06",
+  "toolUseResult": {
+    "query": "FActScore decomposition implementation Qwen Llama compatible 2025 2026 github atomic facts",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014PaJeWpkz3eXxkBFdJdUKQ",
+        "content": [
+          {
+            "title": "GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub",
+            "url": "https://github.com/shmsw25/FActScore"
+          },
+          {
+            "title": "FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"
+          },
+          {
+            "title": "FActScore/README.md at main · yichi-yang/FActScore",
+            "url": "https://github.com/yichi-yang/FActScore/blob/main/README.md"
+          },
+          {
+            "title": "factscore · PyPI",
+            "url": "https://pypi.org/project/factscore/"
+          },
+          {
+            "title": "GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.",
+            "url": "https://github.com/lflage/OpenFActScore"
+          },
+          {
+            "title": "FACTSCORE: Fine-grained Atomic Evaluation of Factual ...",
+            "url": "https://martiansideofthemoon.github.io/assets/factscore.pdf"
+          },
+          {
+            "title": "Releases · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/releases"
+          },
+          {
+            "title": "OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation",
+            "url": "https://arxiv.org/html/2507.05965v1"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/376394762_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"
+          },
+          {
+            "title": "FactScore: Factual Evaluation Framework",
+            "url": "https://www.emergentmind.com/topics/factscore-113e12f4-d246-433f-8289-063e105dc511"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding FActScore decomposition implementation with Qwen, Llama compatibility, and recent GitHub developments:\n\n## Key Findings:\n\n### Original FActScore Implementation\nFActScore is the original implementation from the EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\", available on GitHub at https://github.com/shmsw25/FActScore.\n\n### OpenFActScore - Open-Source Alternative (2025)\nA newer open-source implementation called OpenFActScore (available at https://github.com/lflage/OpenFActScore) breaks down generations into atomic facts, retrieves relevant passages, and checks each fact for support using LLMs.\n\n### Qwen and Llama Compatibility\nOpenFActScore performs experiments with Qwen and Llama 3.1-Instruct, which are currently popular open-usage models. The research found that Gemma and Olmo produce the most human-aligned Atomic Facts, while Llama3.1 is more evaluator-sensitive, and Qwen would benefit from a better suited prompting strategy.\n\n### Recent Development (July 2025)\nOpenFActScore was published in 2025 with the ArXiv paper \"OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation\", and open models follow very similar performance patterns to closed models with Pearson correlation over 0.99.\n\n### Local Model Support\nRecent reproducible local experiments using Ollama with Llama 3 8B Instruct and Qwen 2.5 7B Instruct show different performance characteristics depending on prompt templates."
+    ],
+    "durationSeconds": 8.032594477000005
+  },
+  "sourceToolAssistantUUID": "0382ff53-6935-4e2b-ac0b-1072ef4bd27a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "008fe91e-bfcc-494e-be56-0f414be4fe06",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-15T13:05:54.505Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0146vezew6LHKAZidQ4fv5yh`</summary>
+
+```json
+{
+  "query": "semantic entropy probes linear probe hidden states predict uncertainty single forward pass ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "008fe91e-bfcc-494e-be56-0f414be4fe06",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QNaYsVn8rXF4BNTefs",
+  "type": "assistant",
+  "uuid": "f5b200cf-27d0-4671-92dd-5c569138622e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fUMJhZ3ngZXoVVLUY5KfX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 48611,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1081,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 48611,
+          "cache_creation_input_tokens": 1081,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1081
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T13:06:01.453Z_
+
+<details><summary>↩ Tool result · `toolu_0146vezew6LHKAZidQ4fv5yh`</summary>
+
+```text
+Web search results for query: "semantic entropy probes linear probe hidden states predict uncertainty single forward pass ICLR 2025"
+
+Links: [{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/pdf/2406.15927"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | OpenReview","url":"https://openreview.net/forum?id=YQvvJjLWX0"},{"title":"GitHub - OATML/semantic-entropy-probes · GitHub","url":"https://github.com/OATML/semantic-entropy-probes"},{"title":"[2406.15927] Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/abs/2406.15927"},{"title":"ICML Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://icml.cc/virtual/2024/39442"},{"title":"Semantic Entropy Probes (SEPs)","url":"https://www.emergentmind.com/topics/semantic-entropy-probes-seps"},{"title":"Entropy Alone is Insufficient for Safe Selective Prediction in LLMs","url":"https://arxiv.org/html/2603.21172"},{"title":"Semantic Entropy Probes for Hallucination Detection in LLMs","url":"https://www.emergentmind.com/papers/2406.15927"},{"title":"ICR Probe: Tracking Hidden State Dynamics for Reliable ...","url":"https://aclanthology.org/2025.acl-long.880.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/b94d8b035e2183e47afef9e2f299ba47-Paper-Conference.pdf"}]
+
+Based on the search results, I found relevant information about Semantic Entropy Probes:
+
+## Semantic Entropy Probes (SEPs)
+
+Semantic Entropy Probes (SEPs) are a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs). SEPs directly approximate semantic entropy from the hidden states of a single generation.
+
+### Key Features
+
+SEPs are linear probes that capture semantic uncertainty from the hidden states of LLMs, presenting a cost-effective and reliable hallucination detection method. SEPs are simple to train and do not require sampling multiple model generations at test time, reducing the overhead of semantic uncertainty quantification to almost zero.
+
+### Motivation
+
+Semantic entropy can reliably detect hallucinations by quantifying the uncertainty over different generations by estimating entropy over semantically equivalent sets of outputs. However, the 5-to-10-fold increase in computation cost associated with SE computation hinders practical adoption.
+
+### Performance
+
+SEPs retain high performance for hallucination detection and generalize better to out-of-distribution data than previous probing methods that directly predict model accuracy.
+
+### Implementation Details
+
+Linear probes are trained to predict model semantic uncertainty using saved model hidden states on specific token positions (TBG, SLT).
+
+The paper appears to have been submitted to ICLR 2025 as indicated in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5b200cf-27d0-4671-92dd-5c569138622e",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "78578959-730c-415b-ae4a-d981f352a498",
+  "toolUseResult": {
+    "query": "semantic entropy probes linear probe hidden states predict uncertainty single forward pass ICLR 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Zngdn9ec8aN7BDxhmPXMb",
+        "content": [
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/pdf/2406.15927"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=YQvvJjLWX0"
+          },
+          {
+            "title": "GitHub - OATML/semantic-entropy-probes · GitHub",
+            "url": "https://github.com/OATML/semantic-entropy-probes"
+          },
+          {
+            "title": "[2406.15927] Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/abs/2406.15927"
+          },
+          {
+            "title": "ICML Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://icml.cc/virtual/2024/39442"
+          },
+          {
+            "title": "Semantic Entropy Probes (SEPs)",
+            "url": "https://www.emergentmind.com/topics/semantic-entropy-probes-seps"
+          },
+          {
+            "title": "Entropy Alone is Insufficient for Safe Selective Prediction in LLMs",
+            "url": "https://arxiv.org/html/2603.21172"
+          },
+          {
+            "title": "Semantic Entropy Probes for Hallucination Detection in LLMs",
+            "url": "https://www.emergentmind.com/papers/2406.15927"
+          },
+          {
+            "title": "ICR Probe: Tracking Hidden State Dynamics for Reliable ...",
+            "url": "https://aclanthology.org/2025.acl-long.880.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/b94d8b035e2183e47afef9e2f299ba47-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Semantic Entropy Probes:\n\n## Semantic Entropy Probes (SEPs)\n\nSemantic Entropy Probes (SEPs) are a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs). SEPs directly approximate semantic entropy from the hidden states of a single generation.\n\n### Key Features\n\nSEPs are linear probes that capture semantic uncertainty from the hidden states of LLMs, presenting a cost-effective and reliable hallucination detection method. SEPs are simple to train and do not require sampling multiple model generations at test time, reducing the overhead of semantic uncertainty quantification to almost zero.\n\n### Motivation\n\nSemantic entropy can reliably detect hallucinations by quantifying the uncertainty over different generations by estimating entropy over semantically equivalent sets of outputs. However, the 5-to-10-fold increase in computation cost associated with SE computation hinders practical adoption.\n\n### Performance\n\nSEPs retain high performance for hallucination detection and generalize better to out-of-distribution data than previous probing methods that directly predict model accuracy.\n\n### Implementation Details\n\nLinear probes are trained to predict model semantic uncertainty using saved model hidden states on specific token positions (TBG, SLT).\n\nThe paper appears to have been submitted to ICLR 2025 as indicated in the search results."
+    ],
+    "durationSeconds": 6.943412096999993
+  },
+  "sourceToolAssistantUUID": "f5b200cf-27d0-4671-92dd-5c569138622e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101 · 2026-05-15T13:06:01.455Z_
+
+```json
+{
+  "parentUuid": "78578959-730c-415b-ae4a-d981f352a498",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2d82b9c2-5cad-4dfa-9d93-e67f5046ce95",
+  "timestamp": "2026-05-15T13:06:01.455Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-15T13:06:04.422Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TV1spniTVATqPivxZVzdZx`</summary>
+
+```json
+{
+  "query": "\"Answer Only as Precisely as Justified\" arxiv 2604.17487 calibrated claim specificity"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d82b9c2-5cad-4dfa-9d93-e67f5046ce95",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QPL1nbbWozZT6ad2Ka",
+  "type": "assistant",
+  "uuid": "ff30d774-58e3-44f6-a1e1-20e69e5ace22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RXVCbzTGzy67teLqrhVbif",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 49692,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 49692,
+          "cache_creation_input_tokens": 1001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-15T13:06:08.236Z_
+
+<details><summary>↩ Tool result · `toolu_01TV1spniTVATqPivxZVzdZx`</summary>
+
+```text
+Web search results for query: ""Answer Only as Precisely as Justified" arxiv 2604.17487 calibrated claim specificity"
+
+Links: [{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity","url":"https://arxiv.org/pdf/2604.17487"},{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems","url":"https://arxiv.org/html/2604.17487"},{"title":"[2604.17487] Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems","url":"https://arxiv.org/abs/2604.17487"}]
+
+I found the paper! Here are the key details about this arxiv paper:
+
+**Title:** Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems
+
+**Authors:** Tianyi Huang, Samuel Xu, Jason Tansong Dang, Samuel Yan, Kimberley Yin
+
+**Main Problem:** Agentic systems often fail not by being entirely wrong, but by being too precise: a response may be generally useful while particular claims exceed what the evidence supports.
+
+**Proposed Solution:** The paper introduces compositional selective specificity (CSS), a post-generation layer that decomposes an answer into claims, proposes coarser backoffs, and emits each claim at the most specific calibrated level that appears admissible. The method is designed to express uncertainty as a local semantic backoff rather than as a whole-answer refusal.
+
+**Results:** On the full LongFact run, it raises overcommitment-aware utility from 0.846 to 0.913 relative to the no-CSS output while achieving 0.938 specificity retention.
+
+The paper was submitted on April 19, 2026, and includes evaluations on the LongFact and HotpotQA benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff30d774-58e3-44f6-a1e1-20e69e5ace22",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "a312958b-8bf5-4eb9-a56b-97422245b961",
+  "toolUseResult": {
+    "query": "\"Answer Only as Precisely as Justified\" arxiv 2604.17487 calibrated claim specificity",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KsbeSso6ZWvC3gbSNG61gk",
+        "content": [
+          {
+            "title": "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity",
+            "url": "https://arxiv.org/pdf/2604.17487"
+          },
+          {
+            "title": "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems",
+            "url": "https://arxiv.org/html/2604.17487"
+          },
+          {
+            "title": "[2604.17487] Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems",
+            "url": "https://arxiv.org/abs/2604.17487"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about this arxiv paper:\n\n**Title:** Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems\n\n**Authors:** Tianyi Huang, Samuel Xu, Jason Tansong Dang, Samuel Yan, Kimberley Yin\n\n**Main Problem:** Agentic systems often fail not by being entirely wrong, but by being too precise: a response may be generally useful while particular claims exceed what the evidence supports.\n\n**Proposed Solution:** The paper introduces compositional selective specificity (CSS), a post-generation layer that decomposes an answer into claims, proposes coarser backoffs, and emits each claim at the most specific calibrated level that appears admissible. The method is designed to express uncertainty as a local semantic backoff rather than as a whole-answer refusal.\n\n**Results:** On the full LongFact run, it raises overcommitment-aware utility from 0.846 to 0.913 relative to the no-CSS output while achieving 0.938 specificity retention.\n\nThe paper was submitted on April 19, 2026, and includes evaluations on the LongFact and HotpotQA benchmarks."
+    ],
+    "durationSeconds": 3.810967639999988
+  },
+  "sourceToolAssistantUUID": "ff30d774-58e3-44f6-a1e1-20e69e5ace22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-15T13:06:10.784Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JPT37nsVMRHEPSnYNtCKaK`</summary>
+
+```json
+{
+  "query": "MT-Bench factuality evaluation hallucination benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a312958b-8bf5-4eb9-a56b-97422245b961",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QPpxaQoZhTFn975C4d",
+  "type": "assistant",
+  "uuid": "69fa0de2-932c-4312-bf4a-13627c3b19bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KTBdHFGN9pxbGtW9c2EjB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 50693,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 50693,
+          "cache_creation_input_tokens": 571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-15T13:06:17.831Z_
+
+<details><summary>↩ Tool result · `toolu_01JPT37nsVMRHEPSnYNtCKaK`</summary>
+
+```text
+Web search results for query: "MT-Bench factuality evaluation hallucination benchmark"
+
+Links: [{"title":"MMHal-Bench: Multimodal Hallucination Benchmark","url":"https://www.emergentmind.com/topics/mmhal-bench"},{"title":"HalluLens: LLM Hallucination Benchmark","url":"https://aclanthology.org/2025.acl-long.1176.pdf"},{"title":"Evaluating the Quality of Hallucination Benchmarks for Large Vision-Language Models","url":"https://arxiv.org/html/2406.17115v1"},{"title":"HalluHard: A Hard Multi-Turn Hallucination Benchmark","url":"https://arxiv.org/html/2602.01031v1"},{"title":"EVALUATING THE QUALITY OF HALLUCINATION ...","url":"https://openreview.net/pdf?id=kjVgyR3RFr"},{"title":"Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)","url":"https://eugeneyan.com/writing/llm-evaluators/"},{"title":"FactBench: A Dynamic Benchmark for In-the-Wild ...","url":"https://aclanthology.org/2025.acl-long.1587.pdf"},{"title":"HalluLens: LLM Hallucination Benchmark","url":"https://arxiv.org/html/2504.17550v1"},{"title":"Awesome LLM Evaluation | LLMEvaluation","url":"https://alopatenko.github.io/LLMEvaluation/"},{"title":"KnowMT-Bench: Benchmarking Knowledge-Intensive Long-Form Question Answering in Multi-Turn Dialogues","url":"https://arxiv.org/html/2509.21856"}]
+
+Based on the search results, I can provide you with information about MT-Bench and hallucination/factuality evaluation benchmarks:
+
+## MT-Bench
+
+MT-Bench is a dataset of 80 multi-turn questions across eight categories such as writing, math, and knowledge. MT-Bench is used to evaluate the performance of strong LLMs, such as gpt-4, on evaluating chatbot responses to open-ended questions.
+
+## Related Hallucination and Factuality Benchmarks
+
+The search results reveal several other important benchmarks in this space:
+
+- **HalluLens**: A comprehensive hallucination benchmark incorporating both new extrinsic and existing intrinsic evaluation tasks, built upon a clear taxonomy that distinguishes between extrinsic and intrinsic hallucinations.
+
+- **HalluHard**: A challenging multi-turn hallucination benchmark with 950 seed questions spanning four high-stakes domains: legal cases, research questions, medical guidelines, and coding.
+
+- **FactBench**: The first dynamic and in-the-wild factuality benchmark.
+
+- **KnowMT-Bench**: The first-ever benchmark designed to systematically evaluate Multi-Turn Long-Form Question Answering for LLMs across knowledge-intensive fields, including medicine, finance, and law.
+
+These benchmarks address various aspects of hallucination evaluation, including factuality hallucination, which occurs when the generated content is inconsistent with real-world facts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69fa0de2-932c-4312-bf4a-13627c3b19bd",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "cd347961-d4df-43c3-b9ff-6bfc8df32455",
+  "toolUseResult": {
+    "query": "MT-Bench factuality evaluation hallucination benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UYcMyZ9cEpyatXbeD6LJks",
+        "content": [
+          {
+            "title": "MMHal-Bench: Multimodal Hallucination Benchmark",
+            "url": "https://www.emergentmind.com/topics/mmhal-bench"
+          },
+          {
+            "title": "HalluLens: LLM Hallucination Benchmark",
+            "url": "https://aclanthology.org/2025.acl-long.1176.pdf"
+          },
+          {
+            "title": "Evaluating the Quality of Hallucination Benchmarks for Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2406.17115v1"
+          },
+          {
+            "title": "HalluHard: A Hard Multi-Turn Hallucination Benchmark",
+            "url": "https://arxiv.org/html/2602.01031v1"
+          },
+          {
+            "title": "EVALUATING THE QUALITY OF HALLUCINATION ...",
+            "url": "https://openreview.net/pdf?id=kjVgyR3RFr"
+          },
+          {
+            "title": "Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)",
+            "url": "https://eugeneyan.com/writing/llm-evaluators/"
+          },
+          {
+            "title": "FactBench: A Dynamic Benchmark for In-the-Wild ...",
+            "url": "https://aclanthology.org/2025.acl-long.1587.pdf"
+          },
+          {
+            "title": "HalluLens: LLM Hallucination Benchmark",
+            "url": "https://arxiv.org/html/2504.17550v1"
+          },
+          {
+            "title": "Awesome LLM Evaluation | LLMEvaluation",
+            "url": "https://alopatenko.github.io/LLMEvaluation/"
+          },
+          {
+            "title": "KnowMT-Bench: Benchmarking Knowledge-Intensive Long-Form Question Answering in Multi-Turn Dialogues",
+            "url": "https://arxiv.org/html/2509.21856"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about MT-Bench and hallucination/factuality evaluation benchmarks:\n\n## MT-Bench\n\nMT-Bench is a dataset of 80 multi-turn questions across eight categories such as writing, math, and knowledge. MT-Bench is used to evaluate the performance of strong LLMs, such as gpt-4, on evaluating chatbot responses to open-ended questions.\n\n## Related Hallucination and Factuality Benchmarks\n\nThe search results reveal several other important benchmarks in this space:\n\n- **HalluLens**: A comprehensive hallucination benchmark incorporating both new extrinsic and existing intrinsic evaluation tasks, built upon a clear taxonomy that distinguishes between extrinsic and intrinsic hallucinations.\n\n- **HalluHard**: A challenging multi-turn hallucination benchmark with 950 seed questions spanning four high-stakes domains: legal cases, research questions, medical guidelines, and coding.\n\n- **FactBench**: The first dynamic and in-the-wild factuality benchmark.\n\n- **KnowMT-Bench**: The first-ever benchmark designed to systematically evaluate Multi-Turn Long-Form Question Answering for LLMs across knowledge-intensive fields, including medicine, finance, and law.\n\nThese benchmarks address various aspects of hallucination evaluation, including factuality hallucination, which occurs when the generated content is inconsistent with real-world facts."
+    ],
+    "durationSeconds": 7.043227664000005
+  },
+  "sourceToolAssistantUUID": "69fa0de2-932c-4312-bf4a-13627c3b19bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106 · 2026-05-15T13:06:24.239Z_
+
+Now let me verify the EMNLP 2025 Outstanding Paper claim more carefully, since it appears Ji et al.'s paper may not have won that specific award.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd347961-d4df-43c3-b9ff-6bfc8df32455",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QQY9pBV6C4PLkiLck4",
+  "type": "assistant",
+  "uuid": "536c837a-77e5-491e-93ce-095e47eb9a1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012i5AJgWRnCAf6pzK86Nr2p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 51264,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 870,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 51264,
+          "cache_creation_input_tokens": 870,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 870
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-15T13:06:25.228Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AcAMyhbvfTDm8fyGsFFoQy`</summary>
+
+```json
+{
+  "query": "EMNLP 2025 awards page full list outstanding papers SAC special recognition",
+  "allowed_domains": [
+    "2025.emnlp.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "536c837a-77e5-491e-93ce-095e47eb9a1d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QQY9pBV6C4PLkiLck4",
+  "type": "assistant",
+  "uuid": "d7b9827a-636c-4d45-928f-1bc73eb7943e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012i5AJgWRnCAf6pzK86Nr2p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 51264,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 870,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 51264,
+          "cache_creation_input_tokens": 870,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 870
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-15T13:06:36.296Z_
+
+<details><summary>↩ Tool result · `toolu_01AcAMyhbvfTDm8fyGsFFoQy`</summary>
+
+```text
+Web search results for query: "EMNLP 2025 awards page full list outstanding papers SAC special recognition"
+
+Links: [{"title":"Awards - EMNLP 2025","url":"https://2025.emnlp.org/program/awards/"},{"title":"The 2025 Conferences of the Association for Computational Linguistics","url":"https://2025.emnlp.org/assets/Sponsorship%20brochure%20for%20ACL%202025%20conferences.pdf"},{"title":"Keynotes - EMNLP 2025","url":"https://2025.emnlp.org/program/keynotes/"},{"title":"Panel - EMNLP 2025","url":"https://2025.emnlp.org/program/panel/"},{"title":"Best Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/best_papers/"},{"title":"Accepted Findings Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/find_papers/"},{"title":"NAACL-HLT 2021 Instructions for Reviewers - EMNLP 2025","url":"https://2025.emnlp.org/reviewer/instructions/"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"Accepted Industry Track Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/ind_papers/"},{"title":"The 2025 Conference on Empirical Methods in Natural Language Processing - EMNLP 2025","url":"https://2025.emnlp.org/"}]
+
+Based on the search results, I found information about the EMNLP 2025 awards page. The Senior Area Chairs highlighted the following 35 papers as particularly noteworthy, including: PAFT: Prompt-Agnostic Fine-Tuning by Chenxing Wei, Yao Shu, Mingwen Ou, Ying He, Fei Yu; Constructions are Revealed in Word Distributions by Joshua Rozner, Leonie Weissweiler, Kyle Mahowald, Cory Shain; To Mask or to Mirror: Human-AI Alignment in Collective Reasoning by Crystal Qian, Aaron T. Parisi, Clémentine Bouleau, Vivian Tsai, Maël Lebreton, Lucas Dixon; Whisper-UT: A Unified Translation Framework for Speech and Text by Cihan Xiao, Matthew Wiesner, Debashish Chakraborty, Reno Kriz, Keith Cunningham, Kenton Murray, Kevin Duh, Luis Tavarez-Arce, Paul McNamee, Sanjeev Khudanpur; and Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations by Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, Nicola Cancedda.
+
+The awards page at https://2025.emnlp.org/program/awards/ contains the full list of these Senior Area Chair recognized papers. A special committee, with assignments based on reviewer expertise, produced 92 reviews and selected four best paper nominations, from which the final awardees were chosen.
+
+For the complete list of all 35 papers highlighted by the Senior Area Chairs and additional award information, you can visit the official EMNLP 2025 awards page directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7b9827a-636c-4d45-928f-1bc73eb7943e",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "2934633b-921f-46c8-abfe-19dea066f285",
+  "toolUseResult": {
+    "query": "EMNLP 2025 awards page full list outstanding papers SAC special recognition",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P8CMpv6JDToa179HtBYciY",
+        "content": [
+          {
+            "title": "Awards - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/awards/"
+          },
+          {
+            "title": "The 2025 Conferences of the Association for Computational Linguistics",
+            "url": "https://2025.emnlp.org/assets/Sponsorship%20brochure%20for%20ACL%202025%20conferences.pdf"
+          },
+          {
+            "title": "Keynotes - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/keynotes/"
+          },
+          {
+            "title": "Panel - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/panel/"
+          },
+          {
+            "title": "Best Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/best_papers/"
+          },
+          {
+            "title": "Accepted Findings Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/find_papers/"
+          },
+          {
+            "title": "NAACL-HLT 2021 Instructions for Reviewers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/reviewer/instructions/"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "Accepted Industry Track Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/ind_papers/"
+          },
+          {
+            "title": "The 2025 Conference on Empirical Methods in Natural Language Processing - EMNLP 2025",
+            "url": "https://2025.emnlp.org/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the EMNLP 2025 awards page. The Senior Area Chairs highlighted the following 35 papers as particularly noteworthy, including: PAFT: Prompt-Agnostic Fine-Tuning by Chenxing Wei, Yao Shu, Mingwen Ou, Ying He, Fei Yu; Constructions are Revealed in Word Distributions by Joshua Rozner, Leonie Weissweiler, Kyle Mahowald, Cory Shain; To Mask or to Mirror: Human-AI Alignment in Collective Reasoning by Crystal Qian, Aaron T. Parisi, Clémentine Bouleau, Vivian Tsai, Maël Lebreton, Lucas Dixon; Whisper-UT: A Unified Translation Framework for Speech and Text by Cihan Xiao, Matthew Wiesner, Debashish Chakraborty, Reno Kriz, Keith Cunningham, Kenton Murray, Kevin Duh, Luis Tavarez-Arce, Paul McNamee, Sanjeev Khudanpur; and Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations by Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, Nicola Cancedda.\n\nThe awards page at https://2025.emnlp.org/program/awards/ contains the full list of these Senior Area Chair recognized papers. A special committee, with assignments based on reviewer expertise, produced 92 reviews and selected four best paper nominations, from which the final awardees were chosen.\n\nFor the complete list of all 35 papers highlighted by the Senior Area Chairs and additional award information, you can visit the official EMNLP 2025 awards page directly."
+    ],
+    "durationSeconds": 11.063618656999955
+  },
+  "sourceToolAssistantUUID": "d7b9827a-636c-4d45-928f-1bc73eb7943e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-15T13:06:41.208Z_
+
+Good — Ji et al.'s paper was highlighted as one of the 35 SAC-recognized papers at EMNLP 2025, but not specifically an "Outstanding Paper" award winner. It was a main conference paper recognized by Senior Area Chairs. Let me verify FactBench too and check one more concurrent work angle.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2934633b-921f-46c8-abfe-19dea066f285",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QRtwzXJV4pzWEkobtJ",
+  "type": "assistant",
+  "uuid": "611f0f8e-2ee9-41c6-8d43-5e185c1ddc27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkYFgNRkMAp1xLKvVxSALW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 52134,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 52134,
+          "cache_creation_input_tokens": 1065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-15T13:06:41.471Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016LhGTkp5LRTmsMvmrmdK2J`</summary>
+
+```json
+{
+  "query": "FactBench dataset huggingface long-form factuality benchmark 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "611f0f8e-2ee9-41c6-8d43-5e185c1ddc27",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QRtwzXJV4pzWEkobtJ",
+  "type": "assistant",
+  "uuid": "cdebe7ba-b485-4f57-8b60-b438acef662e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkYFgNRkMAp1xLKvVxSALW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 52134,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 52134,
+          "cache_creation_input_tokens": 1065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "cdebe7ba-b485-4f57-8b60-b438acef662e",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-15T13:06:49.031Z_
+
+<details><summary>↩ Tool result · `toolu_016LhGTkp5LRTmsMvmrmdK2J`</summary>
+
+```text
+Web search results for query: "FactBench dataset huggingface long-form factuality benchmark 2025"
+
+Links: [{"title":"launch/FactBench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/launch/FactBench"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=long-form+factuality+benchmark"},{"title":"FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation","url":"https://arxiv.org/html/2410.22257v1"},{"title":"Paper page - The FACTS Leaderboard: A Comprehensive Benchmark for Large Language Model Factuality","url":"https://huggingface.co/papers/2512.10791"},{"title":"(PDF) FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation","url":"https://www.researchgate.net/publication/385353664_FactBench_A_Dynamic_Benchmark_for_In-the-Wild_Language_Model_Factuality_Evaluation"},{"title":"[2410.22257] FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation","url":"https://arxiv.org/abs/2410.22257"},{"title":"FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.1587/"},{"title":"Factbench - a Hugging Face Space by launch","url":"https://huggingface.co/spaces/launch/factbench"},{"title":"GitHub - launchnlp/FactBench · GitHub","url":"https://github.com/launchnlp/FactBench"},{"title":"FactBench: A Dynamic Benchmark for In-the-Wild ...","url":"https://aclanthology.org/2025.acl-long.1587.pdf"}]
+
+Based on the search results, here's what I found about FactBench:
+
+## FactBench Overview
+
+FactBench is a dataset of 985 prompts across 213 fine-grained topics, designed as a benchmark for evaluating language model factuality. The prompts are tiered into Easy, Moderate, and Hard prompts.
+
+## How It Works
+
+The benchmark uses VERIFY (Verification and Evidence RetrIeval for FactualitY evaluation), a pipeline to evaluate LMs' factuality in real-world user interactions that considers the verifiability of LM-generated content and categorizes content units as supported, unsupported, or undecidable based on the retrieved evidence from the Web.
+
+## Key Characteristics
+
+The dataset captures emerging factuality challenges in real-world LM interactions and is regularly updated with new prompts. Using VERIFY, the benchmark identifies 'hallucination prompts' across diverse topics—those eliciting the highest rates of incorrect or unverifiable LM responses.
+
+## Benchmark Results
+
+Proprietary models exhibit better factuality, with performance declining from Easy to Hard hallucination prompts. The benchmark has evaluated major language models including GPT-4o, Gemini1.5-Pro, and Llama3.1 variants.
+
+The dataset is available on Hugging Face and includes code and resources accessible through the project's official repository and leaderboard.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdebe7ba-b485-4f57-8b60-b438acef662e",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "f441cca0-0865-4653-bcb9-eeb953c5a746",
+  "toolUseResult": {
+    "query": "FactBench dataset huggingface long-form factuality benchmark 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N1tsXC2j2vnEkj2rMi6tpU",
+        "content": [
+          {
+            "title": "launch/FactBench · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/launch/FactBench"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=long-form+factuality+benchmark"
+          },
+          {
+            "title": "FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation",
+            "url": "https://arxiv.org/html/2410.22257v1"
+          },
+          {
+            "title": "Paper page - The FACTS Leaderboard: A Comprehensive Benchmark for Large Language Model Factuality",
+            "url": "https://huggingface.co/papers/2512.10791"
+          },
+          {
+            "title": "(PDF) FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation",
+            "url": "https://www.researchgate.net/publication/385353664_FactBench_A_Dynamic_Benchmark_for_In-the-Wild_Language_Model_Factuality_Evaluation"
+          },
+          {
+            "title": "[2410.22257] FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation",
+            "url": "https://arxiv.org/abs/2410.22257"
+          },
+          {
+            "title": "FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.1587/"
+          },
+          {
+            "title": "Factbench - a Hugging Face Space by launch",
+            "url": "https://huggingface.co/spaces/launch/factbench"
+          },
+          {
+            "title": "GitHub - launchnlp/FactBench · GitHub",
+            "url": "https://github.com/launchnlp/FactBench"
+          },
+          {
+            "title": "FactBench: A Dynamic Benchmark for In-the-Wild ...",
+            "url": "https://aclanthology.org/2025.acl-long.1587.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FactBench:\n\n## FactBench Overview\n\nFactBench is a dataset of 985 prompts across 213 fine-grained topics, designed as a benchmark for evaluating language model factuality. The prompts are tiered into Easy, Moderate, and Hard prompts.\n\n## How It Works\n\nThe benchmark uses VERIFY (Verification and Evidence RetrIeval for FactualitY evaluation), a pipeline to evaluate LMs' factuality in real-world user interactions that considers the verifiability of LM-generated content and categorizes content units as supported, unsupported, or undecidable based on the retrieved evidence from the Web.\n\n## Key Characteristics\n\nThe dataset captures emerging factuality challenges in real-world LM interactions and is regularly updated with new prompts. Using VERIFY, the benchmark identifies 'hallucination prompts' across diverse topics—those eliciting the highest rates of incorrect or unverifiable LM responses.\n\n## Benchmark Results\n\nProprietary models exhibit better factuality, with performance declining from Easy to Hard hallucination prompts. The benchmark has evaluated major language models including GPT-4o, Gemini1.5-Pro, and Llama3.1 variants.\n\nThe dataset is available on Hugging Face and includes code and resources accessible through the project's official repository and leaderboard."
+    ],
+    "durationSeconds": 7.555235331000003
+  },
+  "sourceToolAssistantUUID": "cdebe7ba-b485-4f57-8b60-b438acef662e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-15T13:06:53.187Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FwZDwFZ9bAbxtFCN8c5UqU`</summary>
+
+```json
+{
+  "query": "\"Hallucination as an Anomaly\" \"Dynamic Intervention via Probabilistic Circuits\" arxiv 2605.05953"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f441cca0-0865-4653-bcb9-eeb953c5a746",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QSqQhcZqx5A4kw58S3",
+  "type": "assistant",
+  "uuid": "edaf4a67-3e21-45e6-a7c0-c25913fc77f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NCwfW922Jq5Ehs8mybhB45",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 53199,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 981,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 53199,
+          "cache_creation_input_tokens": 981,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 981
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-15T13:06:57.924Z_
+
+<details><summary>↩ Tool result · `toolu_01FwZDwFZ9bAbxtFCN8c5UqU`</summary>
+
+```text
+Web search results for query: ""Hallucination as an Anomaly" "Dynamic Intervention via Probabilistic Circuits" arxiv 2605.05953"
+
+Links: [{"title":"[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/abs/2605.05953"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"}]
+
+I found the paper you're looking for! Here's what I found:
+
+**"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits"** (arXiv:2605.05953) addresses one of the most critical challenges in Large Language Models - their tendency to hallucinate, i.e., produce factually incorrect responses.
+
+**Key Contributions:**
+
+The paper proposes PCNET, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream. The method detects hallucinations as geometric anomalies on the factual manifold via exact Negative Log-Likelihood computation, without the need for sampling, external verifiers, or weight modifications.
+
+The paper introduces PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding), which only intervenes when the latent geometry deviates from factual regions, while leaving correct generations untouched.
+
+**Results:**
+
+Across four LLMs ranging from 1B to 8B models and four benchmarks, PCNET achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%. PC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models, reducing the mean corruption rate to 53.7% and achieving a preservation rate of 79.3%.
+
+**Authors:** Erik Nielsen, Elia Cunegatti, Marcus Vukojevic, and Giovanni Iacca from the Department of Information Engineering and Computer Science at University of Trento.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edaf4a67-3e21-45e6-a7c0-c25913fc77f1",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "ae3109f8-8df4-49fa-afe4-248ce20f2091",
+  "toolUseResult": {
+    "query": "\"Hallucination as an Anomaly\" \"Dynamic Intervention via Probabilistic Circuits\" arxiv 2605.05953",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VA82kD2Twg4nBYYkRX4UWu",
+        "content": [
+          {
+            "title": "[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/abs/2605.05953"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\n**\"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits\"** (arXiv:2605.05953) addresses one of the most critical challenges in Large Language Models - their tendency to hallucinate, i.e., produce factually incorrect responses.\n\n**Key Contributions:**\n\nThe paper proposes PCNET, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream. The method detects hallucinations as geometric anomalies on the factual manifold via exact Negative Log-Likelihood computation, without the need for sampling, external verifiers, or weight modifications.\n\nThe paper introduces PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding), which only intervenes when the latent geometry deviates from factual regions, while leaving correct generations untouched.\n\n**Results:**\n\nAcross four LLMs ranging from 1B to 8B models and four benchmarks, PCNET achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%. PC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models, reducing the mean corruption rate to 53.7% and achieving a preservation rate of 79.3%.\n\n**Authors:** Erik Nielsen, Elia Cunegatti, Marcus Vukojevic, and Giovanni Iacca from the Department of Information Engineering and Computer Science at University of Trento."
+    ],
+    "durationSeconds": 4.733727267999959
+  },
+  "sourceToolAssistantUUID": "edaf4a67-3e21-45e6-a7c0-c25913fc77f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-15T13:07:00.850Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016fXvSLMBPdxL2fb829CBjz`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 workshop submission deadline December 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae3109f8-8df4-49fa-afe4-248ce20f2091",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QTVQT9YRYHxzAxoHsp",
+  "type": "assistant",
+  "uuid": "8fa1887a-50e4-4c8f-bc2e-b73c09661ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dYX3LvDhb44XTnd1zWSbV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 54180,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 54180,
+          "cache_creation_input_tokens": 624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-15T13:07:05.896Z_
+
+<details><summary>↩ Tool result · `toolu_016fXvSLMBPdxL2fb829CBjz`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 workshop submission deadline December 2026"
+
+Links: [{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"Guidance for NeurIPS Workshop Proposals 2026","url":"https://neurips.cc/Conferences/2026/WorkshopsGuidance"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"2026 Conference","url":"https://neurips.cc/"},{"title":"NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X","url":"https://x.com/NeurIPSConf/status/2041303457554940336"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"NeurIPS 2026 Conference | OpenReview","url":"https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference"}]
+
+Based on the search results, here are the important workshop submission deadlines for NeurIPS 2026:
+
+The workshop application deadline is June 06, 2026, AoE (Anywhere on Earth). This is the deadline for submitting proposals to organize workshops at the conference.
+
+If you're referring to submission deadlines for workshop **contributions** (papers/talks to be presented in workshops), the suggested submission date for workshop contributions is August 29, 2026, AoE, with a mandatory accept/reject notification date of September 29, 2026, AoE.
+
+It's worth noting that there is no December 2026 deadline mentioned in the official NeurIPS 2026 workshop guidelines. The NeurIPS 2026 conference itself runs from Sunday, December 6th through Saturday, December 12th, 2026, but all major deadlines occur earlier in the year.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fa1887a-50e4-4c8f-bc2e-b73c09661ef8",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "88b346bb-bef4-4524-a825-6e556996c97e",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 workshop submission deadline December 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SCRPKarthdZCLM3YQVazwi",
+        "content": [
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Guidance for NeurIPS Workshop Proposals 2026",
+            "url": "https://neurips.cc/Conferences/2026/WorkshopsGuidance"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+            "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "NeurIPS 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, here are the important workshop submission deadlines for NeurIPS 2026:\n\nThe workshop application deadline is June 06, 2026, AoE (Anywhere on Earth). This is the deadline for submitting proposals to organize workshops at the conference.\n\nIf you're referring to submission deadlines for workshop **contributions** (papers/talks to be presented in workshops), the suggested submission date for workshop contributions is August 29, 2026, AoE, with a mandatory accept/reject notification date of September 29, 2026, AoE.\n\nIt's worth noting that there is no December 2026 deadline mentioned in the official NeurIPS 2026 workshop guidelines. The NeurIPS 2026 conference itself runs from Sunday, December 6th through Saturday, December 12th, 2026, but all major deadlines occur earlier in the year."
+    ],
+    "durationSeconds": 5.043423007000005
+  },
+  "sourceToolAssistantUUID": "8fa1887a-50e4-4c8f-bc2e-b73c09661ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-15T13:07:08.488Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013YVf2fTRDBwFxFgt4xXUbN`</summary>
+
+```json
+{
+  "query": "ICLR 2027 expected submission deadline October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88b346bb-bef4-4524-a825-6e556996c97e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QU5VoVyMiDRkQxTnfC",
+  "type": "assistant",
+  "uuid": "1c15c9dc-100a-4c92-b639-84f4a827fc2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqCc1RrwnCb3uqKveSj1Bm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 765,
+      "cache_read_input_tokens": 54804,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 765,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 54804,
+          "cache_creation_input_tokens": 765,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 765
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-15T13:07:12.382Z_
+
+<details><summary>↩ Tool result · `toolu_013YVf2fTRDBwFxFgt4xXUbN`</summary>
+
+```text
+Web search results for query: "ICLR 2027 expected submission deadline October 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/iclr"},{"title":"2026 Conference","url":"https://iclr.cc/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"}]
+
+Based on the search results, I found information about ICLR conferences, but the results primarily show details for ICLR 2026 rather than ICLR 2027. 
+
+The search results show that the deadline for ICLR 2026 paper submissions was September 24. However, specific information about an ICLR 2027 submission deadline in October 2026 is not clearly available in these search results.
+
+The search results include some conference dates and submissions information from various sources, but they don't contain confirmed details about ICLR 2027's submission deadline. To get the most accurate information about ICLR 2027's expected submission deadline, I'd recommend checking the official ICLR website (iclr.cc) directly, as the 2027 call for papers may not have been officially announced yet.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c15c9dc-100a-4c92-b639-84f4a827fc2a",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "677acc6b-6fce-46df-9b82-09a5f39caf24",
+  "toolUseResult": {
+    "query": "ICLR 2027 expected submission deadline October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WCJ8irSoPro1THkqHENPGm",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/iclr"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR conferences, but the results primarily show details for ICLR 2026 rather than ICLR 2027. \n\nThe search results show that the deadline for ICLR 2026 paper submissions was September 24. However, specific information about an ICLR 2027 submission deadline in October 2026 is not clearly available in these search results.\n\nThe search results include some conference dates and submissions information from various sources, but they don't contain confirmed details about ICLR 2027's submission deadline. To get the most accurate information about ICLR 2027's expected submission deadline, I'd recommend checking the official ICLR website (iclr.cc) directly, as the 2027 call for papers may not have been officially announced yet."
+    ],
+    "durationSeconds": 3.8922108540000044
+  },
+  "sourceToolAssistantUUID": "1c15c9dc-100a-4c92-b639-84f4a827fc2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-15T13:07:19.168Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TD3CQW7Np7TW4UwxjbyfF6`</summary>
+
+```json
+{
+  "query": "AI conference deadlines 2026 2027 after May comprehensive list NLP ML",
+  "allowed_domains": [
+    "trybibby.com",
+    "aideadlines.org",
+    "mlciv.com"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "677acc6b-6fce-46df-9b82-09a5f39caf24",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QUZhh8HiAuwR543HF2",
+  "type": "assistant",
+  "uuid": "adf2fe92-1063-4f64-b8c1-f43371d1370e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014snsXHLtZ5LgwognCjwBEw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 55569,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 55569,
+          "cache_creation_input_tokens": 675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-15T13:07:25.070Z_
+
+<details><summary>↩ Tool result · `toolu_01TD3CQW7Np7TW4UwxjbyfF6`</summary>
+
+```text
+Web search results for query: "AI conference deadlines 2026 2027 after May comprehensive list NLP ML"
+
+Links: [{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ACL 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=acl26"},{"title":"AI Conference Deadlines - mlsys 2026","url":"https://mlciv.com/ai-deadlines/conference/?id=mlsys26"},{"title":"AIED 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=aied2026"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"COLM 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=colm26"},{"title":"LREC 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=lrec26"},{"title":"NeurIPS 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=neurips26"}]
+
+Based on the search results, I found comprehensive resources for AI conference deadlines in 2026 and 2027. Here's what I discovered:
+
+## Key Resources
+
+aideadlines.org provides deadlines for AI, machine learning, computer vision, NLP, robotics conference call for papers. This appears to be one of the most comprehensive sources for finding conferences after May 2026.
+
+## Sample Conferences After May 2026
+
+ICML 2026 will be held July 6-12 in Seoul, Korea, and ACL 2026 is scheduled for July 2-7 in San Diego, California.
+
+Additional conferences appearing later in 2026 include:
+- October 4-7, 2026 in Bellevue, WA, USA
+- October 24-29, 2026 in Budapest, Hungary
+- November 10-14, 2026 in Rio de Janeiro, Brazil
+
+For 2027, February 16-23, 2027 in Montréal, Québec, Canada, and May 19-23, 2027 (location TBA).
+
+## Recommendation
+
+For the most comprehensive and up-to-date list with specific submission deadlines, I recommend visiting **aideadlines.org** or **mlciv.com/ai-deadlines** directly, as these sites allow you to filter by specific fields (NLP, ML, Computer Vision, etc.) and view deadlines in your preferred timezone.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "adf2fe92-1063-4f64-b8c1-f43371d1370e",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "a42cbace-54a8-49fe-9630-ad081e7be2eb",
+  "toolUseResult": {
+    "query": "AI conference deadlines 2026 2027 after May comprehensive list NLP ML",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LJc75YtY8k8oDUsB8zpvC5",
+        "content": [
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ACL 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=acl26"
+          },
+          {
+            "title": "AI Conference Deadlines - mlsys 2026",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=mlsys26"
+          },
+          {
+            "title": "AIED 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=aied2026"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "COLM 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=colm26"
+          },
+          {
+            "title": "LREC 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=lrec26"
+          },
+          {
+            "title": "NeurIPS 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=neurips26"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive resources for AI conference deadlines in 2026 and 2027. Here's what I discovered:\n\n## Key Resources\n\naideadlines.org provides deadlines for AI, machine learning, computer vision, NLP, robotics conference call for papers. This appears to be one of the most comprehensive sources for finding conferences after May 2026.\n\n## Sample Conferences After May 2026\n\nICML 2026 will be held July 6-12 in Seoul, Korea, and ACL 2026 is scheduled for July 2-7 in San Diego, California.\n\nAdditional conferences appearing later in 2026 include:\n- October 4-7, 2026 in Bellevue, WA, USA\n- October 24-29, 2026 in Budapest, Hungary\n- November 10-14, 2026 in Rio de Janeiro, Brazil\n\nFor 2027, February 16-23, 2027 in Montréal, Québec, Canada, and May 19-23, 2027 (location TBA).\n\n## Recommendation\n\nFor the most comprehensive and up-to-date list with specific submission deadlines, I recommend visiting **aideadlines.org** or **mlciv.com/ai-deadlines** directly, as these sites allow you to filter by specific fields (NLP, ML, Computer Vision, etc.) and view deadlines in your preferred timezone."
+    ],
+    "durationSeconds": 5.89627063600003
+  },
+  "sourceToolAssistantUUID": "adf2fe92-1063-4f64-b8c1-f43371d1370e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 122 · 2026-05-15T13:07:25.074Z_
+
+```json
+{
+  "parentUuid": "a42cbace-54a8-49fe-9630-ad081e7be2eb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1860459d-c652-40da-beb7-8913f7015beb",
+  "timestamp": "2026-05-15T13:07:25.074Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-15T13:07:27.466Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NxMbAfTf7TgckA9KywzYJK`</summary>
+
+```json
+{
+  "query": "ACL 2026 ARR commitment deadline submission date July San Diego"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1860459d-c652-40da-beb7-8913f7015beb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QVVVDZB8nMJuqAJGN5",
+  "type": "assistant",
+  "uuid": "61b8fcaa-3c80-47bd-a80a-5dbdc38516cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011taJZmRkHxFLZeMWH7pSPM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 56244,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 56244,
+          "cache_creation_input_tokens": 979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "61b8fcaa-3c80-47bd-a80a-5dbdc38516cc",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-15T13:07:31.545Z_
+
+<details><summary>↩ Tool result · `toolu_01NxMbAfTf7TgckA9KywzYJK`</summary>
+
+```text
+Web search results for query: "ACL 2026 ARR commitment deadline submission date July San Diego"
+
+Links: [{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)","url":"https://linguistlist.org/issues/37/181/"},{"title":"ACL 2026 in California: Dates, Deadline, Fees & Registration Steps - Conference Inc.","url":"https://conferenceinc.net/post/acl/"},{"title":"When is ACL 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/acl"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"ACL 2026 : 64th Annual Meeting of the Association for Computational Linguistics","url":"http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190169&copyownerid=179414"}]
+
+Based on the search results, I found the following information about ACL 2026 ARR commitment deadline:
+
+ACL 2026 uses ACL Rolling Review (ARR), with ARR reviews available on March 9, 2026, and a commitment deadline of March 14, 2026. 
+
+The conference itself will take place in San Diego, California, from July 2 - 7, 2026.
+
+It's important to note that the ARR commitment deadline (March 14, 2026) occurs several months before the conference dates in July, as this is when authors must decide whether to commit their ARR-reviewed papers to ACL 2026 for consideration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61b8fcaa-3c80-47bd-a80a-5dbdc38516cc",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "7b995ec5-d257-425d-a769-fcdf610548d7",
+  "toolUseResult": {
+    "query": "ACL 2026 ARR commitment deadline submission date July San Diego",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X8QdrFBKTQmyENivSrN1KN",
+        "content": [
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)",
+            "url": "https://linguistlist.org/issues/37/181/"
+          },
+          {
+            "title": "ACL 2026 in California: Dates, Deadline, Fees & Registration Steps - Conference Inc.",
+            "url": "https://conferenceinc.net/post/acl/"
+          },
+          {
+            "title": "When is ACL 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/acl"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "ACL 2026 : 64th Annual Meeting of the Association for Computational Linguistics",
+            "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190169&copyownerid=179414"
+          }
+        ]
+      },
+      "Based on the search results, I found the following information about ACL 2026 ARR commitment deadline:\n\nACL 2026 uses ACL Rolling Review (ARR), with ARR reviews available on March 9, 2026, and a commitment deadline of March 14, 2026. \n\nThe conference itself will take place in San Diego, California, from July 2 - 7, 2026.\n\nIt's important to note that the ARR commitment deadline (March 14, 2026) occurs several months before the conference dates in July, as this is when authors must decide whether to commit their ARR-reviewed papers to ACL 2026 for consideration."
+    ],
+    "durationSeconds": 4.076314513000019
+  },
+  "sourceToolAssistantUUID": "61b8fcaa-3c80-47bd-a80a-5dbdc38516cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-15T13:07:34.462Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CZrXS6sWJdy8j4UP5RGCRo`</summary>
+
+```json
+{
+  "query": "ARR May 2026 cycle submission deadline June 15 EMNLP AACL commitment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b995ec5-d257-425d-a769-fcdf610548d7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QVy9rpmUdJsVi4Qm9C",
+  "type": "assistant",
+  "uuid": "bef8411b-0d78-4a8f-9476-f748431ec704",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iFSDq6ifUC4hyJb1Q59TY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 57223,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 57223,
+          "cache_creation_input_tokens": 742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-15T13:07:39.991Z_
+
+<details><summary>↩ Tool result · `toolu_01CZrXS6sWJdy8j4UP5RGCRo`</summary>
+
+```text
+Web search results for query: "ARR May 2026 cycle submission deadline June 15 EMNLP AACL commitment"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1","url":"https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"}]
+
+Based on the search results, here's the key information about the ARR May 2026 cycle submission deadline and the related EMNLP/AACL commitment:
+
+## ARR May 2026 Submission and Commitment Details
+
+**Submission Deadline:** The ARR submission deadline for the May 2026 cycle is May 25, 2026.
+
+**June 15 Information:** While your query mentions June 15, the search results show authors must complete the author registration form by May 27, 2026 EoD AoE after submission.
+
+**EMNLP and AACL Commitment Policy:** Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026.
+
+**Commitment Deadlines:** The commitment dates are August 2, 2026 for EMNLP 2026 and August 26, 2026 for AACL 2026.
+
+Note that I did not find specific information about a June 15 deadline in the search results. If you have additional context about what June 15 refers to, please let me know.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bef8411b-0d78-4a8f-9476-f748431ec704",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "9899bfe0-ef3d-478a-8f72-2b185bbdf595",
+  "toolUseResult": {
+    "query": "ARR May 2026 cycle submission deadline June 15 EMNLP AACL commitment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012o5JaH2qQwpbd6KizM6L3w",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1",
+            "url": "https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about the ARR May 2026 cycle submission deadline and the related EMNLP/AACL commitment:\n\n## ARR May 2026 Submission and Commitment Details\n\n**Submission Deadline:** The ARR submission deadline for the May 2026 cycle is May 25, 2026.\n\n**June 15 Information:** While your query mentions June 15, the search results show authors must complete the author registration form by May 27, 2026 EoD AoE after submission.\n\n**EMNLP and AACL Commitment Policy:** Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026.\n\n**Commitment Deadlines:** The commitment dates are August 2, 2026 for EMNLP 2026 and August 26, 2026 for AACL 2026.\n\nNote that I did not find specific information about a June 15 deadline in the search results. If you have additional context about what June 15 refers to, please let me know."
+    ],
+    "durationSeconds": 5.526048769000044
+  },
+  "sourceToolAssistantUUID": "bef8411b-0d78-4a8f-9476-f748431ec704",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129 · 2026-05-15T13:07:50.165Z_
+
+Now I have all the information I need. Let me compile the final JSON.
+
+Key findings:
+- **EMNLP 2026**: ARR May cycle deadline May 25, 2026 — still open (10 days away)
+- **AACL 2026**: Same ARR May cycle, May 25, 2026
+- **AAAI 2027**: Abstract July 21, full paper July 28, 2026
+- **ICLR 2027**: ~October 2026 (not yet announced, based on historical patterns)
+- **NeurIPS 2026**: Passed (May 6)
+- **ICML 2026**: Passed (Jan 28)
+- **COLM 2026**: Passed (Mar 31)
+- **ACL 2026**: Passed (commitment Mar 14)
+
+No concurrent work found that combines VUF/representation intervention with per-claim granularity for long-form generation — the niche is open.
+
+Ji et al. paper was SAC-recognized at EMNLP 2025, not specifically "Outstanding Paper" — I should correct this in the reference.
+
+Current SOTA open models: Qwen 3.5 (various sizes), Llama 4 Maverick/Scout, DeepSeek V4. For interpretability research requiring access to intermediate representations, dense models like Qwen 3.5 27B or Llama 4 Scout are most practical.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9899bfe0-ef3d-478a-8f72-2b185bbdf595",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QWbFWviiXRFC621Gsj",
+  "type": "assistant",
+  "uuid": "7c980a0f-0862-459b-a526-6b469b08e410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139ggrfZ2iN2bBCuxYqwKkf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 828,
+      "cache_read_input_tokens": 57965,
+      "output_tokens": 419,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 419,
+          "cache_read_input_tokens": 57965,
+          "cache_creation_input_tokens": 828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-15T13:07:51.189Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AejBUTJSZ8GjQdpnXzEGrb`</summary>
+
+```json
+{
+  "query": "\"Semantic Entropy Probes\" ICML 2024 OR ICLR 2025 venue published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c980a0f-0862-459b-a526-6b469b08e410",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QWbFWviiXRFC621Gsj",
+  "type": "assistant",
+  "uuid": "31d7730e-3c62-4ec0-81a6-f62a687a4642",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139ggrfZ2iN2bBCuxYqwKkf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 828,
+      "cache_read_input_tokens": 57965,
+      "output_tokens": 419,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 419,
+          "cache_read_input_tokens": 57965,
+          "cache_creation_input_tokens": 828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-15T13:07:57.981Z_
+
+<details><summary>↩ Tool result · `toolu_01AejBUTJSZ8GjQdpnXzEGrb`</summary>
+
+```text
+Web search results for query: ""Semantic Entropy Probes" ICML 2024 OR ICLR 2025 venue published"
+
+Links: [{"title":"ICML Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://icml.cc/virtual/2024/39442"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/pdf/2406.15927"},{"title":"Thinking, Faithful and Stable: Mitigating Hallucinations in LLMs","url":"https://cs224r.stanford.edu/projects/pdfs/Final_Report_CS224r.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/b94d8b035e2183e47afef9e2f299ba47-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2024","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf"},{"title":"UCLA UCLA Electronic Theses and Dissertations Title","url":"https://escholarship.org/content/qt7mb8b296/qt7mb8b296.pdf"},{"title":"GitHub - OATML/semantic-entropy-probes · GitHub","url":"https://github.com/OATML/semantic-entropy-probes"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"Published as a conference paper at ICLR 2025","url":"https://belinkov.com/assets/pdf/iclr2025-know.pdf"}]
+
+Based on the search results, here's what I found about "Semantic Entropy Probes":
+
+## Publication Venue
+
+Semantic Entropy Probes (SEPs) is a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs), and the paper was published at ICML 2024.
+
+## What is it?
+
+SEPs directly approximate semantic entropy from the hidden states of a single generation, and they are simple to train and do not require sampling multiple model generations at test time, reducing the overhead of semantic uncertainty quantification to almost zero.
+
+## Purpose
+
+Hallucinations, which are plausible-sounding but factually incorrect and arbitrary model generations, present a major challenge to the practical adoption of LLMs, and while semantic entropy can detect hallucinations by estimating uncertainty in the space of semantic meaning for a set of model generations, the 5-to-10-fold increase in computation cost associated with SE computation hinders practical adoption.
+
+The paper was authored by Jannik Kossen, Jiatong Han, Muhammed Razzak, Lisa Schut, Shreshth Malik, and Yarin Gal, and is available on arXiv as paper 2406.15927.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31d7730e-3c62-4ec0-81a6-f62a687a4642",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "61de7c1b-a4f4-4f8f-a68b-edb521194c11",
+  "toolUseResult": {
+    "query": "\"Semantic Entropy Probes\" ICML 2024 OR ICLR 2025 venue published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fyw44te3WtSdcbhuTE8HLs",
+        "content": [
+          {
+            "title": "ICML Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://icml.cc/virtual/2024/39442"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/pdf/2406.15927"
+          },
+          {
+            "title": "Thinking, Faithful and Stable: Mitigating Hallucinations in LLMs",
+            "url": "https://cs224r.stanford.edu/projects/pdfs/Final_Report_CS224r.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/b94d8b035e2183e47afef9e2f299ba47-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf"
+          },
+          {
+            "title": "UCLA UCLA Electronic Theses and Dissertations Title",
+            "url": "https://escholarship.org/content/qt7mb8b296/qt7mb8b296.pdf"
+          },
+          {
+            "title": "GitHub - OATML/semantic-entropy-probes · GitHub",
+            "url": "https://github.com/OATML/semantic-entropy-probes"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://belinkov.com/assets/pdf/iclr2025-know.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Semantic Entropy Probes\":\n\n## Publication Venue\n\nSemantic Entropy Probes (SEPs) is a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs), and the paper was published at ICML 2024.\n\n## What is it?\n\nSEPs directly approximate semantic entropy from the hidden states of a single generation, and they are simple to train and do not require sampling multiple model generations at test time, reducing the overhead of semantic uncertainty quantification to almost zero.\n\n## Purpose\n\nHallucinations, which are plausible-sounding but factually incorrect and arbitrary model generations, present a major challenge to the practical adoption of LLMs, and while semantic entropy can detect hallucinations by estimating uncertainty in the space of semantic meaning for a set of model generations, the 5-to-10-fold increase in computation cost associated with SE computation hinders practical adoption.\n\nThe paper was authored by Jannik Kossen, Jiatong Han, Muhammed Razzak, Lisa Schut, Shreshth Malik, and Yarin Gal, and is available on arXiv as paper 2406.15927."
+    ],
+    "durationSeconds": 6.786740904999955
+  },
+  "sourceToolAssistantUUID": "31d7730e-3c62-4ec0-81a6-f62a687a4642",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-15T13:08:00.578Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YYYWHTdsDA4FHNqCuDRqpo`</summary>
+
+```json
+{
+  "query": "\"Steering Language Models With Activation Engineering\" Turner 2024 venue published ACL NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61de7c1b-a4f4-4f8f-a68b-edb521194c11",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QXvCKWaoEDHcfGjBvb",
+  "type": "assistant",
+  "uuid": "c4946efa-31e6-4ff9-b0b2-eed14ea31a2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QeNk8LrNWp7nMBoBxCezLz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1223,
+      "cache_read_input_tokens": 58793,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 58793,
+          "cache_creation_input_tokens": 1223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-15T13:08:07.427Z_
+
+<details><summary>↩ Tool result · `toolu_01YYYWHTdsDA4FHNqCuDRqpo`</summary>
+
+```text
+Web search results for query: ""Steering Language Models With Activation Engineering" Turner 2024 venue published ACL NeurIPS"
+
+Links: [{"title":"[2308.10248] Steering Language Models With Activation Engineering","url":"https://arxiv.org/abs/2308.10248"},{"title":"Activation Addition: Steering Language Models Without Optimization - University of Bristol","url":"https://research-information.bris.ac.uk/en/publications/activation-addition-steering-language-models-without-optimization/"},{"title":"Steering Language Models With Activation Engineering","url":"https://arxiv.org/html/2308.10248v5"},{"title":"Steering Language Models with Activation Engineering | OpenReview","url":"https://openreview.net/forum?id=2XBPdPIcFK"},{"title":"STEERING LANGUAGE MODELS WITH ACTIVATION EN- GINEERING Alexander Matt Turner","url":"https://arxiv.org/pdf/2308.10248"},{"title":"[2308.10248v5] Steering Language Models With Activation Engineering","url":"http://arxiv.org/abs/2308.10248v5"},{"title":"GitHub - ZFancy/awesome-activation-engineering: A curated list of resources for activation engineering · GitHub","url":"https://github.com/ZFancy/awesome-activation-engineering"},{"title":"Steering Language Models With Activation Engineering - MATS Research","url":"https://www.matsprogram.org/research/steering-language-models-with-activation-engineering"},{"title":"STEERING LANGUAGE MODELS WITH ACTIVATION EN","url":"https://openreview.net/pdf?id=2XBPdPIcFK"},{"title":"semantics-adaptive activation intervention","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c4d26a95fd83f8e590f81c54ae670b5d-Paper-Conference.pdf"}]
+
+Based on the search results, I found information about "Steering Language Models With Activation Engineering" by Turner and colleagues:
+
+The paper was authored by Alexander Matt Turner and 6 other authors, specifically Alexander Matt Turner, Lisa Thiergart, Gavin Leech, David Udell, Juan J. Vazquez, Ulisse Mini, Monte MacDiarmid.
+
+The paper appears to be available on arXiv rather than being published at a traditional conference venue. The most recent version (v5) was submitted on October 10, 2024. The search results show it was also submitted to OpenReview (visible at openreview.net), which suggests it may have been submitted to a conference for review, but the search results do not definitively confirm publication at either ACL or NeurIPS as a peer-reviewed conference paper.
+
+The paper introduces activation engineering: the inference-time modification of activations in order to control (or steer) model outputs, specifically introducing the Activation Addition (ActAdd) technique, which contrasts the intermediate activations on prompt pairs (such as "Love" versus "Hate") to compute a steering vector.
+
+If you need confirmation of the specific venue (ACL or NeurIPS), you may want to check the official conference proceedings or the OpenReview submission directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4946efa-31e6-4ff9-b0b2-eed14ea31a2a",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "6b611fd5-f63e-49b3-8587-376a9908fe20",
+  "toolUseResult": {
+    "query": "\"Steering Language Models With Activation Engineering\" Turner 2024 venue published ACL NeurIPS",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CePt4zTPBuUzMP94Yk4EPA",
+        "content": [
+          {
+            "title": "[2308.10248] Steering Language Models With Activation Engineering",
+            "url": "https://arxiv.org/abs/2308.10248"
+          },
+          {
+            "title": "Activation Addition: Steering Language Models Without Optimization - University of Bristol",
+            "url": "https://research-information.bris.ac.uk/en/publications/activation-addition-steering-language-models-without-optimization/"
+          },
+          {
+            "title": "Steering Language Models With Activation Engineering",
+            "url": "https://arxiv.org/html/2308.10248v5"
+          },
+          {
+            "title": "Steering Language Models with Activation Engineering | OpenReview",
+            "url": "https://openreview.net/forum?id=2XBPdPIcFK"
+          },
+          {
+            "title": "STEERING LANGUAGE MODELS WITH ACTIVATION EN- GINEERING Alexander Matt Turner",
+            "url": "https://arxiv.org/pdf/2308.10248"
+          },
+          {
+            "title": "[2308.10248v5] Steering Language Models With Activation Engineering",
+            "url": "http://arxiv.org/abs/2308.10248v5"
+          },
+          {
+            "title": "GitHub - ZFancy/awesome-activation-engineering: A curated list of resources for activation engineering · GitHub",
+            "url": "https://github.com/ZFancy/awesome-activation-engineering"
+          },
+          {
+            "title": "Steering Language Models With Activation Engineering - MATS Research",
+            "url": "https://www.matsprogram.org/research/steering-language-models-with-activation-engineering"
+          },
+          {
+            "title": "STEERING LANGUAGE MODELS WITH ACTIVATION EN",
+            "url": "https://openreview.net/pdf?id=2XBPdPIcFK"
+          },
+          {
+            "title": "semantics-adaptive activation intervention",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c4d26a95fd83f8e590f81c54ae670b5d-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about \"Steering Language Models With Activation Engineering\" by Turner and colleagues:\n\nThe paper was authored by Alexander Matt Turner and 6 other authors, specifically Alexander Matt Turner, Lisa Thiergart, Gavin Leech, David Udell, Juan J. Vazquez, Ulisse Mini, Monte MacDiarmid.\n\nThe paper appears to be available on arXiv rather than being published at a traditional conference venue. The most recent version (v5) was submitted on October 10, 2024. The search results show it was also submitted to OpenReview (visible at openreview.net), which suggests it may have been submitted to a conference for review, but the search results do not definitively confirm publication at either ACL or NeurIPS as a peer-reviewed conference paper.\n\nThe paper introduces activation engineering: the inference-time modification of activations in order to control (or steer) model outputs, specifically introducing the Activation Addition (ActAdd) technique, which contrasts the intermediate activations on prompt pairs (such as \"Love\" versus \"Hate\") to compute a steering vector.\n\nIf you need confirmation of the specific venue (ACL or NeurIPS), you may want to check the official conference proceedings or the OpenReview submission directly."
+    ],
+    "durationSeconds": 6.845393638999958
+  },
+  "sourceToolAssistantUUID": "c4946efa-31e6-4ff9-b0b2-eed14ea31a2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 134 · 2026-05-15T13:08:09.874Z_
+
+Now I have all the data. Let me compile the comprehensive JSON output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b611fd5-f63e-49b3-8587-376a9908fe20",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QYcaCDRVjU4aN86VGF",
+  "type": "assistant",
+  "uuid": "6e15e644-5e53-4478-a28a-edcd36be08cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fTaL84fZ6AGyasyZMg341",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 60016,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 60016,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-15T13:08:10.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FiDNCXnRQc6Vq1pUo68SJL`</summary>
+
+```json
+{
+  "query": "\"FActScore\" \"Fine-grained Atomic Evaluation\" Min et al EMNLP 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e15e644-5e53-4478-a28a-edcd36be08cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QYcaCDRVjU4aN86VGF",
+  "type": "assistant",
+  "uuid": "867541d5-06e8-456b-9090-bbb3d621dedb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fTaL84fZ6AGyasyZMg341",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 60016,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 60016,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-15T13:08:17.960Z_
+
+<details><summary>↩ Tool result · `toolu_01FiDNCXnRQc6Vq1pUo68SJL`</summary>
+
+```text
+Web search results for query: ""FActScore" "Fine-grained Atomic Evaluation" Min et al EMNLP 2023"
+
+Links: [{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.741/"},{"title":"[2305.14251] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation","url":"https://arxiv.org/abs/2305.14251"},{"title":"GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub","url":"https://github.com/shmsw25/factscore"},{"title":"FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta","url":"https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | OpenReview","url":"https://openreview.net/forum?id=GLA4ablO3M"},{"title":"FACTSCORE: Fine-grained Atomic Evaluation of Factual ...","url":"https://aclanthology.org/2023.emnlp-main.741.pdf"},{"title":"factscore · PyPI","url":"https://pypi.org/project/factscore/"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision | Potato","url":"https://www.potatoannotator.com/showcase/factscore-atomic-factuality"},{"title":"[PDF] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FActScore:-Fine-grained-Atomic-Evaluation-of-in-Min-Krishna/bd5deadc58ee45b5e004378ba1d54a96bc947b4a"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF","url":"https://www.researchgate.net/publication/376394762_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJzY2llbnRpZmljQ29udHJpYnV0aW9ucyIsInByZXZpb3VzUGFnZSI6bnVsbH19"}]
+
+I found comprehensive information about FActScore. Here's a summary of the search results:
+
+## FActScore: Fine-grained Atomic Evaluation
+
+FActScore is a paper by Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike Lewis, Wen-tau Yih, Pang Koh, Mohit Iyyer, Luke Zettlemoyer, and Hannaneh Hajishirzi, published at EMNLP 2023.
+
+### Core Concept
+
+FActScore introduces a new evaluation metric that breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source.
+
+### Key Findings
+
+The authors conducted extensive human evaluation on people biographies generated by several state-of-the-art commercial LMs—InstructGPT, ChatGPT, and the retrieval-augmented PerplexityAI—finding that ChatGPT only achieves 58%.
+
+### Automated Metric
+
+An automated model was introduced that estimates FActScore using retrieval and a strong language model, with less than a 2% error rate. The metric was used to evaluate 6,500 generations from 13 recent LMs, finding that GPT-4 and ChatGPT are more factual than public models, and Vicuna and Alpaca are some of the best public models.
+
+### Availability
+
+FActScore is available for public use via 'pip install factscore'.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "867541d5-06e8-456b-9090-bbb3d621dedb",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "583d2afa-29de-4016-ad59-12cea4411aad",
+  "toolUseResult": {
+    "query": "\"FActScore\" \"Fine-grained Atomic Evaluation\" Min et al EMNLP 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UMJZ3LsswuFc3QbPhgAKwy",
+        "content": [
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2023.emnlp-main.741/"
+          },
+          {
+            "title": "[2305.14251] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation",
+            "url": "https://arxiv.org/abs/2305.14251"
+          },
+          {
+            "title": "GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub",
+            "url": "https://github.com/shmsw25/factscore"
+          },
+          {
+            "title": "FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=GLA4ablO3M"
+          },
+          {
+            "title": "FACTSCORE: Fine-grained Atomic Evaluation of Factual ...",
+            "url": "https://aclanthology.org/2023.emnlp-main.741.pdf"
+          },
+          {
+            "title": "factscore · PyPI",
+            "url": "https://pypi.org/project/factscore/"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision | Potato",
+            "url": "https://www.potatoannotator.com/showcase/factscore-atomic-factuality"
+          },
+          {
+            "title": "[PDF] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/FActScore:-Fine-grained-Atomic-Evaluation-of-in-Min-Krishna/bd5deadc58ee45b5e004378ba1d54a96bc947b4a"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/376394762_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJzY2llbnRpZmljQ29udHJpYnV0aW9ucyIsInByZXZpb3VzUGFnZSI6bnVsbH19"
+          }
+        ]
+      },
+      "I found comprehensive information about FActScore. Here's a summary of the search results:\n\n## FActScore: Fine-grained Atomic Evaluation\n\nFActScore is a paper by Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike Lewis, Wen-tau Yih, Pang Koh, Mohit Iyyer, Luke Zettlemoyer, and Hannaneh Hajishirzi, published at EMNLP 2023.\n\n### Core Concept\n\nFActScore introduces a new evaluation metric that breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source.\n\n### Key Findings\n\nThe authors conducted extensive human evaluation on people biographies generated by several state-of-the-art commercial LMs—InstructGPT, ChatGPT, and the retrieval-augmented PerplexityAI—finding that ChatGPT only achieves 58%.\n\n### Automated Metric\n\nAn automated model was introduced that estimates FActScore using retrieval and a strong language model, with less than a 2% error rate. The metric was used to evaluate 6,500 generations from 13 recent LMs, finding that GPT-4 and ChatGPT are more factual than public models, and Vicuna and Alpaca are some of the best public models.\n\n### Availability\n\nFActScore is available for public use via 'pip install factscore'."
+    ],
+    "durationSeconds": 7.0871795229999694
+  },
+  "sourceToolAssistantUUID": "867541d5-06e8-456b-9090-bbb3d621dedb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 137_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "583d2afa-29de-4016-ad59-12cea4411aad",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 138_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-15T13:08:21.161Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018J6MBYjX6sgZTuMmYaxQ2b`</summary>
+
+```json
+{
+  "query": "\"Long-form factuality in large language models\" Wei Yang LongFact ICML 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "583d2afa-29de-4016-ad59-12cea4411aad",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QZPg5rgf3xpHHbw2Q8",
+  "type": "assistant",
+  "uuid": "01ace110-aa7d-428a-be07-cad45e544938",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1voKWwfu1qGhF3LR7Q3M3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1202,
+      "cache_read_input_tokens": 60869,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 60869,
+          "cache_creation_input_tokens": 1202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-15T13:08:27.757Z_
+
+<details><summary>↩ Tool result · `toolu_018J6MBYjX6sgZTuMmYaxQ2b`</summary>
+
+```text
+Web search results for query: ""Long-form factuality in large language models" Wei Yang LongFact ICML 2024"
+
+Links: [{"title":"[2403.18802] Long-form factuality in large language models","url":"https://arxiv.org/abs/2403.18802"},{"title":"Long-form factuality in large language models Jerry Wei∗1 Chengrun Yang∗1","url":"https://arxiv.org/pdf/2403.18802"},{"title":"Long-form factuality in large language models | OpenReview","url":"https://openreview.net/forum?id=4M9f8VMt2C"},{"title":"Long-form factuality in large language models | Proceedings of the 38th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3737916.3740483"},{"title":"Long-form factuality in large language models","url":"https://proceedings.neurips.cc//paper_files/paper/2024/hash/937ae0e83eb08d2cb8627fe1def8c751-Abstract-Conference.html"},{"title":"[PDF] Long-form factuality in large language models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Long-form-factuality-in-large-language-models-Wei-Yang/67c0d46f2bf655471cc29a5c1cd2f4ae5f10ab80"},{"title":"Long-form factuality in large language models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/long-form-factuality-large-language-models"},{"title":"Factuality of Large Language Models in the Year 2024","url":"https://arxiv.org/html/2402.02420v2"},{"title":"[2403.18802] Long-form factuality in large language models","url":"https://ar5iv.labs.arxiv.org/html/2403.18802v1"},{"title":"NeurIPS Poster Long-form factuality in large language models","url":"https://neurips.cc/virtual/2024/poster/96675"}]
+
+Based on the search results, here's what I found about "Long-form factuality in large language models":
+
+## Overview
+
+Large language models (LLMs) often generate content that contains factual errors when responding to fact-seeking prompts on open-ended topics. This paper addresses this critical issue by introducing three main contributions:
+
+## Key Components
+
+**1. LongFact Dataset:**
+LongFact is a prompt set comprising thousands of questions spanning 38 topics designed to benchmark a model's long-form factuality in open domains.
+
+**2. SAFE (Search-Augmented Factuality Evaluator):**
+LLM agents can be used as automated evaluators for long-form factuality through a method called Search-Augmented Factuality Evaluator (SAFE), which utilizes an LLM to break down a long-form response into a set of individual facts and to evaluate the accuracy of each fact using a multi-step reasoning process comprising sending search queries to Google Search and determining whether a fact is supported by the search results.
+
+**3. Evaluation Metric:**
+An aggregated metric for long-form factuality is proposed by extending F1 score.
+
+## Performance Results
+
+On a set of ~16k individual facts, SAFE agrees with crowdsourced human annotators 72% of the time, and on a random subset of 100 disagreement cases, SAFE wins 76% of the time. SAFE is more than 20 times cheaper than human annotators.
+
+Benchmarking thirteen language models on LongFact across four model families (Gemini, GPT, Claude, and PaLM-2) reveals that larger language models generally achieve better long-form factuality.
+
+**Note:** The search results indicate this paper was published at NeurIPS 2024, not ICML 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01ace110-aa7d-428a-be07-cad45e544938",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "ffdc1fb8-5c60-458d-8a5d-c64b7a41febd",
+  "toolUseResult": {
+    "query": "\"Long-form factuality in large language models\" Wei Yang LongFact ICML 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FXYVYtQtUgPa3upcfGdj4u",
+        "content": [
+          {
+            "title": "[2403.18802] Long-form factuality in large language models",
+            "url": "https://arxiv.org/abs/2403.18802"
+          },
+          {
+            "title": "Long-form factuality in large language models Jerry Wei∗1 Chengrun Yang∗1",
+            "url": "https://arxiv.org/pdf/2403.18802"
+          },
+          {
+            "title": "Long-form factuality in large language models | OpenReview",
+            "url": "https://openreview.net/forum?id=4M9f8VMt2C"
+          },
+          {
+            "title": "Long-form factuality in large language models | Proceedings of the 38th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3737916.3740483"
+          },
+          {
+            "title": "Long-form factuality in large language models",
+            "url": "https://proceedings.neurips.cc//paper_files/paper/2024/hash/937ae0e83eb08d2cb8627fe1def8c751-Abstract-Conference.html"
+          },
+          {
+            "title": "[PDF] Long-form factuality in large language models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Long-form-factuality-in-large-language-models-Wei-Yang/67c0d46f2bf655471cc29a5c1cd2f4ae5f10ab80"
+          },
+          {
+            "title": "Long-form factuality in large language models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/long-form-factuality-large-language-models"
+          },
+          {
+            "title": "Factuality of Large Language Models in the Year 2024",
+            "url": "https://arxiv.org/html/2402.02420v2"
+          },
+          {
+            "title": "[2403.18802] Long-form factuality in large language models",
+            "url": "https://ar5iv.labs.arxiv.org/html/2403.18802v1"
+          },
+          {
+            "title": "NeurIPS Poster Long-form factuality in large language models",
+            "url": "https://neurips.cc/virtual/2024/poster/96675"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Long-form factuality in large language models\":\n\n## Overview\n\nLarge language models (LLMs) often generate content that contains factual errors when responding to fact-seeking prompts on open-ended topics. This paper addresses this critical issue by introducing three main contributions:\n\n## Key Components\n\n**1. LongFact Dataset:**\nLongFact is a prompt set comprising thousands of questions spanning 38 topics designed to benchmark a model's long-form factuality in open domains.\n\n**2. SAFE (Search-Augmented Factuality Evaluator):**\nLLM agents can be used as automated evaluators for long-form factuality through a method called Search-Augmented Factuality Evaluator (SAFE), which utilizes an LLM to break down a long-form response into a set of individual facts and to evaluate the accuracy of each fact using a multi-step reasoning process comprising sending search queries to Google Search and determining whether a fact is supported by the search results.\n\n**3. Evaluation Metric:**\nAn aggregated metric for long-form factuality is proposed by extending F1 score.\n\n## Performance Results\n\nOn a set of ~16k individual facts, SAFE agrees with crowdsourced human annotators 72% of the time, and on a random subset of 100 disagreement cases, SAFE wins 76% of the time. SAFE is more than 20 times cheaper than human annotators.\n\nBenchmarking thirteen language models on LongFact across four model families (Gemini, GPT, Claude, and PaLM-2) reveals that larger language models generally achieve better long-form factuality.\n\n**Note:** The search results indicate this paper was published at NeurIPS 2024, not ICML 2024."
+    ],
+    "durationSeconds": 6.591235531000013
+  },
+  "sourceToolAssistantUUID": "01ace110-aa7d-428a-be07-cad45e544938",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 141 · 2026-05-15T13:08:30.851Z_
+
+Now I have all the verified information. Let me compose the final JSON output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffdc1fb8-5c60-458d-8a5d-c64b7a41febd",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Qa7XGHSVw7JdQN3AJH",
+  "type": "assistant",
+  "uuid": "44a975c6-b98b-4ab4-92b9-73931a9f6a3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vgtn2UnMQsSAHD1gZGQoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 62071,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 62071,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-15T13:08:32.397Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AMMiBTMrYKHU5JKbY2kJjP`</summary>
+
+```json
+{
+  "query": "\"Atomic Calibration of LLMs in Long-Form Generations\" venue published EMNLP ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44a975c6-b98b-4ab4-92b9-73931a9f6a3a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Qa7XGHSVw7JdQN3AJH",
+  "type": "assistant",
+  "uuid": "5e9a09e7-000f-43ad-ba28-d855d0aabca7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vgtn2UnMQsSAHD1gZGQoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 62071,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 62071,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-15T13:08:37.680Z_
+
+<details><summary>↩ Tool result · `toolu_01AMMiBTMrYKHU5JKbY2kJjP`</summary>
+
+```text
+Web search results for query: ""Atomic Calibration of LLMs in Long-Form Generations" venue published EMNLP ACL 2025"
+
+Links: [{"title":"Atomic Calibration of LLMs in Long-Form Generations - ACL Anthology","url":"https://aclanthology.org/2025.findings-ijcnlp.9/"},{"title":"[2410.13246] Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/abs/2410.13246"},{"title":"Atomic Calibration of LLMs in Long-Form Generations | OpenReview","url":"https://openreview.net/forum?id=rzsjUC45xf"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://aclanthology.org/2025.findings-ijcnlp.9.pdf"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/html/2410.13246"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://www.researchgate.net/publication/385010223_Atomic_Calibration_of_LLMs_in_Long-Form_Generations"},{"title":"Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology","url":"https://aclanthology.org/volumes/2025.findings-emnlp/"},{"title":"The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/events/emnlp-2025/"},{"title":"Accepted Papers - NAACL-HLT 2025","url":"https://2025.naacl.org/program/accepted_papers/"}]
+
+Based on the search results, I can provide you with information about the paper:
+
+"Atomic Calibration of LLMs in Long-Form Generations" was published in the Proceedings of the 14th International Joint Conference on Natural Language Processing and the 4th Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics.
+
+To clarify the venue: The paper appears in the proceedings of IJCNLP (International Joint Conference on Natural Language Processing) and the Asia-Pacific Chapter of the ACL, not directly as an EMNLP or main ACL conference paper. However, according to the search results, the paper was also presented at a workshop venue - it was published at KnowFM @ ACL 2025.
+
+The paper is authored by Caiqi Zhang, Ruihan Yang, Zhisong Zhang, Xinting Huang, Sen Yang, Dong Yu, and Nigel Collier.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e9a09e7-000f-43ad-ba28-d855d0aabca7",
+  "isSidechain": false,
+  "promptId": "9171c4c7-0592-4dad-9b73-b009e2785082",
+  "type": "user",
+  "uuid": "a1b5323b-48eb-41fc-834f-ac86fd9574f1",
+  "toolUseResult": {
+    "query": "\"Atomic Calibration of LLMs in Long-Form Generations\" venue published EMNLP ACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016UDeDqHAtqMqHrpQhq8gwX",
+        "content": [
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.9/"
+          },
+          {
+            "title": "[2410.13246] Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/abs/2410.13246"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations | OpenReview",
+            "url": "https://openreview.net/forum?id=rzsjUC45xf"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.9.pdf"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/html/2410.13246"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://www.researchgate.net/publication/385010223_Atomic_Calibration_of_LLMs_in_Long-Form_Generations"
+          },
+          {
+            "title": "Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology",
+            "url": "https://aclanthology.org/volumes/2025.findings-emnlp/"
+          },
+          {
+            "title": "The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology",
+            "url": "https://aclanthology.org/events/emnlp-2025/"
+          },
+          {
+            "title": "Accepted Papers - NAACL-HLT 2025",
+            "url": "https://2025.naacl.org/program/accepted_papers/"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the paper:\n\n\"Atomic Calibration of LLMs in Long-Form Generations\" was published in the Proceedings of the 14th International Joint Conference on Natural Language Processing and the 4th Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics.\n\nTo clarify the venue: The paper appears in the proceedings of IJCNLP (International Joint Conference on Natural Language Processing) and the Asia-Pacific Chapter of the ACL, not directly as an EMNLP or main ACL conference paper. However, according to the search results, the paper was also presented at a workshop venue - it was published at KnowFM @ ACL 2025.\n\nThe paper is authored by Caiqi Zhang, Ruihan Yang, Zhisong Zhang, Xinting Huang, Sen Yang, Dong Yu, and Nigel Collier."
+    ],
+    "durationSeconds": 5.279632213000034
+  },
+  "sourceToolAssistantUUID": "5e9a09e7-000f-43ad-ba28-d855d0aabca7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 144 · 2026-05-15T13:08:37.683Z_
+
+```json
+{
+  "parentUuid": "a1b5323b-48eb-41fc-834f-ac86fd9574f1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cc2e4f62-7113-45c5-9864-fdee88f5d219",
+  "timestamp": "2026-05-15T13:08:37.683Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 145 · 2026-05-15T13:09:42.217Z_
+
+Now I have everything verified. Here is the complete JSON output:
+
+{
+  "title": "Claim-Level Verbal Uncertainty Calibration for Long-Form Generation",
+  "core_problem": "LLMs express hallucinated claims in long-form outputs with uniformly high confidence, yet the only known method for calibrating verbal uncertainty via representation intervention (Ji et al., EMNLP 2025) operates at the response level on short-form QA — it cannot distinguish reliable from unreliable claims within a single long-form generation.",
+  "opportunity": "The Verbal Uncertainty Feature (VUF) is a single linear direction in representation space, making per-claim extraction and steering computationally cheap. Concurrent work (CURE, April 2026; CAG, May 2026) addresses claim-level calibration in long-form but requires multi-stage training or RL — a training-free, representation-intervention approach that extends VUF to claim-level granularity fills an open niche. The 11-day timeline is feasible because VUF extraction is well-documented, claim segmentation tools exist (FActScore decomposition), and evaluation benchmarks (FActScore, LongFact, ECE/Brier, MT-Bench) are established.",
+  "landscape": "Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a linear feature in LLM representation space and introduced MUC (Mechanistic Uncertainty Calibration), achieving ~30% reduction in confident hallucinations — but only on short-form answers. CURE (arxiv 2604.12046, April 2026) teaches claim-level confidence reasoning via a multi-stage training pipeline, improving claim accuracy by up to 39.9% on biography generation. 'Only Say What You Know' (arxiv 2605.01749, May 2026) proposes exploration-commitment decoupling with up to 13% factuality gain and 37% decoding speedup, but uses training. Atomic Calibration (arxiv 2410.13246, Findings of AACL-IJCNLP 2025) showed LLMs have poor claim-level calibration in long-form generation. CSS (arxiv 2604.17487, April 2026) introduces compositional selective specificity as a post-generation layer that decomposes answers into claims and backoffs uncertain ones, but relies on external verifiers rather than internal representations. Selective Abstraction (arxiv 2602.11908, February 2026) proposes trading specificity for reliability by replacing low-confidence atoms with confident abstractions. PCNET (arxiv 2605.05953, May 2026) uses probabilistic circuits over residual streams for hallucination detection but targets short-form QA. Semantic Entropy Probes (ICML 2024) showed linear probes can approximate semantic entropy from hidden states in a single forward pass, but only at the response level. No existing work applies training-free representation intervention at claim-level granularity for long-form outputs — the combination of VUF steering with per-claim semantic uncertainty estimation is unexplored.",
+  "approach": "Extract the Verbal Uncertainty Feature (VUF) direction from a target LLM (Qwen 3.5-27B as primary, Llama 4 Scout as secondary) using the contrastive-pair methodology from Ji et al. For long-form generation, decompose the output into atomic claims using FActScore/OpenFActScore decomposition, then for each claim: (1) extract the VUF projection magnitude at the claim's final token position as a verbal confidence score, (2) compute a per-claim semantic uncertainty estimate via Semantic Entropy Probes (linear probes trained on hidden states, avoiding expensive multi-sample SE). When VUF-semantic mismatch exceeds a calibrated threshold — high verbal confidence but high semantic uncertainty — apply targeted activation intervention along the VUF direction only at the token positions corresponding to that claim during a second-pass generation, steering the model to express appropriate hedging language. This yields a training-free, claim-level calibration pipeline: Decompose → Score → Steer, where steering is localized to unreliable claims while leaving confident-and-correct claims untouched.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~300h A100 80GB (VUF extraction ~20h, SEP training ~30h, long-form generation & evaluation across 2 models x 4 benchmarks ~200h, ablations ~50h)",
+      "gpu_utilization": "~15-25% effective utilization — GPU idles while researcher writes code, debugs decomposition pipeline, analyzes results, and iterates on threshold calibration",
+      "timeline": "2-4 months (1 researcher full-time)",
+      "team": "1-2 researchers with mechanistic interpretability experience",
+      "estimated_gpu_cost": "$450-750 (at ~$1.50-2.50/hr A100 80GB spot/on-demand)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h A100 80GB (agent handles code iteration and experiment execution, reducing idle; human approves VUF extraction methodology, threshold selection, and paper framing)",
+      "gpu_utilization": "~40-55% — agent queues experiments and processes results between human check-ins, but pauses for key architectural decisions",
+      "timeline": "3-5 weeks",
+      "team": "1 researcher, ~45min/day check-in for methodology approval and result interpretation",
+      "claude_api_cost": "$150-300 (~2000-4000 Opus turns for code generation, experiment orchestration, result analysis, and paper drafting)",
+      "estimated_gpu_cost": "$300-500",
+      "risk_note": "VUF extraction quality on newer architectures (Qwen 3.5, Llama 4) is unverified — the original VUF was demonstrated on older models; if the linear feature does not transfer cleanly, the entire approach may require significant adaptation or fail"
+    },
+    "auto_research": {
+      "gpu_hours": "~500h A100 80GB (agent explores 3-5x more configurations: multiple layers for VUF extraction, multiple threshold strategies, multiple decomposition granularities, additional model sizes)",
+      "gpu_utilization": "~85-95% — agent runs continuous experiment pipeline with near-zero idle, automatically queuing next experiment as previous completes",
+      "timeline": "5-10 days with 2x A100 80GB GPUs running in parallel",
+      "team": "0 (only initial setup and final review)",
+      "claude_api_cost": "$300-600 (~4000-8000 Opus turns for full pipeline: code generation, experiment design, result analysis, ablation studies, paper writing)",
+      "estimated_gpu_cost": "$750-1250",
+      "speed_bottleneck": "GPU count (2x A100 80GB minimum for parallel model loading and generation; 4x would halve timeline) and long-form generation throughput (generating + evaluating thousands of long-form responses on FActScore/LongFact is the computational bottleneck)",
+      "risk_note": "Without human judgment, the agent may over-explore VUF extraction configurations that don't work on new architectures and under-invest in the claim-decomposition-to-steering alignment, which requires careful design choices about token position selection and intervention strength"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May cycle, submission deadline May 25, 2026 — 10 days away; conference Oct 24-29, Budapest)",
+    "AAAI 2027 (abstract Jul 21, full paper Jul 28, 2026; conference Feb 16-23, Montréal)",
+    "ICLR 2027 (expected ~Oct 2026, not yet announced; conference ~Spring 2027)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (EMNLP 2025)",
+    "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration [CURE] (arXiv 2604.12046, April 2026)",
+    "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality [CAG] (arXiv 2605.01749, May 2026)",
+    "Atomic Calibration of LLMs in Long-Form Generations (Findings of AACL-IJCNLP 2025)",
+    "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems [CSS] (arXiv 2604.17487, April 2026)",
+    "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation (arXiv 2602.11908, February 2026)",
+    "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs (ICML 2024)",
+    "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (EMNLP 2023)",
+    "Long-form Factuality in Large Language Models [LongFact/SAFE] (NeurIPS 2024)",
+    "Steering Language Models With Activation Engineering (arXiv 2308.10248, 2023)"
+  ],
+  "description": "We propose Claim-Level Mechanistic Uncertainty Calibration (CL-MUC), a training-free method that extends the Verbal Uncertainty Feature (VUF) discovered by Ji et al. (EMNLP 2025) from response-level short-form QA to claim-level long-form generation. The pipeline operates in three stages: (1) Decompose — segment long-form output into atomic claims using FActScore decomposition; (2) Score — for each claim, extract both the VUF projection magnitude (verbal confidence) and a Semantic Entropy Probe estimate (epistemic uncertainty) from the model's hidden states in a single forward pass; (3) Steer — for claims where verbal confidence is high but semantic uncertainty is also high (the hallucination-prone mismatch zone), apply targeted activation intervention along the VUF direction at claim-specific token positions during a second-pass generation to induce appropriate hedging. Unlike concurrent approaches (CURE, CAG) that require multi-stage training or RL, CL-MUC is entirely training-free and operates via lightweight linear probes and activation addition. We evaluate on Qwen 3.5-27B and Llama 4 Scout using FActScore, LongFact, and FactBench, measuring claim-level ECE, Brier score, AUROC, and factual precision. This fills the specific gap of training-free, representation-level, claim-granular uncertainty calibration for long-form generation.",
+  "project_name": "claim_level_vuf_calibration",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc2e4f62-7113-45c5-9864-fdee88f5d219",
+  "isSidechain": false,
+  "requestId": "req_011Cb4QaqxfJky8YQ3XgFj3c",
+  "type": "assistant",
+  "uuid": "5877d15d-0854-4de0-95cd-f2679c5ad712",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nv2RrN4KQpVRSnBzbWrhLn",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 944,
+      "cache_read_input_tokens": 63105,
+      "output_tokens": 2639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2639,
+          "cache_read_input_tokens": 63105,
+          "cache_creation_input_tokens": 944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 146_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-15 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Claim-Level V…",
+  "leafUuid": "5877d15d-0854-4de0-95cd-f2679c5ad712",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 147_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level verbal uncertainty calibration for long-form generation",
+  "sessionId": "5222b5c7-9cff-4fde-8ceb-d5b51a4d96e7"
+}
+```
+
+---

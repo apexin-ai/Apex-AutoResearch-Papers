@@ -1,0 +1,712 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/5672faef-74c2-4bf5-9541-955b41673926.jsonl`
+- **Structured JSON:** [`6cccd74181f6eaedaca7.json`](../../sessions/6c/6cccd74181f6eaedaca7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T04:52:23.292Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T04:52:23.292Z",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to make my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n- \"Evaluating the False Trust engendered by LLM Explanations\" (arXiv 2605.10930, May 2026): 确认存在。建立了 dual explanations (pro + contra) 是唯一真正提升用户区分 LLM 正确/错误输出能力的解释类型——其他解释类型仅增加接受率。本 proposal 的核心前提之一。\n\n- \"Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance\" (IUI 2026, arXiv 2502.13321): 确认存在。提出基于用户自报告信任度（0-10量表，≥8 触发）自适应呈现 counter-explanations，在科学 QA 和医学诊断任务上实现 38% inappropriate reliance 降低和 20% 准确率提升。30 trials/participant。明确承认需要 accuracy feedback 和 obtrusive trust surveys 的限制。本 proposal 的主要对比对象和直接差异化来源。\n\n- \"To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance on LLMs\" (Bo et al., CHI 2025, arXiv 2412.15584): 确认存在。测试三种干预（Reliance Disclaimer、Uncertainty Highlighting、Implicit Answer），发现 Uncertainty Highlighting 反而加剧 algorithm aversion，降低 perceived accuracy 和 helpfulness。本 proposal 利用此发现论证\"不向用户展示 uncertainty，而是作为后端 gating 信号\"的合理性。\n\n- \"Entropy Alone is Insufficient for Safe Selective Prediction in LLMs\" (arXiv 2603.21172, March 2026): 确认存在。在 TriviaQA、BioASQ、MedicalQA 上证明 semantic entropy 存在 \"confidently wrong\" 模式，结合 Probability of Correctness probe 显著改善 selective prediction 的 risk-coverage tradeoff。本 proposal 的 hybrid uncertainty estimator 直接基于此工作。\n\n- \"Unequal Uncertainty: Rethinking Algorithmic Interventions for Mitigating Discrimination from AI\" (arXiv 2508.07872, Aug 2025): 确认存在。首次对 uncertainty-gated interventions 进行社会技术和法律分析，证明 uncertainty thresholds 可能对 underrepresented groups 产生不均等影响。本 proposal 的 RQ3 fairness analysis 直接由此驱动。\n\n- \"From Text to Trust\" (Li et al., CHI 2025, arXiv 2502.11919): 搜索中未直接命中，但被 proposal 引用，声称使用 dynamic programming + learned human behavior model 自适应选择呈现哪些 LLM-generated feature analyses。与本 proposal 的关键区别在于需要先验交互数据（冷启动问题）且操作对象是 tabular AI 的 feature-level analyses。\n\n- \"Fostering Appropriate Reliance on LLMs: The Role of Explanations, Sources, and Inconsistencies\" (arXiv 2502.08554, 2025): 调研中发现的相关工作。发现 explanations 增加对正确和错误响应的 reliance，但提供 sources 或 explanations 中存在 inconsistencies 时可减少对错误响应的 reliance。与本 proposal 的 dual explanation 方法有平行关系但方法不同。\n\n- 调研中搜索\"model uncertainty gating explanation selection human-AI decision making\"未找到任何直接对比 model uncertainty 与 user trust 作为 gating signals 的先前工作，支持了 proposal 的 novelty claim（\"no existing work directly compares\"）。\n\n- 调研总结: 该领域处于快速发展期——2025-2026 年密集涌现关于 LLM overreliance 干预的实证研究。Dual explanations 刚被确认为最有效的解释类型（May 2026），自适应 gating 刚在 IUI 2026 被证明有效但受限于 trust measurement。将 model uncertainty 作为替代 gating signal 的具体 head-to-head 比较确实是一个空白点。但该领域的主要研究社区在 HCI（CHI/CSCW/IUI），而非 NLP。\n\n\n【Trivial Alternative 检验】:\n\n最直接的 trivial alternative 是 **Condition 2: 永远展示 dual explanations（always-on）**。如果 dual explanations 是唯一真正有效的解释类型（2605.10930），为什么不直接始终展示？Gating 的增量价值完全取决于 always-on dual explanations 存在可量化的成本（认知负荷增加、用户疲劳、满意度下降）。Proposal 在 H3 中测试这一点，但如果 Condition 2 在 overreliance reduction 和 cognitive load 上都表现可接受，整个 gating 架构就是不必要的复杂化。这是该 idea 最大的\"空气感\"所在：gating 的前提是 always-on 不够好，但这一前提尚未被证实。\n\n第二个 trivial alternative：简单的基于置信度（verbalized confidence）的 gating，无需训练 PC probe 或计算 semantic entropy。如果 LLM 直接输出\"I'm not sure\"时触发 dual explanation，是否能达到类似效果？Proposal 未讨论这一更低成本的替代方案。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链: \"model uncertainty 高 → model likely wrong → user would overrely → dual explanation most needed → gating improves outcomes\"\n\n未验证假设:\n\n1. **High uncertainty ≈ high overreliance risk**: 这是最关键的隐含假设。Model uncertainty 衡量的是\"模型可能错\"，但 user trust/overreliance 衡量的是\"用户会盲信\"。这两者不是同一个现象。用户可能在模型 uncertain 的问题上本来就不会 overrely（因为问题本身就很难，用户有自知之明）；也可能在模型 confident 且正确的问题上 overrely（因为形成了惯性信任）。Uncertainty-gating 和 trust-gating 瞄准的是不同的 \"at-risk\" 试次子集，非劣效性比较的前提——即它们大致瞄准同一批试次——可能不成立。\n\n2. **Triggering rate calibration 能弥合这一差异**: Proposal 计划通过调整 uncertainty threshold 使触发率匹配 trust-gating 的触发率。但触发率相同不等于触发的是同一批试次。两种 gating 可能在不同的 trials 上触发，导致 per-trial 效果完全不同。\n\n3. **非劣效性的 SESOI 论证**: d = 0.35 (≈7pp overreliance) 作为 equivalence margin 相当宽松。\"Adjust for Trust\"的核心效果本身就是约 38% reduction。7pp 的容忍意味着 uncertainty-gating 可以损失一大块效果仍被判为\"非劣效\"。这让 H2 容易通过，但降低了结论的信息量。\n\n4. **30 general-knowledge questions 的代表性**: 实验在 30 道知识型 QA 上进行（15 对 15 错），但部署场景远比这复杂。结论的外部效度存疑。\n\n\n【3 维度打分】:\n\n1. Novelty: 【中】\n   — \"将 model uncertainty 作为 backend gating signal 来替代 user trust gating\"这一具体组合确实未被先前工作覆盖（调研确认无直接竞争论文）。但 novelty 的性质是 **组合性/实证性** 而非 **方法论** 的：每个组件——dual explanations (2605.10930)、adaptive gating (2502.13321, IUI 2026)、hybrid SE + PC uncertainty (2603.21172)、fairness analysis framing (2508.07872)——都是直接借用已有工作。核心贡献归结为\"把已有组件 A 和组件 B 放在一起跑 user study 做 head-to-head comparison\"。这在 HCI 领域有价值（实证比较本身是贡献），但在 NLP 领域 novelty 偏弱。Non-inferiority framing 进一步限制了 novelty 天花板——声称的不是\"更好\"，而是\"差不多但更方便\"。\n\n2. Significance: 【中】\n   — 研究问题有真实的 practical relevance：部署中不依赖用户自报告和 accuracy feedback 是实际需求。但\"surprising if positive\"测试基本不通过——如果 hybrid uncertainty signal 确实达到 AUROC ≥ 0.75（Phase 1 要求），它能作为 gating signal 实现非劣效性是直觉上可预期的结果。更有信息量的结果反而是 uncertainty-gating 显著不如 trust-gating（说明 user state 和 model state 捕捉的是不同风险），但 proposal 的 framing 将此定位为 negative result。Fairness analysis (RQ3) 增加了一些额外 significance，但作为 secondary analysis 影响有限。此外，整个实验在一个受控的 30-question QA 设置中进行，带有 accuracy feedback——距离 proposal 声称的 \"deployable framework\" 有很大距离。\n\n3. Related Work: 【强】\n   — 这是 proposal 最大的优点。Related work 覆盖极为全面，对 20+ 篇关键论文进行了细致的定位和差异化分析。与\"Adjust for Trust\"的区分精确（trust measurement limitation + feedback dependency）；与 Bo et al. 的区分清晰（user-facing uncertainty display vs. backend gating signal）；与 Li et al. 的区分到位（cold start problem + feature-level vs. dual explanations）。引用的论文经调研全部确认真实存在，描述准确。这反映了作者对领域的深入理解。\n\n\n【概率估计】: [20% - 30%] 中位 24%\n\n【估计理由】:\nRelated work 覆盖和研究设计的形式完善度是该 proposal 的显著优势，但入口 triage 评估的是 idea 内核而非执行质量。核心 idea——\"用 model uncertainty 替代 user trust 做 dual explanation gating 的实证 non-inferiority comparison\"——属于\"方向正确、有真实 gap、但核心发现不 surprising\"的类型（对应 25-35% 档位的下半段）。Significance 受限于非劣效性 framing（声称\"差不多\"而非\"更好\"）和结果可预期性；Novelty 受限于纯组合性质（无新方法）。Trivial alternative（always-on dual）的威胁未被充分消解，且 uncertainty-gating 与 trust-gating 瞄准不同 trial subsets 的根本性假设问题进一步压低上界。上界主要被 Novelty（中）和 Significance（中）共同限制——这是一个设计严谨的 confirmatory user study，但不是一个在概念层面推动领域前进的 idea。\n\n【主要风险】:\n1. **Always-on dual explanation 可能已经足够好**: 如果 Condition 2 在 overreliance reduction 和 cognitive load 上均表现可接受，gating 的增量价值为零，整个研究变成\"一个解决了不存在的问题的方案\"。审稿人最可能问的第一个问题就是\"why not just always show dual explanations?\"\n2. **Uncertainty-gating 和 trust-gating 瞄准不同 trial subsets**: 两种 gating 基于完全不同的信号（model state vs. user state），触发的可能是不同的高风险试次。即使触发率通过 threshold adjustment 匹配，per-trial 效果可能系统性不同，使 non-inferiority comparison 的解释变得模糊——审稿人会质疑\"comparing apples to oranges\"。\n```\n\nSources:\n- [Adjust for Trust (arXiv 2502.13321)](https://arxiv.org/abs/2502.13321)\n- [Evaluating the False Trust engendered by LLM Explanations (arXiv 2605.10930)](https://arxiv.org/abs/2605.10930)\n- [To Rely or Not to Rely? (ResearchGate)](https://www.researchgate.net/publication/391269940_To_Rely_or_Not_to_Rely_Evaluating_Interventions_for_Appropriate_Reliance_on_Large_Language_Models)\n- [Entropy Alone is Insufficient (arXiv 2603.21172)](https://arxiv.org/abs/2603.21172)\n- [Unequal Uncertainty (arXiv 2508.07872)](https://arxiv.org/abs/2508.07872)\n- [Fostering Appropriate Reliance on LLMs (arXiv 2502.08554)](https://arxiv.org/pdf/2502.08554)\n- [Semantic Entropy Probes (arXiv 2406.15927)](https://arxiv.org/abs/2406.15927)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to provide my assessment. Let me compile the triage evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Evaluating the False Trust engendered by LLM Explanations](https://arxiv.org/abs/2605.10930) (arXiv, May 2026): 确认存在。核心发现：dual explanations（pro + contra）是唯一真正提升用户区分正确/错误 AI 输出能力的解释类型；其他类型（reasoning traces、post-hoc explanations）仅增加接受率。此论文是本 proposal 的直接动机之一。\n- [Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance](https://arxiv.org/abs/2502.13321) (IUI 2026): 确认存在。信任门控自适应解释，当 trust ≥ 8 时切换到 counter-explanations，不当依赖减少 38%。关键局限：需要每次决策后的 trust 自报告 + 准确度反馈。Proposal 的 Condition 3 直接复制此机制。\n- [To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance](https://arxiv.org/abs/2412.15584) (CHI 2025): 确认存在。Uncertainty Highlighting 直接向用户展示不确定性信息后反效果——显著降低感知准确性和有用性，增加 algorithm aversion。这是 proposal \"后端门控而非前端展示\" 设计的关键动机。\n- [Entropy Alone is Insufficient for Safe Selective Prediction in LLMs](https://arxiv.org/abs/2603.21172) (arXiv, Mar 2026): 确认存在。Semantic entropy 存在\"confidently wrong\"模式（尤其 Qwen 模型）；结合 Probability of Correctness probe 可显著改善错误检测。Proposal 的混合不确定性信号直接来自此工作。\n- [Unequal Uncertainty: Rethinking Algorithmic Interventions](https://arxiv.org/abs/2508.07872) (arXiv, Aug 2025): 确认存在。首次系统分析 uncertainty-gated 干预的公平性风险——不确定性阈值可能对代表性不足群体产生歧视性影响。Proposal 的 RQ3 fairness analysis 直接受此启发。\n- [From Text to Trust](https://arxiv.org/abs/2502.11919) (CHI 2025): 确认存在。动态规划框架通过学习用户行为模型自适应选择 LLM 生成的分析呈现。与本 proposal 的区别：需要先验交互数据、操作于表格特征分析而非 dual explanations、门控信号为预测效用而非不确定性/信任。\n- [Uncertainty Gating for Cost-Aware Explainable AI](https://arxiv.org/abs/2603.29915) (arXiv, Mar 2026): 使用 epistemic uncertainty 为 ML 分类器门控解释方法。机制类似但应用领域完全不同（ML 分类器的 XAI，非人类过度依赖）。\n- 调研总结: 这个领域处于快速汇聚期——2025-2026 年内多条线独立发展（dual explanations 的有效性、trust-gated 自适应、uncertainty 的公平性风险、混合不确定性估计），但尚无工作将 model uncertainty 和 user trust 作为竞争性门控信号直接比较。Proposal 位于这些线的交汇点。\n\n【Trivial Alternative 检验】:\n最直接的 trivial alternative 是 \"always-on dual explanation\"（始终呈现 pro + contra），这恰好是 proposal 的 Condition 2。如果 always-on dual explanation 在 overreliance reduction 上与 gated 条件表现相当，且认知负荷/满意度差异不显著，则整个门控机制（无论是 trust-based 还是 uncertainty-based）都是不必要的工程开销，论文的核心贡献将被严重削弱。Proposal 确实通过 H3 假设了 gated 条件相比 always-on 有更低认知负荷和更高满意度，但这一假设并非不言自明——如果 dual explanations 的认知负荷本身不高（只是额外 2-3 句反面论点），选择性呈现的优势可能很小。增量价值的成立关键取决于 always-on 是否确实带来显著的认知负荷代价，这在先行文献中并没有充分的证据支撑。\n\n【前提假设检验】:\n核心逻辑链中存在以下未经充分验证的假设：\n1. **\"模型不确定性高 ≈ 模型可能出错 ≈ 用户此时最需要 dual explanation\"** — 这假设了 dual explanation 的最佳触发时机与模型错误概率强相关。但用户过度依赖的发生不仅取决于模型是否出错，还取决于用户状态（注意力、先验知识、疲劳程度等）。一个高信任用户在模型正确时也可能形成不健康的过度依赖模式（habitual reliance），而 uncertainty-gating 不会对此触发干预。\n2. **\"门控触发率可比 ≈ 公平比较\"** — Proposal 计划如果两种门控条件的触发率差距超过 15pp 则调整阈值使之匹配。但 trust-gating 和 uncertainty-gating 的触发模式可能在 trial-level 上有完全不同的时间序列特征（trust 随序列动态变化，uncertainty 是静态预计算的），即使总触发率匹配，触发的 trial 可能完全不同，导致比较的内在效度存疑。\n3. **\"30 个 general-knowledge 问题足以推广到 LLM-assisted decision-making\"** — 这一任务域非常狭窄（知识问答），与 proposal 声称的\"deployable framework\"之间存在巨大推广性鸿沟。\n\n【3 维度打分】:\n1. Novelty: 中 — Proposal 正确识别了多条近期研究线的汇聚点，且\"model uncertainty 作为后端门控信号而非前端展示\"的 framing 确实巧妙（受 Bo et al. CHI 2025 反面证据启发）。但核心贡献本质上是 **组合式创新**：取 2502.13321 的门控框架 + 用 2603.21172 的混合不确定性信号替换 trust 信号 + 做 head-to-head 比较。每一个组件都是直接借用近期工作，组合本身是自然的\"next obvious step\"。此外，2603.29915（Uncertainty Gating for Cost-Aware XAI）已经在 ML 分类器场景展示了 uncertainty-gated explanation selection 的可行性，进一步削弱了将类似思路应用到 LLM 场景的新颖性。\n2. Significance: 中偏弱 — 研究问题（自动门控 vs. 手动门控）有真实的实践意义，但核心假设 H2 是 **non-inferiority test**：最可能的\"积极\"结果是\"uncertainty-gating 不劣于 trust-gating\"。这是一个审稿人很可能会说 \"I would have guessed this\" 的结果——一个合理的自动信号大致匹配一个带噪声的手动自报告信号，并不出人意料。如果结果是显著劣于，论文变成了一篇 negative result paper，发表难度更大。真正有 significance 的发现应该是 uncertainty-gating 在某些维度（如公平性）**显著优于** trust-gating，但这不是主假设。此外，任务域极其狭窄（30 个 general-knowledge QA 问题），可推广性有限。\n3. Related Work: 强 — Related work 覆盖极为全面，近乎穷尽了 2024-2026 年间所有相关工作。差异化定位清晰——对每篇近期工作都明确说明了与本 proposal 的区别（门控信号不同、干预类型不同、是否需要先验交互等）。引用的关键论文经搜索全部确认真实存在，描述准确。引入公平性分析（2508.07872）和混合不确定性信号（2603.21172）作为方法论支撑也很到位。这是 proposal 最强的维度。\n\n【概率估计】: [15% - 25%] 中位 20%\n\n【估计理由】:\nRelated Work 维度强，说明作者对领域有深刻理解，proposal 的形式完善度也很高。但 Novelty 和 Significance 共同限制了上界：\n- Novelty 受限于组合式创新——各组件均来自 2025-2026 年近期工作的直接借用，组合本身是 natural next step 而非 conceptual leap。\n- Significance 受限于核心假设 H2 的 non-inferiority 性质——最可能的积极结果缺乏 surprise value。审稿人读到\"自动不确定性信号大致等效于手动信任自报告\"时，大概率反应是 \"makes sense, but so what?\"\n- Trivial alternative 威胁实质性地存在（always-on 可能就够好了），且 proposal 对此的防御（H3: gating 降低认知负荷）缺乏先行证据支撑。\n- 任务域（30 个 general-knowledge QA）过于狭窄，与 \"deployable framework\" 的声称之间存在显著落差。\n\nNovelty 和 Significance 共同将上界限制在 ~25%。形式完善度和 Related Work 的扎实使下界不会太低（~15%），但无法补偿 idea 内核的 surprise value 不足。\n\n【主要风险】:\n1. **Trivial alternative 威胁**: Always-on dual explanation（Condition 2）如果在 overreliance reduction + 认知负荷的综合表现上与 gated 条件无显著差异，整个门控机制的必要性将被否定，论文核心贡献消失。\n2. **\"I would have guessed this\" 问题**: Non-inferiority 作为主假设，审稿人会质疑 \"the bar is too low\"——确认一个合理替代方案\"不比原方案差太多\"缺乏足够的学术 surprise，难以构成 top venue 水准的核心贡献。\n```\n\nSources:\n- [Evaluating the False Trust engendered by LLM Explanations](https://arxiv.org/abs/2605.10930)\n- [Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance](https://arxiv.org/abs/2502.13321)\n- [To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance on Large Language Models](https://arxiv.org/abs/2412.15584)\n- [Entropy Alone is Insufficient for Safe Selective Prediction in LLMs](https://arxiv.org/abs/2603.21172)\n- [Unequal Uncertainty: Rethinking Algorithmic Interventions for Mitigating Discrimination from AI](https://arxiv.org/abs/2508.07872)\n- [From Text to Trust: Empowering AI-assisted Decision Making with Adaptive LLM-powered Analysis](https://arxiv.org/abs/2502.11919)\n- [Uncertainty Gating for Cost-Aware Explainable AI](https://arxiv.org/abs/2603.29915)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient information to make my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- \"Evaluating the False Trust engendered by LLM Explanations\" (arXiv 2605.10930, May 2026): 建立了 dual explanations（pro + contra）是唯一能真正提高用户区分 LLM 正确/错误输出能力的解释类型。其他解释类型仅增加接受率。Proposal 将此作为核心前提之一，论文确实存在，描述准确。\n- \"Adjust for Trust\" (arXiv 2502.13321, IUI 2026): 基于用户 self-reported trust 的自适应 counter-explanation 展示，减少 38% inappropriate reliance。Proposal 对其机制（trust ≥ 8 阈值、需要 accuracy feedback、行为信号预测 trust F1 ≤ 0.5）的描述准确。论文确实发表于 IUI 2026。\n- \"From Text to Trust\" (Li et al., arXiv 2502.11919, CHI 2025): 使用 dynamic programming 框架和 learned behavior model 自适应选择要展示的 LLM feature analysis。需要 prior interaction data（冷启动问题），操作对象是 tabular feature analysis 而非 dual explanation。Proposal 的差异化定位基本准确。\n- \"To Rely or Not to Rely?\" (Bo et al., arXiv 2412.15584, CHI 2025): 测试了三种 reliance intervention（Disclaimer, Uncertainty Highlighting, Implicit Answer），发现 Uncertainty Highlighting 适得其反——增加 algorithm aversion 而非改善 reliance。Proposal 对此的引用和区分（display vs. backend gating）描述准确。\n- \"Entropy Alone is Insufficient for Safe Selective Prediction in LLMs\" (arXiv 2603.21172): 确认了 semantic entropy 的 \"confidently wrong\" regime，提出结合 Probability of Correctness probe。Proposal 的技术设计直接基于此，引用准确。\n- \"Unequal Uncertainty\" (arXiv 2508.07872, Aug 2025): 对 uncertainty-gated 干预的公平性和法律分析，指出可能对 underrepresented groups 产生不成比例的影响。Proposal 将此作为 fairness analysis 的动机，引用准确。\n- \"Uncertainty Gating for Cost-Aware Explainable AI\" (arXiv 2603.29915): 使用 epistemic uncertainty 对 ML classifier 的解释方法进行 gating。机制类似但应用领域不同（ML classifier 解释 vs. LLM overreliance 减少），不构成直接竞争。\n- \"Confronting Verbalized Uncertainty\" (IJHCS 2025): 研究 LLM verbalized uncertainty 对用户感知和行为的影响，发现中等 uncertainty 表达最优。与 proposal 关注点不同（用户感知 vs. backend gating）。\n- \"Evidential Semantic Entropy\" (EACL 2026): 改进 semantic entropy 估计方法，表明 uncertainty quantification 技术仍在快速演进。\n- 调研总结: Adaptive explanation for LLM overreliance 是一个活跃但尚年轻的领域。Dual explanation 的有效性（2605.10930）和 trust-gated 自适应（2502.13321）是两个非常新的发现（2026年），尚未有工作将 model uncertainty 作为替代 gating signal 进行 head-to-head 比较。Proposal 的确占据了一个真实的空白位置。\n\n【Trivial Alternative 检验】:\n最明显的 trivial alternative 是**\"always-on dual explanation\"**——既然 dual explanation 是唯一有效的解释类型（2605.10930），为什么不总是展示 dual explanation？Proposal 已经将此作为 Condition 2 纳入实验设计，这是正确的。但关键问题是：如果 always-on dual explanation 的效果已经足够好（甚至更好），那么 uncertainty-gated selective triggering 的增量价值就仅限于 cognitive load 减少——这是一个 marginal 而非 fundamental 的贡献。\n\n更深层的 trivial alternative 是：**random gating**——随机选择何时展示 dual explanation。如果 random gating 也能达到类似效果（因为 dual explanation 本身就有效，trigger 的时机不那么重要），那么 uncertainty-based gating 的精确性就没有意义。Proposal 没有包含 random baseline condition。\n\nProposal 的增量价值论证取决于：(1) always-on dual explanation 在 cognitive load 上确实有问题，且 (2) selective gating 能在保持效果的同时降低负担。这个论证是合理的但并非 overwhelming——审稿人可能会说 \"so just always show dual explanations\"。\n\n【前提假设检验】:\n核心 claim 的逻辑链中，有几个关键假设值得审视：\n\n1. **\"Model uncertainty 能可靠地预测 model error\"** — Phase 1 设了 AUROC ≥ 0.75 的门槛，这是合理的 go/no-go 检验。但 proposal 承认 knowledge-heavy tasks 的 calibration 比 reasoning tasks 差（2505.23854），而本实验恰好是 knowledge QA。这个假设有风险但有 fallback plan。\n\n2. **\"Dual explanation 在 uncertain 时比 certain 时更有价值\"** — 这是 uncertainty-gating 设计的隐含假设：在模型不确定时展示 dual explanation 能减少 overreliance，在模型确定时可以省略。但如果 dual explanation 的价值与 model uncertainty 无关（比如用户在模型正确时也受益于看到 contra argument），那 gating 就是 suboptimal 的。这个假设缺乏直接验证。\n\n3. **\"Non-inferiority 证明 = 实际价值\"** — Proposal 的核心假设 H2 是 non-inferiority test（uncertainty-gating 不劣于 trust-gating）。但 non-inferiority 的 equivalence margin d = 0.35（~7pp）相当宽松。如果结论是 \"uncertainty-gating 在 7pp 以内不劣于 trust-gating\"，审稿人可能会质疑这个发现的实质性。\n\n4. **\"Trust-gating 的部署局限性是真实且重要的\"** — 这是 proposal 论证 uncertainty-gating 价值的关键支柱。\"Adjust for Trust\" 确实承认了这个局限。但如果 trust self-report 可以通过更简单的方式获取（比如一次性初始校准），这个论证就会弱化。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — Proposal 确实占据了一个真实的空白：no existing work directly compares model uncertainty and user trust as competing gating signals for adaptive explanation presentation。文献调研证实了这一点。但 novelty 的\"层次\"需要审视：(a) 将 model uncertainty 用于 backend decision-making 不是新想法（2603.29915 已在 XAI cost 领域做过类似事情）；(b) dual explanation 的有效性已由 2605.10930 建立；(c) uncertainty estimation 方法（SE + PC probe）直接采用 2603.21172 的方案。Proposal 的 novelty 本质上是一个**组合性创新**——将已有组件（dual explanation + uncertainty gating + user study comparison）拼装在一起，而非提出新的概念或机制。这种组合是 reasonable 且有价值的，但审稿人可能会说 \"the individual pieces are known; the contribution is putting them together\"，这在 top venue 通常被视为 medium novelty。Fairness analysis（RQ3）是一个有趣的补充，但更像是 secondary contribution。\n\n2. **Significance: 中** — 研究问题是 practically important 的：LLM overreliance 是真实问题，deployable adaptive explanation 有工程价值。但 significance 受限于几个因素：(a) 核心结果无论是 positive 还是 negative，都不太会让人 surprised——\"model uncertainty 作为 backend signal 大致等效于 trust-based gating\"（non-inferiority 成立）或 \"不等效\"（non-inferiority 不成立），两个结果都在合理预期范围内，不会改变领域的基本认知；(b) 生态效度限制很强——30 道 general knowledge QA、with accuracy feedback、单次 session，离 deployment 距离远；(c) 即使 non-inferiority 成立，实际部署仍需大量工程适配。这是一个 **solid applied contribution**，但不是会改变领域思考方式的工作。\n\n3. **Related Work: 强** — 这是 proposal 最突出的优势。Related work 覆盖非常全面，包括 dual explanation（2605.10930）、trust-gated adaptation（2502.13321）、adaptive explanation selection（2502.11919）、uncertainty display backfiring（2412.15584）、uncertainty estimation（2603.21172, 2505.23854）、fairness（2508.07872）、cognitive forcing functions（CSCW 2021）等。差异化定位清晰——特别是与 \"Adjust for Trust\"、\"From Text to Trust\"、Bo et al. 的对比写得很好，准确识别了各自的局限性和本工作的互补性。我在调研中未发现 proposal 遗漏的重要竞争工作。引用准确，对已有工作的描述可靠。\n\n【概率估计】: [20% - 35%] 中位 25%\n\n【估计理由】:\nNovelty 是 medium——组合性创新、空白真实但 delta 不大；Significance 是 medium——研究问题实用但核心发现不太可能 surprising；Related Work 是强——但这是形式完善度而非 idea 质量。\n\n概率上界（~35%）受限于 **Novelty 和 Significance 的天花板**：即使实验执行完美，核心发现（uncertainty-gating ≈ trust-gating or not）的 intellectual surprise 有限。审稿人很可能会说 \"well-executed study, but the finding is somewhat expected\" 或 \"the contribution is engineering a comparison rather than revealing new insight\"。\n\n概率下界（~20%）由 Related Work 的强度和问题定位的合理性支撑——这不是一个方向错误的 idea，也不是一个 trivial 的 idea，但它更像一个扎实的 empirical comparison 而非一个会让审稿人 excited 的 conceptual advance。\n\n此外，这个 proposal 的核心目标 venue 是 CHI/CSCW/FAccT（proposal 自身列出的 target venues），而非 EMNLP。作为 NLP venue 的投稿，这个工作的 HCI/user study 重心可能面临 fit 方面的额外挑战，但按照评估原则，我不以此为由扣分——仅基于 idea 质量评估。\n\n**注意**：这个 proposal 在**形式完善度**上是顶级的——详尽的 power analysis、preregistered hypotheses、equivalence testing、fairness analysis、ecological validity discussion——但这些都是执行层面的优势。入口评估聚焦 idea 内核时，这些不应膨胀概率估计。\n\n【主要风险】:\n1. **\"So what\" 风险**：核心结果（non-inferiority 成立或不成立）审稿人可能觉得 intellectually unsurprising——无论哪个方向都在预期之内，不会改变领域对 adaptive explanation 的基本理解。\n2. **Trivial alternative 风险**：审稿人可能指出 always-on dual explanation 是更简单的 deployment 方案，且 proposal 未证明 selective gating 相对于 always-on 有足够的 marginal gain 来 justify complexity（尤其如果 Condition 2 vs. Condition 4 的差异不显著）。\n```\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Model Uncertainty vs. User Trust as Gating Signals for Adaptive Dual Explanations in LLM-Assisted Decision-Making\n\n## Description\nWe propose the first head-to-head comparison of model uncertainty and user trust as gating signals for adaptive dual explanation presentation in LLM-assisted decision-making. Building on three convergent findings—that dual explanations are the only explanation type genuinely reducing overreliance (2605.10930), that trust-gated counter-explanations cut inappropriate reliance by 38% but require obtrusive self-reports and accuracy feedback (Adjust for Trust, IUI 2026), and that displaying uncertainty directly to users backfires by increasing algorithm aversion (Bo et al., CHI 2025)—we test whether automatic model uncertainty can serve as a practical, first-interaction-ready *backend* gating signal that selects explanation type without burdening users. The system uses a validated hybrid uncertainty estimator (semantic entropy + Probability of Correctness probe over Qwen3-30B-A3B's shared residual stream representations, addressing both the 'confidently wrong' regime identified by 2603.21172 and MoE-specific probing considerations) to selectively trigger dual explanations when model error is likely. The uncertainty threshold is set via Youden's J-optimal cutpoint with cross-validated calibration, and triggering rates are verified against the trust-gated condition in a pilot study. A preregistered between-subjects study (N≈560, Prolific) compares four conditions across 30 general-knowledge questions: no explanation, always-on dual explanation, trust-gated dual explanation (replicating the Adjust for Trust mechanism with trust ≥ 8 threshold), and uncertainty-gated dual explanation. We measure overreliance reduction, discrimination accuracy, appropriate reliance ratio, cognitive load, and satisfaction. The central hypothesis (H2) tests non-inferiority of uncertainty-gating via TOST with a pre-registered equivalence margin of Cohen's d = 0.35 (≈7 percentage points on overreliance rate), justified by cost-benefit SESOI reasoning: below this threshold, uncertainty-gating's deployment advantages (no surveys, no feedback dependency, first-interaction readiness) outweigh any effectiveness loss. Power analysis confirms N=140/group provides 80% power for TOST at d = 0.35 (Lakens, 2017). Analysis uses GLMMs with crossed random effects for participants and items (Baayen et al., 2008; Westfall et al., 2014) to account for question-specific variance. Unlike prior adaptive approaches that require learned user models from prior interactions (Li et al., CHI 2025), our uncertainty-gated condition requires no user state measurement and works from the first interaction. Uniquely, we include a fairness analysis—motivated by 'Unequal Uncertainty' (2508.07872)—examining whether uncertainty-gated interventions trigger disproportionately across demographic groups. We explicitly acknowledge the ecological validity limitation that accuracy feedback (provided for comparability) is rarely available in deployment, and argue—supported by Okamura & Yamada (CHI 2024)—that uncertainty-gating's relative advantage is likely *larger* in practice because trust calibration degrades without feedback while uncertainty-gating is feedback-independent. This work bridges uncertainty quantification in NLP with adaptive explanation design in HCI, offering both a principled comparison of gating strategies and a deployable framework that requires no user state measurement.\n\n## Core Problem\nWhich gating signal—model uncertainty (automatic, available from first interaction) or user trust (self-reported, requiring repeated measurement)—better governs when to present dual explanations for reducing LLM overreliance, and does uncertainty-based gating introduce demographic fairness risks through differential triggering?\n\n## Opportunity\nTwo recent lines of work create a convergent opportunity. First, the 'false trust' study (2605.10930, May 2026) establishes that dual explanations (pro + contra arguments) are the *only* explanation type that genuinely improves users' ability to distinguish correct from incorrect LLM outputs—all other types merely increase acceptance. Second, 'Adjust for Trust' (2502.13321, IUI 2026) demonstrates that adaptively triggering counter-explanations based on user trust reduces inappropriate reliance by up to 38%. However, their approach requires obtrusive trust self-reports after every decision and real-time accuracy feedback—conditions rarely met in deployment. Their own analysis reveals that predicting trust from behavioral signals alone achieves F1 ≤ 0.5, making passive trust detection impractical, and they explicitly acknowledge that 'a key assumption of our setup does not hold in most real-world settings: that both parties have access to real-time feedback about decision accuracy.' Model uncertainty offers a complementary gating signal: it is computed automatically, requires no user input, works from the first interaction, and—critically—does not depend on accuracy feedback for calibration. Yet no work has empirically compared these two gating strategies. Meanwhile, 'The Persuasion Paradox' (2604.03237) shows that explanation effectiveness is strongly task-dependent—explanations help for language-based reasoning (72.5% accuracy vs. 48.5% baseline on LSAT) but hurt for visual reasoning—suggesting that uncertainty-gated explanation switching is most valuable precisely for the knowledge QA domain where explanations are effective. Critically, 'To Rely or Not to Rely?' (2412.15584, CHI 2025) finds that *displaying* uncertainty to users (via token-level probability highlighting) actually backfires—increasing algorithm aversion without improving appropriate reliance. This counter-evidence is important because it shows that uncertainty information is counterproductive when presented directly to users, but it does not indict using uncertainty as a *backend gating signal* to select which explanation type to present. Indeed, it strengthens the case for our approach: rather than burdening users with uncertainty visualization, we use uncertainty behind the scenes to select the more effective dual explanation format when model error is likely. The missing piece remains a head-to-head comparison that determines when model uncertainty outperforms, matches, or falls short of trust-based gating, while also measuring the fairness implications that 'Unequal Uncertainty' (2508.07872) warns about.\n\n## Landscape\nThe false trust paper (2605.10930, May 2026) establishes dual explanations as uniquely effective but tested them uniformly. 'Adjust for Trust' (2502.13321, IUI 2026) is the closest prior work on gating strategy: it gates between supporting and counter-explanations based on self-reported user trust (11-point scale, 0-10), achieving 38% reduction in inappropriate reliance and 20% accuracy improvement across science QA and medical diagnosis with 30 trials per participant. Critically, their trust measurement requires accuracy feedback after each trial and explicit trust surveys—conditions that limit deployment scalability. Their trust threshold (≥8 on 0-10 scale for counter-explanations) was set by visual inspection of reliance curves, not formal optimization. Their attempt to predict trust from interaction features yielded F1 ≤ 0.5. 'From Text to Trust' (Li et al., 2502.11919, CHI 2025) is the closest prior work on adaptive explanation selection: they use a dynamic programming framework with a learned human behavior model to selectively decide which LLM-generated feature analyses to present for tabular AI predictions (income, recidivism; N=447 and N=397, 15 trials per participant), significantly improving appropriate reliance versus always-on and control conditions. However, their approach differs from ours in three key respects: (1) it requires prior interaction data to train the behavior model (cold-start problem), (2) it operates on tabular feature-level analyses rather than natural-language dual explanations, and (3) their gating is based on predicted utility of each analysis rather than on model uncertainty or user trust as explicit signals. Our work complements theirs by comparing two deployment-practical gating signals (model uncertainty and self-reported trust) for a different intervention type (dual pro/contra explanations) in knowledge QA. 'To Rely or Not to Rely?' (Bo et al., 2412.15584, CHI 2025) benchmarks three reliance interventions on N=400 participants across LSAT and image estimation (only 4 trials per participant): Reliance Disclaimer (static warning text), Uncertainty Highlighting (red/pink token-level probability visualization), and Implicit Answer (removing explicit answer statements). Their central finding is sobering: while interventions reduce over-reliance, they generally fail to improve *appropriate* reliance—only Reliance Disclaimer improves the Appropriate Reliance Ratio, and only on LSAT (ARR=1.62 vs. 1.17 control, p=.04). Uncertainty Highlighting specifically backfired, significantly reducing perceived accuracy and helpfulness and increasing algorithm aversion rather than calibrating reliance. This is critical counter-evidence that our approach must address. The key distinction is mechanistic: Bo et al.'s Uncertainty Highlighting *displays* uncertainty information to users, imposing cognitive burden and triggering aversion. Our uncertainty-gated approach uses uncertainty as a *backend signal* to select explanation type—users never see uncertainty scores; they see adaptively selected explanation content. Furthermore, their interventions (disclaimer, highlighting, implicit answer) are simpler cognitive forcing mechanisms, whereas our dual explanation (pro + contra arguments) is the only format shown to genuinely improve discrimination ability (2605.10930). 'Selectively Providing Reliance Calibration Cues' (2302.09995) predicts human reliance behavior to selectively present calibration cues, but uses a learned user model rather than model uncertainty and does not switch explanation types. 'The Persuasion Paradox' (2604.03237) finds that uncertainty-based selective automation outperforms explanations for visual reasoning, but their own results show LLM explanations dramatically improve performance on language-based tasks (LSAT: 72.5% vs. 48.5%), supporting explanation-type switching for knowledge QA. 'Contrastive Explanations That Anticipate Misconceptions' (2410.04253, CHI 2025) generates explanations addressing the gap between AI and user reasoning (N=628, improves decision skills), but applies them uniformly without selective gating. 'Don't Just Translate, Agitate' (2504.12424) proposes LLMs as devil's advocates for XAI but is a position paper without empirical evaluation. 'Why Not Both?' (Frontiers 2025) shows explanations and uncertainty estimates serve complementary roles—uncertainty improves accuracy while explanations improve understanding—supporting the value of combining both signals. 'Unequal Uncertainty' (2508.07872) provides the first socio-technical and legal analysis of uncertainty-gated interventions, showing they can disproportionately affect underrepresented groups through differential triggering rates, creating fairness and legal risks under UK Equality Act 2010. 'Entropy Alone is Insufficient' (2603.21172) demonstrates that semantic entropy has a 'confidently wrong regime' and combining it with a Probability of Correctness probe substantially improves reliability. 'Revisiting Uncertainty Estimation' (2505.23854) shows LLMs have better calibration on reasoning tasks than knowledge-heavy ones across 80 models, and that good calibration does not guarantee effective error ranking—necessitating explicit validation for our QA domain. 'LLMs Should Express Uncertainty Explicitly' (2604.05306) proposes verbalized confidence and reasoning-time uncertainty markers, achieving improved calibration. 'Dissenting Explanations' (AAAI 2024) leverages model multiplicity for disagreeing explanations but applies them uniformly. Partial explanations (de Jong et al., PACM HCI 2025) reduce overreliance through cognitive forcing but do not modulate explanation type. 'Framework for Machine Evaluation of Reasoning Completeness' (Patil, 2510.21884) introduces the RACE framework evaluating alignment between LLM explanations and interpretable feature importance, finding a 'support-contra asymmetry' where correct predictions reference more supporting lexical cues while incorrect predictions reference more contradicting cues—relevant context for understanding how explanation quality may covary with model correctness. Multi-AI panel work (2603.22152) finds single dissent reduces conformity while broad disagreement confuses. Uncertainty Gating for Cost-Aware XAI (2603.29915) uses epistemic uncertainty to gate explanation methods for ML classifiers, not human overreliance; notably, they use percentile-based thresholds calibrated per dataset across ν ∈ {0.1, 0.3, 0.5, 0.7, 0.9}. No existing work directly compares model uncertainty and user trust as competing gating signals for adaptive explanation presentation in LLM-assisted decision-making.\n\n## Approach\nThe study proceeds in two phases. **Phase 1: Uncertainty Signal Validation.** Before any human-subjects work, we validate the gating signal on our specific task. Using Qwen3-30B-A3B—a Mixture-of-Experts model with 30.5B total parameters but only 3.3B activated per token (128 experts/layer, 8 selected per token)—we generate answers to 200 candidate general-knowledge questions and compute semantic entropy over 10 sampled completions per question. Semantic entropy operates on output-level semantics (clustering sampled completions by meaning), so it is unaffected by MoE routing variability. Following 'Entropy Alone is Insufficient' (2603.21172), we also train a lightweight Probability of Correctness (PC) probe on Qwen3-30B-A3B's hidden-state activations using a held-out set. For the PC probe specifically, we address MoE-specific considerations: we probe the shared residual stream representations (post-attention, pre-MoE routing) rather than post-expert states, avoiding the routing variability where different tokens activate different expert subsets. We validate probe stability by measuring variance across multiple forward passes on identical inputs, since MoE routing is deterministic for greedy decoding but may vary under sampling. Alternatively, we can adopt the Semantic Entropy Probes approach (Kossen et al., 2024), which approximates semantic entropy from single-generation hidden states, eliminating the need for multiple samples entirely. We combine semantic entropy and PC probe scores via logistic regression to produce a hybrid uncertainty signal. We require AUROC ≥ 0.75 for distinguishing correct from incorrect answers before proceeding; if this threshold is not met, we evaluate alternative models (Llama-4-Scout-17B, Mixtral-8x22B) or uncertainty methods (semantic energy, verbalized confidence per 2604.05306). **Threshold calibration:** The uncertainty gating threshold is set at the Youden's J optimal cutpoint (maximizing sensitivity + specificity − 1) on Phase 1 validation data, with bootstrap 95% CI for the cutpoint to quantify threshold uncertainty. Cross-validation (leave-20%-out) prevents overfitting on the 200-question set. From validated questions, we select 30 for the main study (15 where the model is correct, 15 where it is incorrect, balanced across uncertainty levels and topic domains). The increase from 20 to 30 items matches the 'Adjust for Trust' protocol (30 trials per participant) and provides sufficient levels for stable item-level random effects estimation in the GLMM analysis (Westfall, Kenny, & Judd, 2014, show that with ≤8 items, maximal attainable power is <0.5 regardless of participant N; 30 items is well above this threshold and above the ≥5-level minimum recommended by Gelman & Hill, 2006). **Phase 2: Comparative User Study.** A preregistered between-subjects study (N≈560, 140 per condition) on Prolific with four conditions: (1) **No explanation**—LLM answer only; (2) **Always-on dual explanation**—every answer includes structured pro and contra arguments (replicating the effective condition from 2605.10930); (3) **Trust-gated dual explanation**—participants report trust on an 11-point scale (0-10) after each of the 30 trials; when trust exceeds 8 (adopting the 'Adjust for Trust' threshold, which was empirically calibrated against reliance behavior), the next trial presents dual explanation, otherwise single explanation; (4) **Uncertainty-gated dual explanation**—when the hybrid uncertainty signal exceeds the Youden's J-optimal threshold from Phase 1, dual explanation is presented; otherwise single explanation. **Triggering rate calibration:** In the pilot study (N=60, 15 per condition), we compare empirical triggering rates between Conditions 3 and 4. If rates differ by >15 percentage points, we adjust the uncertainty threshold to the percentile that approximately matches the trust-gated triggering rate, reporting both Youden-optimal and rate-matched thresholds as sensitivity analyses. This ensures condition comparability while preserving transparency about any threshold adjustment. Crucially, unlike the Uncertainty Highlighting intervention in Bo et al. (2412.15584) which *displays* token-level probability information to users (and backfired by increasing algorithm aversion), our uncertainty-gated condition uses uncertainty purely as a backend signal—participants see only the selected explanation format, never the uncertainty estimate itself. This design choice is directly informed by Bo et al.'s finding that user-facing uncertainty visualization is counterproductive. All conditions receive accuracy feedback after each trial (following 'Adjust for Trust' protocol, ensuring comparability). Dual explanations are generated via Claude API with structured prompting (pro: 3-4 sentences supporting the answer; contra: 2-3 sentences presenting the strongest counter-argument and alternative answer), with human review for quality. **Measures**: Primary—overreliance rate (accepting incorrect AI answers), discrimination accuracy (AUROC of accept/reject decisions vs. correctness), appropriate reliance (composite of over- and under-reliance, following the Appropriate Reliance Ratio from Bo et al., 2412.15584). Secondary—cognitive load (NASA-TLX), task completion time, subjective satisfaction (7-point Likert), perceived AI competence. **Analysis plan**: Generalized linear mixed model (GLMM) with a logit link for trial-level accept/reject decisions, including crossed random intercepts for participants and items (questions), and random slopes for condition by item to capture differential treatment effects across questions (following Baayen, Davidson, & Bates, 2008; Westfall, Kenny, & Judd, 2014). Fixed effects: condition (4 levels), item correctness (correct/incorrect), and their interaction. Participant-level covariates: age, education, domain knowledge (pre-test). This approach accounts for item-level variance (question difficulty, topic familiarity) that would otherwise inflate Type I error if items were treated as fixed (Judd, Westfall, & Kenny, 2012). **Equivalence testing specification (H2)**: We use Two One-Sided Tests (TOST; Lakens, 2017) with a pre-registered equivalence margin of Cohen's d = 0.35, justified by cost-benefit SESOI reasoning (Lakens, Scheel, & Isager, 2018): this represents the maximum effectiveness difference at which uncertainty-gating's deployment advantages—no user surveys, no accuracy feedback dependency, first-interaction readiness—still outweigh the performance loss versus trust-gating. In raw terms, d = 0.35 corresponds to approximately 7 percentage points on overreliance rate (assuming participant-level SD ≈ 0.20), meaning we accept non-inferiority if uncertainty-gating's overreliance rate is no more than 7pp higher than trust-gating's. As sensitivity analyses, we also report equivalence tests at d = 0.25 (stricter) and d = 0.50 (more lenient) to demonstrate robustness to margin specification. **Power analysis**: For H2 (TOST non-inferiority, d = 0.35 bounds, α = 0.05): N = 140 per group provides ~80% power (computed via TOSTER::power_t_TOST; consistent with Lakens, 2017, Table 1: d = 0.30 requires N = 191/group, d = 0.40 requires N = 108/group, interpolating to ~140 for d = 0.35). For H1 and H3 (superiority tests, expected d ≈ 0.50 based on 'Adjust for Trust' effect sizes): N = 140 per group provides >95% power. Total sample: N = 560 (140 per condition). **Fairness analysis** (RQ3, addressing 'Unequal Uncertainty'): We collect demographic data (gender, race/ethnicity, education, English proficiency) and analyze whether uncertainty-gated dual explanations trigger at different rates for questions where demographic knowledge gaps exist, whether differential triggering correlates with demographics, and whether any differential triggering translates to differential overreliance reduction. **Key hypotheses**: H1—Conditions 3 and 4 both reduce overreliance compared to Condition 1; H2—Condition 4 (uncertainty-gated) achieves non-inferior overreliance reduction compared to Condition 3 (trust-gated), tested via TOST with equivalence margin d = 0.35; H3—Condition 4 produces lower cognitive load and higher satisfaction than Condition 2 (always-on dual); H4—Condition 4 incurs no measurement burden (no trust surveys), making it more practical; H5—Uncertainty-gated triggering rates do not differ significantly across demographic groups (fairness hypothesis, tested as a secondary analysis with appropriate corrections for multiple comparisons). **Ecological validity limitation**: Accuracy feedback after every trial, while necessary for the trust-gated condition (Condition 3) and provided to all conditions for comparability, is rarely available in real-world deployment. The 'Adjust for Trust' authors explicitly acknowledge this limitation. Okamura and Yamada (CHI 2024, arXiv 2111.08222) demonstrate that outcome feedback substantially improves trust calibration, while interpretability alone does not—implying that trust-gating's effectiveness degrades in feedback-free settings. Critically, uncertainty-gating is feedback-independent: the model computes uncertainty from its own outputs regardless of whether users receive outcome information. This means our study likely *underestimates* uncertainty-gating's relative advantage over trust-gating in deployment, because the experimental feedback supports trust calibration that would be absent in practice. We discuss this asymmetry as a key deployment implication: in feedback-scarce environments (the norm for most LLM-assisted decisions), uncertainty-gating may be the *only* viable adaptive strategy, as trust-gating without feedback relies on potentially miscalibrated self-reports that the 'Adjust for Trust' authors themselves note may reflect 'potentially incorrect perceptions of expertise.' A follow-up study varying feedback availability (present vs. absent) across both gating conditions would directly quantify this interaction and is identified as priority future work.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '300-400 (Qwen3-30B-A3B hosting for Phase 1 validation: ~2K questions × 10 samples + PC probe training on shared residual stream representations; Phase 2: ~10K inference calls × 10 samples for pilot + main study on A100-80GB; note Qwen3-30B-A3B activates only 3.3B parameters per token, reducing per-inference cost vs. dense 30B models)', 'timeline': '5-7 months (Month 1: system build + Phase 1 uncertainty validation + threshold calibration; Month 2: IRB submission + pilot design; Month 3: IRB approval + pilot N=60 + triggering rate calibration; Month 4: pilot analysis + main study refinement; Month 5: main study N≈560; Month 6-7: analysis + writing; aggressive 4.5-month variant possible if IRB uses expedited review for minimal-risk online study)', 'estimated_gpu_cost': '$700-1000 (A100 at ~$3/hr; MoE efficiency reduces per-inference cost)'}, 'human_in_loop': {'gpu_hours': '200-300 (Claude API generates candidate explanations and counter-arguments; GPU only for Qwen3-30B-A3B uncertainty estimation and PC probe training)', 'timeline': '4.5-6 months (Claude accelerates explanation generation, stimulus quality control, statistical modeling, and fairness analysis code)', 'claude_api_cost': '$600-900 (explanation generation for 200 candidate + 30 final questions × 4 conditions × multiple pilot rounds, plus analysis assistance)', 'estimated_gpu_cost': '$500-750'}, 'auto_research': {'gpu_hours': '200-300', 'timeline': '4.5-6 months minimum', 'claude_api_cost': '$900-1400 (automated stimulus optimization, power analysis simulation, equivalence testing code, fairness analysis, draft writing)', 'estimated_gpu_cost': '$500-750', 'speed_bottleneck': 'IRB approval (4-8 weeks, expedited review possible for minimal-risk online survey) and Prolific data collection (~2-3 weeks for N=560) are non-automatable; participant compensation ~$6,200-7,000 (560 participants × ~40 min average session × $12/hr Prolific recommended minimum + 33.3% Prolific academic service fee + ~10% buffer for rejections/replacements; Condition 3 sessions may extend to ~45 min due to trust surveys after each of 30 trials); trust measurement in Condition 3 requires interactive protocol that may extend session duration'}}\n\n## Inspired By\nThe 'Adjust for Trust' finding that trust-gated counter-explanations reduce overreliance by 38%—combined with their own limitation that trust cannot be reliably predicted from behavior (F1 ≤ 0.5) and their acknowledgment that accuracy feedback is unavailable in most deployment settings—directly motivates testing model uncertainty as a practical alternative gating signal. The convergence of (1) dual explanations as uniquely effective (2605.10930), (2) adaptive gating as effective but trust-measurement-limited (2502.13321), (3) adaptive explanation selection as effective but requiring learned user models (2502.11919), (4) 'Entropy Alone is Insufficient' showing hybrid uncertainty signals improve reliability (2603.21172), (5) uncertainty *display* backfiring while the underlying signal remains informative (2412.15584), and (6) 'Unequal Uncertainty' raising fairness concerns about uncertainty-gated interventions (2508.07872) creates a well-motivated research question that no single prior paper addresses.\n\n## Target Venues\n- CHI 2027 (paper deadline Sep 10, 2026 — aggressive but achievable with 4.5-month timeline if Phase 1 validates quickly and IRB uses expedited review; flagship HCI venue, strong fit for adaptive AI-assisted decision-making comparison study; revise-and-resubmit process available)\n- CSCW 2027 (rolling submission from Jan 2027 — comfortable primary target if CHI 2027 timeline proves too tight; strongest fit for adaptive AI-assisted decision-making with fairness analysis; 3-4 month review cycle)\n- FAccT 2027 (estimated deadline ~Jan 2027 — fairness analysis of uncertainty-gated interventions is strong fit; equity framing as secondary contribution)\n- CHI 2028 (paper deadline ~Sep 2027 — safe fallback if earlier venues require major revision)\n\n## Key References\n- Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance (IUI 2026, arXiv 2502.13321) — *primary point of differentiation*: trust-gated adaptive counter-explanations, 38% reduction in inappropriate reliance, 30 trials/participant, trust ≥ 8 threshold; our Condition 3 replicates their mechanism\n- Evaluating the False Trust engendered by LLM Explanations (arXiv 2605.10930, May 2026) — establishes dual explanations as uniquely effective; motivates explanation type selection\n- From Text to Trust: Empowering AI-assisted Decision Making with Adaptive LLM-powered Analysis (Li et al., CHI 2025, arXiv 2502.11919) — dynamic programming framework with learned human behavior model for selectively presenting LLM-generated feature analyses (N=447, N=397, 15 trials/participant); improves appropriate reliance on tabular AI tasks; differs from our work in requiring prior interaction data, operating on feature-level analyses rather than dual explanations, and using predicted utility rather than model uncertainty or trust as gating signal\n- To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance on Large Language Models (Bo et al., CHI 2025, arXiv 2412.15584) — benchmarks three reliance interventions (Reliance Disclaimer, Uncertainty Highlighting, Implicit Answer) on N=400 (only 4 trials/participant); finds interventions generally fail to improve appropriate reliance; Uncertainty Highlighting specifically backfires by increasing algorithm aversion; *critical counter-evidence* that motivates our backend-gating design: we use uncertainty to select explanation type, never displaying it to users; Appropriate Reliance Ratio adopted as primary metric\n- The Persuasion Paradox: When LLM Explanations Fail to Improve Human-AI Team Performance (arXiv 2604.03237) — shows explanation effectiveness is task-dependent; supports explanation switching for language-based QA while selective automation is better for visual tasks\n- Selectively Providing Reliance Calibration Cues With Reliance Prediction (arXiv 2302.09995) — selective intervention via predicted reliance behavior; differs in gating signal (user model vs. model uncertainty) and intervention type (calibration cues vs. explanation switching)\n- Contrastive Explanations That Anticipate Human Misconceptions (CHI 2025, arXiv 2410.04253) — human-centered contrastive explanations improve decision skills (N=628); applied uniformly, not selectively gated\n- Don't Just Translate, Agitate: Using LLMs as Devil's Advocates for AI Explanations (arXiv 2504.12424) — position paper proposing LLMs as constructive agitators; no empirical evaluation\n- Why Not Both? Complementing Explanations with Uncertainty (Frontiers in Computer Science 2025) — shows explanations and uncertainty serve complementary roles; supports combining both signals\n- Unequal Uncertainty: Rethinking Algorithmic Interventions for Mitigating Discrimination from AI (arXiv 2508.07872) — fairness risks of uncertainty-gated interventions; directly motivates our RQ3 fairness analysis\n- Entropy Alone is Insufficient for Safe Selective Prediction in LLMs (arXiv 2603.21172) — demonstrates 'confidently wrong' regime of semantic entropy; motivates our hybrid SE + PC probe approach\n- Revisiting Uncertainty Estimation and Calibration of Large Language Models (arXiv 2505.23854) — shows calibration varies across 80 models, worse on knowledge vs. reasoning tasks; motivates Phase 1 validation\n- LLMs Should Express Uncertainty Explicitly (arXiv 2604.05306) — verbalized confidence and reasoning-time uncertainty markers improve calibration; alternative uncertainty elicitation if SE fails validation\n- To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance (CSCW 2021) — establishes effectiveness-usability tradeoff in CFF interventions\n- An Experimental Comparison of Cognitive Forcing Functions for Execution Plans in AI-Assisted Writing (arXiv 2601.18033, January 2026) — Assumption CFF reduces overreliance but decreases satisfaction\n- Cognitive Forcing for Better Decision-Making: Reducing Overreliance Through Partial Explanations (PACM HCI 2025) — partial explanations as cognitive forcing; no uncertainty-based modulation\n- Dissenting Explanations: Leveraging Disagreement to Reduce Model Overreliance (AAAI 2024) — model multiplicity for disagreeing explanations; applied uniformly without selective gating\n- More Isn't Always Better: Balancing Decision Accuracy and Conformity Pressures in Multi-AI Advice (arXiv 2603.22152) — single dissent reduces conformity; supports targeted rather than blanket counter-argumentation\n- Uncertainty Gating for Cost-Aware Explainable AI (arXiv 2603.29915) — uses epistemic uncertainty to gate explanation methods for ML classifiers with percentile-based thresholds; analogous mechanism but entirely different application domain\n- Framework for Machine Evaluation of Reasoning Completeness in Large Language Models for Classification Tasks (Patil, arXiv 2510.21884) — RACE framework evaluating explanation-feature alignment; finds 'support-contra asymmetry' where correct predictions reference more supporting lexical cues while incorrect predictions reference more contradicting cues; relevant context for understanding explanation quality covariation with model correctness\n- Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs (Kossen et al., arXiv 2406.15927) — approximates semantic entropy from single-generation hidden states, reducing computational overhead to near zero; potential efficiency improvement for Phase 1 uncertainty estimation\n- Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses (Lakens, 2017, Social Psychological and Personality Science) — TOST procedure and power analysis tables; our equivalence margin and power calculations follow this framework\n- Equivalence Testing for Psychological Research: A Tutorial (Lakens, Scheel, & Isager, 2018, AMPPS) — SESOI justification approaches including cost-benefit analysis; grounds our d = 0.35 margin choice\n- Statistical Power and Optimal Design in Experiments in Which Samples of Participants Respond to Samples of Stimuli (Westfall, Kenny, & Judd, 2014, JEP:General) — power analysis for crossed random effects designs; shows ≤8 items cap maximal power at <0.5; motivates our 30-item stimulus set\n- Mixed-Effects Modeling with Crossed Random Effects for Subjects and Items (Baayen, Davidson, & Bates, 2008, J Memory & Language) — methodological foundation for our GLMM analysis plan with crossed random effects for participants and items\n- Adaptive Trust Calibration for Human-AI Collaboration (Okamura & Yamada, CHI 2024, arXiv 2111.08222) — directly compares feedback vs. no-feedback conditions; shows outcome feedback substantially improves trust calibration while interpretability alone does not; grounds our ecological validity discussion\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T04:52:23.295Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T04:52:23.295Z",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T04:52:23.310Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to make my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+- "Evaluating the False Trust engendered by LLM Explanations" (arXiv 2605.10930, May 2026): 确认存在。建立了 dual explanations (pro + contra) 是唯一真正提升用户区分 LLM 正确/错误输出能力的解释类型——其他解释类型仅增加接受率。本 proposal 的核心前提之一。
+
+- "Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance" (IUI 2026, arXiv 2502.13321): 确认存在。提出基于用户自报告信任度（0-10量表，≥8 触发）自适应呈现 counter-explanations，在科学 QA 和医学诊断任务上实现 38% inappropriate reliance 降低和 20% 准确率提升。30 trials/participant。明确承认需要 accuracy feedback 和 obtrusive trust surveys 的限制。本 proposal 的主要对比对象和直接差异化来源。
+
+- "To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance on LLMs" (Bo et al., CHI 2025, arXiv 2412.15584): 确认存在。测试三种干预（Reliance Disclaimer、Uncertainty Highlighting、Implicit Answer），发现 Uncertainty Highlighting 反而加剧 algorithm aversion，降低 perceived accuracy 和 helpfulness。本 proposal 利用此发现论证"不向用户展示 uncertainty，而是作为后端 gating 信号"的合理性。
+
+- "Entropy Alone is Insufficient for Safe Selective Prediction in LLMs" (arXiv 2603.21172, March 2026): 确认存在。在 TriviaQA、BioASQ、MedicalQA 上证明 semantic entropy 存在 "confidently wrong" 模式，结合 Probability of Correctness probe 显著改善 selective prediction 的 risk-coverage tradeoff。本 proposal 的 hybrid uncertainty estimator 直接基于此工作。
+
+- "Unequal Uncertainty: Rethinking Algorithmic Interventions for Mitigating Discrimination from AI" (arXiv 2508.07872, Aug 2025): 确认存在。首次对 uncertainty-gated interventions 进行社会技术和法律分析，证明 uncertainty thresholds 可能对 underrepresented groups 产生不均等影响。本 proposal 的 RQ3 fairness analysis 直接由此驱动。
+
+- "From Text to Trust" (Li et al., CHI 2025, arXiv 2502.11919): 搜索中未直接命中，但被 proposal 引用，声称使用 dynamic programming + learned human behavior model 自适应选择呈现哪些 LLM-generated feature analyses。与本 proposal 的关键区别在于需要先验交互数据（冷启动问题）且操作对象是 tabular AI 的 feature-level analyses。
+
+- "Fostering Appropriate Reliance on LLMs: The Role of Explanations, Sources, and Inconsistencies" (arXiv 2502.08554, 2025): 调研中发现的相关工作。发现 explanations 增加对正确和错误响应的 reliance，但提供 sources 或 explanations 中存在 inconsistencies 时可减少对错误响应的 reliance。与本 proposal 的 dual explanation 方法有平行关系但方法不同。
+
+- 调研中搜索"model uncertainty gating explanation selection human-AI decision making"未找到任何直接对比 model uncertainty 与 user trust 作为 gating signals 的先前工作，支持了 proposal 的 novelty claim（"no existing work directly compares"）。
+
+- 调研总结: 该领域处于快速发展期——2025-2026 年密集涌现关于 LLM overreliance 干预的实证研究。Dual explanations 刚被确认为最有效的解释类型（May 2026），自适应 gating 刚在 IUI 2026 被证明有效但受限于 trust measurement。将 model uncertainty 作为替代 gating signal 的具体 head-to-head 比较确实是一个空白点。但该领域的主要研究社区在 HCI（CHI/CSCW/IUI），而非 NLP。
+
+
+【Trivial Alternative 检验】:
+
+最直接的 trivial alternative 是 **Condition 2: 永远展示 dual explanations（always-on）**。如果 dual explanations 是唯一真正有效的解释类型（2605.10930），为什么不直接始终展示？Gating 的增量价值完全取决于 always-on dual explanations 存在可量化的成本（认知负荷增加、用户疲劳、满意度下降）。Proposal 在 H3 中测试这一点，但如果 Condition 2 在 overreliance reduction 和 cognitive load 上都表现可接受，整个 gating 架构就是不必要的复杂化。这是该 idea 最大的"空气感"所在：gating 的前提是 always-on 不够好，但这一前提尚未被证实。
+
+第二个 trivial alternative：简单的基于置信度（verbalized confidence）的 gating，无需训练 PC probe 或计算 semantic entropy。如果 LLM 直接输出"I'm not sure"时触发 dual explanation，是否能达到类似效果？Proposal 未讨论这一更低成本的替代方案。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链: "model uncertainty 高 → model likely wrong → user would overrely → dual explanation most needed → gating improves outcomes"
+
+未验证假设:
+
+1. **High uncertainty ≈ high overreliance risk**: 这是最关键的隐含假设。Model uncertainty 衡量的是"模型可能错"，但 user trust/overreliance 衡量的是"用户会盲信"。这两者不是同一个现象。用户可能在模型 uncertain 的问题上本来就不会 overrely（因为问题本身就很难，用户有自知之明）；也可能在模型 confident 且正确的问题上 overrely（因为形成了惯性信任）。Uncertainty-gating 和 trust-gating 瞄准的是不同的 "at-risk" 试次子集，非劣效性比较的前提——即它们大致瞄准同一批试次——可能不成立。
+
+2. **Triggering rate calibration 能弥合这一差异**: Proposal 计划通过调整 uncertainty threshold 使触发率匹配 trust-gating 的触发率。但触发率相同不等于触发的是同一批试次。两种 gating 可能在不同的 trials 上触发，导致 per-trial 效果完全不同。
+
+3. **非劣效性的 SESOI 论证**: d = 0.35 (≈7pp overreliance) 作为 equivalence margin 相当宽松。"Adjust for Trust"的核心效果本身就是约 38% reduction。7pp 的容忍意味着 uncertainty-gating 可以损失一大块效果仍被判为"非劣效"。这让 H2 容易通过，但降低了结论的信息量。
+
+4. **30 general-knowledge questions 的代表性**: 实验在 30 道知识型 QA 上进行（15 对 15 错），但部署场景远比这复杂。结论的外部效度存疑。
+
+
+【3 维度打分】:
+
+1. Novelty: 【中】
+   — "将 model uncertainty 作为 backend gating signal 来替代 user trust gating"这一具体组合确实未被先前工作覆盖（调研确认无直接竞争论文）。但 novelty 的性质是 **组合性/实证性** 而非 **方法论** 的：每个组件——dual explanations (2605.10930)、adaptive gating (2502.13321, IUI 2026)、hybrid SE + PC uncertainty (2603.21172)、fairness analysis framing (2508.07872)——都是直接借用已有工作。核心贡献归结为"把已有组件 A 和组件 B 放在一起跑 user study 做 head-to-head comparison"。这在 HCI 领域有价值（实证比较本身是贡献），但在 NLP 领域 novelty 偏弱。Non-inferiority framing 进一步限制了 novelty 天花板——声称的不是"更好"，而是"差不多但更方便"。
+
+2. Significance: 【中】
+   — 研究问题有真实的 practical relevance：部署中不依赖用户自报告和 accuracy feedback 是实际需求。但"surprising if positive"测试基本不通过——如果 hybrid uncertainty signal 确实达到 AUROC ≥ 0.75（Phase 1 要求），它能作为 gating signal 实现非劣效性是直觉上可预期的结果。更有信息量的结果反而是 uncertainty-gating 显著不如 trust-gating（说明 user state 和 model state 捕捉的是不同风险），但 proposal 的 framing 将此定位为 negative result。Fairness analysis (RQ3) 增加了一些额外 significance，但作为 secondary analysis 影响有限。此外，整个实验在一个受控的 30-question QA 设置中进行，带有 accuracy feedback——距离 proposal 声称的 "deployable framework" 有很大距离。
+
+3. Related Work: 【强】
+   — 这是 proposal 最大的优点。Related work 覆盖极为全面，对 20+ 篇关键论文进行了细致的定位和差异化分析。与"Adjust for Trust"的区分精确（trust measurement limitation + feedback dependency）；与 Bo et al. 的区分清晰（user-facing uncertainty display vs. backend gating signal）；与 Li et al. 的区分到位（cold start problem + feature-level vs. dual explanations）。引用的论文经调研全部确认真实存在，描述准确。这反映了作者对领域的深入理解。
+
+
+【概率估计】: [20% - 30%] 中位 24%
+
+【估计理由】:
+Related work 覆盖和研究设计的形式完善度是该 proposal 的显著优势，但入口 triage 评估的是 idea 内核而非执行质量。核心 idea——"用 model uncertainty 替代 user trust 做 dual explanation gating 的实证 non-inferiority comparison"——属于"方向正确、有真实 gap、但核心发现不 surprising"的类型（对应 25-35% 档位的下半段）。Significance 受限于非劣效性 framing（声称"差不多"而非"更好"）和结果可预期性；Novelty 受限于纯组合性质（无新方法）。Trivial alternative（always-on dual）的威胁未被充分消解，且 uncertainty-gating 与 trust-gating 瞄准不同 trial subsets 的根本性假设问题进一步压低上界。上界主要被 Novelty（中）和 Significance（中）共同限制——这是一个设计严谨的 confirmatory user study，但不是一个在概念层面推动领域前进的 idea。
+
+【主要风险】:
+1. **Always-on dual explanation 可能已经足够好**: 如果 Condition 2 在 overreliance reduction 和 cognitive load 上均表现可接受，gating 的增量价值为零，整个研究变成"一个解决了不存在的问题的方案"。审稿人最可能问的第一个问题就是"why not just always show dual explanations?"
+2. **Uncertainty-gating 和 trust-gating 瞄准不同 trial subsets**: 两种 gating 基于完全不同的信号（model state vs. user state），触发的可能是不同的高风险试次。即使触发率通过 threshold adjustment 匹配，per-trial 效果可能系统性不同，使 non-inferiority comparison 的解释变得模糊——审稿人会质疑"comparing apples to oranges"。
+```
+
+Sources:
+- [Adjust for Trust (arXiv 2502.13321)](https://arxiv.org/abs/2502.13321)
+- [Evaluating the False Trust engendered by LLM Explanations (arXiv 2605.10930)](https://arxiv.org/abs/2605.10930)
+- [To Rely or Not to Rely? (ResearchGate)](https://www.researchgate.net/publication/391269940_To_Rely_or_Not_to_Rely_Evaluating_Interventions_for_Appropriate_Reliance_on_Large_Language_Models)
+- [Entropy Alone is Insufficient (arXiv 2603.21172)](https://arxiv.org/abs/2603.21172)
+- [Unequal Uncertainty (arXiv 2508.07872)](https://arxiv.org/abs/2508.07872)
+- [Fostering Appropriate Reliance on LLMs (arXiv 2502.08554)](https://arxiv.org/pdf/2502.08554)
+- [Semantic Entropy Probes (arXiv 2406.15927)](https://arxiv.org/abs/2406.15927)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient information to provide my assessment. Let me compile the triage evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Evaluating the False Trust engendered by LLM Explanations](https://arxiv.org/abs/2605.10930) (arXiv, May 2026): 确认存在。核心发现：dual explanations（pro + contra）是唯一真正提升用户区分正确/错误 AI 输出能力的解释类型；其他类型（reasoning traces、post-hoc explanations）仅增加接受率。此论文是本 proposal 的直接动机之一。
+- [Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance](https://arxiv.org/abs/2502.13321) (IUI 2026): 确认存在。信任门控自适应解释，当 trust ≥ 8 时切换到 counter-explanations，不当依赖减少 38%。关键局限：需要每次决策后的 trust 自报告 + 准确度反馈。Proposal 的 Condition 3 直接复制此机制。
+- [To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance](https://arxiv.org/abs/2412.15584) (CHI 2025): 确认存在。Uncertainty Highlighting 直接向用户展示不确定性信息后反效果——显著降低感知准确性和有用性，增加 algorithm aversion。这是 proposal "后端门控而非前端展示" 设计的关键动机。
+- [Entropy Alone is Insufficient for Safe Selective Prediction in LLMs](https://arxiv.org/abs/2603.21172) (arXiv, Mar 2026): 确认存在。Semantic entropy 存在"confidently wrong"模式（尤其 Qwen 模型）；结合 Probability of Correctness probe 可显著改善错误检测。Proposal 的混合不确定性信号直接来自此工作。
+- [Unequal Uncertainty: Rethinking Algorithmic Interventions](https://arxiv.org/abs/2508.07872) (arXiv, Aug 2025): 确认存在。首次系统分析 uncertainty-gated 干预的公平性风险——不确定性阈值可能对代表性不足群体产生歧视性影响。Proposal 的 RQ3 fairness analysis 直接受此启发。
+- [From Text to Trust](https://arxiv.org/abs/2502.11919) (CHI 2025): 确认存在。动态规划框架通过学习用户行为模型自适应选择 LLM 生成的分析呈现。与本 proposal 的区别：需要先验交互数据、操作于表格特征分析而非 dual explanations、门控信号为预测效用而非不确定性/信任。
+- [Uncertainty Gating for Cost-Aware Explainable AI](https://arxiv.org/abs/2603.29915) (arXiv, Mar 2026): 使用 epistemic uncertainty 为 ML 分类器门控解释方法。机制类似但应用领域完全不同（ML 分类器的 XAI，非人类过度依赖）。
+- 调研总结: 这个领域处于快速汇聚期——2025-2026 年内多条线独立发展（dual explanations 的有效性、trust-gated 自适应、uncertainty 的公平性风险、混合不确定性估计），但尚无工作将 model uncertainty 和 user trust 作为竞争性门控信号直接比较。Proposal 位于这些线的交汇点。
+
+【Trivial Alternative 检验】:
+最直接的 trivial alternative 是 "always-on dual explanation"（始终呈现 pro + contra），这恰好是 proposal 的 Condition 2。如果 always-on dual explanation 在 overreliance reduction 上与 gated 条件表现相当，且认知负荷/满意度差异不显著，则整个门控机制（无论是 trust-based 还是 uncertainty-based）都是不必要的工程开销，论文的核心贡献将被严重削弱。Proposal 确实通过 H3 假设了 gated 条件相比 always-on 有更低认知负荷和更高满意度，但这一假设并非不言自明——如果 dual explanations 的认知负荷本身不高（只是额外 2-3 句反面论点），选择性呈现的优势可能很小。增量价值的成立关键取决于 always-on 是否确实带来显著的认知负荷代价，这在先行文献中并没有充分的证据支撑。
+
+【前提假设检验】:
+核心逻辑链中存在以下未经充分验证的假设：
+1. **"模型不确定性高 ≈ 模型可能出错 ≈ 用户此时最需要 dual explanation"** — 这假设了 dual explanation 的最佳触发时机与模型错误概率强相关。但用户过度依赖的发生不仅取决于模型是否出错，还取决于用户状态（注意力、先验知识、疲劳程度等）。一个高信任用户在模型正确时也可能形成不健康的过度依赖模式（habitual reliance），而 uncertainty-gating 不会对此触发干预。
+2. **"门控触发率可比 ≈ 公平比较"** — Proposal 计划如果两种门控条件的触发率差距超过 15pp 则调整阈值使之匹配。但 trust-gating 和 uncertainty-gating 的触发模式可能在 trial-level 上有完全不同的时间序列特征（trust 随序列动态变化，uncertainty 是静态预计算的），即使总触发率匹配，触发的 trial 可能完全不同，导致比较的内在效度存疑。
+3. **"30 个 general-knowledge 问题足以推广到 LLM-assisted decision-making"** — 这一任务域非常狭窄（知识问答），与 proposal 声称的"deployable framework"之间存在巨大推广性鸿沟。
+
+【3 维度打分】:
+1. Novelty: 中 — Proposal 正确识别了多条近期研究线的汇聚点，且"model uncertainty 作为后端门控信号而非前端展示"的 framing 确实巧妙（受 Bo et al. CHI 2025 反面证据启发）。但核心贡献本质上是 **组合式创新**：取 2502.13321 的门控框架 + 用 2603.21172 的混合不确定性信号替换 trust 信号 + 做 head-to-head 比较。每一个组件都是直接借用近期工作，组合本身是自然的"next obvious step"。此外，2603.29915（Uncertainty Gating for Cost-Aware XAI）已经在 ML 分类器场景展示了 uncertainty-gated explanation selection 的可行性，进一步削弱了将类似思路应用到 LLM 场景的新颖性。
+2. Significance: 中偏弱 — 研究问题（自动门控 vs. 手动门控）有真实的实践意义，但核心假设 H2 是 **non-inferiority test**：最可能的"积极"结果是"uncertainty-gating 不劣于 trust-gating"。这是一个审稿人很可能会说 "I would have guessed this" 的结果——一个合理的自动信号大致匹配一个带噪声的手动自报告信号，并不出人意料。如果结果是显著劣于，论文变成了一篇 negative result paper，发表难度更大。真正有 significance 的发现应该是 uncertainty-gating 在某些维度（如公平性）**显著优于** trust-gating，但这不是主假设。此外，任务域极其狭窄（30 个 general-knowledge QA 问题），可推广性有限。
+3. Related Work: 强 — Related work 覆盖极为全面，近乎穷尽了 2024-2026 年间所有相关工作。差异化定位清晰——对每篇近期工作都明确说明了与本 proposal 的区别（门控信号不同、干预类型不同、是否需要先验交互等）。引用的关键论文经搜索全部确认真实存在，描述准确。引入公平性分析（2508.07872）和混合不确定性信号（2603.21172）作为方法论支撑也很到位。这是 proposal 最强的维度。
+
+【概率估计】: [15% - 25%] 中位 20%
+
+【估计理由】:
+Related Work 维度强，说明作者对领域有深刻理解，proposal 的形式完善度也很高。但 Novelty 和 Significance 共同限制了上界：
+- Novelty 受限于组合式创新——各组件均来自 2025-2026 年近期工作的直接借用，组合本身是 natural next step 而非 conceptual leap。
+- Significance 受限于核心假设 H2 的 non-inferiority 性质——最可能的积极结果缺乏 surprise value。审稿人读到"自动不确定性信号大致等效于手动信任自报告"时，大概率反应是 "makes sense, but so what?"
+- Trivial alternative 威胁实质性地存在（always-on 可能就够好了），且 proposal 对此的防御（H3: gating 降低认知负荷）缺乏先行证据支撑。
+- 任务域（30 个 general-knowledge QA）过于狭窄，与 "deployable framework" 的声称之间存在显著落差。
+
+Novelty 和 Significance 共同将上界限制在 ~25%。形式完善度和 Related Work 的扎实使下界不会太低（~15%），但无法补偿 idea 内核的 surprise value 不足。
+
+【主要风险】:
+1. **Trivial alternative 威胁**: Always-on dual explanation（Condition 2）如果在 overreliance reduction + 认知负荷的综合表现上与 gated 条件无显著差异，整个门控机制的必要性将被否定，论文核心贡献消失。
+2. **"I would have guessed this" 问题**: Non-inferiority 作为主假设，审稿人会质疑 "the bar is too low"——确认一个合理替代方案"不比原方案差太多"缺乏足够的学术 surprise，难以构成 top venue 水准的核心贡献。
+```
+
+Sources:
+- [Evaluating the False Trust engendered by LLM Explanations](https://arxiv.org/abs/2605.10930)
+- [Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance](https://arxiv.org/abs/2502.13321)
+- [To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance on Large Language Models](https://arxiv.org/abs/2412.15584)
+- [Entropy Alone is Insufficient for Safe Selective Prediction in LLMs](https://arxiv.org/abs/2603.21172)
+- [Unequal Uncertainty: Rethinking Algorithmic Interventions for Mitigating Discrimination from AI](https://arxiv.org/abs/2508.07872)
+- [From Text to Trust: Empowering AI-assisted Decision Making with Adaptive LLM-powered Analysis](https://arxiv.org/abs/2502.11919)
+- [Uncertainty Gating for Cost-Aware Explainable AI](https://arxiv.org/abs/2603.29915)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient information to make my assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- "Evaluating the False Trust engendered by LLM Explanations" (arXiv 2605.10930, May 2026): 建立了 dual explanations（pro + contra）是唯一能真正提高用户区分 LLM 正确/错误输出能力的解释类型。其他解释类型仅增加接受率。Proposal 将此作为核心前提之一，论文确实存在，描述准确。
+- "Adjust for Trust" (arXiv 2502.13321, IUI 2026): 基于用户 self-reported trust 的自适应 counter-explanation 展示，减少 38% inappropriate reliance。Proposal 对其机制（trust ≥ 8 阈值、需要 accuracy feedback、行为信号预测 trust F1 ≤ 0.5）的描述准确。论文确实发表于 IUI 2026。
+- "From Text to Trust" (Li et al., arXiv 2502.11919, CHI 2025): 使用 dynamic programming 框架和 learned behavior model 自适应选择要展示的 LLM feature analysis。需要 prior interaction data（冷启动问题），操作对象是 tabular feature analysis 而非 dual explanation。Proposal 的差异化定位基本准确。
+- "To Rely or Not to Rely?" (Bo et al., arXiv 2412.15584, CHI 2025): 测试了三种 reliance intervention（Disclaimer, Uncertainty Highlighting, Implicit Answer），发现 Uncertainty Highlighting 适得其反——增加 algorithm aversion 而非改善 reliance。Proposal 对此的引用和区分（display vs. backend gating）描述准确。
+- "Entropy Alone is Insufficient for Safe Selective Prediction in LLMs" (arXiv 2603.21172): 确认了 semantic entropy 的 "confidently wrong" regime，提出结合 Probability of Correctness probe。Proposal 的技术设计直接基于此，引用准确。
+- "Unequal Uncertainty" (arXiv 2508.07872, Aug 2025): 对 uncertainty-gated 干预的公平性和法律分析，指出可能对 underrepresented groups 产生不成比例的影响。Proposal 将此作为 fairness analysis 的动机，引用准确。
+- "Uncertainty Gating for Cost-Aware Explainable AI" (arXiv 2603.29915): 使用 epistemic uncertainty 对 ML classifier 的解释方法进行 gating。机制类似但应用领域不同（ML classifier 解释 vs. LLM overreliance 减少），不构成直接竞争。
+- "Confronting Verbalized Uncertainty" (IJHCS 2025): 研究 LLM verbalized uncertainty 对用户感知和行为的影响，发现中等 uncertainty 表达最优。与 proposal 关注点不同（用户感知 vs. backend gating）。
+- "Evidential Semantic Entropy" (EACL 2026): 改进 semantic entropy 估计方法，表明 uncertainty quantification 技术仍在快速演进。
+- 调研总结: Adaptive explanation for LLM overreliance 是一个活跃但尚年轻的领域。Dual explanation 的有效性（2605.10930）和 trust-gated 自适应（2502.13321）是两个非常新的发现（2026年），尚未有工作将 model uncertainty 作为替代 gating signal 进行 head-to-head 比较。Proposal 的确占据了一个真实的空白位置。
+
+【Trivial Alternative 检验】:
+最明显的 trivial alternative 是**"always-on dual explanation"**——既然 dual explanation 是唯一有效的解释类型（2605.10930），为什么不总是展示 dual explanation？Proposal 已经将此作为 Condition 2 纳入实验设计，这是正确的。但关键问题是：如果 always-on dual explanation 的效果已经足够好（甚至更好），那么 uncertainty-gated selective triggering 的增量价值就仅限于 cognitive load 减少——这是一个 marginal 而非 fundamental 的贡献。
+
+更深层的 trivial alternative 是：**random gating**——随机选择何时展示 dual explanation。如果 random gating 也能达到类似效果（因为 dual explanation 本身就有效，trigger 的时机不那么重要），那么 uncertainty-based gating 的精确性就没有意义。Proposal 没有包含 random baseline condition。
+
+Proposal 的增量价值论证取决于：(1) always-on dual explanation 在 cognitive load 上确实有问题，且 (2) selective gating 能在保持效果的同时降低负担。这个论证是合理的但并非 overwhelming——审稿人可能会说 "so just always show dual explanations"。
+
+【前提假设检验】:
+核心 claim 的逻辑链中，有几个关键假设值得审视：
+
+1. **"Model uncertainty 能可靠地预测 model error"** — Phase 1 设了 AUROC ≥ 0.75 的门槛，这是合理的 go/no-go 检验。但 proposal 承认 knowledge-heavy tasks 的 calibration 比 reasoning tasks 差（2505.23854），而本实验恰好是 knowledge QA。这个假设有风险但有 fallback plan。
+
+2. **"Dual explanation 在 uncertain 时比 certain 时更有价值"** — 这是 uncertainty-gating 设计的隐含假设：在模型不确定时展示 dual explanation 能减少 overreliance，在模型确定时可以省略。但如果 dual explanation 的价值与 model uncertainty 无关（比如用户在模型正确时也受益于看到 contra argument），那 gating 就是 suboptimal 的。这个假设缺乏直接验证。
+
+3. **"Non-inferiority 证明 = 实际价值"** — Proposal 的核心假设 H2 是 non-inferiority test（uncertainty-gating 不劣于 trust-gating）。但 non-inferiority 的 equivalence margin d = 0.35（~7pp）相当宽松。如果结论是 "uncertainty-gating 在 7pp 以内不劣于 trust-gating"，审稿人可能会质疑这个发现的实质性。
+
+4. **"Trust-gating 的部署局限性是真实且重要的"** — 这是 proposal 论证 uncertainty-gating 价值的关键支柱。"Adjust for Trust" 确实承认了这个局限。但如果 trust self-report 可以通过更简单的方式获取（比如一次性初始校准），这个论证就会弱化。
+
+【3 维度打分】:
+
+1. **Novelty: 中** — Proposal 确实占据了一个真实的空白：no existing work directly compares model uncertainty and user trust as competing gating signals for adaptive explanation presentation。文献调研证实了这一点。但 novelty 的"层次"需要审视：(a) 将 model uncertainty 用于 backend decision-making 不是新想法（2603.29915 已在 XAI cost 领域做过类似事情）；(b) dual explanation 的有效性已由 2605.10930 建立；(c) uncertainty estimation 方法（SE + PC probe）直接采用 2603.21172 的方案。Proposal 的 novelty 本质上是一个**组合性创新**——将已有组件（dual explanation + uncertainty gating + user study comparison）拼装在一起，而非提出新的概念或机制。这种组合是 reasonable 且有价值的，但审稿人可能会说 "the individual pieces are known; the contribution is putting them together"，这在 top venue 通常被视为 medium novelty。Fairness analysis（RQ3）是一个有趣的补充，但更像是 secondary contribution。
+
+2. **Significance: 中** — 研究问题是 practically important 的：LLM overreliance 是真实问题，deployable adaptive explanation 有工程价值。但 significance 受限于几个因素：(a) 核心结果无论是 positive 还是 negative，都不太会让人 surprised——"model uncertainty 作为 backend signal 大致等效于 trust-based gating"（non-inferiority 成立）或 "不等效"（non-inferiority 不成立），两个结果都在合理预期范围内，不会改变领域的基本认知；(b) 生态效度限制很强——30 道 general knowledge QA、with accuracy feedback、单次 session，离 deployment 距离远；(c) 即使 non-inferiority 成立，实际部署仍需大量工程适配。这是一个 **solid applied contribution**，但不是会改变领域思考方式的工作。
+
+3. **Related Work: 强** — 这是 proposal 最突出的优势。Related work 覆盖非常全面，包括 dual explanation（2605.10930）、trust-gated adaptation（2502.13321）、adaptive explanation selection（2502.11919）、uncertainty display backfiring（2412.15584）、uncertainty estimation（2603.21172, 2505.23854）、fairness（2508.07872）、cognitive forcing functions（CSCW 2021）等。差异化定位清晰——特别是与 "Adjust for Trust"、"From Text to Trust"、Bo et al. 的对比写得很好，准确识别了各自的局限性和本工作的互补性。我在调研中未发现 proposal 遗漏的重要竞争工作。引用准确，对已有工作的描述可靠。
+
+【概率估计】: [20% - 35%] 中位 25%
+
+【估计理由】:
+Novelty 是 medium——组合性创新、空白真实但 delta 不大；Significance 是 medium——研究问题实用但核心发现不太可能 surprising；Related Work 是强——但这是形式完善度而非 idea 质量。
+
+概率上界（~35%）受限于 **Novelty 和 Significance 的天花板**：即使实验执行完美，核心发现（uncertainty-gating ≈ trust-gating or not）的 intellectual surprise 有限。审稿人很可能会说 "well-executed study, but the finding is somewhat expected" 或 "the contribution is engineering a comparison rather than revealing new insight"。
+
+概率下界（~20%）由 Related Work 的强度和问题定位的合理性支撑——这不是一个方向错误的 idea，也不是一个 trivial 的 idea，但它更像一个扎实的 empirical comparison 而非一个会让审稿人 excited 的 conceptual advance。
+
+此外，这个 proposal 的核心目标 venue 是 CHI/CSCW/FAccT（proposal 自身列出的 target venues），而非 EMNLP。作为 NLP venue 的投稿，这个工作的 HCI/user study 重心可能面临 fit 方面的额外挑战，但按照评估原则，我不以此为由扣分——仅基于 idea 质量评估。
+
+**注意**：这个 proposal 在**形式完善度**上是顶级的——详尽的 power analysis、preregistered hypotheses、equivalence testing、fairness analysis、ecological validity discussion——但这些都是执行层面的优势。入口评估聚焦 idea 内核时，这些不应膨胀概率估计。
+
+【主要风险】:
+1. **"So what" 风险**：核心结果（non-inferiority 成立或不成立）审稿人可能觉得 intellectually unsurprising——无论哪个方向都在预期之内，不会改变领域对 adaptive explanation 的基本理解。
+2. **Trivial alternative 风险**：审稿人可能指出 always-on dual explanation 是更简单的 deployment 方案，且 proposal 未证明 selective gating 相对于 always-on 有足够的 marginal gain 来 justify complexity（尤其如果 Condition 2 vs. Condition 4 的差异不显著）。
+```
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Model Uncertainty vs. User Trust as Gating Signals for Adaptive Dual Explanations in LLM-Assisted Decision-Making
+
+## Description
+We propose the first head-to-head comparison of model uncertainty and user trust as gating signals for adaptive dual explanation presentation in LLM-assisted decision-making. Building on three convergent findings—that dual explanations are the only explanation type genuinely reducing overreliance (2605.10930), that trust-gated counter-explanations cut inappropriate reliance by 38% but require obtrusive self-reports and accuracy feedback (Adjust for Trust, IUI 2026), and that displaying uncertainty directly to users backfires by increasing algorithm aversion (Bo et al., CHI 2025)—we test whether automatic model uncertainty can serve as a practical, first-interaction-ready *backend* gating signal that selects explanation type without burdening users. The system uses a validated hybrid uncertainty estimator (semantic entropy + Probability of Correctness probe over Qwen3-30B-A3B's shared residual stream representations, addressing both the 'confidently wrong' regime identified by 2603.21172 and MoE-specific probing considerations) to selectively trigger dual explanations when model error is likely. The uncertainty threshold is set via Youden's J-optimal cutpoint with cross-validated calibration, and triggering rates are verified against the trust-gated condition in a pilot study. A preregistered between-subjects study (N≈560, Prolific) compares four conditions across 30 general-knowledge questions: no explanation, always-on dual explanation, trust-gated dual explanation (replicating the Adjust for Trust mechanism with trust ≥ 8 threshold), and uncertainty-gated dual explanation. We measure overreliance reduction, discrimination accuracy, appropriate reliance ratio, cognitive load, and satisfaction. The central hypothesis (H2) tests non-inferiority of uncertainty-gating via TOST with a pre-registered equivalence margin of Cohen's d = 0.35 (≈7 percentage points on overreliance rate), justified by cost-benefit SESOI reasoning: below this threshold, uncertainty-gating's deployment advantages (no surveys, no feedback dependency, first-interaction readiness) outweigh any effectiveness loss. Power analysis confirms N=140/group provides 80% power for TOST at d = 0.35 (Lakens, 2017). Analysis uses GLMMs with crossed random effects for participants and items (Baayen et al., 2008; Westfall et al., 2014) to account for question-specific variance. Unlike prior adaptive approaches that require learned user models from prior interactions (Li et al., CHI 2025), our uncertainty-gated condition requires no user state measurement and works from the first interaction. Uniquely, we include a fairness analysis—motivated by 'Unequal Uncertainty' (2508.07872)—examining whether uncertainty-gated interventions trigger disproportionately across demographic groups. We explicitly acknowledge the ecological validity limitation that accuracy feedback (provided for comparability) is rarely available in deployment, and argue—supported by Okamura & Yamada (CHI 2024)—that uncertainty-gating's relative advantage is likely *larger* in practice because trust calibration degrades without feedback while uncertainty-gating is feedback-independent. This work bridges uncertainty quantification in NLP with adaptive explanation design in HCI, offering both a principled comparison of gating strategies and a deployable framework that requires no user state measurement.
+
+## Core Problem
+Which gating signal—model uncertainty (automatic, available from first interaction) or user trust (self-reported, requiring repeated measurement)—better governs when to present dual explanations for reducing LLM overreliance, and does uncertainty-based gating introduce demographic fairness risks through differential triggering?
+
+## Opportunity
+Two recent lines of work create a convergent opportunity. First, the 'false trust' study (2605.10930, May 2026) establishes that dual explanations (pro + contra arguments) are the *only* explanation type that genuinely improves users' ability to distinguish correct from incorrect LLM outputs—all other types merely increase acceptance. Second, 'Adjust for Trust' (2502.13321, IUI 2026) demonstrates that adaptively triggering counter-explanations based on user trust reduces inappropriate reliance by up to 38%. However, their approach requires obtrusive trust self-reports after every decision and real-time accuracy feedback—conditions rarely met in deployment. Their own analysis reveals that predicting trust from behavioral signals alone achieves F1 ≤ 0.5, making passive trust detection impractical, and they explicitly acknowledge that 'a key assumption of our setup does not hold in most real-world settings: that both parties have access to real-time feedback about decision accuracy.' Model uncertainty offers a complementary gating signal: it is computed automatically, requires no user input, works from the first interaction, and—critically—does not depend on accuracy feedback for calibration. Yet no work has empirically compared these two gating strategies. Meanwhile, 'The Persuasion Paradox' (2604.03237) shows that explanation effectiveness is strongly task-dependent—explanations help for language-based reasoning (72.5% accuracy vs. 48.5% baseline on LSAT) but hurt for visual reasoning—suggesting that uncertainty-gated explanation switching is most valuable precisely for the knowledge QA domain where explanations are effective. Critically, 'To Rely or Not to Rely?' (2412.15584, CHI 2025) finds that *displaying* uncertainty to users (via token-level probability highlighting) actually backfires—increasing algorithm aversion without improving appropriate reliance. This counter-evidence is important because it shows that uncertainty information is counterproductive when presented directly to users, but it does not indict using uncertainty as a *backend gating signal* to select which explanation type to present. Indeed, it strengthens the case for our approach: rather than burdening users with uncertainty visualization, we use uncertainty behind the scenes to select the more effective dual explanation format when model error is likely. The missing piece remains a head-to-head comparison that determines when model uncertainty outperforms, matches, or falls short of trust-based gating, while also measuring the fairness implications that 'Unequal Uncertainty' (2508.07872) warns about.
+
+## Landscape
+The false trust paper (2605.10930, May 2026) establishes dual explanations as uniquely effective but tested them uniformly. 'Adjust for Trust' (2502.13321, IUI 2026) is the closest prior work on gating strategy: it gates between supporting and counter-explanations based on self-reported user trust (11-point scale, 0-10), achieving 38% reduction in inappropriate reliance and 20% accuracy improvement across science QA and medical diagnosis with 30 trials per participant. Critically, their trust measurement requires accuracy feedback after each trial and explicit trust surveys—conditions that limit deployment scalability. Their trust threshold (≥8 on 0-10 scale for counter-explanations) was set by visual inspection of reliance curves, not formal optimization. Their attempt to predict trust from interaction features yielded F1 ≤ 0.5. 'From Text to Trust' (Li et al., 2502.11919, CHI 2025) is the closest prior work on adaptive explanation selection: they use a dynamic programming framework with a learned human behavior model to selectively decide which LLM-generated feature analyses to present for tabular AI predictions (income, recidivism; N=447 and N=397, 15 trials per participant), significantly improving appropriate reliance versus always-on and control conditions. However, their approach differs from ours in three key respects: (1) it requires prior interaction data to train the behavior model (cold-start problem), (2) it operates on tabular feature-level analyses rather than natural-language dual explanations, and (3) their gating is based on predicted utility of each analysis rather than on model uncertainty or user trust as explicit signals. Our work complements theirs by comparing two deployment-practical gating signals (model uncertainty and self-reported trust) for a different intervention type (dual pro/contra explanations) in knowledge QA. 'To Rely or Not to Rely?' (Bo et al., 2412.15584, CHI 2025) benchmarks three reliance interventions on N=400 participants across LSAT and image estimation (only 4 trials per participant): Reliance Disclaimer (static warning text), Uncertainty Highlighting (red/pink token-level probability visualization), and Implicit Answer (removing explicit answer statements). Their central finding is sobering: while interventions reduce over-reliance, they generally fail to improve *appropriate* reliance—only Reliance Disclaimer improves the Appropriate Reliance Ratio, and only on LSAT (ARR=1.62 vs. 1.17 control, p=.04). Uncertainty Highlighting specifically backfired, significantly reducing perceived accuracy and helpfulness and increasing algorithm aversion rather than calibrating reliance. This is critical counter-evidence that our approach must address. The key distinction is mechanistic: Bo et al.'s Uncertainty Highlighting *displays* uncertainty information to users, imposing cognitive burden and triggering aversion. Our uncertainty-gated approach uses uncertainty as a *backend signal* to select explanation type—users never see uncertainty scores; they see adaptively selected explanation content. Furthermore, their interventions (disclaimer, highlighting, implicit answer) are simpler cognitive forcing mechanisms, whereas our dual explanation (pro + contra arguments) is the only format shown to genuinely improve discrimination ability (2605.10930). 'Selectively Providing Reliance Calibration Cues' (2302.09995) predicts human reliance behavior to selectively present calibration cues, but uses a learned user model rather than model uncertainty and does not switch explanation types. 'The Persuasion Paradox' (2604.03237) finds that uncertainty-based selective automation outperforms explanations for visual reasoning, but their own results show LLM explanations dramatically improve performance on language-based tasks (LSAT: 72.5% vs. 48.5%), supporting explanation-type switching for knowledge QA. 'Contrastive Explanations That Anticipate Misconceptions' (2410.04253, CHI 2025) generates explanations addressing the gap between AI and user reasoning (N=628, improves decision skills), but applies them uniformly without selective gating. 'Don't Just Translate, Agitate' (2504.12424) proposes LLMs as devil's advocates for XAI but is a position paper without empirical evaluation. 'Why Not Both?' (Frontiers 2025) shows explanations and uncertainty estimates serve complementary roles—uncertainty improves accuracy while explanations improve understanding—supporting the value of combining both signals. 'Unequal Uncertainty' (2508.07872) provides the first socio-technical and legal analysis of uncertainty-gated interventions, showing they can disproportionately affect underrepresented groups through differential triggering rates, creating fairness and legal risks under UK Equality Act 2010. 'Entropy Alone is Insufficient' (2603.21172) demonstrates that semantic entropy has a 'confidently wrong regime' and combining it with a Probability of Correctness probe substantially improves reliability. 'Revisiting Uncertainty Estimation' (2505.23854) shows LLMs have better calibration on reasoning tasks than knowledge-heavy ones across 80 models, and that good calibration does not guarantee effective error ranking—necessitating explicit validation for our QA domain. 'LLMs Should Express Uncertainty Explicitly' (2604.05306) proposes verbalized confidence and reasoning-time uncertainty markers, achieving improved calibration. 'Dissenting Explanations' (AAAI 2024) leverages model multiplicity for disagreeing explanations but applies them uniformly. Partial explanations (de Jong et al., PACM HCI 2025) reduce overreliance through cognitive forcing but do not modulate explanation type. 'Framework for Machine Evaluation of Reasoning Completeness' (Patil, 2510.21884) introduces the RACE framework evaluating alignment between LLM explanations and interpretable feature importance, finding a 'support-contra asymmetry' where correct predictions reference more supporting lexical cues while incorrect predictions reference more contradicting cues—relevant context for understanding how explanation quality may covary with model correctness. Multi-AI panel work (2603.22152) finds single dissent reduces conformity while broad disagreement confuses. Uncertainty Gating for Cost-Aware XAI (2603.29915) uses epistemic uncertainty to gate explanation methods for ML classifiers, not human overreliance; notably, they use percentile-based thresholds calibrated per dataset across ν ∈ {0.1, 0.3, 0.5, 0.7, 0.9}. No existing work directly compares model uncertainty and user trust as competing gating signals for adaptive explanation presentation in LLM-assisted decision-making.
+
+## Approach
+The study proceeds in two phases. **Phase 1: Uncertainty Signal Validation.** Before any human-subjects work, we validate the gating signal on our specific task. Using Qwen3-30B-A3B—a Mixture-of-Experts model with 30.5B total parameters but only 3.3B activated per token (128 experts/layer, 8 selected per token)—we generate answers to 200 candidate general-knowledge questions and compute semantic entropy over 10 sampled completions per question. Semantic entropy operates on output-level semantics (clustering sampled completions by meaning), so it is unaffected by MoE routing variability. Following 'Entropy Alone is Insufficient' (2603.21172), we also train a lightweight Probability of Correctness (PC) probe on Qwen3-30B-A3B's hidden-state activations using a held-out set. For the PC probe specifically, we address MoE-specific considerations: we probe the shared residual stream representations (post-attention, pre-MoE routing) rather than post-expert states, avoiding the routing variability where different tokens activate different expert subsets. We validate probe stability by measuring variance across multiple forward passes on identical inputs, since MoE routing is deterministic for greedy decoding but may vary under sampling. Alternatively, we can adopt the Semantic Entropy Probes approach (Kossen et al., 2024), which approximates semantic entropy from single-generation hidden states, eliminating the need for multiple samples entirely. We combine semantic entropy and PC probe scores via logistic regression to produce a hybrid uncertainty signal. We require AUROC ≥ 0.75 for distinguishing correct from incorrect answers before proceeding; if this threshold is not met, we evaluate alternative models (Llama-4-Scout-17B, Mixtral-8x22B) or uncertainty methods (semantic energy, verbalized confidence per 2604.05306). **Threshold calibration:** The uncertainty gating threshold is set at the Youden's J optimal cutpoint (maximizing sensitivity + specificity − 1) on Phase 1 validation data, with bootstrap 95% CI for the cutpoint to quantify threshold uncertainty. Cross-validation (leave-20%-out) prevents overfitting on the 200-question set. From validated questions, we select 30 for the main study (15 where the model is correct, 15 where it is incorrect, balanced across uncertainty levels and topic domains). The increase from 20 to 30 items matches the 'Adjust for Trust' protocol (30 trials per participant) and provides sufficient levels for stable item-level random effects estimation in the GLMM analysis (Westfall, Kenny, & Judd, 2014, show that with ≤8 items, maximal attainable power is <0.5 regardless of participant N; 30 items is well above this threshold and above the ≥5-level minimum recommended by Gelman & Hill, 2006). **Phase 2: Comparative User Study.** A preregistered between-subjects study (N≈560, 140 per condition) on Prolific with four conditions: (1) **No explanation**—LLM answer only; (2) **Always-on dual explanation**—every answer includes structured pro and contra arguments (replicating the effective condition from 2605.10930); (3) **Trust-gated dual explanation**—participants report trust on an 11-point scale (0-10) after each of the 30 trials; when trust exceeds 8 (adopting the 'Adjust for Trust' threshold, which was empirically calibrated against reliance behavior), the next trial presents dual explanation, otherwise single explanation; (4) **Uncertainty-gated dual explanation**—when the hybrid uncertainty signal exceeds the Youden's J-optimal threshold from Phase 1, dual explanation is presented; otherwise single explanation. **Triggering rate calibration:** In the pilot study (N=60, 15 per condition), we compare empirical triggering rates between Conditions 3 and 4. If rates differ by >15 percentage points, we adjust the uncertainty threshold to the percentile that approximately matches the trust-gated triggering rate, reporting both Youden-optimal and rate-matched thresholds as sensitivity analyses. This ensures condition comparability while preserving transparency about any threshold adjustment. Crucially, unlike the Uncertainty Highlighting intervention in Bo et al. (2412.15584) which *displays* token-level probability information to users (and backfired by increasing algorithm aversion), our uncertainty-gated condition uses uncertainty purely as a backend signal—participants see only the selected explanation format, never the uncertainty estimate itself. This design choice is directly informed by Bo et al.'s finding that user-facing uncertainty visualization is counterproductive. All conditions receive accuracy feedback after each trial (following 'Adjust for Trust' protocol, ensuring comparability). Dual explanations are generated via Claude API with structured prompting (pro: 3-4 sentences supporting the answer; contra: 2-3 sentences presenting the strongest counter-argument and alternative answer), with human review for quality. **Measures**: Primary—overreliance rate (accepting incorrect AI answers), discrimination accuracy (AUROC of accept/reject decisions vs. correctness), appropriate reliance (composite of over- and under-reliance, following the Appropriate Reliance Ratio from Bo et al., 2412.15584). Secondary—cognitive load (NASA-TLX), task completion time, subjective satisfaction (7-point Likert), perceived AI competence. **Analysis plan**: Generalized linear mixed model (GLMM) with a logit link for trial-level accept/reject decisions, including crossed random intercepts for participants and items (questions), and random slopes for condition by item to capture differential treatment effects across questions (following Baayen, Davidson, & Bates, 2008; Westfall, Kenny, & Judd, 2014). Fixed effects: condition (4 levels), item correctness (correct/incorrect), and their interaction. Participant-level covariates: age, education, domain knowledge (pre-test). This approach accounts for item-level variance (question difficulty, topic familiarity) that would otherwise inflate Type I error if items were treated as fixed (Judd, Westfall, & Kenny, 2012). **Equivalence testing specification (H2)**: We use Two One-Sided Tests (TOST; Lakens, 2017) with a pre-registered equivalence margin of Cohen's d = 0.35, justified by cost-benefit SESOI reasoning (Lakens, Scheel, & Isager, 2018): this represents the maximum effectiveness difference at which uncertainty-gating's deployment advantages—no user surveys, no accuracy feedback dependency, first-interaction readiness—still outweigh the performance loss versus trust-gating. In raw terms, d = 0.35 corresponds to approximately 7 percentage points on overreliance rate (assuming participant-level SD ≈ 0.20), meaning we accept non-inferiority if uncertainty-gating's overreliance rate is no more than 7pp higher than trust-gating's. As sensitivity analyses, we also report equivalence tests at d = 0.25 (stricter) and d = 0.50 (more lenient) to demonstrate robustness to margin specification. **Power analysis**: For H2 (TOST non-inferiority, d = 0.35 bounds, α = 0.05): N = 140 per group provides ~80% power (computed via TOSTER::power_t_TOST; consistent with Lakens, 2017, Table 1: d = 0.30 requires N = 191/group, d = 0.40 requires N = 108/group, interpolating to ~140 for d = 0.35). For H1 and H3 (superiority tests, expected d ≈ 0.50 based on 'Adjust for Trust' effect sizes): N = 140 per group provides >95% power. Total sample: N = 560 (140 per condition). **Fairness analysis** (RQ3, addressing 'Unequal Uncertainty'): We collect demographic data (gender, race/ethnicity, education, English proficiency) and analyze whether uncertainty-gated dual explanations trigger at different rates for questions where demographic knowledge gaps exist, whether differential triggering correlates with demographics, and whether any differential triggering translates to differential overreliance reduction. **Key hypotheses**: H1—Conditions 3 and 4 both reduce overreliance compared to Condition 1; H2—Condition 4 (uncertainty-gated) achieves non-inferior overreliance reduction compared to Condition 3 (trust-gated), tested via TOST with equivalence margin d = 0.35; H3—Condition 4 produces lower cognitive load and higher satisfaction than Condition 2 (always-on dual); H4—Condition 4 incurs no measurement burden (no trust surveys), making it more practical; H5—Uncertainty-gated triggering rates do not differ significantly across demographic groups (fairness hypothesis, tested as a secondary analysis with appropriate corrections for multiple comparisons). **Ecological validity limitation**: Accuracy feedback after every trial, while necessary for the trust-gated condition (Condition 3) and provided to all conditions for comparability, is rarely available in real-world deployment. The 'Adjust for Trust' authors explicitly acknowledge this limitation. Okamura and Yamada (CHI 2024, arXiv 2111.08222) demonstrate that outcome feedback substantially improves trust calibration, while interpretability alone does not—implying that trust-gating's effectiveness degrades in feedback-free settings. Critically, uncertainty-gating is feedback-independent: the model computes uncertainty from its own outputs regardless of whether users receive outcome information. This means our study likely *underestimates* uncertainty-gating's relative advantage over trust-gating in deployment, because the experimental feedback supports trust calibration that would be absent in practice. We discuss this asymmetry as a key deployment implication: in feedback-scarce environments (the norm for most LLM-assisted decisions), uncertainty-gating may be the *only* viable adaptive strategy, as trust-gating without feedback relies on potentially miscalibrated self-reports that the 'Adjust for Trust' authors themselves note may reflect 'potentially incorrect perceptions of expertise.' A follow-up study varying feedback availability (present vs. absent) across both gating conditions would directly quantify this interaction and is identified as priority future work.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '300-400 (Qwen3-30B-A3B hosting for Phase 1 validation: ~2K questions × 10 samples + PC probe training on shared residual stream representations; Phase 2: ~10K inference calls × 10 samples for pilot + main study on A100-80GB; note Qwen3-30B-A3B activates only 3.3B parameters per token, reducing per-inference cost vs. dense 30B models)', 'timeline': '5-7 months (Month 1: system build + Phase 1 uncertainty validation + threshold calibration; Month 2: IRB submission + pilot design; Month 3: IRB approval + pilot N=60 + triggering rate calibration; Month 4: pilot analysis + main study refinement; Month 5: main study N≈560; Month 6-7: analysis + writing; aggressive 4.5-month variant possible if IRB uses expedited review for minimal-risk online study)', 'estimated_gpu_cost': '$700-1000 (A100 at ~$3/hr; MoE efficiency reduces per-inference cost)'}, 'human_in_loop': {'gpu_hours': '200-300 (Claude API generates candidate explanations and counter-arguments; GPU only for Qwen3-30B-A3B uncertainty estimation and PC probe training)', 'timeline': '4.5-6 months (Claude accelerates explanation generation, stimulus quality control, statistical modeling, and fairness analysis code)', 'claude_api_cost': '$600-900 (explanation generation for 200 candidate + 30 final questions × 4 conditions × multiple pilot rounds, plus analysis assistance)', 'estimated_gpu_cost': '$500-750'}, 'auto_research': {'gpu_hours': '200-300', 'timeline': '4.5-6 months minimum', 'claude_api_cost': '$900-1400 (automated stimulus optimization, power analysis simulation, equivalence testing code, fairness analysis, draft writing)', 'estimated_gpu_cost': '$500-750', 'speed_bottleneck': 'IRB approval (4-8 weeks, expedited review possible for minimal-risk online survey) and Prolific data collection (~2-3 weeks for N=560) are non-automatable; participant compensation ~$6,200-7,000 (560 participants × ~40 min average session × $12/hr Prolific recommended minimum + 33.3% Prolific academic service fee + ~10% buffer for rejections/replacements; Condition 3 sessions may extend to ~45 min due to trust surveys after each of 30 trials); trust measurement in Condition 3 requires interactive protocol that may extend session duration'}}
+
+## Inspired By
+The 'Adjust for Trust' finding that trust-gated counter-explanations reduce overreliance by 38%—combined with their own limitation that trust cannot be reliably predicted from behavior (F1 ≤ 0.5) and their acknowledgment that accuracy feedback is unavailable in most deployment settings—directly motivates testing model uncertainty as a practical alternative gating signal. The convergence of (1) dual explanations as uniquely effective (2605.10930), (2) adaptive gating as effective but trust-measurement-limited (2502.13321), (3) adaptive explanation selection as effective but requiring learned user models (2502.11919), (4) 'Entropy Alone is Insufficient' showing hybrid uncertainty signals improve reliability (2603.21172), (5) uncertainty *display* backfiring while the underlying signal remains informative (2412.15584), and (6) 'Unequal Uncertainty' raising fairness concerns about uncertainty-gated interventions (2508.07872) creates a well-motivated research question that no single prior paper addresses.
+
+## Target Venues
+- CHI 2027 (paper deadline Sep 10, 2026 — aggressive but achievable with 4.5-month timeline if Phase 1 validates quickly and IRB uses expedited review; flagship HCI venue, strong fit for adaptive AI-assisted decision-making comparison study; revise-and-resubmit process available)
+- CSCW 2027 (rolling submission from Jan 2027 — comfortable primary target if CHI 2027 timeline proves too tight; strongest fit for adaptive AI-assisted decision-making with fairness analysis; 3-4 month review cycle)
+- FAccT 2027 (estimated deadline ~Jan 2027 — fairness analysis of uncertainty-gated interventions is strong fit; equity framing as secondary contribution)
+- CHI 2028 (paper deadline ~Sep 2027 — safe fallback if earlier venues require major revision)
+
+## Key References
+- Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance (IUI 2026, arXiv 2502.13321) — *primary point of differentiation*: trust-gated adaptive counter-explanations, 38% reduction in inappropriate reliance, 30 trials/participant, trust ≥ 8 threshold; our Condition 3 replicates their mechanism
+- Evaluating the False Trust engendered by LLM Explanations (arXiv 2605.10930, May 2026) — establishes dual explanations as uniquely effective; motivates explanation type selection
+- From Text to Trust: Empowering AI-assisted Decision Making with Adaptive LLM-powered Analysis (Li et al., CHI 2025, arXiv 2502.11919) — dynamic programming framework with learned human behavior model for selectively presenting LLM-generated feature analyses (N=447, N=397, 15 trials/participant); improves appropriate reliance on tabular AI tasks; differs from our work in requiring prior interaction data, operating on feature-level analyses rather than dual explanations, and using predicted utility rather than model uncertainty or trust as gating signal
+- To Rely or Not to Rely? Evaluating Interventions for Appropriate Reliance on Large Language Models (Bo et al., CHI 2025, arXiv 2412.15584) — benchmarks three reliance interventions (Reliance Disclaimer, Uncertainty Highlighting, Implicit Answer) on N=400 (only 4 trials/participant); finds interventions generally fail to improve appropriate reliance; Uncertainty Highlighting specifically backfires by increasing algorithm aversion; *critical counter-evidence* that motivates our backend-gating design: we use uncertainty to select explanation type, never displaying it to users; Appropriate Reliance Ratio adopted as primary metric
+- The Persuasion Paradox: When LLM Explanations Fail to Improve Human-AI Team Performance (arXiv 2604.03237) — shows explanation effectiveness is task-dependent; supports explanation switching for language-based QA while selective automation is better for visual tasks
+- Selectively Providing Reliance Calibration Cues With Reliance Prediction (arXiv 2302.09995) — selective intervention via predicted reliance behavior; differs in gating signal (user model vs. model uncertainty) and intervention type (calibration cues vs. explanation switching)
+- Contrastive Explanations That Anticipate Human Misconceptions (CHI 2025, arXiv 2410.04253) — human-centered contrastive explanations improve decision skills (N=628); applied uniformly, not selectively gated
+- Don't Just Translate, Agitate: Using LLMs as Devil's Advocates for AI Explanations (arXiv 2504.12424) — position paper proposing LLMs as constructive agitators; no empirical evaluation
+- Why Not Both? Complementing Explanations with Uncertainty (Frontiers in Computer Science 2025) — shows explanations and uncertainty serve complementary roles; supports combining both signals
+- Unequal Uncertainty: Rethinking Algorithmic Interventions for Mitigating Discrimination from AI (arXiv 2508.07872) — fairness risks of uncertainty-gated interventions; directly motivates our RQ3 fairness analysis
+- Entropy Alone is Insufficient for Safe Selective Prediction in LLMs (arXiv 2603.21172) — demonstrates 'confidently wrong' regime of semantic entropy; motivates our hybrid SE + PC probe approach
+- Revisiting Uncertainty Estimation and Calibration of Large Language Models (arXiv 2505.23854) — shows calibration varies across 80 models, worse on knowledge vs. reasoning tasks; motivates Phase 1 validation
+- LLMs Should Express Uncertainty Explicitly (arXiv 2604.05306) — verbalized confidence and reasoning-time uncertainty markers improve calibration; alternative uncertainty elicitation if SE fails validation
+- To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance (CSCW 2021) — establishes effectiveness-usability tradeoff in CFF interventions
+- An Experimental Comparison of Cognitive Forcing Functions for Execution Plans in AI-Assisted Writing (arXiv 2601.18033, January 2026) — Assumption CFF reduces overreliance but decreases satisfaction
+- Cognitive Forcing for Better Decision-Making: Reducing Overreliance Through Partial Explanations (PACM HCI 2025) — partial explanations as cognitive forcing; no uncertainty-based modulation
+- Dissenting Explanations: Leveraging Disagreement to Reduce Model Overreliance (AAAI 2024) — model multiplicity for disagreeing explanations; applied uniformly without selective gating
+- More Isn't Always Better: Balancing Decision Accuracy and Conformity Pressures in Multi-AI Advice (arXiv 2603.22152) — single dissent reduces conformity; supports targeted rather than blanket counter-argumentation
+- Uncertainty Gating for Cost-Aware Explainable AI (arXiv 2603.29915) — uses epistemic uncertainty to gate explanation methods for ML classifiers with percentile-based thresholds; analogous mechanism but entirely different application domain
+- Framework for Machine Evaluation of Reasoning Completeness in Large Language Models for Classification Tasks (Patil, arXiv 2510.21884) — RACE framework evaluating explanation-feature alignment; finds 'support-contra asymmetry' where correct predictions reference more supporting lexical cues while incorrect predictions reference more contradicting cues; relevant context for understanding explanation quality covariation with model correctness
+- Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs (Kossen et al., arXiv 2406.15927) — approximates semantic entropy from single-generation hidden states, reducing computational overhead to near zero; potential efficiency improvement for Phase 1 uncertainty estimation
+- Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses (Lakens, 2017, Social Psychological and Personality Science) — TOST procedure and power analysis tables; our equivalence margin and power calculations follow this framework
+- Equivalence Testing for Psychological Research: A Tutorial (Lakens, Scheel, & Isager, 2018, AMPPS) — SESOI justification approaches including cost-benefit analysis; grounds our d = 0.35 margin choice
+- Statistical Power and Optimal Design in Experiments in Which Samples of Participants Respond to Samples of Stimuli (Westfall, Kenny, & Judd, 2014, JEP:General) — power analysis for crossed random effects designs; shows ≤8 items cap maximal power at <0.5; motivates our 30-item stimulus set
+- Mixed-Effects Modeling with Crossed Random Effects for Subjects and Items (Baayen, Davidson, & Bates, 2008, J Memory & Language) — methodological foundation for our GLMM analysis plan with crossed random effects for participants and items
+- Adaptive Trust Calibration for Human-AI Collaboration (Okamura & Yamada, CHI 2024, arXiv 2111.08222) — directly compares feedback vs. no-feedback conditions; shows outcome feedback substantially improves trust calibration while interpretability alone does not; grounds our ecological validity discussion
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2097ad77-832c-4ea3-be45-647a735d45ce",
+  "type": "user",
+  "uuid": "6d9de950-b244-4dd3-b616-386231ed27b1",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T04:52:23.308Z_
+
+```json
+{
+  "parentUuid": "6d9de950-b244-4dd3-b616-386231ed27b1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "86aba40c-eadf-4839-a97d-7ac8b0aea16b",
+  "timestamp": "2026-05-20T04:52:23.308Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T04:52:23.308Z_
+
+```json
+{
+  "parentUuid": "86aba40c-eadf-4839-a97d-7ac8b0aea16b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a9ebe6a2-9196-4615-ae05-35a5706ebcd2",
+  "timestamp": "2026-05-20T04:52:23.308Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make my assessment. Let me c…",
+  "leafUuid": "a9ebe6a2-9196-4615-ae05-35a5706ebcd2",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare model uncertainty vs user trust for adaptive explanations",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T04:52:52.642Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews of this proposal and synthesize them as Meta Judge.
+
+Let me first extract the key information from each reviewer:
+
+**Reviewer 1:**
+- Novelty: 中
+- Significance: 中
+- Related Work: 强
+- Probability: [20% - 30%] 中位 24%
+- Main risks: Always-on dual explanation might be sufficient; uncertainty-gating and trust-gating target different trial subsets
+
+**Reviewer 2:**
+- Novelty: 中
+- Significance: 中偏弱
+
+
+- Related Work: 强
+- Probability: [15% - 25%] 中位 20%
+- Main risks: Trivial alternative (always-on); "I would have guessed this" problem
+
+**Reviewer 3:**
+- Novelty: 中
+- Significance: 中
+- Related Work: 强
+- Probability: [20% - 35%] 中位 25%
+- Main risks: "So what" risk; trivial alternative risk
+
+Now I'm computing the aggregate statistics across all three reviewers. The midpoint probabilities are 24%, 20%, and 25%, which gives me a mean of 23% and a median of 24%. I'm also calculating the standard deviation to understand the spread in their assessments.
+
+The standard deviation comes out to about 2.16%, which indicates strong consistency across reviewers. Looking at where they align, all three agree on medium novelty and significance, strong related work coverage, and identify the same core vulnerabilities: the trivial always-on alternative, the non-inferiority framing that limits surprise value, and the fact that this is combinatorial innovation rather than methodological breakthrough. There's also shared concern about whether the uncertainty-gating versus trust-gating distinction provides enough conceptual novelty.
+
+The outliers are notable—R2 surfaced an additional prior work that further diminishes novelty, R3 flagged random gating as another trivial baseline, and R2 leans slightly more negative on significance—but these don't shake the consensus. Given this high consistency, I should anchor the final probability near the median assessment rather than expanding the range. The median sits at 24%, so I'll narrow the interval based on the high consistency. My final estimate is [18% - 28%] with a midpoint of 23%. Now for the implementation assessment—this is a user study rather than a model training effort, so I'm looking at moderate GPU requirements for hosting the uncertainty estimation model, around 560 participants from Prolific, IRB approval and recruitment logistics, lightweight PC probing for training, no new benchmark needed, and a timeline of roughly 5-7 months.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9ebe6a2-9196-4615-ae05-35a5706ebcd2",
+  "isSidechain": false,
+  "requestId": "req_011CbDDndUQjQvbBQgGTNbD9",
+  "type": "assistant",
+  "uuid": "a7a1cafe-48c1-47f0-953d-17c768cc42c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXq9Ehfas2BM4Kt56enVtq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 20400,
+      "cache_read_input_tokens": 16908,
+      "output_tokens": 2908,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2908,
+          "cache_read_input_tokens": 16908,
+          "cache_creation_input_tokens": 20400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T04:53:37.885Z_
+
+【阶段】: Meta Judge
+【三次中位】: [24%, 20%, 25%]  std=2.2%
+【共识维度】:
+- **Novelty = 中**（3/3 一致）：组合性创新，各组件（dual explanation、trust-gating 框架、hybrid SE+PC uncertainty、fairness framing）均直接借用 2025-2026 近期工作，核心贡献是"拼装 + head-to-head comparison"而非概念或方法论突破。
+- **Significance = 中**（3/3 一致，R2 略偏弱至"中偏弱"）：non-inferiority 作为核心假设严重限制 surprise value——"自动信号大致等效于带噪手动信号"是直觉可预期的结果，无论成立与否都不会改变领域基本认知。
+- **Related Work = 强**（3/3 一致）：覆盖全面、引用准确、差异化定位清晰，是 proposal 最突出的优势。
+- **Trivial alternative 威胁**（3/3 一致）：always-on dual explanation（Condition 2）如果在 overreliance + cognitive load 综合表现上可接受，整个 gating 架构的增量价值为零。
+- **Uncertainty-gating 与 trust-gating 瞄准不同 trial subsets**（2/3：R1、R2 明确论述）：即使通过 threshold 调整匹配触发率，两种 gating 触发的具体 trials 可能系统性不同，non-inferiority comparison 解释模糊。
+- **任务域过窄**（3/3 一致）：30 道 general-knowledge QA 与"deployable framework"声称之间存在显著推广性鸿沟。
+
+【异常维度】:
+- R3 独有提出 **random gating baseline** 作为额外 trivial alternative——若随机触发也有效，uncertainty 精确性就无意义。有一定道理但不是致命问题（proposal 的 Condition 1 no-explanation 可部分覆盖此对比），降权处理。
+- R2 独有强调 **arXiv 2603.29915**（Uncertainty Gating for Cost-Aware XAI）进一步削弱 novelty——在 ML classifier 场景已有 uncertainty-gated explanation selection 的先例。R1、R3 提及但未赋予同等权重。此点有文献支撑，部分采纳但不作为主要扣分项（应用领域确实不同）。
+- R2 的 Significance 判为"中偏弱"（其余两位判"中"），属轻微分歧，不构成异常。
+
+【最终概率】: [18% - 28%] 中位 23%
+【一致性】: 高（std=2.2% < 3%）
+【综合理由】:
+三位审稿人在所有 rubric 维度上高度一致：Novelty=中、Significance=中（~中偏弱）、Related Work=强。核心问题也高度共识：(1) 组合性创新缺乏概念突破；(2) non-inferiority framing 限制了 surprise value 天花板；(3) always-on trivial alternative 未被充分消解；(4) 任务域过窄影响声称的可推广性。
+
+概率上界（28%）由 Novelty+Significance 共同限制——即使执行完美，核心发现的 intellectual surprise 有限，审稿人大概率反应为"well-executed but unsurprising comparison"。上界不取 R3 的 35% 是因为 R3 自己也标注了"形式完善度不应膨胀概率估计"。
+
+概率下界（18%）由 Related Work 的扎实和问题定位的合理性支撑——这不是方向错误或 trivial 的 idea，空白真实存在（文献调研确认无直接竞争论文），实验设计的形式完善度（power analysis、preregistration、equivalence testing）在同类工作中属于顶级。
+
+中位取 23%（略低于三审中位数 24%），反映"宁缺毋滥"原则下对 R2 偏严判断的微量倾斜。三审高度一致时无需大幅调整，故缩窄区间至 ±5pp。
+
+【建议】: 不推荐
+【实施评估】:
+  - 计算资源: GPU 需求中等（300-400 GPU-hours on A100-80GB），主要用于 Qwen3-30B-A3B 托管（Phase 1 验证 + Phase 2 推理）；MoE 架构每次推理仅激活 3.3B 参数，单次推理成本低于同等规模 dense 模型。预估 GPU 成本 $500-1000。
+  - 数据需求: 无需构建新数据集。需 200 道候选 general-knowledge 问题（可从现有 QA 数据集筛选）+ Prolific 平台 560 名被试。被试补偿约 $6,200-7,000（含 Prolific 服务费）。
+  - 人工介入: **高度依赖人工**——(1) IRB 审批（4-8 周，不可自动化）；(2) dual explanation 生成后需人工质量审核；(3) Prolific 被试招募与数据质量控制（排除不合格回答）；(4) Condition 3 的 trust self-report 需交互式协议设计。
+  - 训练需求: 仅需训练轻量级 PC probe（logistic regression 级别，在 Qwen3-30B-A3B 隐藏层表示上），训练成本可忽略。无需大规模模型训练或微调。
+  - 新 Benchmark: 不需要。使用现有 general-knowledge QA 问题集，实验指标（overreliance rate、discrimination accuracy、ARR、NASA-TLX）均为已有标准化量表。
+  - 预估周期: 5-7 个月（Month 1: 系统搭建+Phase 1 验证; Month 2-3: IRB+pilot; Month 4: pilot 分析+主实验准备; Month 5: 主实验 N≈560; Month 6-7: 分析+写作）。关键瓶颈为 IRB 审批和 Prolific 数据收集，均不可压缩。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7a1cafe-48c1-47f0-953d-17c768cc42c6",
+  "isSidechain": false,
+  "requestId": "req_011CbDDndUQjQvbBQgGTNbD9",
+  "type": "assistant",
+  "uuid": "036ee1f9-db8f-470d-8488-63b0d7bd4e01",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXq9Ehfas2BM4Kt56enVtq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 20400,
+      "cache_read_input_tokens": 16908,
+      "output_tokens": 2908,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2908,
+          "cache_read_input_tokens": 16908,
+          "cache_creation_input_tokens": 20400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make my assessment. Let me c…",
+  "leafUuid": "036ee1f9-db8f-470d-8488-63b0d7bd4e01",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare model uncertainty vs user trust for adaptive explanations",
+  "sessionId": "5672faef-74c2-4bf5-9541-955b41673926"
+}
+```
+
+---

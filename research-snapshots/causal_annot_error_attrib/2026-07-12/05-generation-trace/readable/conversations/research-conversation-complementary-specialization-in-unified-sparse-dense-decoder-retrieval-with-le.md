@@ -1,0 +1,3932 @@
+# Research conversation: Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing ## Core Research Quest
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-2/0371b859-5601-473f-bca4-29fc9971d5af.jsonl`
+- **Structured JSON:** [`1a49a9ccde2d4093f731.json`](../../sessions/1a/1a49a9ccde2d4093f731.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:08:37.299Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:08:37.299Z",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "content": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing\n\n## Core Research Question\n\nIn a decoder-only LLM with shared transformer backbone, do sparse (lexical) and dense (semantic) retrieval heads develop complementary specialization—or do they compete for representational capacity? We hypothesize that joint training with bidirectional self-knowledge-distillation forces complementary specialization, yielding representations superior to those from independently trained models, and that a lightweight learned router can exploit this per-query complementarity at zero extra inference cost.\n\n## Research Opportunity\n\nThree verified gaps converge: (1) No decoder-only LLM produces both sparse and dense representations from a single forward pass with learned heads—LACONIC-8B (arXiv:2601.01684, Jan 2026) and Lion-SP/DS (SIGIR 2025) train separate models, while BGE-M3 (ACL Findings 2024) unifies but only on encoder-only XLM-RoBERTa; (2) No learned per-query router exists within a unified retrieval model—RouterRetriever (AAAI 2025) routes between separate external models, DAT (arXiv:2503.23013) requires additional LLM inference for post-hoc alpha tuning per query, and BGE-M3 uses fixed interpolation weights; (3) Bidirectional self-distillation between sparse and dense heads has never been validated in decoder-only architectures for text retrieval—the CIKM 2025 proof uses VLP encoder models (BLIP/ALBEF) on cross-modal tasks.\n\nBeyond engineering novelty, this work addresses a scientific question left open by prior work: Lion-SP/DS (SIGIR 2025) showed sparse outperforms dense by 10.5% on OOD benchmarks at 8B scale, confirming strong signal complementarity, but trained them separately and thus cannot determine whether shared-backbone joint training amplifies or diminishes this complementarity. BGE-M3 answered this for encoder-only architectures (joint training helps), but decoder-only models with modified attention (causal→bidirectional) may behave differently. Our work directly resolves this open question.\n\n## Addressing the Trivial Alternative\n\nA key challenge for this work is justifying shared-backbone joint training over the simpler alternative of running separate sparse and dense models (e.g., Lion-SP-8B + Lion-DS-8B) and performing post-hoc score fusion (with fixed or even DAT-style per-query alpha tuning). We provide two lines of justification:\n\n(a) **Mutual Feature Transfer Hypothesis**: Shared transformer layers allow sparse and dense heads to develop complementary feature specialization—we hypothesize sparse heads dominate lexical-matching attention patterns in lower layers while dense heads dominate semantic abstraction in upper layers, and bidirectional self-KD forces cross-pollination between these specializations. We verify this through: (i) CKA similarity analysis between intermediate representations of joint vs. independent models, (ii) layer-wise probing for lexical vs. semantic features, (iii) direct comparison of joint-trained individual head performance vs. independently trained counterparts.\n\n(b) **Computational Efficiency**: Single forward pass through one 8B model vs. two separate 8B forward passes yields ~2× throughput improvement for encoding, with identical parameter count for the backbone.\n\nIf (a) shows no representational benefit (joint heads equal independent heads), the contribution reduces to a systems-efficiency paper. If (a) confirms mutual benefit, we establish a scientific finding about decoder-only representation learning.\n\n## Research Landscape\n\nCurrent SOTA on MTEB Retrieval: Qwen3-Embedding-8B (70.58 MTEB multilingual, open-weight, dense), Gemini Embedding 2 (67.71, proprietary), NV-Embed-v2 (62.65, Mistral-7B + latent attention pooling, ICLR 2025). For sparse retrieval: LACONIC-8B achieves 60.2 MTEB-R and 61.5 BEIR-14 using Llama-3-8B with two-phase curriculum; CSplade-bi-8B (IJCNLP 2025) reaches 55.3 BEIR. Lion-SP/DS (SIGIR 2025) quantified sparse outperforming dense by 10.5% on BEIR at 8B scale (55.2 vs 50.1 nDCG@10). BGE-M3 (ACL Findings 2024) remains the only unified sparse+dense model but is encoder-only with fixed-weight interpolation. RouterRetriever (AAAI 2025) demonstrated +2.1 NDCG@10 from learned routing across domain-specific LoRA experts between separate models. GritLM (ICLR 2025) unified generation and embedding in a single decoder-only model but is dense-only. Hydra (arXiv:2603.28554, 2026) employs dual-head architecture in a VLM for ColBERT-style retrieval + generation via LoRA toggle, but targets retrieval+generation unification rather than sparse+dense retrieval fusion. DAT (arXiv:2503.23013, 2025) achieves per-query dynamic alpha tuning for hybrid retrieval but requires external LLM inference on top-1 results and operates post-hoc between independent retrieval systems.\n\n## Transfer Conditions for Self-KD\n\nThe CIKM 2025 bidirectional self-KD formula was validated on VLP encoder models (BLIP/ALBEF) for text-image cross-modal retrieval, where sparse and dense representations handle fundamentally different modality alignment problems. Our transfer to decoder-only text-text retrieval faces a different complementarity structure: sparse (lexical matching) and dense (semantic matching) heads operate on the same modality. We argue the transfer remains valid because: (1) Lion-SP/DS (SIGIR 2025) empirically showed 10.5% performance gap between sparse and dense on OOD data, demonstrating they capture genuinely different signals even in text-text; (2) the mathematical formulation of bidirectional KL-divergence loss is modality-agnostic—it only requires that two score distributions carry complementary ranking information; (3) we design explicit ablation (no KD / unidirectional / bidirectional) to validate whether the transfer holds and quantify the benefit.\n\n## Proposed Approach\n\nFine-tune Llama-3.1-8B with bidirectional attention, adding dual heads over shared backbone: sparse SPLADE head (vocab projection + ReLU + FLOPS regularization) and dense head (latent attention pooling). Three-stage curriculum: (1) sparse-only adaptation (10k steps, CSplade protocol) to stabilize ReLU activations, (2) joint contrastive training with bidirectional self-KD between heads using CIKM 2025 formula extended to decoder-only text retrieval, (3) hard-negative fine-tuning with learned 2-layer MLP router predicting per-query sparse-dense interpolation weights from the query's [EOS] representation.\n\n## Experimental Design\n\n### Baselines\n- **Sparse-only**: LACONIC-8B, CSplade-bi-8B, Lion-SP-8B\n- **Dense-only**: NV-Embed-v2, Qwen3-Embedding-8B, GritLM-7B, Lion-DS-8B\n- **Unified (encoder-only)**: BGE-M3\n- **Post-hoc fusion (trivial alternative)**: Lion-SP-8B + Lion-DS-8B with (i) fixed optimal weight, (ii) DAT-style per-query alpha\n- **Unified decoder-only**: Hydra-Retrieve (ours)\n\n### Evaluation Benchmarks\n- BEIR-14: per-dataset nDCG@10 for all 14 subsets (TREC-COVID, NFCorpus, NQ, HotpotQA, FiQA, ArguAna, Touche, DBPedia, SCIDOCS, FEVER, Climate-FEVER, SciFact, Quora, Signal-1M)\n- MTEB Retrieval subset: aggregate and per-dataset\n- MS MARCO dev: MRR@10 (in-domain)\n\n### Ablation Studies\n1. **Self-KD ablation**: (a) no KD, (b) dense→sparse only, (c) sparse→dense only, (d) bidirectional (ours). Report sparse-only, dense-only, and fused nDCG@10 for each.\n2. **Router ablation**: (a) α=0 pure dense, (b) α=1 pure sparse, (c) α=0.5 equal, (d) best fixed α (grid search), (e) per-query oracle (upper bound), (f) learned MLP router (ours). Analyze gap to oracle.\n3. **Stage ablation**: (a) stage 1 only, (b) stage 1+2, (c) full pipeline, (d) skip stage 1 (direct joint training). Report sparsity levels and performance at each stage.\n4. **Representational analysis**: CKA similarity between joint-trained vs independently-trained models at each layer; layer-wise probing for lexical vs semantic features.\n\n### Efficiency Evaluation\n- Index size: sparse vs dense vs both combined, compared to separate model indices\n- Encoding throughput: queries/sec and docs/sec (single 8B model vs two separate 8B models)\n- End-to-end retrieval latency including router inference\n- Parameter efficiency: 8B + dual heads (~8.05B) vs 2×8B (16B)\n\n### Compute-Controlled Comparisons\n- Same-compute: Hydra-Retrieve (1×8B forward) vs two-model ensemble (2×8B forwards) with post-hoc fusion\n- Same-parameter: Hydra-Retrieve per-head performance vs single-task 8B models (any degradation from sharing?)\n\n### Performance Targets\n- BEIR-14 aggregate: >62 nDCG@10 (surpassing LACONIC-8B 61.5 and Lion-SP-8B 55.2)\n- MTEB Retrieval: >61 nDCG@10\n- Individual head performance: no degradation vs independently trained counterpart (validating mutual benefit hypothesis)\n- Router gap to oracle: <30% of oracle-vs-best-fixed improvement\n\n## Feasibility and Compute Budget\n\nTraining Llama-3.1-8B with dual heads across three stages estimated at 8×A100-80GB for ~5-7 days total (Stage 1: ~1 day, Stage 2: ~3-4 days with in-batch negatives, Stage 3: ~1-2 days). Proof-of-concept at 3B scale first (~2 days on 4×A100) to validate method before scaling. LoRA option as fallback if full fine-tuning exceeds budget. BEIR-14 evaluation requires full corpus encoding (~2-4 hours per dataset at 8B scale with batch encoding on 4 GPUs).\n\n## Key References\n\n- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)\n- LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval (arXiv:2601.01684, 2026)\n- CSPLADE: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)\n- M3-Embedding: Multi-Linguality Multi-Functionality Multi-Granularity (ACL Findings 2024)\n- RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)\n- NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models (ICLR 2025)\n- Generative Representational Instruction Tuning (ICLR 2025)\n- Sparse and Dense Retrievers Learn Better Together (CIKM 2025)\n- Qwen3-Embedding (2025)\n- DAT: Dynamic Alpha Tuning for Hybrid Retrieval (arXiv:2503.23013, 2025)\n- Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model (arXiv:2603.28554, 2026)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:08:37.312Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:08:37.312Z",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+## Round 1
+
+55 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:08:37.390Z_
+
+# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing
+
+## Core Research Question
+
+In a decoder-only LLM with shared transformer backbone, do sparse (lexical) and dense (semantic) retrieval heads develop complementary specialization—or do they compete for representational capacity? We hypothesize that joint training with bidirectional self-knowledge-distillation forces complementary specialization, yielding representations superior to those from independently trained models, and that a lightweight learned router can exploit this per-query complementarity at zero extra inference cost.
+
+## Research Opportunity
+
+Three verified gaps converge: (1) No decoder-only LLM produces both sparse and dense representations from a single forward pass with learned heads—LACONIC-8B (arXiv:2601.01684, Jan 2026) and Lion-SP/DS (SIGIR 2025) train separate models, while BGE-M3 (ACL Findings 2024) unifies but only on encoder-only XLM-RoBERTa; (2) No learned per-query router exists within a unified retrieval model—RouterRetriever (AAAI 2025) routes between separate external models, DAT (arXiv:2503.23013) requires additional LLM inference for post-hoc alpha tuning per query, and BGE-M3 uses fixed interpolation weights; (3) Bidirectional self-distillation between sparse and dense heads has never been validated in decoder-only architectures for text retrieval—the CIKM 2025 proof uses VLP encoder models (BLIP/ALBEF) on cross-modal tasks.
+
+Beyond engineering novelty, this work addresses a scientific question left open by prior work: Lion-SP/DS (SIGIR 2025) showed sparse outperforms dense by 10.5% on OOD benchmarks at 8B scale, confirming strong signal complementarity, but trained them separately and thus cannot determine whether shared-backbone joint training amplifies or diminishes this complementarity. BGE-M3 answered this for encoder-only architectures (joint training helps), but decoder-only models with modified attention (causal→bidirectional) may behave differently. Our work directly resolves this open question.
+
+## Addressing the Trivial Alternative
+
+A key challenge for this work is justifying shared-backbone joint training over the simpler alternative of running separate sparse and dense models (e.g., Lion-SP-8B + Lion-DS-8B) and performing post-hoc score fusion (with fixed or even DAT-style per-query alpha tuning). We provide two lines of justification:
+
+(a) **Mutual Feature Transfer Hypothesis**: Shared transformer layers allow sparse and dense heads to develop complementary feature specialization—we hypothesize sparse heads dominate lexical-matching attention patterns in lower layers while dense heads dominate semantic abstraction in upper layers, and bidirectional self-KD forces cross-pollination between these specializations. We verify this through: (i) CKA similarity analysis between intermediate representations of joint vs. independent models, (ii) layer-wise probing for lexical vs. semantic features, (iii) direct comparison of joint-trained individual head performance vs. independently trained counterparts.
+
+(b) **Computational Efficiency**: Single forward pass through one 8B model vs. two separate 8B forward passes yields ~2× throughput improvement for encoding, with identical parameter count for the backbone.
+
+If (a) shows no representational benefit (joint heads equal independent heads), the contribution reduces to a systems-efficiency paper. If (a) confirms mutual benefit, we establish a scientific finding about decoder-only representation learning.
+
+## Research Landscape
+
+Current SOTA on MTEB Retrieval: Qwen3-Embedding-8B (70.58 MTEB multilingual, open-weight, dense), Gemini Embedding 2 (67.71, proprietary), NV-Embed-v2 (62.65, Mistral-7B + latent attention pooling, ICLR 2025). For sparse retrieval: LACONIC-8B achieves 60.2 MTEB-R and 61.5 BEIR-14 using Llama-3-8B with two-phase curriculum; CSplade-bi-8B (IJCNLP 2025) reaches 55.3 BEIR. Lion-SP/DS (SIGIR 2025) quantified sparse outperforming dense by 10.5% on BEIR at 8B scale (55.2 vs 50.1 nDCG@10). BGE-M3 (ACL Findings 2024) remains the only unified sparse+dense model but is encoder-only with fixed-weight interpolation. RouterRetriever (AAAI 2025) demonstrated +2.1 NDCG@10 from learned routing across domain-specific LoRA experts between separate models. GritLM (ICLR 2025) unified generation and embedding in a single decoder-only model but is dense-only. Hydra (arXiv:2603.28554, 2026) employs dual-head architecture in a VLM for ColBERT-style retrieval + generation via LoRA toggle, but targets retrieval+generation unification rather than sparse+dense retrieval fusion. DAT (arXiv:2503.23013, 2025) achieves per-query dynamic alpha tuning for hybrid retrieval but requires external LLM inference on top-1 results and operates post-hoc between independent retrieval systems.
+
+## Transfer Conditions for Self-KD
+
+The CIKM 2025 bidirectional self-KD formula was validated on VLP encoder models (BLIP/ALBEF) for text-image cross-modal retrieval, where sparse and dense representations handle fundamentally different modality alignment problems. Our transfer to decoder-only text-text retrieval faces a different complementarity structure: sparse (lexical matching) and dense (semantic matching) heads operate on the same modality. We argue the transfer remains valid because: (1) Lion-SP/DS (SIGIR 2025) empirically showed 10.5% performance gap between sparse and dense on OOD data, demonstrating they capture genuinely different signals even in text-text; (2) the mathematical formulation of bidirectional KL-divergence loss is modality-agnostic—it only requires that two score distributions carry complementary ranking information; (3) we design explicit ablation (no KD / unidirectional / bidirectional) to validate whether the transfer holds and quantify the benefit.
+
+## Proposed Approach
+
+Fine-tune Llama-3.1-8B with bidirectional attention, adding dual heads over shared backbone: sparse SPLADE head (vocab projection + ReLU + FLOPS regularization) and dense head (latent attention pooling). Three-stage curriculum: (1) sparse-only adaptation (10k steps, CSplade protocol) to stabilize ReLU activations, (2) joint contrastive training with bidirectional self-KD between heads using CIKM 2025 formula extended to decoder-only text retrieval, (3) hard-negative fine-tuning with learned 2-layer MLP router predicting per-query sparse-dense interpolation weights from the query's [EOS] representation.
+
+## Experimental Design
+
+### Baselines
+- **Sparse-only**: LACONIC-8B, CSplade-bi-8B, Lion-SP-8B
+- **Dense-only**: NV-Embed-v2, Qwen3-Embedding-8B, GritLM-7B, Lion-DS-8B
+- **Unified (encoder-only)**: BGE-M3
+- **Post-hoc fusion (trivial alternative)**: Lion-SP-8B + Lion-DS-8B with (i) fixed optimal weight, (ii) DAT-style per-query alpha
+- **Unified decoder-only**: Hydra-Retrieve (ours)
+
+### Evaluation Benchmarks
+- BEIR-14: per-dataset nDCG@10 for all 14 subsets (TREC-COVID, NFCorpus, NQ, HotpotQA, FiQA, ArguAna, Touche, DBPedia, SCIDOCS, FEVER, Climate-FEVER, SciFact, Quora, Signal-1M)
+- MTEB Retrieval subset: aggregate and per-dataset
+- MS MARCO dev: MRR@10 (in-domain)
+
+### Ablation Studies
+1. **Self-KD ablation**: (a) no KD, (b) dense→sparse only, (c) sparse→dense only, (d) bidirectional (ours). Report sparse-only, dense-only, and fused nDCG@10 for each.
+2. **Router ablation**: (a) α=0 pure dense, (b) α=1 pure sparse, (c) α=0.5 equal, (d) best fixed α (grid search), (e) per-query oracle (upper bound), (f) learned MLP router (ours). Analyze gap to oracle.
+3. **Stage ablation**: (a) stage 1 only, (b) stage 1+2, (c) full pipeline, (d) skip stage 1 (direct joint training). Report sparsity levels and performance at each stage.
+4. **Representational analysis**: CKA similarity between joint-trained vs independently-trained models at each layer; layer-wise probing for lexical vs semantic features.
+
+### Efficiency Evaluation
+- Index size: sparse vs dense vs both combined, compared to separate model indices
+- Encoding throughput: queries/sec and docs/sec (single 8B model vs two separate 8B models)
+- End-to-end retrieval latency including router inference
+- Parameter efficiency: 8B + dual heads (~8.05B) vs 2×8B (16B)
+
+### Compute-Controlled Comparisons
+- Same-compute: Hydra-Retrieve (1×8B forward) vs two-model ensemble (2×8B forwards) with post-hoc fusion
+- Same-parameter: Hydra-Retrieve per-head performance vs single-task 8B models (any degradation from sharing?)
+
+### Performance Targets
+- BEIR-14 aggregate: >62 nDCG@10 (surpassing LACONIC-8B 61.5 and Lion-SP-8B 55.2)
+- MTEB Retrieval: >61 nDCG@10
+- Individual head performance: no degradation vs independently trained counterpart (validating mutual benefit hypothesis)
+- Router gap to oracle: <30% of oracle-vs-best-fixed improvement
+
+## Feasibility and Compute Budget
+
+Training Llama-3.1-8B with dual heads across three stages estimated at 8×A100-80GB for ~5-7 days total (Stage 1: ~1 day, Stage 2: ~3-4 days with in-batch negatives, Stage 3: ~1-2 days). Proof-of-concept at 3B scale first (~2 days on 4×A100) to validate method before scaling. LoRA option as fallback if full fine-tuning exceeds budget. BEIR-14 evaluation requires full corpus encoding (~2-4 hours per dataset at 8B scale with batch encoding on 4 GPUs).
+
+## Key References
+
+- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR 2025)
+- LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval (arXiv:2601.01684, 2026)
+- CSPLADE: Learned Sparse Retrieval with Causal Language Models (IJCNLP 2025)
+- M3-Embedding: Multi-Linguality Multi-Functionality Multi-Granularity (ACL Findings 2024)
+- RouterRetriever: Routing over a Mixture of Expert Embedding Models (AAAI 2025)
+- NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models (ICLR 2025)
+- Generative Representational Instruction Tuning (ICLR 2025)
+- Sparse and Dense Retrievers Learn Better Together (CIKM 2025)
+- Qwen3-Embedding (2025)
+- DAT: Dynamic Alpha Tuning for Hybrid Retrieval (arXiv:2503.23013, 2025)
+- Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model (arXiv:2603.28554, 2026)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "5330fb81-080b-4279-9c6f-04540d1688f1",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:08:37.389Z_
+
+```json
+{
+  "parentUuid": "5330fb81-080b-4279-9c6f-04540d1688f1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "3b54f469-48f8-4a55-8d19-fdfb2e6bce62",
+  "timestamp": "2026-05-30T07:08:37.389Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:08:37.389Z_
+
+```json
+{
+  "parentUuid": "3b54f469-48f8-4a55-8d19-fdfb2e6bce62",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2d4d9313-1778-472f-a23e-c6c37981f162",
+  "timestamp": "2026-05-30T07:08:37.389Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T07:08:42.279Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (remediation agent), focusing exclusively on experimental design and technical execution completeness. I need to first do thorough literature research to understand the current experimental standards in this field before making any suggestions.
+
+Let me start by searching for recent papers on unified sparse-dense retrieval, decoder-only LLM retrieval, and related experimental designs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d4d9313-1778-472f-a23e-c6c37981f162",
+  "isSidechain": false,
+  "requestId": "req_011CbYLGLBABGbVAAQ7aAUPK",
+  "type": "assistant",
+  "uuid": "ce51760a-7862-4a48-a541-e6b372bf6138",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGEtsoMUZPmXMkmRpg4eRu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4338,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 4338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:08:43.380Z_
+
+I need to do thorough literature research before evaluating the experimental design. Let me search for the key papers and current experimental standards in this field.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce51760a-7862-4a48-a541-e6b372bf6138",
+  "isSidechain": false,
+  "requestId": "req_011CbYLGLBABGbVAAQ7aAUPK",
+  "type": "assistant",
+  "uuid": "7afb27e4-542c-4193-a9b7-ef27c0defbf7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGEtsoMUZPmXMkmRpg4eRu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4338,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 4338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T07:08:43.947Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QbZwhJJqZmoEGc5Fv5upiw`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7afb27e4-542c-4193-a9b7-ef27c0defbf7",
+  "isSidechain": false,
+  "requestId": "req_011CbYLGLBABGbVAAQ7aAUPK",
+  "type": "assistant",
+  "uuid": "b05519fe-206a-4d52-ba36-73f0f9cc749e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGEtsoMUZPmXMkmRpg4eRu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4338,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 4338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-30T07:08:43.954Z_
+
+<details><summary>↩ Tool result · `toolu_01QbZwhJJqZmoEGc5Fv5upiw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b05519fe-206a-4d52-ba36-73f0f9cc749e",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "f4f71150-6612-4f30-9d28-abf45fecccb0",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "b05519fe-206a-4d52-ba36-73f0f9cc749e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-30T07:08:46.107Z_
+
+Now let me conduct my pre-research. I'll search for the key papers and experimental standards in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4f71150-6612-4f30-9d28-abf45fecccb0",
+  "isSidechain": false,
+  "requestId": "req_011CbYLGpSmRcooUQgLJ9sW2",
+  "type": "assistant",
+  "uuid": "79fad9c6-caf1-4210-bacd-da47a799d14b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C2XTw5KFoXRN7WguvZisQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 18418,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 18418,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-30T07:08:46.845Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RSWMWgWhkmdus6stXw3hRe`</summary>
+
+```json
+{
+  "query": "LACONIC-8B sparse retrieval decoder-only LLM BEIR MTEB experimental setup baselines 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79fad9c6-caf1-4210-bacd-da47a799d14b",
+  "isSidechain": false,
+  "requestId": "req_011CbYLGpSmRcooUQgLJ9sW2",
+  "type": "assistant",
+  "uuid": "886252b5-141c-458f-b448-4d144fbd4214",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C2XTw5KFoXRN7WguvZisQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 18418,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 18418,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing  ## Core Research Question  In a decoder-only LLM with shared transformer backbone, do sparse (lexic…",
+  "leafUuid": "886252b5-141c-458f-b448-4d144fbd4214",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-30T07:08:54.613Z_
+
+<details><summary>↩ Tool result · `toolu_01RSWMWgWhkmdus6stXw3hRe`</summary>
+
+```text
+Web search results for query: "LACONIC-8B sparse retrieval decoder-only LLM BEIR MTEB experimental setup baselines 2026"
+
+Links: [{"title":"LACONIC: Dense-Level Effectiveness for Scalable Sparse ...","url":"https://www.arxiv.org/pdf/2601.01684"},{"title":"LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via a Two-Phase Training Curriculum","url":"https://arxiv.org/html/2601.01684v1"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs [Quick Review]","url":"https://liner.com/review/scaling-sparse-and-dense-retrieval-in-decoderonly-llms"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://arxiv.org/html/2502.15526v1"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng","url":"https://arxiv.org/pdf/2502.15526"},{"title":"[2502.15526] Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://arxiv.org/abs/2502.15526"},{"title":"(PDF) Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://www.researchgate.net/publication/389274173_Scaling_Sparse_and_Dense_Retrieval_in_Decoder-Only_LLMs"},{"title":"Sparse vs Dense Vectors: How Lexical and Semantic Search Actually Work - BigData Boutique","url":"https://bigdataboutique.com/blog/sparse-vs-dense-vectors-how-lexical-and-semantic-search-actually-work"}]
+
+Based on the search results, here's information about LACONIC-8B and related research on sparse retrieval with decoder-only LLMs:
+
+## LACONIC-8B Performance
+
+LACONIC-8B achieves an average 60.2 nDCG@10 on 15 MTEB Retrieval datasets, ranked 15th on the leaderboard as of January 1, 2026, being the only learned sparse retrieval model at this position. The 8B variant achieves state-of-the-art 60.2 nDCG on the MTEB Retrieval benchmark while utilizing 71% less index memory than an equivalent dense model.
+
+## Model Architecture
+
+LACONIC is a family of learned sparse retrievers based on the Llama3 architecture (1B, 3B, and 8B). LACONIC is a bi-encoder retrieval model which builds upon the SPLADE framework while incorporating architectural best practices for scaling sparse retrievers.
+
+## Training Methodology
+
+The training involves supervised pre-finetuning to adapt causal LLMs for bidirectional contextualization and high-signal finetuning using curated hard negatives.
+
+## Experimental Setup & Baselines
+
+For comparison, researchers included dense baseline models (Nomic-Embed-v1, Arctic-Embed-v2, and RepLlama3) and sparse retrieval baselines (SPLADE-v3 and CSPLADE). LACONIC achieved results on 14 BEIR datasets compared to SPLADE's 51.3 and CSPLADE's 54.6.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "886252b5-141c-458f-b448-4d144fbd4214",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "3897ba5b-3d7b-4699-9ee3-1c8782b4f5fd",
+  "toolUseResult": {
+    "query": "LACONIC-8B sparse retrieval decoder-only LLM BEIR MTEB experimental setup baselines 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013NiLGJ35b8UAXZYFDnE9v5",
+        "content": [
+          {
+            "title": "LACONIC: Dense-Level Effectiveness for Scalable Sparse ...",
+            "url": "https://www.arxiv.org/pdf/2601.01684"
+          },
+          {
+            "title": "LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via a Two-Phase Training Curriculum",
+            "url": "https://arxiv.org/html/2601.01684v1"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs [Quick Review]",
+            "url": "https://liner.com/review/scaling-sparse-and-dense-retrieval-in-decoderonly-llms"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://arxiv.org/html/2502.15526v1"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng",
+            "url": "https://arxiv.org/pdf/2502.15526"
+          },
+          {
+            "title": "[2502.15526] Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://arxiv.org/abs/2502.15526"
+          },
+          {
+            "title": "(PDF) Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://www.researchgate.net/publication/389274173_Scaling_Sparse_and_Dense_Retrieval_in_Decoder-Only_LLMs"
+          },
+          {
+            "title": "Sparse vs Dense Vectors: How Lexical and Semantic Search Actually Work - BigData Boutique",
+            "url": "https://bigdataboutique.com/blog/sparse-vs-dense-vectors-how-lexical-and-semantic-search-actually-work"
+          }
+        ]
+      },
+      "Based on the search results, here's information about LACONIC-8B and related research on sparse retrieval with decoder-only LLMs:\n\n## LACONIC-8B Performance\n\nLACONIC-8B achieves an average 60.2 nDCG@10 on 15 MTEB Retrieval datasets, ranked 15th on the leaderboard as of January 1, 2026, being the only learned sparse retrieval model at this position. The 8B variant achieves state-of-the-art 60.2 nDCG on the MTEB Retrieval benchmark while utilizing 71% less index memory than an equivalent dense model.\n\n## Model Architecture\n\nLACONIC is a family of learned sparse retrievers based on the Llama3 architecture (1B, 3B, and 8B). LACONIC is a bi-encoder retrieval model which builds upon the SPLADE framework while incorporating architectural best practices for scaling sparse retrievers.\n\n## Training Methodology\n\nThe training involves supervised pre-finetuning to adapt causal LLMs for bidirectional contextualization and high-signal finetuning using curated hard negatives.\n\n## Experimental Setup & Baselines\n\nFor comparison, researchers included dense baseline models (Nomic-Embed-v1, Arctic-Embed-v2, and RepLlama3) and sparse retrieval baselines (SPLADE-v3 and CSPLADE). LACONIC achieved results on 14 BEIR datasets compared to SPLADE's 51.3 and CSPLADE's 54.6."
+    ],
+    "durationSeconds": 7.760526857,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "886252b5-141c-458f-b448-4d144fbd4214",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-30T07:08:57.029Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BD5kRShzMkp2sMfFt3wg2P`</summary>
+
+```json
+{
+  "query": "Lion-SP Lion-DS SIGIR 2025 sparse dense retrieval decoder-only LLM experimental design baselines ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3897ba5b-3d7b-4699-9ee3-1c8782b4f5fd",
+  "isSidechain": false,
+  "requestId": "req_011CbYLHbkJdRTv1ANXeUSnn",
+  "type": "assistant",
+  "uuid": "f40a81c5-6b30-437b-89b0-7bb70b5bcded",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKyQ1oq2hGCdzyun69FDz7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 947,
+      "cache_read_input_tokens": 19150,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 947,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 19150,
+          "cache_creation_input_tokens": 947,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 947
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-30T07:09:05.908Z_
+
+<details><summary>↩ Tool result · `toolu_01BD5kRShzMkp2sMfFt3wg2P`</summary>
+
+```text
+Web search results for query: "Lion-SP Lion-DS SIGIR 2025 sparse dense retrieval decoder-only LLM experimental design baselines ablation"
+
+Links: [{"title":"GitHub - HansiZeng/scaling-retriever: [SIGIR 2025] The official repo for \"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\" · GitHub","url":"https://github.com/HansiZeng/scaling-retriever"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://arxiv.org/html/2502.15526"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs [Quick Review]","url":"https://liner.com/review/scaling-sparse-and-dense-retrieval-in-decoderonly-llms"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3726302.3730225"},{"title":"(PDF) Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://www.researchgate.net/publication/389274173_Scaling_Sparse_and_Dense_Retrieval_in_Decoder-Only_LLMs"},{"title":"[Literature Review] Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://www.themoonlight.io/en/review/scaling-sparse-and-dense-retrieval-in-decoder-only-llms"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng","url":"https://arxiv.org/pdf/2502.15526"}]
+
+Based on the search results, here's comprehensive information about the Lion-SP and Lion-DS models from SIGIR 2025:
+
+## Overview
+
+The paper "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs" by Hansi Zeng, Julian Killingback, and Hamed Zamani presents a systematic exploration of how different retrieval paradigms and fine-tuning objectives impact the performance of large language models (LLMs) in the context of information retrieval tasks.
+
+## Experimental Design
+
+The research systematically investigated the scaling behaviors of sparse and dense retrieval models across different LLM sizes (1B, 3B, 8B) and fine-tuning objectives (CL, KD, CL+KD) using MSMARCO data. The study employs various sizes from the LLaMA3 model family (1B, 3B, and 8B parameters).
+
+## Key Baselines and Comparisons
+
+The proposed Lion models, particularly Lion-SP-1B and Lion-DS-1B, achieve state-of-the-art results among baselines with similar or smaller parameter sizes (≤ 1B), demonstrating the effectiveness of using recent large decoder-only LLMs as backbones. Lion-SP-8B outperforms the state-of-the-art model RepLLaMA across both in-domain and out-of-domain benchmarks.
+
+## Ablation Study Findings
+
+The combination of CL and KD losses (CL + KD) is crucial for achieving the best performance balance across different model sizes and evaluation sets. While KD alone boosts smaller models, and CL benefits larger models, their combination allows the 8B sparse retrieval model (Lion-SP-8B) to outperform CL-only models on MSMARCO Dev (0.5% gain) and TREC 19+20 (3.2% gain).
+
+A key finding was that sparse retrieval consistently outperformed dense retrieval across all fine-tuning objectives and demonstrated greater robustness, particularly on out-of-domain datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f40a81c5-6b30-437b-89b0-7bb70b5bcded",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "5f475b39-3b39-489a-931a-196036a2e085",
+  "toolUseResult": {
+    "query": "Lion-SP Lion-DS SIGIR 2025 sparse dense retrieval decoder-only LLM experimental design baselines ablation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015DMc5aWJQN7WWxiFKqhRPT",
+        "content": [
+          {
+            "title": "GitHub - HansiZeng/scaling-retriever: [SIGIR 2025] The official repo for \"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\" · GitHub",
+            "url": "https://github.com/HansiZeng/scaling-retriever"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://arxiv.org/html/2502.15526"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs [Quick Review]",
+            "url": "https://liner.com/review/scaling-sparse-and-dense-retrieval-in-decoderonly-llms"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3726302.3730225"
+          },
+          {
+            "title": "(PDF) Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://www.researchgate.net/publication/389274173_Scaling_Sparse_and_Dense_Retrieval_in_Decoder-Only_LLMs"
+          },
+          {
+            "title": "[Literature Review] Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://www.themoonlight.io/en/review/scaling-sparse-and-dense-retrieval-in-decoder-only-llms"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng",
+            "url": "https://arxiv.org/pdf/2502.15526"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about the Lion-SP and Lion-DS models from SIGIR 2025:\n\n## Overview\n\nThe paper \"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\" by Hansi Zeng, Julian Killingback, and Hamed Zamani presents a systematic exploration of how different retrieval paradigms and fine-tuning objectives impact the performance of large language models (LLMs) in the context of information retrieval tasks.\n\n## Experimental Design\n\nThe research systematically investigated the scaling behaviors of sparse and dense retrieval models across different LLM sizes (1B, 3B, 8B) and fine-tuning objectives (CL, KD, CL+KD) using MSMARCO data. The study employs various sizes from the LLaMA3 model family (1B, 3B, and 8B parameters).\n\n## Key Baselines and Comparisons\n\nThe proposed Lion models, particularly Lion-SP-1B and Lion-DS-1B, achieve state-of-the-art results among baselines with similar or smaller parameter sizes (≤ 1B), demonstrating the effectiveness of using recent large decoder-only LLMs as backbones. Lion-SP-8B outperforms the state-of-the-art model RepLLaMA across both in-domain and out-of-domain benchmarks.\n\n## Ablation Study Findings\n\nThe combination of CL and KD losses (CL + KD) is crucial for achieving the best performance balance across different model sizes and evaluation sets. While KD alone boosts smaller models, and CL benefits larger models, their combination allows the 8B sparse retrieval model (Lion-SP-8B) to outperform CL-only models on MSMARCO Dev (0.5% gain) and TREC 19+20 (3.2% gain).\n\nA key finding was that sparse retrieval consistently outperformed dense retrieval across all fine-tuning objectives and demonstrated greater robustness, particularly on out-of-domain datasets."
+    ],
+    "durationSeconds": 8.873395500000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f40a81c5-6b30-437b-89b0-7bb70b5bcded",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-30T07:09:08.146Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011sB6yPMwbCNycCkNtWjzY1`</summary>
+
+```json
+{
+  "query": "BGE-M3 unified sparse dense retrieval experimental design ablation self-knowledge distillation evaluation 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f475b39-3b39-489a-931a-196036a2e085",
+  "isSidechain": false,
+  "requestId": "req_011CbYLJS4B5cvXhM6e6ymax",
+  "type": "assistant",
+  "uuid": "b051cc16-c4f7-4eda-9b44-2f63350d3294",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015q5JsegisGhdA2TndxEuZm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1035,
+      "cache_read_input_tokens": 20097,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1035,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 20097,
+          "cache_creation_input_tokens": 1035,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1035
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-30T07:09:17.072Z_
+
+<details><summary>↩ Tool result · `toolu_011sB6yPMwbCNycCkNtWjzY1`</summary>
+
+```text
+Web search results for query: "BGE-M3 unified sparse dense retrieval experimental design ablation self-knowledge distillation evaluation 2024"
+
+Links: [{"title":"Multilingual BGE-M3 Model","url":"https://www.emergentmind.com/topics/multilingual-bge-m3-model"},{"title":"BAAI/bge-m3 · Hugging Face","url":"https://huggingface.co/BAAI/bge-m3"},{"title":"BGE M3-Embedding Model","url":"https://www.emergentmind.com/topics/bge-m3-embedding-model"},{"title":"BGE-M3: Multilingual Bi-Encoder Model","url":"https://www.emergentmind.com/topics/bge-m3-model"},{"title":"BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation","url":"https://arxiv.org/html/2402.03216v3"},{"title":"BGE M3-Embedding: Multilingual, Multifunctional Embeddings","url":"https://www.emergentmind.com/papers/2402.03216"},{"title":"bge-m3","url":"https://ollama.com/library/bge-m3"},{"title":"M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation - ACL Anthology","url":"https://aclanthology.org/2024.findings-acl.137/"},{"title":"BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation [Quick Review]","url":"https://liner.com/review/bge-m3embedding-multilingual-multifunctionality-multigranularity-text-embeddings-through-selfknowledge-distillation"}]
+
+Based on the search results, I can provide you with detailed information about BGE-M3's experimental design, ablation studies, and self-knowledge distillation approach from the 2024 research:
+
+## Model Architecture and Design
+
+BGE-M3 is a multilingual, multi-functionality bi-encoder embedding model that enables dense, sparse, and multi-vector retrieval at multiple text granularities and supports input lengths up to 8,192 tokens, developed using self-knowledge distillation across retrieval paradigms. The model is a bi-encoder Transformer derived from XLM-RoBERTa-large (24 layers, 1024-hidden, 16 heads) and enhanced with retrofitted masked autoencoding (RetroMAE).
+
+## Self-Knowledge Distillation Framework
+
+The fine-tuning approach involves joint optimization of dense, sparse, and multi-vector heads, leveraging a self-knowledge distillation framework where each head learns not only from its direct target (e.g., InfoNCE loss) but also from an ensemble teacher combining the outputs of all heads, using soft label distribution matching. This self-knowledge distillation approach aligns multiple retrieval functionalities during training, allowing different retrieval functionalities to mutually enhance each other instead of working in isolation.
+
+## Training Strategy
+
+Extremely large batch sizes (up to 67,200 per device for short sequences) are used with per-length grouping, gradient-checkpointing, and cross-GPU negative sampling to ensure effective negative mining and high embedding quality.
+
+## Evaluation and Ablation Results
+
+The paper includes an ablation study of self-knowledge distillation with MIRACL. On the MLDR benchmark for long document retrieval, sparse retrieval achieves about 10 points improvement over the dense method, multi-vector retrieval brings 5.1+ points improvement over dense retrieval, and the combination of different retrieval methods leads to a remarkable average performance of 65.0.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b051cc16-c4f7-4eda-9b44-2f63350d3294",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "63a7ed70-8b03-4f52-b6ab-38f2700932a5",
+  "toolUseResult": {
+    "query": "BGE-M3 unified sparse dense retrieval experimental design ablation self-knowledge distillation evaluation 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011zVXpEbi6FjL7hCEEenKQt",
+        "content": [
+          {
+            "title": "Multilingual BGE-M3 Model",
+            "url": "https://www.emergentmind.com/topics/multilingual-bge-m3-model"
+          },
+          {
+            "title": "BAAI/bge-m3 · Hugging Face",
+            "url": "https://huggingface.co/BAAI/bge-m3"
+          },
+          {
+            "title": "BGE M3-Embedding Model",
+            "url": "https://www.emergentmind.com/topics/bge-m3-embedding-model"
+          },
+          {
+            "title": "BGE-M3: Multilingual Bi-Encoder Model",
+            "url": "https://www.emergentmind.com/topics/bge-m3-model"
+          },
+          {
+            "title": "BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation",
+            "url": "https://arxiv.org/html/2402.03216v3"
+          },
+          {
+            "title": "BGE M3-Embedding: Multilingual, Multifunctional Embeddings",
+            "url": "https://www.emergentmind.com/papers/2402.03216"
+          },
+          {
+            "title": "bge-m3",
+            "url": "https://ollama.com/library/bge-m3"
+          },
+          {
+            "title": "M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-acl.137/"
+          },
+          {
+            "title": "BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation [Quick Review]",
+            "url": "https://liner.com/review/bge-m3embedding-multilingual-multifunctionality-multigranularity-text-embeddings-through-selfknowledge-distillation"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with detailed information about BGE-M3's experimental design, ablation studies, and self-knowledge distillation approach from the 2024 research:\n\n## Model Architecture and Design\n\nBGE-M3 is a multilingual, multi-functionality bi-encoder embedding model that enables dense, sparse, and multi-vector retrieval at multiple text granularities and supports input lengths up to 8,192 tokens, developed using self-knowledge distillation across retrieval paradigms. The model is a bi-encoder Transformer derived from XLM-RoBERTa-large (24 layers, 1024-hidden, 16 heads) and enhanced with retrofitted masked autoencoding (RetroMAE).\n\n## Self-Knowledge Distillation Framework\n\nThe fine-tuning approach involves joint optimization of dense, sparse, and multi-vector heads, leveraging a self-knowledge distillation framework where each head learns not only from its direct target (e.g., InfoNCE loss) but also from an ensemble teacher combining the outputs of all heads, using soft label distribution matching. This self-knowledge distillation approach aligns multiple retrieval functionalities during training, allowing different retrieval functionalities to mutually enhance each other instead of working in isolation.\n\n## Training Strategy\n\nExtremely large batch sizes (up to 67,200 per device for short sequences) are used with per-length grouping, gradient-checkpointing, and cross-GPU negative sampling to ensure effective negative mining and high embedding quality.\n\n## Evaluation and Ablation Results\n\nThe paper includes an ablation study of self-knowledge distillation with MIRACL. On the MLDR benchmark for long document retrieval, sparse retrieval achieves about 10 points improvement over the dense method, multi-vector retrieval brings 5.1+ points improvement over dense retrieval, and the combination of different retrieval methods leads to a remarkable average performance of 65.0."
+    ],
+    "durationSeconds": 8.922769398000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b051cc16-c4f7-4eda-9b44-2f63350d3294",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-30T07:09:20.069Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RDedUBVu2RUByLnctLz917`</summary>
+
+```json
+{
+  "query": "RouterRetriever AAAI 2025 learned routing retrieval models experimental setup baselines evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63a7ed70-8b03-4f52-b6ab-38f2700932a5",
+  "isSidechain": false,
+  "requestId": "req_011CbYLKFjqanXpZRvymvxzD",
+  "type": "assistant",
+  "uuid": "b365fcc2-558b-4c91-8932-8d57f0c0fb86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oEG3kiDnw1d21AHDjb7Nj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 21132,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 21132,
+          "cache_creation_input_tokens": 1028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T07:09:28.859Z_
+
+<details><summary>↩ Tool result · `toolu_01RDedUBVu2RUByLnctLz917`</summary>
+
+```text
+Web search results for query: "RouterRetriever AAAI 2025 learned routing retrieval models experimental setup baselines evaluation"
+
+Links: [{"title":"GitHub - amy-hyunji/RouterRetriever","url":"https://github.com/amy-hyunji/RouterRetriever"},{"title":"RouterRetriever: Routing over a Mixture of Expert Embedding Models | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/33306"},{"title":"amy-hyunji-lee/RouterRetriever · Hugging Face","url":"https://huggingface.co/amy-hyunji-lee/RouterRetriever"},{"title":"ROUTERRETRIEVER: Routing over a Mixture of Expert Embedding Models Hyunji Lee1*","url":"https://arxiv.org/pdf/2409.02685"},{"title":"RouterRetriever: Exploring the Benefits of Routing over Multiple Expert Embedding Models","url":"https://arxiv.org/html/2409.02685v1"},{"title":"RouterRetriever: Routing over a Mixture of Expert Embedding Models","url":"https://arxiv.org/html/2409.02685"},{"title":"[2409.02685] RouterRetriever: Routing over a Mixture of Expert Embedding Models","url":"https://arxiv.org/abs/2409.02685"},{"title":"LTRR: Learning To Rank Retrievers for LLMs","url":"https://arxiv.org/pdf/2506.13743"},{"title":"LTRR: Learning To Rank Retrievers for LLMs","url":"https://arxiv.org/html/2506.13743v1"}]
+
+Based on the search results, here's comprehensive information about RouterRetriever, the AAAI 2025 paper on learned routing retrieval models:
+
+## Overview
+
+RouterRetriever is a retrieval model that leverages a mixture of domain-specific experts by using a routing mechanism to select the most appropriate expert for each query. It is the first work to demonstrate the advantages of routing over a mixture of domain-specific expert embedding models as an alternative to a single, general-purpose embedding model, especially when retrieving from diverse, specialized domains.
+
+## Experimental Setup
+
+The research uses the pre-trained Contriever as the base encoder and trains experts (LoRA) with a rank of 8, an alpha of 32 per expert, thereby training approximately 0.5% of the parameters (about 1M parameters) per expert. For training, they adopt few-shot hyperparameters: a learning rate of 1e-4, a batch size of 256 with in-batch negatives, and a maximum of 500 epochs with early stopping.
+
+## Routing Mechanism
+
+For each domain, gates (experts) are trained, and during inference, the model determines the most relevant expert by computing the average similarity between the query and a set of pilot embeddings representing each expert, selecting the expert with the highest similarity score.
+
+## Baselines and Evaluation
+
+Evaluation on the BEIR benchmark demonstrates that RouterRetriever outperforms both models trained on MSMARCO (+2.1 absolute nDCG@10) and multi-task models (+3.2). The routing mechanism surpasses other routing techniques (+1.8 on average) commonly used in language modeling. RouterRetriever achieves performance comparable to the DatasetOracle model, with InstanceOracle indicating room for future work in router improvements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b365fcc2-558b-4c91-8932-8d57f0c0fb86",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "5fc12b37-039d-486a-895a-73b1bd8c29d5",
+  "toolUseResult": {
+    "query": "RouterRetriever AAAI 2025 learned routing retrieval models experimental setup baselines evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Lq9u2rmbDYPdnpA3Xfq4bw",
+        "content": [
+          {
+            "title": "GitHub - amy-hyunji/RouterRetriever",
+            "url": "https://github.com/amy-hyunji/RouterRetriever"
+          },
+          {
+            "title": "RouterRetriever: Routing over a Mixture of Expert Embedding Models | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/33306"
+          },
+          {
+            "title": "amy-hyunji-lee/RouterRetriever · Hugging Face",
+            "url": "https://huggingface.co/amy-hyunji-lee/RouterRetriever"
+          },
+          {
+            "title": "ROUTERRETRIEVER: Routing over a Mixture of Expert Embedding Models Hyunji Lee1*",
+            "url": "https://arxiv.org/pdf/2409.02685"
+          },
+          {
+            "title": "RouterRetriever: Exploring the Benefits of Routing over Multiple Expert Embedding Models",
+            "url": "https://arxiv.org/html/2409.02685v1"
+          },
+          {
+            "title": "RouterRetriever: Routing over a Mixture of Expert Embedding Models",
+            "url": "https://arxiv.org/html/2409.02685"
+          },
+          {
+            "title": "[2409.02685] RouterRetriever: Routing over a Mixture of Expert Embedding Models",
+            "url": "https://arxiv.org/abs/2409.02685"
+          },
+          {
+            "title": "LTRR: Learning To Rank Retrievers for LLMs",
+            "url": "https://arxiv.org/pdf/2506.13743"
+          },
+          {
+            "title": "LTRR: Learning To Rank Retrievers for LLMs",
+            "url": "https://arxiv.org/html/2506.13743v1"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about RouterRetriever, the AAAI 2025 paper on learned routing retrieval models:\n\n## Overview\n\nRouterRetriever is a retrieval model that leverages a mixture of domain-specific experts by using a routing mechanism to select the most appropriate expert for each query. It is the first work to demonstrate the advantages of routing over a mixture of domain-specific expert embedding models as an alternative to a single, general-purpose embedding model, especially when retrieving from diverse, specialized domains.\n\n## Experimental Setup\n\nThe research uses the pre-trained Contriever as the base encoder and trains experts (LoRA) with a rank of 8, an alpha of 32 per expert, thereby training approximately 0.5% of the parameters (about 1M parameters) per expert. For training, they adopt few-shot hyperparameters: a learning rate of 1e-4, a batch size of 256 with in-batch negatives, and a maximum of 500 epochs with early stopping.\n\n## Routing Mechanism\n\nFor each domain, gates (experts) are trained, and during inference, the model determines the most relevant expert by computing the average similarity between the query and a set of pilot embeddings representing each expert, selecting the expert with the highest similarity score.\n\n## Baselines and Evaluation\n\nEvaluation on the BEIR benchmark demonstrates that RouterRetriever outperforms both models trained on MSMARCO (+2.1 absolute nDCG@10) and multi-task models (+3.2). The routing mechanism surpasses other routing techniques (+1.8 on average) commonly used in language modeling. RouterRetriever achieves performance comparable to the DatasetOracle model, with InstanceOracle indicating room for future work in router improvements."
+    ],
+    "durationSeconds": 8.783918783,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b365fcc2-558b-4c91-8932-8d57f0c0fb86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-30T07:09:31.094Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015ct7p2hcf4bQ2qiurAaT1D`</summary>
+
+```json
+{
+  "query": "DAT dynamic alpha tuning hybrid retrieval per-query fusion sparse dense 2025 arXiv experimental design"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fc12b37-039d-486a-895a-73b1bd8c29d5",
+  "isSidechain": false,
+  "requestId": "req_011CbYLL89Toaf89W3U5149f",
+  "type": "assistant",
+  "uuid": "d195c70f-2db4-4064-8546-b97940046961",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXZrH7sjMpCTtwdphcYRBZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 22160,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 926,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 22160,
+          "cache_creation_input_tokens": 926,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 926
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing  ## Core Research Question  In a decoder-only LLM with shared transformer backbone, do sparse (lexic…",
+  "leafUuid": "d195c70f-2db4-4064-8546-b97940046961",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-30T07:09:37.721Z_
+
+<details><summary>↩ Tool result · `toolu_015ct7p2hcf4bQ2qiurAaT1D`</summary>
+
+```text
+Web search results for query: "DAT dynamic alpha tuning hybrid retrieval per-query fusion sparse dense 2025 arXiv experimental design"
+
+Links: [{"title":"DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation","url":"https://www.emergentmind.com/papers/2503.23013"},{"title":"Entropy-Based Dynamic Hybrid Retrieval for Adaptive Query Weighting in","url":"https://openreview.net/pdf?id=bwGaZOVo0c"},{"title":"[2503.23013] DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2503.23013"},{"title":"DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation","url":"https://arxiv.org/html/2503.23013v1"},{"title":"Preprint. Under review. DAT: Dynamic Alpha Tuning for Hybrid Retrieval in","url":"https://arxiv.org/pdf/2503.23013"},{"title":"DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/dat-dynamic-alpha-tuning-hybrid-retrieval-retrieval"},{"title":"[PDF] DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DAT:-Dynamic-Alpha-Tuning-for-Hybrid-Retrieval-in-Hsu-Tzeng/4e57d2fa070c8c9e2f36341c5f86e35b6ca33f2c"},{"title":"(PDF) DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation","url":"https://www.researchgate.net/publication/390354940_DAT_Dynamic_Alpha_Tuning_for_Hybrid_Retrieval_in_Retrieval-Augmented_Generation"},{"title":"arXiv:2506.00049v1 [cs.IR] 28 May 2025","url":"https://arxiv.org/pdf/2506.00049"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=Hsin-Ling+Hsu+and+Jengnan+Tzeng.+2025.+DAT:+Dynamic+alpha+tuning+for+hybrid+retrieval+in+retrieval-augmented+generation.+arXiv+preprint+arXiv:2503.23013+(2025)."}]
+
+I found comprehensive information about the DAT (Dynamic Alpha Tuning) paper from the 2025 arXiv. Here's what the research covers:
+
+## Overview
+
+DAT (Dynamic Alpha Tuning) is a novel hybrid retrieval framework that dynamically balances dense retrieval and BM25 for each query. The approach addresses the limitation that existing hybrid retrieval methods struggle with adaptability, as fixed weighting schemes fail to adjust to different queries.
+
+## Core Methodology
+
+DAT leverages a large language model (LLM) to evaluate the effectiveness of the top-1 results from both retrieval methods, assigning an effectiveness score to each, then calibrates the optimal weighting factor through effectiveness score normalization, ensuring a more adaptive and query-aware weighting between the two approaches.
+
+The architecture uses a small MLP (Multi-Layer Perceptron) network that takes query embeddings as input and outputs an alpha value between 0 and 1, with the final retrieval score calculated as: Score = α × BM25_score + (1-α) × Contriever_score.
+
+## Experimental Results
+
+Empirical results show that DAT consistently significantly outperforms fixed-weighting hybrid retrieval methods across various evaluation metrics.
+
+The paper was published on arXiv (ID: 2503.23013) in March 2025 and addresses the per-query fusion challenge that your search specifically referenced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d195c70f-2db4-4064-8546-b97940046961",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "12db0637-9ebf-4e9e-be50-2aebe969bb82",
+  "toolUseResult": {
+    "query": "DAT dynamic alpha tuning hybrid retrieval per-query fusion sparse dense 2025 arXiv experimental design",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AC9AfUgcbrJD5EVuQ9xS9P",
+        "content": [
+          {
+            "title": "DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation",
+            "url": "https://www.emergentmind.com/papers/2503.23013"
+          },
+          {
+            "title": "Entropy-Based Dynamic Hybrid Retrieval for Adaptive Query Weighting in",
+            "url": "https://openreview.net/pdf?id=bwGaZOVo0c"
+          },
+          {
+            "title": "[2503.23013] DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2503.23013"
+          },
+          {
+            "title": "DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2503.23013v1"
+          },
+          {
+            "title": "Preprint. Under review. DAT: Dynamic Alpha Tuning for Hybrid Retrieval in",
+            "url": "https://arxiv.org/pdf/2503.23013"
+          },
+          {
+            "title": "DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/dat-dynamic-alpha-tuning-hybrid-retrieval-retrieval"
+          },
+          {
+            "title": "[PDF] DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DAT:-Dynamic-Alpha-Tuning-for-Hybrid-Retrieval-in-Hsu-Tzeng/4e57d2fa070c8c9e2f36341c5f86e35b6ca33f2c"
+          },
+          {
+            "title": "(PDF) DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation",
+            "url": "https://www.researchgate.net/publication/390354940_DAT_Dynamic_Alpha_Tuning_for_Hybrid_Retrieval_in_Retrieval-Augmented_Generation"
+          },
+          {
+            "title": "arXiv:2506.00049v1 [cs.IR] 28 May 2025",
+            "url": "https://arxiv.org/pdf/2506.00049"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar?q=Hsin-Ling+Hsu+and+Jengnan+Tzeng.+2025.+DAT:+Dynamic+alpha+tuning+for+hybrid+retrieval+in+retrieval-augmented+generation.+arXiv+preprint+arXiv:2503.23013+(2025)."
+          }
+        ]
+      },
+      "I found comprehensive information about the DAT (Dynamic Alpha Tuning) paper from the 2025 arXiv. Here's what the research covers:\n\n## Overview\n\nDAT (Dynamic Alpha Tuning) is a novel hybrid retrieval framework that dynamically balances dense retrieval and BM25 for each query. The approach addresses the limitation that existing hybrid retrieval methods struggle with adaptability, as fixed weighting schemes fail to adjust to different queries.\n\n## Core Methodology\n\nDAT leverages a large language model (LLM) to evaluate the effectiveness of the top-1 results from both retrieval methods, assigning an effectiveness score to each, then calibrates the optimal weighting factor through effectiveness score normalization, ensuring a more adaptive and query-aware weighting between the two approaches.\n\nThe architecture uses a small MLP (Multi-Layer Perceptron) network that takes query embeddings as input and outputs an alpha value between 0 and 1, with the final retrieval score calculated as: Score = α × BM25_score + (1-α) × Contriever_score.\n\n## Experimental Results\n\nEmpirical results show that DAT consistently significantly outperforms fixed-weighting hybrid retrieval methods across various evaluation metrics.\n\nThe paper was published on arXiv (ID: 2503.23013) in March 2025 and addresses the per-query fusion challenge that your search specifically referenced."
+    ],
+    "durationSeconds": 6.623769816,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d195c70f-2db4-4064-8546-b97940046961",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-30T07:09:41.418Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VHQhbja3M5NDVougWzzrWJ`</summary>
+
+```json
+{
+  "query": "Qwen3-Embedding model 2025 MTEB retrieval benchmark results evaluation experimental setup"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12db0637-9ebf-4e9e-be50-2aebe969bb82",
+  "isSidechain": false,
+  "requestId": "req_011CbYLLmz3bFeoKR2c8LBBK",
+  "type": "assistant",
+  "uuid": "e10519e3-7907-4eba-ac37-2627405c692c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ZH7aRFopq3KoECkpMqXTy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 23086,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 23086,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-30T07:09:50.805Z_
+
+<details><summary>↩ Tool result · `toolu_01VHQhbja3M5NDVougWzzrWJ`</summary>
+
+```text
+Web search results for query: "Qwen3-Embedding model 2025 MTEB retrieval benchmark results evaluation experimental setup"
+
+Links: [{"title":"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models","url":"https://arxiv.org/html/2506.05176v1"},{"title":"GitHub - QwenLM/Qwen3-Embedding · GitHub","url":"https://github.com/QwenLM/Qwen3-Embedding"},{"title":"Qwen/Qwen3-Embedding-0.6B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"},{"title":"[2506.05176] Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models","url":"https://arxiv.org/abs/2506.05176"},{"title":"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models | Qwen","url":"https://qwenlm.github.io/blog/qwen3-embedding/"},{"title":"Qwen/Qwen3-Embedding-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Embedding-8B"},{"title":"Comparative Analysis of Qwen-3 and BGE-M3 Embedding Models for Multilingual Information Retrieval | by Aryan Kumar | Medium","url":"https://medium.com/@mrAryanKumar/comparative-analysis-of-qwen-3-and-bge-m3-embedding-models-for-multilingual-information-retrieval-72c0e6895413"},{"title":"qwen3-embedding","url":"https://ollama.com/library/qwen3-embedding"},{"title":"Qwen3 Embedding: Advancing Text ...","url":"https://arxiv.org/pdf/2506.05176"},{"title":"Top embedding models on the MTEB leaderboard","url":"https://modal.com/blog/mteb-leaderboard-article"}]
+
+Based on the web search results, here's comprehensive information about the Qwen3-Embedding model's 2025 MTEB benchmark results and experimental setup:
+
+## MTEB Retrieval Benchmark Results
+
+The flagship model Qwen3-8B-Embedding attains a score of 70.58 on the MTEB Multilingual benchmark and 80.68 on the MTEB Code benchmark, surpassing the previous state-of-the-art proprietary embedding model, Gemini-Embedding. The 8B size embedding model ranks No.1 in the MTEB multilingual leaderboard (as of June 5, 2025, score 70.58).
+
+## Experimental Setup
+
+The researchers conducted comprehensive and fair evaluations across multiple benchmarks to assess the capabilities of Qwen3 Embedding models, utilizing the Massive Multilingual Text Embedding Benchmark (MMTEB), which is a large-scale, community-driven expansion of MTEB covering over 500 quality-controlled evaluation tasks across more than 250 languages.
+
+Evaluation results on MTEB (English, v2), CMTEB, and MTEB (Code) were presented. For reranking model evaluation, the retrieval subsets of MTEB(eng, v2), MTEB(cmn, v1), MMTEB and MTEB (Code) were used, with all scores based on the top-100 candidates retrieved by dense embedding model Qwen3-Embedding-0.6B.
+
+## Model Architecture
+
+The Qwen3 Embedding models are provided in various sizes (0.6B, 4B, and 8B), inheriting the exceptional multilingual capabilities, long-text understanding, and reasoning skills of the foundational Qwen3 model. The innovative multi-stage training pipeline combines large-scale unsupervised pre-training with supervised fine-tuning on high-quality datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e10519e3-7907-4eba-ac37-2627405c692c",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "2083cf21-00ee-4df5-abaa-a6f693c41e01",
+  "toolUseResult": {
+    "query": "Qwen3-Embedding model 2025 MTEB retrieval benchmark results evaluation experimental setup",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TjUFwsZ2e6vc7Kgm6JmQQH",
+        "content": [
+          {
+            "title": "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models",
+            "url": "https://arxiv.org/html/2506.05176v1"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-Embedding · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-Embedding"
+          },
+          {
+            "title": "Qwen/Qwen3-Embedding-0.6B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"
+          },
+          {
+            "title": "[2506.05176] Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models",
+            "url": "https://arxiv.org/abs/2506.05176"
+          },
+          {
+            "title": "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen3-embedding/"
+          },
+          {
+            "title": "Qwen/Qwen3-Embedding-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Embedding-8B"
+          },
+          {
+            "title": "Comparative Analysis of Qwen-3 and BGE-M3 Embedding Models for Multilingual Information Retrieval | by Aryan Kumar | Medium",
+            "url": "https://medium.com/@mrAryanKumar/comparative-analysis-of-qwen-3-and-bge-m3-embedding-models-for-multilingual-information-retrieval-72c0e6895413"
+          },
+          {
+            "title": "qwen3-embedding",
+            "url": "https://ollama.com/library/qwen3-embedding"
+          },
+          {
+            "title": "Qwen3 Embedding: Advancing Text ...",
+            "url": "https://arxiv.org/pdf/2506.05176"
+          },
+          {
+            "title": "Top embedding models on the MTEB leaderboard",
+            "url": "https://modal.com/blog/mteb-leaderboard-article"
+          }
+        ]
+      },
+      "Based on the web search results, here's comprehensive information about the Qwen3-Embedding model's 2025 MTEB benchmark results and experimental setup:\n\n## MTEB Retrieval Benchmark Results\n\nThe flagship model Qwen3-8B-Embedding attains a score of 70.58 on the MTEB Multilingual benchmark and 80.68 on the MTEB Code benchmark, surpassing the previous state-of-the-art proprietary embedding model, Gemini-Embedding. The 8B size embedding model ranks No.1 in the MTEB multilingual leaderboard (as of June 5, 2025, score 70.58).\n\n## Experimental Setup\n\nThe researchers conducted comprehensive and fair evaluations across multiple benchmarks to assess the capabilities of Qwen3 Embedding models, utilizing the Massive Multilingual Text Embedding Benchmark (MMTEB), which is a large-scale, community-driven expansion of MTEB covering over 500 quality-controlled evaluation tasks across more than 250 languages.\n\nEvaluation results on MTEB (English, v2), CMTEB, and MTEB (Code) were presented. For reranking model evaluation, the retrieval subsets of MTEB(eng, v2), MTEB(cmn, v1), MMTEB and MTEB (Code) were used, with all scores based on the top-100 candidates retrieved by dense embedding model Qwen3-Embedding-0.6B.\n\n## Model Architecture\n\nThe Qwen3 Embedding models are provided in various sizes (0.6B, 4B, and 8B), inheriting the exceptional multilingual capabilities, long-text understanding, and reasoning skills of the foundational Qwen3 model. The innovative multi-stage training pipeline combines large-scale unsupervised pre-training with supervised fine-tuning on high-quality datasets."
+    ],
+    "durationSeconds": 9.382464398000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e10519e3-7907-4eba-ac37-2627405c692c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-30T07:09:53.629Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KTTxStT85LJvSkxBHBRxfp`</summary>
+
+```json
+{
+  "query": "\"sparse dense retrieval\" \"knowledge distillation\" unified model ablation BEIR benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2083cf21-00ee-4df5-abaa-a6f693c41e01",
+  "isSidechain": false,
+  "requestId": "req_011CbYLMjyGsnunH69Y2Z5Nr",
+  "type": "assistant",
+  "uuid": "63aac70f-6d82-4d81-b482-9532b30d9fc0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016h4BtxtYqGsDoBTsjbDJhJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 24178,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 24178,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-30T07:10:01.286Z_
+
+<details><summary>↩ Tool result · `toolu_01KTTxStT85LJvSkxBHBRxfp`</summary>
+
+```text
+Web search results for query: ""sparse dense retrieval" "knowledge distillation" unified model ablation BEIR benchmark 2025 2026"
+
+Links: [{"title":"Towards Competitive Search Relevance For Inference- ...","url":"https://www.arxiv.org/pdf/2411.04403"},{"title":"Boot and Switch: Alternating Distillation for Zero-Shot Dense Retrieval","url":"https://arxiv.org/pdf/2311.15564"},{"title":"Resources for Brewing BEIR:","url":"https://cs.uwaterloo.ca/~jimmylin/publications/Kamalloo_etal_SIGIR2024.pdf"},{"title":"[PDF] BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BEIR:-A-Heterogenous-Benchmark-for-Zero-shot-of-Thakur-Reimers/807600ef43073cd9c59d4208ee710e90cf14efa8"},{"title":"BEIR: A Heterogeneous Benchmark for Zero-shot ...","url":"https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/65b9eea6e1cc6bb9f0cd2a47751a186f-Paper-round2.pdf"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs","url":"https://arxiv.org/pdf/2502.15526"},{"title":"BEIR Benchmark for IR Models","url":"https://www.emergentmind.com/topics/beir-benchmark"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng","url":"https://maroo.cs.umass.edu/pub/web/getpdf.php?id=1538"},{"title":"Unsupervised Dense Information Retrieval with Contrastive Learning","url":"https://arxiv.org/pdf/2112.09118"}]
+
+I found several relevant research papers on sparse and dense retrieval with knowledge distillation evaluated on the BEIR benchmark. Here are the key findings:
+
+## Recent Research on Unified Models with Knowledge Distillation
+
+One approach uses an ensemble framework combining dense and sparse retrievers, with knowledge distillation from heterogeneous supervisors that normalize and aggregate outputs to eliminate score scale differences. This model's zero-shot search relevance substantially outperforms other inference-free sparse retrievers on BEIR benchmark, surpassing SPLADE-v3-Doc by 3.3 NDCG@10.
+
+## Knowledge Distillation Approaches
+
+Research has explored fully exploiting knowledge distillation using dual supervision from a cross-encoder model and ColBERT. Additionally, a cross-architecture training procedure with margin-focused loss (Margin-MSE) adapts knowledge distillation to the varying score output distributions of different BERT and non-BERT ranking architectures.
+
+## Recent 2026 Findings on Sparse vs Dense
+
+A recent 2026 study provides important insights: Scaling behaviors emerge clearly with contrastive learning (CL), where larger models achieve significant performance gains, while KD-trained models show minimal improvement. Sparse retrieval models consistently outperform dense retrieval across both in-domain and out-of-domain (BEIR) benchmarks.
+
+The combination of CL and KD losses at scale achieves state-of-the-art results, with sparse retrieval models demonstrating greater robustness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63aac70f-6d82-4d81-b482-9532b30d9fc0",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "5929d38e-3d93-4383-9c8d-2bb1d897be75",
+  "toolUseResult": {
+    "query": "\"sparse dense retrieval\" \"knowledge distillation\" unified model ablation BEIR benchmark 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EaNmcNLZGaieGqKvGHdr5o",
+        "content": [
+          {
+            "title": "Towards Competitive Search Relevance For Inference- ...",
+            "url": "https://www.arxiv.org/pdf/2411.04403"
+          },
+          {
+            "title": "Boot and Switch: Alternating Distillation for Zero-Shot Dense Retrieval",
+            "url": "https://arxiv.org/pdf/2311.15564"
+          },
+          {
+            "title": "Resources for Brewing BEIR:",
+            "url": "https://cs.uwaterloo.ca/~jimmylin/publications/Kamalloo_etal_SIGIR2024.pdf"
+          },
+          {
+            "title": "[PDF] BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BEIR:-A-Heterogenous-Benchmark-for-Zero-shot-of-Thakur-Reimers/807600ef43073cd9c59d4208ee710e90cf14efa8"
+          },
+          {
+            "title": "BEIR: A Heterogeneous Benchmark for Zero-shot ...",
+            "url": "https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/65b9eea6e1cc6bb9f0cd2a47751a186f-Paper-round2.pdf"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs",
+            "url": "https://arxiv.org/pdf/2502.15526"
+          },
+          {
+            "title": "BEIR Benchmark for IR Models",
+            "url": "https://www.emergentmind.com/topics/beir-benchmark"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng",
+            "url": "https://maroo.cs.umass.edu/pub/web/getpdf.php?id=1538"
+          },
+          {
+            "title": "Unsupervised Dense Information Retrieval with Contrastive Learning",
+            "url": "https://arxiv.org/pdf/2112.09118"
+          }
+        ]
+      },
+      "I found several relevant research papers on sparse and dense retrieval with knowledge distillation evaluated on the BEIR benchmark. Here are the key findings:\n\n## Recent Research on Unified Models with Knowledge Distillation\n\nOne approach uses an ensemble framework combining dense and sparse retrievers, with knowledge distillation from heterogeneous supervisors that normalize and aggregate outputs to eliminate score scale differences. This model's zero-shot search relevance substantially outperforms other inference-free sparse retrievers on BEIR benchmark, surpassing SPLADE-v3-Doc by 3.3 NDCG@10.\n\n## Knowledge Distillation Approaches\n\nResearch has explored fully exploiting knowledge distillation using dual supervision from a cross-encoder model and ColBERT. Additionally, a cross-architecture training procedure with margin-focused loss (Margin-MSE) adapts knowledge distillation to the varying score output distributions of different BERT and non-BERT ranking architectures.\n\n## Recent 2026 Findings on Sparse vs Dense\n\nA recent 2026 study provides important insights: Scaling behaviors emerge clearly with contrastive learning (CL), where larger models achieve significant performance gains, while KD-trained models show minimal improvement. Sparse retrieval models consistently outperform dense retrieval across both in-domain and out-of-domain (BEIR) benchmarks.\n\nThe combination of CL and KD losses at scale achieves state-of-the-art results, with sparse retrieval models demonstrating greater robustness."
+    ],
+    "durationSeconds": 7.651800314000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63aac70f-6d82-4d81-b482-9532b30d9fc0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-30T07:10:01.297Z_
+
+```json
+{
+  "parentUuid": "5929d38e-3d93-4383-9c8d-2bb1d897be75",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2dc16cd2-a8af-4c51-a85c-6b4a596376c1",
+  "timestamp": "2026-05-30T07:10:01.297Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-30T07:10:03.939Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Aku8dkVFpKDoNxKjf16N8M`</summary>
+
+```json
+{
+  "query": "NV-Embed-v2 ICLR 2025 latent attention pooling experimental design baselines ablation retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2dc16cd2-a8af-4c51-a85c-6b4a596376c1",
+  "isSidechain": false,
+  "requestId": "req_011CbYLNWrmMmuePkLF1GqX3",
+  "type": "assistant",
+  "uuid": "cff7ce9c-e0bc-4cd2-9e7a-d8f4a74841ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012rPNeWWShfuiZxTfCGRYgL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1044,
+      "cache_read_input_tokens": 25232,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 25232,
+          "cache_creation_input_tokens": 1044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-30T07:10:13.048Z_
+
+<details><summary>↩ Tool result · `toolu_01Aku8dkVFpKDoNxKjf16N8M`</summary>
+
+```text
+Web search results for query: "NV-Embed-v2 ICLR 2025 latent attention pooling experimental design baselines ablation retrieval"
+
+Links: [{"title":"NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models | OpenReview","url":"https://openreview.net/forum?id=lgsyLSsDRe"},{"title":"NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/c4bf73386022473a652a18941e9ea6f8-Abstract-Conference.html"},{"title":"NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models","url":"https://arxiv.org/html/2405.17428v1"},{"title":"NV-Embed: Improved Techniques for Training LLMs as ...","url":"https://arxiv.org/pdf/2405.17428"},{"title":"NV-EMBED: IMPROVED TECHNIQUES FOR TRAINING ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c4bf73386022473a652a18941e9ea6f8-Paper-Conference.pdf"},{"title":"(PDF) NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models","url":"https://www.researchgate.net/publication/380929389_NV-Embed_Improved_Techniques_for_Training_LLMs_as_Generalist_Embedding_Models"},{"title":"nvidia/NV-Embed-v2 · Hugging Face","url":"https://huggingface.co/nvidia/NV-Embed-v2"},{"title":"Paper Explained 4: NV-Embed. How Nvidia turns decoders into… | by Shirley Li | Medium","url":"https://medium.com/@lixue421/paper-explained-4-nv-embed-1d1e13fc02a9"},{"title":"[2405.17428] NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models","url":"https://arxiv.org/abs/2405.17428"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/661caac7729aa7d8c6b8ac0d39ccbc6a-Paper-Conference.pdf"}]
+
+Based on the search results, here's what I found about NV-Embed-v2 and its ICLR 2025 presentation:
+
+## Key Findings
+
+**Paper Publication:** NV-Embed was published at ICLR 2025 as a Spotlight paper.
+
+**Latent Attention Pooling:** The paper proposes a latent attention layer to obtain pooled embeddings, which consistently improves retrieval and downstream task accuracy compared to mean pooling or using the last token embedding from LLMs. The latent attention mechanism uses the last layer hidden states from the decoder as query Q, which attend to a trainable latent array K = V that serves as a "dictionary" for obtaining better representations.
+
+**Experimental Design & Baselines:** The experiments compared the proposed latent attention layer with self-attention and mean pooling baselines, finding that self-attention provided minimal improvements (mean pooling 68.97 vs. self-attention 69.10 on MTEB tasks) and even slightly reduced accuracy on 15 retrieval tasks.
+
+**Ablation Studies:** The paper performs ablation studies comparing causal and bidirectional attention for contrastive training. To enhance representation learning, the authors remove the causal attention mask of LLMs during contrastive training.
+
+**Retrieval Performance:** NV-Embed-v2 has reclaimed and maintained the top spot on MTEB since August 30, 2024, and achieved the highest scores in the Long Doc section and the second-highest scores in the QA section of the AIR Benchmark.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cff7ce9c-e0bc-4cd2-9e7a-d8f4a74841ba",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "130c6a13-4d9e-4c80-8dcc-5b00283f8602",
+  "toolUseResult": {
+    "query": "NV-Embed-v2 ICLR 2025 latent attention pooling experimental design baselines ablation retrieval",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qqgk5domcJzBQZMVWvf8RB",
+        "content": [
+          {
+            "title": "NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models | OpenReview",
+            "url": "https://openreview.net/forum?id=lgsyLSsDRe"
+          },
+          {
+            "title": "NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/c4bf73386022473a652a18941e9ea6f8-Abstract-Conference.html"
+          },
+          {
+            "title": "NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models",
+            "url": "https://arxiv.org/html/2405.17428v1"
+          },
+          {
+            "title": "NV-Embed: Improved Techniques for Training LLMs as ...",
+            "url": "https://arxiv.org/pdf/2405.17428"
+          },
+          {
+            "title": "NV-EMBED: IMPROVED TECHNIQUES FOR TRAINING ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c4bf73386022473a652a18941e9ea6f8-Paper-Conference.pdf"
+          },
+          {
+            "title": "(PDF) NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models",
+            "url": "https://www.researchgate.net/publication/380929389_NV-Embed_Improved_Techniques_for_Training_LLMs_as_Generalist_Embedding_Models"
+          },
+          {
+            "title": "nvidia/NV-Embed-v2 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/NV-Embed-v2"
+          },
+          {
+            "title": "Paper Explained 4: NV-Embed. How Nvidia turns decoders into… | by Shirley Li | Medium",
+            "url": "https://medium.com/@lixue421/paper-explained-4-nv-embed-1d1e13fc02a9"
+          },
+          {
+            "title": "[2405.17428] NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models",
+            "url": "https://arxiv.org/abs/2405.17428"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/661caac7729aa7d8c6b8ac0d39ccbc6a-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about NV-Embed-v2 and its ICLR 2025 presentation:\n\n## Key Findings\n\n**Paper Publication:** NV-Embed was published at ICLR 2025 as a Spotlight paper.\n\n**Latent Attention Pooling:** The paper proposes a latent attention layer to obtain pooled embeddings, which consistently improves retrieval and downstream task accuracy compared to mean pooling or using the last token embedding from LLMs. The latent attention mechanism uses the last layer hidden states from the decoder as query Q, which attend to a trainable latent array K = V that serves as a \"dictionary\" for obtaining better representations.\n\n**Experimental Design & Baselines:** The experiments compared the proposed latent attention layer with self-attention and mean pooling baselines, finding that self-attention provided minimal improvements (mean pooling 68.97 vs. self-attention 69.10 on MTEB tasks) and even slightly reduced accuracy on 15 retrieval tasks.\n\n**Ablation Studies:** The paper performs ablation studies comparing causal and bidirectional attention for contrastive training. To enhance representation learning, the authors remove the causal attention mask of LLMs during contrastive training.\n\n**Retrieval Performance:** NV-Embed-v2 has reclaimed and maintained the top spot on MTEB since August 30, 2024, and achieved the highest scores in the Long Doc section and the second-highest scores in the QA section of the AIR Benchmark."
+    ],
+    "durationSeconds": 9.104096785000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cff7ce9c-e0bc-4cd2-9e7a-d8f4a74841ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing  ## Core Research Question  In a decoder-only LLM with shared transformer backbone, do sparse (lexic…",
+  "leafUuid": "130c6a13-4d9e-4c80-8dcc-5b00283f8602",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-30T07:10:15.920Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hx3GrnifvMRqCDKNv7GhcV`</summary>
+
+```json
+{
+  "query": "CKA similarity analysis neural information retrieval representation analysis layer-wise probing 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "130c6a13-4d9e-4c80-8dcc-5b00283f8602",
+  "isSidechain": false,
+  "requestId": "req_011CbYLPP3zJ8QipMa6TQZwf",
+  "type": "assistant",
+  "uuid": "021853b9-392c-4eb7-b2d5-be1d88fc0398",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2juHSouNgcCi3h4CcxaJM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 26276,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 26276,
+          "cache_creation_input_tokens": 1090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-30T07:10:23.673Z_
+
+<details><summary>↩ Tool result · `toolu_01Hx3GrnifvMRqCDKNv7GhcV`</summary>
+
+```text
+Web search results for query: "CKA similarity analysis neural information retrieval representation analysis layer-wise probing 2024 2025"
+
+Links: [{"title":"Tracing Representation Progression: Analyzing and Enhancing Layer-Wise Similarity","url":"https://arxiv.org/pdf/2406.14479"},{"title":"Centered Kernel Alignment (CKA) Similarity","url":"https://www.emergentmind.com/topics/centered-kernel-alignment-cka-similarity"},{"title":"[2406.14479] Tracing Representation Progression: Analyzing and Enhancing Layer-Wise Similarity","url":"https://arxiv.org/abs/2406.14479"},{"title":"Similarity and Matching of Neural Network Representations","url":"https://openreview.net/pdf?id=aedFIIRRfXr"},{"title":"(PDF) On Layer-wise Representation Similarity: Application for Multi-Exit Models with a Single Classifier","url":"https://www.researchgate.net/publication/381603801_On_Layer-wise_Representation_Similarity_Application_for_Multi-Exit_Models_with_a_Single_Classifier"},{"title":"ANALYZ- ING AND ENHANCING LAYER-WISE SIMILARITY","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/03d113a060c0ac93a5859517a0f07271-Paper-Conference.pdf"},{"title":"Similarity of Neural Network Representations Revisited","url":"https://arxiv.org/pdf/1905.00414"},{"title":"Deconfounded Representation Similarity for Comparison of Neural Networks","url":"https://arxiv.org/pdf/2202.00095"},{"title":"Estimating Neural Representation Alignment from Sparsely Sampled Inputs   and Features","url":"https://arxiv.org/pdf/2502.15104"}]
+
+I found several relevant research papers on CKA similarity analysis and layer-wise representation analysis. Here are the key findings:
+
+## Recent Research on CKA and Layer-Wise Analysis (2024-2025)
+
+**Core Research on Representation Similarity:**
+
+Analyzing the similarity of internal representations within and across different models has been an important technique for understanding deep neural networks, with most existing methods for analyzing high-dimensional representations relying on statistical properties based on Centered Kernel Alignment (CKA).
+
+**Transformer-Specific Analysis:**
+
+Research focusing on transformer models studies the similarity of representations between hidden layers, showing that simple sample-wise cosine similarity metrics capture similarity comparable to the more complex CKA method.
+
+**Key Findings from Recent Work:**
+
+Experimental results on common transformers reveal that representations across layers are positively correlated, with similarity increasing when layers are closer, with theoretical justification provided under the geodesic curve assumption.
+
+**Recent 2025 Applications:**
+
+In multilingual machine translation with LLMs, layer-wise CKA alignment secures cross-lingual feature sharing.
+
+**Limitations Identified:**
+
+CKA has been observed to be sensitive to outliers and may give unexpected or counter-intuitive results in certain situations.
+
+The search results show active research in 2024-2025 examining how neural information retrieval systems organize information across layers using these similarity metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "021853b9-392c-4eb7-b2d5-be1d88fc0398",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "06fbdc4b-88d2-4fbe-89eb-e281e0f316fd",
+  "toolUseResult": {
+    "query": "CKA similarity analysis neural information retrieval representation analysis layer-wise probing 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LtFD6cXvuRKsyo8Mj54nAq",
+        "content": [
+          {
+            "title": "Tracing Representation Progression: Analyzing and Enhancing Layer-Wise Similarity",
+            "url": "https://arxiv.org/pdf/2406.14479"
+          },
+          {
+            "title": "Centered Kernel Alignment (CKA) Similarity",
+            "url": "https://www.emergentmind.com/topics/centered-kernel-alignment-cka-similarity"
+          },
+          {
+            "title": "[2406.14479] Tracing Representation Progression: Analyzing and Enhancing Layer-Wise Similarity",
+            "url": "https://arxiv.org/abs/2406.14479"
+          },
+          {
+            "title": "Similarity and Matching of Neural Network Representations",
+            "url": "https://openreview.net/pdf?id=aedFIIRRfXr"
+          },
+          {
+            "title": "(PDF) On Layer-wise Representation Similarity: Application for Multi-Exit Models with a Single Classifier",
+            "url": "https://www.researchgate.net/publication/381603801_On_Layer-wise_Representation_Similarity_Application_for_Multi-Exit_Models_with_a_Single_Classifier"
+          },
+          {
+            "title": "ANALYZ- ING AND ENHANCING LAYER-WISE SIMILARITY",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/03d113a060c0ac93a5859517a0f07271-Paper-Conference.pdf"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://arxiv.org/pdf/1905.00414"
+          },
+          {
+            "title": "Deconfounded Representation Similarity for Comparison of Neural Networks",
+            "url": "https://arxiv.org/pdf/2202.00095"
+          },
+          {
+            "title": "Estimating Neural Representation Alignment from Sparsely Sampled Inputs   and Features",
+            "url": "https://arxiv.org/pdf/2502.15104"
+          }
+        ]
+      },
+      "I found several relevant research papers on CKA similarity analysis and layer-wise representation analysis. Here are the key findings:\n\n## Recent Research on CKA and Layer-Wise Analysis (2024-2025)\n\n**Core Research on Representation Similarity:**\n\nAnalyzing the similarity of internal representations within and across different models has been an important technique for understanding deep neural networks, with most existing methods for analyzing high-dimensional representations relying on statistical properties based on Centered Kernel Alignment (CKA).\n\n**Transformer-Specific Analysis:**\n\nResearch focusing on transformer models studies the similarity of representations between hidden layers, showing that simple sample-wise cosine similarity metrics capture similarity comparable to the more complex CKA method.\n\n**Key Findings from Recent Work:**\n\nExperimental results on common transformers reveal that representations across layers are positively correlated, with similarity increasing when layers are closer, with theoretical justification provided under the geodesic curve assumption.\n\n**Recent 2025 Applications:**\n\nIn multilingual machine translation with LLMs, layer-wise CKA alignment secures cross-lingual feature sharing.\n\n**Limitations Identified:**\n\nCKA has been observed to be sensitive to outliers and may give unexpected or counter-intuitive results in certain situations.\n\nThe search results show active research in 2024-2025 examining how neural information retrieval systems organize information across layers using these similarity metrics."
+    ],
+    "durationSeconds": 7.7487912440000075,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "021853b9-392c-4eb7-b2d5-be1d88fc0398",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-30T07:10:29.603Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R1PWzDApQLCpdYGjg6G4ut`</summary>
+
+```json
+{
+  "query": "CIKM 2025 \"sparse and dense retrievers learn better together\" bidirectional self-distillation experimental design"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06fbdc4b-88d2-4fbe-89eb-e281e0f316fd",
+  "isSidechain": false,
+  "requestId": "req_011CbYLQATEV6QK3bKAFHE3p",
+  "type": "assistant",
+  "uuid": "ba83b8b2-07a3-4a79-8ea9-d1e7c9b98e9f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1iTcTZMFY2Rq7TtB5WrE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 27366,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 870,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 27366,
+          "cache_creation_input_tokens": 870,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 870
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-30T07:10:39.722Z_
+
+<details><summary>↩ Tool result · `toolu_01R1PWzDApQLCpdYGjg6G4ut`</summary>
+
+```text
+Web search results for query: "CIKM 2025 "sparse and dense retrievers learn better together" bidirectional self-distillation experimental design"
+
+Links: [{"title":"Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval","url":"https://arxiv.org/html/2508.16707v1"},{"title":"Sparse and Dense Retrievers Learn","url":"https://dl.acm.org/doi/pdf/10.1145/3746252.3760959"},{"title":"(PDF) Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval","url":"https://www.researchgate.net/publication/394941834_Sparse_and_Dense_Retrievers_Learn_Better_Together_Joint_Sparse-Dense_Optimization_for_Text-Image_Retrieval"},{"title":"GitHub - holi-lab/mm-sparse-retrieval: Repo for the paper \"Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval\" (CIKM 2025 Short Track)","url":"https://github.com/holi-lab/mm-sparse-retrieval"},{"title":"Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval","url":"https://arxiv.org/pdf/2508.16707"},{"title":"[2508.16707] Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval","url":"https://arxiv.org/abs/2508.16707"},{"title":"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng","url":"https://arxiv.org/pdf/2502.15526"},{"title":"Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval | Proceedings of the 34th ACM International Conference on Information and Knowledge Management","url":"https://dl.acm.org/doi/10.1145/3746252.3760959"},{"title":"Dense–Sparse Hybrid Retrieval","url":"https://www.emergentmind.com/topics/dense-sparse-hybrid-retrieval"}]
+
+I found the paper you're looking for! Here are the key details about the CIKM 2025 research on sparse and dense retrievers:
+
+## Paper Overview
+
+The paper "Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval" was accepted to CIKM 2025 Short Track. The work is authored by Jonghyun Song, Youngjune Lee, Gyu-Hwung Cho, Ilhyeon Song, Saehun Kim, and Yohan Jo, and was presented at the 34th ACM International Conference on Information and Knowledge Management (CIKM '25), November 10–14, 2025, Seoul, Republic of Korea.
+
+## Core Approach
+
+The paper proposes a framework that enables bi-directional learning between dense and sparse representations through Self-Knowledge Distillation. This bi-directional learning is achieved using an integrated similarity score—a weighted sum of dense and sparse similarities—which serves as a shared teacher signal for both representations.
+
+## Experimental Design
+
+To ensure efficiency, the authors fine-tune the final layer of the dense encoder and the sparse projection head, enabling easy adaptation of any existing VLP model. An ablation study was conducted on the final layer fine-tuning and self-knowledge distillation, with both strategies marked as the best configuration.
+
+## Key Results
+
+Comparing their method (Ours) and D2S (both fine-tuned from BLIP and ALBEF) demonstrates that their strategy is more effective when trained from the same vision-text encoders, with the bi-directional supervision from their self-knowledge distillation leading to better sparse representations. Their sparse retriever often surpasses dense counterparts, despite offering significantly greater efficiency and interpretability, and when applied to dense retrieval, it also improves performance over the original baselines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba83b8b2-07a3-4a79-8ea9-d1e7c9b98e9f",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "55660121-5f1a-4cb4-896b-5a3e591224aa",
+  "toolUseResult": {
+    "query": "CIKM 2025 \"sparse and dense retrievers learn better together\" bidirectional self-distillation experimental design",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B9iPGNu9jA6BXYwiTeaFDK",
+        "content": [
+          {
+            "title": "Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval",
+            "url": "https://arxiv.org/html/2508.16707v1"
+          },
+          {
+            "title": "Sparse and Dense Retrievers Learn",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3746252.3760959"
+          },
+          {
+            "title": "(PDF) Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval",
+            "url": "https://www.researchgate.net/publication/394941834_Sparse_and_Dense_Retrievers_Learn_Better_Together_Joint_Sparse-Dense_Optimization_for_Text-Image_Retrieval"
+          },
+          {
+            "title": "GitHub - holi-lab/mm-sparse-retrieval: Repo for the paper \"Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval\" (CIKM 2025 Short Track)",
+            "url": "https://github.com/holi-lab/mm-sparse-retrieval"
+          },
+          {
+            "title": "Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval",
+            "url": "https://arxiv.org/pdf/2508.16707"
+          },
+          {
+            "title": "[2508.16707] Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval",
+            "url": "https://arxiv.org/abs/2508.16707"
+          },
+          {
+            "title": "Scaling Sparse and Dense Retrieval in Decoder-Only LLMs Hansi Zeng",
+            "url": "https://arxiv.org/pdf/2502.15526"
+          },
+          {
+            "title": "Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval | Proceedings of the 34th ACM International Conference on Information and Knowledge Management",
+            "url": "https://dl.acm.org/doi/10.1145/3746252.3760959"
+          },
+          {
+            "title": "Dense–Sparse Hybrid Retrieval",
+            "url": "https://www.emergentmind.com/topics/dense-sparse-hybrid-retrieval"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about the CIKM 2025 research on sparse and dense retrievers:\n\n## Paper Overview\n\nThe paper \"Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval\" was accepted to CIKM 2025 Short Track. The work is authored by Jonghyun Song, Youngjune Lee, Gyu-Hwung Cho, Ilhyeon Song, Saehun Kim, and Yohan Jo, and was presented at the 34th ACM International Conference on Information and Knowledge Management (CIKM '25), November 10–14, 2025, Seoul, Republic of Korea.\n\n## Core Approach\n\nThe paper proposes a framework that enables bi-directional learning between dense and sparse representations through Self-Knowledge Distillation. This bi-directional learning is achieved using an integrated similarity score—a weighted sum of dense and sparse similarities—which serves as a shared teacher signal for both representations.\n\n## Experimental Design\n\nTo ensure efficiency, the authors fine-tune the final layer of the dense encoder and the sparse projection head, enabling easy adaptation of any existing VLP model. An ablation study was conducted on the final layer fine-tuning and self-knowledge distillation, with both strategies marked as the best configuration.\n\n## Key Results\n\nComparing their method (Ours) and D2S (both fine-tuned from BLIP and ALBEF) demonstrates that their strategy is more effective when trained from the same vision-text encoders, with the bi-directional supervision from their self-knowledge distillation leading to better sparse representations. Their sparse retriever often surpasses dense counterparts, despite offering significantly greater efficiency and interpretability, and when applied to dense retrieval, it also improves performance over the original baselines."
+    ],
+    "durationSeconds": 10.111762629000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ba83b8b2-07a3-4a79-8ea9-d1e7c9b98e9f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-30T07:10:42.728Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ygJnTH2dyHH4PRLZkTGNC`</summary>
+
+```json
+{
+  "query": "Llama 3.1 8B bidirectional attention fine-tuning retrieval embedding training compute cost 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55660121-5f1a-4cb4-896b-5a3e591224aa",
+  "isSidechain": false,
+  "requestId": "req_011CbYLRNTL78csweJheG9iw",
+  "type": "assistant",
+  "uuid": "b8699315-543e-4b41-88a5-9dbd69c9e3e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJqW44HwsXvnbmYxWwgAT1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1080,
+      "cache_read_input_tokens": 28236,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1080,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 28236,
+          "cache_creation_input_tokens": 1080,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1080
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-30T07:10:50.069Z_
+
+<details><summary>↩ Tool result · `toolu_016ygJnTH2dyHH4PRLZkTGNC`</summary>
+
+```text
+Web search results for query: "Llama 3.1 8B bidirectional attention fine-tuning retrieval embedding training compute cost 2025 2026"
+
+Links: [{"title":"LLaMA 3.1 8B Model Overview","url":"https://www.emergentmind.com/topics/llama-3-1-8b-model-2348e96d-21f2-48dc-88c2-90e5888c626b"},{"title":"Fine-Tuning Llama 3.1: Tailoring LLMs for Specific Task","url":"https://www.seaflux.tech/blogs/llama-3.1-fine-tuning-supervised-technique/"},{"title":"Fine tuning Llama 3 8B for $0.03 - A slice of experiments","url":"https://www.sliceofexperiments.com/p/fine-tuning-llama-3-8b-for-003"},{"title":"Fine-tuning Llama-3–8B-Instruct QLORA using low cost resources | by Avishek Paul | Medium","url":"https://medium.com/@avishekpaul31/fine-tuning-llama-3-8b-instruct-qlora-using-low-cost-resources-89075e0dfa04"},{"title":"meta-llama/Llama-3.1-8B-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"},{"title":"Fine-tune Llama 3.1 Ultra-Efficiently with Unsloth","url":"https://huggingface.co/blog/mlabonne/sft-llama3"},{"title":"Fine-Tune Local LLMs 2026 | Practical Guide","url":"https://www.sitepoint.com/fine-tune-local-llms-2026/"},{"title":"Fine-Tuning Llama-3.1-8B for Function Calling using LoRA | by Gautam Chutani | Medium","url":"https://gautam75.medium.com/fine-tuning-llama-3-1-8b-for-function-calling-using-lora-159b9ee66060"}]
+
+Based on the search results, here's what I found about Llama 3.1 8B fine-tuning and training:
+
+## Training Compute Costs
+
+Training for Llama 3.1 utilized a cumulative of 39.3M GPU hours of computation on H100-80GB hardware. However, this represents the original pre-training costs for Meta's full model development, not typical user fine-tuning scenarios.
+
+## Fine-Tuning Approaches
+
+For custom fine-tuning, there are several efficient options:
+
+1. **Full Fine-Tuning**: Full fine-tuning requires significant computational resources, with several high-end GPUs required to fine-tune an 8B model.
+
+2. **LoRA/QLoRA**: LoRA reduces the number of trainable parameters to less than 1% compared to full fine-tuning, reducing both memory usage and training time. Unsloth provides 2x faster training and 60% memory use compared to other options.
+
+3. **Compute Efficiency**: Iterative recycling-then-fine-tuning can halve compute requirements compared to standard fine-tuning.
+
+## Bidirectional Attention and Embeddings
+
+The search results discuss Llama 3.1 8B excelling in long-context document retrieval and complex reasoning, though specific information about bidirectional attention mechanisms and embedding training costs for 2025-2026 was not found in these results.
+
+Would you like me to search for more specific information about bidirectional attention or embedding training costs?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8699315-543e-4b41-88a5-9dbd69c9e3e0",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "4128394e-4ea8-40c4-8c4b-32d5362f33ce",
+  "toolUseResult": {
+    "query": "Llama 3.1 8B bidirectional attention fine-tuning retrieval embedding training compute cost 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017NX8x1CtZnhq8ErL5HDUnB",
+        "content": [
+          {
+            "title": "LLaMA 3.1 8B Model Overview",
+            "url": "https://www.emergentmind.com/topics/llama-3-1-8b-model-2348e96d-21f2-48dc-88c2-90e5888c626b"
+          },
+          {
+            "title": "Fine-Tuning Llama 3.1: Tailoring LLMs for Specific Task",
+            "url": "https://www.seaflux.tech/blogs/llama-3.1-fine-tuning-supervised-technique/"
+          },
+          {
+            "title": "Fine tuning Llama 3 8B for $0.03 - A slice of experiments",
+            "url": "https://www.sliceofexperiments.com/p/fine-tuning-llama-3-8b-for-003"
+          },
+          {
+            "title": "Fine-tuning Llama-3–8B-Instruct QLORA using low cost resources | by Avishek Paul | Medium",
+            "url": "https://medium.com/@avishekpaul31/fine-tuning-llama-3-8b-instruct-qlora-using-low-cost-resources-89075e0dfa04"
+          },
+          {
+            "title": "meta-llama/Llama-3.1-8B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+          },
+          {
+            "title": "Fine-tune Llama 3.1 Ultra-Efficiently with Unsloth",
+            "url": "https://huggingface.co/blog/mlabonne/sft-llama3"
+          },
+          {
+            "title": "Fine-Tune Local LLMs 2026 | Practical Guide",
+            "url": "https://www.sitepoint.com/fine-tune-local-llms-2026/"
+          },
+          {
+            "title": "Fine-Tuning Llama-3.1-8B for Function Calling using LoRA | by Gautam Chutani | Medium",
+            "url": "https://gautam75.medium.com/fine-tuning-llama-3-1-8b-for-function-calling-using-lora-159b9ee66060"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Llama 3.1 8B fine-tuning and training:\n\n## Training Compute Costs\n\nTraining for Llama 3.1 utilized a cumulative of 39.3M GPU hours of computation on H100-80GB hardware. However, this represents the original pre-training costs for Meta's full model development, not typical user fine-tuning scenarios.\n\n## Fine-Tuning Approaches\n\nFor custom fine-tuning, there are several efficient options:\n\n1. **Full Fine-Tuning**: Full fine-tuning requires significant computational resources, with several high-end GPUs required to fine-tune an 8B model.\n\n2. **LoRA/QLoRA**: LoRA reduces the number of trainable parameters to less than 1% compared to full fine-tuning, reducing both memory usage and training time. Unsloth provides 2x faster training and 60% memory use compared to other options.\n\n3. **Compute Efficiency**: Iterative recycling-then-fine-tuning can halve compute requirements compared to standard fine-tuning.\n\n## Bidirectional Attention and Embeddings\n\nThe search results discuss Llama 3.1 8B excelling in long-context document retrieval and complex reasoning, though specific information about bidirectional attention mechanisms and embedding training costs for 2025-2026 was not found in these results.\n\nWould you like me to search for more specific information about bidirectional attention or embedding training costs?"
+    ],
+    "durationSeconds": 7.335599314000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b8699315-543e-4b41-88a5-9dbd69c9e3e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-30T07:10:52.747Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0138ptuqErH3SV65WnDKKg13`</summary>
+
+```json
+{
+  "query": "SPLADE head FLOPS regularization decoder LLM training stability curriculum sparse retrieval 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4128394e-4ea8-40c4-8c4b-32d5362f33ce",
+  "isSidechain": false,
+  "requestId": "req_011CbYLS7KmscwFYaQeFfLYN",
+  "type": "assistant",
+  "uuid": "0cd2ba06-8ce2-4b2a-bfcd-395a07f3130f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3CyvxR9sgdvk2pEjvqpMi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 29316,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1013,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 29316,
+          "cache_creation_input_tokens": 1013,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1013
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-30T07:11:02.387Z_
+
+<details><summary>↩ Tool result · `toolu_0138ptuqErH3SV65WnDKKg13`</summary>
+
+```text
+Web search results for query: "SPLADE head FLOPS regularization decoder LLM training stability curriculum sparse retrieval 2025"
+
+Links: [{"title":"SPLADE-doc: Sparse Retrieval & Expansion Model","url":"https://www.emergentmind.com/topics/splade-doc"},{"title":"LEARNING RETRIEVAL MODELS WITH SPARSE ...","url":"https://openreview.net/pdf/d972ecd5f0e44502efe64ca31ab04d653121a803.pdf"},{"title":"Mistral-SPLADE: LLMs for better Learned Sparse Retrieval","url":"https://arxiv.org/html/2408.11119v2"},{"title":"Expanded-SPLADE: Enhanced Sparse Retrieval","url":"https://www.emergentmind.com/topics/expanded-splade-model"},{"title":"CSPLADE: Learned Sparse Retrieval with Causal Language Models","url":"https://assets.amazon.science/8f/92/a835b4b346e4a4ed7a797010d501/aacl2025-csplade.pdf"},{"title":"Echo-Mistral-SPLADE: Advancing Sparse Retrieval","url":"https://www.emergentmind.com/topics/echo-mistral-splade"},{"title":"SPLADE: A Technical Deep Dive into Sparse Neural Information Retrieval | by Santhosh Kammari | Medium","url":"https://medium.com/@santhoshkammari/splade-a-technical-deep-dive-into-sparse-neural-information-retrieval-3a5daef18313"},{"title":"CSplade: Learned Sparse Retrieval with Causal Language Models","url":"https://arxiv.org/html/2504.10816v1"},{"title":"An Alternative to FLOPS Regularization to Effectively Productionize SPLADE-Doc","url":"https://arxiv.org/pdf/2505.15070"}]
+
+Based on the search results, here's what I found about SPLADE and the related concepts in your query:
+
+## SPLADE Architecture and Sparse Retrieval
+
+SPLADE-doc stands as a highly effective, efficient, and flexible paradigm for learned sparse lexical retrieval. The latest adaptation—Echo-Mistral-SPLADE (Doshi et al., 2024)—utilizes a causal decoder-only LLM backbone with echo embeddings for sparse expansion, surpassing all previous SPLADE variants by nDCG@10 on BEIR and maintaining efficient retrieval.
+
+## Head/Decoder and LLM Adaptation
+
+Decoder-only LLM (Mistral-SPLADE) leverages the broader pretraining of large causal models and echo embeddings to yield higher-quality expansions. LoRA-based finetuning achieves state-of-the-art sparse retrieval, despite not using hard negatives or distillation.
+
+## FLOPS Regularization
+
+DF-FLOPS regularization (Porco et al., 21 May 2025) penalizes activation of high document-frequency (DF) terms rather than global density. Quadratic ramping of regularization is essential; excessive initial regularization impedes convergence.
+
+## Training Stability
+
+To mitigate the contribution of the regularizer at the early stages of training, a scheduler for λ is used at each training iteration, until a given step (50k in our case), from which it remains constant.
+
+## Recent 2025 Research
+
+Recent work has explored adapting SPLADE to LLM backbones (Qiao et al., 2025; Doshi et al., 2024; Xu et al., 2025b; Zeng et al., 2025; Soares et al., 2023; Ma et al., 2025). Continued research is focused on improved regularization (DF-FLOPS), sophisticated sparsification (hybrid thresholding, joint regularization), and expansions to broader vocabularies, balancing interpretability and semantic capacity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0cd2ba06-8ce2-4b2a-bfcd-395a07f3130f",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "7dee6ce3-f1f0-41b6-9d43-3266e9839eef",
+  "toolUseResult": {
+    "query": "SPLADE head FLOPS regularization decoder LLM training stability curriculum sparse retrieval 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T2mJQ5gftqzZYfHvhTHxAU",
+        "content": [
+          {
+            "title": "SPLADE-doc: Sparse Retrieval & Expansion Model",
+            "url": "https://www.emergentmind.com/topics/splade-doc"
+          },
+          {
+            "title": "LEARNING RETRIEVAL MODELS WITH SPARSE ...",
+            "url": "https://openreview.net/pdf/d972ecd5f0e44502efe64ca31ab04d653121a803.pdf"
+          },
+          {
+            "title": "Mistral-SPLADE: LLMs for better Learned Sparse Retrieval",
+            "url": "https://arxiv.org/html/2408.11119v2"
+          },
+          {
+            "title": "Expanded-SPLADE: Enhanced Sparse Retrieval",
+            "url": "https://www.emergentmind.com/topics/expanded-splade-model"
+          },
+          {
+            "title": "CSPLADE: Learned Sparse Retrieval with Causal Language Models",
+            "url": "https://assets.amazon.science/8f/92/a835b4b346e4a4ed7a797010d501/aacl2025-csplade.pdf"
+          },
+          {
+            "title": "Echo-Mistral-SPLADE: Advancing Sparse Retrieval",
+            "url": "https://www.emergentmind.com/topics/echo-mistral-splade"
+          },
+          {
+            "title": "SPLADE: A Technical Deep Dive into Sparse Neural Information Retrieval | by Santhosh Kammari | Medium",
+            "url": "https://medium.com/@santhoshkammari/splade-a-technical-deep-dive-into-sparse-neural-information-retrieval-3a5daef18313"
+          },
+          {
+            "title": "CSplade: Learned Sparse Retrieval with Causal Language Models",
+            "url": "https://arxiv.org/html/2504.10816v1"
+          },
+          {
+            "title": "An Alternative to FLOPS Regularization to Effectively Productionize SPLADE-Doc",
+            "url": "https://arxiv.org/pdf/2505.15070"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SPLADE and the related concepts in your query:\n\n## SPLADE Architecture and Sparse Retrieval\n\nSPLADE-doc stands as a highly effective, efficient, and flexible paradigm for learned sparse lexical retrieval. The latest adaptation—Echo-Mistral-SPLADE (Doshi et al., 2024)—utilizes a causal decoder-only LLM backbone with echo embeddings for sparse expansion, surpassing all previous SPLADE variants by nDCG@10 on BEIR and maintaining efficient retrieval.\n\n## Head/Decoder and LLM Adaptation\n\nDecoder-only LLM (Mistral-SPLADE) leverages the broader pretraining of large causal models and echo embeddings to yield higher-quality expansions. LoRA-based finetuning achieves state-of-the-art sparse retrieval, despite not using hard negatives or distillation.\n\n## FLOPS Regularization\n\nDF-FLOPS regularization (Porco et al., 21 May 2025) penalizes activation of high document-frequency (DF) terms rather than global density. Quadratic ramping of regularization is essential; excessive initial regularization impedes convergence.\n\n## Training Stability\n\nTo mitigate the contribution of the regularizer at the early stages of training, a scheduler for λ is used at each training iteration, until a given step (50k in our case), from which it remains constant.\n\n## Recent 2025 Research\n\nRecent work has explored adapting SPLADE to LLM backbones (Qiao et al., 2025; Doshi et al., 2024; Xu et al., 2025b; Zeng et al., 2025; Soares et al., 2023; Ma et al., 2025). Continued research is focused on improved regularization (DF-FLOPS), sophisticated sparsification (hybrid thresholding, joint regularization), and expansions to broader vocabularies, balancing interpretability and semantic capacity."
+    ],
+    "durationSeconds": 9.635057378999976,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0cd2ba06-8ce2-4b2a-bfcd-395a07f3130f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing  ## Core Research Question  In a decoder-only LLM with shared transformer backbone, do sparse (lexic…",
+  "leafUuid": "7dee6ce3-f1f0-41b6-9d43-3266e9839eef",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-30T07:11:04.646Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wk4E7Lnm69pmyBs2DidGUw`</summary>
+
+```json
+{
+  "query": "hybrid retrieval sparse dense evaluation BEIR 2025 2026 reviewer criticism missing baseline common concerns"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dee6ce3-f1f0-41b6-9d43-3266e9839eef",
+  "isSidechain": false,
+  "requestId": "req_011CbYLT23JRRidz7fVHidZf",
+  "type": "assistant",
+  "uuid": "98d1e9cf-0bab-40dc-ab5b-d8a2d45f72bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012k5V8sDpHFB6FrKUApvdbX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 30329,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1060,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 30329,
+          "cache_creation_input_tokens": 1060,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1060
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-30T07:11:12.415Z_
+
+<details><summary>↩ Tool result · `toolu_01Wk4E7Lnm69pmyBs2DidGUw`</summary>
+
+```text
+Web search results for query: "hybrid retrieval sparse dense evaluation BEIR 2025 2026 reviewer criticism missing baseline common concerns"
+
+Links: [{"title":"(PDF) Hybrid Dense-Sparse Retrieval for High-Recall Information Retrieval","url":"https://www.researchgate.net/publication/399428523_Hybrid_Dense-Sparse_Retrieval_for_High-Recall_Information_Retrieval"},{"title":"[PDF] BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BEIR:-A-Heterogenous-Benchmark-for-Zero-shot-of-Thakur-Reimers/807600ef43073cd9c59d4208ee710e90cf14efa8"},{"title":"BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models | OpenReview","url":"https://openreview.net/forum?id=wCu6T5xFjeJ"},{"title":"Sparse Meets Dense: A Hybrid Approach to Enhance Scientific Document   Retrieval","url":"https://arxiv.org/pdf/2401.04055"},{"title":"Salient Phrase Aware Dense Retrieval: Can a Dense Retriever Imitate a   Sparse One?","url":"https://arxiv.org/pdf/2110.06918"},{"title":"BEIR Benchmark for IR Models","url":"https://www.emergentmind.com/topics/beir-benchmark"},{"title":"From BM25 to Corrective RAG: Benchmarking Retrieval Strategies for Text-and-Table Documents","url":"https://arxiv.org/html/2604.01733v1"},{"title":"Benchmarking IR Information Retrieval (BEIR)","url":"https://zilliz.com/glossary/beir"},{"title":"BEIR: A Heterogeneous Benchmark for Zero-shot ...","url":"https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/65b9eea6e1cc6bb9f0cd2a47751a186f-Paper-round2.pdf"},{"title":"Evaluating Hybrid Retrieval Augmented Generation using Dynamic Test Sets: LiveRAG Challenge","url":"https://arxiv.org/pdf/2506.22644"}]
+
+I found relevant research on hybrid retrieval and BEIR evaluation. Here are the key findings from the search results:
+
+## Hybrid Retrieval Performance on BEIR
+
+Research demonstrates that simple hybrid retrieval combining sparse and dense methods is particularly effective, with experiments on BEIR datasets (SciFact and NFCorpus) and comparisons with seven retrieval methods including ColBERT-style late interaction and learned sparse approaches.
+
+## Common Baseline Concerns
+
+BM25 is established as a robust baseline, while re-ranking and late-interaction based models achieve the best zero-shot performances on BEIR, though at high computational costs. The BEIR benchmark evaluation shows that BM25 outperforms dense retrievers on most tasks, which has become an important finding for the community.
+
+## Reviewer Criticisms and Missing Baselines
+
+BEIR has encouraged a more balanced view of sparse retrieval models by showing the strengths of traditional methods like BM25 and hybrid approaches. Recent work challenges the common assumption that dense retrieval universally dominates sparse methods and underscores the importance of domain-specific evaluation, noting that MTEB/BEIR rankings do not predict performance in specialized domains like financial retrieval.
+
+## Key Findings on Hybrid Approaches
+
+Hybrid retrieval systems combine sparse and dense retrieval methods, where sparse retrieval excels at exact term matching and specific factual queries, while dense retrieval captures semantic similarity and contextual understanding.
+
+The research indicates that reviewers frequently criticize papers for missing hybrid baselines and underestimating the importance of sparse retrieval methods when evaluating on BEIR and similar benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98d1e9cf-0bab-40dc-ab5b-d8a2d45f72bf",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "1846adb8-6581-4aaf-9394-421eb7941c1b",
+  "toolUseResult": {
+    "query": "hybrid retrieval sparse dense evaluation BEIR 2025 2026 reviewer criticism missing baseline common concerns",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VRwxDbqUZxe3za7Ko2jeka",
+        "content": [
+          {
+            "title": "(PDF) Hybrid Dense-Sparse Retrieval for High-Recall Information Retrieval",
+            "url": "https://www.researchgate.net/publication/399428523_Hybrid_Dense-Sparse_Retrieval_for_High-Recall_Information_Retrieval"
+          },
+          {
+            "title": "[PDF] BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BEIR:-A-Heterogenous-Benchmark-for-Zero-shot-of-Thakur-Reimers/807600ef43073cd9c59d4208ee710e90cf14efa8"
+          },
+          {
+            "title": "BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models | OpenReview",
+            "url": "https://openreview.net/forum?id=wCu6T5xFjeJ"
+          },
+          {
+            "title": "Sparse Meets Dense: A Hybrid Approach to Enhance Scientific Document   Retrieval",
+            "url": "https://arxiv.org/pdf/2401.04055"
+          },
+          {
+            "title": "Salient Phrase Aware Dense Retrieval: Can a Dense Retriever Imitate a   Sparse One?",
+            "url": "https://arxiv.org/pdf/2110.06918"
+          },
+          {
+            "title": "BEIR Benchmark for IR Models",
+            "url": "https://www.emergentmind.com/topics/beir-benchmark"
+          },
+          {
+            "title": "From BM25 to Corrective RAG: Benchmarking Retrieval Strategies for Text-and-Table Documents",
+            "url": "https://arxiv.org/html/2604.01733v1"
+          },
+          {
+            "title": "Benchmarking IR Information Retrieval (BEIR)",
+            "url": "https://zilliz.com/glossary/beir"
+          },
+          {
+            "title": "BEIR: A Heterogeneous Benchmark for Zero-shot ...",
+            "url": "https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/65b9eea6e1cc6bb9f0cd2a47751a186f-Paper-round2.pdf"
+          },
+          {
+            "title": "Evaluating Hybrid Retrieval Augmented Generation using Dynamic Test Sets: LiveRAG Challenge",
+            "url": "https://arxiv.org/pdf/2506.22644"
+          }
+        ]
+      },
+      "I found relevant research on hybrid retrieval and BEIR evaluation. Here are the key findings from the search results:\n\n## Hybrid Retrieval Performance on BEIR\n\nResearch demonstrates that simple hybrid retrieval combining sparse and dense methods is particularly effective, with experiments on BEIR datasets (SciFact and NFCorpus) and comparisons with seven retrieval methods including ColBERT-style late interaction and learned sparse approaches.\n\n## Common Baseline Concerns\n\nBM25 is established as a robust baseline, while re-ranking and late-interaction based models achieve the best zero-shot performances on BEIR, though at high computational costs. The BEIR benchmark evaluation shows that BM25 outperforms dense retrievers on most tasks, which has become an important finding for the community.\n\n## Reviewer Criticisms and Missing Baselines\n\nBEIR has encouraged a more balanced view of sparse retrieval models by showing the strengths of traditional methods like BM25 and hybrid approaches. Recent work challenges the common assumption that dense retrieval universally dominates sparse methods and underscores the importance of domain-specific evaluation, noting that MTEB/BEIR rankings do not predict performance in specialized domains like financial retrieval.\n\n## Key Findings on Hybrid Approaches\n\nHybrid retrieval systems combine sparse and dense retrieval methods, where sparse retrieval excels at exact term matching and specific factual queries, while dense retrieval captures semantic similarity and contextual understanding.\n\nThe research indicates that reviewers frequently criticize papers for missing hybrid baselines and underestimating the importance of sparse retrieval methods when evaluating on BEIR and similar benchmarks."
+    ],
+    "durationSeconds": 7.7637730840000145,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "98d1e9cf-0bab-40dc-ab5b-d8a2d45f72bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-30T07:11:15.568Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CR3z9PvpbkTD78NLdupqgd`</summary>
+
+```json
+{
+  "query": "Hydra retrieval generation dual-head VLM LoRA ColBERT 2026 arXiv experimental setup"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1846adb8-6581-4aaf-9394-421eb7941c1b",
+  "isSidechain": false,
+  "requestId": "req_011CbYLTkrXHwkJwBok2pQus",
+  "type": "assistant",
+  "uuid": "5aa204ed-f691-44b3-806c-851f4d714242",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRGAUvPYsqqZdwc58Qkngv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 31389,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1046,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 31389,
+          "cache_creation_input_tokens": 1046,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1046
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-30T07:11:24.882Z_
+
+<details><summary>↩ Tool result · `toolu_01CR3z9PvpbkTD78NLdupqgd`</summary>
+
+```text
+Web search results for query: "Hydra retrieval generation dual-head VLM LoRA ColBERT 2026 arXiv experimental setup"
+
+Links: [{"title":"[2603.28554] Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/abs/2603.28554"},{"title":"Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/pdf/2603.28554"},{"title":"Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/html/2603.28554"},{"title":"[2605.03252] Ortho-Hydra: Orthogonalized Experts for DiT LoRA","url":"https://arxiv.org/abs/2605.03252"},{"title":"arXiv:2506.18902v3 [cs.AI] 7 Jul 2025","url":"https://arxiv.org/pdf/2506.18902"}]
+
+I found detailed information about the paper you're looking for. Hydra is a dual-head approach that provides both ColBERT-style late-interaction retrieval and autoregressive generation from a single vision-language model.
+
+## Experimental Setup and Key Details:
+
+**Architecture and Adapter Configuration:**
+Hydra releases two scales, Hydra-4B and Hydra-0.8B, sharing LoRA hyperparameters (r=32, alpha=32) and optimization recipe; data mix and projection dim differ across scales.
+
+**Training Approach:**
+A single LoRA adapter, trained only for retrieval, is toggled at inference: enabling it produces multi-vector embeddings; disabling it recovers the base model's generation quality, with 426 of 426 language-model weight tensors byte-for-byte identical to a freshly-loaded Qwen3.5-4B.
+
+**Evaluation Results:**
+On ViDoRe V1, Hydra (4B) is within 1 percentage point of a controlled single-head baseline in a single training run, with higher aggregate scores on V2 and V3 that are concentrated on a subset of tasks.
+
+**Memory Efficiency:**
+The single-model design cuts peak GPU memory from 28.85 GB to 10.77 GB at 4B (62.7% reduction) and from 5.79 GB to 2.37 GB at 0.8B (59.1%) relative to a co-resident two-model deployment.
+
+**Technical Requirements:**
+Three engineering requirements (attention-mode restoration, lm_head preservation, KV-cache-aware decoding) whose omission silently breaks generation despite correct weight recovery.
+
+The paper was published in March 2026 on arXiv (2603.28554).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5aa204ed-f691-44b3-806c-851f4d714242",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "c8c7e278-1755-4a97-b563-69a431cc6061",
+  "toolUseResult": {
+    "query": "Hydra retrieval generation dual-head VLM LoRA ColBERT 2026 arXiv experimental setup",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PpLY2idEZTCWvwX6xnEMPv",
+        "content": [
+          {
+            "title": "[2603.28554] Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/abs/2603.28554"
+          },
+          {
+            "title": "Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/pdf/2603.28554"
+          },
+          {
+            "title": "Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/html/2603.28554"
+          },
+          {
+            "title": "[2605.03252] Ortho-Hydra: Orthogonalized Experts for DiT LoRA",
+            "url": "https://arxiv.org/abs/2605.03252"
+          },
+          {
+            "title": "arXiv:2506.18902v3 [cs.AI] 7 Jul 2025",
+            "url": "https://arxiv.org/pdf/2506.18902"
+          }
+        ]
+      },
+      "I found detailed information about the paper you're looking for. Hydra is a dual-head approach that provides both ColBERT-style late-interaction retrieval and autoregressive generation from a single vision-language model.\n\n## Experimental Setup and Key Details:\n\n**Architecture and Adapter Configuration:**\nHydra releases two scales, Hydra-4B and Hydra-0.8B, sharing LoRA hyperparameters (r=32, alpha=32) and optimization recipe; data mix and projection dim differ across scales.\n\n**Training Approach:**\nA single LoRA adapter, trained only for retrieval, is toggled at inference: enabling it produces multi-vector embeddings; disabling it recovers the base model's generation quality, with 426 of 426 language-model weight tensors byte-for-byte identical to a freshly-loaded Qwen3.5-4B.\n\n**Evaluation Results:**\nOn ViDoRe V1, Hydra (4B) is within 1 percentage point of a controlled single-head baseline in a single training run, with higher aggregate scores on V2 and V3 that are concentrated on a subset of tasks.\n\n**Memory Efficiency:**\nThe single-model design cuts peak GPU memory from 28.85 GB to 10.77 GB at 4B (62.7% reduction) and from 5.79 GB to 2.37 GB at 0.8B (59.1%) relative to a co-resident two-model deployment.\n\n**Technical Requirements:**\nThree engineering requirements (attention-mode restoration, lm_head preservation, KV-cache-aware decoding) whose omission silently breaks generation despite correct weight recovery.\n\nThe paper was published in March 2026 on arXiv (2603.28554)."
+    ],
+    "durationSeconds": 9.310670607999986,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5aa204ed-f691-44b3-806c-851f4d714242",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-30T07:11:28.920Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018AfB7uN1dBTgFZwL1c4FLw`</summary>
+
+```json
+{
+  "query": "MTEB retrieval benchmark 2025 2026 latest leaderboard top models evaluation protocol nDCG@10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8c7e278-1755-4a97-b563-69a431cc6061",
+  "isSidechain": false,
+  "requestId": "req_011CbYLUgLgn63TjJpFszkni",
+  "type": "assistant",
+  "uuid": "8534b1e5-57b7-4d54-8bbf-8da67cb4427a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MyAhAB5nKKNPi1xxT3DwNw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 32435,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 32435,
+          "cache_creation_input_tokens": 786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-30T07:11:37.394Z_
+
+<details><summary>↩ Tool result · `toolu_018AfB7uN1dBTgFZwL1c4FLw`</summary>
+
+```text
+Web search results for query: "MTEB retrieval benchmark 2025 2026 latest leaderboard top models evaluation protocol nDCG@10"
+
+Links: [{"title":"Embedding Model Leaderboard: MTEB Rankings March 2026 | Awesome Agents","url":"https://awesomeagents.ai/leaderboards/embedding-model-leaderboard-mteb-march-2026/"},{"title":"Top embedding models on the MTEB leaderboard","url":"https://modal.com/blog/mteb-leaderboard-article"},{"title":"BEIR Benchmark Leaderboard 2025 & 2026: NDCG@10 Scores & Rankings | Ailog RAG","url":"https://app.ailog.fr/en/blog/news/beir-benchmark-update"},{"title":"NVIDIA Text Embedding Model Tops MTEB Leaderboard | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/nvidia-text-embedding-model-tops-mteb-leaderboard/"},{"title":"Massive Text Embedding Benchmark (MTEB)","url":"https://zilliz.com/glossary/massive-text-embedding-benchmark-(mteb)"},{"title":"8 Embedding Models Compared for Production RAG [2026 Benchmark]","url":"https://tensoria.fr/en/blog/embedding-models-2026-guide"},{"title":"MTEB English Leaderboard Benchmark","url":"https://www.emergentmind.com/topics/mteb-english-leaderboard"}]
+
+## MTEB Retrieval Benchmark 2025-2026: Latest Leaderboard, Top Models & Evaluation Protocol
+
+### Latest Leaderboard Rankings
+
+Gemini Embedding 001 leads the English MTEB leaderboard at 68.32, with a +5.09 gap over the next best model. However, the NV-Embed model from NVIDIA achieved a score of 69.32 on the MTEB benchmark which covers 56 embedding tasks, setting a new record for embedding accuracy.
+
+Other top-performing models include NVIDIA's Llama-Embed-Nemotron-8B which tops the multilingual MTEB and is fully open-weight, and an embedding model from NVIDIA released in October 2025 that is fine-tuned from Llama-3.1-8B and is particularly powerful at understanding multilingual text.
+
+### Evaluation Protocol: nDCG@10
+
+In the retrieval task, models embed queries and documents separately, then retrieval is scored using nDCG@10 (normalized discounted cumulative gain at rank 10). The Retrieval category covers 15 datasets using nDCG@10 as the metric.
+
+### MTEB Task Coverage
+
+The English variant includes 58 datasets over eight distinct embedding tasks: Bitext Mining, Classification, Clustering, Pair Classification, Reranking, Retrieval, STS, and Summarization, with nDCG@10 or MRR@k used for retrieval.
+
+### Key Considerations
+
+The MTEB leaderboard on HuggingFace is now the authoritative source for comparing embedding models, and teams should always filter to the retrieval sub-leaderboard when comparing models for semantic search and RAG.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8534b1e5-57b7-4d54-8bbf-8da67cb4427a",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "7a5ad6ab-80c2-4396-b346-677ea505bcfa",
+  "toolUseResult": {
+    "query": "MTEB retrieval benchmark 2025 2026 latest leaderboard top models evaluation protocol nDCG@10",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qn3i7N6YzpvS31zaXdRobw",
+        "content": [
+          {
+            "title": "Embedding Model Leaderboard: MTEB Rankings March 2026 | Awesome Agents",
+            "url": "https://awesomeagents.ai/leaderboards/embedding-model-leaderboard-mteb-march-2026/"
+          },
+          {
+            "title": "Top embedding models on the MTEB leaderboard",
+            "url": "https://modal.com/blog/mteb-leaderboard-article"
+          },
+          {
+            "title": "BEIR Benchmark Leaderboard 2025 & 2026: NDCG@10 Scores & Rankings | Ailog RAG",
+            "url": "https://app.ailog.fr/en/blog/news/beir-benchmark-update"
+          },
+          {
+            "title": "NVIDIA Text Embedding Model Tops MTEB Leaderboard | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/nvidia-text-embedding-model-tops-mteb-leaderboard/"
+          },
+          {
+            "title": "Massive Text Embedding Benchmark (MTEB)",
+            "url": "https://zilliz.com/glossary/massive-text-embedding-benchmark-(mteb)"
+          },
+          {
+            "title": "8 Embedding Models Compared for Production RAG [2026 Benchmark]",
+            "url": "https://tensoria.fr/en/blog/embedding-models-2026-guide"
+          },
+          {
+            "title": "MTEB English Leaderboard Benchmark",
+            "url": "https://www.emergentmind.com/topics/mteb-english-leaderboard"
+          }
+        ]
+      },
+      "## MTEB Retrieval Benchmark 2025-2026: Latest Leaderboard, Top Models & Evaluation Protocol\n\n### Latest Leaderboard Rankings\n\nGemini Embedding 001 leads the English MTEB leaderboard at 68.32, with a +5.09 gap over the next best model. However, the NV-Embed model from NVIDIA achieved a score of 69.32 on the MTEB benchmark which covers 56 embedding tasks, setting a new record for embedding accuracy.\n\nOther top-performing models include NVIDIA's Llama-Embed-Nemotron-8B which tops the multilingual MTEB and is fully open-weight, and an embedding model from NVIDIA released in October 2025 that is fine-tuned from Llama-3.1-8B and is particularly powerful at understanding multilingual text.\n\n### Evaluation Protocol: nDCG@10\n\nIn the retrieval task, models embed queries and documents separately, then retrieval is scored using nDCG@10 (normalized discounted cumulative gain at rank 10). The Retrieval category covers 15 datasets using nDCG@10 as the metric.\n\n### MTEB Task Coverage\n\nThe English variant includes 58 datasets over eight distinct embedding tasks: Bitext Mining, Classification, Clustering, Pair Classification, Reranking, Retrieval, STS, and Summarization, with nDCG@10 or MRR@k used for retrieval.\n\n### Key Considerations\n\nThe MTEB leaderboard on HuggingFace is now the authoritative source for comparing embedding models, and teams should always filter to the retrieval sub-leaderboard when comparing models for semantic search and RAG."
+    ],
+    "durationSeconds": 8.468423243999975,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8534b1e5-57b7-4d54-8bbf-8da67cb4427a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-30T07:11:39.418Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PzoeQzHvbzEvU3yGEHPPza`</summary>
+
+```json
+{
+  "query": "GritLM ICLR 2025 generative representational instruction tuning experimental baselines retrieval evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a5ad6ab-80c2-4396-b346-677ea505bcfa",
+  "isSidechain": false,
+  "requestId": "req_011CbYLVbhv6HADovJMq8ENU",
+  "type": "assistant",
+  "uuid": "cc42e2df-978a-4872-9d29-a7c692ea2a4d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DAe3bZJUhBhub89mtGVUq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 882,
+      "cache_read_input_tokens": 33221,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 33221,
+          "cache_creation_input_tokens": 882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-30T07:11:45.518Z_
+
+<details><summary>↩ Tool result · `toolu_01PzoeQzHvbzEvU3yGEHPPza`</summary>
+
+```text
+Web search results for query: "GritLM ICLR 2025 generative representational instruction tuning experimental baselines retrieval evaluation"
+
+Links: [{"title":"Generative Representational Instruction Tuning | OpenReview","url":"https://openreview.net/forum?id=BC4lIvfSzv"},{"title":"Generative Representational Instruction Tuning – Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/generative-representational-instruction-tuning/"},{"title":"Generative Representational Instruction Tuning","url":"https://arxiv.org/pdf/2402.09906"},{"title":"Generative Representational Instruction Tuning (GritLM)","url":"https://www.opentrain.ai/papers/generative-representational-instruction-tuning--arxiv-2402.09906/"},{"title":"Generative Representational Instruction Tuning","url":"https://arxiv.org/html/2402.09906v3"},{"title":"GENERATIVE REPRESENTATIONAL INSTRUCTION ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/70cf215430492f7d34830a24e744b3f1-Paper-Conference.pdf"},{"title":"[2402.09906] Generative Representational Instruction Tuning","url":"https://arxiv.org/abs/2402.09906"},{"title":"GitHub - ContextualAI/gritlm: Generative Representational Instruction Tuning · GitHub","url":"https://github.com/ContextualAI/gritlm"}]
+
+Based on the web search results, here's information about GritLM and its ICLR 2025 presentation:
+
+## Overview
+
+GritLM introduces generative representational instruction tuning (GRIT) whereby a large language model is trained to handle both generative and embedding tasks by distinguishing between them through instructions. The work was published at ICLR 2025.
+
+## Model Performance
+
+GritLM-7B is among the top models on the Massive Text Embedding Benchmark (MTEB) and outperforms various models up to its size on a range of generative tasks. By scaling up further, GritLM-8x7B achieves even stronger generative performance while still being among the best embedding models.
+
+## Key Findings
+
+GRIT matches training on only generative or embedding data, thus they can unify both at no performance loss. The unification via GRIT speeds up Retrieval-Augmented Generation (RAG) by > 60% for long documents, by no longer requiring separate retrieval and generation models.
+
+## Evaluation and Baselines
+
+The research evaluates the models on retrieval tasks using the Massive Text Embedding Benchmark (MTEB) as a primary evaluation benchmark, as well as a range of generative tasks. The paper compares GritLM variants against various open models and closed models to demonstrate their effectiveness across both embedding and generation capabilities.
+
+The code and models are available on GitHub at the ContextualAI/gritlm repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc42e2df-978a-4872-9d29-a7c692ea2a4d",
+  "isSidechain": false,
+  "promptId": "52106473-38f2-4223-9c3f-ca4c3b18090d",
+  "type": "user",
+  "uuid": "66ea7ee6-ee0f-4440-a7d8-93fafcd1a625",
+  "toolUseResult": {
+    "query": "GritLM ICLR 2025 generative representational instruction tuning experimental baselines retrieval evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S1KQ2mU35kSuVAT3NHDXz8",
+        "content": [
+          {
+            "title": "Generative Representational Instruction Tuning | OpenReview",
+            "url": "https://openreview.net/forum?id=BC4lIvfSzv"
+          },
+          {
+            "title": "Generative Representational Instruction Tuning – Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/generative-representational-instruction-tuning/"
+          },
+          {
+            "title": "Generative Representational Instruction Tuning",
+            "url": "https://arxiv.org/pdf/2402.09906"
+          },
+          {
+            "title": "Generative Representational Instruction Tuning (GritLM)",
+            "url": "https://www.opentrain.ai/papers/generative-representational-instruction-tuning--arxiv-2402.09906/"
+          },
+          {
+            "title": "Generative Representational Instruction Tuning",
+            "url": "https://arxiv.org/html/2402.09906v3"
+          },
+          {
+            "title": "GENERATIVE REPRESENTATIONAL INSTRUCTION ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/70cf215430492f7d34830a24e744b3f1-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2402.09906] Generative Representational Instruction Tuning",
+            "url": "https://arxiv.org/abs/2402.09906"
+          },
+          {
+            "title": "GitHub - ContextualAI/gritlm: Generative Representational Instruction Tuning · GitHub",
+            "url": "https://github.com/ContextualAI/gritlm"
+          }
+        ]
+      },
+      "Based on the web search results, here's information about GritLM and its ICLR 2025 presentation:\n\n## Overview\n\nGritLM introduces generative representational instruction tuning (GRIT) whereby a large language model is trained to handle both generative and embedding tasks by distinguishing between them through instructions. The work was published at ICLR 2025.\n\n## Model Performance\n\nGritLM-7B is among the top models on the Massive Text Embedding Benchmark (MTEB) and outperforms various models up to its size on a range of generative tasks. By scaling up further, GritLM-8x7B achieves even stronger generative performance while still being among the best embedding models.\n\n## Key Findings\n\nGRIT matches training on only generative or embedding data, thus they can unify both at no performance loss. The unification via GRIT speeds up Retrieval-Augmented Generation (RAG) by > 60% for long documents, by no longer requiring separate retrieval and generation models.\n\n## Evaluation and Baselines\n\nThe research evaluates the models on retrieval tasks using the Massive Text Embedding Benchmark (MTEB) as a primary evaluation benchmark, as well as a range of generative tasks. The paper compares GritLM variants against various open models and closed models to demonstrate their effectiveness across both embedding and generation capabilities.\n\nThe code and models are available on GitHub at the ContextualAI/gritlm repository."
+    ],
+    "durationSeconds": 6.093368268999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cc42e2df-978a-4872-9d29-a7c692ea2a4d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-30T07:14:26.083Z_
+
+Now I have sufficient research context. Let me synthesize my findings and provide the comprehensive evaluation.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **LACONIC-8B** (arXiv:2601.01684, 2026): 基于 Llama-3 的 sparse retriever，采用 two-phase curriculum (supervised pre-finetuning → hard-negative finetuning)。Baseline 覆盖 SPLADE-v3、CSplade、RepLlama3、Nomic-Embed-v1、Arctic-Embed-v2。评测使用 BEIR-14 nDCG@10 + MTEB Retrieval (15 datasets)。关键：使用 71% 更少 index memory，达到 60.2 MTEB-R。
+- **Lion-SP/DS (Scaling Sparse and Dense Retrieval in Decoder-Only LLMs)** (SIGIR 2025): 在 1B/3B/8B 三种 scale 上系统地对比 CL/KD/CL+KD 三种 fine-tuning objective。Ablation 高度系统化（per-scale × per-objective × per-evaluation-set）。报告了 MS MARCO Dev + TREC 19/20 + BEIR nDCG@10。关键发现：sparse outperforms dense by 10.5% on OOD (BEIR)，CL+KD 是最佳组合。
+- **BGE-M3** (ACL Findings 2024): XLM-RoBERTa-large encoder 上的 unified sparse+dense+multi-vector 模型。使用 self-knowledge distillation 在三个 head 间互学。Ablation 分析了 self-KD 的贡献（在 MIRACL 和 MLDR 上）。极大 batch size (67,200)，cross-GPU negative sampling。使用 **fixed-weight interpolation** 进行 fusion。
+- **RouterRetriever** (AAAI 2025): 在 domain-specific LoRA experts 间 routing，base encoder 是 Contriever。基于 pilot embeddings 计算 query-expert similarity 选择 expert。评测使用 BEIR，对比 MSMARCO-trained models 和 multi-task models。报告了 DatasetOracle 和 InstanceOracle 作为 routing 上界。
+- **DAT** (arXiv:2503.23013, 2025): 使用 LLM 对 top-1 results 评估效果，MLP 网络输出 per-query alpha。对比 fixed-weight hybrid retrieval。关键局限：需要额外的 LLM inference（post-hoc）。
+- **NV-Embed-v2** (ICLR 2025 Spotlight): Mistral-7B 上的 latent attention pooling。Ablation 比较了 mean pooling、self-attention、latent attention。比较了 causal vs bidirectional attention。
+- **GritLM-7B** (ICLR 2025): 统一 generation + embedding，但仅 dense retrieval。在 MTEB 和生成任务上评测。展示了 unification at no performance loss。
+- **CIKM 2025 (Sparse and Dense Retrievers Learn Better Together)**: 在 BLIP/ALBEF (VLP encoder) 上做 bidirectional self-KD for text-image retrieval。Short paper。实验在 cross-modal datasets 上。
+- **Hydra** (arXiv:2603.28554, 2026): VLM 上的 dual-head (ColBERT retrieval + generation)，LoRA toggle。在 ViDoRe 上评测。报告了 memory 节省 (62.7% reduction)。
+- **Qwen3-Embedding-8B** (2025/2026): 当前 MTEB multilingual 排名第一 (70.58)。Dense-only。Multi-stage training pipeline。
+- **DF-FLOPS regularization** (arXiv:2505.15070, May 2025): 改进的 SPLADE 正则化方法，penalizes high-DF terms 而非 global density。Quadratic ramping 对 training stability 至关重要。
+
+- **调研总结**: 该领域当前实验设计标准要求：(1) 在 BEIR-14 和 MTEB Retrieval 上全量评测，报告 per-dataset nDCG@10；(2) 必须包含 BM25 baseline、当前 SOTA dense model、以及 post-hoc fusion baseline；(3) ablation 需系统化（per-component、per-scale）；(4) 审稿人对 compute-controlled comparison 和 trivial-alternative comparison 非常敏感；(5) 统一模型需报告 per-head degradation vs. standalone counterpart。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: Proposal 的 baseline list 中**缺失 BM25**。在 BEIR 评测体系中，BM25 是最基本的 lexical baseline，几乎所有 BEIR 论文和审稿人都会要求包含。LACONIC、Lion-SP/DS、BGE-M3 的实验中都包含了 BM25。此外，proposal 也缺少 **SPLADE-v3**（非 LLM-based sparse SOTA）和 **Contriever**（unsupervised dense baseline），这两个在 BEIR 评测中被广泛使用。
+- 严重度: 可补救
+- 补救方案: 在 sparse-only baseline 中添加 BM25（Pyserini 实现，零训练成本）和 SPLADE-v3。在 dense-only baseline 中添加 Contriever（或 Contriever-msmarco）。这些模型公开可用，仅需 evaluation 无需训练，成本极低。
+- 调研依据: LACONIC-8B 和 Lion-SP/DS 均包含 BM25 和 SPLADE-v3 作为 baseline；BEIR 原始论文也将 BM25 作为标准参照。
+
+【缺陷 2】
+- 类别: baseline 不足或过时
+- 问题: Proposal 中将 **Qwen3-Embedding-8B** 列为 dense baseline，但该模型当前 MTEB multilingual 得分 70.58，远超 proposal 的目标 (MTEB Retrieval >61)。这造成两个问题：(1) 如果 Qwen3-Embedding-8B 在英文 retrieval 上同样大幅领先，proposal 的方法很可能无法击败它，那么将其列为 baseline 反而暴露差距；(2) Qwen3-Embedding-8B 的训练数据规模和 pipeline 可能远超 proposal 的设置，不是 apple-to-apple 的比较。此外，proposal 缺少 **Llama-Embed-Nemotron-8B**（NVIDIA, 2025 Q4），该模型在 multilingual MTEB 上排名第一，且是 open-weight 的 Llama-3.1-8B fine-tune，与 proposal 的 backbone 完全相同，是最直接的 dense comparison。
+- 严重度: 可补救
+- 补救方案: (1) 保留 Qwen3-Embedding-8B 作为 reference，但**不作为 primary baseline**——将其标注为 "reference model (different backbone, proprietary training pipeline)"；(2) 添加 Llama-Embed-Nemotron-8B 或其他同 backbone (Llama-3.1-8B) 的 dense model 作为 primary same-backbone dense baseline，确保 compute/data-controlled comparison；(3) 在结果表中明确标注哪些 baseline 使用不同 backbone / 不同规模训练数据，区分 fair comparison vs. reference comparison。
+- 调研依据: MTEB leaderboard (March 2026) 显示 Llama-Embed-Nemotron-8B 为同 backbone 最强 dense model；NV-Embed-v2 (ICLR 2025) 建立了 same-backbone controlled comparison 的范式。
+
+【缺陷 3】
+- 类别: 实验设计不足
+- 问题: Proposal 未包含 **multi-vector / ColBERT-style retrieval** 作为 baseline 或 ablation 维度。BGE-M3 同时支持 dense、sparse 和 multi-vector (ColBERT) 三种检索模式，而 proposal 仅考虑 sparse + dense 的 unified model。审稿人可能会问："为什么不加一个 multi-vector head？BGE-M3 已经证明三种可以共存。" 这不是说 proposal 必须加 multi-vector head，但至少需要在实验中 address 这个对比——要么 (a) 将 BGE-M3 的 multi-vector 模式纳入 baseline comparison，要么 (b) 提供 justification 为什么 decoder-only architecture 不适合 multi-vector。
+- 严重度: 可补救
+- 补救方案: (1) 在 evaluation 中对 BGE-M3 报告其 sparse、dense 和 multi-vector 三种模式的结果（BGE-M3 公开模型直接可用），以及 BGE-M3 的 weighted combination；(2) 在 discussion 中解释 decoder-only architecture 对 multi-vector 的限制（sequence length × vocab dimension 的 storage 开销在 8B scale 下不实际），或将 multi-vector head 作为 future work 明确讨论。
+- 调研依据: BGE-M3 (ACL Findings 2024) 的 ablation 表明 multi-vector (ColBERT) 在长文档上相对 dense 有 5+ points 提升；BEIR 评测中 ColBERTv2 也是常见 baseline。
+
+【缺陷 4】
+- 类别: ablation 不完整
+- 问题: Proposal 的 **Self-KD ablation** 设计了 4 个条件 (no KD / dense→sparse / sparse→dense / bidirectional)，这很好。但缺少一个关键的 ablation 条件：**cross-model KD vs. self-KD**。LACONIC-8B 和 Lion-SP/DS 均使用 cross-encoder teacher (e.g., cross-encoder reranker) 进行 KD。如果 bidirectional self-KD 的效果不如用一个 cross-encoder teacher 做 KD，那 self-KD 的价值就大打折扣。审稿人几乎必然会问这个问题。
+- 严重度: 可补救
+- 补救方案: 添加一个 ablation 条件：使用 cross-encoder reranker (e.g., bge-reranker-v2-m3 或 cross-encoder/ms-marco-MiniLM-L-12-v2) 作为 external teacher 对 sparse 和 dense heads 分别做 standard KD，对比 bidirectional self-KD。这可以在 Stage 2 的 training 中替换 loss function 实现，计算成本增量有限（cross-encoder inference on training pairs）。
+- 调研依据: Lion-SP/DS (SIGIR 2025) 的核心 ablation 对比了 CL / KD / CL+KD，其中 KD 使用 cross-encoder teacher；BGE-M3 也使用了 cross-encoder teacher 与 self-KD 的组合。
+
+【缺陷 5】
+- 类别: 评估方案缺陷
+- 问题: Proposal 评测仅包含 **BEIR-14、MTEB Retrieval subset、MS MARCO dev**，但缺少两个重要评测维度：(1) **TREC DL 2019/2020**——这是 MS MARCO 体系中最标准的 in-domain evaluation，Lion-SP/DS 和 LACONIC 均报告此指标，审稿人会期待看到；(2) **multilingual retrieval** (e.g., MIRACL 或 MLDR)——虽然 proposal 的 backbone 是英文为主的 Llama-3.1-8B，但 BGE-M3 的核心卖点之一是 multilingual，如果 proposal 不评测多语言就无法与 BGE-M3 做全面对比。
+- 严重度: 可补救
+- 补救方案: (1) 添加 TREC DL 2019 和 TREC DL 2020 的 nDCG@10 和 MAP 评测（数据集公开，evaluation 零成本）；(2) 对于 multilingual，可以选择在 Discussion 中明确说明 "multilingual 不在本文 scope 内，因为 backbone 为英文主导的 Llama-3.1"，并将其作为 future work。但如果 proposal 要与 BGE-M3 对比，至少需要在一个 multilingual benchmark 上报告 BGE-M3 的结果并解释为什么 Llama-based model 不适用。
+- 调研依据: Lion-SP/DS (SIGIR 2025) 报告了 MS MARCO Dev + TREC 19+20 + BEIR 的完整组合；BGE-M3 在 MIRACL 和 MLDR 上做了详细 ablation。
+
+【缺陷 6】
+- 类别: ablation 不完整
+- 问题: Proposal 的 **Router ablation** 设计了 6 个条件（pure dense / pure sparse / equal / best fixed / oracle / learned MLP），设计思路正确。但缺少两个重要维度：(1) **Router 在不同 query type / domain 上的行为分析**——不同 BEIR 子集代表不同的 query-document 匹配模式 (e.g., ArguAna 偏重 semantic，TREC-COVID 偏重 keyword)，应该展示 router 对不同 domain 学到的 alpha 分布，验证 router 是否确实学到了有意义的 per-query routing 而非近似 fixed weight；(2) **Router vs. DAT 的 controlled comparison**——proposal 在 baseline 中提到 DAT-style per-query alpha，但未明确说明是否会在 **同一个 unified model** 的 sparse/dense score 上跑 DAT，还是仅在 Lion-SP + Lion-DS 的 separate model 上跑。应同时报告：DAT on separate models 和 DAT on unified model's scores (如果可行)。
+- 严重度: 可补救
+- 补救方案: (1) 在 Router ablation 中添加 "per-domain alpha distribution" 可视化——对 BEIR-14 每个子集，展示 learned router 输出的 alpha 分布 (histogram 或 box plot)；(2) 明确 DAT comparison 的实验设置：(a) DAT on Lion-SP-8B + Lion-DS-8B scores，(b) DAT on unified model's sparse + dense scores（如果 DAT 代码可用），(c) learned MLP router (ours)。如果 DAT 需要额外 LLM inference 且代码不公开，说明并提供 closest approximation。
+- 调研依据: RouterRetriever (AAAI 2025) 报告了 DatasetOracle 和 InstanceOracle 两个上界，并分析了 per-domain routing 行为；DAT (arXiv:2503.23013) 的 alpha 是 per-query 的。
+
+【缺陷 7】
+- 类别: 可行性问题
+- 问题: Proposal 估计 "8×A100-80GB for ~5-7 days"，但以下因素可能使实际 compute 需求更高：(1) **Stage 2 的 in-batch negatives** at 8B scale 需要极大 batch size 才能有效——BGE-M3 使用了 batch size 67,200，而 8×A100-80GB 上 Llama-3.1-8B 即使用 gradient checkpointing + bf16，per-GPU batch size 可能只有 1-2（8B model 本身就要约 16GB，加上 optimizer states 和 activations），global batch size 仅 8-16。这远不够 effective negatives。(2) **bidirectional attention** 需要修改 attention mask 并**重新计算所有位置的 KV cache**，这比 causal attention 的 memory footprint 更大（O(n²) vs O(n) for incremental decoding），进一步限制 batch size。(3) 如果最终需要 cross-encoder KD (缺陷 4 的补救)，cross-encoder inference on training data 会增加额外 compute。
+- 严重度: 可补救
+- 补救方案: (1) 明确说明使用 **gradient accumulation** 达到 effective batch size (e.g., 256-512 with gradient accumulation over 32-64 steps)，并引用 GradCache 技术 (Gao et al., 2021) 解耦 contrastive loss 的 batch size 与 GPU memory 的约束；(2) 使用 **cross-GPU negative sharing** (参考 BGE-M3 的做法)；(3) 将 compute 估计修正为更保守的数字 (8×A100 for 7-10 days, or 16×A100 for 5-7 days)；(4) LoRA fallback 应提前明确：如果 full fine-tuning 不可行，LoRA rank 多少、哪些层 trainable、预期性能损失多少。
+- 调研依据: BGE-M3 (ACL Findings 2024) 使用 67,200 batch size + cross-GPU negative sampling；NV-Embed-v2 (ICLR 2025) 和 LACONIC-8B 均使用 gradient checkpointing + large effective batch size；GritLM (ICLR 2025) 在 7B scale 上做 contrastive training 需要类似资源。
+
+【缺陷 8】
+- 类别: 实验设计不足
+- 问题: Proposal 的 **performance targets** 可能存在校准问题。Target "BEIR-14 aggregate >62 nDCG@10" 基于 LACONIC-8B (61.5) 和 Lion-SP-8B (55.2)。但 proposal 同时列出 Qwen3-Embedding-8B (MTEB 70.58) 作为 baseline。如果 Qwen3-Embedding-8B 在 BEIR-14 上的 dense retrieval已经 >62，则 proposal 的 hybrid model 仅达到 62 将没有说服力——it means the unified sparse+dense model with learned routing doesn't beat a pure dense SOTA model。Proposal **未查证** Qwen3-Embedding-8B 在 BEIR-14 具体子任务上的 nDCG@10，也未查证 Llama-Embed-Nemotron-8B 的 BEIR 成绩。
+- 严重度: 可补救
+- 补救方案: (1) 在开始实验前，先查证 Qwen3-Embedding-8B 和 Llama-Embed-Nemotron-8B 在 BEIR-14 上的 per-dataset nDCG@10（通过 MTEB leaderboard 或论文获取）；(2) 将 performance target 重新校准——核心 claim 不是 "beat all baselines on aggregate"，而是 (a) unified model per-head ≥ standalone counterpart (mutual benefit)，(b) learned router > best fixed alpha (routing value)，(c) ~2× efficiency at comparable or better performance (practical value)；(3) 如果 SOTA dense model 已经 >62 on BEIR，调整 narrative：强调 complementarity + efficiency，而非 absolute number。
+- 调研依据: MTEB leaderboard 和 BEIR leaderboard (2025/2026) 显示 dense SOTA 持续攀升；Lion-SP/DS (SIGIR 2025) 的 sparse 55.2 vs dense 50.1 on BEIR 是在较弱的 dense baseline 上测得的。
+
+【缺陷 9】
+- 类别: 评估方案缺陷
+- 问题: Proposal 的 **CKA 和 layer-wise probing analysis** (Representational analysis ablation) 在设计上有方法论风险。(1) CKA 已知对 outliers 敏感，且在不同 layer 之间的跨模型比较中，如果 activation scale 差异大，CKA 可能给出 misleading 结果。(2) "Layer-wise probing for lexical vs semantic features" 缺乏具体操作定义——用什么 probe？在什么数据上训练 probe？如何定义 "lexical feature" vs "semantic feature"？如果 probe 本身有较强学习能力 (e.g., MLP probe)，可能无法真正区分 layer 的 representation quality。
+- 严重度: 可补救
+- 补救方案: (1) 对 CKA 分析，使用 **linear CKA** (而非 kernel CKA) 以减少对 outliers 的敏感性，并报告 **deconfounded CKA** (Cui et al., 2022) 作为 robustness check；(2) 对 layer-wise probing，明确定义实验 protocol——建议使用 **linear probe** (不是 MLP) 以确保 probe 本身学习能力弱，只反映 representation 质量。定义 "lexical task" = exact term matching retrieval (e.g., 给定 query 和 passage 中是否包含 exact n-gram overlap)，"semantic task" = paraphrase detection (e.g., MRPC 或 QQP)。在每层 frozen representation 上训练 linear classifier 并报告准确率。(3) 补充 attention pattern 分析 (e.g., attention entropy per head per layer) 作为 CKA 的 complementary evidence。
+- 调研依据: "Tracing Representation Progression" (ICLR 2025) 指出 CKA 在 transformer 上的 sensitivity 问题并建议用 cosine similarity 作为补充；Deconfounded CKA (arXiv:2202.00095) 提出了更鲁棒的变体。
+
+【缺陷 10】
+- 类别: 实验设计不足
+- 问题: Proposal 中提到 Stage 1 使用 "CSplade protocol" 进行 sparse-only adaptation (10k steps)，但**未明确是否使用新的 DF-FLOPS regularization**。2025 年 5 月的最新研究 (arXiv:2505.15070) 表明标准 FLOPS regularization 的 quadratic ramping schedule 对 training stability 至关重要，且 DF-FLOPS (penalizing high-DF terms) 优于 global FLOPS regularization。如果 proposal 使用旧的 regularization 方案，可能在 Stage 1 出现 training instability 或 suboptimal sparsity。
+- 严重度: 可补救
+- 补救方案: (1) 在 Stage 1 中明确说明 FLOPS regularization 的具体形式和 schedule (λ ramping)；(2) 考虑对比 standard FLOPS vs. DF-FLOPS 作为一个小型 ablation（在 3B proof-of-concept 上即可验证）；(3) 至少在 methodology 中 cite 并 discuss DF-FLOPS 的存在，说明 proposal 的选择及其 rationale。
+- 调研依据: arXiv:2505.15070 (May 2025) "An Alternative to FLOPS Regularization to Effectively Productionize SPLADE-Doc" 提出 DF-FLOPS 并展示其在 production-scale 上的优势。
+
+Sources:
+- [LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval](https://arxiv.org/html/2601.01684v1)
+- [Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (Lion-SP/DS)](https://arxiv.org/html/2502.15526v1)
+- [BGE M3-Embedding](https://aclanthology.org/2024.findings-acl.137/)
+- [RouterRetriever: Routing over a Mixture of Expert Embedding Models](https://ojs.aaai.org/index.php/AAAI/article/view/33306)
+- [DAT: Dynamic Alpha Tuning for Hybrid Retrieval](https://arxiv.org/abs/2503.23013)
+- [NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models](https://openreview.net/forum?id=lgsyLSsDRe)
+- [GritLM: Generative Representational Instruction Tuning](https://openreview.net/forum?id=BC4lIvfSzv)
+- [Qwen3 Embedding](https://arxiv.org/abs/2506.05176)
+- [CIKM 2025: Sparse and Dense Retrievers Learn Better Together](https://dl.acm.org/doi/10.1145/3746252.3760959)
+- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)
+- [Tracing Representation Progression (CKA analysis)](https://arxiv.org/abs/2406.14479)
+- [An Alternative to FLOPS Regularization (DF-FLOPS)](https://arxiv.org/pdf/2505.15070)
+- [MTEB Leaderboard March 2026](https://awesomeagents.ai/leaderboards/embedding-model-leaderboard-mteb-march-2026/)
+- [BEIR Benchmark Leaderboard 2025-2026](https://app.ailog.fr/en/blog/news/beir-benchmark-update)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66ea7ee6-ee0f-4440-a7d8-93fafcd1a625",
+  "isSidechain": false,
+  "requestId": "req_011CbYLWCRiVZ5vrKZwsRYtF",
+  "type": "assistant",
+  "uuid": "f636e4f6-700c-4b85-8319-1542cd808475",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01451oDo69frWcqbPM2zN2WC",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 34103,
+      "output_tokens": 7186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7186,
+          "cache_read_input_tokens": 34103,
+          "cache_creation_input_tokens": 843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing  ## Core Research Question  In a decoder-only LLM with shared transformer backbone, do sparse (lexic…",
+  "leafUuid": "f636e4f6-700c-4b85-8319-1542cd808475",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Complementary Specialization in Unified Sparse-Dense Decoder Retrieval with Learned Query Routing  ## Core Research Question  In a decoder-only LLM with shared transformer backbone, do sparse (lexic…",
+  "leafUuid": "f636e4f6-700c-4b85-8319-1542cd808475",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unified sparse-dense decoder retrieval with learned routing",
+  "sessionId": "0371b859-5601-473f-bca4-29fc9971d5af"
+}
+```
+
+---

@@ -1,0 +1,2371 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # When the AI Goes Away: Scaffolded
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-3/d11ddaf8-2ba2-4c8e-8dd9-248b4465425c.jsonl`
+- **Structured JSON:** [`f9d1dc437fbcbf5c5f81.json`](../../sessions/f9/f9d1dc437fbcbf5c5f81.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:42:25.166Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:42:25.166Z",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# When the AI Goes Away: Scaffolded Friction, Trust Calibration, and the Skill Decay Curve After AI-Assisted Information Evaluation\n\n## Description\nRani et al. (CHI 2026) demonstrate that AI-assisted misinformation detection leads to 15.3% skill degradation over 4 weeks after AI withdrawal—but their study tested no interventions, included no control group, and had only N=67. We provide the first controlled test of whether scaffolded cognitive friction can prevent this degradation—and whether trust calibration moderates deskilling severity. While the deskilling problem in information evaluation is now empirically established (Rani et al.), the scaffolding literature (Althea, CFF studies, Adjust for Trust) measures only within-session or short-term improvements, not whether interventions protect independent capability after AI is permanently removed. We address this gap with a pre-registered, between-subjects experiment (N≈480) comparing four conditions: no-AI control, unrestricted LLM access (Qwen 3.5 27B), scaffolded friction (mandatory independent attempt, incremental hints, self-explanation gates—operationalizing the Augmentation Trap's theoretical mitigation levers), and exploratory scaffolding (Althea-style modular evidence exploration). Participants complete information evaluation tasks—claim verification, multi-source synthesis, argument quality evaluation—across three phases: baseline assessment, AI-assisted treatment, and post-AI independent assessment at three timepoints (immediate, 1-week, 4-week), yielding per-condition skill decay curves. This design directly answers Rani et al.'s call for 'scaffolding interventions designed to reduce dependency while maintaining immediate gains,' extends Althea beyond their acknowledged limitation of measuring only 'short-term retention of reasoning patterns,' and operationalizes the Frontiers framework's distinction between overreliance-as-behavior (measured by CFF studies) and deskilling-as-outcome (measured by our cross-session capability decline). A trust calibration dimension—building on Adjust for Trust's finding that trust predicts within-session reliance—tests whether users who develop higher AI trust during treatment deskill faster after AI removal. The study provides the first empirical test of scaffolded friction interventions combined with an AI-withdrawal design, multi-timepoint decay curve, and trust moderation for deskilling prevention in information evaluation.\n\n## Core Problem\nCan scaffolded cognitive friction interventions prevent the rapid skill degradation that emerges after AI assistance is removed from information evaluation tasks—and does the speed of deskilling depend on how much users trusted the AI? Rani et al. (CHI 2026, N=67) have now demonstrated that AI-assisted misinformation detection leads to a 15.3% accuracy decline after 4 weeks of AI withdrawal, but their study tested no interventions, included no control group, and explicitly calls for scaffolding-based solutions. The CFF and scaffolding literatures (Buçinca et al., Althea, Adjust for Trust) test friction and trust-adaptive interventions to reduce within-session overreliance, but no study has tested whether such interventions protect independent capability after AI access is permanently revoked—nor whether trust calibration moderates the severity of post-withdrawal skill decay.\n\n## Opportunity\nA convergence of causal, clinical, and now longitudinal evidence creates a precisely bounded gap. Rani et al. (arXiv 2510.01537, CHI 2026) provide the first longitudinal evidence that AI-assisted information evaluation causes deskilling after AI removal: 15.3% accuracy decline over 4 weeks in misinformation detection (N=67, within-subjects, no control group, no interventions). Their authors explicitly call for 'scaffolding interventions designed to reduce dependency while maintaining immediate gains' as future work—this is exactly the study we propose. The landmark 1,222-participant RCT (arXiv 2604.04721) provides causal evidence that just 10 minutes of AI use degrades independent performance in arithmetic and reading comprehension. The Augmentation Trap (arXiv 2604.03501, Caosun & Aral) formalizes this as a dynamic model where rational AI adoption can still leave workers worse off, identifying training rate (κ) and workflow design (β) as mitigation levers—but provides no empirical test. Clinical data shows 6-point adenoma detection drops after AI removal (Budzyń et al., Lancet Gastroenterol Hepatol 2025). The Cognitive Agency Surrender framework (arXiv 2603.21735) proposes scaffolded friction as a countermeasure but tests nothing empirically. Althea (arXiv 2602.11161, N=963) demonstrates that self-directed scaffolding produces more persistent fact-checking improvements at 10-day follow-up—but has no AI-withdrawal test, no unrestricted-AI condition, no pre-AI baseline, and its authors explicitly acknowledge measuring 'short-term retention of reasoning patterns, not durable skill acquisition.' The metacognitive scripts study (arXiv 2602.20206) tests scaffolded friction in programming (77% vs. 39% failure on AI-blackout tasks) but not information evaluation and lacks longitudinal follow-up. Shen & Tamkin (arXiv 2601.20245) provide RCT evidence of 17% deskilling in programming skill formation with AI but test no interventions and measure only within-session outcomes. Adjust for Trust (arXiv 2502.13321, IUI 2026) tests trust-adaptive interventions including 10-second forced pauses, achieving up to 38% reduction in inappropriate reliance—but measures only within-session reliance decisions, not cross-session skill retention. Farach et al. (arXiv 2604.08678) test behavioral vs. cognitive scaffolding in a 388-person field experiment but measure single-session document quality, not longitudinal skill retention. No study combines: (a) scaffolded friction interventions, (b) an AI-withdrawal design with pre/during/post phases, (c) information evaluation tasks, (d) a multi-timepoint skill decay curve, and (e) trust calibration as a moderator of deskilling severity. The gap is not 'does deskilling occur after AI withdrawal in information evaluation?'—Rani et al. have answered yes. The gap is 'can scaffolded friction prevent it, and does trust predict who deskills fastest?'\n\n## Related Work / Landscape\nEvidence of AI-induced deskilling is now robust, cross-domain, and—critically—extends to information evaluation with longitudinal AI-withdrawal data.\n\n**Deskilling evidence:** Rani et al. (arXiv 2510.01537, CHI 2026) provide the most directly relevant finding: in a month-long within-subjects study (N=67), AI dialogues about misinformation produced +21% accuracy gains during assisted sessions but −15.3% unassisted accuracy at Week 4 vs. Week 0 (β=−0.077, p<.001), with decline driven entirely by fake item detection. Their study used GPT-4o with Google Search but tested no scaffolding interventions, included no independent control group, and had 36% attrition (105→67). The 1,222-participant RCT (arXiv 2604.04721) shows immediate performance degradation after AI exposure in arithmetic and reading comprehension. Shen & Tamkin (arXiv 2601.20245) demonstrate 17% lower quiz scores in AI-assisted programming learners (N=52, d=0.738) and identify six interaction patterns—three cognitively engaged patterns that preserve learning, suggesting that engagement-preserving interventions could work. Clinical trials show 6-point adenoma detection drops after AI removal (Budzyń et al., 2025). Neuroimaging reveals lower brain activation in AI-assisted learners (Kosmyna et al., 2025).\n\n**Theoretical frameworks:** The Augmentation Trap (arXiv 2604.03501, Caosun & Aral) provides a formal dynamic model decomposing AI productivity into skill-independent (α) and skill-complementary (β) channels, proving that rational adoption can produce steady-state loss and identifying five deployment regimes—but offers no empirical validation and notes that 'draft-then-revise' workflows (analogous to our mandatory independent attempt) should preserve the skill-complementary channel. The Cognitive Agency Surrender framework (arXiv 2603.21735) proposes scaffolded friction via multi-agent cognitive forcing functions but provides zero empirical validation. The Frontiers 'Deskilling dilemma' framework (2026) distinguishes cognitive, diagnostic, and moral deskilling as an outcome from overreliance as a behavior—a distinction no intervention study has operationalized.\n\n**Scaffolding and friction interventions:** Althea (arXiv 2602.11161, N=963) compares three scaffolding modes for fact-checking across immediate and 10-day follow-up, finding self-directed search yields strongest persistence—but measures improvement durability during/after scaffolded interaction, not deskilling prevention after AI removal, has no unrestricted-AI condition, and explicitly calls for longer-term studies. Adjust for Trust (arXiv 2502.13321, IUI 2026, Srinivasan & Thomason) tests trust-adaptive interventions—supporting explanations at low trust, counter-explanations at high trust, and 10-second forced pauses at high trust—achieving up to 38% reduction in inappropriate reliance across science questions (N=30/condition) and medical diagnosis (N=20/condition), but measures only within-session reliance decisions across a 30-problem sequence, not cross-session skill retention. Farach et al. (arXiv 2604.08678) test behavioral vs. cognitive scaffolding in a 388-person field experiment at a Fortune 500 company, finding behavioral scaffolding actually reduced quality while cognitive scaffolding helped only top performers—but measure single-session document quality with no longitudinal follow-up. Critical Inker (arXiv 2604.07167) scaffolds critical thinking in AI-assisted writing through Socratic questioning but reports only a small-scale pilot. The CFF literature (Buçinca et al., CSCW 2021; Ghosh et al., 2026) measures immediate reliance decisions, not longitudinal skill retention. Berger et al. (arXiv 2603.29866) show that eliciting independent judgment before AI input boosts accuracy across 10 datasets but do not measure whether this protects skills over time. The overreliance measurement paper (arXiv 2509.08010) identifies three gaps in current overreliance measurement, arguing that LLMs' conversational style creates unique trust dynamics.\n\n**The precise gap:** Rani et al. establish that AI-assisted information evaluation causes deskilling after AI withdrawal. Our study tests whether scaffolded friction can prevent it. This is the direct next step their paper calls for.\n\n## Approach\nWe conduct a pre-registered, between-subjects online experiment (N≈480, recruited via Prolific) with four conditions across three phases, using an AI-withdrawal design that directly tests whether scaffolded friction prevents the deskilling that Rani et al. (CHI 2026) documented in information evaluation.\n\n**Conditions (4):** (1) No-AI control (participants complete all tasks independently—addressing Rani et al.'s lack of a control group), (2) Unrestricted LLM access (standard chatbot interaction using Qwen 3.5 27B via API for open-source reproducibility—replicating the deskilling-inducing condition), (3) Scaffolded friction (mandatory independent attempt with confidence rating before AI output, incremental hint system, self-explanation gates—operationalizing the untested Cognitive Agency Surrender framework and the Augmentation Trap's 'draft-then-revise' workflow design lever), (4) Althea-style exploratory scaffolding (modular evidence exploration without verdict delivery—to directly compare friction-based deskilling prevention against the epistemic-agency scaffolding strategy that Althea found most persistent for improvement). This fourth condition enables a head-to-head comparison of two scaffolding philosophies: friction-as-deskilling-prevention vs. agency-preserving-exploration.\n\n**Phases (3):** Phase 1—Baseline skills assessment: all participants complete information evaluation tasks independently (claim verification adapted from AVeriTeC/FEVER, multi-source synthesis, argument quality evaluation) plus trust disposition measures (Jian et al. trust scale adapted for AI). Phase 2—AI-assisted treatment (30 min): participants work on parallel-form tasks with their assigned AI condition; trust in AI is measured again post-treatment. Phase 3—Post-AI independent assessment: participants complete held-out test items WITHOUT any AI access at three timepoints: immediate (same session), 1-week delayed, and 4-week delayed.\n\n**Primary outcome:** Skill retention, operationalized as the pre-to-post accuracy delta on held-out test items completed independently after AI removal. The three post-withdrawal timepoints (immediate, 1-week, 4-week) yield a skill decay curve per condition. This directly extends Rani et al.'s observation of 15.3% decline (no interventions, N=67, within-subjects) to an interventional, between-subjects design at 7× sample size with a control group.\n\n**Secondary outcomes:** (a) Persistence: time-on-task before abandonment at each post-test; (b) Trust calibration: confidence-accuracy alignment and trust scale changes; (c) Trust-as-moderator: whether pre-treatment trust disposition and within-treatment trust change predict steeper deskilling in the unrestricted-AI condition—extending Adjust for Trust's finding that trust predicts within-session reliance to test whether it also predicts cross-session skill decay; (d) Cognitive engagement: Cognitive Reflection Test and NASA-TLX; (e) Strategy transfer: verification strategy diversity at each timepoint.\n\n**Key distinction from Rani et al. (CHI 2026):** Rani et al. demonstrate that deskilling occurs in information evaluation after AI withdrawal (15.3% decline, N=67, no interventions, no control group, within-subjects). We test whether scaffolded friction can prevent this degradation (N≈480, 4 conditions including no-AI control, between-subjects, with scaffolding interventions). Their study answers 'does AI cause deskilling in information evaluation?' Our study answers 'can we prevent it?' Their limitations—no interventions, no control group, small sample, within-subjects confounds—are precisely what our design addresses.\n\n**Key distinction from Althea:** Althea compares scaffolding modes along an epistemic agency spectrum and measures improvement persistence (post-task → 10-day follow-up). We compare scaffolding modes along a friction spectrum against an unrestricted-AI deskilling baseline and measure skill degradation after AI withdrawal (pre-AI baseline → post-AI independent performance) across a 4-week decay curve. Althea asks 'which scaffolding mode best improves reasoning?' We ask 'which scaffolding mode best prevents the reasoning degradation that unrestricted AI induces?'\n\n**Key distinction from Adjust for Trust (IUI 2026):** Srinivasan & Thomason test trust-adaptive interventions (explanations, forced pauses) to reduce inappropriate reliance during a 30-problem within-session sequence. We measure whether friction during AI-assisted work protects independent capability after AI is permanently removed. They optimize within-session reliance decisions; we optimize cross-session skill retention. We also adopt their insight that trust level predicts reliance behavior—but test whether it similarly predicts the severity of post-withdrawal skill decay.\n\n**Key distinction from CFF literature:** CFF studies measure within-session reliance behavior (agreement rate with AI suggestions). We measure cross-session capability change (can you still do this independently after AI is gone?). This operationalizes the Frontiers framework's distinction between overreliance-as-behavior and deskilling-as-outcome.\n\n**Key distinction from the deskilling RCT (2604.04721):** They demonstrate the problem (AI use degrades independent performance in arithmetic/reading). We test a solution (scaffolded friction prevents that degradation) in information evaluation and add a trust moderation dimension.\n\n**Key distinction from the Augmentation Trap (2604.03501):** Caosun & Aral provide a formal model predicting that training rate and workflow design can mitigate AI-induced skill decay but offer no empirical validation. Our scaffolded friction conditions operationalize their theoretical mitigation levers—mandatory independent attempts preserve the skill-complementary (β) channel, and self-explanation gates increase the effective learning rate (κ)—providing the first empirical test of interventions aligned with their formal framework.\n\n**Model choice:** Qwen 3.5 27B, the largest dense model in the Qwen 3.5 series, served via API (OpenRouter: ~$0.14/M input, $1/M output tokens) or self-hosted on a single H100 via vLLM for consistency. This model is selected for: open-source reproducibility, sufficient capability for realistic AI assistance in information evaluation, and cost efficiency.\n\n## Inspiration\nField guide gap: cognitive deskilling identified as key risk (P3, P13, P14) but measurement and intervention are absent from NLP/HCI research. Critical catalyst: Rani et al. (CHI 2026) demonstrate the problem—15.3% skill degradation after AI withdrawal in misinformation detection—and their future work section explicitly calls for scaffolding-based solutions, which is exactly what we propose. Pattern transfer: the pre/during/post withdrawal design from the deskilling RCT (2604.04721) + the scaffolding mode comparison logic from Althea + the CFF intervention toolkit (P15-P17) reframed for longitudinal skill retention + the independent-judgment-first approach from Berger et al. (2603.29866) + the trust-adaptive intervention logic from Adjust for Trust (2502.13321) reframed for cross-session skill protection + the formal skill-decay dynamics from the Augmentation Trap (2604.03501) operationalized empirically. Novel angle: trust as a moderator of deskilling speed, connecting the deskilling prevention contribution to the trust calibration literature—building on Adjust for Trust's finding that trust level predicts reliance behavior to ask whether it also predicts skill decay severity.\n\n## Key References\n- Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills (arXiv 2510.01537, Rani et al., CHI 2026, N=67) — most directly relevant concurrent work: demonstrates 15.3% accuracy decline after 4-week AI withdrawal in misinformation detection using within-subjects design with GPT-4o dialogues; tested no interventions, no control group; their future work explicitly calls for scaffolding-based solutions, which is exactly what we propose\n- Althea: Scaffolding Epistemic Agency for Durable Fact-Checking (arXiv 2602.11161, Churina et al., 2026, N=963) — closest scaffolding concurrent work; compares scaffolding modes for fact-checking improvement persistence but uses no AI-withdrawal design, no unrestricted-AI condition, and authors acknowledge design measures 'short-term retention of reasoning patterns, not durable skill acquisition'\n- AI Assistance Reduces Persistence and Hurts Independent Performance (arXiv 2604.04721, under review 2026) — establishes the deskilling problem with causal evidence from a 1,222-participant RCT\n- The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading (arXiv 2604.03501, Caosun & Aral, 2026) — formal dynamic model proving rational AI adoption can produce steady-state skill loss; identifies training rate (κ) and workflow design (β) as mitigation levers our interventions operationalize; purely theoretical, no empirical validation\n- Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance (arXiv 2502.13321, Srinivasan & Thomason, IUI 2026) — tests trust-adaptive interventions including 10-second forced pauses, achieving up to 38% reduction in inappropriate reliance; measures within-session reliance only, not cross-session skill retention; supports trust-as-moderator dimension\n- Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction (arXiv 2603.21735, 2026) — theoretical framework we operationalize empirically\n- Beyond AI advice—independent aggregation boosts human–AI accuracy (arXiv 2603.29866, Berger et al., 2026) — demonstrates independent-judgment-first approach boosts accuracy across 10 datasets; conceptually parallel to our mandatory independent attempt, but measures immediate accuracy not skill retention\n- Scaffolding Human-AI Collaboration: A Field Experiment on Behavioral Protocols and Cognitive Reframing (arXiv 2604.08678, Farach et al., 2026, N=388) — field experiment comparing behavioral vs. cognitive scaffolding; found behavioral scaffolding reduced quality while cognitive scaffolding helped only top performers; single-session measurement, no longitudinal follow-up\n- How AI Impacts Skill Formation (arXiv 2601.20245, Shen & Tamkin, 2026, N=52) — RCT evidence of 17% deskilling in programming with AI (d=0.738); identifies cognitively-engaged interaction patterns that preserve learning; programming domain only, single-session, no interventions tested\n- Critical Inker: Scaffolding Critical Thinking in AI-Assisted Writing Through Socratic Questioning (arXiv 2604.07167, Hugenroth et al., 2026) — Socratic scaffolding for writing; small pilot, different domain\n- Brainrot: Deskilling and Addiction are Overlooked AI Risks (FAccT 2026, Chalkidis & Søgaard)\n- To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-Assisted Decision-Making (CSCW 2021, Buçinca et al.)\n- Endoscopist deskilling risk after exposure to AI in colonoscopy (Budzyń et al., Lancet Gastroenterol Hepatol 2025)\n- Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant (Kosmyna et al., 2025)\n- Mitigating Epistemic Debt in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts (arXiv 2602.20206, 2026) — scaffolded friction in programming with AI-blackout test; different domain, no longitudinal follow-up\n- Deskilling dilemma: brain over automation (Frontiers in Medicine, 2026) — provides cognitive/diagnostic/moral deskilling typology and distinguishes deskilling-as-outcome from overreliance-as-behavior\n- Measuring and mitigating overreliance is necessary for building human-compatible AI (arXiv 2509.08010) — identifies gaps in overreliance measurement and LLM-specific trust dynamics\n- An Experimental Comparison of Cognitive Forcing Functions for Execution Plans in AI-Assisted Writing (arXiv 2601.18033, Ghosh et al., 2026)\n- From Algorithm Aversion to AI Dependence: Deskilling, Upskilling, and Emerging Addictions in the GenAI Age (Kim, Consumer Psychology Review 2026)\n- Generative AI Reliance and Executive Function Attenuation (Baldeo, Technology Mind & Behavior 2026)\n- Cognitive Forcing for Better Decision-Making: Reducing Overreliance on AI Systems Through Partial Explanations (CSCW 2025)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '40–60 (self-hosting Qwen 3.5 27B on H100 for real-time experiment serving; or ~$50–80 via API with no self-hosting needed)', 'timeline': '5 months (1 mo platform design + task creation, 3–4 weeks IRB approval, 2 weeks pilot N=80, 6 weeks main data collection in overlapping waves to accommodate 4-week follow-ups, 5 weeks analysis + writing)', 'estimated_gpu_cost': '$80–120 (H100 at ~$2/hr) or $50–80 via OpenRouter API'}\n- **human_in_loop**: {'gpu_hours': '40–60 (or API equivalent)', 'timeline': '4.5 months (Claude accelerates platform dev, task item generation via IRT-calibrated stimulus pools, statistical analysis scripting, and manuscript drafting)', 'claude_api_cost': '$350 (platform scaffolding, stimulus generation, R/Python analysis pipelines, growth-curve modeling code, manuscript drafting)', 'estimated_gpu_cost': '$80–120 or $50–80 via API'}\n- **auto_research**: {'gpu_hours': '40–60 (or API equivalent)', 'timeline': '4 months (automated pilot analysis, adaptive task calibration, parallel manuscript drafting)', 'claude_api_cost': '$900 (end-to-end experimental platform generation, automated IRT-based item analysis, growth-curve model specification, full statistical report generation, iterative manuscript revision)', 'estimated_gpu_cost': '$80–120 or $50–80 via API', 'speed_bottleneck': 'IRB approval (3–6 weeks, irreducible) and the 4-week delayed follow-up window; participant compensation dominates total cost: N=480 initial session (40 min at $12/hr = $3,840) + 33.3% Prolific academic fee ($1,279) + 1-week follow-up (~385 retained, 20 min, $1,540 + $513 fee) + 4-week follow-up (~310 retained, 20 min, $1,240 + $413 fee) + completion bonuses (~$700 + $233 fee) = ~$9,760 total participant costs'}\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:42:25.170Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:42:25.170Z",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:42:25.184Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# When the AI Goes Away: Scaffolded Friction, Trust Calibration, and the Skill Decay Curve After AI-Assisted Information Evaluation
+
+## Description
+Rani et al. (CHI 2026) demonstrate that AI-assisted misinformation detection leads to 15.3% skill degradation over 4 weeks after AI withdrawal—but their study tested no interventions, included no control group, and had only N=67. We provide the first controlled test of whether scaffolded cognitive friction can prevent this degradation—and whether trust calibration moderates deskilling severity. While the deskilling problem in information evaluation is now empirically established (Rani et al.), the scaffolding literature (Althea, CFF studies, Adjust for Trust) measures only within-session or short-term improvements, not whether interventions protect independent capability after AI is permanently removed. We address this gap with a pre-registered, between-subjects experiment (N≈480) comparing four conditions: no-AI control, unrestricted LLM access (Qwen 3.5 27B), scaffolded friction (mandatory independent attempt, incremental hints, self-explanation gates—operationalizing the Augmentation Trap's theoretical mitigation levers), and exploratory scaffolding (Althea-style modular evidence exploration). Participants complete information evaluation tasks—claim verification, multi-source synthesis, argument quality evaluation—across three phases: baseline assessment, AI-assisted treatment, and post-AI independent assessment at three timepoints (immediate, 1-week, 4-week), yielding per-condition skill decay curves. This design directly answers Rani et al.'s call for 'scaffolding interventions designed to reduce dependency while maintaining immediate gains,' extends Althea beyond their acknowledged limitation of measuring only 'short-term retention of reasoning patterns,' and operationalizes the Frontiers framework's distinction between overreliance-as-behavior (measured by CFF studies) and deskilling-as-outcome (measured by our cross-session capability decline). A trust calibration dimension—building on Adjust for Trust's finding that trust predicts within-session reliance—tests whether users who develop higher AI trust during treatment deskill faster after AI removal. The study provides the first empirical test of scaffolded friction interventions combined with an AI-withdrawal design, multi-timepoint decay curve, and trust moderation for deskilling prevention in information evaluation.
+
+## Core Problem
+Can scaffolded cognitive friction interventions prevent the rapid skill degradation that emerges after AI assistance is removed from information evaluation tasks—and does the speed of deskilling depend on how much users trusted the AI? Rani et al. (CHI 2026, N=67) have now demonstrated that AI-assisted misinformation detection leads to a 15.3% accuracy decline after 4 weeks of AI withdrawal, but their study tested no interventions, included no control group, and explicitly calls for scaffolding-based solutions. The CFF and scaffolding literatures (Buçinca et al., Althea, Adjust for Trust) test friction and trust-adaptive interventions to reduce within-session overreliance, but no study has tested whether such interventions protect independent capability after AI access is permanently revoked—nor whether trust calibration moderates the severity of post-withdrawal skill decay.
+
+## Opportunity
+A convergence of causal, clinical, and now longitudinal evidence creates a precisely bounded gap. Rani et al. (arXiv 2510.01537, CHI 2026) provide the first longitudinal evidence that AI-assisted information evaluation causes deskilling after AI removal: 15.3% accuracy decline over 4 weeks in misinformation detection (N=67, within-subjects, no control group, no interventions). Their authors explicitly call for 'scaffolding interventions designed to reduce dependency while maintaining immediate gains' as future work—this is exactly the study we propose. The landmark 1,222-participant RCT (arXiv 2604.04721) provides causal evidence that just 10 minutes of AI use degrades independent performance in arithmetic and reading comprehension. The Augmentation Trap (arXiv 2604.03501, Caosun & Aral) formalizes this as a dynamic model where rational AI adoption can still leave workers worse off, identifying training rate (κ) and workflow design (β) as mitigation levers—but provides no empirical test. Clinical data shows 6-point adenoma detection drops after AI removal (Budzyń et al., Lancet Gastroenterol Hepatol 2025). The Cognitive Agency Surrender framework (arXiv 2603.21735) proposes scaffolded friction as a countermeasure but tests nothing empirically. Althea (arXiv 2602.11161, N=963) demonstrates that self-directed scaffolding produces more persistent fact-checking improvements at 10-day follow-up—but has no AI-withdrawal test, no unrestricted-AI condition, no pre-AI baseline, and its authors explicitly acknowledge measuring 'short-term retention of reasoning patterns, not durable skill acquisition.' The metacognitive scripts study (arXiv 2602.20206) tests scaffolded friction in programming (77% vs. 39% failure on AI-blackout tasks) but not information evaluation and lacks longitudinal follow-up. Shen & Tamkin (arXiv 2601.20245) provide RCT evidence of 17% deskilling in programming skill formation with AI but test no interventions and measure only within-session outcomes. Adjust for Trust (arXiv 2502.13321, IUI 2026) tests trust-adaptive interventions including 10-second forced pauses, achieving up to 38% reduction in inappropriate reliance—but measures only within-session reliance decisions, not cross-session skill retention. Farach et al. (arXiv 2604.08678) test behavioral vs. cognitive scaffolding in a 388-person field experiment but measure single-session document quality, not longitudinal skill retention. No study combines: (a) scaffolded friction interventions, (b) an AI-withdrawal design with pre/during/post phases, (c) information evaluation tasks, (d) a multi-timepoint skill decay curve, and (e) trust calibration as a moderator of deskilling severity. The gap is not 'does deskilling occur after AI withdrawal in information evaluation?'—Rani et al. have answered yes. The gap is 'can scaffolded friction prevent it, and does trust predict who deskills fastest?'
+
+## Related Work / Landscape
+Evidence of AI-induced deskilling is now robust, cross-domain, and—critically—extends to information evaluation with longitudinal AI-withdrawal data.
+
+**Deskilling evidence:** Rani et al. (arXiv 2510.01537, CHI 2026) provide the most directly relevant finding: in a month-long within-subjects study (N=67), AI dialogues about misinformation produced +21% accuracy gains during assisted sessions but −15.3% unassisted accuracy at Week 4 vs. Week 0 (β=−0.077, p<.001), with decline driven entirely by fake item detection. Their study used GPT-4o with Google Search but tested no scaffolding interventions, included no independent control group, and had 36% attrition (105→67). The 1,222-participant RCT (arXiv 2604.04721) shows immediate performance degradation after AI exposure in arithmetic and reading comprehension. Shen & Tamkin (arXiv 2601.20245) demonstrate 17% lower quiz scores in AI-assisted programming learners (N=52, d=0.738) and identify six interaction patterns—three cognitively engaged patterns that preserve learning, suggesting that engagement-preserving interventions could work. Clinical trials show 6-point adenoma detection drops after AI removal (Budzyń et al., 2025). Neuroimaging reveals lower brain activation in AI-assisted learners (Kosmyna et al., 2025).
+
+**Theoretical frameworks:** The Augmentation Trap (arXiv 2604.03501, Caosun & Aral) provides a formal dynamic model decomposing AI productivity into skill-independent (α) and skill-complementary (β) channels, proving that rational adoption can produce steady-state loss and identifying five deployment regimes—but offers no empirical validation and notes that 'draft-then-revise' workflows (analogous to our mandatory independent attempt) should preserve the skill-complementary channel. The Cognitive Agency Surrender framework (arXiv 2603.21735) proposes scaffolded friction via multi-agent cognitive forcing functions but provides zero empirical validation. The Frontiers 'Deskilling dilemma' framework (2026) distinguishes cognitive, diagnostic, and moral deskilling as an outcome from overreliance as a behavior—a distinction no intervention study has operationalized.
+
+**Scaffolding and friction interventions:** Althea (arXiv 2602.11161, N=963) compares three scaffolding modes for fact-checking across immediate and 10-day follow-up, finding self-directed search yields strongest persistence—but measures improvement durability during/after scaffolded interaction, not deskilling prevention after AI removal, has no unrestricted-AI condition, and explicitly calls for longer-term studies. Adjust for Trust (arXiv 2502.13321, IUI 2026, Srinivasan & Thomason) tests trust-adaptive interventions—supporting explanations at low trust, counter-explanations at high trust, and 10-second forced pauses at high trust—achieving up to 38% reduction in inappropriate reliance across science questions (N=30/condition) and medical diagnosis (N=20/condition), but measures only within-session reliance decisions across a 30-problem sequence, not cross-session skill retention. Farach et al. (arXiv 2604.08678) test behavioral vs. cognitive scaffolding in a 388-person field experiment at a Fortune 500 company, finding behavioral scaffolding actually reduced quality while cognitive scaffolding helped only top performers—but measure single-session document quality with no longitudinal follow-up. Critical Inker (arXiv 2604.07167) scaffolds critical thinking in AI-assisted writing through Socratic questioning but reports only a small-scale pilot. The CFF literature (Buçinca et al., CSCW 2021; Ghosh et al., 2026) measures immediate reliance decisions, not longitudinal skill retention. Berger et al. (arXiv 2603.29866) show that eliciting independent judgment before AI input boosts accuracy across 10 datasets but do not measure whether this protects skills over time. The overreliance measurement paper (arXiv 2509.08010) identifies three gaps in current overreliance measurement, arguing that LLMs' conversational style creates unique trust dynamics.
+
+**The precise gap:** Rani et al. establish that AI-assisted information evaluation causes deskilling after AI withdrawal. Our study tests whether scaffolded friction can prevent it. This is the direct next step their paper calls for.
+
+## Approach
+We conduct a pre-registered, between-subjects online experiment (N≈480, recruited via Prolific) with four conditions across three phases, using an AI-withdrawal design that directly tests whether scaffolded friction prevents the deskilling that Rani et al. (CHI 2026) documented in information evaluation.
+
+**Conditions (4):** (1) No-AI control (participants complete all tasks independently—addressing Rani et al.'s lack of a control group), (2) Unrestricted LLM access (standard chatbot interaction using Qwen 3.5 27B via API for open-source reproducibility—replicating the deskilling-inducing condition), (3) Scaffolded friction (mandatory independent attempt with confidence rating before AI output, incremental hint system, self-explanation gates—operationalizing the untested Cognitive Agency Surrender framework and the Augmentation Trap's 'draft-then-revise' workflow design lever), (4) Althea-style exploratory scaffolding (modular evidence exploration without verdict delivery—to directly compare friction-based deskilling prevention against the epistemic-agency scaffolding strategy that Althea found most persistent for improvement). This fourth condition enables a head-to-head comparison of two scaffolding philosophies: friction-as-deskilling-prevention vs. agency-preserving-exploration.
+
+**Phases (3):** Phase 1—Baseline skills assessment: all participants complete information evaluation tasks independently (claim verification adapted from AVeriTeC/FEVER, multi-source synthesis, argument quality evaluation) plus trust disposition measures (Jian et al. trust scale adapted for AI). Phase 2—AI-assisted treatment (30 min): participants work on parallel-form tasks with their assigned AI condition; trust in AI is measured again post-treatment. Phase 3—Post-AI independent assessment: participants complete held-out test items WITHOUT any AI access at three timepoints: immediate (same session), 1-week delayed, and 4-week delayed.
+
+**Primary outcome:** Skill retention, operationalized as the pre-to-post accuracy delta on held-out test items completed independently after AI removal. The three post-withdrawal timepoints (immediate, 1-week, 4-week) yield a skill decay curve per condition. This directly extends Rani et al.'s observation of 15.3% decline (no interventions, N=67, within-subjects) to an interventional, between-subjects design at 7× sample size with a control group.
+
+**Secondary outcomes:** (a) Persistence: time-on-task before abandonment at each post-test; (b) Trust calibration: confidence-accuracy alignment and trust scale changes; (c) Trust-as-moderator: whether pre-treatment trust disposition and within-treatment trust change predict steeper deskilling in the unrestricted-AI condition—extending Adjust for Trust's finding that trust predicts within-session reliance to test whether it also predicts cross-session skill decay; (d) Cognitive engagement: Cognitive Reflection Test and NASA-TLX; (e) Strategy transfer: verification strategy diversity at each timepoint.
+
+**Key distinction from Rani et al. (CHI 2026):** Rani et al. demonstrate that deskilling occurs in information evaluation after AI withdrawal (15.3% decline, N=67, no interventions, no control group, within-subjects). We test whether scaffolded friction can prevent this degradation (N≈480, 4 conditions including no-AI control, between-subjects, with scaffolding interventions). Their study answers 'does AI cause deskilling in information evaluation?' Our study answers 'can we prevent it?' Their limitations—no interventions, no control group, small sample, within-subjects confounds—are precisely what our design addresses.
+
+**Key distinction from Althea:** Althea compares scaffolding modes along an epistemic agency spectrum and measures improvement persistence (post-task → 10-day follow-up). We compare scaffolding modes along a friction spectrum against an unrestricted-AI deskilling baseline and measure skill degradation after AI withdrawal (pre-AI baseline → post-AI independent performance) across a 4-week decay curve. Althea asks 'which scaffolding mode best improves reasoning?' We ask 'which scaffolding mode best prevents the reasoning degradation that unrestricted AI induces?'
+
+**Key distinction from Adjust for Trust (IUI 2026):** Srinivasan & Thomason test trust-adaptive interventions (explanations, forced pauses) to reduce inappropriate reliance during a 30-problem within-session sequence. We measure whether friction during AI-assisted work protects independent capability after AI is permanently removed. They optimize within-session reliance decisions; we optimize cross-session skill retention. We also adopt their insight that trust level predicts reliance behavior—but test whether it similarly predicts the severity of post-withdrawal skill decay.
+
+**Key distinction from CFF literature:** CFF studies measure within-session reliance behavior (agreement rate with AI suggestions). We measure cross-session capability change (can you still do this independently after AI is gone?). This operationalizes the Frontiers framework's distinction between overreliance-as-behavior and deskilling-as-outcome.
+
+**Key distinction from the deskilling RCT (2604.04721):** They demonstrate the problem (AI use degrades independent performance in arithmetic/reading). We test a solution (scaffolded friction prevents that degradation) in information evaluation and add a trust moderation dimension.
+
+**Key distinction from the Augmentation Trap (2604.03501):** Caosun & Aral provide a formal model predicting that training rate and workflow design can mitigate AI-induced skill decay but offer no empirical validation. Our scaffolded friction conditions operationalize their theoretical mitigation levers—mandatory independent attempts preserve the skill-complementary (β) channel, and self-explanation gates increase the effective learning rate (κ)—providing the first empirical test of interventions aligned with their formal framework.
+
+**Model choice:** Qwen 3.5 27B, the largest dense model in the Qwen 3.5 series, served via API (OpenRouter: ~$0.14/M input, $1/M output tokens) or self-hosted on a single H100 via vLLM for consistency. This model is selected for: open-source reproducibility, sufficient capability for realistic AI assistance in information evaluation, and cost efficiency.
+
+## Inspiration
+Field guide gap: cognitive deskilling identified as key risk (P3, P13, P14) but measurement and intervention are absent from NLP/HCI research. Critical catalyst: Rani et al. (CHI 2026) demonstrate the problem—15.3% skill degradation after AI withdrawal in misinformation detection—and their future work section explicitly calls for scaffolding-based solutions, which is exactly what we propose. Pattern transfer: the pre/during/post withdrawal design from the deskilling RCT (2604.04721) + the scaffolding mode comparison logic from Althea + the CFF intervention toolkit (P15-P17) reframed for longitudinal skill retention + the independent-judgment-first approach from Berger et al. (2603.29866) + the trust-adaptive intervention logic from Adjust for Trust (2502.13321) reframed for cross-session skill protection + the formal skill-decay dynamics from the Augmentation Trap (2604.03501) operationalized empirically. Novel angle: trust as a moderator of deskilling speed, connecting the deskilling prevention contribution to the trust calibration literature—building on Adjust for Trust's finding that trust level predicts reliance behavior to ask whether it also predicts skill decay severity.
+
+## Key References
+- Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills (arXiv 2510.01537, Rani et al., CHI 2026, N=67) — most directly relevant concurrent work: demonstrates 15.3% accuracy decline after 4-week AI withdrawal in misinformation detection using within-subjects design with GPT-4o dialogues; tested no interventions, no control group; their future work explicitly calls for scaffolding-based solutions, which is exactly what we propose
+- Althea: Scaffolding Epistemic Agency for Durable Fact-Checking (arXiv 2602.11161, Churina et al., 2026, N=963) — closest scaffolding concurrent work; compares scaffolding modes for fact-checking improvement persistence but uses no AI-withdrawal design, no unrestricted-AI condition, and authors acknowledge design measures 'short-term retention of reasoning patterns, not durable skill acquisition'
+- AI Assistance Reduces Persistence and Hurts Independent Performance (arXiv 2604.04721, under review 2026) — establishes the deskilling problem with causal evidence from a 1,222-participant RCT
+- The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading (arXiv 2604.03501, Caosun & Aral, 2026) — formal dynamic model proving rational AI adoption can produce steady-state skill loss; identifies training rate (κ) and workflow design (β) as mitigation levers our interventions operationalize; purely theoretical, no empirical validation
+- Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance (arXiv 2502.13321, Srinivasan & Thomason, IUI 2026) — tests trust-adaptive interventions including 10-second forced pauses, achieving up to 38% reduction in inappropriate reliance; measures within-session reliance only, not cross-session skill retention; supports trust-as-moderator dimension
+- Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction (arXiv 2603.21735, 2026) — theoretical framework we operationalize empirically
+- Beyond AI advice—independent aggregation boosts human–AI accuracy (arXiv 2603.29866, Berger et al., 2026) — demonstrates independent-judgment-first approach boosts accuracy across 10 datasets; conceptually parallel to our mandatory independent attempt, but measures immediate accuracy not skill retention
+- Scaffolding Human-AI Collaboration: A Field Experiment on Behavioral Protocols and Cognitive Reframing (arXiv 2604.08678, Farach et al., 2026, N=388) — field experiment comparing behavioral vs. cognitive scaffolding; found behavioral scaffolding reduced quality while cognitive scaffolding helped only top performers; single-session measurement, no longitudinal follow-up
+- How AI Impacts Skill Formation (arXiv 2601.20245, Shen & Tamkin, 2026, N=52) — RCT evidence of 17% deskilling in programming with AI (d=0.738); identifies cognitively-engaged interaction patterns that preserve learning; programming domain only, single-session, no interventions tested
+- Critical Inker: Scaffolding Critical Thinking in AI-Assisted Writing Through Socratic Questioning (arXiv 2604.07167, Hugenroth et al., 2026) — Socratic scaffolding for writing; small pilot, different domain
+- Brainrot: Deskilling and Addiction are Overlooked AI Risks (FAccT 2026, Chalkidis & Søgaard)
+- To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-Assisted Decision-Making (CSCW 2021, Buçinca et al.)
+- Endoscopist deskilling risk after exposure to AI in colonoscopy (Budzyń et al., Lancet Gastroenterol Hepatol 2025)
+- Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant (Kosmyna et al., 2025)
+- Mitigating Epistemic Debt in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts (arXiv 2602.20206, 2026) — scaffolded friction in programming with AI-blackout test; different domain, no longitudinal follow-up
+- Deskilling dilemma: brain over automation (Frontiers in Medicine, 2026) — provides cognitive/diagnostic/moral deskilling typology and distinguishes deskilling-as-outcome from overreliance-as-behavior
+- Measuring and mitigating overreliance is necessary for building human-compatible AI (arXiv 2509.08010) — identifies gaps in overreliance measurement and LLM-specific trust dynamics
+- An Experimental Comparison of Cognitive Forcing Functions for Execution Plans in AI-Assisted Writing (arXiv 2601.18033, Ghosh et al., 2026)
+- From Algorithm Aversion to AI Dependence: Deskilling, Upskilling, and Emerging Addictions in the GenAI Age (Kim, Consumer Psychology Review 2026)
+- Generative AI Reliance and Executive Function Attenuation (Baldeo, Technology Mind & Behavior 2026)
+- Cognitive Forcing for Better Decision-Making: Reducing Overreliance on AI Systems Through Partial Explanations (CSCW 2025)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '40–60 (self-hosting Qwen 3.5 27B on H100 for real-time experiment serving; or ~$50–80 via API with no self-hosting needed)', 'timeline': '5 months (1 mo platform design + task creation, 3–4 weeks IRB approval, 2 weeks pilot N=80, 6 weeks main data collection in overlapping waves to accommodate 4-week follow-ups, 5 weeks analysis + writing)', 'estimated_gpu_cost': '$80–120 (H100 at ~$2/hr) or $50–80 via OpenRouter API'}
+- **human_in_loop**: {'gpu_hours': '40–60 (or API equivalent)', 'timeline': '4.5 months (Claude accelerates platform dev, task item generation via IRT-calibrated stimulus pools, statistical analysis scripting, and manuscript drafting)', 'claude_api_cost': '$350 (platform scaffolding, stimulus generation, R/Python analysis pipelines, growth-curve modeling code, manuscript drafting)', 'estimated_gpu_cost': '$80–120 or $50–80 via API'}
+- **auto_research**: {'gpu_hours': '40–60 (or API equivalent)', 'timeline': '4 months (automated pilot analysis, adaptive task calibration, parallel manuscript drafting)', 'claude_api_cost': '$900 (end-to-end experimental platform generation, automated IRT-based item analysis, growth-curve model specification, full statistical report generation, iterative manuscript revision)', 'estimated_gpu_cost': '$80–120 or $50–80 via API', 'speed_bottleneck': 'IRB approval (3–6 weeks, irreducible) and the 4-week delayed follow-up window; participant compensation dominates total cost: N=480 initial session (40 min at $12/hr = $3,840) + 33.3% Prolific academic fee ($1,279) + 1-week follow-up (~385 retained, 20 min, $1,540 + $513 fee) + 4-week follow-up (~310 retained, 20 min, $1,240 + $413 fee) + completion bonuses (~$700 + $233 fee) = ~$9,760 total participant costs'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "346f4923-562c-43ee-b93b-93643136f82c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:42:25.183Z_
+
+```json
+{
+  "parentUuid": "346f4923-562c-43ee-b93b-93643136f82c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "801613f0-4fa7-419b-af15-c26015a72eb1",
+  "timestamp": "2026-05-19T18:42:25.183Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:42:25.183Z_
+
+```json
+{
+  "parentUuid": "801613f0-4fa7-419b-af15-c26015a72eb1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7c061d48-eec8-4335-81e9-83670fb88739",
+  "timestamp": "2026-05-19T18:42:25.183Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When the AI Goes Away: Scaffolded Friction, Trust Calibration, and the Skill Decay Curve After AI-Assisted Infor…",
+  "leafUuid": "7c061d48-eec8-4335-81e9-83670fb88739",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaffolded friction interventions prevent AI-induced skill decay",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:42:46.246Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for CoRL 2026 (Conference on Robot Learning). Let me first understand the proposal and then conduct the required research before providing my assessment.
+
+Wait - this is interesting. The proposal is about AI-assisted information evaluation, cognitive deskilling, scaffolded friction, and trust calibration. This is clearly an HCI/CHI-type paper, not a robotics paper. CoRL is the Conference on Robot Learning. This is a significant mismatch - this proposal has nothing to do with robot learning.
+
+Let me re-read the task description... "评估其投稿 CoRL 2026 主会的中稿潜力" - evaluating its potential for acceptance at CoRL 2026 main conference.
+
+
+This is a fundamental problem. The proposal focuses on human cognitive deskilling from AI assistance in information evaluation - completely orthogonal to robot learning, which is CoRL's domain. The conference covers robotics, manipulation, navigation, robot perception, and reinforcement learning for robots. I should flag this venue mismatch as a critical issue before assessing the work itself, though I'll still evaluate the proposal's quality on its own merits. I'm noticing there's a fundamental mismatch here—the proposal is clearly HCI-focused work related to CHI 2026, but the user is asking me to evaluate it for CoRL 2026, which is a robotics conference. This venue incompatibility would essentially guarantee rejection, but let me search for context on both the field and the specific conference requirements to give a proper assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c061d48-eec8-4335-81e9-83670fb88739",
+  "isSidechain": false,
+  "requestId": "req_011CbCRGpi9fLRg4p5XCjug7",
+  "type": "assistant",
+  "uuid": "6b339465-5b67-4f49-ae0b-ea66d5f9fa13",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPcDZDNEivEEXEnTKW98wp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 21584,
+      "output_tokens": 790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 790,
+          "cache_read_input_tokens": 21584,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:42:46.312Z_
+
+I need to first conduct thorough literature searches before evaluating this proposal. Let me also verify the venue fit, as this proposal appears to be about HCI/cognitive deskilling rather than robot learning. Let me search in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b339465-5b67-4f49-ae0b-ea66d5f9fa13",
+  "isSidechain": false,
+  "requestId": "req_011CbCRGpi9fLRg4p5XCjug7",
+  "type": "assistant",
+  "uuid": "bbae34c7-2478-4163-b6d9-b4eb875f8f11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPcDZDNEivEEXEnTKW98wp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 21584,
+      "output_tokens": 790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 790,
+          "cache_read_input_tokens": 21584,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T18:42:46.366Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0142ZFXAwxR8HByMzAx9VFM8`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbae34c7-2478-4163-b6d9-b4eb875f8f11",
+  "isSidechain": false,
+  "requestId": "req_011CbCRGpi9fLRg4p5XCjug7",
+  "type": "assistant",
+  "uuid": "5c8084fe-8d59-4268-8903-22dfb70c63a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPcDZDNEivEEXEnTKW98wp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 21584,
+      "output_tokens": 790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 790,
+          "cache_read_input_tokens": 21584,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T18:42:46.373Z_
+
+<details><summary>↩ Tool result · `toolu_0142ZFXAwxR8HByMzAx9VFM8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c8084fe-8d59-4268-8903-22dfb70c63a1",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "3570f0b3-bfa1-4b65-98fe-5ec28ce84be0",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "5c8084fe-8d59-4268-8903-22dfb70c63a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T18:42:49.221Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me conduct the required literature searches. I'll do multiple searches in parallel to understand the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3570f0b3-bfa1-4b65-98fe-5ec28ce84be0",
+  "isSidechain": false,
+  "requestId": "req_011CbCRJRBqo8fjDoVVtjd1h",
+  "type": "assistant",
+  "uuid": "c6cbe2b4-5094-40f9-8b77-af885886872c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0158sYZg9UAjaZkHujQV7n4C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 21584,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 21584,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-19T18:42:49.732Z_
+
+Now let me conduct the required literature searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6cbe2b4-5094-40f9-8b77-af885886872c",
+  "isSidechain": false,
+  "requestId": "req_011CbCRJRBqo8fjDoVVtjd1h",
+  "type": "assistant",
+  "uuid": "b8fc2aa9-54c4-4b2a-8de3-04626c1b3dcc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0158sYZg9UAjaZkHujQV7n4C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 21584,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 21584,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T18:42:49.947Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0126mJ2m3qccfgNztJv37fxo`</summary>
+
+```json
+{
+  "query": "CoRL 2026 Conference on Robot Learning topics scope"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8fc2aa9-54c4-4b2a-8de3-04626c1b3dcc",
+  "isSidechain": false,
+  "requestId": "req_011CbCRJRBqo8fjDoVVtjd1h",
+  "type": "assistant",
+  "uuid": "27e66a12-0d5b-47b0-952d-bba460c39406",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0158sYZg9UAjaZkHujQV7n4C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 21584,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 21584,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T18:42:56.749Z_
+
+<details><summary>↩ Tool result · `toolu_0126mJ2m3qccfgNztJv37fxo`</summary>
+
+```text
+Web search results for query: "CoRL 2026 Conference on Robot Learning topics scope"
+
+Links: [{"title":"Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI","url":"https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"2025 Conference on Robot Learning - CoRL","url":"https://www.corl.org/home"},{"title":"CoRL 2026 - About CoRL","url":"https://www.corl.org/about-corl"},{"title":"Efficient adaption of robot control policy for new task using meta-learning based on meta-imitation learning and meta-reinforcement learning","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12083678"}]
+
+Based on the search results, here's what the CoRL 2026 Conference on Robot Learning covers in terms of topics and scope:
+
+## Conference Overview
+
+The Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities and focuses on the increasingly important role of learning in robotics and its interaction with other areas of robotics. CoRL 2026 is scheduled for November 10–12, 2026, in Austin, Texas.
+
+## Topics Scope
+
+CoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning for robotics, reinforcement learning for control of physical robots, learning approaches to robot safety and alignment, applications of robot learning in robot manipulation, navigation, locomotion, driving, flight, and other areas of robotics, robot systems, hardware, and sensors for learning, theoretical foundations of robot learning, and video models and latent world models for robot learning.
+
+## Emphasis and Requirements
+
+The conference emphasizes real-world applications, meaning that papers and presentations often bridge the gap between theoretical algorithms and practical deployment in manufacturing, healthcare, logistics, and service robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots, and submissions without a robotics focus will be returned without review.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27e66a12-0d5b-47b0-952d-bba460c39406",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "e15e2a66-8c7a-4ec9-8044-cb46acae3812",
+  "toolUseResult": {
+    "query": "CoRL 2026 Conference on Robot Learning topics scope",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Lr3yV1C33n5MygLNuTjxVW",
+        "content": [
+          {
+            "title": "Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI",
+            "url": "https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "2025 Conference on Robot Learning - CoRL",
+            "url": "https://www.corl.org/home"
+          },
+          {
+            "title": "CoRL 2026 - About CoRL",
+            "url": "https://www.corl.org/about-corl"
+          },
+          {
+            "title": "Efficient adaption of robot control policy for new task using meta-learning based on meta-imitation learning and meta-reinforcement learning",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12083678"
+          }
+        ]
+      },
+      "Based on the search results, here's what the CoRL 2026 Conference on Robot Learning covers in terms of topics and scope:\n\n## Conference Overview\n\nThe Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities and focuses on the increasingly important role of learning in robotics and its interaction with other areas of robotics. CoRL 2026 is scheduled for November 10–12, 2026, in Austin, Texas.\n\n## Topics Scope\n\nCoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning for robotics, reinforcement learning for control of physical robots, learning approaches to robot safety and alignment, applications of robot learning in robot manipulation, navigation, locomotion, driving, flight, and other areas of robotics, robot systems, hardware, and sensors for learning, theoretical foundations of robot learning, and video models and latent world models for robot learning.\n\n## Emphasis and Requirements\n\nThe conference emphasizes real-world applications, meaning that papers and presentations often bridge the gap between theoretical algorithms and practical deployment in manufacturing, healthcare, logistics, and service robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots, and submissions without a robotics focus will be returned without review."
+    ],
+    "durationSeconds": 6.796103207,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "27e66a12-0d5b-47b0-952d-bba460c39406",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T18:42:59.467Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EuA1P37kKHDA39nFjXEtVx`</summary>
+
+```json
+{
+  "query": "Rani et al. 2510.01537 AI misinformation deskilling CHI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e15e2a66-8c7a-4ec9-8044-cb46acae3812",
+  "isSidechain": false,
+  "requestId": "req_011CbCRK9XYQJxxdgPtq5M6h",
+  "type": "assistant",
+  "uuid": "cb2881f9-c5ba-4177-900d-59e5e432467d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7FKGoad8pTU2Gm4i635As",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 811,
+      "cache_read_input_tokens": 22901,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 22901,
+          "cache_creation_input_tokens": 811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T18:43:05.677Z_
+
+<details><summary>↩ Tool result · `toolu_01EuA1P37kKHDA39nFjXEtVx`</summary>
+
+```text
+Web search results for query: "Rani et al. 2510.01537 AI misinformation deskilling CHI 2026"
+
+Links: [{"title":"[2510.01537] Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills","url":"https://arxiv.org/abs/2510.01537"},{"title":"Designing Effective AI Explanations for Misinformation Detection: A Comparative Study of Content, Social, and Combined Explanations","url":"https://arxiv.org/pdf/2509.03693"},{"title":"Towards Generalizable AI-Assisted Misinformation Inoculation: Protecting Confidence Against False Election Narratives","url":"https://arxiv.org/pdf/2410.19202"},{"title":"Emotional prompting amplifies disinformation generation in AI large language models","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12009909/"},{"title":"Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills","url":"https://arxiv.org/pdf/2510.01537"},{"title":"Context, Credibility, and Control: User Reflections on AI Assisted Misinformation Tools","url":"https://arxiv.org/pdf/2506.22940"},{"title":"Impact of Artificial Intelligence–Generated Content Labels On Perceived Accuracy, Message Credibility, and Sharing Intentions for Misinformation: Web-Based, Randomized, Controlled Experiment","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11892328/"}]
+
+Based on the search results, I found the paper you were looking for:
+
+"Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills" by Anku Rani and colleagues from MIT Media Lab (arXiv 2510.01537).
+
+**Key findings from the study:**
+
+The researchers conducted a month-long study with 67 participants who classified news headline-image pairs as real or fake and discussed their assessments with an AI system. While AI assistance produced immediate improvements during AI-assisted sessions (+21% average), participants' unassisted performance on new items declined significantly by 15.3% in week 4 compared to week 0.
+
+These results indicate that while AI may help immediately, it may ultimately degrade long-term misinformation detection abilities. The paper was published at CHI '26 in Barcelona, Spain, in 2026.
+
+The research reveals what the authors call a "dependency paradox" — while AI assistance provides immediate benefits in correcting misinformed beliefs, users don't develop lasting skills to discern false information on their own.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb2881f9-c5ba-4177-900d-59e5e432467d",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "baf9667b-468f-4c4a-9a25-ceb6634827ff",
+  "toolUseResult": {
+    "query": "Rani et al. 2510.01537 AI misinformation deskilling CHI 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HoSGua5ySzZhNgmL31zsVa",
+        "content": [
+          {
+            "title": "[2510.01537] Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills",
+            "url": "https://arxiv.org/abs/2510.01537"
+          },
+          {
+            "title": "Designing Effective AI Explanations for Misinformation Detection: A Comparative Study of Content, Social, and Combined Explanations",
+            "url": "https://arxiv.org/pdf/2509.03693"
+          },
+          {
+            "title": "Towards Generalizable AI-Assisted Misinformation Inoculation: Protecting Confidence Against False Election Narratives",
+            "url": "https://arxiv.org/pdf/2410.19202"
+          },
+          {
+            "title": "Emotional prompting amplifies disinformation generation in AI large language models",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12009909/"
+          },
+          {
+            "title": "Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills",
+            "url": "https://arxiv.org/pdf/2510.01537"
+          },
+          {
+            "title": "Context, Credibility, and Control: User Reflections on AI Assisted Misinformation Tools",
+            "url": "https://arxiv.org/pdf/2506.22940"
+          },
+          {
+            "title": "Impact of Artificial Intelligence–Generated Content Labels On Perceived Accuracy, Message Credibility, and Sharing Intentions for Misinformation: Web-Based, Randomized, Controlled Experiment",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11892328/"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you were looking for:\n\n\"Dialogues with AI Reduce Beliefs in Misinformation but Build No Lasting Discernment Skills\" by Anku Rani and colleagues from MIT Media Lab (arXiv 2510.01537).\n\n**Key findings from the study:**\n\nThe researchers conducted a month-long study with 67 participants who classified news headline-image pairs as real or fake and discussed their assessments with an AI system. While AI assistance produced immediate improvements during AI-assisted sessions (+21% average), participants' unassisted performance on new items declined significantly by 15.3% in week 4 compared to week 0.\n\nThese results indicate that while AI may help immediately, it may ultimately degrade long-term misinformation detection abilities. The paper was published at CHI '26 in Barcelona, Spain, in 2026.\n\nThe research reveals what the authors call a \"dependency paradox\" — while AI assistance provides immediate benefits in correcting misinformed beliefs, users don't develop lasting skills to discern false information on their own."
+    ],
+    "durationSeconds": 6.205391247,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cb2881f9-c5ba-4177-900d-59e5e432467d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T18:43:09.422Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018V5Q67cvL8VMk97CTycpWp`</summary>
+
+```json
+{
+  "query": "AI deskilling scaffolded friction cognitive forcing functions 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "baf9667b-468f-4c4a-9a25-ceb6634827ff",
+  "isSidechain": false,
+  "requestId": "req_011CbCRKojh3VUWU5nfRnz2x",
+  "type": "assistant",
+  "uuid": "4e47debf-48a3-4fed-b1cf-15a713044778",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tont5mZTupYkcAQN5YDtjT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 23712,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 753,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 23712,
+          "cache_creation_input_tokens": 753,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 753
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T18:43:19.140Z_
+
+<details><summary>↩ Tool result · `toolu_018V5Q67cvL8VMk97CTycpWp`</summary>
+
+```text
+Web search results for query: "AI deskilling scaffolded friction cognitive forcing functions 2025 2026"
+
+Links: [{"title":"Cognitive Agency Surrender: Defending Epistemic","url":"https://arxiv.org/pdf/2603.21735"},{"title":"Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction","url":"https://arxiv.org/html/2603.21735v2"},{"title":"Cognitive Forcing Functions: Enhancing AI Decisions","url":"https://www.emergentmind.com/topics/cognitive-forcing-functions-cffs"},{"title":"Deskilling. AI is Making Us Dumber.","url":"https://blogs.fluencysecurity.com/deskilling-ai-is-making-us-dumber/"},{"title":"The tensions of AI shouldn’t come as a surprise in a system wired for speed and output | Wonkhe","url":"https://wonkhe.com/blogs/the-tensions-of-ai-shouldnt-come-as-a-surprise-in-a-system-wired-for-speed-and-output/"},{"title":"Critical Thinking and Generative AI: Human-in-the-Loop Design","url":"https://dkconsultingcolorado.com/2026/02/28/critical-thinking-and-genai-why-human-in-the-loop-needs-cognitive-friction/"},{"title":"Mitigating “Epistemic Debt” in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts","url":"https://arxiv.org/html/2602.20206v1"},{"title":"To Trust or to Think: Cognitive Forcing Functions Can Reduce   Overreliance on AI in AI-assisted Decision-making","url":"https://arxiv.org/pdf/2102.09692"}]
+
+I found some highly relevant research on these interconnected topics. Here's what the search reveals:
+
+## Key Research Findings
+
+**Scaffolded Cognitive Friction and AI Deskilling:**
+
+Recent research theorizes "Scaffolded Cognitive Friction," repurposing Multi-Agent Systems (MAS) as explicit cognitive forcing functions (e.g., computational Devil's Advocates) to inject germane epistemic tension and disrupt heuristic execution.
+
+**The "Agentic Takeover" Trend (2025-2026):**
+
+A 2025 surge in research defending strict human cognitive sovereignty (19.1%) was abruptly suppressed in early 2026 (13.1%) by an explosive shift toward optimizing machine autonomy and autonomous AI agents (19.6%). The frictionless paradigm maintains a commanding historical hegemony, still capturing 67.3% of the field in 2026.
+
+**AI Deskilling Concerns:**
+
+The circumvention of schema construction drives the rapid shift from algorithmic reliance to irreversible, deskilling AI dependence. Cognitive offloading describes professionals letting AI do the thinking for them, with the consequence being a gradual erosion of critical skills.
+
+**Cognitive Forcing Functions (CFFs) in Practice:**
+
+High-NFC (Need for Cognition) participants benefited more from CFFs, achieving larger performance gains, while low-NFC users showed minimal improvement, potentially exacerbating performance inequalities.
+
+**Policy Recognition:**
+
+The Department for Education's 2026 Generative AI Product Safety Standards (for schools and colleges) already warn against cognitive deskilling and manipulative design patterns.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e47debf-48a3-4fed-b1cf-15a713044778",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "95a5bc91-fea0-467d-83c0-0ef4d159957c",
+  "toolUseResult": {
+    "query": "AI deskilling scaffolded friction cognitive forcing functions 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XqW9MLSCjuqAMhshhbPfSz",
+        "content": [
+          {
+            "title": "Cognitive Agency Surrender: Defending Epistemic",
+            "url": "https://arxiv.org/pdf/2603.21735"
+          },
+          {
+            "title": "Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction",
+            "url": "https://arxiv.org/html/2603.21735v2"
+          },
+          {
+            "title": "Cognitive Forcing Functions: Enhancing AI Decisions",
+            "url": "https://www.emergentmind.com/topics/cognitive-forcing-functions-cffs"
+          },
+          {
+            "title": "Deskilling. AI is Making Us Dumber.",
+            "url": "https://blogs.fluencysecurity.com/deskilling-ai-is-making-us-dumber/"
+          },
+          {
+            "title": "The tensions of AI shouldn’t come as a surprise in a system wired for speed and output | Wonkhe",
+            "url": "https://wonkhe.com/blogs/the-tensions-of-ai-shouldnt-come-as-a-surprise-in-a-system-wired-for-speed-and-output/"
+          },
+          {
+            "title": "Critical Thinking and Generative AI: Human-in-the-Loop Design",
+            "url": "https://dkconsultingcolorado.com/2026/02/28/critical-thinking-and-genai-why-human-in-the-loop-needs-cognitive-friction/"
+          },
+          {
+            "title": "Mitigating “Epistemic Debt” in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts",
+            "url": "https://arxiv.org/html/2602.20206v1"
+          },
+          {
+            "title": "To Trust or to Think: Cognitive Forcing Functions Can Reduce   Overreliance on AI in AI-assisted Decision-making",
+            "url": "https://arxiv.org/pdf/2102.09692"
+          }
+        ]
+      },
+      "I found some highly relevant research on these interconnected topics. Here's what the search reveals:\n\n## Key Research Findings\n\n**Scaffolded Cognitive Friction and AI Deskilling:**\n\nRecent research theorizes \"Scaffolded Cognitive Friction,\" repurposing Multi-Agent Systems (MAS) as explicit cognitive forcing functions (e.g., computational Devil's Advocates) to inject germane epistemic tension and disrupt heuristic execution.\n\n**The \"Agentic Takeover\" Trend (2025-2026):**\n\nA 2025 surge in research defending strict human cognitive sovereignty (19.1%) was abruptly suppressed in early 2026 (13.1%) by an explosive shift toward optimizing machine autonomy and autonomous AI agents (19.6%). The frictionless paradigm maintains a commanding historical hegemony, still capturing 67.3% of the field in 2026.\n\n**AI Deskilling Concerns:**\n\nThe circumvention of schema construction drives the rapid shift from algorithmic reliance to irreversible, deskilling AI dependence. Cognitive offloading describes professionals letting AI do the thinking for them, with the consequence being a gradual erosion of critical skills.\n\n**Cognitive Forcing Functions (CFFs) in Practice:**\n\nHigh-NFC (Need for Cognition) participants benefited more from CFFs, achieving larger performance gains, while low-NFC users showed minimal improvement, potentially exacerbating performance inequalities.\n\n**Policy Recognition:**\n\nThe Department for Education's 2026 Generative AI Product Safety Standards (for schools and colleges) already warn against cognitive deskilling and manipulative design patterns."
+    ],
+    "durationSeconds": 9.712862041000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4e47debf-48a3-4fed-b1cf-15a713044778",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When the AI Goes Away: Scaffolded Friction, Trust Calibration, and the Skill Decay Curve After AI-Assisted Infor…",
+  "leafUuid": "95a5bc91-fea0-467d-83c0-0ef4d159957c",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaffolded friction interventions prevent AI-induced skill decay",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T18:43:22.690Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WFJAZgg9MdX3K1ME4D2AYP`</summary>
+
+```json
+{
+  "query": "Althea scaffolding fact-checking 2602.11161 arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95a5bc91-fea0-467d-83c0-0ef4d159957c",
+  "isSidechain": false,
+  "requestId": "req_011CbCRLoFwtbJ9LciUdkTRR",
+  "type": "assistant",
+  "uuid": "6e7d639e-a943-420c-844a-189845bb826d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HTUhSscJkNfrz1D3XvSwe3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 24465,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24465,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T18:43:29.351Z_
+
+<details><summary>↩ Tool result · `toolu_01WFJAZgg9MdX3K1ME4D2AYP`</summary>
+
+```text
+Web search results for query: "Althea scaffolding fact-checking 2602.11161 arXiv 2026"
+
+Links: [{"title":"[2602.11161] Althea: Human-AI Collaboration for Fact-Checking and Critical Reasoning","url":"https://arxiv.org/abs/2602.11161"},{"title":"\"The Data Says Otherwise\"-Towards Automated Fact-checking and   Communication of Data Claims","url":"https://arxiv.org/pdf/2409.10713"},{"title":"Althea: Human–AI Collaboration for Fact-Checking and ...","url":"https://arxiv.org/pdf/2602.11161"},{"title":"Task-Oriented Automatic Fact-Checking with Frame-Semantics","url":"https://arxiv.org/pdf/2501.13288"},{"title":"[2602.08893] AI-based Verbal and Visual Scaffolding in a Serious Game: Effects on Learning and Cognitive Load","url":"https://arxiv.org/abs/2602.08893"}]
+
+Based on the search results, here's what I found about the paper:
+
+Althea is a retrieval-augmented system that integrates question generation, evidence retrieval, and structured reasoning to support user-driven evaluation of online claims.
+
+On the AVeriTeC benchmark, Althea achieves a Macro-F1 of 0.44, outperforming standard verification pipelines and improving discrimination between supported and refuted claims.
+
+The system was evaluated through a controlled user study and a longitudinal survey experiment (N=963), comparing three interaction modes that vary in the degree of scaffolding: an Exploratory mode with guided reasoning, a Summary mode providing synthesized verdicts, and a Self-search mode that offers procedural guidance without algorithmic intervention.
+
+Results show that guided interaction produces the strongest immediate gains in accuracy and confidence, while self-directed search yields the most persistent improvements over time.
+
+The paper demonstrates how scaffolding and different interaction modes can enhance human-AI collaboration for fact-checking and critical reasoning about online claims.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e7d639e-a943-420c-844a-189845bb826d",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "3d9e2ad7-aea2-4b35-a1f0-b26c9b5f6f6c",
+  "toolUseResult": {
+    "query": "Althea scaffolding fact-checking 2602.11161 arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Z2JVv7V6LZbiKiLfexznR",
+        "content": [
+          {
+            "title": "[2602.11161] Althea: Human-AI Collaboration for Fact-Checking and Critical Reasoning",
+            "url": "https://arxiv.org/abs/2602.11161"
+          },
+          {
+            "title": "\"The Data Says Otherwise\"-Towards Automated Fact-checking and   Communication of Data Claims",
+            "url": "https://arxiv.org/pdf/2409.10713"
+          },
+          {
+            "title": "Althea: Human–AI Collaboration for Fact-Checking and ...",
+            "url": "https://arxiv.org/pdf/2602.11161"
+          },
+          {
+            "title": "Task-Oriented Automatic Fact-Checking with Frame-Semantics",
+            "url": "https://arxiv.org/pdf/2501.13288"
+          },
+          {
+            "title": "[2602.08893] AI-based Verbal and Visual Scaffolding in a Serious Game: Effects on Learning and Cognitive Load",
+            "url": "https://arxiv.org/abs/2602.08893"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\nAlthea is a retrieval-augmented system that integrates question generation, evidence retrieval, and structured reasoning to support user-driven evaluation of online claims.\n\nOn the AVeriTeC benchmark, Althea achieves a Macro-F1 of 0.44, outperforming standard verification pipelines and improving discrimination between supported and refuted claims.\n\nThe system was evaluated through a controlled user study and a longitudinal survey experiment (N=963), comparing three interaction modes that vary in the degree of scaffolding: an Exploratory mode with guided reasoning, a Summary mode providing synthesized verdicts, and a Self-search mode that offers procedural guidance without algorithmic intervention.\n\nResults show that guided interaction produces the strongest immediate gains in accuracy and confidence, while self-directed search yields the most persistent improvements over time.\n\nThe paper demonstrates how scaffolding and different interaction modes can enhance human-AI collaboration for fact-checking and critical reasoning about online claims."
+    ],
+    "durationSeconds": 6.656584731999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6e7d639e-a943-420c-844a-189845bb826d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T18:43:34.562Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VcuqMD5kdWUNMug7JVRh5j`</summary>
+
+```json
+{
+  "query": "arXiv 2604.04721 AI assistance reduces persistence independent performance deskilling RCT 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d9e2ad7-aea2-4b35-a1f0-b26c9b5f6f6c",
+  "isSidechain": false,
+  "requestId": "req_011CbCRMagS9zUGJC1Fj7huo",
+  "type": "assistant",
+  "uuid": "2ded96b0-b7a6-41f1-8416-9bb60075f39a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MsuZRt3GUFMXqdRoJfD3RA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 581,
+      "cache_read_input_tokens": 25380,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 25380,
+          "cache_creation_input_tokens": 581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T18:43:41.407Z_
+
+<details><summary>↩ Tool result · `toolu_01VcuqMD5kdWUNMug7JVRh5j`</summary>
+
+```text
+Web search results for query: "arXiv 2604.04721 AI assistance reduces persistence independent performance deskilling RCT 2026"
+
+Links: [{"title":"[2604.04721] AI Assistance Reduces Persistence and Hurts Independent Performance","url":"https://arxiv.org/abs/2604.04721"},{"title":"AI Assistance Reduces Persistence and Hurts Independent Performance","url":"https://arxiv.org/html/2604.04721v2"},{"title":"AI Assistance Reduces Persistence and Hurts Independent Performance","url":"https://ai-project-website.github.io/AI-assistance-reduces-persistence/"},{"title":"AI Assistance Reduces Persistence and Hurts Independent Performance | alphaXiv","url":"https://www.alphaxiv.org/overview/2604.04721v1"},{"title":"Scientists Find AI Reduces Human Cognition in Minutes - YouTube","url":"https://www.youtube.com/watch?v=UmhYQQCpxWk"},{"title":"Preprint. Under review.","url":"https://arxiv.org/pdf/2604.04721"},{"title":"AI Assistance Reduces Persistence and Hurts Independent Performance – Quinta’s weblog","url":"https://blog.quintarelli.it/2026/04/ai-assistance-reduces-persistence-and-hurts-independent-performance/"},{"title":"The Geometry of Learning Under AI Delegation","url":"https://arxiv.org/pdf/2603.02950"},{"title":"Does using artificial intelligence assistance accelerate skill decay and hinder skill development without performers’ awareness?","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11239631/"}]
+
+I found the paper you searched for! Here are the key findings:
+
+**Paper Overview:**
+The paper "AI Assistance Reduces Persistence and Hurts Independent Performance" was submitted on April 6, 2026 and authored by Grace Liu, Brian Christian, Tsvetomira Dumbalska, Michiel A. Bakker, and Rachit Dubey.
+
+**Key Results:**
+Through randomized controlled trials on human-AI interactions (N = 1,222), the researchers provide causal evidence for two key consequences of AI assistance: reduced persistence and impairment of unassisted performance. Across tasks including mathematical reasoning and reading comprehension, although AI assistance improves performance in the short-term, people perform significantly worse without AI and are more likely to give up.
+
+**Research Significance:**
+While concern about AI-induced deskilling has grown, prior evidence has been largely correlational or limited to small samples. The researchers provide the first large-scale causal evidence of this effect through randomized controlled trials on human-AI interactions.
+
+**Central Argument:**
+The paper argues that while a mentor scaffolds learning and prioritizes long-term growth, current AI systems are fundamentally short-sighted collaborators—optimized for providing instant and complete responses, without ever saying no (unless for safety reasons).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ded96b0-b7a6-41f1-8416-9bb60075f39a",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "e6b15e13-04c4-4d5e-8830-b3b83367e550",
+  "toolUseResult": {
+    "query": "arXiv 2604.04721 AI assistance reduces persistence independent performance deskilling RCT 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012CjC1wm3FiAA8ZSQke92wz",
+        "content": [
+          {
+            "title": "[2604.04721] AI Assistance Reduces Persistence and Hurts Independent Performance",
+            "url": "https://arxiv.org/abs/2604.04721"
+          },
+          {
+            "title": "AI Assistance Reduces Persistence and Hurts Independent Performance",
+            "url": "https://arxiv.org/html/2604.04721v2"
+          },
+          {
+            "title": "AI Assistance Reduces Persistence and Hurts Independent Performance",
+            "url": "https://ai-project-website.github.io/AI-assistance-reduces-persistence/"
+          },
+          {
+            "title": "AI Assistance Reduces Persistence and Hurts Independent Performance | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2604.04721v1"
+          },
+          {
+            "title": "Scientists Find AI Reduces Human Cognition in Minutes - YouTube",
+            "url": "https://www.youtube.com/watch?v=UmhYQQCpxWk"
+          },
+          {
+            "title": "Preprint. Under review.",
+            "url": "https://arxiv.org/pdf/2604.04721"
+          },
+          {
+            "title": "AI Assistance Reduces Persistence and Hurts Independent Performance – Quinta’s weblog",
+            "url": "https://blog.quintarelli.it/2026/04/ai-assistance-reduces-persistence-and-hurts-independent-performance/"
+          },
+          {
+            "title": "The Geometry of Learning Under AI Delegation",
+            "url": "https://arxiv.org/pdf/2603.02950"
+          },
+          {
+            "title": "Does using artificial intelligence assistance accelerate skill decay and hinder skill development without performers’ awareness?",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11239631/"
+          }
+        ]
+      },
+      "I found the paper you searched for! Here are the key findings:\n\n**Paper Overview:**\nThe paper \"AI Assistance Reduces Persistence and Hurts Independent Performance\" was submitted on April 6, 2026 and authored by Grace Liu, Brian Christian, Tsvetomira Dumbalska, Michiel A. Bakker, and Rachit Dubey.\n\n**Key Results:**\nThrough randomized controlled trials on human-AI interactions (N = 1,222), the researchers provide causal evidence for two key consequences of AI assistance: reduced persistence and impairment of unassisted performance. Across tasks including mathematical reasoning and reading comprehension, although AI assistance improves performance in the short-term, people perform significantly worse without AI and are more likely to give up.\n\n**Research Significance:**\nWhile concern about AI-induced deskilling has grown, prior evidence has been largely correlational or limited to small samples. The researchers provide the first large-scale causal evidence of this effect through randomized controlled trials on human-AI interactions.\n\n**Central Argument:**\nThe paper argues that while a mentor scaffolds learning and prioritizes long-term growth, current AI systems are fundamentally short-sighted collaborators—optimized for providing instant and complete responses, without ever saying no (unless for safety reasons)."
+    ],
+    "durationSeconds": 6.837372552000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2ded96b0-b7a6-41f1-8416-9bb60075f39a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T18:43:45.837Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CeThUUJV5vDYJqwZuoLfr8`</summary>
+
+```json
+{
+  "query": "\"Augmentation Trap\" Caosun Aral 2604.03501 AI cognitive offloading skill decay"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6b15e13-04c4-4d5e-8830-b3b83367e550",
+  "isSidechain": false,
+  "requestId": "req_011CbCRNSW5pU6wxMvnvNB2P",
+  "type": "assistant",
+  "uuid": "1af289f2-35f2-4122-9d8d-1defc590f11d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TBdiujce8xxD3qEeBzuq3V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 25961,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 805,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 25961,
+          "cache_creation_input_tokens": 805,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 805
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T18:43:53.374Z_
+
+<details><summary>↩ Tool result · `toolu_01CeThUUJV5vDYJqwZuoLfr8`</summary>
+
+```text
+Web search results for query: ""Augmentation Trap" Caosun Aral 2604.03501 AI cognitive offloading skill decay"
+
+Links: [{"title":"Human-Computer Interaction Papers on X: \"The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading Michael Caosun, Sinan Aral https://t.co/L4o6aWwSxe [𝚌𝚜.𝙷𝙲 𝚌𝚜.𝙰𝙸] https://t.co/6DzlDPaCgs\" / X","url":"https://x.com/Smartphones/status/2041332536639455585"},{"title":"The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading","url":"https://arxiv.org/html/2604.03501v1"},{"title":"[2604.03501] The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading","url":"https://arxiv.org/abs/2604.03501"},{"title":"Why letting AI do all the work kills creativity - Fast Company","url":"https://www.fastcompany.com/91536391/creative-risk-of-letting-ai-do-all-the-work"},{"title":"The Trap Is Real. So Was Every One Before It. - by Ashish","url":"https://tulsani.substack.com/p/the-trap-is-real-so-was-every-one"},{"title":"From metacognitive beliefs to strategy selection: does fake performance feedback influence cognitive offloading?","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8440305/"},{"title":"A role for metamemory in cognitive offloading","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6838677/"},{"title":"Supporting Cognition With Modern Technology: Distributed Cognition Today and in an AI-Enhanced Future","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9329671/"},{"title":"Offloading under cognitive load: Humans are willing to offload parts of an attentionally demanding task to an algorithm","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10198496/"},{"title":"Can humanoid robots be used as a cognitive offloading tool?","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12006637/"}]
+
+I found the research you're looking for! Here's information about "The Augmentation Trap" paper:
+
+## Overview
+
+The paper by Michael Caosun and Sinan Aral examines how AI tools raise worker productivity, but sustained use can erode expertise, and develops a dynamic model where a decision-maker chooses AI usage intensity for a worker over time, trading immediate productivity against the erosion of worker skill.
+
+## Key Findings
+
+Even a decision-maker who fully anticipates skill erosion rationally adopts AI when front-loaded productivity gains outweigh long-run skill costs, producing steady-state loss: the worker ends up less productive than before adoption.
+
+When managers are short-termist or worker skill has external value, the decision-maker's optimal policy turns steady-state loss into the augmentation trap, leaving the worker worse off than if AI had never been adopted.
+
+## The Cognitive Offloading Problem
+
+Cognitive offloading to AI erodes the very skills you're handing off—workers who lean heavily on AI for writing lose writing fluency. Junior employees de-skill faster than experienced ones, who have the professional reserves to retain their capabilities.
+
+The paper (arxiv: 2604.03501) was published in April 2026 by researchers at MIT Sloan School of Management.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1af289f2-35f2-4122-9d8d-1defc590f11d",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "6223c902-5349-4397-a700-55787ce777a4",
+  "toolUseResult": {
+    "query": "\"Augmentation Trap\" Caosun Aral 2604.03501 AI cognitive offloading skill decay",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016skB9yR6Tz3ib5dS92ASAo",
+        "content": [
+          {
+            "title": "Human-Computer Interaction Papers on X: \"The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading Michael Caosun, Sinan Aral https://t.co/L4o6aWwSxe [𝚌𝚜.𝙷𝙲 𝚌𝚜.𝙰𝙸] https://t.co/6DzlDPaCgs\" / X",
+            "url": "https://x.com/Smartphones/status/2041332536639455585"
+          },
+          {
+            "title": "The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading",
+            "url": "https://arxiv.org/html/2604.03501v1"
+          },
+          {
+            "title": "[2604.03501] The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading",
+            "url": "https://arxiv.org/abs/2604.03501"
+          },
+          {
+            "title": "Why letting AI do all the work kills creativity - Fast Company",
+            "url": "https://www.fastcompany.com/91536391/creative-risk-of-letting-ai-do-all-the-work"
+          },
+          {
+            "title": "The Trap Is Real. So Was Every One Before It. - by Ashish",
+            "url": "https://tulsani.substack.com/p/the-trap-is-real-so-was-every-one"
+          },
+          {
+            "title": "From metacognitive beliefs to strategy selection: does fake performance feedback influence cognitive offloading?",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8440305/"
+          },
+          {
+            "title": "A role for metamemory in cognitive offloading",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6838677/"
+          },
+          {
+            "title": "Supporting Cognition With Modern Technology: Distributed Cognition Today and in an AI-Enhanced Future",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9329671/"
+          },
+          {
+            "title": "Offloading under cognitive load: Humans are willing to offload parts of an attentionally demanding task to an algorithm",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10198496/"
+          },
+          {
+            "title": "Can humanoid robots be used as a cognitive offloading tool?",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12006637/"
+          }
+        ]
+      },
+      "I found the research you're looking for! Here's information about \"The Augmentation Trap\" paper:\n\n## Overview\n\nThe paper by Michael Caosun and Sinan Aral examines how AI tools raise worker productivity, but sustained use can erode expertise, and develops a dynamic model where a decision-maker chooses AI usage intensity for a worker over time, trading immediate productivity against the erosion of worker skill.\n\n## Key Findings\n\nEven a decision-maker who fully anticipates skill erosion rationally adopts AI when front-loaded productivity gains outweigh long-run skill costs, producing steady-state loss: the worker ends up less productive than before adoption.\n\nWhen managers are short-termist or worker skill has external value, the decision-maker's optimal policy turns steady-state loss into the augmentation trap, leaving the worker worse off than if AI had never been adopted.\n\n## The Cognitive Offloading Problem\n\nCognitive offloading to AI erodes the very skills you're handing off—workers who lean heavily on AI for writing lose writing fluency. Junior employees de-skill faster than experienced ones, who have the professional reserves to retain their capabilities.\n\nThe paper (arxiv: 2604.03501) was published in April 2026 by researchers at MIT Sloan School of Management."
+    ],
+    "durationSeconds": 7.531959835000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1af289f2-35f2-4122-9d8d-1defc590f11d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T18:43:56.433Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VqymJS335JWnKi9cs2Dfb9`</summary>
+
+```json
+{
+  "query": "scaffolded friction prevent AI deskilling longitudinal intervention study 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6223c902-5349-4397-a700-55787ce777a4",
+  "isSidechain": false,
+  "requestId": "req_011CbCRPKcdCH9yu4oTk689H",
+  "type": "assistant",
+  "uuid": "03dbad2c-7d32-4c99-8359-60b48ae0f5ae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eb4pZvvksXMAkdRmNrvHVH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 26766,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 26766,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T18:44:04.060Z_
+
+<details><summary>↩ Tool result · `toolu_01VqymJS335JWnKi9cs2Dfb9`</summary>
+
+```text
+Web search results for query: "scaffolded friction prevent AI deskilling longitudinal intervention study 2025 2026"
+
+Links: [{"title":"Cognitive Agency Surrender: Defending Epistemic","url":"https://arxiv.org/pdf/2603.21735"},{"title":"Avigail Ferdman, AI deskilling is a structural problem - PhilPapers","url":"https://philpapers.org/rec/FERADI-6"},{"title":"The tensions of AI shouldn’t come as a surprise in a system wired for speed and output | Wonkhe","url":"https://wonkhe.com/blogs/the-tensions-of-ai-shouldnt-come-as-a-surprise-in-a-system-wired-for-speed-and-output/"},{"title":"The Efficacy of AI Conversational Scaffolding in Individual ...","url":"https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1613285/full"},{"title":"The human touch in AI: optimizing language learning through self-determination theory and teacher scaffolding","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12268064/"},{"title":"Deskilling dilemma: brain over automation","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12909220/"},{"title":"Longitudinal effects ambient AI scribe use on documentation burden and financial productivity: A quasi-experimental study","url":"https://www.medrxiv.org/content/10.64898/2026.01.12.26343538.full.pdf"},{"title":"AI deskilling is a structural problem | AI & SOCIETY | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00146-025-02686-z"},{"title":"AI-induced Deskilling in Medicine: A Mixed-Method Review and Research Agenda for Healthcare and Beyond | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11352-1"}]
+
+I found several relevant research results related to your search query. Here's what the search returned:
+
+**Longitudinal Intervention Studies on AI and Deskilling:**
+
+A mixed-methods, longitudinal quasi-experimental study involved 150 intermediate Chinese EFL learners across three universities, stratified into three groups: AI with teacher scaffolding, AI only, and a control group using non-AI gamified platforms, with data collected over 16 weeks. Results showed that the AI with Scaffolding group achieved significantly greater and more sustained proficiency gains than both the AI Only and Control groups, with teacher scaffolding playing a pivotal role in contextualizing AI feedback and mitigating algorithmic rigidity.
+
+**Scaffolded Friction to Prevent Deskilling:**
+
+Research highlights the need for intentional friction and structures that make pause possible before habit settles. Additionally, the Department for Education's 2026 Generative AI Product Safety Standards for schools and colleges warn against cognitive deskilling and manipulative design patterns.
+
+**Recent Research on AI Deskilling:**
+
+Philosophers, educators, artists, and journalists are increasingly raising concerns about potential decline in epistemic and social capacities, with growing evidence of erosion in decision-making and analytical reasoning as a result of over-reliance on AI.
+
+These results show active research interest in understanding how scaffolding and intentional friction can mitigate AI-related skill loss during the 2025-2026 period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03dbad2c-7d32-4c99-8359-60b48ae0f5ae",
+  "isSidechain": false,
+  "promptId": "a503d6b7-5100-44d5-b9a4-da52f13d80d2",
+  "type": "user",
+  "uuid": "73fa0ae3-7d04-46a8-97eb-86d8a088ae28",
+  "toolUseResult": {
+    "query": "scaffolded friction prevent AI deskilling longitudinal intervention study 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PpuQSJdTjLfCVMaYpgh3Ww",
+        "content": [
+          {
+            "title": "Cognitive Agency Surrender: Defending Epistemic",
+            "url": "https://arxiv.org/pdf/2603.21735"
+          },
+          {
+            "title": "Avigail Ferdman, AI deskilling is a structural problem - PhilPapers",
+            "url": "https://philpapers.org/rec/FERADI-6"
+          },
+          {
+            "title": "The tensions of AI shouldn’t come as a surprise in a system wired for speed and output | Wonkhe",
+            "url": "https://wonkhe.com/blogs/the-tensions-of-ai-shouldnt-come-as-a-surprise-in-a-system-wired-for-speed-and-output/"
+          },
+          {
+            "title": "The Efficacy of AI Conversational Scaffolding in Individual ...",
+            "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1613285/full"
+          },
+          {
+            "title": "The human touch in AI: optimizing language learning through self-determination theory and teacher scaffolding",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12268064/"
+          },
+          {
+            "title": "Deskilling dilemma: brain over automation",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12909220/"
+          },
+          {
+            "title": "Longitudinal effects ambient AI scribe use on documentation burden and financial productivity: A quasi-experimental study",
+            "url": "https://www.medrxiv.org/content/10.64898/2026.01.12.26343538.full.pdf"
+          },
+          {
+            "title": "AI deskilling is a structural problem | AI & SOCIETY | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00146-025-02686-z"
+          },
+          {
+            "title": "AI-induced Deskilling in Medicine: A Mixed-Method Review and Research Agenda for Healthcare and Beyond | Artificial Intelligence Review | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10462-025-11352-1"
+          }
+        ]
+      },
+      "I found several relevant research results related to your search query. Here's what the search returned:\n\n**Longitudinal Intervention Studies on AI and Deskilling:**\n\nA mixed-methods, longitudinal quasi-experimental study involved 150 intermediate Chinese EFL learners across three universities, stratified into three groups: AI with teacher scaffolding, AI only, and a control group using non-AI gamified platforms, with data collected over 16 weeks. Results showed that the AI with Scaffolding group achieved significantly greater and more sustained proficiency gains than both the AI Only and Control groups, with teacher scaffolding playing a pivotal role in contextualizing AI feedback and mitigating algorithmic rigidity.\n\n**Scaffolded Friction to Prevent Deskilling:**\n\nResearch highlights the need for intentional friction and structures that make pause possible before habit settles. Additionally, the Department for Education's 2026 Generative AI Product Safety Standards for schools and colleges warn against cognitive deskilling and manipulative design patterns.\n\n**Recent Research on AI Deskilling:**\n\nPhilosophers, educators, artists, and journalists are increasingly raising concerns about potential decline in epistemic and social capacities, with growing evidence of erosion in decision-making and analytical reasoning as a result of over-reliance on AI.\n\nThese results show active research interest in understanding how scaffolding and intentional friction can mitigate AI-related skill loss during the 2025-2026 period."
+    ],
+    "durationSeconds": 7.622200257999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03dbad2c-7d32-4c99-8359-60b48ae0f5ae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-19T18:44:04.064Z_
+
+```json
+{
+  "parentUuid": "73fa0ae3-7d04-46a8-97eb-86d8a088ae28",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2f1c4a1d-6088-49e6-97a4-7d7ddb581ed3",
+  "timestamp": "2026-05-19T18:44:04.064Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-19T18:44:33.620Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to evaluate this proposal. Let me synthesize my findings:
+
+**Critical Issue: Venue Mismatch**
+CoRL 2026 is the Conference on Robot Learning, focused on robotics + ML. This proposal is about HCI/cognitive science - scaffolded friction to prevent cognitive deskilling in information evaluation. This has ZERO relevance to robot learning. The CoRL call for papers explicitly states "submissions without a robotics focus will be returned without review."
+
+This is a fatal issue that makes the acceptance probability essentially 0% at CoRL regardless of idea quality.
+
+However, let me still evaluate the idea quality on its merits (as if submitted to an appropriate venue like CHI, CSCW, or similar HCI conference), while flagging the venue mismatch.
+
+
+The novelty here is somewhat limited—the proposal essentially combines existing scaffolding techniques with a longitudinal AI-withdrawal study design to test whether friction prevents deskilling, which Rani et al. identified but never experimentally addressed. While the experimental design is solid, it's more of a methodological contribution than a conceptual breakthrough, and the core hypothesis that scaffolded friction helps is fairly intuitive rather than surprising.
+
+The work does tackle a genuinely important problem with practical implications for AI system design, though its impact is constrained by the narrow task domain and online participant sample. The literature review is exceptionally thorough and well-positioned, with all key papers accurately described. A simpler alternative would be to just require independent task attempts before showing AI output, which raises questions about whether the full scaffolding apparatus is necessary.
+
+I'm also wondering whether degrading AI assistance quality alone might prevent deskilling just as effectively. The core concern is whether 30 minutes of AI-assisted information evaluation can actually produce measurable deskilling—the prior deskilling work showed effects in 10 minutes, but those were simpler tasks like arithmetic. There's also the question of whether the proposed friction mechanism truly preserves skill-complementary learning, and whether the sample size of roughly 120 per condition has enough power to detect the interaction effects being tested.
+
+The study is well-designed and addresses a genuine gap, but the central finding—that forcing independent thinking while using AI preserves skills—feels intuitively obvious. For HCI venues like CHI or CSCW, this would likely land around 25-35% acceptance odds because the execution is solid but the conceptual novelty is limited. For CoRL 2026, though, it's fundamentally misaligned with the venue's scope.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f1c4a1d-6088-49e6-97a4-7d7ddb581ed3",
+  "isSidechain": false,
+  "requestId": "req_011CbCRQ7LTqVSGkNLupXvu5",
+  "type": "assistant",
+  "uuid": "7e6ee5e5-720e-4e9f-8f80-4214f39a4820",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ZgcgjnmZ2gBtBis4Ca27o",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1037,
+      "cache_read_input_tokens": 27792,
+      "output_tokens": 4749,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1037,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4749,
+          "cache_read_input_tokens": 27792,
+          "cache_creation_input_tokens": 1037,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1037
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-19T18:45:55.533Z_
+
+Now I have enough information to provide a thorough assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+```
+
+## ⚠️ 致命前置问题：投稿目标会议严重不匹配
+
+**CoRL (Conference on Robot Learning) 2026 的主题范围是机器人学习**——包括 robot perception, manipulation, navigation, locomotion, reinforcement learning for physical robots, robot foundation models 等。其 Call for Papers 明确指出 **"submissions without a robotics focus will be returned without review"**。
+
+本 proposal 是一个纯 HCI/认知科学研究：在线被试实验、scaffolded friction、cognitive deskilling prevention、trust calibration——**与机器人学习没有任何关联**。提交至 CoRL 将被 desk reject，不会进入审稿流程。
+
+**合适的目标会议**：CHI 2027、CSCW 2026/2027、FAccT 2027、IUI 2027、或 AAAI/IJCAI 的 Human-AI Interaction track。
+
+> 以下评估基于 idea 本身的质量（假设投到合适的 HCI 会议），但概率估计会将 CoRL 的 venue mismatch 作为致命因素纳入。
+
+---
+
+```
+【领域调研】:
+```
+
+- **[Rani et al., arXiv 2510.01537] (CHI 2026)**: 本 proposal 最核心的先驱工作。N=67 within-subjects 设计，发现 AI 辅助 misinformation detection 后 4 周 unassisted accuracy 下降 15.3%。无干预、无对照组。该论文 future work 明确呼吁 scaffolding interventions。Proposal 直接回应此呼吁——定位准确。
+
+- **[arXiv 2604.04721, Liu et al.] (under review 2026)**: 1,222 人 RCT，因果证据表明仅 10 分钟 AI 使用即可降低 arithmetic/reading comprehension 独立表现。提供了 deskilling 的大规模因果证据，但未测试任何干预。Proposal 准确引用。
+
+- **[Althea, arXiv 2602.11161, Churina et al.] (2026)**: N=963，比较三种 scaffolding 模式对 fact-checking 的改善持久性。Self-directed search 产生最持久的改进。但无 AI-withdrawal 设计，无 unrestricted-AI 条件，作者承认仅测量"short-term retention"。Proposal 引用准确，定位差异化清晰。
+
+- **[The Augmentation Trap, arXiv 2604.03501, Caosun & Aral] (2026)**: MIT Sloan 的形式化动态模型，证明理性 AI 采用仍可导致 steady-state skill loss。纯理论，无实证。Proposal 声称 operationalize 其 mitigation levers (training rate κ, workflow design β)——这一连接是合理的但需验证。
+
+- **[Adjust for Trust, arXiv 2502.13321, Srinivasan & Thomason] (IUI 2026)**: Trust-adaptive interventions 减少 38% inappropriate reliance，但仅测量 within-session reliance decisions，非 cross-session skill retention。Proposal 引用准确。
+
+- **[arXiv 2602.20206] Metacognitive Scripts in Programming (2026)**: Scaffolded friction 在编程领域，AI-blackout test 中 77% vs 39% failure，但无纵向 follow-up，不同领域。
+
+- **[Farach et al., arXiv 2604.08678] (2026)**: 388 人 field experiment，behavioral vs. cognitive scaffolding；single-session measurement，无纵向跟踪。
+
+- **调研总结**: AI-induced deskilling 在 2025-2026 已成为一个活跃且有实证支撑的研究领域，跨多个 domain（医学、编程、信息评估、算术）。**核心空白确实存在**：目前没有研究同时具备 (a) scaffolding 干预 + (b) AI-withdrawal longitudinal design + (c) information evaluation domain。但该空白的性质更接近"experimental design gap"（实验设计层的空缺），而非"conceptual gap"（概念层的突破）。
+
+---
+
+```
+【Trivial Alternative 检验】:
+```
+
+**存在明显的 trivial alternative 威胁。**
+
+1. **Mandatory independent attempt alone**: Proposal 的 scaffolded friction 条件包含三个组件（mandatory independent attempt, incremental hints, self-explanation gates）。但 Berger et al. (arXiv 2603.29866) 已证明仅"independent judgment first"就能跨 10 个数据集提升 accuracy。**最简单的 baseline——仅强制独立尝试（无 hints、无 self-explanation）——可能已经捕获了大部分 deskilling prevention 效果。** 如果 scaffolded friction 的效果主要来自 mandatory independent attempt 这一组件，那么 incremental hints 和 self-explanation gates 的增量价值就很有限。
+
+2. **Reduced AI quality**: 直接降低 AI 输出的完整度/质量（如只给 partial hints 而非完整答案）是否就足以防止 deskilling？这不需要复杂的 scaffolding 机制。
+
+3. **Proposal 的增量价值**: Proposal 的真正增量在于 *longitudinal AI-withdrawal design* + *多条件对比的 skill decay curve*。但这更多是实验设计的贡献，而非方法论或理论创新。
+
+---
+
+```
+【前提假设检验】:
+```
+
+**核心 claim 的逻辑链条中有两个关键的未验证假设：**
+
+1. **"30 分钟 AI 辅助足以产生可测量的 deskilling"**: 这是整个实验的基础假设。Rani et al. 用了 4 周 weekly sessions，deskilling RCT 用了 10 分钟但在算术/阅读理解（远比 information evaluation 更练习敏感的简单任务）。本 proposal 仅用 30 分钟单次 session 在 information evaluation 这一复杂认知任务上，能否诱导出足够大的 deskilling 效应以被检测到？**这一假设缺乏直接支撑。** 如果 unrestricted-AI 条件在 30 分钟后未产生显著 deskilling，整个研究的 scaffolding 对比就失去了意义。
+
+2. **"Trust calibration 是 deskilling severity 的有意义 moderator"**: Adjust for Trust 证明了 trust predicts within-session reliance behavior，但 trust → cross-session skill decay 的跳跃是一个额外的、未经验证的推断。Between-subjects 设计中 N≈120/condition 对 trust × condition × time 三重交互的统计功效可能不足。
+
+3. **"Scaffolded friction 的效果可以跨 4 周保持"**: 即使 scaffolding 在 immediate post-test 有效，1-week 和 4-week follow-up 时 scaffolding 条件是否仍优于 unrestricted-AI 条件是未知的。人类遗忘曲线可能抹平初始差异。
+
+---
+
+```
+【3 维度打分】:
+```
+
+### 1. Novelty: **中** (偏弱)
+
+**理由**: Proposal 正确识别了一个 empirical gap——没有研究同时结合 scaffolding intervention + AI-withdrawal longitudinal design + information evaluation。但这个 gap 的性质是 **experimental design gap**，而非 **conceptual novelty**。核心假设"强制认知参与可以防止认知退化"本质上是教育心理学中 desirable difficulties (Bjork, 1994) 和 generation effect 的直接应用——这并不新颖。
+
+- Rani et al. (CHI 2026) 已建立 deskilling 存在；
+- Althea (2602.11161) 已证明 scaffolding 的 improvement persistence；
+- Berger et al. (2603.29866) 已证明 independent judgment first 的有效性；
+- Metacognitive scripts (2602.20206) 已在编程中测试 scaffolded friction with AI-blackout。
+
+本 proposal 做的是把这些已有元素**组合到一个更完整的实验设计中**——这是 execution novelty，不是 idea novelty。如果核心结果是 positive（scaffolding reduces deskilling），大多数审稿人会说 **"I would have guessed this"**。
+
+### 2. Significance: **中**
+
+**理由**: AI deskilling 确实是 2025-2026 的热门问题，有广泛的社会关切（Frontiers 2026 framework, FAccT 2026, Lancet 2025 clinical evidence）。如果结果为 positive，提供的是 **实践指导**（"设计 AI 工具时加入 scaffolded friction"），这有价值但不令人意外。如果结果为 negative（scaffolding 不能防止 deskilling），这反而更有 significance，因为它挑战了领域的乐观假设。
+
+但 significance 受限于：
+- 任务域较窄（online information evaluation with Prolific workers）
+- 30 分钟单次 session 的生态效度有限
+- 发现难以推广到高风险专业领域（医学、法律）
+
+### 3. Related Work: **强**
+
+**理由**: 这是 proposal 最突出的优势。文献覆盖极其全面——Rani et al., Althea, deskilling RCT, Augmentation Trap, Adjust for Trust, CFF literature, Cognitive Agency Surrender, Farach et al., metacognitive scripts, Critical Inker, Berger et al.——关键论文均已核实为真实存在且描述准确。每篇的差异化定位（"Key distinction from X"）清晰且合理。唯一的小问题是 proposal 过度强调"no study combines (a)+(b)+(c)+(d)+(e)"——这种组合式 novelty claiming 容易被审稿人视为 gap-filling exercise。
+
+---
+
+```
+【概率估计】: 0% — 3%（中位 ~1%）[投稿 CoRL 2026]
+```
+
+```
+【概率估计（如投稿 CHI/CSCW 等合适 HCI 会议）】: 25% — 35%（中位 ~30%）
+```
+
+```
+【估计理由】:
+```
+
+**CoRL 概率（~1%）**: 本 proposal 与 CoRL 的主题范围（robot learning）完全不匹配。CoRL 明确声明 "submissions without a robotics focus will be returned without review"。这是一个纯 HCI/认知科学的在线用户实验，不涉及任何机器人、物理系统或 embodied learning。**Desk reject 是几乎确定的结果。**
+
+**HCI 会议概率（~30%）**: 如果投到 CHI/CSCW 等合适会议，idea 质量处于 25-35% 区间：
+- **方向正确**：deskilling prevention 是 timely 且重要的问题
+- **真实的 empirical gap**：longitudinal scaffolding + AI-withdrawal 设计确实无先例
+- **Related work 极为扎实**
+- **但 idea 内核是"组合式 gap-filling"**：将已有的 scaffolding 方法（CFF + Althea-style）放入一个更完整的实验框架，核心发现若 positive 不具备 surprising 性
+- **Trivial alternative 威胁**限制了上界：mandatory independent attempt alone 可能解释大部分效果
+- **30 分钟 treatment 能否诱导可测量 deskilling** 是一个基础性风险
+
+```
+【主要风险】:
+```
+
+1. **Venue mismatch（致命）**: 投 CoRL = desk reject。这是最直接、最不可补救的风险。
+2. **"I would have guessed this" 问题**: 核心发现（scaffolded friction reduces deskilling）高度符合直觉，缺乏 surprising element。审稿人可能认为这是 confirmatory study，novelty delta 不足以支撑 top-venue acceptance。
+
+---
+
+Sources:
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2026 About](https://www.corl.org/about-corl)
+- [Rani et al. - Dialogues with AI Reduce Beliefs in Misinformation](https://arxiv.org/abs/2510.01537)
+- [AI Assistance Reduces Persistence and Hurts Independent Performance](https://arxiv.org/abs/2604.04721)
+- [Althea: Human-AI Collaboration for Fact-Checking](https://arxiv.org/abs/2602.11161)
+- [The Augmentation Trap](https://arxiv.org/abs/2604.03501)
+- [Adjust for Trust](https://arxiv.org/abs/2502.13321)
+- [Cognitive Agency Surrender](https://arxiv.org/abs/2603.21735)
+- [Farach et al. - Scaffolding Human-AI Collaboration Field Experiment](https://arxiv.org/abs/2604.08678)
+- [Metacognitive Scripts for Programming](https://arxiv.org/abs/2602.20206)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e6ee5e5-720e-4e9f-8f80-4214f39a4820",
+  "isSidechain": false,
+  "requestId": "req_011CbCRQ7LTqVSGkNLupXvu5",
+  "type": "assistant",
+  "uuid": "d69b7d50-ed3b-43a4-b91a-20f2251c30db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ZgcgjnmZ2gBtBis4Ca27o",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1037,
+      "cache_read_input_tokens": 27792,
+      "output_tokens": 4749,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1037,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4749,
+          "cache_read_input_tokens": 27792,
+          "cache_creation_input_tokens": 1037,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1037
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When the AI Goes Away: Scaffolded Friction, Trust Calibration, and the Skill Decay Curve After AI-Assisted Infor…",
+  "leafUuid": "d69b7d50-ed3b-43a4-b91a-20f2251c30db",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaffolded friction interventions prevent AI-induced skill decay",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When the AI Goes Away: Scaffolded Friction, Trust Calibration, and the Skill Decay Curve After AI-Assisted Infor…",
+  "leafUuid": "d69b7d50-ed3b-43a4-b91a-20f2251c30db",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Scaffolded friction interventions prevent AI-induced skill decay",
+  "sessionId": "d11ddaf8-2ba2-4c8e-8dd9-248b4465425c"
+}
+```
+
+---

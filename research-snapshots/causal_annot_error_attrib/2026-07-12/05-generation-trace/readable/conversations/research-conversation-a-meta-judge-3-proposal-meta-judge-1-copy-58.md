@@ -1,0 +1,679 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/3c0c61e1-01cf-406e-99fa-c90dc1054b8a.jsonl`
+- **Structured JSON:** [`3c7ad6831a517673e412.json`](../../sessions/3c/3c7ad6831a517673e412.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:28:26.335Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:28:26.335Z",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to make a thorough assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778) (OpenReview 2025): 本 proposal 的直接前驱工作。通过控制错误注入测量 14 个开源模型的自纠正盲区，发现平均 64.5% 盲区率。\"Wait\" trick 减少盲区 89.3%。关键局限：仅覆盖数学推理（GSM8K/PRM800K），未涉及事实性声明。本 proposal 的核心定位就是填补这一领域空白。\n- [FActScore (Min et al., EMNLP 2023)](https://arxiv.org/abs/2305.14251): 将长文本分解为原子事实声明并逐条验证的经典方法。本 proposal 的 atomic claim 分解方法论直接依赖这一范式。\n- [VeriScore (Song et al., EMNLP 2024 Findings)](https://aclanthology.org/2024.findings-emnlp.552/): 评估可验证声明事实性的指标，proposal 中引用的 CAG 67.79%→79.80% 数据可能基于此指标。\n- [ConFix (Yuan et al., 2024)](https://arxiv.org/abs/2411.13343): 置信度引导的事实级自纠正方法，用高置信事实作为低置信事实的证据进行修正。本 proposal 的 SFC pipeline 明确引用 ConFix-style bootstrapping。\n- [Functional Dissociation (arXiv:2604.19974, April 2026)](https://arxiv.org/abs/2604.19974): 非常新的预印本，发现 LLM 中 uncertainty 和 correctness 由功能上不同的特征群体编码。这是本 proposal \"correctability ≠ confidence\" 理论动机的核心支撑。但该工作使用 SAE 白箱方法，而本 proposal 试图用黑箱行为特征复现这一区分。\n- [Confidence vs. Critique (ACL 2025)](https://aclanthology.org/2025.acl-long.203/): 分解自纠正能力为置信度和批判能力两个维度。与本 proposal 的 correctability-confidence 区分有重叠但角度不同。\n- [When Can LLMs Actually Correct Their Own Mistakes? (TACL 2025)](https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00713/125177): 关于 LLM 自纠正的综合调研，指出无外部反馈的内在自纠正极少成功。强化了 proposal 中\"盲区是真实问题\"的前提。\n- [FactSelfCheck (arXiv:2503.17229)](https://arxiv.org/abs/2503.17229): 事实级黑箱幻觉检测方法。与本 proposal 的检测部分直接竞争，但不涉及 correctability routing。\n- [Generalized Correctness Models (arXiv:2509.24988)](https://arxiv.org/abs/2509.24988): 从历史模式学习校准的模型无关正确性预测器。在概念上与本 proposal 的 correctability classifier 有交叉，但不针对 claim-level 事实纠正。\n- 调研总结: LLM 自纠正盲区在数学推理领域已被系统研究（Self-Correction Bench），但 **事实性声明层面的盲区确实尚无专门工作**。同时，claim-level 选择性处理（abstention/correction）领域非常拥挤，大量工作基于置信度；而 correctability-based routing 确实是一个未被直接探索的角度，虽然 \"Confidence vs. Critique\" 和 \"Functional Dissociation\" 已经从不同方向触及了 confidence ≠ correctness 的主题。\n\n【Trivial Alternative 检验】:\n存在两个重要的 trivial alternative 威胁：\n\n1. **RAG (Retrieval-Augmented Generation)**: 如果事实性错误源于\"知识缺口\"（proposal 自身的论点），那么最直接的解决方案是通过外部检索补充知识，而不是构建 correctability classifier 来决定哪些声明可以自纠正。RAG 在 knowledge-intensive generation 中已经是标准做法。Proposal 未直接讨论为什么在有 RAG 的情况下仍需要 correctability routing，这是一个显著的增量价值问题。\n\n2. **简单置信度阈值**: Proposal 声称\"6+ 篇论文隐式假设 confidence 足以进行 claim-level routing\"，但如果置信度阈值在实践中已经\"够用\"（即使理论上不完美），那么构建更复杂的 correctability classifier 的增量收益可能很小。Proposal 设定的 AUROC 阈值（>0.58 positive, >0.63 strong）非常保守，说明作者自己也预期增量有限。\n\n增量价值在于：如果能实证证明 correctability 和 confidence 在事实声明层面确实存在 dissociation，且这一 dissociation 有实际应用价值（correctability routing 显著优于 confidence routing），那么就有意义。但这是一个\"如果\"。\n\n【前提假设检验】:\n核心逻辑链中有以下未经验证的关键假设：\n\n1. **\"事实性错误源于知识缺口，数学错误源于激活失败\"** — 这个二元对立过于简化。事实性错误也可能是激活失败（模型\"知道\"正确答案但未正确生成），数学错误也可能是知识缺口（模型缺乏某些推理 pattern）。TACL 2025 survey 和 Self-Alignment for Factuality (2024) 都指出 LLM 中存在大量 \"知道但说错\" 的情况。如果 \"Wait\" trick 对很多事实性声明也有效（因为那些也是激活失败），proposal 的核心叙事就会被削弱。\n\n2. **黑箱行为特征可以捕捉 correctability** — Functional Dissociation 论文 (2604.19974) 使用 SAE 分析内部表征才发现了这一区分。Proposal 试图仅用 self-consistency、verbal confidence、claim type 等黑箱特征来训练 correctability classifier，能否捕捉到白箱方法发现的区分，这是一个很强的假设。如果不能，classifier 性能会退化到接近 confidence baseline。\n\n3. **\"Correctability 是 claim-level 稳定属性\"** — Proposal 假设一个声明是否可纠正是该声明的内在属性。但 correctability 可能高度依赖于模型、prompt、上下文和解码策略，缺乏跨设置的稳定性。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — \n   - 将 Self-Correction Bench 的盲区分析从数学推理扩展到事实性声明确实填补了一个明确的空白，这一点经调研证实（Self-Correction Bench 仅覆盖 GSM8K/PRM800K）。\n   - Correctability-based routing vs. confidence-based routing 的区分是该 proposal 最具新意的贡献，且得到 Functional Dissociation (arXiv:2604.19974) 的理论支撑。\n   - 但是：(a) 从数学到事实领域的\"扩展\"本身是比较直接的方法论迁移，不涉及根本性的方法创新；(b) \"confidence ≠ correctness\" 的洞察并非 proposal 原创，而是来自 Functional Dissociation 论文；(c) Confidence vs. Critique (ACL 2025) 已从类似角度分解了自纠正能力。Proposal 的贡献更多是\"在新领域验证已有洞察\"而非\"提出新洞察\"。\n\n2. **Significance: 中** — \n   - 研究问题 — \"事实性声明的自纠正盲区是否与数学推理不同\" — 是 genuinely important 的。TACL 2025 survey 指出 intrinsic self-correction 极少成功，理解为什么以及在哪些条件下失败具有实际意义。\n   - 但核心发现如果是 positive（\"Wait\" 对事实性声明无效，盲区在 claim type 间异质），审稿人大概率会说 **\"I would have guessed this\"** — 直觉上，知识缺口型错误不太可能被简单 prompt trick 修复，这并不令人意外。\n   - 如果是 negative（\"Wait\" 也对事实有效），这反而更 surprising 也更有影响力，但会削弱 proposal 后半部分 correctability classifier 的必要性。\n   - 实际应用层面，claim-level routing 的增量收益相对于 RAG 或简单 confidence thresholding 可能有限。\n\n3. **Related Work: 强** — \n   - Proposal 对竞争领域（SA, CSS, CLC, CURE, CAG）的定位非常清晰，明确指出它们都基于 confidence/calibration 而自己使用 correctability。\n   - 对 Self-Correction Bench、ConFix、Functional Dissociation 等核心依赖工作的引用准确（arXiv:2604.19974 确认存在且描述准确）。\n   - Dual-outcome 设计和 pre-registered thresholds 显示了对方法论严谨性的重视。\n   - 唯一缺憾是对 RAG 这一最直接的 trivial alternative 缺乏讨论。\n\n【概率估计】: 22% - 32%，中位 27%\n\n【估计理由】: \nNovelty 是中档 — 有真实的领域空白（事实级盲区无人做）和新角度（correctability routing），但核心洞察（confidence ≠ correctness）来自他人工作，且从数学→事实的迁移相对直接。Significance 也是中档 — 问题重要但预期发现方向符合直觉（\"I would have guessed this\"），且 RAG 作为 trivial alternative 的威胁显著。Related Work 是强项但无法拉高 idea 质量上限。\n\n**限制上界的维度是 Significance**: 即使 benchmark 完美、classifier 达标，\"事实性错误更难自纠正\"这一结论对领域的推进力有限，因为 (a) 符合直觉，(b) 实践中 RAG 已部分解决这一问题。概率上界被卡在 ~32% 因为缺乏 \"surprising\" 的核心发现潜力。\n\n【主要风险】:\n1. **\"I would have guessed this\" 风险**: 核心假设（事实性盲区比数学更顽固、\"Wait\" 对事实无效）高度符合直觉，审稿人可能认为 positive results 确认了显而易见的东西，缺乏 surprising 的发现。\n2. **RAG trivial alternative 风险**: 审稿人很可能会问\"为什么不直接用检索增强来修复知识缺口，而要建 correctability classifier？\"，proposal 目前缺乏对这一最强 trivial alternative 的回应。\n```\n\nSources:\n- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)\n- [Self-Correction Bench on OpenReview](https://openreview.net/forum?id=dLz0bnmL2r)\n- [FActScore (Min et al., 2023)](https://arxiv.org/abs/2305.14251)\n- [VeriScore (Song et al., EMNLP 2024 Findings)](https://aclanthology.org/2024.findings-emnlp.552/)\n- [Fact-Level Confidence Calibration and Self-Correction (ConFix)](https://arxiv.org/abs/2411.13343)\n- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)\n- [Confidence vs. Critique (ACL 2025)](https://aclanthology.org/2025.acl-long.203/)\n- [When Can LLMs Actually Correct Their Own Mistakes? (TACL 2025)](https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00713/125177)\n- [FactSelfCheck (arXiv:2503.17229)](https://arxiv.org/abs/2503.17229)\n- [Generalized Correctness Models (arXiv:2509.24988)](https://arxiv.org/abs/2509.24988)\n- [I-CALM: Confidence-Aware Abstention](https://arxiv.org/abs/2604.03904)\n- [Intrinsic Self-Correction via Mechanistic Interpretability](https://arxiv.org/abs/2505.11924)\n- [OpenFActScore](https://arxiv.org/abs/2507.05965)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient research to evaluate this proposal. Let me compile my analysis.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778) (NeurIPS 2025 Workshop): 定义了 self-correction blind spot 概念，测试 14 个模型在 GSM8K/PRM800K 上的平均盲区率 64.5%。\"Wait\" trick 降低 89.3%。这是本 proposal 直接延伸的基础工作，但仅限数学推理任务。\n- [ConFix - Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/abs/2411.13343) (2024): 用高置信事实作为知识来改善低置信事实，无需外部检索。本 proposal 的 SFC 框架借鉴了 ConFix 的 bootstrapping 方法。\n- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974) (2026.04): 用 Sparse Autoencoder 发现 uncertainty 和 correctness 由功能不同的特征群编码。关键发现：pure incorrectness features 在被抑制时对准确率几乎无影响（\"functionally inert\"），而 pure uncertainty features 抑制后准确率严重下降。本 proposal 引用此文支持 correctability ≠ confidence 的论点。\n- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/abs/2602.11908) (2026.02): 将 response 分解为原子声称，用更抽象的高置信表述替代不确定声称。AURC 提升最高 27.73%。\n- [Conformal Linguistic Calibration (CLC) (arXiv:2502.19110)](https://arxiv.org/abs/2502.19110) (2025.02): 在 claim 级别以牺牲具体性来换取可控的事实精度。\n- [CURE](https://arxiv.org/html/2604.22271v1) (2025-2026): 多阶段训练对齐模型置信度与声称正确性，biography generation 上 claim-level accuracy 提升达 39.9%。用 calibrated confidence 做 selective prediction。\n- [I-CALM (arXiv:2604.03904)](https://arxiv.org/abs/2604.03904) (2026.04): 用 prompt 激励框架引导 verbal confidence + abstention，减少 false-answer rate。\n- [Decomposing LLM Self-Correction (arXiv:2601.00828)](https://arxiv.org/abs/2601.00828) (2026.01): 发现 Accuracy-Correction Paradox——弱模型的内在纠错率反而是强模型的 1.6 倍。Error detection ≠ correction success（Claude 检测 10% 错误但纠正 29%）。\n- [Internal Confidence Signals (arXiv:2604.22271)](https://arxiv.org/html/2604.22271v1) (2026.04): PANL activations 可预测模型能纠正哪些错误，但所有 behavioral signals 均失败。\n- 调研总结: claim-level factuality 控制已成为 2025-2026 年热门方向，SA/CLC/CURE/I-CALM 等工作形成了以 confidence-based abstention/abstraction 为主的范式。Self-correction blind spot 概念限于数学推理，尚未被系统性地迁移到 factual claims。但\"correctability prediction\"这一子方向有来自 internal representation 研究的证据（Functional Dissociation, PANL），且这些证据指向 behavioral signals 的局限性——恰恰是本 proposal 计划使用的方法。\n\n【Trivial Alternative 检验】:\n存在两个有力的 trivial alternative：\n\n1. **Retrieval-Augmented Generation (RAG)**：proposal 的核心前提是 factual errors 源于 genuine knowledge gaps。如果模型缺乏知识，最直接的解决方案是在生成时提供外部知识（RAG），而非在事后预测哪些错误\"可纠正\"再尝试修复。RAG 从根源解决问题，成本更低且更可靠。Proposal 完全没有讨论为什么 correctability-guided post-hoc correction 优于 RAG。\n\n2. **Confidence threshold + RAG hybrid**：对低置信声称直接触发检索验证/补充，而非训练 correctability classifier 再决定是否 self-correct。这是现有系统已在工业中广泛使用的方案。\n\n增量价值：proposal 的增量价值主要在于 *分析性贡献*（blind spot 率的 claim-type 异质性、\"Wait\" 在 factual domain 的消融），而非 *系统性贡献*（SFC framework）。但分析性贡献的 novelty 受限于结果的可预测性（见下）。\n\n【前提假设检验】:\n核心逻辑链中有三个关键的未经验证假设：\n\n1. **\"Behavioral features 能捕获 correctability\"假设**：这是最关键的假设裂缝。Proposal 引用 Functional Dissociation (arXiv:2604.19974) 支持\"correctability ≠ confidence\"，但该论文的核心发现是需要 *white-box internal features*（通过 SAE 提取）才能区分两者。更严重的是，arXiv:2604.22271 明确发现 PANL activations 能预测 correctability 而 **所有 behavioral signals 均失败**。Proposal 却计划用 self-consistency、verbal confidence 等 behavioral features 训练 correctability classifier——这直接与其引用的 mechanistic evidence 矛盾。Pre-registered AUROC threshold 低至 0.58（接近随机 0.5）恰恰反映了作者对此的不自信。\n\n2. **\"知识缺口错误在 self-correction 中的行为与 activation failure 不同\"假设**：这在直觉上合理，但是一个 *expected finding*。数学推理错误和事实知识缺口本身就是不同类型的认知失败，reviewer 读到\"Wait 对 factual claims 无效\"时更可能说\"I would have guessed this\"而非\"surprising\"。\n\n3. **\"Claim-type 异质性具有可操作价值\"假设**：即使 blind spot 率在 entity/temporal/numerical/relational 类型间确实不同，这一发现是否足以导出有意义的 downstream improvement？如果所有类型的 blind spot 率都很高（只是程度不同），那么异质性发现的 actionable insight 有限。\n\n【3 维度打分】:\n1. **Novelty: 弱-中** — \n   - \"将 blind spot 从数学迁移到 factual claims\"是自然的 next-step extension，而非 surprising insight。Self-Correction Bench (arXiv:2507.02778) 发表后，这一方向是可预见的后续工作。\n   - \"Correctability-based routing vs confidence-based routing\"是有趣的概念区分，但 proposal 选择的 behavioral classifier 路线恰好是已有证据（arXiv:2604.22271, arXiv:2604.19974）表明 *不太可能成功* 的方向。如果 classifier 性能确实很弱（AUROC ~0.58），这本身验证了 Functional Dissociation 的预测，但此时 proposal 变成了\"验证已有理论的推论\"，novelty 进一步降低。\n   - SFC framework 是 ConFix bootstrapping + confidence-based abstention 的组合，组件均来自现有工作。\n   - 在 SA/CLC/CURE/CAG/I-CALM 已覆盖的 claim-level factuality 空间中，proposal 的 *新增维度*（correctability vs confidence）虽有理论基础，但实际操作中可能无法与 confidence 拉开差距。\n\n2. **Significance: 中** — \n   - 研究问题本身有价值：blind spot 是否迁移到 factual domain 是一个值得回答的问题，且分析结果（per-claim-type blind spot rates, \"Wait\" 消融）对社区有参考意义。\n   - 但对领域的影响力受限于：(a) RAG 作为更根本的解决方案削弱了 post-hoc correction 路线的战略重要性；(b) 分析性发现的可预测性降低了其影响力；(c) SFC 作为 downstream application 的增量贡献有限。\n   - 正面：如果 \"Wait\" 意外地对某些 factual claim types 有效，这会是一个 genuinely surprising finding，但 proposal 自己也承认这不太可能。\n\n3. **Related Work: 强** — \n   - 对 claim-level factuality 空间的覆盖非常全面（SA, CSS, CLC, CURE, CAG 均有提及）。\n   - 准确引用了 Self-Correction Bench 的具体数据（64.5%, 89.3%）、CURE 的 39.9%、CAG 的 VeriScore 数据，经调研验证基本准确。\n   - Functional Dissociation (arXiv:2604.19974) 确实存在且描述准确。\n   - 对 ConFix 的定位和使用恰当。\n   - 差异化定位清晰：现有工作用 confidence 做 abstention/abstraction，本 proposal 用 correctability 做 correction/abstention routing。\n   - 唯一的弱点是\"correction suppression (19-90% suppression rates)\"这一引用未能在调研中找到确切来源。\n\n【概率估计】: [18% - 28%] 中位 22%\n\n【估计理由】: \nNovelty 是主要限制因素。核心贡献在三个层面都面临 novelty 挑战：(1) blind spot 迁移是 predictable extension；(2) correctability classifier 用 behavioral features 实现，与自身引用的 mechanistic evidence 矛盾，且性能预期很低；(3) SFC 是现有组件的组合。Significance 中等——问题有价值但 RAG 的存在严重削弱了 post-hoc correction 路线的重要性。Related Work 是唯一的强项。综合来看，这是一个 well-executed incremental proposal，形式完善度很高（dual-outcome 设计、pre-registered thresholds、全面的 baseline 覆盖），但透过形式看内核，核心发现如果 positive，审稿人更可能说\"I would have guessed this\"而非\"surprising\"。上界被 novelty 锁定在 ~28%。\n\n【主要风险】: \n1. **Behavioral classifier 的内在矛盾**：proposal 引用的 mechanistic evidence 恰恰预测其选择的 behavioral 方法论不太可能成功。如果 AUROC 仅达 0.58（接近随机），reviewer 会质疑 correctability prediction 这条路线本身是否 viable——而 proposal 预注册的 threshold 暗示作者也预期如此。这使得\"correctability ≠ confidence is an important finding\"这一兜底论点变成了\"验证别人已经发表的理论\"。\n2. **RAG 作为未讨论的 trivial alternative**：对于 genuine knowledge gap 导致的错误，reviewer 会自然地问\"为什么不直接用 RAG？\"proposal 完全没有 address 这一点，这在审稿中是一个高概率被提出的 fundamental concern。\n```\n\nSources:\n- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)\n- [ConFix - Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/abs/2411.13343)\n- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)\n- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/pdf/2602.11908)\n- [Conformal Linguistic Calibration (CLC) (arXiv:2502.19110)](https://arxiv.org/abs/2502.19110)\n- [I-CALM (arXiv:2604.03904)](https://arxiv.org/abs/2604.03904)\n- [Decomposing LLM Self-Correction (arXiv:2601.00828)](https://arxiv.org/pdf/2601.00828)\n- [Internal Confidence Signals (arXiv:2604.22271)](https://arxiv.org/html/2604.22271v1)\n- [VeriScore (EMNLP 2024)](https://aclanthology.org/2024.findings-emnlp.552/)\n- [CURE - Think Through Uncertainty (arXiv:2604.12046)](https://arxiv.org/html/2604.12046)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have enough research to make a well-informed assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778) (2025): 直接前驱工作。定义了\"自纠正盲区\"概念，测试 14 个模型发现平均 64.5% 的盲区率，并发现简单追加 \"Wait\" 可减少 89.3% 的盲区。本 proposal 的核心框架（blind spot 定义、error injection 方法论、\"Wait\" ablation）几乎完全借自此文。\n- [ConFix: Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/pdf/2411.13343) (2024): 已经实现了 fact-level confidence calibration + 用高置信度 fact 作为知识来修正低置信度 fact 的自纠正方法。跨 4 个数据集、6 个模型验证有效。本 proposal 的 SFC 模块中 \"ConFix-style bootstrapping\" 直接依赖此工作。\n- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/pdf/2602.11908) (2025): 提出 Atom-wise Selective Abstraction，将回答分解为 atomic claims 并替换不确定的 claims 为更抽象的表述。在 FactScore 和 LongFact-Objects 上 AURC 提升 27.73%。这是 claim-level selective handling 的直接竞争者。\n- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974) (2026): 发现 LLM 内部 uncertainty 和 correctness 由功能上不同的 feature 群编码。Pure uncertainty features 是功能必需的，而 pure incorrectness features 虽有统计显著的激活差异，但抑制后对准确率几乎无影响。本 proposal 将此白盒发现作为理论动机，但自身用的是黑盒行为特征。\n- [Mitigating LLM Hallucinations via Conformal Abstention (arXiv:2405.01563)](https://arxiv.org/abs/2405.01563) (2024): 使用 conformal prediction 开发 abstention procedure，在多个 QA 数据集上可靠地限制 hallucination rate。代表 confidence-based abstention 的成熟方法。\n- [Confidence v.s. Critique (arXiv:2412.19513)](https://arxiv.org/pdf/2412.19513) (2024): 已将自纠正能力分解为 confidence 和 critique 两个维度进行分析，与本 proposal 的\"correctability ≠ confidence\"主张在精神上高度相似。\n- [Understanding Reasoning via Strategic Information Allocation (arXiv:2603.15500)](https://arxiv.org/pdf/2603.15500) (2026): 从信息分配角度解释 \"Wait\"/\"Aha\" moment 机制，认为本质是 epistemic verbalization（不确定性的外显化）。\n\n- 调研总结：LLM 自纠正领域已非常拥挤。Self-Correction Bench 已系统化定义了数学推理的 blind spot 并提出 \"Wait\" 解法；ConFix 和 SA 已分别实现了 fact-level 的 confidence-guided correction 和 claim-level abstraction；Functional Dissociation 论文已从 mechanistic interpretability 角度证明 uncertainty ≠ correctness。本 proposal 试图占据的 niche——\"fact-level blind spot analysis + correctability-based routing\"——是这些已有工作的交叉地带，而非未开垦的领域。\n\n【Trivial Alternative 检验】:\n存在显著的 trivial alternative 威胁。最直接的替代方案是：**直接用 ConFix 的 confidence-based fact-level correction + SA 的 claim-level abstention 组合**，无需训练额外的 correctability classifier。这个组合已在各自论文中展示了强性能（ConFix 跨 4 数据集有效，SA 在 AURC 上提升 27.73%）。\n\n本 proposal 的增量价值完全取决于 correctability classifier 能否显著优于 confidence-based routing。但 proposal 自身设定的 AUROC 阈值极度保守——positive 仅 >0.58（比随机猜测 0.5 高 0.08），strong 仅 >0.63——这暗示作者自己也预期信号非常弱。在这种预期下，correctability-based routing 对 confidence-based routing 的增量价值可能微乎其微，甚至在实际应用中不足以 justify 额外的分类器训练成本。\n\n【前提假设检验】:\n核心 claim 的逻辑链中有两个关键的未验证假设：\n\n1. **\"factual errors stem from genuine knowledge gaps rather than activation failures\"**——这是区分 factual blind spot 和 math blind spot 的核心前提，但缺乏实证支持。实际上，许多 factual errors 可能也是 activation failures（模型\"知道\"正确答案但没有在特定上下文中激活）。如果 \"Wait\" trick 对 factual claims 也有效（Self-Correction Bench 的 89.3% 减少率暗示 activation failure 可能是 universal 的），那么整个 \"factual blind spot 是不同机制\" 的假设就会坍塌，从而削弱整篇论文的 raison d'être。\n\n2. **\"黑盒行为特征可以捕捉 correctability 信号\"**——Functional Dissociation 论文使用 sparse autoencoders 在白盒层面识别了功能不同的 feature populations。但本 proposal 要用 self-consistency、verbal confidence、claim type、specificity 这些黑盒行为特征来训练 correctability classifier。从白盒 mechanistic insight 到黑盒 behavioral classifier 之间的 bridge 是不成立的——即使 uncertainty 和 correctness 在内部由不同 features 编码，这不意味着 behavioral signals 能有效区分 correctable vs. uncorrectable claims。实际上，这些行为特征中的前两个（self-consistency, verbal confidence）本身就是 confidence 的 proxy，这进一步模糊了 correctability 和 confidence 的边界。\n\n【3 维度打分】:\n  1. Novelty: 弱 — 核心框架（blind spot 定义、error injection、\"Wait\" ablation）直接借自 Self-Correction Bench (arXiv:2507.02778)，本质上是从 math reasoning 到 factual claims 的 domain transfer。Correctability 与 confidence 的区分在概念上已被 Confidence v.s. Critique (arXiv:2412.19513) 和 Functional Dissociation (arXiv:2604.19974) 探索过。Claim-level selective handling 方面 SA/ConFix/CLC 等已形成密集覆盖。剔除 surface differences 后，本 proposal 的真实 novelty delta 仅在于\"将 correctability 预测用于 claim routing\"这一组合创新，但这更接近 engineering contribution 而非 conceptual breakthrough。\n\n  2. Significance: 中 — 研究问题本身（factual self-correction 的 blind spot 特性）是有实际意义的，对 LLM 可靠性研究有直接关联。但核心发现的\"惊讶度\"很低：如果 blind spot 在 factual claims 中也存在（大概率），审稿人会说 \"I would have guessed this\"；如果 \"Wait\" 对 factual claims 效果差（proposal 的假设），这也是一个直觉上可预期的结果。预注册的 AUROC 阈值（>0.58）极低，即使达到也难以说明实际效用。整体而言，该工作更像是对已知现象的系统化验证，而非开辟新方向。\n\n  3. Related Work: 中 — Proposal 展示了对该领域相当多工作的了解（SA, CSS, CLC, CURE, CAG, ConFix, Functional Dissociation, Self-Correction Bench），定位差异化也有明确尝试（\"confidence-based vs. correctability-based\"）。但部分引用的工作缩写（CSS, CLC, CURE, CAG）在公开文献中难以一一对应验证——这些可能是非常新的预印本或非标准缩写。此外，缺失了一些重要的直接相关工作：Confidence v.s. Critique (arXiv:2412.19513) 已经从 confidence/critique 两维度分解了自纠正能力，与本 proposal 的核心区分高度相关但未被讨论。\n\n【概率估计】: [15% - 25%] 中位 20%\n【估计理由】: Novelty 是限制上界的关键维度。核心框架和概念均有明确的直接前驱工作（Self-Correction Bench 提供了 blind spot 方法论，Functional Dissociation 提供了 correctability ≠ confidence 的理论动机，ConFix/SA 提供了 claim-level correction/abstention 的实践方案）。本 proposal 的真实贡献是将这些已有组件在 factual claim domain 中组合起来——这是合理的系统化研究，但在 top venue 审稿中通常被视为 incremental。Significance 维度的\"低惊讶度\"进一步压低了上界：无论核心假设被证实还是证伪，审稿人的反应大概率是 \"this is what I would have expected\"。此外，proposal 自身设定的极低 AUROC 阈值（>0.58 即为 positive）反映了作者对信号强度的悲观预期，这会被审稿人注意到并质疑实际效用。\n【主要风险】:\n1. **\"Wait\" trick 可能对 factual claims 也有效**——如果 \"Wait\" 在 factual domain 也能显著减少 blind spot（Self-Correction Bench 在 math 上的 89.3% 减少率暗示这是可能的），整篇论文的\"factual blind spot 需要不同解法\"的核心叙事将坍塌，SFC 的必要性被 trivialize。\n2. **Correctability classifier 的增量价值过小**——如果 AUROC 仅达到 ~0.58-0.63，而简单的 confidence threshold 方法（已有的 SA/ConFix baseline）已经在 claim-level routing 上表现良好，审稿人会质疑为什么需要一个额外的 correctability 分类器来获得 marginal improvement。\n```\n\nSources:\n- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)\n- [ConFix: Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/pdf/2411.13343)\n- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/pdf/2602.11908)\n- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)\n- [Mitigating LLM Hallucinations via Conformal Abstention (arXiv:2405.01563)](https://arxiv.org/abs/2405.01563)\n- [Confidence v.s. Critique (arXiv:2412.19513)](https://arxiv.org/pdf/2412.19513)\n- [Understanding Reasoning via Strategic Information Allocation (arXiv:2603.15500)](https://arxiv.org/pdf/2603.15500)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability-Guided Selective Correction\n\n## Description\nWe propose FactBlind, the first benchmark and analysis framework for measuring the self-correction blind spot at fact-level granularity in knowledge-intensive generation. While the blind spot phenomenon has been characterized for mathematical reasoning at problem level (64.5% average failure rate on GSM8K/PRM800K), and the 'Wait' trick reduces this by 89.3% through an activation mechanism, no work has examined whether these patterns hold for atomic factual claims in long-form text — where errors often stem from genuine knowledge gaps rather than activation failures that prompt tricks can resolve. The recent discovery of correction suppression (19–90% suppression rates when false claims are embedded in task contexts) further suggests the problem in knowledge-intensive generation operates through mechanisms distinct from math. Meanwhile, the selective claim-level handling space has become remarkably crowded — SA, CSS, CLC, CURE (39.9% claim-level accuracy on biography generation), and CAG (VeriScore 67.79%→79.80%) all use confidence/calibration for abstention — while the correctability-based correction paradigm remains entirely unexplored, despite mechanistic evidence that uncertainty and correctness are encoded by functionally distinct feature populations (Functional Dissociation, arXiv:2604.19974). We decompose LLM-generated biographies, QA responses, and report summaries into atomic claims and measure per-claim blind spot rates across 8 models, using both controlled error injection (entity, temporal, numerical, relational) and naturally occurring hallucinations from FActScore-annotated data, with a dedicated 'Wait' ablation testing whether activation-based interventions transfer from math to factual claims. Our central hypothesis — that the blind spot is heterogeneous across claim types and resistant to simple activation prompts — is tested rather than assumed; if 'Wait' proves effective for factual claims, we report this as an important simplifying finding. We then train a black-box behavioral correctability classifier using self-consistency, verbal confidence, claim type, and specificity features, with pre-registered AUROC thresholds (>0.58 positive, >0.63 strong) anchored against DeepMind's white-box baseline (0.614) and behavioral confidence baseline (0.524). Even modest classifier performance reveals the correctability-confidence dissociation, which is itself an important finding given 6+ papers implicitly assume confidence suffices for claim-level routing. Finally, we build Selective Fact Correction (SFC) as a downstream application: claims predicted as correctable undergo ConFix-style bootstrapping while blind-spot claims are flagged for abstention, compared against no-correction, naive self-correction, SA, CURE reference results, confidence-threshold correction, and 'Wait'-augmented self-correction baselines. Unlike SA/CSS/CLC/CURE/CAG which exclusively abstract or suppress, SFC can recover factual accuracy for correctable claims while avoiding destructive correction for uncorrectable ones.\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:28:26.339Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:28:26.339Z",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:28:26.354Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to make a thorough assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778) (OpenReview 2025): 本 proposal 的直接前驱工作。通过控制错误注入测量 14 个开源模型的自纠正盲区，发现平均 64.5% 盲区率。"Wait" trick 减少盲区 89.3%。关键局限：仅覆盖数学推理（GSM8K/PRM800K），未涉及事实性声明。本 proposal 的核心定位就是填补这一领域空白。
+- [FActScore (Min et al., EMNLP 2023)](https://arxiv.org/abs/2305.14251): 将长文本分解为原子事实声明并逐条验证的经典方法。本 proposal 的 atomic claim 分解方法论直接依赖这一范式。
+- [VeriScore (Song et al., EMNLP 2024 Findings)](https://aclanthology.org/2024.findings-emnlp.552/): 评估可验证声明事实性的指标，proposal 中引用的 CAG 67.79%→79.80% 数据可能基于此指标。
+- [ConFix (Yuan et al., 2024)](https://arxiv.org/abs/2411.13343): 置信度引导的事实级自纠正方法，用高置信事实作为低置信事实的证据进行修正。本 proposal 的 SFC pipeline 明确引用 ConFix-style bootstrapping。
+- [Functional Dissociation (arXiv:2604.19974, April 2026)](https://arxiv.org/abs/2604.19974): 非常新的预印本，发现 LLM 中 uncertainty 和 correctness 由功能上不同的特征群体编码。这是本 proposal "correctability ≠ confidence" 理论动机的核心支撑。但该工作使用 SAE 白箱方法，而本 proposal 试图用黑箱行为特征复现这一区分。
+- [Confidence vs. Critique (ACL 2025)](https://aclanthology.org/2025.acl-long.203/): 分解自纠正能力为置信度和批判能力两个维度。与本 proposal 的 correctability-confidence 区分有重叠但角度不同。
+- [When Can LLMs Actually Correct Their Own Mistakes? (TACL 2025)](https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00713/125177): 关于 LLM 自纠正的综合调研，指出无外部反馈的内在自纠正极少成功。强化了 proposal 中"盲区是真实问题"的前提。
+- [FactSelfCheck (arXiv:2503.17229)](https://arxiv.org/abs/2503.17229): 事实级黑箱幻觉检测方法。与本 proposal 的检测部分直接竞争，但不涉及 correctability routing。
+- [Generalized Correctness Models (arXiv:2509.24988)](https://arxiv.org/abs/2509.24988): 从历史模式学习校准的模型无关正确性预测器。在概念上与本 proposal 的 correctability classifier 有交叉，但不针对 claim-level 事实纠正。
+- 调研总结: LLM 自纠正盲区在数学推理领域已被系统研究（Self-Correction Bench），但 **事实性声明层面的盲区确实尚无专门工作**。同时，claim-level 选择性处理（abstention/correction）领域非常拥挤，大量工作基于置信度；而 correctability-based routing 确实是一个未被直接探索的角度，虽然 "Confidence vs. Critique" 和 "Functional Dissociation" 已经从不同方向触及了 confidence ≠ correctness 的主题。
+
+【Trivial Alternative 检验】:
+存在两个重要的 trivial alternative 威胁：
+
+1. **RAG (Retrieval-Augmented Generation)**: 如果事实性错误源于"知识缺口"（proposal 自身的论点），那么最直接的解决方案是通过外部检索补充知识，而不是构建 correctability classifier 来决定哪些声明可以自纠正。RAG 在 knowledge-intensive generation 中已经是标准做法。Proposal 未直接讨论为什么在有 RAG 的情况下仍需要 correctability routing，这是一个显著的增量价值问题。
+
+2. **简单置信度阈值**: Proposal 声称"6+ 篇论文隐式假设 confidence 足以进行 claim-level routing"，但如果置信度阈值在实践中已经"够用"（即使理论上不完美），那么构建更复杂的 correctability classifier 的增量收益可能很小。Proposal 设定的 AUROC 阈值（>0.58 positive, >0.63 strong）非常保守，说明作者自己也预期增量有限。
+
+增量价值在于：如果能实证证明 correctability 和 confidence 在事实声明层面确实存在 dissociation，且这一 dissociation 有实际应用价值（correctability routing 显著优于 confidence routing），那么就有意义。但这是一个"如果"。
+
+【前提假设检验】:
+核心逻辑链中有以下未经验证的关键假设：
+
+1. **"事实性错误源于知识缺口，数学错误源于激活失败"** — 这个二元对立过于简化。事实性错误也可能是激活失败（模型"知道"正确答案但未正确生成），数学错误也可能是知识缺口（模型缺乏某些推理 pattern）。TACL 2025 survey 和 Self-Alignment for Factuality (2024) 都指出 LLM 中存在大量 "知道但说错" 的情况。如果 "Wait" trick 对很多事实性声明也有效（因为那些也是激活失败），proposal 的核心叙事就会被削弱。
+
+2. **黑箱行为特征可以捕捉 correctability** — Functional Dissociation 论文 (2604.19974) 使用 SAE 分析内部表征才发现了这一区分。Proposal 试图仅用 self-consistency、verbal confidence、claim type 等黑箱特征来训练 correctability classifier，能否捕捉到白箱方法发现的区分，这是一个很强的假设。如果不能，classifier 性能会退化到接近 confidence baseline。
+
+3. **"Correctability 是 claim-level 稳定属性"** — Proposal 假设一个声明是否可纠正是该声明的内在属性。但 correctability 可能高度依赖于模型、prompt、上下文和解码策略，缺乏跨设置的稳定性。
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   - 将 Self-Correction Bench 的盲区分析从数学推理扩展到事实性声明确实填补了一个明确的空白，这一点经调研证实（Self-Correction Bench 仅覆盖 GSM8K/PRM800K）。
+   - Correctability-based routing vs. confidence-based routing 的区分是该 proposal 最具新意的贡献，且得到 Functional Dissociation (arXiv:2604.19974) 的理论支撑。
+   - 但是：(a) 从数学到事实领域的"扩展"本身是比较直接的方法论迁移，不涉及根本性的方法创新；(b) "confidence ≠ correctness" 的洞察并非 proposal 原创，而是来自 Functional Dissociation 论文；(c) Confidence vs. Critique (ACL 2025) 已从类似角度分解了自纠正能力。Proposal 的贡献更多是"在新领域验证已有洞察"而非"提出新洞察"。
+
+2. **Significance: 中** — 
+   - 研究问题 — "事实性声明的自纠正盲区是否与数学推理不同" — 是 genuinely important 的。TACL 2025 survey 指出 intrinsic self-correction 极少成功，理解为什么以及在哪些条件下失败具有实际意义。
+   - 但核心发现如果是 positive（"Wait" 对事实性声明无效，盲区在 claim type 间异质），审稿人大概率会说 **"I would have guessed this"** — 直觉上，知识缺口型错误不太可能被简单 prompt trick 修复，这并不令人意外。
+   - 如果是 negative（"Wait" 也对事实有效），这反而更 surprising 也更有影响力，但会削弱 proposal 后半部分 correctability classifier 的必要性。
+   - 实际应用层面，claim-level routing 的增量收益相对于 RAG 或简单 confidence thresholding 可能有限。
+
+3. **Related Work: 强** — 
+   - Proposal 对竞争领域（SA, CSS, CLC, CURE, CAG）的定位非常清晰，明确指出它们都基于 confidence/calibration 而自己使用 correctability。
+   - 对 Self-Correction Bench、ConFix、Functional Dissociation 等核心依赖工作的引用准确（arXiv:2604.19974 确认存在且描述准确）。
+   - Dual-outcome 设计和 pre-registered thresholds 显示了对方法论严谨性的重视。
+   - 唯一缺憾是对 RAG 这一最直接的 trivial alternative 缺乏讨论。
+
+【概率估计】: 22% - 32%，中位 27%
+
+【估计理由】: 
+Novelty 是中档 — 有真实的领域空白（事实级盲区无人做）和新角度（correctability routing），但核心洞察（confidence ≠ correctness）来自他人工作，且从数学→事实的迁移相对直接。Significance 也是中档 — 问题重要但预期发现方向符合直觉（"I would have guessed this"），且 RAG 作为 trivial alternative 的威胁显著。Related Work 是强项但无法拉高 idea 质量上限。
+
+**限制上界的维度是 Significance**: 即使 benchmark 完美、classifier 达标，"事实性错误更难自纠正"这一结论对领域的推进力有限，因为 (a) 符合直觉，(b) 实践中 RAG 已部分解决这一问题。概率上界被卡在 ~32% 因为缺乏 "surprising" 的核心发现潜力。
+
+【主要风险】:
+1. **"I would have guessed this" 风险**: 核心假设（事实性盲区比数学更顽固、"Wait" 对事实无效）高度符合直觉，审稿人可能认为 positive results 确认了显而易见的东西，缺乏 surprising 的发现。
+2. **RAG trivial alternative 风险**: 审稿人很可能会问"为什么不直接用检索增强来修复知识缺口，而要建 correctability classifier？"，proposal 目前缺乏对这一最强 trivial alternative 的回应。
+```
+
+Sources:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)
+- [Self-Correction Bench on OpenReview](https://openreview.net/forum?id=dLz0bnmL2r)
+- [FActScore (Min et al., 2023)](https://arxiv.org/abs/2305.14251)
+- [VeriScore (Song et al., EMNLP 2024 Findings)](https://aclanthology.org/2024.findings-emnlp.552/)
+- [Fact-Level Confidence Calibration and Self-Correction (ConFix)](https://arxiv.org/abs/2411.13343)
+- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)
+- [Confidence vs. Critique (ACL 2025)](https://aclanthology.org/2025.acl-long.203/)
+- [When Can LLMs Actually Correct Their Own Mistakes? (TACL 2025)](https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00713/125177)
+- [FactSelfCheck (arXiv:2503.17229)](https://arxiv.org/abs/2503.17229)
+- [Generalized Correctness Models (arXiv:2509.24988)](https://arxiv.org/abs/2509.24988)
+- [I-CALM: Confidence-Aware Abstention](https://arxiv.org/abs/2604.03904)
+- [Intrinsic Self-Correction via Mechanistic Interpretability](https://arxiv.org/abs/2505.11924)
+- [OpenFActScore](https://arxiv.org/abs/2507.05965)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient research to evaluate this proposal. Let me compile my analysis.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778) (NeurIPS 2025 Workshop): 定义了 self-correction blind spot 概念，测试 14 个模型在 GSM8K/PRM800K 上的平均盲区率 64.5%。"Wait" trick 降低 89.3%。这是本 proposal 直接延伸的基础工作，但仅限数学推理任务。
+- [ConFix - Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/abs/2411.13343) (2024): 用高置信事实作为知识来改善低置信事实，无需外部检索。本 proposal 的 SFC 框架借鉴了 ConFix 的 bootstrapping 方法。
+- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974) (2026.04): 用 Sparse Autoencoder 发现 uncertainty 和 correctness 由功能不同的特征群编码。关键发现：pure incorrectness features 在被抑制时对准确率几乎无影响（"functionally inert"），而 pure uncertainty features 抑制后准确率严重下降。本 proposal 引用此文支持 correctability ≠ confidence 的论点。
+- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/abs/2602.11908) (2026.02): 将 response 分解为原子声称，用更抽象的高置信表述替代不确定声称。AURC 提升最高 27.73%。
+- [Conformal Linguistic Calibration (CLC) (arXiv:2502.19110)](https://arxiv.org/abs/2502.19110) (2025.02): 在 claim 级别以牺牲具体性来换取可控的事实精度。
+- [CURE](https://arxiv.org/html/2604.22271v1) (2025-2026): 多阶段训练对齐模型置信度与声称正确性，biography generation 上 claim-level accuracy 提升达 39.9%。用 calibrated confidence 做 selective prediction。
+- [I-CALM (arXiv:2604.03904)](https://arxiv.org/abs/2604.03904) (2026.04): 用 prompt 激励框架引导 verbal confidence + abstention，减少 false-answer rate。
+- [Decomposing LLM Self-Correction (arXiv:2601.00828)](https://arxiv.org/abs/2601.00828) (2026.01): 发现 Accuracy-Correction Paradox——弱模型的内在纠错率反而是强模型的 1.6 倍。Error detection ≠ correction success（Claude 检测 10% 错误但纠正 29%）。
+- [Internal Confidence Signals (arXiv:2604.22271)](https://arxiv.org/html/2604.22271v1) (2026.04): PANL activations 可预测模型能纠正哪些错误，但所有 behavioral signals 均失败。
+- 调研总结: claim-level factuality 控制已成为 2025-2026 年热门方向，SA/CLC/CURE/I-CALM 等工作形成了以 confidence-based abstention/abstraction 为主的范式。Self-correction blind spot 概念限于数学推理，尚未被系统性地迁移到 factual claims。但"correctability prediction"这一子方向有来自 internal representation 研究的证据（Functional Dissociation, PANL），且这些证据指向 behavioral signals 的局限性——恰恰是本 proposal 计划使用的方法。
+
+【Trivial Alternative 检验】:
+存在两个有力的 trivial alternative：
+
+1. **Retrieval-Augmented Generation (RAG)**：proposal 的核心前提是 factual errors 源于 genuine knowledge gaps。如果模型缺乏知识，最直接的解决方案是在生成时提供外部知识（RAG），而非在事后预测哪些错误"可纠正"再尝试修复。RAG 从根源解决问题，成本更低且更可靠。Proposal 完全没有讨论为什么 correctability-guided post-hoc correction 优于 RAG。
+
+2. **Confidence threshold + RAG hybrid**：对低置信声称直接触发检索验证/补充，而非训练 correctability classifier 再决定是否 self-correct。这是现有系统已在工业中广泛使用的方案。
+
+增量价值：proposal 的增量价值主要在于 *分析性贡献*（blind spot 率的 claim-type 异质性、"Wait" 在 factual domain 的消融），而非 *系统性贡献*（SFC framework）。但分析性贡献的 novelty 受限于结果的可预测性（见下）。
+
+【前提假设检验】:
+核心逻辑链中有三个关键的未经验证假设：
+
+1. **"Behavioral features 能捕获 correctability"假设**：这是最关键的假设裂缝。Proposal 引用 Functional Dissociation (arXiv:2604.19974) 支持"correctability ≠ confidence"，但该论文的核心发现是需要 *white-box internal features*（通过 SAE 提取）才能区分两者。更严重的是，arXiv:2604.22271 明确发现 PANL activations 能预测 correctability 而 **所有 behavioral signals 均失败**。Proposal 却计划用 self-consistency、verbal confidence 等 behavioral features 训练 correctability classifier——这直接与其引用的 mechanistic evidence 矛盾。Pre-registered AUROC threshold 低至 0.58（接近随机 0.5）恰恰反映了作者对此的不自信。
+
+2. **"知识缺口错误在 self-correction 中的行为与 activation failure 不同"假设**：这在直觉上合理，但是一个 *expected finding*。数学推理错误和事实知识缺口本身就是不同类型的认知失败，reviewer 读到"Wait 对 factual claims 无效"时更可能说"I would have guessed this"而非"surprising"。
+
+3. **"Claim-type 异质性具有可操作价值"假设**：即使 blind spot 率在 entity/temporal/numerical/relational 类型间确实不同，这一发现是否足以导出有意义的 downstream improvement？如果所有类型的 blind spot 率都很高（只是程度不同），那么异质性发现的 actionable insight 有限。
+
+【3 维度打分】:
+1. **Novelty: 弱-中** — 
+   - "将 blind spot 从数学迁移到 factual claims"是自然的 next-step extension，而非 surprising insight。Self-Correction Bench (arXiv:2507.02778) 发表后，这一方向是可预见的后续工作。
+   - "Correctability-based routing vs confidence-based routing"是有趣的概念区分，但 proposal 选择的 behavioral classifier 路线恰好是已有证据（arXiv:2604.22271, arXiv:2604.19974）表明 *不太可能成功* 的方向。如果 classifier 性能确实很弱（AUROC ~0.58），这本身验证了 Functional Dissociation 的预测，但此时 proposal 变成了"验证已有理论的推论"，novelty 进一步降低。
+   - SFC framework 是 ConFix bootstrapping + confidence-based abstention 的组合，组件均来自现有工作。
+   - 在 SA/CLC/CURE/CAG/I-CALM 已覆盖的 claim-level factuality 空间中，proposal 的 *新增维度*（correctability vs confidence）虽有理论基础，但实际操作中可能无法与 confidence 拉开差距。
+
+2. **Significance: 中** — 
+   - 研究问题本身有价值：blind spot 是否迁移到 factual domain 是一个值得回答的问题，且分析结果（per-claim-type blind spot rates, "Wait" 消融）对社区有参考意义。
+   - 但对领域的影响力受限于：(a) RAG 作为更根本的解决方案削弱了 post-hoc correction 路线的战略重要性；(b) 分析性发现的可预测性降低了其影响力；(c) SFC 作为 downstream application 的增量贡献有限。
+   - 正面：如果 "Wait" 意外地对某些 factual claim types 有效，这会是一个 genuinely surprising finding，但 proposal 自己也承认这不太可能。
+
+3. **Related Work: 强** — 
+   - 对 claim-level factuality 空间的覆盖非常全面（SA, CSS, CLC, CURE, CAG 均有提及）。
+   - 准确引用了 Self-Correction Bench 的具体数据（64.5%, 89.3%）、CURE 的 39.9%、CAG 的 VeriScore 数据，经调研验证基本准确。
+   - Functional Dissociation (arXiv:2604.19974) 确实存在且描述准确。
+   - 对 ConFix 的定位和使用恰当。
+   - 差异化定位清晰：现有工作用 confidence 做 abstention/abstraction，本 proposal 用 correctability 做 correction/abstention routing。
+   - 唯一的弱点是"correction suppression (19-90% suppression rates)"这一引用未能在调研中找到确切来源。
+
+【概率估计】: [18% - 28%] 中位 22%
+
+【估计理由】: 
+Novelty 是主要限制因素。核心贡献在三个层面都面临 novelty 挑战：(1) blind spot 迁移是 predictable extension；(2) correctability classifier 用 behavioral features 实现，与自身引用的 mechanistic evidence 矛盾，且性能预期很低；(3) SFC 是现有组件的组合。Significance 中等——问题有价值但 RAG 的存在严重削弱了 post-hoc correction 路线的重要性。Related Work 是唯一的强项。综合来看，这是一个 well-executed incremental proposal，形式完善度很高（dual-outcome 设计、pre-registered thresholds、全面的 baseline 覆盖），但透过形式看内核，核心发现如果 positive，审稿人更可能说"I would have guessed this"而非"surprising"。上界被 novelty 锁定在 ~28%。
+
+【主要风险】: 
+1. **Behavioral classifier 的内在矛盾**：proposal 引用的 mechanistic evidence 恰恰预测其选择的 behavioral 方法论不太可能成功。如果 AUROC 仅达 0.58（接近随机），reviewer 会质疑 correctability prediction 这条路线本身是否 viable——而 proposal 预注册的 threshold 暗示作者也预期如此。这使得"correctability ≠ confidence is an important finding"这一兜底论点变成了"验证别人已经发表的理论"。
+2. **RAG 作为未讨论的 trivial alternative**：对于 genuine knowledge gap 导致的错误，reviewer 会自然地问"为什么不直接用 RAG？"proposal 完全没有 address 这一点，这在审稿中是一个高概率被提出的 fundamental concern。
+```
+
+Sources:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)
+- [ConFix - Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/abs/2411.13343)
+- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)
+- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/pdf/2602.11908)
+- [Conformal Linguistic Calibration (CLC) (arXiv:2502.19110)](https://arxiv.org/abs/2502.19110)
+- [I-CALM (arXiv:2604.03904)](https://arxiv.org/abs/2604.03904)
+- [Decomposing LLM Self-Correction (arXiv:2601.00828)](https://arxiv.org/pdf/2601.00828)
+- [Internal Confidence Signals (arXiv:2604.22271)](https://arxiv.org/html/2604.22271v1)
+- [VeriScore (EMNLP 2024)](https://aclanthology.org/2024.findings-emnlp.552/)
+- [CURE - Think Through Uncertainty (arXiv:2604.12046)](https://arxiv.org/html/2604.12046)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have enough research to make a well-informed assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778) (2025): 直接前驱工作。定义了"自纠正盲区"概念，测试 14 个模型发现平均 64.5% 的盲区率，并发现简单追加 "Wait" 可减少 89.3% 的盲区。本 proposal 的核心框架（blind spot 定义、error injection 方法论、"Wait" ablation）几乎完全借自此文。
+- [ConFix: Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/pdf/2411.13343) (2024): 已经实现了 fact-level confidence calibration + 用高置信度 fact 作为知识来修正低置信度 fact 的自纠正方法。跨 4 个数据集、6 个模型验证有效。本 proposal 的 SFC 模块中 "ConFix-style bootstrapping" 直接依赖此工作。
+- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/pdf/2602.11908) (2025): 提出 Atom-wise Selective Abstraction，将回答分解为 atomic claims 并替换不确定的 claims 为更抽象的表述。在 FactScore 和 LongFact-Objects 上 AURC 提升 27.73%。这是 claim-level selective handling 的直接竞争者。
+- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974) (2026): 发现 LLM 内部 uncertainty 和 correctness 由功能上不同的 feature 群编码。Pure uncertainty features 是功能必需的，而 pure incorrectness features 虽有统计显著的激活差异，但抑制后对准确率几乎无影响。本 proposal 将此白盒发现作为理论动机，但自身用的是黑盒行为特征。
+- [Mitigating LLM Hallucinations via Conformal Abstention (arXiv:2405.01563)](https://arxiv.org/abs/2405.01563) (2024): 使用 conformal prediction 开发 abstention procedure，在多个 QA 数据集上可靠地限制 hallucination rate。代表 confidence-based abstention 的成熟方法。
+- [Confidence v.s. Critique (arXiv:2412.19513)](https://arxiv.org/pdf/2412.19513) (2024): 已将自纠正能力分解为 confidence 和 critique 两个维度进行分析，与本 proposal 的"correctability ≠ confidence"主张在精神上高度相似。
+- [Understanding Reasoning via Strategic Information Allocation (arXiv:2603.15500)](https://arxiv.org/pdf/2603.15500) (2026): 从信息分配角度解释 "Wait"/"Aha" moment 机制，认为本质是 epistemic verbalization（不确定性的外显化）。
+
+- 调研总结：LLM 自纠正领域已非常拥挤。Self-Correction Bench 已系统化定义了数学推理的 blind spot 并提出 "Wait" 解法；ConFix 和 SA 已分别实现了 fact-level 的 confidence-guided correction 和 claim-level abstraction；Functional Dissociation 论文已从 mechanistic interpretability 角度证明 uncertainty ≠ correctness。本 proposal 试图占据的 niche——"fact-level blind spot analysis + correctability-based routing"——是这些已有工作的交叉地带，而非未开垦的领域。
+
+【Trivial Alternative 检验】:
+存在显著的 trivial alternative 威胁。最直接的替代方案是：**直接用 ConFix 的 confidence-based fact-level correction + SA 的 claim-level abstention 组合**，无需训练额外的 correctability classifier。这个组合已在各自论文中展示了强性能（ConFix 跨 4 数据集有效，SA 在 AURC 上提升 27.73%）。
+
+本 proposal 的增量价值完全取决于 correctability classifier 能否显著优于 confidence-based routing。但 proposal 自身设定的 AUROC 阈值极度保守——positive 仅 >0.58（比随机猜测 0.5 高 0.08），strong 仅 >0.63——这暗示作者自己也预期信号非常弱。在这种预期下，correctability-based routing 对 confidence-based routing 的增量价值可能微乎其微，甚至在实际应用中不足以 justify 额外的分类器训练成本。
+
+【前提假设检验】:
+核心 claim 的逻辑链中有两个关键的未验证假设：
+
+1. **"factual errors stem from genuine knowledge gaps rather than activation failures"**——这是区分 factual blind spot 和 math blind spot 的核心前提，但缺乏实证支持。实际上，许多 factual errors 可能也是 activation failures（模型"知道"正确答案但没有在特定上下文中激活）。如果 "Wait" trick 对 factual claims 也有效（Self-Correction Bench 的 89.3% 减少率暗示 activation failure 可能是 universal 的），那么整个 "factual blind spot 是不同机制" 的假设就会坍塌，从而削弱整篇论文的 raison d'être。
+
+2. **"黑盒行为特征可以捕捉 correctability 信号"**——Functional Dissociation 论文使用 sparse autoencoders 在白盒层面识别了功能不同的 feature populations。但本 proposal 要用 self-consistency、verbal confidence、claim type、specificity 这些黑盒行为特征来训练 correctability classifier。从白盒 mechanistic insight 到黑盒 behavioral classifier 之间的 bridge 是不成立的——即使 uncertainty 和 correctness 在内部由不同 features 编码，这不意味着 behavioral signals 能有效区分 correctable vs. uncorrectable claims。实际上，这些行为特征中的前两个（self-consistency, verbal confidence）本身就是 confidence 的 proxy，这进一步模糊了 correctability 和 confidence 的边界。
+
+【3 维度打分】:
+  1. Novelty: 弱 — 核心框架（blind spot 定义、error injection、"Wait" ablation）直接借自 Self-Correction Bench (arXiv:2507.02778)，本质上是从 math reasoning 到 factual claims 的 domain transfer。Correctability 与 confidence 的区分在概念上已被 Confidence v.s. Critique (arXiv:2412.19513) 和 Functional Dissociation (arXiv:2604.19974) 探索过。Claim-level selective handling 方面 SA/ConFix/CLC 等已形成密集覆盖。剔除 surface differences 后，本 proposal 的真实 novelty delta 仅在于"将 correctability 预测用于 claim routing"这一组合创新，但这更接近 engineering contribution 而非 conceptual breakthrough。
+
+  2. Significance: 中 — 研究问题本身（factual self-correction 的 blind spot 特性）是有实际意义的，对 LLM 可靠性研究有直接关联。但核心发现的"惊讶度"很低：如果 blind spot 在 factual claims 中也存在（大概率），审稿人会说 "I would have guessed this"；如果 "Wait" 对 factual claims 效果差（proposal 的假设），这也是一个直觉上可预期的结果。预注册的 AUROC 阈值（>0.58）极低，即使达到也难以说明实际效用。整体而言，该工作更像是对已知现象的系统化验证，而非开辟新方向。
+
+  3. Related Work: 中 — Proposal 展示了对该领域相当多工作的了解（SA, CSS, CLC, CURE, CAG, ConFix, Functional Dissociation, Self-Correction Bench），定位差异化也有明确尝试（"confidence-based vs. correctability-based"）。但部分引用的工作缩写（CSS, CLC, CURE, CAG）在公开文献中难以一一对应验证——这些可能是非常新的预印本或非标准缩写。此外，缺失了一些重要的直接相关工作：Confidence v.s. Critique (arXiv:2412.19513) 已经从 confidence/critique 两维度分解了自纠正能力，与本 proposal 的核心区分高度相关但未被讨论。
+
+【概率估计】: [15% - 25%] 中位 20%
+【估计理由】: Novelty 是限制上界的关键维度。核心框架和概念均有明确的直接前驱工作（Self-Correction Bench 提供了 blind spot 方法论，Functional Dissociation 提供了 correctability ≠ confidence 的理论动机，ConFix/SA 提供了 claim-level correction/abstention 的实践方案）。本 proposal 的真实贡献是将这些已有组件在 factual claim domain 中组合起来——这是合理的系统化研究，但在 top venue 审稿中通常被视为 incremental。Significance 维度的"低惊讶度"进一步压低了上界：无论核心假设被证实还是证伪，审稿人的反应大概率是 "this is what I would have expected"。此外，proposal 自身设定的极低 AUROC 阈值（>0.58 即为 positive）反映了作者对信号强度的悲观预期，这会被审稿人注意到并质疑实际效用。
+【主要风险】:
+1. **"Wait" trick 可能对 factual claims 也有效**——如果 "Wait" 在 factual domain 也能显著减少 blind spot（Self-Correction Bench 在 math 上的 89.3% 减少率暗示这是可能的），整篇论文的"factual blind spot 需要不同解法"的核心叙事将坍塌，SFC 的必要性被 trivialize。
+2. **Correctability classifier 的增量价值过小**——如果 AUROC 仅达到 ~0.58-0.63，而简单的 confidence threshold 方法（已有的 SA/ConFix baseline）已经在 claim-level routing 上表现良好，审稿人会质疑为什么需要一个额外的 correctability 分类器来获得 marginal improvement。
+```
+
+Sources:
+- [Self-Correction Bench (arXiv:2507.02778)](https://arxiv.org/abs/2507.02778)
+- [ConFix: Fact-Level Confidence Calibration and Self-Correction (arXiv:2411.13343)](https://arxiv.org/pdf/2411.13343)
+- [Selective Abstraction (SA) (arXiv:2602.11908)](https://arxiv.org/pdf/2602.11908)
+- [Functional Dissociation via SAE (arXiv:2604.19974)](https://arxiv.org/abs/2604.19974)
+- [Mitigating LLM Hallucinations via Conformal Abstention (arXiv:2405.01563)](https://arxiv.org/abs/2405.01563)
+- [Confidence v.s. Critique (arXiv:2412.19513)](https://arxiv.org/pdf/2412.19513)
+- [Understanding Reasoning via Strategic Information Allocation (arXiv:2603.15500)](https://arxiv.org/pdf/2603.15500)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Fact-Level Self-Correction Blind Spot in Knowledge-Intensive Generation: Benchmark, Analysis, and Correctability-Guided Selective Correction
+
+## Description
+We propose FactBlind, the first benchmark and analysis framework for measuring the self-correction blind spot at fact-level granularity in knowledge-intensive generation. While the blind spot phenomenon has been characterized for mathematical reasoning at problem level (64.5% average failure rate on GSM8K/PRM800K), and the 'Wait' trick reduces this by 89.3% through an activation mechanism, no work has examined whether these patterns hold for atomic factual claims in long-form text — where errors often stem from genuine knowledge gaps rather than activation failures that prompt tricks can resolve. The recent discovery of correction suppression (19–90% suppression rates when false claims are embedded in task contexts) further suggests the problem in knowledge-intensive generation operates through mechanisms distinct from math. Meanwhile, the selective claim-level handling space has become remarkably crowded — SA, CSS, CLC, CURE (39.9% claim-level accuracy on biography generation), and CAG (VeriScore 67.79%→79.80%) all use confidence/calibration for abstention — while the correctability-based correction paradigm remains entirely unexplored, despite mechanistic evidence that uncertainty and correctness are encoded by functionally distinct feature populations (Functional Dissociation, arXiv:2604.19974). We decompose LLM-generated biographies, QA responses, and report summaries into atomic claims and measure per-claim blind spot rates across 8 models, using both controlled error injection (entity, temporal, numerical, relational) and naturally occurring hallucinations from FActScore-annotated data, with a dedicated 'Wait' ablation testing whether activation-based interventions transfer from math to factual claims. Our central hypothesis — that the blind spot is heterogeneous across claim types and resistant to simple activation prompts — is tested rather than assumed; if 'Wait' proves effective for factual claims, we report this as an important simplifying finding. We then train a black-box behavioral correctability classifier using self-consistency, verbal confidence, claim type, and specificity features, with pre-registered AUROC thresholds (>0.58 positive, >0.63 strong) anchored against DeepMind's white-box baseline (0.614) and behavioral confidence baseline (0.524). Even modest classifier performance reveals the correctability-confidence dissociation, which is itself an important finding given 6+ papers implicitly assume confidence suffices for claim-level routing. Finally, we build Selective Fact Correction (SFC) as a downstream application: claims predicted as correctable undergo ConFix-style bootstrapping while blind-spot claims are flagged for abstention, compared against no-correction, naive self-correction, SA, CURE reference results, confidence-threshold correction, and 'Wait'-augmented self-correction baselines. Unlike SA/CSS/CLC/CURE/CAG which exclusively abstract or suppress, SFC can recover factual accuracy for correctable claims while avoiding destructive correction for uncorrectable ones.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a9f4d85f-647f-46b7-b7ff-e01c253882d5",
+  "type": "user",
+  "uuid": "fda75d6e-90f2-442d-a2ae-005cf7838568",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:28:26.352Z_
+
+```json
+{
+  "parentUuid": "fda75d6e-90f2-442d-a2ae-005cf7838568",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "e7906f99-e3b5-4d81-b16d-25558582e60f",
+  "timestamp": "2026-05-20T03:28:26.352Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:28:26.352Z_
+
+```json
+{
+  "parentUuid": "e7906f99-e3b5-4d81-b16d-25558582e60f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "42c7baab-7c33-4482-bde6-67c1385bdb31",
+  "timestamp": "2026-05-20T03:28:26.352Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make a thorough assessment.…",
+  "leafUuid": "42c7baab-7c33-4482-bde6-67c1385bdb31",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate factual self-correction blind spot proposal",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:29:03.481Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments carefully and produce a Meta Judge output.
+
+Let me extract the key data:
+
+**Reviewer 1:**
+- Novelty: 中
+- Significance: 中
+- Related Work: 强
+- Probability: [22% - 32%] 中位 27%
+- Main risks: "I would have guessed this", RAG trivial alternative
+
+**Reviewer 2:**
+- Novelty: 弱-中
+
+
+- Significance: 中
+- Related Work: 强
+- Probability: [18% - 28%] 中位 22%
+- Main risks: Behavioral classifier contradiction with mechanistic evidence, RAG trivial alternative
+
+**Reviewer 3:**
+- Novelty: 弱
+- Significance: 中
+- Related Work: 中
+- Probability: [15% - 25%] 中位 20%
+- Main risks: "Wait" might work for factual claims too, correctability classifier marginal value
+
+Now I'm looking at the three median probabilities—27%, 22%, and 20%—and calculating the standard deviation to assess how much the reviewers' assessments diverge from the mean of 23%. The median of the three medians is 22%, which confirms we're in the high consistency range. Looking at where the reviewers align, novelty emerges as the clear weak point—all three rate it as limited, whether they call it 中, 弱-中, or 弱. Significance is solidly 中 across the board, and there's strong consensus that this falls into the "I would have guessed this" category, with two reviewers explicitly flagging it and the third noting low surprise value. The RAG trivial alternative concern also appears twice directly, plus a third mention of ConFix+ as a related approach.
+
+The behavioral classifier issue stands out too—two reviewers question whether behavioral features can actually capture correctability when mechanistic evidence points toward white-box methods being necessary. Everyone mentions the conservative >0.58 AUROC threshold, and there's agreement that the core findings feel predictable. One reviewer raises a specific concern about "Wait" potentially working for factual claims, which the others treat as an assumption risk.
+
+The one real outlier is R3's take on Related Work—they rate it 中 while the other two say 强, mainly because of concerns about unverifiable acronyms and a missing reference to a Confidence versus Critique paper.
+
+Now looking at the reviewer estimates: the medians cluster at 20%, 22%, and 27% with only about 2.9% standard deviation, so there's strong agreement. The overlap across all three intervals lands in the 22-25% range, which suggests I should narrow my estimate toward that convergence point rather than spreading wider.
+
+Moving on to implementation feasibility — the reviewers are evaluating at the triage stage so they focus on conceptual merit, but I can piece together what's actually needed: multiple model runs for the benchmark, training a correctability classifier, sourcing annotated biographical data and QA pairs, likely some human verification for breaking down claims into atomic units, and constructing the FactBlind benchmark itself. The timeline looks moderate given the scope of multi-model evaluation and classifier training involved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42c7baab-7c33-4482-bde6-67c1385bdb31",
+  "isSidechain": false,
+  "requestId": "req_011CbD7PLEVUyXesSLAPFS7N",
+  "type": "assistant",
+  "uuid": "29adffc5-c3f1-4387-a7d8-5ff1ad3144e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KVPcC3f7pGDqBCiddP8yRA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 3364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3364,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:29:51.008Z_
+
+【阶段】: Meta Judge
+【三次中位】: [27%, 22%, 20%]  std=2.9%
+【共识维度】:
+- **Novelty: 弱-中（3/3 共识，最强信号）**：三人一致认为核心框架（blind spot 定义 + error injection + "Wait" ablation）直接借自 Self-Correction Bench，属于 domain transfer 而非 conceptual breakthrough；"correctability ≠ confidence" 洞察来自 Functional Dissociation (arXiv:2604.19974) 而非 proposal 原创。
+- **Significance: 中（3/3 共识）**：研究问题本身有价值，但核心发现方向高度可预测——无论 "Wait" 对 factual claims 有效还是无效，审稿人大概率反应为 "I would have guessed this"。
+- **"低惊讶度"风险（3/3 共识）**：三人均独立指出 positive results 不会令人惊讶，这是压低 Significance 打分的核心原因。
+- **RAG / 现有组合作为 trivial alternative（3/3 共识）**：R1、R2 直接点名 RAG；R3 指出 ConFix + SA 组合已能实现 claim-level correction + abstention，proposal 未论证增量价值。三人共识：proposal 缺乏对最直接替代方案的回应。
+- **Behavioral classifier 与 mechanistic evidence 的矛盾（2/3 共识，R2+R3）**：proposal 引用的 Functional Dissociation 使用白盒 SAE 方法，而 proposal 本身用黑盒行为特征训练 classifier。R2 额外引用 arXiv:2604.22271 指出"所有 behavioral signals 均失败"，加剧了这一矛盾。
+- **AUROC 阈值过低暗示作者对信号的悲观预期（3/3 共识）**：pre-registered >0.58（仅比随机高 0.08）被三人一致视为 proposal 自身对增量价值的不自信体现。
+- **Related Work: 强偏中（2/3 强，1/3 中）**：R1、R2 评 "强"，R3 评 "中"（指出部分缩写难验证、遗漏 Confidence v.s. Critique）。共识倾向"强"，但不足以拉升整体。
+
+【异常维度】:
+- R3 将 Related Work 评为"中"并指出遗漏 Confidence v.s. Critique (arXiv:2412.19513) — 仅 R3 提及此遗漏。但该论文确实与 proposal 的 correctability-confidence 区分高度相关，R3 的指摘有一定合理性，故不完全降权，将 Related Work 综合定为"强偏中"。
+- R2 引用 arXiv:2604.22271 中"PANL activations 能预测 correctability 而所有 behavioral signals 均失败"作为最强反面证据 — 仅 R2 引用此具体论文，但 R3 从不同角度（Functional Dissociation 的白盒 vs 黑盒 gap）得出了相同结论。此异常维度的结论与共识方向一致，不属于真正的 outlier，不降权。
+- R1 的 Novelty 评分（中）略高于 R2（弱-中）和 R3（弱）— R1 对"填补事实级盲区空白"给予了更多 credit。但 R2 和 R3 的论证（predictable extension + conceptual overlap with prior work）更为详尽，故 Novelty 综合定为"弱-中"。
+
+【最终概率】: [17% - 27%] 中位 22%
+【一致性】: 高（std=2.9% < 3%，三人在核心维度判决上方向完全一致）
+【综合理由】:
+三份评审在所有关键维度上高度收敛：Novelty 是限制上界的核心维度（domain transfer + 非原创洞察 + 组件级组合），Significance 因"低惊讶度"被锁定在中档，RAG/现有方法组合作为 trivial alternative 是未被回应的致命问题。唯一的积极共识是 Related Work 覆盖面较全、方法论形式完善（dual-outcome、pre-registered thresholds）。
+
+中位取 22%（三份中位的中位值），符合高一致性下"取中位附近"的规则。上界锁定在 27%，因为即使 R1 最宽松的评估也仅给到 32%，而高一致性下不应比最宽松评估更宽松，且 Novelty 共识偏弱进一步压缩上界。下界取 17%，略高于 R3 的 15%，因 R3 对 Related Work 的"中"评价是 outlier（2/3 评"强"），在此处给予小幅上调。
+
+核心判断：这是一篇形式完善度高但核心 novelty 不足的 incremental proposal。其最大的结构性问题不是某个实验细节，而是 **idea 层面的天花板太低**——即使所有实验完美执行，核心发现（事实级盲区存在、"Wait" 对事实无效、correctability classifier 弱于白盒方法）都不会令该领域感到惊讶。
+
+【建议】: 不推荐（中位 22% 显著低于 36% 阈值，三份评审高度一致，无需人工复核）
+
+【实施评估】:
+  - 计算资源: 中等。需在 8 个开源模型上运行 FActScore 级别的 atomic claim 分解与验证，每模型需生成多轮 self-correction 响应。估计需 4-8× A100 GPU，总推理时长约 1-2 周。Correctability classifier 训练本身轻量（传统 ML 或小型 NN）。
+  - 数据需求: 依赖 FActScore 标注数据（公开）、GSM8K/PRM800K（公开）、biography/QA/report 数据集。需自行构建 controlled error injection 数据集（entity/temporal/numerical/relational），工作量中等。
+  - 人工介入: Atomic claim 分解的质量验证可能需要人工抽检；error injection 的自然度需人工评估。工作量约 2-3 人周。
+  - 训练需求: Correctability classifier 训练量小（特征工程 + 传统 ML）。不需要微调大模型。
+  - 新 Benchmark: 是——FactBlind benchmark 是核心贡献之一，需从头构建（claim 分解 + 标注 + blind spot 率计算）。
+  - 预估周期: 约 2-3 个月（benchmark 构建 1 个月 + 多模型实验 1 个月 + 分析与写作 1 个月）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29adffc5-c3f1-4387-a7d8-5ff1ad3144e3",
+  "isSidechain": false,
+  "requestId": "req_011CbD7PLEVUyXesSLAPFS7N",
+  "type": "assistant",
+  "uuid": "6baed852-34b3-4146-b392-a805804303e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KVPcC3f7pGDqBCiddP8yRA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 3364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3364,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make a thorough assessment.…",
+  "leafUuid": "6baed852-34b3-4146-b392-a805804303e0",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate factual self-correction blind spot proposal",
+  "sessionId": "3c0c61e1-01cf-406e-99fa-c90dc1054b8a"
+}
+```
+
+---
