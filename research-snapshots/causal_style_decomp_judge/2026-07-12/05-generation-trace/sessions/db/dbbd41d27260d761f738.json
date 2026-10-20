@@ -1,0 +1,1711 @@
+{
+  "schema_version": "1.0",
+  "id": "dbbd41d27260d761f738",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for ML/AI conference and workshop submission deadlines that fall AFTER 2026-05-30. I need venues appropriate for ",
+  "task_key": "agent-a59f46c9d0ffc4d61",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a59f46c9d0ffc4d61.jsonl",
+    "occurrence": 1,
+    "bytes": 64311,
+    "sha256": "b6bc0f8f626687d9b6cb0c51c9b3d583eb53b95cf162500678735dea1508c1ef"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 4,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-30T06:45:18.915Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for ML/AI conference and workshop submission deadlines that fall AFTER 2026-05-30. I need venues appropriate for a paper on visual document retrieval with spatial grounding (topics: information retrieval, computer vision, document AI, multimodal learning).\n\nSearch for deadlines for these specific venues:\n1. NeurIPS 2026 (main conference deadline)\n2. AAAI 2027 deadline\n3. ICLR 2027 deadline  \n4. ECCV 2026 deadline\n5. WACV 2027 deadline\n6. EMNLP 2026 deadline\n7. ACL 2026 deadline (probably past?)\n8. SIGIR 2026 (probably past?)\n9. CIKM 2026 deadline\n10. Any relevant workshops at NeurIPS 2026 or ICML 2026\n\nFor each, report: venue name, submission deadline, whether it's after May 30 2026. Focus on getting accurate deadline dates. Under 300 words."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "debfbf6c-58a4-46b5-bc91-ca380a983b0d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-30T06:45:18.919Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "debfbf6c-58a4-46b5-bc91-ca380a983b0d",
+                "isSidechain": true,
+                "agentId": "a59f46c9d0ffc4d61",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3647c7f9-7c04-48fe-9df8-4f67515e4470",
+                "timestamp": "2026-05-30T06:45:18.919Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-30T06:45:18.920Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3647c7f9-7c04-48fe-9df8-4f67515e4470",
+                "isSidechain": true,
+                "agentId": "a59f46c9d0ffc4d61",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "b1ae8105-95c2-4170-9764-5144befe7099",
+                "timestamp": "2026-05-30T06:45:18.920Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-30T06:45:21.201Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for these conference deadlines. Let me fetch the web search tool first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1ae8105-95c2-4170-9764-5144befe7099",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVEzVXDPgKmK49ud3m",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "38904a02-9be1-4f46-8416-217b05425907",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HPoYn9kuxjAMv1uKt2sv2d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1571,
+                "cache_read_input_tokens": 7413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1571,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-30T06:45:21.709Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013nq8TPVoT7ifF5ATPz8bp9",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38904a02-9be1-4f46-8416-217b05425907",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVEzVXDPgKmK49ud3m",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e3c63d15-af38-4f27-b544-39cd4ccbe4ad",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HPoYn9kuxjAMv1uKt2sv2d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1571,
+                "cache_read_input_tokens": 7413,
+                "output_tokens": 99,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1571
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 99,
+                    "cache_read_input_tokens": 7413,
+                    "cache_creation_input_tokens": 1571,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1571,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-30T06:45:21.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013nq8TPVoT7ifF5ATPz8bp9",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3c63d15-af38-4f27-b544-39cd4ccbe4ad",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "d21c09f7-36ec-4f59-a834-a91d98118e6b",
+            "sourceToolAssistantUUID": "e3c63d15-af38-4f27-b544-39cd4ccbe4ad",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-30T06:45:24.500Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for all these conference deadlines in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d21c09f7-36ec-4f59-a834-a91d98118e6b",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVTECFqi4zTwJj2aAF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "72873f74-c896-4c9e-b914-3c33ce0aa62f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012ruwSmh1sf69oz71wQ9vzR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1121,
+                "cache_read_input_tokens": 8984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1121,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-30T06:45:24.731Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013UXQkjX9P6qox8EaUghBVk",
+              "name": "WebSearch",
+              "input": {
+                "query": "NeurIPS 2026 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72873f74-c896-4c9e-b914-3c33ce0aa62f",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVTECFqi4zTwJj2aAF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "89e5a0d2-0723-4161-9f2c-ecfac28402eb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012ruwSmh1sf69oz71wQ9vzR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1121,
+                "cache_read_input_tokens": 8984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1121,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-30T06:45:28.388Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013UXQkjX9P6qox8EaUghBVk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NeurIPS 2026 paper submission deadline date\"\n\nLinks: [{\"title\":\"Call for Papers 2026\",\"url\":\"https://neurips.cc/Conferences/2026/CallForPapers\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://neurips.cc/Conferences/2026/Dates\"},{\"title\":\"NeurIPS 2026 Evaluations & Datasets Track Call for Papers\",\"url\":\"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets\"},{\"title\":\"2026 Conference – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/category/2026-conference/\"},{\"title\":\"NeurIPS 2026 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/neurips-2026.html\"},{\"title\":\"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01\"},{\"title\":\"NeurIPS Conference on X: \\\"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\\\" / X\",\"url\":\"https://x.com/NeurIPSConf/status/2041303457554940336\"},{\"title\":\"NeurIPS: Neural Information Processing Systems 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=2212\"},{\"title\":\"NeurIPS 2026 Evaluations & Datasets FAQ\",\"url\":\"https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ\"},{\"title\":\"NeurIPS 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference\"}]\n\nBased on the search results, here are the NeurIPS 2026 paper submission deadlines:\n\nAbstract submission deadline: May 4, 2026 (AOE)\n\nFull paper submission deadline, including all supplementary materials: May 6, 2026 AOE\n\nThe submission site opening has been moved to April 15th, and all tracks (Main Submission, Evaluations & Datasets, and Position Papers) share the same dates.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89e5a0d2-0723-4161-9f2c-ecfac28402eb",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "299df7cb-ec11-44a2-b261-d2a859df59a5",
+            "sourceToolAssistantUUID": "89e5a0d2-0723-4161-9f2c-ecfac28402eb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-30T06:45:31.609Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018EDucPfuwvfjPVCEGAVjK1",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "299df7cb-ec11-44a2-b261-d2a859df59a5",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3fd8f026-2d45-4693-8be4-d4fd840842f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-30T06:45:31.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UZ6L6FhQAPNCLVWpuKENxf",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICLR 2027 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fd8f026-2d45-4693-8be4-d4fd840842f1",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b30e9777-5797-49dd-a45b-c6990ecb13ef",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-30T06:45:32.089Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017KtBPwNiii4gAo9WL2KYxc",
+              "name": "WebSearch",
+              "input": {
+                "query": "ECCV 2026 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b30e9777-5797-49dd-a45b-c6990ecb13ef",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1ab86c0f-dad2-49b2-8cce-236260a7bb8f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-30T06:45:32.531Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018sG9oXoNzY38sVQ9VNDCRe",
+              "name": "WebSearch",
+              "input": {
+                "query": "WACV 2027 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ab86c0f-dad2-49b2-8cce-236260a7bb8f",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7d5fcc38-833c-4d01-9ad6-39db86328305",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-30T06:45:33.028Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BJCG3saD7MctXB8nAFhFiJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "EMNLP 2026 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d5fcc38-833c-4d01-9ad6-39db86328305",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "98932314-028a-4bfe-a179-794daf10e25a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-30T06:45:33.495Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sg2puovTnTdDrDj8R4aKLa",
+              "name": "WebSearch",
+              "input": {
+                "query": "ACL 2026 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98932314-028a-4bfe-a179-794daf10e25a",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "98a395cb-025d-480b-9ed9-b46a6625633d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-30T06:45:33.501Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XyD1hmrWaRo2eSRqmZJgeB",
+              "name": "WebSearch",
+              "input": {
+                "query": "SIGIR 2026 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98a395cb-025d-480b-9ed9-b46a6625633d",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76eec476-f0e9-4871-88e5-30fccbb5840e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-30T06:45:33.966Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019fi3EikiXmEAwxsxqJf6ke",
+              "name": "WebSearch",
+              "input": {
+                "query": "CIKM 2026 paper submission deadline date"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76eec476-f0e9-4871-88e5-30fccbb5840e",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c30bb186-da73-4cb7-8023-5a37408f4496",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-30T06:45:34.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Z7dAvAdR5XZWNV78MdWsd",
+              "name": "WebSearch",
+              "input": {
+                "query": "NeurIPS 2026 workshops document AI multimodal retrieval call for papers deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c30bb186-da73-4cb7-8023-5a37408f4496",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b27a41d0-3ace-423d-9066-633b9b683699",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-30T06:45:34.910Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UZ6L6FhQAPNCLVWpuKENxf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICLR 2027 paper submission deadline date\"\n\nLinks: [{\"title\":\"International Conference on Learning Representations ICLR in August 2027 in Sydney\",\"url\":\"https://waset.org/learning-representations-conference-in-august-2027-in-sydney\"},{\"title\":\"Key deadlines in AI and ML conferences | Yutori\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"Year-Round Deadlines - Imranur Rahman\",\"url\":\"https://imranur-rahman.github.io/deadlines/\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"ICLR 2026\",\"url\":\"https://iclr.cc/\"},{\"title\":\"Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2025/CallForPapers\"}]\n\nBased on the search results, I was unable to find specific information about the ICLR 2027 paper submission deadline date. The search results contain information about ICLR 2026 and earlier conferences, but detailed deadlines for ICLR 2027 do not appear to be publicly available yet. \n\nOne source notes that ICLR 2027 deadlines are predicted based on historical patterns, suggesting that the official announcement may not have been released at this time. I recommend checking the official ICLR website (iclr.cc) directly or contacting the conference organizers for the most up-to-date information about ICLR 2027 submission deadlines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b30e9777-5797-49dd-a45b-c6990ecb13ef",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "b1c40846-14f3-4750-8743-89e51e833b05",
+            "sourceToolAssistantUUID": "b30e9777-5797-49dd-a45b-c6990ecb13ef",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-30T06:45:35.012Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kw4jN86B7ZLqsQEnkDEDbw",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICML 2026 workshops document understanding vision language deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1c40846-14f3-4750-8743-89e51e833b05",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJVwgDtz3BBHAYRdMVp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c9aac401-ea07-477a-b602-5a1412e97b81",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5kCLgxZzLeFtTz97Z5tyB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 10105,
+                "output_tokens": 483,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 764
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 483,
+                    "cache_read_input_tokens": 10105,
+                    "cache_creation_input_tokens": 764,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 764,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-30T06:45:35.565Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017KtBPwNiii4gAo9WL2KYxc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ECCV 2026 paper submission deadline date\"\n\nLinks: [{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://eccv.ecva.net/Conferences/2026/Dates\"},{\"title\":\"ECCV 2026 Call for Papers\",\"url\":\"https://eccv.ecva.net/Conferences/2026/CallForPapers\"},{\"title\":\"ECCV 2026\",\"url\":\"https://eccv.ecva.net/\"},{\"title\":\"ECCV 2026 Submission Policies\",\"url\":\"https://eccv.ecva.net/Conferences/2026/SubmissionPolicies\"},{\"title\":\"Update ECCV 2026 with complete deadline information · huggingface/ai-deadlines at 3bccf2b\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/3bccf2b883c17d4536b469411fa413dc8711fdbb\"},{\"title\":\"ECCV 2026 - AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/conference/?id=eccv26\"},{\"title\":\"ECCV 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=eccv26\"},{\"title\":\"Kosta Derpanis on X: \\\"The official deadline for #ECCV2026 review submissions is April 21st, 11:00PM, CEST. That’s TODAY! Don’t let your co-authors down by missing the deadline and having your paper at risk of desk rejection. Not going to make it? Let your Area Chair know immediately and give\\\" / X\",\"url\":\"https://x.com/CSProfKGD/status/2046623644571275499\"},{\"title\":\"ECCV 2026\",\"url\":\"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=eccv26\"},{\"title\":\"ECCV 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=thecvf.com%2FECCV%2F2026%2FConference\"}]\n\nBased on the search results, the paper submission deadline for ECCV 2026 is March 5, 2026, at 11:00 PM CET. \n\nNote that this deadline has already passed. Earlier deadlines included the paper registration deadline on February 26, 2026, at 11:00 PM CET, and the supplementary material deadline was March 12, 2026, at 11:00 PM CET.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ab86c0f-dad2-49b2-8cce-236260a7bb8f",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "434045cb-7531-4204-a82b-d1c03b380cf0",
+            "sourceToolAssistantUUID": "1ab86c0f-dad2-49b2-8cce-236260a7bb8f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-30T06:45:35.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018EDucPfuwvfjPVCEGAVjK1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 paper submission deadline date\"\n\nLinks: [{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/aaai\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"AI/ML Conference Timeline | NIU AI\",\"url\":\"https://www.niuai.org/resources/conference-timeline/\"},{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"Assessing the Reproducibility of the Structured Abstracts Generated by ChatGPT and Bard Compared to Human-Written Abstracts in the Field of Spine Surgery: Comparative Analysis\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11237793/\"},{\"title\":\"Ethical and Social Considerations of Applying Artificial Intelligence in Healthcare; a Two-Pronged Scoping Review\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.02.10.25321994.full.pdf\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"}]\n\nBased on the search results, here's what I found about AAAI 2027 paper submission deadlines:\n\nFor the Main Technical Track, the abstract submission deadline is July 21, 2026 at 11:59 PM UTC-12, and the full paper submission deadline is July 28, 2026 at 11:59 PM UTC-12. Supplementary material and code are due by July 31, 2026 at 11:59 PM UTC-12.\n\nAll deadlines are \"anywhere on earth\" (UTC-12), and deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.\n\nAAAI 2027 will be held in Montréal, Québec, Canada on February 16-23, 2027.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fd8f026-2d45-4693-8be4-d4fd840842f1",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "f3616ce4-d8c2-4f1c-a7ab-7685faaefe6b",
+            "sourceToolAssistantUUID": "3fd8f026-2d45-4693-8be4-d4fd840842f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-30T06:45:36.131Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018sG9oXoNzY38sVQ9VNDCRe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"WACV 2027 paper submission deadline date\"\n\nLinks: [{\"title\":\"Dates and Deadlines - WACV 2027\",\"url\":\"https://wacv.thecvf.com/Conferences/2027/Dates\"},{\"title\":\"2027 Conference\",\"url\":\"https://wacv.thecvf.com/\"},{\"title\":\"2026 Dates and Deadlines - WACV 2027\",\"url\":\"https://wacv.thecvf.com/Conferences/2026/Dates\"},{\"title\":\"WACV 2027 Author Reviewer Guides\",\"url\":\"https://wacv.thecvf.com/Conferences/2027/AuthorReviewerGuides\"},{\"title\":\"WACV 2027 - AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/conference/?id=wacv27\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"WACV 2027 Getting Started - The Computer Vision Foundation\",\"url\":\"https://wacv.thecvf.com/virtual/2027/index.html\"},{\"title\":\"Important dates « CV4EO at WACV @ Oak Ridge National Laboratory\",\"url\":\"https://geoai.ornl.gov/cv4eo-wacv/important-dates/\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"}]\n\nBased on the search results, the specific paper submission deadline date for WACV 2027 is not directly stated in the available information. However, I found that the conference takes place January 5-9, 2027, and the search results indicate that WACV 2027 will employ a two-round review process.\n\nThe official WACV website appears to have a dates and deadlines page, but the detailed submission deadline information was not fully captured in the search results. For the most accurate and up-to-date paper submission deadline, I recommend visiting the official WACV 2027 website directly at wacv.thecvf.com, where the complete deadline information should be available.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d5fcc38-833c-4d01-9ad6-39db86328305",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "f1144ed2-f89e-46ec-829d-177adb33a270",
+            "sourceToolAssistantUUID": "7d5fcc38-833c-4d01-9ad6-39db86328305",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-30T06:45:36.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XyD1hmrWaRo2eSRqmZJgeB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SIGIR 2026 paper submission deadline date\"\n\nLinks: [{\"title\":\"SIGIR 2026 in Melbourne: Key Dates, Topics & Submission Guidelines - Conference Inc.\",\"url\":\"https://conferenceinc.net/post/sigir/\"},{\"title\":\"Key Dates | SIGIR 2026\",\"url\":\"https://sigir2026.org/en-AU/pages/attending/key-dates\"},{\"title\":\"SIGIR Forum | SIGIR\",\"url\":\"https://sigir.org/forum/\"},{\"title\":\"SIGIR 2026 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/sigir-2026.html\"},{\"title\":\"The 2026 ACM SIGMOD/PODS Conference: Bengaluru, India - Call for Papers: SIGMOD Research\",\"url\":\"https://2026.sigmod.org/calls_papers_sigmod_research.shtml\"},{\"title\":\"SIGIR 2026 - 49th International ACM SIGIR Conference on Research and Development in Information Retrieval\",\"url\":\"https://sigir2026.org/en-AU\"},{\"title\":\"CHIIR 2026\",\"url\":\"https://chiir2026.github.io/\"},{\"title\":\"Full Papers Track | SIGIR 2026\",\"url\":\"https://sigir2026.org/en-AU/pages/submissions/full-papers-track\"},{\"title\":\"ACM CHIIR 2026 | iSchools Inc.\",\"url\":\"https://www.ischools.org/event-details/acm-chiir-2026\"},{\"title\":\"Submission Policies and Information | SIGIR 2026\",\"url\":\"https://sigir2026.org/en-AU/pages/submissions/submission-policies-and-information\"}]\n\nBased on the search results, the SIGIR 2026 paper submission deadline is January 22, 2026. Additionally, the abstract deadline is January 15, 2026, with both deadlines at 23:59:59 AoE (Anywhere on Earth).\n\nThe conference itself will take place July 20-24, 2026 in Melbourne, Australia.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76eec476-f0e9-4871-88e5-30fccbb5840e",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "463e9551-d625-4ef9-b6ba-68b14c8cd96d",
+            "sourceToolAssistantUUID": "76eec476-f0e9-4871-88e5-30fccbb5840e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-30T06:45:37.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019fi3EikiXmEAwxsxqJf6ke",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CIKM 2026 paper submission deadline date\"\n\nLinks: [{\"title\":\"CIKM 2026: ACM International Conference on Information and Knowledge Management\",\"url\":\"https://www.myhuiban.com/conference/143?lang=en_us\"},{\"title\":\"CIKM 2026 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/cikm-2026.html\"},{\"title\":\"Full Research Papers - CIKM 2026\",\"url\":\"https://cikm2026.diag.uniroma1.it/full-research-papers/\"},{\"title\":\"Home - CIKM 2026\",\"url\":\"https://cikm2026.diag.uniroma1.it/\"},{\"title\":\"Submit - CIKM 2026\",\"url\":\"https://cikm2026.diag.uniroma1.it/submit/\"},{\"title\":\"CIKM 2026 : Call For Papers - CIKM 2026\",\"url\":\"http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194623\"},{\"title\":\"Upcoming Submission Deadlines | May, 2026\",\"url\":\"https://www.acm.org/conferences/upcoming-submission-deadlines/upcoming-submission-deadlines?startDate0=20260501&eventType0=CallsForPapers&view0=month\"},{\"title\":\"Efficacy and Safety of Leymovir Versus Valganciclovir in Prevention of Cytomegalovirus Infection and Cytomegalovirus Disease in Chinese Kidney Transplant Recipients\",\"url\":\"https://clinicaltrials.gov/study/NCT07266467\"},{\"title\":\"CIKM 2025\",\"url\":\"https://cikm2025.org/\"},{\"title\":\"Efficacy of Transcutaneous Vagus Nerve Stimulation Paired With Tailor-Made Notched Music Therapy Versus Tailor-made Notched Music Training for Chronic Subjective Tinnitus\",\"url\":\"https://clinicaltrials.gov/study/NCT05417711\"}]\n\nBased on the search results, the full research papers submission deadline for CIKM 2026 is May 23, 2026. \n\nHowever, there are slightly different dates mentioned in other sources - one source indicates the paper submission deadline was May 25, 2026 at 23:59:59 (AoE). All deadlines are at 11:59pm in the Anywhere on Earth (AoE) time zone.\n\nNote that the official CIKM 2026 website shows May 23, 2026, so that appears to be the most reliable deadline for full research papers.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c30bb186-da73-4cb7-8023-5a37408f4496",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "2e601c4d-f99d-4786-b7c9-2075f3e6ba45",
+            "sourceToolAssistantUUID": "c30bb186-da73-4cb7-8023-5a37408f4496",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-30T06:45:38.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sg2puovTnTdDrDj8R4aKLa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ACL 2026 paper submission deadline date\"\n\nLinks: [{\"title\":\"Main Conference - ACL 2026\",\"url\":\"https://2026.aclweb.org/calls/main_conference_papers/\"},{\"title\":\"LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)\",\"url\":\"https://linguistlist.org/issues/37/181/\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"ACL 2026 - AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/conference/?id=acl26\"},{\"title\":\"2026 *ACL Conference Dates | Computational Linguistics\",\"url\":\"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14\"},{\"title\":\"Call for Student Research Workshop Papers -\",\"url\":\"https://2026.eacl.org/calls/srw/\"},{\"title\":\"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"ACL 2026\",\"url\":\"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=acl26\"}]\n\nBased on the search results, the paper submission deadline for ACL 2026 Industry Track is February 14, 2026. However, it's important to note that starting from 2024, all main *ACL conferences used ARR (ACL Rolling Review) exclusively, including ACL 2026. This means papers are submitted through the ARR system rather than directly to ACL 2026, and the specific submission deadlines depend on which ARR submission cycle you're targeting for ACL 2026 consideration. All deadlines are at 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98a395cb-025d-480b-9ed9-b46a6625633d",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "539ea46f-10ae-402c-964a-269d970595dc",
+            "sourceToolAssistantUUID": "98a395cb-025d-480b-9ed9-b46a6625633d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-30T06:45:39.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BJCG3saD7MctXB8nAFhFiJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EMNLP 2026 paper submission deadline date\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"EMNLP 2026 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/emnlp-2026.html\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029508292637061462\"},{\"title\":\"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0\"},{\"title\":\"emnlp 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=emnlp26\"},{\"title\":\"2026 *ACL Conference Dates | Computational Linguistics\",\"url\":\"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14\"},{\"title\":\"EMNLP 2026: Conference on Empirical Methods in Natural Language Processing\",\"url\":\"https://www.myhuiban.com/conference/424?lang=en_us\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"EMNLP 2026 : The 2026 Conference on Empirical Methods in N\",\"url\":\"https://callforpaper.org/call-for-papers-emnlp-2026\"},{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"}]\n\nThe EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 UTC-12 (which is \"anywhere on Earth\" time). All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nNote that papers must be submitted through the ARR 2026 May cycle, and all authors must complete the author registration form by May 27, 2026 EoD AoE after submission.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98932314-028a-4bfe-a179-794daf10e25a",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "3347154a-e4d5-4ec2-bcda-a5d6ea4d7485",
+            "sourceToolAssistantUUID": "98932314-028a-4bfe-a179-794daf10e25a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-30T06:45:39.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kw4jN86B7ZLqsQEnkDEDbw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICML 2026 workshops document understanding vision language deadline\"\n\nLinks: [{\"title\":\"ICML 2026 Call for Post-Conference Workshops\",\"url\":\"https://icml.cc/Conferences/2026/CallForWorkshops\"},{\"title\":\"ICML 2026 Workshops\",\"url\":\"https://icml.cc/virtual/2026/events/workshop\"},{\"title\":\"Announcing the ICML 2026 Workshops and Affinity Workshops – ICML Blog\",\"url\":\"https://blog.icml.cc/2026/04/06/announcing-the-icml-2026-workshops-and-affinity-workshops/\"},{\"title\":\"Workshops Call for Proposals 2026\",\"url\":\"https://iclr.cc/Conferences/2026/CallForWorkshops\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"ICML 2026\",\"url\":\"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26\"},{\"title\":\"ICLR 2026 Workshops\",\"url\":\"https://iclr.cc/virtual/2026/events/workshop\"}]\n\nBased on the search results, here's what I found regarding ICML 2026 workshops:\n\n**General ICML 2026 Workshop Deadlines:**\n\nWorkshop submissions opened January 21, 2026, with an application deadline of February 13, 2026 (AOE). Workshop notification was March 20, 2026.\n\n**Workshop Overview:**\n\nICML 2026 features 44 workshops running during post-conference workshop days on Friday July 10 and Saturday July 11.\n\nHowever, the search results do not contain specific information about a workshop focused on \"document understanding\" or \"vision language\" at ICML 2026. While the general workshop information is available, there doesn't appear to be a dedicated workshop on those specific topics listed in the search results. You may want to check the full ICML 2026 workshops list directly at icml.cc to see if there's a workshop matching those specific focus areas.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9aac401-ea07-477a-b602-5a1412e97b81",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "b0a76ade-1780-4a0d-80ff-6478cd45a7c6",
+            "sourceToolAssistantUUID": "c9aac401-ea07-477a-b602-5a1412e97b81",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-30T06:45:44.189Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Z7dAvAdR5XZWNV78MdWsd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NeurIPS 2026 workshops document AI multimodal retrieval call for papers deadline\"\n\nLinks: [{\"title\":\"NeurIPS 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=neurips26\"},{\"title\":\"NeurIPS 2026 Workshops Guidance\",\"url\":\"https://neurips.cc/Conferences/2026/WorkshopsGuidance\"},{\"title\":\"NeurIPS Newsletter – April 2026 – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/\"},{\"title\":\"2026 Conference – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/category/2026-conference/\"},{\"title\":\"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01\"},{\"title\":\"Recurrence-Enhanced Vision-and-Language Transformers for Robust   Multimodal Document Retrieval\",\"url\":\"https://arxiv.org/pdf/2503.01980\"},{\"title\":\"A novel multi-modal retrieval framework for tracking vehicles using natural language descriptions\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12338829/\"},{\"title\":\"Comparison of Text-Based and Image-Based Retrieval in Multimodal Retrieval Augmented Generation Large Language Model Systems\",\"url\":\"https://arxiv.org/pdf/2511.16654\"}]\n\nBased on the search results, I found general information about NeurIPS 2026 workshops, but the results don't contain specific details about a dedicated workshop on \"Document AI multimodal retrieval.\" \n\nHere's what I found about NeurIPS 2026 workshops in general:\n\nNeurIPS 2026 is soliciting workshop proposals, with applications due by June 6, 2026 (AOE). The mandatory author notification deadline for workshops is September 29, 2026.\n\nHowever, the search results don't show a specific call for papers with a particular deadline for a \"Document AI multimodal retrieval\" workshop. If such a workshop exists, it would likely fall under the general NeurIPS 2026 workshop guidelines, but I wasn't able to locate its specific call for papers or submission deadline in these results. You may want to check the official NeurIPS 2026 website directly or look for workshop-specific announcements to find the particular deadline you're looking for.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b27a41d0-3ace-423d-9066-633b9b683699",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "3f121e50-7321-4b42-b15d-68da1ce5a068",
+            "sourceToolAssistantUUID": "b27a41d0-3ace-423d-9066-633b9b683699",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-30T06:45:47.314Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch more details on WACV 2027 and ACL 2026 deadlines, and check for relevant workshops."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f121e50-7321-4b42-b15d-68da1ce5a068",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJX73ZPP4pjsG1GmomF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "72334ff0-20b4-44b4-b536-78c8e589cbcc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jGYjTkKjwwhtZaoSP4C7E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 558,
+                "cache_creation_input_tokens": 6244,
+                "cache_read_input_tokens": 10869,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6244,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-30T06:45:48.256Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CDCCDBKNrLXVrntYpuRbY3",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://wacv.thecvf.com/Conferences/2027/Dates",
+                "prompt": "What are the paper submission deadlines for WACV 2027? List all rounds and dates."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72334ff0-20b4-44b4-b536-78c8e589cbcc",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJX73ZPP4pjsG1GmomF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d55b5a10-e11e-45c7-ba71-97b7e6385d72",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jGYjTkKjwwhtZaoSP4C7E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 558,
+                "cache_creation_input_tokens": 6244,
+                "cache_read_input_tokens": 10869,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6244,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-30T06:45:49.612Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PELJVNmxbLMnKac5jbt6xA",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://2026.aclweb.org/calls/main_conference_papers/",
+                "prompt": "What is the ARR submission deadline for papers to be considered at ACL 2026? List the key dates."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d55b5a10-e11e-45c7-ba71-97b7e6385d72",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJX73ZPP4pjsG1GmomF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b092529f-eb4b-4a4d-a50c-2e52ccc0837d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jGYjTkKjwwhtZaoSP4C7E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 558,
+                "cache_creation_input_tokens": 6244,
+                "cache_read_input_tokens": 10869,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6244,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-30T06:45:50.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BhaeUTLY6tKCJD8pqPYJPm",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://icml.cc/virtual/2026/events/workshop",
+                "prompt": "List all workshops at ICML 2026. Are there any related to document understanding, document AI, information retrieval, multimodal learning, or vision-language?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b092529f-eb4b-4a4d-a50c-2e52ccc0837d",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJX73ZPP4pjsG1GmomF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76522610-17fe-4499-9b3a-48cd1b150bb0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jGYjTkKjwwhtZaoSP4C7E",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 558,
+                "cache_creation_input_tokens": 6244,
+                "cache_read_input_tokens": 10869,
+                "output_tokens": 337,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6244
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 558,
+                    "output_tokens": 337,
+                    "cache_read_input_tokens": 10869,
+                    "cache_creation_input_tokens": 6244,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6244,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-30T06:45:51.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CDCCDBKNrLXVrntYpuRbY3",
+              "type": "tool_result",
+              "content": "# WACV 2027 Paper Submission Deadlines\n\nThe conference has two submission rounds with the following deadlines:\n\n**Round 1:**\n- Paper Registration: \"Jun 19 '26 (Anywhere on Earth)\"\n- Paper Submission: \"Jun 26 '26 (Anywhere on Earth)\"\n- Supplementary Material: \"Jun 28 '26 (Anywhere on Earth)\"\n- Rebuttal/Revision Submission: \"Aug 21 '26 (Anywhere on Earth)\"\n\n**Round 2:**\n- Paper Registration: \"Aug 21 '26 (Anywhere on Earth)\"\n- Paper Submissions: \"Aug 28 '26 (Anywhere on Earth)\"\n- Supplemental Material: \"Aug 30 '26 (Anywhere on Earth)\"\n\n**Camera-Ready (Both Rounds):**\n- Deadline: \"Nov 02 '26 (Anywhere on Earth)\"\n\nAll deadlines are specified as occurring anywhere on Earth, allowing for maximum flexibility across time zones."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d55b5a10-e11e-45c7-ba71-97b7e6385d72",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "7f78c90c-f073-49d1-9fa2-7dcb1f2cf3ab",
+            "sourceToolAssistantUUID": "d55b5a10-e11e-45c7-ba71-97b7e6385d72",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-30T06:45:56.152Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PELJVNmxbLMnKac5jbt6xA",
+              "type": "tool_result",
+              "content": "# ARR Submission Deadline and Key Dates for ACL 2026\n\n## Submission Deadline\n\nThe ARR submission deadline for papers to be considered at ACL 2026 is **January 5, 2026**.\n\n## Key Dates\n\nHere are the important milestones for the conference:\n\n- **Submission to ARR**: January 5, 2026\n- **Reviews available**: March 10, 2026\n- **Commitment deadline**: March 14, 2026\n- **Acceptance notification**: April 4, 2026\n- **Withdrawal/camera-ready deadline**: April 19, 2026\n- **Tutorials**: July 2, 2026\n- **Workshops**: July 3-4, 2026\n- **Main conference**: July 5-7, 2026\n\nThe submission process follows a two-step approach: authors first submit to ACL Rolling Review (ARR), receive feedback, and then commit their reviewed articles to ACL 2026 by the March 14 deadline. As noted in the guidelines, \"all deadlines are at 11:59PM UTC-12:00 ('anywhere on Earth').\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b092529f-eb4b-4a4d-a50c-2e52ccc0837d",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "6ab25f2d-5e5f-4c07-b22a-7458169560a7",
+            "sourceToolAssistantUUID": "b092529f-eb4b-4a4d-a50c-2e52ccc0837d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-30T06:45:56.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BhaeUTLY6tKCJD8pqPYJPm",
+              "type": "tool_result",
+              "content": "# ICML 2026 Workshops: Document AI & Vision-Language\n\nBased on the workshop listings, here are the most relevant workshops to your areas of interest:\n\n## Directly Relevant\n\n**Efficient Multimodal Question Answering** explores \"methods for answering questions over text, images, tables, and audio while balancing accuracy with computational efficiency.\" This workshop addresses multimodal reasoning and information retrieval challenges.\n\n## Partially Related\n\n**Learning to Listen: Machine Learning for Audio** covers audio understanding and multimodal problems, including \"generative synthesis, enhancement/denoising, datasets and augmentation, classification, transcription, source separation, and multimodal problems.\"\n\n**SCALE: Scalable Learning and Optimization for Efficient Multimodal AI Agents** focuses on multimodal agent architectures and learning pipelines spanning various modalities.\n\n**Generative and Agentic AI for Biology** addresses \"foundation models for biological sequences\" and multimodal reasoning across biological domains.\n\n## Notable Absence\n\nThe workshop list does not include specialized workshops explicitly dedicated to document understanding, document AI, or vision-language models as primary focuses. However, several foundation model workshops may tangentially address these topics through their broader scope on multimodal learning."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76522610-17fe-4499-9b3a-48cd1b150bb0",
+            "isSidechain": true,
+            "promptId": "663251b4-b93d-4a07-a451-7fa3911956b8",
+            "agentId": "a59f46c9d0ffc4d61",
+            "type": "user",
+            "uuid": "0719a891-a220-4149-8b0e-a2c503c988b2",
+            "sourceToolAssistantUUID": "76522610-17fe-4499-9b3a-48cd1b150bb0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-30T06:46:15.218Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the results:\n\n**After May 30, 2026:**\n\n1. **AAAI 2027** -- Abstract: Jul 21, 2026; Full paper: Jul 28, 2026. After deadline.\n2. **WACV 2027** -- Round 1: Jun 26, 2026; Round 2: Aug 28, 2026. Both after deadline.\n3. **ICLR 2027** -- Not yet announced. Historically ~October; likely after deadline.\n4. **NeurIPS 2026 Workshops** -- Workshop proposals due Jun 6, 2026; individual workshop paper deadlines TBD (typically ~September). After deadline.\n\n**Before May 30, 2026 (already passed):**\n\n5. **NeurIPS 2026 (main)** -- Abstract: May 4; Full paper: May 6, 2026. PASSED.\n6. **ECCV 2026** -- Mar 5, 2026. PASSED.\n7. **EMNLP 2026** -- ARR submission: May 25, 2026. PASSED (by 5 days).\n8. **ACL 2026** -- ARR submission: Jan 5, 2026. PASSED.\n9. **SIGIR 2026** -- Jan 22, 2026. PASSED.\n10. **CIKM 2026** -- May 23, 2026. PASSED (by 7 days).\n\n**Relevant ICML 2026 Workshops** (conference Jul 6-12, workshop paper deadlines likely already passed or imminent): \"Efficient Multimodal Question Answering\" is the closest match but not a direct fit for document retrieval with spatial grounding.\n\n**Best upcoming targets for your paper (visual document retrieval + spatial grounding):** WACV 2027 Round 1 (Jun 26) and AAAI 2027 (Jul 28) are the nearest actionable deadlines. ICLR 2027 (~Oct 2026, TBA) is the next top venue. Watch for NeurIPS 2026 workshop CFPs in the coming weeks for document AI / multimodal retrieval topics.\n\nSources:\n- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n- [AAAI-27 Main Track CFP](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [ECCV 2026 Dates](https://eccv.ecva.net/Conferences/2026/Dates)\n- [WACV 2027 Dates](https://wacv.thecvf.com/Conferences/2027/Dates)\n- [EMNLP 2026 CFP](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACL 2026 Main Conference](https://2026.aclweb.org/calls/main_conference_papers/)\n- [SIGIR 2026 Key Dates](https://sigir2026.org/en-AU/pages/attending/key-dates)\n- [CIKM 2026 Full Research Papers](https://cikm2026.diag.uniroma1.it/full-research-papers/)\n- [ICML 2026 Workshops](https://icml.cc/virtual/2026/events/workshop)\n- [NeurIPS 2026 Workshops Guidance](https://neurips.cc/Conferences/2026/WorkshopsGuidance)\n- [AI & ML Conference Deadlines](https://trybibby.com/conference-deadlines)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0719a891-a220-4149-8b0e-a2c503c988b2",
+            "isSidechain": true,
+            "agentId": "a59f46c9d0ffc4d61",
+            "requestId": "req_011CbYJY1xzWRQjgUcwqSMiu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2f61ab05-1ed5-450a-a41b-0f581d78e85a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "aefa10d1-3548-441b-99d7-292785d11166",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Ch1UegKRk4XkVrqjJdoYD",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1748,
+                "cache_read_input_tokens": 17113,
+                "output_tokens": 903,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1748
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 903,
+                    "cache_read_input_tokens": 17113,
+                    "cache_creation_input_tokens": 1748,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1748,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-ml-ai-conference-and-workshop-submission-deadlines-that-fall-after.md"
+}

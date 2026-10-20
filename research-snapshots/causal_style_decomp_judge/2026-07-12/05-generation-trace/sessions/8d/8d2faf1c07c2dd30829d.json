@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "id": "8d2faf1c07c2dd30829d",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: causal_style_decomp_judge - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/proje",
+  "task_key": "4af966e3-d20a-466c-a44b-90dc296436ff",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/4af966e3-d20a-466c-a44b-90dc296436ff.jsonl",
+    "occurrence": 1,
+    "bytes": 590061,
+    "sha256": "fa5f83301b21144a997c1879d85396b9ed2a5a7e29e2ee34f356d8f4ecb9ab0f"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 8,
+    "tool_calls": 39,
+    "roles": {
+      "record": 40,
+      "user": 8,
+      "assistant": 24,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 117,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 117
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0001.json",
+          "message_count": 2
+        },
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "8d2faf1c07c2dd30829d-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-causal-style-decomp-judge-home-ubuntu-agent-ml-research-idea-gen-0514-5-proje.md"
+}

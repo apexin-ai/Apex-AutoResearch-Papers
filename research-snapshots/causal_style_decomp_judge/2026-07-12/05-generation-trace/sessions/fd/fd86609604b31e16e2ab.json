@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "fd86609604b31e16e2ab",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: collapse_severity_monitor ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "7e3e5d42-d6ee-49bf-bc5f-90dfc964eab9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/7e3e5d42-d6ee-49bf-bc5f-90dfc964eab9.jsonl",
+    "occurrence": 1,
+    "bytes": 2115434,
+    "sha256": "17c29d5b154f100227dac2c7845d2cb618580f0dee46d0d69b3555a3419e795c"
+  },
+  "statistics": {
+    "messages": 1455,
+    "user_turns": 2,
+    "tool_calls": 563,
+    "roles": {
+      "record": 196,
+      "user": 2,
+      "assistant": 130,
+      "tool_call": 563,
+      "tool_result": 563,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fd86609604b31e16e2ab-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1032,
+      "chunks": [
+        {
+          "path": "fd86609604b31e16e2ab-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0006.json",
+          "message_count": 134
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 421,
+      "chunks": [
+        {
+          "path": "fd86609604b31e16e2ab-part-0006.json",
+          "message_count": 46
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd86609604b31e16e2ab-part-0009.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-collapse-severity-monitor-autodl-5090-ssh-root-ssh-execute-sub-copy-188.md"
+}

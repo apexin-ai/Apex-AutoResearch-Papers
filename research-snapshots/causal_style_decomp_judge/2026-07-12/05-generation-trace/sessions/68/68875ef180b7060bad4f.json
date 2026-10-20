@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "68875ef180b7060bad4f",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: collapse_severity_monitor ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "ba750b99-a2f9-4044-a412-223cefbfa6ed",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/ba750b99-a2f9-4044-a412-223cefbfa6ed.jsonl",
+    "occurrence": 1,
+    "bytes": 955718,
+    "sha256": "98004142ed44eeb7ff8ed5d534926a89dac488b570e2387ea8ac74a6186104f8"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 2,
+    "tool_calls": 54,
+    "roles": {
+      "record": 50,
+      "user": 2,
+      "assistant": 36,
+      "tool_call": 54,
+      "tool_result": 54,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "68875ef180b7060bad4f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "68875ef180b7060bad4f-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "68875ef180b7060bad4f-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "68875ef180b7060bad4f-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-collapse-severity-monitor-autodl-5090-ssh-root-ssh-execute-sub-copy-207.md"
+}

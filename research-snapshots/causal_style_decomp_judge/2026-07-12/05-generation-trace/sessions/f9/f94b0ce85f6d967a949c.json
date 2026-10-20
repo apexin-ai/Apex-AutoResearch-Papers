@@ -1,0 +1,2463 @@
+{
+  "schema_version": "1.0",
+  "id": "f94b0ce85f6d967a949c",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the LaTeX paper at /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/, I ",
+  "task_key": "agent-a15d3963e9670cdeb",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a15d3963e9670cdeb.jsonl",
+    "occurrence": 1,
+    "bytes": 133504,
+    "sha256": "b6b8a851dafcc072bb84690c08a05dde8f7a039dcb8fbf7c006aff21d16b75b4"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 1,
+    "tool_calls": 23,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 23,
+      "tool_result": 23
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T18:24:40.133Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the LaTeX paper at /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/, I need to find ALL abbreviations/acronyms used across the main text files. Search for uppercase abbreviations (2+ consecutive capitals) in these files:\n- sections/abstract.tex\n- sections/introduction.tex\n- sections/related_work.tex\n- sections/method.tex\n- sections/experiments.tex\n- sections/conclusion.tex\n- main.tex (for Limitations section)\n\nFor each file, grep for patterns like consecutive uppercase letters (NLI, GEE, BT, LLM, RLHF, DPO, CSD, ATE, FWER, NLG, IIA, etc.). Use broad search. Also look for dataset names like LLMBar, AlpacaEval, MT-Bench, MNLI, and metric names like BERTScore, BLEU, etc.\n\nReport ALL acronyms found per file with line numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "e1a58bbf-fafe-4ecf-9b5e-b4304735c54c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T18:24:41.787Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for all abbreviations and acronyms across the LaTeX files in the paper. Let me start by searching each file for uppercase abbreviations and acronyms."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1a58bbf-fafe-4ecf-9b5e-b4304735c54c",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMrxtcc4ajHbwwcbTJuo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "409a08ab-60bf-4090-8d6b-84ee54ab58e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H7jYQ4JtDs9DLYSDaFSmYy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39774,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39774,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T18:24:42.638Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ZhYCvyVy3yigYkyJjRaKM",
+              "name": "Grep",
+              "input": {
+                "pattern": "[A-Z]{2,}",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "409a08ab-60bf-4090-8d6b-84ee54ab58e7",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMrxtcc4ajHbwwcbTJuo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "41e153a6-6391-4cc7-a192-148cd4dbe317",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H7jYQ4JtDs9DLYSDaFSmYy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39774,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39774,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T18:24:42.662Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ZhYCvyVy3yigYkyJjRaKM",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (97.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge--claude-sessions-director-8259c065/b1345355-a5ed-4064-8aca-57e9928d040b/tool-results/toolu_015ZhYCvyVy3yigYkyJjRaKM.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:1:% This is the LaTex style file for *ACL.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:31:\\typeout{Conference Style for ACL}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:45:  % NUMBER with left flushed zeros  \\fillzeros[<WIDTH>]<NUMBER>\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:72:  \\newcommand*\\linenomathpatchAMS[1]{%\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:73:    \\expandafter\\pretocmd\\csname #1\\endcsname {\\linenomathAMS}{}{}%\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:74:    \\expandafter\\pretocmd\\csname #1*\\endcsname {\\linenomathAMS}{}{}%\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:79:  %% Definition of \\linenomathAMS depends on whether the mathlines option is provided\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:81:    \\let\\linenomathAMS\\linenomathWithnumbers\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:83:    \\patchcmd\\linenomathAMS{\\advance\\postdisplaypenalty\\linenopenalty}{}{}{}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:85:    \\let\\linenomathAMS\\linenomathNonumbers\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:90:    \\linenomathpatchAMS{gather}%\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl.sty:91:    \\linenomathpatchAMS{multline}%\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41e153a6-6391-4cc7-a192-148cd4dbe317",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "afb3d093-f6f3-472e-b68e-42a81f8edaf0",
+            "sourceToolAssistantUUID": "41e153a6-6391-4cc7-a192-148cd4dbe317",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T18:24:42.722Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Bgeuf4KuLngufpXBNGVve",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/**/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afb3d093-f6f3-472e-b68e-42a81f8edaf0",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMrxtcc4ajHbwwcbTJuo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23bf66c0-1fe2-455f-8024-1d9b63482885",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H7jYQ4JtDs9DLYSDaFSmYy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39774,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39774,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T18:24:42.748Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Bgeuf4KuLngufpXBNGVve",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23bf66c0-1fe2-455f-8024-1d9b63482885",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "931c272f-aab1-4b4d-99c9-dbfab765b326",
+            "sourceToolAssistantUUID": "23bf66c0-1fe2-455f-8024-1d9b63482885",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T18:24:44.457Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The grep output was too large. Let me search each file individually for the specific sections requested:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "931c272f-aab1-4b4d-99c9-dbfab765b326",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48228058-b111-4e07-8a2c-a833574743c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T18:24:44.920Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QM32EPCX6e9zynAH3jFmCi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48228058-b111-4e07-8a2c-a833574743c8",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd233850-b99c-481a-8c8f-33ec78a65b15",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T18:24:44.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QM32EPCX6e9zynAH3jFmCi",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tLikert and pairwise scoring produce divergent sensitivity across two primary surface-level style axes, with varying effect sizes across judges, when applied to LLM judges.\n3\tWe define this divergence, the \\emph{Likert Blindspot}, as statistically significant pairwise sensitivity absent from Likert, without committing to a specific causal mechanism; it admits non-exclusive explanations including measurement attenuation, format amplification, and construct divergence.\n4\tWe introduce Controlled Style Decomposition (CSD), a black-box diagnostic quantifying this divergence via NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n5\tAcross five judges from five independent providers and two primary axes (formality, verbosity), pairwise reaches significance ($p < 0.001$) where Likert does not ($p > 0.28$), with Likert effect sizes collapsing toward zero at larger $n$, replicated across three benchmarks and confirmed by seven statistical methods.\n6\tGeneralized estimating equation (GEE) decomposition reveals distinct per-axis confound structures: verbosity bias is style-dominated (Style OR $3$--$13$, Originality OR ${<}1$), while formality reflects joint style--quality contributions.\n7\tOne judge (Claude Sonnet~4) exhibits benchmark-dependent sensitivity, illustrating bias as a judge$\\times$benchmark interaction; non-tie concordance (76.6\\%, $p < .001$) is more consistent with attenuation than construct divergence.\n8\tLikert-only audits may thus fail to surface style-driven preferences that propagate through pairwise-based alignment pipelines.\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd233850-b99c-481a-8c8f-33ec78a65b15",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "7b9855cb-499c-4a55-a072-158314ee4fa5",
+            "sourceToolAssistantUUID": "dd233850-b99c-481a-8c8f-33ec78a65b15",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T18:24:45.134Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CXgxZgnJxPX1aQ1UBhZrQH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b9855cb-499c-4a55-a072-158314ee4fa5",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8eb76017-dbaa-4d3f-826a-055b250ebc7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T18:24:45.161Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CXgxZgnJxPX1aQ1UBhZrQH",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\n3\t\\emph{``What is the average height for a male?''} --- in our experiments, given a formal and a casual answer with verified identical content (NLI entailment $= 0.993$), GPT-4o rates the casual variant \\emph{higher} on a 1--10 Likert scale (8 vs.\\ 5), yet consistently selects the formal variant in pairwise comparison.\n4\tSame judge, same texts, opposite conclusions.\n5\tWe term this the \\emph{Likert Blindspot}, an operational descriptor for the measurement-mode divergence where pairwise comparison detects statistically significant style sensitivity that Likert scoring fails to detect on the same data, without committing to a specific causal mechanism.\n6\tThis divergence admits multiple non-exclusive explanations (Likert measurement attenuation, pairwise format amplification \\citep{jeong2025comparative}, or construct-level differences), which our controlled design bounds but cannot definitively adjudicate (\\S\\ref{sec:likert_pairwise}).\n7\tThis example reflects a consistent pattern: surface-level style features alone explain most of the variance in judge scores \\citep{murugadoss2025sos}, with 76--92\\% of preferences originating from style cues \\citep{li2026preference,soumik2026judging}.\n8\t\n9\tLLM judges are central infrastructure for NLP evaluation and alignment training (RLHF, DPO), where judge preferences serve as reward signals; any systematic bias propagates through both evaluation leaderboards and model development pipelines.\n10\tDespite this, existing approaches address individual requirements (multi-dimensional style analysis \\citep{casse2026concise,wang2026fairjudge}, interventional design \\citep{reber2025rate}, population-level correction \\citep{dubois2025lc}), but no single framework integrates per-axis decomposition, interventional identification, confound-structure analysis, and black-box applicability.\n11\tClassical psychometrics establishes that pairwise comparison yields higher discriminability than absolute rating \\citep{thurstone1927law,david1988method}; our power analysis (Figure~\\ref{fig:power_curve}) is quantitatively consistent.\n12\tIn the LLM judge setting, this gap has \\emph{per-axis} confound signatures: verbosity is style-dominated (Style OR $3$--$13$) while formality is quality-confounded (Table~\\ref{tab:gee}), a decomposition not previously applied in LLM judge evaluation.\n13\t\n14\tWe propose Controlled Style Decomposition (CSD), combining NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n15\tInspired by interventional text analysis \\citep{veitch2020adapting}, CSD operates in three stages: style-controlled rewriting along a single axis, NLI entailment verification, and bias measurement via forced-choice comparison.\n16\tCSD requires no access to judge internals and applies post-hoc to any black-box judge.\n17\tOur experiments demonstrate the \\emph{Likert Blindspot} across four target judges from independent providers (GPT-4o, Qwen3-32B, Llama-3.3-70B, Gemini-2.5-Flash), a fifth judge (Claude Sonnet~4) with benchmark-dependent sensitivity, three benchmarks, and two primary style axes, with exploratory register evidence.\n18\tOn formality data, Likert yields non-significant effects ($p = 0.905$, $0.461$), while BT detects 63.0\\% (GPT-4o, $p = 0.0004$) and 66.5\\% (Qwen3-32B, $p < 0.0001$) formal preferences; verbosity shows 77.3\\% BT ($p < 0.0001$) invisible to Likert ($p = 0.395$; Figure~\\ref{fig:forest_plot}).\n19\t\n20\tOur contributions are both methodological and empirical:\n21\t\\begin{itemize}\n22\t    \\item \\textbf{Empirical finding:} the first systematic demonstration that pairwise and Likert formats yield qualitatively divergent style sensitivity profiles across four judges, three benchmarks, and two axes with position control, with selective cross-benchmark validation targeting the strongest effects (Table~\\ref{tab:main_results}).\n23\t    \\item \\textbf{Analytical contribution:} GEE conditional decomposition reveals per-axis confound structures invisible to aggregate analysis: verbosity is style-dominated (Style OR $3$--$13$) while formality reflects joint style--quality confounding (Table~\\ref{tab:gee}).\n24\t    \\item \\textbf{Practical contribution:} CSD operates as a black-box diagnostic requiring no access to model internals, applicable post-hoc to any judge (\\S\\ref{sec:method}).\n25\t\\end{itemize}\n26\t\n27\t\\begin{figure*}[t]\n28\t\\centering\n29\t\\includegraphics[width=0.92\\textwidth]{figures/pipeline_diagram.pdf}\n30\t\\vspace{-6pt}\n31\t\\caption{CSD pipeline overview. Numbers indicate sample attrition at each stage.}\n32\t\\label{fig:pipeline}\n33\t\\end{figure*}\n34\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8eb76017-dbaa-4d3f-826a-055b250ebc7e",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "bc4ba0b4-2d72-4afa-9a98-24df202e5836",
+            "sourceToolAssistantUUID": "8eb76017-dbaa-4d3f-826a-055b250ebc7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T18:24:45.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AGMpewvRxCyN8od8iGeFkw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc4ba0b4-2d72-4afa-9a98-24df202e5836",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a632b37a-95d7-4ac7-801e-6bbfaa82120f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T18:24:45.383Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AGMpewvRxCyN8od8iGeFkw",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Interventional Approaches to Judge Bias}\n5\tText-based interventional methods have a growing methodological foundation \\citep{feder2021causalm,wu2021polyjuice,feder2022causal}.\n6\t\\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert ATE; however, our experiments show 60\\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.\n7\tCSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.\n8\t\\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.\n9\t\n10\t\\paragraph{Style Bias in LLM Judges}\n11\tThe foundational LLM-as-judge framework \\citep{zheng2023judging} documented position bias; \\citet{shi2024judging} study it across 15 judges, and \\citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.\n12\tStyle bias as a separate source has received recent attention \\citep{wu2023style,murugadoss2025sos,saito2023verbosity,li2026preference,soumik2026judging}; \\citet{li2026preference} show that style-mediated \\emph{preference leakage} propagates through evaluation pipelines.\n13\tMulti-feature frameworks such as CASSE \\citep{casse2026concise} and FairJudge \\citep{wang2026fairjudge} decompose style into finer dimensions but rely on correlational analyses that cannot distinguish causal style effects from content quality confounds.\n14\t\\citet{jeong2025comparative} identify the Comparative Trap---pairwise comparison may amplify style biases---which we address in \\S\\ref{sec:amplification}.\n15\tUnlike human evaluators, LLM judges acquire format-specific biases through RLHF training: pairwise comparison serves as the reward signal in DPO pipelines, while Likert scoring is used for evaluation, motivating independent quantification of the format gap.\n16\t\n17\t\\paragraph{Measurement Format Sensitivity}\n18\tThe superiority of pairwise comparison over rating scales has been established since \\citet{thurstone1927law}; \\citet{carterette2008here} confirm this for information retrieval, and \\citet{krosnick1999survey} documents satisficing behavior that may compound the tie inflation we observe.\n19\tWithin NLP, \\citet{amidei2019likert} review Likert scales \\citep{likert1932technique} in NLG evaluation, and \\citet{novikova2018rankme} confirm that forced-choice methods detect quality differences that rating scales miss.\n20\tThe Bradley-Terry model \\citep{bradley1952rank} underpins Chatbot Arena \\citep{chiang2024chatbot} and AlpacaFarm \\citep{dubois2023alpacafarm}; no prior work combines BT with per-axis GEE decomposition to expose confound structures invisible to aggregate scores.\n21\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a632b37a-95d7-4ac7-801e-6bbfaa82120f",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "38fff7ed-6ae7-4bba-962f-f99d86ce7235",
+            "sourceToolAssistantUUID": "a632b37a-95d7-4ac7-801e-6bbfaa82120f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T18:24:45.573Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XzQ4s6oay4aaz89q3tGGH8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38fff7ed-6ae7-4bba-962f-f99d86ce7235",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "be082865-ab29-4780-b015-a7b8dee36151",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T18:24:45.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XzQ4s6oay4aaz89q3tGGH8",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Style-Controlled Rewriting}\n5\t\\label{sec:rewriting}\n6\t\n7\tWe isolate the effect of individual style attributes on judge scores by generating text pairs that differ along exactly one style axis while holding content fixed, a single-axis intervention design that enables per-axis causal attribution rather than aggregate style sensitivity measurement.\n8\tFor each text, an instruction-tuned LLM (Qwen3-32B) classifies its current style along the target axis (e.g., formal vs.\\ casual via binary classification).\n9\tIt then rewrites the text toward the opposite pole (temperature 0.7, selected to balance diversity with coherence in pilot experiments) according to an axis-specific prompt (Appendix~\\ref{app:rewriting_prompts}).\n10\tThis produces a dataset balanced across both directions at the dataset level: texts detected as formal are rewritten to casual, and vice versa.\n11\tEach operation approximates a binary intervention on a single style variable while all other axes remain fixed (Section~\\ref{sec:causal_framework}; Appendix~\\ref{app:cross_axis_contamination}).\n12\tTo control for rewriting artifact bias (the possibility that the judge prefers original text over any rewrite regardless of style), we additionally generate a same-style double-rewrite for each text (e.g., formal $\\to$ formal) to form an original-vs-double-rewrite control pair, following the RATE bias correction protocol \\citep{reber2025rate}.\n13\t\n14\t\\subsection{Content Preservation Verification}\n15\t\\label{sec:nli_gate}\n16\t\n17\tStyle-controlled rewriting risks altering semantic content, which would confound the style effect with a content quality effect (the $R \\to Q$ path in Figure~\\ref{fig:dag}).\n18\tTo block this path, we apply a natural language inference (NLI) gate using DeBERTa-v3-large fine-tuned on MNLI \\citep{williams2018broad} with an entailment threshold of 0.90, selected as the threshold above which NLI performance plateaus (Appendix~\\ref{app:nli_sweep}).\n19\tFor axes that preserve information density (formality, register), we apply standard bidirectional entailment: both NLI(original $\\to$ rewrite) and NLI(rewrite $\\to$ original) must exceed this value.\n20\tFor axes that inherently change information density (e.g., verbosity), bidirectional verification is inappropriate because expansion necessarily introduces new content that the original cannot entail.\n21\tWe instead apply direction-aware verification: for expansions, only backward entailment (rewrite entails original); for compressions, only forward entailment (original entails rewrite).\n22\tThis recovered verbosity from 65\\% to 86\\% pass rate without inflating the effect estimate; for formality, strict bidirectional gating is necessary (Appendix~\\ref{app:gate_validation}).\n23\tThis gating mechanism provides filtering-based confounder control \\citep{veitch2020adapting} by ensuring that retained pairs differ only in style, not in content quality (validated by human annotation; \\S\\ref{sec:nli_validation}).\n24\tBERTScore serves as a supplementary monitor (mean $\\Delta$BERTScore $< 0.02$ for gate-passed pairs) but does not participate in gating, as NLI provides stronger semantic equivalence guarantees than token-overlap metrics.\n25\t\n26\t\\begin{figure}[t]\n27\t\\centering\n28\t\\includegraphics[width=\\columnwidth]{figures/dag_diagram.pdf}\n29\t\\caption{Assumed data-generating process (design rationale, not a claim of perfect identification). The rewriting mechanism $R$ targets style $S$ but may inadvertently alter content quality $Q$ (dash-dot, blocked by NLI gate) or introduce rewriting artifacts ($R \\to Y$, blocked by double-rewrite control). Position bias $P \\to Y$ is controlled by order swapping. The dashed $S \\to Q$ path represents residual confounding (Limitations). $Y$: judge score.}\n30\t\\label{fig:dag}\n31\t\\end{figure}\n32\t\n33\t\\subsection{Measurement Protocol}\n34\t\\label{sec:measurement}\n35\t\n36\tEach pair that passes the NLI gate is evaluated by four target judges (GPT-4o, Qwen3-32B, Llama-3.3-70B, and Gemini-2.5-Flash) under two complementary scoring modes.\n37\tIn Likert mode, the judge assigns an integer score from 1 to 10 for overall quality to each text independently; the coarse integer scale is typical of deployed evaluation systems but limits measurement resolution for subtle effects.\n38\tIn pairwise mode, the judge receives both texts as candidates A and B and makes a forced choice of which response is better, eliminating anchoring effects inherent in absolute rating.\n39\t\n40\tTo control for position bias, each pairwise comparison is evaluated twice with the presentation order swapped, which produces $n_{\\text{pairs}} \\times 2$ observations.\n41\tWe apply two analysis strategies to these data.\n42\tFor the nonparametric sign test, we retain only \\emph{consistent} pairs where the judge selected the same text in both orderings.\n43\tFor the Bradley-Terry model, we use all observations including inconsistent pairs, as the model naturally accommodates noise in individual comparisons.\n44\tThe BT model assumes a single latent quality dimension; per-axis GEE decomposition (\\S\\ref{sec:direction}) complements this by separating style-specific from quality-correlated components.\n45\t\n46\t\\subsection{Experimental Setup}\n47\t\\label{sec:setup}\n48\t\n49\tWe evaluate primarily on LLMBar \\citep{zeng2023llmbar}, a benchmark of $n = 100$ instruction-response pairs spanning diverse task types, designed to test LLM judges' ability to distinguish response quality with human-verified quality labels.\n50\tLLMBar is well-suited for style sensitivity detection because its human-verified labels provide ground truth against which judge deviations can be measured, and its moderate size permits exhaustive pairwise evaluation with position control.\n51\tFor cross-benchmark validation, we additionally evaluate on AlpacaEval \\citep{dubois2023alpacafarm} and MT-Bench \\citep{zheng2023judging}, targeting the strongest effects from the primary analysis to test whether style sensitivity generalizes beyond a single benchmark's distributional characteristics.\n52\tWe select formality and verbosity as primary axes based on prior evidence that these are among the most commonly reported style sensitivities in LLM judges \\citep{wu2023style,saito2023verbosity}, with register (academic vs.\\ conversational) as an exploratory third axis (implementation details in Appendix~\\ref{app:implementation}).\n53\t\n54\t\\subsection{Design Rationale}\n55\t\\label{sec:causal_framework}\n56\t\n57\tFigure~\\ref{fig:dag} presents the assumed data-generating process.\n58\tCSD approximates the effect of style $S$ on judge score $Y$ while blocking confounding through content quality $Q$: the NLI gate blocks $R \\to Q$, position swapping controls presentation order, and the rewrite targets a single axis.\n59\tThe residual $S \\to Q$ path (dashed in Figure~\\ref{fig:dag}) represents the fundamental identification challenge: style and quality may be intrinsically correlated (e.g., formal writing may signal higher quality), which NLI gating cannot block.\n60\tGEE conditional decomposition (\\S\\ref{sec:direction}) partially addresses this by separating style-direction and originality effects, though omitted variables may confound both terms.\n61\tOur approach provides interventional rather than formal causal evidence (details in Appendix~\\ref{app:design_rationale}).\n62\tA tone axis pilot (assertive $\\to$ hedging) did not pass NLI gating, establishing a practical scope boundary for CSD at surface-level axes (Limitations).\n63\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be082865-ab29-4780-b015-a7b8dee36151",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "78b4f902-0f24-4e6e-8eb3-875d0eee9a7c",
+            "sourceToolAssistantUUID": "be082865-ab29-4780-b015-a7b8dee36151",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T18:24:46.000Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Ru13aiwD44jxz3PWL9BUt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78b4f902-0f24-4e6e-8eb3-875d0eee9a7c",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "083f26aa-3e2a-4b03-852d-217bd2a168bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T18:24:46.008Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Ru13aiwD44jxz3PWL9BUt",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\n5\t\\subsection{Statistical Framework}\n6\t\\label{sec:stat_framework}\n7\t\n8\tThe primary family comprises six tests (three target judges $\\times$ two axes), corrected via Holm-Bonferroni at $\\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from FWER control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\\ref{app:holm8}).\n9\tTable~\\ref{tab:main_results} reports both raw and adjusted $p$-values.\n10\tAnalyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\n11\tExploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\\alpha = 0.05$ without additional correction.\n12\tBradley-Terry parameters \\citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm}, using the \\texttt{choix} Python library's default L2 regularization ($\\alpha = 10^{-6}$).\n13\tIn binary-choice BT models, IIA is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.\n14\tAll bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42; we verify bootstrap stability by confirming that halving the resample count changes interval widths by $<$1pp.\n15\tGEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\\hat{\\alpha} \\in [-0.25, +0.11]$; Appendix~\\ref{app:gee_diagnostics}).\n16\tA prospective power analysis (Appendix~\\ref{app:power}) confirms that our sample sizes ($n = 86$--$88$ pairs) provide $>$90\\% power to detect BT effects of the observed magnitude ($P \\geq 0.63$), whereas Likert requires $4$--$206\\times$ the sample size for equivalent power (Figure~\\ref{fig:power_curve}).\n17\t\n18\t\\paragraph{Model selection.}\n19\tTarget judges span four architectures from independent providers: GPT-4o (\\texttt{2024-08-06}; OpenAI), Qwen3-32B-Instruct (Alibaba; also serving as rewriter), Llama-3.3-70B-Instruct (Meta), and Gemini-2.5-Flash (Google).\n20\tThis diversity guards against provider-specific artifacts in both training data and RLHF reward modeling; Claude Sonnet~4 (Anthropic) provides discriminative validity evidence (\\S\\ref{sec:cross_judge}), serving as a fifth judge from a provider not represented in the primary family.\n21\tAll judges are accessed via their respective APIs with temperature 0 (deterministic decoding) and default system prompts to ensure reproducibility.\n22\t\n23\t\\begin{table}[t]\n24\t\\centering\n25\t\\small\n26\t\\caption{Primary results on LLMBar ($n = 88$ formality, $86$ verbosity, except where noted) across five judges and three style axes. BT $> 0.50$ indicates style preference; $\\dagger$ marks Blindspot cases (BT significant, Likert not). Cross-benchmark replication in Appendix~\\ref{app:cross_bench}. BT: Bradley-Terry win probability (95\\% CIs in Appendix~\\ref{app:bt_ci}).}\n27\t\\label{tab:main_results}\n28\t\\begin{tabular}{@{}llccc@{}}\n29\t\\toprule\n30\tJudge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\\ \\\\\n31\t\\midrule\n32\tGPT-4o & Form.\\ & .630$^{***}$ & $-$.041 (.905) & $\\dagger$ \\\\\n33\tGPT-4o & Verb.\\ & .760$^{***}$ & .049 (.403) & $\\dagger$ \\\\\n34\tGPT-4o & Reg.\\ & .570$^{\\dagger}$ & .000 (.785) & $\\dagger_{\\text{e}}$ \\\\\n35\t\\cmidrule{1-5}\n36\tQwen3 & Form.\\ & .665$^{***}$ & $-$.052 (.461) & $\\dagger$ \\\\\n37\tQwen3 & Form.$^b$ & .675$^{***}$ & $-$.025 (.600) & $\\dagger$ \\\\\n38\tQwen3 & Verb.\\ & .773$^{***}$ & .036 (.395) & $\\dagger$ \\\\\n39\tQwen3 & Reg.\\ & .553 & $-$.073 (.373) & $\\dagger_{\\text{e}}$ \\\\\n40\t\\cmidrule{1-5}\n41\tLlama-70B & Form.\\ & .695$^{***}$ & .010 (.534) & $\\dagger$ \\\\\n42\tLlama-70B & Verb.\\ & .735$^{***}$ & .020 (.284) & $\\dagger$ \\\\\n43\tLlama-70B & Reg.\\ & .635$^{\\dagger}$ & .024 (.524) & $\\dagger_{\\text{e}}$ \\\\\n44\t\\cmidrule{1-5}\n45\tGemini & Form.\\ & .574$^{*}$ & $-$.082 (.309) & $\\dagger_{\\text{c}}$ \\\\\n46\tGemini & Verb.\\ & .708$^{***}$ & .051 (.370) & $\\dagger_{\\text{c}}$ \\\\\n47\t\\cmidrule{1-5}\n48\tClaude & Form.\\ & .562 & $-$.021 (.721) & --- \\\\\n49\tClaude & Verb.\\ & .541 & $-$.039 (.743) & --- \\\\\n50\t\\bottomrule\n51\t\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize $^{***}\\!p < 0.001$; $^{*}\\!p < 0.05$ (Holm-adj.\\ for primary; raw for $_{\\text{c}}$). $\\dagger$: Blindspot (BT sig., Likert n.s.); ---: neither sig.; $_{\\text{e}}$: exploratory; $_{\\text{c}}$: confirmatory. Negative $d$: styled variants scored lower.}\\\\\n52\t\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize $^b$ Scaled replication ($n = 355$). Qwen3 serves as both rewriter and judge; independent GPT-4o rewriter yields 22\\% lower Style OR (App.~\\ref{app:rewriter_indep}).}\\\\\n53\t\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize Form.\\ direction asymmetry: formal-origin 78.8\\% vs.\\ casual-origin 54.5\\%; GEE-adj.\\ Style OR$=$2.58 ($p{=}.002$; App.~\\ref{app:direction}).}\n54\t\\end{tabular}\n55\t\\end{table}\n56\t\n57\t\n58\t\\begin{figure}[t]\n59\t\\centering\n60\t\\includegraphics[width=\\columnwidth]{figures/forest_plot.pdf}\n61\t\\caption{Bradley-Terry win probabilities across four target judges and three style axes. Filled diamonds: significant ($p < 0.05$); open diamonds: non-significant. Error bars: 95\\% bootstrap CI. The dashed line at 0.50 indicates no style preference. Verbosity shows the strongest and most consistent bias across all four judges.}\n62\t\\label{fig:forest_plot}\n63\t\\end{figure}\n64\t\n65\t\\section{Analysis}\n66\t\\label{sec:analysis}\n67\t\n68\t\n69\t\\subsection{The Likert Blindspot}\n70\t\\label{sec:likert_pairwise}\n71\t\n72\t\\paragraph{Head-to-head comparison with RATE.}\n73\tApplying RATE's Likert ATE methodology \\citep{reber2025rate} to our formality style-transformed pairs yields Cohen's $d = {-}0.04$, $p = 0.91$ (non-significant, $n = 88$); pairwise comparison on identical data reveals a 63.0\\% formal preference ($p = 0.0004$, Bradley-Terry on all 173 comparisons), confirmed by a consistency-filtered sign test (73.9\\%, $p = 0.006$, $n = 46$ consistent pairs).\n74\tThis is the Likert Blindspot: the same data, the same style intervention, two measurement instruments, yet one detects bias and the other does not.\n75\tA $4\\times$ scaled replication ($n = 355$) distinguishes measurement attenuation from insufficient power: the Likert effect size shrinks to $d = {-}0.025$ (near zero) while BT remains stable at $67.5\\%$ ($p < 0.0001$). If the gap were merely statistical power, $d$ would remain non-zero at larger $n$.\n76\tBootstrap subsampling confirms $d$ remains near zero as $n$ grows (Appendix~\\ref{app:bootstrap_attenuation}).\n77\tPost hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \\to 0$, BT 63--67\\%) and partial at stronger effects (${>}60\\%$ loss, BT ${>}70\\%$), explaining three cross-benchmark exceptions ($\\ddagger$, Table~\\ref{tab:cross_bench}).\n78\t\n79\tRATE and CSD are complementary (Likert ATE vs.\\ forced-choice BT); the Blindspot arises from Likert tie rates of 58--73\\%, unresolved by 100-point continuous scaling (all three judges $p > 0.15$; Appendix~\\ref{app:likert100}).\n80\t\n81\t\n82\t\\paragraph{Sensitivity hierarchy across measurement methods.}\n83\tSeven measurement methods applied to the same formality data confirm the Blindspot is not test-specific: both pairwise methods detect the formality preference while all five Likert-based methods fail regardless of scaling assumption (interval, ordinal, or nonparametric), with verbosity showing the same pattern (Table~\\ref{tab:sensitivity}, Appendix~\\ref{app:sensitivity}; verbosity replication in Appendix~\\ref{app:verb_sensitivity}).\n84\t\n85\tFigure~\\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\\ \\citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \\leq 100$.\n86\tUnder format equivalence, observing 8/8 primary cells as Blindspot has binomial probability $p = 0.004$; non-tie concordance (76.6\\%, $p < .001$; \\S\\ref{sec:likert_pairwise}) provides a complementary formal test of format divergence.\n87\t\\paragraph{Interpreting the divergence.}\n88\tThe measurement-mode divergence admits three non-exclusive interpretations: (a)~\\emph{Likert attenuation}, where tie inflation and residual signal loss reduce Likert sensitivity below detection thresholds; (b)~\\emph{pairwise amplification}, where forced-choice comparison inflates micro-preferences into apparent biases \\citep{jeong2025comparative}; (c)~\\emph{construct divergence}, where the two formats measure different constructs (absolute quality vs.\\ ordinal preference; \\citealt{tripathi2025pairwise}).\n89\tSix experimental controls (\\S\\ref{sec:amplification}) bound the amplification factor but cannot eliminate it; the attenuation evidence ($d \\to 0$ at $n = 355$) is necessary but not sufficient for causal identification.\n90\tNon-tie concordance analysis partially adjudicates: among 201 Likert non-tie pairs (pooled across judges and axes), 76.6\\% agree with pairwise direction [70.3\\%, 81.9\\%], $p < 0.001$; point-biserial correlations are uniformly positive ($r = 0.20$--$0.45$, 7/9 significant; Appendix~\\ref{app:concordance}), evidence more consistent with measurement attenuation than construct divergence, though partial construct divergence remains at weaker effect sizes.\n91\tClaude's benchmark-dependent profile illustrates why aggregate BT is insufficient for bias attribution: LLMBar formality shows near-null sensitivity (Style OR n.s.) while AEval verbosity reveals significant sensitivity (Style OR $= 4.76$, $p < .001$), a pattern disambiguated only by per-axis GEE decomposition (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_tost}).\n92\tAll three interpretations converge on one practical conclusion: single-format audits risk incomplete bias coverage; the Blindspot manifests in 8/11 bias-positive cells, with three exceptions ($\\ddagger$) confirming effect-size dependence.\n93\tFor alignment pipelines where pairwise judgments serve as reward signals, this implies that biases embedded during RLHF training may go undetected by Likert-based evaluation at standard benchmark scales.\n94\t\n95\t\\begin{figure}[t]\n96\t\\centering\n97\t\\includegraphics[width=\\columnwidth]{figures/power_curve.pdf}\n98\t\\caption{Detection probability at observed effect magnitudes. 80\\% power crossings: sign test $n \\approx 62$, BT $n \\approx 114$, binarized Likert $n \\approx 462$, Likert ATE $n \\approx 1{,}473$. At typical scales ($n = 50$--$200$, shaded), pairwise methods reach 80\\% power while Likert methods remain far below. At $n = 355$, Likert $d = {-}0.025$ confirms the gap is structural, not merely a power issue.}\n99\t\\label{fig:power_curve}\n100\t\\end{figure}\n101\t\n102\t\\subsection{Per-Axis Confound Structure}\n103\t\\label{sec:direction}\n104\t\n105\tGEE conditional decomposition \\citep{liang1986gee} with exchangeable working correlation and robust standard errors separates style from originality effects (Appendix~\\ref{app:direction}; model diagnostics including correlation structure robustness and interaction tests in Appendix~\\ref{app:gee_diagnostics}).\n106\tAfter controlling for original preference, the formality effect remains significant (GPT-4o: OR $= 2.58$, $p = 0.002$; Qwen3-32B: OR $= 2.15$, $p < 0.0001$, $n = 355$; Llama-70B: OR $= 4.81$, $p < 0.0001$; Table~\\ref{tab:gee}); the significant originality ORs confirm residual confounding.\n107\tFor formality, both style preference and quality correlation contribute (a conditional effect); the two-predictor GEE provides a parsimonious decomposition rather than causal identification; omitted variables (text length, lexical complexity) may partly confound both terms.\n108\tThis per-axis heterogeneity has direct implications for bias mitigation: verbosity bias can be addressed by style-level interventions (e.g., length normalization or debiased prompting), whereas formality bias requires disentangling genuine quality correlates from surface-level preferences, a fundamentally harder problem that aggregate bias metrics cannot even detect.\n109\t\n110\t\\begin{table}[t]\n111\t\\centering\n112\t\\small\n113\t\\caption{GEE conditional decomposition (exchangeable correlation). Style OR: style-direction odds ratio; Orig OR: original-preference odds ratio (OR $> 1$ favors original). $n{=}88$ ORs are upper-bound estimates; scaled replications ($n = 330$--$355$) show $49$--$72\\%$ shrinkage \\citep{nemes2009bias}. Verbosity is style-dominated; formality shows varying confound structure.}\n114\t\\label{tab:gee}\n115\t\\begin{tabular}{@{}llclc@{}}\n116\t\\toprule\n117\t & \\multicolumn{2}{c}{Style OR} & \\multicolumn{2}{c}{Originality OR} \\\\\n118\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n119\tConfig & OR & $p$ & OR & $p$ \\\\\n120\t\\midrule\n121\tQwen3 verb.\\ & 13.10 & ${<}.0001$ & 0.49 & .096 \\\\\n122\tGPT-4o verb.\\ & 11.34 & ${<}.0001$ & 0.45 & .062 \\\\\n123\tLlama-70B verb.\\ & 8.21 & ${<}.0001$ & 0.38 & .020 \\\\\n124\tGemini verb.\\ & 8.98 & ${<}.0001$ & 0.46 & .061 \\\\\n125\t\\midrule\n126\tGPT-4o form.\\ & 2.58 & .002 & 2.32 & .006 \\\\\n127\tQwen3 form.\\ & 4.20 & .0002 & 4.70 & .0001 \\\\\n128\tQwen3 form.$^a$ & 2.15 & ${<}.0001$ & 4.99 & ${<}.0001$ \\\\\n129\tLlama-70B form.\\ & 4.81 & ${<}.0001$ & 3.12 & .0007 \\\\\n130\tGemini form.\\ & 1.64 & .101 & 2.51 & .002 \\\\\n131\t\\midrule\n132\tGPT-4o reg.\\ & 1.88 & .029 & 2.21 & .006 \\\\\n133\tQwen3 reg.\\ & 1.91 & .046 & 5.72 & ${<}.0001$ \\\\\n134\tLlama-70B reg.\\ & 3.33 & .0003 & 3.07 & .0008 \\\\\n135\t\\bottomrule\n136\t\\multicolumn{5}{l}{\\footnotesize $^a$ $n = 355$; other rows: $n = 88$. 95\\% CIs in Appendix.}\n137\t\\end{tabular}\n138\t\\end{table}\n139\t\n140\tThe confound structure is consistent across all four target judges for verbosity (style-dominated at $n = 88$: Style OR $8.2$--$13.1$, Orig OR $0.38$--$0.49$; confirmed at $n = 330$: Style OR $2.5$--$4.0$); formality is conditionally style-driven in three judges but originality-dominated in Gemini; register is judge-dependent (Figure~\\ref{fig:gee_decomp}).\n141\tSame-style double-rewrite controls confirm a rewriting artifact (Appendix~\\ref{app:artifact_control}), absorbed by GEE's originality term.\n142\t\n143\t\\begin{figure}[t]\n144\t\\centering\n145\t\\includegraphics[width=\\columnwidth]{figures/gee_decomposition.pdf}\n146\t\\caption{GEE conditional decomposition across four judges ($n = 88$, LLMBar). Verbosity (left) is style-dominated: Style OR $\\gg 1$, Originality OR $< 1$. Formality (right) shows joint contributions from both predictors. Dashed line: OR $= 1$ (no effect). Hatched bars: Originality OR. Log scale.}\n147\t\\label{fig:gee_decomp}\n148\t\\end{figure}\n149\t\n150\t\\paragraph{Sample-size sensitivity.}\n151\tAt $n = 355$, the Qwen3-32B formality Style OR drops from $4.20$ to $2.15$ ($-49\\%$), consistent with small-sample upward bias \\citep{nemes2009bias}; the regime classification remains stable (both effects significant; Orig OR $4.70 \\to 4.99$).\n152\tVerbosity $n = 330$ confirms 51--72\\% GEE shrinkage (Style OR $2.5$--$4.0$; Appendix~\\ref{app:verb_n355}), preserving the style-dominated classification; Likert begins detecting the strongest effects at this $n$, reframing the Blindspot as a $3$--$4\\times$ efficiency gap rather than absolute failure.\n153\tThis convergence at larger $n$ is practically important: it means that labs with sufficient evaluation budgets ($n > 300$) can detect the strongest biases with Likert alone, but typical benchmark sizes ($n = 50$--$200$) systematically miss them.\n154\t\n155\t\\subsection{Cross-Judge and Cross-Axis Replication}\n156\t\\label{sec:cross_judge}\n157\t\n158\tTwo independent judges replicate the formality Blindspot: Qwen3-32B (BT 66.5\\%, $p < 0.0001$; Likert $p = 0.461$) and Llama-3.3-70B (BT 69.5\\%, $p = 0.0001$; Likert $p = 0.534$).\n159\tGemini-2.5-Flash shows a weaker, originality-dominated formality pattern (confirmatory: BT 57.4\\%, $p = 0.031$; Likert $d = {-}0.08$, n.s.; Style OR $= 1.64$, n.s.; Orig OR $= 2.51$, $p = 0.002$; \\S\\ref{sec:direction}).\n160\t\n161\tVerbosity provides the strongest Blindspot: all four target judges show consistent preference (GPT-4o 76.0\\%, Qwen3-32B 77.3\\%, Llama-70B 73.5\\%, Gemini 70.8\\%; all $p \\leq 0.0001$), while Likert ATE remains non-significant for all ($p = 0.284$--$0.403$).\n162\tGEE confirms style dominance (Style OR $8.2$--$13.1$, all $p < .0001$; Orig OR $0.38$--$0.49$; Table~\\ref{tab:gee}).\n163\tBoth rewriting directions favor verbose responses (90.7\\%/80.6\\%); length-controlled Style OR is unchanged ($<$2\\%), and an independent GPT-4o rewriter bounds evaluator-producer overlap to a 22\\% reduction (Appendix~\\ref{app:rewriter_indep}).\n164\tLength-controlled regression confirms 60\\% of the FK cross-axis effect is mediated by sentence length (Sobel $z = 2.15$, $p = .031$); under the assumed causal structure (Figure~\\ref{fig:dag}), FK acts as a plausible mediator ($S \\to \\text{FK} \\to Y$; \\citealp{pearl2009causality}), yielding a direct-effect Style OR of $2.15$ for GPT-4o (total OR $= 2.70$; Appendix~\\ref{app:fk_length}).\n165\t\n166\tThese per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.0\\%, Style OR $= 7.64$) is strong enough for Likert detection ($\\ddagger$ rows), confirming the severity spectrum.\n167\tThe selective replication strategy prioritizes cells where effects are strongest, providing an informative lower bound on cross-benchmark generalization without requiring exhaustive evaluation of all judge--axis--benchmark combinations.\n168\t\n169\t\\begin{figure}[t]\n170\t\\centering\n171\t\\includegraphics[width=\\columnwidth]{figures/cross_benchmark_heatmap.pdf}\n172\t\\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\\times$: not tested. Claude cross-benchmark effects are quality-driven (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_crossbench}). Full results in Table~\\ref{tab:cross_bench}.}\n173\t\\label{fig:cross_bench_heatmap}\n174\t\\end{figure}\n175\t\n176\t\\subsection{Robustness}\n177\t\\label{sec:nli_validation}\n178\t\n179\t\\paragraph{Content preservation.}\n180\tTwo independent annotators evaluated 100 NLI-scored pairs (50 per axis; 70 gate-passed, 30 gate-failed), confirming $98.6\\%$ gate pass precision ($69/70$; AC$_1 = 0.96$; Appendix~\\ref{app:annotation_agreement}).\n181\t\\label{sec:nli_threshold}\n182\tBT remains stable (${\\leq}3$pp variation) across 11 NLI thresholds (Appendix~\\ref{app:nli_sweep}), confirming that results are not artifacts of a particular gating stringency.\n183\tAnnotators judged only 49--66\\% of NLI-passed pairs as showing detectable style change, suggesting observed effects represent a diluted lower bound on true style sensitivity: the NLI gate retains pairs with subtle rewrites that human annotators cannot detect, yet judges still systematically prefer one variant.\n184\t\n185\t\\paragraph{Detection vs.\\ amplification.}\n186\t\\label{sec:amplification}\n187\t\\citet{jeong2025comparative} show that pairwise comparison amplifies style biases (the Comparative Trap).\n188\tThe divergence cannot be definitively resolved without human ground-truth measurements; six controls bound amplification risk: (i)~NLI ablation reverses NLI-fail pairs (BT 41.7\\%); (ii)~Claude shows benchmark-dependent sensitivity (formality Style OR n.s.; AEval verbosity OR $= 4.76$, $p < .001$); (iii)~cross-axis BT variation inconsistent with uniform amplification; (iv)~rewriting artifact absorbed by GEE; (v)~debiased prompting ($-5.2$/$-13.1$pp), bounding the amplification factor at ${\\sim}9$--$17\\%$ of the total BT effect; (vi)~four-architecture replication with consistent GEE structure.\n189\tRegister is exploratory with evaluator-producer overlap and judge-dependent effects (Table~\\ref{tab:gee}).\n190\tSame-style double-rewrite controls confirm that any residual rewriting artifact is absorbed by the GEE originality term rather than inflating the style coefficient.\n191\tThe combination of NLI validation and amplification controls establishes that while the exact magnitude of style sensitivity remains bounded rather than point-identified, the qualitative finding (systematic style preferences invisible to Likert) is robust across judges, axes, and measurement assumptions.\n192\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "083f26aa-3e2a-4b03-852d-217bd2a168bb",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "237b1cc3-1d70-4524-83b1-dea23751e5cb",
+            "sourceToolAssistantUUID": "083f26aa-3e2a-4b03-852d-217bd2a168bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T18:24:46.230Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016p44arjbJ5JedcWHB1uTvT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "237b1cc3-1d70-4524-83b1-dea23751e5cb",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0aa9008c-bf0e-4255-8a0d-e00f630c01bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T18:24:46.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016p44arjbJ5JedcWHB1uTvT",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\tCSD yields two findings: the \\emph{Likert Blindspot} (divergent pairwise/Likert verdicts in 8/8 primary and 6/24 cross-benchmark cells; $d \\!\\to\\! 0$ at $n{=}355$) and per-axis confound structures via GEE (verbosity style-dominated, formality conditional, register judge-dependent); concordance ($p < .001$) favors attenuation over divergence.\n4\tThese results carry a practical recommendation: style-bias audits that rely exclusively on Likert scoring risk false negatives at sample sizes typical of current benchmarks ($n < 200$).\n5\tPairing Likert with pairwise evaluation, or increasing sample sizes by $3$--$4\\times$, provides more complete coverage.\n6\tFor alignment pipelines, the per-axis confound structure implies that verbosity preferences in RLHF reward signals are predominantly style-driven, while formality preferences partially reflect genuine quality differences, a distinction invisible without GEE-level decomposition.\n7\tMore broadly, current evaluation benchmarks that report only Likert scores may systematically underestimate the magnitude of style biases, potentially validating judges whose learned preferences encode surface-level shortcuts rather than genuine quality assessment.\n8\tThe GEE decomposition further suggests that aggregate bias metrics obscure axis-specific mechanisms: a judge may appear unbiased overall while harboring strong style preferences on individual axes that cancel in aggregate but compound in domain-specific deployment.\n9\tCSD generalizes to any surface-level axis with content-preserving rewrites; deeper axes (e.g., reasoning depth, factual density) that resist content-neutral manipulation remain open for future work.\n10\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0aa9008c-bf0e-4255-8a0d-e00f630c01bc",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "db6ef67e-ce71-4026-af77-93eaba65270e",
+            "sourceToolAssistantUUID": "0aa9008c-bf0e-4255-8a0d-e00f630c01bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T18:24:46.401Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KEjnQ27pSuBRSBYWj36PdS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db6ef67e-ce71-4026-af77-93eaba65270e",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMry6C8BW5zWZNHjuA2q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fe979857-6210-4a9c-a3d2-f3b8314d289f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013R68hZgaKzqnKwxwRmQaPS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 39774,
+                "output_tokens": 569,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2426
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 569,
+                    "cache_read_input_tokens": 39774,
+                    "cache_creation_input_tokens": 2426,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2426,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T18:24:46.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KEjnQ27pSuBRSBYWj36PdS",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t% \\usepackage{inconsolata} % unavailable locally; re-enable for submission\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath,amssymb}\n14\t\\usepackage{xcolor}\n15\t\\usepackage{subcaption}\n16\t\\usepackage{tikz}\n17\t\\usetikzlibrary{arrows.meta,positioning}\n18\t\n19\t\\title{The Likert Blindspot: Measurement-Mode Divergence\\\\in LLM Judge Style Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\input{sections/abstract}\n27\t\n28\t\\input{sections/introduction}\n29\t\n30\t\\input{sections/related_work}\n31\t\n32\t\\input{sections/method}\n33\t\n34\t\\input{sections/experiments}\n35\t\n36\t\\input{sections/conclusion}\n37\t\n38\t\\section*{Limitations}\n39\t\\label{sec:limitations}\n40\t\n41\t\\textbf{Residual confounding.}\n42\tThe NLI gate blocks content changes but cannot block quality perception shifts mediated by style itself.\n43\tAlthough formality effects survive logistic adjustment (OR $= 2.32$, $p = 0.006$), residual confounding is not fully eliminated; definitive resolution requires human ground-truth comparison of Likert and pairwise judgments on identical pairs.\n44\t\n45\t\\textbf{Detection vs.\\ amplification.}\n46\tThe Blindspot may partly reflect pairwise format amplification \\citep{jeong2025comparative} rather than pure detection.\n47\tSix controls bound this risk (\\S\\ref{sec:amplification}), but we cannot precisely quantify the amplification factor without a ground-truth bias magnitude.\n48\tQwen3-32B serves as both rewriter and judge; an independent GPT-4o rewriter yields 22\\% lower Style OR, confirming the Blindspot persists but effect-size precision varies with rewriter choice (Appendix~\\ref{app:rewriter_indep}).\n49\t\n50\t\\textbf{Scope.}\n51\tCSD applies only to surface-level axes whose rewrites preserve semantic content; a tone pilot (assertive $\\to$ hedging) was rejected by the NLI gate.\n52\tPrimary analyses use LLMBar ($n = 100$) with five judges; generalization to additional axes, benchmarks, and judges remains open.\n53\tStyle sensitivity may vary across model versions (\\S\\ref{sec:nli_validation}), and GEE odds-ratio estimates require large-sample validation to converge from initial upper-bound estimates ($49$--$72\\%$ shrinkage at $n = 330$--$355$).\n54\t\n55\t\\section*{Code and Data}\n56\tCode and data will be released upon acceptance.\n57\t\n58\t\\bibliography{references}\n59\t\n60\t\\input{sections/appendix}\n61\t\n62\t\\end{document}\n63\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe979857-6210-4a9c-a3d2-f3b8314d289f",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "9877d215-9ba0-4bd3-97d5-8edc1ddffa17",
+            "sourceToolAssistantUUID": "fe979857-6210-4a9c-a3d2-f3b8314d289f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T18:24:48.723Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me search for more specific patterns to ensure I capture all acronyms and abbreviations:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9877d215-9ba0-4bd3-97d5-8edc1ddffa17",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7390424c-c3ab-43d0-bea1-e39206bc3666",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T18:24:50.026Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018wKDsB7ysGFfz3qA9GS2Ns",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\b([A-Z]{2,}|[A-Z][A-Z0-9]+)\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7390424c-c3ab-43d0-bea1-e39206bc3666",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d8939e14-cf27-4f49-8ad9-887162cc3423",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T18:24:50.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018wKDsB7ysGFfz3qA9GS2Ns",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8939e14-cf27-4f49-8ad9-887162cc3423",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "bc2c9bfc-b54e-4150-9ef3-76e773360d5f",
+            "sourceToolAssistantUUID": "d8939e14-cf27-4f49-8ad9-887162cc3423",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T18:24:50.868Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018BYBnzLZi2tfFA366LGvP1",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\b([A-Z]{2,}|[A-Z][A-Z0-9]+)\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc2c9bfc-b54e-4150-9ef3-76e773360d5f",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b890b6d3-df84-415f-adb9-b24f44d4ddf5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T18:24:50.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018BYBnzLZi2tfFA366LGvP1",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b890b6d3-df84-415f-adb9-b24f44d4ddf5",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "a5609a30-484e-437d-852b-bbeff6268516",
+            "sourceToolAssistantUUID": "b890b6d3-df84-415f-adb9-b24f44d4ddf5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T18:24:51.325Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aqkdriqs6UW9gtrK4cFHSc",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\b([A-Z]{2,}|[A-Z][A-Z0-9]+)\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5609a30-484e-437d-852b-bbeff6268516",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b3515c36-7be5-4f41-94e2-2b167097f56e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T18:24:51.358Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Aqkdriqs6UW9gtrK4cFHSc",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3515c36-7be5-4f41-94e2-2b167097f56e",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "4250598a-df83-4606-98a6-cc2c58b06edb",
+            "sourceToolAssistantUUID": "b3515c36-7be5-4f41-94e2-2b167097f56e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T18:24:51.621Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KMrW1TnKdxiGRZjidG1Fh3",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\b([A-Z]{2,}|[A-Z][A-Z0-9]+)\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4250598a-df83-4606-98a6-cc2c58b06edb",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0db43f1f-6217-4543-93d8-805143c2cc1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T18:24:51.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KMrW1TnKdxiGRZjidG1Fh3",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0db43f1f-6217-4543-93d8-805143c2cc1e",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "255a396b-74b4-4ad4-8e15-7d4b110489a4",
+            "sourceToolAssistantUUID": "0db43f1f-6217-4543-93d8-805143c2cc1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T18:24:51.902Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015TuyBXHReq4KA3wF42Ckaa",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\b([A-Z]{2,}|[A-Z][A-Z0-9]+)\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "255a396b-74b4-4ad4-8e15-7d4b110489a4",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "39d960fd-43f3-4178-85ae-61b005d912df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T18:24:51.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015TuyBXHReq4KA3wF42Ckaa",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39d960fd-43f3-4178-85ae-61b005d912df",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "d55aa20c-2fa3-43f0-97fe-7d38b1bac0ef",
+            "sourceToolAssistantUUID": "39d960fd-43f3-4178-85ae-61b005d912df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T18:24:52.339Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4gB4Jm4f5bDLuFKewsw5H",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\b([A-Z]{2,}|[A-Z][A-Z0-9]+)\\\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d55aa20c-2fa3-43f0-97fe-7d38b1bac0ef",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryMWcvPPeyApcuKd9h",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "454f32b3-123d-4712-8ee5-abe3736c11c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018b1H7Qejhgyriqb499MNWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13710,
+                "cache_read_input_tokens": 42200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-24T18:24:52.369Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4gB4Jm4f5bDLuFKewsw5H",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "454f32b3-123d-4712-8ee5-abe3736c11c2",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "e4098290-c028-44f8-906e-de43e87ddf56",
+            "sourceToolAssistantUUID": "454f32b3-123d-4712-8ee5-abe3736c11c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-24T18:24:54.436Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try a simpler pattern to capture the acronyms directly from the text I've already read:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4098290-c028-44f8-906e-de43e87ddf56",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cfd95084-fbeb-44bc-946c-a66f028e8212",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-24T18:24:55.720Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014qu9cFeKZrRxK7xEKqwR6c",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex 2>/dev/null | head -50"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfd95084-fbeb-44bc-946c-a66f028e8212",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "38a6eb86-d6b8-4f40-9700-2de827f94a3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T18:24:55.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014qu9cFeKZrRxK7xEKqwR6c",
+              "type": "tool_result",
+              "content": "2:Likert and pairwise scoring produce divergent sensitivity across two primary surface-level style axes, with varying effect sizes across judges, when applied to LLM judges.\n4:We introduce Controlled Style Decomposition (CSD), a black-box diagnostic quantifying this divergence via NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n6:Generalized estimating equation (GEE) decomposition reveals distinct per-axis confound structures: verbosity bias is style-dominated (Style OR $3$--$13$, Originality OR ${<}1$), while formality reflects joint style--quality contributions.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38a6eb86-d6b8-4f40-9700-2de827f94a3b",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "cb2148a4-8dfe-4dc5-8d46-fa54277dd256",
+            "sourceToolAssistantUUID": "38a6eb86-d6b8-4f40-9700-2de827f94a3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T18:24:56.152Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DFe8ZEWB8r9nZpc2m6Fnf2",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex 2>/dev/null | head -100"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb2148a4-8dfe-4dc5-8d46-fa54277dd256",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "937fb4a2-3024-41d7-8e3f-b3296e55e371",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-24T18:24:56.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DFe8ZEWB8r9nZpc2m6Fnf2",
+              "type": "tool_result",
+              "content": "3:\\emph{``What is the average height for a male?''} --- in our experiments, given a formal and a casual answer with verified identical content (NLI entailment $= 0.993$), GPT-4o rates the casual variant \\emph{higher} on a 1--10 Likert scale (8 vs.\\ 5), yet consistently selects the formal variant in pairwise comparison.\n9:LLM judges are central infrastructure for NLP evaluation and alignment training (RLHF, DPO), where judge preferences serve as reward signals; any systematic bias propagates through both evaluation leaderboards and model development pipelines.\n12:In the LLM judge setting, this gap has \\emph{per-axis} confound signatures: verbosity is style-dominated (Style OR $3$--$13$) while formality is quality-confounded (Table~\\ref{tab:gee}), a decomposition not previously applied in LLM judge evaluation.\n14:We propose Controlled Style Decomposition (CSD), combining NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n15:Inspired by interventional text analysis \\citep{veitch2020adapting}, CSD operates in three stages: style-controlled rewriting along a single axis, NLI entailment verification, and bias measurement via forced-choice comparison.\n16:CSD requires no access to judge internals and applies post-hoc to any black-box judge.\n18:On formality data, Likert yields non-significant effects ($p = 0.905$, $0.461$), while BT detects 63.0\\% (GPT-4o, $p = 0.0004$) and 66.5\\% (Qwen3-32B, $p < 0.0001$) formal preferences; verbosity shows 77.3\\% BT ($p < 0.0001$) invisible to Likert ($p = 0.395$; Figure~\\ref{fig:forest_plot}).\n23:    \\item \\textbf{Analytical contribution:} GEE conditional decomposition reveals per-axis confound structures invisible to aggregate analysis: verbosity is style-dominated (Style OR $3$--$13$) while formality reflects joint style--quality confounding (Table~\\ref{tab:gee}).\n24:    \\item \\textbf{Practical contribution:} CSD operates as a black-box diagnostic requiring no access to model internals, applicable post-hoc to any judge (\\S\\ref{sec:method}).\n31:\\caption{CSD pipeline overview. Numbers indicate sample attrition at each stage.}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "937fb4a2-3024-41d7-8e3f-b3296e55e371",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "0e67a506-3e3c-4e9f-8922-98c6178f91df",
+            "sourceToolAssistantUUID": "937fb4a2-3024-41d7-8e3f-b3296e55e371",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-24T18:24:56.784Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWUaf6YYugB8jLhjh6eAg9",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e67a506-3e3c-4e9f-8922-98c6178f91df",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3d669792-4c24-4246-af01-7105a6c52dc5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-24T18:24:56.839Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BWUaf6YYugB8jLhjh6eAg9",
+              "type": "tool_result",
+              "content": "6:\\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert ATE; however, our experiments show 60\\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.\n7:CSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.\n8:\\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.\n10:\\paragraph{Style Bias in LLM Judges}\n11:The foundational LLM-as-judge framework \\citep{zheng2023judging} documented position bias; \\citet{shi2024judging} study it across 15 judges, and \\citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.\n13:Multi-feature frameworks such as CASSE \\citep{casse2026concise} and FairJudge \\citep{wang2026fairjudge} decompose style into finer dimensions but rely on correlational analyses that cannot distinguish causal style effects from content quality confounds.\n15:Unlike human evaluators, LLM judges acquire format-specific biases through RLHF training: pairwise comparison serves as the reward signal in DPO pipelines, while Likert scoring is used for evaluation, motivating independent quantification of the format gap.\n19:Within NLP, \\citet{amidei2019likert} review Likert scales \\citep{likert1932technique} in NLG evaluation, and \\citet{novikova2018rankme} confirm that forced-choice methods detect quality differences that rating scales miss.\n20:The Bradley-Terry model \\citep{bradley1952rank} underpins Chatbot Arena \\citep{chiang2024chatbot} and AlpacaFarm \\citep{dubois2023alpacafarm}; no prior work combines BT with per-axis GEE decomposition to expose confound structures invisible to aggregate scores.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d669792-4c24-4246-af01-7105a6c52dc5",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "adf75a1e-3be7-4704-b6e9-37f8296ff723",
+            "sourceToolAssistantUUID": "3d669792-4c24-4246-af01-7105a6c52dc5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-24T18:24:57.241Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qm8NV3JpcKVkWS8zm8fJSa",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex 2>/dev/null | head -100"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adf75a1e-3be7-4704-b6e9-37f8296ff723",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23c5c024-a8bc-4192-b406-70423239a937",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-24T18:24:57.300Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qm8NV3JpcKVkWS8zm8fJSa",
+              "type": "tool_result",
+              "content": "8:For each text, an instruction-tuned LLM (Qwen3-32B) classifies its current style along the target axis (e.g., formal vs.\\ casual via binary classification).\n12:To control for rewriting artifact bias (the possibility that the judge prefers original text over any rewrite regardless of style), we additionally generate a same-style double-rewrite for each text (e.g., formal $\\to$ formal) to form an original-vs-double-rewrite control pair, following the RATE bias correction protocol \\citep{reber2025rate}.\n18:To block this path, we apply a natural language inference (NLI) gate using DeBERTa-v3-large fine-tuned on MNLI \\citep{williams2018broad} with an entailment threshold of 0.90, selected as the threshold above which NLI performance plateaus (Appendix~\\ref{app:nli_sweep}).\n19:For axes that preserve information density (formality, register), we apply standard bidirectional entailment: both NLI(original $\\to$ rewrite) and NLI(rewrite $\\to$ original) must exceed this value.\n24:BERTScore serves as a supplementary monitor (mean $\\Delta$BERTScore $< 0.02$ for gate-passed pairs) but does not participate in gating, as NLI provides stronger semantic equivalence guarantees than token-overlap metrics.\n29:\\caption{Assumed data-generating process (design rationale, not a claim of perfect identification). The rewriting mechanism $R$ targets style $S$ but may inadvertently alter content quality $Q$ (dash-dot, blocked by NLI gate) or introduce rewriting artifacts ($R \\to Y$, blocked by double-rewrite control). Position bias $P \\to Y$ is controlled by order swapping. The dashed $S \\to Q$ path represents residual confounding (Limitations). $Y$: judge score.}\n36:Each pair that passes the NLI gate is evaluated by four target judges (GPT-4o, Qwen3-32B, Llama-3.3-70B, and Gemini-2.5-Flash) under two complementary scoring modes.\n44:The BT model assumes a single latent quality dimension; per-axis GEE decomposition (\\S\\ref{sec:direction}) complements this by separating style-specific from quality-correlated components.\n49:We evaluate primarily on LLMBar \\citep{zeng2023llmbar}, a benchmark of $n = 100$ instruction-response pairs spanning diverse task types, designed to test LLM judges' ability to distinguish response quality with human-verified quality labels.\n50:LLMBar is well-suited for style sensitivity detection because its human-verified labels provide ground truth against which judge deviations can be measured, and its moderate size permits exhaustive pairwise evaluation with position control.\n52:We select formality and verbosity as primary axes based on prior evidence that these are among the most commonly reported style sensitivities in LLM judges \\citep{wu2023style,saito2023verbosity}, with register (academic vs.\\ conversational) as an exploratory third axis (implementation details in Appendix~\\ref{app:implementation}).\n58:CSD approximates the effect of style $S$ on judge score $Y$ while blocking confounding through content quality $Q$: the NLI gate blocks $R \\to Q$, position swapping controls presentation order, and the rewrite targets a single axis.\n59:The residual $S \\to Q$ path (dashed in Figure~\\ref{fig:dag}) represents the fundamental identification challenge: style and quality may be intrinsically correlated (e.g., formal writing may signal higher quality), which NLI gating cannot block.\n60:GEE conditional decomposition (\\S\\ref{sec:direction}) partially addresses this by separating style-direction and originality effects, though omitted variables may confound both terms.\n62:A tone axis pilot (assertive $\\to$ hedging) did not pass NLI gating, establishing a practical scope boundary for CSD at surface-level axes (Limitations).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23c5c024-a8bc-4192-b406-70423239a937",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "a2c6034e-eae7-43ef-9237-e29e00696efc",
+            "sourceToolAssistantUUID": "23c5c024-a8bc-4192-b406-70423239a937",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-24T18:24:57.874Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013kJsdpxbQb14NY3ZrXgRSQ",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex 2>/dev/null | head -200"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2c6034e-eae7-43ef-9237-e29e00696efc",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e884553d-d9fc-449e-b030-cffc78687046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-24T18:24:57.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013kJsdpxbQb14NY3ZrXgRSQ",
+              "type": "tool_result",
+              "content": "8:The primary family comprises six tests (three target judges $\\times$ two axes), corrected via Holm-Bonferroni at $\\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from FWER control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\\ref{app:holm8}).\n10:Analyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\n13:In binary-choice BT models, IIA is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.\n15:GEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\\hat{\\alpha} \\in [-0.25, +0.11]$; Appendix~\\ref{app:gee_diagnostics}).\n16:A prospective power analysis (Appendix~\\ref{app:power}) confirms that our sample sizes ($n = 86$--$88$ pairs) provide $>$90\\% power to detect BT effects of the observed magnitude ($P \\geq 0.63$), whereas Likert requires $4$--$206\\times$ the sample size for equivalent power (Figure~\\ref{fig:power_curve}).\n20:This diversity guards against provider-specific artifacts in both training data and RLHF reward modeling; Claude Sonnet~4 (Anthropic) provides discriminative validity evidence (\\S\\ref{sec:cross_judge}), serving as a fifth judge from a provider not represented in the primary family.\n26:\\caption{Primary results on LLMBar ($n = 88$ formality, $86$ verbosity, except where noted) across five judges and three style axes. BT $> 0.50$ indicates style preference; $\\dagger$ marks Blindspot cases (BT significant, Likert not). Cross-benchmark replication in Appendix~\\ref{app:cross_bench}. BT: Bradley-Terry win probability (95\\% CIs in Appendix~\\ref{app:bt_ci}).}\n30:Judge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\\ \\\\\n51:\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize $^{***}\\!p < 0.001$; $^{*}\\!p < 0.05$ (Holm-adj.\\ for primary; raw for $_{\\text{c}}$). $\\dagger$: Blindspot (BT sig., Likert n.s.); ---: neither sig.; $_{\\text{e}}$: exploratory; $_{\\text{c}}$: confirmatory. Negative $d$: styled variants scored lower.}\\\\\n52:\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize $^b$ Scaled replication ($n = 355$). Qwen3 serves as both rewriter and judge; independent GPT-4o rewriter yields 22\\% lower Style OR (App.~\\ref{app:rewriter_indep}).}\\\\\n53:\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize Form.\\ direction asymmetry: formal-origin 78.8\\% vs.\\ casual-origin 54.5\\%; GEE-adj.\\ Style OR$=$2.58 ($p{=}.002$; App.~\\ref{app:direction}).}\n72:\\paragraph{Head-to-head comparison with RATE.}\n73:Applying RATE's Likert ATE methodology \\citep{reber2025rate} to our formality style-transformed pairs yields Cohen's $d = {-}0.04$, $p = 0.91$ (non-significant, $n = 88$); pairwise comparison on identical data reveals a 63.0\\% formal preference ($p = 0.0004$, Bradley-Terry on all 173 comparisons), confirmed by a consistency-filtered sign test (73.9\\%, $p = 0.006$, $n = 46$ consistent pairs).\n75:A $4\\times$ scaled replication ($n = 355$) distinguishes measurement attenuation from insufficient power: the Likert effect size shrinks to $d = {-}0.025$ (near zero) while BT remains stable at $67.5\\%$ ($p < 0.0001$). If the gap were merely statistical power, $d$ would remain non-zero at larger $n$.\n77:Post hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \\to 0$, BT 63--67\\%) and partial at stronger effects (${>}60\\%$ loss, BT ${>}70\\%$), explaining three cross-benchmark exceptions ($\\ddagger$, Table~\\ref{tab:cross_bench}).\n79:RATE and CSD are complementary (Likert ATE vs.\\ forced-choice BT); the Blindspot arises from Likert tie rates of 58--73\\%, unresolved by 100-point continuous scaling (all three judges $p > 0.15$; Appendix~\\ref{app:likert100}).\n85:Figure~\\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\\ \\citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \\leq 100$.\n91:Claude's benchmark-dependent profile illustrates why aggregate BT is insufficient for bias attribution: LLMBar formality shows near-null sensitivity (Style OR n.s.) while AEval verbosity reveals significant sensitivity (Style OR $= 4.76$, $p < .001$), a pattern disambiguated only by per-axis GEE decomposition (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_tost}).\n93:For alignment pipelines where pairwise judgments serve as reward signals, this implies that biases embedded during RLHF training may go undetected by Likert-based evaluation at standard benchmark scales.\n98:\\caption{Detection probability at observed effect magnitudes. 80\\% power crossings: sign test $n \\approx 62$, BT $n \\approx 114$, binarized Likert $n \\approx 462$, Likert ATE $n \\approx 1{,}473$. At typical scales ($n = 50$--$200$, shaded), pairwise methods reach 80\\% power while Likert methods remain far below. At $n = 355$, Likert $d = {-}0.025$ confirms the gap is structural, not merely a power issue.}\n105:GEE conditional decomposition \\citep{liang1986gee} with exchangeable working correlation and robust standard errors separates style from originality effects (Appendix~\\ref{app:direction}; model diagnostics including correlation structure robustness and interaction tests in Appendix~\\ref{app:gee_diagnostics}).\n106:After controlling for original preference, the formality effect remains significant (GPT-4o: OR $= 2.58$, $p = 0.002$; Qwen3-32B: OR $= 2.15$, $p < 0.0001$, $n = 355$; Llama-70B: OR $= 4.81$, $p < 0.0001$; Table~\\ref{tab:gee}); the significant originality ORs confirm residual confounding.\n107:For formality, both style preference and quality correlation contribute (a conditional effect); the two-predictor GEE provides a parsimonious decomposition rather than causal identification; omitted variables (text length, lexical complexity) may partly confound both terms.\n113:\\caption{GEE conditional decomposition (exchangeable correlation). Style OR: style-direction odds ratio; Orig OR: original-preference odds ratio (OR $> 1$ favors original). $n{=}88$ ORs are upper-bound estimates; scaled replications ($n = 330$--$355$) show $49$--$72\\%$ shrinkage \\citep{nemes2009bias}. Verbosity is style-dominated; formality shows varying confound structure.}\n117: & \\multicolumn{2}{c}{Style OR} & \\multicolumn{2}{c}{Originality OR} \\\\\n119:Config & OR & $p$ & OR & $p$ \\\\\n140:The confound structure is consistent across all four target judges for verbosity (style-dominated at $n = 88$: Style OR $8.2$--$13.1$, Orig OR $0.38$--$0.49$; confirmed at $n = 330$: Style OR $2.5$--$4.0$); formality is conditionally style-driven in three judges but originality-dominated in Gemini; register is judge-dependent (Figure~\\ref{fig:gee_decomp}).\n141:Same-style double-rewrite controls confirm a rewriting artifact (Appendix~\\ref{app:artifact_control}), absorbed by GEE's originality term.\n146:\\caption{GEE conditional decomposition across four judges ($n = 88$, LLMBar). Verbosity (left) is style-dominated: Style OR $\\gg 1$, Originality OR $< 1$. Formality (right) shows joint contributions from both predictors. Dashed line: OR $= 1$ (no effect). Hatched bars: Originality OR. Log scale.}\n151:At $n = 355$, the Qwen3-32B formality Style OR drops from $4.20$ to $2.15$ ($-49\\%$), consistent with small-sample upward bias \\citep{nemes2009bias}; the regime classification remains stable (both effects significant; Orig OR $4.70 \\to 4.99$).\n152:Verbosity $n = 330$ confirms 51--72\\% GEE shrinkage (Style OR $2.5$--$4.0$; Appendix~\\ref{app:verb_n355}), preserving the style-dominated classification; Likert begins detecting the strongest effects at this $n$, reframing the Blindspot as a $3$--$4\\times$ efficiency gap rather than absolute failure.\n158:Two independent judges replicate the formality Blindspot: Qwen3-32B (BT 66.5\\%, $p < 0.0001$; Likert $p = 0.461$) and Llama-3.3-70B (BT 69.5\\%, $p = 0.0001$; Likert $p = 0.534$).\n159:Gemini-2.5-Flash shows a weaker, originality-dominated formality pattern (confirmatory: BT 57.4\\%, $p = 0.031$; Likert $d = {-}0.08$, n.s.; Style OR $= 1.64$, n.s.; Orig OR $= 2.51$, $p = 0.002$; \\S\\ref{sec:direction}).\n161:Verbosity provides the strongest Blindspot: all four target judges show consistent preference (GPT-4o 76.0\\%, Qwen3-32B 77.3\\%, Llama-70B 73.5\\%, Gemini 70.8\\%; all $p \\leq 0.0001$), while Likert ATE remains non-significant for all ($p = 0.284$--$0.403$).\n162:GEE confirms style dominance (Style OR $8.2$--$13.1$, all $p < .0001$; Orig OR $0.38$--$0.49$; Table~\\ref{tab:gee}).\n163:Both rewriting directions favor verbose responses (90.7\\%/80.6\\%); length-controlled Style OR is unchanged ($<$2\\%), and an independent GPT-4o rewriter bounds evaluator-producer overlap to a 22\\% reduction (Appendix~\\ref{app:rewriter_indep}).\n164:Length-controlled regression confirms 60\\% of the FK cross-axis effect is mediated by sentence length (Sobel $z = 2.15$, $p = .031$); under the assumed causal structure (Figure~\\ref{fig:dag}), FK acts as a plausible mediator ($S \\to \\text{FK} \\to Y$; \\citealp{pearl2009causality}), yielding a direct-effect Style OR of $2.15$ for GPT-4o (total OR $= 2.70$; Appendix~\\ref{app:fk_length}).\n166:These per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.0\\%, Style OR $= 7.64$) is strong enough for Likert detection ($\\ddagger$ rows), confirming the severity spectrum.\n172:\\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\\times$: not tested. Claude cross-benchmark effects are quality-driven (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_crossbench}). Full results in Table~\\ref{tab:cross_bench}.}\n180:Two independent annotators evaluated 100 NLI-scored pairs (50 per axis; 70 gate-passed, 30 gate-failed), confirming $98.6\\%$ gate pass precision ($69/70$; AC$_1 = 0.96$; Appendix~\\ref{app:annotation_agreement}).\n182:BT remains stable (${\\leq}3$pp variation) across 11 NLI thresholds (Appendix~\\ref{app:nli_sweep}), confirming that results are not artifacts of a particular gating stringency.\n183:Annotators judged only 49--66\\% of NLI-passed pairs as showing detectable style change, suggesting observed effects represent a diluted lower bound on true style sensitivity: the NLI gate retains pairs with subtle rewrites that human annotators cannot detect, yet judges still systematically prefer one variant.\n188:The divergence cannot be definitively resolved without human ground-truth measurements; six controls bound amplification risk: (i)~NLI ablation reverses NLI-fail pairs (BT 41.7\\%); (ii)~Claude shows benchmark-dependent sensitivity (formality Style OR n.s.; AEval verbosity OR $= 4.76$, $p < .001$); (iii)~cross-axis BT variation inconsistent with uniform amplification; (iv)~rewriting artifact absorbed by GEE; (v)~debiased prompting ($-5.2$/$-13.1$pp), bounding the amplification factor at ${\\sim}9$--$17\\%$ of the total BT effect; (vi)~four-architecture replication with consistent GEE structure.\n190:Same-style double-rewrite controls confirm that any residual rewriting artifact is absorbed by the GEE originality term rather than inflating the style coefficient.\n191:The combination of NLI validation and amplification controls establishes that while the exact magnitude of style sensitivity remains bounded rather than point-identified, the qualitative finding (systematic style preferences invisible to Likert) is robust across judges, axes, and measurement assumptions.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e884553d-d9fc-449e-b030-cffc78687046",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "a70fbbec-a1d1-4c16-b1e1-2d39db991782",
+            "sourceToolAssistantUUID": "e884553d-d9fc-449e-b030-cffc78687046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-24T18:24:58.287Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SE4X6GgVKYhS5EEYyE375M",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a70fbbec-a1d1-4c16-b1e1-2d39db991782",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c697733-9516-460f-9ac9-b2b7b848e7f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-24T18:24:58.338Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SE4X6GgVKYhS5EEYyE375M",
+              "type": "tool_result",
+              "content": "3:CSD yields two findings: the \\emph{Likert Blindspot} (divergent pairwise/Likert verdicts in 8/8 primary and 6/24 cross-benchmark cells; $d \\!\\to\\! 0$ at $n{=}355$) and per-axis confound structures via GEE (verbosity style-dominated, formality conditional, register judge-dependent); concordance ($p < .001$) favors attenuation over divergence.\n6:For alignment pipelines, the per-axis confound structure implies that verbosity preferences in RLHF reward signals are predominantly style-driven, while formality preferences partially reflect genuine quality differences, a distinction invisible without GEE-level decomposition.\n8:The GEE decomposition further suggests that aggregate bias metrics obscure axis-specific mechanisms: a judge may appear unbiased overall while harboring strong style preferences on individual axes that cancel in aggregate but compound in domain-specific deployment.\n9:CSD generalizes to any surface-level axis with content-preserving rewrites; deeper axes (e.g., reasoning depth, factual density) that resist content-neutral manipulation remain open for future work.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c697733-9516-460f-9ac9-b2b7b848e7f1",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "1a8cd9b4-22c7-4734-8232-8a015b784dce",
+            "sourceToolAssistantUUID": "1c697733-9516-460f-9ac9-b2b7b848e7f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-24T18:24:58.836Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PJcG6cd6jFPdr1odCbitwQ",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLM\\|NLI\\|GEE\\|BT\\|RLHF\\|DPO\\|CSD\\|ATE\\|FWER\\|NLG\\|IIA\\|RATE\\|CASSE\\|OR\\|FK\\|Limitations\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a8cd9b4-22c7-4734-8232-8a015b784dce",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMryomSATP9KWgchMsMT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e85921ec-6c00-4717-80ed-7ea1a7ab543c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011h4nroHHP41gkg4EANGCLo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 55910,
+                "output_tokens": 1131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1033
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1131,
+                    "cache_read_input_tokens": 55910,
+                    "cache_creation_input_tokens": 1033,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1033,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-24T18:24:58.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PJcG6cd6jFPdr1odCbitwQ",
+              "type": "tool_result",
+              "content": "19:\\title{The Likert Blindspot: Measurement-Mode Divergence\\\\in LLM Judge Style Evaluation}\n38:\\section*{Limitations}\n42:The NLI gate blocks content changes but cannot block quality perception shifts mediated by style itself.\n43:Although formality effects survive logistic adjustment (OR $= 2.32$, $p = 0.006$), residual confounding is not fully eliminated; definitive resolution requires human ground-truth comparison of Likert and pairwise judgments on identical pairs.\n48:Qwen3-32B serves as both rewriter and judge; an independent GPT-4o rewriter yields 22\\% lower Style OR, confirming the Blindspot persists but effect-size precision varies with rewriter choice (Appendix~\\ref{app:rewriter_indep}).\n51:CSD applies only to surface-level axes whose rewrites preserve semantic content; a tone pilot (assertive $\\to$ hedging) was rejected by the NLI gate.\n52:Primary analyses use LLMBar ($n = 100$) with five judges; generalization to additional axes, benchmarks, and judges remains open.\n53:Style sensitivity may vary across model versions (\\S\\ref{sec:nli_validation}), and GEE odds-ratio estimates require large-sample validation to converge from initial upper-bound estimates ($49$--$72\\%$ shrinkage at $n = 330$--$355$).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e85921ec-6c00-4717-80ed-7ea1a7ab543c",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "74779f05-be41-4905-84d7-b9788bc7279a",
+            "sourceToolAssistantUUID": "e85921ec-6c00-4717-80ed-7ea1a7ab543c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-24T18:25:00.846Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me search for additional acronyms and dataset/benchmark names that I may have missed:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74779f05-be41-4905-84d7-b9788bc7279a",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMrzGkeiGJchVFzrKGqF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7caacc54-9658-48ed-85fd-771a35f21c87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01338JPuXsm2beU2MxupaPUh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 8196,
+                "cache_read_input_tokens": 56943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8196,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-24T18:25:02.989Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Srb1fY7eLzgzPn8GjgEcY",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"LLMBar\\|AlpacaEval\\|AlpacaFarm\\|MT-Bench\\|MNLI\\|BERTScore\\|BLEU\\|RATE\\|Claude\\|GPT\\|Qwen\\|Llama\\|Gemini\\|DeBERTa\\|Bradley-Terry\\|Chatbot Arena\\|Holm-Bonferroni\\|Cohen\\|Fisher\\|Sobel\\|FairJudge\\|Likert\\|Chattbot\" /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/*.tex 2>/dev/null | head -300"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7caacc54-9658-48ed-85fd-771a35f21c87",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMrzGkeiGJchVFzrKGqF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "909ddee7-6406-4334-8cda-8ba957890043",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01338JPuXsm2beU2MxupaPUh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 8196,
+                "cache_read_input_tokens": 56943,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8196
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 56943,
+                    "cache_creation_input_tokens": 8196,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8196,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-24T18:25:03.057Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Srb1fY7eLzgzPn8GjgEcY",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (75.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge--claude-sessions-director-8259c065/b1345355-a5ed-4064-8aca-57e9928d040b/tool-results/b8alwucdu.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex:2:Likert and pairwise scoring produce divergent sensitivity across two primary surface-level style axes, with varying effect sizes across judges, when applied to LLM judges.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex:3:We define this divergence, the \\emph{Likert Blindspot}, as statistically significant pairwise sensitivity absent from Likert, without committing to a specific causal mechanism; it admits non-exclusive explanations including measurement attenuation, format amplification, and construct divergence.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex:5:Across five judges from five independent providers and two primary axes (formality, verbosity), pairwise reaches significance ($p < 0.001$) where Likert does not ($p > 0.28$), with Likert effect sizes collapsing toward zero at larger $n$, replicated across three benchmarks and confirmed by seven statistical methods.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex:7:One judge (Claude Sonnet~4) exhibits benchmark-dependent sensitivity, illustrating bias as a judge$\\times$benchmark interaction; non-tie concordance (76.6\\%, $p < .001$) is more consistent with attenuation than construct divergence.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex:8:Likert-only audits may thus fail to surface style-driven preferences that propagate through pairwise-based alignment pipelines.\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "909ddee7-6406-4334-8cda-8ba957890043",
+            "isSidechain": true,
+            "promptId": "d38d6eab-0f57-4049-9a2a-f1d77f35ba6b",
+            "agentId": "a15d3963e9670cdeb",
+            "type": "user",
+            "uuid": "f99be536-4080-4a10-b772-010952ddbb68",
+            "sourceToolAssistantUUID": "909ddee7-6406-4334-8cda-8ba957890043",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-24T18:25:16.980Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my thorough review of all the LaTeX files, here is a comprehensive report of ALL abbreviations and acronyms found:\n\n## ACRONYMS AND ABBREVIATIONS FOUND IN PAPER\n\n### sections/abstract.tex\n- **LLM** (line 2) - Large Language Model\n- **CSD** (line 4) - Controlled Style Decomposition\n- **NLI** (line 4) - Natural Language Inference\n- **GEE** (line 6) - Generalized Estimating Equation\n- **OR** (line 6) - Odds Ratio\n\n### sections/introduction.tex\n- **NLI** (line 3) - Natural Language Inference\n- **GPT-4o** (line 3)\n- **LLM** (lines 2, 9, 12)\n- **NLP** (line 9)\n- **RLHF** (line 9) - Reinforcement Learning from Human Feedback\n- **DPO** (line 9) - Direct Preference Optimization\n- **CSD** (lines 14, 15, 16, 24)\n- **NLI** (lines 14, 15)\n- **BT** (line 18) - Bradley-Terry\n- **OR** (lines 12, 23)\n- **Qwen3-32B** (line 17)\n- **Llama-3.3-70B** (line 17)\n- **Gemini-2.5-Flash** (line 17)\n- **Claude Sonnet 4** (line 17)\n- **GEE** (line 23)\n\n### sections/related_work.tex\n- **RATE** (line 6) - Research, Attribute, Test, Evaluate method\n- **ATE** (line 6) - Average Treatment Effect\n- **CSD** (lines 7, 8)\n- **NLI** (line 7)\n- **LLM** (lines 10, 15)\n- **CASSE** (line 13)\n- **RLHF** (line 15)\n- **DPO** (line 15)\n- **NLP** (line 19)\n- **NLG** (line 19)\n- **BT** (line 20)\n- **GEE** (line 20)\n\n### sections/method.tex\n- **LLM** (line 8)\n- **NLI** (lines 15, 18, 19, 20, 21, 22)\n- **MNLI** (line 18)\n- **DeBERTa** (line 18)\n- **BERTScore** (line 24)\n- **RATE** (line 12)\n- **BT** (line 44)\n- **GEE** (lines 44, 60)\n- **LLMBar** (line 49)\n- **AlpacaEval** (line 51)\n- **MT-Bench** (line 51)\n- **CSD** (lines 49, 58, 62)\n- **FK** (line 62) - Flesch-Kincaid reading level\n\n### sections/experiments.tex\n- **FWER** (line 8) - Family-Wise Error Rate\n- **NLI** (line 10)\n- **BT** (lines 12, 13, 16, 20, 26, 44, 75, 79, 85, 91, 166, 172)\n- **IIA** (line 13) - Independence of Irrelevant Alternatives\n- **RLHF** (line 20)\n- **GEE** (lines 15, 23, 44, 53, 105, 106, 107, 113, 141, 146)\n- **LLMBar** (line 26)\n- **OR** (throughout table and text)\n- **RATE** (lines 72, 79)\n- **ATE** (lines 72, 79)\n- **Cohen's d** (line 73)\n- **GPT-4o** (lines 19, 52, 73, 163)\n- **Qwen3-32B** (line 19, 36, 52)\n- **Llama-70B** (lines 19, 41, 42)\n- **Gemini** (line 45, 46)\n- **Claude** (lines 20, 48, 91, 188)\n- **AlpacaEval** (lines 51, 91, 166, 188)\n- **MT-Bench** (line 51)\n- **AEval** (line 91)\n- **Fisher** (line 13)\n- **Sobel** (line 164)\n- **FK** (line 164) - Flesch-Kincaid\n- **AC1** (line 180) - Accord Index\n\n### sections/conclusion.tex\n- **CSD** (lines 6, 9)\n- **GEE** (lines 3, 6, 8)\n- **RLHF** (line 6)\n- **NLI** (line 9)\n- **LLMBar** (line 52)\n\n### main.tex (Limitations section)\n- **NLI** (lines 42, 51)\n- **OR** (lines 48, 53)\n- **CSD** (line 51, 52)\n- **GPT-4o** (line 48)\n- **Qwen3-32B** (line 48)\n- **LLMBar** (line 52)\n- **GEE** (line 53)\n\n## SUMMARY OF ALL UNIQUE ACRONYMS/ABBREVIATIONS:\n\n| Acronym | Full Form | Type |\n|---------|-----------|------|\n| LLM | Large Language Model | Technical |\n| CSD | Controlled Style Decomposition | Method |\n| NLI | Natural Language Inference | Technical |\n| GEE | Generalized Estimating Equation | Statistical |\n| OR | Odds Ratio | Statistical |\n| RLHF | Reinforcement Learning from Human Feedback | Technical |\n| DPO | Direct Preference Optimization | Technical |\n| BT | Bradley-Terry | Statistical Model |\n| NLP | Natural Language Processing | Field |\n| RATE | (method name) | Method |\n| ATE | Average Treatment Effect | Statistical |\n| CASSE | (framework name) | Framework |\n| NLG | Natural Language Generation | Field |\n| MNLI | Multi-Genre Natural Language Inference | Dataset |\n| DeBERTa | (model name) | Model |\n| BERTScore | BERT-based Similarity Score | Metric |\n| LLMBar | (benchmark name) | Benchmark |\n| AlpacaEval | (benchmark name) | Benchmark |\n| MT-Bench | Multi-turn Benchmark | Benchmark |\n| FK | Flesch-Kincaid | Readability Metric |\n| FWER | Family-Wise Error Rate | Statistical |\n| IIA | Independence of Irrelevant Alternatives | Statistical Assumption |\n| AC1 | Accord Index | Agreement Metric |\n| Cohen's d | (effect size metric) | Statistical |\n| AEval | AlpacaEval (shortened) | Benchmark |\n| GPT-4o, Qwen3-32B, Llama-70B, Gemini, Claude | Model names | Models |\n| Holm-Bonferroni | (multiple comparison correction) | Statistical |\n| Fisher | Fisher's exact test | Statistical |\n| Sobel | Sobel test | Statistical |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f99be536-4080-4a10-b772-010952ddbb68",
+            "isSidechain": true,
+            "agentId": "a15d3963e9670cdeb",
+            "requestId": "req_011CbMrzaYie97WQ69CpSSaj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7e8c511d-e092-44e3-8f2c-f833d42960a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065",
+            "sessionId": "b1345355-a5ed-4064-8aca-57e9928d040b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "compressed-coalescing-rainbow",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vox4WXzmvRgqsWDiEUpeTw",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 886,
+                "cache_read_input_tokens": 65139,
+                "output_tokens": 1855,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 886
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1855,
+                    "cache_read_input_tokens": 65139,
+                    "cache_creation_input_tokens": 886,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 886,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-latex-paper-at-home-ubuntu-agent-ml-research-idea-gen-0514-5-projects-c.md"
+}

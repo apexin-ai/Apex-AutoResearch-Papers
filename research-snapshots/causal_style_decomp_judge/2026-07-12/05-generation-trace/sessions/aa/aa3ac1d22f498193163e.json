@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "aa3ac1d22f498193163e",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: geosafe_vla ## 运行环境 - 服务器名: westd-18751 - SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 ",
+  "task_key": "6ad3cba1-09e9-46c1-972e-2cf8a3d08b8f",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/6ad3cba1-09e9-46c1-972e-2cf8a3d08b8f.jsonl",
+    "occurrence": 1,
+    "bytes": 717392,
+    "sha256": "53a17c5d39d8df4eb42fa9e22c312d17f6d392d80020b2e00830929428a224b0"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 1,
+    "tool_calls": 58,
+    "roles": {
+      "record": 39,
+      "user": 1,
+      "assistant": 26,
+      "tool_call": 58,
+      "tool_result": 58
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "aa3ac1d22f498193163e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "aa3ac1d22f498193163e-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "aa3ac1d22f498193163e-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-geosafe-vla-westd-18751-ssh-root-ssh-execute-submit-training-j-copy-108.md"
+}

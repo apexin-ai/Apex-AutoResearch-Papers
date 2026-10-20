@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b0bb1cc7519564526c49",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+                "leafUuid": "f9909588-f3fe-4055-a49f-76327202faa5",
+                "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+                "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+              }
+            }
+          ],
+          "id": "event-000182"
+        }
+      ]
+    }
+  ]
+}

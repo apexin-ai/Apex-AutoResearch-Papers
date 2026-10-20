@@ -1,0 +1,1414 @@
+{
+  "schema_version": "1.0",
+  "id": "96879e963d1c916805fa",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: collapse_severity_monitor ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/f3295c74-1ce7-4dc2-85c8-e51c0db9f42e.jsonl",
+    "occurrence": 1,
+    "bytes": 84167,
+    "sha256": "189cd795ec745af46a8d227fa99e31fd384ffd23654747056006524bafe5a583"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:01:33.136Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T05:01:33.136Z",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+                "content": "<project_context>\n# 项目: collapse_severity_monitor\n\n## 运行环境\n- 服务器名: autodl-5090\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/collapse_severity_monitor\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：重新部署修复后的 analysis.py 到服务器\n\n### 目标\n将修复后的 analysis.py 部署到 autodl-5090 服务器，覆盖旧版本。\n\n### 服务器\n- SSH: autodl-5090\n- 项目路径: `/root/autodl-tmp/collapse_severity_monitor/`\n\n### 步骤\n\n1. 用 Read 工具读取本地文件：\n   `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/analysis.py`\n\n2. 用 ssh_execute 将内容写到服务器：\n   `/root/autodl-tmp/collapse_severity_monitor/analysis.py`\n   使用 heredoc 方式写入（注意 Python 代码中可能有单引号，用适当的 delimiter）。\n\n3. 验证部署：\n   ```bash\n   cd /root/autodl-tmp/collapse_severity_monitor && python3 -c \"from analysis import run_analysis, SIGNAL_FAMILIES; print('Families:', list(SIGNAL_FAMILIES.keys())); print('OK')\"\n   ```\n   确认输出包含 6 个 families（loss, gradient, output_entropy, spectral, divergence, csd）。\n\n4. 汇报验证结果。\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:01:33.140Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T05:01:33.140Z",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:01:33.174Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: collapse_severity_monitor\n\n## 运行环境\n- 服务器名: autodl-5090\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/collapse_severity_monitor\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：重新部署修复后的 analysis.py 到服务器\n\n### 目标\n将修复后的 analysis.py 部署到 autodl-5090 服务器，覆盖旧版本。\n\n### 服务器\n- SSH: autodl-5090\n- 项目路径: `/root/autodl-tmp/collapse_severity_monitor/`\n\n### 步骤\n\n1. 用 Read 工具读取本地文件：\n   `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/analysis.py`\n\n2. 用 ssh_execute 将内容写到服务器：\n   `/root/autodl-tmp/collapse_severity_monitor/analysis.py`\n   使用 heredoc 方式写入（注意 Python 代码中可能有单引号，用适当的 delimiter）。\n\n3. 验证部署：\n   ```bash\n   cd /root/autodl-tmp/collapse_severity_monitor && python3 -c \"from analysis import run_analysis, SIGNAL_FAMILIES; print('Families:', list(SIGNAL_FAMILIES.keys())); print('OK')\"\n   ```\n   确认输出包含 6 个 families（loss, gradient, output_entropy, spectral, divergence, csd）。\n\n4. 汇报验证结果。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "c1af0af3-0dd7-4491-9ff0-d7a6929b4f70",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:01:33.173Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c1af0af3-0dd7-4491-9ff0-d7a6929b4f70",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "ed1ff95b-de44-4f7d-b717-41e9581b7b75",
+                "timestamp": "2026-05-14T05:01:33.173Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:01:33.173Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ed1ff95b-de44-4f7d-b717-41e9581b7b75",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f3d139cf-a4f9-4536-b07c-3c4589da0194",
+                "timestamp": "2026-05-14T05:01:33.173Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T05:01:33.173Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f3d139cf-a4f9-4536-b07c-3c4589da0194",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "34bbf7cc-f66a-4501-9853-862675c72ad6",
+                "timestamp": "2026-05-14T05:01:33.173Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy fixed analysis.py to autodl-5090",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T05:01:37.261Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the local analysis.py file, then deploy it to the server.",
+              "signature": "EowCClkIDRgCKkAH0tTq1j4chiqEbqnNbTKEc2Qu1QGyjorkEp018kSzokgXrb2d3dXwoQrDvw86mdCvNq0gXtC4cxsMBZB+2WBKMg9jbGF1ZGUtb3B1cy00LTY4ABIMkTyG7PSoS9OvgkgMGgxznS2/8lGz29scWkEiMBaYdgs0WWmzc3pWJu1kAPw2E77AIv7e8QETxiTL3thFkWIdPk7XJkSMREJJwGk9bCph21bqUaAQu1u/odt0sD/YLMOKA6fk1e4sC3+iaz6Nz+QklHdA+RKUTKFVqiZPR8zN58NWyK77CulAOhQzfIXZFDG3z1sh7E6Ts+n5LOvNL5txU+rwZXuvzjsQNWgBVMV3rRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34bbf7cc-f66a-4501-9853-862675c72ad6",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sdfXKSLnn78Nzc63sg",
+            "type": "assistant",
+            "uuid": "6aa0ee08-e517-4b58-86d2-10e5547b2e36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WVwrhbRyg6YKEvhffhcb2K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11100,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11100,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11100,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11100
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T05:01:37.603Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SoaCbEHEHqj9M6CddJEzFR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6aa0ee08-e517-4b58-86d2-10e5547b2e36",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sdfXKSLnn78Nzc63sg",
+            "type": "assistant",
+            "uuid": "d944d72a-a26a-4562-a18f-05b300f97e84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WVwrhbRyg6YKEvhffhcb2K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11100,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11100,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11100,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11100
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T05:01:37.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SoaCbEHEHqj9M6CddJEzFR",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Post-hoc analysis: Spearman rho, AUROC, trajectory plots, pass/fail judgment.\n2\t\n3\tReads signal JSONL files produced by the pipeline, computes correlations\n4\tbetween each signal and perplexity. Pass/fail gate uses Spearman rho only\n5\t(AUROC is computed and reported but not gated, per D002).\n6\t\n7\tThree-tier verdict:\n8\t  PASS       — >=2 signal families with |rho| > 0.7\n9\t  CONDITIONAL — exactly 1 family with |rho| > 0.7 (needs +1 seed)\n10\t  HARD_FAIL  — 0 families pass\n11\t\n12\tAlso computes post-hoc derived signals:\n13\t  - Divergence-from-clean: per-signal difference vs 0% baseline\n14\t  - CSD (Critical Slowing Down): lag-1 autocorrelation + rolling variance\n15\t\n16\tInput: signals_*pct_gen*.jsonl in output_dir.\n17\tOutput: analysis_report.json, trajectory and scatter plots in output_dir/plots/.\n18\t\n19\tDependencies: scipy, sklearn, matplotlib, numpy.\n20\t\"\"\"\n21\t\n22\timport os\n23\timport json\n24\timport math\n25\t\n26\timport numpy as np\n27\timport matplotlib\n28\tmatplotlib.use(\"Agg\")\n29\timport matplotlib.pyplot as plt\n30\tfrom scipy import stats\n31\tfrom sklearn.metrics import roc_auc_score\n32\t\n33\tfrom config import Config\n34\t\n35\t# Signal families for pass/fail aggregation (rho > 0.7 gate; AUROC reported only)\n36\tSIGNAL_FAMILIES = {\n37\t    \"loss\": [\"training_loss\"],\n38\t    \"gradient\": [\"gradient_norm\"],\n39\t    \"output_entropy\": [\"token_entropy\"],\n40\t    \"spectral\": [\"spectral_entropy\", \"stable_rank\", \"sv_ratio_1_2\"],\n41\t    \"divergence\": [\"div_token_entropy\", \"div_spectral_entropy\", \"div_stable_rank\"],\n42\t    \"csd\": [\"csd_ac1_perplexity\", \"csd_var_perplexity\"],\n43\t}\n44\t\n45\t# Raw signals (from pipeline)\n46\tBASE_SIGNALS = [\n47\t    \"training_loss\",\n48\t    \"gradient_norm\",\n49\t    \"token_entropy\",\n50\t    \"spectral_entropy\",\n51\t    \"stable_rank\",\n52\t    \"sv_ratio_1_2\",\n53\t]\n54\t\n55\t# Derived signals (computed post-hoc in this script)\n56\tDERIVED_SIGNALS = [\n57\t    \"div_token_entropy\",\n58\t    \"div_spectral_entropy\",\n59\t    \"div_stable_rank\",\n60\t    \"csd_ac1_perplexity\",\n61\t    \"csd_var_perplexity\",\n62\t]\n63\t\n64\tALL_SIGNALS = BASE_SIGNALS + DERIVED_SIGNALS\n65\t\n66\t\n67\t# ---------------------------------------------------------------------------\n68\t# Data loading\n69\t# ---------------------------------------------------------------------------\n70\t\n71\tdef load_all_signals(output_dir, fractions, num_generations):\n72\t    \"\"\"Load signal JSONL files into {fraction: {gen: [records]}}.\"\"\"\n73\t    data = {}\n74\t    for frac in fractions:\n75\t        frac_str = f\"{int(frac * 100)}pct\"\n76\t        data[frac] = {}\n77\t        for gen in range(num_generations):\n78\t            path = os.path.join(output_dir, f\"signals_{frac_str}_gen{gen}.jsonl\")\n79\t            if not os.path.exists(path):\n80\t                continue\n81\t            with open(path) as f:\n82\t                records = [json.loads(line) for line in f if line.strip()]\n83\t            for r in records:\n84\t                svs = r.get(\"top_singular_values\", [])\n85\t                if len(svs) >= 2 and svs[1] > 0:\n86\t                    r[\"sv_ratio_1_2\"] = svs[0] / svs[1]\n87\t                else:\n88\t                    r[\"sv_ratio_1_2\"] = 0.0\n89\t            data[frac][gen] = records\n90\t    return data\n91\t\n92\t\n93\tdef flatten_signal(data, signal_name):\n94\t    \"\"\"Extract (signal_value, perplexity, is_collapsing) tuples.\"\"\"\n95\t    rows = []\n96\t    for frac, gens in data.items():\n97\t        is_collapsing = 1 if frac > 0.0 else 0\n98\t        for gen, records in gens.items():\n99\t            for r in records:\n100\t                val = r.get(signal_name)\n101\t                ppl = r.get(\"perplexity\")\n102\t                if (\n103\t                    val is not None\n104\t                    and ppl is not None\n105\t                    and math.isfinite(val)\n106\t                    and math.isfinite(ppl)\n107\t                ):\n108\t                    rows.append((val, ppl, is_collapsing))\n109\t    return rows\n110\t\n111\t\n112\t# ---------------------------------------------------------------------------\n113\t# Post-hoc derived signals\n114\t# ---------------------------------------------------------------------------\n115\t\n116\tdef compute_divergence_from_clean(data):\n117\t    \"\"\"Add div_* signals: difference between each collapsing run and 0% baseline.\n118\t\n119\t    For each collapsing fraction, at matching (gen, step) pairs, computes\n120\t    signal_value - clean_value. Modifies records in-place.\n121\t    \"\"\"\n122\t    clean = data.get(0.0, {})\n123\t    if not clean:\n124\t        return\n125\t\n126\t    clean_lookup = {}\n127\t    for gen, records in clean.items():\n128\t        clean_lookup[gen] = {r[\"step\"]: r for r in records}\n129\t\n130\t    sigs_to_diff = [\"token_entropy\", \"spectral_entropy\", \"stable_rank\"]\n131\t\n132\t    for frac, gens in data.items():\n133\t        if frac == 0.0:\n134\t            continue\n135\t        for gen, records in gens.items():\n136\t            cl = clean_lookup.get(gen, {})\n137\t            for r in records:\n138\t                cr = cl.get(r[\"step\"], {})\n139\t                for sig in sigs_to_diff:\n140\t                    val = r.get(sig)\n141\t                    cval = cr.get(sig)\n142\t                    if val is not None and cval is not None:\n143\t                        r[f\"div_{sig}\"] = val - cval\n144\t\n145\t\n146\tdef compute_csd_signals(data):\n147\t    \"\"\"Add CSD (Critical Slowing Down) indicators to each record.\n148\t\n149\t    For perplexity time series within each (fraction, generation):\n150\t      - csd_ac1_perplexity: lag-1 autocorrelation up to current point\n151\t      - csd_var_perplexity: rolling variance (window=5)\n152\t    Modifies records in-place.\n153\t    \"\"\"\n154\t    for frac, gens in data.items():\n155\t        for gen, records in gens.items():\n156\t            ppls = []\n157\t            for i, r in enumerate(records):\n158\t                p = r.get(\"perplexity\")\n159\t                if p is not None and math.isfinite(p):\n160\t                    ppls.append(p)\n161\t                else:\n162\t                    ppls.append(None)\n163\t                    continue\n164\t\n165\t                arr = np.array([x for x in ppls if x is not None], dtype=float)\n166\t\n167\t                # Lag-1 autocorrelation\n168\t                if len(arr) >= 4:\n169\t                    ac = np.corrcoef(arr[:-1], arr[1:])[0, 1]\n170\t                    r[\"csd_ac1_perplexity\"] = float(ac) if math.isfinite(ac) else 0.0\n171\t                else:\n172\t                    r[\"csd_ac1_perplexity\"] = 0.0\n173\t\n174\t                # Rolling variance (last 5 points)\n175\t                window = arr[max(0, len(arr) - 5):]\n176\t                if len(window) >= 2:\n177\t                    r[\"csd_var_perplexity\"] = float(np.var(window))\n178\t                else:\n179\t                    r[\"csd_var_perplexity\"] = 0.0\n180\t\n181\t\n182\t# ---------------------------------------------------------------------------\n183\t# Statistical metrics\n184\t# ---------------------------------------------------------------------------\n185\t\n186\tdef compute_spearman(rows):\n187\t    if len(rows) < 3:\n188\t        return 0.0, 1.0\n189\t    vals, ppls, _ = zip(*rows)\n190\t    rho, pval = stats.spearmanr(vals, ppls)\n191\t    rho = float(rho) if math.isfinite(rho) else 0.0\n192\t    return rho, float(pval)\n193\t\n194\t\n195\tdef compute_auroc(rows):\n196\t    \"\"\"Direction-agnostic AUROC: max(AUC, 1-AUC).\"\"\"\n197\t    if len(rows) < 3:\n198\t        return 0.5\n199\t    vals, _, labels = zip(*rows)\n200\t    if len(set(labels)) < 2:\n201\t        return 0.5\n202\t    try:\n203\t        auc = roc_auc_score(labels, vals)\n204\t        return max(auc, 1 - auc)\n205\t    except ValueError:\n206\t        return 0.5\n207\t\n208\t\n209\t# ---------------------------------------------------------------------------\n210\t# Visualization\n211\t# ---------------------------------------------------------------------------\n212\t\n213\tCOLORS = {0.0: \"#2ecc71\", 0.5: \"#e67e22\", 1.0: \"#e74c3c\"}\n214\tLABELS = {0.0: \"0% (clean)\", 0.5: \"50% synthetic\", 1.0: \"100% synthetic\"}\n215\t\n216\t\n217\tdef plot_signal_trajectory(data, signal_name, plot_dir, fractions):\n218\t    \"\"\"Signal values across cumulative steps, one line per fraction.\"\"\"\n219\t    fig, ax = plt.subplots(figsize=(10, 6))\n220\t\n221\t    for frac in fractions:\n222\t        if frac not in data:\n223\t            continue\n224\t        steps, vals = [], []\n225\t        offset = 0\n226\t        for gen in sorted(data[frac].keys()):\n227\t            records = data[frac][gen]\n228\t            for r in records:\n229\t                v = r.get(signal_name)\n230\t                if v is not None and math.isfinite(v):\n231\t                    steps.append(offset + r[\"step\"])\n232\t                    vals.append(v)\n233\t            if records:\n234\t                offset += max(r[\"step\"] for r in records)\n235\t        if steps:\n236\t            ax.plot(\n237\t                steps, vals,\n238\t                color=COLORS.get(frac, \"blue\"),\n239\t                label=LABELS.get(frac, f\"{frac}\"),\n240\t                alpha=0.8, linewidth=1.5,\n241\t            )\n242\t\n243\t    ax.set_xlabel(\"Cumulative Training Step\")\n244\t    ax.set_ylabel(signal_name.replace(\"_\", \" \").title())\n245\t    ax.set_title(f\"{signal_name.replace('_', ' ').title()} Trajectory\")\n246\t    ax.legend()\n247\t    ax.grid(True, alpha=0.3)\n248\t\n249\t    path = os.path.join(plot_dir, f\"trajectory_{signal_name}.png\")\n250\t    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n251\t    plt.close(fig)\n252\t\n253\t\n254\tdef plot_correlation_scatter(data, signal_name, plot_dir, fractions):\n255\t    \"\"\"Scatter plot of signal vs perplexity, colored by fraction.\"\"\"\n256\t    fig, ax = plt.subplots(figsize=(8, 6))\n257\t\n258\t    for frac in fractions:\n259\t        if frac not in data:\n260\t            continue\n261\t        vals, ppls = [], []\n262\t        for gen in data[frac]:\n263\t            for r in data[frac][gen]:\n264\t                v = r.get(signal_name)\n265\t                p = r.get(\"perplexity\")\n266\t                if (\n267\t                    v is not None\n268\t                    and p is not None\n269\t                    and math.isfinite(v)\n270\t                    and math.isfinite(p)\n271\t                ):\n272\t                    vals.append(v)\n273\t                    ppls.append(p)\n274\t        if vals:\n275\t            ax.scatter(\n276\t                vals, ppls,\n277\t                c=COLORS.get(frac, \"blue\"),\n278\t                label=f\"{int(frac * 100)}%\",\n279\t                alpha=0.6, s=20,\n280\t            )\n281\t\n282\t    ax.set_xlabel(signal_name.replace(\"_\", \" \").title())\n283\t    ax.set_ylabel(\"Perplexity\")\n284\t    ax.set_title(f\"{signal_name.replace('_', ' ').title()} vs Perplexity\")\n285\t    ax.legend()\n286\t    ax.grid(True, alpha=0.3)\n287\t\n288\t    path = os.path.join(plot_dir, f\"scatter_{signal_name}_vs_ppl.png\")\n289\t    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n290\t    plt.close(fig)\n291\t\n292\t\n293\tdef plot_summary_curves(output_dir, fractions, num_generations):\n294\t    \"\"\"Plot per-generation summary metrics (perplexity, HellaSwag, etc.).\"\"\"\n295\t    metrics = [\"perplexity\", \"hellaswag_accuracy\", \"self_bleu\", \"distinct_2\"]\n296\t    fig, axes = plt.subplots(2, 2, figsize=(14, 10))\n297\t    axes = axes.flatten()\n298\t\n299\t    for ax, metric in zip(axes, metrics):\n300\t        for frac in fractions:\n301\t            frac_str = f\"{int(frac * 100)}pct\"\n302\t            path = os.path.join(output_dir, f\"summary_{frac_str}.json\")\n303\t            if not os.path.exists(path):\n304\t                continue\n305\t            with open(path) as f:\n306\t                summaries = json.load(f)\n307\t            gens = [s[\"generation\"] for s in summaries]\n308\t            vals = [s.get(metric, 0) for s in summaries]\n309\t            ax.plot(\n310\t                gens, vals,\n311\t                color=COLORS.get(frac, \"blue\"),\n312\t                label=LABELS.get(frac, f\"{frac}\"),\n313\t                marker=\"o\", linewidth=2,\n314\t            )\n315\t        ax.set_xlabel(\"Generation\")\n316\t        ax.set_ylabel(metric.replace(\"_\", \" \").title())\n317\t        ax.set_title(metric.replace(\"_\", \" \").title())\n318\t        ax.legend()\n319\t        ax.grid(True, alpha=0.3)\n320\t\n321\t    fig.tight_layout()\n322\t    path = os.path.join(output_dir, \"plots\", \"summary_curves.png\")\n323\t    os.makedirs(os.path.dirname(path), exist_ok=True)\n324\t    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n325\t    plt.close(fig)\n326\t\n327\t\n328\t# ---------------------------------------------------------------------------\n329\t# Main analysis\n330\t# ---------------------------------------------------------------------------\n331\t\n332\tdef run_analysis(config: Config = None):\n333\t    if config is None:\n334\t        config = Config()\n335\t\n336\t    output_dir = config.output_dir\n337\t    fractions = config.synthetic_fractions\n338\t    num_gen = config.num_generations\n339\t\n340\t    print(\"Loading signals...\")\n341\t    data = load_all_signals(output_dir, fractions, num_gen)\n342\t\n343\t    print(\"Computing derived signals (divergence + CSD)...\")\n344\t    compute_divergence_from_clean(data)\n345\t    compute_csd_signals(data)\n346\t\n347\t    results = {}\n348\t    for name in ALL_SIGNALS:\n349\t        rows = flatten_signal(data, name)\n350\t        rho, pval = compute_spearman(rows)\n351\t        auroc = compute_auroc(rows)\n352\t        results[name] = {\n353\t            \"spearman_rho\": rho,\n354\t            \"spearman_pval\": pval,\n355\t            \"auroc\": auroc,\n356\t            \"n_points\": len(rows),\n357\t        }\n358\t        print(\n359\t            f\"  {name:25s}  rho={rho:+.3f} (p={pval:.4f})  \"\n360\t            f\"AUROC={auroc:.3f}  n={len(rows)}\"\n361\t        )\n362\t\n363\t    # Generate plots\n364\t    print(\"\\nGenerating plots...\")\n365\t    plot_dir = os.path.join(output_dir, \"plots\")\n366\t    os.makedirs(plot_dir, exist_ok=True)\n367\t\n368\t    for name in ALL_SIGNALS + [\"perplexity\"]:\n369\t        plot_signal_trajectory(data, name, plot_dir, fractions)\n370\t    for name in ALL_SIGNALS:\n371\t        plot_correlation_scatter(data, name, plot_dir, fractions)\n372\t    plot_summary_curves(output_dir, fractions, num_gen)\n373\t\n374\t    # Family-level pass/fail (gate on rho only; AUROC is informational)\n375\t    family_results = {}\n376\t    for fam_name, members in SIGNAL_FAMILIES.items():\n377\t        present = [m for m in members if m in results]\n378\t        if not present:\n379\t            family_results[fam_name] = {\n380\t                \"pass\": False, \"best_rho\": 0.0, \"best_auroc\": 0.5,\n381\t            }\n382\t            continue\n383\t        best_rho = max(abs(results[m][\"spearman_rho\"]) for m in present)\n384\t        best_auroc = max(results[m][\"auroc\"] for m in present)\n385\t        family_results[fam_name] = {\n386\t            \"pass\": best_rho > 0.7,\n387\t            \"best_rho\": best_rho,\n388\t            \"best_auroc\": best_auroc,\n389\t        }\n390\t\n391\t    n_pass = sum(1 for f in family_results.values() if f[\"pass\"])\n392\t    if n_pass >= 2:\n393\t        verdict = \"PASS\"\n394\t    elif n_pass == 1:\n395\t        verdict = \"CONDITIONAL\"\n396\t    else:\n397\t        verdict = \"HARD_FAIL\"\n398\t\n399\t    # Print summary\n400\t    print(f\"\\n{'=' * 60}\")\n401\t    print(\"FAMILY RESULTS (gate: |rho| > 0.7; AUROC informational)\")\n402\t    print(f\"{'=' * 60}\")\n403\t    for fam, r in family_results.items():\n404\t        status = \"PASS\" if r[\"pass\"] else \"FAIL\"\n405\t        print(\n406\t            f\"  {fam:20s}  {status}  \"\n407\t            f\"|rho|={r['best_rho']:.3f}  AUROC={r['best_auroc']:.3f}\"\n408\t        )\n409\t    verdict_detail = {\n410\t        \"PASS\": f\"PASS ({n_pass}/{len(SIGNAL_FAMILIES)} families, need >= 2)\",\n411\t        \"CONDITIONAL\": (\n412\t            f\"CONDITIONAL ({n_pass}/{len(SIGNAL_FAMILIES)} family — \"\n413\t            f\"need +1 seed to verify reproducibility)\"\n414\t        ),\n415\t        \"HARD_FAIL\": (\n416\t            f\"HARD_FAIL (0/{len(SIGNAL_FAMILIES)} families — \"\n417\t            f\"no signal tracks collapse, kill project)\"\n418\t        ),\n419\t    }\n420\t    print(f\"\\n  Verdict: {verdict_detail[verdict]}\")\n421\t\n422\t    # Save report\n423\t    report = {\n424\t        \"signal_results\": results,\n425\t        \"family_results\": family_results,\n426\t        \"passing_families\": n_pass,\n427\t        \"verdict\": verdict,\n428\t    }\n429\t    report_path = os.path.join(output_dir, \"analysis_report.json\")\n430\t    with open(report_path, \"w\") as f:\n431\t        json.dump(report, f, indent=2, default=str)\n432\t    print(f\"\\n  Report saved: {report_path}\")\n433\t\n434\t    return report\n435\t\n436\t\n437\tif __name__ == \"__main__\":\n438\t    run_analysis()\n439\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d944d72a-a26a-4562-a18f-05b300f97e84",
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "ff596d3a-a8aa-4706-a0f8-7799e4feb4fb",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/analysis.py",
+                "content": "\"\"\"Post-hoc analysis: Spearman rho, AUROC, trajectory plots, pass/fail judgment.\n\nReads signal JSONL files produced by the pipeline, computes correlations\nbetween each signal and perplexity. Pass/fail gate uses Spearman rho only\n(AUROC is computed and reported but not gated, per D002).\n\nThree-tier verdict:\n  PASS       — >=2 signal families with |rho| > 0.7\n  CONDITIONAL — exactly 1 family with |rho| > 0.7 (needs +1 seed)\n  HARD_FAIL  — 0 families pass\n\nAlso computes post-hoc derived signals:\n  - Divergence-from-clean: per-signal difference vs 0% baseline\n  - CSD (Critical Slowing Down): lag-1 autocorrelation + rolling variance\n\nInput: signals_*pct_gen*.jsonl in output_dir.\nOutput: analysis_report.json, trajectory and scatter plots in output_dir/plots/.\n\nDependencies: scipy, sklearn, matplotlib, numpy.\n\"\"\"\n\nimport os\nimport json\nimport math\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom scipy import stats\nfrom sklearn.metrics import roc_auc_score\n\nfrom config import Config\n\n# Signal families for pass/fail aggregation (rho > 0.7 gate; AUROC reported only)\nSIGNAL_FAMILIES = {\n    \"loss\": [\"training_loss\"],\n    \"gradient\": [\"gradient_norm\"],\n    \"output_entropy\": [\"token_entropy\"],\n    \"spectral\": [\"spectral_entropy\", \"stable_rank\", \"sv_ratio_1_2\"],\n    \"divergence\": [\"div_token_entropy\", \"div_spectral_entropy\", \"div_stable_rank\"],\n    \"csd\": [\"csd_ac1_perplexity\", \"csd_var_perplexity\"],\n}\n\n# Raw signals (from pipeline)\nBASE_SIGNALS = [\n    \"training_loss\",\n    \"gradient_norm\",\n    \"token_entropy\",\n    \"spectral_entropy\",\n    \"stable_rank\",\n    \"sv_ratio_1_2\",\n]\n\n# Derived signals (computed post-hoc in this script)\nDERIVED_SIGNALS = [\n    \"div_token_entropy\",\n    \"div_spectral_entropy\",\n    \"div_stable_rank\",\n    \"csd_ac1_perplexity\",\n    \"csd_var_perplexity\",\n]\n\nALL_SIGNALS = BASE_SIGNALS + DERIVED_SIGNALS\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_all_signals(output_dir, fractions, num_generations):\n    \"\"\"Load signal JSONL files into {fraction: {gen: [records]}}.\"\"\"\n    data = {}\n    for frac in fractions:\n        frac_str = f\"{int(frac * 100)}pct\"\n        data[frac] = {}\n        for gen in range(num_generations):\n            path = os.path.join(output_dir, f\"signals_{frac_str}_gen{gen}.jsonl\")\n            if not os.path.exists(path):\n                continue\n            with open(path) as f:\n                records = [json.loads(line) for line in f if line.strip()]\n            for r in records:\n                svs = r.get(\"top_singular_values\", [])\n                if len(svs) >= 2 and svs[1] > 0:\n                    r[\"sv_ratio_1_2\"] = svs[0] / svs[1]\n                else:\n                    r[\"sv_ratio_1_2\"] = 0.0\n            data[frac][gen] = records\n    return data\n\n\ndef flatten_signal(data, signal_name):\n    \"\"\"Extract (signal_value, perplexity, is_collapsing) tuples.\"\"\"\n    rows = []\n    for frac, gens in data.items():\n        is_collapsing = 1 if frac > 0.0 else 0\n        for gen, records in gens.items():\n            for r in records:\n                val = r.get(signal_name)\n                ppl = r.get(\"perplexity\")\n                if (\n                    val is not None\n                    and ppl is not None\n                    and math.isfinite(val)\n                    and math.isfinite(ppl)\n                ):\n                    rows.append((val, ppl, is_collapsing))\n    return rows\n\n\n# ---------------------------------------------------------------------------\n# Post-hoc derived signals\n# ---------------------------------------------------------------------------\n\ndef compute_divergence_from_clean(data):\n    \"\"\"Add div_* signals: difference between each collapsing run and 0% baseline.\n\n    For each collapsing fraction, at matching (gen, step) pairs, computes\n    signal_value - clean_value. Modifies records in-place.\n    \"\"\"\n    clean = data.get(0.0, {})\n    if not clean:\n        return\n\n    clean_lookup = {}\n    for gen, records in clean.items():\n        clean_lookup[gen] = {r[\"step\"]: r for r in records}\n\n    sigs_to_diff = [\"token_entropy\", \"spectral_entropy\", \"stable_rank\"]\n\n    for frac, gens in data.items():\n        if frac == 0.0:\n            continue\n        for gen, records in gens.items():\n            cl = clean_lookup.get(gen, {})\n            for r in records:\n                cr = cl.get(r[\"step\"], {})\n                for sig in sigs_to_diff:\n                    val = r.get(sig)\n                    cval = cr.get(sig)\n                    if val is not None and cval is not None:\n                        r[f\"div_{sig}\"] = val - cval\n\n\ndef compute_csd_signals(data):\n    \"\"\"Add CSD (Critical Slowing Down) indicators to each record.\n\n    For perplexity time series within each (fraction, generation):\n      - csd_ac1_perplexity: lag-1 autocorrelation up to current point\n      - csd_var_perplexity: rolling variance (window=5)\n    Modifies records in-place.\n    \"\"\"\n    for frac, gens in data.items():\n        for gen, records in gens.items():\n            ppls = []\n            for i, r in enumerate(records):\n                p = r.get(\"perplexity\")\n                if p is not None and math.isfinite(p):\n                    ppls.append(p)\n                else:\n                    ppls.append(None)\n                    continue\n\n                arr = np.array([x for x in ppls if x is not None], dtype=float)\n\n                # Lag-1 autocorrelation\n                if len(arr) >= 4:\n                    ac = np.corrcoef(arr[:-1], arr[1:])[0, 1]\n                    r[\"csd_ac1_perplexity\"] = float(ac) if math.isfinite(ac) else 0.0\n                else:\n                    r[\"csd_ac1_perplexity\"] = 0.0\n\n                # Rolling variance (last 5 points)\n                window = arr[max(0, len(arr) - 5):]\n                if len(window) >= 2:\n                    r[\"csd_var_perplexity\"] = float(np.var(window))\n                else:\n                    r[\"csd_var_perplexity\"] = 0.0\n\n\n# ---------------------------------------------------------------------------\n# Statistical metrics\n# ---------------------------------------------------------------------------\n\ndef compute_spearman(rows):\n    if len(rows) < 3:\n        return 0.0, 1.0\n    vals, ppls, _ = zip(*rows)\n    rho, pval = stats.spearmanr(vals, ppls)\n    rho = float(rho) if math.isfinite(rho) else 0.0\n    return rho, float(pval)\n\n\ndef compute_auroc(rows):\n    \"\"\"Direction-agnostic AUROC: max(AUC, 1-AUC).\"\"\"\n    if len(rows) < 3:\n        return 0.5\n    vals, _, labels = zip(*rows)\n    if len(set(labels)) < 2:\n        return 0.5\n    try:\n        auc = roc_auc_score(labels, vals)\n        return max(auc, 1 - auc)\n    except ValueError:\n        return 0.5\n\n\n# ---------------------------------------------------------------------------\n# Visualization\n# ---------------------------------------------------------------------------\n\nCOLORS = {0.0: \"#2ecc71\", 0.5: \"#e67e22\", 1.0: \"#e74c3c\"}\nLABELS = {0.0: \"0% (clean)\", 0.5: \"50% synthetic\", 1.0: \"100% synthetic\"}\n\n\ndef plot_signal_trajectory(data, signal_name, plot_dir, fractions):\n    \"\"\"Signal values across cumulative steps, one line per fraction.\"\"\"\n    fig, ax = plt.subplots(figsize=(10, 6))\n\n    for frac in fractions:\n        if frac not in data:\n            continue\n        steps, vals = [], []\n        offset = 0\n        for gen in sorted(data[frac].keys()):\n            records = data[frac][gen]\n            for r in records:\n                v = r.get(signal_name)\n                if v is not None and math.isfinite(v):\n                    steps.append(offset + r[\"step\"])\n                    vals.append(v)\n            if records:\n                offset += max(r[\"step\"] for r in records)\n        if steps:\n            ax.plot(\n                steps, vals,\n                color=COLORS.get(frac, \"blue\"),\n                label=LABELS.get(frac, f\"{frac}\"),\n                alpha=0.8, linewidth=1.5,\n            )\n\n    ax.set_xlabel(\"Cumulative Training Step\")\n    ax.set_ylabel(signal_name.replace(\"_\", \" \").title())\n    ax.set_title(f\"{signal_name.replace('_', ' ').title()} Trajectory\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(plot_dir, f\"trajectory_{signal_name}.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\ndef plot_correlation_scatter(data, signal_name, plot_dir, fractions):\n    \"\"\"Scatter plot of signal vs perplexity, colored by fraction.\"\"\"\n    fig, ax = plt.subplots(figsize=(8, 6))\n\n    for frac in fractions:\n        if frac not in data:\n            continue\n        vals, ppls = [], []\n        for gen in data[frac]:\n            for r in data[frac][gen]:\n                v = r.get(signal_name)\n                p = r.get(\"perplexity\")\n                if (\n                    v is not None\n                    and p is not None\n                    and math.isfinite(v)\n                    and math.isfinite(p)\n                ):\n                    vals.append(v)\n                    ppls.append(p)\n        if vals:\n            ax.scatter(\n                vals, ppls,\n                c=COLORS.get(frac, \"blue\"),\n                label=f\"{int(frac * 100)}%\",\n                alpha=0.6, s=20,\n            )\n\n    ax.set_xlabel(signal_name.replace(\"_\", \" \").title())\n    ax.set_ylabel(\"Perplexity\")\n    ax.set_title(f\"{signal_name.replace('_', ' ').title()} vs Perplexity\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(plot_dir, f\"scatter_{signal_name}_vs_ppl.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\ndef plot_summary_curves(output_dir, fractions, num_generations):\n    \"\"\"Plot per-generation summary metrics (perplexity, HellaSwag, etc.).\"\"\"\n    metrics = [\"perplexity\", \"hellaswag_accuracy\", \"self_bleu\", \"distinct_2\"]\n    fig, axes = plt.subplots(2, 2, figsize=(14, 10))\n    axes = axes.flatten()\n\n    for ax, metric in zip(axes, metrics):\n        for frac in fractions:\n            frac_str = f\"{int(frac * 100)}pct\"\n            path = os.path.join(output_dir, f\"summary_{frac_str}.json\")\n            if not os.path.exists(path):\n                continue\n            with open(path) as f:\n                summaries = json.load(f)\n            gens = [s[\"generation\"] for s in summaries]\n            vals = [s.get(metric, 0) for s in summaries]\n            ax.plot(\n                gens, vals,\n                color=COLORS.get(frac, \"blue\"),\n                label=LABELS.get(frac, f\"{frac}\"),\n                marker=\"o\", linewidth=2,\n            )\n        ax.set_xlabel(\"Generation\")\n        ax.set_ylabel(metric.replace(\"_\", \" \").title())\n        ax.set_title(metric.replace(\"_\", \" \").title())\n        ax.legend()\n        ax.grid(True, alpha=0.3)\n\n    fig.tight_layout()\n    path = os.path.join(output_dir, \"plots\", \"summary_curves.png\")\n    os.makedirs(os.path.dirname(path), exist_ok=True)\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ---------------------------------------------------------------------------\n# Main analysis\n# ---------------------------------------------------------------------------\n\ndef run_analysis(config: Config = None):\n    if config is None:\n        config = Config()\n\n    output_dir = config.output_dir\n    fractions = config.synthetic_fractions\n    num_gen = config.num_generations\n\n    print(\"Loading signals...\")\n    data = load_all_signals(output_dir, fractions, num_gen)\n\n    print(\"Computing derived signals (divergence + CSD)...\")\n    compute_divergence_from_clean(data)\n    compute_csd_signals(data)\n\n    results = {}\n    for name in ALL_SIGNALS:\n        rows = flatten_signal(data, name)\n        rho, pval = compute_spearman(rows)\n        auroc = compute_auroc(rows)\n        results[name] = {\n            \"spearman_rho\": rho,\n            \"spearman_pval\": pval,\n            \"auroc\": auroc,\n            \"n_points\": len(rows),\n        }\n        print(\n            f\"  {name:25s}  rho={rho:+.3f} (p={pval:.4f})  \"\n            f\"AUROC={auroc:.3f}  n={len(rows)}\"\n        )\n\n    # Generate plots\n    print(\"\\nGenerating plots...\")\n    plot_dir = os.path.join(output_dir, \"plots\")\n    os.makedirs(plot_dir, exist_ok=True)\n\n    for name in ALL_SIGNALS + [\"perplexity\"]:\n        plot_signal_trajectory(data, name, plot_dir, fractions)\n    for name in ALL_SIGNALS:\n        plot_correlation_scatter(data, name, plot_dir, fractions)\n    plot_summary_curves(output_dir, fractions, num_gen)\n\n    # Family-level pass/fail (gate on rho only; AUROC is informational)\n    family_results = {}\n    for fam_name, members in SIGNAL_FAMILIES.items():\n        present = [m for m in members if m in results]\n        if not present:\n            family_results[fam_name] = {\n                \"pass\": False, \"best_rho\": 0.0, \"best_auroc\": 0.5,\n            }\n            continue\n        best_rho = max(abs(results[m][\"spearman_rho\"]) for m in present)\n        best_auroc = max(results[m][\"auroc\"] for m in present)\n        family_results[fam_name] = {\n            \"pass\": best_rho > 0.7,\n            \"best_rho\": best_rho,\n            \"best_auroc\": best_auroc,\n        }\n\n    n_pass = sum(1 for f in family_results.values() if f[\"pass\"])\n    if n_pass >= 2:\n        verdict = \"PASS\"\n    elif n_pass == 1:\n        verdict = \"CONDITIONAL\"\n    else:\n        verdict = \"HARD_FAIL\"\n\n    # Print summary\n    print(f\"\\n{'=' * 60}\")\n    print(\"FAMILY RESULTS (gate: |rho| > 0.7; AUROC informational)\")\n    print(f\"{'=' * 60}\")\n    for fam, r in family_results.items():\n        status = \"PASS\" if r[\"pass\"] else \"FAIL\"\n        print(\n            f\"  {fam:20s}  {status}  \"\n            f\"|rho|={r['best_rho']:.3f}  AUROC={r['best_auroc']:.3f}\"\n        )\n    verdict_detail = {\n        \"PASS\": f\"PASS ({n_pass}/{len(SIGNAL_FAMILIES)} families, need >= 2)\",\n        \"CONDITIONAL\": (\n            f\"CONDITIONAL ({n_pass}/{len(SIGNAL_FAMILIES)} family — \"\n            f\"need +1 seed to verify reproducibility)\"\n        ),\n        \"HARD_FAIL\": (\n            f\"HARD_FAIL (0/{len(SIGNAL_FAMILIES)} families — \"\n            f\"no signal tracks collapse, kill project)\"\n        ),\n    }\n    print(f\"\\n  Verdict: {verdict_detail[verdict]}\")\n\n    # Save report\n    report = {\n        \"signal_results\": results,\n        \"family_results\": family_results,\n        \"passing_families\": n_pass,\n        \"verdict\": verdict,\n    }\n    report_path = os.path.join(output_dir, \"analysis_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, default=str)\n    print(f\"\\n  Report saved: {report_path}\")\n\n    return report\n\n\nif __name__ == \"__main__\":\n    run_analysis()\n",
+                "numLines": 439,
+                "startLine": 1,
+                "totalLines": 439
+              }
+            },
+            "sourceToolAssistantUUID": "d944d72a-a26a-4562-a18f-05b300f97e84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "ff596d3a-a8aa-4706-a0f8-7799e4feb4fb",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy fixed analysis.py to autodl-5090",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T05:01:40.803Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取完成，现在将文件部署到服务器。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff596d3a-a8aa-4706-a0f8-7799e4feb4fb",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sdzcGxmRvjKUKKsQDm",
+            "type": "assistant",
+            "uuid": "04bd97c4-c568-4ff8-a53d-de7dc77b46a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012my5pzK7cN7mAasCY2Q75v",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5711,
+                "cache_read_input_tokens": 22941,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5711,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 22941,
+                    "cache_creation_input_tokens": 5711,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5711
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T05:01:41.398Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016tsnebhrxpjJLFC1Q9G57s",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04bd97c4-c568-4ff8-a53d-de7dc77b46a8",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sdzcGxmRvjKUKKsQDm",
+            "type": "assistant",
+            "uuid": "cb723938-9add-4d82-a01a-8c8bd4f0eec5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012my5pzK7cN7mAasCY2Q75v",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5711,
+                "cache_read_input_tokens": 22941,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5711,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 22941,
+                    "cache_creation_input_tokens": 5711,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5711
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T05:01:41.402Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016tsnebhrxpjJLFC1Q9G57s",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb723938-9add-4d82-a01a-8c8bd4f0eec5",
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "c1e7f3c4-faa1-4e9e-80dc-bf3a4f24ea51",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "cb723938-9add-4d82-a01a-8c8bd4f0eec5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T05:02:33.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018UMKtdc76huFSSKHouNrvz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "account": "root",
+                "command": "cat << 'ANALYSIS_EOF' > /root/autodl-tmp/collapse_severity_monitor/analysis.py\n\"\"\"Post-hoc analysis: Spearman rho, AUROC, trajectory plots, pass/fail judgment.\n\nReads signal JSONL files produced by the pipeline, computes correlations\nbetween each signal and perplexity. Pass/fail gate uses Spearman rho only\n(AUROC is computed and reported but not gated, per D002).\n\nThree-tier verdict:\n  PASS       — >=2 signal families with |rho| > 0.7\n  CONDITIONAL — exactly 1 family with |rho| > 0.7 (needs +1 seed)\n  HARD_FAIL  — 0 families pass\n\nAlso computes post-hoc derived signals:\n  - Divergence-from-clean: per-signal difference vs 0% baseline\n  - CSD (Critical Slowing Down): lag-1 autocorrelation + rolling variance\n\nInput: signals_*pct_gen*.jsonl in output_dir.\nOutput: analysis_report.json, trajectory and scatter plots in output_dir/plots/.\n\nDependencies: scipy, sklearn, matplotlib, numpy.\n\"\"\"\n\nimport os\nimport json\nimport math\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom scipy import stats\nfrom sklearn.metrics import roc_auc_score\n\nfrom config import Config\n\n# Signal families for pass/fail aggregation (rho > 0.7 gate; AUROC reported only)\nSIGNAL_FAMILIES = {\n    \"loss\": [\"training_loss\"],\n    \"gradient\": [\"gradient_norm\"],\n    \"output_entropy\": [\"token_entropy\"],\n    \"spectral\": [\"spectral_entropy\", \"stable_rank\", \"sv_ratio_1_2\"],\n    \"divergence\": [\"div_token_entropy\", \"div_spectral_entropy\", \"div_stable_rank\"],\n    \"csd\": [\"csd_ac1_perplexity\", \"csd_var_perplexity\"],\n}\n\n# Raw signals (from pipeline)\nBASE_SIGNALS = [\n    \"training_loss\",\n    \"gradient_norm\",\n    \"token_entropy\",\n    \"spectral_entropy\",\n    \"stable_rank\",\n    \"sv_ratio_1_2\",\n]\n\n# Derived signals (computed post-hoc in this script)\nDERIVED_SIGNALS = [\n    \"div_token_entropy\",\n    \"div_spectral_entropy\",\n    \"div_stable_rank\",\n    \"csd_ac1_perplexity\",\n    \"csd_var_perplexity\",\n]\n\nALL_SIGNALS = BASE_SIGNALS + DERIVED_SIGNALS\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_all_signals(output_dir, fractions, num_generations):\n    \"\"\"Load signal JSONL files into {fraction: {gen: [records]}}.\"\"\"\n    data = {}\n    for frac in fractions:\n        frac_str = f\"{int(frac * 100)}pct\"\n        data[frac] = {}\n        for gen in range(num_generations):\n            path = os.path.join(output_dir, f\"signals_{frac_str}_gen{gen}.jsonl\")\n            if not os.path.exists(path):\n                continue\n            with open(path) as f:\n                records = [json.loads(line) for line in f if line.strip()]\n            for r in records:\n                svs = r.get(\"top_singular_values\", [])\n                if len(svs) >= 2 and svs[1] > 0:\n                    r[\"sv_ratio_1_2\"] = svs[0] / svs[1]\n                else:\n                    r[\"sv_ratio_1_2\"] = 0.0\n            data[frac][gen] = records\n    return data\n\n\ndef flatten_signal(data, signal_name):\n    \"\"\"Extract (signal_value, perplexity, is_collapsing) tuples.\"\"\"\n    rows = []\n    for frac, gens in data.items():\n        is_collapsing = 1 if frac > 0.0 else 0\n        for gen, records in gens.items():\n            for r in records:\n                val = r.get(signal_name)\n                ppl = r.get(\"perplexity\")\n                if (\n                    val is not None\n                    and ppl is not None\n                    and math.isfinite(val)\n                    and math.isfinite(ppl)\n                ):\n                    rows.append((val, ppl, is_collapsing))\n    return rows\n\n\n# ---------------------------------------------------------------------------\n# Post-hoc derived signals\n# ---------------------------------------------------------------------------\n\ndef compute_divergence_from_clean(data):\n    \"\"\"Add div_* signals: difference between each collapsing run and 0% baseline.\n\n    For each collapsing fraction, at matching (gen, step) pairs, computes\n    signal_value - clean_value. Modifies records in-place.\n    \"\"\"\n    clean = data.get(0.0, {})\n    if not clean:\n        return\n\n    clean_lookup = {}\n    for gen, records in clean.items():\n        clean_lookup[gen] = {r[\"step\"]: r for r in records}\n\n    sigs_to_diff = [\"token_entropy\", \"spectral_entropy\", \"stable_rank\"]\n\n    for frac, gens in data.items():\n        if frac == 0.0:\n            continue\n        for gen, records in gens.items():\n            cl = clean_lookup.get(gen, {})\n            for r in records:\n                cr = cl.get(r[\"step\"], {})\n                for sig in sigs_to_diff:\n                    val = r.get(sig)\n                    cval = cr.get(sig)\n                    if val is not None and cval is not None:\n                        r[f\"div_{sig}\"] = val - cval\n\n\ndef compute_csd_signals(data):\n    \"\"\"Add CSD (Critical Slowing Down) indicators to each record.\n\n    For perplexity time series within each (fraction, generation):\n      - csd_ac1_perplexity: lag-1 autocorrelation up to current point\n      - csd_var_perplexity: rolling variance (window=5)\n    Modifies records in-place.\n    \"\"\"\n    for frac, gens in data.items():\n        for gen, records in gens.items():\n            ppls = []\n            for i, r in enumerate(records):\n                p = r.get(\"perplexity\")\n                if p is not None and math.isfinite(p):\n                    ppls.append(p)\n                else:\n                    ppls.append(None)\n                    continue\n\n                arr = np.array([x for x in ppls if x is not None], dtype=float)\n\n                # Lag-1 autocorrelation\n                if len(arr) >= 4:\n                    ac = np.corrcoef(arr[:-1], arr[1:])[0, 1]\n                    r[\"csd_ac1_perplexity\"] = float(ac) if math.isfinite(ac) else 0.0\n                else:\n                    r[\"csd_ac1_perplexity\"] = 0.0\n\n                # Rolling variance (last 5 points)\n                window = arr[max(0, len(arr) - 5):]\n                if len(window) >= 2:\n                    r[\"csd_var_perplexity\"] = float(np.var(window))\n                else:\n                    r[\"csd_var_perplexity\"] = 0.0\n\n\n# ---------------------------------------------------------------------------\n# Statistical metrics\n# ---------------------------------------------------------------------------\n\ndef compute_spearman(rows):\n    if len(rows) < 3:\n        return 0.0, 1.0\n    vals, ppls, _ = zip(*rows)\n    rho, pval = stats.spearmanr(vals, ppls)\n    rho = float(rho) if math.isfinite(rho) else 0.0\n    return rho, float(pval)\n\n\ndef compute_auroc(rows):\n    \"\"\"Direction-agnostic AUROC: max(AUC, 1-AUC).\"\"\"\n    if len(rows) < 3:\n        return 0.5\n    vals, _, labels = zip(*rows)\n    if len(set(labels)) < 2:\n        return 0.5\n    try:\n        auc = roc_auc_score(labels, vals)\n        return max(auc, 1 - auc)\n    except ValueError:\n        return 0.5\n\n\n# ---------------------------------------------------------------------------\n# Visualization\n# ---------------------------------------------------------------------------\n\nCOLORS = {0.0: \"#2ecc71\", 0.5: \"#e67e22\", 1.0: \"#e74c3c\"}\nLABELS = {0.0: \"0% (clean)\", 0.5: \"50% synthetic\", 1.0: \"100% synthetic\"}\n\n\ndef plot_signal_trajectory(data, signal_name, plot_dir, fractions):\n    \"\"\"Signal values across cumulative steps, one line per fraction.\"\"\"\n    fig, ax = plt.subplots(figsize=(10, 6))\n\n    for frac in fractions:\n        if frac not in data:\n            continue\n        steps, vals = [], []\n        offset = 0\n        for gen in sorted(data[frac].keys()):\n            records = data[frac][gen]\n            for r in records:\n                v = r.get(signal_name)\n                if v is not None and math.isfinite(v):\n                    steps.append(offset + r[\"step\"])\n                    vals.append(v)\n            if records:\n                offset += max(r[\"step\"] for r in records)\n        if steps:\n            ax.plot(\n                steps, vals,\n                color=COLORS.get(frac, \"blue\"),\n                label=LABELS.get(frac, f\"{frac}\"),\n                alpha=0.8, linewidth=1.5,\n            )\n\n    ax.set_xlabel(\"Cumulative Training Step\")\n    ax.set_ylabel(signal_name.replace(\"_\", \" \").title())\n    ax.set_title(f\"{signal_name.replace('_', ' ').title()} Trajectory\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(plot_dir, f\"trajectory_{signal_name}.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\ndef plot_correlation_scatter(data, signal_name, plot_dir, fractions):\n    \"\"\"Scatter plot of signal vs perplexity, colored by fraction.\"\"\"\n    fig, ax = plt.subplots(figsize=(8, 6))\n\n    for frac in fractions:\n        if frac not in data:\n            continue\n        vals, ppls = [], []\n        for gen in data[frac]:\n            for r in data[frac][gen]:\n                v = r.get(signal_name)\n                p = r.get(\"perplexity\")\n                if (\n                    v is not None\n                    and p is not None\n                    and math.isfinite(v)\n                    and math.isfinite(p)\n                ):\n                    vals.append(v)\n                    ppls.append(p)\n        if vals:\n            ax.scatter(\n                vals, ppls,\n                c=COLORS.get(frac, \"blue\"),\n                label=f\"{int(frac * 100)}%\",\n                alpha=0.6, s=20,\n            )\n\n    ax.set_xlabel(signal_name.replace(\"_\", \" \").title())\n    ax.set_ylabel(\"Perplexity\")\n    ax.set_title(f\"{signal_name.replace('_', ' ').title()} vs Perplexity\")\n    ax.legend()\n    ax.grid(True, alpha=0.3)\n\n    path = os.path.join(plot_dir, f\"scatter_{signal_name}_vs_ppl.png\")\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\ndef plot_summary_curves(output_dir, fractions, num_generations):\n    \"\"\"Plot per-generation summary metrics (perplexity, HellaSwag, etc.).\"\"\"\n    metrics = [\"perplexity\", \"hellaswag_accuracy\", \"self_bleu\", \"distinct_2\"]\n    fig, axes = plt.subplots(2, 2, figsize=(14, 10))\n    axes = axes.flatten()\n\n    for ax, metric in zip(axes, metrics):\n        for frac in fractions:\n            frac_str = f\"{int(frac * 100)}pct\"\n            path = os.path.join(output_dir, f\"summary_{frac_str}.json\")\n            if not os.path.exists(path):\n                continue\n            with open(path) as f:\n                summaries = json.load(f)\n            gens = [s[\"generation\"] for s in summaries]\n            vals = [s.get(metric, 0) for s in summaries]\n            ax.plot(\n                gens, vals,\n                color=COLORS.get(frac, \"blue\"),\n                label=LABELS.get(frac, f\"{frac}\"),\n                marker=\"o\", linewidth=2,\n            )\n        ax.set_xlabel(\"Generation\")\n        ax.set_ylabel(metric.replace(\"_\", \" \").title())\n        ax.set_title(metric.replace(\"_\", \" \").title())\n        ax.legend()\n        ax.grid(True, alpha=0.3)\n\n    fig.tight_layout()\n    path = os.path.join(output_dir, \"plots\", \"summary_curves.png\")\n    os.makedirs(os.path.dirname(path), exist_ok=True)\n    fig.savefig(path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ---------------------------------------------------------------------------\n# Main analysis\n# ---------------------------------------------------------------------------\n\ndef run_analysis(config: Config = None):\n    if config is None:\n        config = Config()\n\n    output_dir = config.output_dir\n    fractions = config.synthetic_fractions\n    num_gen = config.num_generations\n\n    print(\"Loading signals...\")\n    data = load_all_signals(output_dir, fractions, num_gen)\n\n    print(\"Computing derived signals (divergence + CSD)...\")\n    compute_divergence_from_clean(data)\n    compute_csd_signals(data)\n\n    results = {}\n    for name in ALL_SIGNALS:\n        rows = flatten_signal(data, name)\n        rho, pval = compute_spearman(rows)\n        auroc = compute_auroc(rows)\n        results[name] = {\n            \"spearman_rho\": rho,\n            \"spearman_pval\": pval,\n            \"auroc\": auroc,\n            \"n_points\": len(rows),\n        }\n        print(\n            f\"  {name:25s}  rho={rho:+.3f} (p={pval:.4f})  \"\n            f\"AUROC={auroc:.3f}  n={len(rows)}\"\n        )\n\n    # Generate plots\n    print(\"\\nGenerating plots...\")\n    plot_dir = os.path.join(output_dir, \"plots\")\n    os.makedirs(plot_dir, exist_ok=True)\n\n    for name in ALL_SIGNALS + [\"perplexity\"]:\n        plot_signal_trajectory(data, name, plot_dir, fractions)\n    for name in ALL_SIGNALS:\n        plot_correlation_scatter(data, name, plot_dir, fractions)\n    plot_summary_curves(output_dir, fractions, num_gen)\n\n    # Family-level pass/fail (gate on rho only; AUROC is informational)\n    family_results = {}\n    for fam_name, members in SIGNAL_FAMILIES.items():\n        present = [m for m in members if m in results]\n        if not present:\n            family_results[fam_name] = {\n                \"pass\": False, \"best_rho\": 0.0, \"best_auroc\": 0.5,\n            }\n            continue\n        best_rho = max(abs(results[m][\"spearman_rho\"]) for m in present)\n        best_auroc = max(results[m][\"auroc\"] for m in present)\n        family_results[fam_name] = {\n            \"pass\": best_rho > 0.7,\n            \"best_rho\": best_rho,\n            \"best_auroc\": best_auroc,\n        }\n\n    n_pass = sum(1 for f in family_results.values() if f[\"pass\"])\n    if n_pass >= 2:\n        verdict = \"PASS\"\n    elif n_pass == 1:\n        verdict = \"CONDITIONAL\"\n    else:\n        verdict = \"HARD_FAIL\"\n\n    # Print summary\n    print(f\"\\n{'=' * 60}\")\n    print(\"FAMILY RESULTS (gate: |rho| > 0.7; AUROC informational)\")\n    print(f\"{'=' * 60}\")\n    for fam, r in family_results.items():\n        status = \"PASS\" if r[\"pass\"] else \"FAIL\"\n        print(\n            f\"  {fam:20s}  {status}  \"\n            f\"|rho|={r['best_rho']:.3f}  AUROC={r['best_auroc']:.3f}\"\n        )\n    verdict_detail = {\n        \"PASS\": f\"PASS ({n_pass}/{len(SIGNAL_FAMILIES)} families, need >= 2)\",\n        \"CONDITIONAL\": (\n            f\"CONDITIONAL ({n_pass}/{len(SIGNAL_FAMILIES)} family — \"\n            f\"need +1 seed to verify reproducibility)\"\n        ),\n        \"HARD_FAIL\": (\n            f\"HARD_FAIL (0/{len(SIGNAL_FAMILIES)} families — \"\n            f\"no signal tracks collapse, kill project)\"\n        ),\n    }\n    print(f\"\\n  Verdict: {verdict_detail[verdict]}\")\n\n    # Save report\n    report = {\n        \"signal_results\": results,\n        \"family_results\": family_results,\n        \"passing_families\": n_pass,\n        \"verdict\": verdict,\n    }\n    report_path = os.path.join(output_dir, \"analysis_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, default=str)\n    print(f\"\\n  Report saved: {report_path}\")\n\n    return report\n\n\nif __name__ == \"__main__\":\n    run_analysis()\nANALYSIS_EOF\necho \"EXIT_CODE: $?\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1e7f3c4-faa1-4e9e-80dc-bf3a4f24ea51",
+            "isSidechain": false,
+            "requestId": "req_011Cb1seH1WfRf3YQBRDTMyP",
+            "type": "assistant",
+            "uuid": "87480773-c7fb-446b-b2fa-45549c890708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017iGTAPi1dCbofy4RaiXxaW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 362,
+                "cache_read_input_tokens": 28652,
+                "output_tokens": 4774,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 362,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4774,
+                    "cache_read_input_tokens": 28652,
+                    "cache_creation_input_tokens": 362,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 362
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T05:02:34.566Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018UMKtdc76huFSSKHouNrvz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87480773-c7fb-446b-b2fa-45549c890708",
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "1fccbb6a-b994-4ed1-829a-c2297015a6bc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"
+              }
+            },
+            "sourceToolAssistantUUID": "87480773-c7fb-446b-b2fa-45549c890708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T05:02:37.669Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入，验证导入。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1fccbb6a-b994-4ed1-829a-c2297015a6bc",
+            "isSidechain": false,
+            "requestId": "req_011Cb1siC2UqzTAnQoGZ6pmb",
+            "type": "assistant",
+            "uuid": "12f9b6e1-a345-4d33-8bf8-374a84ab0ebd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YWoY1xpsfwKFcDJoA7c2Aj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4857,
+                "cache_read_input_tokens": 29014,
+                "output_tokens": 99,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4857,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 99,
+                    "cache_read_input_tokens": 29014,
+                    "cache_creation_input_tokens": 4857,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4857
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T05:02:38.098Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UEAGRuozAJJKRjTfEgyxVq",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12f9b6e1-a345-4d33-8bf8-374a84ab0ebd",
+            "isSidechain": false,
+            "requestId": "req_011Cb1siC2UqzTAnQoGZ6pmb",
+            "type": "assistant",
+            "uuid": "b6ac2650-fec5-40c4-9800-12d6df3e89ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YWoY1xpsfwKFcDJoA7c2Aj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4857,
+                "cache_read_input_tokens": 29014,
+                "output_tokens": 99,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4857,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 99,
+                    "cache_read_input_tokens": 29014,
+                    "cache_creation_input_tokens": 4857,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4857
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T05:02:38.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UEAGRuozAJJKRjTfEgyxVq",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6ac2650-fec5-40c4-9800-12d6df3e89ab",
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "e556e4d6-24b4-4dec-96c4-6d5e725eb505",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "b6ac2650-fec5-40c4-9800-12d6df3e89ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T05:02:42.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HHy6tom2LMdb7V7owNBniL",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "account": "root",
+                "command": "cd /root/autodl-tmp/collapse_severity_monitor && python3 -c \"from analysis import run_analysis, SIGNAL_FAMILIES; print('Families:', list(SIGNAL_FAMILIES.keys())); print('OK')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e556e4d6-24b4-4dec-96c4-6d5e725eb505",
+            "isSidechain": false,
+            "requestId": "req_011Cb1siTRw4wcoGT4JJJUWF",
+            "type": "assistant",
+            "uuid": "f3769284-2fc9-4acf-a157-4e7dfe4d8b08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KnK5diKA1vj8MQpPXuZEYp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 436,
+                "cache_read_input_tokens": 33871,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 436,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 33871,
+                    "cache_creation_input_tokens": 436,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 436
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T05:02:42.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HHy6tom2LMdb7V7owNBniL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/collapse_severity_monitor && python3 -c \\\\\\\"from analysis import run_analysis, SIGNAL_FAMILIES; print(\\\\\\\\'Families:\\\\\\\\', list(SIGNAL_FAMILIES.keys())); print(\\\\\\\\'OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3769284-2fc9-4acf-a157-4e7dfe4d8b08",
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "d45e621e-dd9b-4667-bb3f-3053f987f66f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/collapse_severity_monitor && python3 -c \\\\\\\"from analysis import run_analysis, SIGNAL_FAMILIES; print(\\\\\\\\'Families:\\\\\\\\', list(SIGNAL_FAMILIES.keys())); print(\\\\\\\\'OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/collapse_severity_monitor && python3 -c \\\"from analysis import run_analysis, SIGNAL_FAMILIES; print(\\\\'Families:\\\\', list(SIGNAL_FAMILIES.keys())); print(\\\\'OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "f3769284-2fc9-4acf-a157-4e7dfe4d8b08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T05:02:45.622Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "python3 not found - this is likely an AutoDL instance with conda. Let me try with the conda environment.",
+              "signature": "EqMCClkIDRgCKkDAJmYsinR4FVkmVZCWpcw3f3cYoexAPgTU/TAVjpusl0uu8rpwKJxRrgEXzmbyeW32UvNbicUpZFq8DY74e5fOMg9jbGF1ZGUtb3B1cy00LTY4ABIMXq1W8A/2uKkIHRuaGgziRSi6DQm1Khv6pGAiMDeYE9PKzoTTZCgOEQCQS/L4SYjaKLg7r8QEHz+fevehdbuGSTErMC0GfHYzju98SSp4j09yk6rD59ITtLcMlWYArLvNajCyQOIlvslm5raGV6FrilKV0BKyqMRLx30MEVIgPlrr2HRRU/L3ZzCFUHT3bNs2P02+57r5GV8HWa45/CEC1U/fpJxZNw/vmOWtWUJnC/sbwL0Zy9vZCKbhxPc3hlabf9BW/juvGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d45e621e-dd9b-4667-bb3f-3053f987f66f",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sincbrBiS9cbgkET1g",
+            "type": "assistant",
+            "uuid": "d6ed0bad-c4ab-48ba-a147-fa35c01bfab6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BtUx8JmVxRLzFHfQpVFCpp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 34307,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 339,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 34307,
+                    "cache_creation_input_tokens": 339,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 339
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T05:02:46.602Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "conda 环境，用 conda activate 后再执行。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6ed0bad-c4ab-48ba-a147-fa35c01bfab6",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sincbrBiS9cbgkET1g",
+            "type": "assistant",
+            "uuid": "4d8220f5-3f33-4b8d-8e5b-2f57f8d49cdf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BtUx8JmVxRLzFHfQpVFCpp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 34307,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 339,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 34307,
+                    "cache_creation_input_tokens": 339,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 339
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T05:02:47.581Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016u5KbRDANFAMZ5Bw4i6CWQ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/collapse_severity_monitor && python -c \"from analysis import run_analysis, SIGNAL_FAMILIES; print('Families:', list(SIGNAL_FAMILIES.keys())); print('OK')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d8220f5-3f33-4b8d-8e5b-2f57f8d49cdf",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sincbrBiS9cbgkET1g",
+            "type": "assistant",
+            "uuid": "87794815-5c46-49e3-a1c9-0895dac657fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BtUx8JmVxRLzFHfQpVFCpp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 34307,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 339,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 34307,
+                    "cache_creation_input_tokens": 339,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 339
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "87794815-5c46-49e3-a1c9-0895dac657fb",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy fixed analysis.py to autodl-5090",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T05:02:50.117Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016u5KbRDANFAMZ5Bw4i6CWQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Families: ['loss', 'gradient', 'output_entropy', 'spectral', 'divergence', 'csd']\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87794815-5c46-49e3-a1c9-0895dac657fb",
+            "isSidechain": false,
+            "promptId": "740cd471-1da2-4bcc-b423-4cd907b52811",
+            "type": "user",
+            "uuid": "645b4f0f-71cd-4463-9aaf-b24c9947aa31",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Families: ['loss', 'gradient', 'output_entropy', 'spectral', 'divergence', 'csd']\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.53}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Families: ['loss', 'gradient', 'output_entropy', 'spectral', 'divergence', 'csd']\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.53}}"
+              }
+            },
+            "sourceToolAssistantUUID": "87794815-5c46-49e3-a1c9-0895dac657fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T05:02:53.137Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署验证通过。输出确认 6 个 signal families：loss, gradient, output_entropy, spectral, divergence, csd。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "645b4f0f-71cd-4463-9aaf-b24c9947aa31",
+            "isSidechain": false,
+            "requestId": "req_011Cb1sjLVFbbUuzDStKtcPn",
+            "type": "assistant",
+            "uuid": "c09bcdc4-dfbe-44c3-8dbf-618df34081bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+            "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LxSPRmyfgcuEb23btgVoDi",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 34646,
+                "output_tokens": 39,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 341,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 39,
+                    "cache_read_input_tokens": 34646,
+                    "cache_creation_input_tokens": 341,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 341
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c09bcdc4-dfbe-44c3-8dbf-618df34081bf",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy fixed analysis.py to autodl-5090",
+                "sessionId": "f3295c74-1ce7-4dc2-85c8-e51c0db9f42e"
+              }
+            }
+          ],
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-collapse-severity-monitor-autodl-5090-ssh-root-ssh-execute-sub-copy-16.md"
+}

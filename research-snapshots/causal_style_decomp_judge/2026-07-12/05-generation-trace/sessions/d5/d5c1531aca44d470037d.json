@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c1531aca44d470037d",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Agent 回复]: [资源] GPU 0/4 (westb-29275) | Worker 1 (fix:table2-width 运行中) | 磁盘: 未探查 ## 数字修复完成 ✅ 5 处修改（比预期多 1 处——experimen",
+  "task_key": "d72adcbb-d3b6-4507-b507-070140ce1714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/d72adcbb-d3b6-4507-b507-070140ce1714.jsonl",
+    "occurrence": 1,
+    "bytes": 594361,
+    "sha256": "69be435912e4783d0b4f4148400f31903dab6c22c3b96631b4dd50b8884eed07"
+  },
+  "statistics": {
+    "messages": 250,
+    "user_turns": 19,
+    "tool_calls": 53,
+    "roles": {
+      "record": 76,
+      "user": 19,
+      "assistant": 49,
+      "tool_call": 53,
+      "tool_result": 53
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d5c1531aca44d470037d-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-gpu-0-4-westb-29275-worker-1-fix-table2-width-5-1-experimen.md"
+}

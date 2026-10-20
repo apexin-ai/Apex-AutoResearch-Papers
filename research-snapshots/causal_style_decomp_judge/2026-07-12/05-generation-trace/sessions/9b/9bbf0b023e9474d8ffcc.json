@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "9bbf0b023e9474d8ffcc",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **autodl-5090**: plan_001 占 cuda:",
+  "task_key": "f9f2e7c9-2b47-4088-ac03-8a7cfd0eea0b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/f9f2e7c9-2b47-4088-ac03-8a7cfd0eea0b.jsonl",
+    "occurrence": 1,
+    "bytes": 985401,
+    "sha256": "fd0d5d5364b685e8ab8bd7b3f7827daa1cccd53966a83986ecd165f468fc5bed"
+  },
+  "statistics": {
+    "messages": 273,
+    "user_turns": 5,
+    "tool_calls": 79,
+    "roles": {
+      "record": 59,
+      "user": 5,
+      "assistant": 51,
+      "tool_call": 79,
+      "tool_result": 79
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0001.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "9bbf0b023e9474d8ffcc-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-5-task-context-1-autodl-5090-plan-001-cuda-copy-2.md"
+}

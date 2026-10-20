@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b0bb1cc7519564526c49",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-27 (UTC).** Only recommend ve",
+  "task_key": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/75711861-2d6e-4f77-b828-a14285c76ee3.jsonl",
+    "occurrence": 1,
+    "bytes": 526684,
+    "sha256": "7824d384ade686e630ff2ce524b951450692691b11483368da2fac76819f166b"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "record": 54,
+      "user": 1,
+      "assistant": 25,
+      "tool_call": 51,
+      "tool_result": 51
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b0bb1cc7519564526c49-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "b0bb1cc7519564526c49-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "b0bb1cc7519564526c49-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-complete-the-research-direction-below-with-implementation-details-today-s-date-copy-21.md"
+}
