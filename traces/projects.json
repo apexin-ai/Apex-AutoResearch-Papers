@@ -698,6 +698,22 @@
       "statistics": {}
     },
     {
+      "project": "prov_grounded_uie",
+      "title": "prov grounded uie",
+      "catalog": "../paper-assets/prov_grounded_uie/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 221,
+        "messages": 18264,
+        "user_turns": 520,
+        "tool_calls": 7356,
+        "unparsed_lines": 94,
+        "worker": 94,
+        "result": 86,
+        "conversation": 38,
+        "history": 3
+      }
+    },
+    {
       "project": "provenance_weight_training",
       "title": "When Does Detect-and-Reweight Work for Synthetic Contamination?",
       "catalog": "../paper-assets/provenance_weight_training/05-generation-trace/catalog.json",
@@ -791,6 +807,22 @@
         "worker": 506,
         "conversation": 217,
         "history": 45
+      }
+    },
+    {
+      "project": "schema_semantic_constrained_ie",
+      "title": "OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints",
+      "catalog": "../paper-assets/schema_semantic_constrained_ie/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2527,
+        "messages": 204987,
+        "user_turns": 6492,
+        "tool_calls": 82041,
+        "unparsed_lines": 988,
+        "result": 925,
+        "worker": 1048,
+        "conversation": 447,
+        "history": 107
       }
     },
     {

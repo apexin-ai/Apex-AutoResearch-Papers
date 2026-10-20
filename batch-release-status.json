@@ -995,6 +995,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
+    },
+    "schema_semantic_constrained_ie/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 6183380647,
+        "etag": "\"c9468fb1f601432ec7c1454fe76544b9-738\"",
+        "modified": "2026-05-31T17:33:57+00:00"
+      },
+      "archive_sha256": "33ac83b91c8dccebf2f804b4e630383934114fb5896936f95fac1d576ae12465",
+      "projects": [
+        "schema_semantic_constrained_ie",
+        "prov_grounded_uie"
+      ],
+      "counts": [
+        {
+          "project": "schema_semantic_constrained_ie",
+          "title": "OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints",
+          "paper_pdf": "paper.pdf",
+          "code_count": 451,
+          "data_count": 1384,
+          "trace_count": 2527
+        },
+        {
+          "project": "prov_grounded_uie",
+          "title": "prov grounded uie",
+          "paper_pdf": null,
+          "code_count": 52,
+          "data_count": 171,
+          "trace_count": 221
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39390795265"
     }
   }
 }

@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **38 projects with manuscript PDFs** and **26 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **39 projects with manuscript PDFs** and **27 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -39,6 +39,7 @@ This catalogue covers **38 projects with manuscript PDFs** and **26 additional p
 | [recovery_aware_struct_prune](paper-assets/recovery_aware_struct_prune/README.md) | [PDF](paper-assets/recovery_aware_struct_prune/01-manuscript/paper.pdf) | 757 | 2,746 | 3,747 | 248,503 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 395 | 1,066 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 378 | 676 | 1,242 | 131,771 |
+| [schema_semantic_constrained_ie](paper-assets/schema_semantic_constrained_ie/README.md) | [PDF](paper-assets/schema_semantic_constrained_ie/01-manuscript/paper.pdf) | 451 | 1,384 | 2,527 | 204,987 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
@@ -61,6 +62,7 @@ This catalogue covers **38 projects with manuscript PDFs** and **26 additional p
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [prov_grounded_uie](paper-assets/prov_grounded_uie/README.md) | No PDF in snapshot | 52 | 171 | 221 | 18,264 |
 | [schema-conform-ie-training](paper-assets/schema-conform-ie-training/README.md) | No PDF in snapshot | 35 | 140 | 110 | 9,882 |
 | [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | No PDF in snapshot | 26 | 27 | 31 | 1,575 |
 | [svs_formal_verification](paper-assets/svs_formal_verification/README.md) | No PDF in snapshot | 68 | 28 | 205 | 21,001 |
